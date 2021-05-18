@@ -11471,7 +11471,7 @@ pub const PWSTR = [*:0]u16;
 pub const PSTR = [*:0]u8;
 
 // TODO: this type has a FreeFunc 'CloseHandle', what can Zig do with this information?
-pub const HANDLE = ?*opaque{};
+pub const HANDLE = @import("std").os.windows.HANDLE;
 
 // TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
 pub const HINSTANCE = ?*opaque{};
