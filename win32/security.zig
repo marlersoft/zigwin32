@@ -5347,7 +5347,7 @@ pub const MSV1_0_IUM_SUPPLEMENTAL_CREDENTIAL = extern struct {
     EncryptedCreds: [1]u8,
 };
 
-pub const MSV1_0_REMOTE_SUPPLEMENTAL_CREDENTIAL = extern struct {
+pub const MSV1_0_REMOTE_SUPPLEMENTAL_CREDENTIAL = packed struct {
     Version: u32,
     Flags: u32,
     CredentialKey: MSV1_0_CREDENTIAL_KEY,
@@ -13458,6 +13458,7 @@ pub const SR_SECURITY_DESCRIPTOR = extern struct {
     SecurityDescriptor: *u8,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const USER_ALL_INFORMATION = extern struct {
     LastLogon: LARGE_INTEGER,
     LastLogoff: LARGE_INTEGER,

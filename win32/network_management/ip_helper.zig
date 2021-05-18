@@ -508,7 +508,7 @@ pub const icmp_echo_reply = extern struct {
     Options: ip_option_information,
 };
 
-pub const IPV6_ADDRESS_EX = extern struct {
+pub const IPV6_ADDRESS_EX = packed struct {
     sin6_port: u16,
     sin6_flowinfo: u32,
     sin6_addr: [8]u16,

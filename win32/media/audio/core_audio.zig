@@ -998,11 +998,11 @@ pub const YIELDPROC = fn(
     dwYieldData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MCI_GENERIC_PARMS = extern struct {
+pub const MCI_GENERIC_PARMS = packed struct {
     dwCallback: usize,
 };
 
-pub const MCI_OPEN_PARMSA = extern struct {
+pub const MCI_OPEN_PARMSA = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
@@ -1010,7 +1010,7 @@ pub const MCI_OPEN_PARMSA = extern struct {
     lpstrAlias: [*:0]const u8,
 };
 
-pub const MCI_OPEN_PARMSW = extern struct {
+pub const MCI_OPEN_PARMSW = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
@@ -1018,43 +1018,43 @@ pub const MCI_OPEN_PARMSW = extern struct {
     lpstrAlias: [*:0]const u16,
 };
 
-pub const MCI_PLAY_PARMS = extern struct {
+pub const MCI_PLAY_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
 };
 
-pub const MCI_SEEK_PARMS = extern struct {
+pub const MCI_SEEK_PARMS = packed struct {
     dwCallback: usize,
     dwTo: u32,
 };
 
-pub const MCI_STATUS_PARMS = extern struct {
+pub const MCI_STATUS_PARMS = packed struct {
     dwCallback: usize,
     dwReturn: usize,
     dwItem: u32,
     dwTrack: u32,
 };
 
-pub const MCI_INFO_PARMSA = extern struct {
+pub const MCI_INFO_PARMSA = packed struct {
     dwCallback: usize,
     lpstrReturn: PSTR,
     dwRetSize: u32,
 };
 
-pub const MCI_INFO_PARMSW = extern struct {
+pub const MCI_INFO_PARMSW = packed struct {
     dwCallback: usize,
     lpstrReturn: PWSTR,
     dwRetSize: u32,
 };
 
-pub const MCI_GETDEVCAPS_PARMS = extern struct {
+pub const MCI_GETDEVCAPS_PARMS = packed struct {
     dwCallback: usize,
     dwReturn: u32,
     dwItem: u32,
 };
 
-pub const MCI_SYSINFO_PARMSA = extern struct {
+pub const MCI_SYSINFO_PARMSA = packed struct {
     dwCallback: usize,
     lpstrReturn: PSTR,
     dwRetSize: u32,
@@ -1062,7 +1062,7 @@ pub const MCI_SYSINFO_PARMSA = extern struct {
     wDeviceType: u32,
 };
 
-pub const MCI_SYSINFO_PARMSW = extern struct {
+pub const MCI_SYSINFO_PARMSW = packed struct {
     dwCallback: usize,
     lpstrReturn: PWSTR,
     dwRetSize: u32,
@@ -1070,67 +1070,67 @@ pub const MCI_SYSINFO_PARMSW = extern struct {
     wDeviceType: u32,
 };
 
-pub const MCI_SET_PARMS = extern struct {
+pub const MCI_SET_PARMS = packed struct {
     dwCallback: usize,
     dwTimeFormat: u32,
     dwAudio: u32,
 };
 
-pub const MCI_BREAK_PARMS = extern struct {
+pub const MCI_BREAK_PARMS = packed struct {
     dwCallback: usize,
     nVirtKey: i32,
     hwndBreak: HWND,
 };
 
-pub const MCI_SAVE_PARMSA = extern struct {
+pub const MCI_SAVE_PARMSA = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u8,
 };
 
-pub const MCI_SAVE_PARMSW = extern struct {
+pub const MCI_SAVE_PARMSW = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u16,
 };
 
-pub const MCI_LOAD_PARMSA = extern struct {
+pub const MCI_LOAD_PARMSA = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u8,
 };
 
-pub const MCI_LOAD_PARMSW = extern struct {
+pub const MCI_LOAD_PARMSW = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u16,
 };
 
-pub const MCI_RECORD_PARMS = extern struct {
+pub const MCI_RECORD_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
 };
 
-pub const MCI_VD_PLAY_PARMS = extern struct {
+pub const MCI_VD_PLAY_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
     dwSpeed: u32,
 };
 
-pub const MCI_VD_STEP_PARMS = extern struct {
+pub const MCI_VD_STEP_PARMS = packed struct {
     dwCallback: usize,
     dwFrames: u32,
 };
 
-pub const MCI_VD_ESCAPE_PARMSA = extern struct {
+pub const MCI_VD_ESCAPE_PARMSA = packed struct {
     dwCallback: usize,
     lpstrCommand: [*:0]const u8,
 };
 
-pub const MCI_VD_ESCAPE_PARMSW = extern struct {
+pub const MCI_VD_ESCAPE_PARMSW = packed struct {
     dwCallback: usize,
     lpstrCommand: [*:0]const u16,
 };
 
-pub const MCI_WAVE_OPEN_PARMSA = extern struct {
+pub const MCI_WAVE_OPEN_PARMSA = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
@@ -1139,7 +1139,7 @@ pub const MCI_WAVE_OPEN_PARMSA = extern struct {
     dwBufferSeconds: u32,
 };
 
-pub const MCI_WAVE_OPEN_PARMSW = extern struct {
+pub const MCI_WAVE_OPEN_PARMSW = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
@@ -1148,13 +1148,13 @@ pub const MCI_WAVE_OPEN_PARMSW = extern struct {
     dwBufferSeconds: u32,
 };
 
-pub const MCI_WAVE_DELETE_PARMS = extern struct {
+pub const MCI_WAVE_DELETE_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
 };
 
-pub const MCI_WAVE_SET_PARMS = extern struct {
+pub const MCI_WAVE_SET_PARMS = packed struct {
     dwCallback: usize,
     dwTimeFormat: u32,
     dwAudio: u32,
@@ -1172,7 +1172,7 @@ pub const MCI_WAVE_SET_PARMS = extern struct {
     wReserved5: u16,
 };
 
-pub const MCI_SEQ_SET_PARMS = extern struct {
+pub const MCI_SEQ_SET_PARMS = packed struct {
     dwCallback: usize,
     dwTimeFormat: u32,
     dwAudio: u32,
@@ -1183,7 +1183,7 @@ pub const MCI_SEQ_SET_PARMS = extern struct {
     dwOffset: u32,
 };
 
-pub const MCI_ANIM_OPEN_PARMSA = extern struct {
+pub const MCI_ANIM_OPEN_PARMSA = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
@@ -1193,7 +1193,7 @@ pub const MCI_ANIM_OPEN_PARMSA = extern struct {
     hWndParent: HWND,
 };
 
-pub const MCI_ANIM_OPEN_PARMSW = extern struct {
+pub const MCI_ANIM_OPEN_PARMSW = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
@@ -1203,44 +1203,44 @@ pub const MCI_ANIM_OPEN_PARMSW = extern struct {
     hWndParent: HWND,
 };
 
-pub const MCI_ANIM_PLAY_PARMS = extern struct {
+pub const MCI_ANIM_PLAY_PARMS = packed struct {
     dwCallback: usize,
     dwFrom: u32,
     dwTo: u32,
     dwSpeed: u32,
 };
 
-pub const MCI_ANIM_STEP_PARMS = extern struct {
+pub const MCI_ANIM_STEP_PARMS = packed struct {
     dwCallback: usize,
     dwFrames: u32,
 };
 
-pub const MCI_ANIM_WINDOW_PARMSA = extern struct {
+pub const MCI_ANIM_WINDOW_PARMSA = packed struct {
     dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u8,
 };
 
-pub const MCI_ANIM_WINDOW_PARMSW = extern struct {
+pub const MCI_ANIM_WINDOW_PARMSW = packed struct {
     dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u16,
 };
 
-pub const MCI_ANIM_RECT_PARMS = extern struct {
+pub const MCI_ANIM_RECT_PARMS = packed struct {
     dwCallback: usize,
     rc: RECT,
 };
 
-pub const MCI_ANIM_UPDATE_PARMS = extern struct {
+pub const MCI_ANIM_UPDATE_PARMS = packed struct {
     dwCallback: usize,
     rc: RECT,
     hDC: HDC,
 };
 
-pub const MCI_OVLY_OPEN_PARMSA = extern struct {
+pub const MCI_OVLY_OPEN_PARMSA = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u8,
@@ -1250,7 +1250,7 @@ pub const MCI_OVLY_OPEN_PARMSA = extern struct {
     hWndParent: HWND,
 };
 
-pub const MCI_OVLY_OPEN_PARMSW = extern struct {
+pub const MCI_OVLY_OPEN_PARMSW = packed struct {
     dwCallback: usize,
     wDeviceID: u32,
     lpstrDeviceType: [*:0]const u16,
@@ -1260,44 +1260,44 @@ pub const MCI_OVLY_OPEN_PARMSW = extern struct {
     hWndParent: HWND,
 };
 
-pub const MCI_OVLY_WINDOW_PARMSA = extern struct {
+pub const MCI_OVLY_WINDOW_PARMSA = packed struct {
     dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u8,
 };
 
-pub const MCI_OVLY_WINDOW_PARMSW = extern struct {
+pub const MCI_OVLY_WINDOW_PARMSW = packed struct {
     dwCallback: usize,
     hWnd: HWND,
     nCmdShow: u32,
     lpstrText: [*:0]const u16,
 };
 
-pub const MCI_OVLY_RECT_PARMS = extern struct {
+pub const MCI_OVLY_RECT_PARMS = packed struct {
     dwCallback: usize,
     rc: RECT,
 };
 
-pub const MCI_OVLY_SAVE_PARMSA = extern struct {
+pub const MCI_OVLY_SAVE_PARMSA = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u8,
     rc: RECT,
 };
 
-pub const MCI_OVLY_SAVE_PARMSW = extern struct {
+pub const MCI_OVLY_SAVE_PARMSW = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u16,
     rc: RECT,
 };
 
-pub const MCI_OVLY_LOAD_PARMSA = extern struct {
+pub const MCI_OVLY_LOAD_PARMSA = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u8,
     rc: RECT,
 };
 
-pub const MCI_OVLY_LOAD_PARMSW = extern struct {
+pub const MCI_OVLY_LOAD_PARMSW = packed struct {
     dwCallback: usize,
     lpfilename: [*:0]const u16,
     rc: RECT,
@@ -2250,7 +2250,7 @@ pub const KSDEGRADE_STANDARD_QUALITY = KSDEGRADE_STANDARD.QUALITY;
 pub const KSDEGRADE_STANDARD_COMPUTATION = KSDEGRADE_STANDARD.COMPUTATION;
 pub const KSDEGRADE_STANDARD_SKIP = KSDEGRADE_STANDARD.SKIP;
 
-pub const KSPROPERTY_SERIALHDR = extern struct {
+pub const KSPROPERTY_SERIALHDR = packed struct {
     PropertySet: Guid,
     Count: u32,
 };
@@ -2566,30 +2566,30 @@ pub const CLSID_KSDATAFORMAT_SPECIFIER_WAVEFORMATEX = &CLSID_KSDATAFORMAT_SPECIF
 const CLSID_KSDATAFORMAT_SPECIFIER_DSOUND_Value = @import("../../zig.zig").Guid.initString("518590a2-a184-11d0-8522-00c04fd9baf3");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_DSOUND = &CLSID_KSDATAFORMAT_SPECIFIER_DSOUND_Value;
 
-pub const KSDATAFORMAT_WAVEFORMATEX = extern struct {
+pub const KSDATAFORMAT_WAVEFORMATEX = packed struct {
     DataFormat: KSDATAFORMAT,
     WaveFormatEx: WAVEFORMATEX,
 };
 
-pub const WAVEFORMATEXTENSIBLE_IEC61937 = extern struct {
+pub const WAVEFORMATEXTENSIBLE_IEC61937 = packed struct {
     FormatExt: WAVEFORMATEXTENSIBLE,
     dwEncodedSamplesPerSec: u32,
     dwEncodedChannelCount: u32,
     dwAverageBytesPerSec: u32,
 };
 
-pub const KSDATAFORMAT_WAVEFORMATEXTENSIBLE = extern struct {
+pub const KSDATAFORMAT_WAVEFORMATEXTENSIBLE = packed struct {
     DataFormat: KSDATAFORMAT,
     WaveFormatExt: WAVEFORMATEXTENSIBLE,
 };
 
-pub const KSDSOUND_BUFFERDESC = extern struct {
+pub const KSDSOUND_BUFFERDESC = packed struct {
     Flags: u32,
     Control: u32,
     WaveFormatEx: WAVEFORMATEX,
 };
 
-pub const KSDATAFORMAT_DSOUND = extern struct {
+pub const KSDATAFORMAT_DSOUND = packed struct {
     DataFormat: KSDATAFORMAT,
     BufferDesc: KSDSOUND_BUFFERDESC,
 };
@@ -4758,7 +4758,7 @@ pub const NABTS_BUFFER_LINE = extern struct {
     Bytes: [36]u8,
 };
 
-pub const NABTS_BUFFER = extern struct {
+pub const NABTS_BUFFER = packed struct {
     ScanlinesRequested: VBICODECFILTERING_SCANLINES,
     PictureNumber: i64,
     NabtsLines: [11]NABTS_BUFFER_LINE,
@@ -7983,7 +7983,7 @@ pub const AudioObjectType_BottomBackLeft = AudioObjectType.BottomBackLeft;
 pub const AudioObjectType_BottomBackRight = AudioObjectType.BottomBackRight;
 pub const AudioObjectType_BackCenter = AudioObjectType.BackCenter;
 
-pub const SpatialAudioObjectRenderStreamActivationParams = extern struct {
+pub const SpatialAudioObjectRenderStreamActivationParams = packed struct {
     ObjectFormat: *const WAVEFORMATEX,
     StaticObjectTypeMask: AudioObjectType,
     MinDynamicObjectCount: u32,
@@ -8340,17 +8340,17 @@ pub const SpatialAudioHrtfDistanceDecayType = extern enum(i32) {
 pub const SpatialAudioHrtfDistanceDecay_NaturalDecay = SpatialAudioHrtfDistanceDecayType.NaturalDecay;
 pub const SpatialAudioHrtfDistanceDecay_CustomDecay = SpatialAudioHrtfDistanceDecayType.CustomDecay;
 
-pub const SpatialAudioHrtfDirectivity = extern struct {
+pub const SpatialAudioHrtfDirectivity = packed struct {
     Type: SpatialAudioHrtfDirectivityType,
     Scaling: f32,
 };
 
-pub const SpatialAudioHrtfDirectivityCardioid = extern struct {
+pub const SpatialAudioHrtfDirectivityCardioid = packed struct {
     directivity: SpatialAudioHrtfDirectivity,
     Order: f32,
 };
 
-pub const SpatialAudioHrtfDirectivityCone = extern struct {
+pub const SpatialAudioHrtfDirectivityCone = packed struct {
     directivity: SpatialAudioHrtfDirectivity,
     InnerAngle: f32,
     OuterAngle: f32,
@@ -8362,7 +8362,7 @@ pub const SpatialAudioHrtfDirectivityUnion = extern union {
     Omni: SpatialAudioHrtfDirectivity,
 };
 
-pub const SpatialAudioHrtfDistanceDecay = extern struct {
+pub const SpatialAudioHrtfDistanceDecay = packed struct {
     Type: SpatialAudioHrtfDistanceDecayType,
     MaxGain: f32,
     MinGain: f32,
@@ -8370,7 +8370,7 @@ pub const SpatialAudioHrtfDistanceDecay = extern struct {
     CutoffDistance: f32,
 };
 
-pub const SpatialAudioHrtfActivationParams = extern struct {
+pub const SpatialAudioHrtfActivationParams = packed struct {
     ObjectFormat: *const WAVEFORMATEX,
     StaticObjectTypeMask: AudioObjectType,
     MinDynamicObjectCount: u32,
@@ -10723,14 +10723,14 @@ pub const SpatialAudioMetadataCopy_Append = SpatialAudioMetadataCopyMode.Append;
 pub const SpatialAudioMetadataCopy_AppendMergeWithLast = SpatialAudioMetadataCopyMode.AppendMergeWithLast;
 pub const SpatialAudioMetadataCopy_AppendMergeWithFirst = SpatialAudioMetadataCopyMode.AppendMergeWithFirst;
 
-pub const SpatialAudioMetadataItemsInfo = extern struct {
+pub const SpatialAudioMetadataItemsInfo = packed struct {
     FrameCount: u16,
     ItemCount: u16,
     MaxItemCount: u16,
     MaxValueBufferLength: u32,
 };
 
-pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = extern struct {
+pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = packed struct {
     ObjectFormat: *const WAVEFORMATEX,
     StaticObjectTypeMask: AudioObjectType,
     MinDynamicObjectCount: u32,

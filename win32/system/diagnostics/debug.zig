@@ -1118,6 +1118,7 @@ pub const CONTEXT = usize;
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
     ThreadId: u32,
     ExceptionPointers: *EXCEPTION_POINTERS,
@@ -1129,6 +1130,7 @@ pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_USER_STREAM = extern struct {
     Type: u32,
     BufferSize: u32,
@@ -1140,6 +1142,7 @@ pub const MINIDUMP_USER_STREAM = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
     UserStreamCount: u32,
     UserStreamArray: *MINIDUMP_USER_STREAM,
@@ -1182,6 +1185,7 @@ pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
     CallbackRoutine: MINIDUMP_CALLBACK_ROUTINE,
     CallbackParam: *c_void,
@@ -1347,6 +1351,7 @@ pub const IMAGE_OPTIONAL_HEADER32 = extern struct {
     DataDirectory: [16]IMAGE_DATA_DIRECTORY,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_OPTIONAL_HEADER64 = extern struct {
     Magic: IMAGE_OPTIONAL_HEADER_MAGIC,
     MajorLinkerVersion: u8,
@@ -1454,6 +1459,7 @@ pub const IMAGE_LOAD_CONFIG_DIRECTORY32 = extern struct {
     GuardEHContinuationCount: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_LOAD_CONFIG_DIRECTORY64 = extern struct {
     Size: u32,
     TimeDateStamp: u32,
@@ -1537,6 +1543,7 @@ pub const IMAGE_FUNCTION_ENTRY = extern struct {
     EndOfPrologue: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_FUNCTION_ENTRY64 = extern struct {
     StartingAddress: u64,
     EndingAddress: u64,
@@ -1702,21 +1709,25 @@ pub const MINIDUMP_LOCATION_DESCRIPTOR = extern struct {
     Rva: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_LOCATION_DESCRIPTOR64 = extern struct {
     DataSize: u64,
     Rva: u64,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_DESCRIPTOR = extern struct {
     StartOfMemoryRange: u64,
     Memory: MINIDUMP_LOCATION_DESCRIPTOR,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_DESCRIPTOR64 = extern struct {
     StartOfMemoryRange: u64,
     DataSize: u64,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_HEADER = extern struct {
     Signature: u32,
     Version: u32,
@@ -1842,6 +1853,7 @@ pub const MINIDUMP_SYSTEM_INFO = extern struct {
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD = extern struct {
     ThreadId: u32,
     SuspendCount: u32,
@@ -1857,6 +1869,7 @@ pub const MINIDUMP_THREAD_LIST = extern struct {
     Threads: [1]MINIDUMP_THREAD,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_EX = extern struct {
     ThreadId: u32,
     SuspendCount: u32,
@@ -1873,6 +1886,7 @@ pub const MINIDUMP_THREAD_EX_LIST = extern struct {
     Threads: [1]MINIDUMP_THREAD_EX,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_EXCEPTION = extern struct {
     ExceptionCode: u32,
     ExceptionFlags: u32,
@@ -1890,6 +1904,7 @@ pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
     ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MODULE = extern struct {
     BaseOfImage: u64,
     SizeOfImage: u32,
@@ -1913,12 +1928,14 @@ pub const MINIDUMP_MEMORY_LIST = extern struct {
     MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY64_LIST = extern struct {
     NumberOfMemoryRanges: u64,
     BaseRva: u64,
     MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
     ThreadId: u32,
     ExceptionRecord: u64,
@@ -1955,6 +1972,7 @@ pub const MINIDUMP_HANDLE_OBJECT_INFORMATION = extern struct {
     SizeOfInfo: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
     Handle: u64,
     TypeNameRva: u32,
@@ -1965,6 +1983,7 @@ pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
     PointerCount: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_HANDLE_DESCRIPTOR_2 = extern struct {
     Handle: u64,
     TypeNameRva: u32,
@@ -1991,6 +2010,7 @@ pub const MINIDUMP_HANDLE_OPERATION_LIST = extern struct {
     Reserved: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
     MinimumAddress: u64,
     MaximumAddress: u64,
@@ -2008,6 +2028,7 @@ pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
     SizeOfAlignPad: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_UNLOADED_MODULE = extern struct {
     BaseOfImage: u64,
     SizeOfImage: u32,
@@ -2022,6 +2043,7 @@ pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
     NumberOfEntries: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const XSTATE_CONFIG_FEATURE_MSC_INFO = extern struct {
     SizeOfInfo: u32,
     ContextSize: u32,
@@ -2115,6 +2137,7 @@ pub const MINIDUMP_MISC_INFO_5 = extern struct {
     ProcessCookie: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_INFO = extern struct {
     BaseAddress: u64,
     AllocationBase: u64,
@@ -2127,12 +2150,14 @@ pub const MINIDUMP_MEMORY_INFO = extern struct {
     __alignment2: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_INFO_LIST = extern struct {
     SizeOfHeader: u32,
     SizeOfEntry: u32,
     NumberOfEntries: u64,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_NAME = extern struct {
     ThreadId: u32,
     RvaOfThreadName: u64,
@@ -2143,6 +2168,7 @@ pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
     ThreadNames: [1]MINIDUMP_THREAD_NAME,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_INFO = extern struct {
     ThreadId: u32,
     DumpFlags: MINIDUMP_THREAD_INFO_DUMP_FLAGS,
@@ -2162,6 +2188,7 @@ pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
     NumberOfEntries: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
     TokenSize: u32,
     TokenId: u32,
@@ -2175,6 +2202,7 @@ pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
     ElementHeaderSize: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
     TimerResolution: u32,
     PageSize: u32,
@@ -2188,6 +2216,7 @@ pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
     NumberOfProcessors: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
     CurrentSize: u64,
     PeakSize: u64,
@@ -2200,6 +2229,7 @@ pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
     Flags: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
     AvailablePages: u64,
     CommittedPages: u64,
@@ -2207,6 +2237,7 @@ pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
     PeakCommitment: u64,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION = extern struct {
     IdleProcessTime: u64,
     IoReadTransferCount: u64,
@@ -2297,6 +2328,7 @@ pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
     PerfInfo: MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
     Revision: u16,
     PageFaultCount: u32,
@@ -2311,6 +2343,7 @@ pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
     PrivateUsage: u64,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_PROCESS_VM_COUNTERS_2 = extern struct {
     Revision: u16,
     Flags: u16,
@@ -2436,6 +2469,7 @@ pub const ThreadWriteInstructionWindow = THREAD_WRITE_FLAGS.InstructionWindow;
 pub const ThreadWriteThreadData = THREAD_WRITE_FLAGS.ThreadData;
 pub const ThreadWriteThreadInfo = THREAD_WRITE_FLAGS.ThreadInfo;
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MODULE_CALLBACK = extern struct {
     FullPath: [*]u16,
     BaseOfImage: u64,
@@ -2449,6 +2483,7 @@ pub const MINIDUMP_MODULE_CALLBACK = extern struct {
     SizeOfMiscRecord: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
     BaseOfImage: u64,
 };
@@ -2470,6 +2505,7 @@ pub const ModuleReferencedByMemory = MODULE_WRITE_FLAGS.ReferencedByMemory;
 pub const ModuleWriteTlsData = MODULE_WRITE_FLAGS.WriteTlsData;
 pub const ModuleWriteCodeSegs = MODULE_WRITE_FLAGS.WriteCodeSegs;
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_IO_CALLBACK = extern struct {
     Handle: HANDLE,
     Offset: u64,
@@ -2477,22 +2513,26 @@ pub const MINIDUMP_IO_CALLBACK = extern struct {
     BufferBytes: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_READ_MEMORY_FAILURE_CALLBACK = extern struct {
     Offset: u64,
     Bytes: u32,
     FailureStatus: HRESULT,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_VM_QUERY_CALLBACK = extern struct {
     Offset: u64,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_VM_PRE_READ_CALLBACK = extern struct {
     Offset: u64,
     Buffer: *c_void,
     Size: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_VM_POST_READ_CALLBACK = extern struct {
     Offset: u64,
     Buffer: *c_void,
@@ -45883,6 +45923,7 @@ pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_CALLBACK = extern struct {
     ThreadId: u32,
     ThreadHandle: HANDLE,
@@ -45897,6 +45938,7 @@ pub const MINIDUMP_THREAD_CALLBACK = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
     ThreadId: u32,
     ThreadHandle: HANDLE,

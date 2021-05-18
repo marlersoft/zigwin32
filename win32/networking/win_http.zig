@@ -823,6 +823,7 @@ pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const WINHTTP_CONNECTION_INFO = extern struct {
     cbSize: u32,
     LocalAddress: SOCKADDR_STORAGE,
@@ -834,6 +835,7 @@ pub const WINHTTP_CONNECTION_INFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const WINHTTP_REQUEST_TIMES = extern struct {
     cTimes: u32,
     rgullTimes: [64]u64,
@@ -844,6 +846,7 @@ pub const WINHTTP_REQUEST_TIMES = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const WINHTTP_REQUEST_STATS = extern struct {
     ullFlags: u64,
     ulIndex: u32,

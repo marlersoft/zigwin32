@@ -1870,7 +1870,7 @@ pub const IWTSSBPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CHANNEL_DEF = extern struct {
+pub const CHANNEL_DEF = packed struct {
     name: [8]CHAR,
     options: u32,
 };
@@ -5160,19 +5160,19 @@ pub const IWRdsGraphicsChannelManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RFX_GFX_RECT = extern struct {
+pub const RFX_GFX_RECT = packed struct {
     left: i32,
     top: i32,
     right: i32,
     bottom: i32,
 };
 
-pub const RFX_GFX_MSG_HEADER = extern struct {
+pub const RFX_GFX_MSG_HEADER = packed struct {
     uMSGType: u16,
     cbSize: u16,
 };
 
-pub const RFX_GFX_MONITOR_INFO = extern struct {
+pub const RFX_GFX_MONITOR_INFO = packed struct {
     left: i32,
     top: i32,
     right: i32,
@@ -5187,7 +5187,7 @@ pub const RFX_GFX_MSG_CLIENT_DESKTOP_INFO_REQUEST = extern struct {
     channelHdr: RFX_GFX_MSG_HEADER,
 };
 
-pub const RFX_GFX_MSG_CLIENT_DESKTOP_INFO_RESPONSE = extern struct {
+pub const RFX_GFX_MSG_CLIENT_DESKTOP_INFO_RESPONSE = packed struct {
     channelHdr: RFX_GFX_MSG_HEADER,
     reserved: u32,
     monitorCount: u32,
@@ -5195,7 +5195,7 @@ pub const RFX_GFX_MSG_CLIENT_DESKTOP_INFO_RESPONSE = extern struct {
     clientUniqueId: [32]u16,
 };
 
-pub const RFX_GFX_MSG_DESKTOP_CONFIG_CHANGE_NOTIFY = extern struct {
+pub const RFX_GFX_MSG_DESKTOP_CONFIG_CHANGE_NOTIFY = packed struct {
     channelHdr: RFX_GFX_MSG_HEADER,
     ulWidth: u32,
     ulHeight: u32,
@@ -5207,13 +5207,13 @@ pub const RFX_GFX_MSG_DESKTOP_CONFIG_CHANGE_CONFIRM = extern struct {
     channelHdr: RFX_GFX_MSG_HEADER,
 };
 
-pub const RFX_GFX_MSG_DESKTOP_INPUT_RESET = extern struct {
+pub const RFX_GFX_MSG_DESKTOP_INPUT_RESET = packed struct {
     channelHdr: RFX_GFX_MSG_HEADER,
     ulWidth: u32,
     ulHeight: u32,
 };
 
-pub const RFX_GFX_MSG_DISCONNECT_NOTIFY = extern struct {
+pub const RFX_GFX_MSG_DISCONNECT_NOTIFY = packed struct {
     channelHdr: RFX_GFX_MSG_HEADER,
     DisconnectReason: u32,
 };

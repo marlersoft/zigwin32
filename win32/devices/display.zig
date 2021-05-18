@@ -948,12 +948,12 @@ pub const VMEMHEAP = extern struct {
     dwAgpCommitMaskSize: u32,
 };
 
-pub const PHYSICAL_MONITOR = extern struct {
+pub const PHYSICAL_MONITOR = packed struct {
     hPhysicalMonitor: HANDLE,
     szPhysicalMonitorDescription: [128]u16,
 };
 
-pub const MC_TIMING_REPORT = extern struct {
+pub const MC_TIMING_REPORT = packed struct {
     dwHorizontalFrequencyInHZ: u32,
     dwVerticalFrequencyInHZ: u32,
     bTimingStatusByte: u8,

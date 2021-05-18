@@ -1844,7 +1844,7 @@ pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const INFCONTEXT = extern struct {
+pub const INFCONTEXT = packed struct {
     Inf: *c_void,
     CurrentInf: *c_void,
     Section: u32,
@@ -1856,7 +1856,7 @@ pub const INFCONTEXT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_INF_INFORMATION = extern struct {
+pub const SP_INF_INFORMATION = packed struct {
     InfStyle: u32,
     InfCount: u32,
     VersionData: [1]u8,
@@ -1867,7 +1867,7 @@ pub const SP_INF_INFORMATION = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
+pub const SP_ALTPLATFORM_INFO_V3 = packed struct {
     cbSize: u32,
     Platform: u32,
     MajorVersion: u32,
@@ -1887,7 +1887,7 @@ pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
+pub const SP_ALTPLATFORM_INFO_V2 = packed struct {
     cbSize: u32,
     Platform: u32,
     MajorVersion: u32,
@@ -1904,7 +1904,7 @@ pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
+pub const SP_ALTPLATFORM_INFO_V1 = packed struct {
     cbSize: u32,
     Platform: u32,
     MajorVersion: u32,
@@ -1918,7 +1918,7 @@ pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
+pub const SP_ORIGINAL_FILE_INFO_A = packed struct {
     cbSize: u32,
     OriginalInfName: [260]CHAR,
     OriginalCatalogName: [260]CHAR,
@@ -1929,7 +1929,7 @@ pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
+pub const SP_ORIGINAL_FILE_INFO_W = packed struct {
     cbSize: u32,
     OriginalInfName: [260]u16,
     OriginalCatalogName: [260]u16,
@@ -1940,7 +1940,7 @@ pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FILEPATHS_A = extern struct {
+pub const FILEPATHS_A = packed struct {
     Target: [*:0]const u8,
     Source: [*:0]const u8,
     Win32Error: u32,
@@ -1952,7 +1952,7 @@ pub const FILEPATHS_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FILEPATHS_W = extern struct {
+pub const FILEPATHS_W = packed struct {
     Target: [*:0]const u16,
     Source: [*:0]const u16,
     Win32Error: u32,
@@ -1964,7 +1964,7 @@ pub const FILEPATHS_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FILEPATHS_SIGNERINFO_A = extern struct {
+pub const FILEPATHS_SIGNERINFO_A = packed struct {
     Target: [*:0]const u8,
     Source: [*:0]const u8,
     Win32Error: u32,
@@ -1979,7 +1979,7 @@ pub const FILEPATHS_SIGNERINFO_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FILEPATHS_SIGNERINFO_W = extern struct {
+pub const FILEPATHS_SIGNERINFO_W = packed struct {
     Target: [*:0]const u16,
     Source: [*:0]const u16,
     Win32Error: u32,
@@ -1994,7 +1994,7 @@ pub const FILEPATHS_SIGNERINFO_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SOURCE_MEDIA_A = extern struct {
+pub const SOURCE_MEDIA_A = packed struct {
     Reserved: [*:0]const u8,
     Tagfile: [*:0]const u8,
     Description: [*:0]const u8,
@@ -2008,7 +2008,7 @@ pub const SOURCE_MEDIA_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SOURCE_MEDIA_W = extern struct {
+pub const SOURCE_MEDIA_W = packed struct {
     Reserved: [*:0]const u16,
     Tagfile: [*:0]const u16,
     Description: [*:0]const u16,
@@ -2022,7 +2022,7 @@ pub const SOURCE_MEDIA_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const CABINET_INFO_A = extern struct {
+pub const CABINET_INFO_A = packed struct {
     CabinetPath: [*:0]const u8,
     CabinetFile: [*:0]const u8,
     DiskName: [*:0]const u8,
@@ -2035,7 +2035,7 @@ pub const CABINET_INFO_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const CABINET_INFO_W = extern struct {
+pub const CABINET_INFO_W = packed struct {
     CabinetPath: [*:0]const u16,
     CabinetFile: [*:0]const u16,
     DiskName: [*:0]const u16,
@@ -2048,7 +2048,7 @@ pub const CABINET_INFO_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FILE_IN_CABINET_INFO_A = extern struct {
+pub const FILE_IN_CABINET_INFO_A = packed struct {
     NameInCabinet: [*:0]const u8,
     FileSize: u32,
     Win32Error: u32,
@@ -2063,7 +2063,7 @@ pub const FILE_IN_CABINET_INFO_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const FILE_IN_CABINET_INFO_W = extern struct {
+pub const FILE_IN_CABINET_INFO_W = packed struct {
     NameInCabinet: [*:0]const u16,
     FileSize: u32,
     Win32Error: u32,
@@ -2078,7 +2078,7 @@ pub const FILE_IN_CABINET_INFO_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
+pub const SP_REGISTER_CONTROL_STATUSA = packed struct {
     cbSize: u32,
     FileName: [*:0]const u8,
     Win32Error: u32,
@@ -2090,7 +2090,7 @@ pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
+pub const SP_REGISTER_CONTROL_STATUSW = packed struct {
     cbSize: u32,
     FileName: [*:0]const u16,
     Win32Error: u32,
@@ -2102,7 +2102,7 @@ pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_FILE_COPY_PARAMS_A = extern struct {
+pub const SP_FILE_COPY_PARAMS_A = packed struct {
     cbSize: u32,
     QueueHandle: *c_void,
     SourceRootPath: [*:0]const u8,
@@ -2122,7 +2122,7 @@ pub const SP_FILE_COPY_PARAMS_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_FILE_COPY_PARAMS_W = extern struct {
+pub const SP_FILE_COPY_PARAMS_W = packed struct {
     cbSize: u32,
     QueueHandle: *c_void,
     SourceRootPath: [*:0]const u16,
@@ -2142,7 +2142,7 @@ pub const SP_FILE_COPY_PARAMS_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVINFO_DATA = extern struct {
+pub const SP_DEVINFO_DATA = packed struct {
     cbSize: u32,
     ClassGuid: Guid,
     DevInst: u32,
@@ -2154,7 +2154,7 @@ pub const SP_DEVINFO_DATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVICE_INTERFACE_DATA = extern struct {
+pub const SP_DEVICE_INTERFACE_DATA = packed struct {
     cbSize: u32,
     InterfaceClassGuid: Guid,
     Flags: u32,
@@ -2166,7 +2166,7 @@ pub const SP_DEVICE_INTERFACE_DATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = extern struct {
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = packed struct {
     cbSize: u32,
     DevicePath: [1]CHAR,
 };
@@ -2176,7 +2176,7 @@ pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = extern struct {
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = packed struct {
     cbSize: u32,
     DevicePath: [1]u16,
 };
@@ -2186,7 +2186,7 @@ pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVINFO_LIST_DETAIL_DATA_A = extern struct {
+pub const SP_DEVINFO_LIST_DETAIL_DATA_A = packed struct {
     cbSize: u32,
     ClassGuid: Guid,
     RemoteMachineHandle: HANDLE,
@@ -2198,7 +2198,7 @@ pub const SP_DEVINFO_LIST_DETAIL_DATA_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVINFO_LIST_DETAIL_DATA_W = extern struct {
+pub const SP_DEVINFO_LIST_DETAIL_DATA_W = packed struct {
     cbSize: u32,
     ClassGuid: Guid,
     RemoteMachineHandle: HANDLE,
@@ -2210,7 +2210,7 @@ pub const SP_DEVINFO_LIST_DETAIL_DATA_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVINSTALL_PARAMS_A = extern struct {
+pub const SP_DEVINSTALL_PARAMS_A = packed struct {
     cbSize: u32,
     Flags: u32,
     FlagsEx: u32,
@@ -2228,7 +2228,7 @@ pub const SP_DEVINSTALL_PARAMS_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DEVINSTALL_PARAMS_W = extern struct {
+pub const SP_DEVINSTALL_PARAMS_W = packed struct {
     cbSize: u32,
     Flags: u32,
     FlagsEx: u32,
@@ -2246,7 +2246,7 @@ pub const SP_DEVINSTALL_PARAMS_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_CLASSINSTALL_HEADER = extern struct {
+pub const SP_CLASSINSTALL_HEADER = packed struct {
     cbSize: u32,
     InstallFunction: u32,
 };
@@ -2256,7 +2256,7 @@ pub const SP_CLASSINSTALL_HEADER = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_ENABLECLASS_PARAMS = extern struct {
+pub const SP_ENABLECLASS_PARAMS = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     ClassGuid: Guid,
     EnableMessage: u32,
@@ -2267,7 +2267,7 @@ pub const SP_ENABLECLASS_PARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_PROPCHANGE_PARAMS = extern struct {
+pub const SP_PROPCHANGE_PARAMS = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     StateChange: u32,
     Scope: u32,
@@ -2279,7 +2279,7 @@ pub const SP_PROPCHANGE_PARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_REMOVEDEVICE_PARAMS = extern struct {
+pub const SP_REMOVEDEVICE_PARAMS = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Scope: u32,
     HwProfile: u32,
@@ -2290,7 +2290,7 @@ pub const SP_REMOVEDEVICE_PARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_UNREMOVEDEVICE_PARAMS = extern struct {
+pub const SP_UNREMOVEDEVICE_PARAMS = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Scope: u32,
     HwProfile: u32,
@@ -2301,7 +2301,7 @@ pub const SP_UNREMOVEDEVICE_PARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_SELECTDEVICE_PARAMS_W = extern struct {
+pub const SP_SELECTDEVICE_PARAMS_W = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Title: [60]u16,
     Instructions: [256]u16,
@@ -2314,7 +2314,7 @@ pub const SP_SELECTDEVICE_PARAMS_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DETECTDEVICE_PARAMS = extern struct {
+pub const SP_DETECTDEVICE_PARAMS = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     DetectProgressNotify: PDETECT_PROGRESS_NOTIFY,
     ProgressNotifyParam: *c_void,
@@ -2325,7 +2325,7 @@ pub const SP_DETECTDEVICE_PARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_INSTALLWIZARD_DATA = extern struct {
+pub const SP_INSTALLWIZARD_DATA = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Flags: u32,
     DynamicPages: [20]isize,
@@ -2341,7 +2341,7 @@ pub const SP_INSTALLWIZARD_DATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
+pub const SP_NEWDEVICEWIZARD_DATA = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Flags: u32,
     DynamicPages: [20]isize,
@@ -2354,7 +2354,7 @@ pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
+pub const SP_TROUBLESHOOTER_PARAMS_W = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     ChmFile: [260]u16,
     HtmlTroubleShooter: [260]u16,
@@ -2365,7 +2365,7 @@ pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_POWERMESSAGEWAKE_PARAMS_W = extern struct {
+pub const SP_POWERMESSAGEWAKE_PARAMS_W = packed struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     PowerMessageWake: [512]u16,
 };
@@ -2375,7 +2375,7 @@ pub const SP_POWERMESSAGEWAKE_PARAMS_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DRVINFO_DATA_V2_A = extern struct {
+pub const SP_DRVINFO_DATA_V2_A = packed struct {
     cbSize: u32,
     DriverType: u32,
     Reserved: usize,
@@ -2391,7 +2391,7 @@ pub const SP_DRVINFO_DATA_V2_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DRVINFO_DATA_V2_W = extern struct {
+pub const SP_DRVINFO_DATA_V2_W = packed struct {
     cbSize: u32,
     DriverType: u32,
     Reserved: usize,
@@ -2407,7 +2407,7 @@ pub const SP_DRVINFO_DATA_V2_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DRVINFO_DATA_V1_A = extern struct {
+pub const SP_DRVINFO_DATA_V1_A = packed struct {
     cbSize: u32,
     DriverType: u32,
     Reserved: usize,
@@ -2421,7 +2421,7 @@ pub const SP_DRVINFO_DATA_V1_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DRVINFO_DATA_V1_W = extern struct {
+pub const SP_DRVINFO_DATA_V1_W = packed struct {
     cbSize: u32,
     DriverType: u32,
     Reserved: usize,
@@ -2435,7 +2435,7 @@ pub const SP_DRVINFO_DATA_V1_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
+pub const SP_DRVINFO_DETAIL_DATA_A = packed struct {
     cbSize: u32,
     InfDate: FILETIME,
     CompatIDsOffset: u32,
@@ -2452,7 +2452,7 @@ pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
+pub const SP_DRVINFO_DETAIL_DATA_W = packed struct {
     cbSize: u32,
     InfDate: FILETIME,
     CompatIDsOffset: u32,
@@ -2469,7 +2469,7 @@ pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_DRVINSTALL_PARAMS = extern struct {
+pub const SP_DRVINSTALL_PARAMS = packed struct {
     cbSize: u32,
     Rank: u32,
     Flags: u32,
@@ -2482,7 +2482,7 @@ pub const SP_DRVINSTALL_PARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const COINSTALLER_CONTEXT_DATA = extern struct {
+pub const COINSTALLER_CONTEXT_DATA = packed struct {
     PostProcessing: BOOL,
     InstallResult: u32,
     PrivateData: *c_void,
@@ -2493,7 +2493,7 @@ pub const COINSTALLER_CONTEXT_DATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_CLASSIMAGELIST_DATA = extern struct {
+pub const SP_CLASSIMAGELIST_DATA = packed struct {
     cbSize: u32,
     ImageList: HIMAGELIST,
     Reserved: usize,
@@ -2504,7 +2504,7 @@ pub const SP_CLASSIMAGELIST_DATA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
+pub const SP_PROPSHEETPAGE_REQUEST = packed struct {
     cbSize: u32,
     PageRequested: u32,
     DeviceInfoSet: *c_void,
@@ -2516,7 +2516,7 @@ pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_BACKUP_QUEUE_PARAMS_V2_A = extern struct {
+pub const SP_BACKUP_QUEUE_PARAMS_V2_A = packed struct {
     cbSize: u32,
     FullInfPath: [260]CHAR,
     FilenameOffset: i32,
@@ -2528,7 +2528,7 @@ pub const SP_BACKUP_QUEUE_PARAMS_V2_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
+pub const SP_BACKUP_QUEUE_PARAMS_V2_W = packed struct {
     cbSize: u32,
     FullInfPath: [260]u16,
     FilenameOffset: i32,
@@ -2540,7 +2540,7 @@ pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_BACKUP_QUEUE_PARAMS_V1_A = extern struct {
+pub const SP_BACKUP_QUEUE_PARAMS_V1_A = packed struct {
     cbSize: u32,
     FullInfPath: [260]CHAR,
     FilenameOffset: i32,
@@ -2551,7 +2551,7 @@ pub const SP_BACKUP_QUEUE_PARAMS_V1_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_BACKUP_QUEUE_PARAMS_V1_W = extern struct {
+pub const SP_BACKUP_QUEUE_PARAMS_V1_W = packed struct {
     cbSize: u32,
     FullInfPath: [260]u16,
     FilenameOffset: i32,
@@ -2562,7 +2562,7 @@ pub const SP_BACKUP_QUEUE_PARAMS_V1_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
+pub const SP_INF_SIGNER_INFO_V1_A = packed struct {
     cbSize: u32,
     CatalogFile: [260]CHAR,
     DigitalSigner: [260]CHAR,
@@ -2574,7 +2574,7 @@ pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
+pub const SP_INF_SIGNER_INFO_V1_W = packed struct {
     cbSize: u32,
     CatalogFile: [260]u16,
     DigitalSigner: [260]u16,
@@ -2586,7 +2586,7 @@ pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
+pub const SP_INF_SIGNER_INFO_V2_A = packed struct {
     cbSize: u32,
     CatalogFile: [260]CHAR,
     DigitalSigner: [260]CHAR,
@@ -2599,7 +2599,7 @@ pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
+pub const SP_INF_SIGNER_INFO_V2_W = packed struct {
     cbSize: u32,
     CatalogFile: [260]u16,
     DigitalSigner: [260]u16,
@@ -2721,7 +2721,7 @@ pub const CONFLICT_DETAILS_W = extern struct {
     CD_szDescription: [260]u16,
 };
 
-pub const MEM_RANGE = extern struct {
+pub const MEM_RANGE = packed struct {
     MR_Align: u64,
     MR_nBytes: u32,
     MR_Min: u64,
@@ -2730,7 +2730,7 @@ pub const MEM_RANGE = extern struct {
     MR_Reserved: u32,
 };
 
-pub const MEM_DES = extern struct {
+pub const MEM_DES = packed struct {
     MD_Count: u32,
     MD_Type: u32,
     MD_Alloc_Base: u64,
@@ -2744,7 +2744,7 @@ pub const MEM_RESOURCE = extern struct {
     MEM_Data: [1]MEM_RANGE,
 };
 
-pub const Mem_Large_Range_s = extern struct {
+pub const Mem_Large_Range_s = packed struct {
     MLR_Align: u64,
     MLR_nBytes: u64,
     MLR_Min: u64,
@@ -2753,7 +2753,7 @@ pub const Mem_Large_Range_s = extern struct {
     MLR_Reserved: u32,
 };
 
-pub const Mem_Large_Des_s = extern struct {
+pub const Mem_Large_Des_s = packed struct {
     MLD_Count: u32,
     MLD_Type: u32,
     MLD_Alloc_Base: u64,
@@ -2767,7 +2767,7 @@ pub const Mem_Large_Resource_s = extern struct {
     MEM_LARGE_Data: [1]Mem_Large_Range_s,
 };
 
-pub const IO_RANGE = extern struct {
+pub const IO_RANGE = packed struct {
     IOR_Align: u64,
     IOR_nPorts: u32,
     IOR_Min: u64,
@@ -2776,7 +2776,7 @@ pub const IO_RANGE = extern struct {
     IOR_Alias: u64,
 };
 
-pub const IO_DES = extern struct {
+pub const IO_DES = packed struct {
     IOD_Count: u32,
     IOD_Type: u32,
     IOD_Alloc_Base: u64,
@@ -2789,13 +2789,13 @@ pub const IO_RESOURCE = extern struct {
     IO_Data: [1]IO_RANGE,
 };
 
-pub const DMA_RANGE = extern struct {
+pub const DMA_RANGE = packed struct {
     DR_Min: u32,
     DR_Max: u32,
     DR_Flags: u32,
 };
 
-pub const DMA_DES = extern struct {
+pub const DMA_DES = packed struct {
     DD_Count: u32,
     DD_Type: u32,
     DD_Flags: u32,
@@ -2807,13 +2807,13 @@ pub const DMA_RESOURCE = extern struct {
     DMA_Data: [1]DMA_RANGE,
 };
 
-pub const IRQ_RANGE = extern struct {
+pub const IRQ_RANGE = packed struct {
     IRQR_Min: u32,
     IRQR_Max: u32,
     IRQR_Flags: u32,
 };
 
-pub const IRQ_DES_32 = extern struct {
+pub const IRQ_DES_32 = packed struct {
     IRQD_Count: u32,
     IRQD_Type: u32,
     IRQD_Flags: u32,
@@ -2821,7 +2821,7 @@ pub const IRQ_DES_32 = extern struct {
     IRQD_Affinity: u32,
 };
 
-pub const IRQ_DES_64 = extern struct {
+pub const IRQ_DES_64 = packed struct {
     IRQD_Count: u32,
     IRQD_Type: u32,
     IRQD_Flags: u32,
@@ -2839,13 +2839,13 @@ pub const IRQ_RESOURCE_64 = extern struct {
     IRQ_Data: [1]IRQ_RANGE,
 };
 
-pub const DevPrivate_Range_s = extern struct {
+pub const DevPrivate_Range_s = packed struct {
     PR_Data1: u32,
     PR_Data2: u32,
     PR_Data3: u32,
 };
 
-pub const DevPrivate_Des_s = extern struct {
+pub const DevPrivate_Des_s = packed struct {
     PD_Count: u32,
     PD_Type: u32,
     PD_Data1: u32,
@@ -2859,7 +2859,7 @@ pub const DevPrivate_Resource_s = extern struct {
     PRV_Data: [1]DevPrivate_Range_s,
 };
 
-pub const CS_DES = extern struct {
+pub const CS_DES = packed struct {
     CSD_SignatureLength: u32,
     CSD_LegacyDataOffset: u32,
     CSD_LegacyDataSize: u32,
@@ -2872,7 +2872,7 @@ pub const CS_RESOURCE = extern struct {
     CS_Header: CS_DES,
 };
 
-pub const PCCARD_DES = extern struct {
+pub const PCCARD_DES = packed struct {
     PCD_Count: u32,
     PCD_Type: u32,
     PCD_Flags: u32,
@@ -2889,7 +2889,7 @@ pub const PCCARD_RESOURCE = extern struct {
     PcCard_Header: PCCARD_DES,
 };
 
-pub const MFCARD_DES = extern struct {
+pub const MFCARD_DES = packed struct {
     PMF_Count: u32,
     PMF_Type: u32,
     PMF_Flags: u32,
@@ -2903,14 +2903,14 @@ pub const MFCARD_RESOURCE = extern struct {
     MfCard_Header: MFCARD_DES,
 };
 
-pub const BUSNUMBER_RANGE = extern struct {
+pub const BUSNUMBER_RANGE = packed struct {
     BUSR_Min: u32,
     BUSR_Max: u32,
     BUSR_nBusNumbers: u32,
     BUSR_Flags: u32,
 };
 
-pub const BUSNUMBER_DES = extern struct {
+pub const BUSNUMBER_DES = packed struct {
     BUSD_Count: u32,
     BUSD_Type: u32,
     BUSD_Flags: u32,
@@ -2923,7 +2923,7 @@ pub const BUSNUMBER_RESOURCE = extern struct {
     BusNumber_Data: [1]BUSNUMBER_RANGE,
 };
 
-pub const Connection_Des_s = extern struct {
+pub const Connection_Des_s = packed struct {
     COND_Type: u32,
     COND_Flags: u32,
     COND_Class: u8,
@@ -2937,13 +2937,13 @@ pub const Connection_Resource_s = extern struct {
     Connection_Header: Connection_Des_s,
 };
 
-pub const HWProfileInfo_sA = extern struct {
+pub const HWProfileInfo_sA = packed struct {
     HWPI_ulHWProfile: u32,
     HWPI_szFriendlyName: [80]CHAR,
     HWPI_dwFlags: u32,
 };
 
-pub const HWProfileInfo_sW = extern struct {
+pub const HWProfileInfo_sW = packed struct {
     HWPI_ulHWProfile: u32,
     HWPI_szFriendlyName: [80]u16,
     HWPI_dwFlags: u32,

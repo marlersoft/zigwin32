@@ -2889,19 +2889,19 @@ pub const JET_BKLOGTIME = extern struct {
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const JET_LGPOS = extern struct {
+pub const JET_LGPOS = packed struct {
     ib: u16,
     isec: u16,
     lGeneration: i32,
 };
 
-pub const JET_SIGNATURE = extern struct {
+pub const JET_SIGNATURE = packed struct {
     ulRandom: u32,
     logtimeCreate: JET_LOGTIME,
     szComputerName: [16]CHAR,
 };
 
-pub const JET_BKINFO = extern struct {
+pub const JET_BKINFO = packed struct {
     lgposMark: JET_LGPOS,
     Anonymous: _Anonymous_e__Union,
     genLow: u32,
@@ -3302,6 +3302,7 @@ pub const JET_CALLBACK = fn(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_OBJECTINFO = extern struct {
     cbStruct: u32,
     objtyp: u32,
@@ -3318,6 +3319,7 @@ pub const JET_OBJECTINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_THREADSTATS2 = extern struct {
     cbStruct: u32,
     cPageReferenced: u32,
@@ -3336,6 +3338,7 @@ pub const JET_THREADSTATS2 = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_COMMIT_ID = extern struct {
     signLog: JET_SIGNATURE,
     reserved: i32,
@@ -3363,6 +3366,7 @@ pub const JET_PFNDURABLECOMMITCALLBACK = fn(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_RECSIZE = extern struct {
     cbData: u64,
     cbLongValueData: u64,
@@ -3379,6 +3383,7 @@ pub const JET_RECSIZE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_RECSIZE2 = extern struct {
     cbData: u64,
     cbLongValueData: u64,

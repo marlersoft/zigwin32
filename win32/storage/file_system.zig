@@ -1245,7 +1245,7 @@ pub const REASSIGN_BLOCKS = extern struct {
     BlockNumber: [1]u32,
 };
 
-pub const REASSIGN_BLOCKS_EX = extern struct {
+pub const REASSIGN_BLOCKS_EX = packed struct {
     Reserved: u16,
     Count: u16,
     BlockNumber: [1]LARGE_INTEGER,
@@ -4287,6 +4287,7 @@ pub const TXF_LOG_RECORD_BASE = extern struct {
     RecordLength: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TXF_LOG_RECORD_WRITE = extern struct {
     Version: u16,
     RecordType: u16,
@@ -4301,6 +4302,7 @@ pub const TXF_LOG_RECORD_WRITE = extern struct {
     FileNameByteOffsetInStructure: u32,
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TXF_LOG_RECORD_TRUNCATE = extern struct {
     Version: u16,
     RecordType: u16,

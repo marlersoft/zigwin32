@@ -9477,6 +9477,7 @@ pub const CHANNEL_AGENT_PRECACHE_SCRNSAVER = CHANNEL_AGENT_FLAGS.PRECACHE_SCRNSA
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBVECTOR = extern struct {
     size: usize,
     ptr: *c_void,
@@ -9487,6 +9488,7 @@ pub const DBVECTOR = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBTIMESTAMP = extern struct {
     year: i16,
     month: u16,
@@ -9502,6 +9504,7 @@ pub const DBTIMESTAMP = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const SEC_OBJECT_ELEMENT = extern struct {
     guidObjectType: Guid,
     ObjectID: DBID,
@@ -9512,6 +9515,7 @@ pub const SEC_OBJECT_ELEMENT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const SEC_OBJECT = extern struct {
     cObjects: u32,
     prgObjects: *SEC_OBJECT_ELEMENT,
@@ -9522,6 +9526,7 @@ pub const SEC_OBJECT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBIMPLICITSESSION = extern struct {
     pUnkOuter: *IUnknown,
     piid: *Guid,
@@ -9533,6 +9538,7 @@ pub const DBIMPLICITSESSION = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBOBJECT = extern struct {
     dwFlags: u32,
     iid: Guid,
@@ -9543,6 +9549,7 @@ pub const DBOBJECT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBBINDEXT = extern struct {
     pExtension: *u8,
     ulExtension: usize,
@@ -9553,6 +9560,7 @@ pub const DBBINDEXT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBBINDING = extern struct {
     iOrdinal: usize,
     obValue: usize,
@@ -9576,6 +9584,7 @@ pub const DBBINDING = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBFAILUREINFO = extern struct {
     hRow: usize,
     iColumn: usize,
@@ -9587,6 +9596,7 @@ pub const DBFAILUREINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBCOLUMNINFO = extern struct {
     pwszName: PWSTR,
     pTypeInfo: *ITypeInfo,
@@ -9604,6 +9614,7 @@ pub const DBCOLUMNINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPARAMS = extern struct {
     pData: *c_void,
     cParamSets: usize,
@@ -9615,6 +9626,7 @@ pub const DBPARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPARAMINFO = extern struct {
     dwFlags: u32,
     iOrdinal: usize,
@@ -9631,6 +9643,7 @@ pub const DBPARAMINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPROPIDSET = extern struct {
     rgPropertyIDs: *u32,
     cPropertyIDs: u32,
@@ -9642,6 +9655,7 @@ pub const DBPROPIDSET = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPROPINFO = extern struct {
     pwszDescription: PWSTR,
     dwPropertyID: u32,
@@ -9655,6 +9669,7 @@ pub const DBPROPINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPROPINFOSET = extern struct {
     rgPropertyInfos: *DBPROPINFO,
     cPropertyInfos: u32,
@@ -9666,6 +9681,7 @@ pub const DBPROPINFOSET = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPROP = extern struct {
     dwPropertyID: u32,
     dwOptions: u32,
@@ -9679,6 +9695,7 @@ pub const DBPROP = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPROPSET = extern struct {
     rgProperties: *DBPROP,
     cProperties: u32,
@@ -9690,6 +9707,7 @@ pub const DBPROPSET = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBINDEXCOLUMNDESC = extern struct {
     pColumnID: *DBID,
     eIndexColOrder: u32,
@@ -9700,6 +9718,7 @@ pub const DBINDEXCOLUMNDESC = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBCOLUMNDESC = extern struct {
     pwszTypeName: PWSTR,
     pTypeInfo: *ITypeInfo,
@@ -9718,6 +9737,7 @@ pub const DBCOLUMNDESC = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBCOLUMNACCESS = extern struct {
     pData: *c_void,
     columnid: DBID,
@@ -9735,6 +9755,7 @@ pub const DBCOLUMNACCESS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBCONSTRAINTDESC = extern struct {
     pConstraintID: *DBID,
     ConstraintType: u32,
@@ -9757,6 +9778,7 @@ pub const DBCONSTRAINTDESC = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const MDAXISINFO = extern struct {
     cbSize: usize,
     iAxis: usize,
@@ -9771,6 +9793,7 @@ pub const MDAXISINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const RMTPACK = extern struct {
     pISeqStream: *ISequentialStream,
     cbData: u32,
@@ -9793,6 +9816,7 @@ pub const RMTPACK = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBPARAMBINDINFO = extern struct {
     pwszDataSourceType: PWSTR,
     pwszName: PWSTR,
@@ -9807,6 +9831,7 @@ pub const DBPARAMBINDINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBLITERALINFO = extern struct {
     pwszLiteralValue: PWSTR,
     pwszInvalidChars: PWSTR,
@@ -9821,6 +9846,7 @@ pub const DBLITERALINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const ERRORINFO = extern struct {
     hrError: HRESULT,
     dwMinor: u32,

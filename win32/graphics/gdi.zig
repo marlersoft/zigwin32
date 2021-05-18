@@ -1523,6 +1523,7 @@ pub const BITMAPCOREINFO = extern struct {
     bmciColors: [1]RGBTRIPLE,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const BITMAPFILEHEADER = extern struct {
     bfType: u16,
     bfSize: u32,
@@ -1541,6 +1542,7 @@ pub const METARECORD = extern struct {
     rdParm: [1]u16,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const METAHEADER = extern struct {
     mtType: u16,
     mtHeaderSize: u16,
@@ -2935,18 +2937,18 @@ pub const MXDC_IMAGETYPE_JPEGMEDIUM_COMPRESSION = MxdcImageTypeEnums.JPEGMEDIUM_
 pub const MXDC_IMAGETYPE_JPEGLOW_COMPRESSION = MxdcImageTypeEnums.JPEGLOW_COMPRESSION;
 pub const MXDC_IMAGETYPE_PNG = MxdcImageTypeEnums.PNG;
 
-pub const MxdcEscapeHeader = extern struct {
+pub const MxdcEscapeHeader = packed struct {
     cbInput: u32,
     cbOutput: u32,
     opCode: u32,
 };
 
-pub const MxdcGetFileNameData = extern struct {
+pub const MxdcGetFileNameData = packed struct {
     cbOutput: u32,
     wszData: [1]u16,
 };
 
-pub const MxdcS0PageData = extern struct {
+pub const MxdcS0PageData = packed struct {
     dwSize: u32,
     bData: [1]u8,
 };
@@ -2974,7 +2976,7 @@ pub const MXDC_RESOURCE_JPEG_THUMBNAIL = MxdcS0PageEnums.JPEG_THUMBNAIL;
 pub const MXDC_RESOURCE_PNG_THUMBNAIL = MxdcS0PageEnums.PNG_THUMBNAIL;
 pub const MXDC_RESOURCE_MAX = MxdcS0PageEnums.MAX;
 
-pub const MxdcXpsS0PageResource = extern struct {
+pub const MxdcXpsS0PageResource = packed struct {
     dwSize: u32,
     dwResourceType: u32,
     szUri: [260]u8,
@@ -2982,7 +2984,7 @@ pub const MxdcXpsS0PageResource = extern struct {
     bData: [1]u8,
 };
 
-pub const MxdcPrintTicketPassthrough = extern struct {
+pub const MxdcPrintTicketPassthrough = packed struct {
     dwDataSize: u32,
     bData: [1]u8,
 };

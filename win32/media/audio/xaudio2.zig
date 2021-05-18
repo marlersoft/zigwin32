@@ -171,7 +171,7 @@ pub const X3DAUDIO_CALCULATE_REDIRECT_TO_LFE = @as(u32, 131072);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
-pub const XAPO_REGISTRATION_PROPERTIES = extern struct {
+pub const XAPO_REGISTRATION_PROPERTIES = packed struct {
     clsid: Guid,
     FriendlyName: [256]u16,
     CopyrightInfo: [256]u16,
@@ -184,7 +184,7 @@ pub const XAPO_REGISTRATION_PROPERTIES = extern struct {
     MaxOutputBufferCount: u32,
 };
 
-pub const XAPO_LOCKFORPROCESS_PARAMETERS = extern struct {
+pub const XAPO_LOCKFORPROCESS_PARAMETERS = packed struct {
     pFormat: *const WAVEFORMATEX,
     MaxFrameCount: u32,
 };
@@ -196,7 +196,7 @@ pub const XAPO_BUFFER_FLAGS = extern enum(i32) {
 pub const XAPO_BUFFER_SILENT = XAPO_BUFFER_FLAGS.SILENT;
 pub const XAPO_BUFFER_VALID = XAPO_BUFFER_FLAGS.VALID;
 
-pub const XAPO_PROCESS_BUFFER_PARAMETERS = extern struct {
+pub const XAPO_PROCESS_BUFFER_PARAMETERS = packed struct {
     pBuffer: *c_void,
     BufferFlags: XAPO_BUFFER_FLAGS,
     ValidFrameCount: u32,
@@ -351,7 +351,7 @@ pub const CLSID_FXReverb = &CLSID_FXReverb_Value;
 const CLSID_FXEcho_Value = @import("../../zig.zig").Guid.initString("5039d740-f736-449a-84d3-a56202557b87");
 pub const CLSID_FXEcho = &CLSID_FXEcho_Value;
 
-pub const FXEQ_PARAMETERS = extern struct {
+pub const FXEQ_PARAMETERS = packed struct {
     FrequencyCenter0: f32,
     Gain0: f32,
     Bandwidth0: f32,
@@ -366,50 +366,50 @@ pub const FXEQ_PARAMETERS = extern struct {
     Bandwidth3: f32,
 };
 
-pub const FXMASTERINGLIMITER_PARAMETERS = extern struct {
+pub const FXMASTERINGLIMITER_PARAMETERS = packed struct {
     Release: u32,
     Loudness: u32,
 };
 
-pub const FXREVERB_PARAMETERS = extern struct {
+pub const FXREVERB_PARAMETERS = packed struct {
     Diffusion: f32,
     RoomSize: f32,
 };
 
-pub const FXECHO_INITDATA = extern struct {
+pub const FXECHO_INITDATA = packed struct {
     MaxDelay: f32,
 };
 
-pub const FXECHO_PARAMETERS = extern struct {
+pub const FXECHO_PARAMETERS = packed struct {
     WetDryMix: f32,
     Feedback: f32,
     Delay: f32,
 };
 
-pub const XAUDIO2_VOICE_DETAILS = extern struct {
+pub const XAUDIO2_VOICE_DETAILS = packed struct {
     CreationFlags: u32,
     ActiveFlags: u32,
     InputChannels: u32,
     InputSampleRate: u32,
 };
 
-pub const XAUDIO2_SEND_DESCRIPTOR = extern struct {
+pub const XAUDIO2_SEND_DESCRIPTOR = packed struct {
     Flags: u32,
     pOutputVoice: *IXAudio2Voice,
 };
 
-pub const XAUDIO2_VOICE_SENDS = extern struct {
+pub const XAUDIO2_VOICE_SENDS = packed struct {
     SendCount: u32,
     pSends: *XAUDIO2_SEND_DESCRIPTOR,
 };
 
-pub const XAUDIO2_EFFECT_DESCRIPTOR = extern struct {
+pub const XAUDIO2_EFFECT_DESCRIPTOR = packed struct {
     pEffect: *IUnknown,
     InitialState: BOOL,
     OutputChannels: u32,
 };
 
-pub const XAUDIO2_EFFECT_CHAIN = extern struct {
+pub const XAUDIO2_EFFECT_CHAIN = packed struct {
     EffectCount: u32,
     pEffectDescriptors: *XAUDIO2_EFFECT_DESCRIPTOR,
 };
@@ -429,13 +429,13 @@ pub const NotchFilter = XAUDIO2_FILTER_TYPE.NotchFilter;
 pub const LowPassOnePoleFilter = XAUDIO2_FILTER_TYPE.LowPassOnePoleFilter;
 pub const HighPassOnePoleFilter = XAUDIO2_FILTER_TYPE.HighPassOnePoleFilter;
 
-pub const XAUDIO2_FILTER_PARAMETERS = extern struct {
+pub const XAUDIO2_FILTER_PARAMETERS = packed struct {
     Type: XAUDIO2_FILTER_TYPE,
     Frequency: f32,
     OneOverQ: f32,
 };
 
-pub const XAUDIO2_BUFFER = extern struct {
+pub const XAUDIO2_BUFFER = packed struct {
     Flags: u32,
     AudioBytes: u32,
     pAudioData: *const u8,
@@ -447,18 +447,18 @@ pub const XAUDIO2_BUFFER = extern struct {
     pContext: *c_void,
 };
 
-pub const XAUDIO2_BUFFER_WMA = extern struct {
+pub const XAUDIO2_BUFFER_WMA = packed struct {
     pDecodedPacketCumulativeBytes: *const u32,
     PacketCount: u32,
 };
 
-pub const XAUDIO2_VOICE_STATE = extern struct {
+pub const XAUDIO2_VOICE_STATE = packed struct {
     pCurrentBufferContext: *c_void,
     BuffersQueued: u32,
     SamplesPlayed: u64,
 };
 
-pub const XAUDIO2_PERFORMANCE_DATA = extern struct {
+pub const XAUDIO2_PERFORMANCE_DATA = packed struct {
     AudioCyclesSinceLastQuery: u64,
     TotalCyclesSinceLastQuery: u64,
     MinimumCyclesPerQuantum: u32,
@@ -475,7 +475,7 @@ pub const XAUDIO2_PERFORMANCE_DATA = extern struct {
     ActiveXmaStreams: u32,
 };
 
-pub const XAUDIO2_DEBUG_CONFIGURATION = extern struct {
+pub const XAUDIO2_DEBUG_CONFIGURATION = packed struct {
     TraceMask: u32,
     BreakMask: u32,
     LogThreadID: BOOL,
@@ -1034,13 +1034,13 @@ pub const CLSID_AudioVolumeMeter = &CLSID_AudioVolumeMeter_Value;
 const CLSID_AudioReverb_Value = @import("../../zig.zig").Guid.initString("c2633b16-471b-4498-b8c5-4f0959e2ec09");
 pub const CLSID_AudioReverb = &CLSID_AudioReverb_Value;
 
-pub const XAUDIO2FX_VOLUMEMETER_LEVELS = extern struct {
+pub const XAUDIO2FX_VOLUMEMETER_LEVELS = packed struct {
     pPeakLevels: *f32,
     pRMSLevels: *f32,
     ChannelCount: u32,
 };
 
-pub const XAUDIO2FX_REVERB_PARAMETERS = extern struct {
+pub const XAUDIO2FX_REVERB_PARAMETERS = packed struct {
     WetDryMix: f32,
     ReflectionsDelay: u32,
     ReverbDelay: u8,
@@ -1067,7 +1067,7 @@ pub const XAUDIO2FX_REVERB_PARAMETERS = extern struct {
     DisableLateField: BOOL,
 };
 
-pub const XAUDIO2FX_REVERB_I3DL2_PARAMETERS = extern struct {
+pub const XAUDIO2FX_REVERB_I3DL2_PARAMETERS = packed struct {
     WetDryMix: f32,
     Room: i32,
     RoomHF: i32,

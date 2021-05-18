@@ -24,7 +24,7 @@ pub const c_DwmMaxAdapters = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
-pub const DWM_BLURBEHIND = extern struct {
+pub const DWM_BLURBEHIND = packed struct {
     dwFlags: u32,
     fEnable: BOOL,
     hRgnBlur: HRGN,
@@ -90,7 +90,7 @@ pub const DWMFLIP3D_EXCLUDEBELOW = DWMFLIP3DWINDOWPOLICY.EXCLUDEBELOW;
 pub const DWMFLIP3D_EXCLUDEABOVE = DWMFLIP3DWINDOWPOLICY.EXCLUDEABOVE;
 pub const DWMFLIP3D_LAST = DWMFLIP3DWINDOWPOLICY.LAST;
 
-pub const DWM_THUMBNAIL_PROPERTIES = extern struct {
+pub const DWM_THUMBNAIL_PROPERTIES = packed struct {
     dwFlags: u32,
     rcDestination: RECT,
     rcSource: RECT,
@@ -99,12 +99,12 @@ pub const DWM_THUMBNAIL_PROPERTIES = extern struct {
     fSourceClientAreaOnly: BOOL,
 };
 
-pub const UNSIGNED_RATIO = extern struct {
+pub const UNSIGNED_RATIO = packed struct {
     uiNumerator: u32,
     uiDenominator: u32,
 };
 
-pub const DWM_TIMING_INFO = extern struct {
+pub const DWM_TIMING_INFO = packed struct {
     cbSize: u32,
     rateRefresh: UNSIGNED_RATIO,
     qpcRefreshPeriod: u64,
@@ -156,7 +156,7 @@ pub const DWM_SOURCE_FRAME_SAMPLING_POINT = DWM_SOURCE_FRAME_SAMPLING.POINT;
 pub const DWM_SOURCE_FRAME_SAMPLING_COVERAGE = DWM_SOURCE_FRAME_SAMPLING.COVERAGE;
 pub const DWM_SOURCE_FRAME_SAMPLING_LAST = DWM_SOURCE_FRAME_SAMPLING.LAST;
 
-pub const DWM_PRESENT_PARAMETERS = extern struct {
+pub const DWM_PRESENT_PARAMETERS = packed struct {
     cbSize: u32,
     fQueue: BOOL,
     cRefreshStart: u64,
@@ -167,7 +167,7 @@ pub const DWM_PRESENT_PARAMETERS = extern struct {
     eSampling: DWM_SOURCE_FRAME_SAMPLING,
 };
 
-pub const MilMatrix3x2D = extern struct {
+pub const MilMatrix3x2D = packed struct {
     S_11: f64,
     S_12: f64,
     S_21: f64,

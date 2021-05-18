@@ -2605,6 +2605,7 @@ pub const IDirectSoundFullDuplex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const DMUS_EVENTHEADER = extern struct {
     cbEvent: u32,
     dwChannelGroup: u32,
@@ -3624,12 +3625,12 @@ pub const KSP_PINMODE = extern struct {
     AudioProcessingMode: Guid,
 };
 
-pub const MDEVICECAPSEX = extern struct {
+pub const MDEVICECAPSEX = packed struct {
     cbSize: u32,
     pCaps: *c_void,
 };
 
-pub const MIDIOPENDESC = extern struct {
+pub const MIDIOPENDESC = packed struct {
     hMidi: HMIDI,
     dwCallback: usize,
     dwInstance: usize,

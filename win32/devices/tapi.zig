@@ -1045,7 +1045,7 @@ pub const PHONECALLBACK = fn(
     dwParam3: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LINEADDRESSCAPS = extern struct {
+pub const LINEADDRESSCAPS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1105,7 +1105,7 @@ pub const LINEADDRESSCAPS = extern struct {
     dwAvailableMediaModes: u32,
 };
 
-pub const LINEADDRESSSTATUS = extern struct {
+pub const LINEADDRESSSTATUS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1124,13 +1124,13 @@ pub const LINEADDRESSSTATUS = extern struct {
     dwDevSpecificOffset: u32,
 };
 
-pub const LINEAGENTACTIVITYENTRY = extern struct {
+pub const LINEAGENTACTIVITYENTRY = packed struct {
     dwID: u32,
     dwNameSize: u32,
     dwNameOffset: u32,
 };
 
-pub const LINEAGENTACTIVITYLIST = extern struct {
+pub const LINEAGENTACTIVITYLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1139,7 +1139,7 @@ pub const LINEAGENTACTIVITYLIST = extern struct {
     dwListOffset: u32,
 };
 
-pub const LINEAGENTCAPS = extern struct {
+pub const LINEAGENTCAPS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1157,14 +1157,14 @@ pub const LINEAGENTCAPS = extern struct {
     ProxyGUID: Guid,
 };
 
-pub const LINEAGENTGROUPENTRY = extern struct {
+pub const LINEAGENTGROUPENTRY = packed struct {
     GroupID: _GroupID_e__Struct,
     dwNameSize: u32,
     dwNameOffset: u32,
     const _GroupID_e__Struct = u32; // TODO: generate this nested type!
 };
 
-pub const LINEAGENTGROUPLIST = extern struct {
+pub const LINEAGENTGROUPLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1173,7 +1173,7 @@ pub const LINEAGENTGROUPLIST = extern struct {
     dwListOffset: u32,
 };
 
-pub const LINEAGENTSTATUS = extern struct {
+pub const LINEAGENTSTATUS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1190,7 +1190,7 @@ pub const LINEAGENTSTATUS = extern struct {
     dwValidNextStates: u32,
 };
 
-pub const LINEAPPINFO = extern struct {
+pub const LINEAPPINFO = packed struct {
     dwMachineNameSize: u32,
     dwMachineNameOffset: u32,
     dwUserNameSize: u32,
@@ -1203,7 +1203,7 @@ pub const LINEAPPINFO = extern struct {
     dwAddressID: u32,
 };
 
-pub const LINEAGENTENTRY = extern struct {
+pub const LINEAGENTENTRY = packed struct {
     hAgent: u32,
     dwNameSize: u32,
     dwNameOffset: u32,
@@ -1213,7 +1213,7 @@ pub const LINEAGENTENTRY = extern struct {
     dwPINOffset: u32,
 };
 
-pub const LINEAGENTLIST = extern struct {
+pub const LINEAGENTLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1222,7 +1222,7 @@ pub const LINEAGENTLIST = extern struct {
     dwListOffset: u32,
 };
 
-pub const LINEAGENTINFO = extern struct {
+pub const LINEAGENTINFO = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1238,14 +1238,14 @@ pub const LINEAGENTINFO = extern struct {
     dwTotalACDWrapUpTime: u32,
 };
 
-pub const LINEAGENTSESSIONENTRY = extern struct {
+pub const LINEAGENTSESSIONENTRY = packed struct {
     hAgentSession: u32,
     hAgent: u32,
     GroupID: Guid,
     dwWorkingAddressID: u32,
 };
 
-pub const LINEAGENTSESSIONLIST = extern struct {
+pub const LINEAGENTSESSIONLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1254,7 +1254,7 @@ pub const LINEAGENTSESSIONLIST = extern struct {
     dwListOffset: u32,
 };
 
-pub const LINEAGENTSESSIONINFO = extern struct {
+pub const LINEAGENTSESSIONINFO = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1274,13 +1274,13 @@ pub const LINEAGENTSESSIONINFO = extern struct {
     dwAverageTimeToAnswer: u32,
 };
 
-pub const LINEQUEUEENTRY = extern struct {
+pub const LINEQUEUEENTRY = packed struct {
     dwQueueID: u32,
     dwNameSize: u32,
     dwNameOffset: u32,
 };
 
-pub const LINEQUEUELIST = extern struct {
+pub const LINEQUEUELIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1289,7 +1289,7 @@ pub const LINEQUEUELIST = extern struct {
     dwListOffset: u32,
 };
 
-pub const LINEQUEUEINFO = extern struct {
+pub const LINEQUEUEINFO = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1305,7 +1305,7 @@ pub const LINEQUEUEINFO = extern struct {
     dwFinalDisposition: u32,
 };
 
-pub const LINEPROXYREQUESTLIST = extern struct {
+pub const LINEPROXYREQUESTLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1314,14 +1314,14 @@ pub const LINEPROXYREQUESTLIST = extern struct {
     dwListOffset: u32,
 };
 
-pub const LINEDIALPARAMS = extern struct {
+pub const LINEDIALPARAMS = packed struct {
     dwDialPause: u32,
     dwDialSpeed: u32,
     dwDigitDuration: u32,
     dwWaitForDialtone: u32,
 };
 
-pub const LINECALLINFO = extern struct {
+pub const LINECALLINFO = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1402,7 +1402,7 @@ pub const LINECALLINFO = extern struct {
     dwReceivingFlowspecOffset: u32,
 };
 
-pub const LINECALLLIST = extern struct {
+pub const LINECALLLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1411,7 +1411,7 @@ pub const LINECALLLIST = extern struct {
     dwCallsOffset: u32,
 };
 
-pub const LINECALLPARAMS = extern struct {
+pub const LINECALLPARAMS = packed struct {
     dwTotalSize: u32,
     dwBearerMode: u32,
     dwMinRate: u32,
@@ -1455,7 +1455,7 @@ pub const LINECALLPARAMS = extern struct {
     dwCallingPartyIDOffset: u32,
 };
 
-pub const LINECALLSTATUS = extern struct {
+pub const LINECALLSTATUS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1469,13 +1469,13 @@ pub const LINECALLSTATUS = extern struct {
     tStateEntryTime: SYSTEMTIME,
 };
 
-pub const LINECALLTREATMENTENTRY = extern struct {
+pub const LINECALLTREATMENTENTRY = packed struct {
     dwCallTreatmentID: u32,
     dwCallTreatmentNameSize: u32,
     dwCallTreatmentNameOffset: u32,
 };
 
-pub const LINECARDENTRY = extern struct {
+pub const LINECARDENTRY = packed struct {
     dwPermanentCardID: u32,
     dwCardNameSize: u32,
     dwCardNameOffset: u32,
@@ -1489,7 +1489,7 @@ pub const LINECARDENTRY = extern struct {
     dwOptions: u32,
 };
 
-pub const LINECOUNTRYENTRY = extern struct {
+pub const LINECOUNTRYENTRY = packed struct {
     dwCountryID: u32,
     dwCountryCode: u32,
     dwNextCountryID: u32,
@@ -1503,7 +1503,7 @@ pub const LINECOUNTRYENTRY = extern struct {
     dwInternationalRuleOffset: u32,
 };
 
-pub const LINECOUNTRYLIST = extern struct {
+pub const LINECOUNTRYLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1512,7 +1512,7 @@ pub const LINECOUNTRYLIST = extern struct {
     dwCountryListOffset: u32,
 };
 
-pub const LINEDEVCAPS = extern struct {
+pub const LINEDEVCAPS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1570,7 +1570,7 @@ pub const LINEDEVCAPS = extern struct {
     PermanentLineGuid: Guid,
 };
 
-pub const LINEDEVSTATUS = extern struct {
+pub const LINEDEVSTATUS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1595,14 +1595,14 @@ pub const LINEDEVSTATUS = extern struct {
     dwAppInfoOffset: u32,
 };
 
-pub const LINEEXTENSIONID = extern struct {
+pub const LINEEXTENSIONID = packed struct {
     dwExtensionID0: u32,
     dwExtensionID1: u32,
     dwExtensionID2: u32,
     dwExtensionID3: u32,
 };
 
-pub const LINEFORWARD = extern struct {
+pub const LINEFORWARD = packed struct {
     dwForwardMode: u32,
     dwCallerAddressSize: u32,
     dwCallerAddressOffset: u32,
@@ -1611,20 +1611,20 @@ pub const LINEFORWARD = extern struct {
     dwDestAddressOffset: u32,
 };
 
-pub const LINEFORWARDLIST = extern struct {
+pub const LINEFORWARDLIST = packed struct {
     dwTotalSize: u32,
     dwNumEntries: u32,
     ForwardList: [1]LINEFORWARD,
 };
 
-pub const LINEGENERATETONE = extern struct {
+pub const LINEGENERATETONE = packed struct {
     dwFrequency: u32,
     dwCadenceOn: u32,
     dwCadenceOff: u32,
     dwVolume: u32,
 };
 
-pub const LINEINITIALIZEEXPARAMS = extern struct {
+pub const LINEINITIALIZEEXPARAMS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1634,7 +1634,7 @@ pub const LINEINITIALIZEEXPARAMS = extern struct {
     const _Handles_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const LINELOCATIONENTRY = extern struct {
+pub const LINELOCATIONENTRY = packed struct {
     dwPermanentLocationID: u32,
     dwLocationNameSize: u32,
     dwLocationNameOffset: u32,
@@ -1654,24 +1654,24 @@ pub const LINELOCATIONENTRY = extern struct {
     dwCancelCallWaitingOffset: u32,
 };
 
-pub const LINEMEDIACONTROLCALLSTATE = extern struct {
+pub const LINEMEDIACONTROLCALLSTATE = packed struct {
     dwCallStates: u32,
     dwMediaControl: u32,
 };
 
-pub const LINEMEDIACONTROLDIGIT = extern struct {
+pub const LINEMEDIACONTROLDIGIT = packed struct {
     dwDigit: u32,
     dwDigitModes: u32,
     dwMediaControl: u32,
 };
 
-pub const LINEMEDIACONTROLMEDIA = extern struct {
+pub const LINEMEDIACONTROLMEDIA = packed struct {
     dwMediaModes: u32,
     dwDuration: u32,
     dwMediaControl: u32,
 };
 
-pub const LINEMEDIACONTROLTONE = extern struct {
+pub const LINEMEDIACONTROLTONE = packed struct {
     dwAppSpecific: u32,
     dwDuration: u32,
     dwFrequency1: u32,
@@ -1680,7 +1680,7 @@ pub const LINEMEDIACONTROLTONE = extern struct {
     dwMediaControl: u32,
 };
 
-pub const LINEMESSAGE = extern struct {
+pub const LINEMESSAGE = packed struct {
     hDevice: u32,
     dwMessageID: u32,
     dwCallbackInstance: usize,
@@ -1689,7 +1689,7 @@ pub const LINEMESSAGE = extern struct {
     dwParam3: usize,
 };
 
-pub const LINEMONITORTONE = extern struct {
+pub const LINEMONITORTONE = packed struct {
     dwAppSpecific: u32,
     dwDuration: u32,
     dwFrequency1: u32,
@@ -1697,13 +1697,13 @@ pub const LINEMONITORTONE = extern struct {
     dwFrequency3: u32,
 };
 
-pub const LINEPROVIDERENTRY = extern struct {
+pub const LINEPROVIDERENTRY = packed struct {
     dwPermanentProviderID: u32,
     dwProviderFilenameSize: u32,
     dwProviderFilenameOffset: u32,
 };
 
-pub const LINEPROVIDERLIST = extern struct {
+pub const LINEPROVIDERLIST = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1712,7 +1712,7 @@ pub const LINEPROVIDERLIST = extern struct {
     dwProviderListOffset: u32,
 };
 
-pub const LINEPROXYREQUEST = extern struct {
+pub const LINEPROXYREQUEST = packed struct {
     dwSize: u32,
     dwClientMachineNameSize: u32,
     dwClientMachineNameOffset: u32,
@@ -1731,14 +1731,14 @@ pub const LINEREQMAKECALL = extern struct {
     szComment: [80]CHAR,
 };
 
-pub const linereqmakecallW_tag = extern struct {
+pub const linereqmakecallW_tag = packed struct {
     szDestAddress: [80]u16,
     szAppName: [40]u16,
     szCalledParty: [40]u16,
     szComment: [80]u16,
 };
 
-pub const LINEREQMEDIACALL = extern struct {
+pub const LINEREQMEDIACALL = packed struct {
     hWnd: HWND,
     wRequestID: WPARAM,
     szDeviceClass: [40]CHAR,
@@ -1751,7 +1751,7 @@ pub const LINEREQMEDIACALL = extern struct {
     szComment: [80]CHAR,
 };
 
-pub const linereqmediacallW_tag = extern struct {
+pub const linereqmediacallW_tag = packed struct {
     hWnd: HWND,
     wRequestID: WPARAM,
     szDeviceClass: [40]u16,
@@ -1764,13 +1764,13 @@ pub const linereqmediacallW_tag = extern struct {
     szComment: [80]u16,
 };
 
-pub const LINETERMCAPS = extern struct {
+pub const LINETERMCAPS = packed struct {
     dwTermDev: u32,
     dwTermModes: u32,
     dwTermSharing: u32,
 };
 
-pub const LINETRANSLATECAPS = extern struct {
+pub const LINETRANSLATECAPS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1784,7 +1784,7 @@ pub const LINETRANSLATECAPS = extern struct {
     dwCurrentPreferredCardID: u32,
 };
 
-pub const LINETRANSLATEOUTPUT = extern struct {
+pub const LINETRANSLATEOUTPUT = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1797,7 +1797,7 @@ pub const LINETRANSLATEOUTPUT = extern struct {
     dwTranslateResults: u32,
 };
 
-pub const PHONEBUTTONINFO = extern struct {
+pub const PHONEBUTTONINFO = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1810,7 +1810,7 @@ pub const PHONEBUTTONINFO = extern struct {
     dwButtonState: u32,
 };
 
-pub const PHONECAPS = extern struct {
+pub const PHONECAPS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1859,14 +1859,14 @@ pub const PHONECAPS = extern struct {
     PermanentPhoneGuid: Guid,
 };
 
-pub const PHONEEXTENSIONID = extern struct {
+pub const PHONEEXTENSIONID = packed struct {
     dwExtensionID0: u32,
     dwExtensionID1: u32,
     dwExtensionID2: u32,
     dwExtensionID3: u32,
 };
 
-pub const PHONEINITIALIZEEXPARAMS = extern struct {
+pub const PHONEINITIALIZEEXPARAMS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1876,7 +1876,7 @@ pub const PHONEINITIALIZEEXPARAMS = extern struct {
     const _Handles_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const PHONEMESSAGE = extern struct {
+pub const PHONEMESSAGE = packed struct {
     hDevice: u32,
     dwMessageID: u32,
     dwCallbackInstance: usize,
@@ -1885,7 +1885,7 @@ pub const PHONEMESSAGE = extern struct {
     dwParam3: usize,
 };
 
-pub const PHONESTATUS = extern struct {
+pub const PHONESTATUS = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,
@@ -1914,7 +1914,7 @@ pub const PHONESTATUS = extern struct {
     dwPhoneFeatures: u32,
 };
 
-pub const VARSTRING = extern struct {
+pub const VARSTRING = packed struct {
     dwTotalSize: u32,
     dwNeededSize: u32,
     dwUsedSize: u32,

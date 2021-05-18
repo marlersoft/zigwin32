@@ -163,7 +163,7 @@ pub const PXE_DHCP_OPTION = extern struct {
     OptionValue: [1]u8,
 };
 
-pub const PXE_DHCP_MESSAGE = extern struct {
+pub const PXE_DHCP_MESSAGE = packed struct {
     Operation: u8,
     HardwareAddressType: u8,
     HardwareAddressLength: u8,
@@ -183,7 +183,7 @@ pub const PXE_DHCP_MESSAGE = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const PXE_DHCPV6_OPTION = extern struct {
+pub const PXE_DHCPV6_OPTION = packed struct {
     OptionCode: u16,
     DataLength: u16,
     Data: [1]u8,

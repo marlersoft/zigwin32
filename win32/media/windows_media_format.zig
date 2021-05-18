@@ -997,6 +997,7 @@ pub const WMT_RIGHT_COLLABORATIVE_PLAY = WMT_RIGHTS.COLLABORATIVE_PLAY;
 pub const WMT_RIGHT_SDMI_TRIGGER = WMT_RIGHTS.SDMI_TRIGGER;
 pub const WMT_RIGHT_SDMI_NOMORECOPIES = WMT_RIGHTS.SDMI_NOMORECOPIES;
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const WM_STREAM_PRIORITY_RECORD = extern struct {
     wStreamNumber: u16,
     fMandatory: BOOL,
@@ -1102,7 +1103,7 @@ pub const WM_ADDRESS_ACCESSENTRY = extern struct {
     dwMask: u32,
 };
 
-pub const WM_PICTURE = extern struct {
+pub const WM_PICTURE = packed struct {
     pwszMIMEType: PWSTR,
     bPictureType: u8,
     pwszDescription: PWSTR,
@@ -1110,7 +1111,7 @@ pub const WM_PICTURE = extern struct {
     pbData: *u8,
 };
 
-pub const WM_SYNCHRONISED_LYRICS = extern struct {
+pub const WM_SYNCHRONISED_LYRICS = packed struct {
     bTimeStampFormat: u8,
     bContentType: u8,
     pwszContentDescriptor: PWSTR,
@@ -1118,22 +1119,22 @@ pub const WM_SYNCHRONISED_LYRICS = extern struct {
     pbLyrics: *u8,
 };
 
-pub const WM_USER_WEB_URL = extern struct {
+pub const WM_USER_WEB_URL = packed struct {
     pwszDescription: PWSTR,
     pwszURL: PWSTR,
 };
 
-pub const WM_USER_TEXT = extern struct {
+pub const WM_USER_TEXT = packed struct {
     pwszDescription: PWSTR,
     pwszText: PWSTR,
 };
 
-pub const WM_LEAKY_BUCKET_PAIR = extern struct {
+pub const WM_LEAKY_BUCKET_PAIR = packed struct {
     dwBitrate: u32,
     msBufferWindow: u32,
 };
 
-pub const WM_STREAM_TYPE_INFO = extern struct {
+pub const WM_STREAM_TYPE_INFO = packed struct {
     guidMajorType: Guid,
     cbFormat: u32,
 };
@@ -1255,6 +1256,7 @@ pub const WMT_COLORSPACEINFO_EXTENSION_DATA = extern struct {
     ucColorMatrixCoef: u8,
 };
 
+// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const WMT_TIMECODE_EXTENSION_DATA = extern struct {
     wRange: u16,
     dwTimecode: u32,

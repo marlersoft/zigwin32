@@ -25,6 +25,7 @@ pub const PACKAGE_FILTER_ALL_LOADED = @as(u32, 0);
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const PACKAGE_ID = extern struct {
     reserved: u32,
     processorArchitecture: u32,
@@ -40,6 +41,7 @@ pub const PACKAGE_ID = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
+// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const PACKAGE_INFO = extern struct {
     reserved: u32,
     flags: u32,
