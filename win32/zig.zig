@@ -50,7 +50,7 @@ pub const Guid = extern union {
         11, 9,
         16, 14,
         19, 21, 24, 26, 28, 30, 32, 34};
-    const hex_offsets = switch (std.builtin.endian) {
+    const hex_offsets = switch (std.Target.current.cpu.arch.endian()) {
         .Big => big_endian_hex_offsets,
         .Little => little_endian_hex_offsets,
     };
@@ -79,8 +79,8 @@ fn decodeHexByte(hex: [2]u8) u8 {
 }
 
 test "Guid" {
-    testing.expect(std.mem.eql(u8,
-        switch (std.builtin.endian) {
+    try testing.expect(std.mem.eql(u8,
+        switch (std.Target.current.cpu.arch.endian()) {
             .Big    => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
             .Little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91"
         },
@@ -152,8 +152,8 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
     }
 }
 test "typedConst" {
-    testing.expectEqual(@bitCast(usize, @as(isize, -1)),  @ptrToInt(typedConst(?*opaque{}, -1)));
-    testing.expectEqual(@bitCast(usize, @as(isize, -12)),  @ptrToInt(typedConst(?*opaque{}, -12)));
-    testing.expectEqual(@as(u32, 0xffffffff), typedConst(u32, 0xffffffff));
-    testing.expectEqual(@bitCast(i32, @as(u32, 0x80000000)), typedConst(i32, 0x80000000));
+    try testing.expectEqual(@bitCast(usize, @as(isize, -1)),  @ptrToInt(typedConst(?*opaque{}, -1)));
+    try testing.expectEqual(@bitCast(usize, @as(isize, -12)),  @ptrToInt(typedConst(?*opaque{}, -12)));
+    try testing.expectEqual(@as(u32, 0xffffffff), typedConst(u32, 0xffffffff));
+    try testing.expectEqual(@bitCast(i32, @as(u32, 0x80000000)), typedConst(i32, 0x80000000));
 }
