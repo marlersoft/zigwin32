@@ -80,8 +80,11 @@ pub const PRJ_EXT_INFO_TYPE_SYMLINK = PRJ_EXT_INFO_TYPE.K;
 pub const PRJ_EXTENDED_INFO = extern struct {
     InfoType: PRJ_EXT_INFO_TYPE,
     NextInfoOffset: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Symlink: extern struct {
+            TargetName: [*:0]const u16,
+        },
+    },
 };
 
 pub const PRJ_NOTIFICATION_MAPPING = extern struct {
@@ -133,14 +136,20 @@ pub const PRJ_FILE_BASIC_INFO = extern struct {
 
 pub const PRJ_PLACEHOLDER_INFO = extern struct {
     FileBasicInfo: PRJ_FILE_BASIC_INFO,
-    EaInformation: _EaInformation_e__Struct,
-    SecurityInformation: _SecurityInformation_e__Struct,
-    StreamsInformation: _StreamsInformation_e__Struct,
+    EaInformation: extern struct {
+        EaBufferSize: u32,
+        OffsetToFirstEa: u32,
+    },
+    SecurityInformation: extern struct {
+        SecurityBufferSize: u32,
+        OffsetToSecurityDescriptor: u32,
+    },
+    StreamsInformation: extern struct {
+        StreamsInfoBufferSize: u32,
+        OffsetToFirstStreamInfo: u32,
+    },
     VersionInfo: PRJ_PLACEHOLDER_VERSION_INFO,
     VariableData: [1]u8,
-    const _StreamsInformation_e__Struct = u32; // TODO: generate this nested type!
-    const _EaInformation_e__Struct = u32; // TODO: generate this nested type!
-    const _SecurityInformation_e__Struct = u32; // TODO: generate this nested type!
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -247,12 +256,15 @@ pub const PRJ_QUERY_FILE_NAME_CB = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
-    PostCreate: _PostCreate_e__Struct,
-    FileRenamed: _FileRenamed_e__Struct,
-    FileDeletedOnHandleClose: _FileDeletedOnHandleClose_e__Struct,
-    const _FileRenamed_e__Struct = u32; // TODO: generate this nested type!
-    const _FileDeletedOnHandleClose_e__Struct = u32; // TODO: generate this nested type!
-    const _PostCreate_e__Struct = u32; // TODO: generate this nested type!
+    PostCreate: extern struct {
+        NotificationMask: PRJ_NOTIFY_TYPES,
+    },
+    FileRenamed: extern struct {
+        NotificationMask: PRJ_NOTIFY_TYPES,
+    },
+    FileDeletedOnHandleClose: extern struct {
+        IsFileModified: u8,
+    },
 };
 
 pub const PRJ_NOTIFICATION_CB = fn(
@@ -287,8 +299,14 @@ pub const PRJ_COMPLETE_COMMAND_TYPE_ENUMERATION = PRJ_COMPLETE_COMMAND_TYPE.ENUM
 
 pub const PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS = extern struct {
     CommandType: PRJ_COMPLETE_COMMAND_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Notification: extern struct {
+            NotificationMask: PRJ_NOTIFY_TYPES,
+        },
+        Enumeration: extern struct {
+            DirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
+        },
+    },
 };
 
 

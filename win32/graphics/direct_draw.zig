@@ -435,7 +435,7 @@ pub const DDENUMRET_OK = @as(u32, 1);
 // Section: Types (49)
 //--------------------------------------------------------------------------------
 pub const _DDFXROP = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const LPDDENUMCALLBACKA = fn(
@@ -538,24 +538,36 @@ pub const DDBLTFX = extern struct {
     dwZBufferHigh: u32,
     dwZBufferBaseDest: u32,
     dwZDestConstBitDepth: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        dwZDestConst: u32,
+        lpDDSZBufferDest: *IDirectDrawSurface,
+    },
     dwZSrcConstBitDepth: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        dwZSrcConst: u32,
+        lpDDSZBufferSrc: *IDirectDrawSurface,
+    },
     dwAlphaEdgeBlendBitDepth: u32,
     dwAlphaEdgeBlend: u32,
     dwReserved: u32,
     dwAlphaDestConstBitDepth: u32,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous3: extern union {
+        dwAlphaDestConst: u32,
+        lpDDSAlphaDest: *IDirectDrawSurface,
+    },
     dwAlphaSrcConstBitDepth: u32,
-    Anonymous4: _Anonymous4_e__Union,
-    Anonymous5: _Anonymous5_e__Union,
+    Anonymous4: extern union {
+        dwAlphaSrcConst: u32,
+        lpDDSAlphaSrc: *IDirectDrawSurface,
+    },
+    Anonymous5: extern union {
+        dwFillColor: u32,
+        dwFillDepth: u32,
+        dwFillPixel: u32,
+        lpDDSPattern: *IDirectDrawSurface,
+    },
     ddckDestColorkey: DDCOLORKEY,
     ddckSrcColorkey: DDCOLORKEY,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDSCAPS = extern struct {
@@ -569,16 +581,20 @@ pub const DDOSCAPS = extern struct {
 pub const DDSCAPSEX = extern struct {
     dwCaps2: u32,
     dwCaps3: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwCaps4: u32,
+        dwVolumeDepth: u32,
+    },
 };
 
 pub const DDSCAPS2 = extern struct {
     dwCaps: u32,
     dwCaps2: u32,
     dwCaps3: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwCaps4: u32,
+        dwVolumeDepth: u32,
+    },
 };
 
 pub const DDCAPS_DX1 = extern struct {
@@ -857,16 +873,46 @@ pub const DDPIXELFORMAT = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwFourCC: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    Anonymous4: _Anonymous4_e__Union,
-    Anonymous5: _Anonymous5_e__Union,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        dwRGBBitCount: u32,
+        dwYUVBitCount: u32,
+        dwZBufferBitDepth: u32,
+        dwAlphaBitDepth: u32,
+        dwLuminanceBitCount: u32,
+        dwBumpBitCount: u32,
+        dwPrivateFormatBitCount: u32,
+    },
+    Anonymous2: extern union {
+        dwRBitMask: u32,
+        dwYBitMask: u32,
+        dwStencilBitDepth: u32,
+        dwLuminanceBitMask: u32,
+        dwBumpDuBitMask: u32,
+        dwOperations: u32,
+    },
+    Anonymous3: extern union {
+        dwGBitMask: u32,
+        dwUBitMask: u32,
+        dwZBitMask: u32,
+        dwBumpDvBitMask: u32,
+        MultiSampleCaps: extern struct {
+            wFlipMSTypes: u16,
+            wBltMSTypes: u16,
+        },
+    },
+    Anonymous4: extern union {
+        dwBBitMask: u32,
+        dwVBitMask: u32,
+        dwStencilBitMask: u32,
+        dwBumpLuminanceBitMask: u32,
+    },
+    Anonymous5: extern union {
+        dwRGBAlphaBitMask: u32,
+        dwYUVAlphaBitMask: u32,
+        dwLuminanceAlphaBitMask: u32,
+        dwRGBZBitMask: u32,
+        dwYUVZBitMask: u32,
+    },
 };
 
 pub const DDOVERLAYFX = extern struct {
@@ -875,15 +921,19 @@ pub const DDOVERLAYFX = extern struct {
     dwAlphaEdgeBlend: u32,
     dwReserved: u32,
     dwAlphaDestConstBitDepth: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        dwAlphaDestConst: u32,
+        lpDDSAlphaDest: *IDirectDrawSurface,
+    },
     dwAlphaSrcConstBitDepth: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        dwAlphaSrcConst: u32,
+        lpDDSAlphaSrc: *IDirectDrawSurface,
+    },
     dckDestColorkey: DDCOLORKEY,
     dckSrcColorkey: DDCOLORKEY,
     dwDDFX: u32,
     dwFlags: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDBLTBATCH = extern struct {
@@ -3756,9 +3806,16 @@ pub const DDSURFACEDESC = extern struct {
     dwFlags: u32,
     dwHeight: u32,
     dwWidth: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
     dwBackBufferCount: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        dwMipMapCount: u32,
+        dwZBufferBitDepth: u32,
+        dwRefreshRate: u32,
+    },
     dwAlphaBitDepth: u32,
     dwReserved: u32,
     lpSurface: *c_void,
@@ -3768,8 +3825,6 @@ pub const DDSURFACEDESC = extern struct {
     ddckCKSrcBlt: DDCOLORKEY,
     ddpfPixelFormat: DDPIXELFORMAT,
     ddsCaps: DDSCAPS,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDSURFACEDESC2 = extern struct {
@@ -3777,24 +3832,35 @@ pub const DDSURFACEDESC2 = extern struct {
     dwFlags: u32,
     dwHeight: u32,
     dwWidth: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous1: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
+    Anonymous2: extern union {
+        dwBackBufferCount: u32,
+        dwDepth: u32,
+    },
+    Anonymous3: extern union {
+        dwMipMapCount: u32,
+        dwRefreshRate: u32,
+        dwSrcVBHandle: u32,
+    },
     dwAlphaBitDepth: u32,
     dwReserved: u32,
     lpSurface: *c_void,
-    Anonymous4: _Anonymous4_e__Union,
+    Anonymous4: extern union {
+        ddckCKDestOverlay: DDCOLORKEY,
+        dwEmptyFaceColor: u32,
+    },
     ddckCKDestBlt: DDCOLORKEY,
     ddckCKSrcOverlay: DDCOLORKEY,
     ddckCKSrcBlt: DDCOLORKEY,
-    Anonymous5: _Anonymous5_e__Union,
+    Anonymous5: extern union {
+        ddpfPixelFormat: DDPIXELFORMAT,
+        dwFVF: u32,
+    },
     ddsCaps: DDSCAPS2,
     dwTextureStage: u32,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDOPTSURFACEDESC = extern struct {

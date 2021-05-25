@@ -81,7 +81,23 @@ pub const DEVMODEA = extern struct {
     dmSize: u16,
     dmDriverExtra: u16,
     dmFields: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Anonymous1: extern struct {
+            dmOrientation: i16,
+            dmPaperSize: i16,
+            dmPaperLength: i16,
+            dmPaperWidth: i16,
+            dmScale: i16,
+            dmCopies: i16,
+            dmDefaultSource: i16,
+            dmPrintQuality: i16,
+        },
+        Anonymous2: extern struct {
+            dmPosition: POINTL,
+            dmDisplayOrientation: u32,
+            dmDisplayFixedOutput: u32,
+        },
+    },
     dmColor: i16,
     dmDuplex: i16,
     dmYResolution: i16,
@@ -92,7 +108,10 @@ pub const DEVMODEA = extern struct {
     dmBitsPerPel: u32,
     dmPelsWidth: u32,
     dmPelsHeight: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        dmDisplayFlags: u32,
+        dmNup: u32,
+    },
     dmDisplayFrequency: u32,
     dmICMMethod: u32,
     dmICMIntent: u32,
@@ -102,8 +121,6 @@ pub const DEVMODEA = extern struct {
     dmReserved2: u32,
     dmPanningWidth: u32,
     dmPanningHeight: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DEVMODEW = extern struct {
@@ -113,7 +130,23 @@ pub const DEVMODEW = extern struct {
     dmSize: u16,
     dmDriverExtra: u16,
     dmFields: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Anonymous1: extern struct {
+            dmOrientation: i16,
+            dmPaperSize: i16,
+            dmPaperLength: i16,
+            dmPaperWidth: i16,
+            dmScale: i16,
+            dmCopies: i16,
+            dmDefaultSource: i16,
+            dmPrintQuality: i16,
+        },
+        Anonymous2: extern struct {
+            dmPosition: POINTL,
+            dmDisplayOrientation: u32,
+            dmDisplayFixedOutput: u32,
+        },
+    },
     dmColor: i16,
     dmDuplex: i16,
     dmYResolution: i16,
@@ -124,7 +157,10 @@ pub const DEVMODEW = extern struct {
     dmBitsPerPel: u32,
     dmPelsWidth: u32,
     dmPelsHeight: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        dmDisplayFlags: u32,
+        dmNup: u32,
+    },
     dmDisplayFrequency: u32,
     dmICMMethod: u32,
     dmICMIntent: u32,
@@ -134,8 +170,6 @@ pub const DEVMODEW = extern struct {
     dmReserved2: u32,
     dmPanningWidth: u32,
     dmPanningHeight: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DISPLAYCONFIG_RATIONAL = extern struct {
@@ -212,9 +246,13 @@ pub const DISPLAYCONFIG_VIDEO_SIGNAL_INFO = extern struct {
     vSyncFreq: DISPLAYCONFIG_RATIONAL,
     activeSize: DISPLAYCONFIG_2DREGION,
     totalSize: DISPLAYCONFIG_2DREGION,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        AdditionalSignalInfo: extern struct {
+            _bitfield: u32,
+        },
+        videoStandard: u32,
+    },
     scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DISPLAYCONFIG_SCALING = extern enum(i32) {
@@ -294,22 +332,34 @@ pub const DISPLAYCONFIG_MODE_INFO = extern struct {
     infoType: DISPLAYCONFIG_MODE_INFO_TYPE,
     id: u32,
     adapterId: LUID,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        targetMode: DISPLAYCONFIG_TARGET_MODE,
+        sourceMode: DISPLAYCONFIG_SOURCE_MODE,
+        desktopImageInfo: DISPLAYCONFIG_DESKTOP_IMAGE_INFO,
+    },
 };
 
 pub const DISPLAYCONFIG_PATH_SOURCE_INFO = extern struct {
     adapterId: LUID,
     id: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        modeInfoIdx: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     statusFlags: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DISPLAYCONFIG_PATH_TARGET_INFO = extern struct {
     adapterId: LUID,
     id: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        modeInfoIdx: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     outputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY,
     rotation: DISPLAYCONFIG_ROTATION,
     scaling: DISPLAYCONFIG_SCALING,
@@ -317,7 +367,6 @@ pub const DISPLAYCONFIG_PATH_TARGET_INFO = extern struct {
     scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING,
     targetAvailable: BOOL,
     statusFlags: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DISPLAYCONFIG_PATH_INFO = extern struct {
@@ -379,8 +428,12 @@ pub const DISPLAYCONFIG_SOURCE_DEVICE_NAME = extern struct {
 };
 
 pub const DISPLAYCONFIG_TARGET_DEVICE_NAME_FLAGS = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
 };
 
 pub const DISPLAYCONFIG_TARGET_DEVICE_NAME = extern struct {
@@ -413,14 +466,22 @@ pub const DISPLAYCONFIG_TARGET_BASE_TYPE = extern struct {
 
 pub const DISPLAYCONFIG_SET_TARGET_PERSISTENCE = extern struct {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
 };
 
 pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
 };
 
 pub const RECT = extern struct {
@@ -523,12 +584,16 @@ pub const DDVIDEOPORTBANDWIDTH = extern struct {
 pub const VIDEOMEMORY = extern struct {
     dwFlags: u32,
     fpStart: usize,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        fpEnd: usize,
+        dwWidth: u32,
+    },
     ddsCaps: DDSCAPS,
     ddsCapsAlt: DDSCAPS,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous2: extern union {
+        lpHeap: *VMEMHEAP,
+        dwHeight: u32,
+    },
 };
 
 pub const VIDEOMEMORYINFO = extern struct {
@@ -918,10 +983,20 @@ pub const DD_SURFACE_INT = extern struct {
 };
 
 pub const DD_SURFACE_GLOBAL = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        dwBlockSizeY: u32,
+        lSlicePitch: i32,
+    },
+    Anonymous2: extern union {
+        lpVidMemHeap: *VIDEOMEMORY,
+        dwBlockSizeX: u32,
+        dwUserMemSize: u32,
+    },
     fpVidMem: usize,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous3: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
     yHint: i32,
     xHint: i32,
     wHeight: u32,
@@ -930,9 +1005,6 @@ pub const DD_SURFACE_GLOBAL = extern struct {
     ddpfSurface: DDPIXELFORMAT,
     fpHeapOffset: usize,
     hCreatorProcess: HANDLE,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DD_SURFACE_MORE = extern struct {
@@ -948,14 +1020,18 @@ pub const DD_SURFACE_LOCAL = extern struct {
     dwFlags: u32,
     ddsCaps: DDSCAPS,
     dwReserved1: usize,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        ddckCKSrcOverlay: DDCOLORKEY,
+        ddckCKSrcBlt: DDCOLORKEY,
+    },
+    Anonymous2: extern union {
+        ddckCKDestOverlay: DDCOLORKEY,
+        ddckCKDestBlt: DDCOLORKEY,
+    },
     lpSurfMore: *DD_SURFACE_MORE,
     lpAttachList: *DD_ATTACHLIST,
     lpAttachListFrom: *DD_ATTACHLIST,
     rcOverlaySrc: RECT,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DD_D3DBUFCALLBACKS = extern struct {
@@ -1018,10 +1094,13 @@ pub const DD_MOTIONCOMP_LOCAL = extern struct {
 };
 
 pub const DD_MORESURFACECAPS = extern struct {
+    pub const NTExtendedHeapRestrictions = extern struct {
+        ddsCapsEx: DDSCAPSEX,
+        ddsCapsExAlt: DDSCAPSEX,
+    };
     dwSize: u32,
     ddsCapsMore: DDSCAPSEX,
     ddsExtendedHeapRestrictions: [1]NTExtendedHeapRestrictions,
-    const NTExtendedHeapRestrictions = u32; // TODO: generate this nested type!
 };
 
 pub const DD_STEREOMODE = extern struct {
@@ -1571,11 +1650,13 @@ pub const DD_CREATESURFACEEXDATA = extern struct {
 
 pub const DD_GETDRIVERSTATEDATA = extern struct {
     dwFlags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        lpDD: *DD_DIRECTDRAW_GLOBAL,
+        dwhContext: usize,
+    },
     lpdwStates: *u32,
     dwLength: u32,
     ddRVal: HRESULT,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FD_XFORM = extern struct {
@@ -2872,7 +2953,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (50)
+// Section: Imports (51)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PDD_DESTROYDRIVER = @import("../system/system_services.zig").PDD_DESTROYDRIVER;
@@ -2917,6 +2998,7 @@ const HDEV = @import("../system/system_services.zig").HDEV;
 const LPDDHAL_WAITFORVERTICALBLANK = @import("../system/windows_programming.zig").LPDDHAL_WAITFORVERTICALBLANK;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
 const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
+const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
 const DDBLTFX = @import("../graphics/direct_draw.zig").DDBLTFX;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const PDD_ALPHABLT = @import("../system/system_services.zig").PDD_ALPHABLT;

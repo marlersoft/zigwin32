@@ -1225,11 +1225,13 @@ pub const DOT11_RECV_SENSITIVITY = extern struct {
 };
 
 pub const DOT11_RECV_SENSITIVITY_LIST = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dot11PhyType: DOT11_PHY_TYPE,
+        uPhyId: u32,
+    },
     uNumOfEntries: u32,
     uTotalNumOfEntries: u32,
     dot11RecvSensitivity: [1]DOT11_RECV_SENSITIVITY,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DOT11_AC_PARAM = extern enum(i32) {
@@ -1309,8 +1311,11 @@ pub const DOT11_BYTE_ARRAY = extern struct {
 
 pub const DOT11_BSS_ENTRY_PHY_SPECIFIC_INFO = extern union {
     uChCenterFrequency: u32,
-    FHSS: _FHSS_e__Struct,
-    const _FHSS_e__Struct = u32; // TODO: generate this nested type!
+    FHSS: extern struct {
+        uHopPattern: u32,
+        uHopSet: u32,
+        uDwellTime: u32,
+    },
 };
 
 pub const DOT11_BSS_ENTRY = extern struct {
@@ -1644,13 +1649,16 @@ pub const DOT11_PHY_ATTRIBUTES = extern struct {
     uMPDUMaxLength: u32,
     TempType: DOT11_TEMP_TYPE,
     DiversitySupport: DOT11_DIVERSITY_SUPPORT,
-    PhySpecificAttributes: _PhySpecificAttributes_e__Union,
+    PhySpecificAttributes: extern union {
+        HRDSSSAttributes: DOT11_HRDSSS_PHY_ATTRIBUTES,
+        OFDMAttributes: DOT11_OFDM_PHY_ATTRIBUTES,
+        ERPAttributes: DOT11_ERP_PHY_ATTRIBUTES,
+    },
     uNumberSupportedPowerLevels: u32,
     TxPowerLevels: [8]u32,
     uNumDataRateMappingEntries: u32,
     DataRateMappingEntries: [126]DOT11_DATA_RATE_MAPPING_ENTRY,
     SupportedDataRatesValue: DOT11_SUPPORTED_DATA_RATES_VALUE_V2,
-    const _PhySpecificAttributes_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DOT11_EXTSTA_ATTRIBUTES = extern struct {
@@ -1950,8 +1958,10 @@ pub const DOT11_STOP_AP_PARAMETERS = extern struct {
 pub const DOT11_PHY_FREQUENCY_ADOPTED_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     ulPhyId: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ulChannel: u32,
+        ulFrequency: u32,
+    },
 };
 
 pub const DOT11_CAN_SUSTAIN_AP_PARAMETERS = extern struct {
@@ -2814,8 +2824,10 @@ pub const WLAN_RAW_DATA = extern struct {
 pub const WLAN_RAW_DATA_LIST = extern struct {
     dwTotalSize: u32,
     dwNumberOfItems: u32,
-    DataList: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    DataList: [1]extern struct {
+        dwDataOffset: u32,
+        dwDataSize: u32,
+    },
 };
 
 pub const WLAN_CONNECTION_MODE = extern enum(i32) {

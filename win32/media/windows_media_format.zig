@@ -997,8 +997,8 @@ pub const WMT_RIGHT_COLLABORATIVE_PLAY = WMT_RIGHTS.COLLABORATIVE_PLAY;
 pub const WMT_RIGHT_SDMI_TRIGGER = WMT_RIGHTS.SDMI_TRIGGER;
 pub const WMT_RIGHT_SDMI_NOMORECOPIES = WMT_RIGHTS.SDMI_NOMORECOPIES;
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const WM_STREAM_PRIORITY_RECORD = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     wStreamNumber: u16,
     fMandatory: BOOL,
 };
@@ -1256,8 +1256,8 @@ pub const WMT_COLORSPACEINFO_EXTENSION_DATA = extern struct {
     ucColorMatrixCoef: u8,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const WMT_TIMECODE_EXTENSION_DATA = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     wRange: u16,
     dwTimecode: u32,
     dwUserbits: u32,

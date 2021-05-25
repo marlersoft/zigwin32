@@ -382,8 +382,13 @@ pub const PDH_RAW_COUNTER_ITEM_W = extern struct {
 
 pub const PDH_FMT_COUNTERVALUE = extern struct {
     CStatus: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        longValue: i32,
+        doubleValue: f64,
+        largeValue: i64,
+        AnsiStringValue: [*:0]const u8,
+        WideStringValue: [*:0]const u16,
+    },
 };
 
 pub const PDH_FMT_COUNTERVALUE_ITEM_A = extern struct {
@@ -446,10 +451,20 @@ pub const PDH_COUNTER_INFO_A = extern struct {
     dwUserData: usize,
     dwQueryUserData: usize,
     szFullPath: PSTR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_A,
+        CounterPath: PDH_COUNTER_PATH_ELEMENTS_A,
+        Anonymous: extern struct {
+            szMachineName: PSTR,
+            szObjectName: PSTR,
+            szInstanceName: PSTR,
+            szParentInstance: PSTR,
+            dwInstanceIndex: u32,
+            szCounterName: PSTR,
+        },
+    },
     szExplainText: PSTR,
     DataBuffer: [1]u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PDH_COUNTER_INFO_W = extern struct {
@@ -462,10 +477,20 @@ pub const PDH_COUNTER_INFO_W = extern struct {
     dwUserData: usize,
     dwQueryUserData: usize,
     szFullPath: PWSTR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_W,
+        CounterPath: PDH_COUNTER_PATH_ELEMENTS_W,
+        Anonymous: extern struct {
+            szMachineName: PWSTR,
+            szObjectName: PWSTR,
+            szInstanceName: PWSTR,
+            szParentInstance: PWSTR,
+            dwInstanceIndex: u32,
+            szCounterName: PWSTR,
+        },
+    },
     szExplainText: PWSTR,
     DataBuffer: [1]u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PDH_TIME_INFO = extern struct {
@@ -490,8 +515,30 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_A = extern struct {
     szBaseFileName: PSTR,
     dwFileType: u32,
     dwReserved: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            PdlAutoNameInterval: u32,
+            PdlAutoNameUnits: u32,
+            PdlCommandFilename: PSTR,
+            PdlCounterList: PSTR,
+            PdlAutoNameFormat: u32,
+            PdlSampleInterval: u32,
+            PdlLogStartTime: FILETIME,
+            PdlLogEndTime: FILETIME,
+        },
+        Anonymous2: extern struct {
+            TlNumberOfBuffers: u32,
+            TlMinimumBuffers: u32,
+            TlMaximumBuffers: u32,
+            TlFreeBuffers: u32,
+            TlBufferSize: u32,
+            TlEventsLost: u32,
+            TlLoggerThreadId: u32,
+            TlBuffersWritten: u32,
+            TlLogHandle: u32,
+            TlLogFileName: PSTR,
+        },
+    },
 };
 
 pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
@@ -503,8 +550,30 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
     szBaseFileName: PWSTR,
     dwFileType: u32,
     dwReserved: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            PdlAutoNameInterval: u32,
+            PdlAutoNameUnits: u32,
+            PdlCommandFilename: PWSTR,
+            PdlCounterList: PWSTR,
+            PdlAutoNameFormat: u32,
+            PdlSampleInterval: u32,
+            PdlLogStartTime: FILETIME,
+            PdlLogEndTime: FILETIME,
+        },
+        Anonymous2: extern struct {
+            TlNumberOfBuffers: u32,
+            TlMinimumBuffers: u32,
+            TlMaximumBuffers: u32,
+            TlFreeBuffers: u32,
+            TlBufferSize: u32,
+            TlEventsLost: u32,
+            TlLoggerThreadId: u32,
+            TlBuffersWritten: u32,
+            TlLogHandle: u32,
+            TlLogFileName: PWSTR,
+        },
+    },
 };
 
 pub const CounterPathCallBack = fn(

@@ -101,7 +101,7 @@ pub const ROPARAMIIDHANDLE = isize;
 pub const APARTMENT_SHUTDOWN_REGISTRATION_COOKIE = isize;
 
 pub const __AnonymousRecord_roapi_L45_C9 = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -153,8 +153,10 @@ pub const IHolographicSpaceInterop = extern struct {
 };
 
 pub const HSTRING_HEADER = extern struct {
-    Reserved: _Reserved_e__Union,
-    const _Reserved_e__Union = u32; // TODO: generate this nested type!
+    Reserved: extern union {
+        Reserved1: *c_void,
+        Reserved2: [24]CHAR,
+    },
 };
 
 pub const TrustLevel = extern enum(i32) {
@@ -2788,10 +2790,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (31)
+// Section: Imports (32)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IMarshal = @import("../system/com.zig").IMarshal;
+const CHAR = @import("../system/system_services.zig").CHAR;
 const HRESULT = @import("../system/com.zig").HRESULT;
 const IWICBitmap = @import("../graphics/imaging.zig").IWICBitmap;
 const BOOL = @import("../system/system_services.zig").BOOL;
@@ -2819,8 +2822,8 @@ const IMFSample = @import("../media/media_foundation.zig").IMFSample;
 const ID2D1Factory = @import("../graphics/direct2d.zig").ID2D1Factory;
 const IMF2DBuffer2 = @import("../media/media_foundation.zig").IMF2DBuffer2;
 const POINT = @import("../ui/display_devices.zig").POINT;
-const SIZE = @import("../ui/display_devices.zig").SIZE;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
+const SIZE = @import("../ui/display_devices.zig").SIZE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

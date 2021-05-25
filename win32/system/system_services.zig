@@ -11158,12 +11158,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .Arm64 => struct {
 
 pub const ARM64_NT_NEON128 = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        Low: u64,
+        High: i64,
+    },
     D: [2]f64,
     S: [4]f32,
     H: [8]u16,
     B: [16]u8,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -11306,35 +11308,35 @@ pub const REARRANGE_FILE_DATA32 = extern struct {
 }, else => struct { } };
 
 pub const TP_CALLBACK_INSTANCE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const TP_POOL = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const TP_CLEANUP_GROUP = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const TP_WORK = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const TP_TIMER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const TP_WAIT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const TP_IO = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const TEB = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -11377,39 +11379,39 @@ pub const PROC = fn(
 }, else => struct { } };
 
 pub const IDDVideoPortContainer = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawVideoPort = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawVideoPortNotify = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDDVideoPortContainerVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawVideoPortVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawVideoPortNotifyVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _DD_DESTROYDRIVERDATA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _DD_SETMODEDATA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _DD_GETVPORTAUTOFLIPSURFACEDATA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -11451,7 +11453,7 @@ pub const DUPLICATE_EXTENTS_DATA_EX32 = extern struct {
 }, else => struct { } };
 
 pub const AtlThunkData_t = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const HRSRC = ?*opaque{};
@@ -11531,19 +11533,27 @@ pub const FLOAT128 = extern struct {
 };
 
 pub const LARGE_INTEGER = extern union {
-    Anonymous: _Anonymous_e__Struct,
-    u: _u_e__Struct,
+    Anonymous: extern struct {
+        LowPart: u32,
+        HighPart: i32,
+    },
+    u: extern struct {
+        LowPart: u32,
+        HighPart: i32,
+    },
     QuadPart: i64,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const ULARGE_INTEGER = extern union {
-    Anonymous: _Anonymous_e__Struct,
-    u: _u_e__Struct,
+    Anonymous: extern struct {
+        LowPart: u32,
+        HighPart: u32,
+    },
+    u: extern struct {
+        LowPart: u32,
+        HighPart: u32,
+    },
     QuadPart: u64,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const LUID = extern struct {
@@ -11574,8 +11584,12 @@ pub const XSAVE_AREA = extern struct {
 
 pub const SCOPE_TABLE_AMD64 = extern struct {
     Count: u32,
-    ScopeRecord: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    ScopeRecord: [1]extern struct {
+        BeginAddress: u32,
+        EndAddress: u32,
+        HandlerAddress: u32,
+        JumpTarget: u32,
+    },
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -11673,24 +11687,70 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64 => struct {
 
 pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        FloatingContext: [16]*M128A,
+        Anonymous: extern struct {
+            Xmm0: *M128A,
+            Xmm1: *M128A,
+            Xmm2: *M128A,
+            Xmm3: *M128A,
+            Xmm4: *M128A,
+            Xmm5: *M128A,
+            Xmm6: *M128A,
+            Xmm7: *M128A,
+            Xmm8: *M128A,
+            Xmm9: *M128A,
+            Xmm10: *M128A,
+            Xmm11: *M128A,
+            Xmm12: *M128A,
+            Xmm13: *M128A,
+            Xmm14: *M128A,
+            Xmm15: *M128A,
+        },
+    },
+    Anonymous2: extern union {
+        IntegerContext: [16]*u64,
+        Anonymous: extern struct {
+            Rax: *u64,
+            Rcx: *u64,
+            Rdx: *u64,
+            Rbx: *u64,
+            Rsp: *u64,
+            Rbp: *u64,
+            Rsi: *u64,
+            Rdi: *u64,
+            R8: *u64,
+            R9: *u64,
+            R10: *u64,
+            R11: *u64,
+            R12: *u64,
+            R13: *u64,
+            R14: *u64,
+            R15: *u64,
+        },
+    },
 };
 
 }, else => struct { } };
 
 pub const SCOPE_TABLE_ARM = extern struct {
     Count: u32,
-    ScopeRecord: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    ScopeRecord: [1]extern struct {
+        BeginAddress: u32,
+        EndAddress: u32,
+        HandlerAddress: u32,
+        JumpTarget: u32,
+    },
 };
 
 pub const SCOPE_TABLE_ARM64 = extern struct {
     Count: u32,
-    ScopeRecord: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    ScopeRecord: [1]extern struct {
+        BeginAddress: u32,
+        EndAddress: u32,
+        HandlerAddress: u32,
+        JumpTarget: u32,
+    },
 };
 
 pub const KNONVOLATILE_CONTEXT_POINTERS_ARM64 = extern struct {
@@ -11832,10 +11892,14 @@ pub const SE_ACCESS_REPLY = extern struct {
 };
 
 pub const SE_TOKEN_USER = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        TokenUser: TOKEN_USER,
+        User: SID_AND_ATTRIBUTES,
+    },
+    Anonymous2: extern union {
+        Sid: SID,
+        Buffer: [68]u8,
+    },
 };
 
 pub const TOKEN_SID_INFORMATION = extern struct {
@@ -11896,10 +11960,12 @@ pub const NT_TIB = extern struct {
     StackBase: *c_void,
     StackLimit: *c_void,
     SubSystemTib: *c_void,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        FiberData: *c_void,
+        Version: u32,
+    },
     ArbitraryUserPointer: *c_void,
     Self: *NT_TIB,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const NT_TIB32 = extern struct {
@@ -11907,10 +11973,12 @@ pub const NT_TIB32 = extern struct {
     StackBase: u32,
     StackLimit: u32,
     SubSystemTib: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        FiberData: u32,
+        Version: u32,
+    },
     ArbitraryUserPointer: u32,
     Self: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const NT_TIB64 = extern struct {
@@ -11918,10 +11986,12 @@ pub const NT_TIB64 = extern struct {
     StackBase: u64,
     StackLimit: u64,
     SubSystemTib: u64,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        FiberData: u64,
+        Version: u32,
+    },
     ArbitraryUserPointer: u64,
     Self: u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const UMS_CREATE_THREAD_ATTRIBUTES = extern struct {
@@ -11948,8 +12018,9 @@ pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGETS_INFORMATION = extern struct {
 
 pub const RATE_QUOTA_LIMIT = extern union {
     RateData: u32,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
 };
 
 pub const QUOTA_LIMITS_EX = extern struct {
@@ -12014,79 +12085,139 @@ pub const ProcessUserShadowStackPolicy = PROCESS_MITIGATION_POLICY.ProcessUserSh
 pub const MaxProcessMitigationPolicy = PROCESS_MITIGATION_POLICY.MaxProcessMitigationPolicy;
 
 pub const PROCESS_MITIGATION_ASLR_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_DEP_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     Permanent: u8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_DYNAMIC_CODE_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_FONT_DISABLE_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_IMAGE_LOAD_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_CHILD_PROCESS_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = extern struct {
@@ -12187,18 +12318,24 @@ pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 = extern struct {
     IoReadBytesLimit: u64,
     IoWriteBytesLimit: u64,
     PerJobUserTimeLimit: LARGE_INTEGER,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous1: extern union {
+        JobHighMemoryLimit: u64,
+        JobMemoryLimit: u64,
+    },
+    Anonymous2: extern union {
+        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    Anonymous3: extern union {
+        RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+        CpuRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    },
     LimitFlags: JOB_OBJECT_LIMIT,
     IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
     JobLowMemoryLimit: u64,
     IoRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
     NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
     NetRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION = extern struct {
@@ -12226,23 +12363,35 @@ pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 = extern struct {
     PerJobUserTime: LARGE_INTEGER,
     PerJobUserTimeLimit: LARGE_INTEGER,
     JobMemory: u64,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous1: extern union {
+        JobHighMemoryLimit: u64,
+        JobMemoryLimit: u64,
+    },
+    Anonymous2: extern union {
+        RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
+    Anonymous3: extern union {
+        RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+        CpuRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    },
     JobLowMemoryLimit: u64,
     IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
     IoRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
     NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
     NetRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
     ControlFlags: JOB_OBJECT_CPU_RATE_CONTROL,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        CpuRate: u32,
+        Weight: u32,
+        Anonymous: extern struct {
+            MinRate: u16,
+            MaxRate: u16,
+        },
+    },
 };
 
 pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = extern enum(i32) {
@@ -12511,8 +12660,16 @@ pub const CACHE_DESCRIPTOR = extern struct {
 pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION = extern struct {
     ProcessorMask: usize,
     Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ProcessorCore: extern struct {
+            Flags: u8,
+        },
+        NumaNode: extern struct {
+            NodeNumber: u32,
+        },
+        Cache: CACHE_DESCRIPTOR,
+        Reserved: [2]u64,
+    },
 };
 
 pub const PROCESSOR_RELATIONSHIP = extern struct {
@@ -12556,8 +12713,12 @@ pub const GROUP_RELATIONSHIP = extern struct {
 pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = extern struct {
     Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
     Size: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Processor: PROCESSOR_RELATIONSHIP,
+        NumaNode: NUMA_NODE_RELATIONSHIP,
+        Cache: CACHE_RELATIONSHIP,
+        Group: GROUP_RELATIONSHIP,
+    },
 };
 
 pub const CPU_SET_INFORMATION_TYPE = extern enum(i32) {
@@ -12568,8 +12729,28 @@ pub const CpuSetInformation = CPU_SET_INFORMATION_TYPE.n;
 pub const SYSTEM_CPU_SET_INFORMATION = extern struct {
     Size: u32,
     Type: CPU_SET_INFORMATION_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        CpuSet: extern struct {
+            Id: u32,
+            Group: u16,
+            LogicalProcessorIndex: u8,
+            CoreIndex: u8,
+            LastLevelCacheIndex: u8,
+            NumaNodeIndex: u8,
+            EfficiencyClass: u8,
+            Anonymous1: extern union {
+                AllFlags: u8,
+                Anonymous: extern struct {
+                    _bitfield: u8,
+                },
+            },
+            Anonymous2: extern union {
+                Reserved: u32,
+                SchedulingClass: u8,
+            },
+            AllocationTag: u64,
+        },
+    },
 };
 
 pub const SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = extern struct {
@@ -12585,14 +12766,18 @@ pub const XSTATE_CONFIGURATION = extern struct {
     EnabledFeatures: u64,
     EnabledVolatileFeatures: u64,
     Size: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        ControlFlags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     Features: [64]XSTATE_FEATURE,
     EnabledSupervisorFeatures: u64,
     AlignedFeatures: u64,
     AllFeatureSize: u32,
     AllFeatures: [64]u32,
     EnabledUserVisibleSupervisorFeatures: u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MEMORY_BASIC_INFORMATION32 = extern struct {
@@ -12646,10 +12831,16 @@ pub const MemExtendedParameterAttributeFlags = MEM_EXTENDED_PARAMETER_TYPE.Attri
 pub const MemExtendedParameterMax = MEM_EXTENDED_PARAMETER_TYPE.Max;
 
 pub const MEM_EXTENDED_PARAMETER = extern struct {
-    Anonymous1: _Anonymous1_e__Struct,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Struct = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern struct {
+        _bitfield: u64,
+    },
+    Anonymous2: extern union {
+        ULong64: u64,
+        Pointer: *c_void,
+        Size: usize,
+        Handle: HANDLE,
+        ULong: u32,
+    },
 };
 
 pub const MEM_SECTION_EXTENDED_PARAMETER_TYPE = extern enum(i32) {
@@ -13518,10 +13709,14 @@ pub const PROCESSOR_IDLESTATE_INFO = extern struct {
 
 pub const PROCESSOR_IDLESTATE_POLICY = extern struct {
     Revision: u16,
-    Flags: _Flags_e__Union,
+    Flags: extern union {
+        AsWORD: u16,
+        Anonymous: extern struct {
+            _bitfield: u16,
+        },
+    },
     PolicyCount: u32,
     Policy: [3]PROCESSOR_IDLESTATE_INFO,
-    const _Flags_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROCESSOR_POWER_POLICY_INFO = extern struct {
@@ -13548,13 +13743,20 @@ pub const PROCESSOR_PERFSTATE_POLICY = extern struct {
     MaxThrottle: u8,
     MinThrottle: u8,
     BusyAdjThreshold: u8,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Spare: u8,
+        Flags: extern union {
+            AsBYTE: u8,
+            Anonymous: extern struct {
+                _bitfield: u8,
+            },
+        },
+    },
     TimeCheck: u32,
     IncreaseTime: u32,
     DecreaseTime: u32,
     IncreasePercent: u32,
     DecreasePercent: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const ADMINISTRATOR_POWER_POLICY = extern struct {
@@ -13641,8 +13843,8 @@ pub const SYSTEM_BATTERY_STATE = extern struct {
     DefaultAlert2: u32,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_DOS_HEADER = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     e_magic: u16,
     e_cblp: u16,
     e_cp: u16,
@@ -13664,8 +13866,8 @@ pub const IMAGE_DOS_HEADER = extern struct {
     e_lfanew: i32,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_OS2_HEADER = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     ne_magic: u16,
     ne_ver: CHAR,
     ne_rev: CHAR,
@@ -13698,8 +13900,8 @@ pub const IMAGE_OS2_HEADER = extern struct {
     ne_expver: u16,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_VXD_HEADER = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     e32_magic: u16,
     e32_border: u8,
     e32_worder: u8,
@@ -13813,30 +14015,46 @@ pub const ANON_OBJECT_HEADER_BIGOBJ = extern struct {
     NumberOfSymbols: u32,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_SYMBOL = extern struct {
-    N: _N_e__Union,
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    N: extern union {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        ShortName: [8]u8,
+        Name: extern struct {
+            // WARNING: this type has PackingSize=2, how to handle this in Zig?
+            Short: u32,
+            Long: u32,
+        },
+        LongName: [2]u32,
+    },
     Value: u32,
     SectionNumber: i16,
     Type: u16,
     StorageClass: u8,
     NumberOfAuxSymbols: u8,
-    const _N_e__Union = u32; // TODO: generate this nested type!
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_SYMBOL_EX = extern struct {
-    N: _N_e__Union,
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    N: extern union {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        ShortName: [8]u8,
+        Name: extern struct {
+            // WARNING: this type has PackingSize=2, how to handle this in Zig?
+            Short: u32,
+            Long: u32,
+        },
+        LongName: [2]u32,
+    },
     Value: u32,
     SectionNumber: i32,
     Type: u16,
     StorageClass: u8,
     NumberOfAuxSymbols: u8,
-    const _N_e__Union = u32; // TODO: generate this nested type!
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     bAuxType: u8,
     bReserved: u8,
     SymbolTableIndex: u32,
@@ -13844,28 +14062,82 @@ pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
 };
 
 pub const IMAGE_AUX_SYMBOL = extern union {
-    Sym: _Sym_e__Struct,
-    File: _File_e__Struct,
-    Section: _Section_e__Struct,
+    Sym: extern struct {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        TagIndex: u32,
+        Misc: extern union {
+            // WARNING: this type has PackingSize=2, how to handle this in Zig?
+            LnSz: extern struct {
+                Linenumber: u16,
+                Size: u16,
+            },
+            TotalSize: u32,
+        },
+        FcnAry: extern union {
+            Function: extern struct {
+                // WARNING: this type has PackingSize=2, how to handle this in Zig?
+                PointerToLinenumber: u32,
+                PointerToNextFunction: u32,
+            },
+            Array: extern struct {
+                Dimension: [4]u16,
+            },
+        },
+        TvIndex: u16,
+    },
+    File: extern struct {
+        Name: [18]u8,
+    },
+    Section: extern struct {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        Length: u32,
+        NumberOfRelocations: u16,
+        NumberOfLinenumbers: u16,
+        CheckSum: u32,
+        Number: i16,
+        Selection: u8,
+        bReserved: u8,
+        HighNumber: i16,
+    },
     TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF,
-    CRC: _CRC_e__Struct,
-    const _CRC_e__Struct = u32; // TODO: generate this nested type!
-    const _File_e__Struct = u32; // TODO: generate this nested type!
-    const _Sym_e__Struct = u32; // TODO: generate this nested type!
-    const _Section_e__Struct = u32; // TODO: generate this nested type!
+    CRC: extern struct {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        crc: u32,
+        rgbReserved: [14]u8,
+    },
 };
 
 pub const IMAGE_AUX_SYMBOL_EX = extern union {
-    Sym: _Sym_e__Struct,
-    File: _File_e__Struct,
-    Section: _Section_e__Struct,
-    Anonymous: _Anonymous_e__Struct,
-    CRC: _CRC_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-    const _File_e__Struct = u32; // TODO: generate this nested type!
-    const _CRC_e__Struct = u32; // TODO: generate this nested type!
-    const _Sym_e__Struct = u32; // TODO: generate this nested type!
-    const _Section_e__Struct = u32; // TODO: generate this nested type!
+    Sym: extern struct {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        WeakDefaultSymIndex: u32,
+        WeakSearchType: u32,
+        rgbReserved: [12]u8,
+    },
+    File: extern struct {
+        Name: [20]u8,
+    },
+    Section: extern struct {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        Length: u32,
+        NumberOfRelocations: u16,
+        NumberOfLinenumbers: u16,
+        CheckSum: u32,
+        Number: i16,
+        Selection: u8,
+        bReserved: u8,
+        HighNumber: i16,
+        rgbReserved: [2]u8,
+    },
+    Anonymous: extern struct {
+        TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF,
+        rgbReserved: [2]u8,
+    },
+    CRC: extern struct {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        crc: u32,
+        rgbReserved: [16]u8,
+    },
 };
 
 pub const IMAGE_AUX_SYMBOL_TYPE = extern enum(i32) {
@@ -13873,18 +14145,24 @@ pub const IMAGE_AUX_SYMBOL_TYPE = extern enum(i32) {
 };
 pub const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = IMAGE_AUX_SYMBOL_TYPE.F;
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const IMAGE_RELOCATION = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    Anonymous: extern union {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        VirtualAddress: u32,
+        RelocCount: u32,
+    },
     SymbolTableIndex: u32,
     Type: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMAGE_LINENUMBER = extern struct {
-    Type: _Type_e__Union,
+    Type: extern union {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        SymbolTableIndex: u32,
+        VirtualAddress: u32,
+    },
     Linenumber: u16,
-    const _Type_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMAGE_BASE_RELOCATION = extern struct {
@@ -13922,13 +14200,21 @@ pub const IMAGE_IMPORT_BY_NAME = extern struct {
 };
 
 pub const IMAGE_THUNK_DATA64 = extern struct {
-    u1: _u1_e__Union,
-    const _u1_e__Union = u32; // TODO: generate this nested type!
+    u1: extern union {
+        ForwarderString: u64,
+        Function: u64,
+        Ordinal: u64,
+        AddressOfData: u64,
+    },
 };
 
 pub const IMAGE_THUNK_DATA32 = extern struct {
-    u1: _u1_e__Union,
-    const _u1_e__Union = u32; // TODO: generate this nested type!
+    u1: extern union {
+        ForwarderString: u32,
+        Function: u32,
+        Ordinal: u32,
+        AddressOfData: u32,
+    },
 };
 
 pub const PIMAGE_TLS_CALLBACK = fn(
@@ -13937,15 +14223,19 @@ pub const PIMAGE_TLS_CALLBACK = fn(
     Reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     StartAddressOfRawData: u64,
     EndAddressOfRawData: u64,
     AddressOfIndex: u64,
     AddressOfCallBacks: u64,
     SizeOfZeroFill: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Characteristics: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const IMAGE_TLS_DIRECTORY32 = extern struct {
@@ -13954,17 +14244,23 @@ pub const IMAGE_TLS_DIRECTORY32 = extern struct {
     AddressOfIndex: u32,
     AddressOfCallBacks: u32,
     SizeOfZeroFill: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Characteristics: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const IMAGE_IMPORT_DESCRIPTOR = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Characteristics: u32,
+        OriginalFirstThunk: u32,
+    },
     TimeDateStamp: u32,
     ForwarderChain: u32,
     Name: u32,
     FirstThunk: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMAGE_BOUND_IMPORT_DESCRIPTOR = extern struct {
@@ -13980,7 +14276,12 @@ pub const IMAGE_BOUND_FORWARDER_REF = extern struct {
 };
 
 pub const IMAGE_DELAYLOAD_DESCRIPTOR = extern struct {
-    Attributes: _Attributes_e__Union,
+    Attributes: extern union {
+        AllAttributes: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     DllNameRVA: u32,
     ModuleHandleRVA: u32,
     ImportAddressTableRVA: u32,
@@ -13988,7 +14289,6 @@ pub const IMAGE_DELAYLOAD_DESCRIPTOR = extern struct {
     BoundImportAddressTableRVA: u32,
     UnloadInformationTableRVA: u32,
     TimeDateStamp: u32,
-    const _Attributes_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMAGE_RESOURCE_DIRECTORY = extern struct {
@@ -14001,10 +14301,19 @@ pub const IMAGE_RESOURCE_DIRECTORY = extern struct {
 };
 
 pub const IMAGE_RESOURCE_DIRECTORY_ENTRY = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Name: u32,
+        Id: u16,
+    },
+    Anonymous2: extern union {
+        OffsetToData: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const IMAGE_RESOURCE_DIRECTORY_STRING = extern struct {
@@ -14118,8 +14427,12 @@ pub const IMAGE_CE_RUNTIME_FUNCTION_ENTRY = extern struct {
 
 pub const IMAGE_ARM_RUNTIME_FUNCTION_ENTRY = extern struct {
     BeginAddress: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        UnwindData: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const ARM64_FNPDATA_FLAGS = extern enum(i32) {
@@ -14142,18 +14455,23 @@ pub const PdataCrChained = ARM64_FNPDATA_CR.Chained;
 
 pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = extern struct {
     BeginAddress: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        UnwindData: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY_XDATA = extern union {
     HeaderData: u32,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     BeginAddress: u64,
     EndAddress: u64,
     ExceptionHandler: u64,
@@ -14172,8 +14490,10 @@ pub const IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = extern struct {
 pub const IMAGE_RUNTIME_FUNCTION_ENTRY = extern struct {
     BeginAddress: u32,
     EndAddress: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        UnwindInfoAddress: u32,
+        UnwindData: u32,
+    },
 };
 
 pub const IMAGE_DEBUG_MISC = extern struct {
@@ -14200,8 +14520,8 @@ pub const IMAGE_SEPARATE_DEBUG_HEADER = extern struct {
     Reserved: [2]u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const NON_PAGED_DEBUG_INFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Signature: u16,
     Flags: u16,
     Size: u32,
@@ -14230,9 +14550,11 @@ pub const IMPORT_OBJECT_HEADER = extern struct {
     Machine: u16,
     TimeDateStamp: u32,
     SizeOfData: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Ordinal: u16,
+        Hint: u16,
+    },
     _bitfield: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMPORT_OBJECT_TYPE = extern enum(i32) {
@@ -14316,14 +14638,16 @@ pub const IMAGE_COR20_HEADER = extern struct {
     MinorRuntimeVersion: u16,
     MetaData: IMAGE_DATA_DIRECTORY,
     Flags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        EntryPointToken: u32,
+        EntryPointRVA: u32,
+    },
     Resources: IMAGE_DATA_DIRECTORY,
     StrongNameSignature: IMAGE_DATA_DIRECTORY,
     CodeManagerTable: IMAGE_DATA_DIRECTORY,
     VTableFixups: IMAGE_DATA_DIRECTORY,
     ExportAddressTableJumps: IMAGE_DATA_DIRECTORY,
     ManagedNativeHeader: IMAGE_DATA_DIRECTORY,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RTL_RUN_ONCE = extern union {
@@ -14457,8 +14781,20 @@ pub const ImagePolicyIdMaximum = IMAGE_POLICY_ID.Maximum;
 pub const IMAGE_POLICY_ENTRY = extern struct {
     Type: IMAGE_POLICY_ENTRY_TYPE,
     PolicyId: IMAGE_POLICY_ID,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        None: *const c_void,
+        BoolValue: u8,
+        Int8Value: i8,
+        UInt8Value: u8,
+        Int16Value: i16,
+        UInt16Value: u16,
+        Int32Value: i32,
+        UInt32Value: u32,
+        Int64Value: i64,
+        UInt64Value: u64,
+        AnsiStringValue: [*:0]const u8,
+        UnicodeStringValue: [*:0]const u16,
+    },
 };
 
 pub const IMAGE_POLICY_METADATA = extern struct {
@@ -14939,6 +15275,9 @@ pub const PTP_CLEANUP_GROUP_CANCEL_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
+    pub const _ACTIVATION_CONTEXT = extern struct {
+        placeholder: usize, // TODO: why is this type empty?
+    };
     Version: u32,
     Pool: PTP_POOL,
     CleanupGroup: isize,
@@ -14946,11 +15285,14 @@ pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
     RaceDll: *c_void,
     ActivationContext: isize,
     FinalizationCallback: PTP_SIMPLE_CALLBACK,
-    u: _u_e__Union,
+    u: extern union {
+        Flags: u32,
+        s: extern struct {
+            _bitfield: u32,
+        },
+    },
     CallbackPriority: TP_CALLBACK_PRIORITY,
     Size: u32,
-    const _u_e__Union = u32; // TODO: generate this nested type!
-    const _ACTIVATION_CONTEXT = u32; // TODO: generate this nested type!
 };
 
 pub const PTP_WORK_CALLBACK = fn(
@@ -14985,9 +15327,14 @@ pub const SECURITY_ATTRIBUTES = extern struct {
 pub const OVERLAPPED = extern struct {
     Internal: usize,
     InternalHigh: usize,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            Offset: u32,
+            OffsetHigh: u32,
+        },
+        Pointer: *c_void,
+    },
     hEvent: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROCESS_HEAP_ENTRY = extern struct {
@@ -14996,15 +15343,32 @@ pub const PROCESS_HEAP_ENTRY = extern struct {
     cbOverhead: u8,
     iRegionIndex: u8,
     wFlags: u16,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Block: extern struct {
+            hMem: HANDLE,
+            dwReserved: [3]u32,
+        },
+        Region: extern struct {
+            dwCommittedSize: u32,
+            dwUnCommittedSize: u32,
+            lpFirstBlock: *c_void,
+            lpLastBlock: *c_void,
+        },
+    },
 };
 
 pub const REASON_CONTEXT = extern struct {
     Version: u32,
     Flags: POWER_REQUEST_CONTEXT_FLAGS,
-    Reason: _Reason_e__Union,
-    const _Reason_e__Union = u32; // TODO: generate this nested type!
+    Reason: extern union {
+        Detailed: extern struct {
+            LocalizedReasonModule: HINSTANCE,
+            LocalizedReasonId: u32,
+            ReasonStringCount: u32,
+            ReasonStrings: *PWSTR,
+        },
+        SimpleReasonString: PWSTR,
+    },
 };
 
 pub const LPTHREAD_START_ROUTINE = fn(
@@ -15137,26 +15501,36 @@ pub const RemBRUSH = extern struct {
 
 pub const userCLIPFORMAT = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        dwValue: u32,
+        pwszName: PWSTR,
+    },
 };
 
 pub const GDI_NONREMOTE = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: *DWORD_BLOB,
+    },
 };
 
 pub const userHGLOBAL = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: *FLAGGED_BYTE_BLOB,
+        hInproc64: i64,
+    },
 };
 
 pub const userHMETAFILE = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: *BYTE_BLOB,
+        hInproc64: i64,
+    },
 };
 
 pub const remoteMETAFILEPICT = extern struct {
@@ -15168,14 +15542,20 @@ pub const remoteMETAFILEPICT = extern struct {
 
 pub const userHMETAFILEPICT = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: *remoteMETAFILEPICT,
+        hInproc64: i64,
+    },
 };
 
 pub const userHENHMETAFILE = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: *BYTE_BLOB,
+        hInproc64: i64,
+    },
 };
 
 pub const userBITMAP = extern struct {
@@ -15191,35 +15571,55 @@ pub const userBITMAP = extern struct {
 
 pub const userHBITMAP = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: *userBITMAP,
+        hInproc64: i64,
+    },
 };
 
 pub const userHPALETTE = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: *LOGPALETTE,
+        hInproc64: i64,
+    },
 };
 
 pub const RemotableHandle = extern struct {
     fContext: i32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hInproc: i32,
+        hRemote: i32,
+    },
 };
 
 pub const CY = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        Lo: u32,
+        Hi: i32,
+    },
     int64: i64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const DECIMAL = extern struct {
     wReserved: u16,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Anonymous: extern struct {
+            scale: u8,
+            sign: u8,
+        },
+        signscale: u16,
+    },
     Hi32: u32,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous2: extern union {
+        Anonymous: extern struct {
+            Lo32: u32,
+            Mid32: u32,
+        },
+        Lo64: u64,
+    },
 };
 
 pub const BSTRBLOB = extern struct {
@@ -15235,8 +15635,21 @@ pub const CLIPDATA = extern struct {
 
 pub const uCLSSPEC = extern struct {
     tyspec: u32,
-    tagged_union: _tagged_union_e__Struct,
-    const _tagged_union_e__Struct = u32; // TODO: generate this nested type!
+    tagged_union: extern struct {
+        clsid: Guid,
+        pFileExt: PWSTR,
+        pMimeType: PWSTR,
+        pProgId: PWSTR,
+        pFileName: PWSTR,
+        ByName: extern struct {
+            pPackageName: PWSTR,
+            PolicyId: Guid,
+        },
+        ByObjectId: extern struct {
+            ObjectId: Guid,
+            PolicyId: Guid,
+        },
+    },
 };
 
 const IID_IServiceProvider_Value = @import("../zig.zig").Guid.initString("6d5140c1-7436-11ce-8034-00aa006009fa");
@@ -15287,8 +15700,10 @@ pub const SCARD_T0_REQUEST = extern struct {
     ioRequest: SCARD_IO_REQUEST,
     bSw1: u8,
     bSw2: u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        CmdBytes: SCARD_T0_COMMAND,
+        rgbHeader: [5]u8,
+    },
 };
 
 pub const SCARD_T1_REQUEST = extern struct {
@@ -15995,8 +16410,13 @@ pub const PRINTER_NOTIFY_INFO_DATA = extern struct {
     Field: u16,
     Reserved: u32,
     Id: u32,
-    NotifyData: _NotifyData_e__Union,
-    const _NotifyData_e__Union = u32; // TODO: generate this nested type!
+    NotifyData: extern union {
+        adwData: [2]u32,
+        Data: extern struct {
+            cbBuf: u32,
+            pBuf: *c_void,
+        },
+    },
 };
 
 pub const PRINTER_NOTIFY_INFO = extern struct {
@@ -16013,8 +16433,13 @@ pub const BINARY_CONTAINER = extern struct {
 
 pub const BIDI_DATA = extern struct {
     dwBidiType: u32,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        bData: BOOL,
+        iData: i32,
+        sData: PWSTR,
+        fData: f32,
+        biData: BINARY_CONTAINER,
+    },
 };
 
 pub const BIDI_REQUEST_DATA = extern struct {
@@ -16183,8 +16608,16 @@ pub const kJobConsumption = EPrintXPSJobOperation.Consumption;
 
 pub const PrintPropertyValue = extern struct {
     ePropertyType: EPrintPropertyType,
-    value: _value_e__Union,
-    const _value_e__Union = u32; // TODO: generate this nested type!
+    value: extern union {
+        propertyByte: u8,
+        propertyString: PWSTR,
+        propertyInt32: i32,
+        propertyInt64: i64,
+        propertyBlob: extern struct {
+            cbBuf: u32,
+            pBuf: *c_void,
+        },
+    },
 };
 
 pub const PrintNamedProperty = extern struct {
@@ -16395,68 +16828,120 @@ pub const LPD3DENUMPIXELFORMATSCALLBACK = fn(
 
 pub const D3DHVERTEX = extern struct {
     dwFlags: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        hx: f32,
+        dvHX: f32,
+    },
+    Anonymous2: extern union {
+        hy: f32,
+        dvHY: f32,
+    },
+    Anonymous3: extern union {
+        hz: f32,
+        dvHZ: f32,
+    },
 };
 
 pub const D3DTLVERTEX = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    Anonymous4: _Anonymous4_e__Union,
-    Anonymous5: _Anonymous5_e__Union,
-    Anonymous6: _Anonymous6_e__Union,
-    Anonymous7: _Anonymous7_e__Union,
-    Anonymous8: _Anonymous8_e__Union,
-    const _Anonymous7_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous6_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous8_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        sx: f32,
+        dvSX: f32,
+    },
+    Anonymous2: extern union {
+        sy: f32,
+        dvSY: f32,
+    },
+    Anonymous3: extern union {
+        sz: f32,
+        dvSZ: f32,
+    },
+    Anonymous4: extern union {
+        rhw: f32,
+        dvRHW: f32,
+    },
+    Anonymous5: extern union {
+        color: u32,
+        dcColor: u32,
+    },
+    Anonymous6: extern union {
+        specular: u32,
+        dcSpecular: u32,
+    },
+    Anonymous7: extern union {
+        tu: f32,
+        dvTU: f32,
+    },
+    Anonymous8: extern union {
+        tv: f32,
+        dvTV: f32,
+    },
 };
 
 pub const D3DLVERTEX = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous1: extern union {
+        x: f32,
+        dvX: f32,
+    },
+    Anonymous2: extern union {
+        y: f32,
+        dvY: f32,
+    },
+    Anonymous3: extern union {
+        z: f32,
+        dvZ: f32,
+    },
     dwReserved: u32,
-    Anonymous4: _Anonymous4_e__Union,
-    Anonymous5: _Anonymous5_e__Union,
-    Anonymous6: _Anonymous6_e__Union,
-    Anonymous7: _Anonymous7_e__Union,
-    const _Anonymous7_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous6_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    Anonymous4: extern union {
+        color: u32,
+        dcColor: u32,
+    },
+    Anonymous5: extern union {
+        specular: u32,
+        dcSpecular: u32,
+    },
+    Anonymous6: extern union {
+        tu: f32,
+        dvTU: f32,
+    },
+    Anonymous7: extern union {
+        tv: f32,
+        dvTV: f32,
+    },
 };
 
 pub const D3DVERTEX = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    Anonymous4: _Anonymous4_e__Union,
-    Anonymous5: _Anonymous5_e__Union,
-    Anonymous6: _Anonymous6_e__Union,
-    Anonymous7: _Anonymous7_e__Union,
-    Anonymous8: _Anonymous8_e__Union,
-    const _Anonymous8_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous6_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous7_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        x: f32,
+        dvX: f32,
+    },
+    Anonymous2: extern union {
+        y: f32,
+        dvY: f32,
+    },
+    Anonymous3: extern union {
+        z: f32,
+        dvZ: f32,
+    },
+    Anonymous4: extern union {
+        nx: f32,
+        dvNX: f32,
+    },
+    Anonymous5: extern union {
+        ny: f32,
+        dvNY: f32,
+    },
+    Anonymous6: extern union {
+        nz: f32,
+        dvNZ: f32,
+    },
+    Anonymous7: extern union {
+        tu: f32,
+        dvTU: f32,
+    },
+    Anonymous8: extern union {
+        tv: f32,
+        dvTV: f32,
+    },
 };
 
 pub const D3DVIEWPORT = extern struct {
@@ -16516,31 +17001,51 @@ pub const D3DLIGHTINGELEMENT = extern struct {
 
 pub const D3DMATERIAL = extern struct {
     dwSize: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    Anonymous4: _Anonymous4_e__Union,
-    Anonymous5: _Anonymous5_e__Union,
+    Anonymous1: extern union {
+        diffuse: D3DCOLORVALUE,
+        dcvDiffuse: D3DCOLORVALUE,
+    },
+    Anonymous2: extern union {
+        ambient: D3DCOLORVALUE,
+        dcvAmbient: D3DCOLORVALUE,
+    },
+    Anonymous3: extern union {
+        specular: D3DCOLORVALUE,
+        dcvSpecular: D3DCOLORVALUE,
+    },
+    Anonymous4: extern union {
+        emissive: D3DCOLORVALUE,
+        dcvEmissive: D3DCOLORVALUE,
+    },
+    Anonymous5: extern union {
+        power: f32,
+        dvPower: f32,
+    },
     hTexture: u32,
     dwRampSize: u32,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3DMATERIAL7 = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    Anonymous4: _Anonymous4_e__Union,
-    Anonymous5: _Anonymous5_e__Union,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        diffuse: D3DCOLORVALUE,
+        dcvDiffuse: D3DCOLORVALUE,
+    },
+    Anonymous2: extern union {
+        ambient: D3DCOLORVALUE,
+        dcvAmbient: D3DCOLORVALUE,
+    },
+    Anonymous3: extern union {
+        specular: D3DCOLORVALUE,
+        dcvSpecular: D3DCOLORVALUE,
+    },
+    Anonymous4: extern union {
+        emissive: D3DCOLORVALUE,
+        dcvEmissive: D3DCOLORVALUE,
+    },
+    Anonymous5: extern union {
+        power: f32,
+        dvPower: f32,
+    },
 };
 
 pub const D3DLIGHT = extern struct {
@@ -16736,10 +17241,15 @@ pub const D3DLIGHTSTATE_COLORVERTEX = D3DLIGHTSTATETYPE.COLORVERTEX;
 pub const D3DLIGHTSTATE_FORCE_DWORD = D3DLIGHTSTATETYPE.FORCE_DWORD;
 
 pub const D3DSTATE = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        dtstTransformStateType: D3DTRANSFORMSTATETYPE,
+        dlstLightStateType: D3DLIGHTSTATETYPE,
+        drstRenderStateType: D3DRENDERSTATETYPE,
+    },
+    Anonymous2: extern union {
+        dwArg: [1]u32,
+        dvArg: [1]f32,
+    },
 };
 
 pub const D3DMATRIXLOAD = extern struct {
@@ -16799,20 +17309,30 @@ pub const D3DTFP_LINEAR = D3DTEXTUREMIPFILTER.LINEAR;
 pub const D3DTFP_FORCE_DWORD = D3DTEXTUREMIPFILTER.FORCE_DWORD;
 
 pub const D3DTRIANGLE = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous1: extern union {
+        v1: u16,
+        wV1: u16,
+    },
+    Anonymous2: extern union {
+        v2: u16,
+        wV2: u16,
+    },
+    Anonymous3: extern union {
+        v3: u16,
+        wV3: u16,
+    },
     wFlags: u16,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3DLINE = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        v1: u16,
+        wV1: u16,
+    },
+    Anonymous2: extern union {
+        v2: u16,
+        wV2: u16,
+    },
 };
 
 pub const D3DSPAN = extern struct {
@@ -17203,15 +17723,21 @@ pub const D3DNTHAL_D3DEXTENDEDCAPS = extern struct {
 };
 
 pub const D3DNTHAL_CONTEXTCREATEDATA = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous1: extern union {
+        lpDDGbl: *DD_DIRECTDRAW_GLOBAL,
+        lpDDLcl: *DD_DIRECTDRAW_LOCAL,
+    },
+    Anonymous2: extern union {
+        lpDDS: *DD_SURFACE_LOCAL,
+        lpDDSLcl: *DD_SURFACE_LOCAL,
+    },
+    Anonymous3: extern union {
+        lpDDSZ: *DD_SURFACE_LOCAL,
+        lpDDSZLcl: *DD_SURFACE_LOCAL,
+    },
     dwPID: u32,
     dwhContext: usize,
     ddrval: HRESULT,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3DNTHAL_CONTEXTDESTROYDATA = extern struct {
@@ -17370,8 +17896,10 @@ pub const D3DNTHAL_VALIDATETEXTURESTAGESTATEDATA = extern struct {
 pub const D3DNTHAL_DP2COMMAND = extern struct {
     bCommand: u8,
     bReserved: u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        wPrimitiveCount: u16,
+        wStateCount: u16,
+    },
 };
 
 pub const D3DNTHAL_DP2OPERATION = extern enum(i32) {
@@ -17508,8 +18036,10 @@ pub const D3DNTHAL_DP2TRIANGLEFAN_IMM = extern struct {
 
 pub const D3DNTHAL_DP2RENDERSTATE = extern struct {
     RenderState: D3DRENDERSTATETYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        fState: f32,
+        dwState: u32,
+    },
 };
 
 pub const D3DNTHAL_DP2TEXTURESTAGESTATE = extern struct {
@@ -17560,8 +18090,10 @@ pub const D3DNTHAL_DP2ZRANGE = extern struct {
 
 pub const D3DNTHAL_DP2SETLIGHT = extern struct {
     dwIndex: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        lightData: u32,
+        dwDataType: u32,
+    },
 };
 
 pub const D3DNTHAL_DP2SETCLIPPLANE = extern struct {
@@ -17616,16 +18148,20 @@ pub const D3DNTHAL_DRAWPRIMITIVES2DATA = extern struct {
     lpDDCommands: *DD_SURFACE_LOCAL,
     dwCommandOffset: u32,
     dwCommandLength: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        lpDDVertex: *DD_SURFACE_LOCAL,
+        lpVertices: *c_void,
+    },
     dwVertexOffset: u32,
     dwVertexLength: u32,
     dwReqVertexBufSize: u32,
     dwReqCommandBufSize: u32,
     lpdwRStates: *u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        dwVertexSize: u32,
+        ddrval: HRESULT,
+    },
     dwErrorOffset: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const LPD3DNTHAL_CLEAR2CB = fn(
@@ -18682,8 +19218,38 @@ pub const BusTypeMax = STORAGE_BUS_TYPE.Max;
 pub const BusTypeMaxReserved = STORAGE_BUS_TYPE.MaxReserved;
 
 pub const DEVICE_MEDIA_INFO = extern struct {
-    DeviceSpecific: _DeviceSpecific_e__Union,
-    const _DeviceSpecific_e__Union = u32; // TODO: generate this nested type!
+    DeviceSpecific: extern union {
+        DiskInfo: extern struct {
+            Cylinders: LARGE_INTEGER,
+            MediaType: STORAGE_MEDIA_TYPE,
+            TracksPerCylinder: u32,
+            SectorsPerTrack: u32,
+            BytesPerSector: u32,
+            NumberMediaSides: u32,
+            MediaCharacteristics: u32,
+        },
+        RemovableDiskInfo: extern struct {
+            Cylinders: LARGE_INTEGER,
+            MediaType: STORAGE_MEDIA_TYPE,
+            TracksPerCylinder: u32,
+            SectorsPerTrack: u32,
+            BytesPerSector: u32,
+            NumberMediaSides: u32,
+            MediaCharacteristics: u32,
+        },
+        TapeInfo: extern struct {
+            MediaType: STORAGE_MEDIA_TYPE,
+            MediaCharacteristics: u32,
+            CurrentBlockSize: u32,
+            BusType: STORAGE_BUS_TYPE,
+            BusSpecificData: extern union {
+                ScsiInformation: extern struct {
+                    MediumType: u8,
+                    DensityCode: u8,
+                },
+            },
+        },
+    },
 };
 
 pub const GET_MEDIA_TYPES = extern struct {
@@ -19015,8 +19581,20 @@ pub const STORAGE_OPERATIONAL_REASON = extern struct {
     Version: u32,
     Size: u32,
     Reason: STORAGE_OPERATIONAL_STATUS_REASON,
-    RawBytes: _RawBytes_e__Union,
-    const _RawBytes_e__Union = u32; // TODO: generate this nested type!
+    RawBytes: extern union {
+        ScsiSenseKey: extern struct {
+            SenseKey: u8,
+            ASC: u8,
+            ASCQ: u8,
+            Reserved: u8,
+        },
+        NVDIMM_N: extern struct {
+            CriticalHealth: u8,
+            ModuleHealth: [2]u8,
+            ErrorThresholdStatus: u8,
+        },
+        AsUlong: u32,
+    },
 };
 
 pub const STORAGE_DEVICE_MANAGEMENT_STATUS = extern struct {
@@ -19064,10 +19642,19 @@ pub const STORAGE_ZONED_DEVICE_DESCRIPTOR = extern struct {
     Size: u32,
     DeviceType: STORAGE_ZONED_DEVICE_TYPES,
     ZoneCount: u32,
-    ZoneAttributes: _ZoneAttributes_e__Union,
+    ZoneAttributes: extern union {
+        SequentialRequiredZone: extern struct {
+            MaxOpenZoneCount: u32,
+            UnrestrictedRead: u8,
+            Reserved: [3]u8,
+        },
+        SequentialPreferredZone: extern struct {
+            OptimalOpenZoneCount: u32,
+            Reserved: u32,
+        },
+    },
     ZoneGroupCount: u32,
     ZoneGroup: [1]STORAGE_ZONE_GROUP,
-    const _ZoneAttributes_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DEVICE_LOCATION = extern struct {
@@ -19075,8 +19662,16 @@ pub const DEVICE_LOCATION = extern struct {
     Slot: u32,
     Adapter: u32,
     Port: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            Channel: u32,
+            Device: u32,
+        },
+        Anonymous2: extern struct {
+            Target: u32,
+            Lun: u32,
+        },
+    },
 };
 
 pub const STORAGE_DEVICE_LOCATION_DESCRIPTOR = extern struct {
@@ -19101,11 +19696,12 @@ pub const STORAGE_DEVICE_UNSAFE_SHUTDOWN_COUNT = extern struct {
 pub const STORAGE_HW_ENDURANCE_INFO = extern struct {
     ValidFields: u32,
     GroupId: u32,
-    Flags: _Flags_e__Struct,
+    Flags: extern struct {
+        _bitfield: u32,
+    },
     LifePercentage: u32,
     BytesReadCount: [16]u8,
     ByteWriteCount: [16]u8,
-    const _Flags_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const STORAGE_HW_ENDURANCE_DATA_DESCRIPTOR = extern struct {
@@ -19162,8 +19758,12 @@ pub const STORAGE_OFFLOAD_TOKEN = extern struct {
     TokenType: [4]u8,
     Reserved: [2]u8,
     TokenIdLength: [2]u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        StorageOffloadZeroDataToken: extern struct {
+            Reserved2: [504]u8,
+        },
+        Token: [504]u8,
+    },
 };
 
 pub const DEVICE_DSM_OFFLOAD_READ_PARAMETERS = extern struct {
@@ -19349,9 +19949,13 @@ pub const DEVICE_DSM_REPORT_ZONES_DATA = extern struct {
 
 pub const DEVICE_STORAGE_RANGE_ATTRIBUTES = extern struct {
     LengthInBytes: u64,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        AllFlags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     Reserved: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DEVICE_DSM_RANGE_ERROR_INFO = extern struct {
@@ -19552,8 +20156,17 @@ pub const STORAGE_READ_CAPACITY = extern struct {
 pub const PERSISTENT_RESERVE_COMMAND = extern struct {
     Version: u32,
     Size: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        PR_IN: extern struct {
+            _bitfield: u8,
+            AllocationLength: u16,
+        },
+        PR_OUT: extern struct {
+            _bitfield1: u8,
+            _bitfield2: u8,
+            ParameterList: [1]u8,
+        },
+    },
 };
 
 pub const _DEVICEDUMP_COLLECTION_TYPE = extern enum(i32) {
@@ -19628,8 +20241,17 @@ pub const DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD = packed struct {
     EndTime: u64,
     OperationStatus: u32,
     OperationError: u32,
-    StackSpecific: _StackSpecific_e__Union,
-    const _StackSpecific_e__Union = u32; // TODO: generate this nested type!
+    StackSpecific: extern union {
+        ExternalStack: packed struct {
+            dwReserved: u32,
+        },
+        AtaPort: packed struct {
+            dwAtaPortSpecific: u32,
+        },
+        StorPort: packed struct {
+            SrbTag: u32,
+        },
+    },
 };
 
 pub const DEVICEDUMP_STORAGESTACK_PUBLIC_DUMP = packed struct {
@@ -19746,8 +20368,13 @@ pub const StorageCounterTypeMax = STORAGE_COUNTER_TYPE.Max;
 
 pub const STORAGE_COUNTER = extern struct {
     Type: STORAGE_COUNTER_TYPE,
-    Value: _Value_e__Union,
-    const _Value_e__Union = u32; // TODO: generate this nested type!
+    Value: extern union {
+        ManufactureDate: extern struct {
+            Week: u32,
+            Year: u32,
+        },
+        AsUlonglong: u64,
+    },
 };
 
 pub const STORAGE_COUNTERS = extern struct {
@@ -20139,8 +20766,9 @@ pub const SCM_PD_PASSTHROUGH_INVDIMM_OUTPUT = extern struct {
 pub const SCM_PD_REINITIALIZE_MEDIA_INPUT = extern struct {
     Version: u32,
     Size: u32,
-    Options: _Options_e__Struct,
-    const _Options_e__Struct = u32; // TODO: generate this nested type!
+    Options: extern struct {
+        _bitfield: u32,
+    },
 };
 
 pub const SCM_PD_MEDIA_REINITIALIZATION_STATUS = extern enum(i32) {
@@ -20162,8 +20790,10 @@ pub const SCM_PD_REINITIALIZE_MEDIA_OUTPUT = extern struct {
 
 pub const SET_PARTITION_INFORMATION_EX = extern struct {
     PartitionStyle: PARTITION_STYLE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Mbr: SET_PARTITION_INFORMATION,
+        Gpt: PARTITION_INFORMATION_GPT,
+    },
 };
 
 pub const DETECTION_TYPE = extern enum(i32) {
@@ -20504,8 +21134,11 @@ pub const STARTING_LCN_INPUT_BUFFER_EX = extern struct {
 pub const RETRIEVAL_POINTERS_AND_REFCOUNT_BUFFER = extern struct {
     ExtentCount: u32,
     StartingVcn: LARGE_INTEGER,
-    Extents: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Extents: [1]extern struct {
+        NextVcn: LARGE_INTEGER,
+        Lcn: LARGE_INTEGER,
+        ReferenceCount: u32,
+    },
 };
 
 pub const RETRIEVAL_POINTER_COUNT = extern struct {
@@ -20667,8 +21300,10 @@ pub const STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY = extern struct {
 pub const STORAGE_QUERY_DEPENDENT_VOLUME_RESPONSE = extern struct {
     ResponseLevel: u32,
     NumberEntries: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Lev1Depends: STORAGE_QUERY_DEPENDENT_VOLUME_LEV1_ENTRY,
+        Lev2Depends: STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY,
+    },
 };
 
 pub const SD_CHANGE_MACHINE_SID_INPUT = extern struct {
@@ -20726,15 +21361,21 @@ pub const SD_ENUM_SDS_OUTPUT = extern struct {
 pub const SD_GLOBAL_CHANGE_INPUT = extern struct {
     Flags: u32,
     ChangeType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        SdChange: SD_CHANGE_MACHINE_SID_INPUT,
+        SdQueryStats: SD_QUERY_STATS_INPUT,
+        SdEnumSds: SD_ENUM_SDS_INPUT,
+    },
 };
 
 pub const SD_GLOBAL_CHANGE_OUTPUT = extern struct {
     Flags: u32,
     ChangeType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        SdChange: SD_CHANGE_MACHINE_SID_OUTPUT,
+        SdQueryStats: SD_QUERY_STATS_OUTPUT,
+        SdEnumSds: SD_ENUM_SDS_OUTPUT,
+    },
 };
 
 pub const FILE_TYPE_NOTIFICATION_INPUT = extern struct {
@@ -20822,13 +21463,18 @@ pub const FILE_REFERENCE_RANGE = extern struct {
 };
 
 pub const QUERY_FILE_LAYOUT_INPUT = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        FilterEntryCount: u32,
+        NumberOfPairs: u32,
+    },
     Flags: u32,
     FilterType: QUERY_FILE_LAYOUT_FILTER_TYPE,
     Reserved: u32,
-    Filter: _Filter_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-    const _Filter_e__Union = u32; // TODO: generate this nested type!
+    Filter: extern union {
+        ClusterRanges: [1]CLUSTER_RANGE,
+        FileReferenceRanges: [1]FILE_REFERENCE_RANGE,
+        StorageReserveIds: [1]STORAGE_RESERVE_ID,
+    },
 };
 
 pub const QUERY_FILE_LAYOUT_OUTPUT = extern struct {
@@ -20860,12 +21506,17 @@ pub const FILE_LAYOUT_NAME_ENTRY = extern struct {
 };
 
 pub const FILE_LAYOUT_INFO_ENTRY = extern struct {
-    BasicInformation: _BasicInformation_e__Struct,
+    BasicInformation: extern struct {
+        CreationTime: LARGE_INTEGER,
+        LastAccessTime: LARGE_INTEGER,
+        LastWriteTime: LARGE_INTEGER,
+        ChangeTime: LARGE_INTEGER,
+        FileAttributes: u32,
+    },
     OwnerId: u32,
     SecurityId: u32,
     Usn: i64,
     StorageReserveId: STORAGE_RESERVE_ID,
-    const _BasicInformation_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const STREAM_LAYOUT_ENTRY = extern struct {
@@ -20884,8 +21535,9 @@ pub const STREAM_LAYOUT_ENTRY = extern struct {
 
 pub const STREAM_EXTENT_ENTRY = extern struct {
     Flags: u32,
-    ExtentInformation: _ExtentInformation_e__Union,
-    const _ExtentInformation_e__Union = u32; // TODO: generate this nested type!
+    ExtentInformation: extern union {
+        RetrievalPointers: RETRIEVAL_POINTERS_BUFFER,
+    },
 };
 
 pub const FSCTL_SET_INTEGRITY_INFORMATION_BUFFER_EX = extern struct {
@@ -20970,10 +21622,37 @@ pub const FileStorageTierClassPerformance = FILE_STORAGE_TIER_CLASS.Performance;
 pub const FileStorageTierClassMax = FILE_STORAGE_TIER_CLASS.Max;
 
 pub const STREAM_INFORMATION_ENTRY = extern struct {
+    pub const _StreamInformation = extern union {
+        pub const _Reparse = extern struct {
+            Length: u16,
+            Flags: u16,
+            ReparseDataSize: u32,
+            ReparseDataOffset: u32,
+        };
+        pub const _DesiredStorageClass = extern struct {
+            Class: FILE_STORAGE_TIER_CLASS,
+            Flags: u32,
+        };
+        pub const _Ea = extern struct {
+            Length: u16,
+            Flags: u16,
+            EaSize: u32,
+            EaInformationOffset: u32,
+        };
+        pub const _DataStream = extern struct {
+            Length: u16,
+            Flags: u16,
+            Reserved: u32,
+            Vdl: u64,
+        };
+        DesiredStorageClass: _DesiredStorageClass,
+        DataStream: _DataStream,
+        Reparse: _Reparse,
+        Ea: _Ea,
+    };
     Version: u32,
     Flags: u32,
     StreamInformation: _StreamInformation,
-    const _StreamInformation = u32; // TODO: generate this nested type!
 };
 
 pub const FILE_DESIRED_STORAGE_CLASS_INFORMATION = extern struct {
@@ -21548,8 +22227,12 @@ pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
 
 pub const UMS_SYSTEM_THREAD_INFORMATION = extern struct {
     UmsVersion: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        ThreadUmsFlags: u32,
+    },
 };
 
 pub const WIN32_STREAM_ID = extern struct {
@@ -26993,7 +27676,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (120)
+// Section: Imports (129)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const FILETIME = @import("../system/windows_programming.zig").FILETIME;
@@ -27021,6 +27704,7 @@ const PARTITION_STYLE = @import("../storage/file_system.zig").PARTITION_STYLE;
 const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const DDVIDEOPORTCAPS = @import("../ui/display_devices.zig").DDVIDEOPORTCAPS;
+const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const HRESULT = @import("../system/com.zig").HRESULT;
 const RPC_BINDING_VECTOR = @import("../system/rpc.zig").RPC_BINDING_VECTOR;
 const STARTUPINFOA = @import("../system/threading.zig").STARTUPINFOA;
@@ -27044,35 +27728,41 @@ const SURFOBJ = @import("../ui/display_devices.zig").SURFOBJ;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const VIRTUAL_ALLOCATION_TYPE = @import("../system/memory.zig").VIRTUAL_ALLOCATION_TYPE;
 const DESIGNVECTOR = @import("../graphics/gdi.zig").DESIGNVECTOR;
+const LOGPALETTE = @import("../graphics/gdi.zig").LOGPALETTE;
 const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const SECURITY_IMPERSONATION_LEVEL = @import("../security.zig").SECURITY_IMPERSONATION_LEVEL;
 const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
 const POINT = @import("../ui/display_devices.zig").POINT;
-const RECTL = @import("../ui/display_devices.zig").RECTL;
-const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
 const DD_BLTDATA = @import("../ui/display_devices.zig").DD_BLTDATA;
-const DD_DIRECTDRAW_LOCAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_LOCAL;
+const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
+const RECTL = @import("../ui/display_devices.zig").RECTL;
+const TOKEN_USER = @import("../security.zig").TOKEN_USER;
 const PIXELFORMATDESCRIPTOR = @import("../graphics/open_gl.zig").PIXELFORMATDESCRIPTOR;
 const LOGCOLORSPACEW = @import("../ui/color_system.zig").LOGCOLORSPACEW;
 const STORAGE_PROPERTY_ID = @import("../storage/file_system.zig").STORAGE_PROPERTY_ID;
+const DD_DIRECTDRAW_LOCAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_LOCAL;
 const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
+const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const DD_CALLBACKS = @import("../ui/display_devices.zig").DD_CALLBACKS;
 const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
 const SC_HANDLE = @import("../security.zig").SC_HANDLE;
 const ENUMRESNAMEPROCW = @import("../ui/windows_and_messaging.zig").ENUMRESNAMEPROCW;
 const PERBANDINFO = @import("../ui/display_devices.zig").PERBANDINFO;
 const VIRTUAL_STORAGE_TYPE = @import("../storage/vhd.zig").VIRTUAL_STORAGE_TYPE;
+const DWORD_BLOB = @import("../system/com.zig").DWORD_BLOB;
 const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
 const DDCOLORKEY = @import("../graphics/direct_draw.zig").DDCOLORKEY;
 const STROBJ = @import("../ui/display_devices.zig").STROBJ;
 const UNICODE_STRING = @import("../system/kernel.zig").UNICODE_STRING;
 const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = @import("../system/power.zig").POWER_SETTING_REGISTER_NOTIFICATION_FLAGS;
-const USN_RECORD_V2 = @import("../storage/file_system.zig").USN_RECORD_V2;
+const FLAGGED_BYTE_BLOB = @import("../system/com.zig").FLAGGED_BYTE_BLOB;
 const FONTOBJ = @import("../ui/display_devices.zig").FONTOBJ;
+const USN_RECORD_V2 = @import("../storage/file_system.zig").USN_RECORD_V2;
 const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
 const D3DTRANSFORMSTATETYPE = @import("../graphics/direct3d9.zig").D3DTRANSFORMSTATETYPE;
 const JOB_OBJECT_LIMIT = @import("../system/job_objects.zig").JOB_OBJECT_LIMIT;
 const PALOBJ = @import("../ui/display_devices.zig").PALOBJ;
+const PARTITION_INFORMATION_GPT = @import("../storage/file_system.zig").PARTITION_INFORMATION_GPT;
 const DEP_SYSTEM_POLICY_TYPE = @import("../system/windows_programming.zig").DEP_SYSTEM_POLICY_TYPE;
 const RPC_STATUS = @import("../system/rpc.zig").RPC_STATUS;
 const ACE_HEADER = @import("../security.zig").ACE_HEADER;
@@ -27089,6 +27779,7 @@ const POINTL = @import("../ui/display_devices.zig").POINTL;
 const D3DCOLORVALUE = @import("../graphics/direct3d9.zig").D3DCOLORVALUE;
 const SLIST_HEADER = @import("../system/kernel.zig").SLIST_HEADER;
 const D3DSTATEBLOCKTYPE = @import("../graphics/direct3d9.zig").D3DSTATEBLOCKTYPE;
+const SET_PARTITION_INFORMATION = @import("../storage/file_system.zig").SET_PARTITION_INFORMATION;
 const PPS_POST_PROCESS_INIT_ROUTINE = @import("../system/windows_programming.zig").PPS_POST_PROCESS_INIT_ROUTINE;
 const D3DRENDERSTATETYPE = @import("../graphics/direct3d9.zig").D3DRENDERSTATETYPE;
 const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
@@ -27108,6 +27799,7 @@ const LPFIBER_START_ROUTINE = @import("../system/windows_programming.zig").LPFIB
 const USN_RECORD_V4 = @import("../storage/file_system.zig").USN_RECORD_V4;
 const DD_SURFACE_LOCAL = @import("../ui/display_devices.zig").DD_SURFACE_LOCAL;
 const FILE_ID_128 = @import("../storage/file_system.zig").FILE_ID_128;
+const RETRIEVAL_POINTERS_BUFFER = @import("../storage/file_system.zig").RETRIEVAL_POINTERS_BUFFER;
 const D3DMATRIX = @import("../graphics/direct3d9.zig").D3DMATRIX;
 const PTP_POOL = @import("../system/threading.zig").PTP_POOL;
 const PATHOBJ = @import("../ui/display_devices.zig").PATHOBJ;

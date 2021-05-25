@@ -380,8 +380,8 @@ pub const HRASCONN = ?*opaque{};
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASCONNW = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hrasconn: HRASCONN,
     szEntryName: [257]u16,
@@ -400,8 +400,8 @@ pub const RASCONNW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASCONNA = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hrasconn: HRASCONN,
     szEntryName: [257]CHAR,
@@ -420,8 +420,8 @@ pub const RASCONNA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALPARAMSW = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     szEntryName: [257]u16,
     szPhoneNumber: [129]u16,
@@ -440,8 +440,8 @@ pub const RASDIALPARAMSW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALPARAMSA = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     szEntryName: [257]CHAR,
     szPhoneNumber: [129]CHAR,
@@ -460,8 +460,8 @@ pub const RASDIALPARAMSA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASEAPINFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSizeofEapInfo: u32,
     pbEapInfo: *u8,
 };
@@ -471,8 +471,8 @@ pub const RASEAPINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDEVSPECIFICINFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     pbDevSpecificInfo: *u8,
 };
@@ -482,8 +482,8 @@ pub const RASDEVSPECIFICINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALEXTENSIONS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     dwfOptions: u32,
     hwndParent: HWND,
@@ -499,8 +499,8 @@ pub const RASDIALEXTENSIONS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASIKEV2_PROJECTION_INFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwIPv4NegotiationError: u32,
     ipv4Address: IN_ADDR,
     ipv4ServerAddress: IN_ADDR,
@@ -523,8 +523,8 @@ pub const RASIKEV2_PROJECTION_INFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASADPARAMS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -537,8 +537,8 @@ pub const RASADPARAMS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
 };
@@ -548,8 +548,8 @@ pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASPBDLGW = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -567,8 +567,8 @@ pub const RASPBDLGW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASPBDLGA = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -586,8 +586,8 @@ pub const RASPBDLGA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASENTRYDLGW = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -604,8 +604,8 @@ pub const RASENTRYDLGW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASENTRYDLGA = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -622,8 +622,8 @@ pub const RASENTRYDLGA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RASDIALDLG = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -772,8 +772,10 @@ pub const RASIPADDR = extern struct {
 
 pub const RASTUNNELENDPOINT = extern struct {
     dwType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ipv4: IN_ADDR,
+        ipv6: IN6_ADDR,
+    },
 };
 
 pub const RASCONNSTATE = extern enum(i32) {
@@ -1090,8 +1092,10 @@ pub const IKEV2_ID_PAYLOAD_TYPE_MAX = IKEV2_ID_PAYLOAD_TYPE.MAX;
 pub const RAS_PROJECTION_INFO = extern struct {
     version: RASAPIVERSION,
     type: RASPROJECTION_INFO_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ppp: RASPPP_PROJECTION_INFO,
+        ikev2: RASIKEV2_PROJECTION_INFO,
+    },
 };
 
 pub const RASDIALFUNC = fn(
@@ -2072,14 +2076,18 @@ pub const IKEV2_PROJECTION_INFO2 = extern struct {
 
 pub const PROJECTION_INFO = extern struct {
     projectionInfoType: u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        PppProjectionInfo: PPP_PROJECTION_INFO,
+        Ikev2ProjectionInfo: IKEV2_PROJECTION_INFO,
+    },
 };
 
 pub const PROJECTION_INFO2 = extern struct {
     projectionInfoType: u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        PppProjectionInfo: PPP_PROJECTION_INFO2,
+        Ikev2ProjectionInfo: IKEV2_PROJECTION_INFO2,
+    },
 };
 
 pub const RAS_CONNECTION_EX = extern struct {
@@ -2177,8 +2185,10 @@ pub const MPR_CERT_EKU = extern struct {
 
 pub const VPN_TS_IP_ADDRESS = extern struct {
     Type: u16,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        v4: IN_ADDR,
+        v6: IN6_ADDR,
+    },
 };
 
 pub const MPR_VPN_TS_TYPE = extern enum(i32) {
@@ -2681,8 +2691,14 @@ pub const RTM_DEST_INFO = extern struct {
     LastChanged: FILETIME,
     BelongsToViews: u32,
     NumberOfViews: u32,
-    ViewInfo: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    ViewInfo: [1]extern struct {
+        ViewId: i32,
+        NumRoutes: u32,
+        Route: isize,
+        Owner: isize,
+        DestFlags: u32,
+        HoldRoute: isize,
+    },
 };
 
 pub const RTM_ROUTE_INFO = extern struct {
@@ -2709,8 +2725,13 @@ pub const RTM_NEXTHOP_INFO = extern struct {
 };
 
 pub const RTM_ENTITY_ID = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            EntityProtocolId: u32,
+            EntityInstanceId: u32,
+        },
+        EntityId: u64,
+    },
 };
 
 pub const RTM_ENTITY_INFO = extern struct {

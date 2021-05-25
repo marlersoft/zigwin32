@@ -44,15 +44,15 @@ pub const ALLJOYN_DISCONNECTED = @as(u32, 4);
 // Section: Types (110)
 //--------------------------------------------------------------------------------
 pub const _alljoyn_abouticon_handle = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _alljoyn_abouticonobj_handle = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _alljoyn_abouticonproxy_handle = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const alljoyn_about_announceflag = extern enum(i32) {

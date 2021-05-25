@@ -250,8 +250,9 @@ pub const Session_IPv4 = extern struct {
 
 pub const RSVP_SESSION = extern struct {
     sess_header: RsvpObjHdr,
-    sess_u: _sess_u_e__Union,
-    const _sess_u_e__Union = u32; // TODO: generate this nested type!
+    sess_u: extern union {
+        sess_ipv4: Session_IPv4,
+    },
 };
 
 pub const Rsvp_Hop_IPv4 = extern struct {
@@ -261,8 +262,9 @@ pub const Rsvp_Hop_IPv4 = extern struct {
 
 pub const RSVP_HOP = extern struct {
     hop_header: RsvpObjHdr,
-    hop_u: _hop_u_e__Union,
-    const _hop_u_e__Union = u32; // TODO: generate this nested type!
+    hop_u: extern union {
+        hop_ipv4: Rsvp_Hop_IPv4,
+    },
 };
 
 pub const RESV_STYLE = extern struct {
@@ -283,8 +285,10 @@ pub const Filter_Spec_IPv4GPI = extern struct {
 
 pub const FILTER_SPEC = extern struct {
     filt_header: RsvpObjHdr,
-    filt_u: _filt_u_e__Union,
-    const _filt_u_e__Union = u32; // TODO: generate this nested type!
+    filt_u: extern union {
+        filt_ipv4: Filter_Spec_IPv4,
+        filt_ipv4gpi: Filter_Spec_IPv4GPI,
+    },
 };
 
 pub const Scope_list_ipv4 = extern struct {
@@ -293,8 +297,9 @@ pub const Scope_list_ipv4 = extern struct {
 
 pub const RSVP_SCOPE = extern struct {
     scopl_header: RsvpObjHdr,
-    scope_u: _scope_u_e__Union,
-    const _scope_u_e__Union = u32; // TODO: generate this nested type!
+    scope_u: extern union {
+        scopl_ipv4: Scope_list_ipv4,
+    },
 };
 
 pub const Error_Spec_IPv4 = extern struct {
@@ -306,8 +311,9 @@ pub const Error_Spec_IPv4 = extern struct {
 
 pub const ERROR_SPEC = extern struct {
     errs_header: RsvpObjHdr,
-    errs_u: _errs_u_e__Union,
-    const _errs_u_e__Union = u32; // TODO: generate this nested type!
+    errs_u: extern union {
+        errs_ipv4: Error_Spec_IPv4,
+    },
 };
 
 pub const POLICY_DATA = extern struct {
@@ -387,8 +393,10 @@ pub const QualAppFlowSpec = extern struct {
 
 pub const IntServTspecBody = extern struct {
     st_mh: IntServMainHdr,
-    tspec_u: _tspec_u_e__Union,
-    const _tspec_u_e__Union = u32; // TODO: generate this nested type!
+    tspec_u: extern union {
+        gen_stspec: GenTspec,
+        qual_stspec: QualTspec,
+    },
 };
 
 pub const SENDER_TSPEC = extern struct {
@@ -417,8 +425,11 @@ pub const GuarFlowSpec = extern struct {
 
 pub const IntServFlowSpec = extern struct {
     spec_mh: IntServMainHdr,
-    spec_u: _spec_u_e__Union,
-    const _spec_u_e__Union = u32; // TODO: generate this nested type!
+    spec_u: extern union {
+        CL_spec: CtrlLoadFlowspec,
+        G_spec: GuarFlowSpec,
+        Q_spec: QualAppFlowSpec,
+    },
 };
 
 pub const IS_FLOWSPEC = extern struct {
@@ -427,10 +438,14 @@ pub const IS_FLOWSPEC = extern struct {
 };
 
 pub const flow_desc = extern struct {
-    u1: _u1_e__Union,
-    u2: _u2_e__Union,
-    const _u1_e__Union = u32; // TODO: generate this nested type!
-    const _u2_e__Union = u32; // TODO: generate this nested type!
+    u1: extern union {
+        stspec: *SENDER_TSPEC,
+        isflow: *IS_FLOWSPEC,
+    },
+    u2: extern union {
+        stemp: *FILTER_SPEC,
+        fspec: *FILTER_SPEC,
+    },
 };
 
 pub const Gads_parms_t = extern struct {
@@ -733,16 +748,33 @@ pub const IP_PATTERN = extern struct {
     Reserved2: u32,
     SrcAddr: u32,
     DstAddr: u32,
-    S_un: _S_un_e__Union,
+    S_un: extern union {
+        S_un_ports: extern struct {
+            s_srcport: u16,
+            s_dstport: u16,
+        },
+        S_un_icmp: extern struct {
+            s_type: u8,
+            s_code: u8,
+            filler: u16,
+        },
+        S_Spi: u32,
+    },
     ProtocolId: u8,
     Reserved3: [3]u8,
-    const _S_un_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IPX_PATTERN = extern struct {
-    Src: _Src_e__Struct,
-    Dest: _Src_e__Struct,
-    const _Src_e__Struct = u32; // TODO: generate this nested type!
+    Src: extern struct {
+        NetworkAddress: u32,
+        NodeAddress: [6]u8,
+        Socket: u16,
+    },
+    Dest: extern struct {
+        NetworkAddress: u32,
+        NodeAddress: [6]u8,
+        Socket: u16,
+    },
 };
 
 pub const ENUMERATION_BUFFER = extern struct {

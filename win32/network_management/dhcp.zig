@@ -648,12 +648,20 @@ pub const DhcpIpRangesDhcpBootp = DHCP_SUBNET_ELEMENT_TYPE.IpRangesDhcpBootp;
 pub const DhcpIpRangesBootpOnly = DHCP_SUBNET_ELEMENT_TYPE.IpRangesBootpOnly;
 
 pub const DHCP_SUBNET_ELEMENT_DATA = extern struct {
+    pub const DHCP_SUBNET_ELEMENT_UNION = extern union {
+        IpRange: *DHCP_IP_RANGE,
+        SecondaryHost: *DHCP_HOST_INFO,
+        ReservedIp: *DHCP_IP_RESERVATION,
+        ExcludeIpRange: *DHCP_IP_RANGE,
+        IpUsedCluster: *DHCP_IP_CLUSTER,
+    };
     ElementType: DHCP_SUBNET_ELEMENT_TYPE,
     Element: DHCP_SUBNET_ELEMENT_UNION,
-    const DHCP_SUBNET_ELEMENT_UNION = u32; // TODO: generate this nested type!
 };
 
-// TODO: this dhcp type has been removed because it conflicts with a nested type 'DHCP_SUBNET_ELEMENT_UNION'
+pub const DHCP_SUBNET_ELEMENT_UNION = extern union {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const DHCP_SUBNET_ELEMENT_INFO_ARRAY = extern struct {
     NumElements: u32,
@@ -723,12 +731,24 @@ pub const DhcpEncapsulatedDataOption = DHCP_OPTION_DATA_TYPE.EncapsulatedDataOpt
 pub const DhcpIpv6AddressOption = DHCP_OPTION_DATA_TYPE.Ipv6AddressOption;
 
 pub const DHCP_OPTION_DATA_ELEMENT = extern struct {
+    pub const DHCP_OPTION_ELEMENT_UNION = extern union {
+        ByteOption: u8,
+        WordOption: u16,
+        DWordOption: u32,
+        DWordDWordOption: DWORD_DWORD,
+        IpAddressOption: u32,
+        StringDataOption: PWSTR,
+        BinaryDataOption: DHCP_BINARY_DATA,
+        EncapsulatedDataOption: DHCP_BINARY_DATA,
+        Ipv6AddressDataOption: PWSTR,
+    };
     OptionType: DHCP_OPTION_DATA_TYPE,
     Element: DHCP_OPTION_ELEMENT_UNION,
-    const DHCP_OPTION_ELEMENT_UNION = u32; // TODO: generate this nested type!
 };
 
-// TODO: this dhcp type has been removed because it conflicts with a nested type 'DHCP_OPTION_ELEMENT_UNION'
+pub const DHCP_OPTION_ELEMENT_UNION = extern union {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const DHCP_OPTION_DATA = extern struct {
     NumElements: u32,
@@ -784,9 +804,15 @@ pub const DHCP_RESERVED_SCOPE = extern struct {
 };
 
 pub const DHCP_OPTION_SCOPE_INFO = extern struct {
+    pub const _DHCP_OPTION_SCOPE_UNION = extern union {
+        DefaultScopeInfo: *c_void,
+        GlobalScopeInfo: *c_void,
+        SubnetScopeInfo: u32,
+        ReservedScopeInfo: DHCP_RESERVED_SCOPE,
+        MScopeInfo: PWSTR,
+    };
     ScopeType: DHCP_OPTION_SCOPE_TYPE,
     ScopeInfo: _DHCP_OPTION_SCOPE_UNION,
-    const _DHCP_OPTION_SCOPE_UNION = u32; // TODO: generate this nested type!
 };
 
 pub const DHCP_OPTION_SCOPE_TYPE6 = extern enum(i32) {
@@ -806,12 +832,18 @@ pub const DHCP_RESERVED_SCOPE6 = extern struct {
 };
 
 pub const DHCP_OPTION_SCOPE_INFO6 = extern struct {
+    pub const DHCP_OPTION_SCOPE_UNION6 = extern union {
+        DefaultScopeInfo: *c_void,
+        SubnetScopeInfo: DHCP_IPV6_ADDRESS,
+        ReservedScopeInfo: DHCP_RESERVED_SCOPE6,
+    };
     ScopeType: DHCP_OPTION_SCOPE_TYPE6,
     ScopeInfo: DHCP_OPTION_SCOPE_UNION6,
-    const DHCP_OPTION_SCOPE_UNION6 = u32; // TODO: generate this nested type!
 };
 
-// TODO: this dhcp type has been removed because it conflicts with a nested type 'DHCP_OPTION_SCOPE_UNION6'
+pub const DHCP_OPTION_SCOPE_UNION6 = extern union {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const DHCP_OPTION_LIST = extern struct {
     NumOptions: u32,
@@ -923,12 +955,18 @@ pub const DhcpClientHardwareAddress = DHCP_SEARCH_INFO_TYPE.HardwareAddress;
 pub const DhcpClientName = DHCP_SEARCH_INFO_TYPE.Name;
 
 pub const DHCP_SEARCH_INFO = extern struct {
+    pub const DHCP_CLIENT_SEARCH_UNION = extern union {
+        ClientIpAddress: u32,
+        ClientHardwareAddress: DHCP_BINARY_DATA,
+        ClientName: PWSTR,
+    };
     SearchType: DHCP_SEARCH_INFO_TYPE,
     SearchInfo: DHCP_CLIENT_SEARCH_UNION,
-    const DHCP_CLIENT_SEARCH_UNION = u32; // TODO: generate this nested type!
 };
 
-// TODO: this dhcp type has been removed because it conflicts with a nested type 'DHCP_CLIENT_SEARCH_UNION'
+pub const DHCP_CLIENT_SEARCH_UNION = extern union {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const DHCP_PROPERTY_TYPE = extern enum(i32) {
     Byte = 0,
@@ -951,10 +989,16 @@ pub const DhcpPropIdPolicyDnsSuffix = DHCP_PROPERTY_ID.PolicyDnsSuffix;
 pub const DhcpPropIdClientAddressStateEx = DHCP_PROPERTY_ID.ClientAddressStateEx;
 
 pub const DHCP_PROPERTY = extern struct {
+    pub const _DHCP_PROPERTY_VALUE_UNION = extern union {
+        ByteValue: u8,
+        WordValue: u16,
+        DWordValue: u32,
+        StringValue: PWSTR,
+        BinaryValue: DHCP_BINARY_DATA,
+    };
     ID: DHCP_PROPERTY_ID,
     Type: DHCP_PROPERTY_TYPE,
     Value: _DHCP_PROPERTY_VALUE_UNION,
-    const _DHCP_PROPERTY_VALUE_UNION = u32; // TODO: generate this nested type!
 };
 
 pub const DHCP_PROPERTY_ARRAY = extern struct {
@@ -1151,12 +1195,20 @@ pub const DHCP_RESERVATION_INFO_ARRAY = extern struct {
 };
 
 pub const DHCP_SUBNET_ELEMENT_DATA_V4 = extern struct {
+    pub const DHCP_SUBNET_ELEMENT_UNION_V4 = extern union {
+        IpRange: *DHCP_IP_RANGE,
+        SecondaryHost: *DHCP_HOST_INFO,
+        ReservedIp: *DHCP_IP_RESERVATION_V4,
+        ExcludeIpRange: *DHCP_IP_RANGE,
+        IpUsedCluster: *DHCP_IP_CLUSTER,
+    };
     ElementType: DHCP_SUBNET_ELEMENT_TYPE,
     Element: DHCP_SUBNET_ELEMENT_UNION_V4,
-    const DHCP_SUBNET_ELEMENT_UNION_V4 = u32; // TODO: generate this nested type!
 };
 
-// TODO: this dhcp type has been removed because it conflicts with a nested type 'DHCP_SUBNET_ELEMENT_UNION_V4'
+pub const DHCP_SUBNET_ELEMENT_UNION_V4 = extern union {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const DHCP_SUBNET_ELEMENT_INFO_ARRAY_V4 = extern struct {
     NumElements: u32,
@@ -1259,22 +1311,33 @@ pub const DHCP_ALL_OPTIONS = extern struct {
     Flags: u32,
     NonVendorOptions: *DHCP_OPTION_ARRAY,
     NumVendorOptions: u32,
-    VendorOptions: *_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    VendorOptions: *extern struct {
+        Option: DHCP_OPTION,
+        VendorName: PWSTR,
+        ClassName: PWSTR,
+    },
 };
 
 pub const DHCP_ALL_OPTION_VALUES = extern struct {
     Flags: u32,
     NumElements: u32,
-    Options: *_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Options: *extern struct {
+        ClassName: PWSTR,
+        VendorName: PWSTR,
+        IsVendor: BOOL,
+        OptionsArray: *DHCP_OPTION_VALUE_ARRAY,
+    },
 };
 
 pub const DHCP_ALL_OPTION_VALUES_PB = extern struct {
     Flags: u32,
     NumElements: u32,
-    Options: *_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Options: *extern struct {
+        PolicyName: PWSTR,
+        VendorName: PWSTR,
+        IsVendor: BOOL,
+        OptionsArray: *DHCP_OPTION_VALUE_ARRAY,
+    },
 };
 
 pub const DHCPDS_SERVER = extern struct {
@@ -1296,8 +1359,10 @@ pub const DHCPDS_SERVERS = extern struct {
 pub const DHCP_ATTRIB = extern struct {
     DhcpAttribId: u32,
     DhcpAttribType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        DhcpAttribBool: BOOL,
+        DhcpAttribUlong: u32,
+    },
 };
 
 pub const DHCP_ATTRIB_ARRAY = extern struct {
@@ -1313,9 +1378,15 @@ pub const DHCP_BOOTP_IP_RANGE = extern struct {
 };
 
 pub const DHCP_SUBNET_ELEMENT_DATA_V5 = extern struct {
+    pub const _DHCP_SUBNET_ELEMENT_UNION_V5 = extern union {
+        IpRange: *DHCP_BOOTP_IP_RANGE,
+        SecondaryHost: *DHCP_HOST_INFO,
+        ReservedIp: *DHCP_IP_RESERVATION_V4,
+        ExcludeIpRange: *DHCP_IP_RANGE,
+        IpUsedCluster: *DHCP_IP_CLUSTER,
+    };
     ElementType: DHCP_SUBNET_ELEMENT_TYPE,
     Element: _DHCP_SUBNET_ELEMENT_UNION_V5,
-    const _DHCP_SUBNET_ELEMENT_UNION_V5 = u32; // TODO: generate this nested type!
 };
 
 pub const DHCP_SUBNET_ELEMENT_INFO_ARRAY_V5 = extern struct {
@@ -1436,12 +1507,18 @@ pub const Dhcpv6ReservedIps = DHCP_SUBNET_ELEMENT_TYPE_V6.ReservedIps;
 pub const Dhcpv6ExcludedIpRanges = DHCP_SUBNET_ELEMENT_TYPE_V6.ExcludedIpRanges;
 
 pub const DHCP_SUBNET_ELEMENT_DATA_V6 = extern struct {
+    pub const DHCP_SUBNET_ELEMENT_UNION_V6 = extern union {
+        IpRange: *DHCP_IP_RANGE_V6,
+        ReservedIp: *DHCP_IP_RESERVATION_V6,
+        ExcludeIpRange: *DHCP_IP_RANGE_V6,
+    };
     ElementType: DHCP_SUBNET_ELEMENT_TYPE_V6,
     Element: DHCP_SUBNET_ELEMENT_UNION_V6,
-    const DHCP_SUBNET_ELEMENT_UNION_V6 = u32; // TODO: generate this nested type!
 };
 
-// TODO: this dhcp type has been removed because it conflicts with a nested type 'DHCP_SUBNET_ELEMENT_UNION_V6'
+pub const DHCP_SUBNET_ELEMENT_UNION_V6 = extern union {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6 = extern struct {
     NumElements: u32,
@@ -1480,9 +1557,13 @@ pub const Dhcpv6ClientDUID = DHCP_SEARCH_INFO_TYPE_V6.DUID;
 pub const Dhcpv6ClientName = DHCP_SEARCH_INFO_TYPE_V6.Name;
 
 pub const DHCP_SEARCH_INFO_V6 = extern struct {
+    pub const _DHCP_CLIENT_SEARCH_UNION_V6 = extern union {
+        ClientIpAddress: DHCP_IPV6_ADDRESS,
+        ClientDUID: DHCP_BINARY_DATA,
+        ClientName: PWSTR,
+    };
     SearchType: DHCP_SEARCH_INFO_TYPE_V6,
     SearchInfo: _DHCP_CLIENT_SEARCH_UNION_V6,
-    const _DHCP_CLIENT_SEARCH_UNION_V6 = u32; // TODO: generate this nested type!
 };
 
 pub const DHCP_POL_ATTR_TYPE = extern enum(i32) {

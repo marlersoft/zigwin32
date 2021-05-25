@@ -3591,8 +3591,10 @@ pub const MMC_TASK_DISPLAY_BITMAP = extern struct {
 
 pub const MMC_TASK_DISPLAY_OBJECT = extern struct {
     eDisplayType: MMC_TASK_DISPLAY_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        uBitmap: MMC_TASK_DISPLAY_BITMAP,
+        uSymbol: MMC_TASK_DISPLAY_SYMBOL,
+    },
 };
 
 pub const MMC_ACTION_TYPE = extern enum(i32) {
@@ -3611,8 +3613,11 @@ pub const MMC_TASK = extern struct {
     szText: PWSTR,
     szHelpString: PWSTR,
     eActionType: MMC_ACTION_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        nCommandID: isize,
+        szActionURL: PWSTR,
+        szScript: PWSTR,
+    },
 };
 
 pub const MMC_LISTPAD_INFO = extern struct {
@@ -4098,8 +4103,17 @@ pub const RESULT_VIEW_TYPE_INFO = extern struct {
     pstrPersistableViewDescription: PWSTR,
     eViewType: MMC_VIEW_TYPE,
     dwMiscOptions: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwListOptions: u32,
+        Anonymous1: extern struct {
+            dwHTMLOptions: u32,
+            pstrURL: PWSTR,
+        },
+        Anonymous2: extern struct {
+            dwOCXOptions: u32,
+            pUnkControl: *IUnknown,
+        },
+    },
 };
 
 pub const CONTEXTMENUITEM2 = extern struct {

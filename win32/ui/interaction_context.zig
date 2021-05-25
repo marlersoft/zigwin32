@@ -269,8 +269,11 @@ pub const INTERACTION_CONTEXT_OUTPUT = extern struct {
     inputType: POINTER_INPUT_TYPE,
     x: f32,
     y: f32,
-    arguments: _arguments_e__Union,
-    const _arguments_e__Union = u32; // TODO: generate this nested type!
+    arguments: extern union {
+        manipulation: INTERACTION_ARGUMENTS_MANIPULATION,
+        tap: INTERACTION_ARGUMENTS_TAP,
+        crossSlide: INTERACTION_ARGUMENTS_CROSS_SLIDE,
+    },
 };
 
 pub const INTERACTION_CONTEXT_OUTPUT2 = extern struct {
@@ -281,8 +284,11 @@ pub const INTERACTION_CONTEXT_OUTPUT2 = extern struct {
     currentContactCount: u32,
     x: f32,
     y: f32,
-    arguments: _arguments_e__Union,
-    const _arguments_e__Union = u32; // TODO: generate this nested type!
+    arguments: extern union {
+        manipulation: INTERACTION_ARGUMENTS_MANIPULATION,
+        tap: INTERACTION_ARGUMENTS_TAP,
+        crossSlide: INTERACTION_ARGUMENTS_CROSS_SLIDE,
+    },
 };
 
 pub const INTERACTION_CONTEXT_CONFIGURATION = extern struct {

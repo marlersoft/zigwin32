@@ -99,8 +99,8 @@ pub const MAXVENDORINFO = @as(u32, 32);
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const AsnOctetString = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     stream: *u8,
     length: u32,
     dynamic: BOOL,
@@ -111,8 +111,8 @@ pub const AsnOctetString = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const AsnObjectIdentifier = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     idLength: u32,
     ids: *u32,
 };
@@ -122,8 +122,8 @@ pub const AsnObjectIdentifier = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const SnmpVarBindList = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     list: *SnmpVarBind,
     len: u32,
 };
@@ -132,8 +132,21 @@ pub const SnmpVarBindList = extern struct {
 
 pub const AsnAny = extern struct {
     asnType: u8,
-    asnValue: _asnValue_e__Union,
-    const _asnValue_e__Union = u32; // TODO: generate this nested type!
+    asnValue: extern union {
+        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        number: i32,
+        unsigned32: u32,
+        counter64: ULARGE_INTEGER,
+        string: AsnOctetString,
+        bits: AsnOctetString,
+        object: AsnObjectIdentifier,
+        sequence: AsnOctetString,
+        address: AsnOctetString,
+        counter: u32,
+        gauge: u32,
+        ticks: u32,
+        arbitrary: AsnOctetString,
+    },
 };
 
 pub const SnmpVarBind = extern struct {
@@ -199,8 +212,14 @@ pub const smiCNTR64 = extern struct {
 
 pub const smiVALUE = extern struct {
     syntax: u32,
-    value: _value_e__Union,
-    const _value_e__Union = u32; // TODO: generate this nested type!
+    value: extern union {
+        sNumber: i32,
+        uNumber: u32,
+        hNumber: smiCNTR64,
+        string: smiOCTETS,
+        oid: smiOID,
+        empty: u8,
+    },
 };
 
 pub const smiVENDORINFO = extern struct {
@@ -992,9 +1011,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const HANDLE = @import("../system/system_services.zig").HANDLE;

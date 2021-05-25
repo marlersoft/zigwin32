@@ -64,10 +64,50 @@ pub const EvtVarTypeEvtHandle = EVT_VARIANT_TYPE.EvtHandle;
 pub const EvtVarTypeEvtXml = EVT_VARIANT_TYPE.EvtXml;
 
 pub const EVT_VARIANT = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        BooleanVal: BOOL,
+        SByteVal: i8,
+        Int16Val: i16,
+        Int32Val: i32,
+        Int64Val: i64,
+        ByteVal: u8,
+        UInt16Val: u16,
+        UInt32Val: u32,
+        UInt64Val: u64,
+        SingleVal: f32,
+        DoubleVal: f64,
+        FileTimeVal: u64,
+        SysTimeVal: *SYSTEMTIME,
+        GuidVal: *Guid,
+        StringVal: [*:0]const u16,
+        AnsiStringVal: [*:0]const u8,
+        BinaryVal: *u8,
+        SidVal: PSID,
+        SizeTVal: usize,
+        BooleanArr: *BOOL,
+        SByteArr: *i8,
+        Int16Arr: *i16,
+        Int32Arr: *i32,
+        Int64Arr: *i64,
+        ByteArr: *u8,
+        UInt16Arr: *u16,
+        UInt32Arr: *u32,
+        UInt64Arr: *u64,
+        SingleArr: *f32,
+        DoubleArr: *f64,
+        FileTimeArr: *FILETIME,
+        SysTimeArr: *SYSTEMTIME,
+        GuidArr: *Guid,
+        StringArr: *PWSTR,
+        AnsiStringArr: *PSTR,
+        SidArr: *PSID,
+        SizeTArr: *usize,
+        EvtHandleVal: isize,
+        XmlVal: [*:0]const u16,
+        XmlValArr: *PWSTR,
+    },
     Count: u32,
     Type: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const EVT_LOGIN_CLASS = extern enum(i32) {
@@ -765,10 +805,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
+const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
+const PSTR = @import("../system/system_services.zig").PSTR;
+const PSID = @import("../security.zig").PSID;
 const BOOL = @import("../system/system_services.zig").BOOL;
 
 test {

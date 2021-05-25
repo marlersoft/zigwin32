@@ -8,7 +8,7 @@ pub const PKEY_PIDSTR_MAX = @as(u32, 10);
 // Section: Types (50)
 //--------------------------------------------------------------------------------
 pub const SERIALIZEDPROPSTORAGE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const PROPERTYKEY = extern struct {

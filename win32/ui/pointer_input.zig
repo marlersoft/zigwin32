@@ -71,8 +71,27 @@ pub const POINTER_PEN_INFO = extern struct {
 };
 
 pub const INPUT_TRANSFORM = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _11: f32,
+            _12: f32,
+            _13: f32,
+            _14: f32,
+            _21: f32,
+            _22: f32,
+            _23: f32,
+            _24: f32,
+            _31: f32,
+            _32: f32,
+            _33: f32,
+            _34: f32,
+            _41: f32,
+            _42: f32,
+            _43: f32,
+            _44: f32,
+        },
+        m: [16]f32,
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?

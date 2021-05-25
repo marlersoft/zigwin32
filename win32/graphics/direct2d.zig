@@ -159,23 +159,97 @@ pub const D2D_SIZE_U = extern struct {
 };
 
 pub const D2D_MATRIX_3X2_F = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            m11: f32,
+            m12: f32,
+            m21: f32,
+            m22: f32,
+            dx: f32,
+            dy: f32,
+        },
+        Anonymous2: extern struct {
+            _11: f32,
+            _12: f32,
+            _21: f32,
+            _22: f32,
+            _31: f32,
+            _32: f32,
+        },
+        m: [6]f32,
+    },
 };
 
 pub const D2D_MATRIX_4X3_F = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _11: f32,
+            _12: f32,
+            _13: f32,
+            _21: f32,
+            _22: f32,
+            _23: f32,
+            _31: f32,
+            _32: f32,
+            _33: f32,
+            _41: f32,
+            _42: f32,
+            _43: f32,
+        },
+        m: [12]f32,
+    },
 };
 
 pub const D2D_MATRIX_4X4_F = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _11: f32,
+            _12: f32,
+            _13: f32,
+            _14: f32,
+            _21: f32,
+            _22: f32,
+            _23: f32,
+            _24: f32,
+            _31: f32,
+            _32: f32,
+            _33: f32,
+            _34: f32,
+            _41: f32,
+            _42: f32,
+            _43: f32,
+            _44: f32,
+        },
+        m: [16]f32,
+    },
 };
 
 pub const D2D_MATRIX_5X4_F = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _11: f32,
+            _12: f32,
+            _13: f32,
+            _14: f32,
+            _21: f32,
+            _22: f32,
+            _23: f32,
+            _24: f32,
+            _31: f32,
+            _32: f32,
+            _33: f32,
+            _34: f32,
+            _41: f32,
+            _42: f32,
+            _43: f32,
+            _44: f32,
+            _51: f32,
+            _52: f32,
+            _53: f32,
+            _54: f32,
+        },
+        m: [20]f32,
+    },
 };
 
 pub const D2D1_INTERPOLATION_MODE_DEFINITION = extern enum(i32) {

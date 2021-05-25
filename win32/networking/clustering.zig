@@ -211,107 +211,107 @@ pub const SET_APPINSTANCE_CSV_FLAGS_VALID_ONLY_IF_CSV_COORDINATOR = @as(u32, 1);
 // Section: Types (684)
 //--------------------------------------------------------------------------------
 pub const _HCLUSTER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HNODE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HRESOURCE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HGROUP = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HNETWORK = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HNETINTERFACE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HCHANGE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HCLUSENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HGROUPENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HRESENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HNETWORKENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HNODEENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HNETINTERFACEENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HRESTYPEENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HREGBATCH = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HREGBATCHPORT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HREGBATCHNOTIFICATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HREGREADBATCH = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HREGREADBATCHREPLY = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HNODEENUMEX = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HCLUSENUMEX = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HGROUPENUMEX = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HRESENUMEX = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HGROUPSET = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HGROUPSETENUM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HCLUSCRYPTPROVIDER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const CLUSTER_QUORUM_TYPE = extern enum(i32) {
@@ -3306,8 +3306,10 @@ pub const CLUS_FLAG_CORE = CLUS_FLAGS.E;
 
 pub const CLUSPROP_SYNTAX = extern union {
     dw: u32,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        wFormat: u16,
+        wType: u16,
+    },
 };
 
 pub const CLUSPROP_VALUE = extern struct {
@@ -3352,8 +3354,10 @@ pub const CLUSPROP_LARGE_INTEGER = extern struct {
 
 pub const CLUSPROP_SECURITY_DESCRIPTOR = extern struct {
     __AnonymousBase_clusapi_L5174_C54: CLUSPROP_VALUE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        sd: SECURITY_DESCRIPTOR_RELATIVE,
+        rgbSecurityDescriptor: u8,
+    },
 };
 
 pub const CLUSPROP_FILETIME = extern struct {
@@ -3362,8 +3366,16 @@ pub const CLUSPROP_FILETIME = extern struct {
 };
 
 pub const CLUS_RESOURCE_CLASS_INFO = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            Anonymous: extern union {
+                dw: u32,
+                rc: CLUSTER_RESOURCE_CLASS,
+            },
+            SubClass: u32,
+        },
+        li: ULARGE_INTEGER,
+    },
 };
 
 pub const CLUSPROP_RESOURCE_CLASS = extern struct {
@@ -3517,8 +3529,12 @@ pub const ClusterSharedVolumeRenameInputTypeVolumeGuid = CLUSTER_SHARED_VOLUME_R
 
 pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_VOLUME = extern struct {
     InputType: CLUSTER_SHARED_VOLUME_RENAME_INPUT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        VolumeOffset: u64,
+        VolumeId: [260]u16,
+        VolumeName: [260]u16,
+        VolumeGuid: [50]u16,
+    },
 };
 
 pub const CLUSTER_SHARED_VOLUME_RENAME_INPUT_NAME = extern struct {
@@ -3584,8 +3600,15 @@ pub const CLUSPROP_FTSET_INFO = extern struct {
 };
 
 pub const CLUS_SCSI_ADDRESS = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            PortNumber: u8,
+            PathId: u8,
+            TargetId: u8,
+            Lun: u8,
+        },
+        dw: u32,
+    },
 };
 
 pub const CLUSPROP_SCSI_ADDRESS = extern struct {
@@ -4786,8 +4809,12 @@ pub const CLRES_V4_FUNCTIONS = extern struct {
 pub const CLRES_FUNCTION_TABLE = extern struct {
     TableSize: u32,
     Version: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        V1Functions: CLRES_V1_FUNCTIONS,
+        V2Functions: CLRES_V2_FUNCTIONS,
+        V3Functions: CLRES_V3_FUNCTIONS,
+        V4Functions: CLRES_V4_FUNCTIONS,
+    },
 };
 
 pub const RESUTIL_LARGEINT_DATA = extern struct {
@@ -4812,12 +4839,18 @@ pub const RESUTIL_PROPERTY_ITEM = extern struct {
     Name: PWSTR,
     KeyName: PWSTR,
     Format: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        DefaultPtr: usize,
+        Default: u32,
+        lpDefault: *c_void,
+        LargeIntData: *RESUTIL_LARGEINT_DATA,
+        ULargeIntData: *RESUTIL_ULARGEINT_DATA,
+        FileTimeData: *RESUTIL_FILETIME_DATA,
+    },
     Minimum: u32,
     Maximum: u32,
     Flags: u32,
     Offset: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PSTARTUP_ROUTINE = fn(
@@ -12255,7 +12288,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("../system/registry.zig").HKEY;
@@ -12274,6 +12307,7 @@ const BOOL = @import("../system/system_services.zig").BOOL;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
+const SECURITY_DESCRIPTOR_RELATIVE = @import("../system/system_services.zig").SECURITY_DESCRIPTOR_RELATIVE;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
 const HICON = @import("../ui/menus_and_resources.zig").HICON;
 const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;

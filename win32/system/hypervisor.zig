@@ -39,15 +39,17 @@ pub const WHvCapabilityCodeInterruptClockFrequency = WHV_CAPABILITY_CODE.Interru
 pub const WHvCapabilityCodeProcessorFeaturesBanks = WHV_CAPABILITY_CODE.ProcessorFeaturesBanks;
 
 pub const WHV_CAPABILITY_FEATURES = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_EXTENDED_VM_EXITS = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_PROCESSOR_VENDOR = extern enum(i32) {
@@ -60,34 +62,43 @@ pub const WHvProcessorVendorIntel = WHV_PROCESSOR_VENDOR.Intel;
 pub const WHvProcessorVendorHygon = WHV_PROCESSOR_VENDOR.Hygon;
 
 pub const WHV_PROCESSOR_FEATURES = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_PROCESSOR_FEATURES1 = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_PROCESSOR_FEATURES_BANKS = extern struct {
     BanksCount: u32,
     Reserved0: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            Bank0: WHV_PROCESSOR_FEATURES,
+            Bank1: WHV_PROCESSOR_FEATURES1,
+        },
+        AsUINT64: [2]u64,
+    },
 };
 
 pub const WHV_PROCESSOR_XSAVE_FEATURES = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_MSR_EXIT_BITMAP = extern union {
     AsUINT64: u64,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
 };
 
 pub const WHV_CAPABILITY = extern union {
@@ -551,35 +562,66 @@ pub const WHvRegisterInternalActivityState = WHV_REGISTER_NAME.RegisterInternalA
 pub const WHvX64RegisterPendingDebugException = WHV_REGISTER_NAME.X64RegisterPendingDebugException;
 
 pub const WHV_UINT128 = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        Low64: u64,
+        High64: u64,
+    },
     Dword: [4]u32,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_FP_REGISTER = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        Mantissa: u64,
+        _bitfield: u64,
+    },
     AsUINT128: WHV_UINT128,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_FP_CONTROL_STATUS_REGISTER = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        FpControl: u16,
+        FpStatus: u16,
+        FpTag: u8,
+        Reserved: u8,
+        LastFpOp: u16,
+        Anonymous: extern union {
+            LastFpRip: u64,
+            Anonymous: extern struct {
+                LastFpEip: u32,
+                LastFpCs: u16,
+                Reserved2: u16,
+            },
+        },
+    },
     AsUINT128: WHV_UINT128,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_XMM_CONTROL_STATUS_REGISTER = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        Anonymous: extern union {
+            LastFpRdp: u64,
+            Anonymous: extern struct {
+                LastFpDp: u32,
+                LastFpDs: u16,
+                Reserved: u16,
+            },
+        },
+        XmmStatusControl: u32,
+        XmmStatusControlMask: u32,
+    },
     AsUINT128: WHV_UINT128,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_SEGMENT_REGISTER = extern struct {
     Base: u64,
     Limit: u32,
     Selector: u16,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u16,
+        },
+        Attributes: u16,
+    },
 };
 
 pub const WHV_X64_TABLE_REGISTER = extern struct {
@@ -589,21 +631,25 @@ pub const WHV_X64_TABLE_REGISTER = extern struct {
 };
 
 pub const WHV_X64_INTERRUPT_STATE_REGISTER = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_PENDING_INTERRUPTION_REGISTER = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u32,
+        ErrorCode: u32,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_PENDING_EVENT_TYPE = extern enum(i32) {
@@ -614,27 +660,34 @@ pub const WHvX64PendingEventException = WHV_X64_PENDING_EVENT_TYPE.ception;
 pub const WHvX64PendingEventExtInt = WHV_X64_PENDING_EVENT_TYPE.tInt;
 
 pub const WHV_X64_PENDING_EXCEPTION_EVENT = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u32,
+        ErrorCode: u32,
+        ExceptionParameter: u64,
+    },
     AsUINT128: WHV_UINT128,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_PENDING_EXT_INT_EVENT = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+        Reserved2: u64,
+    },
     AsUINT128: WHV_UINT128,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_INTERNAL_ACTIVITY_REGISTER = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_PENDING_DEBUG_EXCEPTION = extern union {
     AsUINT64: u64,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
 };
 
 pub const WHV_REGISTER_VALUE = extern union {
@@ -695,9 +748,10 @@ pub const WHvRunVpExitReasonX64ApicInitSipiTrap = WHV_RUN_VP_EXIT_REASON.X64Apic
 pub const WHvRunVpExitReasonCanceled = WHV_RUN_VP_EXIT_REASON.Canceled;
 
 pub const WHV_X64_VP_EXECUTION_STATE = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u16,
+    },
     AsUINT16: u16,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_VP_EXIT_CONTEXT = extern struct {
@@ -720,9 +774,10 @@ pub const WHvMemoryAccessWrite = WHV_MEMORY_ACCESS_TYPE.Write;
 pub const WHvMemoryAccessExecute = WHV_MEMORY_ACCESS_TYPE.Execute;
 
 pub const WHV_MEMORY_ACCESS_INFO = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
     AsUINT32: u32,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_MEMORY_ACCESS_CONTEXT = extern struct {
@@ -735,9 +790,10 @@ pub const WHV_MEMORY_ACCESS_CONTEXT = extern struct {
 };
 
 pub const WHV_X64_IO_PORT_ACCESS_INFO = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
     AsUINT32: u32,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_IO_PORT_ACCESS_CONTEXT = extern struct {
@@ -756,9 +812,10 @@ pub const WHV_X64_IO_PORT_ACCESS_CONTEXT = extern struct {
 };
 
 pub const WHV_X64_MSR_ACCESS_INFO = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
     AsUINT32: u32,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_MSR_ACCESS_CONTEXT = extern struct {
@@ -780,9 +837,10 @@ pub const WHV_X64_CPUID_ACCESS_CONTEXT = extern struct {
 };
 
 pub const WHV_VP_EXCEPTION_INFO = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
     AsUINT32: u32,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_VP_EXCEPTION_CONTEXT = extern struct {
@@ -836,9 +894,10 @@ pub const WHV_X64_APIC_EOI_CONTEXT = extern struct {
 };
 
 pub const WHV_X64_RDTSC_INFO = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u64,
+    },
     AsUINT64: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_X64_RDTSC_CONTEXT = extern struct {
@@ -874,8 +933,21 @@ pub const WHV_RUN_VP_EXIT_CONTEXT = extern struct {
     ExitReason: WHV_RUN_VP_EXIT_REASON,
     Reserved: u32,
     VpContext: WHV_VP_EXIT_CONTEXT,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        MemoryAccess: WHV_MEMORY_ACCESS_CONTEXT,
+        IoPortAccess: WHV_X64_IO_PORT_ACCESS_CONTEXT,
+        MsrAccess: WHV_X64_MSR_ACCESS_CONTEXT,
+        CpuidAccess: WHV_X64_CPUID_ACCESS_CONTEXT,
+        VpException: WHV_VP_EXCEPTION_CONTEXT,
+        InterruptWindow: WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT,
+        UnsupportedFeature: WHV_X64_UNSUPPORTED_FEATURE_CONTEXT,
+        CancelReason: WHV_RUN_VP_CANCELED_CONTEXT,
+        ApicEoi: WHV_X64_APIC_EOI_CONTEXT,
+        ReadTsc: WHV_X64_RDTSC_CONTEXT,
+        ApicSmi: WHV_X64_APIC_SMI_CONTEXT,
+        Hypercall: WHV_HYPERCALL_CONTEXT,
+        ApicInitSipi: WHV_X64_APIC_INIT_SIPI_CONTEXT,
+    },
 };
 
 pub const WHV_INTERRUPT_TYPE = extern enum(i32) {
@@ -981,9 +1053,10 @@ pub const WHV_PROCESSOR_APIC_COUNTERS = extern struct {
 };
 
 pub const WHV_EMULATOR_STATUS = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u32,
+    },
     AsUINT32: u32,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WHV_EMULATOR_MEMORY_ACCESS_INFO = extern struct {

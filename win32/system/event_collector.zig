@@ -137,10 +137,19 @@ pub const EcVarTypeString = EC_VARIANT_TYPE.TypeString;
 pub const EcVarObjectArrayPropertyHandle = EC_VARIANT_TYPE.ObjectArrayPropertyHandle;
 
 pub const EC_VARIANT = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        BooleanVal: BOOL,
+        UInt32Val: u32,
+        DateTimeVal: u64,
+        StringVal: [*:0]const u16,
+        BinaryVal: *u8,
+        BooleanArr: *BOOL,
+        Int32Arr: *i32,
+        StringArr: *PWSTR,
+        PropertyHandleVal: isize,
+    },
     Count: u32,
     Type: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const EC_SUBSCRIPTION_CONFIGURATION_MODE = extern enum(i32) {

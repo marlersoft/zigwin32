@@ -79,8 +79,22 @@ pub const DIAG_SOCKADDR = extern struct {
 pub const HELPER_ATTRIBUTE = extern struct {
     pwszName: PWSTR,
     type: ATTRIBUTE_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Boolean: BOOL,
+        Char: u8,
+        Byte: u8,
+        Short: i16,
+        Word: u16,
+        Int: i32,
+        DWord: u32,
+        Int64: i64,
+        UInt64: u64,
+        PWStr: PWSTR,
+        Guid: Guid,
+        LifeTime: LIFE_TIME,
+        Address: DIAG_SOCKADDR,
+        OctetString: OCTET_STRING,
+    },
 };
 
 pub const REPAIR_SCOPE = extern enum(i32) {
@@ -126,8 +140,12 @@ pub const ShellCommandInfo = extern struct {
 
 pub const UiInfo = extern struct {
     type: UI_INFO_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pwzNull: PWSTR,
+        ShellInfo: ShellCommandInfo,
+        pwzHelpUrl: PWSTR,
+        pwzDui: PWSTR,
+    },
 };
 
 pub const RepairInfo = extern struct {

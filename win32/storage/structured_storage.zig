@@ -1687,7 +1687,7 @@ pub const JET_OSSNAPID = usize;
 pub const JET_LS = usize;
 
 pub const PMemoryAllocator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -1981,14 +1981,98 @@ pub const CACLSID = extern struct {
 };
 
 pub const PROPVARIANT = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            vt: u16,
+            wReserved1: u16,
+            wReserved2: u16,
+            wReserved3: u16,
+            Anonymous: extern union {
+                cVal: CHAR,
+                bVal: u8,
+                iVal: i16,
+                uiVal: u16,
+                lVal: i32,
+                ulVal: u32,
+                intVal: i32,
+                uintVal: u32,
+                hVal: LARGE_INTEGER,
+                uhVal: ULARGE_INTEGER,
+                fltVal: f32,
+                dblVal: f64,
+                boolVal: i16,
+                __OBSOLETE__VARIANT_BOOL: i16,
+                scode: i32,
+                cyVal: CY,
+                date: f64,
+                filetime: FILETIME,
+                puuid: *Guid,
+                pclipdata: *CLIPDATA,
+                bstrVal: BSTR,
+                bstrblobVal: BSTRBLOB,
+                blob: BLOB,
+                pszVal: PSTR,
+                pwszVal: PWSTR,
+                punkVal: *IUnknown,
+                pdispVal: *IDispatch,
+                pStream: *IStream,
+                pStorage: *IStorage,
+                pVersionedStream: *VERSIONEDSTREAM,
+                parray: *SAFEARRAY,
+                cac: CAC,
+                caub: CAUB,
+                cai: CAI,
+                caui: CAUI,
+                cal: CAL,
+                caul: CAUL,
+                cah: CAH,
+                cauh: CAUH,
+                caflt: CAFLT,
+                cadbl: CADBL,
+                cabool: CABOOL,
+                cascode: CASCODE,
+                cacy: CACY,
+                cadate: CADATE,
+                cafiletime: CAFILETIME,
+                cauuid: CACLSID,
+                caclipdata: CACLIPDATA,
+                cabstr: CABSTR,
+                cabstrblob: CABSTRBLOB,
+                calpstr: CALPSTR,
+                calpwstr: CALPWSTR,
+                capropvar: CAPROPVARIANT,
+                pcVal: PSTR,
+                pbVal: *u8,
+                piVal: *i16,
+                puiVal: *u16,
+                plVal: *i32,
+                pulVal: *u32,
+                pintVal: *i32,
+                puintVal: *u32,
+                pfltVal: *f32,
+                pdblVal: *f64,
+                pboolVal: *i16,
+                pdecVal: *DECIMAL,
+                pscode: *i32,
+                pcyVal: *CY,
+                pdate: *f64,
+                pbstrVal: *BSTR,
+                ppunkVal: **IUnknown,
+                ppdispVal: **IDispatch,
+                pparray: **SAFEARRAY,
+                pvarVal: *PROPVARIANT,
+            },
+        },
+        decVal: DECIMAL,
+    },
 };
 
 pub const PROPSPEC = extern struct {
     ulKind: PROPSPEC_KIND,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        propid: u32,
+        lpwstr: PWSTR,
+    },
 };
 
 pub const STATPROPSTG = extern struct {
@@ -2317,14 +2401,22 @@ pub const JET_RSTMAP_W = extern struct {
 
 pub const CONVERT_A = extern struct {
     szOldDll: PSTR,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        fFlags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const CONVERT_W = extern struct {
     szOldDll: PWSTR,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        fFlags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const JET_SNPROG = extern struct {
@@ -2340,8 +2432,12 @@ pub const JET_DBINFOUPGRADE = extern struct {
     cbFreeSpaceRequiredLow: u32,
     cbFreeSpaceRequiredHigh: u32,
     csecToUpgrade: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ulFlags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const JET_OBJECTLIST = extern struct {
@@ -2529,14 +2625,18 @@ pub const JET_INDEXCREATE_A = extern struct {
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        lcid: u32,
+        pidxunicode: *JET_UNICODEINDEX,
+    },
+    Anonymous2: extern union {
+        cbVarSegMac: u32,
+        ptuplelimits: *JET_TUPLELIMITS,
+    },
     rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
     cConditionalColumn: u32,
     err: i32,
     cbKeyMost: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JET_INDEXCREATE_W = extern struct {
@@ -2546,14 +2646,18 @@ pub const JET_INDEXCREATE_W = extern struct {
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        lcid: u32,
+        pidxunicode: *JET_UNICODEINDEX,
+    },
+    Anonymous2: extern union {
+        cbVarSegMac: u32,
+        ptuplelimits: *JET_TUPLELIMITS,
+    },
     rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
     cConditionalColumn: u32,
     err: i32,
     cbKeyMost: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JET_INDEXCREATE2_A = extern struct {
@@ -2563,15 +2667,19 @@ pub const JET_INDEXCREATE2_A = extern struct {
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        lcid: u32,
+        pidxunicode: *JET_UNICODEINDEX,
+    },
+    Anonymous2: extern union {
+        cbVarSegMac: u32,
+        ptuplelimits: *JET_TUPLELIMITS,
+    },
     rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
     cConditionalColumn: u32,
     err: i32,
     cbKeyMost: u32,
     pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JET_INDEXCREATE2_W = extern struct {
@@ -2581,15 +2689,19 @@ pub const JET_INDEXCREATE2_W = extern struct {
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        lcid: u32,
+        pidxunicode: *JET_UNICODEINDEX,
+    },
+    Anonymous2: extern union {
+        cbVarSegMac: u32,
+        ptuplelimits: *JET_TUPLELIMITS,
+    },
     rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
     cConditionalColumn: u32,
     err: i32,
     cbKeyMost: u32,
     pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JET_INDEXCREATE3_A = extern struct {
@@ -2600,13 +2712,15 @@ pub const JET_INDEXCREATE3_A = extern struct {
     grbit: u32,
     ulDensity: u32,
     pidxunicode: *JET_UNICODEINDEX2,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        cbVarSegMac: u32,
+        ptuplelimits: *JET_TUPLELIMITS,
+    },
     rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
     cConditionalColumn: u32,
     err: i32,
     cbKeyMost: u32,
     pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JET_INDEXCREATE3_W = extern struct {
@@ -2617,13 +2731,15 @@ pub const JET_INDEXCREATE3_W = extern struct {
     grbit: u32,
     ulDensity: u32,
     pidxunicode: *JET_UNICODEINDEX2,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        cbVarSegMac: u32,
+        ptuplelimits: *JET_TUPLELIMITS,
+    },
     rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
     cConditionalColumn: u32,
     err: i32,
     cbKeyMost: u32,
     pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JET_TABLECREATE_A = extern struct {
@@ -2870,10 +2986,18 @@ pub const JET_LOGTIME = extern struct {
     bDay: CHAR,
     bMonth: CHAR,
     bYear: CHAR,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        bFiller1: CHAR,
+        Anonymous: extern struct {
+            _bitfield: u8,
+        },
+    },
+    Anonymous2: extern union {
+        bFiller2: CHAR,
+        Anonymous: extern struct {
+            _bitfield: u8,
+        },
+    },
 };
 
 pub const JET_BKLOGTIME = extern struct {
@@ -2883,10 +3007,18 @@ pub const JET_BKLOGTIME = extern struct {
     bDay: CHAR,
     bMonth: CHAR,
     bYear: CHAR,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        bFiller1: CHAR,
+        Anonymous: extern struct {
+            _bitfield: u8,
+        },
+    },
+    Anonymous2: extern union {
+        bFiller2: CHAR,
+        Anonymous: extern struct {
+            _bitfield: u8,
+        },
+    },
 };
 
 pub const JET_LGPOS = packed struct {
@@ -2903,10 +3035,12 @@ pub const JET_SIGNATURE = packed struct {
 
 pub const JET_BKINFO = packed struct {
     lgposMark: JET_LGPOS,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        logtimeMark: JET_LOGTIME,
+        bklogtimeMark: JET_BKLOGTIME,
+    },
     genLow: u32,
     genHigh: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const JET_DBINFOMISC = extern struct {
@@ -3202,8 +3336,16 @@ pub const JET_ENUMCOLUMNVALUE = extern struct {
 pub const JET_ENUMCOLUMN = extern struct {
     columnid: u32,
     err: i32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            cEnumColumnValue: u32,
+            rgEnumColumnValue: *JET_ENUMCOLUMNVALUE,
+        },
+        Anonymous2: extern struct {
+            cbData: u32,
+            pvData: *c_void,
+        },
+    },
 };
 
 pub const JET_PFNREALLOC = fn(
@@ -3302,8 +3444,8 @@ pub const JET_CALLBACK = fn(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_OBJECTINFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cbStruct: u32,
     objtyp: u32,
     dtCreate: f64,
@@ -3319,8 +3461,8 @@ pub const JET_OBJECTINFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_THREADSTATS2 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cbStruct: u32,
     cPageReferenced: u32,
     cPageRead: u32,
@@ -3338,8 +3480,8 @@ pub const JET_THREADSTATS2 = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_COMMIT_ID = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     signLog: JET_SIGNATURE,
     reserved: i32,
     commitId: i64,
@@ -3366,8 +3508,8 @@ pub const JET_PFNDURABLECOMMITCALLBACK = fn(
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_RECSIZE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cbData: u64,
     cbLongValueData: u64,
     cbOverhead: u64,
@@ -3383,8 +3525,8 @@ pub const JET_RECSIZE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const JET_RECSIZE2 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cbData: u64,
     cbLongValueData: u64,
     cbOverhead: u64,
@@ -5771,10 +5913,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
+const BLOB = @import("../system/com.zig").BLOB;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
 const FILETIME = @import("../system/windows_programming.zig").FILETIME;
@@ -5783,13 +5925,17 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const CY = @import("../system/system_services.zig").CY;
 const HRESULT = @import("../system/com.zig").HRESULT;
 const BSTRBLOB = @import("../system/system_services.zig").BSTRBLOB;
-const SERIALIZEDPROPERTYVALUE = @import("../ui/shell.zig").SERIALIZEDPROPERTYVALUE;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const BSTR = @import("../system/ole_automation.zig").BSTR;
 const PSTR = @import("../system/system_services.zig").PSTR;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
 const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
+const SERIALIZEDPROPERTYVALUE = @import("../ui/shell.zig").SERIALIZEDPROPERTYVALUE;
+const DECIMAL = @import("../system/system_services.zig").DECIMAL;
 const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const OLESTREAM = @import("../system/com.zig").OLESTREAM;
 const IBindStatusCallback = @import("../system/com.zig").IBindStatusCallback;
 const DVTARGETDEVICE = @import("../system/com.zig").DVTARGETDEVICE;

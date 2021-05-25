@@ -230,23 +230,23 @@ pub const NDR_SCONTEXT_1 = extern struct {
 };
 
 pub const _NDR_ASYNC_MESSAGE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _NDR_CORRELATION_INFO = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const NDR_ALLOC_ALL_NODES_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const NDR_POINTER_QUEUE_STATE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _NDR_PROC_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const RPC_BINDING_VECTOR = extern struct {
@@ -405,8 +405,9 @@ pub const RPC_SECURITY_QOS_V2_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_W,
+    },
 };
 
 pub const RPC_SECURITY_QOS_V2_A = extern struct {
@@ -415,8 +416,9 @@ pub const RPC_SECURITY_QOS_V2_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_A,
+    },
 };
 
 pub const RPC_SECURITY_QOS_V3_W = extern struct {
@@ -425,9 +427,10 @@ pub const RPC_SECURITY_QOS_V3_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_W,
+    },
     Sid: *c_void,
-    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_SECURITY_QOS_V3_A = extern struct {
@@ -436,9 +439,10 @@ pub const RPC_SECURITY_QOS_V3_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_A,
+    },
     Sid: *c_void,
-    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_SECURITY_QOS_V4_W = extern struct {
@@ -447,10 +451,11 @@ pub const RPC_SECURITY_QOS_V4_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_W,
+    },
     Sid: *c_void,
     EffectiveOnly: u32,
-    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_SECURITY_QOS_V4_A = extern struct {
@@ -459,10 +464,11 @@ pub const RPC_SECURITY_QOS_V4_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_A,
+    },
     Sid: *c_void,
     EffectiveOnly: u32,
-    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_SECURITY_QOS_V5_W = extern struct {
@@ -471,11 +477,12 @@ pub const RPC_SECURITY_QOS_V5_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_W,
+    },
     Sid: *c_void,
     EffectiveOnly: u32,
     ServerSecurityDescriptor: *c_void,
-    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_SECURITY_QOS_V5_A = extern struct {
@@ -484,11 +491,12 @@ pub const RPC_SECURITY_QOS_V5_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: _u_e__Union,
+    u: extern union {
+        HttpCredentials: *RPC_HTTP_TRANSPORT_CREDENTIALS_A,
+    },
     Sid: *c_void,
     EffectiveOnly: u32,
     ServerSecurityDescriptor: *c_void,
-    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_BINDING_HANDLE_TEMPLATE_V1_W = extern struct {
@@ -497,9 +505,10 @@ pub const RPC_BINDING_HANDLE_TEMPLATE_V1_W = extern struct {
     ProtocolSequence: u32,
     NetworkAddress: *u16,
     StringEndpoint: *u16,
-    u1: _u1_e__Union,
+    u1: extern union {
+        Reserved: *u16,
+    },
     ObjectUuid: Guid,
-    const _u1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_BINDING_HANDLE_TEMPLATE_V1_A = extern struct {
@@ -508,9 +517,10 @@ pub const RPC_BINDING_HANDLE_TEMPLATE_V1_A = extern struct {
     ProtocolSequence: u32,
     NetworkAddress: *u8,
     StringEndpoint: *u8,
-    u1: _u1_e__Union,
+    u1: extern union {
+        Reserved: *u8,
+    },
     ObjectUuid: Guid,
-    const _u1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_BINDING_HANDLE_SECURITY_V1_W = extern struct {
@@ -912,14 +922,22 @@ pub const PFN_RPCNOTIFICATION_ROUTINE = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RPC_ASYNC_NOTIFICATION_INFO = extern union {
-    APC: _APC_e__Struct,
-    IOC: _IOC_e__Struct,
-    IntPtr: _IntPtr_e__Struct,
+    APC: extern struct {
+        NotificationRoutine: PFN_RPCNOTIFICATION_ROUTINE,
+        hThread: HANDLE,
+    },
+    IOC: extern struct {
+        hIOPort: HANDLE,
+        dwNumberOfBytesTransferred: u32,
+        dwCompletionKey: usize,
+        lpOverlapped: *OVERLAPPED,
+    },
+    IntPtr: extern struct {
+        hWnd: HWND,
+        Msg: u32,
+    },
     hEvent: HANDLE,
     NotificationRoutine: PFN_RPCNOTIFICATION_ROUTINE,
-    const _IntPtr_e__Struct = u32; // TODO: generate this nested type!
-    const _APC_e__Struct = u32; // TODO: generate this nested type!
-    const _IOC_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_ASYNC_STATE = extern struct {
@@ -960,22 +978,30 @@ pub const BinaryParam = extern struct {
 
 pub const RPC_EE_INFO_PARAM = extern struct {
     ParameterType: ExtendedErrorParamTypes,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        AnsiString: PSTR,
+        UnicodeString: PWSTR,
+        LVal: i32,
+        SVal: i16,
+        PVal: u64,
+        BVal: BinaryParam,
+    },
 };
 
 pub const RPC_EXTENDED_ERROR_INFO = extern struct {
     Version: u32,
     ComputerName: PWSTR,
     ProcessID: u32,
-    u: _u_e__Union,
+    u: extern union {
+        SystemTime: SYSTEMTIME,
+        FileTime: FILETIME,
+    },
     GeneratingComponent: u32,
     Status: u32,
     DetectionLocation: u16,
     Flags: u16,
     NumberOfParameters: i32,
     Parameters: [4]RPC_EE_INFO_PARAM,
-    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RPC_ERROR_ENUM_HANDLE = extern struct {
@@ -1410,7 +1436,11 @@ pub const MIDL_STUB_DESC = extern struct {
     RpcInterfaceInformation: *c_void,
     pfnAllocate: isize,
     pfnFree: isize,
-    IMPLICIT_HANDLE_INFO: _IMPLICIT_HANDLE_INFO_e__Union,
+    IMPLICIT_HANDLE_INFO: extern union {
+        pAutoHandle: **c_void,
+        pPrimitiveHandle: **c_void,
+        pGenericBindingInfo: *GENERIC_BINDING_INFO,
+    },
     apfnNdrRundownRoutines: *const NDR_RUNDOWN,
     aGenericBindingRoutinePairs: *const GENERIC_BINDING_ROUTINE_PAIR,
     apfnExprEval: *const EXPR_EVAL,
@@ -1427,7 +1457,6 @@ pub const MIDL_STUB_DESC = extern struct {
     CsRoutineTables: *const NDR_CS_ROUTINES,
     ProxyServerInfo: *c_void,
     pExprInfo: *const NDR_EXPR_DESC,
-    const _IMPLICIT_HANDLE_INFO_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIDL_FORMAT_STRING = extern struct {
@@ -1599,8 +1628,9 @@ pub const NDR_USER_MARSHAL_INFO_LEVEL1 = extern struct {
 
 pub const NDR_USER_MARSHAL_INFO = extern struct {
     InformationLevel: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Level1: NDR_USER_MARSHAL_INFO_LEVEL1,
+    },
 };
 
 pub const MIDL_ES_CODE = extern enum(i32) {
@@ -5352,21 +5382,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const FILETIME = @import("../system/windows_programming.zig").FILETIME;
 const CERT_CONTEXT = @import("../security.zig").CERT_CONTEXT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const IRpcChannelBuffer = @import("../system/com.zig").IRpcChannelBuffer;
-const RPC_C_IMP_LEVEL = @import("../system/com.zig").RPC_C_IMP_LEVEL;
 const HRESULT = @import("../system/com.zig").HRESULT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const RPC_C_IMP_LEVEL = @import("../system/com.zig").RPC_C_IMP_LEVEL;
 const PSTR = @import("../system/system_services.zig").PSTR;
-const IRpcStubBuffer = @import("../system/com.zig").IRpcStubBuffer;
 const BOOL = @import("../system/system_services.zig").BOOL;
+const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const LUID = @import("../system/system_services.zig").LUID;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
+const IRpcChannelBuffer = @import("../system/com.zig").IRpcChannelBuffer;
+const IRpcStubBuffer = @import("../system/com.zig").IRpcStubBuffer;
+const HANDLE = @import("../system/system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

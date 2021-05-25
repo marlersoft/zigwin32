@@ -258,8 +258,46 @@ pub const PSS_HANDLE_ENTRY = extern struct {
     TypeName: [*:0]const u16,
     ObjectNameLength: u16,
     ObjectName: [*:0]const u16,
-    TypeSpecificInformation: _TypeSpecificInformation_e__Union,
-    const _TypeSpecificInformation_e__Union = u32; // TODO: generate this nested type!
+    TypeSpecificInformation: extern union {
+        Process: extern struct {
+            ExitStatus: u32,
+            PebBaseAddress: *c_void,
+            AffinityMask: usize,
+            BasePriority: i32,
+            ProcessId: u32,
+            ParentProcessId: u32,
+            Flags: u32,
+        },
+        Thread: extern struct {
+            ExitStatus: u32,
+            TebBaseAddress: *c_void,
+            ProcessId: u32,
+            ThreadId: u32,
+            AffinityMask: usize,
+            Priority: i32,
+            BasePriority: i32,
+            Win32StartAddress: *c_void,
+        },
+        Mutant: extern struct {
+            CurrentCount: i32,
+            Abandoned: BOOL,
+            OwnerProcessId: u32,
+            OwnerThreadId: u32,
+        },
+        Event: extern struct {
+            ManualReset: BOOL,
+            Signaled: BOOL,
+        },
+        Section: extern struct {
+            BaseAddress: *c_void,
+            AllocationAttributes: u32,
+            MaximumSize: LARGE_INTEGER,
+        },
+        Semaphore: extern struct {
+            CurrentCount: i32,
+            MaximumCount: i32,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -386,13 +424,15 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
-const MEMORY_BASIC_INFORMATION = @import("../../system/system_services.zig").MEMORY_BASIC_INFORMATION;
 const FILETIME = @import("../../system/windows_programming.zig").FILETIME;
-const HANDLE = @import("../../system/system_services.zig").HANDLE;
 const PWSTR = @import("../../system/system_services.zig").PWSTR;
+const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
+const MEMORY_BASIC_INFORMATION = @import("../../system/system_services.zig").MEMORY_BASIC_INFORMATION;
+const HANDLE = @import("../../system/system_services.zig").HANDLE;
 const CONTEXT = @import("../../system/diagnostics/debug.zig").CONTEXT;
+const BOOL = @import("../../system/system_services.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

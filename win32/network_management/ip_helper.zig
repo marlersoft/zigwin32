@@ -636,8 +636,9 @@ pub const NET_IF_ALIAS_LH = extern struct {
 
 pub const NET_LUID_LH = extern union {
     Value: u64,
-    Info: _Info_e__Struct,
-    const _Info_e__Struct = u32; // TODO: generate this nested type!
+    Info: extern struct {
+        _bitfield: u64,
+    },
 };
 
 pub const NET_IF_CONNECTION_TYPE = extern enum(i32) {
@@ -814,7 +815,9 @@ pub const MIB_IF_ROW2 = extern struct {
     PhysicalMediumType: NDIS_PHYSICAL_MEDIUM,
     AccessType: NET_IF_ACCESS_TYPE,
     DirectionType: NET_IF_DIRECTION_TYPE,
-    InterfaceAndOperStatusFlags: _InterfaceAndOperStatusFlags_e__Struct,
+    InterfaceAndOperStatusFlags: extern struct {
+        _bitfield: u8,
+    },
     OperStatus: IF_OPER_STATUS,
     AdminStatus: NET_IF_ADMIN_STATUS,
     MediaConnectState: NET_IF_MEDIA_CONNECT_STATE,
@@ -840,7 +843,6 @@ pub const MIB_IF_ROW2 = extern struct {
     OutMulticastOctets: u64,
     OutBroadcastOctets: u64,
     OutQLen: u64,
-    const _InterfaceAndOperStatusFlags_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_IF_TABLE2 = extern struct {
@@ -1036,11 +1038,13 @@ pub const MIB_IPPATH_ROW = extern struct {
     PathMtu: u32,
     RttMean: u32,
     RttDeviation: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        LastReachable: u32,
+        LastUnreachable: u32,
+    },
     IsReachable: u8,
     LinkTransmitSpeed: u64,
     LinkReceiveSpeed: u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_IPPATH_TABLE = extern struct {
@@ -1055,10 +1059,16 @@ pub const MIB_IPNET_ROW2 = extern struct {
     PhysicalAddress: [32]u8,
     PhysicalAddressLength: u32,
     State: NL_NEIGHBOR_STATE,
-    Anonymous: _Anonymous_e__Union,
-    ReachabilityTime: _ReachabilityTime_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-    const _ReachabilityTime_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u8,
+        },
+        Flags: u8,
+    },
+    ReachabilityTime: extern union {
+        LastReachable: u32,
+        LastUnreachable: u32,
+    },
 };
 
 pub const MIB_IPNET_TABLE2 = extern struct {
@@ -1188,8 +1198,14 @@ pub const MIB_IPFORWARDROW = extern struct {
     dwForwardPolicy: u32,
     dwForwardNextHop: u32,
     dwForwardIfIndex: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        dwForwardType: u32,
+        ForwardType: MIB_IPFORWARD_TYPE,
+    },
+    Anonymous2: extern union {
+        dwForwardProto: u32,
+        ForwardProto: NL_ROUTE_PROTOCOL,
+    },
     dwForwardAge: u32,
     dwForwardNextHopAS: u32,
     dwForwardMetric1: u32,
@@ -1197,8 +1213,6 @@ pub const MIB_IPFORWARDROW = extern struct {
     dwForwardMetric3: u32,
     dwForwardMetric4: u32,
     dwForwardMetric5: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_IPFORWARDTABLE = extern struct {
@@ -1222,8 +1236,10 @@ pub const MIB_IPNETROW_LH = extern struct {
     dwPhysAddrLen: u32,
     bPhysAddr: [8]u8,
     dwAddr: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwType: u32,
+        Type: MIB_IPNET_TYPE,
+    },
 };
 
 pub const MIB_IPNETROW_W2K = extern struct {
@@ -1247,7 +1263,10 @@ pub const MIB_IP_FORWARDING = MIB_IPSTATS_FORWARDING.FORWARDING;
 pub const MIB_IP_NOT_FORWARDING = MIB_IPSTATS_FORWARDING.NOT_FORWARDING;
 
 pub const MIB_IPSTATS_LH = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwForwarding: u32,
+        Forwarding: MIB_IPSTATS_FORWARDING,
+    },
     dwDefaultTTL: u32,
     dwInReceives: u32,
     dwInHdrErrors: u32,
@@ -1270,7 +1289,6 @@ pub const MIB_IPSTATS_LH = extern struct {
     dwNumIf: u32,
     dwNumAddr: u32,
     dwNumRoutes: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_IPSTATS_W2K = extern struct {
@@ -1571,12 +1589,14 @@ pub const TcpConnectionOffloadStateUploading = TCP_CONNECTION_OFFLOAD_STATE.Uplo
 pub const TcpConnectionOffloadStateMax = TCP_CONNECTION_OFFLOAD_STATE.Max;
 
 pub const MIB_TCPROW_LH = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwState: u32,
+        State: MIB_TCP_STATE,
+    },
     dwLocalAddr: u32,
     dwLocalPort: u32,
     dwRemoteAddr: u32,
     dwRemotePort: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_TCPROW_W2K = extern struct {
@@ -1723,7 +1743,10 @@ pub const MIB_TCP_RTO_RSRE = TCP_RTO_ALGORITHM.MIB_TCP_RTO_RSRE;
 pub const MIB_TCP_RTO_VANJ = TCP_RTO_ALGORITHM.MIB_TCP_RTO_VANJ;
 
 pub const MIB_TCPSTATS_LH = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwRtoAlgorithm: u32,
+        RtoAlgorithm: TCP_RTO_ALGORITHM,
+    },
     dwRtoMin: u32,
     dwRtoMax: u32,
     dwMaxConn: u32,
@@ -1738,7 +1761,6 @@ pub const MIB_TCPSTATS_LH = extern struct {
     dwInErrs: u32,
     dwOutRsts: u32,
     dwNumConns: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_TCPSTATS_W2K = extern struct {
@@ -1803,9 +1825,13 @@ pub const MIB_UDPROW_OWNER_MODULE = extern struct {
     dwLocalPort: u32,
     dwOwningPid: u32,
     liCreateTimestamp: LARGE_INTEGER,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: i32,
+        },
+        dwFlags: i32,
+    },
     OwningModuleInfo: [16]u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_UDPTABLE_OWNER_MODULE = extern struct {
@@ -1842,9 +1868,13 @@ pub const MIB_UDP6ROW_OWNER_MODULE = extern struct {
     dwLocalPort: u32,
     dwOwningPid: u32,
     liCreateTimestamp: LARGE_INTEGER,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: i32,
+        },
+        dwFlags: i32,
+    },
     OwningModuleInfo: [16]u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIB_UDP6TABLE_OWNER_MODULE = extern struct {
@@ -1973,8 +2003,10 @@ pub const MIB_ROUTESTATE = extern struct {
 
 pub const MIB_OPAQUE_INFO = extern struct {
     dwId: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ullAlign: u64,
+        rgbyData: [1]u8,
+    },
 };
 
 pub const IP_ADDRESS_STRING = extern struct {
@@ -2010,7 +2042,13 @@ pub const IP_ADAPTER_INFO = extern struct {
 };
 
 pub const IP_ADAPTER_UNICAST_ADDRESS_LH = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Flags: u32,
+        },
+    },
     Next: *IP_ADAPTER_UNICAST_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
     PrefixOrigin: NL_PREFIX_ORIGIN,
@@ -2020,11 +2058,16 @@ pub const IP_ADAPTER_UNICAST_ADDRESS_LH = extern struct {
     PreferredLifetime: u32,
     LeaseLifetime: u32,
     OnLinkPrefixLength: u8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_UNICAST_ADDRESS_XP = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Flags: u32,
+        },
+    },
     Next: *IP_ADAPTER_UNICAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
     PrefixOrigin: NL_PREFIX_ORIGIN,
@@ -2033,50 +2076,79 @@ pub const IP_ADAPTER_UNICAST_ADDRESS_XP = extern struct {
     ValidLifetime: u32,
     PreferredLifetime: u32,
     LeaseLifetime: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_ANYCAST_ADDRESS_XP = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Flags: u32,
+        },
+    },
     Next: *IP_ADAPTER_ANYCAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_MULTICAST_ADDRESS_XP = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Flags: u32,
+        },
+    },
     Next: *IP_ADAPTER_MULTICAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_DNS_SERVER_ADDRESS_XP = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Reserved: u32,
+        },
+    },
     Next: *IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_WINS_SERVER_ADDRESS_LH = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Reserved: u32,
+        },
+    },
     Next: *IP_ADAPTER_WINS_SERVER_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_GATEWAY_ADDRESS_LH = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Reserved: u32,
+        },
+    },
     Next: *IP_ADAPTER_GATEWAY_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_PREFIX_XP = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            Flags: u32,
+        },
+    },
     Next: *IP_ADAPTER_PREFIX_XP,
     Address: SOCKET_ADDRESS,
     PrefixLength: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_DNS_SUFFIX = extern struct {
@@ -2085,7 +2157,13 @@ pub const IP_ADAPTER_DNS_SUFFIX = extern struct {
 };
 
 pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            IfIndex: u32,
+        },
+    },
     Next: *IP_ADAPTER_ADDRESSES_LH,
     AdapterName: [*]u8,
     FirstUnicastAddress: *IP_ADAPTER_UNICAST_ADDRESS_LH,
@@ -2097,7 +2175,12 @@ pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
     FriendlyName: [*]u16,
     PhysicalAddress: [8]u8,
     PhysicalAddressLength: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     Mtu: u32,
     IfType: u32,
     OperStatus: IF_OPER_STATUS,
@@ -2121,12 +2204,16 @@ pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
     Dhcpv6ClientDuidLength: u32,
     Dhcpv6Iaid: u32,
     FirstDnsSuffix: *IP_ADAPTER_DNS_SUFFIX,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_ADDRESSES_XP = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Length: u32,
+            IfIndex: u32,
+        },
+    },
     Next: *IP_ADAPTER_ADDRESSES_XP,
     AdapterName: [*]u8,
     FirstUnicastAddress: *IP_ADAPTER_UNICAST_ADDRESS_XP,
@@ -2145,7 +2232,6 @@ pub const IP_ADAPTER_ADDRESSES_XP = extern struct {
     Ipv6IfIndex: u32,
     ZoneIndices: [16]u32,
     FirstPrefix: *IP_ADAPTER_PREFIX_XP,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_PER_ADAPTER_INFO_W2KSP1 = extern struct {

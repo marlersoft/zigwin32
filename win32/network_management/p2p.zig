@@ -149,8 +149,10 @@ pub const PNRPINFO_V2 = extern struct {
     saHint: SOCKET_ADDRESS,
     enNameState: PNRP_REGISTERED_ID_STATE,
     enExtendedPayloadType: PNRP_EXTENDED_PAYLOAD_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        blobPayload: BLOB,
+        pwszPayload: PWSTR,
+    },
 };
 
 pub const PNRPCLOUDINFO = extern struct {
@@ -357,8 +359,14 @@ pub const PEER_GRAPH_EVENT_REGISTRATION = extern struct {
 
 pub const PEER_GRAPH_EVENT_DATA = extern struct {
     eventType: PEER_GRAPH_EVENT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwStatus: PEER_GRAPH_STATUS_FLAGS,
+        incomingData: PEER_EVENT_INCOMING_DATA,
+        recordChangeData: PEER_EVENT_RECORD_CHANGE_DATA,
+        connectionChangeData: PEER_EVENT_CONNECTION_CHANGE_DATA,
+        nodeChangeData: PEER_EVENT_NODE_CHANGE_DATA,
+        synchronizedData: PEER_EVENT_SYNCHRONIZED_DATA,
+    },
 };
 
 pub const PFNPEER_VALIDATE_RECORD = fn(
@@ -542,8 +550,14 @@ pub const PEER_GROUP_EVENT_REGISTRATION = extern struct {
 
 pub const PEER_GROUP_EVENT_DATA = extern struct {
     eventType: PEER_GROUP_EVENT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwStatus: PEER_GROUP_STATUS,
+        incomingData: PEER_EVENT_INCOMING_DATA,
+        recordChangeData: PEER_EVENT_RECORD_CHANGE_DATA,
+        connectionChangeData: PEER_EVENT_CONNECTION_CHANGE_DATA,
+        memberChangeData: PEER_EVENT_MEMBER_CHANGE_DATA,
+        hrConnectionFailedReason: HRESULT,
+    },
 };
 
 pub const PEER_NAME_PAIR = extern struct {
@@ -763,8 +777,15 @@ pub const PEER_EVENT_REQUEST_STATUS_CHANGED_DATA = extern struct {
 
 pub const PEER_COLLAB_EVENT_DATA = extern struct {
     eventType: PEER_COLLAB_EVENT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        watchListChangedData: PEER_EVENT_WATCHLIST_CHANGED_DATA,
+        presenceChangedData: PEER_EVENT_PRESENCE_CHANGED_DATA,
+        applicationChangedData: PEER_EVENT_APPLICATION_CHANGED_DATA,
+        objectChangedData: PEER_EVENT_OBJECT_CHANGED_DATA,
+        endpointChangedData: PEER_EVENT_ENDPOINT_CHANGED_DATA,
+        peopleNearMeChangedData: PEER_EVENT_PEOPLE_NEAR_ME_CHANGED_DATA,
+        requestStatusChangedData: PEER_EVENT_REQUEST_STATUS_CHANGED_DATA,
+    },
 };
 
 pub const PEER_PNRP_ENDPOINT_INFO = extern struct {
@@ -960,8 +981,24 @@ pub const DRT_EVENT_DATA = extern struct {
     type: DRT_EVENT_TYPE,
     hr: HRESULT,
     pvContext: *c_void,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        leafsetKeyChange: extern struct {
+            change: DRT_LEAFSET_KEY_CHANGE_TYPE,
+            localKey: DRT_DATA,
+            remoteKey: DRT_DATA,
+        },
+        registrationStateChange: extern struct {
+            state: DRT_REGISTRATION_STATE,
+            localKey: DRT_DATA,
+        },
+        statusChange: extern struct {
+            status: DRT_STATUS,
+            bootstrapAddresses: extern struct {
+                cntAddress: u32,
+                pAddresses: *SOCKADDR_STORAGE,
+            },
+        },
+    },
 };
 
 pub const PEERDIST_STATUS = extern enum(i32) {
@@ -2360,9 +2397,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BLOB = @import("../system/com.zig").BLOB;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
 const FILETIME = @import("../system/windows_programming.zig").FILETIME;
 const CERT_CONTEXT = @import("../security.zig").CERT_CONTEXT;

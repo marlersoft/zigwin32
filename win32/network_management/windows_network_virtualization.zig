@@ -53,8 +53,11 @@ pub const WNV_NOTIFICATION_PARAM = extern struct {
 };
 
 pub const WNV_IP_ADDRESS = extern struct {
-    IP: _IP_e__Union,
-    const _IP_e__Union = u32; // TODO: generate this nested type!
+    IP: extern union {
+        v4: IN_ADDR,
+        v6: IN6_ADDR,
+        Addr: [16]u8,
+    },
 };
 
 pub const WNV_POLICY_MISMATCH_PARAM = extern struct {
@@ -83,8 +86,10 @@ pub const WNV_CUSTOMER_ADDRESS_CHANGE_PARAM = extern struct {
 
 pub const WNV_OBJECT_CHANGE_PARAM = extern struct {
     ObjectType: WNV_OBJECT_TYPE,
-    ObjectParam: _ObjectParam_e__Union,
-    const _ObjectParam_e__Union = u32; // TODO: generate this nested type!
+    ObjectParam: extern union {
+        ProviderAddressChange: WNV_PROVIDER_ADDRESS_CHANGE_PARAM,
+        CustomerAddressChange: WNV_CUSTOMER_ADDRESS_CHANGE_PARAM,
+    },
 };
 
 pub const WNV_REDIRECT_PARAM = extern struct {
@@ -127,8 +132,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
+const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
+const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const DL_EUI48 = @import("../network_management/windows_filtering_platform.zig").DL_EUI48;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;

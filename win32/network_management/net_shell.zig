@@ -148,11 +148,16 @@ pub const PNS_OSVERSIONCHECK = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NS_HELPER_ATTRIBUTES = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            dwVersion: u32,
+            dwReserved: u32,
+        },
+        _ullAlign: u64,
+    },
     guidHelper: Guid,
     pfnStart: PNS_HELPER_START_FN,
     pfnStop: PNS_HELPER_STOP_FN,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMD_ENTRY = extern struct {
@@ -174,7 +179,13 @@ pub const CMD_GROUP_ENTRY = extern struct {
 };
 
 pub const NS_CONTEXT_ATTRIBUTES = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            dwVersion: u32,
+            dwReserved: u32,
+        },
+        _ullAlign: u64,
+    },
     pwszContext: PWSTR,
     guidHelper: Guid,
     dwFlags: u32,
@@ -188,7 +199,6 @@ pub const NS_CONTEXT_ATTRIBUTES = extern struct {
     pfnConnectFn: PNS_CONTEXT_CONNECT_FN,
     pReserved: *c_void,
     pfnOsVersionCheck: PNS_OSVERSIONCHECK,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const TAG_TYPE = extern struct {

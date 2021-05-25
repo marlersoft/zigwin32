@@ -133,11 +133,15 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const DBID = extern struct {
-    uGuid: _uGuid_e__Union,
+    uGuid: extern union {
+        guid: Guid,
+        pguid: *Guid,
+    },
     eKind: u32,
-    uName: _uName_e__Union,
-    const _uGuid_e__Union = u32; // TODO: generate this nested type!
-    const _uName_e__Union = u32; // TODO: generate this nested type!
+    uName: extern union {
+        pwszName: PWSTR,
+        ulPropid: u32,
+    },
 };
 
 }, else => struct { } };
@@ -364,13 +368,19 @@ pub const DBKIND_GUID = DBKINDENUM.GUID;
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DBID = extern struct {
-    uGuid: _uGuid_e__Union,
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    uGuid: extern union {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        guid: Guid,
+        pguid: *Guid,
+    },
     eKind: u32,
-    uName: _uName_e__Union,
-    const _uGuid_e__Union = u32; // TODO: generate this nested type!
-    const _uName_e__Union = u32; // TODO: generate this nested type!
+    uName: extern union {
+        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        pwszName: PWSTR,
+        ulPropid: u32,
+    },
 };
 
 }, else => struct { } };
@@ -425,8 +435,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const PROPSPEC = @import("../storage/structured_storage.zig").PROPSPEC;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PROPSPEC = @import("../storage/structured_storage.zig").PROPSPEC;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../system/com.zig").HRESULT;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;

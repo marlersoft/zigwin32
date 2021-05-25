@@ -2605,8 +2605,8 @@ pub const IDirectSoundFullDuplex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const DMUS_EVENTHEADER = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cbEvent: u32,
     dwChannelGroup: u32,
     rtDelta: i64,

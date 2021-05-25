@@ -798,11 +798,11 @@ pub const DMUS_ERRBASE = @as(u32, 4096);
 // Section: Types (489)
 //--------------------------------------------------------------------------------
 pub const IEnumContextProps = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IContext = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const REGCLS = extern enum(i32) {
@@ -4201,20 +4201,41 @@ pub const RemSTGMEDIUM = extern struct {
 
 pub const STGMEDIUM = extern struct {
     tymed: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hBitmap: HBITMAP,
+        hMetaFilePict: *c_void,
+        hEnhMetaFile: HENHMETAFILE,
+        hGlobal: isize,
+        lpszFileName: PWSTR,
+        pstm: *IStream,
+        pstg: *IStorage,
+    },
     pUnkForRelease: *IUnknown,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const GDI_OBJECT = extern struct {
     ObjectType: u32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        hBitmap: *userHBITMAP,
+        hPalette: *userHPALETTE,
+        hGeneric: *userHGLOBAL,
+    },
 };
 
 pub const userSTGMEDIUM = extern struct {
+    pub const _STGMEDIUM_UNION = extern struct {
+        tymed: u32,
+        u: extern struct {
+            hMetaFilePict: *userHMETAFILEPICT,
+            hHEnhMetaFile: *userHENHMETAFILE,
+            hGdiHandle: *GDI_OBJECT,
+            hGlobal: *userHGLOBAL,
+            lpszFileName: PWSTR,
+            pstm: *BYTE_BLOB,
+            pstg: *BYTE_BLOB,
+        },
+    };
     pUnkForRelease: *IUnknown,
-    const _STGMEDIUM_UNION = u32; // TODO: generate this nested type!
 };
 
 pub const userFLAG_STGMEDIUM = extern struct {
@@ -12565,8 +12586,23 @@ pub const FONTDESC = extern struct {
 pub const PICTDESC = extern struct {
     cbSizeofstruct: u32,
     picType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        bmp: extern struct {
+            hbitmap: HBITMAP,
+            hpal: HPALETTE,
+        },
+        wmf: extern struct {
+            hmeta: HMETAFILE,
+            xExt: i32,
+            yExt: i32,
+        },
+        icon: extern struct {
+            hicon: HICON,
+        },
+        emf: extern struct {
+            hemf: HENHMETAFILE,
+        },
+    },
 };
 
 pub const OLE_TRISTATE = extern enum(i32) {
@@ -18166,7 +18202,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (61)
+// Section: Imports (68)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
@@ -18175,6 +18211,7 @@ const FILETIME = @import("../system/windows_programming.zig").FILETIME;
 const HANDLE_PTR = @import("../system/system_services.zig").HANDLE_PTR;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
 const TRUSTEE_A = @import("../security.zig").TRUSTEE_A;
+const userHENHMETAFILE = @import("../system/system_services.zig").userHENHMETAFILE;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
 const LRESULT = @import("../system/system_services.zig").LRESULT;
@@ -18188,8 +18225,10 @@ const IStream = @import("../storage/structured_storage.zig").IStream;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
 const UNDOCK_REASON = @import("../ui/shell.zig").UNDOCK_REASON;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
+const userHPALETTE = @import("../system/system_services.zig").userHPALETTE;
+const HMETAFILE = @import("../graphics/gdi.zig").HMETAFILE;
 const IXMLElement = @import("../system/windows_programming.zig").IXMLElement;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
 const BSTR = @import("../system/ole_automation.zig").BSTR;
 const IStorage = @import("../storage/structured_storage.zig").IStorage;
@@ -18202,24 +18241,28 @@ const HANDLE = @import("../system/system_services.zig").HANDLE;
 const SOFTDISTINFO = @import("../ui/shell.zig").SOFTDISTINFO;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
+const userHMETAFILEPICT = @import("../system/system_services.zig").userHMETAFILEPICT;
 const POINTL = @import("../ui/display_devices.zig").POINTL;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
+const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
 const CY = @import("../system/system_services.zig").CY;
+const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const OPENFILENAMEA = @import("../ui/windows_and_messaging.zig").OPENFILENAMEA;
-const ACE_FLAGS = @import("../security.zig").ACE_FLAGS;
 const HFONT = @import("../graphics/gdi.zig").HFONT;
 const IEventObjectCollection = @import("../system/component_services.zig").IEventObjectCollection;
-const HCURSOR = @import("../ui/menus_and_resources.zig").HCURSOR;
+const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
+const ACE_FLAGS = @import("../security.zig").ACE_FLAGS;
 const BOOL = @import("../system/system_services.zig").BOOL;
+const HCURSOR = @import("../ui/menus_and_resources.zig").HCURSOR;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const TEXTMETRICW = @import("../graphics/gdi.zig").TEXTMETRICW;
 const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
 const ITypeInfo = @import("../system/ole_automation.zig").ITypeInfo;
 const HICON = @import("../ui/menus_and_resources.zig").HICON;
 const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;
+const userHBITMAP = @import("../system/system_services.zig").userHBITMAP;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const userHGLOBAL = @import("../system/system_services.zig").userHGLOBAL;
 const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const LOGPALETTE = @import("../graphics/gdi.zig").LOGPALETTE;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;

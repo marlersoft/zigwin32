@@ -290,8 +290,10 @@ pub const UI_EVENTPARAMS_COMMAND = extern struct {
 
 pub const UI_EVENTPARAMS = extern struct {
     EventType: UI_EVENTTYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Modes: i32,
+        Params: UI_EVENTPARAMS_COMMAND,
+    },
 };
 
 // TODO: this type is limited to platform 'windows8.0'

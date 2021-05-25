@@ -1707,8 +1707,8 @@ pub const DIDIFT_DELETE = @as(u32, 16777216);
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HIDP_LINK_COLLECTION_NODE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     LinkUsage: u16,
     LinkUsagePage: u16,
     Parent: u16,
@@ -1722,14 +1722,14 @@ pub const HIDP_LINK_COLLECTION_NODE = extern struct {
 }, else => struct { } };
 
 pub const _HIDP_PREPARSED_DATA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     NumGlobalUnknowns: u8,
     Reserved: [3]u8,
     GlobalUnknowns: *HIDP_UNKNOWN_TOKEN,
@@ -1741,8 +1741,8 @@ pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HIDD_CONFIGURATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cookie: *c_void,
     size: u32,
     RingBufferSize: u32,
@@ -1982,22 +1982,26 @@ pub const DIACTIONA = extern struct {
     uAppData: usize,
     dwSemantic: u32,
     dwFlags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        lptszActionName: [*:0]const u8,
+        uResIdString: u32,
+    },
     guidInstance: Guid,
     dwObjID: u32,
     dwHow: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DIACTIONW = extern struct {
     uAppData: usize,
     dwSemantic: u32,
     dwFlags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        lptszActionName: [*:0]const u16,
+        uResIdString: u32,
+    },
     guidInstance: Guid,
     dwObjID: u32,
     dwHow: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DIACTIONFORMATA = extern struct {
@@ -4540,12 +4544,17 @@ pub const KEYBOARD_IME_STATUS = extern struct {
 pub const MOUSE_INPUT_DATA = extern struct {
     UnitId: u16,
     Flags: u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Buttons: u32,
+        Anonymous: extern struct {
+            ButtonFlags: u16,
+            ButtonData: u16,
+        },
+    },
     RawButtons: u32,
     LastX: i32,
     LastY: i32,
     ExtraInformation: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MOUSE_ATTRIBUTES = extern struct {
@@ -4586,8 +4595,28 @@ pub const HIDP_BUTTON_CAPS = extern struct {
     IsDesignatorRange: u8,
     IsAbsolute: u8,
     Reserved: [10]u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Range: extern struct {
+            UsageMin: u16,
+            UsageMax: u16,
+            StringMin: u16,
+            StringMax: u16,
+            DesignatorMin: u16,
+            DesignatorMax: u16,
+            DataIndexMin: u16,
+            DataIndexMax: u16,
+        },
+        NotRange: extern struct {
+            Usage: u16,
+            Reserved1: u16,
+            StringIndex: u16,
+            Reserved2: u16,
+            DesignatorIndex: u16,
+            Reserved3: u16,
+            DataIndex: u16,
+            Reserved4: u16,
+        },
+    },
 };
 
 pub const HIDP_VALUE_CAPS = extern struct {
@@ -4613,8 +4642,28 @@ pub const HIDP_VALUE_CAPS = extern struct {
     LogicalMax: i32,
     PhysicalMin: i32,
     PhysicalMax: i32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Range: extern struct {
+            UsageMin: u16,
+            UsageMax: u16,
+            StringMin: u16,
+            StringMax: u16,
+            DesignatorMin: u16,
+            DesignatorMax: u16,
+            DataIndexMin: u16,
+            DataIndexMax: u16,
+        },
+        NotRange: extern struct {
+            Usage: u16,
+            Reserved1: u16,
+            StringIndex: u16,
+            Reserved2: u16,
+            DesignatorIndex: u16,
+            Reserved3: u16,
+            DataIndex: u16,
+            Reserved4: u16,
+        },
+    },
 };
 
 pub const HIDP_CAPS = extern struct {
@@ -4639,8 +4688,10 @@ pub const HIDP_CAPS = extern struct {
 pub const HIDP_DATA = extern struct {
     DataIndex: u16,
     Reserved: u16,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        RawValue: u32,
+        On: u8,
+    },
 };
 
 pub const HIDP_UNKNOWN_TOKEN = extern struct {
@@ -4657,8 +4708,12 @@ pub const HidP_Keyboard_Break = HIDP_KEYBOARD_DIRECTION.Break;
 pub const HidP_Keyboard_Make = HIDP_KEYBOARD_DIRECTION.Make;
 
 pub const HIDP_KEYBOARD_MODIFIER_STATE = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        ul: u32,
+    },
 };
 
 pub const PHIDP_INSERT_SCANCODES = fn(
@@ -5194,10 +5249,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("../system/registry.zig").HKEY;
 const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../system/system_services.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const FILETIME = @import("../system/windows_programming.zig").FILETIME;
 const HRESULT = @import("../system/com.zig").HRESULT;
 const joyreguservalues_tag = @import("../media/multimedia.zig").joyreguservalues_tag;
 const PSTR = @import("../system/system_services.zig").PSTR;

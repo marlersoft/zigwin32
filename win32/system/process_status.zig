@@ -18,8 +18,9 @@ pub const MODULEINFO = extern struct {
 
 pub const PSAPI_WORKING_SET_BLOCK = extern union {
     Flags: usize,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        _bitfield: usize,
+    },
 };
 
 pub const PSAPI_WORKING_SET_INFORMATION = extern struct {
@@ -29,8 +30,14 @@ pub const PSAPI_WORKING_SET_INFORMATION = extern struct {
 
 pub const PSAPI_WORKING_SET_EX_BLOCK = extern union {
     Flags: usize,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: usize,
+        },
+        Invalid: extern struct {
+            _bitfield: usize,
+        },
+    },
 };
 
 pub const PSAPI_WORKING_SET_EX_INFORMATION = extern struct {

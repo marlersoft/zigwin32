@@ -278,15 +278,15 @@ pub const CLSID_ITEngStemmer = Guid.initString("8fa0d5a8-dedf-11d0-9a61-00c04fb6
 // Section: Types (27)
 //--------------------------------------------------------------------------------
 pub const IITGroup = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IITQuery = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IITStopWordList = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -423,9 +423,12 @@ pub const CProperty = extern struct {
     dwPropID: u32,
     cbData: u32,
     dwType: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        lpszwData: PWSTR,
+        lpvData: *c_void,
+        dwValue: u32,
+    },
     fPersist: BOOL,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 const IID_IITPropList_Value = @import("../zig.zig").Guid.initString("1f403bb1-9997-11d0-a850-00aa006c7d01");

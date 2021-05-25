@@ -908,14 +908,20 @@ pub const INTERNET_PROXY_INFO = extern struct {
 
 pub const INTERNET_PER_CONN_OPTIONA = extern struct {
     dwOption: INTERNET_PER_CONN,
-    Value: _Value_e__Union,
-    const _Value_e__Union = u32; // TODO: generate this nested type!
+    Value: extern union {
+        dwValue: u32,
+        pszValue: PSTR,
+        ftValue: FILETIME,
+    },
 };
 
 pub const INTERNET_PER_CONN_OPTIONW = extern struct {
     dwOption: INTERNET_PER_CONN,
-    Value: _Value_e__Union,
-    const _Value_e__Union = u32; // TODO: generate this nested type!
+    Value: extern union {
+        dwValue: u32,
+        pszValue: PWSTR,
+        ftValue: FILETIME,
+    },
 };
 
 pub const INTERNET_PER_CONN_OPTION_LISTA = extern struct {
@@ -1170,8 +1176,25 @@ pub const GOPHER_UNKNOWN_ATTRIBUTE_TYPE = extern struct {
 pub const GOPHER_ATTRIBUTE_TYPE = extern struct {
     CategoryId: u32,
     AttributeId: u32,
-    AttributeType: _AttributeType_e__Union,
-    const _AttributeType_e__Union = u32; // TODO: generate this nested type!
+    AttributeType: extern union {
+        Admin: GOPHER_ADMIN_ATTRIBUTE_TYPE,
+        ModDate: GOPHER_MOD_DATE_ATTRIBUTE_TYPE,
+        Ttl: GOPHER_TTL_ATTRIBUTE_TYPE,
+        Score: GOPHER_SCORE_ATTRIBUTE_TYPE,
+        ScoreRange: GOPHER_SCORE_RANGE_ATTRIBUTE_TYPE,
+        Site: GOPHER_SITE_ATTRIBUTE_TYPE,
+        Organization: GOPHER_ORGANIZATION_ATTRIBUTE_TYPE,
+        Location: GOPHER_LOCATION_ATTRIBUTE_TYPE,
+        GeographicalLocation: GOPHER_GEOGRAPHICAL_LOCATION_ATTRIBUTE_TYPE,
+        TimeZone: GOPHER_TIMEZONE_ATTRIBUTE_TYPE,
+        Provider: GOPHER_PROVIDER_ATTRIBUTE_TYPE,
+        Version: GOPHER_VERSION_ATTRIBUTE_TYPE,
+        Abstract: GOPHER_ABSTRACT_ATTRIBUTE_TYPE,
+        View: GOPHER_VIEW_ATTRIBUTE_TYPE,
+        Veronica: GOPHER_VERONICA_ATTRIBUTE_TYPE,
+        Ask: GOPHER_ASK_ATTRIBUTE_TYPE,
+        Unknown: GOPHER_UNKNOWN_ATTRIBUTE_TYPE,
+    },
 };
 
 pub const GOPHER_ATTRIBUTE_ENUMERATOR = fn(
@@ -1218,8 +1241,10 @@ pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
     lpHeaderInfo: PSTR,
     dwHeaderInfoSize: u32,
     lpszFileExtension: PSTR,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwReserved: u32,
+        dwExemptDelta: u32,
+    },
 };
 
 pub const INTERNET_CACHE_ENTRY_INFOW = extern struct {
@@ -1238,8 +1263,10 @@ pub const INTERNET_CACHE_ENTRY_INFOW = extern struct {
     lpHeaderInfo: PWSTR,
     dwHeaderInfoSize: u32,
     lpszFileExtension: PWSTR,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwReserved: u32,
+        dwExemptDelta: u32,
+    },
 };
 
 pub const INTERNET_CACHE_TIMESTAMPS = extern struct {
@@ -1545,8 +1572,13 @@ pub const INTERNET_CREDENTIALS = extern struct {
     lpcwszUrl: [*:0]const u16,
     lpcwszRealm: [*:0]const u16,
     fAuthIdentity: BOOL,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            lpcwszUserName: [*:0]const u16,
+            lpcwszPassword: [*:0]const u16,
+        },
+        pAuthIdentityOpaque: *c_void,
+    },
 };
 
 pub const HTTP_PUSH_TRANSPORT_SETTING = extern struct {
@@ -1608,10 +1640,15 @@ pub const INTERNET_CACHE_CONFIG_INFOA = extern struct {
     fPerUser: BOOL,
     dwSyncMode: u32,
     dwNumCachePaths: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            CachePath: [260]CHAR,
+            dwCacheSize: u32,
+        },
+        CachePaths: [1]INTERNET_CACHE_CONFIG_PATH_ENTRYA,
+    },
     dwNormalUsage: u32,
     dwExemptUsage: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const INTERNET_CACHE_CONFIG_INFOW = extern struct {
@@ -1622,10 +1659,15 @@ pub const INTERNET_CACHE_CONFIG_INFOW = extern struct {
     fPerUser: BOOL,
     dwSyncMode: u32,
     dwNumCachePaths: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            CachePath: [260]u16,
+            dwCacheSize: u32,
+        },
+        CachePaths: [1]INTERNET_CACHE_CONFIG_PATH_ENTRYW,
+    },
     dwNormalUsage: u32,
     dwExemptUsage: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const INTERNET_CACHE_CONTAINER_INFOA = extern struct {
@@ -4589,8 +4631,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
 const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../system/system_services.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const CERT_CONTEXT = @import("../security.zig").CERT_CONTEXT;

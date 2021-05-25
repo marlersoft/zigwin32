@@ -1603,135 +1603,135 @@ pub const IS_TEXT_UNICODE_NOT_UNICODE_MASK = IS_TEXT_UNICODE_RESULT.NOT_UNICODE_
 pub const IS_TEXT_UNICODE_NOT_ASCII_MASK = IS_TEXT_UNICODE_RESULT.NOT_ASCII_MASK;
 
 pub const UEnumeration = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UResourceBundle = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const ULocaleDisplayNames = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UConverter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const USet = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UBiDi = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UBiDiTransform = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UNormalizer2 = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UConverterSelector = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UBreakIterator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UCaseMap = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UStringPrepProfile = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UIDNA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UCollator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UCollationElements = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UCharsetDetector = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UCharsetMatch = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UFieldPositionIterator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UDateIntervalFormat = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UGenderInfo = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UListFormatter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const ULocaleData = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UDateFormatSymbols = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UNumberFormatter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UFormattedNumber = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UNumberingSystem = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UPluralRules = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const URegularExpression = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const URegion = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const URelativeDateTimeFormatter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UStringSearch = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const USpoofChecker = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const USpoofCheckResult = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const HIMC = ?*opaque{};
@@ -2866,34 +2866,44 @@ pub const IFECommon = extern struct {
 
 pub const WDD = packed struct {
     wDispPos: u16,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: packed union {
+        wReadPos: u16,
+        wCompPos: u16,
+    },
     cchDisp: u16,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: packed union {
+        cchRead: u16,
+        cchComp: u16,
+    },
     WDD_nReserve1: u32,
     nPos: u16,
     _bitfield: u16,
     pReserved: *c_void,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MORRSLT = packed struct {
     dwSize: u32,
     pwchOutput: PWSTR,
     cchOutput: u16,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: packed union {
+        pwchRead: PWSTR,
+        pwchComp: PWSTR,
+    },
+    Anonymous2: packed union {
+        cchRead: u16,
+        cchComp: u16,
+    },
     pchInputPos: *u16,
     pchOutputIdxWDD: *u16,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous3: packed union {
+        pchReadIdxWDD: *u16,
+        pchCompIdxWDD: *u16,
+    },
     paMonoRubyPos: *u16,
     pWDD: *WDD,
     cWDD: i32,
     pPrivate: *c_void,
     BLKBuff: u16,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 const IID_IFELanguage_Value = @import("zig.zig").Guid.initString("019f7152-e6db-11d0-83c3-00c04fddb82e");
@@ -3048,12 +3058,17 @@ pub const IFED_UCT_MAX = IMEUCT.MAX;
 pub const IMEWRD = packed struct {
     pwchReading: PWSTR,
     pwchDisplay: PWSTR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        ulPos: u32,
+        Anonymous: packed struct {
+            nPos1: u16,
+            nPos2: u16,
+        },
+    },
     rgulAttrs: [2]u32,
     cbComment: i32,
     uct: IMEUCT,
     pvComment: *c_void,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMESHF = packed struct {
@@ -3321,10 +3336,14 @@ pub const IMEKMSKEY = packed struct {
     dwStatus: u32,
     dwCompStatus: u32,
     dwVKEY: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: packed union {
+        dwControl: u32,
+        dwNotUsed: u32,
+    },
+    Anonymous2: packed union {
+        pwszDscr: [31]u16,
+        pwszNoUse: [31]u16,
+    },
 };
 
 pub const IMEKMS = packed struct {
@@ -3440,7 +3459,10 @@ pub const INPUTCONTEXT = extern struct {
     ptSoftKbdPos: POINT,
     fdwConversion: u32,
     fdwSentence: u32,
-    lfFont: _lfFont_e__Union,
+    lfFont: extern union {
+        A: LOGFONTA,
+        W: LOGFONTW,
+    },
     cfCompForm: COMPOSITIONFORM,
     cfCandForm: [4]CANDIDATEFORM,
     hCompStr: HIMCC,
@@ -3451,7 +3473,6 @@ pub const INPUTCONTEXT = extern struct {
     hMsgBuf: HIMCC,
     fdwInit: u32,
     dwReserve: [3]u32,
-    const _lfFont_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMEINFO = extern struct {

@@ -65,7 +65,7 @@ pub const WBEMS_DISPID_CONNECTION_READY = @as(u32, 5);
 // Section: Types (356)
 //--------------------------------------------------------------------------------
 pub const MI_Module_Self = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const MI_Result = extern enum(i32) {
@@ -308,8 +308,10 @@ pub const MI_Interval = extern struct {
 
 pub const MI_Datetime = extern struct {
     isTimestamp: u32,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        timestamp: MI_Timestamp,
+        interval: MI_Interval,
+    },
 };
 
 pub const MI_BooleanA = extern struct {
@@ -1484,8 +1486,10 @@ pub const MI_UsernamePasswordCreds = extern struct {
 
 pub const MI_UserCredentials = extern struct {
     authenticationType: *const u16,
-    credentials: _credentials_e__Union,
-    const _credentials_e__Union = u32; // TODO: generate this nested type!
+    credentials: extern union {
+        usernamePassword: MI_UsernamePasswordCreds,
+        certificateThumbprint: *const u16,
+    },
 };
 
 pub const MI_SubscriptionDeliveryType = extern enum(i32) {

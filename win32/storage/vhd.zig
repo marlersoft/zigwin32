@@ -35,8 +35,22 @@ pub const OPEN_VIRTUAL_DISK_VERSION_3 = OPEN_VIRTUAL_DISK_VERSION.@"3";
 
 pub const OPEN_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: OPEN_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            RWDepth: u32,
+        },
+        Version2: extern struct {
+            GetInfoOnly: BOOL,
+            ReadOnly: BOOL,
+            ResiliencyGuid: Guid,
+        },
+        Version3: extern struct {
+            GetInfoOnly: BOOL,
+            ReadOnly: BOOL,
+            ResiliencyGuid: Guid,
+            SnapshotId: Guid,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -106,8 +120,61 @@ pub const CREATE_VIRTUAL_DISK_VERSION_4 = CREATE_VIRTUAL_DISK_VERSION.@"4";
 
 pub const CREATE_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: CREATE_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            UniqueId: Guid,
+            MaximumSize: u64,
+            BlockSizeInBytes: u32,
+            SectorSizeInBytes: u32,
+            ParentPath: [*:0]const u16,
+            SourcePath: [*:0]const u16,
+        },
+        Version2: extern struct {
+            UniqueId: Guid,
+            MaximumSize: u64,
+            BlockSizeInBytes: u32,
+            SectorSizeInBytes: u32,
+            PhysicalSectorSizeInBytes: u32,
+            ParentPath: [*:0]const u16,
+            SourcePath: [*:0]const u16,
+            OpenFlags: OPEN_VIRTUAL_DISK_FLAG,
+            ParentVirtualStorageType: VIRTUAL_STORAGE_TYPE,
+            SourceVirtualStorageType: VIRTUAL_STORAGE_TYPE,
+            ResiliencyGuid: Guid,
+        },
+        Version3: extern struct {
+            UniqueId: Guid,
+            MaximumSize: u64,
+            BlockSizeInBytes: u32,
+            SectorSizeInBytes: u32,
+            PhysicalSectorSizeInBytes: u32,
+            ParentPath: [*:0]const u16,
+            SourcePath: [*:0]const u16,
+            OpenFlags: OPEN_VIRTUAL_DISK_FLAG,
+            ParentVirtualStorageType: VIRTUAL_STORAGE_TYPE,
+            SourceVirtualStorageType: VIRTUAL_STORAGE_TYPE,
+            ResiliencyGuid: Guid,
+            SourceLimitPath: [*:0]const u16,
+            BackingStorageType: VIRTUAL_STORAGE_TYPE,
+        },
+        Version4: extern struct {
+            UniqueId: Guid,
+            MaximumSize: u64,
+            BlockSizeInBytes: u32,
+            SectorSizeInBytes: u32,
+            PhysicalSectorSizeInBytes: u32,
+            ParentPath: [*:0]const u16,
+            SourcePath: [*:0]const u16,
+            OpenFlags: OPEN_VIRTUAL_DISK_FLAG,
+            ParentVirtualStorageType: VIRTUAL_STORAGE_TYPE,
+            SourceVirtualStorageType: VIRTUAL_STORAGE_TYPE,
+            ResiliencyGuid: Guid,
+            SourceLimitPath: [*:0]const u16,
+            BackingStorageType: VIRTUAL_STORAGE_TYPE,
+            PmemAddressAbstractionType: Guid,
+            DataAlignment: u64,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -146,8 +213,15 @@ pub const ATTACH_VIRTUAL_DISK_VERSION_2 = ATTACH_VIRTUAL_DISK_VERSION.@"2";
 
 pub const ATTACH_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: ATTACH_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            Reserved: u32,
+        },
+        Version2: extern struct {
+            RestrictedOffset: u64,
+            RestrictedLength: u64,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -244,8 +318,10 @@ pub const STORAGE_DEPENDENCY_INFO_TYPE_2 = extern struct {
 pub const STORAGE_DEPENDENCY_INFO = extern struct {
     Version: STORAGE_DEPENDENCY_INFO_VERSION,
     NumberEntries: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1Entries: STORAGE_DEPENDENCY_INFO_TYPE_1,
+        Version2Entries: STORAGE_DEPENDENCY_INFO_TYPE_2,
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -296,8 +372,39 @@ pub const GET_VIRTUAL_DISK_INFO_CHANGE_TRACKING_STATE = GET_VIRTUAL_DISK_INFO_VE
 
 pub const GET_VIRTUAL_DISK_INFO = extern struct {
     Version: GET_VIRTUAL_DISK_INFO_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Size: extern struct {
+            VirtualSize: u64,
+            PhysicalSize: u64,
+            BlockSize: u32,
+            SectorSize: u32,
+        },
+        Identifier: Guid,
+        ParentLocation: extern struct {
+            ParentResolved: BOOL,
+            ParentLocationBuffer: [1]u16,
+        },
+        ParentIdentifier: Guid,
+        ParentTimestamp: u32,
+        VirtualStorageType: VIRTUAL_STORAGE_TYPE,
+        ProviderSubtype: u32,
+        Is4kAligned: BOOL,
+        IsLoaded: BOOL,
+        PhysicalDisk: extern struct {
+            LogicalSectorSize: u32,
+            PhysicalSectorSize: u32,
+            IsRemote: BOOL,
+        },
+        VhdPhysicalSectorSize: u32,
+        SmallestSafeVirtualSize: u64,
+        FragmentationPercentage: u32,
+        VirtualDiskId: Guid,
+        ChangeTrackingState: extern struct {
+            Enabled: BOOL,
+            NewerChanges: BOOL,
+            MostRecentId: [1]u16,
+        },
+    },
 };
 
 pub const SET_VIRTUAL_DISK_INFO_VERSION = extern enum(i32) {
@@ -321,8 +428,21 @@ pub const SET_VIRTUAL_DISK_INFO_PARENT_LOCATOR = SET_VIRTUAL_DISK_INFO_VERSION.P
 
 pub const SET_VIRTUAL_DISK_INFO = extern struct {
     Version: SET_VIRTUAL_DISK_INFO_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ParentFilePath: [*:0]const u16,
+        UniqueIdentifier: Guid,
+        ParentPathWithDepthInfo: extern struct {
+            ChildDepth: u32,
+            ParentFilePath: [*:0]const u16,
+        },
+        VhdPhysicalSectorSize: u32,
+        VirtualDiskId: Guid,
+        ChangeTrackingEnabled: BOOL,
+        ParentLocator: extern struct {
+            LinkageId: Guid,
+            ParentFilePath: [*:0]const u16,
+        },
+    },
 };
 
 pub const VIRTUAL_DISK_PROGRESS = extern struct {
@@ -340,8 +460,11 @@ pub const COMPACT_VIRTUAL_DISK_VERSION_1 = COMPACT_VIRTUAL_DISK_VERSION.@"1";
 
 pub const COMPACT_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: COMPACT_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            Reserved: u32,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -366,8 +489,15 @@ pub const MERGE_VIRTUAL_DISK_VERSION_2 = MERGE_VIRTUAL_DISK_VERSION.@"2";
 
 pub const MERGE_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: MERGE_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            MergeDepth: u32,
+        },
+        Version2: extern struct {
+            MergeSourceDepth: u32,
+            MergeTargetDepth: u32,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -386,8 +516,11 @@ pub const EXPAND_VIRTUAL_DISK_VERSION_1 = EXPAND_VIRTUAL_DISK_VERSION.@"1";
 
 pub const EXPAND_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: EXPAND_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            NewSize: u64,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -406,8 +539,11 @@ pub const RESIZE_VIRTUAL_DISK_VERSION_1 = RESIZE_VIRTUAL_DISK_VERSION.@"1";
 
 pub const RESIZE_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: RESIZE_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            NewSize: u64,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -430,8 +566,11 @@ pub const MIRROR_VIRTUAL_DISK_VERSION_1 = MIRROR_VIRTUAL_DISK_VERSION.@"1";
 
 pub const MIRROR_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: MIRROR_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            MirrorVirtualDiskPath: [*:0]const u16,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -480,8 +619,11 @@ pub const TAKE_SNAPSHOT_VHDSET_VERSION_1 = TAKE_SNAPSHOT_VHDSET_VERSION.@"1";
 
 pub const TAKE_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     Version: TAKE_SNAPSHOT_VHDSET_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            SnapshotId: Guid,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -502,8 +644,11 @@ pub const DELETE_SNAPSHOT_VHDSET_VERSION_1 = DELETE_SNAPSHOT_VHDSET_VERSION.@"1"
 
 pub const DELETE_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     Version: DELETE_SNAPSHOT_VHDSET_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            SnapshotId: Guid,
+        },
+    },
 };
 
 pub const MODIFY_VHDSET_VERSION = extern enum(i32) {
@@ -528,8 +673,14 @@ pub const MODIFY_VHDSET_FLAG_WRITEABLE_SNAPSHOT = MODIFY_VHDSET_FLAG.WRITEABLE_S
 
 pub const MODIFY_VHDSET_PARAMETERS = extern struct {
     Version: MODIFY_VHDSET_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        SnapshotPath: extern struct {
+            SnapshotId: Guid,
+            SnapshotFilePath: [*:0]const u16,
+        },
+        SnapshotId: Guid,
+        DefaultFilePath: [*:0]const u16,
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -550,8 +701,12 @@ pub const APPLY_SNAPSHOT_VHDSET_VERSION_1 = APPLY_SNAPSHOT_VHDSET_VERSION.@"1";
 
 pub const APPLY_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     Version: APPLY_SNAPSHOT_VHDSET_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            SnapshotId: Guid,
+            LeafSnapshotId: Guid,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -570,14 +725,30 @@ pub const RAW_SCSI_VIRTUAL_DISK_VERSION_1 = RAW_SCSI_VIRTUAL_DISK_VERSION.@"1";
 
 pub const RAW_SCSI_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: RAW_SCSI_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            RSVDHandle: BOOL,
+            DataIn: u8,
+            CdbLength: u8,
+            SenseInfoLength: u8,
+            SrbFlags: u32,
+            DataTransferLength: u32,
+            DataBuffer: *c_void,
+            SenseInfo: *u8,
+            Cdb: *u8,
+        },
+    },
 };
 
 pub const RAW_SCSI_VIRTUAL_DISK_RESPONSE = extern struct {
     Version: RAW_SCSI_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            ScsiStatus: u8,
+            SenseInfoLength: u8,
+            DataTransferLength: u32,
+        },
+    },
 };
 
 pub const FORK_VIRTUAL_DISK_VERSION = extern enum(i32) {
@@ -589,8 +760,11 @@ pub const FORK_VIRTUAL_DISK_VERSION_1 = FORK_VIRTUAL_DISK_VERSION.@"1";
 
 pub const FORK_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: FORK_VIRTUAL_DISK_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Version1: extern struct {
+            ForkedVirtualDiskPath: [*:0]const u16,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -846,12 +1020,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
+const BOOL = @import("../system/system_services.zig").BOOL;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 
 test {

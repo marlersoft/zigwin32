@@ -433,8 +433,24 @@ pub const VDS_PORTAL_GROUP_NOTIFICATION = extern struct {
 
 pub const VDS_NOTIFICATION = extern struct {
     objectType: VDS_NOTIFICATION_TARGET_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Pack: VDS_PACK_NOTIFICATION,
+        Disk: VDS_DISK_NOTIFICATION,
+        Volume: VDS_VOLUME_NOTIFICATION,
+        Partition: VDS_PARTITION_NOTIFICATION,
+        Letter: VDS_DRIVE_LETTER_NOTIFICATION,
+        FileSystem: VDS_FILE_SYSTEM_NOTIFICATION,
+        MountPoint: VDS_MOUNT_POINT_NOTIFICATION,
+        SubSystem: VDS_SUB_SYSTEM_NOTIFICATION,
+        Controller: VDS_CONTROLLER_NOTIFICATION,
+        Drive: VDS_DRIVE_NOTIFICATION,
+        Lun: VDS_LUN_NOTIFICATION,
+        Port: VDS_PORT_NOTIFICATION,
+        Portal: VDS_PORTAL_NOTIFICATION,
+        Target: VDS_TARGET_NOTIFICATION,
+        PortalGroup: VDS_PORTAL_GROUP_NOTIFICATION,
+        Service: VDS_SERVICE_NOTIFICATION,
+    },
 };
 
 pub const VDS_ASYNC_OUTPUT_TYPE = extern enum(i32) {
@@ -506,8 +522,41 @@ pub const VDS_ASYNCOUT_EXPAND_VDISK = VDS_ASYNC_OUTPUT_TYPE.EXPAND_VDISK;
 
 pub const VDS_ASYNC_OUTPUT = extern struct {
     type: VDS_ASYNC_OUTPUT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pub const _cpg = extern struct {
+            pPortalGroupUnk: *IUnknown,
+        };
+        pub const _cl = extern struct {
+            pLunUnk: *IUnknown,
+        };
+        pub const _bvp = extern struct {
+            pVolumeUnk: *IUnknown,
+        };
+        pub const _cp = extern struct {
+            ullOffset: u64,
+            volumeId: Guid,
+        };
+        pub const _cvd = extern struct {
+            pVDiskUnk: *IUnknown,
+        };
+        pub const _sv = extern struct {
+            ullReclaimedBytes: u64,
+        };
+        pub const _ct = extern struct {
+            pTargetUnk: *IUnknown,
+        };
+        pub const _cv = extern struct {
+            pVolumeUnk: *IUnknown,
+        };
+        cp: _cp,
+        cv: _cv,
+        bvp: _bvp,
+        sv: _sv,
+        cl: _cl,
+        ct: _ct,
+        cpg: _cpg,
+        cvd: _cvd,
+    },
 };
 
 pub const VDS_IPADDRESS_TYPE = extern enum(i32) {
@@ -827,12 +876,18 @@ pub const VDS_PATH_INFO = extern struct {
     pathId: VDS_PATH_ID,
     type: VDS_HWPROVIDER_TYPE,
     status: VDS_PATH_STATUS,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        controllerPortId: Guid,
+        targetPortalId: Guid,
+    },
+    Anonymous2: extern union {
+        hbaPortId: Guid,
+        initiatorAdapterId: Guid,
+    },
+    Anonymous3: extern union {
+        pHbaPortProp: *VDS_HBAPORT_PROP,
+        pInitiatorPortalIpAddr: *VDS_IPADDRESS,
+    },
 };
 
 pub const VDS_PATH_POLICY = extern struct {

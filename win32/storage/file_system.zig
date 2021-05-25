@@ -377,10 +377,12 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MARK_HANDLE_INFO32 = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        UsnSourceInfo: u32,
+        CopyNumber: u32,
+    },
     VolumeHandle: u32,
     HandleInfo: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -436,8 +438,9 @@ pub const REPARSE_GUID_DATA_BUFFER = extern struct {
     ReparseDataLength: u16,
     Reserved: u16,
     ReparseGuid: Guid,
-    GenericReparseBuffer: _GenericReparseBuffer_e__Struct,
-    const _GenericReparseBuffer_e__Struct = u32; // TODO: generate this nested type!
+    GenericReparseBuffer: extern struct {
+        DataBuffer: [1]u8,
+    },
 };
 
 pub const TRANSACTION_OUTCOME = extern enum(i32) {
@@ -954,9 +957,17 @@ pub const HealthStatusDisabled = STORAGE_COMPONENT_HEALTH_STATUS.Disabled;
 pub const HealthStatusFailed = STORAGE_COMPONENT_HEALTH_STATUS.Failed;
 
 pub const STORAGE_SPEC_VERSION = extern union {
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        MinorVersion: extern union {
+            Anonymous: extern struct {
+                SubMinor: u8,
+                Minor: u8,
+            },
+            AsUshort: u16,
+        },
+        MajorVersion: u16,
+    },
     AsUlong: u32,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const STORAGE_PHYSICAL_DEVICE_DATA = extern struct {
@@ -1286,8 +1297,10 @@ pub const CREATE_DISK_MBR = extern struct {
 
 pub const CREATE_DISK = extern struct {
     PartitionStyle: PARTITION_STYLE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Mbr: CREATE_DISK_MBR,
+        Gpt: CREATE_DISK_GPT,
+    },
 };
 
 pub const GET_LENGTH_INFORMATION = extern struct {
@@ -1301,8 +1314,10 @@ pub const PARTITION_INFORMATION_EX = extern struct {
     PartitionNumber: u32,
     RewritePartition: u8,
     IsServicePartition: u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Mbr: PARTITION_INFORMATION_MBR,
+        Gpt: PARTITION_INFORMATION_GPT,
+    },
 };
 
 pub const DRIVE_LAYOUT_INFORMATION_GPT = extern struct {
@@ -1320,9 +1335,11 @@ pub const DRIVE_LAYOUT_INFORMATION_MBR = extern struct {
 pub const DRIVE_LAYOUT_INFORMATION_EX = extern struct {
     PartitionStyle: u32,
     PartitionCount: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Mbr: DRIVE_LAYOUT_INFORMATION_MBR,
+        Gpt: DRIVE_LAYOUT_INFORMATION_GPT,
+    },
     PartitionEntry: [1]PARTITION_INFORMATION_EX,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DISK_INT13_INFO = extern struct {
@@ -1347,15 +1364,26 @@ pub const DISK_EX_INT13_INFO = extern struct {
 pub const DISK_DETECTION_INFO = extern struct {
     SizeOfDetectInfo: u32,
     DetectionType: DETECTION_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            Int13: DISK_INT13_INFO,
+            ExInt13: DISK_EX_INT13_INFO,
+        },
+    },
 };
 
 pub const DISK_PARTITION_INFO = extern struct {
     SizeOfPartitionInfo: u32,
     PartitionStyle: PARTITION_STYLE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Mbr: extern struct {
+            Signature: u32,
+            CheckSum: u32,
+        },
+        Gpt: extern struct {
+            DiskId: Guid,
+        },
+    },
 };
 
 pub const DISK_GEOMETRY_EX = extern struct {
@@ -1372,8 +1400,17 @@ pub const DISK_CACHE_INFORMATION = extern struct {
     WriteRetentionPriority: DISK_CACHE_RETENTION_PRIORITY,
     DisablePrefetchTransferLength: u16,
     PrefetchScalar: u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ScalarPrefetch: extern struct {
+            Minimum: u16,
+            Maximum: u16,
+            MaximumBlocks: u16,
+        },
+        BlockPrefetch: extern struct {
+            Minimum: u16,
+            Maximum: u16,
+        },
+    },
 };
 
 pub const DISK_GROW_PARTITION = extern struct {
@@ -1458,8 +1495,10 @@ pub const STARTING_VCN_INPUT_BUFFER = extern struct {
 pub const RETRIEVAL_POINTERS_BUFFER = extern struct {
     ExtentCount: u32,
     StartingVcn: LARGE_INTEGER,
-    Extents: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Extents: [1]extern struct {
+        NextVcn: LARGE_INTEGER,
+        Lcn: LARGE_INTEGER,
+    },
 };
 
 pub const NTFS_FILE_RECORD_INPUT_BUFFER = extern struct {
@@ -1647,10 +1686,12 @@ pub const DELETE_USN_JOURNAL_DATA = extern struct {
 };
 
 pub const MARK_HANDLE_INFO = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        UsnSourceInfo: u32,
+        CopyNumber: u32,
+    },
     VolumeHandle: HANDLE,
     HandleInfo: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FILESYSTEM_STATISTICS = extern struct {
@@ -1702,13 +1743,23 @@ pub const NTFS_STATISTICS = extern struct {
     MftReadBytes: u32,
     MftWrites: u32,
     MftWriteBytes: u32,
-    MftWritesUserLevel: _MftWritesUserLevel_e__Struct,
+    MftWritesUserLevel: extern struct {
+        Write: u16,
+        Create: u16,
+        SetInfo: u16,
+        Flush: u16,
+    },
     MftWritesFlushForLogFileFull: u16,
     MftWritesLazyWriter: u16,
     MftWritesUserRequest: u16,
     Mft2Writes: u32,
     Mft2WriteBytes: u32,
-    Mft2WritesUserLevel: _Mft2WritesUserLevel_e__Struct,
+    Mft2WritesUserLevel: extern struct {
+        Write: u16,
+        Create: u16,
+        SetInfo: u16,
+        Flush: u16,
+    },
     Mft2WritesFlushForLogFileFull: u16,
     Mft2WritesLazyWriter: u16,
     Mft2WritesUserRequest: u16,
@@ -1723,7 +1774,11 @@ pub const NTFS_STATISTICS = extern struct {
     BitmapWritesFlushForLogFileFull: u16,
     BitmapWritesLazyWriter: u16,
     BitmapWritesUserRequest: u16,
-    BitmapWritesUserLevel: _BitmapWritesUserLevel_e__Struct,
+    BitmapWritesUserLevel: extern struct {
+        Write: u16,
+        Create: u16,
+        SetInfo: u16,
+    },
     MftBitmapReads: u32,
     MftBitmapReadBytes: u32,
     MftBitmapWrites: u32,
@@ -1731,7 +1786,12 @@ pub const NTFS_STATISTICS = extern struct {
     MftBitmapWritesFlushForLogFileFull: u16,
     MftBitmapWritesLazyWriter: u16,
     MftBitmapWritesUserRequest: u16,
-    MftBitmapWritesUserLevel: _MftBitmapWritesUserLevel_e__Struct,
+    MftBitmapWritesUserLevel: extern struct {
+        Write: u16,
+        Create: u16,
+        SetInfo: u16,
+        Flush: u16,
+    },
     UserIndexReads: u32,
     UserIndexReadBytes: u32,
     UserIndexWrites: u32,
@@ -1740,13 +1800,19 @@ pub const NTFS_STATISTICS = extern struct {
     LogFileReadBytes: u32,
     LogFileWrites: u32,
     LogFileWriteBytes: u32,
-    Allocate: _Allocate_e__Struct,
+    Allocate: extern struct {
+        Calls: u32,
+        Clusters: u32,
+        Hints: u32,
+        RunsReturned: u32,
+        HintsHonored: u32,
+        HintsClusters: u32,
+        Cache: u32,
+        CacheClusters: u32,
+        CacheMiss: u32,
+        CacheMissClusters: u32,
+    },
     DiskResourcesExhausted: u32,
-    const _Allocate_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILESYSTEM_STATISTICS_EX = extern struct {
@@ -1774,13 +1840,23 @@ pub const NTFS_STATISTICS_EX = extern struct {
     MftReadBytes: u64,
     MftWrites: u64,
     MftWriteBytes: u64,
-    MftWritesUserLevel: _MftWritesUserLevel_e__Struct,
+    MftWritesUserLevel: extern struct {
+        Write: u32,
+        Create: u32,
+        SetInfo: u32,
+        Flush: u32,
+    },
     MftWritesFlushForLogFileFull: u32,
     MftWritesLazyWriter: u32,
     MftWritesUserRequest: u32,
     Mft2Writes: u64,
     Mft2WriteBytes: u64,
-    Mft2WritesUserLevel: _Mft2WritesUserLevel_e__Struct,
+    Mft2WritesUserLevel: extern struct {
+        Write: u32,
+        Create: u32,
+        SetInfo: u32,
+        Flush: u32,
+    },
     Mft2WritesFlushForLogFileFull: u32,
     Mft2WritesLazyWriter: u32,
     Mft2WritesUserRequest: u32,
@@ -1795,7 +1871,12 @@ pub const NTFS_STATISTICS_EX = extern struct {
     BitmapWritesFlushForLogFileFull: u32,
     BitmapWritesLazyWriter: u32,
     BitmapWritesUserRequest: u32,
-    BitmapWritesUserLevel: _BitmapWritesUserLevel_e__Struct,
+    BitmapWritesUserLevel: extern struct {
+        Write: u32,
+        Create: u32,
+        SetInfo: u32,
+        Flush: u32,
+    },
     MftBitmapReads: u64,
     MftBitmapReadBytes: u64,
     MftBitmapWrites: u64,
@@ -1803,7 +1884,12 @@ pub const NTFS_STATISTICS_EX = extern struct {
     MftBitmapWritesFlushForLogFileFull: u32,
     MftBitmapWritesLazyWriter: u32,
     MftBitmapWritesUserRequest: u32,
-    MftBitmapWritesUserLevel: _MftBitmapWritesUserLevel_e__Struct,
+    MftBitmapWritesUserLevel: extern struct {
+        Write: u32,
+        Create: u32,
+        SetInfo: u32,
+        Flush: u32,
+    },
     UserIndexReads: u64,
     UserIndexReadBytes: u64,
     UserIndexWrites: u64,
@@ -1812,7 +1898,18 @@ pub const NTFS_STATISTICS_EX = extern struct {
     LogFileReadBytes: u64,
     LogFileWrites: u64,
     LogFileWriteBytes: u64,
-    Allocate: _Allocate_e__Struct,
+    Allocate: extern struct {
+        Calls: u32,
+        RunsReturned: u32,
+        Hints: u32,
+        HintsHonored: u32,
+        Cache: u32,
+        CacheMiss: u32,
+        Clusters: u64,
+        HintsClusters: u64,
+        CacheClusters: u64,
+        CacheMissClusters: u64,
+    },
     DiskResourcesExhausted: u32,
     VolumeTrimCount: u64,
     VolumeTrimTime: u64,
@@ -1825,17 +1922,18 @@ pub const NTFS_STATISTICS_EX = extern struct {
     NtfsFillStatInfoFromMftRecordCalledCount: u64,
     NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount: u64,
     NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount: u64,
-    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _Allocate_e__Struct = u32; // TODO: generate this nested type!
-    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILE_OBJECTID_BUFFER = extern struct {
     ObjectId: [16]u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            BirthVolumeId: [16]u8,
+            BirthObjectId: [16]u8,
+            DomainId: [16]u8,
+        },
+        ExtendedInfo: [48]u8,
+    },
 };
 
 pub const FILE_SET_SPARSE_BUFFER = extern struct {
@@ -1934,11 +2032,13 @@ pub const TXFS_QUERY_RM_INFORMATION = extern struct {
 };
 
 pub const TXFS_GET_METADATA_INFO_OUT = extern struct {
-    TxfFileId: _TxfFileId_e__Struct,
+    TxfFileId: extern struct {
+        LowPart: i64,
+        HighPart: i64,
+    },
     LockingTransaction: Guid,
     LastLsn: u64,
     TransactionState: u32,
-    const _TxfFileId_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY = extern struct {
@@ -1972,8 +2072,10 @@ pub const TXFS_LIST_TRANSACTIONS = extern struct {
 };
 
 pub const TXFS_READ_BACKUP_INFORMATION_OUT = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        BufferLength: u32,
+        Buffer: [1]u8,
+    },
 };
 
 pub const TXFS_WRITE_BACKUP_INFORMATION = extern struct {
@@ -2007,8 +2109,9 @@ pub const TXFS_TRANSACTION_ACTIVE_INFO = extern struct {
 
 pub const BOOT_AREA_INFO = extern struct {
     BootSectorCount: u32,
-    BootSectors: [2]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    BootSectors: [2]extern struct {
+        Offset: LARGE_INTEGER,
+    },
 };
 
 pub const RETRIEVAL_POINTER_BASE = extern struct {
@@ -3141,8 +3244,24 @@ pub const NTMS_OBJECTINFORMATIONA = extern struct {
     dwOperationalState: NtmsOperationalState,
     szName: [64]CHAR,
     szDescription: [127]CHAR,
-    Info: _Info_e__Union,
-    const _Info_e__Union = u32; // TODO: generate this nested type!
+    Info: extern union {
+        Drive: NTMS_DRIVEINFORMATIONA,
+        DriveType: NTMS_DRIVETYPEINFORMATIONA,
+        Library: NTMS_LIBRARYINFORMATION,
+        Changer: NTMS_CHANGERINFORMATIONA,
+        ChangerType: NTMS_CHANGERTYPEINFORMATIONA,
+        StorageSlot: NTMS_STORAGESLOTINFORMATION,
+        IEDoor: NTMS_IEDOORINFORMATION,
+        IEPort: NTMS_IEPORTINFORMATION,
+        PhysicalMedia: NTMS_PMIDINFORMATIONA,
+        LogicalMedia: NTMS_LMIDINFORMATION,
+        Partition: NTMS_PARTITIONINFORMATIONA,
+        MediaPool: NTMS_MEDIAPOOLINFORMATION,
+        MediaType: NTMS_MEDIATYPEINFORMATION,
+        LibRequest: NTMS_LIBREQUESTINFORMATIONA,
+        OpRequest: NTMS_OPREQUESTINFORMATIONA,
+        Computer: NTMS_COMPUTERINFORMATION,
+    },
 };
 
 pub const NTMS_OBJECTINFORMATIONW = extern struct {
@@ -3155,8 +3274,24 @@ pub const NTMS_OBJECTINFORMATIONW = extern struct {
     dwOperationalState: NtmsOperationalState,
     szName: [64]u16,
     szDescription: [127]u16,
-    Info: _Info_e__Union,
-    const _Info_e__Union = u32; // TODO: generate this nested type!
+    Info: extern union {
+        Drive: NTMS_DRIVEINFORMATIONW,
+        DriveType: NTMS_DRIVETYPEINFORMATIONW,
+        Library: NTMS_LIBRARYINFORMATION,
+        Changer: NTMS_CHANGERINFORMATIONW,
+        ChangerType: NTMS_CHANGERTYPEINFORMATIONW,
+        StorageSlot: NTMS_STORAGESLOTINFORMATION,
+        IEDoor: NTMS_IEDOORINFORMATION,
+        IEPort: NTMS_IEPORTINFORMATION,
+        PhysicalMedia: NTMS_PMIDINFORMATIONW,
+        LogicalMedia: NTMS_LMIDINFORMATION,
+        Partition: NTMS_PARTITIONINFORMATIONW,
+        MediaPool: NTMS_MEDIAPOOLINFORMATION,
+        MediaType: NTMS_MEDIATYPEINFORMATION,
+        LibRequest: NTMS_LIBREQUESTINFORMATIONW,
+        OpRequest: NTMS_OPREQUESTINFORMATIONW,
+        Computer: NTMS_COMPUTERINFORMATION,
+    },
 };
 
 pub const NTMS_I1_LIBRARYINFORMATION = extern struct {
@@ -3307,8 +3442,23 @@ pub const NTMS_I1_OBJECTINFORMATIONA = extern struct {
     dwOperationalState: u32,
     szName: [64]CHAR,
     szDescription: [127]CHAR,
-    Info: _Info_e__Union,
-    const _Info_e__Union = u32; // TODO: generate this nested type!
+    Info: extern union {
+        Drive: NTMS_DRIVEINFORMATIONA,
+        DriveType: NTMS_DRIVETYPEINFORMATIONA,
+        Library: NTMS_I1_LIBRARYINFORMATION,
+        Changer: NTMS_CHANGERINFORMATIONA,
+        ChangerType: NTMS_CHANGERTYPEINFORMATIONA,
+        StorageSlot: NTMS_STORAGESLOTINFORMATION,
+        IEDoor: NTMS_IEDOORINFORMATION,
+        IEPort: NTMS_IEPORTINFORMATION,
+        PhysicalMedia: NTMS_I1_PMIDINFORMATIONA,
+        LogicalMedia: NTMS_LMIDINFORMATION,
+        Partition: NTMS_I1_PARTITIONINFORMATIONA,
+        MediaPool: NTMS_MEDIAPOOLINFORMATION,
+        MediaType: NTMS_MEDIATYPEINFORMATION,
+        LibRequest: NTMS_I1_LIBREQUESTINFORMATIONA,
+        OpRequest: NTMS_I1_OPREQUESTINFORMATIONA,
+    },
 };
 
 pub const NTMS_I1_OBJECTINFORMATIONW = extern struct {
@@ -3321,8 +3471,23 @@ pub const NTMS_I1_OBJECTINFORMATIONW = extern struct {
     dwOperationalState: u32,
     szName: [64]u16,
     szDescription: [127]u16,
-    Info: _Info_e__Union,
-    const _Info_e__Union = u32; // TODO: generate this nested type!
+    Info: extern union {
+        Drive: NTMS_DRIVEINFORMATIONW,
+        DriveType: NTMS_DRIVETYPEINFORMATIONW,
+        Library: NTMS_I1_LIBRARYINFORMATION,
+        Changer: NTMS_CHANGERINFORMATIONW,
+        ChangerType: NTMS_CHANGERTYPEINFORMATIONW,
+        StorageSlot: NTMS_STORAGESLOTINFORMATION,
+        IEDoor: NTMS_IEDOORINFORMATION,
+        IEPort: NTMS_IEPORTINFORMATION,
+        PhysicalMedia: NTMS_I1_PMIDINFORMATIONW,
+        LogicalMedia: NTMS_LMIDINFORMATION,
+        Partition: NTMS_I1_PARTITIONINFORMATIONW,
+        MediaPool: NTMS_MEDIAPOOLINFORMATION,
+        MediaType: NTMS_MEDIATYPEINFORMATION,
+        LibRequest: NTMS_I1_LIBREQUESTINFORMATIONW,
+        OpRequest: NTMS_I1_OPREQUESTINFORMATIONW,
+    },
 };
 
 pub const NtmsCreateNtmsMediaOptions = extern enum(i32) {
@@ -3647,8 +3812,42 @@ pub const CLFS_MGMT_POLICY = extern struct {
     LengthInBytes: u32,
     PolicyFlags: u32,
     PolicyType: CLFS_MGMT_POLICY_TYPE,
-    PolicyParameters: _PolicyParameters_e__Union,
-    const _PolicyParameters_e__Union = u32; // TODO: generate this nested type!
+    PolicyParameters: extern union {
+        MaximumSize: extern struct {
+            Containers: u32,
+        },
+        MinimumSize: extern struct {
+            Containers: u32,
+        },
+        NewContainerSize: extern struct {
+            SizeInBytes: u32,
+        },
+        GrowthRate: extern struct {
+            AbsoluteGrowthInContainers: u32,
+            RelativeGrowthPercentage: u32,
+        },
+        LogTail: extern struct {
+            MinimumAvailablePercentage: u32,
+            MinimumAvailableContainers: u32,
+        },
+        AutoShrink: extern struct {
+            Percentage: u32,
+        },
+        AutoGrow: extern struct {
+            Enabled: u32,
+        },
+        NewContainerPrefix: extern struct {
+            PrefixLengthInBytes: u16,
+            PrefixString: [1]u16,
+        },
+        NewContainerSuffix: extern struct {
+            NextContainerSuffix: u64,
+        },
+        NewContainerExtension: extern struct {
+            ExtensionLengthInBytes: u16,
+            ExtensionString: [1]u16,
+        },
+    },
 };
 
 pub const CLFS_MGMT_NOTIFICATION_TYPE = extern enum(i32) {
@@ -4277,8 +4476,11 @@ pub const WOF_FILE_COMPRESSION_INFO_V1 = extern struct {
 };
 
 pub const TXF_ID = extern struct {
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        LowPart: i64,
+        HighPart: i64,
+    },
 };
 
 pub const TXF_LOG_RECORD_BASE = extern struct {
@@ -4287,8 +4489,8 @@ pub const TXF_LOG_RECORD_BASE = extern struct {
     RecordLength: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TXF_LOG_RECORD_WRITE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Version: u16,
     RecordType: u16,
     RecordLength: u32,
@@ -4302,8 +4504,8 @@ pub const TXF_LOG_RECORD_WRITE = extern struct {
     FileNameByteOffsetInStructure: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TXF_LOG_RECORD_TRUNCATE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Version: u16,
     RecordType: u16,
     RecordLength: u32,
@@ -5105,8 +5307,62 @@ pub const COPYFILE2_PHASE_MAX = COPYFILE2_COPY_PHASE.MAX;
 pub const COPYFILE2_MESSAGE = extern struct {
     Type: COPYFILE2_MESSAGE_TYPE,
     dwPadding: u32,
-    Info: _Info_e__Union,
-    const _Info_e__Union = u32; // TODO: generate this nested type!
+    Info: extern union {
+        ChunkStarted: extern struct {
+            dwStreamNumber: u32,
+            dwReserved: u32,
+            hSourceFile: HANDLE,
+            hDestinationFile: HANDLE,
+            uliChunkNumber: ULARGE_INTEGER,
+            uliChunkSize: ULARGE_INTEGER,
+            uliStreamSize: ULARGE_INTEGER,
+            uliTotalFileSize: ULARGE_INTEGER,
+        },
+        ChunkFinished: extern struct {
+            dwStreamNumber: u32,
+            dwFlags: u32,
+            hSourceFile: HANDLE,
+            hDestinationFile: HANDLE,
+            uliChunkNumber: ULARGE_INTEGER,
+            uliChunkSize: ULARGE_INTEGER,
+            uliStreamSize: ULARGE_INTEGER,
+            uliStreamBytesTransferred: ULARGE_INTEGER,
+            uliTotalFileSize: ULARGE_INTEGER,
+            uliTotalBytesTransferred: ULARGE_INTEGER,
+        },
+        StreamStarted: extern struct {
+            dwStreamNumber: u32,
+            dwReserved: u32,
+            hSourceFile: HANDLE,
+            hDestinationFile: HANDLE,
+            uliStreamSize: ULARGE_INTEGER,
+            uliTotalFileSize: ULARGE_INTEGER,
+        },
+        StreamFinished: extern struct {
+            dwStreamNumber: u32,
+            dwReserved: u32,
+            hSourceFile: HANDLE,
+            hDestinationFile: HANDLE,
+            uliStreamSize: ULARGE_INTEGER,
+            uliStreamBytesTransferred: ULARGE_INTEGER,
+            uliTotalFileSize: ULARGE_INTEGER,
+            uliTotalBytesTransferred: ULARGE_INTEGER,
+        },
+        PollContinue: extern struct {
+            dwReserved: u32,
+        },
+        Error: extern struct {
+            CopyPhase: COPYFILE2_COPY_PHASE,
+            dwStreamNumber: u32,
+            hrFailure: HRESULT,
+            dwReserved: u32,
+            uliChunkNumber: ULARGE_INTEGER,
+            uliStreamSize: ULARGE_INTEGER,
+            uliStreamBytesTransferred: ULARGE_INTEGER,
+            uliTotalFileSize: ULARGE_INTEGER,
+            uliTotalBytesTransferred: ULARGE_INTEGER,
+        },
+    },
 };
 
 pub const PCOPYFILE2_PROGRESS_ROUTINE = fn(
@@ -5144,11 +5400,13 @@ pub const FILE_NAME_INFO = extern struct {
 };
 
 pub const FILE_RENAME_INFO = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        ReplaceIfExists: u8,
+        Flags: u32,
+    },
     RootDirectory: HANDLE,
     FileNameLength: u32,
     FileName: [1]u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FILE_ALLOCATION_INFO = extern struct {
@@ -5278,10 +5536,21 @@ pub const FILE_REMOTE_PROTOCOL_INFO = extern struct {
     ProtocolRevision: u16,
     Reserved: u16,
     Flags: u32,
-    GenericReserved: _GenericReserved_e__Struct,
-    ProtocolSpecific: _ProtocolSpecific_e__Union,
-    const _ProtocolSpecific_e__Union = u32; // TODO: generate this nested type!
-    const _GenericReserved_e__Struct = u32; // TODO: generate this nested type!
+    GenericReserved: extern struct {
+        Reserved: [8]u32,
+    },
+    ProtocolSpecific: extern union {
+        Smb2: extern struct {
+            Server: extern struct {
+                Capabilities: u32,
+            },
+            Share: extern struct {
+                Capabilities: u32,
+                CachingFlags: u32,
+            },
+        },
+        Reserved: [16]u32,
+    },
 };
 
 pub const FILE_ID_TYPE = extern enum(i32) {
@@ -5298,8 +5567,11 @@ pub const MaximumFileIdType = FILE_ID_TYPE.MaximumFileIdType;
 pub const FILE_ID_DESCRIPTOR = extern struct {
     dwSize: u32,
     Type: FILE_ID_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        FileId: LARGE_INTEGER,
+        ObjectId: Guid,
+        ExtendedFileId: FILE_ID_128,
+    },
 };
 
 
@@ -8363,10 +8635,10 @@ const HRESULT = @import("../system/com.zig").HRESULT;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 const PSID = @import("../security.zig").PSID;
 const BOOL = @import("../system/system_services.zig").BOOL;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
+const PSTR = @import("../system/system_services.zig").PSTR;
 const FILE_SEGMENT_ELEMENT = @import("../system/system_services.zig").FILE_SEGMENT_ELEMENT;
 const DISK_CACHE_RETENTION_PRIORITY = @import("../system/system_services.zig").DISK_CACHE_RETENTION_PRIORITY;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;

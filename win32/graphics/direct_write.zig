@@ -3623,14 +3623,54 @@ pub const DWRITE_CARET_METRICS = extern struct {
 pub const DWRITE_PANOSE = extern union {
     values: [10]u8,
     familyKind: u8,
-    text: _text_e__Struct,
-    script: _script_e__Struct,
-    decorative: _decorative_e__Struct,
-    symbol: _symbol_e__Struct,
-    const _symbol_e__Struct = u32; // TODO: generate this nested type!
-    const _script_e__Struct = u32; // TODO: generate this nested type!
-    const _decorative_e__Struct = u32; // TODO: generate this nested type!
-    const _text_e__Struct = u32; // TODO: generate this nested type!
+    text: extern struct {
+        familyKind: u8,
+        serifStyle: u8,
+        weight: u8,
+        proportion: u8,
+        contrast: u8,
+        strokeVariation: u8,
+        armStyle: u8,
+        letterform: u8,
+        midline: u8,
+        xHeight: u8,
+    },
+    script: extern struct {
+        familyKind: u8,
+        toolKind: u8,
+        weight: u8,
+        spacing: u8,
+        aspectRatio: u8,
+        contrast: u8,
+        scriptTopology: u8,
+        scriptForm: u8,
+        finials: u8,
+        xAscent: u8,
+    },
+    decorative: extern struct {
+        familyKind: u8,
+        decorativeClass: u8,
+        weight: u8,
+        aspect: u8,
+        contrast: u8,
+        serifVariant: u8,
+        fill: u8,
+        lining: u8,
+        decorativeTopology: u8,
+        characterRange: u8,
+    },
+    symbol: extern struct {
+        familyKind: u8,
+        symbolKind: u8,
+        weight: u8,
+        spacing: u8,
+        aspectRatioAndContrast: u8,
+        aspectRatio94: u8,
+        aspectRatio119: u8,
+        aspectRatio157: u8,
+        aspectRatio163: u8,
+        aspectRatio211: u8,
+    },
 };
 
 pub const DWRITE_UNICODE_RANGE = extern struct {

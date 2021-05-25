@@ -2527,8 +2527,8 @@ pub const UPDATELAYEREDWINDOWINFO = extern struct {
     prcDirty: *const RECT,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DLGTEMPLATE = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     style: u32,
     dwExtendedStyle: u32,
     cdit: u16,
@@ -2538,8 +2538,8 @@ pub const DLGTEMPLATE = extern struct {
     cy: i16,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const DLGITEMTEMPLATE = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     style: u32,
     dwExtendedStyle: u32,
     x: i16,

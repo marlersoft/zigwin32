@@ -316,9 +316,26 @@ pub const XPS_MATRIX = extern struct {
 };
 
 pub const XPS_COLOR = extern struct {
+    pub const XPS_COLOR_VALUE = extern union {
+        sRGB: extern struct {
+            alpha: u8,
+            red: u8,
+            green: u8,
+            blue: u8,
+        },
+        scRGB: extern struct {
+            alpha: f32,
+            red: f32,
+            green: f32,
+            blue: f32,
+        },
+        context: extern struct {
+            channelCount: u8,
+            channels: [9]f32,
+        },
+    };
     colorType: XPS_COLOR_TYPE,
     value: XPS_COLOR_VALUE,
-    const XPS_COLOR_VALUE = u32; // TODO: generate this nested type!
 };
 
 // TODO: this type is limited to platform 'windows6.1'

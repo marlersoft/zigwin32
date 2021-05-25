@@ -1699,8 +1699,10 @@ pub const D3D12_DEPTH_STENCIL_VALUE = extern struct {
 
 pub const D3D12_CLEAR_VALUE = extern struct {
     Format: DXGI_FORMAT,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Color: [4]f32,
+        DepthStencil: D3D12_DEPTH_STENCIL_VALUE,
+    },
 };
 
 pub const D3D12_RANGE = extern struct {
@@ -1888,8 +1890,11 @@ pub const D3D12_RESOURCE_BARRIER_FLAG_END_ONLY = D3D12_RESOURCE_BARRIER_FLAGS.EN
 pub const D3D12_RESOURCE_BARRIER = extern struct {
     Type: D3D12_RESOURCE_BARRIER_TYPE,
     Flags: D3D12_RESOURCE_BARRIER_FLAGS,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Transition: D3D12_RESOURCE_TRANSITION_BARRIER,
+        Aliasing: D3D12_RESOURCE_ALIASING_BARRIER,
+        UAV: D3D12_RESOURCE_UAV_BARRIER,
+    },
 };
 
 pub const D3D12_SUBRESOURCE_FOOTPRINT = extern struct {
@@ -1915,8 +1920,10 @@ pub const D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT = D3D12_TEXTURE_COPY_TYPE.PLA
 pub const D3D12_TEXTURE_COPY_LOCATION = extern struct {
     pResource: *ID3D12Resource,
     Type: D3D12_TEXTURE_COPY_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        PlacedFootprint: D3D12_PLACED_SUBRESOURCE_FOOTPRINT,
+        SubresourceIndex: u32,
+    },
 };
 
 pub const D3D12_RESOLVE_MODE = extern enum(i32) {
@@ -2084,8 +2091,19 @@ pub const D3D12_SHADER_RESOURCE_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_SRV_DIMENSION,
     Shader4ComponentMapping: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D12_BUFFER_SRV,
+        Texture1D: D3D12_TEX1D_SRV,
+        Texture1DArray: D3D12_TEX1D_ARRAY_SRV,
+        Texture2D: D3D12_TEX2D_SRV,
+        Texture2DArray: D3D12_TEX2D_ARRAY_SRV,
+        Texture2DMS: D3D12_TEX2DMS_SRV,
+        Texture2DMSArray: D3D12_TEX2DMS_ARRAY_SRV,
+        Texture3D: D3D12_TEX3D_SRV,
+        TextureCube: D3D12_TEXCUBE_SRV,
+        TextureCubeArray: D3D12_TEXCUBE_ARRAY_SRV,
+        RaytracingAccelerationStructure: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_SRV,
+    },
 };
 
 pub const D3D12_CONSTANT_BUFFER_VIEW_DESC = extern struct {
@@ -2277,8 +2295,14 @@ pub const D3D12_UAV_DIMENSION_TEXTURE3D = D3D12_UAV_DIMENSION.TEXTURE3D;
 pub const D3D12_UNORDERED_ACCESS_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_UAV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D12_BUFFER_UAV,
+        Texture1D: D3D12_TEX1D_UAV,
+        Texture1DArray: D3D12_TEX1D_ARRAY_UAV,
+        Texture2D: D3D12_TEX2D_UAV,
+        Texture2DArray: D3D12_TEX2D_ARRAY_UAV,
+        Texture3D: D3D12_TEX3D_UAV,
+    },
 };
 
 pub const D3D12_BUFFER_RTV = extern struct {
@@ -2347,8 +2371,16 @@ pub const D3D12_RTV_DIMENSION_TEXTURE3D = D3D12_RTV_DIMENSION.TEXTURE3D;
 pub const D3D12_RENDER_TARGET_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_RTV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D12_BUFFER_RTV,
+        Texture1D: D3D12_TEX1D_RTV,
+        Texture1DArray: D3D12_TEX1D_ARRAY_RTV,
+        Texture2D: D3D12_TEX2D_RTV,
+        Texture2DArray: D3D12_TEX2D_ARRAY_RTV,
+        Texture2DMS: D3D12_TEX2DMS_RTV,
+        Texture2DMSArray: D3D12_TEX2DMS_ARRAY_RTV,
+        Texture3D: D3D12_TEX3D_RTV,
+    },
 };
 
 pub const D3D12_TEX1D_DSV = extern struct {
@@ -2412,8 +2444,14 @@ pub const D3D12_DEPTH_STENCIL_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_DSV_DIMENSION,
     Flags: D3D12_DSV_FLAGS,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Texture1D: D3D12_TEX1D_DSV,
+        Texture1DArray: D3D12_TEX1D_ARRAY_DSV,
+        Texture2D: D3D12_TEX2D_DSV,
+        Texture2DArray: D3D12_TEX2D_ARRAY_DSV,
+        Texture2DMS: D3D12_TEX2DMS_DSV,
+        Texture2DMSArray: D3D12_TEX2DMS_ARRAY_DSV,
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -2536,9 +2574,12 @@ pub const D3D12_ROOT_PARAMETER_TYPE_UAV = D3D12_ROOT_PARAMETER_TYPE.UAV;
 
 pub const D3D12_ROOT_PARAMETER = extern struct {
     ParameterType: D3D12_ROOT_PARAMETER_TYPE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        DescriptorTable: D3D12_ROOT_DESCRIPTOR_TABLE,
+        Constants: D3D12_ROOT_CONSTANTS,
+        Descriptor: D3D12_ROOT_DESCRIPTOR,
+    },
     ShaderVisibility: D3D12_SHADER_VISIBILITY,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -2653,9 +2694,12 @@ pub const D3D12_ROOT_DESCRIPTOR1 = extern struct {
 
 pub const D3D12_ROOT_PARAMETER1 = extern struct {
     ParameterType: D3D12_ROOT_PARAMETER_TYPE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        DescriptorTable: D3D12_ROOT_DESCRIPTOR_TABLE1,
+        Constants: D3D12_ROOT_CONSTANTS,
+        Descriptor: D3D12_ROOT_DESCRIPTOR1,
+    },
     ShaderVisibility: D3D12_SHADER_VISIBILITY,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D12_ROOT_SIGNATURE_DESC1 = extern struct {
@@ -2668,8 +2712,10 @@ pub const D3D12_ROOT_SIGNATURE_DESC1 = extern struct {
 
 pub const D3D12_VERSIONED_ROOT_SIGNATURE_DESC = extern struct {
     Version: D3D_ROOT_SIGNATURE_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Desc_1_0: D3D12_ROOT_SIGNATURE_DESC,
+        Desc_1_1: D3D12_ROOT_SIGNATURE_DESC1,
+    },
 };
 
 const IID_ID3D12RootSignatureDeserializer_Value = @import("../zig.zig").Guid.initString("34ab647b-3cc8-46ac-841b-c0965645c046");
@@ -2899,8 +2945,25 @@ pub const D3D12_INDIRECT_ARGUMENT_TYPE_DISPATCH_MESH = D3D12_INDIRECT_ARGUMENT_T
 
 pub const D3D12_INDIRECT_ARGUMENT_DESC = extern struct {
     Type: D3D12_INDIRECT_ARGUMENT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        VertexBuffer: extern struct {
+            Slot: u32,
+        },
+        Constant: extern struct {
+            RootParameterIndex: u32,
+            DestOffsetIn32BitValues: u32,
+            Num32BitValuesToSet: u32,
+        },
+        ConstantBufferView: extern struct {
+            RootParameterIndex: u32,
+        },
+        ShaderResourceView: extern struct {
+            RootParameterIndex: u32,
+        },
+        UnorderedAccessView: extern struct {
+            RootParameterIndex: u32,
+        },
+    },
 };
 
 pub const D3D12_COMMAND_SIGNATURE_DESC = extern struct {
@@ -5371,8 +5434,10 @@ pub const D3D12_RAYTRACING_INSTANCE_DESC = extern struct {
 pub const D3D12_RAYTRACING_GEOMETRY_DESC = extern struct {
     Type: D3D12_RAYTRACING_GEOMETRY_TYPE,
     Flags: D3D12_RAYTRACING_GEOMETRY_FLAGS,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Triangles: D3D12_RAYTRACING_GEOMETRY_TRIANGLES_DESC,
+        AABBs: D3D12_RAYTRACING_GEOMETRY_AABBS_DESC,
+    },
 };
 
 pub const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS = extern struct {
@@ -5380,8 +5445,11 @@ pub const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS = extern struct {
     Flags: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS,
     NumDescs: u32,
     DescsLayout: D3D12_ELEMENTS_LAYOUT,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        InstanceDescs: u64,
+        pGeometryDescs: *const D3D12_RAYTRACING_GEOMETRY_DESC,
+        ppGeometryDescs: *const *const D3D12_RAYTRACING_GEOMETRY_DESC,
+    },
 };
 
 pub const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC = extern struct {
@@ -5787,8 +5855,11 @@ pub const D3D12_DEVICE_REMOVED_EXTENDED_DATA2 = extern struct {
 
 pub const D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA = extern struct {
     Version: D3D12_DRED_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Dred_1_0: D3D12_DEVICE_REMOVED_EXTENDED_DATA,
+        Dred_1_1: D3D12_DEVICE_REMOVED_EXTENDED_DATA1,
+        Dred_1_2: D3D12_DEVICE_REMOVED_EXTENDED_DATA2,
+    },
 };
 
 const IID_ID3D12DeviceRemovedExtendedDataSettings_Value = @import("../zig.zig").Guid.initString("82bc481c-6b9b-4030-aedb-7ee3d1df1e63");
@@ -6204,8 +6275,9 @@ pub const D3D12_RENDER_PASS_BEGINNING_ACCESS_CLEAR_PARAMETERS = extern struct {
 
 pub const D3D12_RENDER_PASS_BEGINNING_ACCESS = extern struct {
     Type: D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Clear: D3D12_RENDER_PASS_BEGINNING_ACCESS_CLEAR_PARAMETERS,
+    },
 };
 
 pub const D3D12_RENDER_PASS_ENDING_ACCESS_TYPE = extern enum(i32) {
@@ -6239,8 +6311,9 @@ pub const D3D12_RENDER_PASS_ENDING_ACCESS_RESOLVE_PARAMETERS = extern struct {
 
 pub const D3D12_RENDER_PASS_ENDING_ACCESS = extern struct {
     Type: D3D12_RENDER_PASS_ENDING_ACCESS_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Resolve: D3D12_RENDER_PASS_ENDING_ACCESS_RESOLVE_PARAMETERS,
+    },
 };
 
 pub const D3D12_RENDER_PASS_RENDER_TARGET_DESC = extern struct {

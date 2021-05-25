@@ -65,8 +65,12 @@ pub const TBS_CONTEXT_PARAMS = extern struct {
 
 pub const TBS_CONTEXT_PARAMS2 = extern struct {
     version: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        asUINT32: u32,
+    },
 };
 
 pub const tdTPM_WNF_PROVISIONING = extern struct {

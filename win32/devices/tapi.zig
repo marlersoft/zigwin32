@@ -1158,10 +1158,14 @@ pub const LINEAGENTCAPS = packed struct {
 };
 
 pub const LINEAGENTGROUPENTRY = packed struct {
-    GroupID: _GroupID_e__Struct,
+    GroupID: packed struct {
+        dwGroupID1: u32,
+        dwGroupID2: u32,
+        dwGroupID3: u32,
+        dwGroupID4: u32,
+    },
     dwNameSize: u32,
     dwNameOffset: u32,
-    const _GroupID_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const LINEAGENTGROUPLIST = packed struct {
@@ -1629,9 +1633,11 @@ pub const LINEINITIALIZEEXPARAMS = packed struct {
     dwNeededSize: u32,
     dwUsedSize: u32,
     dwOptions: u32,
-    Handles: _Handles_e__Union,
+    Handles: packed union {
+        hEvent: HANDLE,
+        hCompletionPort: HANDLE,
+    },
     dwCompletionKey: u32,
-    const _Handles_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const LINELOCATIONENTRY = packed struct {
@@ -1720,8 +1726,99 @@ pub const LINEPROXYREQUEST = packed struct {
     dwClientUserNameOffset: u32,
     dwClientAppAPIVersion: u32,
     dwRequestType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        SetAgentGroup: packed struct {
+            dwAddressID: u32,
+            GroupList: LINEAGENTGROUPLIST,
+        },
+        SetAgentState: packed struct {
+            dwAddressID: u32,
+            dwAgentState: u32,
+            dwNextAgentState: u32,
+        },
+        SetAgentActivity: packed struct {
+            dwAddressID: u32,
+            dwActivityID: u32,
+        },
+        GetAgentCaps: packed struct {
+            dwAddressID: u32,
+            AgentCaps: LINEAGENTCAPS,
+        },
+        GetAgentStatus: packed struct {
+            dwAddressID: u32,
+            AgentStatus: LINEAGENTSTATUS,
+        },
+        AgentSpecific: packed struct {
+            dwAddressID: u32,
+            dwAgentExtensionIDIndex: u32,
+            dwSize: u32,
+            Params: [1]u8,
+        },
+        GetAgentActivityList: packed struct {
+            dwAddressID: u32,
+            ActivityList: LINEAGENTACTIVITYLIST,
+        },
+        GetAgentGroupList: packed struct {
+            dwAddressID: u32,
+            GroupList: LINEAGENTGROUPLIST,
+        },
+        CreateAgent: packed struct {
+            hAgent: u32,
+            dwAgentIDSize: u32,
+            dwAgentIDOffset: u32,
+            dwAgentPINSize: u32,
+            dwAgentPINOffset: u32,
+        },
+        SetAgentStateEx: packed struct {
+            hAgent: u32,
+            dwAgentState: u32,
+            dwNextAgentState: u32,
+        },
+        SetAgentMeasurementPeriod: packed struct {
+            hAgent: u32,
+            dwMeasurementPeriod: u32,
+        },
+        GetAgentInfo: packed struct {
+            hAgent: u32,
+            AgentInfo: LINEAGENTINFO,
+        },
+        CreateAgentSession: packed struct {
+            hAgentSession: u32,
+            dwAgentPINSize: u32,
+            dwAgentPINOffset: u32,
+            hAgent: u32,
+            GroupID: Guid,
+            dwWorkingAddressID: u32,
+        },
+        GetAgentSessionList: packed struct {
+            hAgent: u32,
+            SessionList: LINEAGENTSESSIONLIST,
+        },
+        GetAgentSessionInfo: packed struct {
+            hAgentSession: u32,
+            SessionInfo: LINEAGENTSESSIONINFO,
+        },
+        SetAgentSessionState: packed struct {
+            hAgentSession: u32,
+            dwAgentSessionState: u32,
+            dwNextAgentSessionState: u32,
+        },
+        GetQueueList: packed struct {
+            GroupID: Guid,
+            QueueList: LINEQUEUELIST,
+        },
+        SetQueueMeasurementPeriod: packed struct {
+            dwQueueID: u32,
+            dwMeasurementPeriod: u32,
+        },
+        GetQueueInfo: packed struct {
+            dwQueueID: u32,
+            QueueInfo: LINEQUEUEINFO,
+        },
+        GetGroupList: extern struct {
+            GroupList: LINEAGENTGROUPLIST,
+        },
+    },
 };
 
 pub const LINEREQMAKECALL = extern struct {
@@ -1871,9 +1968,11 @@ pub const PHONEINITIALIZEEXPARAMS = packed struct {
     dwNeededSize: u32,
     dwUsedSize: u32,
     dwOptions: u32,
-    Handles: _Handles_e__Union,
+    Handles: packed union {
+        hEvent: HANDLE,
+        hCompletionPort: HANDLE,
+    },
     dwCompletionKey: u32,
-    const _Handles_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PHONEMESSAGE = packed struct {
@@ -9448,8 +9547,46 @@ pub const MSP_EVENT_INFO = extern struct {
     dwSize: u32,
     Event: MSP_EVENT,
     hCall: *i32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        MSP_ADDRESS_EVENT_INFO: extern struct {
+            Type: MSP_ADDRESS_EVENT,
+            pTerminal: *ITTerminal,
+        },
+        MSP_CALL_EVENT_INFO: extern struct {
+            Type: MSP_CALL_EVENT,
+            Cause: MSP_CALL_EVENT_CAUSE,
+            pStream: *ITStream,
+            pTerminal: *ITTerminal,
+            hrError: HRESULT,
+        },
+        MSP_TSP_DATA: extern struct {
+            dwBufferSize: u32,
+            pBuffer: [1]u8,
+        },
+        MSP_PRIVATE_EVENT_INFO: extern struct {
+            pEvent: *IDispatch,
+            lEventCode: i32,
+        },
+        MSP_FILE_TERMINAL_EVENT_INFO: extern struct {
+            pParentFileTerminal: *ITTerminal,
+            pFileTrack: *ITFileTrack,
+            TerminalMediaState: TERMINAL_MEDIA_STATE,
+            ftecEventCause: FT_STATE_EVENT_CAUSE,
+            hrErrorCode: HRESULT,
+        },
+        MSP_ASR_TERMINAL_EVENT_INFO: extern struct {
+            pASRTerminal: *ITTerminal,
+            hrErrorCode: HRESULT,
+        },
+        MSP_TTS_TERMINAL_EVENT_INFO: extern struct {
+            pTTSTerminal: *ITTerminal,
+            hrErrorCode: HRESULT,
+        },
+        MSP_TONE_TERMINAL_EVENT_INFO: extern struct {
+            pToneTerminal: *ITTerminal,
+            hrErrorCode: HRESULT,
+        },
+    },
 };
 
 const IID_ITPluggableTerminalEventSink_Value = @import("../zig.zig").Guid.initString("6e0887be-ba1a-492e-bd10-4020ec5e33e0");
@@ -12288,7 +12425,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
@@ -12308,6 +12445,7 @@ const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
 const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
+const HANDLE = @import("../system/system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

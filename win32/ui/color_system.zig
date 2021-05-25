@@ -429,8 +429,10 @@ pub const COLOR = extern union {
     gen3ch: GENERIC3CHANNEL,
     named: NAMEDCOLOR,
     hifi: HiFiCOLOR,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        reserved1: u32,
+        reserved2: *c_void,
+    },
 };
 
 pub const COLORTYPE = extern enum(i32) {
@@ -741,8 +743,10 @@ pub const XYYPoint = extern struct {
 
 pub const WhitePoint = extern struct {
     type: i32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        xyY: XYYPoint,
+        CCT: f32,
+    },
 };
 
 pub const DisplayID = extern struct {

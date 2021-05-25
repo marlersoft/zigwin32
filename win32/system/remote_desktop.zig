@@ -5230,8 +5230,19 @@ pub const RFX_GFX_MSG_RDP_DATA = extern struct {
 
 pub const WTS_SOCKADDR = extern struct {
     sin_family: u16,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        ipv4: extern struct {
+            sin_port: u16,
+            IN_ADDR: u32,
+            sin_zero: [8]u8,
+        },
+        ipv6: extern struct {
+            sin6_port: u16,
+            sin6_flowinfo: u32,
+            sin6_addr: [8]u16,
+            sin6_scope_id: u32,
+        },
+    },
 };
 
 pub const WTS_SMALL_RECT = extern struct {
@@ -5453,8 +5464,18 @@ pub const WTS_LOGON_ERR_HANDLED_DONT_SHOW_START_OVER = WTS_LOGON_ERROR_REDIRECTO
 
 pub const WTS_PROPERTY_VALUE = extern struct {
     Type: u16,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        ulVal: u32,
+        strVal: extern struct {
+            size: u32,
+            pstrVal: PWSTR,
+        },
+        bVal: extern struct {
+            size: u32,
+            pbVal: PSTR,
+        },
+        guidVal: Guid,
+    },
 };
 
 pub const WTS_CERT_TYPE = extern enum(i32) {
