@@ -100,7 +100,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const AsnOctetString = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     stream: *u8,
     length: u32,
     dynamic: BOOL,
@@ -112,7 +112,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const AsnObjectIdentifier = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     idLength: u32,
     ids: *u32,
 };
@@ -123,7 +123,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const SnmpVarBindList = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     list: *SnmpVarBind,
     len: u32,
 };
@@ -133,7 +133,7 @@ pub const SnmpVarBindList = extern struct {
 pub const AsnAny = extern struct {
     asnType: u8,
     asnValue: extern union {
-        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         number: i32,
         unsigned32: u32,
         counter64: ULARGE_INTEGER,

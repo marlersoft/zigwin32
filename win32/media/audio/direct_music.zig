@@ -2606,7 +2606,7 @@ pub const IDirectSoundFullDuplex = extern struct {
 };
 
 pub const DMUS_EVENTHEADER = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbEvent: u32,
     dwChannelGroup: u32,
     rtDelta: i64,

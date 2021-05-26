@@ -27924,7 +27924,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const D3DCONTENTPROTECTIONCAPS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Caps: u32,
     KeyExchangeType: Guid,
     BufferAlignmentStart: u32,

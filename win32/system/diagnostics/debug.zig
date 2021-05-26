@@ -1119,7 +1119,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     ExceptionPointers: *EXCEPTION_POINTERS,
     ClientPointers: BOOL,
@@ -1131,7 +1131,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MINIDUMP_USER_STREAM = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Type: u32,
     BufferSize: u32,
     Buffer: *c_void,
@@ -1143,7 +1143,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     UserStreamCount: u32,
     UserStreamArray: *MINIDUMP_USER_STREAM,
 };
@@ -1186,7 +1186,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     CallbackRoutine: MINIDUMP_CALLBACK_ROUTINE,
     CallbackParam: *c_void,
 };
@@ -1370,7 +1370,7 @@ pub const IMAGE_OPTIONAL_HEADER32 = extern struct {
 };
 
 pub const IMAGE_OPTIONAL_HEADER64 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Magic: IMAGE_OPTIONAL_HEADER_MAGIC,
     MajorLinkerVersion: u8,
     MinorLinkerVersion: u8,
@@ -1480,7 +1480,7 @@ pub const IMAGE_LOAD_CONFIG_DIRECTORY32 = extern struct {
 };
 
 pub const IMAGE_LOAD_CONFIG_DIRECTORY64 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Size: u32,
     TimeDateStamp: u32,
     MajorVersion: u16,
@@ -1564,11 +1564,11 @@ pub const IMAGE_FUNCTION_ENTRY = extern struct {
 };
 
 pub const IMAGE_FUNCTION_ENTRY64 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     StartingAddress: u64,
     EndingAddress: u64,
     Anonymous: extern union {
-        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         EndOfPrologue: u64,
         UnwindInfoAddress: u64,
     },
@@ -1753,25 +1753,25 @@ pub const MINIDUMP_LOCATION_DESCRIPTOR = extern struct {
 };
 
 pub const MINIDUMP_LOCATION_DESCRIPTOR64 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     DataSize: u64,
     Rva: u64,
 };
 
 pub const MINIDUMP_MEMORY_DESCRIPTOR = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     StartOfMemoryRange: u64,
     Memory: MINIDUMP_LOCATION_DESCRIPTOR,
 };
 
 pub const MINIDUMP_MEMORY_DESCRIPTOR64 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     StartOfMemoryRange: u64,
     DataSize: u64,
 };
 
 pub const MINIDUMP_HEADER = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Signature: u32,
     Version: u32,
     NumberOfStreams: u32,
@@ -1883,7 +1883,7 @@ pub const CPU_INFORMATION = extern union {
         AMDExtendedCpuFeatures: u32,
     },
     OtherCpuInfo: extern struct {
-        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         ProcessorFeatures: [2]u64,
     },
 };
@@ -1915,7 +1915,7 @@ pub const MINIDUMP_SYSTEM_INFO = extern struct {
 };
 
 pub const MINIDUMP_THREAD = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     SuspendCount: u32,
     PriorityClass: u32,
@@ -1931,7 +1931,7 @@ pub const MINIDUMP_THREAD_LIST = extern struct {
 };
 
 pub const MINIDUMP_THREAD_EX = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     SuspendCount: u32,
     PriorityClass: u32,
@@ -1948,7 +1948,7 @@ pub const MINIDUMP_THREAD_EX_LIST = extern struct {
 };
 
 pub const MINIDUMP_EXCEPTION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ExceptionCode: u32,
     ExceptionFlags: u32,
     ExceptionRecord: u64,
@@ -1966,7 +1966,7 @@ pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
 };
 
 pub const MINIDUMP_MODULE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     BaseOfImage: u64,
     SizeOfImage: u32,
     CheckSum: u32,
@@ -1990,14 +1990,14 @@ pub const MINIDUMP_MEMORY_LIST = extern struct {
 };
 
 pub const MINIDUMP_MEMORY64_LIST = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     NumberOfMemoryRanges: u64,
     BaseRva: u64,
     MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64,
 };
 
 pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     ExceptionRecord: u64,
     ContextRecord: u64,
@@ -2034,7 +2034,7 @@ pub const MINIDUMP_HANDLE_OBJECT_INFORMATION = extern struct {
 };
 
 pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Handle: u64,
     TypeNameRva: u32,
     ObjectNameRva: u32,
@@ -2045,7 +2045,7 @@ pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
 };
 
 pub const MINIDUMP_HANDLE_DESCRIPTOR_2 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Handle: u64,
     TypeNameRva: u32,
     ObjectNameRva: u32,
@@ -2072,7 +2072,7 @@ pub const MINIDUMP_HANDLE_OPERATION_LIST = extern struct {
 };
 
 pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     MinimumAddress: u64,
     MaximumAddress: u64,
     BaseAddress: u64,
@@ -2090,7 +2090,7 @@ pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
 };
 
 pub const MINIDUMP_UNLOADED_MODULE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     BaseOfImage: u64,
     SizeOfImage: u32,
     CheckSum: u32,
@@ -2105,7 +2105,7 @@ pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
 };
 
 pub const XSTATE_CONFIG_FEATURE_MSC_INFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     SizeOfInfo: u32,
     ContextSize: u32,
     EnabledFeatures: u64,
@@ -2199,7 +2199,7 @@ pub const MINIDUMP_MISC_INFO_5 = extern struct {
 };
 
 pub const MINIDUMP_MEMORY_INFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     BaseAddress: u64,
     AllocationBase: u64,
     AllocationProtect: u32,
@@ -2212,14 +2212,14 @@ pub const MINIDUMP_MEMORY_INFO = extern struct {
 };
 
 pub const MINIDUMP_MEMORY_INFO_LIST = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     SizeOfHeader: u32,
     SizeOfEntry: u32,
     NumberOfEntries: u64,
 };
 
 pub const MINIDUMP_THREAD_NAME = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     RvaOfThreadName: u64,
 };
@@ -2230,7 +2230,7 @@ pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
 };
 
 pub const MINIDUMP_THREAD_INFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     DumpFlags: MINIDUMP_THREAD_INFO_DUMP_FLAGS,
     DumpError: u32,
@@ -2250,7 +2250,7 @@ pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
 };
 
 pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     TokenSize: u32,
     TokenId: u32,
     TokenHandle: u64,
@@ -2264,7 +2264,7 @@ pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
 };
 
 pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     TimerResolution: u32,
     PageSize: u32,
     NumberOfPhysicalPages: u32,
@@ -2278,7 +2278,7 @@ pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
 };
 
 pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     CurrentSize: u64,
     PeakSize: u64,
     PageFaultCount: u32,
@@ -2291,7 +2291,7 @@ pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
 };
 
 pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     AvailablePages: u64,
     CommittedPages: u64,
     CommitLimit: u64,
@@ -2299,7 +2299,7 @@ pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
 };
 
 pub const MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     IdleProcessTime: u64,
     IoReadTransferCount: u64,
     IoWriteTransferCount: u64,
@@ -2390,7 +2390,7 @@ pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
 };
 
 pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Revision: u16,
     PageFaultCount: u32,
     PeakWorkingSetSize: u64,
@@ -2405,7 +2405,7 @@ pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
 };
 
 pub const MINIDUMP_PROCESS_VM_COUNTERS_2 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Revision: u16,
     Flags: u16,
     PageFaultCount: u32,
@@ -2531,7 +2531,7 @@ pub const ThreadWriteThreadData = THREAD_WRITE_FLAGS.ThreadData;
 pub const ThreadWriteThreadInfo = THREAD_WRITE_FLAGS.ThreadInfo;
 
 pub const MINIDUMP_MODULE_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     FullPath: [*]u16,
     BaseOfImage: u64,
     SizeOfImage: u32,
@@ -2545,7 +2545,7 @@ pub const MINIDUMP_MODULE_CALLBACK = extern struct {
 };
 
 pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     BaseOfImage: u64,
 };
 
@@ -2567,7 +2567,7 @@ pub const ModuleWriteTlsData = MODULE_WRITE_FLAGS.WriteTlsData;
 pub const ModuleWriteCodeSegs = MODULE_WRITE_FLAGS.WriteCodeSegs;
 
 pub const MINIDUMP_IO_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Handle: HANDLE,
     Offset: u64,
     Buffer: *c_void,
@@ -2575,26 +2575,26 @@ pub const MINIDUMP_IO_CALLBACK = extern struct {
 };
 
 pub const MINIDUMP_READ_MEMORY_FAILURE_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Offset: u64,
     Bytes: u32,
     FailureStatus: HRESULT,
 };
 
 pub const MINIDUMP_VM_QUERY_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Offset: u64,
 };
 
 pub const MINIDUMP_VM_PRE_READ_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Offset: u64,
     Buffer: *c_void,
     Size: u32,
 };
 
 pub const MINIDUMP_VM_POST_READ_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Offset: u64,
     Buffer: *c_void,
     Size: u32,
@@ -2624,12 +2624,12 @@ pub const MINIDUMP_CALLBACK_INPUT = extern struct {
 
 pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
     Anonymous: extern union {
-        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         ModuleWriteFlags: u32,
         ThreadWriteFlags: u32,
         SecondaryFlags: u32,
         Anonymous1: extern struct {
-            // WARNING: this type has PackingSize=4, how to handle this in Zig?
+            // WARNING: unable to add field alignment because it's causing a compiler bug
             MemoryBase: u64,
             MemorySize: u32,
         },
@@ -46088,7 +46088,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
 pub const MINIDUMP_THREAD_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     ThreadHandle: HANDLE,
     Context: CONTEXT,
@@ -46103,7 +46103,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
 pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
     ThreadHandle: HANDLE,
     Context: CONTEXT,

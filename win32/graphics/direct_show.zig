@@ -11310,7 +11310,7 @@ pub const PID_ELEMENTARY_STREAM = MUX_PID_TYPE.ELEMENTARY_STREAM;
 pub const PID_MPEG2_SECTION_PSI_SI = MUX_PID_TYPE.MPEG2_SECTION_PSI_SI;
 
 pub const BDA_MUX_PIDLISTITEM = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     usPIDNumber: u16,
     usProgramNumber: u16,
     ePIDType: MUX_PID_TYPE,
@@ -22712,20 +22712,20 @@ pub const IXMLGraphBuilder = extern struct {
 };
 
 pub const RIFFCHUNK = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
 };
 
 pub const RIFFLIST = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     fccListType: u32,
 };
 
 pub const AVIMAINHEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     dwMicroSecPerFrame: u32,
@@ -22742,7 +22742,7 @@ pub const AVIMAINHEADER = extern struct {
 };
 
 pub const AVIEXTHEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     dwGrandFrames: u32,
@@ -22750,7 +22750,7 @@ pub const AVIEXTHEADER = extern struct {
 };
 
 pub const AVISTREAMHEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     fccType: u32,
@@ -22775,28 +22775,28 @@ pub const AVISTREAMHEADER = extern struct {
 };
 
 pub const AVIOLDINDEX = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     pub const _avioldindex_entry = extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         dwChunkId: u32,
         dwFlags: u32,
         dwOffset: u32,
         dwSize: u32,
     };
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     aIndex: _avioldindex_entry,
 };
 
 pub const TIMECODEDATA = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     time: TIMECODE,
     dwSMPTEflags: u32,
     dwUser: u32,
 };
 
 pub const AVIMETAINDEX = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     wLongsPerEntry: u16,
@@ -22809,13 +22809,13 @@ pub const AVIMETAINDEX = extern struct {
 };
 
 pub const AVISUPERINDEX = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     pub const _avisuperindex_entry = extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         qwOffset: u64,
         dwSize: u32,
         dwDuration: u32,
     };
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     wLongsPerEntry: u16,
@@ -22828,13 +22828,13 @@ pub const AVISUPERINDEX = extern struct {
 };
 
 pub const AVISTDINDEX_ENTRY = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwOffset: u32,
     dwSize: u32,
 };
 
 pub const AVISTDINDEX = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     wLongsPerEntry: u16,
@@ -22848,14 +22848,14 @@ pub const AVISTDINDEX = extern struct {
 };
 
 pub const AVITIMEDINDEX_ENTRY = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwOffset: u32,
     dwSize: u32,
     dwDuration: u32,
 };
 
 pub const _avitimedindex = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     wLongsPerEntry: u16,
@@ -22870,7 +22870,7 @@ pub const _avitimedindex = extern struct {
 };
 
 pub const AVITIMECODEINDEX = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     wLongsPerEntry: u16,
@@ -22883,7 +22883,7 @@ pub const AVITIMECODEINDEX = extern struct {
 };
 
 pub const AVITCDLINDEX_ENTRY = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwTick: u32,
     time: TIMECODE,
     dwSMPTEflags: u32,
@@ -22892,7 +22892,7 @@ pub const AVITCDLINDEX_ENTRY = extern struct {
 };
 
 pub const _avitcdlindex = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     wLongsPerEntry: u16,
@@ -22906,13 +22906,13 @@ pub const _avitcdlindex = extern struct {
 };
 
 pub const AVIFIELDINDEX = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     pub const _avifieldindex_entry = extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         dwOffset: u32,
         dwSize: u32,
         dwOffsetField2: u32,
     };
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     fcc: u32,
     cb: u32,
     wLongsPerEntry: u16,

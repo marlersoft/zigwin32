@@ -1524,7 +1524,7 @@ pub const BITMAPCOREINFO = extern struct {
 };
 
 pub const BITMAPFILEHEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     bfType: u16,
     bfSize: u32,
     bfReserved1: u16,
@@ -1543,7 +1543,7 @@ pub const METARECORD = extern struct {
 };
 
 pub const METAHEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     mtType: u16,
     mtHeaderSize: u16,
     mtVersion: u16,

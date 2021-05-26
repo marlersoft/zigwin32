@@ -26,7 +26,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const PACKAGE_ID = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     reserved: u32,
     processorArchitecture: u32,
     version: PACKAGE_VERSION,
@@ -42,7 +42,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const PACKAGE_INFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     reserved: u32,
     flags: u32,
     path: PWSTR,
@@ -3259,7 +3259,7 @@ pub const IAppxPackageEditor = extern struct {
 
 pub const PACKAGE_VERSION = extern struct {
     Anonymous: extern union {
-        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         Version: u64,
         Anonymous: extern struct {
             Revision: u16,

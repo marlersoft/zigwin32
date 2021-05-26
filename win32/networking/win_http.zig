@@ -828,7 +828,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const WINHTTP_CONNECTION_INFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbSize: u32,
     LocalAddress: SOCKADDR_STORAGE,
     RemoteAddress: SOCKADDR_STORAGE,
@@ -840,7 +840,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const WINHTTP_REQUEST_TIMES = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cTimes: u32,
     rgullTimes: [64]u64,
 };
@@ -851,7 +851,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const WINHTTP_REQUEST_STATS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ullFlags: u64,
     ulIndex: u32,
     cStats: u32,

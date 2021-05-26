@@ -4477,7 +4477,7 @@ pub const WOF_FILE_COMPRESSION_INFO_V1 = extern struct {
 
 pub const TXF_ID = extern struct {
     Anonymous: extern struct {
-        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         LowPart: i64,
         HighPart: i64,
     },
@@ -4490,7 +4490,7 @@ pub const TXF_LOG_RECORD_BASE = extern struct {
 };
 
 pub const TXF_LOG_RECORD_WRITE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Version: u16,
     RecordType: u16,
     RecordLength: u32,
@@ -4505,7 +4505,7 @@ pub const TXF_LOG_RECORD_WRITE = extern struct {
 };
 
 pub const TXF_LOG_RECORD_TRUNCATE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Version: u16,
     RecordType: u16,
     RecordLength: u32,
