@@ -27,7 +27,6 @@ pub const INTERACTION_ID_DRAG = INTERACTION_ID.DRAG;
 pub const INTERACTION_ID_CROSS_SLIDE = INTERACTION_ID.CROSS_SLIDE;
 pub const INTERACTION_ID_MAX = INTERACTION_ID.MAX;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const INTERACTION_FLAGS = extern enum(u32) {
     NONE = 0,
     BEGIN = 1,
@@ -36,6 +35,23 @@ pub const INTERACTION_FLAGS = extern enum(u32) {
     INERTIA = 8,
     MAX = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        BEGIN: u1 = 0,
+        END: u1 = 0,
+        CANCEL: u1 = 0,
+        INERTIA: u1 = 0,
+        MAX: u1 = 0,
+    }) INTERACTION_FLAGS {
+        return @intToEnum(INTERACTION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(INTERACTION_FLAGS.NONE) else 0)
+            | (if (o.BEGIN == 1) @enumToInt(INTERACTION_FLAGS.BEGIN) else 0)
+            | (if (o.END == 1) @enumToInt(INTERACTION_FLAGS.END) else 0)
+            | (if (o.CANCEL == 1) @enumToInt(INTERACTION_FLAGS.CANCEL) else 0)
+            | (if (o.INERTIA == 1) @enumToInt(INTERACTION_FLAGS.INERTIA) else 0)
+            | (if (o.MAX == 1) @enumToInt(INTERACTION_FLAGS.MAX) else 0)
+        );
+    }
 };
 pub const INTERACTION_FLAG_NONE = INTERACTION_FLAGS.NONE;
 pub const INTERACTION_FLAG_BEGIN = INTERACTION_FLAGS.BEGIN;
@@ -44,7 +60,6 @@ pub const INTERACTION_FLAG_CANCEL = INTERACTION_FLAGS.CANCEL;
 pub const INTERACTION_FLAG_INERTIA = INTERACTION_FLAGS.INERTIA;
 pub const INTERACTION_FLAG_MAX = INTERACTION_FLAGS.MAX;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const INTERACTION_CONFIGURATION_FLAGS = extern enum(u32) {
     NONE = 0,
     MANIPULATION = 1,
@@ -75,6 +90,67 @@ pub const INTERACTION_CONFIGURATION_FLAGS = extern enum(u32) {
     DRAG = 1,
     MAX = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        MANIPULATION: u1 = 0,
+        MANIPULATION_TRANSLATION_X: u1 = 0,
+        MANIPULATION_TRANSLATION_Y: u1 = 0,
+        MANIPULATION_ROTATION: u1 = 0,
+        MANIPULATION_SCALING: u1 = 0,
+        MANIPULATION_TRANSLATION_INERTIA: u1 = 0,
+        MANIPULATION_ROTATION_INERTIA: u1 = 0,
+        MANIPULATION_SCALING_INERTIA: u1 = 0,
+        MANIPULATION_RAILS_X: u1 = 0,
+        MANIPULATION_RAILS_Y: u1 = 0,
+        MANIPULATION_EXACT: u1 = 0,
+        MANIPULATION_MULTIPLE_FINGER_PANNING: u1 = 0,
+        CROSS_SLIDE: u1 = 0,
+        CROSS_SLIDE_HORIZONTAL: u1 = 0,
+        CROSS_SLIDE_SELECT: u1 = 0,
+        CROSS_SLIDE_SPEED_BUMP: u1 = 0,
+        CROSS_SLIDE_REARRANGE: u1 = 0,
+        CROSS_SLIDE_EXACT: u1 = 0,
+        TAP: u1 = 0,
+        TAP_DOUBLE: u1 = 0,
+        TAP_MULTIPLE_FINGER: u1 = 0,
+        SECONDARY_TAP: u1 = 0,
+        HOLD: u1 = 0,
+        HOLD_MOUSE: u1 = 0,
+        HOLD_MULTIPLE_FINGER: u1 = 0,
+        DRAG: u1 = 0,
+        MAX: u1 = 0,
+    }) INTERACTION_CONFIGURATION_FLAGS {
+        return @intToEnum(INTERACTION_CONFIGURATION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.NONE) else 0)
+            | (if (o.MANIPULATION == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION) else 0)
+            | (if (o.MANIPULATION_TRANSLATION_X == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_X) else 0)
+            | (if (o.MANIPULATION_TRANSLATION_Y == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_Y) else 0)
+            | (if (o.MANIPULATION_ROTATION == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_ROTATION) else 0)
+            | (if (o.MANIPULATION_SCALING == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_SCALING) else 0)
+            | (if (o.MANIPULATION_TRANSLATION_INERTIA == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_INERTIA) else 0)
+            | (if (o.MANIPULATION_ROTATION_INERTIA == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_ROTATION_INERTIA) else 0)
+            | (if (o.MANIPULATION_SCALING_INERTIA == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_SCALING_INERTIA) else 0)
+            | (if (o.MANIPULATION_RAILS_X == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_RAILS_X) else 0)
+            | (if (o.MANIPULATION_RAILS_Y == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_RAILS_Y) else 0)
+            | (if (o.MANIPULATION_EXACT == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_EXACT) else 0)
+            | (if (o.MANIPULATION_MULTIPLE_FINGER_PANNING == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_MULTIPLE_FINGER_PANNING) else 0)
+            | (if (o.CROSS_SLIDE == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.CROSS_SLIDE) else 0)
+            | (if (o.CROSS_SLIDE_HORIZONTAL == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.CROSS_SLIDE_HORIZONTAL) else 0)
+            | (if (o.CROSS_SLIDE_SELECT == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.CROSS_SLIDE_SELECT) else 0)
+            | (if (o.CROSS_SLIDE_SPEED_BUMP == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.CROSS_SLIDE_SPEED_BUMP) else 0)
+            | (if (o.CROSS_SLIDE_REARRANGE == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.CROSS_SLIDE_REARRANGE) else 0)
+            | (if (o.CROSS_SLIDE_EXACT == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.CROSS_SLIDE_EXACT) else 0)
+            | (if (o.TAP == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.TAP) else 0)
+            | (if (o.TAP_DOUBLE == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.TAP_DOUBLE) else 0)
+            | (if (o.TAP_MULTIPLE_FINGER == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.TAP_MULTIPLE_FINGER) else 0)
+            | (if (o.SECONDARY_TAP == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.SECONDARY_TAP) else 0)
+            | (if (o.HOLD == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.HOLD) else 0)
+            | (if (o.HOLD_MOUSE == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.HOLD_MOUSE) else 0)
+            | (if (o.HOLD_MULTIPLE_FINGER == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.HOLD_MULTIPLE_FINGER) else 0)
+            | (if (o.DRAG == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.DRAG) else 0)
+            | (if (o.MAX == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MAX) else 0)
+        );
+    }
 };
 pub const INTERACTION_CONFIGURATION_FLAG_NONE = INTERACTION_CONFIGURATION_FLAGS.NONE;
 pub const INTERACTION_CONFIGURATION_FLAG_MANIPULATION = INTERACTION_CONFIGURATION_FLAGS.MANIPULATION;
@@ -159,7 +235,6 @@ pub const CROSS_SLIDE_THRESHOLD_REARRANGE_START = CROSS_SLIDE_THRESHOLD.REARRANG
 pub const CROSS_SLIDE_THRESHOLD_COUNT = CROSS_SLIDE_THRESHOLD.COUNT;
 pub const CROSS_SLIDE_THRESHOLD_MAX = CROSS_SLIDE_THRESHOLD.MAX;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CROSS_SLIDE_FLAGS = extern enum(u32) {
     NONE = 0,
     SELECT = 1,
@@ -167,6 +242,21 @@ pub const CROSS_SLIDE_FLAGS = extern enum(u32) {
     REARRANGE = 4,
     MAX = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SELECT: u1 = 0,
+        SPEED_BUMP: u1 = 0,
+        REARRANGE: u1 = 0,
+        MAX: u1 = 0,
+    }) CROSS_SLIDE_FLAGS {
+        return @intToEnum(CROSS_SLIDE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CROSS_SLIDE_FLAGS.NONE) else 0)
+            | (if (o.SELECT == 1) @enumToInt(CROSS_SLIDE_FLAGS.SELECT) else 0)
+            | (if (o.SPEED_BUMP == 1) @enumToInt(CROSS_SLIDE_FLAGS.SPEED_BUMP) else 0)
+            | (if (o.REARRANGE == 1) @enumToInt(CROSS_SLIDE_FLAGS.REARRANGE) else 0)
+            | (if (o.MAX == 1) @enumToInt(CROSS_SLIDE_FLAGS.MAX) else 0)
+        );
+    }
 };
 pub const CROSS_SLIDE_FLAGS_NONE = CROSS_SLIDE_FLAGS.NONE;
 pub const CROSS_SLIDE_FLAGS_SELECT = CROSS_SLIDE_FLAGS.SELECT;

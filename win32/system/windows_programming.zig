@@ -911,7 +911,6 @@ pub const STD_INPUT_HANDLE = STD_HANDLE_TYPE.INPUT_HANDLE;
 pub const STD_OUTPUT_HANDLE = STD_HANDLE_TYPE.OUTPUT_HANDLE;
 pub const STD_ERROR_HANDLE = STD_HANDLE_TYPE.ERROR_HANDLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const VER_FLAGS = extern enum(u32) {
     MINORVERSION = 1,
     MAJORVERSION = 2,
@@ -922,6 +921,27 @@ pub const VER_FLAGS = extern enum(u32) {
     SUITENAME = 64,
     PRODUCT_TYPE = 128,
     _,
+    pub fn initFlags(o: struct {
+        MINORVERSION: u1 = 0,
+        MAJORVERSION: u1 = 0,
+        BUILDNUMBER: u1 = 0,
+        PLATFORMID: u1 = 0,
+        SERVICEPACKMINOR: u1 = 0,
+        SERVICEPACKMAJOR: u1 = 0,
+        SUITENAME: u1 = 0,
+        PRODUCT_TYPE: u1 = 0,
+    }) VER_FLAGS {
+        return @intToEnum(VER_FLAGS,
+              (if (o.MINORVERSION == 1) @enumToInt(VER_FLAGS.MINORVERSION) else 0)
+            | (if (o.MAJORVERSION == 1) @enumToInt(VER_FLAGS.MAJORVERSION) else 0)
+            | (if (o.BUILDNUMBER == 1) @enumToInt(VER_FLAGS.BUILDNUMBER) else 0)
+            | (if (o.PLATFORMID == 1) @enumToInt(VER_FLAGS.PLATFORMID) else 0)
+            | (if (o.SERVICEPACKMINOR == 1) @enumToInt(VER_FLAGS.SERVICEPACKMINOR) else 0)
+            | (if (o.SERVICEPACKMAJOR == 1) @enumToInt(VER_FLAGS.SERVICEPACKMAJOR) else 0)
+            | (if (o.SUITENAME == 1) @enumToInt(VER_FLAGS.SUITENAME) else 0)
+            | (if (o.PRODUCT_TYPE == 1) @enumToInt(VER_FLAGS.PRODUCT_TYPE) else 0)
+        );
+    }
 };
 pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
 pub const VER_MAJORVERSION = VER_FLAGS.MAJORVERSION;
@@ -11091,7 +11111,6 @@ pub const IXmlWriterLite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DEVPROP_OPERATOR = extern enum(u32) {
     MODIFIER_NOT = 65536,
     MODIFIER_IGNORE_CASE = 131072,
@@ -11136,6 +11155,95 @@ pub const DEVPROP_OPERATOR = extern enum(u32) {
     MASK_LOGICAL = 267386880,
     MASK_ARRAY = 4026531840,
     _,
+    pub fn initFlags(o: struct {
+        MODIFIER_NOT: u1 = 0,
+        MODIFIER_IGNORE_CASE: u1 = 0,
+        NONE: u1 = 0,
+        EXISTS: u1 = 0,
+        NOT_EXISTS: u1 = 0,
+        EQUALS: u1 = 0,
+        NOT_EQUALS: u1 = 0,
+        GREATER_THAN: u1 = 0,
+        LESS_THAN: u1 = 0,
+        GREATER_THAN_EQUALS: u1 = 0,
+        LESS_THAN_EQUALS: u1 = 0,
+        EQUALS_IGNORE_CASE: u1 = 0,
+        NOT_EQUALS_IGNORE_CASE: u1 = 0,
+        BITWISE_AND: u1 = 0,
+        BITWISE_OR: u1 = 0,
+        BEGINS_WITH: u1 = 0,
+        ENDS_WITH: u1 = 0,
+        CONTAINS: u1 = 0,
+        BEGINS_WITH_IGNORE_CASE: u1 = 0,
+        ENDS_WITH_IGNORE_CASE: u1 = 0,
+        CONTAINS_IGNORE_CASE: u1 = 0,
+        LIST_CONTAINS: u1 = 0,
+        LIST_ELEMENT_BEGINS_WITH: u1 = 0,
+        LIST_ELEMENT_ENDS_WITH: u1 = 0,
+        LIST_ELEMENT_CONTAINS: u1 = 0,
+        LIST_CONTAINS_IGNORE_CASE: u1 = 0,
+        LIST_ELEMENT_BEGINS_WITH_IGNORE_CASE: u1 = 0,
+        LIST_ELEMENT_ENDS_WITH_IGNORE_CASE: u1 = 0,
+        LIST_ELEMENT_CONTAINS_IGNORE_CASE: u1 = 0,
+        AND_OPEN: u1 = 0,
+        AND_CLOSE: u1 = 0,
+        OR_OPEN: u1 = 0,
+        OR_CLOSE: u1 = 0,
+        NOT_OPEN: u1 = 0,
+        NOT_CLOSE: u1 = 0,
+        ARRAY_CONTAINS: u1 = 0,
+        MASK_EVAL: u1 = 0,
+        MASK_LIST: u1 = 0,
+        MASK_MODIFIER: u1 = 0,
+        MASK_NOT_LOGICAL: u1 = 0,
+        MASK_LOGICAL: u1 = 0,
+        MASK_ARRAY: u1 = 0,
+    }) DEVPROP_OPERATOR {
+        return @intToEnum(DEVPROP_OPERATOR,
+              (if (o.MODIFIER_NOT == 1) @enumToInt(DEVPROP_OPERATOR.MODIFIER_NOT) else 0)
+            | (if (o.MODIFIER_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.MODIFIER_IGNORE_CASE) else 0)
+            | (if (o.NONE == 1) @enumToInt(DEVPROP_OPERATOR.NONE) else 0)
+            | (if (o.EXISTS == 1) @enumToInt(DEVPROP_OPERATOR.EXISTS) else 0)
+            | (if (o.NOT_EXISTS == 1) @enumToInt(DEVPROP_OPERATOR.NOT_EXISTS) else 0)
+            | (if (o.EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.EQUALS) else 0)
+            | (if (o.NOT_EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.NOT_EQUALS) else 0)
+            | (if (o.GREATER_THAN == 1) @enumToInt(DEVPROP_OPERATOR.GREATER_THAN) else 0)
+            | (if (o.LESS_THAN == 1) @enumToInt(DEVPROP_OPERATOR.LESS_THAN) else 0)
+            | (if (o.GREATER_THAN_EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.GREATER_THAN_EQUALS) else 0)
+            | (if (o.LESS_THAN_EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.LESS_THAN_EQUALS) else 0)
+            | (if (o.EQUALS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.EQUALS_IGNORE_CASE) else 0)
+            | (if (o.NOT_EQUALS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.NOT_EQUALS_IGNORE_CASE) else 0)
+            | (if (o.BITWISE_AND == 1) @enumToInt(DEVPROP_OPERATOR.BITWISE_AND) else 0)
+            | (if (o.BITWISE_OR == 1) @enumToInt(DEVPROP_OPERATOR.BITWISE_OR) else 0)
+            | (if (o.BEGINS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.BEGINS_WITH) else 0)
+            | (if (o.ENDS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.ENDS_WITH) else 0)
+            | (if (o.CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.CONTAINS) else 0)
+            | (if (o.BEGINS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.BEGINS_WITH_IGNORE_CASE) else 0)
+            | (if (o.ENDS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.ENDS_WITH_IGNORE_CASE) else 0)
+            | (if (o.CONTAINS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.CONTAINS_IGNORE_CASE) else 0)
+            | (if (o.LIST_CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.LIST_CONTAINS) else 0)
+            | (if (o.LIST_ELEMENT_BEGINS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_BEGINS_WITH) else 0)
+            | (if (o.LIST_ELEMENT_ENDS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_ENDS_WITH) else 0)
+            | (if (o.LIST_ELEMENT_CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_CONTAINS) else 0)
+            | (if (o.LIST_CONTAINS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_CONTAINS_IGNORE_CASE) else 0)
+            | (if (o.LIST_ELEMENT_BEGINS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_BEGINS_WITH_IGNORE_CASE) else 0)
+            | (if (o.LIST_ELEMENT_ENDS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_ENDS_WITH_IGNORE_CASE) else 0)
+            | (if (o.LIST_ELEMENT_CONTAINS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_CONTAINS_IGNORE_CASE) else 0)
+            | (if (o.AND_OPEN == 1) @enumToInt(DEVPROP_OPERATOR.AND_OPEN) else 0)
+            | (if (o.AND_CLOSE == 1) @enumToInt(DEVPROP_OPERATOR.AND_CLOSE) else 0)
+            | (if (o.OR_OPEN == 1) @enumToInt(DEVPROP_OPERATOR.OR_OPEN) else 0)
+            | (if (o.OR_CLOSE == 1) @enumToInt(DEVPROP_OPERATOR.OR_CLOSE) else 0)
+            | (if (o.NOT_OPEN == 1) @enumToInt(DEVPROP_OPERATOR.NOT_OPEN) else 0)
+            | (if (o.NOT_CLOSE == 1) @enumToInt(DEVPROP_OPERATOR.NOT_CLOSE) else 0)
+            | (if (o.ARRAY_CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.ARRAY_CONTAINS) else 0)
+            | (if (o.MASK_EVAL == 1) @enumToInt(DEVPROP_OPERATOR.MASK_EVAL) else 0)
+            | (if (o.MASK_LIST == 1) @enumToInt(DEVPROP_OPERATOR.MASK_LIST) else 0)
+            | (if (o.MASK_MODIFIER == 1) @enumToInt(DEVPROP_OPERATOR.MASK_MODIFIER) else 0)
+            | (if (o.MASK_NOT_LOGICAL == 1) @enumToInt(DEVPROP_OPERATOR.MASK_NOT_LOGICAL) else 0)
+            | (if (o.MASK_LOGICAL == 1) @enumToInt(DEVPROP_OPERATOR.MASK_LOGICAL) else 0)
+            | (if (o.MASK_ARRAY == 1) @enumToInt(DEVPROP_OPERATOR.MASK_ARRAY) else 0)
+        );
+    }
 };
 pub const DEVPROP_OPERATOR_MODIFIER_NOT = DEVPROP_OPERATOR.MODIFIER_NOT;
 pub const DEVPROP_OPERATOR_MODIFIER_IGNORE_CASE = DEVPROP_OPERATOR.MODIFIER_IGNORE_CASE;
@@ -11370,11 +11478,19 @@ pub const PFLOGFRAME = extern struct {
     bPacketData: [1]u8,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const VERIFIER_ENUM_RESOURCE_FLAGS = extern enum(u32) {
     DONT_RESOLVE_TRACES = 2,
     SUSPEND = 1,
     _,
+    pub fn initFlags(o: struct {
+        DONT_RESOLVE_TRACES: u1 = 0,
+        SUSPEND: u1 = 0,
+    }) VERIFIER_ENUM_RESOURCE_FLAGS {
+        return @intToEnum(VERIFIER_ENUM_RESOURCE_FLAGS,
+              (if (o.DONT_RESOLVE_TRACES == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES) else 0)
+            | (if (o.SUSPEND == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND) else 0)
+        );
+    }
 };
 pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES;
 pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND;

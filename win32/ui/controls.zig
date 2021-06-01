@@ -11365,7 +11365,6 @@ pub const TAP_STAGGERDELAYCAP = TA_PROPERTY.STAGGERDELAYCAP;
 pub const TAP_STAGGERDELAYFACTOR = TA_PROPERTY.STAGGERDELAYFACTOR;
 pub const TAP_ZORDER = TA_PROPERTY.ZORDER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TA_PROPERTY_FLAG = extern enum(u32) {
     NONE = 0,
     HASSTAGGER = 1,
@@ -11374,6 +11373,23 @@ pub const TA_PROPERTY_FLAG = extern enum(u32) {
     HASBACKGROUND = 8,
     HASPERSPECTIVE = 16,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        HASSTAGGER: u1 = 0,
+        ISRTLAWARE: u1 = 0,
+        ALLOWCOLLECTION: u1 = 0,
+        HASBACKGROUND: u1 = 0,
+        HASPERSPECTIVE: u1 = 0,
+    }) TA_PROPERTY_FLAG {
+        return @intToEnum(TA_PROPERTY_FLAG,
+              (if (o.NONE == 1) @enumToInt(TA_PROPERTY_FLAG.NONE) else 0)
+            | (if (o.HASSTAGGER == 1) @enumToInt(TA_PROPERTY_FLAG.HASSTAGGER) else 0)
+            | (if (o.ISRTLAWARE == 1) @enumToInt(TA_PROPERTY_FLAG.ISRTLAWARE) else 0)
+            | (if (o.ALLOWCOLLECTION == 1) @enumToInt(TA_PROPERTY_FLAG.ALLOWCOLLECTION) else 0)
+            | (if (o.HASBACKGROUND == 1) @enumToInt(TA_PROPERTY_FLAG.HASBACKGROUND) else 0)
+            | (if (o.HASPERSPECTIVE == 1) @enumToInt(TA_PROPERTY_FLAG.HASPERSPECTIVE) else 0)
+        );
+    }
 };
 pub const TAPF_NONE = TA_PROPERTY_FLAG.NONE;
 pub const TAPF_HASSTAGGER = TA_PROPERTY_FLAG.HASSTAGGER;
@@ -13199,7 +13215,6 @@ pub const OBJID_VSCROLL = SCROLLBAR_OBJID.VSCROLL;
 pub const OBJID_MENU = SCROLLBAR_OBJID.MENU;
 pub const OBJID_SYSMENU = SCROLLBAR_OBJID.SYSMENU;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CFM_MASK = extern enum(u32) {
     SUBSCRIPT = 196608,
     EFFECTS = 1073741887,
@@ -13245,6 +13260,97 @@ pub const CFM_MASK = extern enum(u32) {
     MATHORDINARY = 536870912,
     ALLEFFECTS = 2115207167,
     _,
+    pub fn initFlags(o: struct {
+        SUBSCRIPT: u1 = 0,
+        EFFECTS: u1 = 0,
+        ALL: u1 = 0,
+        BOLD: u1 = 0,
+        CHARSET: u1 = 0,
+        COLOR: u1 = 0,
+        FACE: u1 = 0,
+        ITALIC: u1 = 0,
+        OFFSET: u1 = 0,
+        PROTECTED: u1 = 0,
+        SIZE: u1 = 0,
+        STRIKEOUT: u1 = 0,
+        UNDERLINE: u1 = 0,
+        LINK: u1 = 0,
+        SMALLCAPS: u1 = 0,
+        ALLCAPS: u1 = 0,
+        HIDDEN: u1 = 0,
+        OUTLINE: u1 = 0,
+        SHADOW: u1 = 0,
+        EMBOSS: u1 = 0,
+        IMPRINT: u1 = 0,
+        DISABLED: u1 = 0,
+        REVISED: u1 = 0,
+        REVAUTHOR: u1 = 0,
+        ANIMATION: u1 = 0,
+        STYLE: u1 = 0,
+        KERNING: u1 = 0,
+        SPACING: u1 = 0,
+        WEIGHT: u1 = 0,
+        UNDERLINETYPE: u1 = 0,
+        COOKIE: u1 = 0,
+        LCID: u1 = 0,
+        BACKCOLOR: u1 = 0,
+        SUPERSCRIPT: u1 = 0,
+        EFFECTS2: u1 = 0,
+        ALL2: u1 = 0,
+        FONTBOUND: u1 = 0,
+        LINKPROTECTED: u1 = 0,
+        EXTENDED: u1 = 0,
+        MATHNOBUILDUP: u1 = 0,
+        MATH: u1 = 0,
+        MATHORDINARY: u1 = 0,
+        ALLEFFECTS: u1 = 0,
+    }) CFM_MASK {
+        return @intToEnum(CFM_MASK,
+              (if (o.SUBSCRIPT == 1) @enumToInt(CFM_MASK.SUBSCRIPT) else 0)
+            | (if (o.EFFECTS == 1) @enumToInt(CFM_MASK.EFFECTS) else 0)
+            | (if (o.ALL == 1) @enumToInt(CFM_MASK.ALL) else 0)
+            | (if (o.BOLD == 1) @enumToInt(CFM_MASK.BOLD) else 0)
+            | (if (o.CHARSET == 1) @enumToInt(CFM_MASK.CHARSET) else 0)
+            | (if (o.COLOR == 1) @enumToInt(CFM_MASK.COLOR) else 0)
+            | (if (o.FACE == 1) @enumToInt(CFM_MASK.FACE) else 0)
+            | (if (o.ITALIC == 1) @enumToInt(CFM_MASK.ITALIC) else 0)
+            | (if (o.OFFSET == 1) @enumToInt(CFM_MASK.OFFSET) else 0)
+            | (if (o.PROTECTED == 1) @enumToInt(CFM_MASK.PROTECTED) else 0)
+            | (if (o.SIZE == 1) @enumToInt(CFM_MASK.SIZE) else 0)
+            | (if (o.STRIKEOUT == 1) @enumToInt(CFM_MASK.STRIKEOUT) else 0)
+            | (if (o.UNDERLINE == 1) @enumToInt(CFM_MASK.UNDERLINE) else 0)
+            | (if (o.LINK == 1) @enumToInt(CFM_MASK.LINK) else 0)
+            | (if (o.SMALLCAPS == 1) @enumToInt(CFM_MASK.SMALLCAPS) else 0)
+            | (if (o.ALLCAPS == 1) @enumToInt(CFM_MASK.ALLCAPS) else 0)
+            | (if (o.HIDDEN == 1) @enumToInt(CFM_MASK.HIDDEN) else 0)
+            | (if (o.OUTLINE == 1) @enumToInt(CFM_MASK.OUTLINE) else 0)
+            | (if (o.SHADOW == 1) @enumToInt(CFM_MASK.SHADOW) else 0)
+            | (if (o.EMBOSS == 1) @enumToInt(CFM_MASK.EMBOSS) else 0)
+            | (if (o.IMPRINT == 1) @enumToInt(CFM_MASK.IMPRINT) else 0)
+            | (if (o.DISABLED == 1) @enumToInt(CFM_MASK.DISABLED) else 0)
+            | (if (o.REVISED == 1) @enumToInt(CFM_MASK.REVISED) else 0)
+            | (if (o.REVAUTHOR == 1) @enumToInt(CFM_MASK.REVAUTHOR) else 0)
+            | (if (o.ANIMATION == 1) @enumToInt(CFM_MASK.ANIMATION) else 0)
+            | (if (o.STYLE == 1) @enumToInt(CFM_MASK.STYLE) else 0)
+            | (if (o.KERNING == 1) @enumToInt(CFM_MASK.KERNING) else 0)
+            | (if (o.SPACING == 1) @enumToInt(CFM_MASK.SPACING) else 0)
+            | (if (o.WEIGHT == 1) @enumToInt(CFM_MASK.WEIGHT) else 0)
+            | (if (o.UNDERLINETYPE == 1) @enumToInt(CFM_MASK.UNDERLINETYPE) else 0)
+            | (if (o.COOKIE == 1) @enumToInt(CFM_MASK.COOKIE) else 0)
+            | (if (o.LCID == 1) @enumToInt(CFM_MASK.LCID) else 0)
+            | (if (o.BACKCOLOR == 1) @enumToInt(CFM_MASK.BACKCOLOR) else 0)
+            | (if (o.SUPERSCRIPT == 1) @enumToInt(CFM_MASK.SUPERSCRIPT) else 0)
+            | (if (o.EFFECTS2 == 1) @enumToInt(CFM_MASK.EFFECTS2) else 0)
+            | (if (o.ALL2 == 1) @enumToInt(CFM_MASK.ALL2) else 0)
+            | (if (o.FONTBOUND == 1) @enumToInt(CFM_MASK.FONTBOUND) else 0)
+            | (if (o.LINKPROTECTED == 1) @enumToInt(CFM_MASK.LINKPROTECTED) else 0)
+            | (if (o.EXTENDED == 1) @enumToInt(CFM_MASK.EXTENDED) else 0)
+            | (if (o.MATHNOBUILDUP == 1) @enumToInt(CFM_MASK.MATHNOBUILDUP) else 0)
+            | (if (o.MATH == 1) @enumToInt(CFM_MASK.MATH) else 0)
+            | (if (o.MATHORDINARY == 1) @enumToInt(CFM_MASK.MATHORDINARY) else 0)
+            | (if (o.ALLEFFECTS == 1) @enumToInt(CFM_MASK.ALLEFFECTS) else 0)
+        );
+    }
 };
 pub const CFM_SUBSCRIPT = CFM_MASK.SUBSCRIPT;
 pub const CFM_EFFECTS = CFM_MASK.EFFECTS;
@@ -13290,7 +13396,6 @@ pub const CFM_MATH = CFM_MASK.MATH;
 pub const CFM_MATHORDINARY = CFM_MASK.MATHORDINARY;
 pub const CFM_ALLEFFECTS = CFM_MASK.ALLEFFECTS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CFE_EFFECTS = extern enum(u32) {
     ALLCAPS = 128,
     AUTOBACKCOLOR = 67108864,
@@ -13318,10 +13423,64 @@ pub const CFE_EFFECTS = extern enum(u32) {
     MATH = 268435456,
     MATHORDINARY = 536870912,
     _,
+    pub fn initFlags(o: struct {
+        ALLCAPS: u1 = 0,
+        AUTOBACKCOLOR: u1 = 0,
+        DISABLED: u1 = 0,
+        EMBOSS: u1 = 0,
+        HIDDEN: u1 = 0,
+        IMPRINT: u1 = 0,
+        OUTLINE: u1 = 0,
+        REVISED: u1 = 0,
+        SHADOW: u1 = 0,
+        SMALLCAPS: u1 = 0,
+        AUTOCOLOR: u1 = 0,
+        BOLD: u1 = 0,
+        ITALIC: u1 = 0,
+        STRIKEOUT: u1 = 0,
+        UNDERLINE: u1 = 0,
+        PROTECTED: u1 = 0,
+        LINK: u1 = 0,
+        SUBSCRIPT: u1 = 0,
+        SUPERSCRIPT: u1 = 0,
+        FONTBOUND: u1 = 0,
+        LINKPROTECTED: u1 = 0,
+        EXTENDED: u1 = 0,
+        MATHNOBUILDUP: u1 = 0,
+        MATH: u1 = 0,
+        MATHORDINARY: u1 = 0,
+    }) CFE_EFFECTS {
+        return @intToEnum(CFE_EFFECTS,
+              (if (o.ALLCAPS == 1) @enumToInt(CFE_EFFECTS.ALLCAPS) else 0)
+            | (if (o.AUTOBACKCOLOR == 1) @enumToInt(CFE_EFFECTS.AUTOBACKCOLOR) else 0)
+            | (if (o.DISABLED == 1) @enumToInt(CFE_EFFECTS.DISABLED) else 0)
+            | (if (o.EMBOSS == 1) @enumToInt(CFE_EFFECTS.EMBOSS) else 0)
+            | (if (o.HIDDEN == 1) @enumToInt(CFE_EFFECTS.HIDDEN) else 0)
+            | (if (o.IMPRINT == 1) @enumToInt(CFE_EFFECTS.IMPRINT) else 0)
+            | (if (o.OUTLINE == 1) @enumToInt(CFE_EFFECTS.OUTLINE) else 0)
+            | (if (o.REVISED == 1) @enumToInt(CFE_EFFECTS.REVISED) else 0)
+            | (if (o.SHADOW == 1) @enumToInt(CFE_EFFECTS.SHADOW) else 0)
+            | (if (o.SMALLCAPS == 1) @enumToInt(CFE_EFFECTS.SMALLCAPS) else 0)
+            | (if (o.AUTOCOLOR == 1) @enumToInt(CFE_EFFECTS.AUTOCOLOR) else 0)
+            | (if (o.BOLD == 1) @enumToInt(CFE_EFFECTS.BOLD) else 0)
+            | (if (o.ITALIC == 1) @enumToInt(CFE_EFFECTS.ITALIC) else 0)
+            | (if (o.STRIKEOUT == 1) @enumToInt(CFE_EFFECTS.STRIKEOUT) else 0)
+            | (if (o.UNDERLINE == 1) @enumToInt(CFE_EFFECTS.UNDERLINE) else 0)
+            | (if (o.PROTECTED == 1) @enumToInt(CFE_EFFECTS.PROTECTED) else 0)
+            | (if (o.LINK == 1) @enumToInt(CFE_EFFECTS.LINK) else 0)
+            | (if (o.SUBSCRIPT == 1) @enumToInt(CFE_EFFECTS.SUBSCRIPT) else 0)
+            | (if (o.SUPERSCRIPT == 1) @enumToInt(CFE_EFFECTS.SUPERSCRIPT) else 0)
+            | (if (o.FONTBOUND == 1) @enumToInt(CFE_EFFECTS.FONTBOUND) else 0)
+            | (if (o.LINKPROTECTED == 1) @enumToInt(CFE_EFFECTS.LINKPROTECTED) else 0)
+            | (if (o.EXTENDED == 1) @enumToInt(CFE_EFFECTS.EXTENDED) else 0)
+            | (if (o.MATHNOBUILDUP == 1) @enumToInt(CFE_EFFECTS.MATHNOBUILDUP) else 0)
+            | (if (o.MATH == 1) @enumToInt(CFE_EFFECTS.MATH) else 0)
+            | (if (o.MATHORDINARY == 1) @enumToInt(CFE_EFFECTS.MATHORDINARY) else 0)
+        );
+    }
 };
 // TODO: enum 'CFE_EFFECTS' has known issues with its value aliases
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PARAFORMAT_MASK = extern enum(u32) {
     ALIGNMENT = 8,
     NUMBERING = 32,
@@ -13332,6 +13491,27 @@ pub const PARAFORMAT_MASK = extern enum(u32) {
     STARTINDENT = 1,
     TABSTOPS = 16,
     _,
+    pub fn initFlags(o: struct {
+        ALIGNMENT: u1 = 0,
+        NUMBERING: u1 = 0,
+        OFFSET: u1 = 0,
+        OFFSETINDENT: u1 = 0,
+        RIGHTINDENT: u1 = 0,
+        RTLPARA: u1 = 0,
+        STARTINDENT: u1 = 0,
+        TABSTOPS: u1 = 0,
+    }) PARAFORMAT_MASK {
+        return @intToEnum(PARAFORMAT_MASK,
+              (if (o.ALIGNMENT == 1) @enumToInt(PARAFORMAT_MASK.ALIGNMENT) else 0)
+            | (if (o.NUMBERING == 1) @enumToInt(PARAFORMAT_MASK.NUMBERING) else 0)
+            | (if (o.OFFSET == 1) @enumToInt(PARAFORMAT_MASK.OFFSET) else 0)
+            | (if (o.OFFSETINDENT == 1) @enumToInt(PARAFORMAT_MASK.OFFSETINDENT) else 0)
+            | (if (o.RIGHTINDENT == 1) @enumToInt(PARAFORMAT_MASK.RIGHTINDENT) else 0)
+            | (if (o.RTLPARA == 1) @enumToInt(PARAFORMAT_MASK.RTLPARA) else 0)
+            | (if (o.STARTINDENT == 1) @enumToInt(PARAFORMAT_MASK.STARTINDENT) else 0)
+            | (if (o.TABSTOPS == 1) @enumToInt(PARAFORMAT_MASK.TABSTOPS) else 0)
+        );
+    }
 };
 pub const PFM_ALIGNMENT = PARAFORMAT_MASK.ALIGNMENT;
 pub const PFM_NUMBERING = PARAFORMAT_MASK.NUMBERING;
@@ -13388,13 +13568,25 @@ pub const VTA_CENTER = TEXT_ALIGN_OPTIONS.VTA_CENTER;
 pub const VTA_BOTTOM = TEXT_ALIGN_OPTIONS.VTA_BOTTOM;
 pub const VTA_TOP = TEXT_ALIGN_OPTIONS.VTA_TOP;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SCROLLBAR_CONSTANTS = extern enum(u32) {
     CTL = 2,
     HORZ = 0,
     VERT = 1,
     BOTH = 3,
     _,
+    pub fn initFlags(o: struct {
+        CTL: u1 = 0,
+        HORZ: u1 = 0,
+        VERT: u1 = 0,
+        BOTH: u1 = 0,
+    }) SCROLLBAR_CONSTANTS {
+        return @intToEnum(SCROLLBAR_CONSTANTS,
+              (if (o.CTL == 1) @enumToInt(SCROLLBAR_CONSTANTS.CTL) else 0)
+            | (if (o.HORZ == 1) @enumToInt(SCROLLBAR_CONSTANTS.HORZ) else 0)
+            | (if (o.VERT == 1) @enumToInt(SCROLLBAR_CONSTANTS.VERT) else 0)
+            | (if (o.BOTH == 1) @enumToInt(SCROLLBAR_CONSTANTS.BOTH) else 0)
+        );
+    }
 };
 pub const SB_CTL = SCROLLBAR_CONSTANTS.CTL;
 pub const SB_HORZ = SCROLLBAR_CONSTANTS.HORZ;
@@ -13429,7 +13621,6 @@ pub const DPAMM_MERGE = DPAMM_MESSAGE.MERGE;
 pub const DPAMM_DELETE = DPAMM_MESSAGE.DELETE;
 pub const DPAMM_INSERT = DPAMM_MESSAGE.INSERT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IMAGE_FLAGS = extern enum(u32) {
     CREATEDIBSECTION = 8192,
     DEFAULTCOLOR = 0,
@@ -13444,6 +13635,35 @@ pub const IMAGE_FLAGS = extern enum(u32) {
     COPYFROMRESOURCE = 16384,
     COPYRETURNORG = 4,
     _,
+    pub fn initFlags(o: struct {
+        CREATEDIBSECTION: u1 = 0,
+        DEFAULTCOLOR: u1 = 0,
+        DEFAULTSIZE: u1 = 0,
+        LOADFROMFILE: u1 = 0,
+        LOADMAP3DCOLORS: u1 = 0,
+        LOADTRANSPARENT: u1 = 0,
+        MONOCHROME: u1 = 0,
+        SHARED: u1 = 0,
+        VGACOLOR: u1 = 0,
+        COPYDELETEORG: u1 = 0,
+        COPYFROMRESOURCE: u1 = 0,
+        COPYRETURNORG: u1 = 0,
+    }) IMAGE_FLAGS {
+        return @intToEnum(IMAGE_FLAGS,
+              (if (o.CREATEDIBSECTION == 1) @enumToInt(IMAGE_FLAGS.CREATEDIBSECTION) else 0)
+            | (if (o.DEFAULTCOLOR == 1) @enumToInt(IMAGE_FLAGS.DEFAULTCOLOR) else 0)
+            | (if (o.DEFAULTSIZE == 1) @enumToInt(IMAGE_FLAGS.DEFAULTSIZE) else 0)
+            | (if (o.LOADFROMFILE == 1) @enumToInt(IMAGE_FLAGS.LOADFROMFILE) else 0)
+            | (if (o.LOADMAP3DCOLORS == 1) @enumToInt(IMAGE_FLAGS.LOADMAP3DCOLORS) else 0)
+            | (if (o.LOADTRANSPARENT == 1) @enumToInt(IMAGE_FLAGS.LOADTRANSPARENT) else 0)
+            | (if (o.MONOCHROME == 1) @enumToInt(IMAGE_FLAGS.MONOCHROME) else 0)
+            | (if (o.SHARED == 1) @enumToInt(IMAGE_FLAGS.SHARED) else 0)
+            | (if (o.VGACOLOR == 1) @enumToInt(IMAGE_FLAGS.VGACOLOR) else 0)
+            | (if (o.COPYDELETEORG == 1) @enumToInt(IMAGE_FLAGS.COPYDELETEORG) else 0)
+            | (if (o.COPYFROMRESOURCE == 1) @enumToInt(IMAGE_FLAGS.COPYFROMRESOURCE) else 0)
+            | (if (o.COPYRETURNORG == 1) @enumToInt(IMAGE_FLAGS.COPYRETURNORG) else 0)
+        );
+    }
 };
 pub const LR_CREATEDIBSECTION = IMAGE_FLAGS.CREATEDIBSECTION;
 pub const LR_DEFAULTCOLOR = IMAGE_FLAGS.DEFAULTCOLOR;
@@ -13458,7 +13678,6 @@ pub const LR_COPYDELETEORG = IMAGE_FLAGS.COPYDELETEORG;
 pub const LR_COPYFROMRESOURCE = IMAGE_FLAGS.COPYFROMRESOURCE;
 pub const LR_COPYRETURNORG = IMAGE_FLAGS.COPYRETURNORG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DLG_DIR_LIST_FILE_TYPE = extern enum(u32) {
     ARCHIVE = 32,
     DIRECTORY = 16,
@@ -13470,6 +13689,29 @@ pub const DLG_DIR_LIST_FILE_TYPE = extern enum(u32) {
     SYSTEM = 4,
     POSTMSGS = 8192,
     _,
+    pub fn initFlags(o: struct {
+        ARCHIVE: u1 = 0,
+        DIRECTORY: u1 = 0,
+        DRIVES: u1 = 0,
+        EXCLUSIVE: u1 = 0,
+        HIDDEN: u1 = 0,
+        READONLY: u1 = 0,
+        READWRITE: u1 = 0,
+        SYSTEM: u1 = 0,
+        POSTMSGS: u1 = 0,
+    }) DLG_DIR_LIST_FILE_TYPE {
+        return @intToEnum(DLG_DIR_LIST_FILE_TYPE,
+              (if (o.ARCHIVE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.ARCHIVE) else 0)
+            | (if (o.DIRECTORY == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.DIRECTORY) else 0)
+            | (if (o.DRIVES == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.DRIVES) else 0)
+            | (if (o.EXCLUSIVE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.EXCLUSIVE) else 0)
+            | (if (o.HIDDEN == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.HIDDEN) else 0)
+            | (if (o.READONLY == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.READONLY) else 0)
+            | (if (o.READWRITE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.READWRITE) else 0)
+            | (if (o.SYSTEM == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.SYSTEM) else 0)
+            | (if (o.POSTMSGS == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.POSTMSGS) else 0)
+        );
+    }
 };
 pub const DDL_ARCHIVE = DLG_DIR_LIST_FILE_TYPE.ARCHIVE;
 pub const DDL_DIRECTORY = DLG_DIR_LIST_FILE_TYPE.DIRECTORY;
@@ -13481,11 +13723,19 @@ pub const DDL_READWRITE = DLG_DIR_LIST_FILE_TYPE.READWRITE;
 pub const DDL_SYSTEM = DLG_DIR_LIST_FILE_TYPE.SYSTEM;
 pub const DDL_POSTMSGS = DLG_DIR_LIST_FILE_TYPE.POSTMSGS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OPEN_THEME_DATA_FLAGS = extern enum(u32) {
     FORCE_RECT_SIZING = 1,
     NONCLIENT = 2,
     _,
+    pub fn initFlags(o: struct {
+        FORCE_RECT_SIZING: u1 = 0,
+        NONCLIENT: u1 = 0,
+    }) OPEN_THEME_DATA_FLAGS {
+        return @intToEnum(OPEN_THEME_DATA_FLAGS,
+              (if (o.FORCE_RECT_SIZING == 1) @enumToInt(OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING) else 0)
+            | (if (o.NONCLIENT == 1) @enumToInt(OPEN_THEME_DATA_FLAGS.NONCLIENT) else 0)
+        );
+    }
 };
 pub const OTD_FORCE_RECT_SIZING = OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING;
 pub const OTD_NONCLIENT = OPEN_THEME_DATA_FLAGS.NONCLIENT;
@@ -13518,7 +13768,6 @@ pub const ESB_DISABLE_RTDN = ENABLE_SCROLL_BAR_ARROWS.DISABLE_RTDN;
 pub const ESB_DISABLE_UP = ENABLE_SCROLL_BAR_ARROWS.DISABLE_UP;
 pub const ESB_ENABLE_BOTH = ENABLE_SCROLL_BAR_ARROWS.ENABLE_BOTH;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IMAGE_LIST_DRAW_STYLE = extern enum(u32) {
     BLEND = 4,
     BLEND50 = 4,
@@ -13527,6 +13776,23 @@ pub const IMAGE_LIST_DRAW_STYLE = extern enum(u32) {
     NORMAL = 0,
     SELECTED = 4,
     _,
+    pub fn initFlags(o: struct {
+        BLEND: u1 = 0,
+        BLEND50: u1 = 0,
+        FOCUS: u1 = 0,
+        MASK: u1 = 0,
+        NORMAL: u1 = 0,
+        SELECTED: u1 = 0,
+    }) IMAGE_LIST_DRAW_STYLE {
+        return @intToEnum(IMAGE_LIST_DRAW_STYLE,
+              (if (o.BLEND == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.BLEND) else 0)
+            | (if (o.BLEND50 == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.BLEND50) else 0)
+            | (if (o.FOCUS == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.FOCUS) else 0)
+            | (if (o.MASK == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.MASK) else 0)
+            | (if (o.NORMAL == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.NORMAL) else 0)
+            | (if (o.SELECTED == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.SELECTED) else 0)
+        );
+    }
 };
 pub const ILD_BLEND = IMAGE_LIST_DRAW_STYLE.BLEND;
 pub const ILD_BLEND50 = IMAGE_LIST_DRAW_STYLE.BLEND50;
@@ -13598,18 +13864,27 @@ pub const BST_CHECKED = DLG_BUTTON_CHECK_STATE.CHECKED;
 pub const BST_INDETERMINATE = DLG_BUTTON_CHECK_STATE.INDETERMINATE;
 pub const BST_UNCHECKED = DLG_BUTTON_CHECK_STATE.UNCHECKED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DRAW_THEME_PARENT_BACKGROUND_FLAGS = extern enum(u32) {
     WINDOWDC = 1,
     USECTLCOLORSTATIC = 2,
     USEERASEBKGND = 4,
     _,
+    pub fn initFlags(o: struct {
+        WINDOWDC: u1 = 0,
+        USECTLCOLORSTATIC: u1 = 0,
+        USEERASEBKGND: u1 = 0,
+    }) DRAW_THEME_PARENT_BACKGROUND_FLAGS {
+        return @intToEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS,
+              (if (o.WINDOWDC == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC) else 0)
+            | (if (o.USECTLCOLORSTATIC == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USECTLCOLORSTATIC) else 0)
+            | (if (o.USEERASEBKGND == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USEERASEBKGND) else 0)
+        );
+    }
 };
 pub const DTPB_WINDOWDC = DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC;
 pub const DTPB_USECTLCOLORSTATIC = DRAW_THEME_PARENT_BACKGROUND_FLAGS.USECTLCOLORSTATIC;
 pub const DTPB_USEERASEBKGND = DRAW_THEME_PARENT_BACKGROUND_FLAGS.USEERASEBKGND;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = extern enum(u32) {
     SEL_EMPTY = 0,
     SEL_TEXT = 1,
@@ -13618,6 +13893,23 @@ pub const RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = extern enum(u32) {
     SEL_MULTIOBJECT = 8,
     GCM_RIGHTMOUSEDROP = 32768,
     _,
+    pub fn initFlags(o: struct {
+        SEL_EMPTY: u1 = 0,
+        SEL_TEXT: u1 = 0,
+        SEL_OBJECT: u1 = 0,
+        SEL_MULTICHAR: u1 = 0,
+        SEL_MULTIOBJECT: u1 = 0,
+        GCM_RIGHTMOUSEDROP: u1 = 0,
+    }) RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE {
+        return @intToEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+              (if (o.SEL_EMPTY == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_EMPTY) else 0)
+            | (if (o.SEL_TEXT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_TEXT) else 0)
+            | (if (o.SEL_OBJECT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_OBJECT) else 0)
+            | (if (o.SEL_MULTICHAR == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTICHAR) else 0)
+            | (if (o.SEL_MULTIOBJECT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTIOBJECT) else 0)
+            | (if (o.GCM_RIGHTMOUSEDROP == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.GCM_RIGHTMOUSEDROP) else 0)
+        );
+    }
 };
 pub const SEL_EMPTY = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_EMPTY;
 pub const SEL_TEXT = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_TEXT;
@@ -13633,7 +13925,6 @@ pub const IMAGE_LIST_ITEM_FLAGS = extern enum(u32) {
 pub const ILIF_ALPHA = IMAGE_LIST_ITEM_FLAGS.ALPHA;
 pub const ILIF_LOWQUALITY = IMAGE_LIST_ITEM_FLAGS.LOWQUALITY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RICH_EDIT_GET_OBJECT_FLAGS = extern enum(u32) {
     POLEOBJ = 1,
     PSTG = 2,
@@ -13641,6 +13932,21 @@ pub const RICH_EDIT_GET_OBJECT_FLAGS = extern enum(u32) {
     NO_INTERFACES = 0,
     ALL_INTERFACES = 7,
     _,
+    pub fn initFlags(o: struct {
+        POLEOBJ: u1 = 0,
+        PSTG: u1 = 0,
+        POLESITE: u1 = 0,
+        NO_INTERFACES: u1 = 0,
+        ALL_INTERFACES: u1 = 0,
+    }) RICH_EDIT_GET_OBJECT_FLAGS {
+        return @intToEnum(RICH_EDIT_GET_OBJECT_FLAGS,
+              (if (o.POLEOBJ == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.POLEOBJ) else 0)
+            | (if (o.PSTG == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.PSTG) else 0)
+            | (if (o.POLESITE == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.POLESITE) else 0)
+            | (if (o.NO_INTERFACES == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.NO_INTERFACES) else 0)
+            | (if (o.ALL_INTERFACES == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.ALL_INTERFACES) else 0)
+        );
+    }
 };
 pub const REO_GETOBJ_POLEOBJ = RICH_EDIT_GET_OBJECT_FLAGS.POLEOBJ;
 pub const REO_GETOBJ_PSTG = RICH_EDIT_GET_OBJECT_FLAGS.PSTG;
@@ -13648,7 +13954,6 @@ pub const REO_GETOBJ_POLESITE = RICH_EDIT_GET_OBJECT_FLAGS.POLESITE;
 pub const REO_GETOBJ_NO_INTERFACES = RICH_EDIT_GET_OBJECT_FLAGS.NO_INTERFACES;
 pub const REO_GETOBJ_ALL_INTERFACES = RICH_EDIT_GET_OBJECT_FLAGS.ALL_INTERFACES;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HDI_MASK = extern enum(u32) {
     WIDTH = 1,
     HEIGHT = 1,
@@ -13662,6 +13967,33 @@ pub const HDI_MASK = extern enum(u32) {
     FILTER = 256,
     STATE = 512,
     _,
+    pub fn initFlags(o: struct {
+        WIDTH: u1 = 0,
+        HEIGHT: u1 = 0,
+        TEXT: u1 = 0,
+        FORMAT: u1 = 0,
+        LPARAM: u1 = 0,
+        BITMAP: u1 = 0,
+        IMAGE: u1 = 0,
+        DI_SETITEM: u1 = 0,
+        ORDER: u1 = 0,
+        FILTER: u1 = 0,
+        STATE: u1 = 0,
+    }) HDI_MASK {
+        return @intToEnum(HDI_MASK,
+              (if (o.WIDTH == 1) @enumToInt(HDI_MASK.WIDTH) else 0)
+            | (if (o.HEIGHT == 1) @enumToInt(HDI_MASK.HEIGHT) else 0)
+            | (if (o.TEXT == 1) @enumToInt(HDI_MASK.TEXT) else 0)
+            | (if (o.FORMAT == 1) @enumToInt(HDI_MASK.FORMAT) else 0)
+            | (if (o.LPARAM == 1) @enumToInt(HDI_MASK.LPARAM) else 0)
+            | (if (o.BITMAP == 1) @enumToInt(HDI_MASK.BITMAP) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(HDI_MASK.IMAGE) else 0)
+            | (if (o.DI_SETITEM == 1) @enumToInt(HDI_MASK.DI_SETITEM) else 0)
+            | (if (o.ORDER == 1) @enumToInt(HDI_MASK.ORDER) else 0)
+            | (if (o.FILTER == 1) @enumToInt(HDI_MASK.FILTER) else 0)
+            | (if (o.STATE == 1) @enumToInt(HDI_MASK.STATE) else 0)
+        );
+    }
 };
 pub const HDI_WIDTH = HDI_MASK.WIDTH;
 pub const HDI_HEIGHT = HDI_MASK.HEIGHT;
@@ -13675,12 +14007,22 @@ pub const HDI_ORDER = HDI_MASK.ORDER;
 pub const HDI_FILTER = HDI_MASK.FILTER;
 pub const HDI_STATE = HDI_MASK.STATE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NMREBAR_MASK_FLAGS = extern enum(u32) {
     ID = 1,
     LPARAM = 4,
     STYLE = 2,
     _,
+    pub fn initFlags(o: struct {
+        ID: u1 = 0,
+        LPARAM: u1 = 0,
+        STYLE: u1 = 0,
+    }) NMREBAR_MASK_FLAGS {
+        return @intToEnum(NMREBAR_MASK_FLAGS,
+              (if (o.ID == 1) @enumToInt(NMREBAR_MASK_FLAGS.ID) else 0)
+            | (if (o.LPARAM == 1) @enumToInt(NMREBAR_MASK_FLAGS.LPARAM) else 0)
+            | (if (o.STYLE == 1) @enumToInt(NMREBAR_MASK_FLAGS.STYLE) else 0)
+        );
+    }
 };
 pub const RBNM_ID = NMREBAR_MASK_FLAGS.ID;
 pub const RBNM_LPARAM = NMREBAR_MASK_FLAGS.LPARAM;
@@ -13703,7 +14045,6 @@ pub const TTI_INFO_LARGE = EDITBALLOONTIP_ICON.INFO_LARGE;
 pub const TTI_WARNING_LARGE = EDITBALLOONTIP_ICON.WARNING_LARGE;
 pub const TTI_ERROR_LARGE = EDITBALLOONTIP_ICON.ERROR_LARGE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LVCOLUMNW_FORMAT = extern enum(u32) {
     LEFT = 0,
     RIGHT = 1,
@@ -13717,6 +14058,33 @@ pub const LVCOLUMNW_FORMAT = extern enum(u32) {
     FIXED_RATIO = 524288,
     SPLITBUTTON = 16777216,
     _,
+    pub fn initFlags(o: struct {
+        LEFT: u1 = 0,
+        RIGHT: u1 = 0,
+        CENTER: u1 = 0,
+        JUSTIFYMASK: u1 = 0,
+        IMAGE: u1 = 0,
+        BITMAP_ON_RIGHT: u1 = 0,
+        COL_HAS_IMAGES: u1 = 0,
+        FIXED_WIDTH: u1 = 0,
+        NO_DPI_SCALE: u1 = 0,
+        FIXED_RATIO: u1 = 0,
+        SPLITBUTTON: u1 = 0,
+    }) LVCOLUMNW_FORMAT {
+        return @intToEnum(LVCOLUMNW_FORMAT,
+              (if (o.LEFT == 1) @enumToInt(LVCOLUMNW_FORMAT.LEFT) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(LVCOLUMNW_FORMAT.RIGHT) else 0)
+            | (if (o.CENTER == 1) @enumToInt(LVCOLUMNW_FORMAT.CENTER) else 0)
+            | (if (o.JUSTIFYMASK == 1) @enumToInt(LVCOLUMNW_FORMAT.JUSTIFYMASK) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(LVCOLUMNW_FORMAT.IMAGE) else 0)
+            | (if (o.BITMAP_ON_RIGHT == 1) @enumToInt(LVCOLUMNW_FORMAT.BITMAP_ON_RIGHT) else 0)
+            | (if (o.COL_HAS_IMAGES == 1) @enumToInt(LVCOLUMNW_FORMAT.COL_HAS_IMAGES) else 0)
+            | (if (o.FIXED_WIDTH == 1) @enumToInt(LVCOLUMNW_FORMAT.FIXED_WIDTH) else 0)
+            | (if (o.NO_DPI_SCALE == 1) @enumToInt(LVCOLUMNW_FORMAT.NO_DPI_SCALE) else 0)
+            | (if (o.FIXED_RATIO == 1) @enumToInt(LVCOLUMNW_FORMAT.FIXED_RATIO) else 0)
+            | (if (o.SPLITBUTTON == 1) @enumToInt(LVCOLUMNW_FORMAT.SPLITBUTTON) else 0)
+        );
+    }
 };
 pub const LVCFMT_LEFT = LVCOLUMNW_FORMAT.LEFT;
 pub const LVCFMT_RIGHT = LVCOLUMNW_FORMAT.RIGHT;
@@ -13730,20 +14098,31 @@ pub const LVCFMT_NO_DPI_SCALE = LVCOLUMNW_FORMAT.NO_DPI_SCALE;
 pub const LVCFMT_FIXED_RATIO = LVCOLUMNW_FORMAT.FIXED_RATIO;
 pub const LVCFMT_SPLITBUTTON = LVCOLUMNW_FORMAT.SPLITBUTTON;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NMPGSCROLL_KEYS = extern enum(u32) {
     NONE = 0,
     SHIFT = 1,
     CONTROL = 2,
     MENU = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SHIFT: u1 = 0,
+        CONTROL: u1 = 0,
+        MENU: u1 = 0,
+    }) NMPGSCROLL_KEYS {
+        return @intToEnum(NMPGSCROLL_KEYS,
+              (if (o.NONE == 1) @enumToInt(NMPGSCROLL_KEYS.NONE) else 0)
+            | (if (o.SHIFT == 1) @enumToInt(NMPGSCROLL_KEYS.SHIFT) else 0)
+            | (if (o.CONTROL == 1) @enumToInt(NMPGSCROLL_KEYS.CONTROL) else 0)
+            | (if (o.MENU == 1) @enumToInt(NMPGSCROLL_KEYS.MENU) else 0)
+        );
+    }
 };
 pub const PGK_NONE = NMPGSCROLL_KEYS.NONE;
 pub const PGK_SHIFT = NMPGSCROLL_KEYS.SHIFT;
 pub const PGK_CONTROL = NMPGSCROLL_KEYS.CONTROL;
 pub const PGK_MENU = NMPGSCROLL_KEYS.MENU;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const COMBOBOX_EX_ITEM_FLAGS = extern enum(u32) {
     DI_SETITEM = 268435456,
     IMAGE = 2,
@@ -13753,6 +14132,25 @@ pub const COMBOBOX_EX_ITEM_FLAGS = extern enum(u32) {
     SELECTEDIMAGE = 4,
     TEXT = 1,
     _,
+    pub fn initFlags(o: struct {
+        DI_SETITEM: u1 = 0,
+        IMAGE: u1 = 0,
+        INDENT: u1 = 0,
+        LPARAM: u1 = 0,
+        OVERLAY: u1 = 0,
+        SELECTEDIMAGE: u1 = 0,
+        TEXT: u1 = 0,
+    }) COMBOBOX_EX_ITEM_FLAGS {
+        return @intToEnum(COMBOBOX_EX_ITEM_FLAGS,
+              (if (o.DI_SETITEM == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.IMAGE) else 0)
+            | (if (o.INDENT == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.INDENT) else 0)
+            | (if (o.LPARAM == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.LPARAM) else 0)
+            | (if (o.OVERLAY == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.OVERLAY) else 0)
+            | (if (o.SELECTEDIMAGE == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.SELECTEDIMAGE) else 0)
+            | (if (o.TEXT == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.TEXT) else 0)
+        );
+    }
 };
 pub const CBEIF_DI_SETITEM = COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM;
 pub const CBEIF_IMAGE = COMBOBOX_EX_ITEM_FLAGS.IMAGE;
@@ -13773,7 +14171,6 @@ pub const I_ONE_OR_MORE = TVITEMEXW_CHILDREN.ONE_OR_MORE;
 pub const I_CHILDRENCALLBACK = TVITEMEXW_CHILDREN.CHILDRENCALLBACK;
 pub const I_CHILDRENAUTO = TVITEMEXW_CHILDREN.CHILDRENAUTO;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TVITEM_MASK = extern enum(u32) {
     CHILDREN = 64,
     DI_SETITEM = 4096,
@@ -13787,6 +14184,33 @@ pub const TVITEM_MASK = extern enum(u32) {
     INTEGRAL = 128,
     STATEEX = 256,
     _,
+    pub fn initFlags(o: struct {
+        CHILDREN: u1 = 0,
+        DI_SETITEM: u1 = 0,
+        HANDLE: u1 = 0,
+        IMAGE: u1 = 0,
+        PARAM: u1 = 0,
+        SELECTEDIMAGE: u1 = 0,
+        STATE: u1 = 0,
+        TEXT: u1 = 0,
+        EXPANDEDIMAGE: u1 = 0,
+        INTEGRAL: u1 = 0,
+        STATEEX: u1 = 0,
+    }) TVITEM_MASK {
+        return @intToEnum(TVITEM_MASK,
+              (if (o.CHILDREN == 1) @enumToInt(TVITEM_MASK.CHILDREN) else 0)
+            | (if (o.DI_SETITEM == 1) @enumToInt(TVITEM_MASK.DI_SETITEM) else 0)
+            | (if (o.HANDLE == 1) @enumToInt(TVITEM_MASK.HANDLE) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(TVITEM_MASK.IMAGE) else 0)
+            | (if (o.PARAM == 1) @enumToInt(TVITEM_MASK.PARAM) else 0)
+            | (if (o.SELECTEDIMAGE == 1) @enumToInt(TVITEM_MASK.SELECTEDIMAGE) else 0)
+            | (if (o.STATE == 1) @enumToInt(TVITEM_MASK.STATE) else 0)
+            | (if (o.TEXT == 1) @enumToInt(TVITEM_MASK.TEXT) else 0)
+            | (if (o.EXPANDEDIMAGE == 1) @enumToInt(TVITEM_MASK.EXPANDEDIMAGE) else 0)
+            | (if (o.INTEGRAL == 1) @enumToInt(TVITEM_MASK.INTEGRAL) else 0)
+            | (if (o.STATEEX == 1) @enumToInt(TVITEM_MASK.STATEEX) else 0)
+        );
+    }
 };
 pub const TVIF_CHILDREN = TVITEM_MASK.CHILDREN;
 pub const TVIF_DI_SETITEM = TVITEM_MASK.DI_SETITEM;
@@ -13800,7 +14224,6 @@ pub const TVIF_EXPANDEDIMAGE = TVITEM_MASK.EXPANDEDIMAGE;
 pub const TVIF_INTEGRAL = TVITEM_MASK.INTEGRAL;
 pub const TVIF_STATEEX = TVITEM_MASK.STATEEX;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TCITEMHEADERA_MASK = extern enum(u32) {
     IMAGE = 2,
     RTLREADING = 4,
@@ -13808,6 +14231,21 @@ pub const TCITEMHEADERA_MASK = extern enum(u32) {
     PARAM = 8,
     STATE = 16,
     _,
+    pub fn initFlags(o: struct {
+        IMAGE: u1 = 0,
+        RTLREADING: u1 = 0,
+        TEXT: u1 = 0,
+        PARAM: u1 = 0,
+        STATE: u1 = 0,
+    }) TCITEMHEADERA_MASK {
+        return @intToEnum(TCITEMHEADERA_MASK,
+              (if (o.IMAGE == 1) @enumToInt(TCITEMHEADERA_MASK.IMAGE) else 0)
+            | (if (o.RTLREADING == 1) @enumToInt(TCITEMHEADERA_MASK.RTLREADING) else 0)
+            | (if (o.TEXT == 1) @enumToInt(TCITEMHEADERA_MASK.TEXT) else 0)
+            | (if (o.PARAM == 1) @enumToInt(TCITEMHEADERA_MASK.PARAM) else 0)
+            | (if (o.STATE == 1) @enumToInt(TCITEMHEADERA_MASK.STATE) else 0)
+        );
+    }
 };
 pub const TCIF_IMAGE = TCITEMHEADERA_MASK.IMAGE;
 pub const TCIF_RTLREADING = TCITEMHEADERA_MASK.RTLREADING;
@@ -13879,7 +14317,6 @@ pub const MCGIP_CALENDARBODY = MCGRIDINFO_PART.CALENDARBODY;
 pub const MCGIP_CALENDARROW = MCGRIDINFO_PART.CALENDARROW;
 pub const MCGIP_CALENDARCELL = MCGRIDINFO_PART.CALENDARCELL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PARAFORMAT_BORDERS = extern enum(u32) {
     LEFT = 1,
     RIGHT = 2,
@@ -13889,6 +14326,25 @@ pub const PARAFORMAT_BORDERS = extern enum(u32) {
     OUTSIDE = 32,
     AUTOCOLOR = 64,
     _,
+    pub fn initFlags(o: struct {
+        LEFT: u1 = 0,
+        RIGHT: u1 = 0,
+        TOP: u1 = 0,
+        BOTTOM: u1 = 0,
+        INSIDE: u1 = 0,
+        OUTSIDE: u1 = 0,
+        AUTOCOLOR: u1 = 0,
+    }) PARAFORMAT_BORDERS {
+        return @intToEnum(PARAFORMAT_BORDERS,
+              (if (o.LEFT == 1) @enumToInt(PARAFORMAT_BORDERS.LEFT) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(PARAFORMAT_BORDERS.RIGHT) else 0)
+            | (if (o.TOP == 1) @enumToInt(PARAFORMAT_BORDERS.TOP) else 0)
+            | (if (o.BOTTOM == 1) @enumToInt(PARAFORMAT_BORDERS.BOTTOM) else 0)
+            | (if (o.INSIDE == 1) @enumToInt(PARAFORMAT_BORDERS.INSIDE) else 0)
+            | (if (o.OUTSIDE == 1) @enumToInt(PARAFORMAT_BORDERS.OUTSIDE) else 0)
+            | (if (o.AUTOCOLOR == 1) @enumToInt(PARAFORMAT_BORDERS.AUTOCOLOR) else 0)
+        );
+    }
 };
 pub const PARAFORMAT_BORDERS_LEFT = PARAFORMAT_BORDERS.LEFT;
 pub const PARAFORMAT_BORDERS_RIGHT = PARAFORMAT_BORDERS.RIGHT;
@@ -13905,7 +14361,6 @@ pub const LVITEMA_GROUP_ID = extern enum(i32) {
 pub const I_GROUPIDCALLBACK = LVITEMA_GROUP_ID.CALLBACK;
 pub const I_GROUPIDNONE = LVITEMA_GROUP_ID.NONE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NMTBHOTITEM_FLAGS = extern enum(u32) {
     ACCELERATOR = 4,
     ARROWKEYS = 2,
@@ -13918,6 +14373,31 @@ pub const NMTBHOTITEM_FLAGS = extern enum(u32) {
     RESELECT = 64,
     TOGGLEDROPDOWN = 256,
     _,
+    pub fn initFlags(o: struct {
+        ACCELERATOR: u1 = 0,
+        ARROWKEYS: u1 = 0,
+        DUPACCEL: u1 = 0,
+        ENTERING: u1 = 0,
+        LEAVING: u1 = 0,
+        LMOUSE: u1 = 0,
+        MOUSE: u1 = 0,
+        OTHER: u1 = 0,
+        RESELECT: u1 = 0,
+        TOGGLEDROPDOWN: u1 = 0,
+    }) NMTBHOTITEM_FLAGS {
+        return @intToEnum(NMTBHOTITEM_FLAGS,
+              (if (o.ACCELERATOR == 1) @enumToInt(NMTBHOTITEM_FLAGS.ACCELERATOR) else 0)
+            | (if (o.ARROWKEYS == 1) @enumToInt(NMTBHOTITEM_FLAGS.ARROWKEYS) else 0)
+            | (if (o.DUPACCEL == 1) @enumToInt(NMTBHOTITEM_FLAGS.DUPACCEL) else 0)
+            | (if (o.ENTERING == 1) @enumToInt(NMTBHOTITEM_FLAGS.ENTERING) else 0)
+            | (if (o.LEAVING == 1) @enumToInt(NMTBHOTITEM_FLAGS.LEAVING) else 0)
+            | (if (o.LMOUSE == 1) @enumToInt(NMTBHOTITEM_FLAGS.LMOUSE) else 0)
+            | (if (o.MOUSE == 1) @enumToInt(NMTBHOTITEM_FLAGS.MOUSE) else 0)
+            | (if (o.OTHER == 1) @enumToInt(NMTBHOTITEM_FLAGS.OTHER) else 0)
+            | (if (o.RESELECT == 1) @enumToInt(NMTBHOTITEM_FLAGS.RESELECT) else 0)
+            | (if (o.TOGGLEDROPDOWN == 1) @enumToInt(NMTBHOTITEM_FLAGS.TOGGLEDROPDOWN) else 0)
+        );
+    }
 };
 pub const HICF_ACCELERATOR = NMTBHOTITEM_FLAGS.ACCELERATOR;
 pub const HICF_ARROWKEYS = NMTBHOTITEM_FLAGS.ARROWKEYS;
@@ -13975,7 +14455,6 @@ pub const PARAFORMAT_SHADING_STYLE_LIGHT_UP_DIAG = PARAFORMAT_SHADING_STYLE.LIGH
 pub const PARAFORMAT_SHADING_STYLE_LIGHT_GRID = PARAFORMAT_SHADING_STYLE.LIGHT_GRID;
 pub const PARAFORMAT_SHADING_STYLE_LIGHT_TRELLIS = PARAFORMAT_SHADING_STYLE.LIGHT_TRELLIS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LVCOLUMNW_MASK = extern enum(u32) {
     FMT = 1,
     WIDTH = 2,
@@ -13987,6 +14466,29 @@ pub const LVCOLUMNW_MASK = extern enum(u32) {
     DEFAULTWIDTH = 128,
     IDEALWIDTH = 256,
     _,
+    pub fn initFlags(o: struct {
+        FMT: u1 = 0,
+        WIDTH: u1 = 0,
+        TEXT: u1 = 0,
+        SUBITEM: u1 = 0,
+        IMAGE: u1 = 0,
+        ORDER: u1 = 0,
+        MINWIDTH: u1 = 0,
+        DEFAULTWIDTH: u1 = 0,
+        IDEALWIDTH: u1 = 0,
+    }) LVCOLUMNW_MASK {
+        return @intToEnum(LVCOLUMNW_MASK,
+              (if (o.FMT == 1) @enumToInt(LVCOLUMNW_MASK.FMT) else 0)
+            | (if (o.WIDTH == 1) @enumToInt(LVCOLUMNW_MASK.WIDTH) else 0)
+            | (if (o.TEXT == 1) @enumToInt(LVCOLUMNW_MASK.TEXT) else 0)
+            | (if (o.SUBITEM == 1) @enumToInt(LVCOLUMNW_MASK.SUBITEM) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(LVCOLUMNW_MASK.IMAGE) else 0)
+            | (if (o.ORDER == 1) @enumToInt(LVCOLUMNW_MASK.ORDER) else 0)
+            | (if (o.MINWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.MINWIDTH) else 0)
+            | (if (o.DEFAULTWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.DEFAULTWIDTH) else 0)
+            | (if (o.IDEALWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.IDEALWIDTH) else 0)
+        );
+    }
 };
 pub const LVCF_FMT = LVCOLUMNW_MASK.FMT;
 pub const LVCF_WIDTH = LVCOLUMNW_MASK.WIDTH;
@@ -14011,7 +14513,6 @@ pub const GT_RAWTEXT = GETTEXTEX_FLAGS.RAWTEXT;
 pub const GT_SELECTION = GETTEXTEX_FLAGS.SELECTION;
 pub const GT_USECRLF = GETTEXTEX_FLAGS.USECRLF;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LVFINDINFOW_FLAGS = extern enum(u32) {
     PARAM = 1,
     PARTIAL = 8,
@@ -14020,6 +14521,23 @@ pub const LVFINDINFOW_FLAGS = extern enum(u32) {
     WRAP = 32,
     NEARESTXY = 64,
     _,
+    pub fn initFlags(o: struct {
+        PARAM: u1 = 0,
+        PARTIAL: u1 = 0,
+        STRING: u1 = 0,
+        SUBSTRING: u1 = 0,
+        WRAP: u1 = 0,
+        NEARESTXY: u1 = 0,
+    }) LVFINDINFOW_FLAGS {
+        return @intToEnum(LVFINDINFOW_FLAGS,
+              (if (o.PARAM == 1) @enumToInt(LVFINDINFOW_FLAGS.PARAM) else 0)
+            | (if (o.PARTIAL == 1) @enumToInt(LVFINDINFOW_FLAGS.PARTIAL) else 0)
+            | (if (o.STRING == 1) @enumToInt(LVFINDINFOW_FLAGS.STRING) else 0)
+            | (if (o.SUBSTRING == 1) @enumToInt(LVFINDINFOW_FLAGS.SUBSTRING) else 0)
+            | (if (o.WRAP == 1) @enumToInt(LVFINDINFOW_FLAGS.WRAP) else 0)
+            | (if (o.NEARESTXY == 1) @enumToInt(LVFINDINFOW_FLAGS.NEARESTXY) else 0)
+        );
+    }
 };
 pub const LVFI_PARAM = LVFINDINFOW_FLAGS.PARAM;
 pub const LVFI_PARTIAL = LVFINDINFOW_FLAGS.PARTIAL;
@@ -14041,7 +14559,6 @@ pub const BUTTON_IMAGELIST_ALIGN_TOP = BUTTON_IMAGELIST_ALIGN.TOP;
 pub const BUTTON_IMAGELIST_ALIGN_BOTTOM = BUTTON_IMAGELIST_ALIGN.BOTTOM;
 pub const BUTTON_IMAGELIST_ALIGN_CENTER = BUTTON_IMAGELIST_ALIGN.CENTER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TBBUTTONINFOW_MASK = extern enum(u32) {
     BYINDEX = 2147483648,
     COMMAND = 32,
@@ -14052,6 +14569,27 @@ pub const TBBUTTONINFOW_MASK = extern enum(u32) {
     STYLE = 8,
     TEXT = 2,
     _,
+    pub fn initFlags(o: struct {
+        BYINDEX: u1 = 0,
+        COMMAND: u1 = 0,
+        IMAGE: u1 = 0,
+        LPARAM: u1 = 0,
+        SIZE: u1 = 0,
+        STATE: u1 = 0,
+        STYLE: u1 = 0,
+        TEXT: u1 = 0,
+    }) TBBUTTONINFOW_MASK {
+        return @intToEnum(TBBUTTONINFOW_MASK,
+              (if (o.BYINDEX == 1) @enumToInt(TBBUTTONINFOW_MASK.BYINDEX) else 0)
+            | (if (o.COMMAND == 1) @enumToInt(TBBUTTONINFOW_MASK.COMMAND) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(TBBUTTONINFOW_MASK.IMAGE) else 0)
+            | (if (o.LPARAM == 1) @enumToInt(TBBUTTONINFOW_MASK.LPARAM) else 0)
+            | (if (o.SIZE == 1) @enumToInt(TBBUTTONINFOW_MASK.SIZE) else 0)
+            | (if (o.STATE == 1) @enumToInt(TBBUTTONINFOW_MASK.STATE) else 0)
+            | (if (o.STYLE == 1) @enumToInt(TBBUTTONINFOW_MASK.STYLE) else 0)
+            | (if (o.TEXT == 1) @enumToInt(TBBUTTONINFOW_MASK.TEXT) else 0)
+        );
+    }
 };
 pub const TBIF_BYINDEX = TBBUTTONINFOW_MASK.BYINDEX;
 pub const TBIF_COMMAND = TBBUTTONINFOW_MASK.COMMAND;
@@ -14071,31 +14609,52 @@ pub const TBIMHT_NONE = TBINSERTMARK_FLAGS.NONE;
 pub const TBIMHT_AFTER = TBINSERTMARK_FLAGS.AFTER;
 pub const TBIMHT_BACKGROUND = TBINSERTMARK_FLAGS.BACKGROUND;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LVGROUP_MASK = extern enum(u32) {
     NONE = 0,
     HEADER = 1,
     FOOTER = 2,
     STATE = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        HEADER: u1 = 0,
+        FOOTER: u1 = 0,
+        STATE: u1 = 0,
+    }) LVGROUP_MASK {
+        return @intToEnum(LVGROUP_MASK,
+              (if (o.NONE == 1) @enumToInt(LVGROUP_MASK.NONE) else 0)
+            | (if (o.HEADER == 1) @enumToInt(LVGROUP_MASK.HEADER) else 0)
+            | (if (o.FOOTER == 1) @enumToInt(LVGROUP_MASK.FOOTER) else 0)
+            | (if (o.STATE == 1) @enumToInt(LVGROUP_MASK.STATE) else 0)
+        );
+    }
 };
 pub const LVGF_NONE = LVGROUP_MASK.NONE;
 pub const LVGF_HEADER = LVGROUP_MASK.HEADER;
 pub const LVGF_FOOTER = LVGROUP_MASK.FOOTER;
 pub const LVGF_STATE = LVGROUP_MASK.STATE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const BP_PAINTPARAMS_FLAGS = extern enum(u32) {
     ERASE = 1,
     NOCLIP = 2,
     NONCLIENT = 4,
     _,
+    pub fn initFlags(o: struct {
+        ERASE: u1 = 0,
+        NOCLIP: u1 = 0,
+        NONCLIENT: u1 = 0,
+    }) BP_PAINTPARAMS_FLAGS {
+        return @intToEnum(BP_PAINTPARAMS_FLAGS,
+              (if (o.ERASE == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.ERASE) else 0)
+            | (if (o.NOCLIP == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.NOCLIP) else 0)
+            | (if (o.NONCLIENT == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.NONCLIENT) else 0)
+        );
+    }
 };
 pub const BPPF_ERASE = BP_PAINTPARAMS_FLAGS.ERASE;
 pub const BPPF_NOCLIP = BP_PAINTPARAMS_FLAGS.NOCLIP;
 pub const BPPF_NONCLIENT = BP_PAINTPARAMS_FLAGS.NONCLIENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TVHITTESTINFO_FLAGS = extern enum(u32) {
     ABOVE = 256,
     BELOW = 512,
@@ -14110,6 +14669,35 @@ pub const TVHITTESTINFO_FLAGS = extern enum(u32) {
     TOLEFT = 2048,
     TORIGHT = 1024,
     _,
+    pub fn initFlags(o: struct {
+        ABOVE: u1 = 0,
+        BELOW: u1 = 0,
+        NOWHERE: u1 = 0,
+        ONITEM: u1 = 0,
+        ONITEMBUTTON: u1 = 0,
+        ONITEMICON: u1 = 0,
+        ONITEMINDENT: u1 = 0,
+        ONITEMLABEL: u1 = 0,
+        ONITEMRIGHT: u1 = 0,
+        ONITEMSTATEICON: u1 = 0,
+        TOLEFT: u1 = 0,
+        TORIGHT: u1 = 0,
+    }) TVHITTESTINFO_FLAGS {
+        return @intToEnum(TVHITTESTINFO_FLAGS,
+              (if (o.ABOVE == 1) @enumToInt(TVHITTESTINFO_FLAGS.ABOVE) else 0)
+            | (if (o.BELOW == 1) @enumToInt(TVHITTESTINFO_FLAGS.BELOW) else 0)
+            | (if (o.NOWHERE == 1) @enumToInt(TVHITTESTINFO_FLAGS.NOWHERE) else 0)
+            | (if (o.ONITEM == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEM) else 0)
+            | (if (o.ONITEMBUTTON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMBUTTON) else 0)
+            | (if (o.ONITEMICON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMICON) else 0)
+            | (if (o.ONITEMINDENT == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMINDENT) else 0)
+            | (if (o.ONITEMLABEL == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
+            | (if (o.ONITEMRIGHT == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMRIGHT) else 0)
+            | (if (o.ONITEMSTATEICON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMSTATEICON) else 0)
+            | (if (o.TOLEFT == 1) @enumToInt(TVHITTESTINFO_FLAGS.TOLEFT) else 0)
+            | (if (o.TORIGHT == 1) @enumToInt(TVHITTESTINFO_FLAGS.TORIGHT) else 0)
+        );
+    }
 };
 pub const TVHT_ABOVE = TVHITTESTINFO_FLAGS.ABOVE;
 pub const TVHT_BELOW = TVHITTESTINFO_FLAGS.BELOW;
@@ -14169,18 +14757,27 @@ pub const IMECOMPTEXT_FLAGS = extern enum(u32) {
 };
 pub const ICT_RESULTREADSTR = IMECOMPTEXT_FLAGS.R;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MCGRIDINFO_FLAGS = extern enum(u32) {
     DATE = 1,
     RECT = 2,
     NAME = 4,
     _,
+    pub fn initFlags(o: struct {
+        DATE: u1 = 0,
+        RECT: u1 = 0,
+        NAME: u1 = 0,
+    }) MCGRIDINFO_FLAGS {
+        return @intToEnum(MCGRIDINFO_FLAGS,
+              (if (o.DATE == 1) @enumToInt(MCGRIDINFO_FLAGS.DATE) else 0)
+            | (if (o.RECT == 1) @enumToInt(MCGRIDINFO_FLAGS.RECT) else 0)
+            | (if (o.NAME == 1) @enumToInt(MCGRIDINFO_FLAGS.NAME) else 0)
+        );
+    }
 };
 pub const MCGIF_DATE = MCGRIDINFO_FLAGS.DATE;
 pub const MCGIF_RECT = MCGRIDINFO_FLAGS.RECT;
 pub const MCGIF_NAME = MCGRIDINFO_FLAGS.NAME;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GETTEXTLENGTHEX_FLAGS = extern enum(u32) {
     DEFAULT = 0,
     USECRLF = 1,
@@ -14189,6 +14786,23 @@ pub const GETTEXTLENGTHEX_FLAGS = extern enum(u32) {
     NUMCHARS = 8,
     NUMBYTES = 16,
     _,
+    pub fn initFlags(o: struct {
+        DEFAULT: u1 = 0,
+        USECRLF: u1 = 0,
+        PRECISE: u1 = 0,
+        CLOSE: u1 = 0,
+        NUMCHARS: u1 = 0,
+        NUMBYTES: u1 = 0,
+    }) GETTEXTLENGTHEX_FLAGS {
+        return @intToEnum(GETTEXTLENGTHEX_FLAGS,
+              (if (o.DEFAULT == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.DEFAULT) else 0)
+            | (if (o.USECRLF == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.USECRLF) else 0)
+            | (if (o.PRECISE == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.PRECISE) else 0)
+            | (if (o.CLOSE == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.CLOSE) else 0)
+            | (if (o.NUMCHARS == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.NUMCHARS) else 0)
+            | (if (o.NUMBYTES == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.NUMBYTES) else 0)
+        );
+    }
 };
 pub const GTL_DEFAULT = GETTEXTLENGTHEX_FLAGS.DEFAULT;
 pub const GTL_USECRLF = GETTEXTLENGTHEX_FLAGS.USECRLF;
@@ -14197,7 +14811,6 @@ pub const GTL_CLOSE = GETTEXTLENGTHEX_FLAGS.CLOSE;
 pub const GTL_NUMCHARS = GETTEXTLENGTHEX_FLAGS.NUMCHARS;
 pub const GTL_NUMBYTES = GETTEXTLENGTHEX_FLAGS.NUMBYTES;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LVHITTESTINFO_FLAGS = extern enum(u32) {
     ABOVE = 8,
     BELOW = 16,
@@ -14217,6 +14830,45 @@ pub const LVHITTESTINFO_FLAGS = extern enum(u32) {
     EX_ONCONTENTS = 67108864,
     EX_FOOTER = 134217728,
     _,
+    pub fn initFlags(o: struct {
+        ABOVE: u1 = 0,
+        BELOW: u1 = 0,
+        NOWHERE: u1 = 0,
+        ONITEMICON: u1 = 0,
+        ONITEMLABEL: u1 = 0,
+        ONITEMSTATEICON: u1 = 0,
+        TOLEFT: u1 = 0,
+        TORIGHT: u1 = 0,
+        EX_GROUP_HEADER: u1 = 0,
+        EX_GROUP_FOOTER: u1 = 0,
+        EX_GROUP_COLLAPSE: u1 = 0,
+        EX_GROUP_BACKGROUND: u1 = 0,
+        EX_GROUP_STATEICON: u1 = 0,
+        EX_GROUP_SUBSETLINK: u1 = 0,
+        EX_GROUP: u1 = 0,
+        EX_ONCONTENTS: u1 = 0,
+        EX_FOOTER: u1 = 0,
+    }) LVHITTESTINFO_FLAGS {
+        return @intToEnum(LVHITTESTINFO_FLAGS,
+              (if (o.ABOVE == 1) @enumToInt(LVHITTESTINFO_FLAGS.ABOVE) else 0)
+            | (if (o.BELOW == 1) @enumToInt(LVHITTESTINFO_FLAGS.BELOW) else 0)
+            | (if (o.NOWHERE == 1) @enumToInt(LVHITTESTINFO_FLAGS.NOWHERE) else 0)
+            | (if (o.ONITEMICON == 1) @enumToInt(LVHITTESTINFO_FLAGS.ONITEMICON) else 0)
+            | (if (o.ONITEMLABEL == 1) @enumToInt(LVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
+            | (if (o.ONITEMSTATEICON == 1) @enumToInt(LVHITTESTINFO_FLAGS.ONITEMSTATEICON) else 0)
+            | (if (o.TOLEFT == 1) @enumToInt(LVHITTESTINFO_FLAGS.TOLEFT) else 0)
+            | (if (o.TORIGHT == 1) @enumToInt(LVHITTESTINFO_FLAGS.TORIGHT) else 0)
+            | (if (o.EX_GROUP_HEADER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_HEADER) else 0)
+            | (if (o.EX_GROUP_FOOTER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_FOOTER) else 0)
+            | (if (o.EX_GROUP_COLLAPSE == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_COLLAPSE) else 0)
+            | (if (o.EX_GROUP_BACKGROUND == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_BACKGROUND) else 0)
+            | (if (o.EX_GROUP_STATEICON == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_STATEICON) else 0)
+            | (if (o.EX_GROUP_SUBSETLINK == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_SUBSETLINK) else 0)
+            | (if (o.EX_GROUP == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP) else 0)
+            | (if (o.EX_ONCONTENTS == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_ONCONTENTS) else 0)
+            | (if (o.EX_FOOTER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_FOOTER) else 0)
+        );
+    }
 };
 pub const LVHT_ABOVE = LVHITTESTINFO_FLAGS.ABOVE;
 pub const LVHT_BELOW = LVHITTESTINFO_FLAGS.BELOW;
@@ -14236,7 +14888,6 @@ pub const LVHT_EX_GROUP = LVHITTESTINFO_FLAGS.EX_GROUP;
 pub const LVHT_EX_ONCONTENTS = LVHITTESTINFO_FLAGS.EX_ONCONTENTS;
 pub const LVHT_EX_FOOTER = LVHITTESTINFO_FLAGS.EX_FOOTER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const INITCOMMONCONTROLSEX_ICC = extern enum(u32) {
     ANIMATE_CLASS = 128,
     BAR_CLASSES = 4,
@@ -14256,6 +14907,45 @@ pub const INITCOMMONCONTROLSEX_ICC = extern enum(u32) {
     USEREX_CLASSES = 512,
     WIN95_CLASSES = 255,
     _,
+    pub fn initFlags(o: struct {
+        ANIMATE_CLASS: u1 = 0,
+        BAR_CLASSES: u1 = 0,
+        COOL_CLASSES: u1 = 0,
+        DATE_CLASSES: u1 = 0,
+        HOTKEY_CLASS: u1 = 0,
+        INTERNET_CLASSES: u1 = 0,
+        LINK_CLASS: u1 = 0,
+        LISTVIEW_CLASSES: u1 = 0,
+        NATIVEFNTCTL_CLASS: u1 = 0,
+        PAGESCROLLER_CLASS: u1 = 0,
+        PROGRESS_CLASS: u1 = 0,
+        STANDARD_CLASSES: u1 = 0,
+        TAB_CLASSES: u1 = 0,
+        TREEVIEW_CLASSES: u1 = 0,
+        UPDOWN_CLASS: u1 = 0,
+        USEREX_CLASSES: u1 = 0,
+        WIN95_CLASSES: u1 = 0,
+    }) INITCOMMONCONTROLSEX_ICC {
+        return @intToEnum(INITCOMMONCONTROLSEX_ICC,
+              (if (o.ANIMATE_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS) else 0)
+            | (if (o.BAR_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.BAR_CLASSES) else 0)
+            | (if (o.COOL_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.COOL_CLASSES) else 0)
+            | (if (o.DATE_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.DATE_CLASSES) else 0)
+            | (if (o.HOTKEY_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.HOTKEY_CLASS) else 0)
+            | (if (o.INTERNET_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.INTERNET_CLASSES) else 0)
+            | (if (o.LINK_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.LINK_CLASS) else 0)
+            | (if (o.LISTVIEW_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.LISTVIEW_CLASSES) else 0)
+            | (if (o.NATIVEFNTCTL_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.NATIVEFNTCTL_CLASS) else 0)
+            | (if (o.PAGESCROLLER_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.PAGESCROLLER_CLASS) else 0)
+            | (if (o.PROGRESS_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.PROGRESS_CLASS) else 0)
+            | (if (o.STANDARD_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.STANDARD_CLASSES) else 0)
+            | (if (o.TAB_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.TAB_CLASSES) else 0)
+            | (if (o.TREEVIEW_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.TREEVIEW_CLASSES) else 0)
+            | (if (o.UPDOWN_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.UPDOWN_CLASS) else 0)
+            | (if (o.USEREX_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.USEREX_CLASSES) else 0)
+            | (if (o.WIN95_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.WIN95_CLASSES) else 0)
+        );
+    }
 };
 pub const ICC_ANIMATE_CLASS = INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS;
 pub const ICC_BAR_CLASSES = INITCOMMONCONTROLSEX_ICC.BAR_CLASSES;
@@ -14284,18 +14974,27 @@ pub const LVCDI_ITEM = NMLVCUSTOMDRAW_ITEM_TYPE.ITEM;
 pub const LVCDI_GROUP = NMLVCUSTOMDRAW_ITEM_TYPE.GROUP;
 pub const LVCDI_ITEMSLIST = NMLVCUSTOMDRAW_ITEM_TYPE.ITEMSLIST;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NMTBDISPINFOW_MASK = extern enum(u32) {
     IMAGE = 1,
     TEXT = 2,
     DI_SETITEM = 268435456,
     _,
+    pub fn initFlags(o: struct {
+        IMAGE: u1 = 0,
+        TEXT: u1 = 0,
+        DI_SETITEM: u1 = 0,
+    }) NMTBDISPINFOW_MASK {
+        return @intToEnum(NMTBDISPINFOW_MASK,
+              (if (o.IMAGE == 1) @enumToInt(NMTBDISPINFOW_MASK.IMAGE) else 0)
+            | (if (o.TEXT == 1) @enumToInt(NMTBDISPINFOW_MASK.TEXT) else 0)
+            | (if (o.DI_SETITEM == 1) @enumToInt(NMTBDISPINFOW_MASK.DI_SETITEM) else 0)
+        );
+    }
 };
 pub const TBNF_IMAGE = NMTBDISPINFOW_MASK.IMAGE;
 pub const TBNF_TEXT = NMTBDISPINFOW_MASK.TEXT;
 pub const TBNF_DI_SETITEM = NMTBDISPINFOW_MASK.DI_SETITEM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SCROLLINFO_MASK = extern enum(u32) {
     ALL = 23,
     DISABLENOSCROLL = 8,
@@ -14304,6 +15003,23 @@ pub const SCROLLINFO_MASK = extern enum(u32) {
     RANGE = 1,
     TRACKPOS = 16,
     _,
+    pub fn initFlags(o: struct {
+        ALL: u1 = 0,
+        DISABLENOSCROLL: u1 = 0,
+        PAGE: u1 = 0,
+        POS: u1 = 0,
+        RANGE: u1 = 0,
+        TRACKPOS: u1 = 0,
+    }) SCROLLINFO_MASK {
+        return @intToEnum(SCROLLINFO_MASK,
+              (if (o.ALL == 1) @enumToInt(SCROLLINFO_MASK.ALL) else 0)
+            | (if (o.DISABLENOSCROLL == 1) @enumToInt(SCROLLINFO_MASK.DISABLENOSCROLL) else 0)
+            | (if (o.PAGE == 1) @enumToInt(SCROLLINFO_MASK.PAGE) else 0)
+            | (if (o.POS == 1) @enumToInt(SCROLLINFO_MASK.POS) else 0)
+            | (if (o.RANGE == 1) @enumToInt(SCROLLINFO_MASK.RANGE) else 0)
+            | (if (o.TRACKPOS == 1) @enumToInt(SCROLLINFO_MASK.TRACKPOS) else 0)
+        );
+    }
 };
 pub const SIF_ALL = SCROLLINFO_MASK.ALL;
 pub const SIF_DISABLENOSCROLL = SCROLLINFO_MASK.DISABLENOSCROLL;
@@ -14312,7 +15028,6 @@ pub const SIF_POS = SCROLLINFO_MASK.POS;
 pub const SIF_RANGE = SCROLLINFO_MASK.RANGE;
 pub const SIF_TRACKPOS = SCROLLINFO_MASK.TRACKPOS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REOBJECT_FLAGS = extern enum(u32) {
     ALIGNTORIGHT = 256,
     BELOWBASELINE = 2,
@@ -14334,6 +15049,49 @@ pub const REOBJECT_FLAGS = extern enum(u32) {
     USEASBACKGROUND = 1024,
     WRAPTEXTAROUND = 512,
     _,
+    pub fn initFlags(o: struct {
+        ALIGNTORIGHT: u1 = 0,
+        BELOWBASELINE: u1 = 0,
+        BLANK: u1 = 0,
+        CANROTATE: u1 = 0,
+        DONTNEEDPALETTE: u1 = 0,
+        DYNAMICSIZE: u1 = 0,
+        GETMETAFILE: u1 = 0,
+        HILITED: u1 = 0,
+        INPLACEACTIVE: u1 = 0,
+        INVERTEDSELECT: u1 = 0,
+        LINK: u1 = 0,
+        LINKAVAILABLE: u1 = 0,
+        OPEN: u1 = 0,
+        OWNERDRAWSELECT: u1 = 0,
+        RESIZABLE: u1 = 0,
+        SELECTED: u1 = 0,
+        STATIC: u1 = 0,
+        USEASBACKGROUND: u1 = 0,
+        WRAPTEXTAROUND: u1 = 0,
+    }) REOBJECT_FLAGS {
+        return @intToEnum(REOBJECT_FLAGS,
+              (if (o.ALIGNTORIGHT == 1) @enumToInt(REOBJECT_FLAGS.ALIGNTORIGHT) else 0)
+            | (if (o.BELOWBASELINE == 1) @enumToInt(REOBJECT_FLAGS.BELOWBASELINE) else 0)
+            | (if (o.BLANK == 1) @enumToInt(REOBJECT_FLAGS.BLANK) else 0)
+            | (if (o.CANROTATE == 1) @enumToInt(REOBJECT_FLAGS.CANROTATE) else 0)
+            | (if (o.DONTNEEDPALETTE == 1) @enumToInt(REOBJECT_FLAGS.DONTNEEDPALETTE) else 0)
+            | (if (o.DYNAMICSIZE == 1) @enumToInt(REOBJECT_FLAGS.DYNAMICSIZE) else 0)
+            | (if (o.GETMETAFILE == 1) @enumToInt(REOBJECT_FLAGS.GETMETAFILE) else 0)
+            | (if (o.HILITED == 1) @enumToInt(REOBJECT_FLAGS.HILITED) else 0)
+            | (if (o.INPLACEACTIVE == 1) @enumToInt(REOBJECT_FLAGS.INPLACEACTIVE) else 0)
+            | (if (o.INVERTEDSELECT == 1) @enumToInt(REOBJECT_FLAGS.INVERTEDSELECT) else 0)
+            | (if (o.LINK == 1) @enumToInt(REOBJECT_FLAGS.LINK) else 0)
+            | (if (o.LINKAVAILABLE == 1) @enumToInt(REOBJECT_FLAGS.LINKAVAILABLE) else 0)
+            | (if (o.OPEN == 1) @enumToInt(REOBJECT_FLAGS.OPEN) else 0)
+            | (if (o.OWNERDRAWSELECT == 1) @enumToInt(REOBJECT_FLAGS.OWNERDRAWSELECT) else 0)
+            | (if (o.RESIZABLE == 1) @enumToInt(REOBJECT_FLAGS.RESIZABLE) else 0)
+            | (if (o.SELECTED == 1) @enumToInt(REOBJECT_FLAGS.SELECTED) else 0)
+            | (if (o.STATIC == 1) @enumToInt(REOBJECT_FLAGS.STATIC) else 0)
+            | (if (o.USEASBACKGROUND == 1) @enumToInt(REOBJECT_FLAGS.USEASBACKGROUND) else 0)
+            | (if (o.WRAPTEXTAROUND == 1) @enumToInt(REOBJECT_FLAGS.WRAPTEXTAROUND) else 0)
+        );
+    }
 };
 pub const REO_ALIGNTORIGHT = REOBJECT_FLAGS.ALIGNTORIGHT;
 pub const REO_BELOWBASELINE = REOBJECT_FLAGS.BELOWBASELINE;

@@ -333,7 +333,6 @@ pub const D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR = D2D1_BITMAP_INTERPOL
 pub const D2D1_BITMAP_INTERPOLATION_MODE_LINEAR = D2D1_BITMAP_INTERPOLATION_MODE.LINEAR;
 pub const D2D1_BITMAP_INTERPOLATION_MODE_FORCE_DWORD = D2D1_BITMAP_INTERPOLATION_MODE.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_DRAW_TEXT_OPTIONS = extern enum(u32) {
     NO_SNAP = 1,
     CLIP = 2,
@@ -342,6 +341,23 @@ pub const D2D1_DRAW_TEXT_OPTIONS = extern enum(u32) {
     NONE = 0,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NO_SNAP: u1 = 0,
+        CLIP: u1 = 0,
+        ENABLE_COLOR_FONT: u1 = 0,
+        DISABLE_COLOR_BITMAP_SNAPPING: u1 = 0,
+        NONE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_DRAW_TEXT_OPTIONS {
+        return @intToEnum(D2D1_DRAW_TEXT_OPTIONS,
+              (if (o.NO_SNAP == 1) @enumToInt(D2D1_DRAW_TEXT_OPTIONS.NO_SNAP) else 0)
+            | (if (o.CLIP == 1) @enumToInt(D2D1_DRAW_TEXT_OPTIONS.CLIP) else 0)
+            | (if (o.ENABLE_COLOR_FONT == 1) @enumToInt(D2D1_DRAW_TEXT_OPTIONS.ENABLE_COLOR_FONT) else 0)
+            | (if (o.DISABLE_COLOR_BITMAP_SNAPPING == 1) @enumToInt(D2D1_DRAW_TEXT_OPTIONS.DISABLE_COLOR_BITMAP_SNAPPING) else 0)
+            | (if (o.NONE == 1) @enumToInt(D2D1_DRAW_TEXT_OPTIONS.NONE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_DRAW_TEXT_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_DRAW_TEXT_OPTIONS_NO_SNAP = D2D1_DRAW_TEXT_OPTIONS.NO_SNAP;
 pub const D2D1_DRAW_TEXT_OPTIONS_CLIP = D2D1_DRAW_TEXT_OPTIONS.CLIP;
@@ -503,13 +519,25 @@ pub const D2D1_TRIANGLE = extern struct {
     point3: D2D_POINT_2F,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_PATH_SEGMENT = extern enum(u32) {
     NONE = 0,
     FORCE_UNSTROKED = 1,
     FORCE_ROUND_LINE_JOIN = 2,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        FORCE_UNSTROKED: u1 = 0,
+        FORCE_ROUND_LINE_JOIN: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_PATH_SEGMENT {
+        return @intToEnum(D2D1_PATH_SEGMENT,
+              (if (o.NONE == 1) @enumToInt(D2D1_PATH_SEGMENT.NONE) else 0)
+            | (if (o.FORCE_UNSTROKED == 1) @enumToInt(D2D1_PATH_SEGMENT.FORCE_UNSTROKED) else 0)
+            | (if (o.FORCE_ROUND_LINE_JOIN == 1) @enumToInt(D2D1_PATH_SEGMENT.FORCE_ROUND_LINE_JOIN) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_PATH_SEGMENT.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_PATH_SEGMENT_NONE = D2D1_PATH_SEGMENT.NONE;
 pub const D2D1_PATH_SEGMENT_FORCE_UNSTROKED = D2D1_PATH_SEGMENT.FORCE_UNSTROKED;
@@ -569,12 +597,22 @@ pub const D2D1_STROKE_STYLE_PROPERTIES = extern struct {
     dashOffset: f32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_LAYER_OPTIONS = extern enum(u32) {
     NONE = 0,
     INITIALIZE_FOR_CLEARTYPE = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        INITIALIZE_FOR_CLEARTYPE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_LAYER_OPTIONS {
+        return @intToEnum(D2D1_LAYER_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_LAYER_OPTIONS.NONE) else 0)
+            | (if (o.INITIALIZE_FOR_CLEARTYPE == 1) @enumToInt(D2D1_LAYER_OPTIONS.INITIALIZE_FOR_CLEARTYPE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_LAYER_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_LAYER_OPTIONS_NONE = D2D1_LAYER_OPTIONS.NONE;
 pub const D2D1_LAYER_OPTIONS_INITIALIZE_FOR_CLEARTYPE = D2D1_LAYER_OPTIONS.INITIALIZE_FOR_CLEARTYPE;
@@ -590,12 +628,22 @@ pub const D2D1_LAYER_PARAMETERS = extern struct {
     layerOptions: D2D1_LAYER_OPTIONS,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_WINDOW_STATE = extern enum(u32) {
     NONE = 0,
     OCCLUDED = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        OCCLUDED: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_WINDOW_STATE {
+        return @intToEnum(D2D1_WINDOW_STATE,
+              (if (o.NONE == 1) @enumToInt(D2D1_WINDOW_STATE.NONE) else 0)
+            | (if (o.OCCLUDED == 1) @enumToInt(D2D1_WINDOW_STATE.OCCLUDED) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_WINDOW_STATE.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_WINDOW_STATE_NONE = D2D1_WINDOW_STATE.NONE;
 pub const D2D1_WINDOW_STATE_OCCLUDED = D2D1_WINDOW_STATE.OCCLUDED;
@@ -623,26 +671,50 @@ pub const D2D1_FEATURE_LEVEL_9 = D2D1_FEATURE_LEVEL.@"9";
 pub const D2D1_FEATURE_LEVEL_10 = D2D1_FEATURE_LEVEL.@"10";
 pub const D2D1_FEATURE_LEVEL_FORCE_DWORD = D2D1_FEATURE_LEVEL.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_RENDER_TARGET_USAGE = extern enum(u32) {
     NONE = 0,
     FORCE_BITMAP_REMOTING = 1,
     GDI_COMPATIBLE = 2,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        FORCE_BITMAP_REMOTING: u1 = 0,
+        GDI_COMPATIBLE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_RENDER_TARGET_USAGE {
+        return @intToEnum(D2D1_RENDER_TARGET_USAGE,
+              (if (o.NONE == 1) @enumToInt(D2D1_RENDER_TARGET_USAGE.NONE) else 0)
+            | (if (o.FORCE_BITMAP_REMOTING == 1) @enumToInt(D2D1_RENDER_TARGET_USAGE.FORCE_BITMAP_REMOTING) else 0)
+            | (if (o.GDI_COMPATIBLE == 1) @enumToInt(D2D1_RENDER_TARGET_USAGE.GDI_COMPATIBLE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_RENDER_TARGET_USAGE.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_RENDER_TARGET_USAGE_NONE = D2D1_RENDER_TARGET_USAGE.NONE;
 pub const D2D1_RENDER_TARGET_USAGE_FORCE_BITMAP_REMOTING = D2D1_RENDER_TARGET_USAGE.FORCE_BITMAP_REMOTING;
 pub const D2D1_RENDER_TARGET_USAGE_GDI_COMPATIBLE = D2D1_RENDER_TARGET_USAGE.GDI_COMPATIBLE;
 pub const D2D1_RENDER_TARGET_USAGE_FORCE_DWORD = D2D1_RENDER_TARGET_USAGE.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_PRESENT_OPTIONS = extern enum(u32) {
     NONE = 0,
     RETAIN_CONTENTS = 1,
     IMMEDIATELY = 2,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        RETAIN_CONTENTS: u1 = 0,
+        IMMEDIATELY: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_PRESENT_OPTIONS {
+        return @intToEnum(D2D1_PRESENT_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_PRESENT_OPTIONS.NONE) else 0)
+            | (if (o.RETAIN_CONTENTS == 1) @enumToInt(D2D1_PRESENT_OPTIONS.RETAIN_CONTENTS) else 0)
+            | (if (o.IMMEDIATELY == 1) @enumToInt(D2D1_PRESENT_OPTIONS.IMMEDIATELY) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_PRESENT_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_PRESENT_OPTIONS_NONE = D2D1_PRESENT_OPTIONS.NONE;
 pub const D2D1_PRESENT_OPTIONS_RETAIN_CONTENTS = D2D1_PRESENT_OPTIONS.RETAIN_CONTENTS;
@@ -664,12 +736,22 @@ pub const D2D1_HWND_RENDER_TARGET_PROPERTIES = extern struct {
     presentOptions: D2D1_PRESENT_OPTIONS,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS = extern enum(u32) {
     NONE = 0,
     GDI_COMPATIBLE = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        GDI_COMPATIBLE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS {
+        return @intToEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE) else 0)
+            | (if (o.GDI_COMPATIBLE == 1) @enumToInt(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.GDI_COMPATIBLE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE;
 pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_GDI_COMPATIBLE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.GDI_COMPATIBLE;
@@ -3665,7 +3747,6 @@ pub const D2D1_SUBPROPERTY_FIELDS = D2D1_SUBPROPERTY.FIELDS;
 pub const D2D1_SUBPROPERTY_INDEX = D2D1_SUBPROPERTY.INDEX;
 pub const D2D1_SUBPROPERTY_FORCE_DWORD = D2D1_SUBPROPERTY.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_BITMAP_OPTIONS = extern enum(u32) {
     NONE = 0,
     TARGET = 1,
@@ -3674,6 +3755,23 @@ pub const D2D1_BITMAP_OPTIONS = extern enum(u32) {
     GDI_COMPATIBLE = 8,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TARGET: u1 = 0,
+        CANNOT_DRAW: u1 = 0,
+        CPU_READ: u1 = 0,
+        GDI_COMPATIBLE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_BITMAP_OPTIONS {
+        return @intToEnum(D2D1_BITMAP_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_BITMAP_OPTIONS.NONE) else 0)
+            | (if (o.TARGET == 1) @enumToInt(D2D1_BITMAP_OPTIONS.TARGET) else 0)
+            | (if (o.CANNOT_DRAW == 1) @enumToInt(D2D1_BITMAP_OPTIONS.CANNOT_DRAW) else 0)
+            | (if (o.CPU_READ == 1) @enumToInt(D2D1_BITMAP_OPTIONS.CPU_READ) else 0)
+            | (if (o.GDI_COMPATIBLE == 1) @enumToInt(D2D1_BITMAP_OPTIONS.GDI_COMPATIBLE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_BITMAP_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_BITMAP_OPTIONS_NONE = D2D1_BITMAP_OPTIONS.NONE;
 pub const D2D1_BITMAP_OPTIONS_TARGET = D2D1_BITMAP_OPTIONS.TARGET;
@@ -3730,7 +3828,6 @@ pub const D2D1_BUFFER_PRECISION_16BPC_FLOAT = D2D1_BUFFER_PRECISION.@"16BPC_FLOA
 pub const D2D1_BUFFER_PRECISION_32BPC_FLOAT = D2D1_BUFFER_PRECISION.@"32BPC_FLOAT";
 pub const D2D1_BUFFER_PRECISION_FORCE_DWORD = D2D1_BUFFER_PRECISION.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_MAP_OPTIONS = extern enum(u32) {
     NONE = 0,
     READ = 1,
@@ -3738,6 +3835,21 @@ pub const D2D1_MAP_OPTIONS = extern enum(u32) {
     DISCARD = 4,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        READ: u1 = 0,
+        WRITE: u1 = 0,
+        DISCARD: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_MAP_OPTIONS {
+        return @intToEnum(D2D1_MAP_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_MAP_OPTIONS.NONE) else 0)
+            | (if (o.READ == 1) @enumToInt(D2D1_MAP_OPTIONS.READ) else 0)
+            | (if (o.WRITE == 1) @enumToInt(D2D1_MAP_OPTIONS.WRITE) else 0)
+            | (if (o.DISCARD == 1) @enumToInt(D2D1_MAP_OPTIONS.DISCARD) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_MAP_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_MAP_OPTIONS_NONE = D2D1_MAP_OPTIONS.NONE;
 pub const D2D1_MAP_OPTIONS_READ = D2D1_MAP_OPTIONS.READ;
@@ -3782,12 +3894,22 @@ pub const D2D1_COLOR_SPACE_SRGB = D2D1_COLOR_SPACE.SRGB;
 pub const D2D1_COLOR_SPACE_SCRGB = D2D1_COLOR_SPACE.SCRGB;
 pub const D2D1_COLOR_SPACE_FORCE_DWORD = D2D1_COLOR_SPACE.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_DEVICE_CONTEXT_OPTIONS = extern enum(u32) {
     NONE = 0,
     ENABLE_MULTITHREADED_OPTIMIZATIONS = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ENABLE_MULTITHREADED_OPTIMIZATIONS: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_DEVICE_CONTEXT_OPTIONS {
+        return @intToEnum(D2D1_DEVICE_CONTEXT_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_DEVICE_CONTEXT_OPTIONS.NONE) else 0)
+            | (if (o.ENABLE_MULTITHREADED_OPTIMIZATIONS == 1) @enumToInt(D2D1_DEVICE_CONTEXT_OPTIONS.ENABLE_MULTITHREADED_OPTIMIZATIONS) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_DEVICE_CONTEXT_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_DEVICE_CONTEXT_OPTIONS_NONE = D2D1_DEVICE_CONTEXT_OPTIONS.NONE;
 pub const D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS = D2D1_DEVICE_CONTEXT_OPTIONS.ENABLE_MULTITHREADED_OPTIMIZATIONS;
@@ -3893,13 +4015,25 @@ pub const D2D1_STROKE_STYLE_PROPERTIES1 = extern struct {
     transformType: D2D1_STROKE_TRANSFORM_TYPE,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_LAYER_OPTIONS1 = extern enum(u32) {
     NONE = 0,
     INITIALIZE_FROM_BACKGROUND = 1,
     IGNORE_ALPHA = 2,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        INITIALIZE_FROM_BACKGROUND: u1 = 0,
+        IGNORE_ALPHA: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_LAYER_OPTIONS1 {
+        return @intToEnum(D2D1_LAYER_OPTIONS1,
+              (if (o.NONE == 1) @enumToInt(D2D1_LAYER_OPTIONS1.NONE) else 0)
+            | (if (o.INITIALIZE_FROM_BACKGROUND == 1) @enumToInt(D2D1_LAYER_OPTIONS1.INITIALIZE_FROM_BACKGROUND) else 0)
+            | (if (o.IGNORE_ALPHA == 1) @enumToInt(D2D1_LAYER_OPTIONS1.IGNORE_ALPHA) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_LAYER_OPTIONS1.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_LAYER_OPTIONS1_NONE = D2D1_LAYER_OPTIONS1.NONE;
 pub const D2D1_LAYER_OPTIONS1_INITIALIZE_FROM_BACKGROUND = D2D1_LAYER_OPTIONS1.INITIALIZE_FROM_BACKGROUND;
@@ -5400,7 +5534,6 @@ pub const PD2D1_PROPERTY_GET_FUNCTION = fn(
     actualSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_CHANGE_TYPE = extern enum(u32) {
     NONE = 0,
     PROPERTIES = 1,
@@ -5408,6 +5541,21 @@ pub const D2D1_CHANGE_TYPE = extern enum(u32) {
     GRAPH = 3,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        PROPERTIES: u1 = 0,
+        CONTEXT: u1 = 0,
+        GRAPH: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_CHANGE_TYPE {
+        return @intToEnum(D2D1_CHANGE_TYPE,
+              (if (o.NONE == 1) @enumToInt(D2D1_CHANGE_TYPE.NONE) else 0)
+            | (if (o.PROPERTIES == 1) @enumToInt(D2D1_CHANGE_TYPE.PROPERTIES) else 0)
+            | (if (o.CONTEXT == 1) @enumToInt(D2D1_CHANGE_TYPE.CONTEXT) else 0)
+            | (if (o.GRAPH == 1) @enumToInt(D2D1_CHANGE_TYPE.GRAPH) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_CHANGE_TYPE.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_CHANGE_TYPE_NONE = D2D1_CHANGE_TYPE.NONE;
 pub const D2D1_CHANGE_TYPE_PROPERTIES = D2D1_CHANGE_TYPE.PROPERTIES;
@@ -5415,18 +5563,27 @@ pub const D2D1_CHANGE_TYPE_CONTEXT = D2D1_CHANGE_TYPE.CONTEXT;
 pub const D2D1_CHANGE_TYPE_GRAPH = D2D1_CHANGE_TYPE.GRAPH;
 pub const D2D1_CHANGE_TYPE_FORCE_DWORD = D2D1_CHANGE_TYPE.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_PIXEL_OPTIONS = extern enum(u32) {
     NONE = 0,
     TRIVIAL_SAMPLING = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TRIVIAL_SAMPLING: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_PIXEL_OPTIONS {
+        return @intToEnum(D2D1_PIXEL_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_PIXEL_OPTIONS.NONE) else 0)
+            | (if (o.TRIVIAL_SAMPLING == 1) @enumToInt(D2D1_PIXEL_OPTIONS.TRIVIAL_SAMPLING) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_PIXEL_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_PIXEL_OPTIONS_NONE = D2D1_PIXEL_OPTIONS.NONE;
 pub const D2D1_PIXEL_OPTIONS_TRIVIAL_SAMPLING = D2D1_PIXEL_OPTIONS.TRIVIAL_SAMPLING;
 pub const D2D1_PIXEL_OPTIONS_FORCE_DWORD = D2D1_PIXEL_OPTIONS.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_VERTEX_OPTIONS = extern enum(u32) {
     NONE = 0,
     DO_NOT_CLEAR = 1,
@@ -5434,6 +5591,21 @@ pub const D2D1_VERTEX_OPTIONS = extern enum(u32) {
     ASSUME_NO_OVERLAP = 4,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DO_NOT_CLEAR: u1 = 0,
+        USE_DEPTH_BUFFER: u1 = 0,
+        ASSUME_NO_OVERLAP: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_VERTEX_OPTIONS {
+        return @intToEnum(D2D1_VERTEX_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_VERTEX_OPTIONS.NONE) else 0)
+            | (if (o.DO_NOT_CLEAR == 1) @enumToInt(D2D1_VERTEX_OPTIONS.DO_NOT_CLEAR) else 0)
+            | (if (o.USE_DEPTH_BUFFER == 1) @enumToInt(D2D1_VERTEX_OPTIONS.USE_DEPTH_BUFFER) else 0)
+            | (if (o.ASSUME_NO_OVERLAP == 1) @enumToInt(D2D1_VERTEX_OPTIONS.ASSUME_NO_OVERLAP) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_VERTEX_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_VERTEX_OPTIONS_NONE = D2D1_VERTEX_OPTIONS.NONE;
 pub const D2D1_VERTEX_OPTIONS_DO_NOT_CLEAR = D2D1_VERTEX_OPTIONS.DO_NOT_CLEAR;
@@ -7896,36 +8068,68 @@ pub const D2D1_ORIENTATION_ROTATE_CLOCKWISE270_FLIP_HORIZONTAL = D2D1_ORIENTATIO
 pub const D2D1_ORIENTATION_ROTATE_CLOCKWISE90 = D2D1_ORIENTATION.ROTATE_CLOCKWISE90;
 pub const D2D1_ORIENTATION_FORCE_DWORD = D2D1_ORIENTATION.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS = extern enum(u32) {
     NONE = 0,
     RELEASE_SOURCE = 1,
     CACHE_ON_DEMAND = 2,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        RELEASE_SOURCE: u1 = 0,
+        CACHE_ON_DEMAND: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_IMAGE_SOURCE_LOADING_OPTIONS {
+        return @intToEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE) else 0)
+            | (if (o.RELEASE_SOURCE == 1) @enumToInt(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.RELEASE_SOURCE) else 0)
+            | (if (o.CACHE_ON_DEMAND == 1) @enumToInt(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.CACHE_ON_DEMAND) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_NONE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE;
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_RELEASE_SOURCE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.RELEASE_SOURCE;
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_CACHE_ON_DEMAND = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.CACHE_ON_DEMAND;
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS = extern enum(u32) {
     NONE = 0,
     LOW_QUALITY_PRIMARY_CONVERSION = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        LOW_QUALITY_PRIMARY_CONVERSION: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS {
+        return @intToEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE) else 0)
+            | (if (o.LOW_QUALITY_PRIMARY_CONVERSION == 1) @enumToInt(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.LOW_QUALITY_PRIMARY_CONVERSION) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_NONE = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE;
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_LOW_QUALITY_PRIMARY_CONVERSION = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.LOW_QUALITY_PRIMARY_CONVERSION;
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.FORCE_DWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS = extern enum(u32) {
     NONE = 0,
     DISABLE_DPI_SCALE = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DISABLE_DPI_SCALE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS {
+        return @intToEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE) else 0)
+            | (if (o.DISABLE_DPI_SCALE == 1) @enumToInt(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.DISABLE_DPI_SCALE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_NONE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE;
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_DISABLE_DPI_SCALE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.DISABLE_DPI_SCALE;
@@ -7994,12 +8198,22 @@ pub const D2D1_GRADIENT_MESH_PATCH = extern struct {
     rightEdgeMode: D2D1_PATCH_EDGE_MODE,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_SPRITE_OPTIONS = extern enum(u32) {
     NONE = 0,
     CLAMP_TO_SOURCE_RECTANGLE = 1,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        CLAMP_TO_SOURCE_RECTANGLE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) D2D1_SPRITE_OPTIONS {
+        return @intToEnum(D2D1_SPRITE_OPTIONS,
+              (if (o.NONE == 1) @enumToInt(D2D1_SPRITE_OPTIONS.NONE) else 0)
+            | (if (o.CLAMP_TO_SOURCE_RECTANGLE == 1) @enumToInt(D2D1_SPRITE_OPTIONS.CLAMP_TO_SOURCE_RECTANGLE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_SPRITE_OPTIONS.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const D2D1_SPRITE_OPTIONS_NONE = D2D1_SPRITE_OPTIONS.NONE;
 pub const D2D1_SPRITE_OPTIONS_CLAMP_TO_SOURCE_RECTANGLE = D2D1_SPRITE_OPTIONS.CLAMP_TO_SOURCE_RECTANGLE;

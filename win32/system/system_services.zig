@@ -22425,16 +22425,23 @@ pub const APPCOMMAND_MEDIA_CHANNEL_DOWN = APPCOMMAND_ID.MEDIA_CHANNEL_DOWN;
 pub const APPCOMMAND_DELETE = APPCOMMAND_ID.DELETE;
 pub const APPCOMMAND_DWM_FLIP3D = APPCOMMAND_ID.DWM_FLIP3D;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ATF_FLAGS = extern enum(u32) {
     TIMEOUTON = 1,
     ONOFFFEEDBACK = 2,
     _,
+    pub fn initFlags(o: struct {
+        TIMEOUTON: u1 = 0,
+        ONOFFFEEDBACK: u1 = 0,
+    }) ATF_FLAGS {
+        return @intToEnum(ATF_FLAGS,
+              (if (o.TIMEOUTON == 1) @enumToInt(ATF_FLAGS.TIMEOUTON) else 0)
+            | (if (o.ONOFFFEEDBACK == 1) @enumToInt(ATF_FLAGS.ONOFFFEEDBACK) else 0)
+        );
+    }
 };
 pub const ATF_TIMEOUTON = ATF_FLAGS.TIMEOUTON;
 pub const ATF_ONOFFFEEDBACK = ATF_FLAGS.ONOFFFEEDBACK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const BUTTON_STYLE = extern enum(u32) {
     PUSHBUTTON = 0,
     DEFPUSHBUTTON = 1,
@@ -22465,6 +22472,67 @@ pub const BUTTON_STYLE = extern enum(u32) {
     FLAT = 32768,
     RIGHTBUTTON = 32,
     _,
+    pub fn initFlags(o: struct {
+        PUSHBUTTON: u1 = 0,
+        DEFPUSHBUTTON: u1 = 0,
+        CHECKBOX: u1 = 0,
+        AUTOCHECKBOX: u1 = 0,
+        RADIOBUTTON: u1 = 0,
+        @"3STATE": u1 = 0,
+        AUTO3STATE: u1 = 0,
+        GROUPBOX: u1 = 0,
+        USERBUTTON: u1 = 0,
+        AUTORADIOBUTTON: u1 = 0,
+        PUSHBOX: u1 = 0,
+        OWNERDRAW: u1 = 0,
+        TYPEMASK: u1 = 0,
+        LEFTTEXT: u1 = 0,
+        TEXT: u1 = 0,
+        ICON: u1 = 0,
+        BITMAP: u1 = 0,
+        LEFT: u1 = 0,
+        RIGHT: u1 = 0,
+        CENTER: u1 = 0,
+        TOP: u1 = 0,
+        BOTTOM: u1 = 0,
+        VCENTER: u1 = 0,
+        PUSHLIKE: u1 = 0,
+        MULTILINE: u1 = 0,
+        NOTIFY: u1 = 0,
+        FLAT: u1 = 0,
+        RIGHTBUTTON: u1 = 0,
+    }) BUTTON_STYLE {
+        return @intToEnum(BUTTON_STYLE,
+              (if (o.PUSHBUTTON == 1) @enumToInt(BUTTON_STYLE.PUSHBUTTON) else 0)
+            | (if (o.DEFPUSHBUTTON == 1) @enumToInt(BUTTON_STYLE.DEFPUSHBUTTON) else 0)
+            | (if (o.CHECKBOX == 1) @enumToInt(BUTTON_STYLE.CHECKBOX) else 0)
+            | (if (o.AUTOCHECKBOX == 1) @enumToInt(BUTTON_STYLE.AUTOCHECKBOX) else 0)
+            | (if (o.RADIOBUTTON == 1) @enumToInt(BUTTON_STYLE.RADIOBUTTON) else 0)
+            | (if (o.@"3STATE" == 1) @enumToInt(BUTTON_STYLE.@"3STATE") else 0)
+            | (if (o.AUTO3STATE == 1) @enumToInt(BUTTON_STYLE.AUTO3STATE) else 0)
+            | (if (o.GROUPBOX == 1) @enumToInt(BUTTON_STYLE.GROUPBOX) else 0)
+            | (if (o.USERBUTTON == 1) @enumToInt(BUTTON_STYLE.USERBUTTON) else 0)
+            | (if (o.AUTORADIOBUTTON == 1) @enumToInt(BUTTON_STYLE.AUTORADIOBUTTON) else 0)
+            | (if (o.PUSHBOX == 1) @enumToInt(BUTTON_STYLE.PUSHBOX) else 0)
+            | (if (o.OWNERDRAW == 1) @enumToInt(BUTTON_STYLE.OWNERDRAW) else 0)
+            | (if (o.TYPEMASK == 1) @enumToInt(BUTTON_STYLE.TYPEMASK) else 0)
+            | (if (o.LEFTTEXT == 1) @enumToInt(BUTTON_STYLE.LEFTTEXT) else 0)
+            | (if (o.TEXT == 1) @enumToInt(BUTTON_STYLE.TEXT) else 0)
+            | (if (o.ICON == 1) @enumToInt(BUTTON_STYLE.ICON) else 0)
+            | (if (o.BITMAP == 1) @enumToInt(BUTTON_STYLE.BITMAP) else 0)
+            | (if (o.LEFT == 1) @enumToInt(BUTTON_STYLE.LEFT) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(BUTTON_STYLE.RIGHT) else 0)
+            | (if (o.CENTER == 1) @enumToInt(BUTTON_STYLE.CENTER) else 0)
+            | (if (o.TOP == 1) @enumToInt(BUTTON_STYLE.TOP) else 0)
+            | (if (o.BOTTOM == 1) @enumToInt(BUTTON_STYLE.BOTTOM) else 0)
+            | (if (o.VCENTER == 1) @enumToInt(BUTTON_STYLE.VCENTER) else 0)
+            | (if (o.PUSHLIKE == 1) @enumToInt(BUTTON_STYLE.PUSHLIKE) else 0)
+            | (if (o.MULTILINE == 1) @enumToInt(BUTTON_STYLE.MULTILINE) else 0)
+            | (if (o.NOTIFY == 1) @enumToInt(BUTTON_STYLE.NOTIFY) else 0)
+            | (if (o.FLAT == 1) @enumToInt(BUTTON_STYLE.FLAT) else 0)
+            | (if (o.RIGHTBUTTON == 1) @enumToInt(BUTTON_STYLE.RIGHTBUTTON) else 0)
+        );
+    }
 };
 pub const BS_PUSHBUTTON = BUTTON_STYLE.PUSHBUTTON;
 pub const BS_DEFPUSHBUTTON = BUTTON_STYLE.DEFPUSHBUTTON;
@@ -22495,7 +22563,6 @@ pub const BS_NOTIFY = BUTTON_STYLE.NOTIFY;
 pub const BS_FLAT = BUTTON_STYLE.FLAT;
 pub const BS_RIGHTBUTTON = BUTTON_STYLE.RIGHTBUTTON;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const COMBOBOX_STYLE = extern enum(u32) {
     SIMPLE = 1,
     DROPDOWN = 2,
@@ -22511,6 +22578,37 @@ pub const COMBOBOX_STYLE = extern enum(u32) {
     UPPERCASE = 8192,
     LOWERCASE = 16384,
     _,
+    pub fn initFlags(o: struct {
+        SIMPLE: u1 = 0,
+        DROPDOWN: u1 = 0,
+        DROPDOWNLIST: u1 = 0,
+        OWNERDRAWFIXED: u1 = 0,
+        OWNERDRAWVARIABLE: u1 = 0,
+        AUTOHSCROLL: u1 = 0,
+        OEMCONVERT: u1 = 0,
+        SORT: u1 = 0,
+        HASSTRINGS: u1 = 0,
+        NOINTEGRALHEIGHT: u1 = 0,
+        DISABLENOSCROLL: u1 = 0,
+        UPPERCASE: u1 = 0,
+        LOWERCASE: u1 = 0,
+    }) COMBOBOX_STYLE {
+        return @intToEnum(COMBOBOX_STYLE,
+              (if (o.SIMPLE == 1) @enumToInt(COMBOBOX_STYLE.SIMPLE) else 0)
+            | (if (o.DROPDOWN == 1) @enumToInt(COMBOBOX_STYLE.DROPDOWN) else 0)
+            | (if (o.DROPDOWNLIST == 1) @enumToInt(COMBOBOX_STYLE.DROPDOWNLIST) else 0)
+            | (if (o.OWNERDRAWFIXED == 1) @enumToInt(COMBOBOX_STYLE.OWNERDRAWFIXED) else 0)
+            | (if (o.OWNERDRAWVARIABLE == 1) @enumToInt(COMBOBOX_STYLE.OWNERDRAWVARIABLE) else 0)
+            | (if (o.AUTOHSCROLL == 1) @enumToInt(COMBOBOX_STYLE.AUTOHSCROLL) else 0)
+            | (if (o.OEMCONVERT == 1) @enumToInt(COMBOBOX_STYLE.OEMCONVERT) else 0)
+            | (if (o.SORT == 1) @enumToInt(COMBOBOX_STYLE.SORT) else 0)
+            | (if (o.HASSTRINGS == 1) @enumToInt(COMBOBOX_STYLE.HASSTRINGS) else 0)
+            | (if (o.NOINTEGRALHEIGHT == 1) @enumToInt(COMBOBOX_STYLE.NOINTEGRALHEIGHT) else 0)
+            | (if (o.DISABLENOSCROLL == 1) @enumToInt(COMBOBOX_STYLE.DISABLENOSCROLL) else 0)
+            | (if (o.UPPERCASE == 1) @enumToInt(COMBOBOX_STYLE.UPPERCASE) else 0)
+            | (if (o.LOWERCASE == 1) @enumToInt(COMBOBOX_STYLE.LOWERCASE) else 0)
+        );
+    }
 };
 pub const CBS_SIMPLE = COMBOBOX_STYLE.SIMPLE;
 pub const CBS_DROPDOWN = COMBOBOX_STYLE.DROPDOWN;
@@ -22526,7 +22624,6 @@ pub const CBS_DISABLENOSCROLL = COMBOBOX_STYLE.DISABLENOSCROLL;
 pub const CBS_UPPERCASE = COMBOBOX_STYLE.UPPERCASE;
 pub const CBS_LOWERCASE = COMBOBOX_STYLE.LOWERCASE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CHOOSECOLOR_FLAGS = extern enum(u32) {
     RGBINIT = 1,
     FULLOPEN = 2,
@@ -22538,6 +22635,29 @@ pub const CHOOSECOLOR_FLAGS = extern enum(u32) {
     SOLIDCOLOR = 128,
     ANYCOLOR = 256,
     _,
+    pub fn initFlags(o: struct {
+        RGBINIT: u1 = 0,
+        FULLOPEN: u1 = 0,
+        PREVENTFULLOPEN: u1 = 0,
+        SHOWHELP: u1 = 0,
+        ENABLEHOOK: u1 = 0,
+        ENABLETEMPLATE: u1 = 0,
+        ENABLETEMPLATEHANDLE: u1 = 0,
+        SOLIDCOLOR: u1 = 0,
+        ANYCOLOR: u1 = 0,
+    }) CHOOSECOLOR_FLAGS {
+        return @intToEnum(CHOOSECOLOR_FLAGS,
+              (if (o.RGBINIT == 1) @enumToInt(CHOOSECOLOR_FLAGS.RGBINIT) else 0)
+            | (if (o.FULLOPEN == 1) @enumToInt(CHOOSECOLOR_FLAGS.FULLOPEN) else 0)
+            | (if (o.PREVENTFULLOPEN == 1) @enumToInt(CHOOSECOLOR_FLAGS.PREVENTFULLOPEN) else 0)
+            | (if (o.SHOWHELP == 1) @enumToInt(CHOOSECOLOR_FLAGS.SHOWHELP) else 0)
+            | (if (o.ENABLEHOOK == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLEHOOK) else 0)
+            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLETEMPLATE) else 0)
+            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLETEMPLATEHANDLE) else 0)
+            | (if (o.SOLIDCOLOR == 1) @enumToInt(CHOOSECOLOR_FLAGS.SOLIDCOLOR) else 0)
+            | (if (o.ANYCOLOR == 1) @enumToInt(CHOOSECOLOR_FLAGS.ANYCOLOR) else 0)
+        );
+    }
 };
 pub const CC_RGBINIT = CHOOSECOLOR_FLAGS.RGBINIT;
 pub const CC_FULLOPEN = CHOOSECOLOR_FLAGS.FULLOPEN;
@@ -22606,7 +22726,6 @@ pub const CF_PRIVATELAST = CLIPBOARD_FORMATS.PRIVATELAST;
 pub const CF_GDIOBJFIRST = CLIPBOARD_FORMATS.GDIOBJFIRST;
 pub const CF_GDIOBJLAST = CLIPBOARD_FORMATS.GDIOBJLAST;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DIALOGBOX_STYLE = extern enum(u32) {
     ABSALIGN = 1,
     SYSMODAL = 2,
@@ -22625,6 +22744,43 @@ pub const DIALOGBOX_STYLE = extern enum(u32) {
     SHELLFONT = 72,
     USEPIXELS = 32768,
     _,
+    pub fn initFlags(o: struct {
+        ABSALIGN: u1 = 0,
+        SYSMODAL: u1 = 0,
+        LOCALEDIT: u1 = 0,
+        SETFONT: u1 = 0,
+        MODALFRAME: u1 = 0,
+        NOIDLEMSG: u1 = 0,
+        SETFOREGROUND: u1 = 0,
+        @"3DLOOK": u1 = 0,
+        FIXEDSYS: u1 = 0,
+        NOFAILCREATE: u1 = 0,
+        CONTROL: u1 = 0,
+        CENTER: u1 = 0,
+        CENTERMOUSE: u1 = 0,
+        CONTEXTHELP: u1 = 0,
+        SHELLFONT: u1 = 0,
+        USEPIXELS: u1 = 0,
+    }) DIALOGBOX_STYLE {
+        return @intToEnum(DIALOGBOX_STYLE,
+              (if (o.ABSALIGN == 1) @enumToInt(DIALOGBOX_STYLE.ABSALIGN) else 0)
+            | (if (o.SYSMODAL == 1) @enumToInt(DIALOGBOX_STYLE.SYSMODAL) else 0)
+            | (if (o.LOCALEDIT == 1) @enumToInt(DIALOGBOX_STYLE.LOCALEDIT) else 0)
+            | (if (o.SETFONT == 1) @enumToInt(DIALOGBOX_STYLE.SETFONT) else 0)
+            | (if (o.MODALFRAME == 1) @enumToInt(DIALOGBOX_STYLE.MODALFRAME) else 0)
+            | (if (o.NOIDLEMSG == 1) @enumToInt(DIALOGBOX_STYLE.NOIDLEMSG) else 0)
+            | (if (o.SETFOREGROUND == 1) @enumToInt(DIALOGBOX_STYLE.SETFOREGROUND) else 0)
+            | (if (o.@"3DLOOK" == 1) @enumToInt(DIALOGBOX_STYLE.@"3DLOOK") else 0)
+            | (if (o.FIXEDSYS == 1) @enumToInt(DIALOGBOX_STYLE.FIXEDSYS) else 0)
+            | (if (o.NOFAILCREATE == 1) @enumToInt(DIALOGBOX_STYLE.NOFAILCREATE) else 0)
+            | (if (o.CONTROL == 1) @enumToInt(DIALOGBOX_STYLE.CONTROL) else 0)
+            | (if (o.CENTER == 1) @enumToInt(DIALOGBOX_STYLE.CENTER) else 0)
+            | (if (o.CENTERMOUSE == 1) @enumToInt(DIALOGBOX_STYLE.CENTERMOUSE) else 0)
+            | (if (o.CONTEXTHELP == 1) @enumToInt(DIALOGBOX_STYLE.CONTEXTHELP) else 0)
+            | (if (o.SHELLFONT == 1) @enumToInt(DIALOGBOX_STYLE.SHELLFONT) else 0)
+            | (if (o.USEPIXELS == 1) @enumToInt(DIALOGBOX_STYLE.USEPIXELS) else 0)
+        );
+    }
 };
 pub const DS_ABSALIGN = DIALOGBOX_STYLE.ABSALIGN;
 pub const DS_SYSMODAL = DIALOGBOX_STYLE.SYSMODAL;
@@ -22643,7 +22799,6 @@ pub const DS_CONTEXTHELP = DIALOGBOX_STYLE.CONTEXTHELP;
 pub const DS_SHELLFONT = DIALOGBOX_STYLE.SHELLFONT;
 pub const DS_USEPIXELS = DIALOGBOX_STYLE.USEPIXELS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const EDITCONTROL_STYLE = extern enum(u32) {
     LEFT = 0,
     CENTER = 1,
@@ -22660,6 +22815,39 @@ pub const EDITCONTROL_STYLE = extern enum(u32) {
     WANTRETURN = 4096,
     NUMBER = 8192,
     _,
+    pub fn initFlags(o: struct {
+        LEFT: u1 = 0,
+        CENTER: u1 = 0,
+        RIGHT: u1 = 0,
+        MULTILINE: u1 = 0,
+        UPPERCASE: u1 = 0,
+        LOWERCASE: u1 = 0,
+        PASSWORD: u1 = 0,
+        AUTOVSCROLL: u1 = 0,
+        AUTOHSCROLL: u1 = 0,
+        NOHIDESEL: u1 = 0,
+        OEMCONVERT: u1 = 0,
+        READONLY: u1 = 0,
+        WANTRETURN: u1 = 0,
+        NUMBER: u1 = 0,
+    }) EDITCONTROL_STYLE {
+        return @intToEnum(EDITCONTROL_STYLE,
+              (if (o.LEFT == 1) @enumToInt(EDITCONTROL_STYLE.LEFT) else 0)
+            | (if (o.CENTER == 1) @enumToInt(EDITCONTROL_STYLE.CENTER) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(EDITCONTROL_STYLE.RIGHT) else 0)
+            | (if (o.MULTILINE == 1) @enumToInt(EDITCONTROL_STYLE.MULTILINE) else 0)
+            | (if (o.UPPERCASE == 1) @enumToInt(EDITCONTROL_STYLE.UPPERCASE) else 0)
+            | (if (o.LOWERCASE == 1) @enumToInt(EDITCONTROL_STYLE.LOWERCASE) else 0)
+            | (if (o.PASSWORD == 1) @enumToInt(EDITCONTROL_STYLE.PASSWORD) else 0)
+            | (if (o.AUTOVSCROLL == 1) @enumToInt(EDITCONTROL_STYLE.AUTOVSCROLL) else 0)
+            | (if (o.AUTOHSCROLL == 1) @enumToInt(EDITCONTROL_STYLE.AUTOHSCROLL) else 0)
+            | (if (o.NOHIDESEL == 1) @enumToInt(EDITCONTROL_STYLE.NOHIDESEL) else 0)
+            | (if (o.OEMCONVERT == 1) @enumToInt(EDITCONTROL_STYLE.OEMCONVERT) else 0)
+            | (if (o.READONLY == 1) @enumToInt(EDITCONTROL_STYLE.READONLY) else 0)
+            | (if (o.WANTRETURN == 1) @enumToInt(EDITCONTROL_STYLE.WANTRETURN) else 0)
+            | (if (o.NUMBER == 1) @enumToInt(EDITCONTROL_STYLE.NUMBER) else 0)
+        );
+    }
 };
 pub const ES_LEFT = EDITCONTROL_STYLE.LEFT;
 pub const ES_CENTER = EDITCONTROL_STYLE.CENTER;
@@ -22676,7 +22864,6 @@ pub const ES_READONLY = EDITCONTROL_STYLE.READONLY;
 pub const ES_WANTRETURN = EDITCONTROL_STYLE.WANTRETURN;
 pub const ES_NUMBER = EDITCONTROL_STYLE.NUMBER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GESTURECONFIG_FLAGS = extern enum(u32) {
     ALLGESTURES = 1,
     ZOOM = 1,
@@ -22690,6 +22877,33 @@ pub const GESTURECONFIG_FLAGS = extern enum(u32) {
     PRESSANDTAP = 1,
     ROLLOVER = 1,
     _,
+    pub fn initFlags(o: struct {
+        ALLGESTURES: u1 = 0,
+        ZOOM: u1 = 0,
+        PAN: u1 = 0,
+        PAN_WITH_SINGLE_FINGER_VERTICALLY: u1 = 0,
+        PAN_WITH_SINGLE_FINGER_HORIZONTALLY: u1 = 0,
+        PAN_WITH_GUTTER: u1 = 0,
+        PAN_WITH_INERTIA: u1 = 0,
+        ROTATE: u1 = 0,
+        TWOFINGERTAP: u1 = 0,
+        PRESSANDTAP: u1 = 0,
+        ROLLOVER: u1 = 0,
+    }) GESTURECONFIG_FLAGS {
+        return @intToEnum(GESTURECONFIG_FLAGS,
+              (if (o.ALLGESTURES == 1) @enumToInt(GESTURECONFIG_FLAGS.ALLGESTURES) else 0)
+            | (if (o.ZOOM == 1) @enumToInt(GESTURECONFIG_FLAGS.ZOOM) else 0)
+            | (if (o.PAN == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN) else 0)
+            | (if (o.PAN_WITH_SINGLE_FINGER_VERTICALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_VERTICALLY) else 0)
+            | (if (o.PAN_WITH_SINGLE_FINGER_HORIZONTALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_HORIZONTALLY) else 0)
+            | (if (o.PAN_WITH_GUTTER == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_GUTTER) else 0)
+            | (if (o.PAN_WITH_INERTIA == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_INERTIA) else 0)
+            | (if (o.ROTATE == 1) @enumToInt(GESTURECONFIG_FLAGS.ROTATE) else 0)
+            | (if (o.TWOFINGERTAP == 1) @enumToInt(GESTURECONFIG_FLAGS.TWOFINGERTAP) else 0)
+            | (if (o.PRESSANDTAP == 1) @enumToInt(GESTURECONFIG_FLAGS.PRESSANDTAP) else 0)
+            | (if (o.ROLLOVER == 1) @enumToInt(GESTURECONFIG_FLAGS.ROLLOVER) else 0)
+        );
+    }
 };
 pub const GC_ALLGESTURES = GESTURECONFIG_FLAGS.ALLGESTURES;
 pub const GC_ZOOM = GESTURECONFIG_FLAGS.ZOOM;
@@ -22703,7 +22917,6 @@ pub const GC_TWOFINGERTAP = GESTURECONFIG_FLAGS.TWOFINGERTAP;
 pub const GC_PRESSANDTAP = GESTURECONFIG_FLAGS.PRESSANDTAP;
 pub const GC_ROLLOVER = GESTURECONFIG_FLAGS.ROLLOVER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LISTBOX_STYLE = extern enum(u32) {
     STANDARD = 10485763,
     NOTIFY = 1,
@@ -22723,6 +22936,45 @@ pub const LISTBOX_STYLE = extern enum(u32) {
     NOSEL = 16384,
     COMBOBOX = 32768,
     _,
+    pub fn initFlags(o: struct {
+        STANDARD: u1 = 0,
+        NOTIFY: u1 = 0,
+        SORT: u1 = 0,
+        NOREDRAW: u1 = 0,
+        MULTIPLESEL: u1 = 0,
+        OWNERDRAWFIXED: u1 = 0,
+        OWNERDRAWVARIABLE: u1 = 0,
+        HASSTRINGS: u1 = 0,
+        USETABSTOPS: u1 = 0,
+        NOINTEGRALHEIGHT: u1 = 0,
+        MULTICOLUMN: u1 = 0,
+        WANTKEYBOARDINPUT: u1 = 0,
+        EXTENDEDSEL: u1 = 0,
+        DISABLENOSCROLL: u1 = 0,
+        NODATA: u1 = 0,
+        NOSEL: u1 = 0,
+        COMBOBOX: u1 = 0,
+    }) LISTBOX_STYLE {
+        return @intToEnum(LISTBOX_STYLE,
+              (if (o.STANDARD == 1) @enumToInt(LISTBOX_STYLE.STANDARD) else 0)
+            | (if (o.NOTIFY == 1) @enumToInt(LISTBOX_STYLE.NOTIFY) else 0)
+            | (if (o.SORT == 1) @enumToInt(LISTBOX_STYLE.SORT) else 0)
+            | (if (o.NOREDRAW == 1) @enumToInt(LISTBOX_STYLE.NOREDRAW) else 0)
+            | (if (o.MULTIPLESEL == 1) @enumToInt(LISTBOX_STYLE.MULTIPLESEL) else 0)
+            | (if (o.OWNERDRAWFIXED == 1) @enumToInt(LISTBOX_STYLE.OWNERDRAWFIXED) else 0)
+            | (if (o.OWNERDRAWVARIABLE == 1) @enumToInt(LISTBOX_STYLE.OWNERDRAWVARIABLE) else 0)
+            | (if (o.HASSTRINGS == 1) @enumToInt(LISTBOX_STYLE.HASSTRINGS) else 0)
+            | (if (o.USETABSTOPS == 1) @enumToInt(LISTBOX_STYLE.USETABSTOPS) else 0)
+            | (if (o.NOINTEGRALHEIGHT == 1) @enumToInt(LISTBOX_STYLE.NOINTEGRALHEIGHT) else 0)
+            | (if (o.MULTICOLUMN == 1) @enumToInt(LISTBOX_STYLE.MULTICOLUMN) else 0)
+            | (if (o.WANTKEYBOARDINPUT == 1) @enumToInt(LISTBOX_STYLE.WANTKEYBOARDINPUT) else 0)
+            | (if (o.EXTENDEDSEL == 1) @enumToInt(LISTBOX_STYLE.EXTENDEDSEL) else 0)
+            | (if (o.DISABLENOSCROLL == 1) @enumToInt(LISTBOX_STYLE.DISABLENOSCROLL) else 0)
+            | (if (o.NODATA == 1) @enumToInt(LISTBOX_STYLE.NODATA) else 0)
+            | (if (o.NOSEL == 1) @enumToInt(LISTBOX_STYLE.NOSEL) else 0)
+            | (if (o.COMBOBOX == 1) @enumToInt(LISTBOX_STYLE.COMBOBOX) else 0)
+        );
+    }
 };
 pub const LBS_STANDARD = LISTBOX_STYLE.STANDARD;
 pub const LBS_NOTIFY = LISTBOX_STYLE.NOTIFY;
@@ -22742,7 +22994,6 @@ pub const LBS_NODATA = LISTBOX_STYLE.NODATA;
 pub const LBS_NOSEL = LISTBOX_STYLE.NOSEL;
 pub const LBS_COMBOBOX = LISTBOX_STYLE.COMBOBOX;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SCROLLBAR_STYLE = extern enum(u32) {
     HORZ = 0,
     VERT = 1,
@@ -22755,6 +23006,31 @@ pub const SCROLLBAR_STYLE = extern enum(u32) {
     SIZEBOX = 8,
     SIZEGRIP = 16,
     _,
+    pub fn initFlags(o: struct {
+        HORZ: u1 = 0,
+        VERT: u1 = 0,
+        TOPALIGN: u1 = 0,
+        LEFTALIGN: u1 = 0,
+        BOTTOMALIGN: u1 = 0,
+        RIGHTALIGN: u1 = 0,
+        SIZEBOXTOPLEFTALIGN: u1 = 0,
+        SIZEBOXBOTTOMRIGHTALIGN: u1 = 0,
+        SIZEBOX: u1 = 0,
+        SIZEGRIP: u1 = 0,
+    }) SCROLLBAR_STYLE {
+        return @intToEnum(SCROLLBAR_STYLE,
+              (if (o.HORZ == 1) @enumToInt(SCROLLBAR_STYLE.HORZ) else 0)
+            | (if (o.VERT == 1) @enumToInt(SCROLLBAR_STYLE.VERT) else 0)
+            | (if (o.TOPALIGN == 1) @enumToInt(SCROLLBAR_STYLE.TOPALIGN) else 0)
+            | (if (o.LEFTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.LEFTALIGN) else 0)
+            | (if (o.BOTTOMALIGN == 1) @enumToInt(SCROLLBAR_STYLE.BOTTOMALIGN) else 0)
+            | (if (o.RIGHTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.RIGHTALIGN) else 0)
+            | (if (o.SIZEBOXTOPLEFTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.SIZEBOXTOPLEFTALIGN) else 0)
+            | (if (o.SIZEBOXBOTTOMRIGHTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.SIZEBOXBOTTOMRIGHTALIGN) else 0)
+            | (if (o.SIZEBOX == 1) @enumToInt(SCROLLBAR_STYLE.SIZEBOX) else 0)
+            | (if (o.SIZEGRIP == 1) @enumToInt(SCROLLBAR_STYLE.SIZEGRIP) else 0)
+        );
+    }
 };
 pub const SBS_HORZ = SCROLLBAR_STYLE.HORZ;
 pub const SBS_VERT = SCROLLBAR_STYLE.VERT;
@@ -22767,7 +23043,6 @@ pub const SBS_SIZEBOXBOTTOMRIGHTALIGN = SCROLLBAR_STYLE.SIZEBOXBOTTOMRIGHTALIGN;
 pub const SBS_SIZEBOX = SCROLLBAR_STYLE.SIZEBOX;
 pub const SBS_SIZEGRIP = SCROLLBAR_STYLE.SIZEGRIP;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const STATIC_CONTROL_STYLE = extern enum(u32) {
     LEFT = 0,
     CENTER = 1,
@@ -22802,6 +23077,75 @@ pub const STATIC_CONTROL_STYLE = extern enum(u32) {
     WORDELLIPSIS = 49152,
     ELLIPSISMASK = 49152,
     _,
+    pub fn initFlags(o: struct {
+        LEFT: u1 = 0,
+        CENTER: u1 = 0,
+        RIGHT: u1 = 0,
+        ICON: u1 = 0,
+        BLACKRECT: u1 = 0,
+        GRAYRECT: u1 = 0,
+        WHITERECT: u1 = 0,
+        BLACKFRAME: u1 = 0,
+        GRAYFRAME: u1 = 0,
+        WHITEFRAME: u1 = 0,
+        USERITEM: u1 = 0,
+        SIMPLE: u1 = 0,
+        LEFTNOWORDWRAP: u1 = 0,
+        OWNERDRAW: u1 = 0,
+        BITMAP: u1 = 0,
+        ENHMETAFILE: u1 = 0,
+        ETCHEDHORZ: u1 = 0,
+        ETCHEDVERT: u1 = 0,
+        ETCHEDFRAME: u1 = 0,
+        TYPEMASK: u1 = 0,
+        REALSIZECONTROL: u1 = 0,
+        NOPREFIX: u1 = 0,
+        NOTIFY: u1 = 0,
+        CENTERIMAGE: u1 = 0,
+        RIGHTJUST: u1 = 0,
+        REALSIZEIMAGE: u1 = 0,
+        SUNKEN: u1 = 0,
+        EDITCONTROL: u1 = 0,
+        ENDELLIPSIS: u1 = 0,
+        PATHELLIPSIS: u1 = 0,
+        WORDELLIPSIS: u1 = 0,
+        ELLIPSISMASK: u1 = 0,
+    }) STATIC_CONTROL_STYLE {
+        return @intToEnum(STATIC_CONTROL_STYLE,
+              (if (o.LEFT == 1) @enumToInt(STATIC_CONTROL_STYLE.LEFT) else 0)
+            | (if (o.CENTER == 1) @enumToInt(STATIC_CONTROL_STYLE.CENTER) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(STATIC_CONTROL_STYLE.RIGHT) else 0)
+            | (if (o.ICON == 1) @enumToInt(STATIC_CONTROL_STYLE.ICON) else 0)
+            | (if (o.BLACKRECT == 1) @enumToInt(STATIC_CONTROL_STYLE.BLACKRECT) else 0)
+            | (if (o.GRAYRECT == 1) @enumToInt(STATIC_CONTROL_STYLE.GRAYRECT) else 0)
+            | (if (o.WHITERECT == 1) @enumToInt(STATIC_CONTROL_STYLE.WHITERECT) else 0)
+            | (if (o.BLACKFRAME == 1) @enumToInt(STATIC_CONTROL_STYLE.BLACKFRAME) else 0)
+            | (if (o.GRAYFRAME == 1) @enumToInt(STATIC_CONTROL_STYLE.GRAYFRAME) else 0)
+            | (if (o.WHITEFRAME == 1) @enumToInt(STATIC_CONTROL_STYLE.WHITEFRAME) else 0)
+            | (if (o.USERITEM == 1) @enumToInt(STATIC_CONTROL_STYLE.USERITEM) else 0)
+            | (if (o.SIMPLE == 1) @enumToInt(STATIC_CONTROL_STYLE.SIMPLE) else 0)
+            | (if (o.LEFTNOWORDWRAP == 1) @enumToInt(STATIC_CONTROL_STYLE.LEFTNOWORDWRAP) else 0)
+            | (if (o.OWNERDRAW == 1) @enumToInt(STATIC_CONTROL_STYLE.OWNERDRAW) else 0)
+            | (if (o.BITMAP == 1) @enumToInt(STATIC_CONTROL_STYLE.BITMAP) else 0)
+            | (if (o.ENHMETAFILE == 1) @enumToInt(STATIC_CONTROL_STYLE.ENHMETAFILE) else 0)
+            | (if (o.ETCHEDHORZ == 1) @enumToInt(STATIC_CONTROL_STYLE.ETCHEDHORZ) else 0)
+            | (if (o.ETCHEDVERT == 1) @enumToInt(STATIC_CONTROL_STYLE.ETCHEDVERT) else 0)
+            | (if (o.ETCHEDFRAME == 1) @enumToInt(STATIC_CONTROL_STYLE.ETCHEDFRAME) else 0)
+            | (if (o.TYPEMASK == 1) @enumToInt(STATIC_CONTROL_STYLE.TYPEMASK) else 0)
+            | (if (o.REALSIZECONTROL == 1) @enumToInt(STATIC_CONTROL_STYLE.REALSIZECONTROL) else 0)
+            | (if (o.NOPREFIX == 1) @enumToInt(STATIC_CONTROL_STYLE.NOPREFIX) else 0)
+            | (if (o.NOTIFY == 1) @enumToInt(STATIC_CONTROL_STYLE.NOTIFY) else 0)
+            | (if (o.CENTERIMAGE == 1) @enumToInt(STATIC_CONTROL_STYLE.CENTERIMAGE) else 0)
+            | (if (o.RIGHTJUST == 1) @enumToInt(STATIC_CONTROL_STYLE.RIGHTJUST) else 0)
+            | (if (o.REALSIZEIMAGE == 1) @enumToInt(STATIC_CONTROL_STYLE.REALSIZEIMAGE) else 0)
+            | (if (o.SUNKEN == 1) @enumToInt(STATIC_CONTROL_STYLE.SUNKEN) else 0)
+            | (if (o.EDITCONTROL == 1) @enumToInt(STATIC_CONTROL_STYLE.EDITCONTROL) else 0)
+            | (if (o.ENDELLIPSIS == 1) @enumToInt(STATIC_CONTROL_STYLE.ENDELLIPSIS) else 0)
+            | (if (o.PATHELLIPSIS == 1) @enumToInt(STATIC_CONTROL_STYLE.PATHELLIPSIS) else 0)
+            | (if (o.WORDELLIPSIS == 1) @enumToInt(STATIC_CONTROL_STYLE.WORDELLIPSIS) else 0)
+            | (if (o.ELLIPSISMASK == 1) @enumToInt(STATIC_CONTROL_STYLE.ELLIPSISMASK) else 0)
+        );
+    }
 };
 pub const SS_LEFT = STATIC_CONTROL_STYLE.LEFT;
 pub const SS_CENTER = STATIC_CONTROL_STYLE.CENTER;
@@ -22836,7 +23180,6 @@ pub const SS_PATHELLIPSIS = STATIC_CONTROL_STYLE.PATHELLIPSIS;
 pub const SS_WORDELLIPSIS = STATIC_CONTROL_STYLE.WORDELLIPSIS;
 pub const SS_ELLIPSISMASK = STATIC_CONTROL_STYLE.ELLIPSISMASK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CFE_UNDERLINE = extern enum(u32) {
     CF1UNDERLINE = 255,
     INVERT = 254,
@@ -22860,6 +23203,53 @@ pub const CFE_UNDERLINE = extern enum(u32) {
     UNDERLINE = 1,
     UNDERLINENONE = 0,
     _,
+    pub fn initFlags(o: struct {
+        CF1UNDERLINE: u1 = 0,
+        INVERT: u1 = 0,
+        UNDERLINETHICKLONGDASH: u1 = 0,
+        UNDERLINETHICKDOTTED: u1 = 0,
+        UNDERLINETHICKDASHDOTDOT: u1 = 0,
+        UNDERLINETHICKDASHDOT: u1 = 0,
+        UNDERLINETHICKDASH: u1 = 0,
+        UNDERLINELONGDASH: u1 = 0,
+        UNDERLINEHEAVYWAVE: u1 = 0,
+        UNDERLINEDOUBLEWAVE: u1 = 0,
+        UNDERLINEHAIRLINE: u1 = 0,
+        UNDERLINETHICK: u1 = 0,
+        UNDERLINEWAVE: u1 = 0,
+        UNDERLINEDASHDOTDOT: u1 = 0,
+        UNDERLINEDASHDOT: u1 = 0,
+        UNDERLINEDASH: u1 = 0,
+        UNDERLINEDOTTED: u1 = 0,
+        UNDERLINEDOUBLE: u1 = 0,
+        UNDERLINEWORD: u1 = 0,
+        UNDERLINE: u1 = 0,
+        UNDERLINENONE: u1 = 0,
+    }) CFE_UNDERLINE {
+        return @intToEnum(CFE_UNDERLINE,
+              (if (o.CF1UNDERLINE == 1) @enumToInt(CFE_UNDERLINE.CF1UNDERLINE) else 0)
+            | (if (o.INVERT == 1) @enumToInt(CFE_UNDERLINE.INVERT) else 0)
+            | (if (o.UNDERLINETHICKLONGDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKLONGDASH) else 0)
+            | (if (o.UNDERLINETHICKDOTTED == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDOTTED) else 0)
+            | (if (o.UNDERLINETHICKDASHDOTDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASHDOTDOT) else 0)
+            | (if (o.UNDERLINETHICKDASHDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASHDOT) else 0)
+            | (if (o.UNDERLINETHICKDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASH) else 0)
+            | (if (o.UNDERLINELONGDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINELONGDASH) else 0)
+            | (if (o.UNDERLINEHEAVYWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEHEAVYWAVE) else 0)
+            | (if (o.UNDERLINEDOUBLEWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOUBLEWAVE) else 0)
+            | (if (o.UNDERLINEHAIRLINE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEHAIRLINE) else 0)
+            | (if (o.UNDERLINETHICK == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICK) else 0)
+            | (if (o.UNDERLINEWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEWAVE) else 0)
+            | (if (o.UNDERLINEDASHDOTDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASHDOTDOT) else 0)
+            | (if (o.UNDERLINEDASHDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASHDOT) else 0)
+            | (if (o.UNDERLINEDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASH) else 0)
+            | (if (o.UNDERLINEDOTTED == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOTTED) else 0)
+            | (if (o.UNDERLINEDOUBLE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOUBLE) else 0)
+            | (if (o.UNDERLINEWORD == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEWORD) else 0)
+            | (if (o.UNDERLINE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINE) else 0)
+            | (if (o.UNDERLINENONE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINENONE) else 0)
+        );
+    }
 };
 pub const CFU_CF1UNDERLINE = CFE_UNDERLINE.CF1UNDERLINE;
 pub const CFU_INVERT = CFE_UNDERLINE.INVERT;
@@ -22900,7 +23290,6 @@ pub const IGP_UI = IGP_ID.UI;
 pub const IGP_SETCOMPSTR = IGP_ID.SETCOMPSTR;
 pub const IGP_SELECT = IGP_ID.SELECT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SECTION_FLAGS = extern enum(u32) {
     ALL_ACCESS = 983071,
     QUERY = 1,
@@ -22910,6 +23299,25 @@ pub const SECTION_FLAGS = extern enum(u32) {
     EXTEND_SIZE = 16,
     MAP_EXECUTE_EXPLICIT = 32,
     _,
+    pub fn initFlags(o: struct {
+        ALL_ACCESS: u1 = 0,
+        QUERY: u1 = 0,
+        MAP_WRITE: u1 = 0,
+        MAP_READ: u1 = 0,
+        MAP_EXECUTE: u1 = 0,
+        EXTEND_SIZE: u1 = 0,
+        MAP_EXECUTE_EXPLICIT: u1 = 0,
+    }) SECTION_FLAGS {
+        return @intToEnum(SECTION_FLAGS,
+              (if (o.ALL_ACCESS == 1) @enumToInt(SECTION_FLAGS.ALL_ACCESS) else 0)
+            | (if (o.QUERY == 1) @enumToInt(SECTION_FLAGS.QUERY) else 0)
+            | (if (o.MAP_WRITE == 1) @enumToInt(SECTION_FLAGS.MAP_WRITE) else 0)
+            | (if (o.MAP_READ == 1) @enumToInt(SECTION_FLAGS.MAP_READ) else 0)
+            | (if (o.MAP_EXECUTE == 1) @enumToInt(SECTION_FLAGS.MAP_EXECUTE) else 0)
+            | (if (o.EXTEND_SIZE == 1) @enumToInt(SECTION_FLAGS.EXTEND_SIZE) else 0)
+            | (if (o.MAP_EXECUTE_EXPLICIT == 1) @enumToInt(SECTION_FLAGS.MAP_EXECUTE_EXPLICIT) else 0)
+        );
+    }
 };
 pub const SECTION_ALL_ACCESS = SECTION_FLAGS.ALL_ACCESS;
 pub const SECTION_QUERY = SECTION_FLAGS.QUERY;
@@ -22919,7 +23327,6 @@ pub const SECTION_MAP_EXECUTE = SECTION_FLAGS.MAP_EXECUTE;
 pub const SECTION_EXTEND_SIZE = SECTION_FLAGS.EXTEND_SIZE;
 pub const SECTION_MAP_EXECUTE_EXPLICIT = SECTION_FLAGS.MAP_EXECUTE_EXPLICIT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FILE_MAP = extern enum(u32) {
     WRITE = 2,
     READ = 4,
@@ -22930,6 +23337,27 @@ pub const FILE_MAP = extern enum(u32) {
     TARGETS_INVALID = 1073741824,
     LARGE_PAGES = 536870912,
     _,
+    pub fn initFlags(o: struct {
+        WRITE: u1 = 0,
+        READ: u1 = 0,
+        ALL_ACCESS: u1 = 0,
+        EXECUTE: u1 = 0,
+        COPY: u1 = 0,
+        RESERVE: u1 = 0,
+        TARGETS_INVALID: u1 = 0,
+        LARGE_PAGES: u1 = 0,
+    }) FILE_MAP {
+        return @intToEnum(FILE_MAP,
+              (if (o.WRITE == 1) @enumToInt(FILE_MAP.WRITE) else 0)
+            | (if (o.READ == 1) @enumToInt(FILE_MAP.READ) else 0)
+            | (if (o.ALL_ACCESS == 1) @enumToInt(FILE_MAP.ALL_ACCESS) else 0)
+            | (if (o.EXECUTE == 1) @enumToInt(FILE_MAP.EXECUTE) else 0)
+            | (if (o.COPY == 1) @enumToInt(FILE_MAP.COPY) else 0)
+            | (if (o.RESERVE == 1) @enumToInt(FILE_MAP.RESERVE) else 0)
+            | (if (o.TARGETS_INVALID == 1) @enumToInt(FILE_MAP.TARGETS_INVALID) else 0)
+            | (if (o.LARGE_PAGES == 1) @enumToInt(FILE_MAP.LARGE_PAGES) else 0)
+        );
+    }
 };
 pub const FILE_MAP_WRITE = FILE_MAP.WRITE;
 pub const FILE_MAP_READ = FILE_MAP.READ;
@@ -22961,7 +23389,6 @@ pub const THREAD_PRIORITY_LOWEST = THREAD_PRIORITY.PRIORITY_LOWEST;
 pub const THREAD_PRIORITY_NORMAL = THREAD_PRIORITY.PRIORITY_NORMAL;
 pub const THREAD_PRIORITY_TIME_CRITICAL = THREAD_PRIORITY.PRIORITY_TIME_CRITICAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LOAD_LIBRARY_FLAGS = extern enum(u32) {
     DONT_RESOLVE_DLL_REFERENCES = 1,
     LOAD_LIBRARY_AS_DATAFILE = 2,
@@ -22978,6 +23405,39 @@ pub const LOAD_LIBRARY_FLAGS = extern enum(u32) {
     LOAD_LIBRARY_SAFE_CURRENT_DIRS = 8192,
     LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = 16384,
     _,
+    pub fn initFlags(o: struct {
+        DONT_RESOLVE_DLL_REFERENCES: u1 = 0,
+        LOAD_LIBRARY_AS_DATAFILE: u1 = 0,
+        LOAD_WITH_ALTERED_SEARCH_PATH: u1 = 0,
+        LOAD_IGNORE_CODE_AUTHZ_LEVEL: u1 = 0,
+        LOAD_LIBRARY_AS_IMAGE_RESOURCE: u1 = 0,
+        LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE: u1 = 0,
+        LOAD_LIBRARY_REQUIRE_SIGNED_TARGET: u1 = 0,
+        LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR: u1 = 0,
+        LOAD_LIBRARY_SEARCH_APPLICATION_DIR: u1 = 0,
+        LOAD_LIBRARY_SEARCH_USER_DIRS: u1 = 0,
+        LOAD_LIBRARY_SEARCH_SYSTEM32: u1 = 0,
+        LOAD_LIBRARY_SEARCH_DEFAULT_DIRS: u1 = 0,
+        LOAD_LIBRARY_SAFE_CURRENT_DIRS: u1 = 0,
+        LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER: u1 = 0,
+    }) LOAD_LIBRARY_FLAGS {
+        return @intToEnum(LOAD_LIBRARY_FLAGS,
+              (if (o.DONT_RESOLVE_DLL_REFERENCES == 1) @enumToInt(LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES) else 0)
+            | (if (o.LOAD_LIBRARY_AS_DATAFILE == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE) else 0)
+            | (if (o.LOAD_WITH_ALTERED_SEARCH_PATH == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_WITH_ALTERED_SEARCH_PATH) else 0)
+            | (if (o.LOAD_IGNORE_CODE_AUTHZ_LEVEL == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_IGNORE_CODE_AUTHZ_LEVEL) else 0)
+            | (if (o.LOAD_LIBRARY_AS_IMAGE_RESOURCE == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_IMAGE_RESOURCE) else 0)
+            | (if (o.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE) else 0)
+            | (if (o.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET) else 0)
+            | (if (o.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR) else 0)
+            | (if (o.LOAD_LIBRARY_SEARCH_APPLICATION_DIR == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_APPLICATION_DIR) else 0)
+            | (if (o.LOAD_LIBRARY_SEARCH_USER_DIRS == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_USER_DIRS) else 0)
+            | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32 == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32) else 0)
+            | (if (o.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS) else 0)
+            | (if (o.LOAD_LIBRARY_SAFE_CURRENT_DIRS == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SAFE_CURRENT_DIRS) else 0)
+            | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER) else 0)
+        );
+    }
 };
 pub const DONT_RESOLVE_DLL_REFERENCES = LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES;
 pub const LOAD_LIBRARY_AS_DATAFILE = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE;
@@ -23105,7 +23565,6 @@ pub const FACILITY_PLATFORM_MANIFEST = NTSTATUS_FACILITY_CODE.PLATFORM_MANIFEST;
 pub const FACILITY_APP_EXEC = NTSTATUS_FACILITY_CODE.APP_EXEC;
 pub const FACILITY_MAXIMUM_VALUE = NTSTATUS_FACILITY_CODE.MAXIMUM_VALUE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PAGE_TYPE = extern enum(u32) {
     PAGE_NOACCESS = 1,
     PAGE_READONLY = 2,
@@ -23147,6 +23606,89 @@ pub const PAGE_TYPE = extern enum(u32) {
     SEC_LARGE_PAGES = 2147483648,
     SEC_IMAGE_NO_EXECUTE = 285212672,
     _,
+    pub fn initFlags(o: struct {
+        PAGE_NOACCESS: u1 = 0,
+        PAGE_READONLY: u1 = 0,
+        PAGE_READWRITE: u1 = 0,
+        PAGE_WRITECOPY: u1 = 0,
+        PAGE_EXECUTE: u1 = 0,
+        PAGE_EXECUTE_READ: u1 = 0,
+        PAGE_EXECUTE_READWRITE: u1 = 0,
+        PAGE_EXECUTE_WRITECOPY: u1 = 0,
+        PAGE_GUARD: u1 = 0,
+        PAGE_NOCACHE: u1 = 0,
+        PAGE_WRITECOMBINE: u1 = 0,
+        PAGE_GRAPHICS_NOACCESS: u1 = 0,
+        PAGE_GRAPHICS_READONLY: u1 = 0,
+        PAGE_GRAPHICS_READWRITE: u1 = 0,
+        PAGE_GRAPHICS_EXECUTE: u1 = 0,
+        PAGE_GRAPHICS_EXECUTE_READ: u1 = 0,
+        PAGE_GRAPHICS_EXECUTE_READWRITE: u1 = 0,
+        PAGE_GRAPHICS_COHERENT: u1 = 0,
+        PAGE_GRAPHICS_NOCACHE: u1 = 0,
+        PAGE_ENCLAVE_THREAD_CONTROL: u1 = 0,
+        PAGE_REVERT_TO_FILE_MAP: u1 = 0,
+        PAGE_TARGETS_NO_UPDATE: u1 = 0,
+        PAGE_TARGETS_INVALID: u1 = 0,
+        PAGE_ENCLAVE_UNVALIDATED: u1 = 0,
+        PAGE_ENCLAVE_MASK: u1 = 0,
+        PAGE_ENCLAVE_DECOMMIT: u1 = 0,
+        PAGE_ENCLAVE_SS_FIRST: u1 = 0,
+        PAGE_ENCLAVE_SS_REST: u1 = 0,
+        SEC_PARTITION_OWNER_HANDLE: u1 = 0,
+        SEC_64K_PAGES: u1 = 0,
+        SEC_FILE: u1 = 0,
+        SEC_IMAGE: u1 = 0,
+        SEC_PROTECTED_IMAGE: u1 = 0,
+        SEC_RESERVE: u1 = 0,
+        SEC_COMMIT: u1 = 0,
+        SEC_NOCACHE: u1 = 0,
+        SEC_WRITECOMBINE: u1 = 0,
+        SEC_LARGE_PAGES: u1 = 0,
+        SEC_IMAGE_NO_EXECUTE: u1 = 0,
+    }) PAGE_TYPE {
+        return @intToEnum(PAGE_TYPE,
+              (if (o.PAGE_NOACCESS == 1) @enumToInt(PAGE_TYPE.PAGE_NOACCESS) else 0)
+            | (if (o.PAGE_READONLY == 1) @enumToInt(PAGE_TYPE.PAGE_READONLY) else 0)
+            | (if (o.PAGE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_READWRITE) else 0)
+            | (if (o.PAGE_WRITECOPY == 1) @enumToInt(PAGE_TYPE.PAGE_WRITECOPY) else 0)
+            | (if (o.PAGE_EXECUTE == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE) else 0)
+            | (if (o.PAGE_EXECUTE_READ == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_READ) else 0)
+            | (if (o.PAGE_EXECUTE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_READWRITE) else 0)
+            | (if (o.PAGE_EXECUTE_WRITECOPY == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_WRITECOPY) else 0)
+            | (if (o.PAGE_GUARD == 1) @enumToInt(PAGE_TYPE.PAGE_GUARD) else 0)
+            | (if (o.PAGE_NOCACHE == 1) @enumToInt(PAGE_TYPE.PAGE_NOCACHE) else 0)
+            | (if (o.PAGE_WRITECOMBINE == 1) @enumToInt(PAGE_TYPE.PAGE_WRITECOMBINE) else 0)
+            | (if (o.PAGE_GRAPHICS_NOACCESS == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_NOACCESS) else 0)
+            | (if (o.PAGE_GRAPHICS_READONLY == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_READONLY) else 0)
+            | (if (o.PAGE_GRAPHICS_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_READWRITE) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE_READ == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READ) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READWRITE) else 0)
+            | (if (o.PAGE_GRAPHICS_COHERENT == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_COHERENT) else 0)
+            | (if (o.PAGE_GRAPHICS_NOCACHE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_NOCACHE) else 0)
+            | (if (o.PAGE_ENCLAVE_THREAD_CONTROL == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL) else 0)
+            | (if (o.PAGE_REVERT_TO_FILE_MAP == 1) @enumToInt(PAGE_TYPE.PAGE_REVERT_TO_FILE_MAP) else 0)
+            | (if (o.PAGE_TARGETS_NO_UPDATE == 1) @enumToInt(PAGE_TYPE.PAGE_TARGETS_NO_UPDATE) else 0)
+            | (if (o.PAGE_TARGETS_INVALID == 1) @enumToInt(PAGE_TYPE.PAGE_TARGETS_INVALID) else 0)
+            | (if (o.PAGE_ENCLAVE_UNVALIDATED == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_UNVALIDATED) else 0)
+            | (if (o.PAGE_ENCLAVE_MASK == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_MASK) else 0)
+            | (if (o.PAGE_ENCLAVE_DECOMMIT == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_DECOMMIT) else 0)
+            | (if (o.PAGE_ENCLAVE_SS_FIRST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_FIRST) else 0)
+            | (if (o.PAGE_ENCLAVE_SS_REST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_REST) else 0)
+            | (if (o.SEC_PARTITION_OWNER_HANDLE == 1) @enumToInt(PAGE_TYPE.SEC_PARTITION_OWNER_HANDLE) else 0)
+            | (if (o.SEC_64K_PAGES == 1) @enumToInt(PAGE_TYPE.SEC_64K_PAGES) else 0)
+            | (if (o.SEC_FILE == 1) @enumToInt(PAGE_TYPE.SEC_FILE) else 0)
+            | (if (o.SEC_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE) else 0)
+            | (if (o.SEC_PROTECTED_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_PROTECTED_IMAGE) else 0)
+            | (if (o.SEC_RESERVE == 1) @enumToInt(PAGE_TYPE.SEC_RESERVE) else 0)
+            | (if (o.SEC_COMMIT == 1) @enumToInt(PAGE_TYPE.SEC_COMMIT) else 0)
+            | (if (o.SEC_NOCACHE == 1) @enumToInt(PAGE_TYPE.SEC_NOCACHE) else 0)
+            | (if (o.SEC_WRITECOMBINE == 1) @enumToInt(PAGE_TYPE.SEC_WRITECOMBINE) else 0)
+            | (if (o.SEC_LARGE_PAGES == 1) @enumToInt(PAGE_TYPE.SEC_LARGE_PAGES) else 0)
+            | (if (o.SEC_IMAGE_NO_EXECUTE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE_NO_EXECUTE) else 0)
+        );
+    }
 };
 pub const PAGE_NOACCESS = PAGE_TYPE.PAGE_NOACCESS;
 pub const PAGE_READONLY = PAGE_TYPE.PAGE_READONLY;
@@ -23188,13 +23730,25 @@ pub const SEC_WRITECOMBINE = PAGE_TYPE.SEC_WRITECOMBINE;
 pub const SEC_LARGE_PAGES = PAGE_TYPE.SEC_LARGE_PAGES;
 pub const SEC_IMAGE_NO_EXECUTE = PAGE_TYPE.SEC_IMAGE_NO_EXECUTE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MODEM_STATUS_FLAGS = extern enum(u32) {
     CTS_ON = 16,
     DSR_ON = 32,
     RING_ON = 64,
     RLSD_ON = 128,
     _,
+    pub fn initFlags(o: struct {
+        CTS_ON: u1 = 0,
+        DSR_ON: u1 = 0,
+        RING_ON: u1 = 0,
+        RLSD_ON: u1 = 0,
+    }) MODEM_STATUS_FLAGS {
+        return @intToEnum(MODEM_STATUS_FLAGS,
+              (if (o.CTS_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.CTS_ON) else 0)
+            | (if (o.DSR_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.DSR_ON) else 0)
+            | (if (o.RING_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.RING_ON) else 0)
+            | (if (o.RLSD_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.RLSD_ON) else 0)
+        );
+    }
 };
 pub const MS_CTS_ON = MODEM_STATUS_FLAGS.CTS_ON;
 pub const MS_DSR_ON = MODEM_STATUS_FLAGS.DSR_ON;
@@ -23223,7 +23777,6 @@ pub const NAMED_PIPE_HANDLE_STATE = extern enum(u32) {
 pub const PIPE_NOWAIT = NAMED_PIPE_HANDLE_STATE.NOWAIT;
 pub const PIPE_READMODE_MESSAGE = NAMED_PIPE_HANDLE_STATE.READMODE_MESSAGE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WORKER_THREAD_FLAGS = extern enum(u32) {
     EXECUTEDEFAULT = 0,
     EXECUTEINIOTHREAD = 1,
@@ -23234,6 +23787,27 @@ pub const WORKER_THREAD_FLAGS = extern enum(u32) {
     TRANSFER_IMPERSONATION = 256,
     EXECUTEINTIMERTHREAD = 32,
     _,
+    pub fn initFlags(o: struct {
+        EXECUTEDEFAULT: u1 = 0,
+        EXECUTEINIOTHREAD: u1 = 0,
+        EXECUTEINPERSISTENTTHREAD: u1 = 0,
+        EXECUTEINWAITTHREAD: u1 = 0,
+        EXECUTELONGFUNCTION: u1 = 0,
+        EXECUTEONLYONCE: u1 = 0,
+        TRANSFER_IMPERSONATION: u1 = 0,
+        EXECUTEINTIMERTHREAD: u1 = 0,
+    }) WORKER_THREAD_FLAGS {
+        return @intToEnum(WORKER_THREAD_FLAGS,
+              (if (o.EXECUTEDEFAULT == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEDEFAULT) else 0)
+            | (if (o.EXECUTEINIOTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINIOTHREAD) else 0)
+            | (if (o.EXECUTEINPERSISTENTTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINPERSISTENTTHREAD) else 0)
+            | (if (o.EXECUTEINWAITTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINWAITTHREAD) else 0)
+            | (if (o.EXECUTELONGFUNCTION == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTELONGFUNCTION) else 0)
+            | (if (o.EXECUTEONLYONCE == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEONLYONCE) else 0)
+            | (if (o.TRANSFER_IMPERSONATION == 1) @enumToInt(WORKER_THREAD_FLAGS.TRANSFER_IMPERSONATION) else 0)
+            | (if (o.EXECUTEINTIMERTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINTIMERTHREAD) else 0)
+        );
+    }
 };
 pub const WT_EXECUTEDEFAULT = WORKER_THREAD_FLAGS.EXECUTEDEFAULT;
 pub const WT_EXECUTEINIOTHREAD = WORKER_THREAD_FLAGS.EXECUTEINIOTHREAD;
@@ -23262,7 +23836,6 @@ pub const SERVICE_ERROR_IGNORE = SERVICE_ERROR.IGNORE;
 pub const SERVICE_ERROR_NORMAL = SERVICE_ERROR.NORMAL;
 pub const SERVICE_ERROR_SEVERE = SERVICE_ERROR.SEVERE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CLEAR_COMM_ERROR_FLAGS = extern enum(u32) {
     BREAK = 16,
     FRAME = 8,
@@ -23270,6 +23843,21 @@ pub const CLEAR_COMM_ERROR_FLAGS = extern enum(u32) {
     RXOVER = 1,
     RXPARITY = 4,
     _,
+    pub fn initFlags(o: struct {
+        BREAK: u1 = 0,
+        FRAME: u1 = 0,
+        OVERRUN: u1 = 0,
+        RXOVER: u1 = 0,
+        RXPARITY: u1 = 0,
+    }) CLEAR_COMM_ERROR_FLAGS {
+        return @intToEnum(CLEAR_COMM_ERROR_FLAGS,
+              (if (o.BREAK == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.BREAK) else 0)
+            | (if (o.FRAME == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.FRAME) else 0)
+            | (if (o.OVERRUN == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.OVERRUN) else 0)
+            | (if (o.RXOVER == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.RXOVER) else 0)
+            | (if (o.RXPARITY == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.RXPARITY) else 0)
+        );
+    }
 };
 pub const CE_BREAK = CLEAR_COMM_ERROR_FLAGS.BREAK;
 pub const CE_FRAME = CLEAR_COMM_ERROR_FLAGS.FRAME;
@@ -23277,13 +23865,25 @@ pub const CE_OVERRUN = CLEAR_COMM_ERROR_FLAGS.OVERRUN;
 pub const CE_RXOVER = CLEAR_COMM_ERROR_FLAGS.RXOVER;
 pub const CE_RXPARITY = CLEAR_COMM_ERROR_FLAGS.RXPARITY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PURGE_COMM_FLAGS = extern enum(u32) {
     RXABORT = 2,
     RXCLEAR = 8,
     TXABORT = 1,
     TXCLEAR = 4,
     _,
+    pub fn initFlags(o: struct {
+        RXABORT: u1 = 0,
+        RXCLEAR: u1 = 0,
+        TXABORT: u1 = 0,
+        TXCLEAR: u1 = 0,
+    }) PURGE_COMM_FLAGS {
+        return @intToEnum(PURGE_COMM_FLAGS,
+              (if (o.RXABORT == 1) @enumToInt(PURGE_COMM_FLAGS.RXABORT) else 0)
+            | (if (o.RXCLEAR == 1) @enumToInt(PURGE_COMM_FLAGS.RXCLEAR) else 0)
+            | (if (o.TXABORT == 1) @enumToInt(PURGE_COMM_FLAGS.TXABORT) else 0)
+            | (if (o.TXCLEAR == 1) @enumToInt(PURGE_COMM_FLAGS.TXCLEAR) else 0)
+        );
+    }
 };
 pub const PURGE_RXABORT = PURGE_COMM_FLAGS.RXABORT;
 pub const PURGE_RXCLEAR = PURGE_COMM_FLAGS.RXCLEAR;
@@ -23313,20 +23913,31 @@ pub const TAPE_FIXED_PARTITIONS = CREATE_TAPE_PARTITION_METHOD.FIXED_PARTITIONS;
 pub const TAPE_INITIATOR_PARTITIONS = CREATE_TAPE_PARTITION_METHOD.INITIATOR_PARTITIONS;
 pub const TAPE_SELECT_PARTITIONS = CREATE_TAPE_PARTITION_METHOD.SELECT_PARTITIONS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS = extern enum(u32) {
     NONE = 0,
     ALERTABLE = 2,
     INPUTAVAILABLE = 4,
     WAITALL = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALERTABLE: u1 = 0,
+        INPUTAVAILABLE: u1 = 0,
+        WAITALL: u1 = 0,
+    }) MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS {
+        return @intToEnum(MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS,
+              (if (o.NONE == 1) @enumToInt(MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.NONE) else 0)
+            | (if (o.ALERTABLE == 1) @enumToInt(MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.ALERTABLE) else 0)
+            | (if (o.INPUTAVAILABLE == 1) @enumToInt(MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.INPUTAVAILABLE) else 0)
+            | (if (o.WAITALL == 1) @enumToInt(MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.WAITALL) else 0)
+        );
+    }
 };
 pub const MWMO_NONE = MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.NONE;
 pub const MWMO_ALERTABLE = MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.ALERTABLE;
 pub const MWMO_INPUTAVAILABLE = MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.INPUTAVAILABLE;
 pub const MWMO_WAITALL = MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS.WAITALL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const COMM_EVENT_MASK = extern enum(u32) {
     BREAK = 64,
     CTS = 8,
@@ -23342,6 +23953,37 @@ pub const COMM_EVENT_MASK = extern enum(u32) {
     RXFLAG = 2,
     TXEMPTY = 4,
     _,
+    pub fn initFlags(o: struct {
+        BREAK: u1 = 0,
+        CTS: u1 = 0,
+        DSR: u1 = 0,
+        ERR: u1 = 0,
+        EVENT1: u1 = 0,
+        EVENT2: u1 = 0,
+        PERR: u1 = 0,
+        RING: u1 = 0,
+        RLSD: u1 = 0,
+        RX80FULL: u1 = 0,
+        RXCHAR: u1 = 0,
+        RXFLAG: u1 = 0,
+        TXEMPTY: u1 = 0,
+    }) COMM_EVENT_MASK {
+        return @intToEnum(COMM_EVENT_MASK,
+              (if (o.BREAK == 1) @enumToInt(COMM_EVENT_MASK.BREAK) else 0)
+            | (if (o.CTS == 1) @enumToInt(COMM_EVENT_MASK.CTS) else 0)
+            | (if (o.DSR == 1) @enumToInt(COMM_EVENT_MASK.DSR) else 0)
+            | (if (o.ERR == 1) @enumToInt(COMM_EVENT_MASK.ERR) else 0)
+            | (if (o.EVENT1 == 1) @enumToInt(COMM_EVENT_MASK.EVENT1) else 0)
+            | (if (o.EVENT2 == 1) @enumToInt(COMM_EVENT_MASK.EVENT2) else 0)
+            | (if (o.PERR == 1) @enumToInt(COMM_EVENT_MASK.PERR) else 0)
+            | (if (o.RING == 1) @enumToInt(COMM_EVENT_MASK.RING) else 0)
+            | (if (o.RLSD == 1) @enumToInt(COMM_EVENT_MASK.RLSD) else 0)
+            | (if (o.RX80FULL == 1) @enumToInt(COMM_EVENT_MASK.RX80FULL) else 0)
+            | (if (o.RXCHAR == 1) @enumToInt(COMM_EVENT_MASK.RXCHAR) else 0)
+            | (if (o.RXFLAG == 1) @enumToInt(COMM_EVENT_MASK.RXFLAG) else 0)
+            | (if (o.TXEMPTY == 1) @enumToInt(COMM_EVENT_MASK.TXEMPTY) else 0)
+        );
+    }
 };
 pub const EV_BREAK = COMM_EVENT_MASK.BREAK;
 pub const EV_CTS = COMM_EVENT_MASK.CTS;
@@ -23402,13 +24044,25 @@ pub const TAPE_SPACE_SEQUENTIAL_FMKS = TAPE_POSITION_METHOD.SPACE_SEQUENTIAL_FMK
 pub const TAPE_SPACE_SEQUENTIAL_SMKS = TAPE_POSITION_METHOD.SPACE_SEQUENTIAL_SMKS;
 pub const TAPE_SPACE_SETMARKS = TAPE_POSITION_METHOD.SPACE_SETMARKS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NAMED_PIPE_INFO_FLAGS = extern enum(u32) {
     CLIENT_END = 0,
     SERVER_END = 1,
     TYPE_BYTE = 0,
     TYPE_MESSAGE = 4,
     _,
+    pub fn initFlags(o: struct {
+        CLIENT_END: u1 = 0,
+        SERVER_END: u1 = 0,
+        TYPE_BYTE: u1 = 0,
+        TYPE_MESSAGE: u1 = 0,
+    }) NAMED_PIPE_INFO_FLAGS {
+        return @intToEnum(NAMED_PIPE_INFO_FLAGS,
+              (if (o.CLIENT_END == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.CLIENT_END) else 0)
+            | (if (o.SERVER_END == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.SERVER_END) else 0)
+            | (if (o.TYPE_BYTE == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.TYPE_BYTE) else 0)
+            | (if (o.TYPE_MESSAGE == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.TYPE_MESSAGE) else 0)
+        );
+    }
 };
 pub const PIPE_CLIENT_END = NAMED_PIPE_INFO_FLAGS.CLIENT_END;
 pub const PIPE_SERVER_END = NAMED_PIPE_INFO_FLAGS.SERVER_END;
@@ -23422,12 +24076,22 @@ pub const TAPE_INFORMATION_TYPE = extern enum(u32) {
 pub const SET_TAPE_DRIVE_INFORMATION = TAPE_INFORMATION_TYPE.DRIVE_INFORMATION;
 pub const SET_TAPE_MEDIA_INFORMATION = TAPE_INFORMATION_TYPE.MEDIA_INFORMATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROCESS_DEP_FLAGS = extern enum(u32) {
     ENABLE = 1,
     DISABLE_ATL_THUNK_EMULATION = 2,
     NONE = 0,
     _,
+    pub fn initFlags(o: struct {
+        ENABLE: u1 = 0,
+        DISABLE_ATL_THUNK_EMULATION: u1 = 0,
+        NONE: u1 = 0,
+    }) PROCESS_DEP_FLAGS {
+        return @intToEnum(PROCESS_DEP_FLAGS,
+              (if (o.ENABLE == 1) @enumToInt(PROCESS_DEP_FLAGS.ENABLE) else 0)
+            | (if (o.DISABLE_ATL_THUNK_EMULATION == 1) @enumToInt(PROCESS_DEP_FLAGS.DISABLE_ATL_THUNK_EMULATION) else 0)
+            | (if (o.NONE == 1) @enumToInt(PROCESS_DEP_FLAGS.NONE) else 0)
+        );
+    }
 };
 pub const PROCESS_DEP_ENABLE = PROCESS_DEP_FLAGS.ENABLE;
 pub const PROCESS_DEP_DISABLE_ATL_THUNK_EMULATION = PROCESS_DEP_FLAGS.DISABLE_ATL_THUNK_EMULATION;
@@ -23440,7 +24104,6 @@ pub const PROCESS_NAME_FORMAT = extern enum(u32) {
 pub const PROCESS_NAME_WIN32 = PROCESS_NAME_FORMAT.WIN32;
 pub const PROCESS_NAME_NATIVE = PROCESS_NAME_FORMAT.NATIVE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const EXECUTION_STATE = extern enum(u32) {
     AWAYMODE_REQUIRED = 64,
     CONTINUOUS = 2147483648,
@@ -23448,6 +24111,21 @@ pub const EXECUTION_STATE = extern enum(u32) {
     SYSTEM_REQUIRED = 1,
     USER_PRESENT = 4,
     _,
+    pub fn initFlags(o: struct {
+        AWAYMODE_REQUIRED: u1 = 0,
+        CONTINUOUS: u1 = 0,
+        DISPLAY_REQUIRED: u1 = 0,
+        SYSTEM_REQUIRED: u1 = 0,
+        USER_PRESENT: u1 = 0,
+    }) EXECUTION_STATE {
+        return @intToEnum(EXECUTION_STATE,
+              (if (o.AWAYMODE_REQUIRED == 1) @enumToInt(EXECUTION_STATE.AWAYMODE_REQUIRED) else 0)
+            | (if (o.CONTINUOUS == 1) @enumToInt(EXECUTION_STATE.CONTINUOUS) else 0)
+            | (if (o.DISPLAY_REQUIRED == 1) @enumToInt(EXECUTION_STATE.DISPLAY_REQUIRED) else 0)
+            | (if (o.SYSTEM_REQUIRED == 1) @enumToInt(EXECUTION_STATE.SYSTEM_REQUIRED) else 0)
+            | (if (o.USER_PRESENT == 1) @enumToInt(EXECUTION_STATE.USER_PRESENT) else 0)
+        );
+    }
 };
 pub const ES_AWAYMODE_REQUIRED = EXECUTION_STATE.AWAYMODE_REQUIRED;
 pub const ES_CONTINUOUS = EXECUTION_STATE.CONTINUOUS;
@@ -23521,12 +24199,22 @@ pub const GR_GDIOBJECTS_PEAK = GET_GUI_RESOURCES_FLAGS.GDIOBJECTS_PEAK;
 pub const GR_USEROBJECTS = GET_GUI_RESOURCES_FLAGS.USEROBJECTS;
 pub const GR_USEROBJECTS_PEAK = GET_GUI_RESOURCES_FLAGS.USEROBJECTS_PEAK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MODEMDEVCAPS_DIAL_OPTIONS = extern enum(u32) {
     BILLING = 64,
     DIALTONE = 256,
     QUIET = 128,
     _,
+    pub fn initFlags(o: struct {
+        BILLING: u1 = 0,
+        DIALTONE: u1 = 0,
+        QUIET: u1 = 0,
+    }) MODEMDEVCAPS_DIAL_OPTIONS {
+        return @intToEnum(MODEMDEVCAPS_DIAL_OPTIONS,
+              (if (o.BILLING == 1) @enumToInt(MODEMDEVCAPS_DIAL_OPTIONS.BILLING) else 0)
+            | (if (o.DIALTONE == 1) @enumToInt(MODEMDEVCAPS_DIAL_OPTIONS.DIALTONE) else 0)
+            | (if (o.QUIET == 1) @enumToInt(MODEMDEVCAPS_DIAL_OPTIONS.QUIET) else 0)
+        );
+    }
 };
 pub const DIALOPTION_BILLING = MODEMDEVCAPS_DIAL_OPTIONS.BILLING;
 pub const DIALOPTION_DIALTONE = MODEMDEVCAPS_DIAL_OPTIONS.DIALTONE;
@@ -23556,7 +24244,6 @@ pub const MDMSPKR_DIAL = MODEMSETTINGS_SPEAKER_MODE.DIAL;
 pub const MDMSPKR_OFF = MODEMSETTINGS_SPEAKER_MODE.OFF;
 pub const MDMSPKR_ON = MODEMSETTINGS_SPEAKER_MODE.ON;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CHANGER_FEATURES = extern enum(u32) {
     BAR_CODE_SCANNER_INSTALLED = 1,
     CARTRIDGE_MAGAZINE = 256,
@@ -23588,6 +24275,69 @@ pub const CHANGER_FEATURES = extern enum(u32) {
     VOLUME_SEARCH = 2097152,
     VOLUME_UNDEFINE = 16777216,
     _,
+    pub fn initFlags(o: struct {
+        BAR_CODE_SCANNER_INSTALLED: u1 = 0,
+        CARTRIDGE_MAGAZINE: u1 = 0,
+        CLEANER_ACCESS_NOT_VALID: u1 = 0,
+        CLEANER_SLOT: u1 = 0,
+        CLOSE_IEPORT: u1 = 0,
+        DEVICE_REINITIALIZE_CAPABLE: u1 = 0,
+        DRIVE_CLEANING_REQUIRED: u1 = 0,
+        DRIVE_EMPTY_ON_DOOR_ACCESS: u1 = 0,
+        EXCHANGE_MEDIA: u1 = 0,
+        INIT_ELEM_STAT_WITH_RANGE: u1 = 0,
+        KEYPAD_ENABLE_DISABLE: u1 = 0,
+        LOCK_UNLOCK: u1 = 0,
+        MEDIUM_FLIP: u1 = 0,
+        OPEN_IEPORT: u1 = 0,
+        POSITION_TO_ELEMENT: u1 = 0,
+        PREDISMOUNT_EJECT_REQUIRED: u1 = 0,
+        PREMOUNT_EJECT_REQUIRED: u1 = 0,
+        REPORT_IEPORT_STATE: u1 = 0,
+        SERIAL_NUMBER_VALID: u1 = 0,
+        STATUS_NON_VOLATILE: u1 = 0,
+        STORAGE_DRIVE: u1 = 0,
+        STORAGE_IEPORT: u1 = 0,
+        STORAGE_SLOT: u1 = 0,
+        STORAGE_TRANSPORT: u1 = 0,
+        VOLUME_ASSERT: u1 = 0,
+        VOLUME_IDENTIFICATION: u1 = 0,
+        VOLUME_REPLACE: u1 = 0,
+        VOLUME_SEARCH: u1 = 0,
+        VOLUME_UNDEFINE: u1 = 0,
+    }) CHANGER_FEATURES {
+        return @intToEnum(CHANGER_FEATURES,
+              (if (o.BAR_CODE_SCANNER_INSTALLED == 1) @enumToInt(CHANGER_FEATURES.BAR_CODE_SCANNER_INSTALLED) else 0)
+            | (if (o.CARTRIDGE_MAGAZINE == 1) @enumToInt(CHANGER_FEATURES.CARTRIDGE_MAGAZINE) else 0)
+            | (if (o.CLEANER_ACCESS_NOT_VALID == 1) @enumToInt(CHANGER_FEATURES.CLEANER_ACCESS_NOT_VALID) else 0)
+            | (if (o.CLEANER_SLOT == 1) @enumToInt(CHANGER_FEATURES.CLEANER_SLOT) else 0)
+            | (if (o.CLOSE_IEPORT == 1) @enumToInt(CHANGER_FEATURES.CLOSE_IEPORT) else 0)
+            | (if (o.DEVICE_REINITIALIZE_CAPABLE == 1) @enumToInt(CHANGER_FEATURES.DEVICE_REINITIALIZE_CAPABLE) else 0)
+            | (if (o.DRIVE_CLEANING_REQUIRED == 1) @enumToInt(CHANGER_FEATURES.DRIVE_CLEANING_REQUIRED) else 0)
+            | (if (o.DRIVE_EMPTY_ON_DOOR_ACCESS == 1) @enumToInt(CHANGER_FEATURES.DRIVE_EMPTY_ON_DOOR_ACCESS) else 0)
+            | (if (o.EXCHANGE_MEDIA == 1) @enumToInt(CHANGER_FEATURES.EXCHANGE_MEDIA) else 0)
+            | (if (o.INIT_ELEM_STAT_WITH_RANGE == 1) @enumToInt(CHANGER_FEATURES.INIT_ELEM_STAT_WITH_RANGE) else 0)
+            | (if (o.KEYPAD_ENABLE_DISABLE == 1) @enumToInt(CHANGER_FEATURES.KEYPAD_ENABLE_DISABLE) else 0)
+            | (if (o.LOCK_UNLOCK == 1) @enumToInt(CHANGER_FEATURES.LOCK_UNLOCK) else 0)
+            | (if (o.MEDIUM_FLIP == 1) @enumToInt(CHANGER_FEATURES.MEDIUM_FLIP) else 0)
+            | (if (o.OPEN_IEPORT == 1) @enumToInt(CHANGER_FEATURES.OPEN_IEPORT) else 0)
+            | (if (o.POSITION_TO_ELEMENT == 1) @enumToInt(CHANGER_FEATURES.POSITION_TO_ELEMENT) else 0)
+            | (if (o.PREDISMOUNT_EJECT_REQUIRED == 1) @enumToInt(CHANGER_FEATURES.PREDISMOUNT_EJECT_REQUIRED) else 0)
+            | (if (o.PREMOUNT_EJECT_REQUIRED == 1) @enumToInt(CHANGER_FEATURES.PREMOUNT_EJECT_REQUIRED) else 0)
+            | (if (o.REPORT_IEPORT_STATE == 1) @enumToInt(CHANGER_FEATURES.REPORT_IEPORT_STATE) else 0)
+            | (if (o.SERIAL_NUMBER_VALID == 1) @enumToInt(CHANGER_FEATURES.SERIAL_NUMBER_VALID) else 0)
+            | (if (o.STATUS_NON_VOLATILE == 1) @enumToInt(CHANGER_FEATURES.STATUS_NON_VOLATILE) else 0)
+            | (if (o.STORAGE_DRIVE == 1) @enumToInt(CHANGER_FEATURES.STORAGE_DRIVE) else 0)
+            | (if (o.STORAGE_IEPORT == 1) @enumToInt(CHANGER_FEATURES.STORAGE_IEPORT) else 0)
+            | (if (o.STORAGE_SLOT == 1) @enumToInt(CHANGER_FEATURES.STORAGE_SLOT) else 0)
+            | (if (o.STORAGE_TRANSPORT == 1) @enumToInt(CHANGER_FEATURES.STORAGE_TRANSPORT) else 0)
+            | (if (o.VOLUME_ASSERT == 1) @enumToInt(CHANGER_FEATURES.VOLUME_ASSERT) else 0)
+            | (if (o.VOLUME_IDENTIFICATION == 1) @enumToInt(CHANGER_FEATURES.VOLUME_IDENTIFICATION) else 0)
+            | (if (o.VOLUME_REPLACE == 1) @enumToInt(CHANGER_FEATURES.VOLUME_REPLACE) else 0)
+            | (if (o.VOLUME_SEARCH == 1) @enumToInt(CHANGER_FEATURES.VOLUME_SEARCH) else 0)
+            | (if (o.VOLUME_UNDEFINE == 1) @enumToInt(CHANGER_FEATURES.VOLUME_UNDEFINE) else 0)
+        );
+    }
 };
 pub const CHANGER_BAR_CODE_SCANNER_INSTALLED = CHANGER_FEATURES.BAR_CODE_SCANNER_INSTALLED;
 pub const CHANGER_CARTRIDGE_MAGAZINE = CHANGER_FEATURES.CARTRIDGE_MAGAZINE;
@@ -23619,7 +24369,6 @@ pub const CHANGER_VOLUME_REPLACE = CHANGER_FEATURES.VOLUME_REPLACE;
 pub const CHANGER_VOLUME_SEARCH = CHANGER_FEATURES.VOLUME_SEARCH;
 pub const CHANGER_VOLUME_UNDEFINE = CHANGER_FEATURES.VOLUME_UNDEFINE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TTTOOLINFO_FLAGS = extern enum(u32) {
     ABSOLUTE = 128,
     CENTERTIP = 2,
@@ -23630,6 +24379,27 @@ pub const TTTOOLINFO_FLAGS = extern enum(u32) {
     TRACK = 32,
     TRANSPARENT = 256,
     _,
+    pub fn initFlags(o: struct {
+        ABSOLUTE: u1 = 0,
+        CENTERTIP: u1 = 0,
+        IDISHWND: u1 = 0,
+        PARSELINKS: u1 = 0,
+        RTLREADING: u1 = 0,
+        SUBCLASS: u1 = 0,
+        TRACK: u1 = 0,
+        TRANSPARENT: u1 = 0,
+    }) TTTOOLINFO_FLAGS {
+        return @intToEnum(TTTOOLINFO_FLAGS,
+              (if (o.ABSOLUTE == 1) @enumToInt(TTTOOLINFO_FLAGS.ABSOLUTE) else 0)
+            | (if (o.CENTERTIP == 1) @enumToInt(TTTOOLINFO_FLAGS.CENTERTIP) else 0)
+            | (if (o.IDISHWND == 1) @enumToInt(TTTOOLINFO_FLAGS.IDISHWND) else 0)
+            | (if (o.PARSELINKS == 1) @enumToInt(TTTOOLINFO_FLAGS.PARSELINKS) else 0)
+            | (if (o.RTLREADING == 1) @enumToInt(TTTOOLINFO_FLAGS.RTLREADING) else 0)
+            | (if (o.SUBCLASS == 1) @enumToInt(TTTOOLINFO_FLAGS.SUBCLASS) else 0)
+            | (if (o.TRACK == 1) @enumToInt(TTTOOLINFO_FLAGS.TRACK) else 0)
+            | (if (o.TRANSPARENT == 1) @enumToInt(TTTOOLINFO_FLAGS.TRANSPARENT) else 0)
+        );
+    }
 };
 pub const TTF_ABSOLUTE = TTTOOLINFO_FLAGS.ABSOLUTE;
 pub const TTF_CENTERTIP = TTTOOLINFO_FLAGS.CENTERTIP;
@@ -23647,7 +24417,6 @@ pub const JOB_OBJECT_TERMINATE_AT_END_ACTION = extern enum(u32) {
 pub const JOB_OBJECT_TERMINATE_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.TERMINATE_AT_END_OF_JOB;
 pub const JOB_OBJECT_POST_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.POST_AT_END_OF_JOB;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const COMMPROP_STOP_PARITY = extern enum(u32) {
     STOPBITS_10 = 1,
     STOPBITS_15 = 2,
@@ -23658,6 +24427,27 @@ pub const COMMPROP_STOP_PARITY = extern enum(u32) {
     PARITY_MARK = 2048,
     PARITY_SPACE = 4096,
     _,
+    pub fn initFlags(o: struct {
+        STOPBITS_10: u1 = 0,
+        STOPBITS_15: u1 = 0,
+        STOPBITS_20: u1 = 0,
+        PARITY_NONE: u1 = 0,
+        PARITY_ODD: u1 = 0,
+        PARITY_EVEN: u1 = 0,
+        PARITY_MARK: u1 = 0,
+        PARITY_SPACE: u1 = 0,
+    }) COMMPROP_STOP_PARITY {
+        return @intToEnum(COMMPROP_STOP_PARITY,
+              (if (o.STOPBITS_10 == 1) @enumToInt(COMMPROP_STOP_PARITY.STOPBITS_10) else 0)
+            | (if (o.STOPBITS_15 == 1) @enumToInt(COMMPROP_STOP_PARITY.STOPBITS_15) else 0)
+            | (if (o.STOPBITS_20 == 1) @enumToInt(COMMPROP_STOP_PARITY.STOPBITS_20) else 0)
+            | (if (o.PARITY_NONE == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_NONE) else 0)
+            | (if (o.PARITY_ODD == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_ODD) else 0)
+            | (if (o.PARITY_EVEN == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_EVEN) else 0)
+            | (if (o.PARITY_MARK == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_MARK) else 0)
+            | (if (o.PARITY_SPACE == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_SPACE) else 0)
+        );
+    }
 };
 pub const STOPBITS_10 = COMMPROP_STOP_PARITY.STOPBITS_10;
 pub const STOPBITS_15 = COMMPROP_STOP_PARITY.STOPBITS_15;
@@ -23677,31 +24467,52 @@ pub const MDMVOL_HIGH = MODEM_SPEAKER_VOLUME.HIGH;
 pub const MDMVOL_LOW = MODEM_SPEAKER_VOLUME.LOW;
 pub const MDMVOL_MEDIUM = MODEM_SPEAKER_VOLUME.MEDIUM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MODEMDEVCAPS_SPEAKER_VOLUME = extern enum(u32) {
     HIGH = 4,
     LOW = 1,
     MEDIUM = 2,
     _,
+    pub fn initFlags(o: struct {
+        HIGH: u1 = 0,
+        LOW: u1 = 0,
+        MEDIUM: u1 = 0,
+    }) MODEMDEVCAPS_SPEAKER_VOLUME {
+        return @intToEnum(MODEMDEVCAPS_SPEAKER_VOLUME,
+              (if (o.HIGH == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_VOLUME.HIGH) else 0)
+            | (if (o.LOW == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_VOLUME.LOW) else 0)
+            | (if (o.MEDIUM == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_VOLUME.MEDIUM) else 0)
+        );
+    }
 };
 pub const MDMVOLFLAG_HIGH = MODEMDEVCAPS_SPEAKER_VOLUME.HIGH;
 pub const MDMVOLFLAG_LOW = MODEMDEVCAPS_SPEAKER_VOLUME.LOW;
 pub const MDMVOLFLAG_MEDIUM = MODEMDEVCAPS_SPEAKER_VOLUME.MEDIUM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MODEMDEVCAPS_SPEAKER_MODE = extern enum(u32) {
     CALLSETUP = 8,
     DIAL = 2,
     OFF = 1,
     ON = 4,
     _,
+    pub fn initFlags(o: struct {
+        CALLSETUP: u1 = 0,
+        DIAL: u1 = 0,
+        OFF: u1 = 0,
+        ON: u1 = 0,
+    }) MODEMDEVCAPS_SPEAKER_MODE {
+        return @intToEnum(MODEMDEVCAPS_SPEAKER_MODE,
+              (if (o.CALLSETUP == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP) else 0)
+            | (if (o.DIAL == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.DIAL) else 0)
+            | (if (o.OFF == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.OFF) else 0)
+            | (if (o.ON == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.ON) else 0)
+        );
+    }
 };
 pub const MDMSPKRFLAG_CALLSETUP = MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP;
 pub const MDMSPKRFLAG_DIAL = MODEMDEVCAPS_SPEAKER_MODE.DIAL;
 pub const MDMSPKRFLAG_OFF = MODEMDEVCAPS_SPEAKER_MODE.OFF;
 pub const MDMSPKRFLAG_ON = MODEMDEVCAPS_SPEAKER_MODE.ON;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CHANGER_ELEMENT_STATUS_FLAGS = extern enum(u32) {
     ACCESS = 8,
     AVOLTAG = 536870912,
@@ -23718,6 +24529,39 @@ pub const CHANGER_ELEMENT_STATUS_FLAGS = extern enum(u32) {
     SVALID = 8388608,
     PRODUCT_DATA = 64,
     _,
+    pub fn initFlags(o: struct {
+        ACCESS: u1 = 0,
+        AVOLTAG: u1 = 0,
+        EXCEPT: u1 = 0,
+        EXENAB: u1 = 0,
+        FULL: u1 = 0,
+        ID_VALID: u1 = 0,
+        IMPEXP: u1 = 0,
+        INENAB: u1 = 0,
+        INVERT: u1 = 0,
+        LUN_VALID: u1 = 0,
+        NOT_BUS: u1 = 0,
+        PVOLTAG: u1 = 0,
+        SVALID: u1 = 0,
+        PRODUCT_DATA: u1 = 0,
+    }) CHANGER_ELEMENT_STATUS_FLAGS {
+        return @intToEnum(CHANGER_ELEMENT_STATUS_FLAGS,
+              (if (o.ACCESS == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.ACCESS) else 0)
+            | (if (o.AVOLTAG == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.AVOLTAG) else 0)
+            | (if (o.EXCEPT == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.EXCEPT) else 0)
+            | (if (o.EXENAB == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.EXENAB) else 0)
+            | (if (o.FULL == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.FULL) else 0)
+            | (if (o.ID_VALID == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.ID_VALID) else 0)
+            | (if (o.IMPEXP == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.IMPEXP) else 0)
+            | (if (o.INENAB == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.INENAB) else 0)
+            | (if (o.INVERT == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.INVERT) else 0)
+            | (if (o.LUN_VALID == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.LUN_VALID) else 0)
+            | (if (o.NOT_BUS == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.NOT_BUS) else 0)
+            | (if (o.PVOLTAG == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.PVOLTAG) else 0)
+            | (if (o.SVALID == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.SVALID) else 0)
+            | (if (o.PRODUCT_DATA == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.PRODUCT_DATA) else 0)
+        );
+    }
 };
 pub const ELEMENT_STATUS_ACCESS = CHANGER_ELEMENT_STATUS_FLAGS.ACCESS;
 pub const ELEMENT_STATUS_AVOLTAG = CHANGER_ELEMENT_STATUS_FLAGS.AVOLTAG;
@@ -23734,7 +24578,6 @@ pub const ELEMENT_STATUS_PVOLTAG = CHANGER_ELEMENT_STATUS_FLAGS.PVOLTAG;
 pub const ELEMENT_STATUS_SVALID = CHANGER_ELEMENT_STATUS_FLAGS.SVALID;
 pub const ELEMENT_STATUS_PRODUCT_DATA = CHANGER_ELEMENT_STATUS_FLAGS.PRODUCT_DATA;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH = extern enum(u32) {
     ABS_BLK_IMMED = 2147491840,
     ABSOLUTE_BLK = 2147487744,
@@ -23766,6 +24609,69 @@ pub const TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH = extern enum(u32) {
     WRITE_SETMARKS = 2164260864,
     WRITE_SHORT_FMKS = 2214592512,
     _,
+    pub fn initFlags(o: struct {
+        ABS_BLK_IMMED: u1 = 0,
+        ABSOLUTE_BLK: u1 = 0,
+        END_OF_DATA: u1 = 0,
+        FILEMARKS: u1 = 0,
+        LOAD_UNLOAD: u1 = 0,
+        LOAD_UNLD_IMMED: u1 = 0,
+        LOCK_UNLOCK: u1 = 0,
+        LOCK_UNLK_IMMED: u1 = 0,
+        LOG_BLK_IMMED: u1 = 0,
+        LOGICAL_BLK: u1 = 0,
+        RELATIVE_BLKS: u1 = 0,
+        REVERSE_POSITION: u1 = 0,
+        REWIND_IMMEDIATE: u1 = 0,
+        SEQUENTIAL_FMKS: u1 = 0,
+        SEQUENTIAL_SMKS: u1 = 0,
+        SET_BLOCK_SIZE: u1 = 0,
+        SET_COMPRESSION: u1 = 0,
+        SET_ECC: u1 = 0,
+        SET_PADDING: u1 = 0,
+        SET_REPORT_SMKS: u1 = 0,
+        SETMARKS: u1 = 0,
+        SPACE_IMMEDIATE: u1 = 0,
+        TENSION: u1 = 0,
+        TENSION_IMMED: u1 = 0,
+        WRITE_FILEMARKS: u1 = 0,
+        WRITE_LONG_FMKS: u1 = 0,
+        WRITE_MARK_IMMED: u1 = 0,
+        WRITE_SETMARKS: u1 = 0,
+        WRITE_SHORT_FMKS: u1 = 0,
+    }) TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH {
+        return @intToEnum(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH,
+              (if (o.ABS_BLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABS_BLK_IMMED) else 0)
+            | (if (o.ABSOLUTE_BLK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABSOLUTE_BLK) else 0)
+            | (if (o.END_OF_DATA == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.END_OF_DATA) else 0)
+            | (if (o.FILEMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.FILEMARKS) else 0)
+            | (if (o.LOAD_UNLOAD == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOAD_UNLOAD) else 0)
+            | (if (o.LOAD_UNLD_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOAD_UNLD_IMMED) else 0)
+            | (if (o.LOCK_UNLOCK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOCK_UNLOCK) else 0)
+            | (if (o.LOCK_UNLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOCK_UNLK_IMMED) else 0)
+            | (if (o.LOG_BLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOG_BLK_IMMED) else 0)
+            | (if (o.LOGICAL_BLK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOGICAL_BLK) else 0)
+            | (if (o.RELATIVE_BLKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.RELATIVE_BLKS) else 0)
+            | (if (o.REVERSE_POSITION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.REVERSE_POSITION) else 0)
+            | (if (o.REWIND_IMMEDIATE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.REWIND_IMMEDIATE) else 0)
+            | (if (o.SEQUENTIAL_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SEQUENTIAL_FMKS) else 0)
+            | (if (o.SEQUENTIAL_SMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SEQUENTIAL_SMKS) else 0)
+            | (if (o.SET_BLOCK_SIZE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_BLOCK_SIZE) else 0)
+            | (if (o.SET_COMPRESSION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_COMPRESSION) else 0)
+            | (if (o.SET_ECC == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_ECC) else 0)
+            | (if (o.SET_PADDING == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_PADDING) else 0)
+            | (if (o.SET_REPORT_SMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_REPORT_SMKS) else 0)
+            | (if (o.SETMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SETMARKS) else 0)
+            | (if (o.SPACE_IMMEDIATE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SPACE_IMMEDIATE) else 0)
+            | (if (o.TENSION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.TENSION) else 0)
+            | (if (o.TENSION_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.TENSION_IMMED) else 0)
+            | (if (o.WRITE_FILEMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_FILEMARKS) else 0)
+            | (if (o.WRITE_LONG_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_LONG_FMKS) else 0)
+            | (if (o.WRITE_MARK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_MARK_IMMED) else 0)
+            | (if (o.WRITE_SETMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SETMARKS) else 0)
+            | (if (o.WRITE_SHORT_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SHORT_FMKS) else 0)
+        );
+    }
 };
 pub const TAPE_DRIVE_ABS_BLK_IMMED = TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABS_BLK_IMMED;
 pub const TAPE_DRIVE_ABSOLUTE_BLK = TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABSOLUTE_BLK;
@@ -23833,7 +24739,6 @@ pub const DBT_DEVTYP_OEM = DEV_BROADCAST_HDR_DEVICE_TYPE.OEM;
 pub const DBT_DEVTYP_PORT = DEV_BROADCAST_HDR_DEVICE_TYPE.PORT;
 pub const DBT_DEVTYP_VOLUME = DEV_BROADCAST_HDR_DEVICE_TYPE.VOLUME;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GET_CHANGER_PARAMETERS_FEATURES1 = extern enum(u32) {
     CLEANER_AUTODISMOUNT = 2147483652,
     CLEANER_OPS_NOT_SUPPORTED = 2147483712,
@@ -23847,6 +24752,33 @@ pub const GET_CHANGER_PARAMETERS_FEATURES1 = extern enum(u32) {
     SLOTS_USE_TRAYS = 2147483664,
     TRUE_EXCHANGE_CAPABLE = 2147483656,
     _,
+    pub fn initFlags(o: struct {
+        CLEANER_AUTODISMOUNT: u1 = 0,
+        CLEANER_OPS_NOT_SUPPORTED: u1 = 0,
+        IEPORT_USER_CONTROL_CLOSE: u1 = 0,
+        IEPORT_USER_CONTROL_OPEN: u1 = 0,
+        MOVE_EXTENDS_IEPORT: u1 = 0,
+        MOVE_RETRACTS_IEPORT: u1 = 0,
+        PREDISMOUNT_ALIGN_TO_DRIVE: u1 = 0,
+        PREDISMOUNT_ALIGN_TO_SLOT: u1 = 0,
+        RTN_MEDIA_TO_ORIGINAL_ADDR: u1 = 0,
+        SLOTS_USE_TRAYS: u1 = 0,
+        TRUE_EXCHANGE_CAPABLE: u1 = 0,
+    }) GET_CHANGER_PARAMETERS_FEATURES1 {
+        return @intToEnum(GET_CHANGER_PARAMETERS_FEATURES1,
+              (if (o.CLEANER_AUTODISMOUNT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_AUTODISMOUNT) else 0)
+            | (if (o.CLEANER_OPS_NOT_SUPPORTED == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_OPS_NOT_SUPPORTED) else 0)
+            | (if (o.IEPORT_USER_CONTROL_CLOSE == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.IEPORT_USER_CONTROL_CLOSE) else 0)
+            | (if (o.IEPORT_USER_CONTROL_OPEN == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.IEPORT_USER_CONTROL_OPEN) else 0)
+            | (if (o.MOVE_EXTENDS_IEPORT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.MOVE_EXTENDS_IEPORT) else 0)
+            | (if (o.MOVE_RETRACTS_IEPORT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.MOVE_RETRACTS_IEPORT) else 0)
+            | (if (o.PREDISMOUNT_ALIGN_TO_DRIVE == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.PREDISMOUNT_ALIGN_TO_DRIVE) else 0)
+            | (if (o.PREDISMOUNT_ALIGN_TO_SLOT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.PREDISMOUNT_ALIGN_TO_SLOT) else 0)
+            | (if (o.RTN_MEDIA_TO_ORIGINAL_ADDR == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.RTN_MEDIA_TO_ORIGINAL_ADDR) else 0)
+            | (if (o.SLOTS_USE_TRAYS == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.SLOTS_USE_TRAYS) else 0)
+            | (if (o.TRUE_EXCHANGE_CAPABLE == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.TRUE_EXCHANGE_CAPABLE) else 0)
+        );
+    }
 };
 pub const CHANGER_CLEANER_AUTODISMOUNT = GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_AUTODISMOUNT;
 pub const CHANGER_CLEANER_OPS_NOT_SUPPORTED = GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_OPS_NOT_SUPPORTED;
@@ -23860,7 +24792,6 @@ pub const CHANGER_RTN_MEDIA_TO_ORIGINAL_ADDR = GET_CHANGER_PARAMETERS_FEATURES1.
 pub const CHANGER_SLOTS_USE_TRAYS = GET_CHANGER_PARAMETERS_FEATURES1.SLOTS_USE_TRAYS;
 pub const CHANGER_TRUE_EXCHANGE_CAPABLE = GET_CHANGER_PARAMETERS_FEATURES1.TRUE_EXCHANGE_CAPABLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const POWER_ACTION_POLICY_EVENT_CODE = extern enum(u32) {
     FORCE_TRIGGER_RESET = 2147483648,
     LEVEL_USER_NOTIFY_EXEC = 4,
@@ -23869,6 +24800,23 @@ pub const POWER_ACTION_POLICY_EVENT_CODE = extern enum(u32) {
     USER_NOTIFY_BUTTON = 8,
     USER_NOTIFY_SHUTDOWN = 16,
     _,
+    pub fn initFlags(o: struct {
+        FORCE_TRIGGER_RESET: u1 = 0,
+        LEVEL_USER_NOTIFY_EXEC: u1 = 0,
+        LEVEL_USER_NOTIFY_SOUND: u1 = 0,
+        LEVEL_USER_NOTIFY_TEXT: u1 = 0,
+        USER_NOTIFY_BUTTON: u1 = 0,
+        USER_NOTIFY_SHUTDOWN: u1 = 0,
+    }) POWER_ACTION_POLICY_EVENT_CODE {
+        return @intToEnum(POWER_ACTION_POLICY_EVENT_CODE,
+              (if (o.FORCE_TRIGGER_RESET == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET) else 0)
+            | (if (o.LEVEL_USER_NOTIFY_EXEC == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC) else 0)
+            | (if (o.LEVEL_USER_NOTIFY_SOUND == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND) else 0)
+            | (if (o.LEVEL_USER_NOTIFY_TEXT == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT) else 0)
+            | (if (o.USER_NOTIFY_BUTTON == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON) else 0)
+            | (if (o.USER_NOTIFY_SHUTDOWN == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN) else 0)
+        );
+    }
 };
 pub const POWER_FORCE_TRIGGER_RESET = POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET;
 pub const POWER_LEVEL_USER_NOTIFY_EXEC = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC;
@@ -23884,7 +24832,6 @@ pub const DEV_BROADCAST_VOLUME_FLAGS = extern enum(u32) {
 pub const DBTF_MEDIA = DEV_BROADCAST_VOLUME_FLAGS.MEDIA;
 pub const DBTF_NET = DEV_BROADCAST_VOLUME_FLAGS.NET;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_VIEWPROPERTIES_STRUCT_FLAGS = extern enum(u32) {
     ENABLEHOOK = 1,
     SHOW_HELP = 2,
@@ -23897,6 +24844,31 @@ pub const CERT_VIEWPROPERTIES_STRUCT_FLAGS = extern enum(u32) {
     HIDE_DETAILPAGE = 256,
     ADD_CERT_STORES = 512,
     _,
+    pub fn initFlags(o: struct {
+        ENABLEHOOK: u1 = 0,
+        SHOW_HELP: u1 = 0,
+        SHOW_HELPICON: u1 = 0,
+        ENABLETEMPLATE: u1 = 0,
+        HIDE_ADVANCEPAGE: u1 = 0,
+        HIDE_TRUSTPAGE: u1 = 0,
+        NO_NAMECHANGE: u1 = 0,
+        NO_EDITTRUST: u1 = 0,
+        HIDE_DETAILPAGE: u1 = 0,
+        ADD_CERT_STORES: u1 = 0,
+    }) CERT_VIEWPROPERTIES_STRUCT_FLAGS {
+        return @intToEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS,
+              (if (o.ENABLEHOOK == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLEHOOK) else 0)
+            | (if (o.SHOW_HELP == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.SHOW_HELP) else 0)
+            | (if (o.SHOW_HELPICON == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.SHOW_HELPICON) else 0)
+            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLETEMPLATE) else 0)
+            | (if (o.HIDE_ADVANCEPAGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_ADVANCEPAGE) else 0)
+            | (if (o.HIDE_TRUSTPAGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_TRUSTPAGE) else 0)
+            | (if (o.NO_NAMECHANGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.NO_NAMECHANGE) else 0)
+            | (if (o.NO_EDITTRUST == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.NO_EDITTRUST) else 0)
+            | (if (o.HIDE_DETAILPAGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_DETAILPAGE) else 0)
+            | (if (o.ADD_CERT_STORES == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ADD_CERT_STORES) else 0)
+        );
+    }
 };
 pub const CM_ENABLEHOOK = CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLEHOOK;
 pub const CM_SHOW_HELP = CERT_VIEWPROPERTIES_STRUCT_FLAGS.SHOW_HELP;

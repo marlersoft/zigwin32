@@ -776,7 +776,6 @@ pub const INTERNET_DEFAULT_PORT = extern enum(u32) {
 };
 // TODO: enum 'INTERNET_DEFAULT_PORT' has known issues with its value aliases
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WINHTTP_OPEN_REQUEST_FLAGS = extern enum(u32) {
     BYPASS_PROXY_CACHE = 256,
     ESCAPE_DISABLE = 64,
@@ -786,6 +785,25 @@ pub const WINHTTP_OPEN_REQUEST_FLAGS = extern enum(u32) {
     REFRESH = 256,
     SECURE = 8388608,
     _,
+    pub fn initFlags(o: struct {
+        BYPASS_PROXY_CACHE: u1 = 0,
+        ESCAPE_DISABLE: u1 = 0,
+        ESCAPE_DISABLE_QUERY: u1 = 0,
+        ESCAPE_PERCENT: u1 = 0,
+        NULL_CODEPAGE: u1 = 0,
+        REFRESH: u1 = 0,
+        SECURE: u1 = 0,
+    }) WINHTTP_OPEN_REQUEST_FLAGS {
+        return @intToEnum(WINHTTP_OPEN_REQUEST_FLAGS,
+              (if (o.BYPASS_PROXY_CACHE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE) else 0)
+            | (if (o.ESCAPE_DISABLE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE) else 0)
+            | (if (o.ESCAPE_DISABLE_QUERY == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY) else 0)
+            | (if (o.ESCAPE_PERCENT == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT) else 0)
+            | (if (o.NULL_CODEPAGE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE) else 0)
+            | (if (o.REFRESH == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.REFRESH) else 0)
+            | (if (o.SECURE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.SECURE) else 0)
+        );
+    }
 };
 pub const WINHTTP_FLAG_BYPASS_PROXY_CACHE = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
 pub const WINHTTP_FLAG_ESCAPE_DISABLE = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE;

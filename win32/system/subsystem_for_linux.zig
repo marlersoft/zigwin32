@@ -6,13 +6,25 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WSL_DISTRIBUTION_FLAGS = extern enum(u32) {
     NONE = 0,
     ENABLE_INTEROP = 1,
     APPEND_NT_PATH = 2,
     ENABLE_DRIVE_MOUNTING = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ENABLE_INTEROP: u1 = 0,
+        APPEND_NT_PATH: u1 = 0,
+        ENABLE_DRIVE_MOUNTING: u1 = 0,
+    }) WSL_DISTRIBUTION_FLAGS {
+        return @intToEnum(WSL_DISTRIBUTION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(WSL_DISTRIBUTION_FLAGS.NONE) else 0)
+            | (if (o.ENABLE_INTEROP == 1) @enumToInt(WSL_DISTRIBUTION_FLAGS.ENABLE_INTEROP) else 0)
+            | (if (o.APPEND_NT_PATH == 1) @enumToInt(WSL_DISTRIBUTION_FLAGS.APPEND_NT_PATH) else 0)
+            | (if (o.ENABLE_DRIVE_MOUNTING == 1) @enumToInt(WSL_DISTRIBUTION_FLAGS.ENABLE_DRIVE_MOUNTING) else 0)
+        );
+    }
 };
 pub const WSL_DISTRIBUTION_FLAGS_NONE = WSL_DISTRIBUTION_FLAGS.NONE;
 pub const WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP = WSL_DISTRIBUTION_FLAGS.ENABLE_INTEROP;

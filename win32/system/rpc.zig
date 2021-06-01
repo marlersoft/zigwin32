@@ -1675,7 +1675,6 @@ pub const MIDL_TYPE_PICKLING_INFO = extern struct {
     Reserved: [3]usize,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RPC_C_QOS_CAPABILITIES = extern enum(u32) {
     DEFAULT = 0,
     MUTUAL_AUTH = 1,
@@ -1685,6 +1684,25 @@ pub const RPC_C_QOS_CAPABILITIES = extern enum(u32) {
     LOCAL_MA_HINT = 16,
     SCHANNEL_FULL_AUTH_IDENTITY = 32,
     _,
+    pub fn initFlags(o: struct {
+        DEFAULT: u1 = 0,
+        MUTUAL_AUTH: u1 = 0,
+        MAKE_FULLSIC: u1 = 0,
+        ANY_AUTHORITY: u1 = 0,
+        IGNORE_DELEGATE_FAILURE: u1 = 0,
+        LOCAL_MA_HINT: u1 = 0,
+        SCHANNEL_FULL_AUTH_IDENTITY: u1 = 0,
+    }) RPC_C_QOS_CAPABILITIES {
+        return @intToEnum(RPC_C_QOS_CAPABILITIES,
+              (if (o.DEFAULT == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.DEFAULT) else 0)
+            | (if (o.MUTUAL_AUTH == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.MUTUAL_AUTH) else 0)
+            | (if (o.MAKE_FULLSIC == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.MAKE_FULLSIC) else 0)
+            | (if (o.ANY_AUTHORITY == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.ANY_AUTHORITY) else 0)
+            | (if (o.IGNORE_DELEGATE_FAILURE == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.IGNORE_DELEGATE_FAILURE) else 0)
+            | (if (o.LOCAL_MA_HINT == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.LOCAL_MA_HINT) else 0)
+            | (if (o.SCHANNEL_FULL_AUTH_IDENTITY == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.SCHANNEL_FULL_AUTH_IDENTITY) else 0)
+        );
+    }
 };
 pub const RPC_C_QOS_CAPABILITIES_DEFAULT = RPC_C_QOS_CAPABILITIES.DEFAULT;
 pub const RPC_C_QOS_CAPABILITIES_MUTUAL_AUTH = RPC_C_QOS_CAPABILITIES.MUTUAL_AUTH;
@@ -1708,24 +1726,44 @@ pub const RPC_C_AUTHN_INFO_TYPE = extern enum(u32) {
 pub const RPC_C_AUTHN_INFO_NONE = RPC_C_AUTHN_INFO_TYPE.NONE;
 pub const RPC_C_AUTHN_INFO_TYPE_HTTP = RPC_C_AUTHN_INFO_TYPE.TYPE_HTTP;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RPC_C_HTTP_FLAGS = extern enum(u32) {
     USE_SSL = 1,
     USE_FIRST_AUTH_SCHEME = 2,
     IGNORE_CERT_CN_INVALID = 8,
     ENABLE_CERT_REVOCATION_CHECK = 16,
     _,
+    pub fn initFlags(o: struct {
+        USE_SSL: u1 = 0,
+        USE_FIRST_AUTH_SCHEME: u1 = 0,
+        IGNORE_CERT_CN_INVALID: u1 = 0,
+        ENABLE_CERT_REVOCATION_CHECK: u1 = 0,
+    }) RPC_C_HTTP_FLAGS {
+        return @intToEnum(RPC_C_HTTP_FLAGS,
+              (if (o.USE_SSL == 1) @enumToInt(RPC_C_HTTP_FLAGS.USE_SSL) else 0)
+            | (if (o.USE_FIRST_AUTH_SCHEME == 1) @enumToInt(RPC_C_HTTP_FLAGS.USE_FIRST_AUTH_SCHEME) else 0)
+            | (if (o.IGNORE_CERT_CN_INVALID == 1) @enumToInt(RPC_C_HTTP_FLAGS.IGNORE_CERT_CN_INVALID) else 0)
+            | (if (o.ENABLE_CERT_REVOCATION_CHECK == 1) @enumToInt(RPC_C_HTTP_FLAGS.ENABLE_CERT_REVOCATION_CHECK) else 0)
+        );
+    }
 };
 pub const RPC_C_HTTP_FLAG_USE_SSL = RPC_C_HTTP_FLAGS.USE_SSL;
 pub const RPC_C_HTTP_FLAG_USE_FIRST_AUTH_SCHEME = RPC_C_HTTP_FLAGS.USE_FIRST_AUTH_SCHEME;
 pub const RPC_C_HTTP_FLAG_IGNORE_CERT_CN_INVALID = RPC_C_HTTP_FLAGS.IGNORE_CERT_CN_INVALID;
 pub const RPC_C_HTTP_FLAG_ENABLE_CERT_REVOCATION_CHECK = RPC_C_HTTP_FLAGS.ENABLE_CERT_REVOCATION_CHECK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RPC_C_HTTP_AUTHN_TARGET = extern enum(u32) {
     SERVER = 1,
     PROXY = 2,
     _,
+    pub fn initFlags(o: struct {
+        SERVER: u1 = 0,
+        PROXY: u1 = 0,
+    }) RPC_C_HTTP_AUTHN_TARGET {
+        return @intToEnum(RPC_C_HTTP_AUTHN_TARGET,
+              (if (o.SERVER == 1) @enumToInt(RPC_C_HTTP_AUTHN_TARGET.SERVER) else 0)
+            | (if (o.PROXY == 1) @enumToInt(RPC_C_HTTP_AUTHN_TARGET.PROXY) else 0)
+        );
+    }
 };
 pub const RPC_C_HTTP_AUTHN_TARGET_SERVER = RPC_C_HTTP_AUTHN_TARGET.SERVER;
 pub const RPC_C_HTTP_AUTHN_TARGET_PROXY = RPC_C_HTTP_AUTHN_TARGET.PROXY;
@@ -1947,11 +1985,19 @@ pub const SEC_WINNT_AUTH_IDENTITY = extern enum(u32) {
 pub const SEC_WINNT_AUTH_IDENTITY_ANSI = SEC_WINNT_AUTH_IDENTITY.ANSI;
 pub const SEC_WINNT_AUTH_IDENTITY_UNICODE = SEC_WINNT_AUTH_IDENTITY.UNICODE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RPC_BINDING_HANDLE_OPTIONS_FLAGS = extern enum(u32) {
     NONCAUSAL = 1,
     DONTLINGER = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONCAUSAL: u1 = 0,
+        DONTLINGER: u1 = 0,
+    }) RPC_BINDING_HANDLE_OPTIONS_FLAGS {
+        return @intToEnum(RPC_BINDING_HANDLE_OPTIONS_FLAGS,
+              (if (o.NONCAUSAL == 1) @enumToInt(RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL) else 0)
+            | (if (o.DONTLINGER == 1) @enumToInt(RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER) else 0)
+        );
+    }
 };
 pub const RPC_BHO_NONCAUSAL = RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL;
 pub const RPC_BHO_DONTLINGER = RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER;

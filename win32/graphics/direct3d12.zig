@@ -467,11 +467,19 @@ pub const D3D12_COMMAND_LIST_TYPE_VIDEO_DECODE = D3D12_COMMAND_LIST_TYPE.VIDEO_D
 pub const D3D12_COMMAND_LIST_TYPE_VIDEO_PROCESS = D3D12_COMMAND_LIST_TYPE.VIDEO_PROCESS;
 pub const D3D12_COMMAND_LIST_TYPE_VIDEO_ENCODE = D3D12_COMMAND_LIST_TYPE.VIDEO_ENCODE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_COMMAND_QUEUE_FLAGS = extern enum(u32) {
     NONE = 0,
     DISABLE_GPU_TIMEOUT = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DISABLE_GPU_TIMEOUT: u1 = 0,
+    }) D3D12_COMMAND_QUEUE_FLAGS {
+        return @intToEnum(D3D12_COMMAND_QUEUE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_COMMAND_QUEUE_FLAGS.NONE) else 0)
+            | (if (o.DISABLE_GPU_TIMEOUT == 1) @enumToInt(D3D12_COMMAND_QUEUE_FLAGS.DISABLE_GPU_TIMEOUT) else 0)
+        );
+    }
 };
 pub const D3D12_COMMAND_QUEUE_FLAG_NONE = D3D12_COMMAND_QUEUE_FLAGS.NONE;
 pub const D3D12_COMMAND_QUEUE_FLAG_DISABLE_GPU_TIMEOUT = D3D12_COMMAND_QUEUE_FLAGS.DISABLE_GPU_TIMEOUT;
@@ -897,11 +905,19 @@ pub const D3D12_CACHED_PIPELINE_STATE = extern struct {
     CachedBlobSizeInBytes: usize,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_PIPELINE_STATE_FLAGS = extern enum(u32) {
     NONE = 0,
     TOOL_DEBUG = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TOOL_DEBUG: u1 = 0,
+    }) D3D12_PIPELINE_STATE_FLAGS {
+        return @intToEnum(D3D12_PIPELINE_STATE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_PIPELINE_STATE_FLAGS.NONE) else 0)
+            | (if (o.TOOL_DEBUG == 1) @enumToInt(D3D12_PIPELINE_STATE_FLAGS.TOOL_DEBUG) else 0)
+        );
+    }
 };
 pub const D3D12_PIPELINE_STATE_FLAG_NONE = D3D12_PIPELINE_STATE_FLAGS.NONE;
 pub const D3D12_PIPELINE_STATE_FLAG_TOOL_DEBUG = D3D12_PIPELINE_STATE_FLAGS.TOOL_DEBUG;
@@ -1058,12 +1074,22 @@ pub const D3D12_FEATURE_D3D12_OPTIONS7 = D3D12_FEATURE.D3D12_OPTIONS7;
 pub const D3D12_FEATURE_PROTECTED_RESOURCE_SESSION_TYPE_COUNT = D3D12_FEATURE.PROTECTED_RESOURCE_SESSION_TYPE_COUNT;
 pub const D3D12_FEATURE_PROTECTED_RESOURCE_SESSION_TYPES = D3D12_FEATURE.PROTECTED_RESOURCE_SESSION_TYPES;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_SHADER_MIN_PRECISION_SUPPORT = extern enum(u32) {
     NONE = 0,
     @"10_BIT" = 1,
     @"16_BIT" = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        @"10_BIT": u1 = 0,
+        @"16_BIT": u1 = 0,
+    }) D3D12_SHADER_MIN_PRECISION_SUPPORT {
+        return @intToEnum(D3D12_SHADER_MIN_PRECISION_SUPPORT,
+              (if (o.NONE == 1) @enumToInt(D3D12_SHADER_MIN_PRECISION_SUPPORT.NONE) else 0)
+            | (if (o.@"10_BIT" == 1) @enumToInt(D3D12_SHADER_MIN_PRECISION_SUPPORT.@"10_BIT") else 0)
+            | (if (o.@"16_BIT" == 1) @enumToInt(D3D12_SHADER_MIN_PRECISION_SUPPORT.@"16_BIT") else 0)
+        );
+    }
 };
 pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_NONE = D3D12_SHADER_MIN_PRECISION_SUPPORT.NONE;
 pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_10_BIT = D3D12_SHADER_MIN_PRECISION_SUPPORT.@"10_BIT";
@@ -1102,7 +1128,6 @@ pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_1 = D3D12_CONSERVATIVE_RASTERIZA
 pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_2 = D3D12_CONSERVATIVE_RASTERIZATION_TIER.@"2";
 pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_3 = D3D12_CONSERVATIVE_RASTERIZATION_TIER.@"3";
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_FORMAT_SUPPORT1 = extern enum(u32) {
     NONE = 0,
     BUFFER = 1,
@@ -1135,6 +1160,71 @@ pub const D3D12_FORMAT_SUPPORT1 = extern enum(u32) {
     VIDEO_PROCESSOR_INPUT = 536870912,
     VIDEO_ENCODER = 1073741824,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        BUFFER: u1 = 0,
+        IA_VERTEX_BUFFER: u1 = 0,
+        IA_INDEX_BUFFER: u1 = 0,
+        SO_BUFFER: u1 = 0,
+        TEXTURE1D: u1 = 0,
+        TEXTURE2D: u1 = 0,
+        TEXTURE3D: u1 = 0,
+        TEXTURECUBE: u1 = 0,
+        SHADER_LOAD: u1 = 0,
+        SHADER_SAMPLE: u1 = 0,
+        SHADER_SAMPLE_COMPARISON: u1 = 0,
+        SHADER_SAMPLE_MONO_TEXT: u1 = 0,
+        MIP: u1 = 0,
+        RENDER_TARGET: u1 = 0,
+        BLENDABLE: u1 = 0,
+        DEPTH_STENCIL: u1 = 0,
+        MULTISAMPLE_RESOLVE: u1 = 0,
+        DISPLAY: u1 = 0,
+        CAST_WITHIN_BIT_LAYOUT: u1 = 0,
+        MULTISAMPLE_RENDERTARGET: u1 = 0,
+        MULTISAMPLE_LOAD: u1 = 0,
+        SHADER_GATHER: u1 = 0,
+        BACK_BUFFER_CAST: u1 = 0,
+        TYPED_UNORDERED_ACCESS_VIEW: u1 = 0,
+        SHADER_GATHER_COMPARISON: u1 = 0,
+        DECODER_OUTPUT: u1 = 0,
+        VIDEO_PROCESSOR_OUTPUT: u1 = 0,
+        VIDEO_PROCESSOR_INPUT: u1 = 0,
+        VIDEO_ENCODER: u1 = 0,
+    }) D3D12_FORMAT_SUPPORT1 {
+        return @intToEnum(D3D12_FORMAT_SUPPORT1,
+              (if (o.NONE == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.NONE) else 0)
+            | (if (o.BUFFER == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.BUFFER) else 0)
+            | (if (o.IA_VERTEX_BUFFER == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.IA_VERTEX_BUFFER) else 0)
+            | (if (o.IA_INDEX_BUFFER == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.IA_INDEX_BUFFER) else 0)
+            | (if (o.SO_BUFFER == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.SO_BUFFER) else 0)
+            | (if (o.TEXTURE1D == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.TEXTURE1D) else 0)
+            | (if (o.TEXTURE2D == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.TEXTURE2D) else 0)
+            | (if (o.TEXTURE3D == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.TEXTURE3D) else 0)
+            | (if (o.TEXTURECUBE == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.TEXTURECUBE) else 0)
+            | (if (o.SHADER_LOAD == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.SHADER_LOAD) else 0)
+            | (if (o.SHADER_SAMPLE == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE) else 0)
+            | (if (o.SHADER_SAMPLE_COMPARISON == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE_COMPARISON) else 0)
+            | (if (o.SHADER_SAMPLE_MONO_TEXT == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE_MONO_TEXT) else 0)
+            | (if (o.MIP == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.MIP) else 0)
+            | (if (o.RENDER_TARGET == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.RENDER_TARGET) else 0)
+            | (if (o.BLENDABLE == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.BLENDABLE) else 0)
+            | (if (o.DEPTH_STENCIL == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.DEPTH_STENCIL) else 0)
+            | (if (o.MULTISAMPLE_RESOLVE == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.MULTISAMPLE_RESOLVE) else 0)
+            | (if (o.DISPLAY == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.DISPLAY) else 0)
+            | (if (o.CAST_WITHIN_BIT_LAYOUT == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.CAST_WITHIN_BIT_LAYOUT) else 0)
+            | (if (o.MULTISAMPLE_RENDERTARGET == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.MULTISAMPLE_RENDERTARGET) else 0)
+            | (if (o.MULTISAMPLE_LOAD == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.MULTISAMPLE_LOAD) else 0)
+            | (if (o.SHADER_GATHER == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.SHADER_GATHER) else 0)
+            | (if (o.BACK_BUFFER_CAST == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.BACK_BUFFER_CAST) else 0)
+            | (if (o.TYPED_UNORDERED_ACCESS_VIEW == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.TYPED_UNORDERED_ACCESS_VIEW) else 0)
+            | (if (o.SHADER_GATHER_COMPARISON == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.SHADER_GATHER_COMPARISON) else 0)
+            | (if (o.DECODER_OUTPUT == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.DECODER_OUTPUT) else 0)
+            | (if (o.VIDEO_PROCESSOR_OUTPUT == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_OUTPUT) else 0)
+            | (if (o.VIDEO_PROCESSOR_INPUT == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_INPUT) else 0)
+            | (if (o.VIDEO_ENCODER == 1) @enumToInt(D3D12_FORMAT_SUPPORT1.VIDEO_ENCODER) else 0)
+        );
+    }
 };
 pub const D3D12_FORMAT_SUPPORT1_NONE = D3D12_FORMAT_SUPPORT1.NONE;
 pub const D3D12_FORMAT_SUPPORT1_BUFFER = D3D12_FORMAT_SUPPORT1.BUFFER;
@@ -1167,7 +1257,6 @@ pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_OUTPUT = D3D12_FORMAT_SUPPORT1.V
 pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_INPUT = D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_INPUT;
 pub const D3D12_FORMAT_SUPPORT1_VIDEO_ENCODER = D3D12_FORMAT_SUPPORT1.VIDEO_ENCODER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_FORMAT_SUPPORT2 = extern enum(u32) {
     NONE = 0,
     UAV_ATOMIC_ADD = 1,
@@ -1183,6 +1272,37 @@ pub const D3D12_FORMAT_SUPPORT2 = extern enum(u32) {
     MULTIPLANE_OVERLAY = 16384,
     SAMPLER_FEEDBACK = 32768,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        UAV_ATOMIC_ADD: u1 = 0,
+        UAV_ATOMIC_BITWISE_OPS: u1 = 0,
+        UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE: u1 = 0,
+        UAV_ATOMIC_EXCHANGE: u1 = 0,
+        UAV_ATOMIC_SIGNED_MIN_OR_MAX: u1 = 0,
+        UAV_ATOMIC_UNSIGNED_MIN_OR_MAX: u1 = 0,
+        UAV_TYPED_LOAD: u1 = 0,
+        UAV_TYPED_STORE: u1 = 0,
+        OUTPUT_MERGER_LOGIC_OP: u1 = 0,
+        TILED: u1 = 0,
+        MULTIPLANE_OVERLAY: u1 = 0,
+        SAMPLER_FEEDBACK: u1 = 0,
+    }) D3D12_FORMAT_SUPPORT2 {
+        return @intToEnum(D3D12_FORMAT_SUPPORT2,
+              (if (o.NONE == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.NONE) else 0)
+            | (if (o.UAV_ATOMIC_ADD == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_ADD) else 0)
+            | (if (o.UAV_ATOMIC_BITWISE_OPS == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_BITWISE_OPS) else 0)
+            | (if (o.UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE) else 0)
+            | (if (o.UAV_ATOMIC_EXCHANGE == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_EXCHANGE) else 0)
+            | (if (o.UAV_ATOMIC_SIGNED_MIN_OR_MAX == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_SIGNED_MIN_OR_MAX) else 0)
+            | (if (o.UAV_ATOMIC_UNSIGNED_MIN_OR_MAX == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_UNSIGNED_MIN_OR_MAX) else 0)
+            | (if (o.UAV_TYPED_LOAD == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_TYPED_LOAD) else 0)
+            | (if (o.UAV_TYPED_STORE == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.UAV_TYPED_STORE) else 0)
+            | (if (o.OUTPUT_MERGER_LOGIC_OP == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.OUTPUT_MERGER_LOGIC_OP) else 0)
+            | (if (o.TILED == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.TILED) else 0)
+            | (if (o.MULTIPLANE_OVERLAY == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.MULTIPLANE_OVERLAY) else 0)
+            | (if (o.SAMPLER_FEEDBACK == 1) @enumToInt(D3D12_FORMAT_SUPPORT2.SAMPLER_FEEDBACK) else 0)
+        );
+    }
 };
 pub const D3D12_FORMAT_SUPPORT2_NONE = D3D12_FORMAT_SUPPORT2.NONE;
 pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_ADD = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_ADD;
@@ -1198,11 +1318,19 @@ pub const D3D12_FORMAT_SUPPORT2_TILED = D3D12_FORMAT_SUPPORT2.TILED;
 pub const D3D12_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY = D3D12_FORMAT_SUPPORT2.MULTIPLANE_OVERLAY;
 pub const D3D12_FORMAT_SUPPORT2_SAMPLER_FEEDBACK = D3D12_FORMAT_SUPPORT2.SAMPLER_FEEDBACK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS = extern enum(u32) {
     NONE = 0,
     TILED_RESOURCE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TILED_RESOURCE: u1 = 0,
+    }) D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS {
+        return @intToEnum(D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.NONE) else 0)
+            | (if (o.TILED_RESOURCE == 1) @enumToInt(D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.TILED_RESOURCE) else 0)
+        );
+    }
 };
 pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_NONE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.NONE;
 pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_TILED_RESOURCE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.TILED_RESOURCE;
@@ -1359,7 +1487,6 @@ pub const D3D12_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT = extern struct {
     MaxGPUVirtualAddressBitsPerProcess: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_SHADER_CACHE_SUPPORT_FLAGS = extern enum(u32) {
     NONE = 0,
     SINGLE_PSO = 1,
@@ -1367,6 +1494,21 @@ pub const D3D12_SHADER_CACHE_SUPPORT_FLAGS = extern enum(u32) {
     AUTOMATIC_INPROC_CACHE = 4,
     AUTOMATIC_DISK_CACHE = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SINGLE_PSO: u1 = 0,
+        LIBRARY: u1 = 0,
+        AUTOMATIC_INPROC_CACHE: u1 = 0,
+        AUTOMATIC_DISK_CACHE: u1 = 0,
+    }) D3D12_SHADER_CACHE_SUPPORT_FLAGS {
+        return @intToEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_SHADER_CACHE_SUPPORT_FLAGS.NONE) else 0)
+            | (if (o.SINGLE_PSO == 1) @enumToInt(D3D12_SHADER_CACHE_SUPPORT_FLAGS.SINGLE_PSO) else 0)
+            | (if (o.LIBRARY == 1) @enumToInt(D3D12_SHADER_CACHE_SUPPORT_FLAGS.LIBRARY) else 0)
+            | (if (o.AUTOMATIC_INPROC_CACHE == 1) @enumToInt(D3D12_SHADER_CACHE_SUPPORT_FLAGS.AUTOMATIC_INPROC_CACHE) else 0)
+            | (if (o.AUTOMATIC_DISK_CACHE == 1) @enumToInt(D3D12_SHADER_CACHE_SUPPORT_FLAGS.AUTOMATIC_DISK_CACHE) else 0)
+        );
+    }
 };
 pub const D3D12_SHADER_CACHE_SUPPORT_NONE = D3D12_SHADER_CACHE_SUPPORT_FLAGS.NONE;
 pub const D3D12_SHADER_CACHE_SUPPORT_SINGLE_PSO = D3D12_SHADER_CACHE_SUPPORT_FLAGS.SINGLE_PSO;
@@ -1384,7 +1526,6 @@ pub const D3D12_FEATURE_DATA_COMMAND_QUEUE_PRIORITY = extern struct {
     PriorityForTypeIsSupported: BOOL,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_COMMAND_LIST_SUPPORT_FLAGS = extern enum(u32) {
     NONE = 0,
     DIRECT = 1,
@@ -1395,6 +1536,27 @@ pub const D3D12_COMMAND_LIST_SUPPORT_FLAGS = extern enum(u32) {
     VIDEO_PROCESS = 32,
     VIDEO_ENCODE = 64,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DIRECT: u1 = 0,
+        BUNDLE: u1 = 0,
+        COMPUTE: u1 = 0,
+        COPY: u1 = 0,
+        VIDEO_DECODE: u1 = 0,
+        VIDEO_PROCESS: u1 = 0,
+        VIDEO_ENCODE: u1 = 0,
+    }) D3D12_COMMAND_LIST_SUPPORT_FLAGS {
+        return @intToEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.NONE) else 0)
+            | (if (o.DIRECT == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.DIRECT) else 0)
+            | (if (o.BUNDLE == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.BUNDLE) else 0)
+            | (if (o.COMPUTE == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.COMPUTE) else 0)
+            | (if (o.COPY == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.COPY) else 0)
+            | (if (o.VIDEO_DECODE == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_DECODE) else 0)
+            | (if (o.VIDEO_PROCESS == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_PROCESS) else 0)
+            | (if (o.VIDEO_ENCODE == 1) @enumToInt(D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_ENCODE) else 0)
+        );
+    }
 };
 pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_NONE = D3D12_COMMAND_LIST_SUPPORT_FLAGS.NONE;
 pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_DIRECT = D3D12_COMMAND_LIST_SUPPORT_FLAGS.DIRECT;
@@ -1570,7 +1732,6 @@ pub const D3D12_HEAP_PROPERTIES = extern struct {
     VisibleNodeMask: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_HEAP_FLAGS = extern enum(u32) {
     NONE = 0,
     SHARED = 1,
@@ -1589,6 +1750,43 @@ pub const D3D12_HEAP_FLAGS = extern enum(u32) {
     ALLOW_ONLY_NON_RT_DS_TEXTURES = 68,
     ALLOW_ONLY_RT_DS_TEXTURES = 132,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SHARED: u1 = 0,
+        DENY_BUFFERS: u1 = 0,
+        ALLOW_DISPLAY: u1 = 0,
+        SHARED_CROSS_ADAPTER: u1 = 0,
+        DENY_RT_DS_TEXTURES: u1 = 0,
+        DENY_NON_RT_DS_TEXTURES: u1 = 0,
+        HARDWARE_PROTECTED: u1 = 0,
+        ALLOW_WRITE_WATCH: u1 = 0,
+        ALLOW_SHADER_ATOMICS: u1 = 0,
+        CREATE_NOT_RESIDENT: u1 = 0,
+        CREATE_NOT_ZEROED: u1 = 0,
+        ALLOW_ALL_BUFFERS_AND_TEXTURES: u1 = 0,
+        ALLOW_ONLY_BUFFERS: u1 = 0,
+        ALLOW_ONLY_NON_RT_DS_TEXTURES: u1 = 0,
+        ALLOW_ONLY_RT_DS_TEXTURES: u1 = 0,
+    }) D3D12_HEAP_FLAGS {
+        return @intToEnum(D3D12_HEAP_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_HEAP_FLAGS.NONE) else 0)
+            | (if (o.SHARED == 1) @enumToInt(D3D12_HEAP_FLAGS.SHARED) else 0)
+            | (if (o.DENY_BUFFERS == 1) @enumToInt(D3D12_HEAP_FLAGS.DENY_BUFFERS) else 0)
+            | (if (o.ALLOW_DISPLAY == 1) @enumToInt(D3D12_HEAP_FLAGS.ALLOW_DISPLAY) else 0)
+            | (if (o.SHARED_CROSS_ADAPTER == 1) @enumToInt(D3D12_HEAP_FLAGS.SHARED_CROSS_ADAPTER) else 0)
+            | (if (o.DENY_RT_DS_TEXTURES == 1) @enumToInt(D3D12_HEAP_FLAGS.DENY_RT_DS_TEXTURES) else 0)
+            | (if (o.DENY_NON_RT_DS_TEXTURES == 1) @enumToInt(D3D12_HEAP_FLAGS.DENY_NON_RT_DS_TEXTURES) else 0)
+            | (if (o.HARDWARE_PROTECTED == 1) @enumToInt(D3D12_HEAP_FLAGS.HARDWARE_PROTECTED) else 0)
+            | (if (o.ALLOW_WRITE_WATCH == 1) @enumToInt(D3D12_HEAP_FLAGS.ALLOW_WRITE_WATCH) else 0)
+            | (if (o.ALLOW_SHADER_ATOMICS == 1) @enumToInt(D3D12_HEAP_FLAGS.ALLOW_SHADER_ATOMICS) else 0)
+            | (if (o.CREATE_NOT_RESIDENT == 1) @enumToInt(D3D12_HEAP_FLAGS.CREATE_NOT_RESIDENT) else 0)
+            | (if (o.CREATE_NOT_ZEROED == 1) @enumToInt(D3D12_HEAP_FLAGS.CREATE_NOT_ZEROED) else 0)
+            | (if (o.ALLOW_ALL_BUFFERS_AND_TEXTURES == 1) @enumToInt(D3D12_HEAP_FLAGS.ALLOW_ALL_BUFFERS_AND_TEXTURES) else 0)
+            | (if (o.ALLOW_ONLY_BUFFERS == 1) @enumToInt(D3D12_HEAP_FLAGS.ALLOW_ONLY_BUFFERS) else 0)
+            | (if (o.ALLOW_ONLY_NON_RT_DS_TEXTURES == 1) @enumToInt(D3D12_HEAP_FLAGS.ALLOW_ONLY_NON_RT_DS_TEXTURES) else 0)
+            | (if (o.ALLOW_ONLY_RT_DS_TEXTURES == 1) @enumToInt(D3D12_HEAP_FLAGS.ALLOW_ONLY_RT_DS_TEXTURES) else 0)
+        );
+    }
 };
 pub const D3D12_HEAP_FLAG_NONE = D3D12_HEAP_FLAGS.NONE;
 pub const D3D12_HEAP_FLAG_SHARED = D3D12_HEAP_FLAGS.SHARED;
@@ -1638,7 +1836,6 @@ pub const D3D12_TEXTURE_LAYOUT_ROW_MAJOR = D3D12_TEXTURE_LAYOUT.ROW_MAJOR;
 pub const D3D12_TEXTURE_LAYOUT_64KB_UNDEFINED_SWIZZLE = D3D12_TEXTURE_LAYOUT.@"64KB_UNDEFINED_SWIZZLE";
 pub const D3D12_TEXTURE_LAYOUT_64KB_STANDARD_SWIZZLE = D3D12_TEXTURE_LAYOUT.@"64KB_STANDARD_SWIZZLE";
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RESOURCE_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_RENDER_TARGET = 1,
@@ -1649,6 +1846,27 @@ pub const D3D12_RESOURCE_FLAGS = extern enum(u32) {
     ALLOW_SIMULTANEOUS_ACCESS = 32,
     VIDEO_DECODE_REFERENCE_ONLY = 64,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_RENDER_TARGET: u1 = 0,
+        ALLOW_DEPTH_STENCIL: u1 = 0,
+        ALLOW_UNORDERED_ACCESS: u1 = 0,
+        DENY_SHADER_RESOURCE: u1 = 0,
+        ALLOW_CROSS_ADAPTER: u1 = 0,
+        ALLOW_SIMULTANEOUS_ACCESS: u1 = 0,
+        VIDEO_DECODE_REFERENCE_ONLY: u1 = 0,
+    }) D3D12_RESOURCE_FLAGS {
+        return @intToEnum(D3D12_RESOURCE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RESOURCE_FLAGS.NONE) else 0)
+            | (if (o.ALLOW_RENDER_TARGET == 1) @enumToInt(D3D12_RESOURCE_FLAGS.ALLOW_RENDER_TARGET) else 0)
+            | (if (o.ALLOW_DEPTH_STENCIL == 1) @enumToInt(D3D12_RESOURCE_FLAGS.ALLOW_DEPTH_STENCIL) else 0)
+            | (if (o.ALLOW_UNORDERED_ACCESS == 1) @enumToInt(D3D12_RESOURCE_FLAGS.ALLOW_UNORDERED_ACCESS) else 0)
+            | (if (o.DENY_SHADER_RESOURCE == 1) @enumToInt(D3D12_RESOURCE_FLAGS.DENY_SHADER_RESOURCE) else 0)
+            | (if (o.ALLOW_CROSS_ADAPTER == 1) @enumToInt(D3D12_RESOURCE_FLAGS.ALLOW_CROSS_ADAPTER) else 0)
+            | (if (o.ALLOW_SIMULTANEOUS_ACCESS == 1) @enumToInt(D3D12_RESOURCE_FLAGS.ALLOW_SIMULTANEOUS_ACCESS) else 0)
+            | (if (o.VIDEO_DECODE_REFERENCE_ONLY == 1) @enumToInt(D3D12_RESOURCE_FLAGS.VIDEO_DECODE_REFERENCE_ONLY) else 0)
+        );
+    }
 };
 pub const D3D12_RESOURCE_FLAG_NONE = D3D12_RESOURCE_FLAGS.NONE;
 pub const D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET = D3D12_RESOURCE_FLAGS.ALLOW_RENDER_TARGET;
@@ -1772,29 +1990,48 @@ pub const D3D12_PACKED_MIP_INFO = extern struct {
     StartTileIndexInOverallResource: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_TILE_MAPPING_FLAGS = extern enum(u32) {
     NE = 0,
     _HAZARD = 1,
     _,
+    pub fn initFlags(o: struct {
+        NE: u1 = 0,
+        _HAZARD: u1 = 0,
+    }) D3D12_TILE_MAPPING_FLAGS {
+        return @intToEnum(D3D12_TILE_MAPPING_FLAGS,
+              (if (o.NE == 1) @enumToInt(D3D12_TILE_MAPPING_FLAGS.NE) else 0)
+            | (if (o._HAZARD == 1) @enumToInt(D3D12_TILE_MAPPING_FLAGS._HAZARD) else 0)
+        );
+    }
 };
 pub const D3D12_TILE_MAPPING_FLAG_NONE = D3D12_TILE_MAPPING_FLAGS.NE;
 pub const D3D12_TILE_MAPPING_FLAG_NO_HAZARD = D3D12_TILE_MAPPING_FLAGS._HAZARD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_TILE_COPY_FLAGS = extern enum(u32) {
     NONE = 0,
     NO_HAZARD = 1,
     LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = 2,
     SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        NO_HAZARD: u1 = 0,
+        LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE: u1 = 0,
+        SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER: u1 = 0,
+    }) D3D12_TILE_COPY_FLAGS {
+        return @intToEnum(D3D12_TILE_COPY_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_TILE_COPY_FLAGS.NONE) else 0)
+            | (if (o.NO_HAZARD == 1) @enumToInt(D3D12_TILE_COPY_FLAGS.NO_HAZARD) else 0)
+            | (if (o.LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE == 1) @enumToInt(D3D12_TILE_COPY_FLAGS.LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE) else 0)
+            | (if (o.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER == 1) @enumToInt(D3D12_TILE_COPY_FLAGS.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER) else 0)
+        );
+    }
 };
 pub const D3D12_TILE_COPY_FLAG_NONE = D3D12_TILE_COPY_FLAGS.NONE;
 pub const D3D12_TILE_COPY_FLAG_NO_HAZARD = D3D12_TILE_COPY_FLAGS.NO_HAZARD;
 pub const D3D12_TILE_COPY_FLAG_LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = D3D12_TILE_COPY_FLAGS.LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE;
 pub const D3D12_TILE_COPY_FLAG_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = D3D12_TILE_COPY_FLAGS.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RESOURCE_STATES = extern enum(u32) {
     COMMON = 0,
     VERTEX_AND_CONSTANT_BUFFER = 1,
@@ -1823,6 +2060,63 @@ pub const D3D12_RESOURCE_STATES = extern enum(u32) {
     VIDEO_ENCODE_READ = 2097152,
     VIDEO_ENCODE_WRITE = 8388608,
     _,
+    pub fn initFlags(o: struct {
+        COMMON: u1 = 0,
+        VERTEX_AND_CONSTANT_BUFFER: u1 = 0,
+        INDEX_BUFFER: u1 = 0,
+        RENDER_TARGET: u1 = 0,
+        UNORDERED_ACCESS: u1 = 0,
+        DEPTH_WRITE: u1 = 0,
+        DEPTH_READ: u1 = 0,
+        NON_PIXEL_SHADER_RESOURCE: u1 = 0,
+        PIXEL_SHADER_RESOURCE: u1 = 0,
+        STREAM_OUT: u1 = 0,
+        INDIRECT_ARGUMENT: u1 = 0,
+        COPY_DEST: u1 = 0,
+        COPY_SOURCE: u1 = 0,
+        RESOLVE_DEST: u1 = 0,
+        RESOLVE_SOURCE: u1 = 0,
+        RAYTRACING_ACCELERATION_STRUCTURE: u1 = 0,
+        SHADING_RATE_SOURCE: u1 = 0,
+        GENERIC_READ: u1 = 0,
+        PRESENT: u1 = 0,
+        PREDICATION: u1 = 0,
+        VIDEO_DECODE_READ: u1 = 0,
+        VIDEO_DECODE_WRITE: u1 = 0,
+        VIDEO_PROCESS_READ: u1 = 0,
+        VIDEO_PROCESS_WRITE: u1 = 0,
+        VIDEO_ENCODE_READ: u1 = 0,
+        VIDEO_ENCODE_WRITE: u1 = 0,
+    }) D3D12_RESOURCE_STATES {
+        return @intToEnum(D3D12_RESOURCE_STATES,
+              (if (o.COMMON == 1) @enumToInt(D3D12_RESOURCE_STATES.COMMON) else 0)
+            | (if (o.VERTEX_AND_CONSTANT_BUFFER == 1) @enumToInt(D3D12_RESOURCE_STATES.VERTEX_AND_CONSTANT_BUFFER) else 0)
+            | (if (o.INDEX_BUFFER == 1) @enumToInt(D3D12_RESOURCE_STATES.INDEX_BUFFER) else 0)
+            | (if (o.RENDER_TARGET == 1) @enumToInt(D3D12_RESOURCE_STATES.RENDER_TARGET) else 0)
+            | (if (o.UNORDERED_ACCESS == 1) @enumToInt(D3D12_RESOURCE_STATES.UNORDERED_ACCESS) else 0)
+            | (if (o.DEPTH_WRITE == 1) @enumToInt(D3D12_RESOURCE_STATES.DEPTH_WRITE) else 0)
+            | (if (o.DEPTH_READ == 1) @enumToInt(D3D12_RESOURCE_STATES.DEPTH_READ) else 0)
+            | (if (o.NON_PIXEL_SHADER_RESOURCE == 1) @enumToInt(D3D12_RESOURCE_STATES.NON_PIXEL_SHADER_RESOURCE) else 0)
+            | (if (o.PIXEL_SHADER_RESOURCE == 1) @enumToInt(D3D12_RESOURCE_STATES.PIXEL_SHADER_RESOURCE) else 0)
+            | (if (o.STREAM_OUT == 1) @enumToInt(D3D12_RESOURCE_STATES.STREAM_OUT) else 0)
+            | (if (o.INDIRECT_ARGUMENT == 1) @enumToInt(D3D12_RESOURCE_STATES.INDIRECT_ARGUMENT) else 0)
+            | (if (o.COPY_DEST == 1) @enumToInt(D3D12_RESOURCE_STATES.COPY_DEST) else 0)
+            | (if (o.COPY_SOURCE == 1) @enumToInt(D3D12_RESOURCE_STATES.COPY_SOURCE) else 0)
+            | (if (o.RESOLVE_DEST == 1) @enumToInt(D3D12_RESOURCE_STATES.RESOLVE_DEST) else 0)
+            | (if (o.RESOLVE_SOURCE == 1) @enumToInt(D3D12_RESOURCE_STATES.RESOLVE_SOURCE) else 0)
+            | (if (o.RAYTRACING_ACCELERATION_STRUCTURE == 1) @enumToInt(D3D12_RESOURCE_STATES.RAYTRACING_ACCELERATION_STRUCTURE) else 0)
+            | (if (o.SHADING_RATE_SOURCE == 1) @enumToInt(D3D12_RESOURCE_STATES.SHADING_RATE_SOURCE) else 0)
+            | (if (o.GENERIC_READ == 1) @enumToInt(D3D12_RESOURCE_STATES.GENERIC_READ) else 0)
+            | (if (o.PRESENT == 1) @enumToInt(D3D12_RESOURCE_STATES.PRESENT) else 0)
+            | (if (o.PREDICATION == 1) @enumToInt(D3D12_RESOURCE_STATES.PREDICATION) else 0)
+            | (if (o.VIDEO_DECODE_READ == 1) @enumToInt(D3D12_RESOURCE_STATES.VIDEO_DECODE_READ) else 0)
+            | (if (o.VIDEO_DECODE_WRITE == 1) @enumToInt(D3D12_RESOURCE_STATES.VIDEO_DECODE_WRITE) else 0)
+            | (if (o.VIDEO_PROCESS_READ == 1) @enumToInt(D3D12_RESOURCE_STATES.VIDEO_PROCESS_READ) else 0)
+            | (if (o.VIDEO_PROCESS_WRITE == 1) @enumToInt(D3D12_RESOURCE_STATES.VIDEO_PROCESS_WRITE) else 0)
+            | (if (o.VIDEO_ENCODE_READ == 1) @enumToInt(D3D12_RESOURCE_STATES.VIDEO_ENCODE_READ) else 0)
+            | (if (o.VIDEO_ENCODE_WRITE == 1) @enumToInt(D3D12_RESOURCE_STATES.VIDEO_ENCODE_WRITE) else 0)
+        );
+    }
 };
 pub const D3D12_RESOURCE_STATE_COMMON = D3D12_RESOURCE_STATES.COMMON;
 pub const D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER = D3D12_RESOURCE_STATES.VERTEX_AND_CONSTANT_BUFFER;
@@ -1876,12 +2170,22 @@ pub const D3D12_RESOURCE_UAV_BARRIER = extern struct {
     pResource: *ID3D12Resource,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RESOURCE_BARRIER_FLAGS = extern enum(u32) {
     NONE = 0,
     BEGIN_ONLY = 1,
     END_ONLY = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        BEGIN_ONLY: u1 = 0,
+        END_ONLY: u1 = 0,
+    }) D3D12_RESOURCE_BARRIER_FLAGS {
+        return @intToEnum(D3D12_RESOURCE_BARRIER_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RESOURCE_BARRIER_FLAGS.NONE) else 0)
+            | (if (o.BEGIN_ONLY == 1) @enumToInt(D3D12_RESOURCE_BARRIER_FLAGS.BEGIN_ONLY) else 0)
+            | (if (o.END_ONLY == 1) @enumToInt(D3D12_RESOURCE_BARRIER_FLAGS.END_ONLY) else 0)
+        );
+    }
 };
 pub const D3D12_RESOURCE_BARRIER_FLAG_NONE = D3D12_RESOURCE_BARRIER_FLAGS.NONE;
 pub const D3D12_RESOURCE_BARRIER_FLAG_BEGIN_ONLY = D3D12_RESOURCE_BARRIER_FLAGS.BEGIN_ONLY;
@@ -1951,11 +2255,19 @@ pub const D3D12_VIEW_INSTANCE_LOCATION = extern struct {
     RenderTargetArrayIndex: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_VIEW_INSTANCING_FLAGS = extern enum(u32) {
     NONE = 0,
     ENABLE_VIEW_INSTANCE_MASKING = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ENABLE_VIEW_INSTANCE_MASKING: u1 = 0,
+    }) D3D12_VIEW_INSTANCING_FLAGS {
+        return @intToEnum(D3D12_VIEW_INSTANCING_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_VIEW_INSTANCING_FLAGS.NONE) else 0)
+            | (if (o.ENABLE_VIEW_INSTANCE_MASKING == 1) @enumToInt(D3D12_VIEW_INSTANCING_FLAGS.ENABLE_VIEW_INSTANCE_MASKING) else 0)
+        );
+    }
 };
 pub const D3D12_VIEW_INSTANCING_FLAG_NONE = D3D12_VIEW_INSTANCING_FLAGS.NONE;
 pub const D3D12_VIEW_INSTANCING_FLAG_ENABLE_VIEW_INSTANCE_MASKING = D3D12_VIEW_INSTANCING_FLAGS.ENABLE_VIEW_INSTANCE_MASKING;
@@ -1981,11 +2293,19 @@ pub const D3D12_SHADER_COMPONENT_MAPPING_FROM_MEMORY_COMPONENT_3 = D3D12_SHADER_
 pub const D3D12_SHADER_COMPONENT_MAPPING_FORCE_VALUE_0 = D3D12_SHADER_COMPONENT_MAPPING.ORCE_VALUE_0;
 pub const D3D12_SHADER_COMPONENT_MAPPING_FORCE_VALUE_1 = D3D12_SHADER_COMPONENT_MAPPING.ORCE_VALUE_1;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_BUFFER_SRV_FLAGS = extern enum(u32) {
     NONE = 0,
     RAW = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        RAW: u1 = 0,
+    }) D3D12_BUFFER_SRV_FLAGS {
+        return @intToEnum(D3D12_BUFFER_SRV_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_BUFFER_SRV_FLAGS.NONE) else 0)
+            | (if (o.RAW == 1) @enumToInt(D3D12_BUFFER_SRV_FLAGS.RAW) else 0)
+        );
+    }
 };
 pub const D3D12_BUFFER_SRV_FLAG_NONE = D3D12_BUFFER_SRV_FLAGS.NONE;
 pub const D3D12_BUFFER_SRV_FLAG_RAW = D3D12_BUFFER_SRV_FLAGS.RAW;
@@ -2230,11 +2550,19 @@ pub const D3D12_SAMPLER_DESC = extern struct {
     MaxLOD: f32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_BUFFER_UAV_FLAGS = extern enum(u32) {
     NONE = 0,
     RAW = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        RAW: u1 = 0,
+    }) D3D12_BUFFER_UAV_FLAGS {
+        return @intToEnum(D3D12_BUFFER_UAV_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_BUFFER_UAV_FLAGS.NONE) else 0)
+            | (if (o.RAW == 1) @enumToInt(D3D12_BUFFER_UAV_FLAGS.RAW) else 0)
+        );
+    }
 };
 pub const D3D12_BUFFER_UAV_FLAG_NONE = D3D12_BUFFER_UAV_FLAGS.NONE;
 pub const D3D12_BUFFER_UAV_FLAG_RAW = D3D12_BUFFER_UAV_FLAGS.RAW;
@@ -2412,12 +2740,22 @@ pub const D3D12_TEX2DMS_ARRAY_DSV = extern struct {
     ArraySize: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_DSV_FLAGS = extern enum(u32) {
     NONE = 0,
     READ_ONLY_DEPTH = 1,
     READ_ONLY_STENCIL = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        READ_ONLY_DEPTH: u1 = 0,
+        READ_ONLY_STENCIL: u1 = 0,
+    }) D3D12_DSV_FLAGS {
+        return @intToEnum(D3D12_DSV_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_DSV_FLAGS.NONE) else 0)
+            | (if (o.READ_ONLY_DEPTH == 1) @enumToInt(D3D12_DSV_FLAGS.READ_ONLY_DEPTH) else 0)
+            | (if (o.READ_ONLY_STENCIL == 1) @enumToInt(D3D12_DSV_FLAGS.READ_ONLY_STENCIL) else 0)
+        );
+    }
 };
 pub const D3D12_DSV_FLAG_NONE = D3D12_DSV_FLAGS.NONE;
 pub const D3D12_DSV_FLAG_READ_ONLY_DEPTH = D3D12_DSV_FLAGS.READ_ONLY_DEPTH;
@@ -2454,22 +2792,42 @@ pub const D3D12_DEPTH_STENCIL_VIEW_DESC = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_CLEAR_FLAGS = extern enum(u32) {
     DEPTH = 1,
     STENCIL = 2,
     _,
+    pub fn initFlags(o: struct {
+        DEPTH: u1 = 0,
+        STENCIL: u1 = 0,
+    }) D3D12_CLEAR_FLAGS {
+        return @intToEnum(D3D12_CLEAR_FLAGS,
+              (if (o.DEPTH == 1) @enumToInt(D3D12_CLEAR_FLAGS.DEPTH) else 0)
+            | (if (o.STENCIL == 1) @enumToInt(D3D12_CLEAR_FLAGS.STENCIL) else 0)
+        );
+    }
 };
 pub const D3D12_CLEAR_FLAG_DEPTH = D3D12_CLEAR_FLAGS.DEPTH;
 pub const D3D12_CLEAR_FLAG_STENCIL = D3D12_CLEAR_FLAGS.STENCIL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_FENCE_FLAGS = extern enum(u32) {
     NONE = 0,
     SHARED = 1,
     SHARED_CROSS_ADAPTER = 2,
     NON_MONITORED = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SHARED: u1 = 0,
+        SHARED_CROSS_ADAPTER: u1 = 0,
+        NON_MONITORED: u1 = 0,
+    }) D3D12_FENCE_FLAGS {
+        return @intToEnum(D3D12_FENCE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_FENCE_FLAGS.NONE) else 0)
+            | (if (o.SHARED == 1) @enumToInt(D3D12_FENCE_FLAGS.SHARED) else 0)
+            | (if (o.SHARED_CROSS_ADAPTER == 1) @enumToInt(D3D12_FENCE_FLAGS.SHARED_CROSS_ADAPTER) else 0)
+            | (if (o.NON_MONITORED == 1) @enumToInt(D3D12_FENCE_FLAGS.NON_MONITORED) else 0)
+        );
+    }
 };
 pub const D3D12_FENCE_FLAG_NONE = D3D12_FENCE_FLAGS.NONE;
 pub const D3D12_FENCE_FLAG_SHARED = D3D12_FENCE_FLAGS.SHARED;
@@ -2489,11 +2847,19 @@ pub const D3D12_DESCRIPTOR_HEAP_TYPE_RTV = D3D12_DESCRIPTOR_HEAP_TYPE.RTV;
 pub const D3D12_DESCRIPTOR_HEAP_TYPE_DSV = D3D12_DESCRIPTOR_HEAP_TYPE.DSV;
 pub const D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES = D3D12_DESCRIPTOR_HEAP_TYPE.NUM_TYPES;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_DESCRIPTOR_HEAP_FLAGS = extern enum(u32) {
     NONE = 0,
     SHADER_VISIBLE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SHADER_VISIBLE: u1 = 0,
+    }) D3D12_DESCRIPTOR_HEAP_FLAGS {
+        return @intToEnum(D3D12_DESCRIPTOR_HEAP_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_DESCRIPTOR_HEAP_FLAGS.NONE) else 0)
+            | (if (o.SHADER_VISIBLE == 1) @enumToInt(D3D12_DESCRIPTOR_HEAP_FLAGS.SHADER_VISIBLE) else 0)
+        );
+    }
 };
 pub const D3D12_DESCRIPTOR_HEAP_FLAG_NONE = D3D12_DESCRIPTOR_HEAP_FLAGS.NONE;
 pub const D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE = D3D12_DESCRIPTOR_HEAP_FLAGS.SHADER_VISIBLE;
@@ -2582,7 +2948,6 @@ pub const D3D12_ROOT_PARAMETER = extern struct {
     ShaderVisibility: D3D12_SHADER_VISIBILITY,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_ROOT_SIGNATURE_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = 1,
@@ -2596,6 +2961,33 @@ pub const D3D12_ROOT_SIGNATURE_FLAGS = extern enum(u32) {
     DENY_AMPLIFICATION_SHADER_ROOT_ACCESS = 256,
     DENY_MESH_SHADER_ROOT_ACCESS = 512,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT: u1 = 0,
+        DENY_VERTEX_SHADER_ROOT_ACCESS: u1 = 0,
+        DENY_HULL_SHADER_ROOT_ACCESS: u1 = 0,
+        DENY_DOMAIN_SHADER_ROOT_ACCESS: u1 = 0,
+        DENY_GEOMETRY_SHADER_ROOT_ACCESS: u1 = 0,
+        DENY_PIXEL_SHADER_ROOT_ACCESS: u1 = 0,
+        ALLOW_STREAM_OUTPUT: u1 = 0,
+        LOCAL_ROOT_SIGNATURE: u1 = 0,
+        DENY_AMPLIFICATION_SHADER_ROOT_ACCESS: u1 = 0,
+        DENY_MESH_SHADER_ROOT_ACCESS: u1 = 0,
+    }) D3D12_ROOT_SIGNATURE_FLAGS {
+        return @intToEnum(D3D12_ROOT_SIGNATURE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.NONE) else 0)
+            | (if (o.ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT) else 0)
+            | (if (o.DENY_VERTEX_SHADER_ROOT_ACCESS == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.DENY_VERTEX_SHADER_ROOT_ACCESS) else 0)
+            | (if (o.DENY_HULL_SHADER_ROOT_ACCESS == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.DENY_HULL_SHADER_ROOT_ACCESS) else 0)
+            | (if (o.DENY_DOMAIN_SHADER_ROOT_ACCESS == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.DENY_DOMAIN_SHADER_ROOT_ACCESS) else 0)
+            | (if (o.DENY_GEOMETRY_SHADER_ROOT_ACCESS == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.DENY_GEOMETRY_SHADER_ROOT_ACCESS) else 0)
+            | (if (o.DENY_PIXEL_SHADER_ROOT_ACCESS == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.DENY_PIXEL_SHADER_ROOT_ACCESS) else 0)
+            | (if (o.ALLOW_STREAM_OUTPUT == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_STREAM_OUTPUT) else 0)
+            | (if (o.LOCAL_ROOT_SIGNATURE == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.LOCAL_ROOT_SIGNATURE) else 0)
+            | (if (o.DENY_AMPLIFICATION_SHADER_ROOT_ACCESS == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.DENY_AMPLIFICATION_SHADER_ROOT_ACCESS) else 0)
+            | (if (o.DENY_MESH_SHADER_ROOT_ACCESS == 1) @enumToInt(D3D12_ROOT_SIGNATURE_FLAGS.DENY_MESH_SHADER_ROOT_ACCESS) else 0)
+        );
+    }
 };
 pub const D3D12_ROOT_SIGNATURE_FLAG_NONE = D3D12_ROOT_SIGNATURE_FLAGS.NONE;
 pub const D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
@@ -2642,7 +3034,6 @@ pub const D3D12_ROOT_SIGNATURE_DESC = extern struct {
     Flags: D3D12_ROOT_SIGNATURE_FLAGS,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_DESCRIPTOR_RANGE_FLAGS = extern enum(u32) {
     NONE = 0,
     DESCRIPTORS_VOLATILE = 1,
@@ -2651,6 +3042,23 @@ pub const D3D12_DESCRIPTOR_RANGE_FLAGS = extern enum(u32) {
     DATA_STATIC = 8,
     DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS = 65536,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DESCRIPTORS_VOLATILE: u1 = 0,
+        DATA_VOLATILE: u1 = 0,
+        DATA_STATIC_WHILE_SET_AT_EXECUTE: u1 = 0,
+        DATA_STATIC: u1 = 0,
+        DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS: u1 = 0,
+    }) D3D12_DESCRIPTOR_RANGE_FLAGS {
+        return @intToEnum(D3D12_DESCRIPTOR_RANGE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_DESCRIPTOR_RANGE_FLAGS.NONE) else 0)
+            | (if (o.DESCRIPTORS_VOLATILE == 1) @enumToInt(D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_VOLATILE) else 0)
+            | (if (o.DATA_VOLATILE == 1) @enumToInt(D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_VOLATILE) else 0)
+            | (if (o.DATA_STATIC_WHILE_SET_AT_EXECUTE == 1) @enumToInt(D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_STATIC_WHILE_SET_AT_EXECUTE) else 0)
+            | (if (o.DATA_STATIC == 1) @enumToInt(D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_STATIC) else 0)
+            | (if (o.DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS == 1) @enumToInt(D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS) else 0)
+        );
+    }
 };
 pub const D3D12_DESCRIPTOR_RANGE_FLAG_NONE = D3D12_DESCRIPTOR_RANGE_FLAGS.NONE;
 pub const D3D12_DESCRIPTOR_RANGE_FLAG_DESCRIPTORS_VOLATILE = D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_VOLATILE;
@@ -2673,13 +3081,25 @@ pub const D3D12_ROOT_DESCRIPTOR_TABLE1 = extern struct {
     pDescriptorRanges: *const D3D12_DESCRIPTOR_RANGE1,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_ROOT_DESCRIPTOR_FLAGS = extern enum(u32) {
     NONE = 0,
     DATA_VOLATILE = 2,
     DATA_STATIC_WHILE_SET_AT_EXECUTE = 4,
     DATA_STATIC = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DATA_VOLATILE: u1 = 0,
+        DATA_STATIC_WHILE_SET_AT_EXECUTE: u1 = 0,
+        DATA_STATIC: u1 = 0,
+    }) D3D12_ROOT_DESCRIPTOR_FLAGS {
+        return @intToEnum(D3D12_ROOT_DESCRIPTOR_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_ROOT_DESCRIPTOR_FLAGS.NONE) else 0)
+            | (if (o.DATA_VOLATILE == 1) @enumToInt(D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_VOLATILE) else 0)
+            | (if (o.DATA_STATIC_WHILE_SET_AT_EXECUTE == 1) @enumToInt(D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_STATIC_WHILE_SET_AT_EXECUTE) else 0)
+            | (if (o.DATA_STATIC == 1) @enumToInt(D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_STATIC) else 0)
+        );
+    }
 };
 pub const D3D12_ROOT_DESCRIPTOR_FLAG_NONE = D3D12_ROOT_DESCRIPTOR_FLAGS.NONE;
 pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_VOLATILE = D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_VOLATILE;
@@ -4509,12 +4929,22 @@ pub const ID3D12PipelineLibrary1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_MULTIPLE_FENCE_WAIT_FLAGS = extern enum(u32) {
     NONE = 0,
     ANY = 1,
     ALL = 0,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ANY: u1 = 0,
+        ALL: u1 = 0,
+    }) D3D12_MULTIPLE_FENCE_WAIT_FLAGS {
+        return @intToEnum(D3D12_MULTIPLE_FENCE_WAIT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_MULTIPLE_FENCE_WAIT_FLAGS.NONE) else 0)
+            | (if (o.ANY == 1) @enumToInt(D3D12_MULTIPLE_FENCE_WAIT_FLAGS.ANY) else 0)
+            | (if (o.ALL == 1) @enumToInt(D3D12_MULTIPLE_FENCE_WAIT_FLAGS.ALL) else 0)
+        );
+    }
 };
 pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_NONE = D3D12_MULTIPLE_FENCE_WAIT_FLAGS.NONE;
 pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_ANY = D3D12_MULTIPLE_FENCE_WAIT_FLAGS.ANY;
@@ -4602,11 +5032,19 @@ pub const ID3D12Device2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RESIDENCY_FLAGS = extern enum(u32) {
     NONE = 0,
     DENY_OVERBUDGET = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DENY_OVERBUDGET: u1 = 0,
+    }) D3D12_RESIDENCY_FLAGS {
+        return @intToEnum(D3D12_RESIDENCY_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RESIDENCY_FLAGS.NONE) else 0)
+            | (if (o.DENY_OVERBUDGET == 1) @enumToInt(D3D12_RESIDENCY_FLAGS.DENY_OVERBUDGET) else 0)
+        );
+    }
 };
 pub const D3D12_RESIDENCY_FLAG_NONE = D3D12_RESIDENCY_FLAGS.NONE;
 pub const D3D12_RESIDENCY_FLAG_DENY_OVERBUDGET = D3D12_RESIDENCY_FLAGS.DENY_OVERBUDGET;
@@ -4656,24 +5094,42 @@ pub const ID3D12Device3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_COMMAND_LIST_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) D3D12_COMMAND_LIST_FLAGS {
+        return @intToEnum(D3D12_COMMAND_LIST_FLAGS,
+              (if (o.E == 1) @enumToInt(D3D12_COMMAND_LIST_FLAGS.E) else 0)
+        );
+    }
 };
 pub const D3D12_COMMAND_LIST_FLAG_NONE = D3D12_COMMAND_LIST_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_COMMAND_POOL_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) D3D12_COMMAND_POOL_FLAGS {
+        return @intToEnum(D3D12_COMMAND_POOL_FLAGS,
+              (if (o.E == 1) @enumToInt(D3D12_COMMAND_POOL_FLAGS.E) else 0)
+        );
+    }
 };
 pub const D3D12_COMMAND_POOL_FLAG_NONE = D3D12_COMMAND_POOL_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_COMMAND_RECORDER_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) D3D12_COMMAND_RECORDER_FLAGS {
+        return @intToEnum(D3D12_COMMAND_RECORDER_FLAGS,
+              (if (o.E == 1) @enumToInt(D3D12_COMMAND_RECORDER_FLAGS.E) else 0)
+        );
+    }
 };
 pub const D3D12_COMMAND_RECORDER_FLAG_NONE = D3D12_COMMAND_RECORDER_FLAGS.E;
 
@@ -4713,11 +5169,19 @@ pub const ID3D12ProtectedSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS = extern enum(u32) {
     NONE = 0,
     SUPPORTED = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SUPPORTED: u1 = 0,
+    }) D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS {
+        return @intToEnum(D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.NONE) else 0)
+            | (if (o.SUPPORTED == 1) @enumToInt(D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.SUPPORTED) else 0)
+        );
+    }
 };
 pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.NONE;
 pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_SUPPORTED = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.SUPPORTED;
@@ -4727,10 +5191,16 @@ pub const D3D12_FEATURE_DATA_PROTECTED_RESOURCE_SESSION_SUPPORT = extern struct 
     Support: D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) D3D12_PROTECTED_RESOURCE_SESSION_FLAGS {
+        return @intToEnum(D3D12_PROTECTED_RESOURCE_SESSION_FLAGS,
+              (if (o.E == 1) @enumToInt(D3D12_PROTECTED_RESOURCE_SESSION_FLAGS.E) else 0)
+        );
+    }
 };
 pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_FLAGS.E;
 
@@ -4953,11 +5423,19 @@ pub const D3D12_META_COMMAND_PARAMETER_TYPE_GPU_VIRTUAL_ADDRESS = D3D12_META_COM
 pub const D3D12_META_COMMAND_PARAMETER_TYPE_CPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV = D3D12_META_COMMAND_PARAMETER_TYPE.CPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV;
 pub const D3D12_META_COMMAND_PARAMETER_TYPE_GPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV = D3D12_META_COMMAND_PARAMETER_TYPE.GPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_META_COMMAND_PARAMETER_FLAGS = extern enum(u32) {
     INPUT = 1,
     OUTPUT = 2,
     _,
+    pub fn initFlags(o: struct {
+        INPUT: u1 = 0,
+        OUTPUT: u1 = 0,
+    }) D3D12_META_COMMAND_PARAMETER_FLAGS {
+        return @intToEnum(D3D12_META_COMMAND_PARAMETER_FLAGS,
+              (if (o.INPUT == 1) @enumToInt(D3D12_META_COMMAND_PARAMETER_FLAGS.INPUT) else 0)
+            | (if (o.OUTPUT == 1) @enumToInt(D3D12_META_COMMAND_PARAMETER_FLAGS.OUTPUT) else 0)
+        );
+    }
 };
 pub const D3D12_META_COMMAND_PARAMETER_FLAG_INPUT = D3D12_META_COMMAND_PARAMETER_FLAGS.INPUT;
 pub const D3D12_META_COMMAND_PARAMETER_FLAG_OUTPUT = D3D12_META_COMMAND_PARAMETER_FLAGS.OUTPUT;
@@ -4979,7 +5457,6 @@ pub const D3D12_META_COMMAND_PARAMETER_DESC = extern struct {
     StructureOffset: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_GRAPHICS_STATES = extern enum(u32) {
     NONE = 0,
     IA_VERTEX_BUFFERS = 1,
@@ -5000,6 +5477,47 @@ pub const D3D12_GRAPHICS_STATES = extern enum(u32) {
     SAMPLE_POSITIONS = 32768,
     VIEW_INSTANCE_MASK = 65536,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        IA_VERTEX_BUFFERS: u1 = 0,
+        IA_INDEX_BUFFER: u1 = 0,
+        IA_PRIMITIVE_TOPOLOGY: u1 = 0,
+        DESCRIPTOR_HEAP: u1 = 0,
+        GRAPHICS_ROOT_SIGNATURE: u1 = 0,
+        COMPUTE_ROOT_SIGNATURE: u1 = 0,
+        RS_VIEWPORTS: u1 = 0,
+        RS_SCISSOR_RECTS: u1 = 0,
+        PREDICATION: u1 = 0,
+        OM_RENDER_TARGETS: u1 = 0,
+        OM_STENCIL_REF: u1 = 0,
+        OM_BLEND_FACTOR: u1 = 0,
+        PIPELINE_STATE: u1 = 0,
+        SO_TARGETS: u1 = 0,
+        OM_DEPTH_BOUNDS: u1 = 0,
+        SAMPLE_POSITIONS: u1 = 0,
+        VIEW_INSTANCE_MASK: u1 = 0,
+    }) D3D12_GRAPHICS_STATES {
+        return @intToEnum(D3D12_GRAPHICS_STATES,
+              (if (o.NONE == 1) @enumToInt(D3D12_GRAPHICS_STATES.NONE) else 0)
+            | (if (o.IA_VERTEX_BUFFERS == 1) @enumToInt(D3D12_GRAPHICS_STATES.IA_VERTEX_BUFFERS) else 0)
+            | (if (o.IA_INDEX_BUFFER == 1) @enumToInt(D3D12_GRAPHICS_STATES.IA_INDEX_BUFFER) else 0)
+            | (if (o.IA_PRIMITIVE_TOPOLOGY == 1) @enumToInt(D3D12_GRAPHICS_STATES.IA_PRIMITIVE_TOPOLOGY) else 0)
+            | (if (o.DESCRIPTOR_HEAP == 1) @enumToInt(D3D12_GRAPHICS_STATES.DESCRIPTOR_HEAP) else 0)
+            | (if (o.GRAPHICS_ROOT_SIGNATURE == 1) @enumToInt(D3D12_GRAPHICS_STATES.GRAPHICS_ROOT_SIGNATURE) else 0)
+            | (if (o.COMPUTE_ROOT_SIGNATURE == 1) @enumToInt(D3D12_GRAPHICS_STATES.COMPUTE_ROOT_SIGNATURE) else 0)
+            | (if (o.RS_VIEWPORTS == 1) @enumToInt(D3D12_GRAPHICS_STATES.RS_VIEWPORTS) else 0)
+            | (if (o.RS_SCISSOR_RECTS == 1) @enumToInt(D3D12_GRAPHICS_STATES.RS_SCISSOR_RECTS) else 0)
+            | (if (o.PREDICATION == 1) @enumToInt(D3D12_GRAPHICS_STATES.PREDICATION) else 0)
+            | (if (o.OM_RENDER_TARGETS == 1) @enumToInt(D3D12_GRAPHICS_STATES.OM_RENDER_TARGETS) else 0)
+            | (if (o.OM_STENCIL_REF == 1) @enumToInt(D3D12_GRAPHICS_STATES.OM_STENCIL_REF) else 0)
+            | (if (o.OM_BLEND_FACTOR == 1) @enumToInt(D3D12_GRAPHICS_STATES.OM_BLEND_FACTOR) else 0)
+            | (if (o.PIPELINE_STATE == 1) @enumToInt(D3D12_GRAPHICS_STATES.PIPELINE_STATE) else 0)
+            | (if (o.SO_TARGETS == 1) @enumToInt(D3D12_GRAPHICS_STATES.SO_TARGETS) else 0)
+            | (if (o.OM_DEPTH_BOUNDS == 1) @enumToInt(D3D12_GRAPHICS_STATES.OM_DEPTH_BOUNDS) else 0)
+            | (if (o.SAMPLE_POSITIONS == 1) @enumToInt(D3D12_GRAPHICS_STATES.SAMPLE_POSITIONS) else 0)
+            | (if (o.VIEW_INSTANCE_MASK == 1) @enumToInt(D3D12_GRAPHICS_STATES.VIEW_INSTANCE_MASK) else 0)
+        );
+    }
 };
 pub const D3D12_GRAPHICS_STATE_NONE = D3D12_GRAPHICS_STATES.NONE;
 pub const D3D12_GRAPHICS_STATE_IA_VERTEX_BUFFERS = D3D12_GRAPHICS_STATES.IA_VERTEX_BUFFERS;
@@ -5118,13 +5636,25 @@ pub const D3D12_STATE_SUBOBJECT = extern struct {
     pDesc: *const c_void,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_STATE_OBJECT_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = 1,
     ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS = 2,
     ALLOW_STATE_OBJECT_ADDITIONS = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS: u1 = 0,
+        ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS: u1 = 0,
+        ALLOW_STATE_OBJECT_ADDITIONS: u1 = 0,
+    }) D3D12_STATE_OBJECT_FLAGS {
+        return @intToEnum(D3D12_STATE_OBJECT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_STATE_OBJECT_FLAGS.NONE) else 0)
+            | (if (o.ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS == 1) @enumToInt(D3D12_STATE_OBJECT_FLAGS.ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS) else 0)
+            | (if (o.ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS == 1) @enumToInt(D3D12_STATE_OBJECT_FLAGS.ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS) else 0)
+            | (if (o.ALLOW_STATE_OBJECT_ADDITIONS == 1) @enumToInt(D3D12_STATE_OBJECT_FLAGS.ALLOW_STATE_OBJECT_ADDITIONS) else 0)
+        );
+    }
 };
 pub const D3D12_STATE_OBJECT_FLAG_NONE = D3D12_STATE_OBJECT_FLAGS.NONE;
 pub const D3D12_STATE_OBJECT_FLAG_ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = D3D12_STATE_OBJECT_FLAGS.ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS;
@@ -5147,10 +5677,16 @@ pub const D3D12_NODE_MASK = extern struct {
     NodeMask: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_EXPORT_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) D3D12_EXPORT_FLAGS {
+        return @intToEnum(D3D12_EXPORT_FLAGS,
+              (if (o.E == 1) @enumToInt(D3D12_EXPORT_FLAGS.E) else 0)
+        );
+    }
 };
 pub const D3D12_EXPORT_FLAG_NONE = D3D12_EXPORT_FLAGS.E;
 
@@ -5208,12 +5744,22 @@ pub const D3D12_RAYTRACING_PIPELINE_CONFIG = extern struct {
     MaxTraceRecursionDepth: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RAYTRACING_PIPELINE_FLAGS = extern enum(u32) {
     NONE = 0,
     SKIP_TRIANGLES = 256,
     SKIP_PROCEDURAL_PRIMITIVES = 512,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SKIP_TRIANGLES: u1 = 0,
+        SKIP_PROCEDURAL_PRIMITIVES: u1 = 0,
+    }) D3D12_RAYTRACING_PIPELINE_FLAGS {
+        return @intToEnum(D3D12_RAYTRACING_PIPELINE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RAYTRACING_PIPELINE_FLAGS.NONE) else 0)
+            | (if (o.SKIP_TRIANGLES == 1) @enumToInt(D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_TRIANGLES) else 0)
+            | (if (o.SKIP_PROCEDURAL_PRIMITIVES == 1) @enumToInt(D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_PROCEDURAL_PRIMITIVES) else 0)
+        );
+    }
 };
 pub const D3D12_RAYTRACING_PIPELINE_FLAG_NONE = D3D12_RAYTRACING_PIPELINE_FLAGS.NONE;
 pub const D3D12_RAYTRACING_PIPELINE_FLAG_SKIP_TRIANGLES = D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_TRIANGLES;
@@ -5237,12 +5783,22 @@ pub const D3D12_STATE_OBJECT_DESC = extern struct {
     pSubobjects: *const D3D12_STATE_SUBOBJECT,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RAYTRACING_GEOMETRY_FLAGS = extern enum(u32) {
     NONE = 0,
     OPAQUE = 1,
     NO_DUPLICATE_ANYHIT_INVOCATION = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        OPAQUE: u1 = 0,
+        NO_DUPLICATE_ANYHIT_INVOCATION: u1 = 0,
+    }) D3D12_RAYTRACING_GEOMETRY_FLAGS {
+        return @intToEnum(D3D12_RAYTRACING_GEOMETRY_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RAYTRACING_GEOMETRY_FLAGS.NONE) else 0)
+            | (if (o.OPAQUE == 1) @enumToInt(D3D12_RAYTRACING_GEOMETRY_FLAGS.OPAQUE) else 0)
+            | (if (o.NO_DUPLICATE_ANYHIT_INVOCATION == 1) @enumToInt(D3D12_RAYTRACING_GEOMETRY_FLAGS.NO_DUPLICATE_ANYHIT_INVOCATION) else 0)
+        );
+    }
 };
 pub const D3D12_RAYTRACING_GEOMETRY_FLAG_NONE = D3D12_RAYTRACING_GEOMETRY_FLAGS.NONE;
 pub const D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE = D3D12_RAYTRACING_GEOMETRY_FLAGS.OPAQUE;
@@ -5255,7 +5811,6 @@ pub const D3D12_RAYTRACING_GEOMETRY_TYPE = extern enum(i32) {
 pub const D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES = D3D12_RAYTRACING_GEOMETRY_TYPE.TRIANGLES;
 pub const D3D12_RAYTRACING_GEOMETRY_TYPE_PROCEDURAL_PRIMITIVE_AABBS = D3D12_RAYTRACING_GEOMETRY_TYPE.PROCEDURAL_PRIMITIVE_AABBS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RAYTRACING_INSTANCE_FLAGS = extern enum(u32) {
     NONE = 0,
     TRIANGLE_CULL_DISABLE = 1,
@@ -5263,6 +5818,21 @@ pub const D3D12_RAYTRACING_INSTANCE_FLAGS = extern enum(u32) {
     FORCE_OPAQUE = 4,
     FORCE_NON_OPAQUE = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TRIANGLE_CULL_DISABLE: u1 = 0,
+        TRIANGLE_FRONT_COUNTERCLOCKWISE: u1 = 0,
+        FORCE_OPAQUE: u1 = 0,
+        FORCE_NON_OPAQUE: u1 = 0,
+    }) D3D12_RAYTRACING_INSTANCE_FLAGS {
+        return @intToEnum(D3D12_RAYTRACING_INSTANCE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RAYTRACING_INSTANCE_FLAGS.NONE) else 0)
+            | (if (o.TRIANGLE_CULL_DISABLE == 1) @enumToInt(D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_CULL_DISABLE) else 0)
+            | (if (o.TRIANGLE_FRONT_COUNTERCLOCKWISE == 1) @enumToInt(D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_FRONT_COUNTERCLOCKWISE) else 0)
+            | (if (o.FORCE_OPAQUE == 1) @enumToInt(D3D12_RAYTRACING_INSTANCE_FLAGS.FORCE_OPAQUE) else 0)
+            | (if (o.FORCE_NON_OPAQUE == 1) @enumToInt(D3D12_RAYTRACING_INSTANCE_FLAGS.FORCE_NON_OPAQUE) else 0)
+        );
+    }
 };
 pub const D3D12_RAYTRACING_INSTANCE_FLAG_NONE = D3D12_RAYTRACING_INSTANCE_FLAGS.NONE;
 pub const D3D12_RAYTRACING_INSTANCE_FLAG_TRIANGLE_CULL_DISABLE = D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_CULL_DISABLE;
@@ -5310,7 +5880,6 @@ pub const D3D12_RAYTRACING_GEOMETRY_AABBS_DESC = extern struct {
     AABBs: D3D12_GPU_VIRTUAL_ADDRESS_AND_STRIDE,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_UPDATE = 1,
@@ -5320,6 +5889,25 @@ pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS = extern enum(u32)
     MINIMIZE_MEMORY = 16,
     PERFORM_UPDATE = 32,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_UPDATE: u1 = 0,
+        ALLOW_COMPACTION: u1 = 0,
+        PREFER_FAST_TRACE: u1 = 0,
+        PREFER_FAST_BUILD: u1 = 0,
+        MINIMIZE_MEMORY: u1 = 0,
+        PERFORM_UPDATE: u1 = 0,
+    }) D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS {
+        return @intToEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.NONE) else 0)
+            | (if (o.ALLOW_UPDATE == 1) @enumToInt(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_UPDATE) else 0)
+            | (if (o.ALLOW_COMPACTION == 1) @enumToInt(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_COMPACTION) else 0)
+            | (if (o.PREFER_FAST_TRACE == 1) @enumToInt(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PREFER_FAST_TRACE) else 0)
+            | (if (o.PREFER_FAST_BUILD == 1) @enumToInt(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PREFER_FAST_BUILD) else 0)
+            | (if (o.MINIMIZE_MEMORY == 1) @enumToInt(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.MINIMIZE_MEMORY) else 0)
+            | (if (o.PERFORM_UPDATE == 1) @enumToInt(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PERFORM_UPDATE) else 0)
+        );
+    }
 };
 pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_NONE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.NONE;
 pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_ALLOW_UPDATE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_UPDATE;
@@ -5465,7 +6053,6 @@ pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO = extern struct 
     UpdateScratchDataSizeInBytes: u64,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RAY_FLAGS = extern enum(u32) {
     NONE = 0,
     FORCE_OPAQUE = 1,
@@ -5479,6 +6066,33 @@ pub const D3D12_RAY_FLAGS = extern enum(u32) {
     SKIP_TRIANGLES = 256,
     SKIP_PROCEDURAL_PRIMITIVES = 512,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        FORCE_OPAQUE: u1 = 0,
+        FORCE_NON_OPAQUE: u1 = 0,
+        ACCEPT_FIRST_HIT_AND_END_SEARCH: u1 = 0,
+        SKIP_CLOSEST_HIT_SHADER: u1 = 0,
+        CULL_BACK_FACING_TRIANGLES: u1 = 0,
+        CULL_FRONT_FACING_TRIANGLES: u1 = 0,
+        CULL_OPAQUE: u1 = 0,
+        CULL_NON_OPAQUE: u1 = 0,
+        SKIP_TRIANGLES: u1 = 0,
+        SKIP_PROCEDURAL_PRIMITIVES: u1 = 0,
+    }) D3D12_RAY_FLAGS {
+        return @intToEnum(D3D12_RAY_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RAY_FLAGS.NONE) else 0)
+            | (if (o.FORCE_OPAQUE == 1) @enumToInt(D3D12_RAY_FLAGS.FORCE_OPAQUE) else 0)
+            | (if (o.FORCE_NON_OPAQUE == 1) @enumToInt(D3D12_RAY_FLAGS.FORCE_NON_OPAQUE) else 0)
+            | (if (o.ACCEPT_FIRST_HIT_AND_END_SEARCH == 1) @enumToInt(D3D12_RAY_FLAGS.ACCEPT_FIRST_HIT_AND_END_SEARCH) else 0)
+            | (if (o.SKIP_CLOSEST_HIT_SHADER == 1) @enumToInt(D3D12_RAY_FLAGS.SKIP_CLOSEST_HIT_SHADER) else 0)
+            | (if (o.CULL_BACK_FACING_TRIANGLES == 1) @enumToInt(D3D12_RAY_FLAGS.CULL_BACK_FACING_TRIANGLES) else 0)
+            | (if (o.CULL_FRONT_FACING_TRIANGLES == 1) @enumToInt(D3D12_RAY_FLAGS.CULL_FRONT_FACING_TRIANGLES) else 0)
+            | (if (o.CULL_OPAQUE == 1) @enumToInt(D3D12_RAY_FLAGS.CULL_OPAQUE) else 0)
+            | (if (o.CULL_NON_OPAQUE == 1) @enumToInt(D3D12_RAY_FLAGS.CULL_NON_OPAQUE) else 0)
+            | (if (o.SKIP_TRIANGLES == 1) @enumToInt(D3D12_RAY_FLAGS.SKIP_TRIANGLES) else 0)
+            | (if (o.SKIP_PROCEDURAL_PRIMITIVES == 1) @enumToInt(D3D12_RAY_FLAGS.SKIP_PROCEDURAL_PRIMITIVES) else 0)
+        );
+    }
 };
 pub const D3D12_RAY_FLAG_NONE = D3D12_RAY_FLAGS.NONE;
 pub const D3D12_RAY_FLAG_FORCE_OPAQUE = D3D12_RAY_FLAGS.FORCE_OPAQUE;
@@ -5724,12 +6338,22 @@ pub const D3D12_DRED_VERSION_1_0 = D3D12_DRED_VERSION.@"0";
 pub const D3D12_DRED_VERSION_1_1 = D3D12_DRED_VERSION.@"1";
 pub const D3D12_DRED_VERSION_1_2 = D3D12_DRED_VERSION.@"2";
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_DRED_FLAGS = extern enum(u32) {
     NONE = 0,
     FORCE_ENABLE = 1,
     DISABLE_AUTOBREADCRUMBS = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        FORCE_ENABLE: u1 = 0,
+        DISABLE_AUTOBREADCRUMBS: u1 = 0,
+    }) D3D12_DRED_FLAGS {
+        return @intToEnum(D3D12_DRED_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_DRED_FLAGS.NONE) else 0)
+            | (if (o.FORCE_ENABLE == 1) @enumToInt(D3D12_DRED_FLAGS.FORCE_ENABLE) else 0)
+            | (if (o.DISABLE_AUTOBREADCRUMBS == 1) @enumToInt(D3D12_DRED_FLAGS.DISABLE_AUTOBREADCRUMBS) else 0)
+        );
+    }
 };
 pub const D3D12_DRED_FLAG_NONE = D3D12_DRED_FLAGS.NONE;
 pub const D3D12_DRED_FLAG_FORCE_ENABLE = D3D12_DRED_FLAGS.FORCE_ENABLE;
@@ -6330,13 +6954,25 @@ pub const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC = extern struct {
     StencilEndingAccess: D3D12_RENDER_PASS_ENDING_ACCESS,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D12_RENDER_PASS_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_UAV_WRITES = 1,
     SUSPENDING_PASS = 2,
     RESUMING_PASS = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_UAV_WRITES: u1 = 0,
+        SUSPENDING_PASS: u1 = 0,
+        RESUMING_PASS: u1 = 0,
+    }) D3D12_RENDER_PASS_FLAGS {
+        return @intToEnum(D3D12_RENDER_PASS_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D12_RENDER_PASS_FLAGS.NONE) else 0)
+            | (if (o.ALLOW_UAV_WRITES == 1) @enumToInt(D3D12_RENDER_PASS_FLAGS.ALLOW_UAV_WRITES) else 0)
+            | (if (o.SUSPENDING_PASS == 1) @enumToInt(D3D12_RENDER_PASS_FLAGS.SUSPENDING_PASS) else 0)
+            | (if (o.RESUMING_PASS == 1) @enumToInt(D3D12_RENDER_PASS_FLAGS.RESUMING_PASS) else 0)
+        );
+    }
 };
 pub const D3D12_RENDER_PASS_FLAG_NONE = D3D12_RENDER_PASS_FLAGS.NONE;
 pub const D3D12_RENDER_PASS_FLAG_ALLOW_UAV_WRITES = D3D12_RENDER_PASS_FLAGS.ALLOW_UAV_WRITES;

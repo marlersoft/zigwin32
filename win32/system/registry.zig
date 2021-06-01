@@ -56,7 +56,6 @@ pub const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE.RESOURCE_REQUIREMENTS_
 pub const REG_QWORD = REG_VALUE_TYPE.QWORD;
 pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD_LITTLE_ENDIAN;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REG_SAM_FLAGS = extern enum(u32) {
     QUERY_VALUE = 1,
     SET_VALUE = 2,
@@ -72,6 +71,37 @@ pub const REG_SAM_FLAGS = extern enum(u32) {
     EXECUTE = 131097,
     ALL_ACCESS = 983103,
     _,
+    pub fn initFlags(o: struct {
+        QUERY_VALUE: u1 = 0,
+        SET_VALUE: u1 = 0,
+        CREATE_SUB_KEY: u1 = 0,
+        ENUMERATE_SUB_KEYS: u1 = 0,
+        NOTIFY: u1 = 0,
+        CREATE_LINK: u1 = 0,
+        WOW64_32KEY: u1 = 0,
+        WOW64_64KEY: u1 = 0,
+        WOW64_RES: u1 = 0,
+        READ: u1 = 0,
+        WRITE: u1 = 0,
+        EXECUTE: u1 = 0,
+        ALL_ACCESS: u1 = 0,
+    }) REG_SAM_FLAGS {
+        return @intToEnum(REG_SAM_FLAGS,
+              (if (o.QUERY_VALUE == 1) @enumToInt(REG_SAM_FLAGS.QUERY_VALUE) else 0)
+            | (if (o.SET_VALUE == 1) @enumToInt(REG_SAM_FLAGS.SET_VALUE) else 0)
+            | (if (o.CREATE_SUB_KEY == 1) @enumToInt(REG_SAM_FLAGS.CREATE_SUB_KEY) else 0)
+            | (if (o.ENUMERATE_SUB_KEYS == 1) @enumToInt(REG_SAM_FLAGS.ENUMERATE_SUB_KEYS) else 0)
+            | (if (o.NOTIFY == 1) @enumToInt(REG_SAM_FLAGS.NOTIFY) else 0)
+            | (if (o.CREATE_LINK == 1) @enumToInt(REG_SAM_FLAGS.CREATE_LINK) else 0)
+            | (if (o.WOW64_32KEY == 1) @enumToInt(REG_SAM_FLAGS.WOW64_32KEY) else 0)
+            | (if (o.WOW64_64KEY == 1) @enumToInt(REG_SAM_FLAGS.WOW64_64KEY) else 0)
+            | (if (o.WOW64_RES == 1) @enumToInt(REG_SAM_FLAGS.WOW64_RES) else 0)
+            | (if (o.READ == 1) @enumToInt(REG_SAM_FLAGS.READ) else 0)
+            | (if (o.WRITE == 1) @enumToInt(REG_SAM_FLAGS.WRITE) else 0)
+            | (if (o.EXECUTE == 1) @enumToInt(REG_SAM_FLAGS.EXECUTE) else 0)
+            | (if (o.ALL_ACCESS == 1) @enumToInt(REG_SAM_FLAGS.ALL_ACCESS) else 0)
+        );
+    }
 };
 pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
 pub const KEY_SET_VALUE = REG_SAM_FLAGS.SET_VALUE;
@@ -87,7 +117,6 @@ pub const KEY_WRITE = REG_SAM_FLAGS.WRITE;
 pub const KEY_EXECUTE = REG_SAM_FLAGS.EXECUTE;
 pub const KEY_ALL_ACCESS = REG_SAM_FLAGS.ALL_ACCESS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
     RESERVED = 0,
     NON_VOLATILE = 0,
@@ -97,6 +126,25 @@ pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
     OPEN_LINK = 8,
     DONT_VIRTUALIZE = 16,
     _,
+    pub fn initFlags(o: struct {
+        RESERVED: u1 = 0,
+        NON_VOLATILE: u1 = 0,
+        VOLATILE: u1 = 0,
+        CREATE_LINK: u1 = 0,
+        BACKUP_RESTORE: u1 = 0,
+        OPEN_LINK: u1 = 0,
+        DONT_VIRTUALIZE: u1 = 0,
+    }) REG_OPEN_CREATE_OPTIONS {
+        return @intToEnum(REG_OPEN_CREATE_OPTIONS,
+              (if (o.RESERVED == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.RESERVED) else 0)
+            | (if (o.NON_VOLATILE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.NON_VOLATILE) else 0)
+            | (if (o.VOLATILE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.VOLATILE) else 0)
+            | (if (o.CREATE_LINK == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.CREATE_LINK) else 0)
+            | (if (o.BACKUP_RESTORE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.BACKUP_RESTORE) else 0)
+            | (if (o.OPEN_LINK == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.OPEN_LINK) else 0)
+            | (if (o.DONT_VIRTUALIZE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.DONT_VIRTUALIZE) else 0)
+        );
+    }
 };
 // TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
 
@@ -178,7 +226,6 @@ pub const REG_RESTORE_KEY_FLAGS = extern enum(i32) {
 pub const REG_FORCE_RESTORE = REG_RESTORE_KEY_FLAGS.FORCE_RESTORE;
 pub const REG_WHOLE_HIVE_VOLATILE = REG_RESTORE_KEY_FLAGS.WHOLE_HIVE_VOLATILE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REG_NOTIFY_FILTER = extern enum(u32) {
     CHANGE_NAME = 1,
     CHANGE_ATTRIBUTES = 2,
@@ -186,6 +233,21 @@ pub const REG_NOTIFY_FILTER = extern enum(u32) {
     CHANGE_SECURITY = 8,
     THREAD_AGNOSTIC = 268435456,
     _,
+    pub fn initFlags(o: struct {
+        CHANGE_NAME: u1 = 0,
+        CHANGE_ATTRIBUTES: u1 = 0,
+        CHANGE_LAST_SET: u1 = 0,
+        CHANGE_SECURITY: u1 = 0,
+        THREAD_AGNOSTIC: u1 = 0,
+    }) REG_NOTIFY_FILTER {
+        return @intToEnum(REG_NOTIFY_FILTER,
+              (if (o.CHANGE_NAME == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_NAME) else 0)
+            | (if (o.CHANGE_ATTRIBUTES == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES) else 0)
+            | (if (o.CHANGE_LAST_SET == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_LAST_SET) else 0)
+            | (if (o.CHANGE_SECURITY == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_SECURITY) else 0)
+            | (if (o.THREAD_AGNOSTIC == 1) @enumToInt(REG_NOTIFY_FILTER.THREAD_AGNOSTIC) else 0)
+        );
+    }
 };
 pub const REG_NOTIFY_CHANGE_NAME = REG_NOTIFY_FILTER.CHANGE_NAME;
 pub const REG_NOTIFY_CHANGE_ATTRIBUTES = REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES;
@@ -193,7 +255,6 @@ pub const REG_NOTIFY_CHANGE_LAST_SET = REG_NOTIFY_FILTER.CHANGE_LAST_SET;
 pub const REG_NOTIFY_CHANGE_SECURITY = REG_NOTIFY_FILTER.CHANGE_SECURITY;
 pub const REG_NOTIFY_THREAD_AGNOSTIC = REG_NOTIFY_FILTER.THREAD_AGNOSTIC;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RRF_RT = extern enum(u32) {
     ANY = 65535,
     DWORD = 24,
@@ -206,6 +267,31 @@ pub const RRF_RT = extern enum(u32) {
     REG_QWORD = 64,
     REG_SZ = 2,
     _,
+    pub fn initFlags(o: struct {
+        ANY: u1 = 0,
+        DWORD: u1 = 0,
+        QWORD: u1 = 0,
+        REG_BINARY: u1 = 0,
+        REG_DWORD: u1 = 0,
+        REG_EXPAND_SZ: u1 = 0,
+        REG_MULTI_SZ: u1 = 0,
+        REG_NONE: u1 = 0,
+        REG_QWORD: u1 = 0,
+        REG_SZ: u1 = 0,
+    }) RRF_RT {
+        return @intToEnum(RRF_RT,
+              (if (o.ANY == 1) @enumToInt(RRF_RT.ANY) else 0)
+            | (if (o.DWORD == 1) @enumToInt(RRF_RT.DWORD) else 0)
+            | (if (o.QWORD == 1) @enumToInt(RRF_RT.QWORD) else 0)
+            | (if (o.REG_BINARY == 1) @enumToInt(RRF_RT.REG_BINARY) else 0)
+            | (if (o.REG_DWORD == 1) @enumToInt(RRF_RT.REG_DWORD) else 0)
+            | (if (o.REG_EXPAND_SZ == 1) @enumToInt(RRF_RT.REG_EXPAND_SZ) else 0)
+            | (if (o.REG_MULTI_SZ == 1) @enumToInt(RRF_RT.REG_MULTI_SZ) else 0)
+            | (if (o.REG_NONE == 1) @enumToInt(RRF_RT.REG_NONE) else 0)
+            | (if (o.REG_QWORD == 1) @enumToInt(RRF_RT.REG_QWORD) else 0)
+            | (if (o.REG_SZ == 1) @enumToInt(RRF_RT.REG_SZ) else 0)
+        );
+    }
 };
 pub const RRF_RT_ANY = RRF_RT.ANY;
 pub const RRF_RT_DWORD = RRF_RT.DWORD;

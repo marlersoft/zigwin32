@@ -1514,7 +1514,6 @@ pub const DESKTOPENUMPROCW = fn(
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DI_FLAGS = extern enum(u32) {
     MASK = 1,
     IMAGE = 2,
@@ -1523,6 +1522,23 @@ pub const DI_FLAGS = extern enum(u32) {
     DEFAULTSIZE = 8,
     NOMIRROR = 16,
     _,
+    pub fn initFlags(o: struct {
+        MASK: u1 = 0,
+        IMAGE: u1 = 0,
+        NORMAL: u1 = 0,
+        COMPAT: u1 = 0,
+        DEFAULTSIZE: u1 = 0,
+        NOMIRROR: u1 = 0,
+    }) DI_FLAGS {
+        return @intToEnum(DI_FLAGS,
+              (if (o.MASK == 1) @enumToInt(DI_FLAGS.MASK) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(DI_FLAGS.IMAGE) else 0)
+            | (if (o.NORMAL == 1) @enumToInt(DI_FLAGS.NORMAL) else 0)
+            | (if (o.COMPAT == 1) @enumToInt(DI_FLAGS.COMPAT) else 0)
+            | (if (o.DEFAULTSIZE == 1) @enumToInt(DI_FLAGS.DEFAULTSIZE) else 0)
+            | (if (o.NOMIRROR == 1) @enumToInt(DI_FLAGS.NOMIRROR) else 0)
+        );
+    }
 };
 pub const DI_MASK = DI_FLAGS.MASK;
 pub const DI_IMAGE = DI_FLAGS.IMAGE;
@@ -3424,7 +3440,6 @@ pub const PAGESETUPDLGW = packed struct {
 
 }, else => struct { } };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WNDCLASS_STYLES = extern enum(u32) {
     VREDRAW = 1,
     HREDRAW = 2,
@@ -3440,6 +3455,37 @@ pub const WNDCLASS_STYLES = extern enum(u32) {
     IME = 65536,
     DROPSHADOW = 131072,
     _,
+    pub fn initFlags(o: struct {
+        VREDRAW: u1 = 0,
+        HREDRAW: u1 = 0,
+        DBLCLKS: u1 = 0,
+        OWNDC: u1 = 0,
+        CLASSDC: u1 = 0,
+        PARENTDC: u1 = 0,
+        NOCLOSE: u1 = 0,
+        SAVEBITS: u1 = 0,
+        BYTEALIGNCLIENT: u1 = 0,
+        BYTEALIGNWINDOW: u1 = 0,
+        GLOBALCLASS: u1 = 0,
+        IME: u1 = 0,
+        DROPSHADOW: u1 = 0,
+    }) WNDCLASS_STYLES {
+        return @intToEnum(WNDCLASS_STYLES,
+              (if (o.VREDRAW == 1) @enumToInt(WNDCLASS_STYLES.VREDRAW) else 0)
+            | (if (o.HREDRAW == 1) @enumToInt(WNDCLASS_STYLES.HREDRAW) else 0)
+            | (if (o.DBLCLKS == 1) @enumToInt(WNDCLASS_STYLES.DBLCLKS) else 0)
+            | (if (o.OWNDC == 1) @enumToInt(WNDCLASS_STYLES.OWNDC) else 0)
+            | (if (o.CLASSDC == 1) @enumToInt(WNDCLASS_STYLES.CLASSDC) else 0)
+            | (if (o.PARENTDC == 1) @enumToInt(WNDCLASS_STYLES.PARENTDC) else 0)
+            | (if (o.NOCLOSE == 1) @enumToInt(WNDCLASS_STYLES.NOCLOSE) else 0)
+            | (if (o.SAVEBITS == 1) @enumToInt(WNDCLASS_STYLES.SAVEBITS) else 0)
+            | (if (o.BYTEALIGNCLIENT == 1) @enumToInt(WNDCLASS_STYLES.BYTEALIGNCLIENT) else 0)
+            | (if (o.BYTEALIGNWINDOW == 1) @enumToInt(WNDCLASS_STYLES.BYTEALIGNWINDOW) else 0)
+            | (if (o.GLOBALCLASS == 1) @enumToInt(WNDCLASS_STYLES.GLOBALCLASS) else 0)
+            | (if (o.IME == 1) @enumToInt(WNDCLASS_STYLES.IME) else 0)
+            | (if (o.DROPSHADOW == 1) @enumToInt(WNDCLASS_STYLES.DROPSHADOW) else 0)
+        );
+    }
 };
 pub const CS_VREDRAW = WNDCLASS_STYLES.VREDRAW;
 pub const CS_HREDRAW = WNDCLASS_STYLES.HREDRAW;
@@ -3455,20 +3501,31 @@ pub const CS_GLOBALCLASS = WNDCLASS_STYLES.GLOBALCLASS;
 pub const CS_IME = WNDCLASS_STYLES.IME;
 pub const CS_DROPSHADOW = WNDCLASS_STYLES.DROPSHADOW;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CWP_FLAGS = extern enum(u32) {
     ALL = 0,
     SKIPINVISIBLE = 1,
     SKIPDISABLED = 2,
     SKIPTRANSPARENT = 4,
     _,
+    pub fn initFlags(o: struct {
+        ALL: u1 = 0,
+        SKIPINVISIBLE: u1 = 0,
+        SKIPDISABLED: u1 = 0,
+        SKIPTRANSPARENT: u1 = 0,
+    }) CWP_FLAGS {
+        return @intToEnum(CWP_FLAGS,
+              (if (o.ALL == 1) @enumToInt(CWP_FLAGS.ALL) else 0)
+            | (if (o.SKIPINVISIBLE == 1) @enumToInt(CWP_FLAGS.SKIPINVISIBLE) else 0)
+            | (if (o.SKIPDISABLED == 1) @enumToInt(CWP_FLAGS.SKIPDISABLED) else 0)
+            | (if (o.SKIPTRANSPARENT == 1) @enumToInt(CWP_FLAGS.SKIPTRANSPARENT) else 0)
+        );
+    }
 };
 pub const CWP_ALL = CWP_FLAGS.ALL;
 pub const CWP_SKIPINVISIBLE = CWP_FLAGS.SKIPINVISIBLE;
 pub const CWP_SKIPDISABLED = CWP_FLAGS.SKIPDISABLED;
 pub const CWP_SKIPTRANSPARENT = CWP_FLAGS.SKIPTRANSPARENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MESSAGEBOX_STYLE = extern enum(u32) {
     ABORTRETRYIGNORE = 2,
     CANCELTRYCONTINUE = 6,
@@ -3508,6 +3565,85 @@ pub const MESSAGEBOX_STYLE = extern enum(u32) {
     MODEMASK = 12288,
     MISCMASK = 49152,
     _,
+    pub fn initFlags(o: struct {
+        ABORTRETRYIGNORE: u1 = 0,
+        CANCELTRYCONTINUE: u1 = 0,
+        HELP: u1 = 0,
+        OK: u1 = 0,
+        OKCANCEL: u1 = 0,
+        RETRYCANCEL: u1 = 0,
+        YESNO: u1 = 0,
+        YESNOCANCEL: u1 = 0,
+        ICONHAND: u1 = 0,
+        ICONQUESTION: u1 = 0,
+        ICONEXCLAMATION: u1 = 0,
+        ICONASTERISK: u1 = 0,
+        USERICON: u1 = 0,
+        ICONWARNING: u1 = 0,
+        ICONERROR: u1 = 0,
+        ICONINFORMATION: u1 = 0,
+        ICONSTOP: u1 = 0,
+        DEFBUTTON1: u1 = 0,
+        DEFBUTTON2: u1 = 0,
+        DEFBUTTON3: u1 = 0,
+        DEFBUTTON4: u1 = 0,
+        APPLMODAL: u1 = 0,
+        SYSTEMMODAL: u1 = 0,
+        TASKMODAL: u1 = 0,
+        NOFOCUS: u1 = 0,
+        SETFOREGROUND: u1 = 0,
+        DEFAULT_DESKTOP_ONLY: u1 = 0,
+        TOPMOST: u1 = 0,
+        RIGHT: u1 = 0,
+        RTLREADING: u1 = 0,
+        SERVICE_NOTIFICATION: u1 = 0,
+        SERVICE_NOTIFICATION_NT3X: u1 = 0,
+        TYPEMASK: u1 = 0,
+        ICONMASK: u1 = 0,
+        DEFMASK: u1 = 0,
+        MODEMASK: u1 = 0,
+        MISCMASK: u1 = 0,
+    }) MESSAGEBOX_STYLE {
+        return @intToEnum(MESSAGEBOX_STYLE,
+              (if (o.ABORTRETRYIGNORE == 1) @enumToInt(MESSAGEBOX_STYLE.ABORTRETRYIGNORE) else 0)
+            | (if (o.CANCELTRYCONTINUE == 1) @enumToInt(MESSAGEBOX_STYLE.CANCELTRYCONTINUE) else 0)
+            | (if (o.HELP == 1) @enumToInt(MESSAGEBOX_STYLE.HELP) else 0)
+            | (if (o.OK == 1) @enumToInt(MESSAGEBOX_STYLE.OK) else 0)
+            | (if (o.OKCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.OKCANCEL) else 0)
+            | (if (o.RETRYCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.RETRYCANCEL) else 0)
+            | (if (o.YESNO == 1) @enumToInt(MESSAGEBOX_STYLE.YESNO) else 0)
+            | (if (o.YESNOCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.YESNOCANCEL) else 0)
+            | (if (o.ICONHAND == 1) @enumToInt(MESSAGEBOX_STYLE.ICONHAND) else 0)
+            | (if (o.ICONQUESTION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONQUESTION) else 0)
+            | (if (o.ICONEXCLAMATION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONEXCLAMATION) else 0)
+            | (if (o.ICONASTERISK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONASTERISK) else 0)
+            | (if (o.USERICON == 1) @enumToInt(MESSAGEBOX_STYLE.USERICON) else 0)
+            | (if (o.ICONWARNING == 1) @enumToInt(MESSAGEBOX_STYLE.ICONWARNING) else 0)
+            | (if (o.ICONERROR == 1) @enumToInt(MESSAGEBOX_STYLE.ICONERROR) else 0)
+            | (if (o.ICONINFORMATION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONINFORMATION) else 0)
+            | (if (o.ICONSTOP == 1) @enumToInt(MESSAGEBOX_STYLE.ICONSTOP) else 0)
+            | (if (o.DEFBUTTON1 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON1) else 0)
+            | (if (o.DEFBUTTON2 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON2) else 0)
+            | (if (o.DEFBUTTON3 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON3) else 0)
+            | (if (o.DEFBUTTON4 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON4) else 0)
+            | (if (o.APPLMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.APPLMODAL) else 0)
+            | (if (o.SYSTEMMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.SYSTEMMODAL) else 0)
+            | (if (o.TASKMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.TASKMODAL) else 0)
+            | (if (o.NOFOCUS == 1) @enumToInt(MESSAGEBOX_STYLE.NOFOCUS) else 0)
+            | (if (o.SETFOREGROUND == 1) @enumToInt(MESSAGEBOX_STYLE.SETFOREGROUND) else 0)
+            | (if (o.DEFAULT_DESKTOP_ONLY == 1) @enumToInt(MESSAGEBOX_STYLE.DEFAULT_DESKTOP_ONLY) else 0)
+            | (if (o.TOPMOST == 1) @enumToInt(MESSAGEBOX_STYLE.TOPMOST) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(MESSAGEBOX_STYLE.RIGHT) else 0)
+            | (if (o.RTLREADING == 1) @enumToInt(MESSAGEBOX_STYLE.RTLREADING) else 0)
+            | (if (o.SERVICE_NOTIFICATION == 1) @enumToInt(MESSAGEBOX_STYLE.SERVICE_NOTIFICATION) else 0)
+            | (if (o.SERVICE_NOTIFICATION_NT3X == 1) @enumToInt(MESSAGEBOX_STYLE.SERVICE_NOTIFICATION_NT3X) else 0)
+            | (if (o.TYPEMASK == 1) @enumToInt(MESSAGEBOX_STYLE.TYPEMASK) else 0)
+            | (if (o.ICONMASK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONMASK) else 0)
+            | (if (o.DEFMASK == 1) @enumToInt(MESSAGEBOX_STYLE.DEFMASK) else 0)
+            | (if (o.MODEMASK == 1) @enumToInt(MESSAGEBOX_STYLE.MODEMASK) else 0)
+            | (if (o.MISCMASK == 1) @enumToInt(MESSAGEBOX_STYLE.MISCMASK) else 0)
+        );
+    }
 };
 pub const MB_ABORTRETRYIGNORE = MESSAGEBOX_STYLE.ABORTRETRYIGNORE;
 pub const MB_CANCELTRYCONTINUE = MESSAGEBOX_STYLE.CANCELTRYCONTINUE;
@@ -3547,7 +3683,6 @@ pub const MB_DEFMASK = MESSAGEBOX_STYLE.DEFMASK;
 pub const MB_MODEMASK = MESSAGEBOX_STYLE.MODEMASK;
 pub const MB_MISCMASK = MESSAGEBOX_STYLE.MISCMASK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MENU_ITEM_FLAGS = extern enum(u32) {
     BYCOMMAND = 0,
     BYPOSITION = 1024,
@@ -3578,6 +3713,67 @@ pub const MENU_ITEM_FLAGS = extern enum(u32) {
     MOUSESELECT = 32768,
     END = 128,
     _,
+    pub fn initFlags(o: struct {
+        BYCOMMAND: u1 = 0,
+        BYPOSITION: u1 = 0,
+        BITMAP: u1 = 0,
+        CHECKED: u1 = 0,
+        DISABLED: u1 = 0,
+        ENABLED: u1 = 0,
+        GRAYED: u1 = 0,
+        MENUBARBREAK: u1 = 0,
+        MENUBREAK: u1 = 0,
+        OWNERDRAW: u1 = 0,
+        POPUP: u1 = 0,
+        SEPARATOR: u1 = 0,
+        STRING: u1 = 0,
+        UNCHECKED: u1 = 0,
+        INSERT: u1 = 0,
+        CHANGE: u1 = 0,
+        APPEND: u1 = 0,
+        DELETE: u1 = 0,
+        REMOVE: u1 = 0,
+        USECHECKBITMAPS: u1 = 0,
+        UNHILITE: u1 = 0,
+        HILITE: u1 = 0,
+        DEFAULT: u1 = 0,
+        SYSMENU: u1 = 0,
+        HELP: u1 = 0,
+        RIGHTJUSTIFY: u1 = 0,
+        MOUSESELECT: u1 = 0,
+        END: u1 = 0,
+    }) MENU_ITEM_FLAGS {
+        return @intToEnum(MENU_ITEM_FLAGS,
+              (if (o.BYCOMMAND == 1) @enumToInt(MENU_ITEM_FLAGS.BYCOMMAND) else 0)
+            | (if (o.BYPOSITION == 1) @enumToInt(MENU_ITEM_FLAGS.BYPOSITION) else 0)
+            | (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_FLAGS.BITMAP) else 0)
+            | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_FLAGS.CHECKED) else 0)
+            | (if (o.DISABLED == 1) @enumToInt(MENU_ITEM_FLAGS.DISABLED) else 0)
+            | (if (o.ENABLED == 1) @enumToInt(MENU_ITEM_FLAGS.ENABLED) else 0)
+            | (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_FLAGS.GRAYED) else 0)
+            | (if (o.MENUBARBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBARBREAK) else 0)
+            | (if (o.MENUBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBREAK) else 0)
+            | (if (o.OWNERDRAW == 1) @enumToInt(MENU_ITEM_FLAGS.OWNERDRAW) else 0)
+            | (if (o.POPUP == 1) @enumToInt(MENU_ITEM_FLAGS.POPUP) else 0)
+            | (if (o.SEPARATOR == 1) @enumToInt(MENU_ITEM_FLAGS.SEPARATOR) else 0)
+            | (if (o.STRING == 1) @enumToInt(MENU_ITEM_FLAGS.STRING) else 0)
+            | (if (o.UNCHECKED == 1) @enumToInt(MENU_ITEM_FLAGS.UNCHECKED) else 0)
+            | (if (o.INSERT == 1) @enumToInt(MENU_ITEM_FLAGS.INSERT) else 0)
+            | (if (o.CHANGE == 1) @enumToInt(MENU_ITEM_FLAGS.CHANGE) else 0)
+            | (if (o.APPEND == 1) @enumToInt(MENU_ITEM_FLAGS.APPEND) else 0)
+            | (if (o.DELETE == 1) @enumToInt(MENU_ITEM_FLAGS.DELETE) else 0)
+            | (if (o.REMOVE == 1) @enumToInt(MENU_ITEM_FLAGS.REMOVE) else 0)
+            | (if (o.USECHECKBITMAPS == 1) @enumToInt(MENU_ITEM_FLAGS.USECHECKBITMAPS) else 0)
+            | (if (o.UNHILITE == 1) @enumToInt(MENU_ITEM_FLAGS.UNHILITE) else 0)
+            | (if (o.HILITE == 1) @enumToInt(MENU_ITEM_FLAGS.HILITE) else 0)
+            | (if (o.DEFAULT == 1) @enumToInt(MENU_ITEM_FLAGS.DEFAULT) else 0)
+            | (if (o.SYSMENU == 1) @enumToInt(MENU_ITEM_FLAGS.SYSMENU) else 0)
+            | (if (o.HELP == 1) @enumToInt(MENU_ITEM_FLAGS.HELP) else 0)
+            | (if (o.RIGHTJUSTIFY == 1) @enumToInt(MENU_ITEM_FLAGS.RIGHTJUSTIFY) else 0)
+            | (if (o.MOUSESELECT == 1) @enumToInt(MENU_ITEM_FLAGS.MOUSESELECT) else 0)
+            | (if (o.END == 1) @enumToInt(MENU_ITEM_FLAGS.END) else 0)
+        );
+    }
 };
 pub const MF_BYCOMMAND = MENU_ITEM_FLAGS.BYCOMMAND;
 pub const MF_BYPOSITION = MENU_ITEM_FLAGS.BYPOSITION;
@@ -3608,7 +3804,6 @@ pub const MF_RIGHTJUSTIFY = MENU_ITEM_FLAGS.RIGHTJUSTIFY;
 pub const MF_MOUSESELECT = MENU_ITEM_FLAGS.MOUSESELECT;
 pub const MF_END = MENU_ITEM_FLAGS.END;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHOW_WINDOW_CMD = extern enum(u32) {
     FORCEMINIMIZE = 11,
     HIDE = 0,
@@ -3634,6 +3829,57 @@ pub const SHOW_WINDOW_CMD = extern enum(u32) {
     ERASE = 4,
     SMOOTHSCROLL = 16,
     _,
+    pub fn initFlags(o: struct {
+        FORCEMINIMIZE: u1 = 0,
+        HIDE: u1 = 0,
+        MAXIMIZE: u1 = 0,
+        MINIMIZE: u1 = 0,
+        RESTORE: u1 = 0,
+        SHOW: u1 = 0,
+        SHOWDEFAULT: u1 = 0,
+        SHOWMAXIMIZED: u1 = 0,
+        SHOWMINIMIZED: u1 = 0,
+        SHOWMINNOACTIVE: u1 = 0,
+        SHOWNA: u1 = 0,
+        SHOWNOACTIVATE: u1 = 0,
+        SHOWNORMAL: u1 = 0,
+        NORMAL: u1 = 0,
+        MAX: u1 = 0,
+        PARENTCLOSING: u1 = 0,
+        OTHERZOOM: u1 = 0,
+        PARENTOPENING: u1 = 0,
+        OTHERUNZOOM: u1 = 0,
+        SCROLLCHILDREN: u1 = 0,
+        INVALIDATE: u1 = 0,
+        ERASE: u1 = 0,
+        SMOOTHSCROLL: u1 = 0,
+    }) SHOW_WINDOW_CMD {
+        return @intToEnum(SHOW_WINDOW_CMD,
+              (if (o.FORCEMINIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.FORCEMINIMIZE) else 0)
+            | (if (o.HIDE == 1) @enumToInt(SHOW_WINDOW_CMD.HIDE) else 0)
+            | (if (o.MAXIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.MAXIMIZE) else 0)
+            | (if (o.MINIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.MINIMIZE) else 0)
+            | (if (o.RESTORE == 1) @enumToInt(SHOW_WINDOW_CMD.RESTORE) else 0)
+            | (if (o.SHOW == 1) @enumToInt(SHOW_WINDOW_CMD.SHOW) else 0)
+            | (if (o.SHOWDEFAULT == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWDEFAULT) else 0)
+            | (if (o.SHOWMAXIMIZED == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMAXIMIZED) else 0)
+            | (if (o.SHOWMINIMIZED == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINIMIZED) else 0)
+            | (if (o.SHOWMINNOACTIVE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINNOACTIVE) else 0)
+            | (if (o.SHOWNA == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNA) else 0)
+            | (if (o.SHOWNOACTIVATE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNOACTIVATE) else 0)
+            | (if (o.SHOWNORMAL == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNORMAL) else 0)
+            | (if (o.NORMAL == 1) @enumToInt(SHOW_WINDOW_CMD.NORMAL) else 0)
+            | (if (o.MAX == 1) @enumToInt(SHOW_WINDOW_CMD.MAX) else 0)
+            | (if (o.PARENTCLOSING == 1) @enumToInt(SHOW_WINDOW_CMD.PARENTCLOSING) else 0)
+            | (if (o.OTHERZOOM == 1) @enumToInt(SHOW_WINDOW_CMD.OTHERZOOM) else 0)
+            | (if (o.PARENTOPENING == 1) @enumToInt(SHOW_WINDOW_CMD.PARENTOPENING) else 0)
+            | (if (o.OTHERUNZOOM == 1) @enumToInt(SHOW_WINDOW_CMD.OTHERUNZOOM) else 0)
+            | (if (o.SCROLLCHILDREN == 1) @enumToInt(SHOW_WINDOW_CMD.SCROLLCHILDREN) else 0)
+            | (if (o.INVALIDATE == 1) @enumToInt(SHOW_WINDOW_CMD.INVALIDATE) else 0)
+            | (if (o.ERASE == 1) @enumToInt(SHOW_WINDOW_CMD.ERASE) else 0)
+            | (if (o.SMOOTHSCROLL == 1) @enumToInt(SHOW_WINDOW_CMD.SMOOTHSCROLL) else 0)
+        );
+    }
 };
 pub const SW_FORCEMINIMIZE = SHOW_WINDOW_CMD.FORCEMINIMIZE;
 pub const SW_HIDE = SHOW_WINDOW_CMD.HIDE;
@@ -3659,7 +3905,6 @@ pub const SW_INVALIDATE = SHOW_WINDOW_CMD.INVALIDATE;
 pub const SW_ERASE = SHOW_WINDOW_CMD.ERASE;
 pub const SW_SMOOTHSCROLL = SHOW_WINDOW_CMD.SMOOTHSCROLL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
     GETBEEP = 1,
     SETBEEP = 2,
@@ -3903,6 +4148,493 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
     GETHANDEDNESS = 8228,
     SETHANDEDNESS = 8229,
     _,
+    pub fn initFlags(o: struct {
+        GETBEEP: u1 = 0,
+        SETBEEP: u1 = 0,
+        GETMOUSE: u1 = 0,
+        SETMOUSE: u1 = 0,
+        GETBORDER: u1 = 0,
+        SETBORDER: u1 = 0,
+        GETKEYBOARDSPEED: u1 = 0,
+        SETKEYBOARDSPEED: u1 = 0,
+        LANGDRIVER: u1 = 0,
+        ICONHORIZONTALSPACING: u1 = 0,
+        GETSCREENSAVETIMEOUT: u1 = 0,
+        SETSCREENSAVETIMEOUT: u1 = 0,
+        GETSCREENSAVEACTIVE: u1 = 0,
+        SETSCREENSAVEACTIVE: u1 = 0,
+        GETGRIDGRANULARITY: u1 = 0,
+        SETGRIDGRANULARITY: u1 = 0,
+        SETDESKWALLPAPER: u1 = 0,
+        SETDESKPATTERN: u1 = 0,
+        GETKEYBOARDDELAY: u1 = 0,
+        SETKEYBOARDDELAY: u1 = 0,
+        ICONVERTICALSPACING: u1 = 0,
+        GETICONTITLEWRAP: u1 = 0,
+        SETICONTITLEWRAP: u1 = 0,
+        GETMENUDROPALIGNMENT: u1 = 0,
+        SETMENUDROPALIGNMENT: u1 = 0,
+        SETDOUBLECLKWIDTH: u1 = 0,
+        SETDOUBLECLKHEIGHT: u1 = 0,
+        GETICONTITLELOGFONT: u1 = 0,
+        SETDOUBLECLICKTIME: u1 = 0,
+        SETMOUSEBUTTONSWAP: u1 = 0,
+        SETICONTITLELOGFONT: u1 = 0,
+        GETFASTTASKSWITCH: u1 = 0,
+        SETFASTTASKSWITCH: u1 = 0,
+        SETDRAGFULLWINDOWS: u1 = 0,
+        GETDRAGFULLWINDOWS: u1 = 0,
+        GETNONCLIENTMETRICS: u1 = 0,
+        SETNONCLIENTMETRICS: u1 = 0,
+        GETMINIMIZEDMETRICS: u1 = 0,
+        SETMINIMIZEDMETRICS: u1 = 0,
+        GETICONMETRICS: u1 = 0,
+        SETICONMETRICS: u1 = 0,
+        SETWORKAREA: u1 = 0,
+        GETWORKAREA: u1 = 0,
+        SETPENWINDOWS: u1 = 0,
+        GETHIGHCONTRAST: u1 = 0,
+        SETHIGHCONTRAST: u1 = 0,
+        GETKEYBOARDPREF: u1 = 0,
+        SETKEYBOARDPREF: u1 = 0,
+        GETSCREENREADER: u1 = 0,
+        SETSCREENREADER: u1 = 0,
+        GETANIMATION: u1 = 0,
+        SETANIMATION: u1 = 0,
+        GETFONTSMOOTHING: u1 = 0,
+        SETFONTSMOOTHING: u1 = 0,
+        SETDRAGWIDTH: u1 = 0,
+        SETDRAGHEIGHT: u1 = 0,
+        SETHANDHELD: u1 = 0,
+        GETLOWPOWERTIMEOUT: u1 = 0,
+        GETPOWEROFFTIMEOUT: u1 = 0,
+        SETLOWPOWERTIMEOUT: u1 = 0,
+        SETPOWEROFFTIMEOUT: u1 = 0,
+        GETLOWPOWERACTIVE: u1 = 0,
+        GETPOWEROFFACTIVE: u1 = 0,
+        SETLOWPOWERACTIVE: u1 = 0,
+        SETPOWEROFFACTIVE: u1 = 0,
+        SETCURSORS: u1 = 0,
+        SETICONS: u1 = 0,
+        GETDEFAULTINPUTLANG: u1 = 0,
+        SETDEFAULTINPUTLANG: u1 = 0,
+        SETLANGTOGGLE: u1 = 0,
+        GETWINDOWSEXTENSION: u1 = 0,
+        SETMOUSETRAILS: u1 = 0,
+        GETMOUSETRAILS: u1 = 0,
+        SETSCREENSAVERRUNNING: u1 = 0,
+        SCREENSAVERRUNNING: u1 = 0,
+        GETFILTERKEYS: u1 = 0,
+        SETFILTERKEYS: u1 = 0,
+        GETTOGGLEKEYS: u1 = 0,
+        SETTOGGLEKEYS: u1 = 0,
+        GETMOUSEKEYS: u1 = 0,
+        SETMOUSEKEYS: u1 = 0,
+        GETSHOWSOUNDS: u1 = 0,
+        SETSHOWSOUNDS: u1 = 0,
+        GETSTICKYKEYS: u1 = 0,
+        SETSTICKYKEYS: u1 = 0,
+        GETACCESSTIMEOUT: u1 = 0,
+        SETACCESSTIMEOUT: u1 = 0,
+        GETSERIALKEYS: u1 = 0,
+        SETSERIALKEYS: u1 = 0,
+        GETSOUNDSENTRY: u1 = 0,
+        SETSOUNDSENTRY: u1 = 0,
+        GETSNAPTODEFBUTTON: u1 = 0,
+        SETSNAPTODEFBUTTON: u1 = 0,
+        GETMOUSEHOVERWIDTH: u1 = 0,
+        SETMOUSEHOVERWIDTH: u1 = 0,
+        GETMOUSEHOVERHEIGHT: u1 = 0,
+        SETMOUSEHOVERHEIGHT: u1 = 0,
+        GETMOUSEHOVERTIME: u1 = 0,
+        SETMOUSEHOVERTIME: u1 = 0,
+        GETWHEELSCROLLLINES: u1 = 0,
+        SETWHEELSCROLLLINES: u1 = 0,
+        GETMENUSHOWDELAY: u1 = 0,
+        SETMENUSHOWDELAY: u1 = 0,
+        GETWHEELSCROLLCHARS: u1 = 0,
+        SETWHEELSCROLLCHARS: u1 = 0,
+        GETSHOWIMEUI: u1 = 0,
+        SETSHOWIMEUI: u1 = 0,
+        GETMOUSESPEED: u1 = 0,
+        SETMOUSESPEED: u1 = 0,
+        GETSCREENSAVERRUNNING: u1 = 0,
+        GETDESKWALLPAPER: u1 = 0,
+        GETAUDIODESCRIPTION: u1 = 0,
+        SETAUDIODESCRIPTION: u1 = 0,
+        GETSCREENSAVESECURE: u1 = 0,
+        SETSCREENSAVESECURE: u1 = 0,
+        GETHUNGAPPTIMEOUT: u1 = 0,
+        SETHUNGAPPTIMEOUT: u1 = 0,
+        GETWAITTOKILLTIMEOUT: u1 = 0,
+        SETWAITTOKILLTIMEOUT: u1 = 0,
+        GETWAITTOKILLSERVICETIMEOUT: u1 = 0,
+        SETWAITTOKILLSERVICETIMEOUT: u1 = 0,
+        GETMOUSEDOCKTHRESHOLD: u1 = 0,
+        SETMOUSEDOCKTHRESHOLD: u1 = 0,
+        GETPENDOCKTHRESHOLD: u1 = 0,
+        SETPENDOCKTHRESHOLD: u1 = 0,
+        GETWINARRANGING: u1 = 0,
+        SETWINARRANGING: u1 = 0,
+        GETMOUSEDRAGOUTTHRESHOLD: u1 = 0,
+        SETMOUSEDRAGOUTTHRESHOLD: u1 = 0,
+        GETPENDRAGOUTTHRESHOLD: u1 = 0,
+        SETPENDRAGOUTTHRESHOLD: u1 = 0,
+        GETMOUSESIDEMOVETHRESHOLD: u1 = 0,
+        SETMOUSESIDEMOVETHRESHOLD: u1 = 0,
+        GETPENSIDEMOVETHRESHOLD: u1 = 0,
+        SETPENSIDEMOVETHRESHOLD: u1 = 0,
+        GETDRAGFROMMAXIMIZE: u1 = 0,
+        SETDRAGFROMMAXIMIZE: u1 = 0,
+        GETSNAPSIZING: u1 = 0,
+        SETSNAPSIZING: u1 = 0,
+        GETDOCKMOVING: u1 = 0,
+        SETDOCKMOVING: u1 = 0,
+        GETTOUCHPREDICTIONPARAMETERS: u1 = 0,
+        SETTOUCHPREDICTIONPARAMETERS: u1 = 0,
+        GETLOGICALDPIOVERRIDE: u1 = 0,
+        SETLOGICALDPIOVERRIDE: u1 = 0,
+        GETMENURECT: u1 = 0,
+        SETMENURECT: u1 = 0,
+        GETACTIVEWINDOWTRACKING: u1 = 0,
+        SETACTIVEWINDOWTRACKING: u1 = 0,
+        GETMENUANIMATION: u1 = 0,
+        SETMENUANIMATION: u1 = 0,
+        GETCOMBOBOXANIMATION: u1 = 0,
+        SETCOMBOBOXANIMATION: u1 = 0,
+        GETLISTBOXSMOOTHSCROLLING: u1 = 0,
+        SETLISTBOXSMOOTHSCROLLING: u1 = 0,
+        GETGRADIENTCAPTIONS: u1 = 0,
+        SETGRADIENTCAPTIONS: u1 = 0,
+        GETKEYBOARDCUES: u1 = 0,
+        SETKEYBOARDCUES: u1 = 0,
+        GETMENUUNDERLINES: u1 = 0,
+        SETMENUUNDERLINES: u1 = 0,
+        GETACTIVEWNDTRKZORDER: u1 = 0,
+        SETACTIVEWNDTRKZORDER: u1 = 0,
+        GETHOTTRACKING: u1 = 0,
+        SETHOTTRACKING: u1 = 0,
+        GETMENUFADE: u1 = 0,
+        SETMENUFADE: u1 = 0,
+        GETSELECTIONFADE: u1 = 0,
+        SETSELECTIONFADE: u1 = 0,
+        GETTOOLTIPANIMATION: u1 = 0,
+        SETTOOLTIPANIMATION: u1 = 0,
+        GETTOOLTIPFADE: u1 = 0,
+        SETTOOLTIPFADE: u1 = 0,
+        GETCURSORSHADOW: u1 = 0,
+        SETCURSORSHADOW: u1 = 0,
+        GETMOUSESONAR: u1 = 0,
+        SETMOUSESONAR: u1 = 0,
+        GETMOUSECLICKLOCK: u1 = 0,
+        SETMOUSECLICKLOCK: u1 = 0,
+        GETMOUSEVANISH: u1 = 0,
+        SETMOUSEVANISH: u1 = 0,
+        GETFLATMENU: u1 = 0,
+        SETFLATMENU: u1 = 0,
+        GETDROPSHADOW: u1 = 0,
+        SETDROPSHADOW: u1 = 0,
+        GETBLOCKSENDINPUTRESETS: u1 = 0,
+        SETBLOCKSENDINPUTRESETS: u1 = 0,
+        GETUIEFFECTS: u1 = 0,
+        SETUIEFFECTS: u1 = 0,
+        GETDISABLEOVERLAPPEDCONTENT: u1 = 0,
+        SETDISABLEOVERLAPPEDCONTENT: u1 = 0,
+        GETCLIENTAREAANIMATION: u1 = 0,
+        SETCLIENTAREAANIMATION: u1 = 0,
+        GETCLEARTYPE: u1 = 0,
+        SETCLEARTYPE: u1 = 0,
+        GETSPEECHRECOGNITION: u1 = 0,
+        SETSPEECHRECOGNITION: u1 = 0,
+        GETCARETBROWSING: u1 = 0,
+        SETCARETBROWSING: u1 = 0,
+        GETTHREADLOCALINPUTSETTINGS: u1 = 0,
+        SETTHREADLOCALINPUTSETTINGS: u1 = 0,
+        GETSYSTEMLANGUAGEBAR: u1 = 0,
+        SETSYSTEMLANGUAGEBAR: u1 = 0,
+        GETFOREGROUNDLOCKTIMEOUT: u1 = 0,
+        SETFOREGROUNDLOCKTIMEOUT: u1 = 0,
+        GETACTIVEWNDTRKTIMEOUT: u1 = 0,
+        SETACTIVEWNDTRKTIMEOUT: u1 = 0,
+        GETFOREGROUNDFLASHCOUNT: u1 = 0,
+        SETFOREGROUNDFLASHCOUNT: u1 = 0,
+        GETCARETWIDTH: u1 = 0,
+        SETCARETWIDTH: u1 = 0,
+        GETMOUSECLICKLOCKTIME: u1 = 0,
+        SETMOUSECLICKLOCKTIME: u1 = 0,
+        GETFONTSMOOTHINGTYPE: u1 = 0,
+        SETFONTSMOOTHINGTYPE: u1 = 0,
+        GETFONTSMOOTHINGCONTRAST: u1 = 0,
+        SETFONTSMOOTHINGCONTRAST: u1 = 0,
+        GETFOCUSBORDERWIDTH: u1 = 0,
+        SETFOCUSBORDERWIDTH: u1 = 0,
+        GETFOCUSBORDERHEIGHT: u1 = 0,
+        SETFOCUSBORDERHEIGHT: u1 = 0,
+        GETFONTSMOOTHINGORIENTATION: u1 = 0,
+        SETFONTSMOOTHINGORIENTATION: u1 = 0,
+        GETMINIMUMHITRADIUS: u1 = 0,
+        SETMINIMUMHITRADIUS: u1 = 0,
+        GETMESSAGEDURATION: u1 = 0,
+        SETMESSAGEDURATION: u1 = 0,
+        GETCONTACTVISUALIZATION: u1 = 0,
+        SETCONTACTVISUALIZATION: u1 = 0,
+        GETGESTUREVISUALIZATION: u1 = 0,
+        SETGESTUREVISUALIZATION: u1 = 0,
+        GETMOUSEWHEELROUTING: u1 = 0,
+        SETMOUSEWHEELROUTING: u1 = 0,
+        GETPENVISUALIZATION: u1 = 0,
+        SETPENVISUALIZATION: u1 = 0,
+        GETPENARBITRATIONTYPE: u1 = 0,
+        SETPENARBITRATIONTYPE: u1 = 0,
+        GETCARETTIMEOUT: u1 = 0,
+        SETCARETTIMEOUT: u1 = 0,
+        GETHANDEDNESS: u1 = 0,
+        SETHANDEDNESS: u1 = 0,
+    }) SYSTEM_PARAMETERS_INFO_ACTION {
+        return @intToEnum(SYSTEM_PARAMETERS_INFO_ACTION,
+              (if (o.GETBEEP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBEEP) else 0)
+            | (if (o.SETBEEP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBEEP) else 0)
+            | (if (o.GETMOUSE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSE) else 0)
+            | (if (o.SETMOUSE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSE) else 0)
+            | (if (o.GETBORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBORDER) else 0)
+            | (if (o.SETBORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBORDER) else 0)
+            | (if (o.GETKEYBOARDSPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDSPEED) else 0)
+            | (if (o.SETKEYBOARDSPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDSPEED) else 0)
+            | (if (o.LANGDRIVER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.LANGDRIVER) else 0)
+            | (if (o.ICONHORIZONTALSPACING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.ICONHORIZONTALSPACING) else 0)
+            | (if (o.GETSCREENSAVETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVETIMEOUT) else 0)
+            | (if (o.SETSCREENSAVETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVETIMEOUT) else 0)
+            | (if (o.GETSCREENSAVEACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVEACTIVE) else 0)
+            | (if (o.SETSCREENSAVEACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVEACTIVE) else 0)
+            | (if (o.GETGRIDGRANULARITY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGRIDGRANULARITY) else 0)
+            | (if (o.SETGRIDGRANULARITY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGRIDGRANULARITY) else 0)
+            | (if (o.SETDESKWALLPAPER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDESKWALLPAPER) else 0)
+            | (if (o.SETDESKPATTERN == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDESKPATTERN) else 0)
+            | (if (o.GETKEYBOARDDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDDELAY) else 0)
+            | (if (o.SETKEYBOARDDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDDELAY) else 0)
+            | (if (o.ICONVERTICALSPACING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.ICONVERTICALSPACING) else 0)
+            | (if (o.GETICONTITLEWRAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONTITLEWRAP) else 0)
+            | (if (o.SETICONTITLEWRAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONTITLEWRAP) else 0)
+            | (if (o.GETMENUDROPALIGNMENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUDROPALIGNMENT) else 0)
+            | (if (o.SETMENUDROPALIGNMENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUDROPALIGNMENT) else 0)
+            | (if (o.SETDOUBLECLKWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLKWIDTH) else 0)
+            | (if (o.SETDOUBLECLKHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLKHEIGHT) else 0)
+            | (if (o.GETICONTITLELOGFONT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONTITLELOGFONT) else 0)
+            | (if (o.SETDOUBLECLICKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLICKTIME) else 0)
+            | (if (o.SETMOUSEBUTTONSWAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEBUTTONSWAP) else 0)
+            | (if (o.SETICONTITLELOGFONT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONTITLELOGFONT) else 0)
+            | (if (o.GETFASTTASKSWITCH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFASTTASKSWITCH) else 0)
+            | (if (o.SETFASTTASKSWITCH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFASTTASKSWITCH) else 0)
+            | (if (o.SETDRAGFULLWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGFULLWINDOWS) else 0)
+            | (if (o.GETDRAGFULLWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDRAGFULLWINDOWS) else 0)
+            | (if (o.GETNONCLIENTMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETNONCLIENTMETRICS) else 0)
+            | (if (o.SETNONCLIENTMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETNONCLIENTMETRICS) else 0)
+            | (if (o.GETMINIMIZEDMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMINIMIZEDMETRICS) else 0)
+            | (if (o.SETMINIMIZEDMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMINIMIZEDMETRICS) else 0)
+            | (if (o.GETICONMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONMETRICS) else 0)
+            | (if (o.SETICONMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONMETRICS) else 0)
+            | (if (o.SETWORKAREA == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWORKAREA) else 0)
+            | (if (o.GETWORKAREA == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWORKAREA) else 0)
+            | (if (o.SETPENWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENWINDOWS) else 0)
+            | (if (o.GETHIGHCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHIGHCONTRAST) else 0)
+            | (if (o.SETHIGHCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHIGHCONTRAST) else 0)
+            | (if (o.GETKEYBOARDPREF == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDPREF) else 0)
+            | (if (o.SETKEYBOARDPREF == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDPREF) else 0)
+            | (if (o.GETSCREENREADER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENREADER) else 0)
+            | (if (o.SETSCREENREADER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENREADER) else 0)
+            | (if (o.GETANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETANIMATION) else 0)
+            | (if (o.SETANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETANIMATION) else 0)
+            | (if (o.GETFONTSMOOTHING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHING) else 0)
+            | (if (o.SETFONTSMOOTHING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHING) else 0)
+            | (if (o.SETDRAGWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGWIDTH) else 0)
+            | (if (o.SETDRAGHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGHEIGHT) else 0)
+            | (if (o.SETHANDHELD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHANDHELD) else 0)
+            | (if (o.GETLOWPOWERTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOWPOWERTIMEOUT) else 0)
+            | (if (o.GETPOWEROFFTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPOWEROFFTIMEOUT) else 0)
+            | (if (o.SETLOWPOWERTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOWPOWERTIMEOUT) else 0)
+            | (if (o.SETPOWEROFFTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPOWEROFFTIMEOUT) else 0)
+            | (if (o.GETLOWPOWERACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOWPOWERACTIVE) else 0)
+            | (if (o.GETPOWEROFFACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPOWEROFFACTIVE) else 0)
+            | (if (o.SETLOWPOWERACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOWPOWERACTIVE) else 0)
+            | (if (o.SETPOWEROFFACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPOWEROFFACTIVE) else 0)
+            | (if (o.SETCURSORS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCURSORS) else 0)
+            | (if (o.SETICONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONS) else 0)
+            | (if (o.GETDEFAULTINPUTLANG == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDEFAULTINPUTLANG) else 0)
+            | (if (o.SETDEFAULTINPUTLANG == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDEFAULTINPUTLANG) else 0)
+            | (if (o.SETLANGTOGGLE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLANGTOGGLE) else 0)
+            | (if (o.GETWINDOWSEXTENSION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWINDOWSEXTENSION) else 0)
+            | (if (o.SETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSETRAILS) else 0)
+            | (if (o.GETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSETRAILS) else 0)
+            | (if (o.SETSCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVERRUNNING) else 0)
+            | (if (o.SCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SCREENSAVERRUNNING) else 0)
+            | (if (o.GETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFILTERKEYS) else 0)
+            | (if (o.SETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFILTERKEYS) else 0)
+            | (if (o.GETTOGGLEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOGGLEKEYS) else 0)
+            | (if (o.SETTOGGLEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOGGLEKEYS) else 0)
+            | (if (o.GETMOUSEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEKEYS) else 0)
+            | (if (o.SETMOUSEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEKEYS) else 0)
+            | (if (o.GETSHOWSOUNDS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSHOWSOUNDS) else 0)
+            | (if (o.SETSHOWSOUNDS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSHOWSOUNDS) else 0)
+            | (if (o.GETSTICKYKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSTICKYKEYS) else 0)
+            | (if (o.SETSTICKYKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSTICKYKEYS) else 0)
+            | (if (o.GETACCESSTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACCESSTIMEOUT) else 0)
+            | (if (o.SETACCESSTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACCESSTIMEOUT) else 0)
+            | (if (o.GETSERIALKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSERIALKEYS) else 0)
+            | (if (o.SETSERIALKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSERIALKEYS) else 0)
+            | (if (o.GETSOUNDSENTRY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSOUNDSENTRY) else 0)
+            | (if (o.SETSOUNDSENTRY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSOUNDSENTRY) else 0)
+            | (if (o.GETSNAPTODEFBUTTON == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSNAPTODEFBUTTON) else 0)
+            | (if (o.SETSNAPTODEFBUTTON == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSNAPTODEFBUTTON) else 0)
+            | (if (o.GETMOUSEHOVERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERWIDTH) else 0)
+            | (if (o.SETMOUSEHOVERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERWIDTH) else 0)
+            | (if (o.GETMOUSEHOVERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERHEIGHT) else 0)
+            | (if (o.SETMOUSEHOVERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERHEIGHT) else 0)
+            | (if (o.GETMOUSEHOVERTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERTIME) else 0)
+            | (if (o.SETMOUSEHOVERTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERTIME) else 0)
+            | (if (o.GETWHEELSCROLLLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWHEELSCROLLLINES) else 0)
+            | (if (o.SETWHEELSCROLLLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWHEELSCROLLLINES) else 0)
+            | (if (o.GETMENUSHOWDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUSHOWDELAY) else 0)
+            | (if (o.SETMENUSHOWDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUSHOWDELAY) else 0)
+            | (if (o.GETWHEELSCROLLCHARS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWHEELSCROLLCHARS) else 0)
+            | (if (o.SETWHEELSCROLLCHARS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWHEELSCROLLCHARS) else 0)
+            | (if (o.GETSHOWIMEUI == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSHOWIMEUI) else 0)
+            | (if (o.SETSHOWIMEUI == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSHOWIMEUI) else 0)
+            | (if (o.GETMOUSESPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESPEED) else 0)
+            | (if (o.SETMOUSESPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESPEED) else 0)
+            | (if (o.GETSCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVERRUNNING) else 0)
+            | (if (o.GETDESKWALLPAPER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDESKWALLPAPER) else 0)
+            | (if (o.GETAUDIODESCRIPTION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETAUDIODESCRIPTION) else 0)
+            | (if (o.SETAUDIODESCRIPTION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETAUDIODESCRIPTION) else 0)
+            | (if (o.GETSCREENSAVESECURE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVESECURE) else 0)
+            | (if (o.SETSCREENSAVESECURE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVESECURE) else 0)
+            | (if (o.GETHUNGAPPTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHUNGAPPTIMEOUT) else 0)
+            | (if (o.SETHUNGAPPTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHUNGAPPTIMEOUT) else 0)
+            | (if (o.GETWAITTOKILLTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWAITTOKILLTIMEOUT) else 0)
+            | (if (o.SETWAITTOKILLTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWAITTOKILLTIMEOUT) else 0)
+            | (if (o.GETWAITTOKILLSERVICETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWAITTOKILLSERVICETIMEOUT) else 0)
+            | (if (o.SETWAITTOKILLSERVICETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWAITTOKILLSERVICETIMEOUT) else 0)
+            | (if (o.GETMOUSEDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEDOCKTHRESHOLD) else 0)
+            | (if (o.SETMOUSEDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEDOCKTHRESHOLD) else 0)
+            | (if (o.GETPENDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENDOCKTHRESHOLD) else 0)
+            | (if (o.SETPENDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENDOCKTHRESHOLD) else 0)
+            | (if (o.GETWINARRANGING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWINARRANGING) else 0)
+            | (if (o.SETWINARRANGING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWINARRANGING) else 0)
+            | (if (o.GETMOUSEDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEDRAGOUTTHRESHOLD) else 0)
+            | (if (o.SETMOUSEDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEDRAGOUTTHRESHOLD) else 0)
+            | (if (o.GETPENDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENDRAGOUTTHRESHOLD) else 0)
+            | (if (o.SETPENDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENDRAGOUTTHRESHOLD) else 0)
+            | (if (o.GETMOUSESIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESIDEMOVETHRESHOLD) else 0)
+            | (if (o.SETMOUSESIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESIDEMOVETHRESHOLD) else 0)
+            | (if (o.GETPENSIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENSIDEMOVETHRESHOLD) else 0)
+            | (if (o.SETPENSIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENSIDEMOVETHRESHOLD) else 0)
+            | (if (o.GETDRAGFROMMAXIMIZE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDRAGFROMMAXIMIZE) else 0)
+            | (if (o.SETDRAGFROMMAXIMIZE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGFROMMAXIMIZE) else 0)
+            | (if (o.GETSNAPSIZING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSNAPSIZING) else 0)
+            | (if (o.SETSNAPSIZING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSNAPSIZING) else 0)
+            | (if (o.GETDOCKMOVING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDOCKMOVING) else 0)
+            | (if (o.SETDOCKMOVING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOCKMOVING) else 0)
+            | (if (o.GETTOUCHPREDICTIONPARAMETERS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOUCHPREDICTIONPARAMETERS) else 0)
+            | (if (o.SETTOUCHPREDICTIONPARAMETERS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOUCHPREDICTIONPARAMETERS) else 0)
+            | (if (o.GETLOGICALDPIOVERRIDE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOGICALDPIOVERRIDE) else 0)
+            | (if (o.SETLOGICALDPIOVERRIDE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOGICALDPIOVERRIDE) else 0)
+            | (if (o.GETMENURECT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENURECT) else 0)
+            | (if (o.SETMENURECT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENURECT) else 0)
+            | (if (o.GETACTIVEWINDOWTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWINDOWTRACKING) else 0)
+            | (if (o.SETACTIVEWINDOWTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWINDOWTRACKING) else 0)
+            | (if (o.GETMENUANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUANIMATION) else 0)
+            | (if (o.SETMENUANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUANIMATION) else 0)
+            | (if (o.GETCOMBOBOXANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCOMBOBOXANIMATION) else 0)
+            | (if (o.SETCOMBOBOXANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCOMBOBOXANIMATION) else 0)
+            | (if (o.GETLISTBOXSMOOTHSCROLLING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLISTBOXSMOOTHSCROLLING) else 0)
+            | (if (o.SETLISTBOXSMOOTHSCROLLING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLISTBOXSMOOTHSCROLLING) else 0)
+            | (if (o.GETGRADIENTCAPTIONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGRADIENTCAPTIONS) else 0)
+            | (if (o.SETGRADIENTCAPTIONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGRADIENTCAPTIONS) else 0)
+            | (if (o.GETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDCUES) else 0)
+            | (if (o.SETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDCUES) else 0)
+            | (if (o.GETMENUUNDERLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUUNDERLINES) else 0)
+            | (if (o.SETMENUUNDERLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUUNDERLINES) else 0)
+            | (if (o.GETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKZORDER) else 0)
+            | (if (o.SETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKZORDER) else 0)
+            | (if (o.GETHOTTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHOTTRACKING) else 0)
+            | (if (o.SETHOTTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHOTTRACKING) else 0)
+            | (if (o.GETMENUFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUFADE) else 0)
+            | (if (o.SETMENUFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUFADE) else 0)
+            | (if (o.GETSELECTIONFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSELECTIONFADE) else 0)
+            | (if (o.SETSELECTIONFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSELECTIONFADE) else 0)
+            | (if (o.GETTOOLTIPANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOOLTIPANIMATION) else 0)
+            | (if (o.SETTOOLTIPANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOOLTIPANIMATION) else 0)
+            | (if (o.GETTOOLTIPFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOOLTIPFADE) else 0)
+            | (if (o.SETTOOLTIPFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOOLTIPFADE) else 0)
+            | (if (o.GETCURSORSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCURSORSHADOW) else 0)
+            | (if (o.SETCURSORSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCURSORSHADOW) else 0)
+            | (if (o.GETMOUSESONAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESONAR) else 0)
+            | (if (o.SETMOUSESONAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESONAR) else 0)
+            | (if (o.GETMOUSECLICKLOCK == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSECLICKLOCK) else 0)
+            | (if (o.SETMOUSECLICKLOCK == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSECLICKLOCK) else 0)
+            | (if (o.GETMOUSEVANISH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEVANISH) else 0)
+            | (if (o.SETMOUSEVANISH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEVANISH) else 0)
+            | (if (o.GETFLATMENU == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFLATMENU) else 0)
+            | (if (o.SETFLATMENU == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFLATMENU) else 0)
+            | (if (o.GETDROPSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDROPSHADOW) else 0)
+            | (if (o.SETDROPSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDROPSHADOW) else 0)
+            | (if (o.GETBLOCKSENDINPUTRESETS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBLOCKSENDINPUTRESETS) else 0)
+            | (if (o.SETBLOCKSENDINPUTRESETS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBLOCKSENDINPUTRESETS) else 0)
+            | (if (o.GETUIEFFECTS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETUIEFFECTS) else 0)
+            | (if (o.SETUIEFFECTS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETUIEFFECTS) else 0)
+            | (if (o.GETDISABLEOVERLAPPEDCONTENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDISABLEOVERLAPPEDCONTENT) else 0)
+            | (if (o.SETDISABLEOVERLAPPEDCONTENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDISABLEOVERLAPPEDCONTENT) else 0)
+            | (if (o.GETCLIENTAREAANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCLIENTAREAANIMATION) else 0)
+            | (if (o.SETCLIENTAREAANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCLIENTAREAANIMATION) else 0)
+            | (if (o.GETCLEARTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCLEARTYPE) else 0)
+            | (if (o.SETCLEARTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCLEARTYPE) else 0)
+            | (if (o.GETSPEECHRECOGNITION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSPEECHRECOGNITION) else 0)
+            | (if (o.SETSPEECHRECOGNITION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSPEECHRECOGNITION) else 0)
+            | (if (o.GETCARETBROWSING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETBROWSING) else 0)
+            | (if (o.SETCARETBROWSING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETBROWSING) else 0)
+            | (if (o.GETTHREADLOCALINPUTSETTINGS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTHREADLOCALINPUTSETTINGS) else 0)
+            | (if (o.SETTHREADLOCALINPUTSETTINGS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTHREADLOCALINPUTSETTINGS) else 0)
+            | (if (o.GETSYSTEMLANGUAGEBAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSYSTEMLANGUAGEBAR) else 0)
+            | (if (o.SETSYSTEMLANGUAGEBAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSYSTEMLANGUAGEBAR) else 0)
+            | (if (o.GETFOREGROUNDLOCKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOREGROUNDLOCKTIMEOUT) else 0)
+            | (if (o.SETFOREGROUNDLOCKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOREGROUNDLOCKTIMEOUT) else 0)
+            | (if (o.GETACTIVEWNDTRKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKTIMEOUT) else 0)
+            | (if (o.SETACTIVEWNDTRKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKTIMEOUT) else 0)
+            | (if (o.GETFOREGROUNDFLASHCOUNT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOREGROUNDFLASHCOUNT) else 0)
+            | (if (o.SETFOREGROUNDFLASHCOUNT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOREGROUNDFLASHCOUNT) else 0)
+            | (if (o.GETCARETWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETWIDTH) else 0)
+            | (if (o.SETCARETWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETWIDTH) else 0)
+            | (if (o.GETMOUSECLICKLOCKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSECLICKLOCKTIME) else 0)
+            | (if (o.SETMOUSECLICKLOCKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSECLICKLOCKTIME) else 0)
+            | (if (o.GETFONTSMOOTHINGTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGTYPE) else 0)
+            | (if (o.SETFONTSMOOTHINGTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGTYPE) else 0)
+            | (if (o.GETFONTSMOOTHINGCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGCONTRAST) else 0)
+            | (if (o.SETFONTSMOOTHINGCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGCONTRAST) else 0)
+            | (if (o.GETFOCUSBORDERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOCUSBORDERWIDTH) else 0)
+            | (if (o.SETFOCUSBORDERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOCUSBORDERWIDTH) else 0)
+            | (if (o.GETFOCUSBORDERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOCUSBORDERHEIGHT) else 0)
+            | (if (o.SETFOCUSBORDERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOCUSBORDERHEIGHT) else 0)
+            | (if (o.GETFONTSMOOTHINGORIENTATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGORIENTATION) else 0)
+            | (if (o.SETFONTSMOOTHINGORIENTATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGORIENTATION) else 0)
+            | (if (o.GETMINIMUMHITRADIUS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMINIMUMHITRADIUS) else 0)
+            | (if (o.SETMINIMUMHITRADIUS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMINIMUMHITRADIUS) else 0)
+            | (if (o.GETMESSAGEDURATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMESSAGEDURATION) else 0)
+            | (if (o.SETMESSAGEDURATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMESSAGEDURATION) else 0)
+            | (if (o.GETCONTACTVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCONTACTVISUALIZATION) else 0)
+            | (if (o.SETCONTACTVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCONTACTVISUALIZATION) else 0)
+            | (if (o.GETGESTUREVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGESTUREVISUALIZATION) else 0)
+            | (if (o.SETGESTUREVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGESTUREVISUALIZATION) else 0)
+            | (if (o.GETMOUSEWHEELROUTING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEWHEELROUTING) else 0)
+            | (if (o.SETMOUSEWHEELROUTING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEWHEELROUTING) else 0)
+            | (if (o.GETPENVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENVISUALIZATION) else 0)
+            | (if (o.SETPENVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENVISUALIZATION) else 0)
+            | (if (o.GETPENARBITRATIONTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENARBITRATIONTYPE) else 0)
+            | (if (o.SETPENARBITRATIONTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENARBITRATIONTYPE) else 0)
+            | (if (o.GETCARETTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETTIMEOUT) else 0)
+            | (if (o.SETCARETTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETTIMEOUT) else 0)
+            | (if (o.GETHANDEDNESS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHANDEDNESS) else 0)
+            | (if (o.SETHANDEDNESS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHANDEDNESS) else 0)
+        );
+    }
 };
 pub const SPI_GETBEEP = SYSTEM_PARAMETERS_INFO_ACTION.GETBEEP;
 pub const SPI_SETBEEP = SYSTEM_PARAMETERS_INFO_ACTION.SETBEEP;
@@ -4146,7 +4878,6 @@ pub const SPI_SETCARETTIMEOUT = SYSTEM_PARAMETERS_INFO_ACTION.SETCARETTIMEOUT;
 pub const SPI_GETHANDEDNESS = SYSTEM_PARAMETERS_INFO_ACTION.GETHANDEDNESS;
 pub const SPI_SETHANDEDNESS = SYSTEM_PARAMETERS_INFO_ACTION.SETHANDEDNESS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TRACK_POPUP_MENU_FLAGS = extern enum(u32) {
     LEFTBUTTON = 0,
     RIGHTBUTTON = 2,
@@ -4169,6 +4900,51 @@ pub const TRACK_POPUP_MENU_FLAGS = extern enum(u32) {
     LAYOUTRTL = 32768,
     WORKAREA = 65536,
     _,
+    pub fn initFlags(o: struct {
+        LEFTBUTTON: u1 = 0,
+        RIGHTBUTTON: u1 = 0,
+        LEFTALIGN: u1 = 0,
+        CENTERALIGN: u1 = 0,
+        RIGHTALIGN: u1 = 0,
+        TOPALIGN: u1 = 0,
+        VCENTERALIGN: u1 = 0,
+        BOTTOMALIGN: u1 = 0,
+        HORIZONTAL: u1 = 0,
+        VERTICAL: u1 = 0,
+        NONOTIFY: u1 = 0,
+        RETURNCMD: u1 = 0,
+        RECURSE: u1 = 0,
+        HORPOSANIMATION: u1 = 0,
+        HORNEGANIMATION: u1 = 0,
+        VERPOSANIMATION: u1 = 0,
+        VERNEGANIMATION: u1 = 0,
+        NOANIMATION: u1 = 0,
+        LAYOUTRTL: u1 = 0,
+        WORKAREA: u1 = 0,
+    }) TRACK_POPUP_MENU_FLAGS {
+        return @intToEnum(TRACK_POPUP_MENU_FLAGS,
+              (if (o.LEFTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LEFTBUTTON) else 0)
+            | (if (o.RIGHTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTBUTTON) else 0)
+            | (if (o.LEFTALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LEFTALIGN) else 0)
+            | (if (o.CENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.CENTERALIGN) else 0)
+            | (if (o.RIGHTALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTALIGN) else 0)
+            | (if (o.TOPALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.TOPALIGN) else 0)
+            | (if (o.VCENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VCENTERALIGN) else 0)
+            | (if (o.BOTTOMALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.BOTTOMALIGN) else 0)
+            | (if (o.HORIZONTAL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORIZONTAL) else 0)
+            | (if (o.VERTICAL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERTICAL) else 0)
+            | (if (o.NONOTIFY == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.NONOTIFY) else 0)
+            | (if (o.RETURNCMD == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RETURNCMD) else 0)
+            | (if (o.RECURSE == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RECURSE) else 0)
+            | (if (o.HORPOSANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORPOSANIMATION) else 0)
+            | (if (o.HORNEGANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORNEGANIMATION) else 0)
+            | (if (o.VERPOSANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERPOSANIMATION) else 0)
+            | (if (o.VERNEGANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERNEGANIMATION) else 0)
+            | (if (o.NOANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.NOANIMATION) else 0)
+            | (if (o.LAYOUTRTL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LAYOUTRTL) else 0)
+            | (if (o.WORKAREA == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.WORKAREA) else 0)
+        );
+    }
 };
 pub const TPM_LEFTBUTTON = TRACK_POPUP_MENU_FLAGS.LEFTBUTTON;
 pub const TPM_RIGHTBUTTON = TRACK_POPUP_MENU_FLAGS.RIGHTBUTTON;
@@ -4191,7 +4967,6 @@ pub const TPM_NOANIMATION = TRACK_POPUP_MENU_FLAGS.NOANIMATION;
 pub const TPM_LAYOUTRTL = TRACK_POPUP_MENU_FLAGS.LAYOUTRTL;
 pub const TPM_WORKAREA = TRACK_POPUP_MENU_FLAGS.WORKAREA;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WINDOW_EX_STYLE = extern enum(u32) {
     DLGMODALFRAME = 1,
     NOPARENTNOTIFY = 4,
@@ -4221,6 +4996,65 @@ pub const WINDOW_EX_STYLE = extern enum(u32) {
     COMPOSITED = 33554432,
     NOACTIVATE = 134217728,
     _,
+    pub fn initFlags(o: struct {
+        DLGMODALFRAME: u1 = 0,
+        NOPARENTNOTIFY: u1 = 0,
+        TOPMOST: u1 = 0,
+        ACCEPTFILES: u1 = 0,
+        TRANSPARENT: u1 = 0,
+        MDICHILD: u1 = 0,
+        TOOLWINDOW: u1 = 0,
+        WINDOWEDGE: u1 = 0,
+        CLIENTEDGE: u1 = 0,
+        CONTEXTHELP: u1 = 0,
+        RIGHT: u1 = 0,
+        LEFT: u1 = 0,
+        RTLREADING: u1 = 0,
+        LTRREADING: u1 = 0,
+        LEFTSCROLLBAR: u1 = 0,
+        RIGHTSCROLLBAR: u1 = 0,
+        CONTROLPARENT: u1 = 0,
+        STATICEDGE: u1 = 0,
+        APPWINDOW: u1 = 0,
+        OVERLAPPEDWINDOW: u1 = 0,
+        PALETTEWINDOW: u1 = 0,
+        LAYERED: u1 = 0,
+        NOINHERITLAYOUT: u1 = 0,
+        NOREDIRECTIONBITMAP: u1 = 0,
+        LAYOUTRTL: u1 = 0,
+        COMPOSITED: u1 = 0,
+        NOACTIVATE: u1 = 0,
+    }) WINDOW_EX_STYLE {
+        return @intToEnum(WINDOW_EX_STYLE,
+              (if (o.DLGMODALFRAME == 1) @enumToInt(WINDOW_EX_STYLE.DLGMODALFRAME) else 0)
+            | (if (o.NOPARENTNOTIFY == 1) @enumToInt(WINDOW_EX_STYLE.NOPARENTNOTIFY) else 0)
+            | (if (o.TOPMOST == 1) @enumToInt(WINDOW_EX_STYLE.TOPMOST) else 0)
+            | (if (o.ACCEPTFILES == 1) @enumToInt(WINDOW_EX_STYLE.ACCEPTFILES) else 0)
+            | (if (o.TRANSPARENT == 1) @enumToInt(WINDOW_EX_STYLE.TRANSPARENT) else 0)
+            | (if (o.MDICHILD == 1) @enumToInt(WINDOW_EX_STYLE.MDICHILD) else 0)
+            | (if (o.TOOLWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.TOOLWINDOW) else 0)
+            | (if (o.WINDOWEDGE == 1) @enumToInt(WINDOW_EX_STYLE.WINDOWEDGE) else 0)
+            | (if (o.CLIENTEDGE == 1) @enumToInt(WINDOW_EX_STYLE.CLIENTEDGE) else 0)
+            | (if (o.CONTEXTHELP == 1) @enumToInt(WINDOW_EX_STYLE.CONTEXTHELP) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(WINDOW_EX_STYLE.RIGHT) else 0)
+            | (if (o.LEFT == 1) @enumToInt(WINDOW_EX_STYLE.LEFT) else 0)
+            | (if (o.RTLREADING == 1) @enumToInt(WINDOW_EX_STYLE.RTLREADING) else 0)
+            | (if (o.LTRREADING == 1) @enumToInt(WINDOW_EX_STYLE.LTRREADING) else 0)
+            | (if (o.LEFTSCROLLBAR == 1) @enumToInt(WINDOW_EX_STYLE.LEFTSCROLLBAR) else 0)
+            | (if (o.RIGHTSCROLLBAR == 1) @enumToInt(WINDOW_EX_STYLE.RIGHTSCROLLBAR) else 0)
+            | (if (o.CONTROLPARENT == 1) @enumToInt(WINDOW_EX_STYLE.CONTROLPARENT) else 0)
+            | (if (o.STATICEDGE == 1) @enumToInt(WINDOW_EX_STYLE.STATICEDGE) else 0)
+            | (if (o.APPWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.APPWINDOW) else 0)
+            | (if (o.OVERLAPPEDWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.OVERLAPPEDWINDOW) else 0)
+            | (if (o.PALETTEWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.PALETTEWINDOW) else 0)
+            | (if (o.LAYERED == 1) @enumToInt(WINDOW_EX_STYLE.LAYERED) else 0)
+            | (if (o.NOINHERITLAYOUT == 1) @enumToInt(WINDOW_EX_STYLE.NOINHERITLAYOUT) else 0)
+            | (if (o.NOREDIRECTIONBITMAP == 1) @enumToInt(WINDOW_EX_STYLE.NOREDIRECTIONBITMAP) else 0)
+            | (if (o.LAYOUTRTL == 1) @enumToInt(WINDOW_EX_STYLE.LAYOUTRTL) else 0)
+            | (if (o.COMPOSITED == 1) @enumToInt(WINDOW_EX_STYLE.COMPOSITED) else 0)
+            | (if (o.NOACTIVATE == 1) @enumToInt(WINDOW_EX_STYLE.NOACTIVATE) else 0)
+        );
+    }
 };
 pub const WS_EX_DLGMODALFRAME = WINDOW_EX_STYLE.DLGMODALFRAME;
 pub const WS_EX_NOPARENTNOTIFY = WINDOW_EX_STYLE.NOPARENTNOTIFY;
@@ -4250,7 +5084,6 @@ pub const WS_EX_LAYOUTRTL = WINDOW_EX_STYLE.LAYOUTRTL;
 pub const WS_EX_COMPOSITED = WINDOW_EX_STYLE.COMPOSITED;
 pub const WS_EX_NOACTIVATE = WINDOW_EX_STYLE.NOACTIVATE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WINDOW_STYLE = extern enum(u32) {
     OVERLAPPED = 0,
     POPUP = 2147483648,
@@ -4281,6 +5114,67 @@ pub const WINDOW_STYLE = extern enum(u32) {
     CHILDWINDOW = 1073741824,
     ACTIVECAPTION = 1,
     _,
+    pub fn initFlags(o: struct {
+        OVERLAPPED: u1 = 0,
+        POPUP: u1 = 0,
+        CHILD: u1 = 0,
+        MINIMIZE: u1 = 0,
+        VISIBLE: u1 = 0,
+        DISABLED: u1 = 0,
+        CLIPSIBLINGS: u1 = 0,
+        CLIPCHILDREN: u1 = 0,
+        MAXIMIZE: u1 = 0,
+        CAPTION: u1 = 0,
+        BORDER: u1 = 0,
+        DLGFRAME: u1 = 0,
+        VSCROLL: u1 = 0,
+        HSCROLL: u1 = 0,
+        SYSMENU: u1 = 0,
+        THICKFRAME: u1 = 0,
+        GROUP: u1 = 0,
+        TABSTOP: u1 = 0,
+        MINIMIZEBOX: u1 = 0,
+        MAXIMIZEBOX: u1 = 0,
+        TILED: u1 = 0,
+        ICONIC: u1 = 0,
+        SIZEBOX: u1 = 0,
+        TILEDWINDOW: u1 = 0,
+        OVERLAPPEDWINDOW: u1 = 0,
+        POPUPWINDOW: u1 = 0,
+        CHILDWINDOW: u1 = 0,
+        ACTIVECAPTION: u1 = 0,
+    }) WINDOW_STYLE {
+        return @intToEnum(WINDOW_STYLE,
+              (if (o.OVERLAPPED == 1) @enumToInt(WINDOW_STYLE.OVERLAPPED) else 0)
+            | (if (o.POPUP == 1) @enumToInt(WINDOW_STYLE.POPUP) else 0)
+            | (if (o.CHILD == 1) @enumToInt(WINDOW_STYLE.CHILD) else 0)
+            | (if (o.MINIMIZE == 1) @enumToInt(WINDOW_STYLE.MINIMIZE) else 0)
+            | (if (o.VISIBLE == 1) @enumToInt(WINDOW_STYLE.VISIBLE) else 0)
+            | (if (o.DISABLED == 1) @enumToInt(WINDOW_STYLE.DISABLED) else 0)
+            | (if (o.CLIPSIBLINGS == 1) @enumToInt(WINDOW_STYLE.CLIPSIBLINGS) else 0)
+            | (if (o.CLIPCHILDREN == 1) @enumToInt(WINDOW_STYLE.CLIPCHILDREN) else 0)
+            | (if (o.MAXIMIZE == 1) @enumToInt(WINDOW_STYLE.MAXIMIZE) else 0)
+            | (if (o.CAPTION == 1) @enumToInt(WINDOW_STYLE.CAPTION) else 0)
+            | (if (o.BORDER == 1) @enumToInt(WINDOW_STYLE.BORDER) else 0)
+            | (if (o.DLGFRAME == 1) @enumToInt(WINDOW_STYLE.DLGFRAME) else 0)
+            | (if (o.VSCROLL == 1) @enumToInt(WINDOW_STYLE.VSCROLL) else 0)
+            | (if (o.HSCROLL == 1) @enumToInt(WINDOW_STYLE.HSCROLL) else 0)
+            | (if (o.SYSMENU == 1) @enumToInt(WINDOW_STYLE.SYSMENU) else 0)
+            | (if (o.THICKFRAME == 1) @enumToInt(WINDOW_STYLE.THICKFRAME) else 0)
+            | (if (o.GROUP == 1) @enumToInt(WINDOW_STYLE.GROUP) else 0)
+            | (if (o.TABSTOP == 1) @enumToInt(WINDOW_STYLE.TABSTOP) else 0)
+            | (if (o.MINIMIZEBOX == 1) @enumToInt(WINDOW_STYLE.MINIMIZEBOX) else 0)
+            | (if (o.MAXIMIZEBOX == 1) @enumToInt(WINDOW_STYLE.MAXIMIZEBOX) else 0)
+            | (if (o.TILED == 1) @enumToInt(WINDOW_STYLE.TILED) else 0)
+            | (if (o.ICONIC == 1) @enumToInt(WINDOW_STYLE.ICONIC) else 0)
+            | (if (o.SIZEBOX == 1) @enumToInt(WINDOW_STYLE.SIZEBOX) else 0)
+            | (if (o.TILEDWINDOW == 1) @enumToInt(WINDOW_STYLE.TILEDWINDOW) else 0)
+            | (if (o.OVERLAPPEDWINDOW == 1) @enumToInt(WINDOW_STYLE.OVERLAPPEDWINDOW) else 0)
+            | (if (o.POPUPWINDOW == 1) @enumToInt(WINDOW_STYLE.POPUPWINDOW) else 0)
+            | (if (o.CHILDWINDOW == 1) @enumToInt(WINDOW_STYLE.CHILDWINDOW) else 0)
+            | (if (o.ACTIVECAPTION == 1) @enumToInt(WINDOW_STYLE.ACTIVECAPTION) else 0)
+        );
+    }
 };
 pub const WS_OVERLAPPED = WINDOW_STYLE.OVERLAPPED;
 pub const WS_POPUP = WINDOW_STYLE.POPUP;
@@ -4311,7 +5205,6 @@ pub const WS_POPUPWINDOW = WINDOW_STYLE.POPUPWINDOW;
 pub const WS_CHILDWINDOW = WINDOW_STYLE.CHILDWINDOW;
 pub const WS_ACTIVECAPTION = WINDOW_STYLE.ACTIVECAPTION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MENU_ITEM_TYPE = extern enum(u32) {
     BITMAP = 4,
     MENUBARBREAK = 32,
@@ -4323,6 +5216,29 @@ pub const MENU_ITEM_TYPE = extern enum(u32) {
     SEPARATOR = 2048,
     STRING = 0,
     _,
+    pub fn initFlags(o: struct {
+        BITMAP: u1 = 0,
+        MENUBARBREAK: u1 = 0,
+        MENUBREAK: u1 = 0,
+        OWNERDRAW: u1 = 0,
+        RADIOCHECK: u1 = 0,
+        RIGHTJUSTIFY: u1 = 0,
+        RIGHTORDER: u1 = 0,
+        SEPARATOR: u1 = 0,
+        STRING: u1 = 0,
+    }) MENU_ITEM_TYPE {
+        return @intToEnum(MENU_ITEM_TYPE,
+              (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_TYPE.BITMAP) else 0)
+            | (if (o.MENUBARBREAK == 1) @enumToInt(MENU_ITEM_TYPE.MENUBARBREAK) else 0)
+            | (if (o.MENUBREAK == 1) @enumToInt(MENU_ITEM_TYPE.MENUBREAK) else 0)
+            | (if (o.OWNERDRAW == 1) @enumToInt(MENU_ITEM_TYPE.OWNERDRAW) else 0)
+            | (if (o.RADIOCHECK == 1) @enumToInt(MENU_ITEM_TYPE.RADIOCHECK) else 0)
+            | (if (o.RIGHTJUSTIFY == 1) @enumToInt(MENU_ITEM_TYPE.RIGHTJUSTIFY) else 0)
+            | (if (o.RIGHTORDER == 1) @enumToInt(MENU_ITEM_TYPE.RIGHTORDER) else 0)
+            | (if (o.SEPARATOR == 1) @enumToInt(MENU_ITEM_TYPE.SEPARATOR) else 0)
+            | (if (o.STRING == 1) @enumToInt(MENU_ITEM_TYPE.STRING) else 0)
+        );
+    }
 };
 pub const MFT_BITMAP = MENU_ITEM_TYPE.BITMAP;
 pub const MFT_MENUBARBREAK = MENU_ITEM_TYPE.MENUBARBREAK;
@@ -4363,7 +5279,6 @@ pub const IDCONTINUE = MESSAGEBOX_RESULT.CONTINUE;
 pub const IDASYNC = MESSAGEBOX_RESULT.ASYNC;
 pub const IDTIMEOUT = MESSAGEBOX_RESULT.TIMEOUT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OPEN_FILENAME_FLAGS = extern enum(u32) {
     READONLY = 1,
     OVERWRITEPROMPT = 2,
@@ -4392,6 +5307,63 @@ pub const OPEN_FILENAME_FLAGS = extern enum(u32) {
     DONTADDTORECENT = 33554432,
     FORCESHOWHIDDEN = 268435456,
     _,
+    pub fn initFlags(o: struct {
+        READONLY: u1 = 0,
+        OVERWRITEPROMPT: u1 = 0,
+        HIDEREADONLY: u1 = 0,
+        NOCHANGEDIR: u1 = 0,
+        SHOWHELP: u1 = 0,
+        ENABLEHOOK: u1 = 0,
+        ENABLETEMPLATE: u1 = 0,
+        ENABLETEMPLATEHANDLE: u1 = 0,
+        NOVALIDATE: u1 = 0,
+        ALLOWMULTISELECT: u1 = 0,
+        EXTENSIONDIFFERENT: u1 = 0,
+        PATHMUSTEXIST: u1 = 0,
+        FILEMUSTEXIST: u1 = 0,
+        CREATEPROMPT: u1 = 0,
+        SHAREAWARE: u1 = 0,
+        NOREADONLYRETURN: u1 = 0,
+        NOTESTFILECREATE: u1 = 0,
+        NONETWORKBUTTON: u1 = 0,
+        NOLONGNAMES: u1 = 0,
+        EXPLORER: u1 = 0,
+        NODEREFERENCELINKS: u1 = 0,
+        LONGNAMES: u1 = 0,
+        ENABLEINCLUDENOTIFY: u1 = 0,
+        ENABLESIZING: u1 = 0,
+        DONTADDTORECENT: u1 = 0,
+        FORCESHOWHIDDEN: u1 = 0,
+    }) OPEN_FILENAME_FLAGS {
+        return @intToEnum(OPEN_FILENAME_FLAGS,
+              (if (o.READONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.READONLY) else 0)
+            | (if (o.OVERWRITEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.OVERWRITEPROMPT) else 0)
+            | (if (o.HIDEREADONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.HIDEREADONLY) else 0)
+            | (if (o.NOCHANGEDIR == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOCHANGEDIR) else 0)
+            | (if (o.SHOWHELP == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHOWHELP) else 0)
+            | (if (o.ENABLEHOOK == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEHOOK) else 0)
+            | (if (o.ENABLETEMPLATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATE) else 0)
+            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATEHANDLE) else 0)
+            | (if (o.NOVALIDATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOVALIDATE) else 0)
+            | (if (o.ALLOWMULTISELECT == 1) @enumToInt(OPEN_FILENAME_FLAGS.ALLOWMULTISELECT) else 0)
+            | (if (o.EXTENSIONDIFFERENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXTENSIONDIFFERENT) else 0)
+            | (if (o.PATHMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.PATHMUSTEXIST) else 0)
+            | (if (o.FILEMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.FILEMUSTEXIST) else 0)
+            | (if (o.CREATEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.CREATEPROMPT) else 0)
+            | (if (o.SHAREAWARE == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHAREAWARE) else 0)
+            | (if (o.NOREADONLYRETURN == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOREADONLYRETURN) else 0)
+            | (if (o.NOTESTFILECREATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOTESTFILECREATE) else 0)
+            | (if (o.NONETWORKBUTTON == 1) @enumToInt(OPEN_FILENAME_FLAGS.NONETWORKBUTTON) else 0)
+            | (if (o.NOLONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOLONGNAMES) else 0)
+            | (if (o.EXPLORER == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXPLORER) else 0)
+            | (if (o.NODEREFERENCELINKS == 1) @enumToInt(OPEN_FILENAME_FLAGS.NODEREFERENCELINKS) else 0)
+            | (if (o.LONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.LONGNAMES) else 0)
+            | (if (o.ENABLEINCLUDENOTIFY == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEINCLUDENOTIFY) else 0)
+            | (if (o.ENABLESIZING == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLESIZING) else 0)
+            | (if (o.DONTADDTORECENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.DONTADDTORECENT) else 0)
+            | (if (o.FORCESHOWHIDDEN == 1) @enumToInt(OPEN_FILENAME_FLAGS.FORCESHOWHIDDEN) else 0)
+        );
+    }
 };
 pub const OFN_READONLY = OPEN_FILENAME_FLAGS.READONLY;
 pub const OFN_OVERWRITEPROMPT = OPEN_FILENAME_FLAGS.OVERWRITEPROMPT;
@@ -4420,16 +5392,23 @@ pub const OFN_ENABLESIZING = OPEN_FILENAME_FLAGS.ENABLESIZING;
 pub const OFN_DONTADDTORECENT = OPEN_FILENAME_FLAGS.DONTADDTORECENT;
 pub const OFN_FORCESHOWHIDDEN = OPEN_FILENAME_FLAGS.FORCESHOWHIDDEN;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OPEN_FILENAME_FLAGS_EX = extern enum(u32) {
     NE = 0,
     PLACESBAR = 1,
     _,
+    pub fn initFlags(o: struct {
+        NE: u1 = 0,
+        PLACESBAR: u1 = 0,
+    }) OPEN_FILENAME_FLAGS_EX {
+        return @intToEnum(OPEN_FILENAME_FLAGS_EX,
+              (if (o.NE == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.NE) else 0)
+            | (if (o.PLACESBAR == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.PLACESBAR) else 0)
+        );
+    }
 };
 pub const OFN_EX_NONE = OPEN_FILENAME_FLAGS_EX.NE;
 pub const OFN_EX_NOPLACESBAR = OPEN_FILENAME_FLAGS_EX.PLACESBAR;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MENU_ITEM_STATE = extern enum(u32) {
     GRAYED = 3,
     DISABLED = 3,
@@ -4440,6 +5419,27 @@ pub const MENU_ITEM_STATE = extern enum(u32) {
     UNHILITE = 0,
     DEFAULT = 4096,
     _,
+    pub fn initFlags(o: struct {
+        GRAYED: u1 = 0,
+        DISABLED: u1 = 0,
+        CHECKED: u1 = 0,
+        HILITE: u1 = 0,
+        ENABLED: u1 = 0,
+        UNCHECKED: u1 = 0,
+        UNHILITE: u1 = 0,
+        DEFAULT: u1 = 0,
+    }) MENU_ITEM_STATE {
+        return @intToEnum(MENU_ITEM_STATE,
+              (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_STATE.GRAYED) else 0)
+            | (if (o.DISABLED == 1) @enumToInt(MENU_ITEM_STATE.DISABLED) else 0)
+            | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_STATE.CHECKED) else 0)
+            | (if (o.HILITE == 1) @enumToInt(MENU_ITEM_STATE.HILITE) else 0)
+            | (if (o.ENABLED == 1) @enumToInt(MENU_ITEM_STATE.ENABLED) else 0)
+            | (if (o.UNCHECKED == 1) @enumToInt(MENU_ITEM_STATE.UNCHECKED) else 0)
+            | (if (o.UNHILITE == 1) @enumToInt(MENU_ITEM_STATE.UNHILITE) else 0)
+            | (if (o.DEFAULT == 1) @enumToInt(MENU_ITEM_STATE.DEFAULT) else 0)
+        );
+    }
 };
 pub const MFS_GRAYED = MENU_ITEM_STATE.GRAYED;
 pub const MFS_DISABLED = MENU_ITEM_STATE.DISABLED;
@@ -4489,7 +5489,6 @@ pub const GCLP_HMODULE = GET_CLASS_LONG_INDEX.LP_HMODULE;
 pub const GCLP_MENUNAME = GET_CLASS_LONG_INDEX.LP_MENUNAME;
 pub const GCLP_WNDPROC = GET_CLASS_LONG_INDEX.LP_WNDPROC;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = extern enum(u32) {
     ALLOWSFW = 128,
     FLUSHDISK = 4,
@@ -4503,6 +5502,33 @@ pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = extern enum(u32) {
     LUID = 1024,
     RETURNHDESK = 512,
     _,
+    pub fn initFlags(o: struct {
+        ALLOWSFW: u1 = 0,
+        FLUSHDISK: u1 = 0,
+        FORCEIFHUNG: u1 = 0,
+        IGNORECURRENTTASK: u1 = 0,
+        NOHANG: u1 = 0,
+        NOTIMEOUTIFNOTHUNG: u1 = 0,
+        POSTMESSAGE: u1 = 0,
+        QUERY: u1 = 0,
+        SENDNOTIFYMESSAGE: u1 = 0,
+        LUID: u1 = 0,
+        RETURNHDESK: u1 = 0,
+    }) BROADCAST_SYSTEM_MESSAGE_FLAGS {
+        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS,
+              (if (o.ALLOWSFW == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW) else 0)
+            | (if (o.FLUSHDISK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK) else 0)
+            | (if (o.FORCEIFHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG) else 0)
+            | (if (o.IGNORECURRENTTASK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK) else 0)
+            | (if (o.NOHANG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG) else 0)
+            | (if (o.NOTIMEOUTIFNOTHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG) else 0)
+            | (if (o.POSTMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE) else 0)
+            | (if (o.QUERY == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY) else 0)
+            | (if (o.SENDNOTIFYMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE) else 0)
+            | (if (o.LUID == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID) else 0)
+            | (if (o.RETURNHDESK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK) else 0)
+        );
+    }
 };
 pub const BSF_ALLOWSFW = BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW;
 pub const BSF_FLUSHDISK = BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK;
@@ -4554,7 +5580,6 @@ pub const GWL_USERDATA = WINDOW_LONG_PTR_INDEX._USERDATA;
 pub const GWL_WNDPROC = WINDOW_LONG_PTR_INDEX._WNDPROC;
 pub const GWL_HWNDPARENT = WINDOW_LONG_PTR_INDEX._HWNDPARENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ANIMATE_WINDOW_FLAGS = extern enum(u32) {
     ACTIVATE = 131072,
     BLEND = 524288,
@@ -4566,6 +5591,29 @@ pub const ANIMATE_WINDOW_FLAGS = extern enum(u32) {
     VER_POSITIVE = 4,
     VER_NEGATIVE = 8,
     _,
+    pub fn initFlags(o: struct {
+        ACTIVATE: u1 = 0,
+        BLEND: u1 = 0,
+        CENTER: u1 = 0,
+        HIDE: u1 = 0,
+        HOR_POSITIVE: u1 = 0,
+        HOR_NEGATIVE: u1 = 0,
+        SLIDE: u1 = 0,
+        VER_POSITIVE: u1 = 0,
+        VER_NEGATIVE: u1 = 0,
+    }) ANIMATE_WINDOW_FLAGS {
+        return @intToEnum(ANIMATE_WINDOW_FLAGS,
+              (if (o.ACTIVATE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.ACTIVATE) else 0)
+            | (if (o.BLEND == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.BLEND) else 0)
+            | (if (o.CENTER == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.CENTER) else 0)
+            | (if (o.HIDE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HIDE) else 0)
+            | (if (o.HOR_POSITIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HOR_POSITIVE) else 0)
+            | (if (o.HOR_NEGATIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HOR_NEGATIVE) else 0)
+            | (if (o.SLIDE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.SLIDE) else 0)
+            | (if (o.VER_POSITIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.VER_POSITIVE) else 0)
+            | (if (o.VER_NEGATIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.VER_NEGATIVE) else 0)
+        );
+    }
 };
 pub const AW_ACTIVATE = ANIMATE_WINDOW_FLAGS.ACTIVATE;
 pub const AW_BLEND = ANIMATE_WINDOW_FLAGS.BLEND;
@@ -4633,29 +5681,48 @@ pub const WH_MSGFILTER = WINDOWS_HOOK_ID.MSGFILTER;
 pub const WH_SHELL = WINDOWS_HOOK_ID.SHELL;
 pub const WH_SYSMSGFILTER = WINDOWS_HOOK_ID.SYSMSGFILTER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const BROADCAST_SYSTEM_MESSAGE_INFO = extern enum(u32) {
     LLCOMPONENTS = 0,
     LLDESKTOPS = 16,
     PPLICATIONS = 8,
     _,
+    pub fn initFlags(o: struct {
+        LLCOMPONENTS: u1 = 0,
+        LLDESKTOPS: u1 = 0,
+        PPLICATIONS: u1 = 0,
+    }) BROADCAST_SYSTEM_MESSAGE_INFO {
+        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_INFO,
+              (if (o.LLCOMPONENTS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS) else 0)
+            | (if (o.LLDESKTOPS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS) else 0)
+            | (if (o.PPLICATIONS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS) else 0)
+        );
+    }
 };
 pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS;
 pub const BSM_ALLDESKTOPS = BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS;
 pub const BSM_APPLICATIONS = BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS = extern enum(u32) {
     UPDATEINIFILE = 1,
     SENDCHANGE = 2,
     SENDWININICHANGE = 2,
     _,
+    pub fn initFlags(o: struct {
+        UPDATEINIFILE: u1 = 0,
+        SENDCHANGE: u1 = 0,
+        SENDWININICHANGE: u1 = 0,
+    }) SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS {
+        return @intToEnum(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS,
+              (if (o.UPDATEINIFILE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.UPDATEINIFILE) else 0)
+            | (if (o.SENDCHANGE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDCHANGE) else 0)
+            | (if (o.SENDWININICHANGE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDWININICHANGE) else 0)
+        );
+    }
 };
 pub const SPIF_UPDATEINIFILE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.UPDATEINIFILE;
 pub const SPIF_SENDCHANGE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDCHANGE;
 pub const SPIF_SENDWININICHANGE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDWININICHANGE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SET_WINDOW_POS_FLAGS = extern enum(u32) {
     ASYNCWINDOWPOS = 16384,
     DEFERERASE = 8192,
@@ -4674,6 +5741,43 @@ pub const SET_WINDOW_POS_FLAGS = extern enum(u32) {
     SHOWWINDOW = 64,
     _NOOWNERZORDER = 512,
     _,
+    pub fn initFlags(o: struct {
+        ASYNCWINDOWPOS: u1 = 0,
+        DEFERERASE: u1 = 0,
+        DRAWFRAME: u1 = 0,
+        FRAMECHANGED: u1 = 0,
+        HIDEWINDOW: u1 = 0,
+        NOACTIVATE: u1 = 0,
+        NOCOPYBITS: u1 = 0,
+        NOMOVE: u1 = 0,
+        NOOWNERZORDER: u1 = 0,
+        NOREDRAW: u1 = 0,
+        NOREPOSITION: u1 = 0,
+        NOSENDCHANGING: u1 = 0,
+        NOSIZE: u1 = 0,
+        NOZORDER: u1 = 0,
+        SHOWWINDOW: u1 = 0,
+        _NOOWNERZORDER: u1 = 0,
+    }) SET_WINDOW_POS_FLAGS {
+        return @intToEnum(SET_WINDOW_POS_FLAGS,
+              (if (o.ASYNCWINDOWPOS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.ASYNCWINDOWPOS) else 0)
+            | (if (o.DEFERERASE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DEFERERASE) else 0)
+            | (if (o.DRAWFRAME == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DRAWFRAME) else 0)
+            | (if (o.FRAMECHANGED == 1) @enumToInt(SET_WINDOW_POS_FLAGS.FRAMECHANGED) else 0)
+            | (if (o.HIDEWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.HIDEWINDOW) else 0)
+            | (if (o.NOACTIVATE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOACTIVATE) else 0)
+            | (if (o.NOCOPYBITS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOCOPYBITS) else 0)
+            | (if (o.NOMOVE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOMOVE) else 0)
+            | (if (o.NOOWNERZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOOWNERZORDER) else 0)
+            | (if (o.NOREDRAW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOREDRAW) else 0)
+            | (if (o.NOREPOSITION == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOREPOSITION) else 0)
+            | (if (o.NOSENDCHANGING == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSENDCHANGING) else 0)
+            | (if (o.NOSIZE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSIZE) else 0)
+            | (if (o.NOZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOZORDER) else 0)
+            | (if (o.SHOWWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.SHOWWINDOW) else 0)
+            | (if (o._NOOWNERZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS._NOOWNERZORDER) else 0)
+        );
+    }
 };
 pub const SWP_ASYNCWINDOWPOS = SET_WINDOW_POS_FLAGS.ASYNCWINDOWPOS;
 pub const SWP_DEFERERASE = SET_WINDOW_POS_FLAGS.DEFERERASE;
@@ -4692,7 +5796,6 @@ pub const SWP_NOZORDER = SET_WINDOW_POS_FLAGS.NOZORDER;
 pub const SWP_SHOWWINDOW = SET_WINDOW_POS_FLAGS.SHOWWINDOW;
 pub const SWP__NOOWNERZORDER = SET_WINDOW_POS_FLAGS._NOOWNERZORDER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const QUEUE_STATUS_FLAGS = extern enum(u32) {
     ALLEVENTS = 1215,
     ALLINPUT = 1279,
@@ -4709,6 +5812,39 @@ pub const QUEUE_STATUS_FLAGS = extern enum(u32) {
     SENDMESSAGE = 64,
     TIMER = 16,
     _,
+    pub fn initFlags(o: struct {
+        ALLEVENTS: u1 = 0,
+        ALLINPUT: u1 = 0,
+        ALLPOSTMESSAGE: u1 = 0,
+        HOTKEY: u1 = 0,
+        INPUT: u1 = 0,
+        KEY: u1 = 0,
+        MOUSE: u1 = 0,
+        MOUSEBUTTON: u1 = 0,
+        MOUSEMOVE: u1 = 0,
+        PAINT: u1 = 0,
+        POSTMESSAGE: u1 = 0,
+        RAWINPUT: u1 = 0,
+        SENDMESSAGE: u1 = 0,
+        TIMER: u1 = 0,
+    }) QUEUE_STATUS_FLAGS {
+        return @intToEnum(QUEUE_STATUS_FLAGS,
+              (if (o.ALLEVENTS == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLEVENTS) else 0)
+            | (if (o.ALLINPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLINPUT) else 0)
+            | (if (o.ALLPOSTMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLPOSTMESSAGE) else 0)
+            | (if (o.HOTKEY == 1) @enumToInt(QUEUE_STATUS_FLAGS.HOTKEY) else 0)
+            | (if (o.INPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.INPUT) else 0)
+            | (if (o.KEY == 1) @enumToInt(QUEUE_STATUS_FLAGS.KEY) else 0)
+            | (if (o.MOUSE == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSE) else 0)
+            | (if (o.MOUSEBUTTON == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSEBUTTON) else 0)
+            | (if (o.MOUSEMOVE == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSEMOVE) else 0)
+            | (if (o.PAINT == 1) @enumToInt(QUEUE_STATUS_FLAGS.PAINT) else 0)
+            | (if (o.POSTMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.POSTMESSAGE) else 0)
+            | (if (o.RAWINPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.RAWINPUT) else 0)
+            | (if (o.SENDMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.SENDMESSAGE) else 0)
+            | (if (o.TIMER == 1) @enumToInt(QUEUE_STATUS_FLAGS.TIMER) else 0)
+        );
+    }
 };
 pub const QS_ALLEVENTS = QUEUE_STATUS_FLAGS.ALLEVENTS;
 pub const QS_ALLINPUT = QUEUE_STATUS_FLAGS.ALLINPUT;
@@ -4756,16 +5892,23 @@ pub const OCR_SIZEWE = SYSTEM_CURSOR_ID.SIZEWE;
 pub const OCR_UP = SYSTEM_CURSOR_ID.UP;
 pub const OCR_WAIT = SYSTEM_CURSOR_ID.WAIT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LAYERED_WINDOW_ATTRIBUTES_FLAGS = extern enum(u32) {
     ALPHA = 2,
     COLORKEY = 1,
     _,
+    pub fn initFlags(o: struct {
+        ALPHA: u1 = 0,
+        COLORKEY: u1 = 0,
+    }) LAYERED_WINDOW_ATTRIBUTES_FLAGS {
+        return @intToEnum(LAYERED_WINDOW_ATTRIBUTES_FLAGS,
+              (if (o.ALPHA == 1) @enumToInt(LAYERED_WINDOW_ATTRIBUTES_FLAGS.ALPHA) else 0)
+            | (if (o.COLORKEY == 1) @enumToInt(LAYERED_WINDOW_ATTRIBUTES_FLAGS.COLORKEY) else 0)
+        );
+    }
 };
 pub const LWA_ALPHA = LAYERED_WINDOW_ATTRIBUTES_FLAGS.ALPHA;
 pub const LWA_COLORKEY = LAYERED_WINDOW_ATTRIBUTES_FLAGS.COLORKEY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SEND_MESSAGE_TIMEOUT_FLAGS = extern enum(u32) {
     ABORTIFHUNG = 2,
     BLOCK = 1,
@@ -4773,6 +5916,21 @@ pub const SEND_MESSAGE_TIMEOUT_FLAGS = extern enum(u32) {
     NOTIMEOUTIFNOTHUNG = 8,
     ERRORONEXIT = 32,
     _,
+    pub fn initFlags(o: struct {
+        ABORTIFHUNG: u1 = 0,
+        BLOCK: u1 = 0,
+        NORMAL: u1 = 0,
+        NOTIMEOUTIFNOTHUNG: u1 = 0,
+        ERRORONEXIT: u1 = 0,
+    }) SEND_MESSAGE_TIMEOUT_FLAGS {
+        return @intToEnum(SEND_MESSAGE_TIMEOUT_FLAGS,
+              (if (o.ABORTIFHUNG == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.ABORTIFHUNG) else 0)
+            | (if (o.BLOCK == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.BLOCK) else 0)
+            | (if (o.NORMAL == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.NORMAL) else 0)
+            | (if (o.NOTIMEOUTIFNOTHUNG == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.NOTIMEOUTIFNOTHUNG) else 0)
+            | (if (o.ERRORONEXIT == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.ERRORONEXIT) else 0)
+        );
+    }
 };
 pub const SMTO_ABORTIFHUNG = SEND_MESSAGE_TIMEOUT_FLAGS.ABORTIFHUNG;
 pub const SMTO_BLOCK = SEND_MESSAGE_TIMEOUT_FLAGS.BLOCK;
@@ -4780,7 +5938,6 @@ pub const SMTO_NORMAL = SEND_MESSAGE_TIMEOUT_FLAGS.NORMAL;
 pub const SMTO_NOTIMEOUTIFNOTHUNG = SEND_MESSAGE_TIMEOUT_FLAGS.NOTIMEOUTIFNOTHUNG;
 pub const SMTO_ERRORONEXIT = SEND_MESSAGE_TIMEOUT_FLAGS.ERRORONEXIT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PEEK_MESSAGE_REMOVE_TYPE = extern enum(u32) {
     NOREMOVE = 0,
     REMOVE = 1,
@@ -4790,6 +5947,25 @@ pub const PEEK_MESSAGE_REMOVE_TYPE = extern enum(u32) {
     QS_PAINT = 2097152,
     QS_SENDMESSAGE = 4194304,
     _,
+    pub fn initFlags(o: struct {
+        NOREMOVE: u1 = 0,
+        REMOVE: u1 = 0,
+        NOYIELD: u1 = 0,
+        QS_INPUT: u1 = 0,
+        QS_POSTMESSAGE: u1 = 0,
+        QS_PAINT: u1 = 0,
+        QS_SENDMESSAGE: u1 = 0,
+    }) PEEK_MESSAGE_REMOVE_TYPE {
+        return @intToEnum(PEEK_MESSAGE_REMOVE_TYPE,
+              (if (o.NOREMOVE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.NOREMOVE) else 0)
+            | (if (o.REMOVE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.REMOVE) else 0)
+            | (if (o.NOYIELD == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.NOYIELD) else 0)
+            | (if (o.QS_INPUT == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_INPUT) else 0)
+            | (if (o.QS_POSTMESSAGE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_POSTMESSAGE) else 0)
+            | (if (o.QS_PAINT == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_PAINT) else 0)
+            | (if (o.QS_SENDMESSAGE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_SENDMESSAGE) else 0)
+        );
+    }
 };
 pub const PM_NOREMOVE = PEEK_MESSAGE_REMOVE_TYPE.NOREMOVE;
 pub const PM_REMOVE = PEEK_MESSAGE_REMOVE_TYPE.REMOVE;
@@ -5116,11 +6292,19 @@ pub const FOREGROUND_WINDOW_LOCK_CODE = extern enum(u32) {
 pub const LSFW_LOCK = FOREGROUND_WINDOW_LOCK_CODE.LOCK;
 pub const LSFW_UNLOCK = FOREGROUND_WINDOW_LOCK_CODE.UNLOCK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CASCADE_WINDOWS_HOW = extern enum(u32) {
     SKIPDISABLED = 2,
     ZORDER = 4,
     _,
+    pub fn initFlags(o: struct {
+        SKIPDISABLED: u1 = 0,
+        ZORDER: u1 = 0,
+    }) CASCADE_WINDOWS_HOW {
+        return @intToEnum(CASCADE_WINDOWS_HOW,
+              (if (o.SKIPDISABLED == 1) @enumToInt(CASCADE_WINDOWS_HOW.SKIPDISABLED) else 0)
+            | (if (o.ZORDER == 1) @enumToInt(CASCADE_WINDOWS_HOW.ZORDER) else 0)
+        );
+    }
 };
 pub const MDITILE_SKIPDISABLED = CASCADE_WINDOWS_HOW.SKIPDISABLED;
 pub const MDITILE_ZORDER = CASCADE_WINDOWS_HOW.ZORDER;
@@ -5134,16 +6318,23 @@ pub const MSGFLT_ALLOW = WINDOW_MESSAGE_FILTER_ACTION.ALLOW;
 pub const MSGFLT_DISALLOW = WINDOW_MESSAGE_FILTER_ACTION.DISALLOW;
 pub const MSGFLT_RESET = WINDOW_MESSAGE_FILTER_ACTION.RESET;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GET_MENU_DEFAULT_ITEM_FLAGS = extern enum(u32) {
     GOINTOPOPUPS = 2,
     USEDISABLED = 1,
     _,
+    pub fn initFlags(o: struct {
+        GOINTOPOPUPS: u1 = 0,
+        USEDISABLED: u1 = 0,
+    }) GET_MENU_DEFAULT_ITEM_FLAGS {
+        return @intToEnum(GET_MENU_DEFAULT_ITEM_FLAGS,
+              (if (o.GOINTOPOPUPS == 1) @enumToInt(GET_MENU_DEFAULT_ITEM_FLAGS.GOINTOPOPUPS) else 0)
+            | (if (o.USEDISABLED == 1) @enumToInt(GET_MENU_DEFAULT_ITEM_FLAGS.USEDISABLED) else 0)
+        );
+    }
 };
 pub const GMDI_GOINTOPOPUPS = GET_MENU_DEFAULT_ITEM_FLAGS.GOINTOPOPUPS;
 pub const GMDI_USEDISABLED = GET_MENU_DEFAULT_ITEM_FLAGS.USEDISABLED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PAGESETUPDLG_FLAGS = extern enum(u32) {
     DEFAULTMINMARGINS = 0,
     DISABLEMARGINS = 16,
@@ -5165,6 +6356,49 @@ pub const PAGESETUPDLG_FLAGS = extern enum(u32) {
     RETURNDEFAULT = 1024,
     SHOWHELP = 2048,
     _,
+    pub fn initFlags(o: struct {
+        DEFAULTMINMARGINS: u1 = 0,
+        DISABLEMARGINS: u1 = 0,
+        DISABLEORIENTATION: u1 = 0,
+        DISABLEPAGEPAINTING: u1 = 0,
+        DISABLEPAPER: u1 = 0,
+        DISABLEPRINTER: u1 = 0,
+        ENABLEPAGEPAINTHOOK: u1 = 0,
+        ENABLEPAGESETUPHOOK: u1 = 0,
+        ENABLEPAGESETUPTEMPLATE: u1 = 0,
+        ENABLEPAGESETUPTEMPLATEHANDLE: u1 = 0,
+        INHUNDREDTHSOFMILLIMETERS: u1 = 0,
+        INTHOUSANDTHSOFINCHES: u1 = 0,
+        INWININIINTLMEASURE: u1 = 0,
+        MARGINS: u1 = 0,
+        MINMARGINS: u1 = 0,
+        NONETWORKBUTTON: u1 = 0,
+        NOWARNING: u1 = 0,
+        RETURNDEFAULT: u1 = 0,
+        SHOWHELP: u1 = 0,
+    }) PAGESETUPDLG_FLAGS {
+        return @intToEnum(PAGESETUPDLG_FLAGS,
+              (if (o.DEFAULTMINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS) else 0)
+            | (if (o.DISABLEMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEMARGINS) else 0)
+            | (if (o.DISABLEORIENTATION == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEORIENTATION) else 0)
+            | (if (o.DISABLEPAGEPAINTING == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAGEPAINTING) else 0)
+            | (if (o.DISABLEPAPER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAPER) else 0)
+            | (if (o.DISABLEPRINTER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPRINTER) else 0)
+            | (if (o.ENABLEPAGEPAINTHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGEPAINTHOOK) else 0)
+            | (if (o.ENABLEPAGESETUPHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPHOOK) else 0)
+            | (if (o.ENABLEPAGESETUPTEMPLATE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATE) else 0)
+            | (if (o.ENABLEPAGESETUPTEMPLATEHANDLE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATEHANDLE) else 0)
+            | (if (o.INHUNDREDTHSOFMILLIMETERS == 1) @enumToInt(PAGESETUPDLG_FLAGS.INHUNDREDTHSOFMILLIMETERS) else 0)
+            | (if (o.INTHOUSANDTHSOFINCHES == 1) @enumToInt(PAGESETUPDLG_FLAGS.INTHOUSANDTHSOFINCHES) else 0)
+            | (if (o.INWININIINTLMEASURE == 1) @enumToInt(PAGESETUPDLG_FLAGS.INWININIINTLMEASURE) else 0)
+            | (if (o.MARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MARGINS) else 0)
+            | (if (o.MINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MINMARGINS) else 0)
+            | (if (o.NONETWORKBUTTON == 1) @enumToInt(PAGESETUPDLG_FLAGS.NONETWORKBUTTON) else 0)
+            | (if (o.NOWARNING == 1) @enumToInt(PAGESETUPDLG_FLAGS.NOWARNING) else 0)
+            | (if (o.RETURNDEFAULT == 1) @enumToInt(PAGESETUPDLG_FLAGS.RETURNDEFAULT) else 0)
+            | (if (o.SHOWHELP == 1) @enumToInt(PAGESETUPDLG_FLAGS.SHOWHELP) else 0)
+        );
+    }
 };
 pub const PSD_DEFAULTMINMARGINS = PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS;
 pub const PSD_DISABLEMARGINS = PAGESETUPDLG_FLAGS.DISABLEMARGINS;
@@ -5197,7 +6431,6 @@ pub const MSGFLTINFO_ALLOWED_HIGHER = MSGFLTINFO_STATUS.ALLOWED_HIGHER;
 pub const MSGFLTINFO_ALREADYALLOWED_FORWND = MSGFLTINFO_STATUS.ALREADYALLOWED_FORWND;
 pub const MSGFLTINFO_ALREADYDISALLOWED_FORWND = MSGFLTINFO_STATUS.ALREADYDISALLOWED_FORWND;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CHOOSEFONT_FLAGS = extern enum(u32) {
     APPLY = 512,
     ANSIONLY = 1024,
@@ -5229,6 +6462,69 @@ pub const CHOOSEFONT_FLAGS = extern enum(u32) {
     USESTYLE = 128,
     WYSIWYG = 32768,
     _,
+    pub fn initFlags(o: struct {
+        APPLY: u1 = 0,
+        ANSIONLY: u1 = 0,
+        BOTH: u1 = 0,
+        EFFECTS: u1 = 0,
+        ENABLEHOOK: u1 = 0,
+        ENABLETEMPLATE: u1 = 0,
+        ENABLETEMPLATEHANDLE: u1 = 0,
+        FIXEDPITCHONLY: u1 = 0,
+        FORCEFONTEXIST: u1 = 0,
+        INACTIVEFONTS: u1 = 0,
+        INITTOLOGFONTSTRUCT: u1 = 0,
+        LIMITSIZE: u1 = 0,
+        NOOEMFONTS: u1 = 0,
+        NOFACESEL: u1 = 0,
+        NOSCRIPTSEL: u1 = 0,
+        NOSIMULATIONS: u1 = 0,
+        NOSIZESEL: u1 = 0,
+        NOSTYLESEL: u1 = 0,
+        NOVECTORFONTS: u1 = 0,
+        NOVERTFONTS: u1 = 0,
+        PRINTERFONTS: u1 = 0,
+        SCALABLEONLY: u1 = 0,
+        SCREENFONTS: u1 = 0,
+        SCRIPTSONLY: u1 = 0,
+        SELECTSCRIPT: u1 = 0,
+        SHOWHELP: u1 = 0,
+        TTONLY: u1 = 0,
+        USESTYLE: u1 = 0,
+        WYSIWYG: u1 = 0,
+    }) CHOOSEFONT_FLAGS {
+        return @intToEnum(CHOOSEFONT_FLAGS,
+              (if (o.APPLY == 1) @enumToInt(CHOOSEFONT_FLAGS.APPLY) else 0)
+            | (if (o.ANSIONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.ANSIONLY) else 0)
+            | (if (o.BOTH == 1) @enumToInt(CHOOSEFONT_FLAGS.BOTH) else 0)
+            | (if (o.EFFECTS == 1) @enumToInt(CHOOSEFONT_FLAGS.EFFECTS) else 0)
+            | (if (o.ENABLEHOOK == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLEHOOK) else 0)
+            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATE) else 0)
+            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATEHANDLE) else 0)
+            | (if (o.FIXEDPITCHONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.FIXEDPITCHONLY) else 0)
+            | (if (o.FORCEFONTEXIST == 1) @enumToInt(CHOOSEFONT_FLAGS.FORCEFONTEXIST) else 0)
+            | (if (o.INACTIVEFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.INACTIVEFONTS) else 0)
+            | (if (o.INITTOLOGFONTSTRUCT == 1) @enumToInt(CHOOSEFONT_FLAGS.INITTOLOGFONTSTRUCT) else 0)
+            | (if (o.LIMITSIZE == 1) @enumToInt(CHOOSEFONT_FLAGS.LIMITSIZE) else 0)
+            | (if (o.NOOEMFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOOEMFONTS) else 0)
+            | (if (o.NOFACESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOFACESEL) else 0)
+            | (if (o.NOSCRIPTSEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSCRIPTSEL) else 0)
+            | (if (o.NOSIMULATIONS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIMULATIONS) else 0)
+            | (if (o.NOSIZESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIZESEL) else 0)
+            | (if (o.NOSTYLESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSTYLESEL) else 0)
+            | (if (o.NOVECTORFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOVECTORFONTS) else 0)
+            | (if (o.NOVERTFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOVERTFONTS) else 0)
+            | (if (o.PRINTERFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.PRINTERFONTS) else 0)
+            | (if (o.SCALABLEONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.SCALABLEONLY) else 0)
+            | (if (o.SCREENFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.SCREENFONTS) else 0)
+            | (if (o.SCRIPTSONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.SCRIPTSONLY) else 0)
+            | (if (o.SELECTSCRIPT == 1) @enumToInt(CHOOSEFONT_FLAGS.SELECTSCRIPT) else 0)
+            | (if (o.SHOWHELP == 1) @enumToInt(CHOOSEFONT_FLAGS.SHOWHELP) else 0)
+            | (if (o.TTONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.TTONLY) else 0)
+            | (if (o.USESTYLE == 1) @enumToInt(CHOOSEFONT_FLAGS.USESTYLE) else 0)
+            | (if (o.WYSIWYG == 1) @enumToInt(CHOOSEFONT_FLAGS.WYSIWYG) else 0)
+        );
+    }
 };
 pub const CF_APPLY = CHOOSEFONT_FLAGS.APPLY;
 pub const CF_ANSIONLY = CHOOSEFONT_FLAGS.ANSIONLY;
@@ -5260,7 +6556,6 @@ pub const CF_TTONLY = CHOOSEFONT_FLAGS.TTONLY;
 pub const CF_USESTYLE = CHOOSEFONT_FLAGS.USESTYLE;
 pub const CF_WYSIWYG = CHOOSEFONT_FLAGS.WYSIWYG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FINDREPLACE_FLAGS = extern enum(u32) {
     DIALOGTERM = 64,
     DOWN = 1,
@@ -5280,6 +6575,45 @@ pub const FINDREPLACE_FLAGS = extern enum(u32) {
     SHOWHELP = 128,
     WHOLEWORD = 2,
     _,
+    pub fn initFlags(o: struct {
+        DIALOGTERM: u1 = 0,
+        DOWN: u1 = 0,
+        ENABLEHOOK: u1 = 0,
+        ENABLETEMPLATE: u1 = 0,
+        ENABLETEMPLATEHANDLE: u1 = 0,
+        FINDNEXT: u1 = 0,
+        HIDEUPDOWN: u1 = 0,
+        HIDEMATCHCASE: u1 = 0,
+        HIDEWHOLEWORD: u1 = 0,
+        MATCHCASE: u1 = 0,
+        NOMATCHCASE: u1 = 0,
+        NOUPDOWN: u1 = 0,
+        NOWHOLEWORD: u1 = 0,
+        REPLACE: u1 = 0,
+        REPLACEALL: u1 = 0,
+        SHOWHELP: u1 = 0,
+        WHOLEWORD: u1 = 0,
+    }) FINDREPLACE_FLAGS {
+        return @intToEnum(FINDREPLACE_FLAGS,
+              (if (o.DIALOGTERM == 1) @enumToInt(FINDREPLACE_FLAGS.DIALOGTERM) else 0)
+            | (if (o.DOWN == 1) @enumToInt(FINDREPLACE_FLAGS.DOWN) else 0)
+            | (if (o.ENABLEHOOK == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLEHOOK) else 0)
+            | (if (o.ENABLETEMPLATE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATE) else 0)
+            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATEHANDLE) else 0)
+            | (if (o.FINDNEXT == 1) @enumToInt(FINDREPLACE_FLAGS.FINDNEXT) else 0)
+            | (if (o.HIDEUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEUPDOWN) else 0)
+            | (if (o.HIDEMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEMATCHCASE) else 0)
+            | (if (o.HIDEWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEWHOLEWORD) else 0)
+            | (if (o.MATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.MATCHCASE) else 0)
+            | (if (o.NOMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.NOMATCHCASE) else 0)
+            | (if (o.NOUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.NOUPDOWN) else 0)
+            | (if (o.NOWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.NOWHOLEWORD) else 0)
+            | (if (o.REPLACE == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACE) else 0)
+            | (if (o.REPLACEALL == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACEALL) else 0)
+            | (if (o.SHOWHELP == 1) @enumToInt(FINDREPLACE_FLAGS.SHOWHELP) else 0)
+            | (if (o.WHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.WHOLEWORD) else 0)
+        );
+    }
 };
 pub const FR_DIALOGTERM = FINDREPLACE_FLAGS.DIALOGTERM;
 pub const FR_DOWN = FINDREPLACE_FLAGS.DOWN;
@@ -5299,7 +6633,6 @@ pub const FR_REPLACEALL = FINDREPLACE_FLAGS.REPLACEALL;
 pub const FR_SHOWHELP = FINDREPLACE_FLAGS.SHOWHELP;
 pub const FR_WHOLEWORD = FINDREPLACE_FLAGS.WHOLEWORD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRINTDLGEX_FLAGS = extern enum(u32) {
     ALLPAGES = 0,
     COLLATE = 16,
@@ -5330,6 +6663,67 @@ pub const PRINTDLGEX_FLAGS = extern enum(u32) {
     PRINTSETUP = 64,
     SHOWHELP = 2048,
     _,
+    pub fn initFlags(o: struct {
+        ALLPAGES: u1 = 0,
+        COLLATE: u1 = 0,
+        CURRENTPAGE: u1 = 0,
+        DISABLEPRINTTOFILE: u1 = 0,
+        ENABLEPRINTTEMPLATE: u1 = 0,
+        ENABLEPRINTTEMPLATEHANDLE: u1 = 0,
+        EXCLUSIONFLAGS: u1 = 0,
+        HIDEPRINTTOFILE: u1 = 0,
+        NOCURRENTPAGE: u1 = 0,
+        NOPAGENUMS: u1 = 0,
+        NOSELECTION: u1 = 0,
+        NOWARNING: u1 = 0,
+        PAGENUMS: u1 = 0,
+        PRINTTOFILE: u1 = 0,
+        RETURNDC: u1 = 0,
+        RETURNDEFAULT: u1 = 0,
+        RETURNIC: u1 = 0,
+        SELECTION: u1 = 0,
+        USEDEVMODECOPIES: u1 = 0,
+        USEDEVMODECOPIESANDCOLLATE: u1 = 0,
+        USELARGETEMPLATE: u1 = 0,
+        ENABLEPRINTHOOK: u1 = 0,
+        ENABLESETUPHOOK: u1 = 0,
+        ENABLESETUPTEMPLATE: u1 = 0,
+        ENABLESETUPTEMPLATEHANDLE: u1 = 0,
+        NONETWORKBUTTON: u1 = 0,
+        PRINTSETUP: u1 = 0,
+        SHOWHELP: u1 = 0,
+    }) PRINTDLGEX_FLAGS {
+        return @intToEnum(PRINTDLGEX_FLAGS,
+              (if (o.ALLPAGES == 1) @enumToInt(PRINTDLGEX_FLAGS.ALLPAGES) else 0)
+            | (if (o.COLLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.COLLATE) else 0)
+            | (if (o.CURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.CURRENTPAGE) else 0)
+            | (if (o.DISABLEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.DISABLEPRINTTOFILE) else 0)
+            | (if (o.ENABLEPRINTTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATE) else 0)
+            | (if (o.ENABLEPRINTTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATEHANDLE) else 0)
+            | (if (o.EXCLUSIONFLAGS == 1) @enumToInt(PRINTDLGEX_FLAGS.EXCLUSIONFLAGS) else 0)
+            | (if (o.HIDEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.HIDEPRINTTOFILE) else 0)
+            | (if (o.NOCURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.NOCURRENTPAGE) else 0)
+            | (if (o.NOPAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.NOPAGENUMS) else 0)
+            | (if (o.NOSELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.NOSELECTION) else 0)
+            | (if (o.NOWARNING == 1) @enumToInt(PRINTDLGEX_FLAGS.NOWARNING) else 0)
+            | (if (o.PAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.PAGENUMS) else 0)
+            | (if (o.PRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTTOFILE) else 0)
+            | (if (o.RETURNDC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDC) else 0)
+            | (if (o.RETURNDEFAULT == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDEFAULT) else 0)
+            | (if (o.RETURNIC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNIC) else 0)
+            | (if (o.SELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.SELECTION) else 0)
+            | (if (o.USEDEVMODECOPIES == 1) @enumToInt(PRINTDLGEX_FLAGS.USEDEVMODECOPIES) else 0)
+            | (if (o.USEDEVMODECOPIESANDCOLLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.USEDEVMODECOPIESANDCOLLATE) else 0)
+            | (if (o.USELARGETEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.USELARGETEMPLATE) else 0)
+            | (if (o.ENABLEPRINTHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTHOOK) else 0)
+            | (if (o.ENABLESETUPHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPHOOK) else 0)
+            | (if (o.ENABLESETUPTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATE) else 0)
+            | (if (o.ENABLESETUPTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATEHANDLE) else 0)
+            | (if (o.NONETWORKBUTTON == 1) @enumToInt(PRINTDLGEX_FLAGS.NONETWORKBUTTON) else 0)
+            | (if (o.PRINTSETUP == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTSETUP) else 0)
+            | (if (o.SHOWHELP == 1) @enumToInt(PRINTDLGEX_FLAGS.SHOWHELP) else 0)
+        );
+    }
 };
 pub const PD_ALLPAGES = PRINTDLGEX_FLAGS.ALLPAGES;
 pub const PD_COLLATE = PRINTDLGEX_FLAGS.COLLATE;
@@ -5360,11 +6754,19 @@ pub const PD_NONETWORKBUTTON = PRINTDLGEX_FLAGS.NONETWORKBUTTON;
 pub const PD_PRINTSETUP = PRINTDLGEX_FLAGS.PRINTSETUP;
 pub const PD_SHOWHELP = PRINTDLGEX_FLAGS.SHOWHELP;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MOUSEHOOKSTRUCTEX_MOUSE_DATA = extern enum(u32) {
     @"1" = 1,
     @"2" = 2,
     _,
+    pub fn initFlags(o: struct {
+        @"1": u1 = 0,
+        @"2": u1 = 0,
+    }) MOUSEHOOKSTRUCTEX_MOUSE_DATA {
+        return @intToEnum(MOUSEHOOKSTRUCTEX_MOUSE_DATA,
+              (if (o.@"1" == 1) @enumToInt(MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"1") else 0)
+            | (if (o.@"2" == 1) @enumToInt(MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"2") else 0)
+        );
+    }
 };
 pub const XBUTTON1 = MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"1";
 pub const XBUTTON2 = MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"2";
@@ -5386,7 +6788,6 @@ pub const VFT_STATIC_LIB = VS_FIXEDFILEINFO_FILE_TYPE.STATIC_LIB;
 pub const VFT_UNKNOWN = VS_FIXEDFILEINFO_FILE_TYPE.UNKNOWN;
 pub const VFT_VXD = VS_FIXEDFILEINFO_FILE_TYPE.VXD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MENU_ITEM_MASK = extern enum(u32) {
     BITMAP = 128,
     CHECKMARKS = 8,
@@ -5398,6 +6799,29 @@ pub const MENU_ITEM_MASK = extern enum(u32) {
     SUBMENU = 4,
     TYPE = 16,
     _,
+    pub fn initFlags(o: struct {
+        BITMAP: u1 = 0,
+        CHECKMARKS: u1 = 0,
+        DATA: u1 = 0,
+        FTYPE: u1 = 0,
+        ID: u1 = 0,
+        STATE: u1 = 0,
+        STRING: u1 = 0,
+        SUBMENU: u1 = 0,
+        TYPE: u1 = 0,
+    }) MENU_ITEM_MASK {
+        return @intToEnum(MENU_ITEM_MASK,
+              (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_MASK.BITMAP) else 0)
+            | (if (o.CHECKMARKS == 1) @enumToInt(MENU_ITEM_MASK.CHECKMARKS) else 0)
+            | (if (o.DATA == 1) @enumToInt(MENU_ITEM_MASK.DATA) else 0)
+            | (if (o.FTYPE == 1) @enumToInt(MENU_ITEM_MASK.FTYPE) else 0)
+            | (if (o.ID == 1) @enumToInt(MENU_ITEM_MASK.ID) else 0)
+            | (if (o.STATE == 1) @enumToInt(MENU_ITEM_MASK.STATE) else 0)
+            | (if (o.STRING == 1) @enumToInt(MENU_ITEM_MASK.STRING) else 0)
+            | (if (o.SUBMENU == 1) @enumToInt(MENU_ITEM_MASK.SUBMENU) else 0)
+            | (if (o.TYPE == 1) @enumToInt(MENU_ITEM_MASK.TYPE) else 0)
+        );
+    }
 };
 pub const MIIM_BITMAP = MENU_ITEM_MASK.BITMAP;
 pub const MIIM_CHECKMARKS = MENU_ITEM_MASK.CHECKMARKS;
@@ -5437,7 +6861,6 @@ pub const CURSORINFO_FLAGS = extern enum(u32) {
 pub const CURSOR_SHOWING = CURSORINFO_FLAGS.HOWING;
 pub const CURSOR_SUPPRESSED = CURSORINFO_FLAGS.UPPRESSED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MENUINFO_STYLE = extern enum(u32) {
     AUTODISMISS = 268435456,
     CHECKORBMP = 67108864,
@@ -5446,6 +6869,23 @@ pub const MENUINFO_STYLE = extern enum(u32) {
     NOCHECK = 2147483648,
     NOTIFYBYPOS = 134217728,
     _,
+    pub fn initFlags(o: struct {
+        AUTODISMISS: u1 = 0,
+        CHECKORBMP: u1 = 0,
+        DRAGDROP: u1 = 0,
+        MODELESS: u1 = 0,
+        NOCHECK: u1 = 0,
+        NOTIFYBYPOS: u1 = 0,
+    }) MENUINFO_STYLE {
+        return @intToEnum(MENUINFO_STYLE,
+              (if (o.AUTODISMISS == 1) @enumToInt(MENUINFO_STYLE.AUTODISMISS) else 0)
+            | (if (o.CHECKORBMP == 1) @enumToInt(MENUINFO_STYLE.CHECKORBMP) else 0)
+            | (if (o.DRAGDROP == 1) @enumToInt(MENUINFO_STYLE.DRAGDROP) else 0)
+            | (if (o.MODELESS == 1) @enumToInt(MENUINFO_STYLE.MODELESS) else 0)
+            | (if (o.NOCHECK == 1) @enumToInt(MENUINFO_STYLE.NOCHECK) else 0)
+            | (if (o.NOTIFYBYPOS == 1) @enumToInt(MENUINFO_STYLE.NOTIFYBYPOS) else 0)
+        );
+    }
 };
 pub const MNS_AUTODISMISS = MENUINFO_STYLE.AUTODISMISS;
 pub const MNS_CHECKORBMP = MENUINFO_STYLE.CHECKORBMP;
@@ -5454,18 +6894,27 @@ pub const MNS_MODELESS = MENUINFO_STYLE.MODELESS;
 pub const MNS_NOCHECK = MENUINFO_STYLE.NOCHECK;
 pub const MNS_NOTIFYBYPOS = MENUINFO_STYLE.NOTIFYBYPOS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WINDOWPLACEMENT_FLAGS = extern enum(u32) {
     ASYNCWINDOWPLACEMENT = 4,
     RESTORETOMAXIMIZED = 2,
     SETMINPOSITION = 1,
     _,
+    pub fn initFlags(o: struct {
+        ASYNCWINDOWPLACEMENT: u1 = 0,
+        RESTORETOMAXIMIZED: u1 = 0,
+        SETMINPOSITION: u1 = 0,
+    }) WINDOWPLACEMENT_FLAGS {
+        return @intToEnum(WINDOWPLACEMENT_FLAGS,
+              (if (o.ASYNCWINDOWPLACEMENT == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.ASYNCWINDOWPLACEMENT) else 0)
+            | (if (o.RESTORETOMAXIMIZED == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.RESTORETOMAXIMIZED) else 0)
+            | (if (o.SETMINPOSITION == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.SETMINPOSITION) else 0)
+        );
+    }
 };
 pub const WPF_ASYNCWINDOWPLACEMENT = WINDOWPLACEMENT_FLAGS.ASYNCWINDOWPLACEMENT;
 pub const WPF_RESTORETOMAXIMIZED = WINDOWPLACEMENT_FLAGS.RESTORETOMAXIMIZED;
 pub const WPF_SETMINPOSITION = WINDOWPLACEMENT_FLAGS.SETMINPOSITION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CHOOSEFONT_FONT_TYPE = extern enum(u32) {
     BOLD_FONTTYPE = 256,
     ITALIC_FONTTYPE = 512,
@@ -5474,6 +6923,23 @@ pub const CHOOSEFONT_FONT_TYPE = extern enum(u32) {
     SCREEN_FONTTYPE = 8192,
     SIMULATED_FONTTYPE = 32768,
     _,
+    pub fn initFlags(o: struct {
+        BOLD_FONTTYPE: u1 = 0,
+        ITALIC_FONTTYPE: u1 = 0,
+        PRINTER_FONTTYPE: u1 = 0,
+        REGULAR_FONTTYPE: u1 = 0,
+        SCREEN_FONTTYPE: u1 = 0,
+        SIMULATED_FONTTYPE: u1 = 0,
+    }) CHOOSEFONT_FONT_TYPE {
+        return @intToEnum(CHOOSEFONT_FONT_TYPE,
+              (if (o.BOLD_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE) else 0)
+            | (if (o.ITALIC_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.ITALIC_FONTTYPE) else 0)
+            | (if (o.PRINTER_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.PRINTER_FONTTYPE) else 0)
+            | (if (o.REGULAR_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.REGULAR_FONTTYPE) else 0)
+            | (if (o.SCREEN_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE) else 0)
+            | (if (o.SIMULATED_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE) else 0)
+        );
+    }
 };
 pub const BOLD_FONTTYPE = CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE;
 pub const ITALIC_FONTTYPE = CHOOSEFONT_FONT_TYPE.ITALIC_FONTTYPE;
@@ -5482,7 +6948,6 @@ pub const REGULAR_FONTTYPE = CHOOSEFONT_FONT_TYPE.REGULAR_FONTTYPE;
 pub const SCREEN_FONTTYPE = CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE;
 pub const SIMULATED_FONTTYPE = CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MENUINFO_MASK = extern enum(u32) {
     APPLYTOSUBMENUS = 2147483648,
     BACKGROUND = 2,
@@ -5491,6 +6956,23 @@ pub const MENUINFO_MASK = extern enum(u32) {
     MENUDATA = 8,
     STYLE = 16,
     _,
+    pub fn initFlags(o: struct {
+        APPLYTOSUBMENUS: u1 = 0,
+        BACKGROUND: u1 = 0,
+        HELPID: u1 = 0,
+        MAXHEIGHT: u1 = 0,
+        MENUDATA: u1 = 0,
+        STYLE: u1 = 0,
+    }) MENUINFO_MASK {
+        return @intToEnum(MENUINFO_MASK,
+              (if (o.APPLYTOSUBMENUS == 1) @enumToInt(MENUINFO_MASK.APPLYTOSUBMENUS) else 0)
+            | (if (o.BACKGROUND == 1) @enumToInt(MENUINFO_MASK.BACKGROUND) else 0)
+            | (if (o.HELPID == 1) @enumToInt(MENUINFO_MASK.HELPID) else 0)
+            | (if (o.MAXHEIGHT == 1) @enumToInt(MENUINFO_MASK.MAXHEIGHT) else 0)
+            | (if (o.MENUDATA == 1) @enumToInt(MENUINFO_MASK.MENUDATA) else 0)
+            | (if (o.STYLE == 1) @enumToInt(MENUINFO_MASK.STYLE) else 0)
+        );
+    }
 };
 pub const MIM_APPLYTOSUBMENUS = MENUINFO_MASK.APPLYTOSUBMENUS;
 pub const MIM_BACKGROUND = MENUINFO_MASK.BACKGROUND;
@@ -5499,7 +6981,6 @@ pub const MIM_MAXHEIGHT = MENUINFO_MASK.MAXHEIGHT;
 pub const MIM_MENUDATA = MENUINFO_MASK.MENUDATA;
 pub const MIM_STYLE = MENUINFO_MASK.STYLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const VS_FIXEDFILEINFO_FLAGS = extern enum(u32) {
     DEBUG = 1,
     INFOINFERRED = 16,
@@ -5508,6 +6989,23 @@ pub const VS_FIXEDFILEINFO_FLAGS = extern enum(u32) {
     PRIVATEBUILD = 8,
     SPECIALBUILD = 32,
     _,
+    pub fn initFlags(o: struct {
+        DEBUG: u1 = 0,
+        INFOINFERRED: u1 = 0,
+        PATCHED: u1 = 0,
+        PRERELEASE: u1 = 0,
+        PRIVATEBUILD: u1 = 0,
+        SPECIALBUILD: u1 = 0,
+    }) VS_FIXEDFILEINFO_FLAGS {
+        return @intToEnum(VS_FIXEDFILEINFO_FLAGS,
+              (if (o.DEBUG == 1) @enumToInt(VS_FIXEDFILEINFO_FLAGS.DEBUG) else 0)
+            | (if (o.INFOINFERRED == 1) @enumToInt(VS_FIXEDFILEINFO_FLAGS.INFOINFERRED) else 0)
+            | (if (o.PATCHED == 1) @enumToInt(VS_FIXEDFILEINFO_FLAGS.PATCHED) else 0)
+            | (if (o.PRERELEASE == 1) @enumToInt(VS_FIXEDFILEINFO_FLAGS.PRERELEASE) else 0)
+            | (if (o.PRIVATEBUILD == 1) @enumToInt(VS_FIXEDFILEINFO_FLAGS.PRIVATEBUILD) else 0)
+            | (if (o.SPECIALBUILD == 1) @enumToInt(VS_FIXEDFILEINFO_FLAGS.SPECIALBUILD) else 0)
+        );
+    }
 };
 pub const VS_FF_DEBUG = VS_FIXEDFILEINFO_FLAGS.DEBUG;
 pub const VS_FF_INFOINFERRED = VS_FIXEDFILEINFO_FLAGS.INFOINFERRED;
@@ -5561,7 +7059,6 @@ pub const VFT2_DRV_SYSTEM = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_SYSTEM;
 pub const VFT2_DRV_VERSIONED_PRINTER = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_VERSIONED_PRINTER;
 pub const VFT2_UNKNOWN = VS_FIXEDFILEINFO_FILE_SUBTYPE.UNKNOWN;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GUITHREADINFO_FLAGS = extern enum(u32) {
     CARETBLINKING = 1,
     INMENUMODE = 4,
@@ -5569,6 +7066,21 @@ pub const GUITHREADINFO_FLAGS = extern enum(u32) {
     POPUPMENUMODE = 16,
     SYSTEMMENUMODE = 8,
     _,
+    pub fn initFlags(o: struct {
+        CARETBLINKING: u1 = 0,
+        INMENUMODE: u1 = 0,
+        INMOVESIZE: u1 = 0,
+        POPUPMENUMODE: u1 = 0,
+        SYSTEMMENUMODE: u1 = 0,
+    }) GUITHREADINFO_FLAGS {
+        return @intToEnum(GUITHREADINFO_FLAGS,
+              (if (o.CARETBLINKING == 1) @enumToInt(GUITHREADINFO_FLAGS.CARETBLINKING) else 0)
+            | (if (o.INMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.INMENUMODE) else 0)
+            | (if (o.INMOVESIZE == 1) @enumToInt(GUITHREADINFO_FLAGS.INMOVESIZE) else 0)
+            | (if (o.POPUPMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.POPUPMENUMODE) else 0)
+            | (if (o.SYSTEMMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.SYSTEMMENUMODE) else 0)
+        );
+    }
 };
 pub const GUI_CARETBLINKING = GUITHREADINFO_FLAGS.CARETBLINKING;
 pub const GUI_INMENUMODE = GUITHREADINFO_FLAGS.INMENUMODE;

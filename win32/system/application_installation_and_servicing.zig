@@ -239,10 +239,16 @@ pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IASSEMBLYCACHE_UNI
 pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.ALREADY_UNINSTALLED;
 pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.DELETE_PENDING;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const QUERYASMINFO_FLAGS = extern enum(u32) {
     E = 1,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) QUERYASMINFO_FLAGS {
+        return @intToEnum(QUERYASMINFO_FLAGS,
+              (if (o.E == 1) @enumToInt(QUERYASMINFO_FLAGS.E) else 0)
+        );
+    }
 };
 pub const QUERYASMINFO_FLAG_VALIDATE = QUERYASMINFO_FLAGS.E;
 
@@ -1589,7 +1595,6 @@ pub const ASM_NAME_NULL_CUSTOM = ASM_NAME.NULL_CUSTOM;
 pub const ASM_NAME_MVID = ASM_NAME.MVID;
 pub const ASM_NAME_MAX_PARAMS = ASM_NAME.MAX_PARAMS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ASM_BIND_FLAGS = extern enum(u32) {
     FORCE_CACHE_INSTALL = 1,
     RFS_INTEGRITY_CHECK = 2,
@@ -1598,6 +1603,23 @@ pub const ASM_BIND_FLAGS = extern enum(u32) {
     SHARED_BINPATH_HINT = 16,
     PARENT_ASM_HINT = 32,
     _,
+    pub fn initFlags(o: struct {
+        FORCE_CACHE_INSTALL: u1 = 0,
+        RFS_INTEGRITY_CHECK: u1 = 0,
+        RFS_MODULE_CHECK: u1 = 0,
+        BINPATH_PROBE_ONLY: u1 = 0,
+        SHARED_BINPATH_HINT: u1 = 0,
+        PARENT_ASM_HINT: u1 = 0,
+    }) ASM_BIND_FLAGS {
+        return @intToEnum(ASM_BIND_FLAGS,
+              (if (o.FORCE_CACHE_INSTALL == 1) @enumToInt(ASM_BIND_FLAGS.FORCE_CACHE_INSTALL) else 0)
+            | (if (o.RFS_INTEGRITY_CHECK == 1) @enumToInt(ASM_BIND_FLAGS.RFS_INTEGRITY_CHECK) else 0)
+            | (if (o.RFS_MODULE_CHECK == 1) @enumToInt(ASM_BIND_FLAGS.RFS_MODULE_CHECK) else 0)
+            | (if (o.BINPATH_PROBE_ONLY == 1) @enumToInt(ASM_BIND_FLAGS.BINPATH_PROBE_ONLY) else 0)
+            | (if (o.SHARED_BINPATH_HINT == 1) @enumToInt(ASM_BIND_FLAGS.SHARED_BINPATH_HINT) else 0)
+            | (if (o.PARENT_ASM_HINT == 1) @enumToInt(ASM_BIND_FLAGS.PARENT_ASM_HINT) else 0)
+        );
+    }
 };
 pub const ASM_BINDF_FORCE_CACHE_INSTALL = ASM_BIND_FLAGS.FORCE_CACHE_INSTALL;
 pub const ASM_BINDF_RFS_INTEGRITY_CHECK = ASM_BIND_FLAGS.RFS_INTEGRITY_CHECK;

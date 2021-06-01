@@ -1945,7 +1945,6 @@ pub const FTP_TRANSFER_TYPE_UNKNOWN = FTP_FLAGS.FTP_TRANSFER_TYPE_UNKNOWN;
 pub const INTERNET_FLAG_TRANSFER_ASCII = FTP_FLAGS.INTERNET_FLAG_TRANSFER_ASCII;
 pub const INTERNET_FLAG_TRANSFER_BINARY = FTP_FLAGS.INTERNET_FLAG_TRANSFER_BINARY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const INTERNET_CONNECTION = extern enum(u32) {
     CONNECTION_CONFIGURED = 64,
     CONNECTION_LAN_ = 2,
@@ -1955,6 +1954,25 @@ pub const INTERNET_CONNECTION = extern enum(u32) {
     CONNECTION_PROXY = 4,
     RAS_INSTALLED = 16,
     _,
+    pub fn initFlags(o: struct {
+        CONNECTION_CONFIGURED: u1 = 0,
+        CONNECTION_LAN_: u1 = 0,
+        CONNECTION_MODEM: u1 = 0,
+        CONNECTION_MODEM_BUSY: u1 = 0,
+        CONNECTION_OFFLINE_: u1 = 0,
+        CONNECTION_PROXY: u1 = 0,
+        RAS_INSTALLED: u1 = 0,
+    }) INTERNET_CONNECTION {
+        return @intToEnum(INTERNET_CONNECTION,
+              (if (o.CONNECTION_CONFIGURED == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_CONFIGURED) else 0)
+            | (if (o.CONNECTION_LAN_ == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_LAN_) else 0)
+            | (if (o.CONNECTION_MODEM == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_MODEM) else 0)
+            | (if (o.CONNECTION_MODEM_BUSY == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_MODEM_BUSY) else 0)
+            | (if (o.CONNECTION_OFFLINE_ == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_OFFLINE_) else 0)
+            | (if (o.CONNECTION_PROXY == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_PROXY) else 0)
+            | (if (o.RAS_INSTALLED == 1) @enumToInt(INTERNET_CONNECTION.RAS_INSTALLED) else 0)
+        );
+    }
 };
 pub const INTERNET_CONNECTION_CONFIGURED = INTERNET_CONNECTION.CONNECTION_CONFIGURED;
 pub const INTERNET_CONNECTION_LAN_ = INTERNET_CONNECTION.CONNECTION_LAN_;
@@ -1964,7 +1982,6 @@ pub const INTERNET_CONNECTION_OFFLINE_ = INTERNET_CONNECTION.CONNECTION_OFFLINE_
 pub const INTERNET_CONNECTION_PROXY = INTERNET_CONNECTION.CONNECTION_PROXY;
 pub const INTERNET_RAS_INSTALLED = INTERNET_CONNECTION.RAS_INSTALLED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HTTP_ADDREQ_FLAG = extern enum(u32) {
     ADD = 536870912,
     ADD_IF_NEW = 268435456,
@@ -1973,6 +1990,23 @@ pub const HTTP_ADDREQ_FLAG = extern enum(u32) {
     COALESCE_WITH_SEMICOLON = 16777216,
     REPLACE = 2147483648,
     _,
+    pub fn initFlags(o: struct {
+        ADD: u1 = 0,
+        ADD_IF_NEW: u1 = 0,
+        COALESCE: u1 = 0,
+        COALESCE_WITH_COMMA: u1 = 0,
+        COALESCE_WITH_SEMICOLON: u1 = 0,
+        REPLACE: u1 = 0,
+    }) HTTP_ADDREQ_FLAG {
+        return @intToEnum(HTTP_ADDREQ_FLAG,
+              (if (o.ADD == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD) else 0)
+            | (if (o.ADD_IF_NEW == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD_IF_NEW) else 0)
+            | (if (o.COALESCE == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE) else 0)
+            | (if (o.COALESCE_WITH_COMMA == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE_WITH_COMMA) else 0)
+            | (if (o.COALESCE_WITH_SEMICOLON == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON) else 0)
+            | (if (o.REPLACE == 1) @enumToInt(HTTP_ADDREQ_FLAG.REPLACE) else 0)
+        );
+    }
 };
 pub const HTTP_ADDREQ_FLAG_ADD = HTTP_ADDREQ_FLAG.ADD;
 pub const HTTP_ADDREQ_FLAG_ADD_IF_NEW = HTTP_ADDREQ_FLAG.ADD_IF_NEW;
@@ -1990,11 +2024,19 @@ pub const INTERNET_COOKIE_HTTPONLY = INTERNET_COOKIE_FLAGS.COOKIE_HTTPONLY;
 pub const INTERNET_COOKIE_THIRD_PARTY = INTERNET_COOKIE_FLAGS.COOKIE_THIRD_PARTY;
 pub const INTERNET_FLAG_RESTRICTED_ZONE = INTERNET_COOKIE_FLAGS.FLAG_RESTRICTED_ZONE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROXY_AUTO_DETECT_TYPE = extern enum(u32) {
     HCP = 1,
     NS_A = 2,
     _,
+    pub fn initFlags(o: struct {
+        HCP: u1 = 0,
+        NS_A: u1 = 0,
+    }) PROXY_AUTO_DETECT_TYPE {
+        return @intToEnum(PROXY_AUTO_DETECT_TYPE,
+              (if (o.HCP == 1) @enumToInt(PROXY_AUTO_DETECT_TYPE.HCP) else 0)
+            | (if (o.NS_A == 1) @enumToInt(PROXY_AUTO_DETECT_TYPE.NS_A) else 0)
+        );
+    }
 };
 pub const PROXY_AUTO_DETECT_TYPE_DHCP = PROXY_AUTO_DETECT_TYPE.HCP;
 pub const PROXY_AUTO_DETECT_TYPE_DNS_A = PROXY_AUTO_DETECT_TYPE.NS_A;

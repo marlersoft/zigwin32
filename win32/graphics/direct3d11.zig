@@ -5210,7 +5210,6 @@ pub const ID3D11Device = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D11_CREATE_DEVICE_FLAG = extern enum(u32) {
     SINGLETHREADED = 1,
     DEBUG = 2,
@@ -5222,6 +5221,29 @@ pub const D3D11_CREATE_DEVICE_FLAG = extern enum(u32) {
     DISABLE_GPU_TIMEOUT = 256,
     VIDEO_SUPPORT = 2048,
     _,
+    pub fn initFlags(o: struct {
+        SINGLETHREADED: u1 = 0,
+        DEBUG: u1 = 0,
+        SWITCH_TO_REF: u1 = 0,
+        PREVENT_INTERNAL_THREADING_OPTIMIZATIONS: u1 = 0,
+        BGRA_SUPPORT: u1 = 0,
+        DEBUGGABLE: u1 = 0,
+        PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY: u1 = 0,
+        DISABLE_GPU_TIMEOUT: u1 = 0,
+        VIDEO_SUPPORT: u1 = 0,
+    }) D3D11_CREATE_DEVICE_FLAG {
+        return @intToEnum(D3D11_CREATE_DEVICE_FLAG,
+              (if (o.SINGLETHREADED == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.SINGLETHREADED) else 0)
+            | (if (o.DEBUG == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.DEBUG) else 0)
+            | (if (o.SWITCH_TO_REF == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.SWITCH_TO_REF) else 0)
+            | (if (o.PREVENT_INTERNAL_THREADING_OPTIMIZATIONS == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.PREVENT_INTERNAL_THREADING_OPTIMIZATIONS) else 0)
+            | (if (o.BGRA_SUPPORT == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.BGRA_SUPPORT) else 0)
+            | (if (o.DEBUGGABLE == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.DEBUGGABLE) else 0)
+            | (if (o.PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY) else 0)
+            | (if (o.DISABLE_GPU_TIMEOUT == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.DISABLE_GPU_TIMEOUT) else 0)
+            | (if (o.VIDEO_SUPPORT == 1) @enumToInt(D3D11_CREATE_DEVICE_FLAG.VIDEO_SUPPORT) else 0)
+        );
+    }
 };
 pub const D3D11_CREATE_DEVICE_SINGLETHREADED = D3D11_CREATE_DEVICE_FLAG.SINGLETHREADED;
 pub const D3D11_CREATE_DEVICE_DEBUG = D3D11_CREATE_DEVICE_FLAG.DEBUG;
@@ -9590,13 +9612,25 @@ pub const ID3D11Query1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D11_FENCE_FLAG = extern enum(u32) {
     NONE = 0,
     SHARED = 2,
     SHARED_CROSS_ADAPTER = 4,
     NON_MONITORED = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SHARED: u1 = 0,
+        SHARED_CROSS_ADAPTER: u1 = 0,
+        NON_MONITORED: u1 = 0,
+    }) D3D11_FENCE_FLAG {
+        return @intToEnum(D3D11_FENCE_FLAG,
+              (if (o.NONE == 1) @enumToInt(D3D11_FENCE_FLAG.NONE) else 0)
+            | (if (o.SHARED == 1) @enumToInt(D3D11_FENCE_FLAG.SHARED) else 0)
+            | (if (o.SHARED_CROSS_ADAPTER == 1) @enumToInt(D3D11_FENCE_FLAG.SHARED_CROSS_ADAPTER) else 0)
+            | (if (o.NON_MONITORED == 1) @enumToInt(D3D11_FENCE_FLAG.NON_MONITORED) else 0)
+        );
+    }
 };
 pub const D3D11_FENCE_FLAG_NONE = D3D11_FENCE_FLAG.NONE;
 pub const D3D11_FENCE_FLAG_SHARED = D3D11_FENCE_FLAG.SHARED;
@@ -9960,7 +9994,6 @@ pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_G = D3D11_VIDEO_DECODER_HISTOG
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_B = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT.B;
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_A = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT.A;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS = extern enum(u32) {
     NONE = 0,
     Y = 1,
@@ -9971,6 +10004,27 @@ pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS = extern enum(u32) {
     B = 4,
     A = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        Y: u1 = 0,
+        U: u1 = 0,
+        V: u1 = 0,
+        R: u1 = 0,
+        G: u1 = 0,
+        B: u1 = 0,
+        A: u1 = 0,
+    }) D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS {
+        return @intToEnum(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.NONE) else 0)
+            | (if (o.Y == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.Y) else 0)
+            | (if (o.U == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.U) else 0)
+            | (if (o.V == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.V) else 0)
+            | (if (o.R == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.R) else 0)
+            | (if (o.G == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.G) else 0)
+            | (if (o.B == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.B) else 0)
+            | (if (o.A == 1) @enumToInt(D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.A) else 0)
+        );
+    }
 };
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_NONE = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.NONE;
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_Y = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.Y;
@@ -9988,10 +10042,16 @@ pub const D3D11_FEATURE_DATA_VIDEO_DECODER_HISTOGRAM = extern struct {
     CounterBitDepth: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS {
+        return @intToEnum(D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS,
+              (if (o.E == 1) @enumToInt(D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS.E) else 0)
+        );
+    }
 };
 pub const D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAG_NONE = D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS.E;
 

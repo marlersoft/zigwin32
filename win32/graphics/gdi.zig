@@ -1311,7 +1311,6 @@ pub const RGN_COPY = RGN_COMBINE_MODE.COPY;
 pub const RGN_MIN = RGN_COMBINE_MODE.MIN;
 pub const RGN_MAX = RGN_COMBINE_MODE.MAX;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ETO_OPTIONS = extern enum(u32) {
     OPAQUE = 2,
     CLIPPED = 4,
@@ -1323,6 +1322,29 @@ pub const ETO_OPTIONS = extern enum(u32) {
     PDY = 8192,
     REVERSE_INDEX_MAP = 65536,
     _,
+    pub fn initFlags(o: struct {
+        OPAQUE: u1 = 0,
+        CLIPPED: u1 = 0,
+        GLYPH_INDEX: u1 = 0,
+        RTLREADING: u1 = 0,
+        NUMERICSLOCAL: u1 = 0,
+        NUMERICSLATIN: u1 = 0,
+        IGNORELANGUAGE: u1 = 0,
+        PDY: u1 = 0,
+        REVERSE_INDEX_MAP: u1 = 0,
+    }) ETO_OPTIONS {
+        return @intToEnum(ETO_OPTIONS,
+              (if (o.OPAQUE == 1) @enumToInt(ETO_OPTIONS.OPAQUE) else 0)
+            | (if (o.CLIPPED == 1) @enumToInt(ETO_OPTIONS.CLIPPED) else 0)
+            | (if (o.GLYPH_INDEX == 1) @enumToInt(ETO_OPTIONS.GLYPH_INDEX) else 0)
+            | (if (o.RTLREADING == 1) @enumToInt(ETO_OPTIONS.RTLREADING) else 0)
+            | (if (o.NUMERICSLOCAL == 1) @enumToInt(ETO_OPTIONS.NUMERICSLOCAL) else 0)
+            | (if (o.NUMERICSLATIN == 1) @enumToInt(ETO_OPTIONS.NUMERICSLATIN) else 0)
+            | (if (o.IGNORELANGUAGE == 1) @enumToInt(ETO_OPTIONS.IGNORELANGUAGE) else 0)
+            | (if (o.PDY == 1) @enumToInt(ETO_OPTIONS.PDY) else 0)
+            | (if (o.REVERSE_INDEX_MAP == 1) @enumToInt(ETO_OPTIONS.REVERSE_INDEX_MAP) else 0)
+        );
+    }
 };
 pub const ETO_OPAQUE = ETO_OPTIONS.OPAQUE;
 pub const ETO_CLIPPED = ETO_OPTIONS.CLIPPED;
@@ -3073,7 +3095,6 @@ pub const HdcMetdataFileHandle = isize;
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
 pub const HdcMetdataEnhFileHandle = isize;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DRAWEDGE_FLAGS = extern enum(u32) {
     BDR_RAISEDOUTER = 1,
     BDR_SUNKENOUTER = 2,
@@ -3088,6 +3109,35 @@ pub const DRAWEDGE_FLAGS = extern enum(u32) {
     EDGE_ETCHED = 6,
     EDGE_BUMP = 9,
     _,
+    pub fn initFlags(o: struct {
+        BDR_RAISEDOUTER: u1 = 0,
+        BDR_SUNKENOUTER: u1 = 0,
+        BDR_RAISEDINNER: u1 = 0,
+        BDR_SUNKENINNER: u1 = 0,
+        BDR_OUTER: u1 = 0,
+        BDR_INNER: u1 = 0,
+        BDR_RAISED: u1 = 0,
+        BDR_SUNKEN: u1 = 0,
+        EDGE_RAISED: u1 = 0,
+        EDGE_SUNKEN: u1 = 0,
+        EDGE_ETCHED: u1 = 0,
+        EDGE_BUMP: u1 = 0,
+    }) DRAWEDGE_FLAGS {
+        return @intToEnum(DRAWEDGE_FLAGS,
+              (if (o.BDR_RAISEDOUTER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_RAISEDOUTER) else 0)
+            | (if (o.BDR_SUNKENOUTER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_SUNKENOUTER) else 0)
+            | (if (o.BDR_RAISEDINNER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_RAISEDINNER) else 0)
+            | (if (o.BDR_SUNKENINNER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_SUNKENINNER) else 0)
+            | (if (o.BDR_OUTER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_OUTER) else 0)
+            | (if (o.BDR_INNER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_INNER) else 0)
+            | (if (o.BDR_RAISED == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_RAISED) else 0)
+            | (if (o.BDR_SUNKEN == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_SUNKEN) else 0)
+            | (if (o.EDGE_RAISED == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_RAISED) else 0)
+            | (if (o.EDGE_SUNKEN == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_SUNKEN) else 0)
+            | (if (o.EDGE_ETCHED == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_ETCHED) else 0)
+            | (if (o.EDGE_BUMP == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_BUMP) else 0)
+        );
+    }
 };
 pub const BDR_RAISEDOUTER = DRAWEDGE_FLAGS.BDR_RAISEDOUTER;
 pub const BDR_SUNKENOUTER = DRAWEDGE_FLAGS.BDR_SUNKENOUTER;
@@ -3115,7 +3165,6 @@ pub const DFC_SCROLL = DFC_TYPE.SCROLL;
 pub const DFC_BUTTON = DFC_TYPE.BUTTON;
 pub const DFC_POPUPMENU = DFC_TYPE.POPUPMENU;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DFCS_STATE = extern enum(u32) {
     CAPTIONCLOSE = 0,
     CAPTIONMIN = 1,
@@ -3148,6 +3197,71 @@ pub const DFCS_STATE = extern enum(u32) {
     FLAT = 16384,
     MONO = 32768,
     _,
+    pub fn initFlags(o: struct {
+        CAPTIONCLOSE: u1 = 0,
+        CAPTIONMIN: u1 = 0,
+        CAPTIONMAX: u1 = 0,
+        CAPTIONRESTORE: u1 = 0,
+        CAPTIONHELP: u1 = 0,
+        MENUARROW: u1 = 0,
+        MENUCHECK: u1 = 0,
+        MENUBULLET: u1 = 0,
+        MENUARROWRIGHT: u1 = 0,
+        SCROLLUP: u1 = 0,
+        SCROLLDOWN: u1 = 0,
+        SCROLLLEFT: u1 = 0,
+        SCROLLRIGHT: u1 = 0,
+        SCROLLCOMBOBOX: u1 = 0,
+        SCROLLSIZEGRIP: u1 = 0,
+        SCROLLSIZEGRIPRIGHT: u1 = 0,
+        BUTTONCHECK: u1 = 0,
+        BUTTONRADIOIMAGE: u1 = 0,
+        BUTTONRADIOMASK: u1 = 0,
+        BUTTONRADIO: u1 = 0,
+        BUTTON3STATE: u1 = 0,
+        BUTTONPUSH: u1 = 0,
+        INACTIVE: u1 = 0,
+        PUSHED: u1 = 0,
+        CHECKED: u1 = 0,
+        TRANSPARENT: u1 = 0,
+        HOT: u1 = 0,
+        ADJUSTRECT: u1 = 0,
+        FLAT: u1 = 0,
+        MONO: u1 = 0,
+    }) DFCS_STATE {
+        return @intToEnum(DFCS_STATE,
+              (if (o.CAPTIONCLOSE == 1) @enumToInt(DFCS_STATE.CAPTIONCLOSE) else 0)
+            | (if (o.CAPTIONMIN == 1) @enumToInt(DFCS_STATE.CAPTIONMIN) else 0)
+            | (if (o.CAPTIONMAX == 1) @enumToInt(DFCS_STATE.CAPTIONMAX) else 0)
+            | (if (o.CAPTIONRESTORE == 1) @enumToInt(DFCS_STATE.CAPTIONRESTORE) else 0)
+            | (if (o.CAPTIONHELP == 1) @enumToInt(DFCS_STATE.CAPTIONHELP) else 0)
+            | (if (o.MENUARROW == 1) @enumToInt(DFCS_STATE.MENUARROW) else 0)
+            | (if (o.MENUCHECK == 1) @enumToInt(DFCS_STATE.MENUCHECK) else 0)
+            | (if (o.MENUBULLET == 1) @enumToInt(DFCS_STATE.MENUBULLET) else 0)
+            | (if (o.MENUARROWRIGHT == 1) @enumToInt(DFCS_STATE.MENUARROWRIGHT) else 0)
+            | (if (o.SCROLLUP == 1) @enumToInt(DFCS_STATE.SCROLLUP) else 0)
+            | (if (o.SCROLLDOWN == 1) @enumToInt(DFCS_STATE.SCROLLDOWN) else 0)
+            | (if (o.SCROLLLEFT == 1) @enumToInt(DFCS_STATE.SCROLLLEFT) else 0)
+            | (if (o.SCROLLRIGHT == 1) @enumToInt(DFCS_STATE.SCROLLRIGHT) else 0)
+            | (if (o.SCROLLCOMBOBOX == 1) @enumToInt(DFCS_STATE.SCROLLCOMBOBOX) else 0)
+            | (if (o.SCROLLSIZEGRIP == 1) @enumToInt(DFCS_STATE.SCROLLSIZEGRIP) else 0)
+            | (if (o.SCROLLSIZEGRIPRIGHT == 1) @enumToInt(DFCS_STATE.SCROLLSIZEGRIPRIGHT) else 0)
+            | (if (o.BUTTONCHECK == 1) @enumToInt(DFCS_STATE.BUTTONCHECK) else 0)
+            | (if (o.BUTTONRADIOIMAGE == 1) @enumToInt(DFCS_STATE.BUTTONRADIOIMAGE) else 0)
+            | (if (o.BUTTONRADIOMASK == 1) @enumToInt(DFCS_STATE.BUTTONRADIOMASK) else 0)
+            | (if (o.BUTTONRADIO == 1) @enumToInt(DFCS_STATE.BUTTONRADIO) else 0)
+            | (if (o.BUTTON3STATE == 1) @enumToInt(DFCS_STATE.BUTTON3STATE) else 0)
+            | (if (o.BUTTONPUSH == 1) @enumToInt(DFCS_STATE.BUTTONPUSH) else 0)
+            | (if (o.INACTIVE == 1) @enumToInt(DFCS_STATE.INACTIVE) else 0)
+            | (if (o.PUSHED == 1) @enumToInt(DFCS_STATE.PUSHED) else 0)
+            | (if (o.CHECKED == 1) @enumToInt(DFCS_STATE.CHECKED) else 0)
+            | (if (o.TRANSPARENT == 1) @enumToInt(DFCS_STATE.TRANSPARENT) else 0)
+            | (if (o.HOT == 1) @enumToInt(DFCS_STATE.HOT) else 0)
+            | (if (o.ADJUSTRECT == 1) @enumToInt(DFCS_STATE.ADJUSTRECT) else 0)
+            | (if (o.FLAT == 1) @enumToInt(DFCS_STATE.FLAT) else 0)
+            | (if (o.MONO == 1) @enumToInt(DFCS_STATE.MONO) else 0)
+        );
+    }
 };
 pub const DFCS_CAPTIONCLOSE = DFCS_STATE.CAPTIONCLOSE;
 pub const DFCS_CAPTIONMIN = DFCS_STATE.CAPTIONMIN;
@@ -3180,7 +3294,6 @@ pub const DFCS_ADJUSTRECT = DFCS_STATE.ADJUSTRECT;
 pub const DFCS_FLAT = DFCS_STATE.FLAT;
 pub const DFCS_MONO = DFCS_STATE.MONO;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CDS_TYPE = extern enum(u32) {
     FULLSCREEN = 4,
     GLOBAL = 8,
@@ -3194,6 +3307,33 @@ pub const CDS_TYPE = extern enum(u32) {
     DISABLE_UNSAFE_MODES = 512,
     RESET_EX = 536870912,
     _,
+    pub fn initFlags(o: struct {
+        FULLSCREEN: u1 = 0,
+        GLOBAL: u1 = 0,
+        NORESET: u1 = 0,
+        RESET: u1 = 0,
+        SET_PRIMARY: u1 = 0,
+        TEST: u1 = 0,
+        UPDATEREGISTRY: u1 = 0,
+        VIDEOPARAMETERS: u1 = 0,
+        ENABLE_UNSAFE_MODES: u1 = 0,
+        DISABLE_UNSAFE_MODES: u1 = 0,
+        RESET_EX: u1 = 0,
+    }) CDS_TYPE {
+        return @intToEnum(CDS_TYPE,
+              (if (o.FULLSCREEN == 1) @enumToInt(CDS_TYPE.FULLSCREEN) else 0)
+            | (if (o.GLOBAL == 1) @enumToInt(CDS_TYPE.GLOBAL) else 0)
+            | (if (o.NORESET == 1) @enumToInt(CDS_TYPE.NORESET) else 0)
+            | (if (o.RESET == 1) @enumToInt(CDS_TYPE.RESET) else 0)
+            | (if (o.SET_PRIMARY == 1) @enumToInt(CDS_TYPE.SET_PRIMARY) else 0)
+            | (if (o.TEST == 1) @enumToInt(CDS_TYPE.TEST) else 0)
+            | (if (o.UPDATEREGISTRY == 1) @enumToInt(CDS_TYPE.UPDATEREGISTRY) else 0)
+            | (if (o.VIDEOPARAMETERS == 1) @enumToInt(CDS_TYPE.VIDEOPARAMETERS) else 0)
+            | (if (o.ENABLE_UNSAFE_MODES == 1) @enumToInt(CDS_TYPE.ENABLE_UNSAFE_MODES) else 0)
+            | (if (o.DISABLE_UNSAFE_MODES == 1) @enumToInt(CDS_TYPE.DISABLE_UNSAFE_MODES) else 0)
+            | (if (o.RESET_EX == 1) @enumToInt(CDS_TYPE.RESET_EX) else 0)
+        );
+    }
 };
 pub const CDS_FULLSCREEN = CDS_TYPE.FULLSCREEN;
 pub const CDS_GLOBAL = CDS_TYPE.GLOBAL;
@@ -3226,7 +3366,6 @@ pub const DISP_CHANGE_BADFLAGS = DISP_CHANGE.BADFLAGS;
 pub const DISP_CHANGE_BADPARAM = DISP_CHANGE.BADPARAM;
 pub const DISP_CHANGE_BADDUALVIEW = DISP_CHANGE.BADDUALVIEW;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DRAWSTATE_FLAGS = extern enum(u32) {
     T_COMPLEX = 0,
     T_TEXT = 1,
@@ -3241,6 +3380,35 @@ pub const DRAWSTATE_FLAGS = extern enum(u32) {
     S_PREFIXONLY = 1024,
     S_RIGHT = 32768,
     _,
+    pub fn initFlags(o: struct {
+        T_COMPLEX: u1 = 0,
+        T_TEXT: u1 = 0,
+        T_PREFIXTEXT: u1 = 0,
+        T_ICON: u1 = 0,
+        T_BITMAP: u1 = 0,
+        S_NORMAL: u1 = 0,
+        S_UNION: u1 = 0,
+        S_DISABLED: u1 = 0,
+        S_MONO: u1 = 0,
+        S_HIDEPREFIX: u1 = 0,
+        S_PREFIXONLY: u1 = 0,
+        S_RIGHT: u1 = 0,
+    }) DRAWSTATE_FLAGS {
+        return @intToEnum(DRAWSTATE_FLAGS,
+              (if (o.T_COMPLEX == 1) @enumToInt(DRAWSTATE_FLAGS.T_COMPLEX) else 0)
+            | (if (o.T_TEXT == 1) @enumToInt(DRAWSTATE_FLAGS.T_TEXT) else 0)
+            | (if (o.T_PREFIXTEXT == 1) @enumToInt(DRAWSTATE_FLAGS.T_PREFIXTEXT) else 0)
+            | (if (o.T_ICON == 1) @enumToInt(DRAWSTATE_FLAGS.T_ICON) else 0)
+            | (if (o.T_BITMAP == 1) @enumToInt(DRAWSTATE_FLAGS.T_BITMAP) else 0)
+            | (if (o.S_NORMAL == 1) @enumToInt(DRAWSTATE_FLAGS.S_NORMAL) else 0)
+            | (if (o.S_UNION == 1) @enumToInt(DRAWSTATE_FLAGS.S_UNION) else 0)
+            | (if (o.S_DISABLED == 1) @enumToInt(DRAWSTATE_FLAGS.S_DISABLED) else 0)
+            | (if (o.S_MONO == 1) @enumToInt(DRAWSTATE_FLAGS.S_MONO) else 0)
+            | (if (o.S_HIDEPREFIX == 1) @enumToInt(DRAWSTATE_FLAGS.S_HIDEPREFIX) else 0)
+            | (if (o.S_PREFIXONLY == 1) @enumToInt(DRAWSTATE_FLAGS.S_PREFIXONLY) else 0)
+            | (if (o.S_RIGHT == 1) @enumToInt(DRAWSTATE_FLAGS.S_RIGHT) else 0)
+        );
+    }
 };
 pub const DST_COMPLEX = DRAWSTATE_FLAGS.T_COMPLEX;
 pub const DST_TEXT = DRAWSTATE_FLAGS.T_TEXT;
@@ -3255,7 +3423,6 @@ pub const DSS_HIDEPREFIX = DRAWSTATE_FLAGS.S_HIDEPREFIX;
 pub const DSS_PREFIXONLY = DRAWSTATE_FLAGS.S_PREFIXONLY;
 pub const DSS_RIGHT = DRAWSTATE_FLAGS.S_RIGHT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REDRAW_WINDOW_FLAGS = extern enum(u32) {
     INVALIDATE = 1,
     INTERNALPAINT = 2,
@@ -3270,6 +3437,35 @@ pub const REDRAW_WINDOW_FLAGS = extern enum(u32) {
     FRAME = 1024,
     NOFRAME = 2048,
     _,
+    pub fn initFlags(o: struct {
+        INVALIDATE: u1 = 0,
+        INTERNALPAINT: u1 = 0,
+        ERASE: u1 = 0,
+        VALIDATE: u1 = 0,
+        NOINTERNALPAINT: u1 = 0,
+        NOERASE: u1 = 0,
+        NOCHILDREN: u1 = 0,
+        ALLCHILDREN: u1 = 0,
+        UPDATENOW: u1 = 0,
+        ERASENOW: u1 = 0,
+        FRAME: u1 = 0,
+        NOFRAME: u1 = 0,
+    }) REDRAW_WINDOW_FLAGS {
+        return @intToEnum(REDRAW_WINDOW_FLAGS,
+              (if (o.INVALIDATE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.INVALIDATE) else 0)
+            | (if (o.INTERNALPAINT == 1) @enumToInt(REDRAW_WINDOW_FLAGS.INTERNALPAINT) else 0)
+            | (if (o.ERASE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.ERASE) else 0)
+            | (if (o.VALIDATE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.VALIDATE) else 0)
+            | (if (o.NOINTERNALPAINT == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOINTERNALPAINT) else 0)
+            | (if (o.NOERASE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOERASE) else 0)
+            | (if (o.NOCHILDREN == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOCHILDREN) else 0)
+            | (if (o.ALLCHILDREN == 1) @enumToInt(REDRAW_WINDOW_FLAGS.ALLCHILDREN) else 0)
+            | (if (o.UPDATENOW == 1) @enumToInt(REDRAW_WINDOW_FLAGS.UPDATENOW) else 0)
+            | (if (o.ERASENOW == 1) @enumToInt(REDRAW_WINDOW_FLAGS.ERASENOW) else 0)
+            | (if (o.FRAME == 1) @enumToInt(REDRAW_WINDOW_FLAGS.FRAME) else 0)
+            | (if (o.NOFRAME == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOFRAME) else 0)
+        );
+    }
 };
 pub const RDW_INVALIDATE = REDRAW_WINDOW_FLAGS.INVALIDATE;
 pub const RDW_INTERNALPAINT = REDRAW_WINDOW_FLAGS.INTERNALPAINT;
@@ -3291,7 +3487,6 @@ pub const ENUM_DISPLAY_SETTINGS_MODE = extern enum(u32) {
 pub const ENUM_CURRENT_SETTINGS = ENUM_DISPLAY_SETTINGS_MODE.CURRENT_SETTINGS;
 pub const ENUM_REGISTRY_SETTINGS = ENUM_DISPLAY_SETTINGS_MODE.REGISTRY_SETTINGS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PEN_STYLE = extern enum(u32) {
     GEOMETRIC = 65536,
     COSMETIC = 0,
@@ -3315,6 +3510,53 @@ pub const PEN_STYLE = extern enum(u32) {
     JOIN_MASK = 61440,
     TYPE_MASK = 983040,
     _,
+    pub fn initFlags(o: struct {
+        GEOMETRIC: u1 = 0,
+        COSMETIC: u1 = 0,
+        SOLID: u1 = 0,
+        DASH: u1 = 0,
+        DOT: u1 = 0,
+        DASHDOT: u1 = 0,
+        DASHDOTDOT: u1 = 0,
+        NULL: u1 = 0,
+        INSIDEFRAME: u1 = 0,
+        USERSTYLE: u1 = 0,
+        ALTERNATE: u1 = 0,
+        STYLE_MASK: u1 = 0,
+        ENDCAP_ROUND: u1 = 0,
+        ENDCAP_SQUARE: u1 = 0,
+        ENDCAP_FLAT: u1 = 0,
+        ENDCAP_MASK: u1 = 0,
+        JOIN_ROUND: u1 = 0,
+        JOIN_BEVEL: u1 = 0,
+        JOIN_MITER: u1 = 0,
+        JOIN_MASK: u1 = 0,
+        TYPE_MASK: u1 = 0,
+    }) PEN_STYLE {
+        return @intToEnum(PEN_STYLE,
+              (if (o.GEOMETRIC == 1) @enumToInt(PEN_STYLE.GEOMETRIC) else 0)
+            | (if (o.COSMETIC == 1) @enumToInt(PEN_STYLE.COSMETIC) else 0)
+            | (if (o.SOLID == 1) @enumToInt(PEN_STYLE.SOLID) else 0)
+            | (if (o.DASH == 1) @enumToInt(PEN_STYLE.DASH) else 0)
+            | (if (o.DOT == 1) @enumToInt(PEN_STYLE.DOT) else 0)
+            | (if (o.DASHDOT == 1) @enumToInt(PEN_STYLE.DASHDOT) else 0)
+            | (if (o.DASHDOTDOT == 1) @enumToInt(PEN_STYLE.DASHDOTDOT) else 0)
+            | (if (o.NULL == 1) @enumToInt(PEN_STYLE.NULL) else 0)
+            | (if (o.INSIDEFRAME == 1) @enumToInt(PEN_STYLE.INSIDEFRAME) else 0)
+            | (if (o.USERSTYLE == 1) @enumToInt(PEN_STYLE.USERSTYLE) else 0)
+            | (if (o.ALTERNATE == 1) @enumToInt(PEN_STYLE.ALTERNATE) else 0)
+            | (if (o.STYLE_MASK == 1) @enumToInt(PEN_STYLE.STYLE_MASK) else 0)
+            | (if (o.ENDCAP_ROUND == 1) @enumToInt(PEN_STYLE.ENDCAP_ROUND) else 0)
+            | (if (o.ENDCAP_SQUARE == 1) @enumToInt(PEN_STYLE.ENDCAP_SQUARE) else 0)
+            | (if (o.ENDCAP_FLAT == 1) @enumToInt(PEN_STYLE.ENDCAP_FLAT) else 0)
+            | (if (o.ENDCAP_MASK == 1) @enumToInt(PEN_STYLE.ENDCAP_MASK) else 0)
+            | (if (o.JOIN_ROUND == 1) @enumToInt(PEN_STYLE.JOIN_ROUND) else 0)
+            | (if (o.JOIN_BEVEL == 1) @enumToInt(PEN_STYLE.JOIN_BEVEL) else 0)
+            | (if (o.JOIN_MITER == 1) @enumToInt(PEN_STYLE.JOIN_MITER) else 0)
+            | (if (o.JOIN_MASK == 1) @enumToInt(PEN_STYLE.JOIN_MASK) else 0)
+            | (if (o.TYPE_MASK == 1) @enumToInt(PEN_STYLE.TYPE_MASK) else 0)
+        );
+    }
 };
 pub const PS_GEOMETRIC = PEN_STYLE.GEOMETRIC;
 pub const PS_COSMETIC = PEN_STYLE.COSMETIC;
@@ -3338,20 +3580,31 @@ pub const PS_JOIN_MITER = PEN_STYLE.JOIN_MITER;
 pub const PS_JOIN_MASK = PEN_STYLE.JOIN_MASK;
 pub const PS_TYPE_MASK = PEN_STYLE.TYPE_MASK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TTEMBED_FLAGS = extern enum(u32) {
     EMBEDEUDC = 32,
     RAW = 0,
     SUBSET = 1,
     TTCOMPRESSED = 4,
     _,
+    pub fn initFlags(o: struct {
+        EMBEDEUDC: u1 = 0,
+        RAW: u1 = 0,
+        SUBSET: u1 = 0,
+        TTCOMPRESSED: u1 = 0,
+    }) TTEMBED_FLAGS {
+        return @intToEnum(TTEMBED_FLAGS,
+              (if (o.EMBEDEUDC == 1) @enumToInt(TTEMBED_FLAGS.EMBEDEUDC) else 0)
+            | (if (o.RAW == 1) @enumToInt(TTEMBED_FLAGS.RAW) else 0)
+            | (if (o.SUBSET == 1) @enumToInt(TTEMBED_FLAGS.SUBSET) else 0)
+            | (if (o.TTCOMPRESSED == 1) @enumToInt(TTEMBED_FLAGS.TTCOMPRESSED) else 0)
+        );
+    }
 };
 pub const TTEMBED_EMBEDEUDC = TTEMBED_FLAGS.EMBEDEUDC;
 pub const TTEMBED_RAW = TTEMBED_FLAGS.RAW;
 pub const TTEMBED_SUBSET = TTEMBED_FLAGS.SUBSET;
 pub const TTEMBED_TTCOMPRESSED = TTEMBED_FLAGS.TTCOMPRESSED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DRAW_TEXT_FORMAT = extern enum(u32) {
     BOTTOM = 8,
     CALCRECT = 1024,
@@ -3378,6 +3631,59 @@ pub const DRAW_TEXT_FORMAT = extern enum(u32) {
     WORDBREAK = 16,
     WORD_ELLIPSIS = 262144,
     _,
+    pub fn initFlags(o: struct {
+        BOTTOM: u1 = 0,
+        CALCRECT: u1 = 0,
+        CENTER: u1 = 0,
+        EDITCONTROL: u1 = 0,
+        END_ELLIPSIS: u1 = 0,
+        EXPANDTABS: u1 = 0,
+        EXTERNALLEADING: u1 = 0,
+        HIDEPREFIX: u1 = 0,
+        INTERNAL: u1 = 0,
+        LEFT: u1 = 0,
+        MODIFYSTRING: u1 = 0,
+        NOCLIP: u1 = 0,
+        NOFULLWIDTHCHARBREAK: u1 = 0,
+        NOPREFIX: u1 = 0,
+        PATH_ELLIPSIS: u1 = 0,
+        PREFIXONLY: u1 = 0,
+        RIGHT: u1 = 0,
+        RTLREADING: u1 = 0,
+        SINGLELINE: u1 = 0,
+        TABSTOP: u1 = 0,
+        TOP: u1 = 0,
+        VCENTER: u1 = 0,
+        WORDBREAK: u1 = 0,
+        WORD_ELLIPSIS: u1 = 0,
+    }) DRAW_TEXT_FORMAT {
+        return @intToEnum(DRAW_TEXT_FORMAT,
+              (if (o.BOTTOM == 1) @enumToInt(DRAW_TEXT_FORMAT.BOTTOM) else 0)
+            | (if (o.CALCRECT == 1) @enumToInt(DRAW_TEXT_FORMAT.CALCRECT) else 0)
+            | (if (o.CENTER == 1) @enumToInt(DRAW_TEXT_FORMAT.CENTER) else 0)
+            | (if (o.EDITCONTROL == 1) @enumToInt(DRAW_TEXT_FORMAT.EDITCONTROL) else 0)
+            | (if (o.END_ELLIPSIS == 1) @enumToInt(DRAW_TEXT_FORMAT.END_ELLIPSIS) else 0)
+            | (if (o.EXPANDTABS == 1) @enumToInt(DRAW_TEXT_FORMAT.EXPANDTABS) else 0)
+            | (if (o.EXTERNALLEADING == 1) @enumToInt(DRAW_TEXT_FORMAT.EXTERNALLEADING) else 0)
+            | (if (o.HIDEPREFIX == 1) @enumToInt(DRAW_TEXT_FORMAT.HIDEPREFIX) else 0)
+            | (if (o.INTERNAL == 1) @enumToInt(DRAW_TEXT_FORMAT.INTERNAL) else 0)
+            | (if (o.LEFT == 1) @enumToInt(DRAW_TEXT_FORMAT.LEFT) else 0)
+            | (if (o.MODIFYSTRING == 1) @enumToInt(DRAW_TEXT_FORMAT.MODIFYSTRING) else 0)
+            | (if (o.NOCLIP == 1) @enumToInt(DRAW_TEXT_FORMAT.NOCLIP) else 0)
+            | (if (o.NOFULLWIDTHCHARBREAK == 1) @enumToInt(DRAW_TEXT_FORMAT.NOFULLWIDTHCHARBREAK) else 0)
+            | (if (o.NOPREFIX == 1) @enumToInt(DRAW_TEXT_FORMAT.NOPREFIX) else 0)
+            | (if (o.PATH_ELLIPSIS == 1) @enumToInt(DRAW_TEXT_FORMAT.PATH_ELLIPSIS) else 0)
+            | (if (o.PREFIXONLY == 1) @enumToInt(DRAW_TEXT_FORMAT.PREFIXONLY) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(DRAW_TEXT_FORMAT.RIGHT) else 0)
+            | (if (o.RTLREADING == 1) @enumToInt(DRAW_TEXT_FORMAT.RTLREADING) else 0)
+            | (if (o.SINGLELINE == 1) @enumToInt(DRAW_TEXT_FORMAT.SINGLELINE) else 0)
+            | (if (o.TABSTOP == 1) @enumToInt(DRAW_TEXT_FORMAT.TABSTOP) else 0)
+            | (if (o.TOP == 1) @enumToInt(DRAW_TEXT_FORMAT.TOP) else 0)
+            | (if (o.VCENTER == 1) @enumToInt(DRAW_TEXT_FORMAT.VCENTER) else 0)
+            | (if (o.WORDBREAK == 1) @enumToInt(DRAW_TEXT_FORMAT.WORDBREAK) else 0)
+            | (if (o.WORD_ELLIPSIS == 1) @enumToInt(DRAW_TEXT_FORMAT.WORD_ELLIPSIS) else 0)
+        );
+    }
 };
 pub const DT_BOTTOM = DRAW_TEXT_FORMAT.BOTTOM;
 pub const DT_CALCRECT = DRAW_TEXT_FORMAT.CALCRECT;
@@ -3411,7 +3717,6 @@ pub const EMBED_FONT_CHARSET = extern enum(u32) {
 pub const CHARSET_UNICODE = EMBED_FONT_CHARSET.UNICODE;
 pub const CHARSET_SYMBOL = EMBED_FONT_CHARSET.SYMBOL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GET_DCX_FLAGS = extern enum(u32) {
     WINDOW = 1,
     CACHE = 2,
@@ -3425,6 +3730,33 @@ pub const GET_DCX_FLAGS = extern enum(u32) {
     INTERSECTUPDATE = 512,
     VALIDATE = 2097152,
     _,
+    pub fn initFlags(o: struct {
+        WINDOW: u1 = 0,
+        CACHE: u1 = 0,
+        PARENTCLIP: u1 = 0,
+        CLIPSIBLINGS: u1 = 0,
+        CLIPCHILDREN: u1 = 0,
+        NORESETATTRS: u1 = 0,
+        LOCKWINDOWUPDATE: u1 = 0,
+        EXCLUDERGN: u1 = 0,
+        INTERSECTRGN: u1 = 0,
+        INTERSECTUPDATE: u1 = 0,
+        VALIDATE: u1 = 0,
+    }) GET_DCX_FLAGS {
+        return @intToEnum(GET_DCX_FLAGS,
+              (if (o.WINDOW == 1) @enumToInt(GET_DCX_FLAGS.WINDOW) else 0)
+            | (if (o.CACHE == 1) @enumToInt(GET_DCX_FLAGS.CACHE) else 0)
+            | (if (o.PARENTCLIP == 1) @enumToInt(GET_DCX_FLAGS.PARENTCLIP) else 0)
+            | (if (o.CLIPSIBLINGS == 1) @enumToInt(GET_DCX_FLAGS.CLIPSIBLINGS) else 0)
+            | (if (o.CLIPCHILDREN == 1) @enumToInt(GET_DCX_FLAGS.CLIPCHILDREN) else 0)
+            | (if (o.NORESETATTRS == 1) @enumToInt(GET_DCX_FLAGS.NORESETATTRS) else 0)
+            | (if (o.LOCKWINDOWUPDATE == 1) @enumToInt(GET_DCX_FLAGS.LOCKWINDOWUPDATE) else 0)
+            | (if (o.EXCLUDERGN == 1) @enumToInt(GET_DCX_FLAGS.EXCLUDERGN) else 0)
+            | (if (o.INTERSECTRGN == 1) @enumToInt(GET_DCX_FLAGS.INTERSECTRGN) else 0)
+            | (if (o.INTERSECTUPDATE == 1) @enumToInt(GET_DCX_FLAGS.INTERSECTUPDATE) else 0)
+            | (if (o.VALIDATE == 1) @enumToInt(GET_DCX_FLAGS.VALIDATE) else 0)
+        );
+    }
 };
 pub const DCX_WINDOW = GET_DCX_FLAGS.WINDOW;
 pub const DCX_CACHE = GET_DCX_FLAGS.CACHE;
@@ -3522,7 +3854,6 @@ pub const MWT_IDENTITY = MODIFY_WORLD_TRANSFORM_MODE.IDENTITY;
 pub const MWT_LEFTMULTIPLY = MODIFY_WORLD_TRANSFORM_MODE.LEFTMULTIPLY;
 pub const MWT_RIGHTMULTIPLY = MODIFY_WORLD_TRANSFORM_MODE.RIGHTMULTIPLY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FONT_CLIP_PRECISION = extern enum(u32) {
     CHARACTER_PRECIS = 1,
     DEFAULT_PRECIS = 0,
@@ -3533,6 +3864,27 @@ pub const FONT_CLIP_PRECISION = extern enum(u32) {
     STROKE_PRECIS = 2,
     TT_ALWAYS = 32,
     _,
+    pub fn initFlags(o: struct {
+        CHARACTER_PRECIS: u1 = 0,
+        DEFAULT_PRECIS: u1 = 0,
+        DFA_DISABLE: u1 = 0,
+        EMBEDDED: u1 = 0,
+        LH_ANGLES: u1 = 0,
+        MASK: u1 = 0,
+        STROKE_PRECIS: u1 = 0,
+        TT_ALWAYS: u1 = 0,
+    }) FONT_CLIP_PRECISION {
+        return @intToEnum(FONT_CLIP_PRECISION,
+              (if (o.CHARACTER_PRECIS == 1) @enumToInt(FONT_CLIP_PRECISION.CHARACTER_PRECIS) else 0)
+            | (if (o.DEFAULT_PRECIS == 1) @enumToInt(FONT_CLIP_PRECISION.DEFAULT_PRECIS) else 0)
+            | (if (o.DFA_DISABLE == 1) @enumToInt(FONT_CLIP_PRECISION.DFA_DISABLE) else 0)
+            | (if (o.EMBEDDED == 1) @enumToInt(FONT_CLIP_PRECISION.EMBEDDED) else 0)
+            | (if (o.LH_ANGLES == 1) @enumToInt(FONT_CLIP_PRECISION.LH_ANGLES) else 0)
+            | (if (o.MASK == 1) @enumToInt(FONT_CLIP_PRECISION.MASK) else 0)
+            | (if (o.STROKE_PRECIS == 1) @enumToInt(FONT_CLIP_PRECISION.STROKE_PRECIS) else 0)
+            | (if (o.TT_ALWAYS == 1) @enumToInt(FONT_CLIP_PRECISION.TT_ALWAYS) else 0)
+        );
+    }
 };
 pub const CLIP_CHARACTER_PRECIS = FONT_CLIP_PRECISION.CHARACTER_PRECIS;
 pub const CLIP_DEFAULT_PRECIS = FONT_CLIP_PRECISION.DEFAULT_PRECIS;
@@ -3577,11 +3929,19 @@ pub const FONT_RESOURCE_CHARACTERISTICS = extern enum(u32) {
 pub const FR_PRIVATE = FONT_RESOURCE_CHARACTERISTICS.PRIVATE;
 pub const FR_NOT_ENUM = FONT_RESOURCE_CHARACTERISTICS.NOT_ENUM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DC_LAYOUT = extern enum(u32) {
     BITMAPORIENTATIONPRESERVED = 8,
     RTL = 1,
     _,
+    pub fn initFlags(o: struct {
+        BITMAPORIENTATIONPRESERVED: u1 = 0,
+        RTL: u1 = 0,
+    }) DC_LAYOUT {
+        return @intToEnum(DC_LAYOUT,
+              (if (o.BITMAPORIENTATIONPRESERVED == 1) @enumToInt(DC_LAYOUT.BITMAPORIENTATIONPRESERVED) else 0)
+            | (if (o.RTL == 1) @enumToInt(DC_LAYOUT.RTL) else 0)
+        );
+    }
 };
 pub const LAYOUT_BITMAPORIENTATIONPRESERVED = DC_LAYOUT.BITMAPORIENTATIONPRESERVED;
 pub const LAYOUT_RTL = DC_LAYOUT.RTL;
@@ -3621,11 +3981,19 @@ pub const ARC_DIRECTION = extern enum(u32) {
 pub const AD_COUNTERCLOCKWISE = ARC_DIRECTION.OUNTERCLOCKWISE;
 pub const AD_CLOCKWISE = ARC_DIRECTION.LOCKWISE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TTLOAD_EMBEDDED_FONT_STATUS = extern enum(u32) {
     SUBSETTED = 1,
     IN_SYSSTARTUP = 2,
     _,
+    pub fn initFlags(o: struct {
+        SUBSETTED: u1 = 0,
+        IN_SYSSTARTUP: u1 = 0,
+    }) TTLOAD_EMBEDDED_FONT_STATUS {
+        return @intToEnum(TTLOAD_EMBEDDED_FONT_STATUS,
+              (if (o.SUBSETTED == 1) @enumToInt(TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED) else 0)
+            | (if (o.IN_SYSSTARTUP == 1) @enumToInt(TTLOAD_EMBEDDED_FONT_STATUS.IN_SYSSTARTUP) else 0)
+        );
+    }
 };
 pub const TTLOAD_FONT_SUBSETTED = TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED;
 pub const TTLOAD_FONT_IN_SYSSTARTUP = TTLOAD_EMBEDDED_FONT_STATUS.IN_SYSSTARTUP;
@@ -3671,7 +4039,6 @@ pub const BACKGROUND_MODE = extern enum(u32) {
 pub const OPAQUE = BACKGROUND_MODE.OPAQUE;
 pub const TRANSPARENT = BACKGROUND_MODE.TRANSPARENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GET_CHARACTER_PLACEMENT_FLAGS = extern enum(u32) {
     CLASSIN = 524288,
     DIACRITIC = 256,
@@ -3689,6 +4056,41 @@ pub const GET_CHARACTER_PLACEMENT_FLAGS = extern enum(u32) {
     SYMSWAPOFF = 8388608,
     USEKERNING = 8,
     _,
+    pub fn initFlags(o: struct {
+        CLASSIN: u1 = 0,
+        DIACRITIC: u1 = 0,
+        DISPLAYZWG: u1 = 0,
+        GLYPHSHAPE: u1 = 0,
+        JUSTIFY: u1 = 0,
+        KASHIDA: u1 = 0,
+        LIGATE: u1 = 0,
+        MAXEXTENT: u1 = 0,
+        NEUTRALOVERRIDE: u1 = 0,
+        NUMERICOVERRIDE: u1 = 0,
+        NUMERICSLATIN: u1 = 0,
+        NUMERICSLOCAL: u1 = 0,
+        REORDER: u1 = 0,
+        SYMSWAPOFF: u1 = 0,
+        USEKERNING: u1 = 0,
+    }) GET_CHARACTER_PLACEMENT_FLAGS {
+        return @intToEnum(GET_CHARACTER_PLACEMENT_FLAGS,
+              (if (o.CLASSIN == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.CLASSIN) else 0)
+            | (if (o.DIACRITIC == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.DIACRITIC) else 0)
+            | (if (o.DISPLAYZWG == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.DISPLAYZWG) else 0)
+            | (if (o.GLYPHSHAPE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.GLYPHSHAPE) else 0)
+            | (if (o.JUSTIFY == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.JUSTIFY) else 0)
+            | (if (o.KASHIDA == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.KASHIDA) else 0)
+            | (if (o.LIGATE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.LIGATE) else 0)
+            | (if (o.MAXEXTENT == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.MAXEXTENT) else 0)
+            | (if (o.NEUTRALOVERRIDE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NEUTRALOVERRIDE) else 0)
+            | (if (o.NUMERICOVERRIDE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICOVERRIDE) else 0)
+            | (if (o.NUMERICSLATIN == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLATIN) else 0)
+            | (if (o.NUMERICSLOCAL == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLOCAL) else 0)
+            | (if (o.REORDER == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.REORDER) else 0)
+            | (if (o.SYMSWAPOFF == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.SYMSWAPOFF) else 0)
+            | (if (o.USEKERNING == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.USEKERNING) else 0)
+        );
+    }
 };
 pub const GCP_CLASSIN = GET_CHARACTER_PLACEMENT_FLAGS.CLASSIN;
 pub const GCP_DIACRITIC = GET_CHARACTER_PLACEMENT_FLAGS.DIACRITIC;
@@ -3706,7 +4108,6 @@ pub const GCP_REORDER = GET_CHARACTER_PLACEMENT_FLAGS.REORDER;
 pub const GCP_SYMSWAPOFF = GET_CHARACTER_PLACEMENT_FLAGS.SYMSWAPOFF;
 pub const GCP_USEKERNING = GET_CHARACTER_PLACEMENT_FLAGS.USEKERNING;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DRAW_EDGE_FLAGS = extern enum(u32) {
     ADJUST = 8192,
     BOTTOM = 8,
@@ -3728,6 +4129,49 @@ pub const DRAW_EDGE_FLAGS = extern enum(u32) {
     TOPLEFT = 3,
     TOPRIGHT = 6,
     _,
+    pub fn initFlags(o: struct {
+        ADJUST: u1 = 0,
+        BOTTOM: u1 = 0,
+        BOTTOMLEFT: u1 = 0,
+        BOTTOMRIGHT: u1 = 0,
+        DIAGONAL: u1 = 0,
+        DIAGONAL_ENDBOTTOMLEFT: u1 = 0,
+        DIAGONAL_ENDBOTTOMRIGHT: u1 = 0,
+        DIAGONAL_ENDTOPLEFT: u1 = 0,
+        DIAGONAL_ENDTOPRIGHT: u1 = 0,
+        FLAT: u1 = 0,
+        LEFT: u1 = 0,
+        MIDDLE: u1 = 0,
+        MONO: u1 = 0,
+        RECT: u1 = 0,
+        RIGHT: u1 = 0,
+        SOFT: u1 = 0,
+        TOP: u1 = 0,
+        TOPLEFT: u1 = 0,
+        TOPRIGHT: u1 = 0,
+    }) DRAW_EDGE_FLAGS {
+        return @intToEnum(DRAW_EDGE_FLAGS,
+              (if (o.ADJUST == 1) @enumToInt(DRAW_EDGE_FLAGS.ADJUST) else 0)
+            | (if (o.BOTTOM == 1) @enumToInt(DRAW_EDGE_FLAGS.BOTTOM) else 0)
+            | (if (o.BOTTOMLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.BOTTOMLEFT) else 0)
+            | (if (o.BOTTOMRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.BOTTOMRIGHT) else 0)
+            | (if (o.DIAGONAL == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL) else 0)
+            | (if (o.DIAGONAL_ENDBOTTOMLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMLEFT) else 0)
+            | (if (o.DIAGONAL_ENDBOTTOMRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMRIGHT) else 0)
+            | (if (o.DIAGONAL_ENDTOPLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPLEFT) else 0)
+            | (if (o.DIAGONAL_ENDTOPRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPRIGHT) else 0)
+            | (if (o.FLAT == 1) @enumToInt(DRAW_EDGE_FLAGS.FLAT) else 0)
+            | (if (o.LEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.LEFT) else 0)
+            | (if (o.MIDDLE == 1) @enumToInt(DRAW_EDGE_FLAGS.MIDDLE) else 0)
+            | (if (o.MONO == 1) @enumToInt(DRAW_EDGE_FLAGS.MONO) else 0)
+            | (if (o.RECT == 1) @enumToInt(DRAW_EDGE_FLAGS.RECT) else 0)
+            | (if (o.RIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.RIGHT) else 0)
+            | (if (o.SOFT == 1) @enumToInt(DRAW_EDGE_FLAGS.SOFT) else 0)
+            | (if (o.TOP == 1) @enumToInt(DRAW_EDGE_FLAGS.TOP) else 0)
+            | (if (o.TOPLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.TOPLEFT) else 0)
+            | (if (o.TOPRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.TOPRIGHT) else 0)
+        );
+    }
 };
 pub const BF_ADJUST = DRAW_EDGE_FLAGS.ADJUST;
 pub const BF_BOTTOM = DRAW_EDGE_FLAGS.BOTTOM;
@@ -3802,7 +4246,6 @@ pub const HS_FDIAGONAL = HATCH_BRUSH_STYLE.FDIAGONAL;
 pub const HS_HORIZONTAL = HATCH_BRUSH_STYLE.HORIZONTAL;
 pub const HS_VERTICAL = HATCH_BRUSH_STYLE.VERTICAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DRAW_CAPTION_FLAGS = extern enum(u32) {
     ACTIVE = 1,
     BUTTONS = 4096,
@@ -3812,6 +4255,25 @@ pub const DRAW_CAPTION_FLAGS = extern enum(u32) {
     SMALLCAP = 2,
     TEXT = 8,
     _,
+    pub fn initFlags(o: struct {
+        ACTIVE: u1 = 0,
+        BUTTONS: u1 = 0,
+        GRADIENT: u1 = 0,
+        ICON: u1 = 0,
+        INBUTTON: u1 = 0,
+        SMALLCAP: u1 = 0,
+        TEXT: u1 = 0,
+    }) DRAW_CAPTION_FLAGS {
+        return @intToEnum(DRAW_CAPTION_FLAGS,
+              (if (o.ACTIVE == 1) @enumToInt(DRAW_CAPTION_FLAGS.ACTIVE) else 0)
+            | (if (o.BUTTONS == 1) @enumToInt(DRAW_CAPTION_FLAGS.BUTTONS) else 0)
+            | (if (o.GRADIENT == 1) @enumToInt(DRAW_CAPTION_FLAGS.GRADIENT) else 0)
+            | (if (o.ICON == 1) @enumToInt(DRAW_CAPTION_FLAGS.ICON) else 0)
+            | (if (o.INBUTTON == 1) @enumToInt(DRAW_CAPTION_FLAGS.INBUTTON) else 0)
+            | (if (o.SMALLCAP == 1) @enumToInt(DRAW_CAPTION_FLAGS.SMALLCAP) else 0)
+            | (if (o.TEXT == 1) @enumToInt(DRAW_CAPTION_FLAGS.TEXT) else 0)
+        );
+    }
 };
 pub const DC_ACTIVE = DRAW_CAPTION_FLAGS.ACTIVE;
 pub const DC_BUTTONS = DRAW_CAPTION_FLAGS.BUTTONS;

@@ -1337,7 +1337,6 @@ pub const LOCALESIGNATURE = extern struct {
     lsCsbSupported: [2]u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FOLD_STRING_MAP_FLAGS = extern enum(u32) {
     COMPOSITE = 64,
     EXPAND_LIGATURES = 8192,
@@ -1345,6 +1344,21 @@ pub const FOLD_STRING_MAP_FLAGS = extern enum(u32) {
     FOLDDIGITS = 128,
     PRECOMPOSED = 32,
     _,
+    pub fn initFlags(o: struct {
+        COMPOSITE: u1 = 0,
+        EXPAND_LIGATURES: u1 = 0,
+        FOLDCZONE: u1 = 0,
+        FOLDDIGITS: u1 = 0,
+        PRECOMPOSED: u1 = 0,
+    }) FOLD_STRING_MAP_FLAGS {
+        return @intToEnum(FOLD_STRING_MAP_FLAGS,
+              (if (o.COMPOSITE == 1) @enumToInt(FOLD_STRING_MAP_FLAGS.COMPOSITE) else 0)
+            | (if (o.EXPAND_LIGATURES == 1) @enumToInt(FOLD_STRING_MAP_FLAGS.EXPAND_LIGATURES) else 0)
+            | (if (o.FOLDCZONE == 1) @enumToInt(FOLD_STRING_MAP_FLAGS.FOLDCZONE) else 0)
+            | (if (o.FOLDDIGITS == 1) @enumToInt(FOLD_STRING_MAP_FLAGS.FOLDDIGITS) else 0)
+            | (if (o.PRECOMPOSED == 1) @enumToInt(FOLD_STRING_MAP_FLAGS.PRECOMPOSED) else 0)
+        );
+    }
 };
 pub const MAP_COMPOSITE = FOLD_STRING_MAP_FLAGS.COMPOSITE;
 pub const MAP_EXPAND_LIGATURES = FOLD_STRING_MAP_FLAGS.EXPAND_LIGATURES;
@@ -1417,13 +1431,25 @@ pub const TCI_SRCCODEPAGE = TRANSLATE_CHARSET_INFO_FLAGS.CODEPAGE;
 pub const TCI_SRCFONTSIG = TRANSLATE_CHARSET_INFO_FLAGS.FONTSIG;
 pub const TCI_SRCLOCALE = TRANSLATE_CHARSET_INFO_FLAGS.LOCALE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TIME_FORMAT_FLAGS = extern enum(u32) {
     NOMINUTESORSECONDS = 1,
     NOSECONDS = 2,
     NOTIMEMARKER = 4,
     FORCE24HOURFORMAT = 8,
     _,
+    pub fn initFlags(o: struct {
+        NOMINUTESORSECONDS: u1 = 0,
+        NOSECONDS: u1 = 0,
+        NOTIMEMARKER: u1 = 0,
+        FORCE24HOURFORMAT: u1 = 0,
+    }) TIME_FORMAT_FLAGS {
+        return @intToEnum(TIME_FORMAT_FLAGS,
+              (if (o.NOMINUTESORSECONDS == 1) @enumToInt(TIME_FORMAT_FLAGS.NOMINUTESORSECONDS) else 0)
+            | (if (o.NOSECONDS == 1) @enumToInt(TIME_FORMAT_FLAGS.NOSECONDS) else 0)
+            | (if (o.NOTIMEMARKER == 1) @enumToInt(TIME_FORMAT_FLAGS.NOTIMEMARKER) else 0)
+            | (if (o.FORCE24HOURFORMAT == 1) @enumToInt(TIME_FORMAT_FLAGS.FORCE24HOURFORMAT) else 0)
+        );
+    }
 };
 pub const TIME_NOMINUTESORSECONDS = TIME_FORMAT_FLAGS.NOMINUTESORSECONDS;
 pub const TIME_NOSECONDS = TIME_FORMAT_FLAGS.NOSECONDS;
@@ -1465,20 +1491,31 @@ pub const ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS = extern enum(u32) {
 pub const LGRPID_INSTALLED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.INSTALLED;
 pub const LGRPID_SUPPORTED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.SUPPORTED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MULTI_BYTE_TO_WIDE_CHAR_FLAGS = extern enum(u32) {
     COMPOSITE = 2,
     ERR_INVALID_CHARS = 8,
     PRECOMPOSED = 1,
     USEGLYPHCHARS = 4,
     _,
+    pub fn initFlags(o: struct {
+        COMPOSITE: u1 = 0,
+        ERR_INVALID_CHARS: u1 = 0,
+        PRECOMPOSED: u1 = 0,
+        USEGLYPHCHARS: u1 = 0,
+    }) MULTI_BYTE_TO_WIDE_CHAR_FLAGS {
+        return @intToEnum(MULTI_BYTE_TO_WIDE_CHAR_FLAGS,
+              (if (o.COMPOSITE == 1) @enumToInt(MULTI_BYTE_TO_WIDE_CHAR_FLAGS.COMPOSITE) else 0)
+            | (if (o.ERR_INVALID_CHARS == 1) @enumToInt(MULTI_BYTE_TO_WIDE_CHAR_FLAGS.ERR_INVALID_CHARS) else 0)
+            | (if (o.PRECOMPOSED == 1) @enumToInt(MULTI_BYTE_TO_WIDE_CHAR_FLAGS.PRECOMPOSED) else 0)
+            | (if (o.USEGLYPHCHARS == 1) @enumToInt(MULTI_BYTE_TO_WIDE_CHAR_FLAGS.USEGLYPHCHARS) else 0)
+        );
+    }
 };
 pub const MB_COMPOSITE = MULTI_BYTE_TO_WIDE_CHAR_FLAGS.COMPOSITE;
 pub const MB_ERR_INVALID_CHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS.ERR_INVALID_CHARS;
 pub const MB_PRECOMPOSED = MULTI_BYTE_TO_WIDE_CHAR_FLAGS.PRECOMPOSED;
 pub const MB_USEGLYPHCHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS.USEGLYPHCHARS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const COMPARE_STRING_FLAGS = extern enum(u32) {
     LINGUISTIC_IGNORECASE = 16,
     LINGUISTIC_IGNOREDIACRITIC = 32,
@@ -1491,6 +1528,31 @@ pub const COMPARE_STRING_FLAGS = extern enum(u32) {
     SORT_DIGITSASNUMBERS = 8,
     SORT_STRINGSORT = 4096,
     _,
+    pub fn initFlags(o: struct {
+        LINGUISTIC_IGNORECASE: u1 = 0,
+        LINGUISTIC_IGNOREDIACRITIC: u1 = 0,
+        NORM_IGNORECASE: u1 = 0,
+        NORM_IGNOREKANATYPE: u1 = 0,
+        NORM_IGNORENONSPACE: u1 = 0,
+        NORM_IGNORESYMBOLS: u1 = 0,
+        NORM_IGNOREWIDTH: u1 = 0,
+        NORM_LINGUISTIC_CASING: u1 = 0,
+        SORT_DIGITSASNUMBERS: u1 = 0,
+        SORT_STRINGSORT: u1 = 0,
+    }) COMPARE_STRING_FLAGS {
+        return @intToEnum(COMPARE_STRING_FLAGS,
+              (if (o.LINGUISTIC_IGNORECASE == 1) @enumToInt(COMPARE_STRING_FLAGS.LINGUISTIC_IGNORECASE) else 0)
+            | (if (o.LINGUISTIC_IGNOREDIACRITIC == 1) @enumToInt(COMPARE_STRING_FLAGS.LINGUISTIC_IGNOREDIACRITIC) else 0)
+            | (if (o.NORM_IGNORECASE == 1) @enumToInt(COMPARE_STRING_FLAGS.NORM_IGNORECASE) else 0)
+            | (if (o.NORM_IGNOREKANATYPE == 1) @enumToInt(COMPARE_STRING_FLAGS.NORM_IGNOREKANATYPE) else 0)
+            | (if (o.NORM_IGNORENONSPACE == 1) @enumToInt(COMPARE_STRING_FLAGS.NORM_IGNORENONSPACE) else 0)
+            | (if (o.NORM_IGNORESYMBOLS == 1) @enumToInt(COMPARE_STRING_FLAGS.NORM_IGNORESYMBOLS) else 0)
+            | (if (o.NORM_IGNOREWIDTH == 1) @enumToInt(COMPARE_STRING_FLAGS.NORM_IGNOREWIDTH) else 0)
+            | (if (o.NORM_LINGUISTIC_CASING == 1) @enumToInt(COMPARE_STRING_FLAGS.NORM_LINGUISTIC_CASING) else 0)
+            | (if (o.SORT_DIGITSASNUMBERS == 1) @enumToInt(COMPARE_STRING_FLAGS.SORT_DIGITSASNUMBERS) else 0)
+            | (if (o.SORT_STRINGSORT == 1) @enumToInt(COMPARE_STRING_FLAGS.SORT_STRINGSORT) else 0)
+        );
+    }
 };
 pub const LINGUISTIC_IGNORECASE = COMPARE_STRING_FLAGS.LINGUISTIC_IGNORECASE;
 pub const LINGUISTIC_IGNOREDIACRITIC = COMPARE_STRING_FLAGS.LINGUISTIC_IGNOREDIACRITIC;
@@ -1567,7 +1629,6 @@ pub const SIC_ASCIIDIGIT = SCRIPT_IS_COMPLEX_FLAGS.ASCIIDIGIT;
 pub const SIC_COMPLEX = SCRIPT_IS_COMPLEX_FLAGS.COMPLEX;
 pub const SIC_NEUTRAL = SCRIPT_IS_COMPLEX_FLAGS.NEUTRAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IS_TEXT_UNICODE_RESULT = extern enum(u32) {
     ASCII16 = 1,
     REVERSE_ASCII16 = 16,
@@ -1585,6 +1646,41 @@ pub const IS_TEXT_UNICODE_RESULT = extern enum(u32) {
     NOT_UNICODE_MASK = 3840,
     NOT_ASCII_MASK = 61440,
     _,
+    pub fn initFlags(o: struct {
+        ASCII16: u1 = 0,
+        REVERSE_ASCII16: u1 = 0,
+        STATISTICS: u1 = 0,
+        REVERSE_STATISTICS: u1 = 0,
+        CONTROLS: u1 = 0,
+        REVERSE_CONTROLS: u1 = 0,
+        SIGNATURE: u1 = 0,
+        REVERSE_SIGNATURE: u1 = 0,
+        ILLEGAL_CHARS: u1 = 0,
+        ODD_LENGTH: u1 = 0,
+        NULL_BYTES: u1 = 0,
+        UNICODE_MASK: u1 = 0,
+        REVERSE_MASK: u1 = 0,
+        NOT_UNICODE_MASK: u1 = 0,
+        NOT_ASCII_MASK: u1 = 0,
+    }) IS_TEXT_UNICODE_RESULT {
+        return @intToEnum(IS_TEXT_UNICODE_RESULT,
+              (if (o.ASCII16 == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.ASCII16) else 0)
+            | (if (o.REVERSE_ASCII16 == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.REVERSE_ASCII16) else 0)
+            | (if (o.STATISTICS == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.STATISTICS) else 0)
+            | (if (o.REVERSE_STATISTICS == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.REVERSE_STATISTICS) else 0)
+            | (if (o.CONTROLS == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.CONTROLS) else 0)
+            | (if (o.REVERSE_CONTROLS == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.REVERSE_CONTROLS) else 0)
+            | (if (o.SIGNATURE == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.SIGNATURE) else 0)
+            | (if (o.REVERSE_SIGNATURE == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.REVERSE_SIGNATURE) else 0)
+            | (if (o.ILLEGAL_CHARS == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.ILLEGAL_CHARS) else 0)
+            | (if (o.ODD_LENGTH == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.ODD_LENGTH) else 0)
+            | (if (o.NULL_BYTES == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.NULL_BYTES) else 0)
+            | (if (o.UNICODE_MASK == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.UNICODE_MASK) else 0)
+            | (if (o.REVERSE_MASK == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.REVERSE_MASK) else 0)
+            | (if (o.NOT_UNICODE_MASK == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.NOT_UNICODE_MASK) else 0)
+            | (if (o.NOT_ASCII_MASK == 1) @enumToInt(IS_TEXT_UNICODE_RESULT.NOT_ASCII_MASK) else 0)
+        );
+    }
 };
 pub const IS_TEXT_UNICODE_ASCII16 = IS_TEXT_UNICODE_RESULT.ASCII16;
 pub const IS_TEXT_UNICODE_REVERSE_ASCII16 = IS_TEXT_UNICODE_RESULT.REVERSE_ASCII16;

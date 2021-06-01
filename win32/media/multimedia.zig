@@ -3492,7 +3492,6 @@ pub const HIC = ?*opaque{};
 
 pub const HVIDEO = ?*opaque{};
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MIDI_WAVE_OPEN_TYPE = extern enum(u32) {
     CALLBACK_TYPEMASK = 458752,
     CALLBACK_NULL = 0,
@@ -3509,6 +3508,39 @@ pub const MIDI_WAVE_OPEN_TYPE = extern enum(u32) {
     WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = 16,
     MIDI_IO_STATUS = 32,
     _,
+    pub fn initFlags(o: struct {
+        CALLBACK_TYPEMASK: u1 = 0,
+        CALLBACK_NULL: u1 = 0,
+        CALLBACK_WINDOW: u1 = 0,
+        CALLBACK_TASK: u1 = 0,
+        CALLBACK_FUNCTION: u1 = 0,
+        CALLBACK_THREAD: u1 = 0,
+        CALLBACK_EVENT: u1 = 0,
+        WAVE_FORMAT_QUERY: u1 = 0,
+        WAVE_ALLOWSYNC: u1 = 0,
+        WAVE_MAPPED: u1 = 0,
+        WAVE_FORMAT_DIRECT: u1 = 0,
+        WAVE_FORMAT_DIRECT_QUERY: u1 = 0,
+        WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE: u1 = 0,
+        MIDI_IO_STATUS: u1 = 0,
+    }) MIDI_WAVE_OPEN_TYPE {
+        return @intToEnum(MIDI_WAVE_OPEN_TYPE,
+              (if (o.CALLBACK_TYPEMASK == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_TYPEMASK) else 0)
+            | (if (o.CALLBACK_NULL == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_NULL) else 0)
+            | (if (o.CALLBACK_WINDOW == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_WINDOW) else 0)
+            | (if (o.CALLBACK_TASK == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_TASK) else 0)
+            | (if (o.CALLBACK_FUNCTION == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_FUNCTION) else 0)
+            | (if (o.CALLBACK_THREAD == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_THREAD) else 0)
+            | (if (o.CALLBACK_EVENT == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_EVENT) else 0)
+            | (if (o.WAVE_FORMAT_QUERY == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_QUERY) else 0)
+            | (if (o.WAVE_ALLOWSYNC == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_ALLOWSYNC) else 0)
+            | (if (o.WAVE_MAPPED == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED) else 0)
+            | (if (o.WAVE_FORMAT_DIRECT == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT) else 0)
+            | (if (o.WAVE_FORMAT_DIRECT_QUERY == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT_QUERY) else 0)
+            | (if (o.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE) else 0)
+            | (if (o.MIDI_IO_STATUS == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.MIDI_IO_STATUS) else 0)
+        );
+    }
 };
 pub const CALLBACK_TYPEMASK = MIDI_WAVE_OPEN_TYPE.CALLBACK_TYPEMASK;
 pub const CALLBACK_NULL = MIDI_WAVE_OPEN_TYPE.CALLBACK_NULL;

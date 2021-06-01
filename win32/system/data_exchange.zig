@@ -266,7 +266,6 @@ pub const EC_ENABLEONE = DDE_ENABLE_CALLBACK_CMD.ENABLEONE;
 pub const EC_DISABLE = DDE_ENABLE_CALLBACK_CMD.DISABLE;
 pub const EC_QUERYWAITING = DDE_ENABLE_CALLBACK_CMD.QUERYWAITING;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DDE_INITIALIZE_COMMAND = extern enum(u32) {
     APPCLASS_MONITOR = 1,
     APPCLASS_STANDARD = 0,
@@ -292,6 +291,57 @@ pub const DDE_INITIALIZE_COMMAND = extern enum(u32) {
     MF_POSTMSGS = 67108864,
     MF_SENDMSGS = 33554432,
     _,
+    pub fn initFlags(o: struct {
+        APPCLASS_MONITOR: u1 = 0,
+        APPCLASS_STANDARD: u1 = 0,
+        APPCMD_CLIENTONLY: u1 = 0,
+        APPCMD_FILTERINITS: u1 = 0,
+        CBF_FAIL_ALLSVRXACTIONS: u1 = 0,
+        CBF_FAIL_ADVISES: u1 = 0,
+        CBF_FAIL_CONNECTIONS: u1 = 0,
+        CBF_FAIL_EXECUTES: u1 = 0,
+        CBF_FAIL_POKES: u1 = 0,
+        CBF_FAIL_REQUESTS: u1 = 0,
+        CBF_FAIL_SELFCONNECTIONS: u1 = 0,
+        CBF_SKIP_ALLNOTIFICATIONS: u1 = 0,
+        CBF_SKIP_CONNECT_CONFIRMS: u1 = 0,
+        CBF_SKIP_DISCONNECTS: u1 = 0,
+        CBF_SKIP_REGISTRATIONS: u1 = 0,
+        CBF_SKIP_UNREGISTRATIONS: u1 = 0,
+        MF_CALLBACKS: u1 = 0,
+        MF_CONV: u1 = 0,
+        MF_ERRORS: u1 = 0,
+        MF_HSZ_INFO: u1 = 0,
+        MF_LINKS: u1 = 0,
+        MF_POSTMSGS: u1 = 0,
+        MF_SENDMSGS: u1 = 0,
+    }) DDE_INITIALIZE_COMMAND {
+        return @intToEnum(DDE_INITIALIZE_COMMAND,
+              (if (o.APPCLASS_MONITOR == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCLASS_MONITOR) else 0)
+            | (if (o.APPCLASS_STANDARD == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCLASS_STANDARD) else 0)
+            | (if (o.APPCMD_CLIENTONLY == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCMD_CLIENTONLY) else 0)
+            | (if (o.APPCMD_FILTERINITS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCMD_FILTERINITS) else 0)
+            | (if (o.CBF_FAIL_ALLSVRXACTIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_ALLSVRXACTIONS) else 0)
+            | (if (o.CBF_FAIL_ADVISES == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_ADVISES) else 0)
+            | (if (o.CBF_FAIL_CONNECTIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_CONNECTIONS) else 0)
+            | (if (o.CBF_FAIL_EXECUTES == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_EXECUTES) else 0)
+            | (if (o.CBF_FAIL_POKES == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_POKES) else 0)
+            | (if (o.CBF_FAIL_REQUESTS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_REQUESTS) else 0)
+            | (if (o.CBF_FAIL_SELFCONNECTIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_SELFCONNECTIONS) else 0)
+            | (if (o.CBF_SKIP_ALLNOTIFICATIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_ALLNOTIFICATIONS) else 0)
+            | (if (o.CBF_SKIP_CONNECT_CONFIRMS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_CONNECT_CONFIRMS) else 0)
+            | (if (o.CBF_SKIP_DISCONNECTS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_DISCONNECTS) else 0)
+            | (if (o.CBF_SKIP_REGISTRATIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_REGISTRATIONS) else 0)
+            | (if (o.CBF_SKIP_UNREGISTRATIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_UNREGISTRATIONS) else 0)
+            | (if (o.MF_CALLBACKS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_CALLBACKS) else 0)
+            | (if (o.MF_CONV == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_CONV) else 0)
+            | (if (o.MF_ERRORS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_ERRORS) else 0)
+            | (if (o.MF_HSZ_INFO == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_HSZ_INFO) else 0)
+            | (if (o.MF_LINKS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_LINKS) else 0)
+            | (if (o.MF_POSTMSGS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_POSTMSGS) else 0)
+            | (if (o.MF_SENDMSGS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_SENDMSGS) else 0)
+        );
+    }
 };
 pub const APPCLASS_MONITOR = DDE_INITIALIZE_COMMAND.APPCLASS_MONITOR;
 pub const APPCLASS_STANDARD = DDE_INITIALIZE_COMMAND.APPCLASS_STANDARD;
@@ -398,7 +448,6 @@ pub const XST_REQSENT = CONVINFO_CONVERSATION_STATE.REQSENT;
 pub const XST_UNADVACKRCVD = CONVINFO_CONVERSATION_STATE.UNADVACKRCVD;
 pub const XST_UNADVSENT = CONVINFO_CONVERSATION_STATE.UNADVSENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CONVINFO_STATUS = extern enum(u32) {
     ADVISE = 2,
     BLOCKED = 8,
@@ -410,6 +459,29 @@ pub const CONVINFO_STATUS = extern enum(u32) {
     ISSELF = 256,
     TERMINATED = 32,
     _,
+    pub fn initFlags(o: struct {
+        ADVISE: u1 = 0,
+        BLOCKED: u1 = 0,
+        BLOCKNEXT: u1 = 0,
+        CLIENT: u1 = 0,
+        CONNECTED: u1 = 0,
+        INLIST: u1 = 0,
+        ISLOCAL: u1 = 0,
+        ISSELF: u1 = 0,
+        TERMINATED: u1 = 0,
+    }) CONVINFO_STATUS {
+        return @intToEnum(CONVINFO_STATUS,
+              (if (o.ADVISE == 1) @enumToInt(CONVINFO_STATUS.ADVISE) else 0)
+            | (if (o.BLOCKED == 1) @enumToInt(CONVINFO_STATUS.BLOCKED) else 0)
+            | (if (o.BLOCKNEXT == 1) @enumToInt(CONVINFO_STATUS.BLOCKNEXT) else 0)
+            | (if (o.CLIENT == 1) @enumToInt(CONVINFO_STATUS.CLIENT) else 0)
+            | (if (o.CONNECTED == 1) @enumToInt(CONVINFO_STATUS.CONNECTED) else 0)
+            | (if (o.INLIST == 1) @enumToInt(CONVINFO_STATUS.INLIST) else 0)
+            | (if (o.ISLOCAL == 1) @enumToInt(CONVINFO_STATUS.ISLOCAL) else 0)
+            | (if (o.ISSELF == 1) @enumToInt(CONVINFO_STATUS.ISSELF) else 0)
+            | (if (o.TERMINATED == 1) @enumToInt(CONVINFO_STATUS.TERMINATED) else 0)
+        );
+    }
 };
 pub const ST_ADVISE = CONVINFO_STATUS.ADVISE;
 pub const ST_BLOCKED = CONVINFO_STATUS.BLOCKED;

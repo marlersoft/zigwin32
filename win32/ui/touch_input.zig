@@ -784,7 +784,6 @@ pub const IManipulationProcessor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GESTURECONFIG_ID = extern enum(u32) {
     BEGIN = 1,
     END = 2,
@@ -795,6 +794,27 @@ pub const GESTURECONFIG_ID = extern enum(u32) {
     PRESSANDTAP = 7,
     ROLLOVER = 7,
     _,
+    pub fn initFlags(o: struct {
+        BEGIN: u1 = 0,
+        END: u1 = 0,
+        ZOOM: u1 = 0,
+        PAN: u1 = 0,
+        ROTATE: u1 = 0,
+        TWOFINGERTAP: u1 = 0,
+        PRESSANDTAP: u1 = 0,
+        ROLLOVER: u1 = 0,
+    }) GESTURECONFIG_ID {
+        return @intToEnum(GESTURECONFIG_ID,
+              (if (o.BEGIN == 1) @enumToInt(GESTURECONFIG_ID.BEGIN) else 0)
+            | (if (o.END == 1) @enumToInt(GESTURECONFIG_ID.END) else 0)
+            | (if (o.ZOOM == 1) @enumToInt(GESTURECONFIG_ID.ZOOM) else 0)
+            | (if (o.PAN == 1) @enumToInt(GESTURECONFIG_ID.PAN) else 0)
+            | (if (o.ROTATE == 1) @enumToInt(GESTURECONFIG_ID.ROTATE) else 0)
+            | (if (o.TWOFINGERTAP == 1) @enumToInt(GESTURECONFIG_ID.TWOFINGERTAP) else 0)
+            | (if (o.PRESSANDTAP == 1) @enumToInt(GESTURECONFIG_ID.PRESSANDTAP) else 0)
+            | (if (o.ROLLOVER == 1) @enumToInt(GESTURECONFIG_ID.ROLLOVER) else 0)
+        );
+    }
 };
 pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
 pub const GID_END = GESTURECONFIG_ID.END;
@@ -805,7 +825,6 @@ pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
 pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
 pub const GID_ROLLOVER = GESTURECONFIG_ID.ROLLOVER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
     MOVE = 1,
     DOWN = 2,
@@ -816,6 +835,27 @@ pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
     PEN = 64,
     PALM = 128,
     _,
+    pub fn initFlags(o: struct {
+        MOVE: u1 = 0,
+        DOWN: u1 = 0,
+        UP: u1 = 0,
+        INRANGE: u1 = 0,
+        PRIMARY: u1 = 0,
+        NOCOALESCE: u1 = 0,
+        PEN: u1 = 0,
+        PALM: u1 = 0,
+    }) TOUCHEVENTF_FLAGS {
+        return @intToEnum(TOUCHEVENTF_FLAGS,
+              (if (o.MOVE == 1) @enumToInt(TOUCHEVENTF_FLAGS.MOVE) else 0)
+            | (if (o.DOWN == 1) @enumToInt(TOUCHEVENTF_FLAGS.DOWN) else 0)
+            | (if (o.UP == 1) @enumToInt(TOUCHEVENTF_FLAGS.UP) else 0)
+            | (if (o.INRANGE == 1) @enumToInt(TOUCHEVENTF_FLAGS.INRANGE) else 0)
+            | (if (o.PRIMARY == 1) @enumToInt(TOUCHEVENTF_FLAGS.PRIMARY) else 0)
+            | (if (o.NOCOALESCE == 1) @enumToInt(TOUCHEVENTF_FLAGS.NOCOALESCE) else 0)
+            | (if (o.PEN == 1) @enumToInt(TOUCHEVENTF_FLAGS.PEN) else 0)
+            | (if (o.PALM == 1) @enumToInt(TOUCHEVENTF_FLAGS.PALM) else 0)
+        );
+    }
 };
 pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
 pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS.DOWN;
@@ -826,12 +866,22 @@ pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
 pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
 pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TOUCHINPUTMASKF_MASK = extern enum(u32) {
     TIMEFROMSYSTEM = 1,
     EXTRAINFO = 2,
     CONTACTAREA = 4,
     _,
+    pub fn initFlags(o: struct {
+        TIMEFROMSYSTEM: u1 = 0,
+        EXTRAINFO: u1 = 0,
+        CONTACTAREA: u1 = 0,
+    }) TOUCHINPUTMASKF_MASK {
+        return @intToEnum(TOUCHINPUTMASKF_MASK,
+              (if (o.TIMEFROMSYSTEM == 1) @enumToInt(TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM) else 0)
+            | (if (o.EXTRAINFO == 1) @enumToInt(TOUCHINPUTMASKF_MASK.EXTRAINFO) else 0)
+            | (if (o.CONTACTAREA == 1) @enumToInt(TOUCHINPUTMASKF_MASK.CONTACTAREA) else 0)
+        );
+    }
 };
 pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
 pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;

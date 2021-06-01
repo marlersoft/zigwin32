@@ -1431,7 +1431,6 @@ pub const PID_FIRST_USABLE = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (945)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHGFI_FLAGS = extern enum(i32) {
     ADDOVERLAYS = 32,
     ATTR_SPECIFIED = 131072,
@@ -1452,6 +1451,47 @@ pub const SHGFI_FLAGS = extern enum(i32) {
     TYPENAME = 1024,
     USEFILEATTRIBUTES = 16,
     _,
+    pub fn initFlags(o: struct {
+        ADDOVERLAYS: u1 = 0,
+        ATTR_SPECIFIED: u1 = 0,
+        ATTRIBUTES: u1 = 0,
+        DISPLAYNAME: u1 = 0,
+        EXETYPE: u1 = 0,
+        ICON: u1 = 0,
+        ICONLOCATION: u1 = 0,
+        LARGEICON: u1 = 0,
+        LINKOVERLAY: u1 = 0,
+        OPENICON: u1 = 0,
+        OVERLAYINDEX: u1 = 0,
+        PIDL: u1 = 0,
+        SELECTED: u1 = 0,
+        SHELLICONSIZE: u1 = 0,
+        SMALLICON: u1 = 0,
+        SYSICONINDEX: u1 = 0,
+        TYPENAME: u1 = 0,
+        USEFILEATTRIBUTES: u1 = 0,
+    }) SHGFI_FLAGS {
+        return @intToEnum(SHGFI_FLAGS,
+              (if (o.ADDOVERLAYS == 1) @enumToInt(SHGFI_FLAGS.ADDOVERLAYS) else 0)
+            | (if (o.ATTR_SPECIFIED == 1) @enumToInt(SHGFI_FLAGS.ATTR_SPECIFIED) else 0)
+            | (if (o.ATTRIBUTES == 1) @enumToInt(SHGFI_FLAGS.ATTRIBUTES) else 0)
+            | (if (o.DISPLAYNAME == 1) @enumToInt(SHGFI_FLAGS.DISPLAYNAME) else 0)
+            | (if (o.EXETYPE == 1) @enumToInt(SHGFI_FLAGS.EXETYPE) else 0)
+            | (if (o.ICON == 1) @enumToInt(SHGFI_FLAGS.ICON) else 0)
+            | (if (o.ICONLOCATION == 1) @enumToInt(SHGFI_FLAGS.ICONLOCATION) else 0)
+            | (if (o.LARGEICON == 1) @enumToInt(SHGFI_FLAGS.LARGEICON) else 0)
+            | (if (o.LINKOVERLAY == 1) @enumToInt(SHGFI_FLAGS.LINKOVERLAY) else 0)
+            | (if (o.OPENICON == 1) @enumToInt(SHGFI_FLAGS.OPENICON) else 0)
+            | (if (o.OVERLAYINDEX == 1) @enumToInt(SHGFI_FLAGS.OVERLAYINDEX) else 0)
+            | (if (o.PIDL == 1) @enumToInt(SHGFI_FLAGS.PIDL) else 0)
+            | (if (o.SELECTED == 1) @enumToInt(SHGFI_FLAGS.SELECTED) else 0)
+            | (if (o.SHELLICONSIZE == 1) @enumToInt(SHGFI_FLAGS.SHELLICONSIZE) else 0)
+            | (if (o.SMALLICON == 1) @enumToInt(SHGFI_FLAGS.SMALLICON) else 0)
+            | (if (o.SYSICONINDEX == 1) @enumToInt(SHGFI_FLAGS.SYSICONINDEX) else 0)
+            | (if (o.TYPENAME == 1) @enumToInt(SHGFI_FLAGS.TYPENAME) else 0)
+            | (if (o.USEFILEATTRIBUTES == 1) @enumToInt(SHGFI_FLAGS.USEFILEATTRIBUTES) else 0)
+        );
+    }
 };
 pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
 pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
@@ -1472,7 +1512,6 @@ pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
 pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
 pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHCNE_ID = extern enum(u32) {
     RENAMEITEM = 1,
     CREATE = 2,
@@ -1500,6 +1539,61 @@ pub const SHCNE_ID = extern enum(u32) {
     ALLEVENTS = 2147483647,
     INTERRUPT = 2147483648,
     _,
+    pub fn initFlags(o: struct {
+        RENAMEITEM: u1 = 0,
+        CREATE: u1 = 0,
+        DELETE: u1 = 0,
+        MKDIR: u1 = 0,
+        RMDIR: u1 = 0,
+        MEDIAINSERTED: u1 = 0,
+        MEDIAREMOVED: u1 = 0,
+        DRIVEREMOVED: u1 = 0,
+        DRIVEADD: u1 = 0,
+        NETSHARE: u1 = 0,
+        NETUNSHARE: u1 = 0,
+        ATTRIBUTES: u1 = 0,
+        UPDATEDIR: u1 = 0,
+        UPDATEITEM: u1 = 0,
+        SERVERDISCONNECT: u1 = 0,
+        UPDATEIMAGE: u1 = 0,
+        DRIVEADDGUI: u1 = 0,
+        RENAMEFOLDER: u1 = 0,
+        FREESPACE: u1 = 0,
+        EXTENDED_EVENT: u1 = 0,
+        ASSOCCHANGED: u1 = 0,
+        DISKEVENTS: u1 = 0,
+        GLOBALEVENTS: u1 = 0,
+        ALLEVENTS: u1 = 0,
+        INTERRUPT: u1 = 0,
+    }) SHCNE_ID {
+        return @intToEnum(SHCNE_ID,
+              (if (o.RENAMEITEM == 1) @enumToInt(SHCNE_ID.RENAMEITEM) else 0)
+            | (if (o.CREATE == 1) @enumToInt(SHCNE_ID.CREATE) else 0)
+            | (if (o.DELETE == 1) @enumToInt(SHCNE_ID.DELETE) else 0)
+            | (if (o.MKDIR == 1) @enumToInt(SHCNE_ID.MKDIR) else 0)
+            | (if (o.RMDIR == 1) @enumToInt(SHCNE_ID.RMDIR) else 0)
+            | (if (o.MEDIAINSERTED == 1) @enumToInt(SHCNE_ID.MEDIAINSERTED) else 0)
+            | (if (o.MEDIAREMOVED == 1) @enumToInt(SHCNE_ID.MEDIAREMOVED) else 0)
+            | (if (o.DRIVEREMOVED == 1) @enumToInt(SHCNE_ID.DRIVEREMOVED) else 0)
+            | (if (o.DRIVEADD == 1) @enumToInt(SHCNE_ID.DRIVEADD) else 0)
+            | (if (o.NETSHARE == 1) @enumToInt(SHCNE_ID.NETSHARE) else 0)
+            | (if (o.NETUNSHARE == 1) @enumToInt(SHCNE_ID.NETUNSHARE) else 0)
+            | (if (o.ATTRIBUTES == 1) @enumToInt(SHCNE_ID.ATTRIBUTES) else 0)
+            | (if (o.UPDATEDIR == 1) @enumToInt(SHCNE_ID.UPDATEDIR) else 0)
+            | (if (o.UPDATEITEM == 1) @enumToInt(SHCNE_ID.UPDATEITEM) else 0)
+            | (if (o.SERVERDISCONNECT == 1) @enumToInt(SHCNE_ID.SERVERDISCONNECT) else 0)
+            | (if (o.UPDATEIMAGE == 1) @enumToInt(SHCNE_ID.UPDATEIMAGE) else 0)
+            | (if (o.DRIVEADDGUI == 1) @enumToInt(SHCNE_ID.DRIVEADDGUI) else 0)
+            | (if (o.RENAMEFOLDER == 1) @enumToInt(SHCNE_ID.RENAMEFOLDER) else 0)
+            | (if (o.FREESPACE == 1) @enumToInt(SHCNE_ID.FREESPACE) else 0)
+            | (if (o.EXTENDED_EVENT == 1) @enumToInt(SHCNE_ID.EXTENDED_EVENT) else 0)
+            | (if (o.ASSOCCHANGED == 1) @enumToInt(SHCNE_ID.ASSOCCHANGED) else 0)
+            | (if (o.DISKEVENTS == 1) @enumToInt(SHCNE_ID.DISKEVENTS) else 0)
+            | (if (o.GLOBALEVENTS == 1) @enumToInt(SHCNE_ID.GLOBALEVENTS) else 0)
+            | (if (o.ALLEVENTS == 1) @enumToInt(SHCNE_ID.ALLEVENTS) else 0)
+            | (if (o.INTERRUPT == 1) @enumToInt(SHCNE_ID.INTERRUPT) else 0)
+        );
+    }
 };
 pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
 pub const SHCNE_CREATE = SHCNE_ID.CREATE;
@@ -1527,20 +1621,31 @@ pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
 pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
 pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHCNRF_SOURCE = extern enum(i32) {
     InterruptLevel = 1,
     ShellLevel = 2,
     RecursiveInterrupt = 4096,
     NewDelivery = 32768,
     _,
+    pub fn initFlags(o: struct {
+        InterruptLevel: u1 = 0,
+        ShellLevel: u1 = 0,
+        RecursiveInterrupt: u1 = 0,
+        NewDelivery: u1 = 0,
+    }) SHCNRF_SOURCE {
+        return @intToEnum(SHCNRF_SOURCE,
+              (if (o.InterruptLevel == 1) @enumToInt(SHCNRF_SOURCE.InterruptLevel) else 0)
+            | (if (o.ShellLevel == 1) @enumToInt(SHCNRF_SOURCE.ShellLevel) else 0)
+            | (if (o.RecursiveInterrupt == 1) @enumToInt(SHCNRF_SOURCE.RecursiveInterrupt) else 0)
+            | (if (o.NewDelivery == 1) @enumToInt(SHCNRF_SOURCE.NewDelivery) else 0)
+        );
+    }
 };
 pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
 pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
 pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
 pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHCNF_FLAGS = extern enum(u32) {
     IDLIST = 0,
     PATHA = 1,
@@ -1555,6 +1660,35 @@ pub const SHCNF_FLAGS = extern enum(u32) {
     PATH = 5,
     PRINTER = 6,
     _,
+    pub fn initFlags(o: struct {
+        IDLIST: u1 = 0,
+        PATHA: u1 = 0,
+        PRINTERA: u1 = 0,
+        DWORD: u1 = 0,
+        PATHW: u1 = 0,
+        PRINTERW: u1 = 0,
+        TYPE: u1 = 0,
+        FLUSH: u1 = 0,
+        FLUSHNOWAIT: u1 = 0,
+        NOTIFYRECURSIVE: u1 = 0,
+        PATH: u1 = 0,
+        PRINTER: u1 = 0,
+    }) SHCNF_FLAGS {
+        return @intToEnum(SHCNF_FLAGS,
+              (if (o.IDLIST == 1) @enumToInt(SHCNF_FLAGS.IDLIST) else 0)
+            | (if (o.PATHA == 1) @enumToInt(SHCNF_FLAGS.PATHA) else 0)
+            | (if (o.PRINTERA == 1) @enumToInt(SHCNF_FLAGS.PRINTERA) else 0)
+            | (if (o.DWORD == 1) @enumToInt(SHCNF_FLAGS.DWORD) else 0)
+            | (if (o.PATHW == 1) @enumToInt(SHCNF_FLAGS.PATHW) else 0)
+            | (if (o.PRINTERW == 1) @enumToInt(SHCNF_FLAGS.PRINTERW) else 0)
+            | (if (o.TYPE == 1) @enumToInt(SHCNF_FLAGS.TYPE) else 0)
+            | (if (o.FLUSH == 1) @enumToInt(SHCNF_FLAGS.FLUSH) else 0)
+            | (if (o.FLUSHNOWAIT == 1) @enumToInt(SHCNF_FLAGS.FLUSHNOWAIT) else 0)
+            | (if (o.NOTIFYRECURSIVE == 1) @enumToInt(SHCNF_FLAGS.NOTIFYRECURSIVE) else 0)
+            | (if (o.PATH == 1) @enumToInt(SHCNF_FLAGS.PATH) else 0)
+            | (if (o.PRINTER == 1) @enumToInt(SHCNF_FLAGS.PRINTER) else 0)
+        );
+    }
 };
 pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
 pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
@@ -1569,7 +1703,6 @@ pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
 pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
 pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const QITIPF_FLAGS = extern enum(i32) {
     TIPF_DEFAULT = 0,
     TIPF_USENAME = 1,
@@ -1580,6 +1713,27 @@ pub const QITIPF_FLAGS = extern enum(i32) {
     F_CACHED = 1,
     F_DONTEXPANDFOLDER = 2,
     _,
+    pub fn initFlags(o: struct {
+        TIPF_DEFAULT: u1 = 0,
+        TIPF_USENAME: u1 = 0,
+        TIPF_LINKNOTARGET: u1 = 0,
+        TIPF_LINKUSETARGET: u1 = 0,
+        TIPF_USESLOWTIP: u1 = 0,
+        TIPF_SINGLELINE: u1 = 0,
+        F_CACHED: u1 = 0,
+        F_DONTEXPANDFOLDER: u1 = 0,
+    }) QITIPF_FLAGS {
+        return @intToEnum(QITIPF_FLAGS,
+              (if (o.TIPF_DEFAULT == 1) @enumToInt(QITIPF_FLAGS.TIPF_DEFAULT) else 0)
+            | (if (o.TIPF_USENAME == 1) @enumToInt(QITIPF_FLAGS.TIPF_USENAME) else 0)
+            | (if (o.TIPF_LINKNOTARGET == 1) @enumToInt(QITIPF_FLAGS.TIPF_LINKNOTARGET) else 0)
+            | (if (o.TIPF_LINKUSETARGET == 1) @enumToInt(QITIPF_FLAGS.TIPF_LINKUSETARGET) else 0)
+            | (if (o.TIPF_USESLOWTIP == 1) @enumToInt(QITIPF_FLAGS.TIPF_USESLOWTIP) else 0)
+            | (if (o.TIPF_SINGLELINE == 1) @enumToInt(QITIPF_FLAGS.TIPF_SINGLELINE) else 0)
+            | (if (o.F_CACHED == 1) @enumToInt(QITIPF_FLAGS.F_CACHED) else 0)
+            | (if (o.F_DONTEXPANDFOLDER == 1) @enumToInt(QITIPF_FLAGS.F_DONTEXPANDFOLDER) else 0)
+        );
+    }
 };
 pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
 pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
@@ -1646,7 +1800,6 @@ pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
 pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
 pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRF_FLAGS = extern enum(i32) {
     VERIFYEXISTS = 1,
     TRYPROGRAMEXTENSIONS = 3,
@@ -1654,6 +1807,21 @@ pub const PRF_FLAGS = extern enum(i32) {
     DONTFINDLNK = 8,
     REQUIREABSOLUTE = 16,
     _,
+    pub fn initFlags(o: struct {
+        VERIFYEXISTS: u1 = 0,
+        TRYPROGRAMEXTENSIONS: u1 = 0,
+        FIRSTDIRDEF: u1 = 0,
+        DONTFINDLNK: u1 = 0,
+        REQUIREABSOLUTE: u1 = 0,
+    }) PRF_FLAGS {
+        return @intToEnum(PRF_FLAGS,
+              (if (o.VERIFYEXISTS == 1) @enumToInt(PRF_FLAGS.VERIFYEXISTS) else 0)
+            | (if (o.TRYPROGRAMEXTENSIONS == 1) @enumToInt(PRF_FLAGS.TRYPROGRAMEXTENSIONS) else 0)
+            | (if (o.FIRSTDIRDEF == 1) @enumToInt(PRF_FLAGS.FIRSTDIRDEF) else 0)
+            | (if (o.DONTFINDLNK == 1) @enumToInt(PRF_FLAGS.DONTFINDLNK) else 0)
+            | (if (o.REQUIREABSOLUTE == 1) @enumToInt(PRF_FLAGS.REQUIREABSOLUTE) else 0)
+        );
+    }
 };
 pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
 pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
@@ -1661,7 +1829,6 @@ pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
 pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
 pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PCS_RET = extern enum(u32) {
     FATAL = 2147483648,
     REPLACEDCHAR = 1,
@@ -1669,6 +1836,21 @@ pub const PCS_RET = extern enum(u32) {
     TRUNCATED = 4,
     PATHTOOLONG = 8,
     _,
+    pub fn initFlags(o: struct {
+        FATAL: u1 = 0,
+        REPLACEDCHAR: u1 = 0,
+        REMOVEDCHAR: u1 = 0,
+        TRUNCATED: u1 = 0,
+        PATHTOOLONG: u1 = 0,
+    }) PCS_RET {
+        return @intToEnum(PCS_RET,
+              (if (o.FATAL == 1) @enumToInt(PCS_RET.FATAL) else 0)
+            | (if (o.REPLACEDCHAR == 1) @enumToInt(PCS_RET.REPLACEDCHAR) else 0)
+            | (if (o.REMOVEDCHAR == 1) @enumToInt(PCS_RET.REMOVEDCHAR) else 0)
+            | (if (o.TRUNCATED == 1) @enumToInt(PCS_RET.TRUNCATED) else 0)
+            | (if (o.PATHTOOLONG == 1) @enumToInt(PCS_RET.PATHTOOLONG) else 0)
+        );
+    }
 };
 pub const PCS_FATAL = PCS_RET.FATAL;
 pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
@@ -1676,23 +1858,43 @@ pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
 pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
 pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MM_FLAGS = extern enum(u32) {
     ADDSEPARATOR = 1,
     SUBMENUSHAVEIDS = 2,
     DONTREMOVESEPS = 4,
     _,
+    pub fn initFlags(o: struct {
+        ADDSEPARATOR: u1 = 0,
+        SUBMENUSHAVEIDS: u1 = 0,
+        DONTREMOVESEPS: u1 = 0,
+    }) MM_FLAGS {
+        return @intToEnum(MM_FLAGS,
+              (if (o.ADDSEPARATOR == 1) @enumToInt(MM_FLAGS.ADDSEPARATOR) else 0)
+            | (if (o.SUBMENUSHAVEIDS == 1) @enumToInt(MM_FLAGS.SUBMENUSHAVEIDS) else 0)
+            | (if (o.DONTREMOVESEPS == 1) @enumToInt(MM_FLAGS.DONTREMOVESEPS) else 0)
+        );
+    }
 };
 pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
 pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
 pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHOP_TYPE = extern enum(i32) {
     PRINTERNAME = 1,
     FILEPATH = 2,
     VOLUMEGUID = 4,
     _,
+    pub fn initFlags(o: struct {
+        PRINTERNAME: u1 = 0,
+        FILEPATH: u1 = 0,
+        VOLUMEGUID: u1 = 0,
+    }) SHOP_TYPE {
+        return @intToEnum(SHOP_TYPE,
+              (if (o.PRINTERNAME == 1) @enumToInt(SHOP_TYPE.PRINTERNAME) else 0)
+            | (if (o.FILEPATH == 1) @enumToInt(SHOP_TYPE.FILEPATH) else 0)
+            | (if (o.VOLUMEGUID == 1) @enumToInt(SHOP_TYPE.VOLUMEGUID) else 0)
+        );
+    }
 };
 pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
 pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
@@ -1703,12 +1905,22 @@ pub const SHFMT_ID = extern enum(u32) {
 };
 pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHFMT_OPT = extern enum(i32) {
     NONE = 0,
     FULL = 1,
     SYSONLY = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        FULL: u1 = 0,
+        SYSONLY: u1 = 0,
+    }) SHFMT_OPT {
+        return @intToEnum(SHFMT_OPT,
+              (if (o.NONE == 1) @enumToInt(SHFMT_OPT.NONE) else 0)
+            | (if (o.FULL == 1) @enumToInt(SHFMT_OPT.FULL) else 0)
+            | (if (o.SYSONLY == 1) @enumToInt(SHFMT_OPT.SYSONLY) else 0)
+        );
+    }
 };
 pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
 pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
@@ -1723,7 +1935,6 @@ pub const SHFMT_ERROR = SHFMT_RET.ERROR;
 pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
 pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const VALIDATEUNC_OPTION = extern enum(i32) {
     CONNECT = 1,
     NOUI = 2,
@@ -1731,6 +1942,21 @@ pub const VALIDATEUNC_OPTION = extern enum(i32) {
     PERSIST = 8,
     VALID = 15,
     _,
+    pub fn initFlags(o: struct {
+        CONNECT: u1 = 0,
+        NOUI: u1 = 0,
+        PRINT: u1 = 0,
+        PERSIST: u1 = 0,
+        VALID: u1 = 0,
+    }) VALIDATEUNC_OPTION {
+        return @intToEnum(VALIDATEUNC_OPTION,
+              (if (o.CONNECT == 1) @enumToInt(VALIDATEUNC_OPTION.CONNECT) else 0)
+            | (if (o.NOUI == 1) @enumToInt(VALIDATEUNC_OPTION.NOUI) else 0)
+            | (if (o.PRINT == 1) @enumToInt(VALIDATEUNC_OPTION.PRINT) else 0)
+            | (if (o.PERSIST == 1) @enumToInt(VALIDATEUNC_OPTION.PERSIST) else 0)
+            | (if (o.VALID == 1) @enumToInt(VALIDATEUNC_OPTION.VALID) else 0)
+        );
+    }
 };
 pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
 pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
@@ -1942,13 +2168,25 @@ pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
 pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
 pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PIDISF_FLAGS = extern enum(i32) {
     RECENTLYCHANGED = 1,
     CACHEDSTICKY = 2,
     CACHEIMAGES = 16,
     FOLLOWALLLINKS = 32,
     _,
+    pub fn initFlags(o: struct {
+        RECENTLYCHANGED: u1 = 0,
+        CACHEDSTICKY: u1 = 0,
+        CACHEIMAGES: u1 = 0,
+        FOLLOWALLLINKS: u1 = 0,
+    }) PIDISF_FLAGS {
+        return @intToEnum(PIDISF_FLAGS,
+              (if (o.RECENTLYCHANGED == 1) @enumToInt(PIDISF_FLAGS.RECENTLYCHANGED) else 0)
+            | (if (o.CACHEDSTICKY == 1) @enumToInt(PIDISF_FLAGS.CACHEDSTICKY) else 0)
+            | (if (o.CACHEIMAGES == 1) @enumToInt(PIDISF_FLAGS.CACHEIMAGES) else 0)
+            | (if (o.FOLLOWALLLINKS == 1) @enumToInt(PIDISF_FLAGS.FOLLOWALLLINKS) else 0)
+        );
+    }
 };
 pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
 pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
@@ -1975,7 +2213,6 @@ pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
 pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
 pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SSF_MASK = extern enum(u32) {
     SHOWALLOBJECTS = 1,
     SHOWEXTENSIONS = 2,
@@ -2005,6 +2242,65 @@ pub const SSF_MASK = extern enum(u32) {
     SHOWTYPEOVERLAY = 33554432,
     SHOWSTATUSBAR = 67108864,
     _,
+    pub fn initFlags(o: struct {
+        SHOWALLOBJECTS: u1 = 0,
+        SHOWEXTENSIONS: u1 = 0,
+        HIDDENFILEEXTS: u1 = 0,
+        SERVERADMINUI: u1 = 0,
+        SHOWCOMPCOLOR: u1 = 0,
+        SORTCOLUMNS: u1 = 0,
+        SHOWSYSFILES: u1 = 0,
+        DOUBLECLICKINWEBVIEW: u1 = 0,
+        SHOWATTRIBCOL: u1 = 0,
+        DESKTOPHTML: u1 = 0,
+        WIN95CLASSIC: u1 = 0,
+        DONTPRETTYPATH: u1 = 0,
+        SHOWINFOTIP: u1 = 0,
+        MAPNETDRVBUTTON: u1 = 0,
+        NOCONFIRMRECYCLE: u1 = 0,
+        HIDEICONS: u1 = 0,
+        FILTER: u1 = 0,
+        WEBVIEW: u1 = 0,
+        SHOWSUPERHIDDEN: u1 = 0,
+        SEPPROCESS: u1 = 0,
+        NONETCRAWLING: u1 = 0,
+        STARTPANELON: u1 = 0,
+        SHOWSTARTPAGE: u1 = 0,
+        AUTOCHECKSELECT: u1 = 0,
+        ICONSONLY: u1 = 0,
+        SHOWTYPEOVERLAY: u1 = 0,
+        SHOWSTATUSBAR: u1 = 0,
+    }) SSF_MASK {
+        return @intToEnum(SSF_MASK,
+              (if (o.SHOWALLOBJECTS == 1) @enumToInt(SSF_MASK.SHOWALLOBJECTS) else 0)
+            | (if (o.SHOWEXTENSIONS == 1) @enumToInt(SSF_MASK.SHOWEXTENSIONS) else 0)
+            | (if (o.HIDDENFILEEXTS == 1) @enumToInt(SSF_MASK.HIDDENFILEEXTS) else 0)
+            | (if (o.SERVERADMINUI == 1) @enumToInt(SSF_MASK.SERVERADMINUI) else 0)
+            | (if (o.SHOWCOMPCOLOR == 1) @enumToInt(SSF_MASK.SHOWCOMPCOLOR) else 0)
+            | (if (o.SORTCOLUMNS == 1) @enumToInt(SSF_MASK.SORTCOLUMNS) else 0)
+            | (if (o.SHOWSYSFILES == 1) @enumToInt(SSF_MASK.SHOWSYSFILES) else 0)
+            | (if (o.DOUBLECLICKINWEBVIEW == 1) @enumToInt(SSF_MASK.DOUBLECLICKINWEBVIEW) else 0)
+            | (if (o.SHOWATTRIBCOL == 1) @enumToInt(SSF_MASK.SHOWATTRIBCOL) else 0)
+            | (if (o.DESKTOPHTML == 1) @enumToInt(SSF_MASK.DESKTOPHTML) else 0)
+            | (if (o.WIN95CLASSIC == 1) @enumToInt(SSF_MASK.WIN95CLASSIC) else 0)
+            | (if (o.DONTPRETTYPATH == 1) @enumToInt(SSF_MASK.DONTPRETTYPATH) else 0)
+            | (if (o.SHOWINFOTIP == 1) @enumToInt(SSF_MASK.SHOWINFOTIP) else 0)
+            | (if (o.MAPNETDRVBUTTON == 1) @enumToInt(SSF_MASK.MAPNETDRVBUTTON) else 0)
+            | (if (o.NOCONFIRMRECYCLE == 1) @enumToInt(SSF_MASK.NOCONFIRMRECYCLE) else 0)
+            | (if (o.HIDEICONS == 1) @enumToInt(SSF_MASK.HIDEICONS) else 0)
+            | (if (o.FILTER == 1) @enumToInt(SSF_MASK.FILTER) else 0)
+            | (if (o.WEBVIEW == 1) @enumToInt(SSF_MASK.WEBVIEW) else 0)
+            | (if (o.SHOWSUPERHIDDEN == 1) @enumToInt(SSF_MASK.SHOWSUPERHIDDEN) else 0)
+            | (if (o.SEPPROCESS == 1) @enumToInt(SSF_MASK.SEPPROCESS) else 0)
+            | (if (o.NONETCRAWLING == 1) @enumToInt(SSF_MASK.NONETCRAWLING) else 0)
+            | (if (o.STARTPANELON == 1) @enumToInt(SSF_MASK.STARTPANELON) else 0)
+            | (if (o.SHOWSTARTPAGE == 1) @enumToInt(SSF_MASK.SHOWSTARTPAGE) else 0)
+            | (if (o.AUTOCHECKSELECT == 1) @enumToInt(SSF_MASK.AUTOCHECKSELECT) else 0)
+            | (if (o.ICONSONLY == 1) @enumToInt(SSF_MASK.ICONSONLY) else 0)
+            | (if (o.SHOWTYPEOVERLAY == 1) @enumToInt(SSF_MASK.SHOWTYPEOVERLAY) else 0)
+            | (if (o.SHOWSTATUSBAR == 1) @enumToInt(SSF_MASK.SHOWSTATUSBAR) else 0)
+        );
+    }
 };
 pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
 pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
@@ -19911,7 +20207,6 @@ pub const REST_NOSECURITY = RESTRICTIONS.NOSECURITY;
 pub const REST_NOFILEASSOCIATE = RESTRICTIONS.NOFILEASSOCIATE;
 pub const REST_ALLOWCOMMENTTOGGLE = RESTRICTIONS.ALLOWCOMMENTTOGGLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OPEN_AS_INFO_FLAGS = extern enum(u32) {
     ALLOW_REGISTRATION = 1,
     REGISTER_EXT = 2,
@@ -19921,6 +20216,25 @@ pub const OPEN_AS_INFO_FLAGS = extern enum(u32) {
     URL_PROTOCOL = 64,
     FILE_IS_URI = 128,
     _,
+    pub fn initFlags(o: struct {
+        ALLOW_REGISTRATION: u1 = 0,
+        REGISTER_EXT: u1 = 0,
+        EXEC: u1 = 0,
+        FORCE_REGISTRATION: u1 = 0,
+        HIDE_REGISTRATION: u1 = 0,
+        URL_PROTOCOL: u1 = 0,
+        FILE_IS_URI: u1 = 0,
+    }) OPEN_AS_INFO_FLAGS {
+        return @intToEnum(OPEN_AS_INFO_FLAGS,
+              (if (o.ALLOW_REGISTRATION == 1) @enumToInt(OPEN_AS_INFO_FLAGS.ALLOW_REGISTRATION) else 0)
+            | (if (o.REGISTER_EXT == 1) @enumToInt(OPEN_AS_INFO_FLAGS.REGISTER_EXT) else 0)
+            | (if (o.EXEC == 1) @enumToInt(OPEN_AS_INFO_FLAGS.EXEC) else 0)
+            | (if (o.FORCE_REGISTRATION == 1) @enumToInt(OPEN_AS_INFO_FLAGS.FORCE_REGISTRATION) else 0)
+            | (if (o.HIDE_REGISTRATION == 1) @enumToInt(OPEN_AS_INFO_FLAGS.HIDE_REGISTRATION) else 0)
+            | (if (o.URL_PROTOCOL == 1) @enumToInt(OPEN_AS_INFO_FLAGS.URL_PROTOCOL) else 0)
+            | (if (o.FILE_IS_URI == 1) @enumToInt(OPEN_AS_INFO_FLAGS.FILE_IS_URI) else 0)
+        );
+    }
 };
 pub const OAIF_ALLOW_REGISTRATION = OPEN_AS_INFO_FLAGS.ALLOW_REGISTRATION;
 pub const OAIF_REGISTER_EXT = OPEN_AS_INFO_FLAGS.REGISTER_EXT;
@@ -20959,12 +21273,22 @@ pub const DISPLAY_DEVICE_TYPE = extern enum(i32) {
 pub const DEVICE_PRIMARY = DISPLAY_DEVICE_TYPE.PRIMARY;
 pub const DEVICE_IMMERSIVE = DISPLAY_DEVICE_TYPE.IMMERSIVE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SCALE_CHANGE_FLAGS = extern enum(u32) {
     VALUE_NONE = 0,
     SCALE = 1,
     PHYSICAL = 2,
     _,
+    pub fn initFlags(o: struct {
+        VALUE_NONE: u1 = 0,
+        SCALE: u1 = 0,
+        PHYSICAL: u1 = 0,
+    }) SCALE_CHANGE_FLAGS {
+        return @intToEnum(SCALE_CHANGE_FLAGS,
+              (if (o.VALUE_NONE == 1) @enumToInt(SCALE_CHANGE_FLAGS.VALUE_NONE) else 0)
+            | (if (o.SCALE == 1) @enumToInt(SCALE_CHANGE_FLAGS.SCALE) else 0)
+            | (if (o.PHYSICAL == 1) @enumToInt(SCALE_CHANGE_FLAGS.PHYSICAL) else 0)
+        );
+    }
 };
 pub const SCF_VALUE_NONE = SCALE_CHANGE_FLAGS.VALUE_NONE;
 pub const SCF_SCALE = SCALE_CHANGE_FLAGS.SCALE;
@@ -26019,7 +26343,6 @@ pub const _HLTRANSLATEF_NOREDEF10 = extern enum(i32) {
 pub const HLTRANSLATEF_DEFAULT = _HLTRANSLATEF_NOREDEF10.EFAULT;
 pub const HLTRANSLATEF_DONTAPPLYDEFAULTPREFIX = _HLTRANSLATEF_NOREDEF10.ONTAPPLYDEFAULTPREFIX;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HLNF = extern enum(u32) {
     INTERNALJUMP = 1,
     OPENINNEWWINDOW = 2,
@@ -26028,6 +26351,23 @@ pub const HLNF = extern enum(u32) {
     NAVIGATINGTOSTACKITEM = 16,
     CREATENOHISTORY = 32,
     _,
+    pub fn initFlags(o: struct {
+        INTERNALJUMP: u1 = 0,
+        OPENINNEWWINDOW: u1 = 0,
+        NAVIGATINGBACK: u1 = 0,
+        NAVIGATINGFORWARD: u1 = 0,
+        NAVIGATINGTOSTACKITEM: u1 = 0,
+        CREATENOHISTORY: u1 = 0,
+    }) HLNF {
+        return @intToEnum(HLNF,
+              (if (o.INTERNALJUMP == 1) @enumToInt(HLNF.INTERNALJUMP) else 0)
+            | (if (o.OPENINNEWWINDOW == 1) @enumToInt(HLNF.OPENINNEWWINDOW) else 0)
+            | (if (o.NAVIGATINGBACK == 1) @enumToInt(HLNF.NAVIGATINGBACK) else 0)
+            | (if (o.NAVIGATINGFORWARD == 1) @enumToInt(HLNF.NAVIGATINGFORWARD) else 0)
+            | (if (o.NAVIGATINGTOSTACKITEM == 1) @enumToInt(HLNF.NAVIGATINGTOSTACKITEM) else 0)
+            | (if (o.CREATENOHISTORY == 1) @enumToInt(HLNF.CREATENOHISTORY) else 0)
+        );
+    }
 };
 pub const HLNF_INTERNALJUMP = HLNF.INTERNALJUMP;
 pub const HLNF_OPENINNEWWINDOW = HLNF.OPENINNEWWINDOW;
@@ -26045,7 +26385,6 @@ pub const HLINKGETREF_DEFAULT = HLINKGETREF.DEFAULT;
 pub const HLINKGETREF_ABSOLUTE = HLINKGETREF.ABSOLUTE;
 pub const HLINKGETREF_RELATIVE = HLINKGETREF.RELATIVE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HLFNAMEF = extern enum(u32) {
     DEFAULT = 0,
     TRYCACHE = 1,
@@ -26053,6 +26392,21 @@ pub const HLFNAMEF = extern enum(u32) {
     TRYFULLTARGET = 4,
     TRYWIN95SHORTCUT = 8,
     _,
+    pub fn initFlags(o: struct {
+        DEFAULT: u1 = 0,
+        TRYCACHE: u1 = 0,
+        TRYPRETTYTARGET: u1 = 0,
+        TRYFULLTARGET: u1 = 0,
+        TRYWIN95SHORTCUT: u1 = 0,
+    }) HLFNAMEF {
+        return @intToEnum(HLFNAMEF,
+              (if (o.DEFAULT == 1) @enumToInt(HLFNAMEF.DEFAULT) else 0)
+            | (if (o.TRYCACHE == 1) @enumToInt(HLFNAMEF.TRYCACHE) else 0)
+            | (if (o.TRYPRETTYTARGET == 1) @enumToInt(HLFNAMEF.TRYPRETTYTARGET) else 0)
+            | (if (o.TRYFULLTARGET == 1) @enumToInt(HLFNAMEF.TRYFULLTARGET) else 0)
+            | (if (o.TRYWIN95SHORTCUT == 1) @enumToInt(HLFNAMEF.TRYWIN95SHORTCUT) else 0)
+        );
+    }
 };
 pub const HLFNAMEF_DEFAULT = HLFNAMEF.DEFAULT;
 pub const HLFNAMEF_TRYCACHE = HLFNAMEF.TRYCACHE;
@@ -26462,7 +26816,6 @@ pub const HLTBINFO = extern struct {
     rcTbPos: RECT,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HLBWIF_FLAGS = extern enum(u32) {
     HASFRAMEWNDINFO = 1,
     HASDOCWNDINFO = 2,
@@ -26471,6 +26824,23 @@ pub const HLBWIF_FLAGS = extern enum(u32) {
     HASWEBTOOLBARINFO = 16,
     WEBTOOLBARHIDDEN = 32,
     _,
+    pub fn initFlags(o: struct {
+        HASFRAMEWNDINFO: u1 = 0,
+        HASDOCWNDINFO: u1 = 0,
+        FRAMEWNDMAXIMIZED: u1 = 0,
+        DOCWNDMAXIMIZED: u1 = 0,
+        HASWEBTOOLBARINFO: u1 = 0,
+        WEBTOOLBARHIDDEN: u1 = 0,
+    }) HLBWIF_FLAGS {
+        return @intToEnum(HLBWIF_FLAGS,
+              (if (o.HASFRAMEWNDINFO == 1) @enumToInt(HLBWIF_FLAGS.HASFRAMEWNDINFO) else 0)
+            | (if (o.HASDOCWNDINFO == 1) @enumToInt(HLBWIF_FLAGS.HASDOCWNDINFO) else 0)
+            | (if (o.FRAMEWNDMAXIMIZED == 1) @enumToInt(HLBWIF_FLAGS.FRAMEWNDMAXIMIZED) else 0)
+            | (if (o.DOCWNDMAXIMIZED == 1) @enumToInt(HLBWIF_FLAGS.DOCWNDMAXIMIZED) else 0)
+            | (if (o.HASWEBTOOLBARINFO == 1) @enumToInt(HLBWIF_FLAGS.HASWEBTOOLBARINFO) else 0)
+            | (if (o.WEBTOOLBARHIDDEN == 1) @enumToInt(HLBWIF_FLAGS.WEBTOOLBARHIDDEN) else 0)
+        );
+    }
 };
 pub const HLBWIF_HASFRAMEWNDINFO = HLBWIF_FLAGS.HASFRAMEWNDINFO;
 pub const HLBWIF_HASDOCWNDINFO = HLBWIF_FLAGS.HASDOCWNDINFO;

@@ -228,7 +228,6 @@ pub const WHV_PARTITION_PROPERTY = extern union {
     ReferenceTime: u64,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WHV_MAP_GPA_RANGE_FLAGS = extern enum(u32) {
     None = 0,
     Read = 1,
@@ -236,6 +235,21 @@ pub const WHV_MAP_GPA_RANGE_FLAGS = extern enum(u32) {
     Execute = 4,
     TrackDirtyPages = 8,
     _,
+    pub fn initFlags(o: struct {
+        None: u1 = 0,
+        Read: u1 = 0,
+        Write: u1 = 0,
+        Execute: u1 = 0,
+        TrackDirtyPages: u1 = 0,
+    }) WHV_MAP_GPA_RANGE_FLAGS {
+        return @intToEnum(WHV_MAP_GPA_RANGE_FLAGS,
+              (if (o.None == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.None) else 0)
+            | (if (o.Read == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.Read) else 0)
+            | (if (o.Write == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.Write) else 0)
+            | (if (o.Execute == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.Execute) else 0)
+            | (if (o.TrackDirtyPages == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages) else 0)
+        );
+    }
 };
 pub const WHvMapGpaRangeFlagNone = WHV_MAP_GPA_RANGE_FLAGS.None;
 pub const WHvMapGpaRangeFlagRead = WHV_MAP_GPA_RANGE_FLAGS.Read;
@@ -243,7 +257,6 @@ pub const WHvMapGpaRangeFlagWrite = WHV_MAP_GPA_RANGE_FLAGS.Write;
 pub const WHvMapGpaRangeFlagExecute = WHV_MAP_GPA_RANGE_FLAGS.Execute;
 pub const WHvMapGpaRangeFlagTrackDirtyPages = WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WHV_TRANSLATE_GVA_FLAGS = extern enum(u32) {
     None = 0,
     ValidateRead = 1,
@@ -252,6 +265,23 @@ pub const WHV_TRANSLATE_GVA_FLAGS = extern enum(u32) {
     PrivilegeExempt = 8,
     SetPageTableBits = 16,
     _,
+    pub fn initFlags(o: struct {
+        None: u1 = 0,
+        ValidateRead: u1 = 0,
+        ValidateWrite: u1 = 0,
+        ValidateExecute: u1 = 0,
+        PrivilegeExempt: u1 = 0,
+        SetPageTableBits: u1 = 0,
+    }) WHV_TRANSLATE_GVA_FLAGS {
+        return @intToEnum(WHV_TRANSLATE_GVA_FLAGS,
+              (if (o.None == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.None) else 0)
+            | (if (o.ValidateRead == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.ValidateRead) else 0)
+            | (if (o.ValidateWrite == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.ValidateWrite) else 0)
+            | (if (o.ValidateExecute == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.ValidateExecute) else 0)
+            | (if (o.PrivilegeExempt == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt) else 0)
+            | (if (o.SetPageTableBits == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits) else 0)
+        );
+    }
 };
 pub const WHvTranslateGvaFlagNone = WHV_TRANSLATE_GVA_FLAGS.None;
 pub const WHvTranslateGvaFlagValidateRead = WHV_TRANSLATE_GVA_FLAGS.ValidateRead;

@@ -1185,12 +1185,22 @@ pub const IDXGIDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DXGI_ADAPTER_FLAG = extern enum(u32) {
     NONE = 0,
     REMOTE = 1,
     SOFTWARE = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        REMOTE: u1 = 0,
+        SOFTWARE: u1 = 0,
+    }) DXGI_ADAPTER_FLAG {
+        return @intToEnum(DXGI_ADAPTER_FLAG,
+              (if (o.NONE == 1) @enumToInt(DXGI_ADAPTER_FLAG.NONE) else 0)
+            | (if (o.REMOTE == 1) @enumToInt(DXGI_ADAPTER_FLAG.REMOTE) else 0)
+            | (if (o.SOFTWARE == 1) @enumToInt(DXGI_ADAPTER_FLAG.SOFTWARE) else 0)
+        );
+    }
 };
 pub const DXGI_ADAPTER_FLAG_NONE = DXGI_ADAPTER_FLAG.NONE;
 pub const DXGI_ADAPTER_FLAG_REMOTE = DXGI_ADAPTER_FLAG.REMOTE;
@@ -2698,7 +2708,6 @@ pub const IDXGIFactory5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DXGI_ADAPTER_FLAG3 = extern enum(u32) {
     NONE = 0,
     REMOTE = 1,
@@ -2709,6 +2718,27 @@ pub const DXGI_ADAPTER_FLAG3 = extern enum(u32) {
     KEYED_MUTEX_CONFORMANCE = 32,
     FORCE_DWORD = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        REMOTE: u1 = 0,
+        SOFTWARE: u1 = 0,
+        ACG_COMPATIBLE: u1 = 0,
+        SUPPORT_MONITORED_FENCES: u1 = 0,
+        SUPPORT_NON_MONITORED_FENCES: u1 = 0,
+        KEYED_MUTEX_CONFORMANCE: u1 = 0,
+        FORCE_DWORD: u1 = 0,
+    }) DXGI_ADAPTER_FLAG3 {
+        return @intToEnum(DXGI_ADAPTER_FLAG3,
+              (if (o.NONE == 1) @enumToInt(DXGI_ADAPTER_FLAG3.NONE) else 0)
+            | (if (o.REMOTE == 1) @enumToInt(DXGI_ADAPTER_FLAG3.REMOTE) else 0)
+            | (if (o.SOFTWARE == 1) @enumToInt(DXGI_ADAPTER_FLAG3.SOFTWARE) else 0)
+            | (if (o.ACG_COMPATIBLE == 1) @enumToInt(DXGI_ADAPTER_FLAG3.ACG_COMPATIBLE) else 0)
+            | (if (o.SUPPORT_MONITORED_FENCES == 1) @enumToInt(DXGI_ADAPTER_FLAG3.SUPPORT_MONITORED_FENCES) else 0)
+            | (if (o.SUPPORT_NON_MONITORED_FENCES == 1) @enumToInt(DXGI_ADAPTER_FLAG3.SUPPORT_NON_MONITORED_FENCES) else 0)
+            | (if (o.KEYED_MUTEX_CONFORMANCE == 1) @enumToInt(DXGI_ADAPTER_FLAG3.KEYED_MUTEX_CONFORMANCE) else 0)
+            | (if (o.FORCE_DWORD == 1) @enumToInt(DXGI_ADAPTER_FLAG3.FORCE_DWORD) else 0)
+        );
+    }
 };
 pub const DXGI_ADAPTER_FLAG3_NONE = DXGI_ADAPTER_FLAG3.NONE;
 pub const DXGI_ADAPTER_FLAG3_REMOTE = DXGI_ADAPTER_FLAG3.REMOTE;
@@ -2772,12 +2802,22 @@ pub const DXGI_OUTPUT_DESC1 = extern struct {
     MaxFullFrameLuminance: f32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = extern enum(u32) {
     FULLSCREEN = 1,
     WINDOWED = 2,
     CURSOR_STRETCHED = 4,
     _,
+    pub fn initFlags(o: struct {
+        FULLSCREEN: u1 = 0,
+        WINDOWED: u1 = 0,
+        CURSOR_STRETCHED: u1 = 0,
+    }) DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS {
+        return @intToEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS,
+              (if (o.FULLSCREEN == 1) @enumToInt(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN) else 0)
+            | (if (o.WINDOWED == 1) @enumToInt(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED) else 0)
+            | (if (o.CURSOR_STRETCHED == 1) @enumToInt(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED) else 0)
+        );
+    }
 };
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN;
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED;
@@ -2878,13 +2918,25 @@ pub const IDXGIFactory7 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DXGI_DEBUG_RLO_FLAGS = extern enum(u32) {
     SUMMARY = 1,
     DETAIL = 2,
     IGNORE_INTERNAL = 4,
     ALL = 7,
     _,
+    pub fn initFlags(o: struct {
+        SUMMARY: u1 = 0,
+        DETAIL: u1 = 0,
+        IGNORE_INTERNAL: u1 = 0,
+        ALL: u1 = 0,
+    }) DXGI_DEBUG_RLO_FLAGS {
+        return @intToEnum(DXGI_DEBUG_RLO_FLAGS,
+              (if (o.SUMMARY == 1) @enumToInt(DXGI_DEBUG_RLO_FLAGS.SUMMARY) else 0)
+            | (if (o.DETAIL == 1) @enumToInt(DXGI_DEBUG_RLO_FLAGS.DETAIL) else 0)
+            | (if (o.IGNORE_INTERNAL == 1) @enumToInt(DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL) else 0)
+            | (if (o.ALL == 1) @enumToInt(DXGI_DEBUG_RLO_FLAGS.ALL) else 0)
+        );
+    }
 };
 pub const DXGI_DEBUG_RLO_SUMMARY = DXGI_DEBUG_RLO_FLAGS.SUMMARY;
 pub const DXGI_DEBUG_RLO_DETAIL = DXGI_DEBUG_RLO_FLAGS.DETAIL;

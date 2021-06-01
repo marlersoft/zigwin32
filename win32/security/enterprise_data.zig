@@ -224,13 +224,25 @@ pub const HTHREAD_NETWORK_CONTEXT = extern struct {
     ThreadContext: HANDLE,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ENTERPRISE_DATA_POLICIES = extern enum(u32) {
     NONE = 0,
     ALLOWED = 1,
     ENLIGHTENED = 2,
     EXEMPT = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOWED: u1 = 0,
+        ENLIGHTENED: u1 = 0,
+        EXEMPT: u1 = 0,
+    }) ENTERPRISE_DATA_POLICIES {
+        return @intToEnum(ENTERPRISE_DATA_POLICIES,
+              (if (o.NONE == 1) @enumToInt(ENTERPRISE_DATA_POLICIES.NONE) else 0)
+            | (if (o.ALLOWED == 1) @enumToInt(ENTERPRISE_DATA_POLICIES.ALLOWED) else 0)
+            | (if (o.ENLIGHTENED == 1) @enumToInt(ENTERPRISE_DATA_POLICIES.ENLIGHTENED) else 0)
+            | (if (o.EXEMPT == 1) @enumToInt(ENTERPRISE_DATA_POLICIES.EXEMPT) else 0)
+        );
+    }
 };
 pub const ENTERPRISE_POLICY_NONE = ENTERPRISE_DATA_POLICIES.NONE;
 pub const ENTERPRISE_POLICY_ALLOWED = ENTERPRISE_DATA_POLICIES.ALLOWED;

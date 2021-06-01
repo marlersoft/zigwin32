@@ -2000,7 +2000,6 @@ pub const IBufferByteAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RO_ERROR_REPORTING_FLAGS = extern enum(u32) {
     NONE = 0,
     SUPPRESSEXCEPTIONS = 1,
@@ -2008,6 +2007,21 @@ pub const RO_ERROR_REPORTING_FLAGS = extern enum(u32) {
     USESETERRORINFO = 4,
     SUPPRESSSETERRORINFO = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SUPPRESSEXCEPTIONS: u1 = 0,
+        FORCEEXCEPTIONS: u1 = 0,
+        USESETERRORINFO: u1 = 0,
+        SUPPRESSSETERRORINFO: u1 = 0,
+    }) RO_ERROR_REPORTING_FLAGS {
+        return @intToEnum(RO_ERROR_REPORTING_FLAGS,
+              (if (o.NONE == 1) @enumToInt(RO_ERROR_REPORTING_FLAGS.NONE) else 0)
+            | (if (o.SUPPRESSEXCEPTIONS == 1) @enumToInt(RO_ERROR_REPORTING_FLAGS.SUPPRESSEXCEPTIONS) else 0)
+            | (if (o.FORCEEXCEPTIONS == 1) @enumToInt(RO_ERROR_REPORTING_FLAGS.FORCEEXCEPTIONS) else 0)
+            | (if (o.USESETERRORINFO == 1) @enumToInt(RO_ERROR_REPORTING_FLAGS.USESETERRORINFO) else 0)
+            | (if (o.SUPPRESSSETERRORINFO == 1) @enumToInt(RO_ERROR_REPORTING_FLAGS.SUPPRESSSETERRORINFO) else 0)
+        );
+    }
 };
 pub const RO_ERROR_REPORTING_NONE = RO_ERROR_REPORTING_FLAGS.NONE;
 pub const RO_ERROR_REPORTING_SUPPRESSEXCEPTIONS = RO_ERROR_REPORTING_FLAGS.SUPPRESSEXCEPTIONS;

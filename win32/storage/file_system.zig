@@ -201,18 +201,27 @@ pub const CLFS_SCAN_BUFFERED = @as(u8, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (456)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FIND_FIRST_EX_FLAGS = extern enum(u32) {
     CASE_SENSITIVE = 1,
     LARGE_FETCH = 2,
     ON_DISK_ENTRIES_ONLY = 4,
     _,
+    pub fn initFlags(o: struct {
+        CASE_SENSITIVE: u1 = 0,
+        LARGE_FETCH: u1 = 0,
+        ON_DISK_ENTRIES_ONLY: u1 = 0,
+    }) FIND_FIRST_EX_FLAGS {
+        return @intToEnum(FIND_FIRST_EX_FLAGS,
+              (if (o.CASE_SENSITIVE == 1) @enumToInt(FIND_FIRST_EX_FLAGS.CASE_SENSITIVE) else 0)
+            | (if (o.LARGE_FETCH == 1) @enumToInt(FIND_FIRST_EX_FLAGS.LARGE_FETCH) else 0)
+            | (if (o.ON_DISK_ENTRIES_ONLY == 1) @enumToInt(FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY) else 0)
+        );
+    }
 };
 pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
 pub const FIND_FIRST_EX_LARGE_FETCH = FIND_FIRST_EX_FLAGS.LARGE_FETCH;
 pub const FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY = FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DEFINE_DOS_DEVICE_FLAGS = extern enum(u32) {
     RAW_TARGET_PATH = 1,
     REMOVE_DEFINITION = 2,
@@ -220,6 +229,21 @@ pub const DEFINE_DOS_DEVICE_FLAGS = extern enum(u32) {
     NO_BROADCAST_SYSTEM = 8,
     LUID_BROADCAST_DRIVE = 16,
     _,
+    pub fn initFlags(o: struct {
+        RAW_TARGET_PATH: u1 = 0,
+        REMOVE_DEFINITION: u1 = 0,
+        EXACT_MATCH_ON_REMOVE: u1 = 0,
+        NO_BROADCAST_SYSTEM: u1 = 0,
+        LUID_BROADCAST_DRIVE: u1 = 0,
+    }) DEFINE_DOS_DEVICE_FLAGS {
+        return @intToEnum(DEFINE_DOS_DEVICE_FLAGS,
+              (if (o.RAW_TARGET_PATH == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH) else 0)
+            | (if (o.REMOVE_DEFINITION == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION) else 0)
+            | (if (o.EXACT_MATCH_ON_REMOVE == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE) else 0)
+            | (if (o.NO_BROADCAST_SYSTEM == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM) else 0)
+            | (if (o.LUID_BROADCAST_DRIVE == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE) else 0)
+        );
+    }
 };
 pub const DDD_RAW_TARGET_PATH = DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH;
 pub const DDD_REMOVE_DEFINITION = DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION;
@@ -227,7 +251,6 @@ pub const DDD_EXACT_MATCH_ON_REMOVE = DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REM
 pub const DDD_NO_BROADCAST_SYSTEM = DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM;
 pub const DDD_LUID_BROADCAST_DRIVE = DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
     FILE_ATTRIBUTE_READONLY = 1,
     FILE_ATTRIBUTE_HIDDEN = 2,
@@ -272,6 +295,95 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
     SECURITY_SQOS_PRESENT = 1048576,
     SECURITY_VALID_SQOS_FLAGS = 2031616,
     _,
+    pub fn initFlags(o: struct {
+        FILE_ATTRIBUTE_READONLY: u1 = 0,
+        FILE_ATTRIBUTE_HIDDEN: u1 = 0,
+        FILE_ATTRIBUTE_SYSTEM: u1 = 0,
+        FILE_ATTRIBUTE_DIRECTORY: u1 = 0,
+        FILE_ATTRIBUTE_ARCHIVE: u1 = 0,
+        FILE_ATTRIBUTE_DEVICE: u1 = 0,
+        FILE_ATTRIBUTE_NORMAL: u1 = 0,
+        FILE_ATTRIBUTE_TEMPORARY: u1 = 0,
+        FILE_ATTRIBUTE_SPARSE_FILE: u1 = 0,
+        FILE_ATTRIBUTE_REPARSE_POINT: u1 = 0,
+        FILE_ATTRIBUTE_COMPRESSED: u1 = 0,
+        FILE_ATTRIBUTE_OFFLINE: u1 = 0,
+        FILE_ATTRIBUTE_NOT_CONTENT_INDEXED: u1 = 0,
+        FILE_ATTRIBUTE_ENCRYPTED: u1 = 0,
+        FILE_ATTRIBUTE_INTEGRITY_STREAM: u1 = 0,
+        FILE_ATTRIBUTE_VIRTUAL: u1 = 0,
+        FILE_ATTRIBUTE_NO_SCRUB_DATA: u1 = 0,
+        FILE_ATTRIBUTE_EA: u1 = 0,
+        FILE_ATTRIBUTE_PINNED: u1 = 0,
+        FILE_ATTRIBUTE_UNPINNED: u1 = 0,
+        FILE_ATTRIBUTE_RECALL_ON_OPEN: u1 = 0,
+        FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS: u1 = 0,
+        FILE_FLAG_WRITE_THROUGH: u1 = 0,
+        FILE_FLAG_OVERLAPPED: u1 = 0,
+        FILE_FLAG_NO_BUFFERING: u1 = 0,
+        FILE_FLAG_RANDOM_ACCESS: u1 = 0,
+        FILE_FLAG_SEQUENTIAL_SCAN: u1 = 0,
+        FILE_FLAG_DELETE_ON_CLOSE: u1 = 0,
+        FILE_FLAG_BACKUP_SEMANTICS: u1 = 0,
+        FILE_FLAG_POSIX_SEMANTICS: u1 = 0,
+        FILE_FLAG_SESSION_AWARE: u1 = 0,
+        FILE_FLAG_OPEN_REPARSE_POINT: u1 = 0,
+        FILE_FLAG_OPEN_NO_RECALL: u1 = 0,
+        FILE_FLAG_FIRST_PIPE_INSTANCE: u1 = 0,
+        SECURITY_ANONYMOUS: u1 = 0,
+        SECURITY_IDENTIFICATION: u1 = 0,
+        SECURITY_IMPERSONATION: u1 = 0,
+        SECURITY_DELEGATION: u1 = 0,
+        SECURITY_CONTEXT_TRACKING: u1 = 0,
+        SECURITY_EFFECTIVE_ONLY: u1 = 0,
+        SECURITY_SQOS_PRESENT: u1 = 0,
+        SECURITY_VALID_SQOS_FLAGS: u1 = 0,
+    }) FILE_FLAGS_AND_ATTRIBUTES {
+        return @intToEnum(FILE_FLAGS_AND_ATTRIBUTES,
+              (if (o.FILE_ATTRIBUTE_READONLY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY) else 0)
+            | (if (o.FILE_ATTRIBUTE_HIDDEN == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN) else 0)
+            | (if (o.FILE_ATTRIBUTE_SYSTEM == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM) else 0)
+            | (if (o.FILE_ATTRIBUTE_DIRECTORY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY) else 0)
+            | (if (o.FILE_ATTRIBUTE_ARCHIVE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE) else 0)
+            | (if (o.FILE_ATTRIBUTE_DEVICE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE) else 0)
+            | (if (o.FILE_ATTRIBUTE_NORMAL == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL) else 0)
+            | (if (o.FILE_ATTRIBUTE_TEMPORARY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY) else 0)
+            | (if (o.FILE_ATTRIBUTE_SPARSE_FILE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE) else 0)
+            | (if (o.FILE_ATTRIBUTE_REPARSE_POINT == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT) else 0)
+            | (if (o.FILE_ATTRIBUTE_COMPRESSED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED) else 0)
+            | (if (o.FILE_ATTRIBUTE_OFFLINE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE) else 0)
+            | (if (o.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED) else 0)
+            | (if (o.FILE_ATTRIBUTE_ENCRYPTED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED) else 0)
+            | (if (o.FILE_ATTRIBUTE_INTEGRITY_STREAM == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM) else 0)
+            | (if (o.FILE_ATTRIBUTE_VIRTUAL == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL) else 0)
+            | (if (o.FILE_ATTRIBUTE_NO_SCRUB_DATA == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA) else 0)
+            | (if (o.FILE_ATTRIBUTE_EA == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA) else 0)
+            | (if (o.FILE_ATTRIBUTE_PINNED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED) else 0)
+            | (if (o.FILE_ATTRIBUTE_UNPINNED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED) else 0)
+            | (if (o.FILE_ATTRIBUTE_RECALL_ON_OPEN == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_OPEN) else 0)
+            | (if (o.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS) else 0)
+            | (if (o.FILE_FLAG_WRITE_THROUGH == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH) else 0)
+            | (if (o.FILE_FLAG_OVERLAPPED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED) else 0)
+            | (if (o.FILE_FLAG_NO_BUFFERING == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING) else 0)
+            | (if (o.FILE_FLAG_RANDOM_ACCESS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS) else 0)
+            | (if (o.FILE_FLAG_SEQUENTIAL_SCAN == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN) else 0)
+            | (if (o.FILE_FLAG_DELETE_ON_CLOSE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE) else 0)
+            | (if (o.FILE_FLAG_BACKUP_SEMANTICS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS) else 0)
+            | (if (o.FILE_FLAG_POSIX_SEMANTICS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS) else 0)
+            | (if (o.FILE_FLAG_SESSION_AWARE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE) else 0)
+            | (if (o.FILE_FLAG_OPEN_REPARSE_POINT == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT) else 0)
+            | (if (o.FILE_FLAG_OPEN_NO_RECALL == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_NO_RECALL) else 0)
+            | (if (o.FILE_FLAG_FIRST_PIPE_INSTANCE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_FIRST_PIPE_INSTANCE) else 0)
+            | (if (o.SECURITY_ANONYMOUS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS) else 0)
+            | (if (o.SECURITY_IDENTIFICATION == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IDENTIFICATION) else 0)
+            | (if (o.SECURITY_IMPERSONATION == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IMPERSONATION) else 0)
+            | (if (o.SECURITY_DELEGATION == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION) else 0)
+            | (if (o.SECURITY_CONTEXT_TRACKING == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_CONTEXT_TRACKING) else 0)
+            | (if (o.SECURITY_EFFECTIVE_ONLY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE_ONLY) else 0)
+            | (if (o.SECURITY_SQOS_PRESENT == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT) else 0)
+            | (if (o.SECURITY_VALID_SQOS_FLAGS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS) else 0)
+        );
+    }
 };
 pub const FILE_ATTRIBUTE_READONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY;
 pub const FILE_ATTRIBUTE_HIDDEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN;
@@ -316,7 +428,6 @@ pub const SECURITY_EFFECTIVE_ONLY = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE
 pub const SECURITY_SQOS_PRESENT = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT;
 pub const SECURITY_VALID_SQOS_FLAGS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FILE_ACCESS_FLAGS = extern enum(u32) {
     FILE_READ_DATA = 1,
     FILE_LIST_DIRECTORY = 1,
@@ -345,6 +456,63 @@ pub const FILE_ACCESS_FLAGS = extern enum(u32) {
     FILE_GENERIC_WRITE = 1179926,
     FILE_GENERIC_EXECUTE = 1179808,
     _,
+    pub fn initFlags(o: struct {
+        FILE_READ_DATA: u1 = 0,
+        FILE_LIST_DIRECTORY: u1 = 0,
+        FILE_WRITE_DATA: u1 = 0,
+        FILE_ADD_FILE: u1 = 0,
+        FILE_APPEND_DATA: u1 = 0,
+        FILE_ADD_SUBDIRECTORY: u1 = 0,
+        FILE_CREATE_PIPE_INSTANCE: u1 = 0,
+        FILE_READ_EA: u1 = 0,
+        FILE_WRITE_EA: u1 = 0,
+        FILE_EXECUTE: u1 = 0,
+        FILE_TRAVERSE: u1 = 0,
+        FILE_DELETE_CHILD: u1 = 0,
+        FILE_READ_ATTRIBUTES: u1 = 0,
+        FILE_WRITE_ATTRIBUTES: u1 = 0,
+        READ_CONTROL: u1 = 0,
+        SYNCHRONIZE: u1 = 0,
+        STANDARD_RIGHTS_REQUIRED: u1 = 0,
+        STANDARD_RIGHTS_READ: u1 = 0,
+        STANDARD_RIGHTS_WRITE: u1 = 0,
+        STANDARD_RIGHTS_EXECUTE: u1 = 0,
+        STANDARD_RIGHTS_ALL: u1 = 0,
+        SPECIFIC_RIGHTS_ALL: u1 = 0,
+        FILE_ALL_ACCESS: u1 = 0,
+        FILE_GENERIC_READ: u1 = 0,
+        FILE_GENERIC_WRITE: u1 = 0,
+        FILE_GENERIC_EXECUTE: u1 = 0,
+    }) FILE_ACCESS_FLAGS {
+        return @intToEnum(FILE_ACCESS_FLAGS,
+              (if (o.FILE_READ_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_DATA) else 0)
+            | (if (o.FILE_LIST_DIRECTORY == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY) else 0)
+            | (if (o.FILE_WRITE_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_DATA) else 0)
+            | (if (o.FILE_ADD_FILE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_ADD_FILE) else 0)
+            | (if (o.FILE_APPEND_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_APPEND_DATA) else 0)
+            | (if (o.FILE_ADD_SUBDIRECTORY == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_ADD_SUBDIRECTORY) else 0)
+            | (if (o.FILE_CREATE_PIPE_INSTANCE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_CREATE_PIPE_INSTANCE) else 0)
+            | (if (o.FILE_READ_EA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_EA) else 0)
+            | (if (o.FILE_WRITE_EA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_EA) else 0)
+            | (if (o.FILE_EXECUTE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_EXECUTE) else 0)
+            | (if (o.FILE_TRAVERSE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_TRAVERSE) else 0)
+            | (if (o.FILE_DELETE_CHILD == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_DELETE_CHILD) else 0)
+            | (if (o.FILE_READ_ATTRIBUTES == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES) else 0)
+            | (if (o.FILE_WRITE_ATTRIBUTES == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES) else 0)
+            | (if (o.READ_CONTROL == 1) @enumToInt(FILE_ACCESS_FLAGS.READ_CONTROL) else 0)
+            | (if (o.SYNCHRONIZE == 1) @enumToInt(FILE_ACCESS_FLAGS.SYNCHRONIZE) else 0)
+            | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED) else 0)
+            | (if (o.STANDARD_RIGHTS_READ == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_READ) else 0)
+            | (if (o.STANDARD_RIGHTS_WRITE == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_WRITE) else 0)
+            | (if (o.STANDARD_RIGHTS_EXECUTE == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_EXECUTE) else 0)
+            | (if (o.STANDARD_RIGHTS_ALL == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL) else 0)
+            | (if (o.SPECIFIC_RIGHTS_ALL == 1) @enumToInt(FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL) else 0)
+            | (if (o.FILE_ALL_ACCESS == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_ALL_ACCESS) else 0)
+            | (if (o.FILE_GENERIC_READ == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_GENERIC_READ) else 0)
+            | (if (o.FILE_GENERIC_WRITE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE) else 0)
+            | (if (o.FILE_GENERIC_EXECUTE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE) else 0)
+        );
+    }
 };
 pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
 pub const FILE_LIST_DIRECTORY = FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY;
@@ -4857,7 +5025,6 @@ pub const STAT_SERVER_0 = extern struct {
     sts0_bigbufneed: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GPT_ATTRIBUTES = extern enum(u64) {
     ATTRIBUTE_PLATFORM_REQUIRED = 1,
     BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER = 9223372036854775808,
@@ -4865,6 +5032,21 @@ pub const GPT_ATTRIBUTES = extern enum(u64) {
     BASIC_DATA_ATTRIBUTE_SHADOW_COPY = 2305843009213693952,
     BASIC_DATA_ATTRIBUTE_READ_ONLY = 1152921504606846976,
     _,
+    pub fn initFlags(o: struct {
+        ATTRIBUTE_PLATFORM_REQUIRED: u1 = 0,
+        BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER: u1 = 0,
+        BASIC_DATA_ATTRIBUTE_HIDDEN: u1 = 0,
+        BASIC_DATA_ATTRIBUTE_SHADOW_COPY: u1 = 0,
+        BASIC_DATA_ATTRIBUTE_READ_ONLY: u1 = 0,
+    }) GPT_ATTRIBUTES {
+        return @intToEnum(GPT_ATTRIBUTES,
+              (if (o.ATTRIBUTE_PLATFORM_REQUIRED == 1) @enumToInt(GPT_ATTRIBUTES.ATTRIBUTE_PLATFORM_REQUIRED) else 0)
+            | (if (o.BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER) else 0)
+            | (if (o.BASIC_DATA_ATTRIBUTE_HIDDEN == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_HIDDEN) else 0)
+            | (if (o.BASIC_DATA_ATTRIBUTE_SHADOW_COPY == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_SHADOW_COPY) else 0)
+            | (if (o.BASIC_DATA_ATTRIBUTE_READ_ONLY == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_READ_ONLY) else 0)
+        );
+    }
 };
 pub const GPT_ATTRIBUTE_PLATFORM_REQUIRED = GPT_ATTRIBUTES.ATTRIBUTE_PLATFORM_REQUIRED;
 pub const GPT_BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER = GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER;
@@ -4885,20 +5067,31 @@ pub const OPEN_EXISTING = FILE_CREATION_DISPOSITION.OPEN_EXISTING;
 pub const OPEN_ALWAYS = FILE_CREATION_DISPOSITION.OPEN_ALWAYS;
 pub const TRUNCATE_EXISTING = FILE_CREATION_DISPOSITION.TRUNCATE_EXISTING;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FILE_SHARE_MODE = extern enum(u32) {
     NONE = 0,
     DELETE = 4,
     READ = 1,
     WRITE = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DELETE: u1 = 0,
+        READ: u1 = 0,
+        WRITE: u1 = 0,
+    }) FILE_SHARE_MODE {
+        return @intToEnum(FILE_SHARE_MODE,
+              (if (o.NONE == 1) @enumToInt(FILE_SHARE_MODE.NONE) else 0)
+            | (if (o.DELETE == 1) @enumToInt(FILE_SHARE_MODE.DELETE) else 0)
+            | (if (o.READ == 1) @enumToInt(FILE_SHARE_MODE.READ) else 0)
+            | (if (o.WRITE == 1) @enumToInt(FILE_SHARE_MODE.WRITE) else 0)
+        );
+    }
 };
 pub const FILE_SHARE_NONE = FILE_SHARE_MODE.NONE;
 pub const FILE_SHARE_DELETE = FILE_SHARE_MODE.DELETE;
 pub const FILE_SHARE_READ = FILE_SHARE_MODE.READ;
 pub const FILE_SHARE_WRITE = FILE_SHARE_MODE.WRITE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHARE_TYPE = extern enum(u32) {
     DISKTREE = 0,
     PRINTQ = 1,
@@ -4908,6 +5101,25 @@ pub const SHARE_TYPE = extern enum(u32) {
     TEMPORARY = 1073741824,
     MASK = 255,
     _,
+    pub fn initFlags(o: struct {
+        DISKTREE: u1 = 0,
+        PRINTQ: u1 = 0,
+        DEVICE: u1 = 0,
+        IPC: u1 = 0,
+        SPECIAL: u1 = 0,
+        TEMPORARY: u1 = 0,
+        MASK: u1 = 0,
+    }) SHARE_TYPE {
+        return @intToEnum(SHARE_TYPE,
+              (if (o.DISKTREE == 1) @enumToInt(SHARE_TYPE.DISKTREE) else 0)
+            | (if (o.PRINTQ == 1) @enumToInt(SHARE_TYPE.PRINTQ) else 0)
+            | (if (o.DEVICE == 1) @enumToInt(SHARE_TYPE.DEVICE) else 0)
+            | (if (o.IPC == 1) @enumToInt(SHARE_TYPE.IPC) else 0)
+            | (if (o.SPECIAL == 1) @enumToInt(SHARE_TYPE.SPECIAL) else 0)
+            | (if (o.TEMPORARY == 1) @enumToInt(SHARE_TYPE.TEMPORARY) else 0)
+            | (if (o.MASK == 1) @enumToInt(SHARE_TYPE.MASK) else 0)
+        );
+    }
 };
 pub const STYPE_DISKTREE = SHARE_TYPE.DISKTREE;
 pub const STYPE_PRINTQ = SHARE_TYPE.PRINTQ;
@@ -4917,13 +5129,25 @@ pub const STYPE_SPECIAL = SHARE_TYPE.SPECIAL;
 pub const STYPE_TEMPORARY = SHARE_TYPE.TEMPORARY;
 pub const STYPE_MASK = SHARE_TYPE.MASK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CLFS_FLAG = extern enum(u32) {
     FORCE_APPEND = 1,
     FORCE_FLUSH = 2,
     NO_FLAGS = 0,
     USE_RESERVATION = 4,
     _,
+    pub fn initFlags(o: struct {
+        FORCE_APPEND: u1 = 0,
+        FORCE_FLUSH: u1 = 0,
+        NO_FLAGS: u1 = 0,
+        USE_RESERVATION: u1 = 0,
+    }) CLFS_FLAG {
+        return @intToEnum(CLFS_FLAG,
+              (if (o.FORCE_APPEND == 1) @enumToInt(CLFS_FLAG.FORCE_APPEND) else 0)
+            | (if (o.FORCE_FLUSH == 1) @enumToInt(CLFS_FLAG.FORCE_FLUSH) else 0)
+            | (if (o.NO_FLAGS == 1) @enumToInt(CLFS_FLAG.NO_FLAGS) else 0)
+            | (if (o.USE_RESERVATION == 1) @enumToInt(CLFS_FLAG.USE_RESERVATION) else 0)
+        );
+    }
 };
 pub const CLFS_FLAG_FORCE_APPEND = CLFS_FLAG.FORCE_APPEND;
 pub const CLFS_FLAG_FORCE_FLUSH = CLFS_FLAG.FORCE_FLUSH;
@@ -4939,7 +5163,6 @@ pub const FILE_BEGIN = SET_FILE_POINTER_MOVE_METHOD.BEGIN;
 pub const FILE_CURRENT = SET_FILE_POINTER_MOVE_METHOD.CURRENT;
 pub const FILE_END = SET_FILE_POINTER_MOVE_METHOD.END;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MOVE_FILE_FLAGS = extern enum(u32) {
     COPY_ALLOWED = 2,
     CREATE_HARDLINK = 16,
@@ -4948,6 +5171,23 @@ pub const MOVE_FILE_FLAGS = extern enum(u32) {
     WRITE_THROUGH = 8,
     FAIL_IF_NOT_TRACKABLE = 32,
     _,
+    pub fn initFlags(o: struct {
+        COPY_ALLOWED: u1 = 0,
+        CREATE_HARDLINK: u1 = 0,
+        DELAY_UNTIL_REBOOT: u1 = 0,
+        REPLACE_EXISTING: u1 = 0,
+        WRITE_THROUGH: u1 = 0,
+        FAIL_IF_NOT_TRACKABLE: u1 = 0,
+    }) MOVE_FILE_FLAGS {
+        return @intToEnum(MOVE_FILE_FLAGS,
+              (if (o.COPY_ALLOWED == 1) @enumToInt(MOVE_FILE_FLAGS.COPY_ALLOWED) else 0)
+            | (if (o.CREATE_HARDLINK == 1) @enumToInt(MOVE_FILE_FLAGS.CREATE_HARDLINK) else 0)
+            | (if (o.DELAY_UNTIL_REBOOT == 1) @enumToInt(MOVE_FILE_FLAGS.DELAY_UNTIL_REBOOT) else 0)
+            | (if (o.REPLACE_EXISTING == 1) @enumToInt(MOVE_FILE_FLAGS.REPLACE_EXISTING) else 0)
+            | (if (o.WRITE_THROUGH == 1) @enumToInt(MOVE_FILE_FLAGS.WRITE_THROUGH) else 0)
+            | (if (o.FAIL_IF_NOT_TRACKABLE == 1) @enumToInt(MOVE_FILE_FLAGS.FAIL_IF_NOT_TRACKABLE) else 0)
+        );
+    }
 };
 pub const MOVEFILE_COPY_ALLOWED = MOVE_FILE_FLAGS.COPY_ALLOWED;
 pub const MOVEFILE_CREATE_HARDLINK = MOVE_FILE_FLAGS.CREATE_HARDLINK;
@@ -4963,7 +5203,6 @@ pub const FILE_NAME = extern enum(u32) {
 pub const FILE_NAME_NORMALIZED = FILE_NAME.NORMALIZED;
 pub const FILE_NAME_OPENED = FILE_NAME.OPENED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LZOPENFILE_STYLE = extern enum(u32) {
     CANCEL = 2048,
     CREATE = 4096,
@@ -4982,6 +5221,43 @@ pub const LZOPENFILE_STYLE = extern enum(u32) {
     SHARE_COMPAT = 0,
     VERIFY = 1024,
     _,
+    pub fn initFlags(o: struct {
+        CANCEL: u1 = 0,
+        CREATE: u1 = 0,
+        DELETE: u1 = 0,
+        EXIST: u1 = 0,
+        PARSE: u1 = 0,
+        PROMPT: u1 = 0,
+        READ: u1 = 0,
+        READWRITE: u1 = 0,
+        REOPEN: u1 = 0,
+        SHARE_DENY_NONE: u1 = 0,
+        SHARE_DENY_READ: u1 = 0,
+        SHARE_DENY_WRITE: u1 = 0,
+        SHARE_EXCLUSIVE: u1 = 0,
+        WRITE: u1 = 0,
+        SHARE_COMPAT: u1 = 0,
+        VERIFY: u1 = 0,
+    }) LZOPENFILE_STYLE {
+        return @intToEnum(LZOPENFILE_STYLE,
+              (if (o.CANCEL == 1) @enumToInt(LZOPENFILE_STYLE.CANCEL) else 0)
+            | (if (o.CREATE == 1) @enumToInt(LZOPENFILE_STYLE.CREATE) else 0)
+            | (if (o.DELETE == 1) @enumToInt(LZOPENFILE_STYLE.DELETE) else 0)
+            | (if (o.EXIST == 1) @enumToInt(LZOPENFILE_STYLE.EXIST) else 0)
+            | (if (o.PARSE == 1) @enumToInt(LZOPENFILE_STYLE.PARSE) else 0)
+            | (if (o.PROMPT == 1) @enumToInt(LZOPENFILE_STYLE.PROMPT) else 0)
+            | (if (o.READ == 1) @enumToInt(LZOPENFILE_STYLE.READ) else 0)
+            | (if (o.READWRITE == 1) @enumToInt(LZOPENFILE_STYLE.READWRITE) else 0)
+            | (if (o.REOPEN == 1) @enumToInt(LZOPENFILE_STYLE.REOPEN) else 0)
+            | (if (o.SHARE_DENY_NONE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_DENY_NONE) else 0)
+            | (if (o.SHARE_DENY_READ == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_DENY_READ) else 0)
+            | (if (o.SHARE_DENY_WRITE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_DENY_WRITE) else 0)
+            | (if (o.SHARE_EXCLUSIVE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_EXCLUSIVE) else 0)
+            | (if (o.WRITE == 1) @enumToInt(LZOPENFILE_STYLE.WRITE) else 0)
+            | (if (o.SHARE_COMPAT == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_COMPAT) else 0)
+            | (if (o.VERIFY == 1) @enumToInt(LZOPENFILE_STYLE.VERIFY) else 0)
+        );
+    }
 };
 pub const OF_CANCEL = LZOPENFILE_STYLE.CANCEL;
 pub const OF_CREATE = LZOPENFILE_STYLE.CREATE;
@@ -5000,7 +5276,6 @@ pub const OF_WRITE = LZOPENFILE_STYLE.WRITE;
 pub const OF_SHARE_COMPAT = LZOPENFILE_STYLE.SHARE_COMPAT;
 pub const OF_VERIFY = LZOPENFILE_STYLE.VERIFY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FILE_NOTIFY_CHANGE = extern enum(u32) {
     FILE_NAME = 1,
     DIR_NAME = 2,
@@ -5011,6 +5286,27 @@ pub const FILE_NOTIFY_CHANGE = extern enum(u32) {
     CREATION = 64,
     SECURITY = 256,
     _,
+    pub fn initFlags(o: struct {
+        FILE_NAME: u1 = 0,
+        DIR_NAME: u1 = 0,
+        ATTRIBUTES: u1 = 0,
+        SIZE: u1 = 0,
+        LAST_WRITE: u1 = 0,
+        LAST_ACCESS: u1 = 0,
+        CREATION: u1 = 0,
+        SECURITY: u1 = 0,
+    }) FILE_NOTIFY_CHANGE {
+        return @intToEnum(FILE_NOTIFY_CHANGE,
+              (if (o.FILE_NAME == 1) @enumToInt(FILE_NOTIFY_CHANGE.FILE_NAME) else 0)
+            | (if (o.DIR_NAME == 1) @enumToInt(FILE_NOTIFY_CHANGE.DIR_NAME) else 0)
+            | (if (o.ATTRIBUTES == 1) @enumToInt(FILE_NOTIFY_CHANGE.ATTRIBUTES) else 0)
+            | (if (o.SIZE == 1) @enumToInt(FILE_NOTIFY_CHANGE.SIZE) else 0)
+            | (if (o.LAST_WRITE == 1) @enumToInt(FILE_NOTIFY_CHANGE.LAST_WRITE) else 0)
+            | (if (o.LAST_ACCESS == 1) @enumToInt(FILE_NOTIFY_CHANGE.LAST_ACCESS) else 0)
+            | (if (o.CREATION == 1) @enumToInt(FILE_NOTIFY_CHANGE.CREATION) else 0)
+            | (if (o.SECURITY == 1) @enumToInt(FILE_NOTIFY_CHANGE.SECURITY) else 0)
+        );
+    }
 };
 pub const FILE_NOTIFY_CHANGE_FILE_NAME = FILE_NOTIFY_CHANGE.FILE_NAME;
 pub const FILE_NOTIFY_CHANGE_DIR_NAME = FILE_NOTIFY_CHANGE.DIR_NAME;
@@ -5030,12 +5326,22 @@ pub const TXFS_MINIVERSION_COMMITTED_VIEW = TXFS_MINIVERSION.COMMITTED_VIEW;
 pub const TXFS_MINIVERSION_DIRTY_VIEW = TXFS_MINIVERSION.DIRTY_VIEW;
 pub const TXFS_MINIVERSION_DEFAULT_VIEW = TXFS_MINIVERSION.DEFAULT_VIEW;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REPLACE_FILE_FLAGS = extern enum(u32) {
     WRITE_THROUGH = 1,
     IGNORE_MERGE_ERRORS = 2,
     IGNORE_ACL_ERRORS = 4,
     _,
+    pub fn initFlags(o: struct {
+        WRITE_THROUGH: u1 = 0,
+        IGNORE_MERGE_ERRORS: u1 = 0,
+        IGNORE_ACL_ERRORS: u1 = 0,
+    }) REPLACE_FILE_FLAGS {
+        return @intToEnum(REPLACE_FILE_FLAGS,
+              (if (o.WRITE_THROUGH == 1) @enumToInt(REPLACE_FILE_FLAGS.WRITE_THROUGH) else 0)
+            | (if (o.IGNORE_MERGE_ERRORS == 1) @enumToInt(REPLACE_FILE_FLAGS.IGNORE_MERGE_ERRORS) else 0)
+            | (if (o.IGNORE_ACL_ERRORS == 1) @enumToInt(REPLACE_FILE_FLAGS.IGNORE_ACL_ERRORS) else 0)
+        );
+    }
 };
 pub const REPLACEFILE_WRITE_THROUGH = REPLACE_FILE_FLAGS.WRITE_THROUGH;
 pub const REPLACEFILE_IGNORE_MERGE_ERRORS = REPLACE_FILE_FLAGS.IGNORE_MERGE_ERRORS;
@@ -5057,11 +5363,19 @@ pub const NTMS_OMID_TYPE = extern enum(u32) {
 pub const NTMS_OMID_TYPE_FILESYSTEM_INFO = NTMS_OMID_TYPE.FILESYSTEM_INFO;
 pub const NTMS_OMID_TYPE_RAW_LABEL = NTMS_OMID_TYPE.RAW_LABEL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LOCK_FILE_FLAGS = extern enum(u32) {
     EXCLUSIVE_LOCK = 2,
     FAIL_IMMEDIATELY = 1,
     _,
+    pub fn initFlags(o: struct {
+        EXCLUSIVE_LOCK: u1 = 0,
+        FAIL_IMMEDIATELY: u1 = 0,
+    }) LOCK_FILE_FLAGS {
+        return @intToEnum(LOCK_FILE_FLAGS,
+              (if (o.EXCLUSIVE_LOCK == 1) @enumToInt(LOCK_FILE_FLAGS.EXCLUSIVE_LOCK) else 0)
+            | (if (o.FAIL_IMMEDIATELY == 1) @enumToInt(LOCK_FILE_FLAGS.FAIL_IMMEDIATELY) else 0)
+        );
+    }
 };
 pub const LOCKFILE_EXCLUSIVE_LOCK = LOCK_FILE_FLAGS.EXCLUSIVE_LOCK;
 pub const LOCKFILE_FAIL_IMMEDIATELY = LOCK_FILE_FLAGS.FAIL_IMMEDIATELY;
@@ -5086,11 +5400,19 @@ pub const FILE_ACTION_MODIFIED = FILE_ACTION.MODIFIED;
 pub const FILE_ACTION_RENAMED_OLD_NAME = FILE_ACTION.RENAMED_OLD_NAME;
 pub const FILE_ACTION_RENAMED_NEW_NAME = FILE_ACTION.RENAMED_NEW_NAME;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const USN_DELETE_FLAGS = extern enum(u32) {
     DELETE = 1,
     NOTIFY = 2,
     _,
+    pub fn initFlags(o: struct {
+        DELETE: u1 = 0,
+        NOTIFY: u1 = 0,
+    }) USN_DELETE_FLAGS {
+        return @intToEnum(USN_DELETE_FLAGS,
+              (if (o.DELETE == 1) @enumToInt(USN_DELETE_FLAGS.DELETE) else 0)
+            | (if (o.NOTIFY == 1) @enumToInt(USN_DELETE_FLAGS.NOTIFY) else 0)
+        );
+    }
 };
 pub const USN_DELETE_FLAG_DELETE = USN_DELETE_FLAGS.DELETE;
 pub const USN_DELETE_FLAG_NOTIFY = USN_DELETE_FLAGS.NOTIFY;
@@ -5125,7 +5447,6 @@ pub const FILE_DEVICE_DISK = FILE_DEVICE_TYPE.DISK;
 pub const FILE_DEVICE_TAPE = FILE_DEVICE_TYPE.TAPE;
 pub const FILE_DEVICE_DVD = FILE_DEVICE_TYPE.DVD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TXFS_RMF_LAGS = extern enum(u32) {
     LOGGING_MODE = 1,
     RENAME_RM = 2,
@@ -5145,6 +5466,45 @@ pub const TXFS_RMF_LAGS = extern enum(u32) {
     PREFER_CONSISTENCY = 65536,
     PREFER_AVAILABILITY = 131072,
     _,
+    pub fn initFlags(o: struct {
+        LOGGING_MODE: u1 = 0,
+        RENAME_RM: u1 = 0,
+        LOG_CONTAINER_COUNT_MAX: u1 = 0,
+        LOG_CONTAINER_COUNT_MIN: u1 = 0,
+        LOG_GROWTH_INCREMENT_NUM_CONTAINERS: u1 = 0,
+        LOG_GROWTH_INCREMENT_PERCENT: u1 = 0,
+        LOG_AUTO_SHRINK_PERCENTAGE: u1 = 0,
+        LOG_NO_CONTAINER_COUNT_MAX: u1 = 0,
+        LOG_NO_CONTAINER_COUNT_MIN: u1 = 0,
+        GROW_LOG: u1 = 0,
+        SHRINK_LOG: u1 = 0,
+        ENFORCE_MINIMUM_SIZE: u1 = 0,
+        PRESERVE_CHANGES: u1 = 0,
+        RESET_RM_AT_NEXT_START: u1 = 0,
+        DO_NOT_RESET_RM_AT_NEXT_START: u1 = 0,
+        PREFER_CONSISTENCY: u1 = 0,
+        PREFER_AVAILABILITY: u1 = 0,
+    }) TXFS_RMF_LAGS {
+        return @intToEnum(TXFS_RMF_LAGS,
+              (if (o.LOGGING_MODE == 1) @enumToInt(TXFS_RMF_LAGS.LOGGING_MODE) else 0)
+            | (if (o.RENAME_RM == 1) @enumToInt(TXFS_RMF_LAGS.RENAME_RM) else 0)
+            | (if (o.LOG_CONTAINER_COUNT_MAX == 1) @enumToInt(TXFS_RMF_LAGS.LOG_CONTAINER_COUNT_MAX) else 0)
+            | (if (o.LOG_CONTAINER_COUNT_MIN == 1) @enumToInt(TXFS_RMF_LAGS.LOG_CONTAINER_COUNT_MIN) else 0)
+            | (if (o.LOG_GROWTH_INCREMENT_NUM_CONTAINERS == 1) @enumToInt(TXFS_RMF_LAGS.LOG_GROWTH_INCREMENT_NUM_CONTAINERS) else 0)
+            | (if (o.LOG_GROWTH_INCREMENT_PERCENT == 1) @enumToInt(TXFS_RMF_LAGS.LOG_GROWTH_INCREMENT_PERCENT) else 0)
+            | (if (o.LOG_AUTO_SHRINK_PERCENTAGE == 1) @enumToInt(TXFS_RMF_LAGS.LOG_AUTO_SHRINK_PERCENTAGE) else 0)
+            | (if (o.LOG_NO_CONTAINER_COUNT_MAX == 1) @enumToInt(TXFS_RMF_LAGS.LOG_NO_CONTAINER_COUNT_MAX) else 0)
+            | (if (o.LOG_NO_CONTAINER_COUNT_MIN == 1) @enumToInt(TXFS_RMF_LAGS.LOG_NO_CONTAINER_COUNT_MIN) else 0)
+            | (if (o.GROW_LOG == 1) @enumToInt(TXFS_RMF_LAGS.GROW_LOG) else 0)
+            | (if (o.SHRINK_LOG == 1) @enumToInt(TXFS_RMF_LAGS.SHRINK_LOG) else 0)
+            | (if (o.ENFORCE_MINIMUM_SIZE == 1) @enumToInt(TXFS_RMF_LAGS.ENFORCE_MINIMUM_SIZE) else 0)
+            | (if (o.PRESERVE_CHANGES == 1) @enumToInt(TXFS_RMF_LAGS.PRESERVE_CHANGES) else 0)
+            | (if (o.RESET_RM_AT_NEXT_START == 1) @enumToInt(TXFS_RMF_LAGS.RESET_RM_AT_NEXT_START) else 0)
+            | (if (o.DO_NOT_RESET_RM_AT_NEXT_START == 1) @enumToInt(TXFS_RMF_LAGS.DO_NOT_RESET_RM_AT_NEXT_START) else 0)
+            | (if (o.PREFER_CONSISTENCY == 1) @enumToInt(TXFS_RMF_LAGS.PREFER_CONSISTENCY) else 0)
+            | (if (o.PREFER_AVAILABILITY == 1) @enumToInt(TXFS_RMF_LAGS.PREFER_AVAILABILITY) else 0)
+        );
+    }
 };
 pub const TXFS_RM_FLAG_LOGGING_MODE = TXFS_RMF_LAGS.LOGGING_MODE;
 pub const TXFS_RM_FLAG_RENAME_RM = TXFS_RMF_LAGS.RENAME_RM;
@@ -5184,10 +5544,16 @@ pub const USN_SOURCE_DATA_MANAGEMENT = USN_SOURCE_INFO_ID.DATA_MANAGEMENT;
 pub const USN_SOURCE_REPLICATION_MANAGEMENT = USN_SOURCE_INFO_ID.REPLICATION_MANAGEMENT;
 pub const USN_SOURCE_CLIENT_REPLICATION_MANAGEMENT = USN_SOURCE_INFO_ID.CLIENT_REPLICATION_MANAGEMENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FILE_STORAGE_TIER_FLAGS = extern enum(u32) {
     Y = 131072,
     _,
+    pub fn initFlags(o: struct {
+        Y: u1 = 0,
+    }) FILE_STORAGE_TIER_FLAGS {
+        return @intToEnum(FILE_STORAGE_TIER_FLAGS,
+              (if (o.Y == 1) @enumToInt(FILE_STORAGE_TIER_FLAGS.Y) else 0)
+        );
+    }
 };
 pub const FILE_STORAGE_TIER_FLAG_NO_SEEK_PENALTY = FILE_STORAGE_TIER_FLAGS.Y;
 
@@ -5207,12 +5573,22 @@ pub const TXF_LOG_RECORD_TYPE_AFFECTED_FILE = TXF_LOG_RECORD_TYPE.AFFECTED_FILE;
 pub const TXF_LOG_RECORD_TYPE_TRUNCATE = TXF_LOG_RECORD_TYPE.TRUNCATE;
 pub const TXF_LOG_RECORD_TYPE_WRITE = TXF_LOG_RECORD_TYPE.WRITE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FILE_INFO_FLAGS_PERMISSIONS = extern enum(u32) {
     READ = 1,
     WRITE = 2,
     CREATE = 4,
     _,
+    pub fn initFlags(o: struct {
+        READ: u1 = 0,
+        WRITE: u1 = 0,
+        CREATE: u1 = 0,
+    }) FILE_INFO_FLAGS_PERMISSIONS {
+        return @intToEnum(FILE_INFO_FLAGS_PERMISSIONS,
+              (if (o.READ == 1) @enumToInt(FILE_INFO_FLAGS_PERMISSIONS.READ) else 0)
+            | (if (o.WRITE == 1) @enumToInt(FILE_INFO_FLAGS_PERMISSIONS.WRITE) else 0)
+            | (if (o.CREATE == 1) @enumToInt(FILE_INFO_FLAGS_PERMISSIONS.CREATE) else 0)
+        );
+    }
 };
 pub const PERM_FILE_READ = FILE_INFO_FLAGS_PERMISSIONS.READ;
 pub const PERM_FILE_WRITE = FILE_INFO_FLAGS_PERMISSIONS.WRITE;

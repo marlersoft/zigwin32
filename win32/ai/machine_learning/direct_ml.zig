@@ -38,11 +38,19 @@ pub const DML_TENSOR_TYPE = extern enum(i32) {
 pub const DML_TENSOR_TYPE_INVALID = DML_TENSOR_TYPE.INVALID;
 pub const DML_TENSOR_TYPE_BUFFER = DML_TENSOR_TYPE.BUFFER;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DML_TENSOR_FLAGS = extern enum(u32) {
     NONE = 0,
     OWNED_BY_DML = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        OWNED_BY_DML: u1 = 0,
+    }) DML_TENSOR_FLAGS {
+        return @intToEnum(DML_TENSOR_FLAGS,
+              (if (o.NONE == 1) @enumToInt(DML_TENSOR_FLAGS.NONE) else 0)
+            | (if (o.OWNED_BY_DML == 1) @enumToInt(DML_TENSOR_FLAGS.OWNED_BY_DML) else 0)
+        );
+    }
 };
 pub const DML_TENSOR_FLAG_NONE = DML_TENSOR_FLAGS.NONE;
 pub const DML_TENSOR_FLAG_OWNED_BY_DML = DML_TENSOR_FLAGS.OWNED_BY_DML;
@@ -1074,24 +1082,44 @@ pub const DML_BINDING_TABLE_DESC = extern struct {
     SizeInDescriptors: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DML_EXECUTION_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_HALF_PRECISION_COMPUTATION = 1,
     DISABLE_META_COMMANDS = 2,
     DESCRIPTORS_VOLATILE = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_HALF_PRECISION_COMPUTATION: u1 = 0,
+        DISABLE_META_COMMANDS: u1 = 0,
+        DESCRIPTORS_VOLATILE: u1 = 0,
+    }) DML_EXECUTION_FLAGS {
+        return @intToEnum(DML_EXECUTION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(DML_EXECUTION_FLAGS.NONE) else 0)
+            | (if (o.ALLOW_HALF_PRECISION_COMPUTATION == 1) @enumToInt(DML_EXECUTION_FLAGS.ALLOW_HALF_PRECISION_COMPUTATION) else 0)
+            | (if (o.DISABLE_META_COMMANDS == 1) @enumToInt(DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS) else 0)
+            | (if (o.DESCRIPTORS_VOLATILE == 1) @enumToInt(DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE) else 0)
+        );
+    }
 };
 pub const DML_EXECUTION_FLAG_NONE = DML_EXECUTION_FLAGS.NONE;
 pub const DML_EXECUTION_FLAG_ALLOW_HALF_PRECISION_COMPUTATION = DML_EXECUTION_FLAGS.ALLOW_HALF_PRECISION_COMPUTATION;
 pub const DML_EXECUTION_FLAG_DISABLE_META_COMMANDS = DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS;
 pub const DML_EXECUTION_FLAG_DESCRIPTORS_VOLATILE = DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DML_CREATE_DEVICE_FLAGS = extern enum(u32) {
     NONE = 0,
     DEBUG = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DEBUG: u1 = 0,
+    }) DML_CREATE_DEVICE_FLAGS {
+        return @intToEnum(DML_CREATE_DEVICE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(DML_CREATE_DEVICE_FLAGS.NONE) else 0)
+            | (if (o.DEBUG == 1) @enumToInt(DML_CREATE_DEVICE_FLAGS.DEBUG) else 0)
+        );
+    }
 };
 pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS.NONE;
 pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS.DEBUG;
