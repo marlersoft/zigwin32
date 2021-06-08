@@ -334,27 +334,27 @@ pub const IXmlReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQualifiedName: fn(
             self: *const IXmlReader,
-            ppwszQualifiedName: ?*?PWSTR,
+            ppwszQualifiedName: ?*PWSTR,
             pcwchQualifiedName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamespaceUri: fn(
             self: *const IXmlReader,
-            ppwszNamespaceUri: ?*?PWSTR,
+            ppwszNamespaceUri: ?*PWSTR,
             pcwchNamespaceUri: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocalName: fn(
             self: *const IXmlReader,
-            ppwszLocalName: ?*?PWSTR,
+            ppwszLocalName: ?*PWSTR,
             pcwchLocalName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrefix: fn(
             self: *const IXmlReader,
-            ppwszPrefix: ?*?PWSTR,
+            ppwszPrefix: ?*PWSTR,
             pcwchPrefix: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValue: fn(
             self: *const IXmlReader,
-            ppwszValue: ?*?PWSTR,
+            ppwszValue: ?*PWSTR,
             pcwchValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReadValueChunk: fn(
@@ -365,7 +365,7 @@ pub const IXmlReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBaseUri: fn(
             self: *const IXmlReader,
-            ppwszBaseUri: ?*?PWSTR,
+            ppwszBaseUri: ?*PWSTR,
             pcwchBaseUri: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsDefault: fn(
@@ -434,23 +434,23 @@ pub const IXmlReader = extern struct {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).MoveToElement(@ptrCast(*const IXmlReader, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXmlReader_GetQualifiedName(self: *const T, ppwszQualifiedName: ?*?PWSTR, pcwchQualifiedName: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IXmlReader_GetQualifiedName(self: *const T, ppwszQualifiedName: ?*PWSTR, pcwchQualifiedName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).GetQualifiedName(@ptrCast(*const IXmlReader, self), ppwszQualifiedName, pcwchQualifiedName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXmlReader_GetNamespaceUri(self: *const T, ppwszNamespaceUri: ?*?PWSTR, pcwchNamespaceUri: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IXmlReader_GetNamespaceUri(self: *const T, ppwszNamespaceUri: ?*PWSTR, pcwchNamespaceUri: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).GetNamespaceUri(@ptrCast(*const IXmlReader, self), ppwszNamespaceUri, pcwchNamespaceUri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXmlReader_GetLocalName(self: *const T, ppwszLocalName: ?*?PWSTR, pcwchLocalName: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IXmlReader_GetLocalName(self: *const T, ppwszLocalName: ?*PWSTR, pcwchLocalName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).GetLocalName(@ptrCast(*const IXmlReader, self), ppwszLocalName, pcwchLocalName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXmlReader_GetPrefix(self: *const T, ppwszPrefix: ?*?PWSTR, pcwchPrefix: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IXmlReader_GetPrefix(self: *const T, ppwszPrefix: ?*PWSTR, pcwchPrefix: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).GetPrefix(@ptrCast(*const IXmlReader, self), ppwszPrefix, pcwchPrefix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXmlReader_GetValue(self: *const T, ppwszValue: ?*?PWSTR, pcwchValue: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IXmlReader_GetValue(self: *const T, ppwszValue: ?*PWSTR, pcwchValue: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).GetValue(@ptrCast(*const IXmlReader, self), ppwszValue, pcwchValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -458,7 +458,7 @@ pub const IXmlReader = extern struct {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).ReadValueChunk(@ptrCast(*const IXmlReader, self), pwchBuffer, cwchChunkSize, pcwchRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXmlReader_GetBaseUri(self: *const T, ppwszBaseUri: ?*?PWSTR, pcwchBaseUri: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IXmlReader_GetBaseUri(self: *const T, ppwszBaseUri: ?*PWSTR, pcwchBaseUri: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXmlReader.VTable, self.vtable).GetBaseUri(@ptrCast(*const IXmlReader, self), ppwszBaseUri, pcwchBaseUri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

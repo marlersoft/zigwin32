@@ -1741,7 +1741,7 @@ pub const PROPPRG = packed struct {
 pub extern "PROPSYS" fn PropVariantToWinRTPropertyValue(
     propvar: *const PROPVARIANT,
     riid: *const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2333,7 +2333,7 @@ pub extern "PROPSYS" fn InitPropVariantFromFileTimeVector(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromStringVector(
-    prgsz: ?[*]?PWSTR,
+    prgsz: ?[*]PWSTR,
     cElems: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -3259,7 +3259,7 @@ pub extern "SHELL32" fn PifMgr_OpenProperties(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PifMgr_GetProperties(
-    hProps: HANDLE,
+    hProps: ?HANDLE,
     pszGroup: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     lpProps: ?*c_void,
@@ -3269,7 +3269,7 @@ pub extern "SHELL32" fn PifMgr_GetProperties(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PifMgr_SetProperties(
-    hProps: HANDLE,
+    hProps: ?HANDLE,
     pszGroup: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     lpProps: *const c_void,
@@ -3279,7 +3279,7 @@ pub extern "SHELL32" fn PifMgr_SetProperties(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn PifMgr_CloseProperties(
-    hProps: HANDLE,
+    hProps: ?HANDLE,
     flOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 

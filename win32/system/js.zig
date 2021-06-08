@@ -287,7 +287,7 @@ pub extern "chakra" fn JsGetPropertyIdFromName(
 
 pub extern "chakra" fn JsGetPropertyNameFromId(
     propertyId: *c_void,
-    name: *const *const u16,
+    name: *const *u16,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsGetUndefinedValue(
@@ -359,7 +359,7 @@ pub extern "chakra" fn JsPointerToString(
 
 pub extern "chakra" fn JsStringToPointer(
     value: *c_void,
-    stringValue: *const *const u16,
+    stringValue: *const *u16,
     stringLength: *usize,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
@@ -519,7 +519,7 @@ pub extern "chakra" fn JsCallFunction(
     function: *c_void,
     arguments: [*]*c_void,
     argumentCount: u16,
-    result: ?*?*c_void,
+    result: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsConstructObject(

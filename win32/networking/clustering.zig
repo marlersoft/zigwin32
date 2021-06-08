@@ -1741,7 +1741,7 @@ pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = fn(
 pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = fn(
     hGroup: *_HGROUP,
     NodeCount: u32,
-    NodeList: ?[*]?*_HNODE,
+    NodeList: ?[*]*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = fn(
@@ -4152,7 +4152,7 @@ pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = fn(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = fn(
-    hKey: HKEY,
+    hKey: ?HKEY,
     pHREGBATCH: **_HREGBATCH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -5254,7 +5254,7 @@ pub const PRESUTIL_GET_BINARY_VALUE = fn(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    ppbOutValue: ?*?*u8,
+    ppbOutValue: ?**u8,
     pcbOutValueSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5290,7 +5290,7 @@ pub const PRESUTIL_SET_BINARY_VALUE = fn(
     pbNewValue: *const u8,
     cbNewValueSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    ppbOutValue: ?*?*u8,
+    ppbOutValue: ?**u8,
     pcbOutValueSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5298,14 +5298,14 @@ pub const PRESUTIL_SET_SZ_VALUE = fn(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
     pszNewValue: [*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_SET_EXPAND_SZ_VALUE = fn(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
     pszNewValue: [*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_SET_MULTI_SZ_VALUE = fn(
@@ -5315,7 +5315,7 @@ pub const PRESUTIL_SET_MULTI_SZ_VALUE = fn(
     pszNewValue: [*:0]const u16,
     cbNewValueSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*PWSTR,
     pcbOutValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5434,7 +5434,7 @@ pub const PRESUTIL_FIND_SZ_PROPERTY = fn(
     pPropertyList: *const c_void,
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = fn(
@@ -5442,7 +5442,7 @@ pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = fn(
     pPropertyList: *const c_void,
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = fn(
@@ -5450,7 +5450,7 @@ pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = fn(
     pPropertyList: *const c_void,
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PRESUTIL_FIND_DWORD_PROPERTY = fn(
@@ -5467,7 +5467,7 @@ pub const PRESUTIL_FIND_BINARY_PROPERTY = fn(
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
     // TODO: what to do with BytesParamIndex 4?
-    pbPropertyValue: ?*?*u8,
+    pbPropertyValue: ?**u8,
     pcbPropertyValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -10479,7 +10479,7 @@ pub extern "CLUSAPI" fn SetClusterGroupName(
 pub extern "CLUSAPI" fn SetClusterGroupNodeList(
     hGroup: *_HGROUP,
     NodeCount: u32,
-    NodeList: ?[*]?*_HNODE,
+    NodeList: ?[*]*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11120,7 +11120,7 @@ pub extern "CLUSAPI" fn ClusterRegSyncDatabase(
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "CLUSAPI" fn ClusterRegCreateBatch(
-    hKey: HKEY,
+    hKey: ?HKEY,
     pHREGBATCH: **_HREGBATCH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -11529,7 +11529,7 @@ pub extern "RESUTILS" fn ResUtilGetPropertiesToParameterBlock(
     pPropertyTable: *const RESUTIL_PROPERTY_ITEM,
     pOutParams: *u8,
     bCheckForRequiredProperties: BOOL,
-    pszNameOfPropInError: ?*?PWSTR,
+    pszNameOfPropInError: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11592,7 +11592,7 @@ pub extern "RESUTILS" fn ResUtilGetBinaryValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    ppbOutValue: ?*?*u8,
+    ppbOutValue: ?**u8,
     pcbOutValueSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -11626,7 +11626,7 @@ pub extern "RESUTILS" fn ResUtilSetBinaryValue(
     pbNewValue: *const u8,
     cbNewValueSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    ppbOutValue: ?*?*u8,
+    ppbOutValue: ?**u8,
     pcbOutValueSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -11635,7 +11635,7 @@ pub extern "RESUTILS" fn ResUtilSetSzValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
     pszNewValue: [*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11643,7 +11643,7 @@ pub extern "RESUTILS" fn ResUtilSetExpandSzValue(
     hkeyClusterKey: HKEY,
     pszValueName: [*:0]const u16,
     pszNewValue: [*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11654,7 +11654,7 @@ pub extern "RESUTILS" fn ResUtilSetMultiSzValue(
     pszNewValue: [*:0]const u16,
     cbNewValueSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*PWSTR,
     pcbOutValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -11799,7 +11799,7 @@ pub extern "RESUTILS" fn ResUtilFindSzProperty(
     pPropertyList: *const c_void,
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11808,7 +11808,7 @@ pub extern "RESUTILS" fn ResUtilFindExpandSzProperty(
     pPropertyList: *const c_void,
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11817,7 +11817,7 @@ pub extern "RESUTILS" fn ResUtilFindExpandedSzProperty(
     pPropertyList: *const c_void,
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -11836,7 +11836,7 @@ pub extern "RESUTILS" fn ResUtilFindBinaryProperty(
     cbPropertyListSize: u32,
     pszPropertyName: [*:0]const u16,
     // TODO: what to do with BytesParamIndex 4?
-    pbPropertyValue: ?*?*u8,
+    pbPropertyValue: ?**u8,
     pcbPropertyValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -12119,8 +12119,8 @@ pub extern "RESUTILS" fn ResUtilGetResourceNameDependencyEx(
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "RESUTILS" fn ResUtilGetCoreClusterResourcesEx(
     hClusterIn: *_HCLUSTER,
-    phClusterNameResourceOut: ?*?*_HRESOURCE,
-    phClusterQuorumResourceOut: ?*?*_HRESOURCE,
+    phClusterNameResourceOut: ?**_HRESOURCE,
+    phClusterQuorumResourceOut: ?**_HRESOURCE,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

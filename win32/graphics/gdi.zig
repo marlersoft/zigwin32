@@ -1249,7 +1249,7 @@ pub const E_EXCEPTIONINCOMPRESSION = @as(i32, 522);
 // Section: Types (240)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
-pub const HDC = ?*opaque{};
+pub const HDC = *opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
 //TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
@@ -1288,10 +1288,10 @@ pub const HBRUSH = HGDIOBJ;
 pub const HFONT = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HMETAFILE = ?*opaque{};
+pub const HMETAFILE = *opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HENHMETAFILE = ?*opaque{};
+pub const HENHMETAFILE = *opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
 //TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
@@ -1305,9 +1305,9 @@ pub const HdcMetdataFileHandle = isize;
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
 pub const HdcMetdataEnhFileHandle = isize;
 
-pub const HGDIOBJ = ?*opaque{};
+pub const HGDIOBJ = *opaque{};
 
-pub const HMONITOR = ?*opaque{};
+pub const HMONITOR = *opaque{};
 
 pub const R2_MODE = extern enum(i32) {
     BLACK = 1,
@@ -4348,7 +4348,7 @@ pub extern "GDI32" fn BitBlt(
     y: i32,
     cx: i32,
     cy: i32,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     x1: i32,
     y1: i32,
     rop: ROP_CODE,
@@ -4379,9 +4379,9 @@ pub extern "GDI32" fn CloseMetaFile(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CombineRgn(
-    hrgnDst: HRGN,
-    hrgnSrc1: HRGN,
-    hrgnSrc2: HRGN,
+    hrgnDst: ?HRGN,
+    hrgnSrc1: ?HRGN,
+    hrgnSrc2: ?HRGN,
     iMode: RGN_COMBINE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4432,7 +4432,7 @@ pub extern "GDI32" fn CreateDiscardableBitmap(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateCompatibleDC(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) CreatedHDC;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4955,7 +4955,7 @@ pub extern "GDI32" fn GetCurrentPositionEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDeviceCaps(
-    hdc: HDC,
+    hdc: ?HDC,
     index: GET_DEVICE_CAPS_INDEX,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -5422,7 +5422,7 @@ pub extern "GDI32" fn PlgBlt(
     ySrc: i32,
     width: i32,
     height: i32,
-    hbmMask: HBITMAP,
+    hbmMask: ?HBITMAP,
     xMask: i32,
     yMask: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5577,13 +5577,13 @@ pub extern "GDI32" fn SaveDC(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SelectClipRgn(
     hdc: HDC,
-    hrgn: HRGN,
+    hrgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExtSelectClipRgn(
     hdc: HDC,
-    hrgn: HRGN,
+    hrgn: ?HRGN,
     mode: RGN_COMBINE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -5646,7 +5646,7 @@ pub extern "GDI32" fn SetBoundsRect(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDIBits(
-    hdc: HDC,
+    hdc: ?HDC,
     hbm: HBITMAP,
     start: u32,
     cLines: u32,
@@ -5744,7 +5744,7 @@ pub extern "GDI32" fn StretchBlt(
     yDest: i32,
     wDest: i32,
     hDest: i32,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     xSrc: i32,
     ySrc: i32,
     wSrc: i32,
@@ -5941,7 +5941,7 @@ pub extern "GDI32" fn CopyEnhMetaFileW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateEnhMetaFileA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpFilename: ?[*:0]const u8,
     lprc: ?*const RECT,
     lpDesc: ?[*:0]const u8,
@@ -5949,7 +5949,7 @@ pub extern "GDI32" fn CreateEnhMetaFileA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateEnhMetaFileW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpFilename: ?[*:0]const u16,
     lprc: ?*const RECT,
     lpDesc: ?[*:0]const u16,
@@ -5957,12 +5957,12 @@ pub extern "GDI32" fn CreateEnhMetaFileW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteEnhMetaFile(
-    hmf: HENHMETAFILE,
+    hmf: ?HENHMETAFILE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumEnhMetaFile(
-    hdc: HDC,
+    hdc: ?HDC,
     hmf: HENHMETAFILE,
     proc: ENHMFENUMPROC,
     param3: ?*c_void,
@@ -6053,7 +6053,7 @@ pub extern "GDI32" fn SetWinMetaFileBits(
     nSize: u32,
     // TODO: what to do with BytesParamIndex 0?
     lpMeta16Data: *const u8,
-    hdcRef: HDC,
+    hdcRef: ?HDC,
     lpMFP: ?*const METAFILEPICT,
 ) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
 
@@ -6123,11 +6123,11 @@ pub extern "GDI32" fn CombineTransform(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDIBSection(
-    hdc: HDC,
+    hdc: ?HDC,
     pbmi: *const BITMAPINFO,
     usage: DIB_USAGE,
     ppvBits: **c_void,
-    hSection: HANDLE,
+    hSection: ?HANDLE,
     offset: u32,
 ) callconv(@import("std").os.windows.WINAPI) HBITMAP;
 
@@ -6161,7 +6161,7 @@ pub extern "GDI32" fn GetColorAdjustment(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateHalftonePalette(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) HPALETTE;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6755,7 +6755,7 @@ pub extern "USER32" fn DrawCaption(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawAnimatedRects(
-    hwnd: HWND,
+    hwnd: ?HWND,
     idAni: i32,
     lprcFrom: *const RECT,
     lprcTo: *const RECT,
@@ -6802,7 +6802,7 @@ pub extern "USER32" fn DrawTextExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GrayStringA(
     hDC: HDC,
-    hBrush: HBRUSH,
+    hBrush: ?HBRUSH,
     lpOutputFunc: ?GRAYSTRINGPROC,
     lpData: LPARAM,
     nCount: i32,
@@ -6815,7 +6815,7 @@ pub extern "USER32" fn GrayStringA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GrayStringW(
     hDC: HDC,
-    hBrush: HBRUSH,
+    hBrush: ?HBRUSH,
     lpOutputFunc: ?GRAYSTRINGPROC,
     lpData: LPARAM,
     nCount: i32,
@@ -6828,7 +6828,7 @@ pub extern "USER32" fn GrayStringW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawStateA(
     hdc: HDC,
-    hbrFore: HBRUSH,
+    hbrFore: ?HBRUSH,
     qfnCallBack: ?DRAWSTATEPROC,
     lData: LPARAM,
     wData: WPARAM,
@@ -6842,7 +6842,7 @@ pub extern "USER32" fn DrawStateA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawStateW(
     hdc: HDC,
-    hbrFore: HBRUSH,
+    hbrFore: ?HBRUSH,
     qfnCallBack: ?DRAWSTATEPROC,
     lData: LPARAM,
     wData: WPARAM,
@@ -6912,24 +6912,24 @@ pub extern "USER32" fn WindowFromDC(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetDC(
-    hWnd: HWND,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetDCEx(
-    hWnd: HWND,
-    hrgnClip: HRGN,
+    hWnd: ?HWND,
+    hrgnClip: ?HRGN,
     flags: GET_DCX_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetWindowDC(
-    hWnd: HWND,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ReleaseDC(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hDC: HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -6962,7 +6962,7 @@ pub extern "USER32" fn GetUpdateRgn(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetWindowRgn(
     hWnd: HWND,
-    hRgn: HRGN,
+    hRgn: ?HRGN,
     bRedraw: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -6986,41 +6986,41 @@ pub extern "USER32" fn ExcludeUpdateRgn(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InvalidateRect(
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpRect: ?*const RECT,
     bErase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ValidateRect(
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpRect: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InvalidateRgn(
     hWnd: HWND,
-    hRgn: HRGN,
+    hRgn: ?HRGN,
     bErase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ValidateRgn(
     hWnd: HWND,
-    hRgn: HRGN,
+    hRgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn RedrawWindow(
-    hWnd: HWND,
+    hWnd: ?HWND,
     lprcUpdate: ?*const RECT,
-    hrgnUpdate: HRGN,
+    hrgnUpdate: ?HRGN,
     flags: REDRAW_WINDOW_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LockWindowUpdate(
-    hWndLock: HWND,
+    hWndLock: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7037,8 +7037,8 @@ pub extern "USER32" fn ScreenToClient(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MapWindowPoints(
-    hWndFrom: HWND,
-    hWndTo: HWND,
+    hWndFrom: ?HWND,
+    hWndTo: ?HWND,
     lpPoints: [*]POINT,
     cPoints: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -7148,13 +7148,13 @@ pub extern "USER32" fn PtInRect(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadBitmapA(
-    hInstance: HINSTANCE,
+    hInstance: ?HINSTANCE,
     lpBitmapName: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadBitmapW(
-    hInstance: HINSTANCE,
+    hInstance: ?HINSTANCE,
     lpBitmapName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HBITMAP;
 
@@ -7266,7 +7266,7 @@ pub extern "USER32" fn GetMonitorInfoW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnumDisplayMonitors(
-    hdc: HDC,
+    hdc: ?HDC,
     lprcClip: ?*RECT,
     lpfnEnum: MONITORENUMPROC,
     dwData: LPARAM,

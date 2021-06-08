@@ -103,7 +103,7 @@ pub const MDT_DEFAULT = MONITOR_DPI_TYPE.DEFAULT;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "UxTheme" fn OpenThemeDataForDpi(
-    hwnd: HWND,
+    hwnd: ?HWND,
     pszClassList: [*:0]const u16,
     dpi: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
@@ -149,13 +149,13 @@ pub extern "USER32" fn AdjustWindowRectExForDpi(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "USER32" fn LogicalToPhysicalPointForPerMonitorDPI(
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpPoint: *POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "USER32" fn PhysicalToLogicalPointForPerMonitorDPI(
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpPoint: *POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -248,7 +248,7 @@ pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
-    hprocess: HANDLE,
+    hprocess: ?HANDLE,
     value: *PROCESS_DPI_AWARENESS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

@@ -6403,7 +6403,7 @@ pub extern "KERNEL32" fn SearchPathW(
     lpExtension: ?[*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*?PWSTR,
+    lpFilePart: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6413,7 +6413,7 @@ pub extern "KERNEL32" fn SearchPathA(
     lpExtension: ?[*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*?PSTR,
+    lpFilePart: ?*PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6442,7 +6442,7 @@ pub extern "KERNEL32" fn CreateFileA(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-    hTemplateFile: HANDLE,
+    hTemplateFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6453,7 +6453,7 @@ pub extern "KERNEL32" fn CreateFileW(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-    hTemplateFile: HANDLE,
+    hTemplateFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6710,7 +6710,7 @@ pub extern "KERNEL32" fn GetFullPathNameW(
     lpFileName: [*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*?PWSTR,
+    lpFilePart: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6718,7 +6718,7 @@ pub extern "KERNEL32" fn GetFullPathNameA(
     lpFileName: [*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*?PSTR,
+    lpFilePart: ?*PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7099,7 +7099,7 @@ pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn CreateFileFromAppW(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: u32,
     dwFlagsAndAttributes: u32,
-    hTemplateFile: HANDLE,
+    hTemplateFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn CreateFile2FromAppW(
@@ -7155,7 +7155,7 @@ pub extern "api-ms-win-core-file-fromapp-l1-1-0" fn SetFileAttributesFromAppW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateIoCompletionPort(
     FileHandle: HANDLE,
-    ExistingCompletionPort: HANDLE,
+    ExistingCompletionPort: ?HANDLE,
     CompletionKey: usize,
     NumberOfConcurrentThreads: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
@@ -8813,7 +8813,7 @@ pub extern "KERNEL32" fn GetFullPathNameTransactedA(
     lpFileName: [*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*?PSTR,
+    lpFilePart: ?*PSTR,
     hTransaction: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -8822,7 +8822,7 @@ pub extern "KERNEL32" fn GetFullPathNameTransactedW(
     lpFileName: [*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*?PWSTR,
+    lpFilePart: ?*PWSTR,
     hTransaction: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -8848,7 +8848,7 @@ pub extern "KERNEL32" fn CreateFileTransactedA(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-    hTemplateFile: HANDLE,
+    hTemplateFile: ?HANDLE,
     hTransaction: HANDLE,
     pusMiniVersion: ?*TXFS_MINIVERSION,
     lpExtendedParameter: *c_void,
@@ -8862,7 +8862,7 @@ pub extern "KERNEL32" fn CreateFileTransactedW(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-    hTemplateFile: HANDLE,
+    hTemplateFile: ?HANDLE,
     hTransaction: HANDLE,
     pusMiniVersion: ?*TXFS_MINIVERSION,
     lpExtendedParameter: *c_void,
@@ -9164,7 +9164,7 @@ pub extern "KERNEL32" fn FindFirstFileNameTransactedW(
     dwFlags: u32,
     StringLength: *u32,
     LinkName: [*:0]u16,
-    hTransaction: HANDLE,
+    hTransaction: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) FindFileNameHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

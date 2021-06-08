@@ -570,8 +570,8 @@ pub extern "msdrm" fn DRMCreateRight(
     pstFrom: *SYSTEMTIME,
     pstUntil: *SYSTEMTIME,
     cExtendedInfo: u32,
-    pwszExtendedInfoName: ?[*]?PWSTR,
-    pwszExtendedInfoValue: ?[*]?PWSTR,
+    pwszExtendedInfoName: ?[*]PWSTR,
+    pwszExtendedInfoValue: ?[*]PWSTR,
     phRight: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -849,7 +849,7 @@ pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
     uFlags: u32,
     pvReserved: *c_void,
     cTemplates: u32,
-    pwszTemplateIds: ?[*]?PWSTR,
+    pwszTemplateIds: ?[*]PWSTR,
     wszUrl: PWSTR,
     pvContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

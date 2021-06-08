@@ -15,12 +15,12 @@ pub extern "WSClient" fn CheckDeveloperLicense(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WSClient" fn AcquireDeveloperLicense(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     pExpiration: *FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WSClient" fn RemoveDeveloperLicense(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

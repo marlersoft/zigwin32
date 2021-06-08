@@ -1195,19 +1195,19 @@ pub const IDMLDevice = extern struct {
             self: *const IDMLDevice,
             desc: *const DML_OPERATOR_DESC,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompileOperator: fn(
             self: *const IDMLDevice,
             op: *IDMLOperator,
             flags: DML_EXECUTION_FLAGS,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOperatorInitializer: fn(
             self: *const IDMLDevice,
             operatorCount: u32,
-            operators: ?[*]?*IDMLCompiledOperator,
+            operators: ?[*]*IDMLCompiledOperator,
             riid: *const Guid,
             ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1249,15 +1249,15 @@ pub const IDMLDevice = extern struct {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const IDMLDevice, self), feature, featureQueryDataSize, featureQueryData, featureSupportDataSize, featureSupportData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CreateOperator(self: *const T, desc: *const DML_OPERATOR_DESC, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CreateOperator(self: *const T, desc: *const DML_OPERATOR_DESC, riid: *const Guid, ppv: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateOperator(@ptrCast(*const IDMLDevice, self), desc, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CompileOperator(self: *const T, op: *IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CompileOperator(self: *const T, op: *IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: *const Guid, ppv: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CompileOperator(@ptrCast(*const IDMLDevice, self), op, flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CreateOperatorInitializer(self: *const T, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CreateOperatorInitializer(self: *const T, operatorCount: u32, operators: ?[*]*IDMLCompiledOperator, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateOperatorInitializer(@ptrCast(*const IDMLDevice, self), operatorCount, operators, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1383,14 +1383,14 @@ pub const IDMLOperatorInitializer = extern struct {
         Reset: fn(
             self: *const IDMLOperatorInitializer,
             operatorCount: u32,
-            operators: ?[*]?*IDMLCompiledOperator,
+            operators: ?[*]*IDMLCompiledOperator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDispatchable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLOperatorInitializer_Reset(self: *const T, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator) callconv(.Inline) HRESULT {
+        pub fn IDMLOperatorInitializer_Reset(self: *const T, operatorCount: u32, operators: ?[*]*IDMLCompiledOperator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLOperatorInitializer.VTable, self.vtable).Reset(@ptrCast(*const IDMLOperatorInitializer, self), operatorCount, operators);
         }
     };}
@@ -1530,7 +1530,7 @@ pub extern "DirectML" fn DMLCreateDevice(
     d3d12Device: *ID3D12Device,
     flags: DML_CREATE_DEVICE_FLAGS,
     riid: *const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DirectML" fn DMLCreateDevice1(
@@ -1538,7 +1538,7 @@ pub extern "DirectML" fn DMLCreateDevice1(
     flags: DML_CREATE_DEVICE_FLAGS,
     minimumFeatureLevel: DML_FEATURE_LEVEL,
     riid: *const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

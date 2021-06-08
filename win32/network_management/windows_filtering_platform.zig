@@ -4508,8 +4508,8 @@ pub extern "fwpuclnt" fn FwpmEngineGetSecurityInfo0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4610,8 +4610,8 @@ pub extern "fwpuclnt" fn FwpmProviderGetSecurityInfoByKey0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4800,8 +4800,8 @@ pub extern "fwpuclnt" fn FwpmProviderContextGetSecurityInfoByKey0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4887,8 +4887,8 @@ pub extern "fwpuclnt" fn FwpmSubLayerGetSecurityInfoByKey0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4968,8 +4968,8 @@ pub extern "fwpuclnt" fn FwpmLayerGetSecurityInfoByKey0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5047,8 +5047,8 @@ pub extern "fwpuclnt" fn FwpmCalloutGetSecurityInfoByKey0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5148,8 +5148,8 @@ pub extern "fwpuclnt" fn FwpmFilterGetSecurityInfoByKey0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5460,8 +5460,8 @@ pub extern "fwpuclnt" fn IPsecSaDbGetSecurityInfo0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5509,8 +5509,8 @@ pub extern "fwpuclnt" fn IPsecDospGetSecurityInfo0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5552,8 +5552,8 @@ pub extern "fwpuclnt" fn IPsecKeyManagerGetSecurityInfoByKey0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5655,8 +5655,8 @@ pub extern "fwpuclnt" fn IkeextSaDbGetSecurityInfo0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5741,8 +5741,8 @@ pub extern "fwpuclnt" fn FwpmNetEventsGetSecurityInfo0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5814,13 +5814,13 @@ pub extern "fwpuclnt" fn FwpmNetEventSubscribe4(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmSystemPortsGet0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     sysPorts: **FWPM_SYSTEM_PORTS0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmSystemPortsSubscribe0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     reserved: *c_void,
     callback: FWPM_SYSTEM_PORTS_CALLBACK0,
     context: ?*c_void,
@@ -5829,7 +5829,7 @@ pub extern "fwpuclnt" fn FwpmSystemPortsSubscribe0(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmSystemPortsUnsubscribe0(
-    engineHandle: HANDLE,
+    engineHandle: ?HANDLE,
     sysPortsHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5868,8 +5868,8 @@ pub extern "fwpuclnt" fn FwpmConnectionGetSecurityInfo0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5919,8 +5919,8 @@ pub extern "fwpuclnt" fn FwpmvSwitchEventsGetSecurityInfo0(
     securityInfo: u32,
     sidOwner: ?*PSID,
     sidGroup: ?*PSID,
-    dacl: ?*?*ACL,
-    sacl: ?*?*ACL,
+    dacl: ?**ACL,
+    sacl: ?**ACL,
     securityDescriptor: **SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

@@ -870,12 +870,12 @@ pub const ITaskFolderCollection = extern struct {
         get_Item: fn(
             self: *const ITaskFolderCollection,
             index: VARIANT,
-            ppFolder: ?*?*ITaskFolder,
+            ppFolder: ?**ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ITaskFolderCollection,
-            ppEnum: ?*?*IUnknown,
+            ppEnum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -886,11 +886,11 @@ pub const ITaskFolderCollection = extern struct {
             return @ptrCast(*const ITaskFolderCollection.VTable, self.vtable).get_Count(@ptrCast(*const ITaskFolderCollection, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolderCollection_get_Item(self: *const T, index: VARIANT, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskFolderCollection_get_Item(self: *const T, index: VARIANT, ppFolder: ?**ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolderCollection.VTable, self.vtable).get_Item(@ptrCast(*const ITaskFolderCollection, self), index, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolderCollection_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITaskFolderCollection_get__NewEnum(self: *const T, ppEnum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolderCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ITaskFolderCollection, self), ppEnum);
         }
     };}
@@ -905,18 +905,18 @@ pub const ITaskService = extern struct {
         base: IDispatch.VTable,
         GetFolder: fn(
             self: *const ITaskService,
-            path: BSTR,
-            ppFolder: ?*?*ITaskFolder,
+            path: ?BSTR,
+            ppFolder: ?**ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRunningTasks: fn(
             self: *const ITaskService,
             flags: i32,
-            ppRunningTasks: ?*?*IRunningTaskCollection,
+            ppRunningTasks: ?**IRunningTaskCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NewTask: fn(
             self: *const ITaskService,
             flags: u32,
-            ppDefinition: ?*?*ITaskDefinition,
+            ppDefinition: ?**ITaskDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Connect: fn(
             self: *const ITaskService,
@@ -955,15 +955,15 @@ pub const ITaskService = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_GetFolder(self: *const T, path: BSTR, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskService_GetFolder(self: *const T, path: ?BSTR, ppFolder: ?**ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).GetFolder(@ptrCast(*const ITaskService, self), path, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_GetRunningTasks(self: *const T, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) callconv(.Inline) HRESULT {
+        pub fn ITaskService_GetRunningTasks(self: *const T, flags: i32, ppRunningTasks: ?**IRunningTaskCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).GetRunningTasks(@ptrCast(*const ITaskService, self), flags, ppRunningTasks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_NewTask(self: *const T, flags: u32, ppDefinition: ?*?*ITaskDefinition) callconv(.Inline) HRESULT {
+        pub fn ITaskService_NewTask(self: *const T, flags: u32, ppDefinition: ?**ITaskDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).NewTask(@ptrCast(*const ITaskService, self), flags, ppDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1322,12 +1322,12 @@ pub const IRunningTaskCollection = extern struct {
         get_Item: fn(
             self: *const IRunningTaskCollection,
             index: VARIANT,
-            ppRunningTask: ?*?*IRunningTask,
+            ppRunningTask: ?**IRunningTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IRunningTaskCollection,
-            ppEnum: ?*?*IUnknown,
+            ppEnum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1338,11 +1338,11 @@ pub const IRunningTaskCollection = extern struct {
             return @ptrCast(*const IRunningTaskCollection.VTable, self.vtable).get_Count(@ptrCast(*const IRunningTaskCollection, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTaskCollection_get_Item(self: *const T, index: VARIANT, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
+        pub fn IRunningTaskCollection_get_Item(self: *const T, index: VARIANT, ppRunningTask: ?**IRunningTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTaskCollection.VTable, self.vtable).get_Item(@ptrCast(*const IRunningTaskCollection, self), index, ppRunningTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTaskCollection_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IRunningTaskCollection_get__NewEnum(self: *const T, ppEnum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTaskCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IRunningTaskCollection, self), ppEnum);
         }
     };}
@@ -1383,7 +1383,7 @@ pub const IRegisteredTask = extern struct {
         Run: fn(
             self: *const IRegisteredTask,
             params: VARIANT,
-            ppRunningTask: ?*?*IRunningTask,
+            ppRunningTask: ?**IRunningTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RunEx: fn(
             self: *const IRegisteredTask,
@@ -1391,12 +1391,12 @@ pub const IRegisteredTask = extern struct {
             flags: i32,
             sessionID: i32,
             user: BSTR,
-            ppRunningTask: ?*?*IRunningTask,
+            ppRunningTask: ?**IRunningTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInstances: fn(
             self: *const IRegisteredTask,
             flags: i32,
-            ppRunningTasks: ?*?*IRunningTaskCollection,
+            ppRunningTasks: ?**IRunningTaskCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastRunTime: fn(
@@ -1421,7 +1421,7 @@ pub const IRegisteredTask = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Definition: fn(
             self: *const IRegisteredTask,
-            ppDefinition: ?*?*ITaskDefinition,
+            ppDefinition: ?**ITaskDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Xml: fn(
@@ -1447,7 +1447,7 @@ pub const IRegisteredTask = extern struct {
             pstStart: *const SYSTEMTIME,
             pstEnd: *const SYSTEMTIME,
             pCount: *u32,
-            pRunTimes: ?*?*SYSTEMTIME,
+            pRunTimes: ?**SYSTEMTIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1474,15 +1474,15 @@ pub const IRegisteredTask = extern struct {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).put_Enabled(@ptrCast(*const IRegisteredTask, self), enabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_Run(self: *const T, params: VARIANT, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_Run(self: *const T, params: VARIANT, ppRunningTask: ?**IRunningTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).Run(@ptrCast(*const IRegisteredTask, self), params, ppRunningTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_RunEx(self: *const T, params: VARIANT, flags: i32, sessionID: i32, user: BSTR, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_RunEx(self: *const T, params: VARIANT, flags: i32, sessionID: i32, user: BSTR, ppRunningTask: ?**IRunningTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).RunEx(@ptrCast(*const IRegisteredTask, self), params, flags, sessionID, user, ppRunningTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_GetInstances(self: *const T, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_GetInstances(self: *const T, flags: i32, ppRunningTasks: ?**IRunningTaskCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).GetInstances(@ptrCast(*const IRegisteredTask, self), flags, ppRunningTasks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1502,7 +1502,7 @@ pub const IRegisteredTask = extern struct {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).get_NextRunTime(@ptrCast(*const IRegisteredTask, self), pNextRunTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_get_Definition(self: *const T, ppDefinition: ?*?*ITaskDefinition) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_get_Definition(self: *const T, ppDefinition: ?**ITaskDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).get_Definition(@ptrCast(*const IRegisteredTask, self), ppDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1522,7 +1522,7 @@ pub const IRegisteredTask = extern struct {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).Stop(@ptrCast(*const IRegisteredTask, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_GetRunTimes(self: *const T, pstStart: *const SYSTEMTIME, pstEnd: *const SYSTEMTIME, pCount: *u32, pRunTimes: ?*?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_GetRunTimes(self: *const T, pstStart: *const SYSTEMTIME, pstEnd: *const SYSTEMTIME, pCount: *u32, pRunTimes: ?**SYSTEMTIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).GetRunTimes(@ptrCast(*const IRegisteredTask, self), pstStart, pstEnd, pCount, pRunTimes);
         }
     };}
@@ -3962,12 +3962,12 @@ pub const IRegisteredTaskCollection = extern struct {
         get_Item: fn(
             self: *const IRegisteredTaskCollection,
             index: VARIANT,
-            ppRegisteredTask: ?*?*IRegisteredTask,
+            ppRegisteredTask: ?**IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IRegisteredTaskCollection,
-            ppEnum: ?*?*IUnknown,
+            ppEnum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3978,11 +3978,11 @@ pub const IRegisteredTaskCollection = extern struct {
             return @ptrCast(*const IRegisteredTaskCollection.VTable, self.vtable).get_Count(@ptrCast(*const IRegisteredTaskCollection, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTaskCollection_get_Item(self: *const T, index: VARIANT, ppRegisteredTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTaskCollection_get_Item(self: *const T, index: VARIANT, ppRegisteredTask: ?**IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTaskCollection.VTable, self.vtable).get_Item(@ptrCast(*const IRegisteredTaskCollection, self), index, ppRegisteredTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTaskCollection_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTaskCollection_get__NewEnum(self: *const T, ppEnum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTaskCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IRegisteredTaskCollection, self), ppEnum);
         }
     };}
@@ -4008,18 +4008,18 @@ pub const ITaskFolder = extern struct {
         GetFolder: fn(
             self: *const ITaskFolder,
             path: BSTR,
-            ppFolder: ?*?*ITaskFolder,
+            ppFolder: ?**ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFolders: fn(
             self: *const ITaskFolder,
             flags: i32,
-            ppFolders: ?*?*ITaskFolderCollection,
+            ppFolders: ?**ITaskFolderCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFolder: fn(
             self: *const ITaskFolder,
             subFolderName: BSTR,
             sddl: VARIANT,
-            ppFolder: ?*?*ITaskFolder,
+            ppFolder: ?**ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteFolder: fn(
             self: *const ITaskFolder,
@@ -4029,12 +4029,12 @@ pub const ITaskFolder = extern struct {
         GetTask: fn(
             self: *const ITaskFolder,
             path: BSTR,
-            ppTask: ?*?*IRegisteredTask,
+            ppTask: ?**IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTasks: fn(
             self: *const ITaskFolder,
             flags: i32,
-            ppTasks: ?*?*IRegisteredTaskCollection,
+            ppTasks: ?**IRegisteredTaskCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const ITaskFolder,
@@ -4050,7 +4050,7 @@ pub const ITaskFolder = extern struct {
             password: VARIANT,
             logonType: TASK_LOGON_TYPE,
             sddl: VARIANT,
-            ppTask: ?*?*IRegisteredTask,
+            ppTask: ?**IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterTaskDefinition: fn(
             self: *const ITaskFolder,
@@ -4061,7 +4061,7 @@ pub const ITaskFolder = extern struct {
             password: VARIANT,
             logonType: TASK_LOGON_TYPE,
             sddl: VARIANT,
-            ppTask: ?*?*IRegisteredTask,
+            ppTask: ?**IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityDescriptor: fn(
             self: *const ITaskFolder,
@@ -4086,15 +4086,15 @@ pub const ITaskFolder = extern struct {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).get_Path(@ptrCast(*const ITaskFolder, self), pPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetFolder(self: *const T, path: BSTR, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetFolder(self: *const T, path: BSTR, ppFolder: ?**ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetFolder(@ptrCast(*const ITaskFolder, self), path, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetFolders(self: *const T, flags: i32, ppFolders: ?*?*ITaskFolderCollection) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetFolders(self: *const T, flags: i32, ppFolders: ?**ITaskFolderCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetFolders(@ptrCast(*const ITaskFolder, self), flags, ppFolders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_CreateFolder(self: *const T, subFolderName: BSTR, sddl: VARIANT, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_CreateFolder(self: *const T, subFolderName: BSTR, sddl: VARIANT, ppFolder: ?**ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).CreateFolder(@ptrCast(*const ITaskFolder, self), subFolderName, sddl, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4102,11 +4102,11 @@ pub const ITaskFolder = extern struct {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).DeleteFolder(@ptrCast(*const ITaskFolder, self), subFolderName, flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetTask(self: *const T, path: BSTR, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetTask(self: *const T, path: BSTR, ppTask: ?**IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetTask(@ptrCast(*const ITaskFolder, self), path, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetTasks(self: *const T, flags: i32, ppTasks: ?*?*IRegisteredTaskCollection) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetTasks(self: *const T, flags: i32, ppTasks: ?**IRegisteredTaskCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetTasks(@ptrCast(*const ITaskFolder, self), flags, ppTasks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4114,11 +4114,11 @@ pub const ITaskFolder = extern struct {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).DeleteTask(@ptrCast(*const ITaskFolder, self), name, flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_RegisterTask(self: *const T, path: BSTR, xmlText: BSTR, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_RegisterTask(self: *const T, path: BSTR, xmlText: BSTR, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?**IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).RegisterTask(@ptrCast(*const ITaskFolder, self), path, xmlText, flags, userId, password, logonType, sddl, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_RegisterTaskDefinition(self: *const T, path: BSTR, pDefinition: ?*ITaskDefinition, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_RegisterTaskDefinition(self: *const T, path: BSTR, pDefinition: ?*ITaskDefinition, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?**IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).RegisterTaskDefinition(@ptrCast(*const ITaskFolder, self), path, pDefinition, flags, userId, password, logonType, sddl, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

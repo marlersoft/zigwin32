@@ -1784,7 +1784,7 @@ pub const repAuthorization = RADIUS_EXTENSION_POINT.orization;
 pub const RADIUS_ATTRIBUTE_ARRAY = extern struct {
     cbSize: u32,
     Add: isize,
-    AttributeAt: *const *const *const *const *const *const *const *const *const *const RADIUS_ATTRIBUTE,
+    AttributeAt: *const *********RADIUS_ATTRIBUTE,
     GetSize: isize,
     InsertAt: isize,
     RemoveAt: isize,

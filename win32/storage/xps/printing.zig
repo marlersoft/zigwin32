@@ -206,9 +206,9 @@ pub extern "XPSPRINT" fn StartXpsPrintJob(
     completionEvent: HANDLE,
     printablePagesOn: [*:0]u8,
     printablePagesOnCount: u32,
-    xpsPrintJob: ?*?*IXpsPrintJob,
-    documentStream: ?*?*IXpsPrintJobStream,
-    printTicketStream: ?*?*IXpsPrintJobStream,
+    xpsPrintJob: ?**IXpsPrintJob,
+    documentStream: ?**IXpsPrintJobStream,
+    printTicketStream: ?**IXpsPrintJobStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -218,8 +218,8 @@ pub extern "XPSPRINT" fn StartXpsPrintJob1(
     outputFileName: [*:0]const u16,
     progressEvent: HANDLE,
     completionEvent: HANDLE,
-    xpsPrintJob: ?*?*IXpsPrintJob,
-    printContentReceiver: ?*?*IXpsOMPackageTarget,
+    xpsPrintJob: ?**IXpsPrintJob,
+    printContentReceiver: ?**IXpsOMPackageTarget,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -235,7 +235,7 @@ pub const IWSCProductList = extern struct {
         get_Item: fn(
             self: *const IWSCProductList,
             index: u32,
-            pVal: ?*?*IWscProduct,
+            pVal: ?**IWscProduct,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -250,7 +250,7 @@ pub const IWSCProductList = extern struct {
             return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Count(@ptrCast(*const IWSCProductList, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: ?*?*IWscProduct) callconv(.Inline) HRESULT {
+        pub fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: ?**IWscProduct) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Item(@ptrCast(*const IWSCProductList, self), index, pVal);
         }
     };}

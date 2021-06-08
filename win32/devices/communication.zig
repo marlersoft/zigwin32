@@ -642,14 +642,14 @@ pub extern "KERNEL32" fn BuildCommDCBAndTimeoutsW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CommConfigDialogA(
     lpszName: [*:0]const u8,
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpCC: *COMMCONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CommConfigDialogW(
     lpszName: [*:0]const u16,
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpCC: *COMMCONFIG,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

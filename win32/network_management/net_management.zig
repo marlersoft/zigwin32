@@ -3651,9 +3651,9 @@ pub extern "NETAPI32" fn NetProvisionComputerAccount(
     lpMachineAccountOU: ?[*:0]const u16,
     lpDcName: ?[*:0]const u16,
     dwOptions: NETSETUP_PROVISION,
-    pProvisionBinData: ?*?*u8,
+    pProvisionBinData: ?**u8,
     pdwProvisionBinDataSize: ?*u32,
-    pProvisionTextData: ?*?PWSTR,
+    pProvisionTextData: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3668,9 +3668,9 @@ pub extern "NETAPI32" fn NetRequestOfflineDomainJoin(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "NETAPI32" fn NetCreateProvisioningPackage(
     pProvisioningParams: *NETSETUP_PROVISIONING_PARAMS,
-    ppPackageBinData: ?*?*u8,
+    ppPackageBinData: ?**u8,
     pdwPackageBinDataSize: ?*u32,
-    ppPackageTextData: ?*?PWSTR,
+    ppPackageTextData: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3686,7 +3686,7 @@ pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "NETAPI32" fn NetGetAadJoinInformation(
     pcszTenantId: ?[*:0]const u16,
-    ppJoinInfo: ?*?*DSREG_JOIN_INFO,
+    ppJoinInfo: ?**DSREG_JOIN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -4056,7 +4056,7 @@ pub extern "NETAPI32" fn NetUseDel(
 pub extern "NETAPI32" fn NetUseEnum(
     UncServerName: ?PWSTR,
     LevelFlags: u32,
-    BufPtr: ?*?*u8,
+    BufPtr: ?**u8,
     PreferedMaximumSize: u32,
     EntriesRead: ?*u32,
     TotalEntries: *u32,
@@ -4068,14 +4068,14 @@ pub extern "NETAPI32" fn NetUseGetInfo(
     UncServerName: ?PWSTR,
     UseName: PWSTR,
     LevelFlags: u32,
-    bufptr: ?*?*u8,
+    bufptr: ?**u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetWkstaGetInfo(
     servername: ?PWSTR,
     level: u32,
-    bufptr: ?*?*u8,
+    bufptr: ?**u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4105,7 +4105,7 @@ pub extern "NETAPI32" fn NetWkstaUserSetInfo(
 pub extern "NETAPI32" fn NetWkstaUserEnum(
     servername: ?PWSTR,
     level: u32,
-    bufptr: ?*?*u8,
+    bufptr: ?**u8,
     prefmaxlen: u32,
     entriesread: ?*u32,
     totalentries: *u32,

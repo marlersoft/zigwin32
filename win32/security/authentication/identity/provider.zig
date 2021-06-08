@@ -118,12 +118,12 @@ pub const IIdentityProvider = extern struct {
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-            ppIdentityEnum: ?*?*IEnumUnknown,
+            ppIdentityEnum: ?**IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Create: fn(
             self: *const IIdentityProvider,
             lpszUserName: [*:0]const u16,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
             pKeywordsToAdd: *const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Import: fn(
@@ -138,11 +138,11 @@ pub const IIdentityProvider = extern struct {
         FindByUniqueID: fn(
             self: *const IIdentityProvider,
             lpszUniqueID: [*:0]const u16,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderPropertyStore: fn(
             self: *const IIdentityProvider,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Advise: fn(
             self: *const IIdentityProvider,
@@ -159,11 +159,11 @@ pub const IIdentityProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_GetIdentityEnum(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_GetIdentityEnum(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?**IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).GetIdentityEnum(@ptrCast(*const IIdentityProvider, self), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_Create(self: *const T, lpszUserName: [*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: *const PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_Create(self: *const T, lpszUserName: [*:0]const u16, ppPropertyStore: ?**IPropertyStore, pKeywordsToAdd: *const PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).Create(@ptrCast(*const IIdentityProvider, self), lpszUserName, ppPropertyStore, pKeywordsToAdd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -175,11 +175,11 @@ pub const IIdentityProvider = extern struct {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).Delete(@ptrCast(*const IIdentityProvider, self), lpszUniqueID, pKeywordsToDelete);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_FindByUniqueID(self: *const T, lpszUniqueID: [*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_FindByUniqueID(self: *const T, lpszUniqueID: [*:0]const u16, ppPropertyStore: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).FindByUniqueID(@ptrCast(*const IIdentityProvider, self), lpszUniqueID, ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).GetProviderPropertyStore(@ptrCast(*const IIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -207,7 +207,7 @@ pub const AsyncIIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_GetIdentityEnum: fn(
             self: *const AsyncIIdentityProvider,
-            ppIdentityEnum: ?*?*IEnumUnknown,
+            ppIdentityEnum: ?**IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Create: fn(
             self: *const AsyncIIdentityProvider,
@@ -216,7 +216,7 @@ pub const AsyncIIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_Create: fn(
             self: *const AsyncIIdentityProvider,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Import: fn(
             self: *const AsyncIIdentityProvider,
@@ -239,14 +239,14 @@ pub const AsyncIIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_FindByUniqueID: fn(
             self: *const AsyncIIdentityProvider,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_GetProviderPropertyStore: fn(
             self: *const AsyncIIdentityProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_GetProviderPropertyStore: fn(
             self: *const AsyncIIdentityProvider,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Advise: fn(
             self: *const AsyncIIdentityProvider,
@@ -273,7 +273,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_GetIdentityEnum(@ptrCast(*const AsyncIIdentityProvider, self), eIdentityType, pFilterkey, pFilterPropVarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_GetIdentityEnum(self: *const T, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_GetIdentityEnum(self: *const T, ppIdentityEnum: ?**IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_GetIdentityEnum(@ptrCast(*const AsyncIIdentityProvider, self), ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -281,7 +281,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_Create(@ptrCast(*const AsyncIIdentityProvider, self), lpszUserName, pKeywordsToAdd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_Create(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_Create(self: *const T, ppPropertyStore: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_Create(@ptrCast(*const AsyncIIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -305,7 +305,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_FindByUniqueID(@ptrCast(*const AsyncIIdentityProvider, self), lpszUniqueID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_FindByUniqueID(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_FindByUniqueID(self: *const T, ppPropertyStore: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_FindByUniqueID(@ptrCast(*const AsyncIIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -313,7 +313,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_GetProviderPropertyStore(@ptrCast(*const AsyncIIdentityProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_GetProviderPropertyStore(@ptrCast(*const AsyncIIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -345,7 +345,7 @@ pub const IAssociatedIdentityProvider = extern struct {
         AssociateIdentity: fn(
             self: *const IAssociatedIdentityProvider,
             hwndParent: HWND,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DisassociateIdentity: fn(
             self: *const IAssociatedIdentityProvider,
@@ -362,7 +362,7 @@ pub const IAssociatedIdentityProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssociatedIdentityProvider_AssociateIdentity(self: *const T, hwndParent: HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IAssociatedIdentityProvider_AssociateIdentity(self: *const T, hwndParent: HWND, ppPropertyStore: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssociatedIdentityProvider.VTable, self.vtable).AssociateIdentity(@ptrCast(*const IAssociatedIdentityProvider, self), hwndParent, ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -388,7 +388,7 @@ pub const AsyncIAssociatedIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_AssociateIdentity: fn(
             self: *const AsyncIAssociatedIdentityProvider,
-            ppPropertyStore: ?*?*IPropertyStore,
+            ppPropertyStore: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_DisassociateIdentity: fn(
             self: *const AsyncIAssociatedIdentityProvider,
@@ -415,7 +415,7 @@ pub const AsyncIAssociatedIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIAssociatedIdentityProvider.VTable, self.vtable).Begin_AssociateIdentity(@ptrCast(*const AsyncIAssociatedIdentityProvider, self), hwndParent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Finish_AssociateIdentity(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIAssociatedIdentityProvider_Finish_AssociateIdentity(self: *const T, ppPropertyStore: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIAssociatedIdentityProvider.VTable, self.vtable).Finish_AssociateIdentity(@ptrCast(*const AsyncIAssociatedIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -487,7 +487,7 @@ pub const IConnectedIdentityProvider = extern struct {
             Identifier: IDENTITY_URL,
             Context: ?*IBindCtx,
             PostData: *VARIANT,
-            Url: ?*?PWSTR,
+            Url: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAccountState: fn(
             self: *const IConnectedIdentityProvider,
@@ -510,7 +510,7 @@ pub const IConnectedIdentityProvider = extern struct {
             return @ptrCast(*const IConnectedIdentityProvider.VTable, self.vtable).IsConnected(@ptrCast(*const IConnectedIdentityProvider, self), Connected);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnectedIdentityProvider_GetUrl(self: *const T, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: *VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IConnectedIdentityProvider_GetUrl(self: *const T, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: *VARIANT, Url: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConnectedIdentityProvider.VTable, self.vtable).GetUrl(@ptrCast(*const IConnectedIdentityProvider, self), Identifier, Context, PostData, Url);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -555,7 +555,7 @@ pub const AsyncIConnectedIdentityProvider = extern struct {
         Finish_GetUrl: fn(
             self: *const AsyncIConnectedIdentityProvider,
             PostData: *VARIANT,
-            Url: ?*?PWSTR,
+            Url: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_GetAccountState: fn(
             self: *const AsyncIConnectedIdentityProvider,
@@ -597,7 +597,7 @@ pub const AsyncIConnectedIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIConnectedIdentityProvider.VTable, self.vtable).Begin_GetUrl(@ptrCast(*const AsyncIConnectedIdentityProvider, self), Identifier, Context);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIConnectedIdentityProvider_Finish_GetUrl(self: *const T, PostData: *VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn AsyncIConnectedIdentityProvider_Finish_GetUrl(self: *const T, PostData: *VARIANT, Url: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIConnectedIdentityProvider.VTable, self.vtable).Finish_GetUrl(@ptrCast(*const AsyncIConnectedIdentityProvider, self), PostData, Url);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -626,7 +626,7 @@ pub const IIdentityAuthentication = extern struct {
             self: *const IIdentityAuthentication,
             CredBuffer: [*:0]u8,
             CredBufferLength: u32,
-            ppIdentityProperties: ?*?*IPropertyStore,
+            ppIdentityProperties: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -637,7 +637,7 @@ pub const IIdentityAuthentication = extern struct {
             return @ptrCast(*const IIdentityAuthentication.VTable, self.vtable).SetIdentityCredential(@ptrCast(*const IIdentityAuthentication, self), CredBuffer, CredBufferLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityAuthentication_ValidateIdentityCredential(self: *const T, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IIdentityAuthentication_ValidateIdentityCredential(self: *const T, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityAuthentication.VTable, self.vtable).ValidateIdentityCredential(@ptrCast(*const IIdentityAuthentication, self), CredBuffer, CredBufferLength, ppIdentityProperties);
         }
     };}
@@ -661,11 +661,11 @@ pub const AsyncIIdentityAuthentication = extern struct {
             self: *const AsyncIIdentityAuthentication,
             CredBuffer: [*:0]u8,
             CredBufferLength: u32,
-            ppIdentityProperties: ?*?*IPropertyStore,
+            ppIdentityProperties: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_ValidateIdentityCredential: fn(
             self: *const AsyncIIdentityAuthentication,
-            ppIdentityProperties: ?*?*IPropertyStore,
+            ppIdentityProperties: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -680,11 +680,11 @@ pub const AsyncIIdentityAuthentication = extern struct {
             return @ptrCast(*const AsyncIIdentityAuthentication.VTable, self.vtable).Finish_SetIdentityCredential(@ptrCast(*const AsyncIIdentityAuthentication, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAuthentication_Begin_ValidateIdentityCredential(self: *const T, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityAuthentication_Begin_ValidateIdentityCredential(self: *const T, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityAuthentication.VTable, self.vtable).Begin_ValidateIdentityCredential(@ptrCast(*const AsyncIIdentityAuthentication, self), CredBuffer, CredBufferLength, ppIdentityProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityAuthentication_Finish_ValidateIdentityCredential(self: *const T, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityAuthentication_Finish_ValidateIdentityCredential(self: *const T, ppIdentityProperties: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityAuthentication.VTable, self.vtable).Finish_ValidateIdentityCredential(@ptrCast(*const AsyncIIdentityAuthentication, self), ppIdentityProperties);
         }
     };}
@@ -711,7 +711,7 @@ pub const IIdentityStore = extern struct {
             self: *const IIdentityStore,
             dwProvider: u32,
             pProvGuid: ?*Guid,
-            ppIdentityProvider: ?*?*IUnknown,
+            ppIdentityProvider: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddToCache: fn(
             self: *const IIdentityStore,
@@ -731,7 +731,7 @@ pub const IIdentityStore = extern struct {
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-            ppIdentityEnum: ?*?*IEnumUnknown,
+            ppIdentityEnum: ?**IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IIdentityStore,
@@ -745,7 +745,7 @@ pub const IIdentityStore = extern struct {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).GetCount(@ptrCast(*const IIdentityStore, self), pdwProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_GetAt(self: *const T, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IIdentityStore_GetAt(self: *const T, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).GetAt(@ptrCast(*const IIdentityStore, self), dwProvider, pProvGuid, ppIdentityProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -757,7 +757,7 @@ pub const IIdentityStore = extern struct {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).ConvertToSid(@ptrCast(*const IIdentityStore, self), lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_EnumerateIdentities(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn IIdentityStore_EnumerateIdentities(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?**IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).EnumerateIdentities(@ptrCast(*const IIdentityStore, self), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -788,7 +788,7 @@ pub const AsyncIIdentityStore = extern struct {
         Finish_GetAt: fn(
             self: *const AsyncIIdentityStore,
             pProvGuid: ?*Guid,
-            ppIdentityProvider: ?*?*IUnknown,
+            ppIdentityProvider: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_AddToCache: fn(
             self: *const AsyncIIdentityStore,
@@ -818,7 +818,7 @@ pub const AsyncIIdentityStore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_EnumerateIdentities: fn(
             self: *const AsyncIIdentityStore,
-            ppIdentityEnum: ?*?*IEnumUnknown,
+            ppIdentityEnum: ?**IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Reset: fn(
             self: *const AsyncIIdentityStore,
@@ -843,7 +843,7 @@ pub const AsyncIIdentityStore = extern struct {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Begin_GetAt(@ptrCast(*const AsyncIIdentityStore, self), dwProvider, pProvGuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_GetAt(self: *const T, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityStore_Finish_GetAt(self: *const T, pProvGuid: ?*Guid, ppIdentityProvider: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Finish_GetAt(@ptrCast(*const AsyncIIdentityStore, self), pProvGuid, ppIdentityProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -867,7 +867,7 @@ pub const AsyncIIdentityStore = extern struct {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Begin_EnumerateIdentities(@ptrCast(*const AsyncIIdentityStore, self), eIdentityType, pFilterkey, pFilterPropVarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_EnumerateIdentities(self: *const T, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityStore_Finish_EnumerateIdentities(self: *const T, ppIdentityEnum: ?**IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Finish_EnumerateIdentities(@ptrCast(*const AsyncIIdentityStore, self), ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

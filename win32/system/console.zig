@@ -72,7 +72,7 @@ pub const FOCUS_EVENT = @as(u32, 16);
 // Section: Types (21)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
-pub const HPCON = ?*opaque{};
+pub const HPCON = *opaque{};
 
 pub const CONSOLE_MODE = extern enum(u32) {
     ENABLE_ECHO_INPUT = 4,

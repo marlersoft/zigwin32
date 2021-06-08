@@ -244,7 +244,7 @@ pub const AUTHZ_CLIENT_CONTEXT_HANDLE = isize;
 
 pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
 
-pub const AUTHZ_AUDIT_EVENT_HANDLE = isize;
+pub const AUTHZ_AUDIT_EVENT_HANDLE = *opaque{};
 
 pub const AUTHZ_AUDIT_EVENT_TYPE_HANDLE = isize;
 
@@ -4342,7 +4342,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
     ObjectTypeName: [*:0]const u8,
     ObjectName: ?[*:0]const u8,
     SecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
@@ -4362,7 +4362,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
     ObjectTypeName: [*:0]const u8,
     ObjectName: ?[*:0]const u8,
     SecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
@@ -4383,7 +4383,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
     ObjectTypeName: [*:0]const u8,
     ObjectName: ?[*:0]const u8,
     SecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
@@ -4501,7 +4501,7 @@ pub extern "ADVAPI32" fn LookupAccountNameA(
     lpSystemName: ?[*:0]const u8,
     lpAccountName: [*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    Sid: PSID,
+    Sid: ?PSID,
     cbSid: *u32,
     ReferencedDomainName: ?[*:0]u8,
     cchReferencedDomainName: *u32,
@@ -4513,7 +4513,7 @@ pub extern "ADVAPI32" fn LookupAccountNameW(
     lpSystemName: ?[*:0]const u16,
     lpAccountName: [*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    Sid: PSID,
+    Sid: ?PSID,
     cbSid: *u32,
     ReferencedDomainName: ?[*:0]u16,
     cchReferencedDomainName: *u32,
@@ -4598,7 +4598,7 @@ pub extern "ADVAPI32" fn LogonUserExA(
     phToken: ?*HANDLE,
     ppLogonSid: ?*PSID,
     // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*c_void,
+    ppProfileBuffer: ?**c_void,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4613,7 +4613,7 @@ pub extern "ADVAPI32" fn LogonUserExW(
     phToken: ?*HANDLE,
     ppLogonSid: ?*PSID,
     // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*c_void,
+    ppProfileBuffer: ?**c_void,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4672,7 +4672,7 @@ pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByType(
     pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     ClientToken: HANDLE,
     DesiredAccess: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
@@ -4688,7 +4688,7 @@ pub extern "ADVAPI32" fn AccessCheckByType(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeResultList(
     pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     ClientToken: HANDLE,
     DesiredAccess: u32,
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
@@ -4707,7 +4707,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmW(
     ObjectTypeName: [*:0]const u16,
     ObjectName: ?[*:0]const u16,
     SecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
@@ -4726,7 +4726,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmW(
     ObjectTypeName: [*:0]const u16,
     ObjectName: ?[*:0]const u16,
     SecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
@@ -4746,7 +4746,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
     ObjectTypeName: [*:0]const u16,
     ObjectName: ?[*:0]const u16,
     SecurityDescriptor: *SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: PSID,
+    PrincipalSelfSid: ?PSID,
     DesiredAccess: u32,
     AuditType: AUDIT_EVENT_TYPE,
     Flags: u32,
@@ -4944,14 +4944,14 @@ pub extern "ADVAPI32" fn AreAnyAccessesGranted(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CheckTokenMembership(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     SidToCheck: PSID,
     IsMember: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn CheckTokenCapability(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     CapabilitySidToCheck: PSID,
     HasCapability: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4965,7 +4965,7 @@ pub extern "KERNEL32" fn GetAppContainerAce(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn CheckTokenMembershipEx(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
     SidToCheck: PSID,
     Flags: u32,
     IsMember: *BOOL,
@@ -4995,7 +4995,7 @@ pub extern "ADVAPI32" fn CreatePrivateObjectSecurity(
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
     NewDescriptor: **SECURITY_DESCRIPTOR,
     IsDirectoryObject: BOOL,
-    Token: HANDLE,
+    Token: ?HANDLE,
     GenericMapping: *GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5007,7 +5007,7 @@ pub extern "ADVAPI32" fn CreatePrivateObjectSecurityEx(
     ObjectType: ?*Guid,
     IsContainerObject: BOOL,
     AutoInheritFlags: SECURITY_AUTO_INHERIT_FLAGS,
-    Token: HANDLE,
+    Token: ?HANDLE,
     GenericMapping: *GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5016,11 +5016,11 @@ pub extern "ADVAPI32" fn CreatePrivateObjectSecurityWithMultipleInheritance(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
     NewDescriptor: **SECURITY_DESCRIPTOR,
-    ObjectTypes: ?[*]?*Guid,
+    ObjectTypes: ?[*]*Guid,
     GuidCount: u32,
     IsContainerObject: BOOL,
     AutoInheritFlags: SECURITY_AUTO_INHERIT_FLAGS,
-    Token: HANDLE,
+    Token: ?HANDLE,
     GenericMapping: *GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5040,9 +5040,9 @@ pub extern "ADVAPI32" fn CreateRestrictedToken(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CreateWellKnownSid(
     WellKnownSidType: WELL_KNOWN_SID_TYPE,
-    DomainSid: PSID,
+    DomainSid: ?PSID,
     // TODO: what to do with BytesParamIndex 3?
-    pSid: PSID,
+    pSid: ?PSID,
     cbSid: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5237,7 +5237,7 @@ pub extern "ADVAPI32" fn GetTokenInformation(
 pub extern "ADVAPI32" fn GetWindowsAccountDomainSid(
     pSid: PSID,
     // TODO: what to do with BytesParamIndex 2?
-    pDomainSid: PSID,
+    pDomainSid: ?PSID,
     cbDomainSid: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5316,10 +5316,10 @@ pub extern "ADVAPI32" fn MakeAbsoluteSD(
     pSacl: ?*ACL,
     lpdwSaclSize: *u32,
     // TODO: what to do with BytesParamIndex 8?
-    pOwner: PSID,
+    pOwner: ?PSID,
     lpdwOwnerSize: *u32,
     // TODO: what to do with BytesParamIndex 10?
-    pPrimaryGroup: PSID,
+    pPrimaryGroup: ?PSID,
     lpdwPrimaryGroupSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5426,7 +5426,7 @@ pub extern "ADVAPI32" fn SetPrivateObjectSecurity(
     ModificationDescriptor: *SECURITY_DESCRIPTOR,
     ObjectsSecurityDescriptor: **SECURITY_DESCRIPTOR,
     GenericMapping: *GENERIC_MAPPING,
-    Token: HANDLE,
+    Token: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5436,7 +5436,7 @@ pub extern "ADVAPI32" fn SetPrivateObjectSecurityEx(
     ObjectsSecurityDescriptor: **SECURITY_DESCRIPTOR,
     AutoInheritFlags: SECURITY_AUTO_INHERIT_FLAGS,
     GenericMapping: *GENERIC_MAPPING,
-    Token: HANDLE,
+    Token: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5463,14 +5463,14 @@ pub extern "ADVAPI32" fn SetSecurityDescriptorDacl(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorGroup(
     pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    pGroup: PSID,
+    pGroup: ?PSID,
     bGroupDefaulted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetSecurityDescriptorOwner(
     pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    pOwner: PSID,
+    pOwner: ?PSID,
     bOwnerDefaulted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5501,7 +5501,7 @@ pub extern "KERNEL32" fn SetCachedSigningLevel(
     SourceFiles: [*]HANDLE,
     SourceFileCount: u32,
     Flags: u32,
-    TargetFile: HANDLE,
+    TargetFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn GetCachedSigningLevel(
@@ -5516,9 +5516,9 @@ pub extern "KERNEL32" fn GetCachedSigningLevel(
 
 pub extern "api-ms-win-security-base-l1-2-2" fn DeriveCapabilitySidsFromName(
     CapName: [*:0]const u16,
-    CapabilityGroupSids: ?*?*PSID,
+    CapabilityGroupSids: ?**PSID,
     CapabilityGroupSidCount: *u32,
-    CapabilitySids: ?*?*PSID,
+    CapabilitySids: ?**PSID,
     CapabilitySidCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5536,7 +5536,7 @@ pub extern "CRYPT32" fn CryptProtectData(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptUnprotectData(
     pDataIn: *CRYPTOAPI_BLOB,
-    ppszDataDescr: ?*?PWSTR,
+    ppszDataDescr: ?*PWSTR,
     pOptionalEntropy: ?*CRYPTOAPI_BLOB,
     pvReserved: *c_void,
     pPromptStruct: ?*CRYPTPROTECT_PROMPTSTRUCT,
@@ -5546,7 +5546,7 @@ pub extern "CRYPT32" fn CryptUnprotectData(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CryptUpdateProtectedState(
-    pOldSid: PSID,
+    pOldSid: ?PSID,
     pwszOldPassword: ?[*:0]const u16,
     dwFlags: u32,
     pdwSuccessCount: ?*u32,
@@ -6026,14 +6026,14 @@ pub extern "WINTRUST" fn WTHelperCertCheckValidSignature(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn OpenPersonalTrustDBDialogEx(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: u32,
-    pvReserved: ?*?*c_void,
+    pvReserved: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WINTRUST" fn OpenPersonalTrustDBDialog(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6087,7 +6087,7 @@ pub extern "ADVAPI32" fn SaferIdentifyLevel(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SaferComputeTokenFromLevel(
     LevelHandle: SAFER_LEVEL_HANDLE,
-    InAccessToken: HANDLE,
+    InAccessToken: ?HANDLE,
     OutAccessToken: *HANDLE,
     dwFlags: SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
     lpReserved: ?*c_void,

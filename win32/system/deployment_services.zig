@@ -2055,7 +2055,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliRegisterTrace(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WDSCLIENTAPI" fn WdsCliFreeStringArray(
-    ppwszArray: ?[*]?PWSTR,
+    ppwszArray: ?[*]PWSTR,
     ulCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2476,7 +2476,7 @@ pub extern "WDSPXE" fn PxeDhcpGetOptionValue(
     uInstance: u32,
     bOption: u8,
     pbOptionLen: ?*u8,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2487,7 +2487,7 @@ pub extern "WDSPXE" fn PxeDhcpv6GetOptionValue(
     uInstance: u32,
     wOption: u16,
     pwOptionLen: ?*u16,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2498,7 +2498,7 @@ pub extern "WDSPXE" fn PxeDhcpGetVendorOptionValue(
     bOption: u8,
     uInstance: u32,
     pbOptionLen: ?*u8,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2510,7 +2510,7 @@ pub extern "WDSPXE" fn PxeDhcpv6GetVendorOptionValue(
     wOption: u16,
     uInstance: u32,
     pwOptionLen: ?*u16,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'

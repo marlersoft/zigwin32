@@ -673,7 +673,7 @@ pub const IDiscMaster2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IDiscMaster2,
-            ppunk: ?*?*IEnumVARIANT,
+            ppunk: ?**IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
@@ -696,7 +696,7 @@ pub const IDiscMaster2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster2_get__NewEnum(self: *const T, ppunk: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster2_get__NewEnum(self: *const T, ppunk: ?**IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster2.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDiscMaster2, self), ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -785,7 +785,7 @@ pub const IDiscRecorder2Ex = extern struct {
             address: u32,
             layer: u32,
             agid: u32,
-            data: ?[*]?*u8,
+            data: ?[*]*u8,
             count: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendDvdStructure: fn(
@@ -796,38 +796,38 @@ pub const IDiscRecorder2Ex = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdapterDescriptor: fn(
             self: *const IDiscRecorder2Ex,
-            data: ?[*]?*u8,
+            data: ?[*]*u8,
             byteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceDescriptor: fn(
             self: *const IDiscRecorder2Ex,
-            data: ?[*]?*u8,
+            data: ?[*]*u8,
             byteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDiscInformation: fn(
             self: *const IDiscRecorder2Ex,
-            discInformation: ?[*]?*u8,
+            discInformation: ?[*]*u8,
             byteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTrackInformation: fn(
             self: *const IDiscRecorder2Ex,
             address: u32,
             addressType: IMAPI_READ_TRACK_ADDRESS_TYPE,
-            trackInformation: ?[*]?*u8,
+            trackInformation: ?[*]*u8,
             byteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFeaturePage: fn(
             self: *const IDiscRecorder2Ex,
             requestedFeature: IMAPI_FEATURE_PAGE_TYPE,
             currentFeatureOnly: u8,
-            featureData: ?[*]?*u8,
+            featureData: ?[*]*u8,
             byteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetModePage: fn(
             self: *const IDiscRecorder2Ex,
             requestedModePage: IMAPI_MODE_PAGE_TYPE,
             requestType: IMAPI_MODE_PAGE_REQUEST_TYPE,
-            modePageData: ?[*]?*u8,
+            modePageData: ?[*]*u8,
             byteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetModePage: fn(
@@ -839,19 +839,19 @@ pub const IDiscRecorder2Ex = extern struct {
         GetSupportedFeaturePages: fn(
             self: *const IDiscRecorder2Ex,
             currentFeatureOnly: u8,
-            featureData: ?[*]?*IMAPI_FEATURE_PAGE_TYPE,
+            featureData: ?[*]*IMAPI_FEATURE_PAGE_TYPE,
             byteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedProfiles: fn(
             self: *const IDiscRecorder2Ex,
             currentOnly: u8,
-            profileTypes: ?[*]?*IMAPI_PROFILE_TYPE,
+            profileTypes: ?[*]*IMAPI_PROFILE_TYPE,
             validProfiles: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedModePages: fn(
             self: *const IDiscRecorder2Ex,
             requestType: IMAPI_MODE_PAGE_REQUEST_TYPE,
-            modePageTypes: ?[*]?*IMAPI_MODE_PAGE_TYPE,
+            modePageTypes: ?[*]*IMAPI_MODE_PAGE_TYPE,
             validPages: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetByteAlignmentMask: fn(
@@ -883,7 +883,7 @@ pub const IDiscRecorder2Ex = extern struct {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SendCommandGetDataFromDevice(@ptrCast(*const IDiscRecorder2Ex, self), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize, BufferFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_ReadDvdStructure(self: *const T, format: u32, address: u32, layer: u32, agid: u32, data: ?[*]?*u8, count: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_ReadDvdStructure(self: *const T, format: u32, address: u32, layer: u32, agid: u32, data: ?[*]*u8, count: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).ReadDvdStructure(@ptrCast(*const IDiscRecorder2Ex, self), format, address, layer, agid, data, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -891,27 +891,27 @@ pub const IDiscRecorder2Ex = extern struct {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SendDvdStructure(@ptrCast(*const IDiscRecorder2Ex, self), format, data, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetAdapterDescriptor(self: *const T, data: ?[*]?*u8, byteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetAdapterDescriptor(self: *const T, data: ?[*]*u8, byteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetAdapterDescriptor(@ptrCast(*const IDiscRecorder2Ex, self), data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetDeviceDescriptor(self: *const T, data: ?[*]?*u8, byteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetDeviceDescriptor(self: *const T, data: ?[*]*u8, byteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetDeviceDescriptor(@ptrCast(*const IDiscRecorder2Ex, self), data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetDiscInformation(self: *const T, discInformation: ?[*]?*u8, byteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetDiscInformation(self: *const T, discInformation: ?[*]*u8, byteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetDiscInformation(@ptrCast(*const IDiscRecorder2Ex, self), discInformation, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetTrackInformation(self: *const T, address: u32, addressType: IMAPI_READ_TRACK_ADDRESS_TYPE, trackInformation: ?[*]?*u8, byteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetTrackInformation(self: *const T, address: u32, addressType: IMAPI_READ_TRACK_ADDRESS_TYPE, trackInformation: ?[*]*u8, byteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetTrackInformation(@ptrCast(*const IDiscRecorder2Ex, self), address, addressType, trackInformation, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetFeaturePage(self: *const T, requestedFeature: IMAPI_FEATURE_PAGE_TYPE, currentFeatureOnly: u8, featureData: ?[*]?*u8, byteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetFeaturePage(self: *const T, requestedFeature: IMAPI_FEATURE_PAGE_TYPE, currentFeatureOnly: u8, featureData: ?[*]*u8, byteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetFeaturePage(@ptrCast(*const IDiscRecorder2Ex, self), requestedFeature, currentFeatureOnly, featureData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetModePage(self: *const T, requestedModePage: IMAPI_MODE_PAGE_TYPE, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageData: ?[*]?*u8, byteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetModePage(self: *const T, requestedModePage: IMAPI_MODE_PAGE_TYPE, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageData: ?[*]*u8, byteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetModePage(@ptrCast(*const IDiscRecorder2Ex, self), requestedModePage, requestType, modePageData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -919,15 +919,15 @@ pub const IDiscRecorder2Ex = extern struct {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SetModePage(@ptrCast(*const IDiscRecorder2Ex, self), requestType, data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetSupportedFeaturePages(self: *const T, currentFeatureOnly: u8, featureData: ?[*]?*IMAPI_FEATURE_PAGE_TYPE, byteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetSupportedFeaturePages(self: *const T, currentFeatureOnly: u8, featureData: ?[*]*IMAPI_FEATURE_PAGE_TYPE, byteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetSupportedFeaturePages(@ptrCast(*const IDiscRecorder2Ex, self), currentFeatureOnly, featureData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetSupportedProfiles(self: *const T, currentOnly: u8, profileTypes: ?[*]?*IMAPI_PROFILE_TYPE, validProfiles: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetSupportedProfiles(self: *const T, currentOnly: u8, profileTypes: ?[*]*IMAPI_PROFILE_TYPE, validProfiles: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetSupportedProfiles(@ptrCast(*const IDiscRecorder2Ex, self), currentOnly, profileTypes, validProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetSupportedModePages(self: *const T, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageTypes: ?[*]?*IMAPI_MODE_PAGE_TYPE, validPages: *u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetSupportedModePages(self: *const T, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageTypes: ?[*]*IMAPI_MODE_PAGE_TYPE, validPages: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetSupportedModePages(@ptrCast(*const IDiscRecorder2Ex, self), requestType, modePageTypes, validPages);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1004,7 +1004,7 @@ pub const IDiscRecorder2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumePathNames: fn(
             self: *const IDiscRecorder2,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceCanLoadMedia: fn(
@@ -1019,27 +1019,27 @@ pub const IDiscRecorder2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedFeaturePages: fn(
             self: *const IDiscRecorder2,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFeaturePages: fn(
             self: *const IDiscRecorder2,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedProfiles: fn(
             self: *const IDiscRecorder2,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentProfiles: fn(
             self: *const IDiscRecorder2,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedModePages: fn(
             self: *const IDiscRecorder2,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExclusiveAccessOwner: fn(
@@ -1099,7 +1099,7 @@ pub const IDiscRecorder2 = extern struct {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VolumeName(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_VolumePathNames(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_VolumePathNames(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VolumePathNames(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1111,23 +1111,23 @@ pub const IDiscRecorder2 = extern struct {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_LegacyDeviceNumber(@ptrCast(*const IDiscRecorder2, self), legacyDeviceNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_SupportedFeaturePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_SupportedFeaturePages(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedFeaturePages(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_CurrentFeaturePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_CurrentFeaturePages(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_CurrentFeaturePages(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_SupportedProfiles(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_SupportedProfiles(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedProfiles(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_CurrentProfiles(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_CurrentProfiles(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_CurrentProfiles(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_SupportedModePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_SupportedModePages(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedModePages(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1161,7 +1161,7 @@ pub const IWriteEngine2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recorder: fn(
             self: *const IWriteEngine2,
-            value: ?*?*IDiscRecorder2Ex,
+            value: ?**IDiscRecorder2Ex,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseStreamingWrite12: fn(
@@ -1225,7 +1225,7 @@ pub const IWriteEngine2 = extern struct {
             return @ptrCast(*const IWriteEngine2.VTable, self.vtable).put_Recorder(@ptrCast(*const IWriteEngine2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWriteEngine2_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2Ex) callconv(.Inline) HRESULT {
+        pub fn IWriteEngine2_get_Recorder(self: *const T, value: ?**IDiscRecorder2Ex) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_Recorder(@ptrCast(*const IWriteEngine2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1397,7 +1397,7 @@ pub const IDiscFormat2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedMediaTypes: fn(
             self: *const IDiscFormat2,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1420,7 +1420,7 @@ pub const IDiscFormat2 = extern struct {
             return @ptrCast(*const IDiscFormat2.VTable, self.vtable).get_MediaHeuristicallyBlank(@ptrCast(*const IDiscFormat2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2_get_SupportedMediaTypes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2_get_SupportedMediaTypes(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2.VTable, self.vtable).get_SupportedMediaTypes(@ptrCast(*const IDiscFormat2, self), value);
         }
     };}
@@ -1441,7 +1441,7 @@ pub const IDiscFormat2Erase = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recorder: fn(
             self: *const IDiscFormat2Erase,
-            value: ?*?*IDiscRecorder2,
+            value: ?**IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FullErase: fn(
@@ -1480,7 +1480,7 @@ pub const IDiscFormat2Erase = extern struct {
             return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2Erase, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Erase_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Erase_get_Recorder(self: *const T, value: ?**IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2Erase, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1549,7 +1549,7 @@ pub const IDiscFormat2Data = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recorder: fn(
             self: *const IDiscFormat2Data,
-            value: ?*?*IDiscRecorder2,
+            value: ?**IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferUnderrunFreeDisabled: fn(
@@ -1664,12 +1664,12 @@ pub const IDiscFormat2Data = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeeds: fn(
             self: *const IDiscFormat2Data,
-            supportedSpeeds: ?*?*SAFEARRAY,
+            supportedSpeeds: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeedDescriptors: fn(
             self: *const IDiscFormat2Data,
-            supportedSpeedDescriptors: ?*?*SAFEARRAY,
+            supportedSpeedDescriptors: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ForceOverwrite: fn(
@@ -1684,7 +1684,7 @@ pub const IDiscFormat2Data = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultisessionInterfaces: fn(
             self: *const IDiscFormat2Data,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Write: fn(
             self: *const IDiscFormat2Data,
@@ -1707,7 +1707,7 @@ pub const IDiscFormat2Data = extern struct {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_Recorder(self: *const T, value: ?**IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1799,11 +1799,11 @@ pub const IDiscFormat2Data = extern struct {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2Data, self), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2Data, self), supportedSpeedDescriptors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1815,7 +1815,7 @@ pub const IDiscFormat2Data = extern struct {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_ForceOverwrite(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_MultisessionInterfaces(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_MultisessionInterfaces(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_MultisessionInterfaces(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1939,7 +1939,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recorder: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: ?*?*IDiscRecorder2,
+            value: ?**IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferUnderrunFreeDisabled: fn(
@@ -1984,7 +1984,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpectedTableOfContents: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPhysicalMediaType: fn(
@@ -2024,12 +2024,12 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeeds: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            supportedSpeeds: ?*?*SAFEARRAY,
+            supportedSpeeds: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeedDescriptors: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            supportedSpeedDescriptors: ?*?*SAFEARRAY,
+            supportedSpeedDescriptors: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2060,7 +2060,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_Recorder(self: *const T, value: ?**IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2096,7 +2096,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_DoNotFinalizeMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_ExpectedTableOfContents(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_ExpectedTableOfContents(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_ExpectedTableOfContents(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2128,11 +2128,11 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2TrackAtOnce, self), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2TrackAtOnce, self), supportedSpeedDescriptors);
         }
     };}
@@ -2249,7 +2249,7 @@ pub const IDiscFormat2RawCD = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recorder: fn(
             self: *const IDiscFormat2RawCD,
-            value: ?*?*IDiscRecorder2,
+            value: ?**IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferUnderrunFreeDisabled: fn(
@@ -2279,7 +2279,7 @@ pub const IDiscFormat2RawCD = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedSectorTypes: fn(
             self: *const IDiscFormat2RawCD,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestedSectorType: fn(
@@ -2324,12 +2324,12 @@ pub const IDiscFormat2RawCD = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeeds: fn(
             self: *const IDiscFormat2RawCD,
-            supportedSpeeds: ?*?*SAFEARRAY,
+            supportedSpeeds: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeedDescriptors: fn(
             self: *const IDiscFormat2RawCD,
-            supportedSpeedDescriptors: ?*?*SAFEARRAY,
+            supportedSpeedDescriptors: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2364,7 +2364,7 @@ pub const IDiscFormat2RawCD = extern struct {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_Recorder(self: *const T, value: ?**IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2388,7 +2388,7 @@ pub const IDiscFormat2RawCD = extern struct {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_CurrentPhysicalMediaType(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_SupportedSectorTypes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_SupportedSectorTypes(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedSectorTypes(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2424,11 +2424,11 @@ pub const IDiscFormat2RawCD = extern struct {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2RawCD, self), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2RawCD, self), supportedSpeedDescriptors);
         }
     };}
@@ -2596,7 +2596,7 @@ pub const IMultisession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImportRecorder: fn(
             self: *const IMultisession,
-            value: ?*?*IDiscRecorder2,
+            value: ?**IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2615,7 +2615,7 @@ pub const IMultisession = extern struct {
             return @ptrCast(*const IMultisession.VTable, self.vtable).get_InUse(@ptrCast(*const IMultisession, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultisession_get_ImportRecorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IMultisession_get_ImportRecorder(self: *const T, value: ?**IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMultisession.VTable, self.vtable).get_ImportRecorder(@ptrCast(*const IMultisession, self), value);
         }
     };}
@@ -2953,7 +2953,7 @@ pub const IRawCDImageCreator = extern struct {
         get_TrackInfo: fn(
             self: *const IRawCDImageCreator,
             trackIndex: i32,
-            value: ?*?*IRawCDImageTrackInfo,
+            value: ?**IRawCDImageTrackInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfExistingTracks: fn(
@@ -2968,7 +2968,7 @@ pub const IRawCDImageCreator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpectedTableOfContents: fn(
             self: *const IRawCDImageCreator,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3035,7 +3035,7 @@ pub const IRawCDImageCreator = extern struct {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_StartingTrackNumber(@ptrCast(*const IRawCDImageCreator, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageCreator_get_TrackInfo(self: *const T, trackIndex: i32, value: ?*?*IRawCDImageTrackInfo) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageCreator_get_TrackInfo(self: *const T, trackIndex: i32, value: ?**IRawCDImageTrackInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_TrackInfo(@ptrCast(*const IRawCDImageCreator, self), trackIndex, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3047,7 +3047,7 @@ pub const IRawCDImageCreator = extern struct {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_LastUsedUserSectorInImage(@ptrCast(*const IRawCDImageCreator, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageCreator_get_ExpectedTableOfContents(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageCreator_get_ExpectedTableOfContents(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_ExpectedTableOfContents(@ptrCast(*const IRawCDImageCreator, self), value);
         }
     };}
@@ -3113,7 +3113,7 @@ pub const IRawCDImageTrackInfo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrackIndexes: fn(
             self: *const IRawCDImageTrackInfo,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddTrackIndex: fn(
             self: *const IRawCDImageTrackInfo,
@@ -3168,7 +3168,7 @@ pub const IRawCDImageTrackInfo = extern struct {
             return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).put_AudioHasPreemphasis(@ptrCast(*const IRawCDImageTrackInfo, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageTrackInfo_get_TrackIndexes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageTrackInfo_get_TrackIndexes(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_TrackIndexes(@ptrCast(*const IRawCDImageTrackInfo, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3224,14 +3224,14 @@ pub const IBlockRangeList = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BlockRanges: fn(
             self: *const IBlockRangeList,
-            value: ?*?*SAFEARRAY,
+            value: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBlockRangeList_get_BlockRanges(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IBlockRangeList_get_BlockRanges(self: *const T, value: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBlockRangeList.VTable, self.vtable).get_BlockRanges(@ptrCast(*const IBlockRangeList, self), value);
         }
     };}
@@ -3654,14 +3654,14 @@ pub const IFileSystemImageResult2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifiedBlocks: fn(
             self: *const IFileSystemImageResult2,
-            pVal: ?*?*IBlockRangeList,
+            pVal: ?**IBlockRangeList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFileSystemImageResult.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImageResult2_get_ModifiedBlocks(self: *const T, pVal: ?*?*IBlockRangeList) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImageResult2_get_ModifiedBlocks(self: *const T, pVal: ?**IBlockRangeList) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImageResult2.VTable, self.vtable).get_ModifiedBlocks(@ptrCast(*const IFileSystemImageResult2, self), pVal);
         }
     };}
@@ -3905,7 +3905,7 @@ pub const IFsiFileItem2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FsiNamedStreams: fn(
             self: *const IFsiFileItem2,
-            streams: ?*?*IFsiNamedStreams,
+            streams: ?**IFsiNamedStreams,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsNamedStream: fn(
@@ -3936,7 +3936,7 @@ pub const IFsiFileItem2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsiFileItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiFileItem2_get_FsiNamedStreams(self: *const T, streams: ?*?*IFsiNamedStreams) callconv(.Inline) HRESULT {
+        pub fn IFsiFileItem2_get_FsiNamedStreams(self: *const T, streams: ?**IFsiNamedStreams) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).get_FsiNamedStreams(@ptrCast(*const IFsiFileItem2, self), streams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3972,13 +3972,13 @@ pub const IFsiNamedStreams = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IFsiNamedStreams,
-            NewEnum: ?*?*IEnumVARIANT,
+            NewEnum: ?**IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IFsiNamedStreams,
             index: i32,
-            item: ?*?*IFsiFileItem2,
+            item: ?**IFsiFileItem2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
@@ -3988,18 +3988,18 @@ pub const IFsiNamedStreams = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnumNamedStreams: fn(
             self: *const IFsiNamedStreams,
-            NewEnum: ?*?*IEnumFsiItems,
+            NewEnum: ?**IEnumFsiItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiNamedStreams_get__NewEnum(self: *const T, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsiNamedStreams_get__NewEnum(self: *const T, NewEnum: ?**IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFsiNamedStreams, self), NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiNamedStreams_get_Item(self: *const T, index: i32, item: ?*?*IFsiFileItem2) callconv(.Inline) HRESULT {
+        pub fn IFsiNamedStreams_get_Item(self: *const T, index: i32, item: ?**IFsiFileItem2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_Item(@ptrCast(*const IFsiNamedStreams, self), index, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4007,7 +4007,7 @@ pub const IFsiNamedStreams = extern struct {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_Count(@ptrCast(*const IFsiNamedStreams, self), count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiNamedStreams_get_EnumNamedStreams(self: *const T, NewEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
+        pub fn IFsiNamedStreams_get_EnumNamedStreams(self: *const T, NewEnum: ?**IEnumFsiItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_EnumNamedStreams(@ptrCast(*const IFsiNamedStreams, self), NewEnum);
         }
     };}
@@ -4147,7 +4147,7 @@ pub const IFileSystemImage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Root: fn(
             self: *const IFileSystemImage,
-            pVal: ?*?*IFsiDirectoryItem,
+            pVal: ?**IFsiDirectoryItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SessionStartBlock: fn(
@@ -4196,7 +4196,7 @@ pub const IFileSystemImage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BootImageOptions: fn(
             self: *const IFileSystemImage,
-            pVal: ?*?*IBootOptions,
+            pVal: ?**IBootOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BootImageOptions: fn(
@@ -4276,7 +4276,7 @@ pub const IFileSystemImage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UDFRevisionsSupported: fn(
             self: *const IFileSystemImage,
-            pVal: ?*?*SAFEARRAY,
+            pVal: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChooseImageDefaults: fn(
             self: *const IFileSystemImage,
@@ -4299,11 +4299,11 @@ pub const IFileSystemImage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ISO9660InterchangeLevelsSupported: fn(
             self: *const IFileSystemImage,
-            pVal: ?*?*SAFEARRAY,
+            pVal: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateResultImage: fn(
             self: *const IFileSystemImage,
-            resultStream: ?*?*IFileSystemImageResult,
+            resultStream: ?**IFileSystemImageResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Exists: fn(
             self: *const IFileSystemImage,
@@ -4342,12 +4342,12 @@ pub const IFileSystemImage = extern struct {
         CreateDirectoryItem: fn(
             self: *const IFileSystemImage,
             name: BSTR,
-            newItem: ?*?*IFsiDirectoryItem,
+            newItem: ?**IFsiDirectoryItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFileItem: fn(
             self: *const IFileSystemImage,
             name: BSTR,
-            newItem: ?*?*IFsiFileItem,
+            newItem: ?**IFsiFileItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumeNameUDF: fn(
@@ -4377,7 +4377,7 @@ pub const IFileSystemImage = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultisessionInterfaces: fn(
             self: *const IFileSystemImage,
-            pVal: ?*?*SAFEARRAY,
+            pVal: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultisessionInterfaces: fn(
@@ -4389,7 +4389,7 @@ pub const IFileSystemImage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_Root(self: *const T, pVal: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_Root(self: *const T, pVal: ?**IFsiDirectoryItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_Root(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4429,7 +4429,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ImportedVolumeName(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_BootImageOptions(self: *const T, pVal: ?*?*IBootOptions) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_BootImageOptions(self: *const T, pVal: ?**IBootOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_BootImageOptions(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4493,7 +4493,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UDFRevision(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_UDFRevisionsSupported(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_UDFRevisionsSupported(self: *const T, pVal: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UDFRevisionsSupported(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4513,11 +4513,11 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ISO9660InterchangeLevel(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_ISO9660InterchangeLevelsSupported(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_ISO9660InterchangeLevelsSupported(self: *const T, pVal: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ISO9660InterchangeLevelsSupported(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_CreateResultImage(self: *const T, resultStream: ?*?*IFileSystemImageResult) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_CreateResultImage(self: *const T, resultStream: ?**IFileSystemImageResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateResultImage(@ptrCast(*const IFileSystemImage, self), resultStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4553,11 +4553,11 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).LockInChangePoint(@ptrCast(*const IFileSystemImage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_CreateDirectoryItem(self: *const T, name: BSTR, newItem: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_CreateDirectoryItem(self: *const T, name: BSTR, newItem: ?**IFsiDirectoryItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateDirectoryItem(@ptrCast(*const IFileSystemImage, self), name, newItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_CreateFileItem(self: *const T, name: BSTR, newItem: ?*?*IFsiFileItem) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_CreateFileItem(self: *const T, name: BSTR, newItem: ?**IFsiFileItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateFileItem(@ptrCast(*const IFileSystemImage, self), name, newItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4581,7 +4581,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_StageFiles(@ptrCast(*const IFileSystemImage, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_MultisessionInterfaces(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_MultisessionInterfaces(self: *const T, pVal: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_MultisessionInterfaces(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4601,7 +4601,7 @@ pub const IFileSystemImage2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BootImageOptionsArray: fn(
             self: *const IFileSystemImage2,
-            pVal: ?*?*SAFEARRAY,
+            pVal: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BootImageOptionsArray: fn(
@@ -4613,7 +4613,7 @@ pub const IFileSystemImage2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFileSystemImage.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage2_get_BootImageOptionsArray(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage2_get_BootImageOptionsArray(self: *const T, pVal: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage2.VTable, self.vtable).get_BootImageOptionsArray(@ptrCast(*const IFileSystemImage2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4853,7 +4853,7 @@ pub const IDiscRecorder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecorderProperties: fn(
             self: *const IDiscRecorder,
-            ppPropStg: ?*?*IPropertyStorage,
+            ppPropStg: ?**IPropertyStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRecorderProperties: fn(
             self: *const IDiscRecorder,
@@ -4918,7 +4918,7 @@ pub const IDiscRecorder = extern struct {
             return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetPath(@ptrCast(*const IDiscRecorder, self), pbstrPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder_GetRecorderProperties(self: *const T, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder_GetRecorderProperties(self: *const T, ppPropStg: ?**IPropertyStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetRecorderProperties(@ptrCast(*const IDiscRecorder, self), ppPropStg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4977,7 +4977,7 @@ pub const IEnumDiscRecorders = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDiscRecorders,
-            ppEnum: ?*?*IEnumDiscRecorders,
+            ppEnum: ?**IEnumDiscRecorders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4996,7 +4996,7 @@ pub const IEnumDiscRecorders = extern struct {
             return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiscRecorders, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiscRecorders_Clone(self: *const T, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
+        pub fn IEnumDiscRecorders_Clone(self: *const T, ppEnum: ?**IEnumDiscRecorders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiscRecorders, self), ppEnum);
         }
     };}
@@ -5023,7 +5023,7 @@ pub const IEnumDiscMasterFormats = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDiscMasterFormats,
-            ppEnum: ?*?*IEnumDiscMasterFormats,
+            ppEnum: ?**IEnumDiscMasterFormats,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5042,7 +5042,7 @@ pub const IEnumDiscMasterFormats = extern struct {
             return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiscMasterFormats, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiscMasterFormats_Clone(self: *const T, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
+        pub fn IEnumDiscMasterFormats_Clone(self: *const T, ppEnum: ?**IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiscMasterFormats, self), ppEnum);
         }
     };}
@@ -5152,7 +5152,7 @@ pub const IJolietDiscMaster = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJolietProperties: fn(
             self: *const IJolietDiscMaster,
-            ppPropStg: ?*?*IPropertyStorage,
+            ppPropStg: ?**IPropertyStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetJolietProperties: fn(
             self: *const IJolietDiscMaster,
@@ -5179,7 +5179,7 @@ pub const IJolietDiscMaster = extern struct {
             return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).AddData(@ptrCast(*const IJolietDiscMaster, self), pStorage, lFileOverwrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IJolietDiscMaster_GetJolietProperties(self: *const T, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
+        pub fn IJolietDiscMaster_GetJolietProperties(self: *const T, ppPropStg: ?**IPropertyStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).GetJolietProperties(@ptrCast(*const IJolietDiscMaster, self), ppPropStg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5289,7 +5289,7 @@ pub const IDiscMaster = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDiscMasterFormats: fn(
             self: *const IDiscMaster,
-            ppEnum: ?*?*IEnumDiscMasterFormats,
+            ppEnum: ?**IEnumDiscMasterFormats,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveDiscMasterFormat: fn(
             self: *const IDiscMaster,
@@ -5298,15 +5298,15 @@ pub const IDiscMaster = extern struct {
         SetActiveDiscMasterFormat: fn(
             self: *const IDiscMaster,
             riid: *const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDiscRecorders: fn(
             self: *const IDiscMaster,
-            ppEnum: ?*?*IEnumDiscRecorders,
+            ppEnum: ?**IEnumDiscRecorders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveDiscRecorder: fn(
             self: *const IDiscMaster,
-            ppRecorder: ?*?*IDiscRecorder,
+            ppRecorder: ?**IDiscRecorder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetActiveDiscRecorder: fn(
             self: *const IDiscMaster,
@@ -5341,7 +5341,7 @@ pub const IDiscMaster = extern struct {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).Open(@ptrCast(*const IDiscMaster, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_EnumDiscMasterFormats(self: *const T, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_EnumDiscMasterFormats(self: *const T, ppEnum: ?**IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).EnumDiscMasterFormats(@ptrCast(*const IDiscMaster, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5349,15 +5349,15 @@ pub const IDiscMaster = extern struct {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).GetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), lpiid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_SetActiveDiscMasterFormat(self: *const T, riid: *const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_SetActiveDiscMasterFormat(self: *const T, riid: *const Guid, ppUnk: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).SetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_EnumDiscRecorders(self: *const T, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_EnumDiscRecorders(self: *const T, ppEnum: ?**IEnumDiscRecorders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).EnumDiscRecorders(@ptrCast(*const IDiscMaster, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_GetActiveDiscRecorder(self: *const T, ppRecorder: ?*?*IDiscRecorder) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_GetActiveDiscRecorder(self: *const T, ppRecorder: ?**IDiscRecorder) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).GetActiveDiscRecorder(@ptrCast(*const IDiscMaster, self), ppRecorder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

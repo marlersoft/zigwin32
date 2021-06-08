@@ -189,17 +189,17 @@ pub const ISensorManager = extern struct {
         GetSensorsByCategory: fn(
             self: *const ISensorManager,
             sensorCategory: *Guid,
-            ppSensorsFound: ?*?*ISensorCollection,
+            ppSensorsFound: ?**ISensorCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSensorsByType: fn(
             self: *const ISensorManager,
             sensorType: *Guid,
-            ppSensorsFound: ?*?*ISensorCollection,
+            ppSensorsFound: ?**ISensorCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSensorByID: fn(
             self: *const ISensorManager,
             sensorID: *Guid,
-            ppSensor: ?*?*ISensor,
+            ppSensor: ?**ISensor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEventSink: fn(
             self: *const ISensorManager,
@@ -216,15 +216,15 @@ pub const ISensorManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_GetSensorsByCategory(self: *const T, sensorCategory: *Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
+        pub fn ISensorManager_GetSensorsByCategory(self: *const T, sensorCategory: *Guid, ppSensorsFound: ?**ISensorCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByCategory(@ptrCast(*const ISensorManager, self), sensorCategory, ppSensorsFound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_GetSensorsByType(self: *const T, sensorType: *Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
+        pub fn ISensorManager_GetSensorsByType(self: *const T, sensorType: *Guid, ppSensorsFound: ?**ISensorCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByType(@ptrCast(*const ISensorManager, self), sensorType, ppSensorsFound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_GetSensorByID(self: *const T, sensorID: *Guid, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
+        pub fn ISensorManager_GetSensorByID(self: *const T, sensorID: *Guid, ppSensor: ?**ISensor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorByID(@ptrCast(*const ISensorManager, self), sensorID, ppSensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -278,7 +278,7 @@ pub const ISensorCollection = extern struct {
         GetAt: fn(
             self: *const ISensorCollection,
             ulIndex: u32,
-            ppSensor: ?*?*ISensor,
+            ppSensor: ?**ISensor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const ISensorCollection,
@@ -304,7 +304,7 @@ pub const ISensorCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorCollection_GetAt(self: *const T, ulIndex: u32, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
+        pub fn ISensorCollection_GetAt(self: *const T, ulIndex: u32, ppSensor: ?**ISensor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensorCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISensorCollection, self), ulIndex, ppSensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -361,16 +361,16 @@ pub const ISensor = extern struct {
         GetProperties: fn(
             self: *const ISensor,
             pKeys: ?*IPortableDeviceKeyCollection,
-            ppProperties: ?*?*IPortableDeviceValues,
+            ppProperties: ?**IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedDataFields: fn(
             self: *const ISensor,
-            ppDataFields: ?*?*IPortableDeviceKeyCollection,
+            ppDataFields: ?**IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperties: fn(
             self: *const ISensor,
             pProperties: ?*IPortableDeviceValues,
-            ppResults: ?*?*IPortableDeviceValues,
+            ppResults: ?**IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SupportsDataField: fn(
             self: *const ISensor,
@@ -383,7 +383,7 @@ pub const ISensor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetData: fn(
             self: *const ISensor,
-            ppDataReport: ?*?*ISensorDataReport,
+            ppDataReport: ?**ISensorDataReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SupportsEvent: fn(
             self: *const ISensor,
@@ -392,7 +392,7 @@ pub const ISensor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEventInterest: fn(
             self: *const ISensor,
-            ppValues: ?[*]?*Guid,
+            ppValues: ?[*]*Guid,
             pCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEventInterest: fn(
@@ -429,15 +429,15 @@ pub const ISensor = extern struct {
             return @ptrCast(*const ISensor.VTable, self.vtable).GetProperty(@ptrCast(*const ISensor, self), key, pProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetProperties(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn ISensor_GetProperties(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?**IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensor.VTable, self.vtable).GetProperties(@ptrCast(*const ISensor, self), pKeys, ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetSupportedDataFields(self: *const T, ppDataFields: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn ISensor_GetSupportedDataFields(self: *const T, ppDataFields: ?**IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensor.VTable, self.vtable).GetSupportedDataFields(@ptrCast(*const ISensor, self), ppDataFields);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_SetProperties(self: *const T, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn ISensor_SetProperties(self: *const T, pProperties: ?*IPortableDeviceValues, ppResults: ?**IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensor.VTable, self.vtable).SetProperties(@ptrCast(*const ISensor, self), pProperties, ppResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -449,7 +449,7 @@ pub const ISensor = extern struct {
             return @ptrCast(*const ISensor.VTable, self.vtable).GetState(@ptrCast(*const ISensor, self), pState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetData(self: *const T, ppDataReport: ?*?*ISensorDataReport) callconv(.Inline) HRESULT {
+        pub fn ISensor_GetData(self: *const T, ppDataReport: ?**ISensorDataReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensor.VTable, self.vtable).GetData(@ptrCast(*const ISensor, self), ppDataReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -457,7 +457,7 @@ pub const ISensor = extern struct {
             return @ptrCast(*const ISensor.VTable, self.vtable).SupportsEvent(@ptrCast(*const ISensor, self), eventGuid, pIsSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetEventInterest(self: *const T, ppValues: ?[*]?*Guid, pCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ISensor_GetEventInterest(self: *const T, ppValues: ?[*]*Guid, pCount: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensor.VTable, self.vtable).GetEventInterest(@ptrCast(*const ISensor, self), ppValues, pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -490,7 +490,7 @@ pub const ISensorDataReport = extern struct {
         GetSensorValues: fn(
             self: *const ISensorDataReport,
             pKeys: ?*IPortableDeviceKeyCollection,
-            ppValues: ?*?*IPortableDeviceValues,
+            ppValues: ?**IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -505,7 +505,7 @@ pub const ISensorDataReport = extern struct {
             return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValue(@ptrCast(*const ISensorDataReport, self), pKey, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorDataReport_GetSensorValues(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn ISensorDataReport_GetSensorValues(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?**IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValues(@ptrCast(*const ISensorDataReport, self), pKeys, ppValues);
         }
     };}

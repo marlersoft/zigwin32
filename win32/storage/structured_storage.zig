@@ -1030,7 +1030,7 @@ pub const JET_HANDLE = usize;
 
 pub const JET_INSTANCE = usize;
 
-pub const JET_SESID = usize;
+pub const JET_SESID = *opaque{};
 
 pub const JET_TABLEID = usize;
 
@@ -1341,7 +1341,7 @@ pub const IStorage = extern struct {
             self: *const IStorage,
             ciidExclude: u32,
             rgiidExclude: ?[*]const Guid,
-            snbExclude: ?*?*u16,
+            snbExclude: ?**u16,
             pstgDest: *IStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveElementTo: fn(
@@ -1416,7 +1416,7 @@ pub const IStorage = extern struct {
             return @ptrCast(*const IStorage.VTable, self.vtable).OpenStorage(@ptrCast(*const IStorage, self), pwcsName, pstgPriority, grfMode, snbExclude, reserved, ppstg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: ?[*]const Guid, snbExclude: ?*?*u16, pstgDest: *IStorage) callconv(.Inline) HRESULT {
+        pub fn IStorage_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: ?[*]const Guid, snbExclude: ?**u16, pstgDest: *IStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStorage.VTable, self.vtable).CopyTo(@ptrCast(*const IStorage, self), ciidExclude, rgiidExclude, snbExclude, pstgDest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3478,7 +3478,7 @@ pub extern "OLE32" fn WriteFmtUserTypeStg(
 pub extern "OLE32" fn ReadFmtUserTypeStg(
     pstg: *IStorage,
     pcf: *u16,
-    lplpszUserType: ?*?PWSTR,
+    lplpszUserType: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3587,7 +3587,7 @@ pub extern "OLE32" fn StgOpenStorage(
     pwcsName: ?[*:0]const u16,
     pstgPriority: ?*IStorage,
     grfMode: u32,
-    snbExclude: ?*?*u16,
+    snbExclude: ?**u16,
     reserved: u32,
     ppstgOpen: **IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -3597,7 +3597,7 @@ pub extern "OLE32" fn StgOpenStorageOnILockBytes(
     plkbyt: *ILockBytes,
     pstgPriority: ?*IStorage,
     grfMode: u32,
-    snbExclude: ?*?*u16,
+    snbExclude: ?**u16,
     reserved: u32,
     ppstgOpen: **IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -3874,25 +3874,15 @@ pub extern "ESENT" fn JetStopBackupInstance(
     instance: JET_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "ESENT" fn JetSetSystemParameterA(
-    pinstance: ?*JET_INSTANCE,
-    sesid: JET_SESID,
-    paramid: u32,
-    lParam: JET_API_PTR,
-    szParam: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+// This function from dll 'ESENT' is being skipped because it has some sort of issue
+pub fn JetSetSystemParameterA() void { @panic("this function is not working"); }
 
-pub extern "ESENT" fn JetSetSystemParameterW(
-    pinstance: ?*JET_INSTANCE,
-    sesid: JET_SESID,
-    paramid: u32,
-    lParam: JET_API_PTR,
-    szParam: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+// This function from dll 'ESENT' is being skipped because it has some sort of issue
+pub fn JetSetSystemParameterW() void { @panic("this function is not working"); }
 
 pub extern "ESENT" fn JetGetSystemParameterA(
     instance: JET_INSTANCE,
-    sesid: JET_SESID,
+    sesid: ?JET_SESID,
     paramid: u32,
     plParam: ?*JET_API_PTR,
     // TODO: what to do with BytesParamIndex 5?
@@ -3902,7 +3892,7 @@ pub extern "ESENT" fn JetGetSystemParameterA(
 
 pub extern "ESENT" fn JetGetSystemParameterW(
     instance: JET_INSTANCE,
-    sesid: JET_SESID,
+    sesid: ?JET_SESID,
     paramid: u32,
     plParam: ?*JET_API_PTR,
     // TODO: what to do with BytesParamIndex 5?
@@ -5465,7 +5455,7 @@ pub extern "ESENT" fn JetGetErrorInfoW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetSetSessionParameter(
-    sesid: JET_SESID,
+    sesid: ?JET_SESID,
     sesparamid: u32,
     // TODO: what to do with BytesParamIndex 3?
     pvParam: ?*c_void,
@@ -5473,7 +5463,7 @@ pub extern "ESENT" fn JetSetSessionParameter(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetSessionParameter(
-    sesid: JET_SESID,
+    sesid: ?JET_SESID,
     sesparamid: u32,
     pvParam: [*]u8,
     cbParamMax: u32,

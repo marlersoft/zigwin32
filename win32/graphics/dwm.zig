@@ -493,7 +493,7 @@ pub extern "dwmapi" fn DwmShowContact(
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "dwmapi" fn DwmGetUnmetTabRequirements(
-    appWindow: HWND,
+    appWindow: ?HWND,
     value: *DWM_TAB_WINDOW_REQUIREMENTS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

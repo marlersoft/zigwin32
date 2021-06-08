@@ -61,7 +61,7 @@ pub extern "KERNEL32" fn UnregisterApplicationRestart(
 pub extern "KERNEL32" fn GetApplicationRecoveryCallback(
     hProcess: HANDLE,
     pRecoveryCallback: *APPLICATION_RECOVERY_CALLBACK,
-    ppvParameter: ?*?*c_void,
+    ppvParameter: ?**c_void,
     pdwPingInterval: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

@@ -4535,7 +4535,7 @@ pub extern "USERENV" fn UnregisterGPNotification(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn GetGPOListA(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     lpName: ?[*:0]const u8,
     lpHostName: ?[*:0]const u8,
     lpComputerName: ?[*:0]const u8,
@@ -4545,7 +4545,7 @@ pub extern "USERENV" fn GetGPOListA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn GetGPOListW(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     lpName: ?[*:0]const u16,
     lpHostName: ?[*:0]const u16,
     lpComputerName: ?[*:0]const u16,
@@ -4567,7 +4567,7 @@ pub extern "USERENV" fn FreeGPOListW(
 pub extern "USERENV" fn GetAppliedGPOListA(
     dwFlags: u32,
     pMachineName: ?[*:0]const u8,
-    pSidUser: PSID,
+    pSidUser: ?PSID,
     pGuidExtension: *Guid,
     ppGPOList: **GROUP_POLICY_OBJECTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4576,7 +4576,7 @@ pub extern "USERENV" fn GetAppliedGPOListA(
 pub extern "USERENV" fn GetAppliedGPOListW(
     dwFlags: u32,
     pMachineName: ?[*:0]const u16,
-    pSidUser: PSID,
+    pSidUser: ?PSID,
     pGuidExtension: *Guid,
     ppGPOList: **GROUP_POLICY_OBJECTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4599,7 +4599,7 @@ pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopAccessCheckByType(
     pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    pPrincipalSelfSid: PSID,
+    pPrincipalSelfSid: ?PSID,
     pRsopToken: *c_void,
     dwDesiredAccessMask: u32,
     pObjectTypeList: ?[*]OBJECT_TYPE_LIST,

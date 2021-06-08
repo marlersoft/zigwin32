@@ -841,12 +841,8 @@ pub extern "qwave" fn QOSAddSocketToFlow(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "qwave" fn QOSRemoveSocketFromFlow(
-    QOSHandle: HANDLE,
-    Socket: SOCKET,
-    FlowId: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+// This function from dll 'qwave' is being skipped because it has some sort of issue
+pub fn QOSRemoveSocketFromFlow() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "qwave" fn QOSSetFlow(

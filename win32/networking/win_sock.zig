@@ -815,7 +815,7 @@ pub const LM_HB2_FileServer = @as(i32, 2);
 // Section: Types (326)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
-pub const HWSAEVENT = ?*opaque{};
+pub const HWSAEVENT = *opaque{};
 
 // TODO: this type has a FreeFunc 'closesocket', what can Zig do with this information?
 pub const SOCKET = @import("std").os.socket_t;
@@ -3075,7 +3075,7 @@ pub const LPWSPENUMNETWORKEVENTS = fn(
 
 pub const LPWSPEVENTSELECT = fn(
     s: SOCKET,
-    hEventObject: HANDLE,
+    hEventObject: ?HANDLE,
     lNetworkEvents: i32,
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4537,7 +4537,7 @@ pub extern "WS2_32" fn WSAEnumProtocolsW(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn WSAEventSelect(
     s: SOCKET,
-    hEventObject: HANDLE,
+    hEventObject: ?HANDLE,
     lNetworkEvents: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

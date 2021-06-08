@@ -3871,7 +3871,7 @@ pub const PLSA_REGISTER_NOTIFICATION = fn(
     NotificationClass: u32,
     NotificationFlags: u32,
     IntervalMinutes: u32,
-    WaitEvent: HANDLE,
+    WaitEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 pub const PLSA_CANCEL_NOTIFICATION = fn(
@@ -3926,7 +3926,7 @@ pub const PLSA_AUDIT_LOGON = fn(
     AccountName: ?*UNICODE_STRING,
     AuthenticatingAuthority: ?*UNICODE_STRING,
     WorkstationName: ?*UNICODE_STRING,
-    UserSid: PSID,
+    UserSid: ?PSID,
     LogonType: SECURITY_LOGON_TYPE,
     TokenSource: *TOKEN_SOURCE,
     LogonId: *LUID,
@@ -4171,7 +4171,7 @@ pub const PLSA_AUDIT_LOGON_EX = fn(
     AccountName: ?*UNICODE_STRING,
     AuthenticatingAuthority: ?*UNICODE_STRING,
     WorkstationName: ?*UNICODE_STRING,
-    UserSid: PSID,
+    UserSid: ?PSID,
     LogonType: SECURITY_LOGON_TYPE,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     TokenSource: *TOKEN_SOURCE,
@@ -4214,7 +4214,7 @@ pub const CredReadDomainCredentialsFn = fn(
 
 pub const CredFreeCredentialsFn = fn(
     Count: u32,
-    Credentials: ?[*]?*ENCRYPTED_CREDENTIALW,
+    Credentials: ?[*]*ENCRYPTED_CREDENTIALW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CredWriteFn = fn(
@@ -4594,7 +4594,7 @@ pub const SpUpdateCredentialsFn = fn(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SpValidateTargetInfoFn = fn(
-    ClientRequest: ?*?*c_void,
+    ClientRequest: ?**c_void,
     // TODO: what to do with BytesParamIndex 3?
     ProtocolSubmitBuffer: *c_void,
     ClientBufferBase: *c_void,
@@ -4731,7 +4731,7 @@ pub const SpExportSecurityContextFn = fn(
 
 pub const SpImportSecurityContextFn = fn(
     pPackedContext: *SecBuffer,
-    Token: HANDLE,
+    Token: ?HANDLE,
     phContext: *usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -4893,7 +4893,7 @@ pub const KspUnsealMessageFn = fn(
 pub const KspGetTokenFn = fn(
     ContextId: usize,
     ImpersonationToken: ?*HANDLE,
-    RawToken: ?*?*c_void,
+    RawToken: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspQueryAttributesFn = fn(
@@ -6114,7 +6114,7 @@ pub extern "SECUR32" fn LsaCallAuthenticationPackage(
     // TODO: what to do with BytesParamIndex 3?
     ProtocolSubmitBuffer: *c_void,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: ?*?*c_void,
+    ProtocolReturnBuffer: ?**c_void,
     ReturnBufferLength: ?*u32,
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -7076,9 +7076,9 @@ pub extern "SECUR32" fn SspiIsAuthIdentityEncrypted(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiEncodeAuthIdentityAsStrings(
     pAuthIdentity: *c_void,
-    ppszUserName: ?*?PWSTR,
-    ppszDomainName: ?*?PWSTR,
-    ppszPackedCredentialsString: ?*?PWSTR,
+    ppszUserName: ?*PWSTR,
+    ppszDomainName: ?*PWSTR,
+    ppszPackedCredentialsString: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7189,7 +7189,7 @@ pub extern "SECUR32" fn CredUnmarshalTargetInfo(
     // TODO: what to do with BytesParamIndex 1?
     Buffer: *u16,
     BufferSize: u32,
-    RetTargetInfo: ?*?*CREDENTIAL_TARGET_INFORMATIONW,
+    RetTargetInfo: ?**CREDENTIAL_TARGET_INFORMATIONW,
     RetActualSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -7258,7 +7258,7 @@ pub extern "TOKENBINDING" fn TokenBindingGenerateBinding(
     extensionData: *const c_void,
     tokenBinding: **c_void,
     tokenBindingSize: *u32,
-    resultData: ?*?*TOKENBINDING_RESULT_DATA,
+    resultData: ?**TOKENBINDING_RESULT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'

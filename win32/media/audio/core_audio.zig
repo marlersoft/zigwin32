@@ -1041,7 +1041,7 @@ pub const KSPROPERTY_MEMORY_TRANSPORT = @as(i32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (1173)
 //--------------------------------------------------------------------------------
-pub const HTASK = ?*opaque{};
+pub const HTASK = *opaque{};
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -7594,7 +7594,7 @@ pub const IAudioClient = extern struct {
             self: *const IAudioClient,
             ShareMode: AUDCLNT_SHAREMODE,
             pFormat: *const WAVEFORMATEX,
-            ppClosestMatch: ?*?*WAVEFORMATEX,
+            ppClosestMatch: ?**WAVEFORMATEX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMixFormat: fn(
             self: *const IAudioClient,
@@ -7644,7 +7644,7 @@ pub const IAudioClient = extern struct {
             return @ptrCast(*const IAudioClient.VTable, self.vtable).GetCurrentPadding(@ptrCast(*const IAudioClient, self), pNumPaddingFrames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_IsFormatSupported(self: *const T, ShareMode: AUDCLNT_SHAREMODE, pFormat: *const WAVEFORMATEX, ppClosestMatch: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IAudioClient_IsFormatSupported(self: *const T, ShareMode: AUDCLNT_SHAREMODE, pFormat: *const WAVEFORMATEX, ppClosestMatch: ?**WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioClient.VTable, self.vtable).IsFormatSupported(@ptrCast(*const IAudioClient, self), ShareMode, pFormat, ppClosestMatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8676,7 +8676,7 @@ pub const ISpatialAudioObjectForHrtf = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOrientation: fn(
             self: *const ISpatialAudioObjectForHrtf,
-            orientation: *const *const f32,
+            orientation: *const *f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnvironment: fn(
             self: *const ISpatialAudioObjectForHrtf,
@@ -8703,7 +8703,7 @@ pub const ISpatialAudioObjectForHrtf = extern struct {
             return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetGain(@ptrCast(*const ISpatialAudioObjectForHrtf, self), gain);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForHrtf_SetOrientation(self: *const T, orientation: *const *const f32) callconv(.Inline) HRESULT {
+        pub fn ISpatialAudioObjectForHrtf_SetOrientation(self: *const T, orientation: *const *f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetOrientation(@ptrCast(*const ISpatialAudioObjectForHrtf, self), orientation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9100,14 +9100,14 @@ pub const IActivateAudioInterfaceAsyncOperation = extern struct {
         GetActivateResult: fn(
             self: *const IActivateAudioInterfaceAsyncOperation,
             activateResult: *HRESULT,
-            activatedInterface: ?*?*IUnknown,
+            activatedInterface: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActivateAudioInterfaceAsyncOperation_GetActivateResult(self: *const T, activateResult: *HRESULT, activatedInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IActivateAudioInterfaceAsyncOperation_GetActivateResult(self: *const T, activateResult: *HRESULT, activatedInterface: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActivateAudioInterfaceAsyncOperation.VTable, self.vtable).GetActivateResult(@ptrCast(*const IActivateAudioInterfaceAsyncOperation, self), activateResult, activatedInterface);
         }
     };}
@@ -10006,7 +10006,7 @@ pub const IPart = extern struct {
             self: *const IPart,
             dwClsContext: u32,
             refiid: *const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterControlChangeCallback: fn(
             self: *const IPart,
@@ -10062,7 +10062,7 @@ pub const IPart = extern struct {
             return @ptrCast(*const IPart.VTable, self.vtable).GetTopologyObject(@ptrCast(*const IPart, self), ppTopology);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_Activate(self: *const T, dwClsContext: u32, refiid: *const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPart_Activate(self: *const T, dwClsContext: u32, refiid: *const Guid, ppvObject: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPart.VTable, self.vtable).Activate(@ptrCast(*const IPart, self), dwClsContext, refiid, ppvObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11260,7 +11260,7 @@ pub const ISpatialAudioMetadataClient = extern struct {
             self: *const ISpatialAudioMetadataClient,
             maxItemCount: u16,
             frameCount: u16,
-            metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer,
+            metadataItemsBuffer: ?**ISpatialAudioMetadataItemsBuffer,
             metadataItems: **ISpatialAudioMetadataItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpatialAudioMetadataItemsBufferLength: fn(
@@ -11286,7 +11286,7 @@ pub const ISpatialAudioMetadataClient = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataItems(self: *const T, maxItemCount: u16, frameCount: u16, metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer, metadataItems: **ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+        pub fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataItems(self: *const T, maxItemCount: u16, frameCount: u16, metadataItemsBuffer: ?**ISpatialAudioMetadataItemsBuffer, metadataItems: **ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataItems(@ptrCast(*const ISpatialAudioMetadataClient, self), maxItemCount, frameCount, metadataItemsBuffer, metadataItems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11449,14 +11449,14 @@ pub extern "WINMM" fn mciSendStringA(
     lpstrCommand: [*:0]const u8,
     lpstrReturnString: ?[*:0]u8,
     uReturnLength: u32,
-    hwndCallback: HWND,
+    hwndCallback: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINMM" fn mciSendStringW(
     lpstrCommand: [*:0]const u16,
     lpstrReturnString: ?[*:0]u16,
     uReturnLength: u32,
-    hwndCallback: HWND,
+    hwndCallback: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WINMM" fn mciGetDeviceIDA(

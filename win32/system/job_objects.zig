@@ -213,7 +213,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsProcessInJob(
     ProcessHandle: HANDLE,
-    JobHandle: HANDLE,
+    JobHandle: ?HANDLE,
     Result: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -264,7 +264,7 @@ pub extern "KERNEL32" fn SetIoRateControlInformationJobObject(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn QueryInformationJobObject(
-    hJob: HANDLE,
+    hJob: ?HANDLE,
     JobObjectInformationClass: JOBOBJECTINFOCLASS,
     // TODO: what to do with BytesParamIndex 3?
     lpJobObjectInformation: *c_void,
@@ -274,7 +274,7 @@ pub extern "KERNEL32" fn QueryInformationJobObject(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "KERNEL32" fn QueryIoRateControlInformationJobObject(
-    hJob: HANDLE,
+    hJob: ?HANDLE,
     VolumeName: ?[*:0]const u16,
     InfoBlocks: **JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
     InfoBlockCount: *u32,

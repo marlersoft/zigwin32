@@ -2047,8 +2047,8 @@ pub const IWbemServices = extern struct {
             strNamespace: BSTR,
             lFlags: i32,
             pCtx: *IWbemContext,
-            ppWorkingNamespace: ?*?*IWbemServices,
-            ppResult: ?*?*IWbemCallResult,
+            ppWorkingNamespace: ?**IWbemServices,
+            ppResult: ?**IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelAsyncCall: fn(
             self: *const IWbemServices,
@@ -2064,8 +2064,8 @@ pub const IWbemServices = extern struct {
             strObjectPath: BSTR,
             lFlags: i32,
             pCtx: *IWbemContext,
-            ppObject: ?*?*IWbemClassObject,
-            ppCallResult: ?*?*IWbemCallResult,
+            ppObject: ?**IWbemClassObject,
+            ppCallResult: ?**IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectAsync: fn(
             self: *const IWbemServices,
@@ -2079,7 +2079,7 @@ pub const IWbemServices = extern struct {
             pObject: *IWbemClassObject,
             lFlags: i32,
             pCtx: *IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
+            ppCallResult: ?**IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutClassAsync: fn(
             self: *const IWbemServices,
@@ -2093,7 +2093,7 @@ pub const IWbemServices = extern struct {
             strClass: BSTR,
             lFlags: i32,
             pCtx: *IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
+            ppCallResult: ?**IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteClassAsync: fn(
             self: *const IWbemServices,
@@ -2121,7 +2121,7 @@ pub const IWbemServices = extern struct {
             pInst: *IWbemClassObject,
             lFlags: i32,
             pCtx: *IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
+            ppCallResult: ?**IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutInstanceAsync: fn(
             self: *const IWbemServices,
@@ -2135,7 +2135,7 @@ pub const IWbemServices = extern struct {
             strObjectPath: BSTR,
             lFlags: i32,
             pCtx: *IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
+            ppCallResult: ?**IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteInstanceAsync: fn(
             self: *const IWbemServices,
@@ -2197,8 +2197,8 @@ pub const IWbemServices = extern struct {
             lFlags: i32,
             pCtx: *IWbemContext,
             pInParams: *IWbemClassObject,
-            ppOutParams: ?*?*IWbemClassObject,
-            ppCallResult: ?*?*IWbemCallResult,
+            ppOutParams: ?**IWbemClassObject,
+            ppCallResult: ?**IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExecMethodAsync: fn(
             self: *const IWbemServices,
@@ -2214,7 +2214,7 @@ pub const IWbemServices = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_OpenNamespace(self: *const T, strNamespace: BSTR, lFlags: i32, pCtx: *IWbemContext, ppWorkingNamespace: ?*?*IWbemServices, ppResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemServices_OpenNamespace(self: *const T, strNamespace: BSTR, lFlags: i32, pCtx: *IWbemContext, ppWorkingNamespace: ?**IWbemServices, ppResult: ?**IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).OpenNamespace(@ptrCast(*const IWbemServices, self), strNamespace, lFlags, pCtx, ppWorkingNamespace, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2226,7 +2226,7 @@ pub const IWbemServices = extern struct {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).QueryObjectSink(@ptrCast(*const IWbemServices, self), lFlags, ppResponseHandler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_GetObject(self: *const T, strObjectPath: BSTR, lFlags: i32, pCtx: *IWbemContext, ppObject: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemServices_GetObject(self: *const T, strObjectPath: BSTR, lFlags: i32, pCtx: *IWbemContext, ppObject: ?**IWbemClassObject, ppCallResult: ?**IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).GetObject(@ptrCast(*const IWbemServices, self), strObjectPath, lFlags, pCtx, ppObject, ppCallResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2234,7 +2234,7 @@ pub const IWbemServices = extern struct {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).GetObjectAsync(@ptrCast(*const IWbemServices, self), strObjectPath, lFlags, pCtx, pResponseHandler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_PutClass(self: *const T, pObject: *IWbemClassObject, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemServices_PutClass(self: *const T, pObject: *IWbemClassObject, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?**IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).PutClass(@ptrCast(*const IWbemServices, self), pObject, lFlags, pCtx, ppCallResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2242,7 +2242,7 @@ pub const IWbemServices = extern struct {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).PutClassAsync(@ptrCast(*const IWbemServices, self), pObject, lFlags, pCtx, pResponseHandler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_DeleteClass(self: *const T, strClass: BSTR, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemServices_DeleteClass(self: *const T, strClass: BSTR, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?**IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).DeleteClass(@ptrCast(*const IWbemServices, self), strClass, lFlags, pCtx, ppCallResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2258,7 +2258,7 @@ pub const IWbemServices = extern struct {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).CreateClassEnumAsync(@ptrCast(*const IWbemServices, self), strSuperclass, lFlags, pCtx, pResponseHandler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_PutInstance(self: *const T, pInst: *IWbemClassObject, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemServices_PutInstance(self: *const T, pInst: *IWbemClassObject, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?**IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).PutInstance(@ptrCast(*const IWbemServices, self), pInst, lFlags, pCtx, ppCallResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2266,7 +2266,7 @@ pub const IWbemServices = extern struct {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).PutInstanceAsync(@ptrCast(*const IWbemServices, self), pInst, lFlags, pCtx, pResponseHandler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_DeleteInstance(self: *const T, strObjectPath: BSTR, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemServices_DeleteInstance(self: *const T, strObjectPath: BSTR, lFlags: i32, pCtx: *IWbemContext, ppCallResult: ?**IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).DeleteInstance(@ptrCast(*const IWbemServices, self), strObjectPath, lFlags, pCtx, ppCallResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2298,7 +2298,7 @@ pub const IWbemServices = extern struct {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).ExecNotificationQueryAsync(@ptrCast(*const IWbemServices, self), strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemServices_ExecMethod(self: *const T, strObjectPath: BSTR, strMethodName: BSTR, lFlags: i32, pCtx: *IWbemContext, pInParams: *IWbemClassObject, ppOutParams: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemServices_ExecMethod(self: *const T, strObjectPath: BSTR, strMethodName: BSTR, lFlags: i32, pCtx: *IWbemContext, pInParams: *IWbemClassObject, ppOutParams: ?**IWbemClassObject, ppCallResult: ?**IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemServices.VTable, self.vtable).ExecMethod(@ptrCast(*const IWbemServices, self), strObjectPath, strMethodName, lFlags, pCtx, pInParams, ppOutParams, ppCallResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6884,17 +6884,17 @@ pub const MI_ConstDatetimeA = extern struct {
 };
 
 pub const MI_ConstStringA = extern struct {
-    data: *const *const u16,
+    data: *const *u16,
     size: u32,
 };
 
 pub const MI_ConstReferenceA = extern struct {
-    data: *const *const MI_Instance,
+    data: *const *MI_Instance,
     size: u32,
 };
 
 pub const MI_ConstInstanceA = extern struct {
-    data: *const *const MI_Instance,
+    data: *const *MI_Instance,
     size: u32,
 };
 
@@ -7367,9 +7367,9 @@ pub const MI_ObjectDecl = extern struct {
     flags: u32,
     code: u32,
     name: *const u16,
-    qualifiers: *const *const MI_Qualifier,
+    qualifiers: *const *MI_Qualifier,
     numQualifiers: u32,
-    properties: *const *const MI_PropertyDecl,
+    properties: *const *MI_PropertyDecl,
     numProperties: u32,
     size: u32,
 };
@@ -7378,14 +7378,14 @@ pub const MI_ClassDecl = extern struct {
     flags: u32,
     code: u32,
     name: *const u16,
-    qualifiers: *const *const MI_Qualifier,
+    qualifiers: *const *MI_Qualifier,
     numQualifiers: u32,
-    properties: *const *const MI_PropertyDecl,
+    properties: *const *MI_PropertyDecl,
     numProperties: u32,
     size: u32,
     superClass: *const u16,
     superClassDecl: *const MI_ClassDecl,
-    methods: *const *const MI_MethodDecl,
+    methods: *const *MI_MethodDecl,
     numMethods: u32,
     schema: *const MI_SchemaDecl,
     providerFT: *const MI_ProviderFT,
@@ -7396,7 +7396,7 @@ pub const MI_FeatureDecl = extern struct {
     flags: u32,
     code: u32,
     name: *const u16,
-    qualifiers: *const *const MI_Qualifier,
+    qualifiers: *const *MI_Qualifier,
     numQualifiers: u32,
 };
 
@@ -7404,7 +7404,7 @@ pub const MI_ParameterDecl = extern struct {
     flags: u32,
     code: u32,
     name: *const u16,
-    qualifiers: *const *const MI_Qualifier,
+    qualifiers: *const *MI_Qualifier,
     numQualifiers: u32,
     type: u32,
     className: *const u16,
@@ -7416,7 +7416,7 @@ pub const MI_PropertyDecl = extern struct {
     flags: u32,
     code: u32,
     name: *const u16,
-    qualifiers: *const *const MI_Qualifier,
+    qualifiers: *const *MI_Qualifier,
     numQualifiers: u32,
     type: u32,
     className: *const u16,
@@ -7441,9 +7441,9 @@ pub const MI_MethodDecl = extern struct {
     flags: u32,
     code: u32,
     name: *const u16,
-    qualifiers: *const *const MI_Qualifier,
+    qualifiers: *const *MI_Qualifier,
     numQualifiers: u32,
-    parameters: *const *const MI_ParameterDecl,
+    parameters: *const *MI_ParameterDecl,
     numParameters: u32,
     size: u32,
     returnType: u32,
@@ -7470,9 +7470,9 @@ pub const MI_Qualifier = extern struct {
 };
 
 pub const MI_SchemaDecl = extern struct {
-    qualifierDecls: *const *const MI_QualifierDecl,
+    qualifierDecls: *const *MI_QualifierDecl,
     numQualifierDecls: u32,
-    classDecls: *const *const MI_ClassDecl,
+    classDecls: *const *MI_ClassDecl,
     numClassDecls: u32,
 };
 
@@ -7579,7 +7579,7 @@ pub const MI_ProviderFT_Subscribe = fn(
     filter: ?*const MI_Filter,
     bookmark: ?*const u16,
     subscriptionID: u64,
-    subscriptionSelf: ?*?*c_void,
+    subscriptionSelf: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_Unsubscribe = fn(
@@ -8132,7 +8132,7 @@ pub const MI_DestinationOptions_ImpersonationType_Delegate = MI_DestinationOptio
 pub extern "mi" fn MI_Application_InitializeV1(
     flags: u32,
     applicationID: ?*const u16,
-    extendedError: ?*?*MI_Instance,
+    extendedError: ?**MI_Instance,
     application: *MI_Application,
 ) callconv(@import("std").os.windows.WINAPI) MI_Result;
 

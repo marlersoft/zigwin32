@@ -457,23 +457,12 @@ pub extern "PROJECTEDFSLIB" fn PrjWritePlaceholderInfo2(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
-pub extern "PROJECTEDFSLIB" fn PrjUpdateFileIfNeeded(
-    namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
-    destinationFileName: [*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    placeholderInfo: *const PRJ_PLACEHOLDER_INFO,
-    placeholderInfoSize: u32,
-    updateFlags: PRJ_UPDATE_TYPES,
-    failureReason: ?*PRJ_UPDATE_FAILURE_CAUSES,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+// This function from dll 'PROJECTEDFSLIB' is being skipped because it has some sort of issue
+pub fn PrjUpdateFileIfNeeded() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows10.0.17763'
-pub extern "PROJECTEDFSLIB" fn PrjDeleteFile(
-    namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
-    destinationFileName: [*:0]const u16,
-    updateFlags: PRJ_UPDATE_TYPES,
-    failureReason: ?*PRJ_UPDATE_FAILURE_CAUSES,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+// This function from dll 'PROJECTEDFSLIB' is being skipped because it has some sort of issue
+pub fn PrjDeleteFile() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjWriteFileData(

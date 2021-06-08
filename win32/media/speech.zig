@@ -866,7 +866,7 @@ pub const ISpObjectWithToken = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectToken: fn(
             self: *const ISpObjectWithToken,
-            ppToken: ?*?*ISpObjectToken,
+            ppToken: ?**ISpObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -877,7 +877,7 @@ pub const ISpObjectWithToken = extern struct {
             return @ptrCast(*const ISpObjectWithToken.VTable, self.vtable).SetObjectToken(@ptrCast(*const ISpObjectWithToken, self), pToken);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpObjectWithToken_GetObjectToken(self: *const T, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+        pub fn ISpObjectWithToken_GetObjectToken(self: *const T, ppToken: ?**ISpObjectToken) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpObjectWithToken.VTable, self.vtable).GetObjectToken(@ptrCast(*const ISpObjectWithToken, self), ppToken);
         }
     };}
@@ -900,7 +900,7 @@ pub const ISpResourceManager = extern struct {
             ObjectCLSID: *const Guid,
             ObjectIID: *const Guid,
             fReleaseWhenLastExternalRefReleased: BOOL,
-            ppObject: ?*?*c_void,
+            ppObject: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -911,7 +911,7 @@ pub const ISpResourceManager = extern struct {
             return @ptrCast(*const ISpResourceManager.VTable, self.vtable).SetObject(@ptrCast(*const ISpResourceManager, self), guidServiceId, pUnkObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpResourceManager_GetObject(self: *const T, guidServiceId: *const Guid, ObjectCLSID: *const Guid, ObjectIID: *const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpResourceManager_GetObject(self: *const T, guidServiceId: *const Guid, ObjectCLSID: *const Guid, ObjectIID: *const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpResourceManager.VTable, self.vtable).GetObject(@ptrCast(*const ISpResourceManager, self), guidServiceId, ObjectCLSID, ObjectIID, fReleaseWhenLastExternalRefReleased, ppObject);
         }
     };}
@@ -1240,14 +1240,14 @@ pub const ISpStreamFormat = extern struct {
         GetFormat: fn(
             self: *const ISpStreamFormat,
             pguidFormatId: *Guid,
-            ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX,
+            ppCoMemWaveFormatEx: ?**WAVEFORMATEX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpStreamFormat_GetFormat(self: *const T, pguidFormatId: *Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn ISpStreamFormat_GetFormat(self: *const T, pguidFormatId: *Guid, ppCoMemWaveFormatEx: ?**WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpStreamFormat.VTable, self.vtable).GetFormat(@ptrCast(*const ISpStreamFormat, self), pguidFormatId, ppCoMemWaveFormatEx);
         }
     };}
@@ -1330,7 +1330,7 @@ pub const ISpStreamFormatConverter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBaseStream: fn(
             self: *const ISpStreamFormatConverter,
-            ppStream: ?*?*ISpStreamFormat,
+            ppStream: ?**ISpStreamFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFormat: fn(
             self: *const ISpStreamFormatConverter,
@@ -1359,7 +1359,7 @@ pub const ISpStreamFormatConverter = extern struct {
             return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).SetBaseStream(@ptrCast(*const ISpStreamFormatConverter, self), pStream, fSetFormatToBaseStreamFormat, fWriteToBaseStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpStreamFormatConverter_GetBaseStream(self: *const T, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
+        pub fn ISpStreamFormatConverter_GetBaseStream(self: *const T, ppStream: ?**ISpStreamFormat) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).GetBaseStream(@ptrCast(*const ISpStreamFormatConverter, self), ppStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1572,7 +1572,7 @@ pub const ISpTranscript = extern struct {
         base: IUnknown.VTable,
         GetTranscript: fn(
             self: *const ISpTranscript,
-            ppszTranscript: ?*?PWSTR,
+            ppszTranscript: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AppendTranscript: fn(
             self: *const ISpTranscript,
@@ -1583,7 +1583,7 @@ pub const ISpTranscript = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpTranscript_GetTranscript(self: *const T, ppszTranscript: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn ISpTranscript_GetTranscript(self: *const T, ppszTranscript: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpTranscript.VTable, self.vtable).GetTranscript(@ptrCast(*const ISpTranscript, self), ppszTranscript);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3164,7 +3164,7 @@ pub const ISpRecoGrammar = extern struct {
         SaveCmd: fn(
             self: *const ISpRecoGrammar,
             pStream: *IStream,
-            ppszCoMemErrorText: ?*?PWSTR,
+            ppszCoMemErrorText: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGrammarState: fn(
             self: *const ISpRecoGrammar,
@@ -3239,7 +3239,7 @@ pub const ISpRecoGrammar = extern struct {
             return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetGrammarState(@ptrCast(*const ISpRecoGrammar, self), eGrammarState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpRecoGrammar_SaveCmd(self: *const T, pStream: *IStream, ppszCoMemErrorText: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn ISpRecoGrammar_SaveCmd(self: *const T, pStream: *IStream, ppszCoMemErrorText: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SaveCmd(@ptrCast(*const ISpRecoGrammar, self), pStream, ppszCoMemErrorText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3962,7 +3962,7 @@ pub const ISpSerializeState = extern struct {
         base: IUnknown.VTable,
         GetSerializedState: fn(
             self: *const ISpSerializeState,
-            ppbData: ?*?*u8,
+            ppbData: ?**u8,
             pulSize: *u32,
             dwReserved: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3977,7 +3977,7 @@ pub const ISpSerializeState = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpSerializeState_GetSerializedState(self: *const T, ppbData: ?*?*u8, pulSize: *u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        pub fn ISpSerializeState_GetSerializedState(self: *const T, ppbData: ?**u8, pulSize: *u32, dwReserved: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpSerializeState.VTable, self.vtable).GetSerializedState(@ptrCast(*const ISpSerializeState, self), ppbData, pulSize, dwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5615,12 +5615,12 @@ pub const ISpeechDataKey = extern struct {
         OpenKey: fn(
             self: *const ISpeechDataKey,
             SubKeyName: BSTR,
-            SubKey: ?*?*ISpeechDataKey,
+            SubKey: ?**ISpeechDataKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateKey: fn(
             self: *const ISpeechDataKey,
             SubKeyName: BSTR,
-            SubKey: ?*?*ISpeechDataKey,
+            SubKey: ?**ISpeechDataKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteKey: fn(
             self: *const ISpeechDataKey,
@@ -5669,11 +5669,11 @@ pub const ISpeechDataKey = extern struct {
             return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).GetLongValue(@ptrCast(*const ISpeechDataKey, self), ValueName, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechDataKey_OpenKey(self: *const T, SubKeyName: BSTR, SubKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+        pub fn ISpeechDataKey_OpenKey(self: *const T, SubKeyName: BSTR, SubKey: ?**ISpeechDataKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).OpenKey(@ptrCast(*const ISpeechDataKey, self), SubKeyName, SubKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechDataKey_CreateKey(self: *const T, SubKeyName: BSTR, SubKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+        pub fn ISpeechDataKey_CreateKey(self: *const T, SubKeyName: BSTR, SubKey: ?**ISpeechDataKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).CreateKey(@ptrCast(*const ISpeechDataKey, self), SubKeyName, SubKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5709,12 +5709,12 @@ pub const ISpeechObjectToken = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataKey: fn(
             self: *const ISpeechObjectToken,
-            DataKey: ?*?*ISpeechDataKey,
+            DataKey: ?**ISpeechDataKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Category: fn(
             self: *const ISpeechObjectToken,
-            Category: ?*?*ISpeechObjectTokenCategory,
+            Category: ?**ISpeechObjectTokenCategory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const ISpeechObjectToken,
@@ -5736,7 +5736,7 @@ pub const ISpeechObjectToken = extern struct {
             self: *const ISpeechObjectToken,
             pUnkOuter: ?*IUnknown,
             ClsContext: SpeechTokenContext,
-            Object: ?*?*IUnknown,
+            Object: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const ISpeechObjectToken,
@@ -5785,11 +5785,11 @@ pub const ISpeechObjectToken = extern struct {
             return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechObjectToken, self), ObjectId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechObjectToken_get_DataKey(self: *const T, DataKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+        pub fn ISpeechObjectToken_get_DataKey(self: *const T, DataKey: ?**ISpeechDataKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).get_DataKey(@ptrCast(*const ISpeechObjectToken, self), DataKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechObjectToken_get_Category(self: *const T, Category: ?*?*ISpeechObjectTokenCategory) callconv(.Inline) HRESULT {
+        pub fn ISpeechObjectToken_get_Category(self: *const T, Category: ?**ISpeechObjectTokenCategory) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).get_Category(@ptrCast(*const ISpeechObjectToken, self), Category);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5805,7 +5805,7 @@ pub const ISpeechObjectToken = extern struct {
             return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).GetAttribute(@ptrCast(*const ISpeechObjectToken, self), AttributeName, AttributeValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechObjectToken_CreateInstance(self: *const T, pUnkOuter: ?*IUnknown, ClsContext: SpeechTokenContext, Object: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechObjectToken_CreateInstance(self: *const T, pUnkOuter: ?*IUnknown, ClsContext: SpeechTokenContext, Object: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).CreateInstance(@ptrCast(*const ISpeechObjectToken, self), pUnkOuter, ClsContext, Object);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5849,12 +5849,12 @@ pub const ISpeechObjectTokens = extern struct {
         Item: fn(
             self: *const ISpeechObjectTokens,
             Index: i32,
-            Token: ?*?*ISpeechObjectToken,
+            Token: ?**ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechObjectTokens,
-            ppEnumVARIANT: ?*?*IUnknown,
+            ppEnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5865,11 +5865,11 @@ pub const ISpeechObjectTokens = extern struct {
             return @ptrCast(*const ISpeechObjectTokens.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechObjectTokens, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechObjectTokens_Item(self: *const T, Index: i32, Token: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+        pub fn ISpeechObjectTokens_Item(self: *const T, Index: i32, Token: ?**ISpeechObjectToken) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechObjectTokens.VTable, self.vtable).Item(@ptrCast(*const ISpeechObjectTokens, self), Index, Token);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechObjectTokens_get__NewEnum(self: *const T, ppEnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechObjectTokens_get__NewEnum(self: *const T, ppEnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechObjectTokens.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechObjectTokens, self), ppEnumVARIANT);
         }
     };}
@@ -5904,13 +5904,13 @@ pub const ISpeechObjectTokenCategory = extern struct {
         GetDataKey: fn(
             self: *const ISpeechObjectTokenCategory,
             Location: SpeechDataKeyLocation,
-            DataKey: ?*?*ISpeechDataKey,
+            DataKey: ?**ISpeechDataKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateTokens: fn(
             self: *const ISpeechObjectTokenCategory,
             RequiredAttributes: BSTR,
             OptionalAttributes: BSTR,
-            Tokens: ?*?*ISpeechObjectTokens,
+            Tokens: ?**ISpeechObjectTokens,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5933,11 +5933,11 @@ pub const ISpeechObjectTokenCategory = extern struct {
             return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).SetId(@ptrCast(*const ISpeechObjectTokenCategory, self), Id, CreateIfNotExist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechObjectTokenCategory_GetDataKey(self: *const T, Location: SpeechDataKeyLocation, DataKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+        pub fn ISpeechObjectTokenCategory_GetDataKey(self: *const T, Location: SpeechDataKeyLocation, DataKey: ?**ISpeechDataKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).GetDataKey(@ptrCast(*const ISpeechObjectTokenCategory, self), Location, DataKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechObjectTokenCategory_EnumerateTokens(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, Tokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+        pub fn ISpeechObjectTokenCategory_EnumerateTokens(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, Tokens: ?**ISpeechObjectTokens) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).EnumerateTokens(@ptrCast(*const ISpeechObjectTokenCategory, self), RequiredAttributes, OptionalAttributes, Tokens);
         }
     };}
@@ -6096,7 +6096,7 @@ pub const ISpeechAudioFormat = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWaveFormatEx: fn(
             self: *const ISpeechAudioFormat,
-            SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx,
+            SpeechWaveFormatEx: ?**ISpeechWaveFormatEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetWaveFormatEx: fn(
             self: *const ISpeechAudioFormat,
@@ -6123,7 +6123,7 @@ pub const ISpeechAudioFormat = extern struct {
             return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).put_Guid(@ptrCast(*const ISpeechAudioFormat, self), Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechAudioFormat_GetWaveFormatEx(self: *const T, SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx) callconv(.Inline) HRESULT {
+        pub fn ISpeechAudioFormat_GetWaveFormatEx(self: *const T, SpeechWaveFormatEx: ?**ISpeechWaveFormatEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).GetWaveFormatEx(@ptrCast(*const ISpeechAudioFormat, self), SpeechWaveFormatEx);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6281,7 +6281,7 @@ pub const ISpeechBaseStream = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Format: fn(
             self: *const ISpeechBaseStream,
-            AudioFormat: ?*?*ISpeechAudioFormat,
+            AudioFormat: ?**ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Format: fn(
             self: *const ISpeechBaseStream,
@@ -6309,7 +6309,7 @@ pub const ISpeechBaseStream = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechBaseStream_get_Format(self: *const T, AudioFormat: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+        pub fn ISpeechBaseStream_get_Format(self: *const T, AudioFormat: ?**ISpeechAudioFormat) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechBaseStream.VTable, self.vtable).get_Format(@ptrCast(*const ISpeechBaseStream, self), AudioFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6399,7 +6399,7 @@ pub const ISpeechCustomStream = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BaseStream: fn(
             self: *const ISpeechCustomStream,
-            ppUnkStream: ?*?*IUnknown,
+            ppUnkStream: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_BaseStream: fn(
             self: *const ISpeechCustomStream,
@@ -6410,7 +6410,7 @@ pub const ISpeechCustomStream = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISpeechBaseStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechCustomStream_get_BaseStream(self: *const T, ppUnkStream: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechCustomStream_get_BaseStream(self: *const T, ppUnkStream: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechCustomStream.VTable, self.vtable).get_BaseStream(@ptrCast(*const ISpeechCustomStream, self), ppUnkStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6429,17 +6429,17 @@ pub const ISpeechAudio = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ISpeechAudio,
-            Status: ?*?*ISpeechAudioStatus,
+            Status: ?**ISpeechAudioStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferInfo: fn(
             self: *const ISpeechAudio,
-            BufferInfo: ?*?*ISpeechAudioBufferInfo,
+            BufferInfo: ?**ISpeechAudioBufferInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultFormat: fn(
             self: *const ISpeechAudio,
-            StreamFormat: ?*?*ISpeechAudioFormat,
+            StreamFormat: ?**ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Volume: fn(
@@ -6475,15 +6475,15 @@ pub const ISpeechAudio = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISpeechBaseStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechAudio_get_Status(self: *const T, Status: ?*?*ISpeechAudioStatus) callconv(.Inline) HRESULT {
+        pub fn ISpeechAudio_get_Status(self: *const T, Status: ?**ISpeechAudioStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_Status(@ptrCast(*const ISpeechAudio, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechAudio_get_BufferInfo(self: *const T, BufferInfo: ?*?*ISpeechAudioBufferInfo) callconv(.Inline) HRESULT {
+        pub fn ISpeechAudio_get_BufferInfo(self: *const T, BufferInfo: ?**ISpeechAudioBufferInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_BufferInfo(@ptrCast(*const ISpeechAudio, self), BufferInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechAudio_get_DefaultFormat(self: *const T, StreamFormat: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+        pub fn ISpeechAudio_get_DefaultFormat(self: *const T, StreamFormat: ?**ISpeechAudioFormat) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_DefaultFormat(@ptrCast(*const ISpeechAudio, self), StreamFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6580,12 +6580,12 @@ pub const ISpeechVoice = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ISpeechVoice,
-            Status: ?*?*ISpeechVoiceStatus,
+            Status: ?**ISpeechVoiceStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Voice: fn(
             self: *const ISpeechVoice,
-            Voice: ?*?*ISpeechObjectToken,
+            Voice: ?**ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Voice: fn(
             self: *const ISpeechVoice,
@@ -6594,7 +6594,7 @@ pub const ISpeechVoice = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioOutput: fn(
             self: *const ISpeechVoice,
-            AudioOutput: ?*?*ISpeechObjectToken,
+            AudioOutput: ?**ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_AudioOutput: fn(
             self: *const ISpeechVoice,
@@ -6603,7 +6603,7 @@ pub const ISpeechVoice = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioOutputStream: fn(
             self: *const ISpeechVoice,
-            AudioOutputStream: ?*?*ISpeechBaseStream,
+            AudioOutputStream: ?**ISpeechBaseStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_AudioOutputStream: fn(
             self: *const ISpeechVoice,
@@ -6707,13 +6707,13 @@ pub const ISpeechVoice = extern struct {
             self: *const ISpeechVoice,
             RequiredAttributes: BSTR,
             OptionalAttributes: BSTR,
-            ObjectTokens: ?*?*ISpeechObjectTokens,
+            ObjectTokens: ?**ISpeechObjectTokens,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAudioOutputs: fn(
             self: *const ISpeechVoice,
             RequiredAttributes: BSTR,
             OptionalAttributes: BSTR,
-            ObjectTokens: ?*?*ISpeechObjectTokens,
+            ObjectTokens: ?**ISpeechObjectTokens,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WaitUntilDone: fn(
             self: *const ISpeechVoice,
@@ -6742,11 +6742,11 @@ pub const ISpeechVoice = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechVoice_get_Status(self: *const T, Status: ?*?*ISpeechVoiceStatus) callconv(.Inline) HRESULT {
+        pub fn ISpeechVoice_get_Status(self: *const T, Status: ?**ISpeechVoiceStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_Status(@ptrCast(*const ISpeechVoice, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechVoice_get_Voice(self: *const T, Voice: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+        pub fn ISpeechVoice_get_Voice(self: *const T, Voice: ?**ISpeechObjectToken) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_Voice(@ptrCast(*const ISpeechVoice, self), Voice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6754,7 +6754,7 @@ pub const ISpeechVoice = extern struct {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).putref_Voice(@ptrCast(*const ISpeechVoice, self), Voice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechVoice_get_AudioOutput(self: *const T, AudioOutput: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+        pub fn ISpeechVoice_get_AudioOutput(self: *const T, AudioOutput: ?**ISpeechObjectToken) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_AudioOutput(@ptrCast(*const ISpeechVoice, self), AudioOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6762,7 +6762,7 @@ pub const ISpeechVoice = extern struct {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).putref_AudioOutput(@ptrCast(*const ISpeechVoice, self), AudioOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechVoice_get_AudioOutputStream(self: *const T, AudioOutputStream: ?*?*ISpeechBaseStream) callconv(.Inline) HRESULT {
+        pub fn ISpeechVoice_get_AudioOutputStream(self: *const T, AudioOutputStream: ?**ISpeechBaseStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_AudioOutputStream(@ptrCast(*const ISpeechVoice, self), AudioOutputStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6846,11 +6846,11 @@ pub const ISpeechVoice = extern struct {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).Skip(@ptrCast(*const ISpeechVoice, self), Type, NumItems, NumSkipped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechVoice_GetVoices(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+        pub fn ISpeechVoice_GetVoices(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?**ISpeechObjectTokens) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).GetVoices(@ptrCast(*const ISpeechVoice, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechVoice_GetAudioOutputs(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+        pub fn ISpeechVoice_GetAudioOutputs(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?**ISpeechObjectTokens) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechVoice.VTable, self.vtable).GetAudioOutputs(@ptrCast(*const ISpeechVoice, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7019,7 +7019,7 @@ pub const ISpeechRecognizer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recognizer: fn(
             self: *const ISpeechRecognizer,
-            Recognizer: ?*?*ISpeechObjectToken,
+            Recognizer: ?**ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowAudioInputFormatChangesOnNextSet: fn(
@@ -7038,7 +7038,7 @@ pub const ISpeechRecognizer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInput: fn(
             self: *const ISpeechRecognizer,
-            AudioInput: ?*?*ISpeechObjectToken,
+            AudioInput: ?**ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_AudioInputStream: fn(
             self: *const ISpeechRecognizer,
@@ -7047,7 +7047,7 @@ pub const ISpeechRecognizer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInputStream: fn(
             self: *const ISpeechRecognizer,
-            AudioInputStream: ?*?*ISpeechBaseStream,
+            AudioInputStream: ?**ISpeechBaseStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsShared: fn(
@@ -7067,7 +7067,7 @@ pub const ISpeechRecognizer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ISpeechRecognizer,
-            Status: ?*?*ISpeechRecognizerStatus,
+            Status: ?**ISpeechRecognizerStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Profile: fn(
             self: *const ISpeechRecognizer,
@@ -7076,7 +7076,7 @@ pub const ISpeechRecognizer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Profile: fn(
             self: *const ISpeechRecognizer,
-            Profile: ?*?*ISpeechObjectToken,
+            Profile: ?**ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EmulateRecognition: fn(
             self: *const ISpeechRecognizer,
@@ -7086,12 +7086,12 @@ pub const ISpeechRecognizer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRecoContext: fn(
             self: *const ISpeechRecognizer,
-            NewContext: ?*?*ISpeechRecoContext,
+            NewContext: ?**ISpeechRecoContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormat: fn(
             self: *const ISpeechRecognizer,
             Type: SpeechFormatType,
-            Format: ?*?*ISpeechAudioFormat,
+            Format: ?**ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPropertyNumber: fn(
             self: *const ISpeechRecognizer,
@@ -7134,19 +7134,19 @@ pub const ISpeechRecognizer = extern struct {
             self: *const ISpeechRecognizer,
             RequiredAttributes: BSTR,
             OptionalAttributes: BSTR,
-            ObjectTokens: ?*?*ISpeechObjectTokens,
+            ObjectTokens: ?**ISpeechObjectTokens,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAudioInputs: fn(
             self: *const ISpeechRecognizer,
             RequiredAttributes: BSTR,
             OptionalAttributes: BSTR,
-            ObjectTokens: ?*?*ISpeechObjectTokens,
+            ObjectTokens: ?**ISpeechObjectTokens,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProfiles: fn(
             self: *const ISpeechRecognizer,
             RequiredAttributes: BSTR,
             OptionalAttributes: BSTR,
-            ObjectTokens: ?*?*ISpeechObjectTokens,
+            ObjectTokens: ?**ISpeechObjectTokens,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7157,7 +7157,7 @@ pub const ISpeechRecognizer = extern struct {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_Recognizer(@ptrCast(*const ISpeechRecognizer, self), Recognizer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_get_Recognizer(self: *const T, Recognizer: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_get_Recognizer(self: *const T, Recognizer: ?**ISpeechObjectToken) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_Recognizer(@ptrCast(*const ISpeechRecognizer, self), Recognizer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7173,7 +7173,7 @@ pub const ISpeechRecognizer = extern struct {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_AudioInput(@ptrCast(*const ISpeechRecognizer, self), AudioInput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_get_AudioInput(self: *const T, AudioInput: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_get_AudioInput(self: *const T, AudioInput: ?**ISpeechObjectToken) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_AudioInput(@ptrCast(*const ISpeechRecognizer, self), AudioInput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7181,7 +7181,7 @@ pub const ISpeechRecognizer = extern struct {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_AudioInputStream(@ptrCast(*const ISpeechRecognizer, self), AudioInputStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_get_AudioInputStream(self: *const T, AudioInputStream: ?*?*ISpeechBaseStream) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_get_AudioInputStream(self: *const T, AudioInputStream: ?**ISpeechBaseStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_AudioInputStream(@ptrCast(*const ISpeechRecognizer, self), AudioInputStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7197,7 +7197,7 @@ pub const ISpeechRecognizer = extern struct {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_State(@ptrCast(*const ISpeechRecognizer, self), State);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_get_Status(self: *const T, Status: ?*?*ISpeechRecognizerStatus) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_get_Status(self: *const T, Status: ?**ISpeechRecognizerStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_Status(@ptrCast(*const ISpeechRecognizer, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7205,7 +7205,7 @@ pub const ISpeechRecognizer = extern struct {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_Profile(@ptrCast(*const ISpeechRecognizer, self), Profile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_get_Profile(self: *const T, Profile: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_get_Profile(self: *const T, Profile: ?**ISpeechObjectToken) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_Profile(@ptrCast(*const ISpeechRecognizer, self), Profile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7213,11 +7213,11 @@ pub const ISpeechRecognizer = extern struct {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).EmulateRecognition(@ptrCast(*const ISpeechRecognizer, self), TextElements, ElementDisplayAttributes, LanguageId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_CreateRecoContext(self: *const T, NewContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_CreateRecoContext(self: *const T, NewContext: ?**ISpeechRecoContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).CreateRecoContext(@ptrCast(*const ISpeechRecognizer, self), NewContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_GetFormat(self: *const T, Type: SpeechFormatType, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_GetFormat(self: *const T, Type: SpeechFormatType, Format: ?**ISpeechAudioFormat) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetFormat(@ptrCast(*const ISpeechRecognizer, self), Type, Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7245,15 +7245,15 @@ pub const ISpeechRecognizer = extern struct {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpeechRecognizer, self), hWndParent, Title, TypeOfUI, ExtraData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_GetRecognizers(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_GetRecognizers(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?**ISpeechObjectTokens) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetRecognizers(@ptrCast(*const ISpeechRecognizer, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_GetAudioInputs(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_GetAudioInputs(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?**ISpeechObjectTokens) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetAudioInputs(@ptrCast(*const ISpeechRecognizer, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizer_GetProfiles(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizer_GetProfiles(self: *const T, RequiredAttributes: BSTR, OptionalAttributes: BSTR, ObjectTokens: ?**ISpeechObjectTokens) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetProfiles(@ptrCast(*const ISpeechRecognizer, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
         }
     };}
@@ -7268,7 +7268,7 @@ pub const ISpeechRecognizerStatus = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioStatus: fn(
             self: *const ISpeechRecognizerStatus,
-            AudioStatus: ?*?*ISpeechAudioStatus,
+            AudioStatus: ?**ISpeechAudioStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStreamPosition: fn(
@@ -7300,7 +7300,7 @@ pub const ISpeechRecognizerStatus = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecognizerStatus_get_AudioStatus(self: *const T, AudioStatus: ?*?*ISpeechAudioStatus) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecognizerStatus_get_AudioStatus(self: *const T, AudioStatus: ?**ISpeechAudioStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecognizerStatus.VTable, self.vtable).get_AudioStatus(@ptrCast(*const ISpeechRecognizerStatus, self), AudioStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7335,7 +7335,7 @@ pub const ISpeechRecoContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recognizer: fn(
             self: *const ISpeechRecoContext,
-            Recognizer: ?*?*ISpeechRecognizer,
+            Recognizer: ?**ISpeechRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInputInterferenceStatus: fn(
@@ -7354,7 +7354,7 @@ pub const ISpeechRecoContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Voice: fn(
             self: *const ISpeechRecoContext,
-            Voice: ?*?*ISpeechVoice,
+            Voice: ?**ISpeechVoice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowVoiceFormatMatchingOnNextSet: fn(
@@ -7423,7 +7423,7 @@ pub const ISpeechRecoContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedAudioFormat: fn(
             self: *const ISpeechRecoContext,
-            Format: ?*?*ISpeechAudioFormat,
+            Format: ?**ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Pause: fn(
             self: *const ISpeechRecoContext,
@@ -7434,12 +7434,12 @@ pub const ISpeechRecoContext = extern struct {
         CreateGrammar: fn(
             self: *const ISpeechRecoContext,
             GrammarId: VARIANT,
-            Grammar: ?*?*ISpeechRecoGrammar,
+            Grammar: ?**ISpeechRecoGrammar,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateResultFromMemory: fn(
             self: *const ISpeechRecoContext,
             ResultBlock: *VARIANT,
-            Result: ?*?*ISpeechRecoResult,
+            Result: ?**ISpeechRecoResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Bookmark: fn(
             self: *const ISpeechRecoContext,
@@ -7456,7 +7456,7 @@ pub const ISpeechRecoContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoContext_get_Recognizer(self: *const T, Recognizer: ?*?*ISpeechRecognizer) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoContext_get_Recognizer(self: *const T, Recognizer: ?**ISpeechRecognizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_Recognizer(@ptrCast(*const ISpeechRecoContext, self), Recognizer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7472,7 +7472,7 @@ pub const ISpeechRecoContext = extern struct {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).putref_Voice(@ptrCast(*const ISpeechRecoContext, self), Voice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoContext_get_Voice(self: *const T, Voice: ?*?*ISpeechVoice) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoContext_get_Voice(self: *const T, Voice: ?**ISpeechVoice) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_Voice(@ptrCast(*const ISpeechRecoContext, self), Voice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7528,7 +7528,7 @@ pub const ISpeechRecoContext = extern struct {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).putref_RetainedAudioFormat(@ptrCast(*const ISpeechRecoContext, self), Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoContext_get_RetainedAudioFormat(self: *const T, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoContext_get_RetainedAudioFormat(self: *const T, Format: ?**ISpeechAudioFormat) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_RetainedAudioFormat(@ptrCast(*const ISpeechRecoContext, self), Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7540,11 +7540,11 @@ pub const ISpeechRecoContext = extern struct {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).Resume(@ptrCast(*const ISpeechRecoContext, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoContext_CreateGrammar(self: *const T, GrammarId: VARIANT, Grammar: ?*?*ISpeechRecoGrammar) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoContext_CreateGrammar(self: *const T, GrammarId: VARIANT, Grammar: ?**ISpeechRecoGrammar) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).CreateGrammar(@ptrCast(*const ISpeechRecoContext, self), GrammarId, Grammar);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoContext_CreateResultFromMemory(self: *const T, ResultBlock: *VARIANT, Result: ?*?*ISpeechRecoResult) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoContext_CreateResultFromMemory(self: *const T, ResultBlock: *VARIANT, Result: ?**ISpeechRecoResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).CreateResultFromMemory(@ptrCast(*const ISpeechRecoContext, self), ResultBlock, Result);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7572,7 +7572,7 @@ pub const ISpeechRecoGrammar = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoContext: fn(
             self: *const ISpeechRecoGrammar,
-            RecoContext: ?*?*ISpeechRecoContext,
+            RecoContext: ?**ISpeechRecoContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: fn(
@@ -7587,7 +7587,7 @@ pub const ISpeechRecoGrammar = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: fn(
             self: *const ISpeechRecoGrammar,
-            Rules: ?*?*ISpeechGrammarRules,
+            Rules: ?**ISpeechGrammarRules,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const ISpeechRecoGrammar,
@@ -7670,7 +7670,7 @@ pub const ISpeechRecoGrammar = extern struct {
             return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechRecoGrammar, self), Id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoGrammar_get_RecoContext(self: *const T, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoGrammar_get_RecoContext(self: *const T, RecoContext: ?**ISpeechRecoContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_RecoContext(@ptrCast(*const ISpeechRecoGrammar, self), RecoContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7682,7 +7682,7 @@ pub const ISpeechRecoGrammar = extern struct {
             return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_State(@ptrCast(*const ISpeechRecoGrammar, self), State);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoGrammar_get_Rules(self: *const T, Rules: ?*?*ISpeechGrammarRules) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoGrammar_get_Rules(self: *const T, Rules: ?**ISpeechGrammarRules) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_Rules(@ptrCast(*const ISpeechRecoGrammar, self), Rules);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7771,7 +7771,7 @@ pub const ISpeechGrammarRule = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialState: fn(
             self: *const ISpeechGrammarRule,
-            State: ?*?*ISpeechGrammarRuleState,
+            State: ?**ISpeechGrammarRuleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
@@ -7793,7 +7793,7 @@ pub const ISpeechGrammarRule = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddState: fn(
             self: *const ISpeechGrammarRule,
-            State: ?*?*ISpeechGrammarRuleState,
+            State: ?**ISpeechGrammarRuleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7804,7 +7804,7 @@ pub const ISpeechGrammarRule = extern struct {
             return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).get_Attributes(@ptrCast(*const ISpeechGrammarRule, self), Attributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRule_get_InitialState(self: *const T, State: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRule_get_InitialState(self: *const T, State: ?**ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).get_InitialState(@ptrCast(*const ISpeechGrammarRule, self), State);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7824,7 +7824,7 @@ pub const ISpeechGrammarRule = extern struct {
             return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).AddResource(@ptrCast(*const ISpeechGrammarRule, self), ResourceName, ResourceValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRule_AddState(self: *const T, State: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRule_AddState(self: *const T, State: ?**ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).AddState(@ptrCast(*const ISpeechGrammarRule, self), State);
         }
     };}
@@ -7844,17 +7844,17 @@ pub const ISpeechGrammarRules = extern struct {
         FindRule: fn(
             self: *const ISpeechGrammarRules,
             RuleNameOrId: VARIANT,
-            Rule: ?*?*ISpeechGrammarRule,
+            Rule: ?**ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const ISpeechGrammarRules,
             Index: i32,
-            Rule: ?*?*ISpeechGrammarRule,
+            Rule: ?**ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechGrammarRules,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dynamic: fn(
@@ -7866,7 +7866,7 @@ pub const ISpeechGrammarRules = extern struct {
             RuleName: BSTR,
             Attributes: SpeechRuleAttributes,
             RuleId: i32,
-            Rule: ?*?*ISpeechGrammarRule,
+            Rule: ?**ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Commit: fn(
             self: *const ISpeechGrammarRules,
@@ -7885,15 +7885,15 @@ pub const ISpeechGrammarRules = extern struct {
             return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechGrammarRules, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRules_FindRule(self: *const T, RuleNameOrId: VARIANT, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRules_FindRule(self: *const T, RuleNameOrId: VARIANT, Rule: ?**ISpeechGrammarRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).FindRule(@ptrCast(*const ISpeechGrammarRules, self), RuleNameOrId, Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRules_Item(self: *const T, Index: i32, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRules_Item(self: *const T, Index: i32, Rule: ?**ISpeechGrammarRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).Item(@ptrCast(*const ISpeechGrammarRules, self), Index, Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRules_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRules_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechGrammarRules, self), EnumVARIANT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7901,7 +7901,7 @@ pub const ISpeechGrammarRules = extern struct {
             return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).get_Dynamic(@ptrCast(*const ISpeechGrammarRules, self), Dynamic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRules_Add(self: *const T, RuleName: BSTR, Attributes: SpeechRuleAttributes, RuleId: i32, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRules_Add(self: *const T, RuleName: BSTR, Attributes: SpeechRuleAttributes, RuleId: i32, Rule: ?**ISpeechGrammarRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).Add(@ptrCast(*const ISpeechGrammarRules, self), RuleName, Attributes, RuleId, Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7924,12 +7924,12 @@ pub const ISpeechGrammarRuleState = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: fn(
             self: *const ISpeechGrammarRuleState,
-            Rule: ?*?*ISpeechGrammarRule,
+            Rule: ?**ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Transitions: fn(
             self: *const ISpeechGrammarRuleState,
-            Transitions: ?*?*ISpeechGrammarRuleStateTransitions,
+            Transitions: ?**ISpeechGrammarRuleStateTransitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddWordTransition: fn(
             self: *const ISpeechGrammarRuleState,
@@ -7965,11 +7965,11 @@ pub const ISpeechGrammarRuleState = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRuleState_get_Rule(self: *const T, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRuleState_get_Rule(self: *const T, Rule: ?**ISpeechGrammarRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRuleState.VTable, self.vtable).get_Rule(@ptrCast(*const ISpeechGrammarRuleState, self), Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRuleState_get_Transitions(self: *const T, Transitions: ?*?*ISpeechGrammarRuleStateTransitions) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRuleState_get_Transitions(self: *const T, Transitions: ?**ISpeechGrammarRuleStateTransitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRuleState.VTable, self.vtable).get_Transitions(@ptrCast(*const ISpeechGrammarRuleState, self), Transitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8006,7 +8006,7 @@ pub const ISpeechGrammarRuleStateTransition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: fn(
             self: *const ISpeechGrammarRuleStateTransition,
-            Rule: ?*?*ISpeechGrammarRule,
+            Rule: ?**ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Weight: fn(
@@ -8031,7 +8031,7 @@ pub const ISpeechGrammarRuleStateTransition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextState: fn(
             self: *const ISpeechGrammarRuleStateTransition,
-            NextState: ?*?*ISpeechGrammarRuleState,
+            NextState: ?**ISpeechGrammarRuleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8046,7 +8046,7 @@ pub const ISpeechGrammarRuleStateTransition = extern struct {
             return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_Text(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), Text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRuleStateTransition_get_Rule(self: *const T, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRuleStateTransition_get_Rule(self: *const T, Rule: ?**ISpeechGrammarRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_Rule(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8066,7 +8066,7 @@ pub const ISpeechGrammarRuleStateTransition = extern struct {
             return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_PropertyValue(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), PropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRuleStateTransition_get_NextState(self: *const T, NextState: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRuleStateTransition_get_NextState(self: *const T, NextState: ?**ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_NextState(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), NextState);
         }
     };}
@@ -8086,12 +8086,12 @@ pub const ISpeechGrammarRuleStateTransitions = extern struct {
         Item: fn(
             self: *const ISpeechGrammarRuleStateTransitions,
             Index: i32,
-            Transition: ?*?*ISpeechGrammarRuleStateTransition,
+            Transition: ?**ISpeechGrammarRuleStateTransition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechGrammarRuleStateTransitions,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8102,11 +8102,11 @@ pub const ISpeechGrammarRuleStateTransitions = extern struct {
             return @ptrCast(*const ISpeechGrammarRuleStateTransitions.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechGrammarRuleStateTransitions, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRuleStateTransitions_Item(self: *const T, Index: i32, Transition: ?*?*ISpeechGrammarRuleStateTransition) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRuleStateTransitions_Item(self: *const T, Index: i32, Transition: ?**ISpeechGrammarRuleStateTransition) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRuleStateTransitions.VTable, self.vtable).Item(@ptrCast(*const ISpeechGrammarRuleStateTransitions, self), Index, Transition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechGrammarRuleStateTransitions_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechGrammarRuleStateTransitions_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechGrammarRuleStateTransitions.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechGrammarRuleStateTransitions, self), EnumVARIANT);
         }
     };}
@@ -8206,12 +8206,12 @@ pub const ISpeechRecoResult = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoContext: fn(
             self: *const ISpeechRecoResult,
-            RecoContext: ?*?*ISpeechRecoContext,
+            RecoContext: ?**ISpeechRecoContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Times: fn(
             self: *const ISpeechRecoResult,
-            Times: ?*?*ISpeechRecoResultTimes,
+            Times: ?**ISpeechRecoResultTimes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_AudioFormat: fn(
             self: *const ISpeechRecoResult,
@@ -8220,25 +8220,25 @@ pub const ISpeechRecoResult = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioFormat: fn(
             self: *const ISpeechRecoResult,
-            Format: ?*?*ISpeechAudioFormat,
+            Format: ?**ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: fn(
             self: *const ISpeechRecoResult,
-            PhraseInfo: ?*?*ISpeechPhraseInfo,
+            PhraseInfo: ?**ISpeechPhraseInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Alternates: fn(
             self: *const ISpeechRecoResult,
             RequestCount: i32,
             StartElement: i32,
             Elements: i32,
-            Alternates: ?*?*ISpeechPhraseAlternates,
+            Alternates: ?**ISpeechPhraseAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Audio: fn(
             self: *const ISpeechRecoResult,
             StartElement: i32,
             Elements: i32,
-            Stream: ?*?*ISpeechMemoryStream,
+            Stream: ?**ISpeechMemoryStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SpeakAudio: fn(
             self: *const ISpeechRecoResult,
@@ -8260,11 +8260,11 @@ pub const ISpeechRecoResult = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResult_get_RecoContext(self: *const T, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResult_get_RecoContext(self: *const T, RecoContext: ?**ISpeechRecoContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_RecoContext(@ptrCast(*const ISpeechRecoResult, self), RecoContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResult_get_Times(self: *const T, Times: ?*?*ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResult_get_Times(self: *const T, Times: ?**ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_Times(@ptrCast(*const ISpeechRecoResult, self), Times);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8272,19 +8272,19 @@ pub const ISpeechRecoResult = extern struct {
             return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).putref_AudioFormat(@ptrCast(*const ISpeechRecoResult, self), Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResult_get_AudioFormat(self: *const T, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResult_get_AudioFormat(self: *const T, Format: ?**ISpeechAudioFormat) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_AudioFormat(@ptrCast(*const ISpeechRecoResult, self), Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResult_get_PhraseInfo(self: *const T, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResult_get_PhraseInfo(self: *const T, PhraseInfo: ?**ISpeechPhraseInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_PhraseInfo(@ptrCast(*const ISpeechRecoResult, self), PhraseInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResult_Alternates(self: *const T, RequestCount: i32, StartElement: i32, Elements: i32, Alternates: ?*?*ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResult_Alternates(self: *const T, RequestCount: i32, StartElement: i32, Elements: i32, Alternates: ?**ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).Alternates(@ptrCast(*const ISpeechRecoResult, self), RequestCount, StartElement, Elements, Alternates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResult_Audio(self: *const T, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResult_Audio(self: *const T, StartElement: i32, Elements: i32, Stream: ?**ISpeechMemoryStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).Audio(@ptrCast(*const ISpeechRecoResult, self), StartElement, Elements, Stream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8382,7 +8382,7 @@ pub const ISpeechPhraseAlternate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoResult: fn(
             self: *const ISpeechPhraseAlternate,
-            RecoResult: ?*?*ISpeechRecoResult,
+            RecoResult: ?**ISpeechRecoResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartElementInResult: fn(
@@ -8397,7 +8397,7 @@ pub const ISpeechPhraseAlternate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: fn(
             self: *const ISpeechPhraseAlternate,
-            PhraseInfo: ?*?*ISpeechPhraseInfo,
+            PhraseInfo: ?**ISpeechPhraseInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Commit: fn(
             self: *const ISpeechPhraseAlternate,
@@ -8407,7 +8407,7 @@ pub const ISpeechPhraseAlternate = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseAlternate_get_RecoResult(self: *const T, RecoResult: ?*?*ISpeechRecoResult) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseAlternate_get_RecoResult(self: *const T, RecoResult: ?**ISpeechRecoResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).get_RecoResult(@ptrCast(*const ISpeechPhraseAlternate, self), RecoResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8419,7 +8419,7 @@ pub const ISpeechPhraseAlternate = extern struct {
             return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).get_NumberOfElementsInResult(@ptrCast(*const ISpeechPhraseAlternate, self), NumberOfElements);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseAlternate_get_PhraseInfo(self: *const T, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseAlternate_get_PhraseInfo(self: *const T, PhraseInfo: ?**ISpeechPhraseInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).get_PhraseInfo(@ptrCast(*const ISpeechPhraseAlternate, self), PhraseInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8443,12 +8443,12 @@ pub const ISpeechPhraseAlternates = extern struct {
         Item: fn(
             self: *const ISpeechPhraseAlternates,
             Index: i32,
-            PhraseAlternate: ?*?*ISpeechPhraseAlternate,
+            PhraseAlternate: ?**ISpeechPhraseAlternate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseAlternates,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8459,11 +8459,11 @@ pub const ISpeechPhraseAlternates = extern struct {
             return @ptrCast(*const ISpeechPhraseAlternates.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseAlternates, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseAlternates_Item(self: *const T, Index: i32, PhraseAlternate: ?*?*ISpeechPhraseAlternate) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseAlternates_Item(self: *const T, Index: i32, PhraseAlternate: ?**ISpeechPhraseAlternate) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseAlternates.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseAlternates, self), Index, PhraseAlternate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseAlternates_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseAlternates_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseAlternates.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseAlternates, self), EnumVARIANT);
         }
     };}
@@ -8513,22 +8513,22 @@ pub const ISpeechPhraseInfo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: fn(
             self: *const ISpeechPhraseInfo,
-            Rule: ?*?*ISpeechPhraseRule,
+            Rule: ?**ISpeechPhraseRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: fn(
             self: *const ISpeechPhraseInfo,
-            Properties: ?*?*ISpeechPhraseProperties,
+            Properties: ?**ISpeechPhraseProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Elements: fn(
             self: *const ISpeechPhraseInfo,
-            Elements: ?*?*ISpeechPhraseElements,
+            Elements: ?**ISpeechPhraseElements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Replacements: fn(
             self: *const ISpeechPhraseInfo,
-            Replacements: ?*?*ISpeechPhraseReplacements,
+            Replacements: ?**ISpeechPhraseReplacements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineId: fn(
@@ -8591,19 +8591,19 @@ pub const ISpeechPhraseInfo = extern struct {
             return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_AudioSizeTime(@ptrCast(*const ISpeechPhraseInfo, self), AudioSizeTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseInfo_get_Rule(self: *const T, Rule: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseInfo_get_Rule(self: *const T, Rule: ?**ISpeechPhraseRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Rule(@ptrCast(*const ISpeechPhraseInfo, self), Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseInfo_get_Properties(self: *const T, Properties: ?*?*ISpeechPhraseProperties) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseInfo_get_Properties(self: *const T, Properties: ?**ISpeechPhraseProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Properties(@ptrCast(*const ISpeechPhraseInfo, self), Properties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseInfo_get_Elements(self: *const T, Elements: ?*?*ISpeechPhraseElements) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseInfo_get_Elements(self: *const T, Elements: ?**ISpeechPhraseElements) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Elements(@ptrCast(*const ISpeechPhraseInfo, self), Elements);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseInfo_get_Replacements(self: *const T, Replacements: ?*?*ISpeechPhraseReplacements) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseInfo_get_Replacements(self: *const T, Replacements: ?**ISpeechPhraseReplacements) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Replacements(@ptrCast(*const ISpeechPhraseInfo, self), Replacements);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8773,12 +8773,12 @@ pub const ISpeechPhraseElements = extern struct {
         Item: fn(
             self: *const ISpeechPhraseElements,
             Index: i32,
-            Element: ?*?*ISpeechPhraseElement,
+            Element: ?**ISpeechPhraseElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseElements,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8789,11 +8789,11 @@ pub const ISpeechPhraseElements = extern struct {
             return @ptrCast(*const ISpeechPhraseElements.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseElements, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseElements_Item(self: *const T, Index: i32, Element: ?*?*ISpeechPhraseElement) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseElements_Item(self: *const T, Index: i32, Element: ?**ISpeechPhraseElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseElements.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseElements, self), Index, Element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseElements_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseElements_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseElements.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseElements, self), EnumVARIANT);
         }
     };}
@@ -8862,12 +8862,12 @@ pub const ISpeechPhraseReplacements = extern struct {
         Item: fn(
             self: *const ISpeechPhraseReplacements,
             Index: i32,
-            Reps: ?*?*ISpeechPhraseReplacement,
+            Reps: ?**ISpeechPhraseReplacement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseReplacements,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8878,11 +8878,11 @@ pub const ISpeechPhraseReplacements = extern struct {
             return @ptrCast(*const ISpeechPhraseReplacements.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseReplacements, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseReplacements_Item(self: *const T, Index: i32, Reps: ?*?*ISpeechPhraseReplacement) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseReplacements_Item(self: *const T, Index: i32, Reps: ?**ISpeechPhraseReplacement) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseReplacements.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseReplacements, self), Index, Reps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseReplacements_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseReplacements_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseReplacements.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseReplacements, self), EnumVARIANT);
         }
     };}
@@ -8932,12 +8932,12 @@ pub const ISpeechPhraseProperty = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const ISpeechPhraseProperty,
-            ParentProperty: ?*?*ISpeechPhraseProperty,
+            ParentProperty: ?**ISpeechPhraseProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: fn(
             self: *const ISpeechPhraseProperty,
-            Children: ?*?*ISpeechPhraseProperties,
+            Children: ?**ISpeechPhraseProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8972,11 +8972,11 @@ pub const ISpeechPhraseProperty = extern struct {
             return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Confidence(@ptrCast(*const ISpeechPhraseProperty, self), Confidence);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseProperty_get_Parent(self: *const T, ParentProperty: ?*?*ISpeechPhraseProperty) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseProperty_get_Parent(self: *const T, ParentProperty: ?**ISpeechPhraseProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Parent(@ptrCast(*const ISpeechPhraseProperty, self), ParentProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseProperty_get_Children(self: *const T, Children: ?*?*ISpeechPhraseProperties) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseProperty_get_Children(self: *const T, Children: ?**ISpeechPhraseProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Children(@ptrCast(*const ISpeechPhraseProperty, self), Children);
         }
     };}
@@ -8996,12 +8996,12 @@ pub const ISpeechPhraseProperties = extern struct {
         Item: fn(
             self: *const ISpeechPhraseProperties,
             Index: i32,
-            Property: ?*?*ISpeechPhraseProperty,
+            Property: ?**ISpeechPhraseProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseProperties,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9012,11 +9012,11 @@ pub const ISpeechPhraseProperties = extern struct {
             return @ptrCast(*const ISpeechPhraseProperties.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseProperties, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseProperties_Item(self: *const T, Index: i32, Property: ?*?*ISpeechPhraseProperty) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseProperties_Item(self: *const T, Index: i32, Property: ?**ISpeechPhraseProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseProperties.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseProperties, self), Index, Property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseProperties_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseProperties_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseProperties, self), EnumVARIANT);
         }
     };}
@@ -9051,12 +9051,12 @@ pub const ISpeechPhraseRule = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const ISpeechPhraseRule,
-            Parent: ?*?*ISpeechPhraseRule,
+            Parent: ?**ISpeechPhraseRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: fn(
             self: *const ISpeechPhraseRule,
-            Children: ?*?*ISpeechPhraseRules,
+            Children: ?**ISpeechPhraseRules,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Confidence: fn(
@@ -9089,11 +9089,11 @@ pub const ISpeechPhraseRule = extern struct {
             return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_NumberOfElements(@ptrCast(*const ISpeechPhraseRule, self), NumberOfElements);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseRule_get_Parent(self: *const T, Parent: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseRule_get_Parent(self: *const T, Parent: ?**ISpeechPhraseRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_Parent(@ptrCast(*const ISpeechPhraseRule, self), Parent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseRule_get_Children(self: *const T, Children: ?*?*ISpeechPhraseRules) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseRule_get_Children(self: *const T, Children: ?**ISpeechPhraseRules) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_Children(@ptrCast(*const ISpeechPhraseRule, self), Children);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9121,12 +9121,12 @@ pub const ISpeechPhraseRules = extern struct {
         Item: fn(
             self: *const ISpeechPhraseRules,
             Index: i32,
-            Rule: ?*?*ISpeechPhraseRule,
+            Rule: ?**ISpeechPhraseRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseRules,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9137,11 +9137,11 @@ pub const ISpeechPhraseRules = extern struct {
             return @ptrCast(*const ISpeechPhraseRules.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseRules, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseRules_Item(self: *const T, Index: i32, Rule: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseRules_Item(self: *const T, Index: i32, Rule: ?**ISpeechPhraseRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseRules.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseRules, self), Index, Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseRules_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseRules_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseRules, self), EnumVARIANT);
         }
     };}
@@ -9162,7 +9162,7 @@ pub const ISpeechLexicon = extern struct {
             self: *const ISpeechLexicon,
             Flags: SpeechLexiconType,
             GenerationID: *i32,
-            Words: ?*?*ISpeechLexiconWords,
+            Words: ?**ISpeechLexiconWords,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPronunciation: fn(
             self: *const ISpeechLexicon,
@@ -9197,12 +9197,12 @@ pub const ISpeechLexicon = extern struct {
             bstrWord: BSTR,
             LangId: i32,
             TypeFlags: SpeechLexiconType,
-            ppPronunciations: ?*?*ISpeechLexiconPronunciations,
+            ppPronunciations: ?**ISpeechLexiconPronunciations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGenerationChange: fn(
             self: *const ISpeechLexicon,
             GenerationID: *i32,
-            ppWords: ?*?*ISpeechLexiconWords,
+            ppWords: ?**ISpeechLexiconWords,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9213,7 +9213,7 @@ pub const ISpeechLexicon = extern struct {
             return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).get_GenerationId(@ptrCast(*const ISpeechLexicon, self), GenerationId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexicon_GetWords(self: *const T, Flags: SpeechLexiconType, GenerationID: *i32, Words: ?*?*ISpeechLexiconWords) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexicon_GetWords(self: *const T, Flags: SpeechLexiconType, GenerationID: *i32, Words: ?**ISpeechLexiconWords) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).GetWords(@ptrCast(*const ISpeechLexicon, self), Flags, GenerationID, Words);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9233,11 +9233,11 @@ pub const ISpeechLexicon = extern struct {
             return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).RemovePronunciationByPhoneIds(@ptrCast(*const ISpeechLexicon, self), bstrWord, LangId, PartOfSpeech, PhoneIds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexicon_GetPronunciations(self: *const T, bstrWord: BSTR, LangId: i32, TypeFlags: SpeechLexiconType, ppPronunciations: ?*?*ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexicon_GetPronunciations(self: *const T, bstrWord: BSTR, LangId: i32, TypeFlags: SpeechLexiconType, ppPronunciations: ?**ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).GetPronunciations(@ptrCast(*const ISpeechLexicon, self), bstrWord, LangId, TypeFlags, ppPronunciations);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexicon_GetGenerationChange(self: *const T, GenerationID: *i32, ppWords: ?*?*ISpeechLexiconWords) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexicon_GetGenerationChange(self: *const T, GenerationID: *i32, ppWords: ?**ISpeechLexiconWords) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).GetGenerationChange(@ptrCast(*const ISpeechLexicon, self), GenerationID, ppWords);
         }
     };}
@@ -9257,12 +9257,12 @@ pub const ISpeechLexiconWords = extern struct {
         Item: fn(
             self: *const ISpeechLexiconWords,
             Index: i32,
-            Word: ?*?*ISpeechLexiconWord,
+            Word: ?**ISpeechLexiconWord,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechLexiconWords,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9273,11 +9273,11 @@ pub const ISpeechLexiconWords = extern struct {
             return @ptrCast(*const ISpeechLexiconWords.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechLexiconWords, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexiconWords_Item(self: *const T, Index: i32, Word: ?*?*ISpeechLexiconWord) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexiconWords_Item(self: *const T, Index: i32, Word: ?**ISpeechLexiconWord) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexiconWords.VTable, self.vtable).Item(@ptrCast(*const ISpeechLexiconWords, self), Index, Word);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexiconWords_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexiconWords_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexiconWords.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechLexiconWords, self), EnumVARIANT);
         }
     };}
@@ -9307,7 +9307,7 @@ pub const ISpeechLexiconWord = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Pronunciations: fn(
             self: *const ISpeechLexiconWord,
-            Pronunciations: ?*?*ISpeechLexiconPronunciations,
+            Pronunciations: ?**ISpeechLexiconPronunciations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9326,7 +9326,7 @@ pub const ISpeechLexiconWord = extern struct {
             return @ptrCast(*const ISpeechLexiconWord.VTable, self.vtable).get_Word(@ptrCast(*const ISpeechLexiconWord, self), Word);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexiconWord_get_Pronunciations(self: *const T, Pronunciations: ?*?*ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexiconWord_get_Pronunciations(self: *const T, Pronunciations: ?**ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexiconWord.VTable, self.vtable).get_Pronunciations(@ptrCast(*const ISpeechLexiconWord, self), Pronunciations);
         }
     };}
@@ -9346,12 +9346,12 @@ pub const ISpeechLexiconPronunciations = extern struct {
         Item: fn(
             self: *const ISpeechLexiconPronunciations,
             Index: i32,
-            Pronunciation: ?*?*ISpeechLexiconPronunciation,
+            Pronunciation: ?**ISpeechLexiconPronunciation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechLexiconPronunciations,
-            EnumVARIANT: ?*?*IUnknown,
+            EnumVARIANT: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9362,11 +9362,11 @@ pub const ISpeechLexiconPronunciations = extern struct {
             return @ptrCast(*const ISpeechLexiconPronunciations.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechLexiconPronunciations, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexiconPronunciations_Item(self: *const T, Index: i32, Pronunciation: ?*?*ISpeechLexiconPronunciation) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexiconPronunciations_Item(self: *const T, Index: i32, Pronunciation: ?**ISpeechLexiconPronunciation) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexiconPronunciations.VTable, self.vtable).Item(@ptrCast(*const ISpeechLexiconPronunciations, self), Index, Pronunciation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechLexiconPronunciations_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpeechLexiconPronunciations_get__NewEnum(self: *const T, EnumVARIANT: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechLexiconPronunciations.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechLexiconPronunciations, self), EnumVARIANT);
         }
     };}
@@ -9474,12 +9474,12 @@ pub const ISpeechRecoResultDispatch = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoContext: fn(
             self: *const ISpeechRecoResultDispatch,
-            RecoContext: ?*?*ISpeechRecoContext,
+            RecoContext: ?**ISpeechRecoContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Times: fn(
             self: *const ISpeechRecoResultDispatch,
-            Times: ?*?*ISpeechRecoResultTimes,
+            Times: ?**ISpeechRecoResultTimes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_AudioFormat: fn(
             self: *const ISpeechRecoResultDispatch,
@@ -9488,25 +9488,25 @@ pub const ISpeechRecoResultDispatch = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioFormat: fn(
             self: *const ISpeechRecoResultDispatch,
-            Format: ?*?*ISpeechAudioFormat,
+            Format: ?**ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: fn(
             self: *const ISpeechRecoResultDispatch,
-            PhraseInfo: ?*?*ISpeechPhraseInfo,
+            PhraseInfo: ?**ISpeechPhraseInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Alternates: fn(
             self: *const ISpeechRecoResultDispatch,
             RequestCount: i32,
             StartElement: i32,
             Elements: i32,
-            Alternates: ?*?*ISpeechPhraseAlternates,
+            Alternates: ?**ISpeechPhraseAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Audio: fn(
             self: *const ISpeechRecoResultDispatch,
             StartElement: i32,
             Elements: i32,
-            Stream: ?*?*ISpeechMemoryStream,
+            Stream: ?**ISpeechMemoryStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SpeakAudio: fn(
             self: *const ISpeechRecoResultDispatch,
@@ -9547,11 +9547,11 @@ pub const ISpeechRecoResultDispatch = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResultDispatch_get_RecoContext(self: *const T, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResultDispatch_get_RecoContext(self: *const T, RecoContext: ?**ISpeechRecoContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_RecoContext(@ptrCast(*const ISpeechRecoResultDispatch, self), RecoContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResultDispatch_get_Times(self: *const T, Times: ?*?*ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResultDispatch_get_Times(self: *const T, Times: ?**ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_Times(@ptrCast(*const ISpeechRecoResultDispatch, self), Times);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9559,19 +9559,19 @@ pub const ISpeechRecoResultDispatch = extern struct {
             return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).putref_AudioFormat(@ptrCast(*const ISpeechRecoResultDispatch, self), Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResultDispatch_get_AudioFormat(self: *const T, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResultDispatch_get_AudioFormat(self: *const T, Format: ?**ISpeechAudioFormat) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_AudioFormat(@ptrCast(*const ISpeechRecoResultDispatch, self), Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResultDispatch_get_PhraseInfo(self: *const T, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResultDispatch_get_PhraseInfo(self: *const T, PhraseInfo: ?**ISpeechPhraseInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_PhraseInfo(@ptrCast(*const ISpeechRecoResultDispatch, self), PhraseInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResultDispatch_Alternates(self: *const T, RequestCount: i32, StartElement: i32, Elements: i32, Alternates: ?*?*ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResultDispatch_Alternates(self: *const T, RequestCount: i32, StartElement: i32, Elements: i32, Alternates: ?**ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).Alternates(@ptrCast(*const ISpeechRecoResultDispatch, self), RequestCount, StartElement, Elements, Alternates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechRecoResultDispatch_Audio(self: *const T, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) callconv(.Inline) HRESULT {
+        pub fn ISpeechRecoResultDispatch_Audio(self: *const T, StartElement: i32, Elements: i32, Stream: ?**ISpeechMemoryStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).Audio(@ptrCast(*const ISpeechRecoResultDispatch, self), StartElement, Elements, Stream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9610,14 +9610,14 @@ pub const ISpeechPhraseInfoBuilder = extern struct {
         RestorePhraseFromMemory: fn(
             self: *const ISpeechPhraseInfoBuilder,
             PhraseInMemory: *VARIANT,
-            PhraseInfo: ?*?*ISpeechPhraseInfo,
+            PhraseInfo: ?**ISpeechPhraseInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechPhraseInfoBuilder_RestorePhraseFromMemory(self: *const T, PhraseInMemory: *VARIANT, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+        pub fn ISpeechPhraseInfoBuilder_RestorePhraseFromMemory(self: *const T, PhraseInMemory: *VARIANT, PhraseInfo: ?**ISpeechPhraseInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpeechPhraseInfoBuilder.VTable, self.vtable).RestorePhraseFromMemory(@ptrCast(*const ISpeechPhraseInfoBuilder, self), PhraseInMemory, PhraseInfo);
         }
     };}

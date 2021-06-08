@@ -295,7 +295,7 @@ pub const IUIAnimationVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTag: fn(
             self: *const IUIAnimationVariable,
-            object: ?*?*IUnknown,
+            object: ?**IUnknown,
             id: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVariableChangeHandler: fn(
@@ -355,7 +355,7 @@ pub const IUIAnimationVariable = extern struct {
             return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationVariable, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IUIAnimationVariable_GetTag(self: *const T, object: ?**IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationVariable, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -473,7 +473,7 @@ pub const IUIAnimationStoryboard = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTag: fn(
             self: *const IUIAnimationStoryboard,
-            object: ?*?*IUnknown,
+            object: ?**IUnknown,
             id: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
@@ -545,7 +545,7 @@ pub const IUIAnimationStoryboard = extern struct {
             return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationStoryboard, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IUIAnimationStoryboard_GetTag(self: *const T, object: ?**IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationStoryboard, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1492,7 +1492,7 @@ pub const IUIAnimationVariable2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTag: fn(
             self: *const IUIAnimationVariable2,
-            object: ?*?*IUnknown,
+            object: ?**IUnknown,
             id: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVariableChangeHandler: fn(
@@ -1602,7 +1602,7 @@ pub const IUIAnimationVariable2 = extern struct {
             return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationVariable2, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IUIAnimationVariable2_GetTag(self: *const T, object: ?**IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationVariable2, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2331,7 +2331,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTag: fn(
             self: *const IUIAnimationStoryboard2,
-            object: ?*?*IUnknown,
+            object: ?**IUnknown,
             id: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
@@ -2409,7 +2409,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
             return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationStoryboard2, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IUIAnimationStoryboard2_GetTag(self: *const T, object: ?**IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationStoryboard2, self), object, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

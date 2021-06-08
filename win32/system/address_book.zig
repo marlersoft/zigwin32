@@ -950,8 +950,8 @@ pub const IMAPIContainer = extern struct {
         GetSearchCriteria: fn(
             self: *const IMAPIContainer,
             ulFlags: u32,
-            lppRestriction: ?*?*SRestriction,
-            lppContainerList: ?*?*SBinaryArray,
+            lppRestriction: ?**SRestriction,
+            lppContainerList: ?**SBinaryArray,
             lpulSearchState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -975,7 +975,7 @@ pub const IMAPIContainer = extern struct {
             return @ptrCast(*const IMAPIContainer.VTable, self.vtable).SetSearchCriteria(@ptrCast(*const IMAPIContainer, self), lpRestriction, lpContainerList, ulSearchFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIContainer_GetSearchCriteria(self: *const T, ulFlags: u32, lppRestriction: ?*?*SRestriction, lppContainerList: ?*?*SBinaryArray, lpulSearchState: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIContainer_GetSearchCriteria(self: *const T, ulFlags: u32, lppRestriction: ?**SRestriction, lppContainerList: ?**SBinaryArray, lpulSearchState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIContainer.VTable, self.vtable).GetSearchCriteria(@ptrCast(*const IMAPIContainer, self), ulFlags, lppRestriction, lppContainerList, lpulSearchState);
         }
     };}
@@ -1302,7 +1302,7 @@ pub const IMsgStore = extern struct {
             ulFlags: u32,
             lpcbEntryID: *u32,
             lppEntryID: **ENTRYID,
-            lppszExplicitClass: ?*?*i8,
+            lppszExplicitClass: ?**i8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReceiveFolderTable: fn(
             self: *const IMsgStore,
@@ -1366,7 +1366,7 @@ pub const IMsgStore = extern struct {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).SetReceiveFolder(@ptrCast(*const IMsgStore, self), lpszMessageClass, ulFlags, cbEntryID, lpEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_GetReceiveFolder(self: *const T, lpszMessageClass: ?*i8, ulFlags: u32, lpcbEntryID: *u32, lppEntryID: **ENTRYID, lppszExplicitClass: ?*?*i8) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_GetReceiveFolder(self: *const T, lpszMessageClass: ?*i8, ulFlags: u32, lpcbEntryID: *u32, lppEntryID: **ENTRYID, lppszExplicitClass: ?**i8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).GetReceiveFolder(@ptrCast(*const IMsgStore, self), lpszMessageClass, ulFlags, lpcbEntryID, lppEntryID, lppszExplicitClass);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1962,21 +1962,21 @@ pub const IWABObject = extern struct {
         Find: fn(
             self: *const IWABObject,
             lpIAB: *IAddrBook,
-            hWnd: HWND,
+            hWnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardDisplay: fn(
             self: *const IWABObject,
             lpIAB: *IAddrBook,
-            hWnd: HWND,
+            hWnd: ?HWND,
             lpszFileName: PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LDAPUrl: fn(
             self: *const IWABObject,
             lpIAB: *IAddrBook,
-            hWnd: HWND,
+            hWnd: ?HWND,
             ulFlags: u32,
             lpszURL: PSTR,
-            lppMailUser: ?*?*IMailUser,
+            lppMailUser: ?**IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardCreate: fn(
             self: *const IWABObject,
@@ -1998,14 +1998,14 @@ pub const IWABObject = extern struct {
             ulFlags: u32,
             lpdwAction: *u32,
             lpsbEID: *SBinary,
-            hwnd: HWND,
+            hwnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMe: fn(
             self: *const IWABObject,
             lpIAB: *IAddrBook,
             ulFlags: u32,
             sbEID: SBinary,
-            hwnd: HWND,
+            hwnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2036,15 +2036,15 @@ pub const IWABObject = extern struct {
             return @ptrCast(*const IWABObject.VTable, self.vtable).Import(@ptrCast(*const IWABObject, self), lpWIP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_Find(self: *const T, lpIAB: *IAddrBook, hWnd: HWND) callconv(.Inline) HRESULT {
+        pub fn IWABObject_Find(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).Find(@ptrCast(*const IWABObject, self), lpIAB, hWnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_VCardDisplay(self: *const T, lpIAB: *IAddrBook, hWnd: HWND, lpszFileName: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABObject_VCardDisplay(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, lpszFileName: PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).VCardDisplay(@ptrCast(*const IWABObject, self), lpIAB, hWnd, lpszFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_LDAPUrl(self: *const T, lpIAB: *IAddrBook, hWnd: HWND, ulFlags: u32, lpszURL: PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABObject_LDAPUrl(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: PSTR, lppMailUser: ?**IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).LDAPUrl(@ptrCast(*const IWABObject, self), lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2056,11 +2056,11 @@ pub const IWABObject = extern struct {
             return @ptrCast(*const IWABObject.VTable, self.vtable).VCardRetrieve(@ptrCast(*const IWABObject, self), lpIAB, ulFlags, lpszVCard, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_GetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpdwAction: *u32, lpsbEID: *SBinary, hwnd: HWND) callconv(.Inline) HRESULT {
+        pub fn IWABObject_GetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpdwAction: *u32, lpsbEID: *SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).GetMe(@ptrCast(*const IWABObject, self), lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_SetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: HWND) callconv(.Inline) HRESULT {
+        pub fn IWABObject_SetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).SetMe(@ptrCast(*const IWABObject, self), lpIAB, ulFlags, sbEID, hwnd);
         }
     };}
@@ -2109,21 +2109,21 @@ pub const IWABOBJECT_Import_METHOD = fn(
 
 pub const IWABOBJECT_Find_METHOD = fn(
     lpIAB: *IAddrBook,
-    hWnd: HWND,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_VCardDisplay_METHOD = fn(
     lpIAB: *IAddrBook,
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpszFileName: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_LDAPUrl_METHOD = fn(
     lpIAB: *IAddrBook,
-    hWnd: HWND,
+    hWnd: ?HWND,
     ulFlags: u32,
     lpszURL: PSTR,
-    lppMailUser: ?*?*IMailUser,
+    lppMailUser: ?**IMailUser,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_VCardCreate_METHOD = fn(
@@ -2145,14 +2145,14 @@ pub const IWABOBJECT_GetMe_METHOD = fn(
     ulFlags: u32,
     lpdwAction: *u32,
     lpsbEID: *SBinary,
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_SetMe_METHOD = fn(
     lpIAB: *IAddrBook,
     ulFlags: u32,
     sbEID: SBinary,
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_ = extern struct {
@@ -2200,21 +2200,21 @@ pub const IWABOBJECT_ = extern struct {
         Find: fn(
             self: *const IWABOBJECT_,
             lpIAB: *IAddrBook,
-            hWnd: HWND,
+            hWnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardDisplay: fn(
             self: *const IWABOBJECT_,
             lpIAB: *IAddrBook,
-            hWnd: HWND,
+            hWnd: ?HWND,
             lpszFileName: PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LDAPUrl: fn(
             self: *const IWABOBJECT_,
             lpIAB: *IAddrBook,
-            hWnd: HWND,
+            hWnd: ?HWND,
             ulFlags: u32,
             lpszURL: PSTR,
-            lppMailUser: ?*?*IMailUser,
+            lppMailUser: ?**IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardCreate: fn(
             self: *const IWABOBJECT_,
@@ -2236,14 +2236,14 @@ pub const IWABOBJECT_ = extern struct {
             ulFlags: u32,
             lpdwAction: *u32,
             lpsbEID: *SBinary,
-            hwnd: HWND,
+            hwnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMe: fn(
             self: *const IWABOBJECT_,
             lpIAB: *IAddrBook,
             ulFlags: u32,
             sbEID: SBinary,
-            hwnd: HWND,
+            hwnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2285,15 +2285,15 @@ pub const IWABOBJECT_ = extern struct {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).Import(@ptrCast(*const IWABOBJECT_, self), lpWIP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__Find(self: *const T, lpIAB: *IAddrBook, hWnd: HWND) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__Find(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).Find(@ptrCast(*const IWABOBJECT_, self), lpIAB, hWnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__VCardDisplay(self: *const T, lpIAB: *IAddrBook, hWnd: HWND, lpszFileName: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__VCardDisplay(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, lpszFileName: PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).VCardDisplay(@ptrCast(*const IWABOBJECT_, self), lpIAB, hWnd, lpszFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__LDAPUrl(self: *const T, lpIAB: *IAddrBook, hWnd: HWND, ulFlags: u32, lpszURL: PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__LDAPUrl(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: PSTR, lppMailUser: ?**IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).LDAPUrl(@ptrCast(*const IWABOBJECT_, self), lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2305,11 +2305,11 @@ pub const IWABOBJECT_ = extern struct {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).VCardRetrieve(@ptrCast(*const IWABOBJECT_, self), lpIAB, ulFlags, lpszVCard, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__GetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpdwAction: *u32, lpsbEID: *SBinary, hwnd: HWND) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__GetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpdwAction: *u32, lpsbEID: *SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).GetMe(@ptrCast(*const IWABOBJECT_, self), lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__SetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: HWND) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__SetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).SetMe(@ptrCast(*const IWABOBJECT_, self), lpIAB, ulFlags, sbEID, hwnd);
         }
     };}

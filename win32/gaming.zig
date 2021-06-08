@@ -470,7 +470,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeWithUI(
     privilegeId: u32,
     scope: HSTRING,
     policy: HSTRING,
-    friendlyMessage: HSTRING,
+    friendlyMessage: ?HSTRING,
     completionRoutine: GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -531,7 +531,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeWithUIForUser(
     privilegeId: u32,
     scope: HSTRING,
     policy: HSTRING,
-    friendlyMessage: HSTRING,
+    friendlyMessage: ?HSTRING,
     completionRoutine: GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

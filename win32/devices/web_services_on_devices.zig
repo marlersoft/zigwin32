@@ -153,13 +153,13 @@ pub const IWSDXMLContext = extern struct {
             self: *const IWSDXMLContext,
             pszUri: [*:0]const u16,
             pszSuggestedPrefix: [*:0]const u16,
-            ppNamespace: ?*?*WSDXML_NAMESPACE,
+            ppNamespace: ?**WSDXML_NAMESPACE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddNameToNamespace: fn(
             self: *const IWSDXMLContext,
             pszUri: [*:0]const u16,
             pszName: [*:0]const u16,
-            ppName: ?*?*WSDXML_NAME,
+            ppName: ?**WSDXML_NAME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNamespaces: fn(
             self: *const IWSDXMLContext,
@@ -178,11 +178,11 @@ pub const IWSDXMLContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDXMLContext_AddNamespace(self: *const T, pszUri: [*:0]const u16, pszSuggestedPrefix: [*:0]const u16, ppNamespace: ?*?*WSDXML_NAMESPACE) callconv(.Inline) HRESULT {
+        pub fn IWSDXMLContext_AddNamespace(self: *const T, pszUri: [*:0]const u16, pszSuggestedPrefix: [*:0]const u16, ppNamespace: ?**WSDXML_NAMESPACE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszSuggestedPrefix, ppNamespace);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDXMLContext_AddNameToNamespace(self: *const T, pszUri: [*:0]const u16, pszName: [*:0]const u16, ppName: ?*?*WSDXML_NAME) callconv(.Inline) HRESULT {
+        pub fn IWSDXMLContext_AddNameToNamespace(self: *const T, pszUri: [*:0]const u16, pszName: [*:0]const u16, ppName: ?**WSDXML_NAME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNameToNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszName, ppName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1227,7 +1227,7 @@ pub const IWSDDeviceHost = extern struct {
             self: *const IWSDDeviceHost,
             pszLocalId: [*:0]const u16,
             pContext: ?*IWSDXMLContext,
-            ppHostAddresses: ?[*]?*IWSDAddress,
+            ppHostAddresses: ?[*]*IWSDAddress,
             dwHostAddressCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Start: fn(
@@ -1291,7 +1291,7 @@ pub const IWSDDeviceHost = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_Init(self: *const T, pszLocalId: [*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]?*IWSDAddress, dwHostAddressCount: u32) callconv(.Inline) HRESULT {
+        pub fn IWSDDeviceHost_Init(self: *const T, pszLocalId: [*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]*IWSDAddress, dwHostAddressCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Init(@ptrCast(*const IWSDDeviceHost, self), pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1522,7 +1522,7 @@ pub const IWSDServiceProxy = extern struct {
             pOperation: *const WSD_OPERATION,
             pUnknown: *IUnknown,
             pAny: *const WSDXML_ELEMENT,
-            ppAny: ?*?*WSDXML_ELEMENT,
+            ppAny: ?**WSDXML_ELEMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnsubscribeToOperation: fn(
             self: *const IWSDServiceProxy,
@@ -1553,7 +1553,7 @@ pub const IWSDServiceProxy = extern struct {
             return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).GetServiceMetadata(@ptrCast(*const IWSDServiceProxy, self), ppServiceMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceProxy_SubscribeToOperation(self: *const T, pOperation: *const WSD_OPERATION, pUnknown: *IUnknown, pAny: *const WSDXML_ELEMENT, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceProxy_SubscribeToOperation(self: *const T, pOperation: *const WSD_OPERATION, pUnknown: *IUnknown, pAny: *const WSDXML_ELEMENT, ppAny: ?**WSDXML_ELEMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).SubscribeToOperation(@ptrCast(*const IWSDServiceProxy, self), pOperation, pUnknown, pAny, ppAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1585,8 +1585,8 @@ pub const IWSDServiceProxyEventing = extern struct {
             pUnknown: ?*IUnknown,
             pExpires: ?*const WSD_EVENTING_EXPIRES,
             pAny: ?*const WSDXML_ELEMENT,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
+            ppExpires: ?**WSD_EVENTING_EXPIRES,
+            ppAny: ?**WSDXML_ELEMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BeginSubscribeToMultipleOperations: fn(
             self: *const IWSDServiceProxyEventing,
@@ -1604,8 +1604,8 @@ pub const IWSDServiceProxyEventing = extern struct {
             pOperations: [*]const WSD_OPERATION,
             dwOperationCount: u32,
             pResult: *IWSDAsyncResult,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
+            ppExpires: ?**WSD_EVENTING_EXPIRES,
+            ppAny: ?**WSDXML_ELEMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnsubscribeToMultipleOperations: fn(
             self: *const IWSDServiceProxyEventing,
@@ -1634,8 +1634,8 @@ pub const IWSDServiceProxyEventing = extern struct {
             dwOperationCount: u32,
             pExpires: ?*const WSD_EVENTING_EXPIRES,
             pAny: ?*const WSDXML_ELEMENT,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
+            ppExpires: ?**WSD_EVENTING_EXPIRES,
+            ppAny: ?**WSDXML_ELEMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BeginRenewMultipleOperations: fn(
             self: *const IWSDServiceProxyEventing,
@@ -1652,16 +1652,16 @@ pub const IWSDServiceProxyEventing = extern struct {
             pOperations: [*]const WSD_OPERATION,
             dwOperationCount: u32,
             pResult: *IWSDAsyncResult,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
+            ppExpires: ?**WSD_EVENTING_EXPIRES,
+            ppAny: ?**WSDXML_ELEMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatusForMultipleOperations: fn(
             self: *const IWSDServiceProxyEventing,
             pOperations: [*]const WSD_OPERATION,
             dwOperationCount: u32,
             pAny: ?*const WSDXML_ELEMENT,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
+            ppExpires: ?**WSD_EVENTING_EXPIRES,
+            ppAny: ?**WSDXML_ELEMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BeginGetStatusForMultipleOperations: fn(
             self: *const IWSDServiceProxyEventing,
@@ -1677,15 +1677,15 @@ pub const IWSDServiceProxyEventing = extern struct {
             pOperations: [*]const WSD_OPERATION,
             dwOperationCount: u32,
             pResult: *IWSDAsyncResult,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
+            ppExpires: ?**WSD_EVENTING_EXPIRES,
+            ppAny: ?**WSDXML_ELEMENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSDServiceProxy.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceProxyEventing_SubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pUnknown: ?*IUnknown, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceProxyEventing_SubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pUnknown: ?*IUnknown, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?**WSD_EVENTING_EXPIRES, ppAny: ?**WSDXML_ELEMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).SubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pUnknown, pExpires, pAny, ppExpires, ppAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1693,7 +1693,7 @@ pub const IWSDServiceProxyEventing = extern struct {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).BeginSubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pUnknown, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceProxyEventing_EndSubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: *IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceProxyEventing_EndSubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: *IWSDAsyncResult, ppExpires: ?**WSD_EVENTING_EXPIRES, ppAny: ?**WSDXML_ELEMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndSubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1709,7 +1709,7 @@ pub const IWSDServiceProxyEventing = extern struct {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndUnsubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceProxyEventing_RenewMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceProxyEventing_RenewMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?**WSD_EVENTING_EXPIRES, ppAny: ?**WSDXML_ELEMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).RenewMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pExpires, pAny, ppExpires, ppAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1717,11 +1717,11 @@ pub const IWSDServiceProxyEventing = extern struct {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).BeginRenewMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceProxyEventing_EndRenewMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: *IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceProxyEventing_EndRenewMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: *IWSDAsyncResult, ppExpires: ?**WSD_EVENTING_EXPIRES, ppAny: ?**WSDXML_ELEMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndRenewMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceProxyEventing_GetStatusForMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceProxyEventing_GetStatusForMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?**WSD_EVENTING_EXPIRES, ppAny: ?**WSDXML_ELEMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).GetStatusForMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pAny, ppExpires, ppAny);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1729,7 +1729,7 @@ pub const IWSDServiceProxyEventing = extern struct {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).BeginGetStatusForMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pAny, pAsyncState, pAsyncCallback, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceProxyEventing_EndGetStatusForMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: *IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceProxyEventing_EndGetStatusForMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: *IWSDAsyncResult, ppExpires: ?**WSD_EVENTING_EXPIRES, ppAny: ?**WSDXML_ELEMENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndGetStatusForMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
         }
     };}
@@ -2677,7 +2677,7 @@ pub extern "wsdapi" fn WSDCreateDeviceHost(
 pub extern "wsdapi" fn WSDCreateDeviceHostAdvanced(
     pszLocalId: [*:0]const u16,
     pContext: *IWSDXMLContext,
-    ppHostAddresses: ?[*]?*IWSDAddress,
+    ppHostAddresses: ?[*]*IWSDAddress,
     dwHostAddressCount: u32,
     ppDeviceHost: **IWSDDeviceHost,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

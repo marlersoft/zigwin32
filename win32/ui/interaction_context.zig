@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (25)
 //--------------------------------------------------------------------------------
-pub const HINTERACTIONCONTEXT = ?*opaque{};
+pub const HINTERACTIONCONTEXT = *opaque{};
 
 pub const INTERACTION_ID = extern enum(i32) {
     NONE = 0,

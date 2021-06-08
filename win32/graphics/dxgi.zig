@@ -978,7 +978,7 @@ pub const IDXGISwapChain = extern struct {
         GetFullscreenState: fn(
             self: *const IDXGISwapChain,
             pFullscreen: ?*BOOL,
-            ppTarget: ?*?*IDXGIOutput,
+            ppTarget: ?**IDXGIOutput,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDesc: fn(
             self: *const IDXGISwapChain,
@@ -1025,7 +1025,7 @@ pub const IDXGISwapChain = extern struct {
             return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).SetFullscreenState(@ptrCast(*const IDXGISwapChain, self), Fullscreen, pTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXGISwapChain_GetFullscreenState(self: *const T, pFullscreen: ?*BOOL, ppTarget: ?*?*IDXGIOutput) callconv(.Inline) HRESULT {
+        pub fn IDXGISwapChain_GetFullscreenState(self: *const T, pFullscreen: ?*BOOL, ppTarget: ?**IDXGIOutput) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).GetFullscreenState(@ptrCast(*const IDXGISwapChain, self), pFullscreen, ppTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2217,7 +2217,7 @@ pub const IDXGIFactoryMedia = extern struct {
         CreateSwapChainForCompositionSurfaceHandle: fn(
             self: *const IDXGIFactoryMedia,
             pDevice: *IUnknown,
-            hSurface: HANDLE,
+            hSurface: ?HANDLE,
             pDesc: *const DXGI_SWAP_CHAIN_DESC1,
             pRestrictToOutput: ?*IDXGIOutput,
             ppSwapChain: **IDXGISwapChain1,
@@ -2225,7 +2225,7 @@ pub const IDXGIFactoryMedia = extern struct {
         CreateDecodeSwapChainForCompositionSurfaceHandle: fn(
             self: *const IDXGIFactoryMedia,
             pDevice: *IUnknown,
-            hSurface: HANDLE,
+            hSurface: ?HANDLE,
             pDesc: *DXGI_DECODE_SWAP_CHAIN_DESC,
             pYuvDecodeBuffers: *IDXGIResource,
             pRestrictToOutput: ?*IDXGIOutput,
@@ -2236,11 +2236,11 @@ pub const IDXGIFactoryMedia = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXGIFactoryMedia_CreateSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: *IUnknown, hSurface: HANDLE, pDesc: *const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
+        pub fn IDXGIFactoryMedia_CreateSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: *IUnknown, hSurface: ?HANDLE, pDesc: *const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXGIFactoryMedia.VTable, self.vtable).CreateSwapChainForCompositionSurfaceHandle(@ptrCast(*const IDXGIFactoryMedia, self), pDevice, hSurface, pDesc, pRestrictToOutput, ppSwapChain);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXGIFactoryMedia_CreateDecodeSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: *IUnknown, hSurface: HANDLE, pDesc: *DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: *IDXGIResource, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGIDecodeSwapChain) callconv(.Inline) HRESULT {
+        pub fn IDXGIFactoryMedia_CreateDecodeSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: *IUnknown, hSurface: ?HANDLE, pDesc: *DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: *IDXGIResource, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGIDecodeSwapChain) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXGIFactoryMedia.VTable, self.vtable).CreateDecodeSwapChainForCompositionSurfaceHandle(@ptrCast(*const IDXGIFactoryMedia, self), pDevice, hSurface, pDesc, pYuvDecodeBuffers, pRestrictToOutput, ppSwapChain);
         }
     };}

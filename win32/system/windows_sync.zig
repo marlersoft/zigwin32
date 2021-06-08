@@ -1056,7 +1056,7 @@ pub const ISyncKnowledge2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProjectOntoColumnSet: fn(
             self: *const ISyncKnowledge2,
-            ppColumns: *const *const u8,
+            ppColumns: *const *u8,
             count: u32,
             ppiKnowledgeOut: **ISyncKnowledge2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1131,7 +1131,7 @@ pub const ISyncKnowledge2 = extern struct {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetIdParameters(@ptrCast(*const ISyncKnowledge2, self), pIdParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ProjectOntoColumnSet(self: *const T, ppColumns: *const *const u8, count: u32, ppiKnowledgeOut: **ISyncKnowledge2) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_ProjectOntoColumnSet(self: *const T, ppColumns: *const *u8, count: u32, ppiKnowledgeOut: **ISyncKnowledge2) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).ProjectOntoColumnSet(@ptrCast(*const ISyncKnowledge2, self), ppColumns, count, ppiKnowledgeOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1788,7 +1788,7 @@ pub const IChangeUnitListFilterInfo = extern struct {
         base: ISyncFilterInfo.VTable,
         Initialize: fn(
             self: *const IChangeUnitListFilterInfo,
-            ppbChangeUnitIds: *const *const u8,
+            ppbChangeUnitIds: *const *u8,
             dwChangeUnitCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitIdCount: fn(
@@ -1806,7 +1806,7 @@ pub const IChangeUnitListFilterInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncFilterInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitListFilterInfo_Initialize(self: *const T, ppbChangeUnitIds: *const *const u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitListFilterInfo_Initialize(self: *const T, ppbChangeUnitIds: *const *u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitListFilterInfo.VTable, self.vtable).Initialize(@ptrCast(*const IChangeUnitListFilterInfo, self), ppbChangeUnitIds, dwChangeUnitCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3455,7 +3455,7 @@ pub const ISyncProviderRegistration = extern struct {
         CreateSyncProviderConfigUIRegistrationInstance: fn(
             self: *const ISyncProviderRegistration,
             pConfigUIConfig: *const SyncProviderConfigUIConfiguration,
-            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+            ppConfigUIInfo: ?**ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterSyncProviderConfigUI: fn(
             self: *const ISyncProviderRegistration,
@@ -3465,12 +3465,12 @@ pub const ISyncProviderRegistration = extern struct {
             self: *const ISyncProviderRegistration,
             pguidContentType: ?*const Guid,
             dwSupportedArchitecture: u32,
-            ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
+            ppEnumSyncProviderConfigUIInfos: ?**IEnumSyncProviderConfigUIInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSyncProviderRegistrationInstance: fn(
             self: *const ISyncProviderRegistration,
             pProviderConfiguration: *const SyncProviderConfiguration,
-            ppProviderInfo: ?*?*ISyncProviderInfo,
+            ppProviderInfo: ?**ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterSyncProvider: fn(
             self: *const ISyncProviderRegistration,
@@ -3479,7 +3479,7 @@ pub const ISyncProviderRegistration = extern struct {
         GetSyncProviderConfigUIInfoforProvider: fn(
             self: *const ISyncProviderRegistration,
             pguidProviderInstanceId: *const Guid,
-            ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+            ppProviderConfigUIInfo: ?**ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateSyncProviders: fn(
             self: *const ISyncProviderRegistration,
@@ -3488,29 +3488,29 @@ pub const ISyncProviderRegistration = extern struct {
             dwStateFlagsToFilter: u32,
             refProviderClsId: *const Guid,
             dwSupportedArchitecture: u32,
-            ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
+            ppEnumSyncProviderInfos: ?**IEnumSyncProviderInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderInfo: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *const Guid,
-            ppProviderInfo: ?*?*ISyncProviderInfo,
+            ppProviderInfo: ?**ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderFromInstanceId: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *const Guid,
             dwClsContext: u32,
-            ppSyncProvider: ?*?*IRegisteredSyncProvider,
+            ppSyncProvider: ?**IRegisteredSyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderConfigUIInfo: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *const Guid,
-            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+            ppConfigUIInfo: ?**ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderConfigUIFromInstanceId: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *const Guid,
             dwClsContext: u32,
-            ppConfigUI: ?*?*ISyncProviderConfigUI,
+            ppConfigUI: ?**ISyncProviderConfigUI,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderState: fn(
             self: *const ISyncProviderRegistration,
@@ -3541,7 +3541,7 @@ pub const ISyncProviderRegistration = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: *const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: *const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?**ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).CreateSyncProviderConfigUIRegistrationInstance(@ptrCast(*const ISyncProviderRegistration, self), pConfigUIConfig, ppConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3549,11 +3549,11 @@ pub const ISyncProviderRegistration = extern struct {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).UnregisterSyncProviderConfigUI(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?**IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).EnumerateSyncProviderConfigUIs(@ptrCast(*const ISyncProviderRegistration, self), pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: *const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: *const SyncProviderConfiguration, ppProviderInfo: ?**ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).CreateSyncProviderRegistrationInstance(@ptrCast(*const ISyncProviderRegistration, self), pProviderConfiguration, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3561,27 +3561,27 @@ pub const ISyncProviderRegistration = extern struct {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).UnregisterSyncProvider(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: *const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: *const Guid, ppProviderConfigUIInfo: ?**ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIInfoforProvider(@ptrCast(*const ISyncProviderRegistration, self), pguidProviderInstanceId, ppProviderConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: *const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: *const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?**IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).EnumerateSyncProviders(@ptrCast(*const ISyncProviderRegistration, self), pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: *const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: *const Guid, ppProviderInfo: ?**ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderInfo(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: *const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: *const Guid, dwClsContext: u32, ppSyncProvider: ?**IRegisteredSyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderFromInstanceId(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, dwClsContext, ppSyncProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: *const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: *const Guid, ppConfigUIInfo: ?**ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIInfo(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, ppConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: *const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: *const Guid, dwClsContext: u32, ppConfigUI: ?**ISyncProviderConfigUI) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIFromInstanceId(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, dwClsContext, ppConfigUI);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3629,7 +3629,7 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncProviderConfigUIInfos,
-            ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
+            ppEnum: ?**IEnumSyncProviderConfigUIInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3648,7 +3648,7 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
             return @ptrCast(*const IEnumSyncProviderConfigUIInfos.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncProviderConfigUIInfos, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: ?**IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderConfigUIInfos.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncProviderConfigUIInfos, self), ppEnum);
         }
     };}
@@ -3676,7 +3676,7 @@ pub const IEnumSyncProviderInfos = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncProviderInfos,
-            ppEnum: ?*?*IEnumSyncProviderInfos,
+            ppEnum: ?**IEnumSyncProviderInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3695,7 +3695,7 @@ pub const IEnumSyncProviderInfos = extern struct {
             return @ptrCast(*const IEnumSyncProviderInfos.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncProviderInfos, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: ?**IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderInfos.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncProviderInfos, self), ppEnum);
         }
     };}
@@ -3711,14 +3711,14 @@ pub const ISyncProviderInfo = extern struct {
         GetSyncProvider: fn(
             self: *const ISyncProviderInfo,
             dwClsContext: u32,
-            ppSyncProvider: ?*?*IRegisteredSyncProvider,
+            ppSyncProvider: ?**IRegisteredSyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: ?**IRegisteredSyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderInfo.VTable, self.vtable).GetSyncProvider(@ptrCast(*const ISyncProviderInfo, self), dwClsContext, ppSyncProvider);
         }
     };}
@@ -3734,14 +3734,14 @@ pub const ISyncProviderConfigUIInfo = extern struct {
         GetSyncProviderConfigUI: fn(
             self: *const ISyncProviderConfigUIInfo,
             dwClsContext: u32,
-            ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
+            ppSyncProviderConfigUI: ?**ISyncProviderConfigUI,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: ?**ISyncProviderConfigUI) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUIInfo.VTable, self.vtable).GetSyncProviderConfigUI(@ptrCast(*const ISyncProviderConfigUIInfo, self), dwClsContext, ppSyncProviderConfigUI);
         }
     };}
@@ -3762,17 +3762,17 @@ pub const ISyncProviderConfigUI = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegisteredProperties: fn(
             self: *const ISyncProviderConfigUI,
-            ppConfigUIProperties: ?*?*IPropertyStore,
+            ppConfigUIProperties: ?**IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndRegisterNewSyncProvider: fn(
             self: *const ISyncProviderConfigUI,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             pUnkContext: ?*IUnknown,
-            ppProviderInfo: ?*?*ISyncProviderInfo,
+            ppProviderInfo: ?**ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ModifySyncProvider: fn(
             self: *const ISyncProviderConfigUI,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             pUnkContext: ?*IUnknown,
             pProviderInfo: ?*ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3785,15 +3785,15 @@ pub const ISyncProviderConfigUI = extern struct {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).Init(@ptrCast(*const ISyncProviderConfigUI, self), pguidInstanceId, pguidContentType, pConfigurationProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: ?**IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).GetRegisteredProperties(@ptrCast(*const ISyncProviderConfigUI, self), ppConfigUIProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?**ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).CreateAndRegisterNewSyncProvider(@ptrCast(*const ISyncProviderConfigUI, self), hwndParent, pUnkContext, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_ModifySyncProvider(self: *const T, hwndParent: HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_ModifySyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).ModifySyncProvider(@ptrCast(*const ISyncProviderConfigUI, self), hwndParent, pUnkContext, pProviderInfo);
         }
     };}

@@ -1182,7 +1182,7 @@ pub extern "BluetoothApis" fn BluetoothFindDeviceClose(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothGetDeviceInfo(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
     pbtdi: *BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1208,14 +1208,14 @@ pub extern "bthprops" fn BluetoothSelectDevicesFree(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bthprops" fn BluetoothDisplayDeviceProperties(
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     pbtdi: *BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bthprops" fn BluetoothAuthenticateDevice(
-    hwndParent: HWND,
-    hRadio: HANDLE,
+    hwndParent: ?HWND,
+    hRadio: ?HANDLE,
     pbtbi: *BLUETOOTH_DEVICE_INFO,
     pszPasskey: ?[*:0]u16,
     ulPasskeyLength: u32,
@@ -1223,8 +1223,8 @@ pub extern "bthprops" fn BluetoothAuthenticateDevice(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "bthprops" fn BluetoothAuthenticateDeviceEx(
-    hwndParentIn: HWND,
-    hRadioIn: HANDLE,
+    hwndParentIn: ?HWND,
+    hRadioIn: ?HANDLE,
     pbtdiInout: *BLUETOOTH_DEVICE_INFO,
     pbtOobData: ?*BLUETOOTH_OOB_DATA_INFO,
     authenticationRequirement: AUTHENTICATION_REQUIREMENTS,
@@ -1232,15 +1232,15 @@ pub extern "bthprops" fn BluetoothAuthenticateDeviceEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bthprops" fn BluetoothAuthenticateMultipleDevices(
-    hwndParent: HWND,
-    hRadio: HANDLE,
+    hwndParent: ?HWND,
+    hRadio: ?HANDLE,
     cDevices: u32,
     rgbtdi: [*]BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothSetServiceState(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
     pbtdi: *const BLUETOOTH_DEVICE_INFO,
     pGuidService: *const Guid,
     dwServiceFlags: u32,
@@ -1248,7 +1248,7 @@ pub extern "BluetoothApis" fn BluetoothSetServiceState(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothEnumerateInstalledServices(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
     pbtdi: *const BLUETOOTH_DEVICE_INFO,
     pcServiceInout: *u32,
     pGuidServices: ?[*]Guid,
@@ -1256,24 +1256,24 @@ pub extern "BluetoothApis" fn BluetoothEnumerateInstalledServices(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothEnableDiscovery(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
     fEnabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothIsDiscoverable(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothEnableIncomingConnections(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
     fEnabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothIsConnectable(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1299,14 +1299,14 @@ pub extern "BluetoothApis" fn BluetoothUnregisterAuthentication(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothSendAuthenticationResponse(
-    hRadio: HANDLE,
+    hRadio: ?HANDLE,
     pbtdi: *const BLUETOOTH_DEVICE_INFO,
     pszPasskey: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "BluetoothApis" fn BluetoothSendAuthenticationResponseEx(
-    hRadioIn: HANDLE,
+    hRadioIn: ?HANDLE,
     pauthResponse: *BLUETOOTH_AUTHENTICATE_RESPONSE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1358,7 +1358,7 @@ pub extern "BluetoothApis" fn BluetoothSdpEnumAttributes(
 
 // TODO: this type is limited to platform 'Windows Vista'
 pub extern "BluetoothApis" fn BluetoothSetLocalServiceInfo(
-    hRadioIn: HANDLE,
+    hRadioIn: ?HANDLE,
     pClassGuid: *const Guid,
     ulInstance: u32,
     pServiceInfoIn: *const BLUETOOTH_LOCAL_SERVICE_INFO,

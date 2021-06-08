@@ -3423,39 +3423,39 @@ pub const TIMERR_STRUCT = @as(u32, 129);
 //--------------------------------------------------------------------------------
 // Section: Types (251)
 //--------------------------------------------------------------------------------
-pub const HMIDI = ?*opaque{};
+pub const HMIDI = *opaque{};
 
-pub const HMIDIIN = ?*opaque{};
+pub const HMIDIIN = *opaque{};
 
-pub const HMIDIOUT = ?*opaque{};
+pub const HMIDIOUT = *opaque{};
 
-pub const HMIDISTRM = ?*opaque{};
+pub const HMIDISTRM = *opaque{};
 
-pub const HMIXER = ?*opaque{};
+pub const HMIXER = *opaque{};
 
-pub const HMIXEROBJ = ?*opaque{};
+pub const HMIXEROBJ = *opaque{};
 
-pub const HWAVE = ?*opaque{};
+pub const HWAVE = *opaque{};
 
-pub const HWAVEOUT = ?*opaque{};
+pub const HWAVEOUT = *opaque{};
 
-pub const HWAVEIN = ?*opaque{};
+pub const HWAVEIN = *opaque{};
 
-pub const HMMIO = ?*opaque{};
+pub const HMMIO = *opaque{};
 
-pub const HDRVR = ?*opaque{};
+pub const HDRVR = *opaque{};
 
-pub const HACMDRIVERID = ?*opaque{};
+pub const HACMDRIVERID = *opaque{};
 
-pub const HACMDRIVER = ?*opaque{};
+pub const HACMDRIVER = *opaque{};
 
-pub const HACMSTREAM = ?*opaque{};
+pub const HACMSTREAM = *opaque{};
 
-pub const HACMOBJ = ?*opaque{};
+pub const HACMOBJ = *opaque{};
 
-pub const HIC = ?*opaque{};
+pub const HIC = *opaque{};
 
-pub const HVIDEO = ?*opaque{};
+pub const HVIDEO = *opaque{};
 
 pub const LPWAVECALLBACK = fn(
     hdrvr: HDRVR,
@@ -6270,13 +6270,13 @@ pub extern "WINMM" fn sndPlaySoundW(
 
 pub extern "WINMM" fn PlaySoundA(
     pszSound: ?[*:0]const u8,
-    hmod: HINSTANCE,
+    hmod: ?HINSTANCE,
     fdwSound: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINMM" fn PlaySoundW(
     pszSound: ?[*:0]const u16,
-    hmod: HINSTANCE,
+    hmod: ?HINSTANCE,
     fdwSound: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6298,13 +6298,13 @@ pub extern "WINMM" fn waveOutGetDevCapsW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn waveOutGetVolume(
-    hwo: HWAVEOUT,
+    hwo: ?HWAVEOUT,
     pdwVolume: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn waveOutSetVolume(
-    hwo: HWAVEOUT,
+    hwo: ?HWAVEOUT,
     dwVolume: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -6419,7 +6419,7 @@ pub extern "WINMM" fn waveOutGetID(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn waveOutMessage(
-    hwo: HWAVEOUT,
+    hwo: ?HWAVEOUT,
     uMsg: u32,
     dw1: usize,
     dw2: usize,
@@ -6525,7 +6525,7 @@ pub extern "WINMM" fn waveInGetID(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn waveInMessage(
-    hwi: HWAVEIN,
+    hwi: ?HWAVEIN,
     uMsg: u32,
     dw1: usize,
     dw2: usize,
@@ -6620,13 +6620,13 @@ pub extern "WINMM" fn midiOutGetDevCapsW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn midiOutGetVolume(
-    hmo: HMIDIOUT,
+    hmo: ?HMIDIOUT,
     pdwVolume: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn midiOutSetVolume(
-    hmo: HMIDIOUT,
+    hmo: ?HMIDIOUT,
     dwVolume: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -6717,7 +6717,7 @@ pub extern "WINMM" fn midiOutGetID(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn midiOutMessage(
-    hmo: HMIDIOUT,
+    hmo: ?HMIDIOUT,
     uMsg: u32,
     dw1: usize,
     dw2: usize,
@@ -6818,7 +6818,7 @@ pub extern "WINMM" fn midiInGetID(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn midiInMessage(
-    hmi: HMIDIIN,
+    hmi: ?HMIDIIN,
     uMsg: u32,
     dw1: usize,
     dw2: usize,
@@ -6900,7 +6900,7 @@ pub extern "WINMM" fn mixerClose(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerMessage(
-    hmx: HMIXER,
+    hmx: ?HMIXER,
     uMsg: u32,
     dwParam1: usize,
     dwParam2: usize,
@@ -6908,56 +6908,56 @@ pub extern "WINMM" fn mixerMessage(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerGetLineInfoA(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     pmxl: *MIXERLINEA,
     fdwInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerGetLineInfoW(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     pmxl: *MIXERLINEW,
     fdwInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerGetID(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     puMxId: *u32,
     fdwId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerGetLineControlsA(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     pmxlc: *MIXERLINECONTROLSA,
     fdwControls: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerGetLineControlsW(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     pmxlc: *MIXERLINECONTROLSW,
     fdwControls: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerGetControlDetailsA(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     pmxcd: *MIXERCONTROLDETAILS,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerGetControlDetailsW(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     pmxcd: *MIXERCONTROLDETAILS,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn mixerSetControlDetails(
-    hmxobj: HMIXEROBJ,
+    hmxobj: ?HMIXEROBJ,
     pmxcd: *MIXERCONTROLDETAILS,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -7448,9 +7448,9 @@ pub extern "MSVFW32" fn ICDecompress(
 pub extern "MSVFW32" fn ICDrawBegin(
     hic: HIC,
     dwFlags: u32,
-    hpal: HPALETTE,
-    hwnd: HWND,
-    hdc: HDC,
+    hpal: ?HPALETTE,
+    hwnd: ?HWND,
+    hdc: ?HDC,
     xDst: i32,
     yDst: i32,
     dxDst: i32,
@@ -7486,7 +7486,7 @@ pub extern "MSVFW32" fn ICLocate(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn ICGetDisplayFormat(
-    hic: HIC,
+    hic: ?HIC,
     lpbiIn: *BITMAPINFOHEADER,
     lpbiOut: *BITMAPINFOHEADER,
     BitDepth: i32,
@@ -7507,7 +7507,7 @@ pub extern "MSVFW32" fn ICImageCompress(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn ICImageDecompress(
-    hic: HIC,
+    hic: ?HIC,
     uiFlags: u32,
     lpbiIn: *BITMAPINFO,
     lpBits: *c_void,
@@ -7516,7 +7516,7 @@ pub extern "MSVFW32" fn ICImageDecompress(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn ICCompressorChoose(
-    hwnd: HWND,
+    hwnd: ?HWND,
     uiFlags: u32,
     pvIn: ?*c_void,
     lpData: ?*c_void,
@@ -7574,7 +7574,7 @@ pub extern "MSVFW32" fn DrawDibGetPalette(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn DrawDibSetPalette(
     hdd: isize,
-    hpal: HPALETTE,
+    hpal: ?HPALETTE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7606,7 +7606,7 @@ pub extern "MSVFW32" fn DrawDibStop(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn DrawDibBegin(
     hdd: isize,
-    hdc: HDC,
+    hdc: ?HDC,
     dxDst: i32,
     dyDst: i32,
     lpbi: *BITMAPINFOHEADER,
@@ -8090,16 +8090,16 @@ pub extern "AVIFIL32" fn EditStreamSetInfoA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn MCIWndCreateA(
-    hwndParent: HWND,
-    hInstance: HINSTANCE,
+    hwndParent: ?HWND,
+    hInstance: ?HINSTANCE,
     dwStyle: u32,
     szFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn MCIWndCreateW(
-    hwndParent: HWND,
-    hInstance: HINSTANCE,
+    hwndParent: ?HWND,
+    hInstance: ?HINSTANCE,
     dwStyle: u32,
     szFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
@@ -8116,7 +8116,7 @@ pub extern "AVICAP32" fn capCreateCaptureWindowA(
     y: i32,
     nWidth: i32,
     nHeight: i32,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     nID: i32,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
@@ -8137,7 +8137,7 @@ pub extern "AVICAP32" fn capCreateCaptureWindowW(
     y: i32,
     nWidth: i32,
     nHeight: i32,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     nID: i32,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 

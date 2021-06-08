@@ -3664,7 +3664,7 @@ pub extern "KERNEL32" fn ParseApplicationUserModelId(
 pub extern "KERNEL32" fn GetPackagesByPackageFamily(
     packageFamilyName: [*:0]const u16,
     count: *u32,
-    packageFullNames: ?[*]?PWSTR,
+    packageFullNames: ?[*]PWSTR,
     bufferLength: *u32,
     buffer: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3674,7 +3674,7 @@ pub extern "KERNEL32" fn FindPackagesByPackageFamily(
     packageFamilyName: [*:0]const u16,
     packageFilters: u32,
     count: *u32,
-    packageFullNames: ?[*]?PWSTR,
+    packageFullNames: ?[*]PWSTR,
     bufferLength: *u32,
     buffer: ?[*:0]u16,
     packageProperties: ?[*]u32,
@@ -3703,7 +3703,7 @@ pub extern "KERNEL32" fn OpenPackageInfoByFullName(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn OpenPackageInfoByFullNameForUser(
-    userSid: PSID,
+    userSid: ?PSID,
     packageFullName: [*:0]const u16,
     reserved: u32,
     packageInfoReference: **_PACKAGE_INFO_REFERENCE,

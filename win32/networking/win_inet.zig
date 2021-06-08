@@ -2664,7 +2664,7 @@ pub extern "WININET" fn FtpCommandA(
     dwFlags: FTP_FLAGS,
     lpszCommand: [*:0]const u8,
     dwContext: usize,
-    phFtpCommand: ?*?*c_void,
+    phFtpCommand: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2674,7 +2674,7 @@ pub extern "WININET" fn FtpCommandW(
     dwFlags: FTP_FLAGS,
     lpszCommand: [*:0]const u16,
     dwContext: usize,
-    phFtpCommand: ?*?*c_void,
+    phFtpCommand: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2786,7 +2786,7 @@ pub extern "WININET" fn HttpOpenRequestA(
     lpszObjectName: ?[*:0]const u8,
     lpszVersion: ?[*:0]const u8,
     lpszReferrer: ?[*:0]const u8,
-    lplpszAcceptTypes: ?*?PSTR,
+    lplpszAcceptTypes: ?*PSTR,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
@@ -2798,7 +2798,7 @@ pub extern "WININET" fn HttpOpenRequestW(
     lpszObjectName: ?[*:0]const u16,
     lpszVersion: ?[*:0]const u16,
     lpszReferrer: ?[*:0]const u16,
-    lplpszAcceptTypes: ?*?PWSTR,
+    lplpszAcceptTypes: ?*PWSTR,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
@@ -3013,7 +3013,7 @@ pub extern "WININET" fn InternetErrorDlg(
     hRequest: ?*c_void,
     dwError: u32,
     dwFlags: u32,
-    lppvData: ?*?*c_void,
+    lppvData: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3477,7 +3477,7 @@ pub extern "WININET" fn InternetGoOnline(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WININET" fn InternetAutodial(
     dwFlags: INTERNET_AUTODIAL,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3802,7 +3802,7 @@ pub extern "WININET" fn GetUrlCacheEntryBinaryBlob(
     pftExpireTime: *FILETIME,
     pftAccessTime: *FILETIME,
     pftModifiedTime: *FILETIME,
-    ppbBlob: ?[*]?*u8,
+    ppbBlob: ?[*]*u8,
     pcbBlob: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3949,7 +3949,7 @@ pub extern "WININET" fn UpdateUrlCacheContentPath(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn RegisterUrlCacheNotification(
-    hWnd: HWND,
+    hWnd: ?HWND,
     uMsg: u32,
     gid: i64,
     dwOpsFilter: u32,
@@ -4192,9 +4192,9 @@ pub extern "WININET" fn UrlCacheServer(
 
 pub extern "WININET" fn ReadGuidsForConnectedNetworks(
     pcNetworks: ?*u32,
-    pppwszNetworkGuids: ?*?*?PWSTR,
-    pppbstrNetworkNames: ?*?*BSTR,
-    pppwszGWMacs: ?*?*?PWSTR,
+    pppwszNetworkGuids: ?**PWSTR,
+    pppbstrNetworkNames: ?**BSTR,
+    pppwszGWMacs: ?**PWSTR,
     pcGatewayMacs: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

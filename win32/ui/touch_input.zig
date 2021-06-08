@@ -6,9 +6,9 @@
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-pub const HGESTUREINFO = ?*opaque{};
+pub const HGESTUREINFO = *opaque{};
 
-pub const HTOUCHINPUT = ?*opaque{};
+pub const HTOUCHINPUT = *opaque{};
 
 pub const GESTURECONFIG_ID = extern enum(u32) {
     BEGIN = 1,

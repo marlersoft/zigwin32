@@ -280,7 +280,7 @@ pub const WAIT_FAILED = WAIT_RETURN_CAUSE.FAILED;
 pub const PINIT_ONCE_FN = fn(
     InitOnce: *RTL_RUN_ONCE,
     Parameter: ?*c_void,
-    Context: ?*?*c_void,
+    Context: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PTIMERAPCROUTINE = fn(
@@ -973,7 +973,7 @@ pub extern "KERNEL32" fn InitOnceExecuteOnce(
     InitOnce: *RTL_RUN_ONCE,
     InitFn: PINIT_ONCE_FN,
     Parameter: ?*c_void,
-    Context: ?*?*c_void,
+    Context: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -981,7 +981,7 @@ pub extern "KERNEL32" fn InitOnceBeginInitialize(
     lpInitOnce: *RTL_RUN_ONCE,
     dwFlags: u32,
     fPending: *BOOL,
-    lpContext: ?*?*c_void,
+    lpContext: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1509,7 +1509,7 @@ pub extern "KERNEL32" fn GetStartupInfoW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CreateProcessAsUserW(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     lpApplicationName: ?[*:0]const u16,
     lpCommandLine: ?PWSTR,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
@@ -1525,7 +1525,7 @@ pub extern "ADVAPI32" fn CreateProcessAsUserW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SetThreadToken(
     Thread: ?*HANDLE,
-    Token: HANDLE,
+    Token: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1581,7 +1581,7 @@ pub extern "KERNEL32" fn GetProcessIdOfThread(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn InitializeProcThreadAttributeList(
     // TODO: what to do with BytesParamIndex 3?
-    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
+    lpAttributeList: ?LPPROC_THREAD_ATTRIBUTE_LIST,
     dwAttributeCount: u32,
     dwFlags: u32,
     lpSize: *usize,
@@ -1631,7 +1631,7 @@ pub extern "KERNEL32" fn CreateRemoteThreadEx(
     lpStartAddress: LPTHREAD_START_ROUTINE,
     lpParameter: ?*c_void,
     dwCreationFlags: u32,
-    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
+    lpAttributeList: ?LPPROC_THREAD_ATTRIBUTE_LIST,
     lpThreadId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -1798,7 +1798,7 @@ pub extern "KERNEL32" fn GetSystemCpuSetInformation(
     Information: ?*SYSTEM_CPU_SET_INFORMATION,
     BufferLength: u32,
     ReturnedLength: *u32,
-    Process: HANDLE,
+    Process: ?HANDLE,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1830,7 +1830,7 @@ pub extern "KERNEL32" fn SetThreadSelectedCpuSets(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CreateProcessAsUserA(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     lpApplicationName: ?[*:0]const u8,
     lpCommandLine: ?PSTR,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
@@ -1871,7 +1871,7 @@ pub extern "KERNEL32" fn QueueUserWorkItem(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn UnregisterWaitEx(
     WaitHandle: HANDLE,
-    CompletionEvent: HANDLE,
+    CompletionEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1881,7 +1881,7 @@ pub extern "KERNEL32" fn CreateTimerQueue(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateTimerQueueTimer(
     phNewTimer: *HANDLE,
-    TimerQueue: HANDLE,
+    TimerQueue: ?HANDLE,
     Callback: WAITORTIMERCALLBACK,
     Parameter: ?*c_void,
     DueTime: u32,
@@ -1891,7 +1891,7 @@ pub extern "KERNEL32" fn CreateTimerQueueTimer(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ChangeTimerQueueTimer(
-    TimerQueue: HANDLE,
+    TimerQueue: ?HANDLE,
     Timer: HANDLE,
     DueTime: u32,
     Period: u32,
@@ -1899,15 +1899,15 @@ pub extern "KERNEL32" fn ChangeTimerQueueTimer(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DeleteTimerQueueTimer(
-    TimerQueue: HANDLE,
+    TimerQueue: ?HANDLE,
     Timer: HANDLE,
-    CompletionEvent: HANDLE,
+    CompletionEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DeleteTimerQueueEx(
     TimerQueue: HANDLE,
-    CompletionEvent: HANDLE,
+    CompletionEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2072,7 +2072,7 @@ pub extern "KERNEL32" fn CreateThreadpoolWait(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetThreadpoolWait(
     pwa: *TP_WAIT,
-    h: HANDLE,
+    h: ?HANDLE,
     pftTimeout: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -2127,7 +2127,7 @@ pub extern "KERNEL32" fn SetThreadpoolTimerEx(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn SetThreadpoolWaitEx(
     pwa: *TP_WAIT,
-    h: HANDLE,
+    h: ?HANDLE,
     pftTimeout: ?*FILETIME,
     Reserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

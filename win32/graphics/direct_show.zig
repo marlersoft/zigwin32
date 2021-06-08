@@ -976,7 +976,7 @@ pub const IPin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryInternalConnections: fn(
             self: *const IPin,
-            apPin: ?[*]?*IPin,
+            apPin: ?[*]*IPin,
             nPin: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndOfStream: fn(
@@ -1039,7 +1039,7 @@ pub const IPin = extern struct {
             return @ptrCast(*const IPin.VTable, self.vtable).EnumMediaTypes(@ptrCast(*const IPin, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPin_QueryInternalConnections(self: *const T, apPin: ?[*]?*IPin, nPin: *u32) callconv(.Inline) HRESULT {
+        pub fn IPin_QueryInternalConnections(self: *const T, apPin: ?[*]*IPin, nPin: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPin.VTable, self.vtable).QueryInternalConnections(@ptrCast(*const IPin, self), apPin, nPin);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1320,7 +1320,7 @@ pub const IMediaFilter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncSource: fn(
             self: *const IMediaFilter,
-            pClock: ?*?*IReferenceClock,
+            pClock: ?**IReferenceClock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1347,7 +1347,7 @@ pub const IMediaFilter = extern struct {
             return @ptrCast(*const IMediaFilter.VTable, self.vtable).SetSyncSource(@ptrCast(*const IMediaFilter, self), pClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaFilter_GetSyncSource(self: *const T, pClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
+        pub fn IMediaFilter_GetSyncSource(self: *const T, pClock: ?**IReferenceClock) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMediaFilter.VTable, self.vtable).GetSyncSource(@ptrCast(*const IMediaFilter, self), pClock);
         }
     };}
@@ -1731,14 +1731,14 @@ pub const IMediaSample2Config = extern struct {
         base: IUnknown.VTable,
         GetSurface: fn(
             self: *const IMediaSample2Config,
-            ppDirect3DSurface9: ?*?*IUnknown,
+            ppDirect3DSurface9: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaSample2Config_GetSurface(self: *const T, ppDirect3DSurface9: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMediaSample2Config_GetSurface(self: *const T, ppDirect3DSurface9: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMediaSample2Config.VTable, self.vtable).GetSurface(@ptrCast(*const IMediaSample2Config, self), ppDirect3DSurface9);
         }
     };}
@@ -2417,7 +2417,7 @@ pub const IFilterMapper2 = extern struct {
             self: *const IFilterMapper2,
             clsidFilter: *const Guid,
             Name: [*:0]const u16,
-            ppMoniker: ?*?*IMoniker,
+            ppMoniker: ?**IMoniker,
             pclsidCategory: *const Guid,
             szInstance: [*:0]const u16,
             prf2: *const REGFILTER2,
@@ -2453,7 +2453,7 @@ pub const IFilterMapper2 = extern struct {
             return @ptrCast(*const IFilterMapper2.VTable, self.vtable).UnregisterFilter(@ptrCast(*const IFilterMapper2, self), pclsidCategory, szInstance, Filter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterMapper2_RegisterFilter(self: *const T, clsidFilter: *const Guid, Name: [*:0]const u16, ppMoniker: ?*?*IMoniker, pclsidCategory: *const Guid, szInstance: [*:0]const u16, prf2: *const REGFILTER2) callconv(.Inline) HRESULT {
+        pub fn IFilterMapper2_RegisterFilter(self: *const T, clsidFilter: *const Guid, Name: [*:0]const u16, ppMoniker: ?**IMoniker, pclsidCategory: *const Guid, szInstance: [*:0]const u16, prf2: *const REGFILTER2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterMapper2.VTable, self.vtable).RegisterFilter(@ptrCast(*const IFilterMapper2, self), clsidFilter, Name, ppMoniker, pclsidCategory, szInstance, prf2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3082,7 +3082,7 @@ pub const ICaptureGraphBuilder2 = extern struct {
             pType: *const Guid,
             lpstrFile: [*:0]const u16,
             ppf: **IBaseFilter,
-            ppSink: ?*?*IFileSinkFilter,
+            ppSink: ?**IFileSinkFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindInterface: fn(
             self: *const ICaptureGraphBuilder2,
@@ -3145,7 +3145,7 @@ pub const ICaptureGraphBuilder2 = extern struct {
             return @ptrCast(*const ICaptureGraphBuilder2.VTable, self.vtable).GetFiltergraph(@ptrCast(*const ICaptureGraphBuilder2, self), ppfg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICaptureGraphBuilder2_SetOutputFileName(self: *const T, pType: *const Guid, lpstrFile: [*:0]const u16, ppf: **IBaseFilter, ppSink: ?*?*IFileSinkFilter) callconv(.Inline) HRESULT {
+        pub fn ICaptureGraphBuilder2_SetOutputFileName(self: *const T, pType: *const Guid, lpstrFile: [*:0]const u16, ppf: **IBaseFilter, ppSink: ?**IFileSinkFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICaptureGraphBuilder2.VTable, self.vtable).SetOutputFileName(@ptrCast(*const ICaptureGraphBuilder2, self), pType, lpstrFile, ppf, ppSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3301,7 +3301,7 @@ pub const IAsyncReader = extern struct {
         WaitForNext: fn(
             self: *const IAsyncReader,
             dwTimeout: u32,
-            ppSample: ?*?*IMediaSample,
+            ppSample: ?**IMediaSample,
             pdwUser: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SyncReadAligned: fn(
@@ -3339,7 +3339,7 @@ pub const IAsyncReader = extern struct {
             return @ptrCast(*const IAsyncReader.VTable, self.vtable).Request(@ptrCast(*const IAsyncReader, self), pSample, dwUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsyncReader_WaitForNext(self: *const T, dwTimeout: u32, ppSample: ?*?*IMediaSample, pdwUser: *usize) callconv(.Inline) HRESULT {
+        pub fn IAsyncReader_WaitForNext(self: *const T, dwTimeout: u32, ppSample: ?**IMediaSample, pdwUser: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAsyncReader.VTable, self.vtable).WaitForNext(@ptrCast(*const IAsyncReader, self), dwTimeout, ppSample, pdwUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6173,13 +6173,13 @@ pub const IAMStreamSelect = extern struct {
         Info: fn(
             self: *const IAMStreamSelect,
             lIndex: i32,
-            ppmt: ?*?*AM_MEDIA_TYPE,
+            ppmt: ?**AM_MEDIA_TYPE,
             pdwFlags: ?*u32,
             plcid: ?*u32,
             pdwGroup: ?*u32,
-            ppszName: ?*?PWSTR,
-            ppObject: ?*?*IUnknown,
-            ppUnk: ?*?*IUnknown,
+            ppszName: ?*PWSTR,
+            ppObject: ?**IUnknown,
+            ppUnk: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Enable: fn(
             self: *const IAMStreamSelect,
@@ -6195,7 +6195,7 @@ pub const IAMStreamSelect = extern struct {
             return @ptrCast(*const IAMStreamSelect.VTable, self.vtable).Count(@ptrCast(*const IAMStreamSelect, self), pcStreams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMStreamSelect_Info(self: *const T, lIndex: i32, ppmt: ?*?*AM_MEDIA_TYPE, pdwFlags: ?*u32, plcid: ?*u32, pdwGroup: ?*u32, ppszName: ?*?PWSTR, ppObject: ?*?*IUnknown, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAMStreamSelect_Info(self: *const T, lIndex: i32, ppmt: ?**AM_MEDIA_TYPE, pdwFlags: ?*u32, plcid: ?*u32, pdwGroup: ?*u32, ppszName: ?*PWSTR, ppObject: ?**IUnknown, ppUnk: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMStreamSelect.VTable, self.vtable).Info(@ptrCast(*const IAMStreamSelect, self), lIndex, ppmt, pdwFlags, plcid, pdwGroup, ppszName, ppObject, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15927,12 +15927,12 @@ pub const IAMCollection = extern struct {
         Item: fn(
             self: *const IAMCollection,
             lItem: i32,
-            ppUnk: ?*?*IUnknown,
+            ppUnk: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IAMCollection,
-            ppUnk: ?*?*IUnknown,
+            ppUnk: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -15943,11 +15943,11 @@ pub const IAMCollection = extern struct {
             return @ptrCast(*const IAMCollection.VTable, self.vtable).get_Count(@ptrCast(*const IAMCollection, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMCollection_Item(self: *const T, lItem: i32, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAMCollection_Item(self: *const T, lItem: i32, ppUnk: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMCollection.VTable, self.vtable).Item(@ptrCast(*const IAMCollection, self), lItem, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAMCollection_get__NewEnum(self: *const T, ppUnk: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAMCollection, self), ppUnk);
         }
     };}
@@ -15981,17 +15981,17 @@ pub const IMediaControl = extern struct {
         AddSourceFilter: fn(
             self: *const IMediaControl,
             strFilename: BSTR,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilterCollection: fn(
             self: *const IMediaControl,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegFilterCollection: fn(
             self: *const IMediaControl,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StopWhenReady: fn(
             self: *const IMediaControl,
@@ -16021,15 +16021,15 @@ pub const IMediaControl = extern struct {
             return @ptrCast(*const IMediaControl.VTable, self.vtable).RenderFile(@ptrCast(*const IMediaControl, self), strFilename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaControl_AddSourceFilter(self: *const T, strFilename: BSTR, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IMediaControl_AddSourceFilter(self: *const T, strFilename: BSTR, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMediaControl.VTable, self.vtable).AddSourceFilter(@ptrCast(*const IMediaControl, self), strFilename, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaControl_get_FilterCollection(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IMediaControl_get_FilterCollection(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMediaControl.VTable, self.vtable).get_FilterCollection(@ptrCast(*const IMediaControl, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaControl_get_RegFilterCollection(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IMediaControl_get_RegFilterCollection(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMediaControl.VTable, self.vtable).get_RegFilterCollection(@ptrCast(*const IMediaControl, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17059,7 +17059,7 @@ pub const IQueueCommand = extern struct {
         base: IUnknown.VTable,
         InvokeAtStreamTime: fn(
             self: *const IQueueCommand,
-            pCmd: ?*?*IDeferredCommand,
+            pCmd: ?**IDeferredCommand,
             time: f64,
             iid: *Guid,
             dispidMethod: i32,
@@ -17071,7 +17071,7 @@ pub const IQueueCommand = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InvokeAtPresentationTime: fn(
             self: *const IQueueCommand,
-            pCmd: ?*?*IDeferredCommand,
+            pCmd: ?**IDeferredCommand,
             time: f64,
             iid: *Guid,
             dispidMethod: i32,
@@ -17086,11 +17086,11 @@ pub const IQueueCommand = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueueCommand_InvokeAtStreamTime(self: *const T, pCmd: ?*?*IDeferredCommand, time: f64, iid: *Guid, dispidMethod: i32, wFlags: i16, cArgs: i32, pDispParams: *VARIANT, pvarResult: *VARIANT, puArgErr: *i16) callconv(.Inline) HRESULT {
+        pub fn IQueueCommand_InvokeAtStreamTime(self: *const T, pCmd: ?**IDeferredCommand, time: f64, iid: *Guid, dispidMethod: i32, wFlags: i16, cArgs: i32, pDispParams: *VARIANT, pvarResult: *VARIANT, puArgErr: *i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueueCommand.VTable, self.vtable).InvokeAtStreamTime(@ptrCast(*const IQueueCommand, self), pCmd, time, iid, dispidMethod, wFlags, cArgs, pDispParams, pvarResult, puArgErr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueueCommand_InvokeAtPresentationTime(self: *const T, pCmd: ?*?*IDeferredCommand, time: f64, iid: *Guid, dispidMethod: i32, wFlags: i16, cArgs: i32, pDispParams: *VARIANT, pvarResult: *VARIANT, puArgErr: *i16) callconv(.Inline) HRESULT {
+        pub fn IQueueCommand_InvokeAtPresentationTime(self: *const T, pCmd: ?**IDeferredCommand, time: f64, iid: *Guid, dispidMethod: i32, wFlags: i16, cArgs: i32, pDispParams: *VARIANT, pvarResult: *VARIANT, puArgErr: *i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueueCommand.VTable, self.vtable).InvokeAtPresentationTime(@ptrCast(*const IQueueCommand, self), pCmd, time, iid, dispidMethod, wFlags, cArgs, pDispParams, pvarResult, puArgErr);
         }
     };}
@@ -17105,7 +17105,7 @@ pub const IFilterInfo = extern struct {
         FindPin: fn(
             self: *const IFilterInfo,
             strPinID: BSTR,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
@@ -17120,12 +17120,12 @@ pub const IFilterInfo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Filter: fn(
             self: *const IFilterInfo,
-            ppUnk: ?*?*IUnknown,
+            ppUnk: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Pins: fn(
             self: *const IFilterInfo,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFileSource: fn(
@@ -17147,7 +17147,7 @@ pub const IFilterInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterInfo_FindPin(self: *const T, strPinID: BSTR, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IFilterInfo_FindPin(self: *const T, strPinID: BSTR, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterInfo.VTable, self.vtable).FindPin(@ptrCast(*const IFilterInfo, self), strPinID, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17159,11 +17159,11 @@ pub const IFilterInfo = extern struct {
             return @ptrCast(*const IFilterInfo.VTable, self.vtable).get_VendorInfo(@ptrCast(*const IFilterInfo, self), strVendorInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterInfo_get_Filter(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFilterInfo_get_Filter(self: *const T, ppUnk: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterInfo.VTable, self.vtable).get_Filter(@ptrCast(*const IFilterInfo, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterInfo_get_Pins(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IFilterInfo_get_Pins(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterInfo.VTable, self.vtable).get_Pins(@ptrCast(*const IFilterInfo, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17194,7 +17194,7 @@ pub const IRegFilterInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Filter: fn(
             self: *const IRegFilterInfo,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -17205,7 +17205,7 @@ pub const IRegFilterInfo = extern struct {
             return @ptrCast(*const IRegFilterInfo.VTable, self.vtable).get_Name(@ptrCast(*const IRegFilterInfo, self), strName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegFilterInfo_Filter(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IRegFilterInfo_Filter(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegFilterInfo.VTable, self.vtable).Filter(@ptrCast(*const IRegFilterInfo, self), ppUnk);
         }
     };}
@@ -17251,22 +17251,22 @@ pub const IPinInfo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Pin: fn(
             self: *const IPinInfo,
-            ppUnk: ?*?*IUnknown,
+            ppUnk: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectedTo: fn(
             self: *const IPinInfo,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionMediaType: fn(
             self: *const IPinInfo,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilterInfo: fn(
             self: *const IPinInfo,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
@@ -17286,7 +17286,7 @@ pub const IPinInfo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MediaTypes: fn(
             self: *const IPinInfo,
-            ppUnk: ?*?*IDispatch,
+            ppUnk: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Connect: fn(
             self: *const IPinInfo,
@@ -17312,19 +17312,19 @@ pub const IPinInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPinInfo_get_Pin(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IPinInfo_get_Pin(self: *const T, ppUnk: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPinInfo.VTable, self.vtable).get_Pin(@ptrCast(*const IPinInfo, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPinInfo_get_ConnectedTo(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IPinInfo_get_ConnectedTo(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPinInfo.VTable, self.vtable).get_ConnectedTo(@ptrCast(*const IPinInfo, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPinInfo_get_ConnectionMediaType(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IPinInfo_get_ConnectionMediaType(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPinInfo.VTable, self.vtable).get_ConnectionMediaType(@ptrCast(*const IPinInfo, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPinInfo_get_FilterInfo(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IPinInfo_get_FilterInfo(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPinInfo.VTable, self.vtable).get_FilterInfo(@ptrCast(*const IPinInfo, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17340,7 +17340,7 @@ pub const IPinInfo = extern struct {
             return @ptrCast(*const IPinInfo.VTable, self.vtable).get_PinID(@ptrCast(*const IPinInfo, self), strPinID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPinInfo_get_MediaTypes(self: *const T, ppUnk: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IPinInfo_get_MediaTypes(self: *const T, ppUnk: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPinInfo.VTable, self.vtable).get_MediaTypes(@ptrCast(*const IPinInfo, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23757,7 +23757,7 @@ pub const IMediaBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBufferAndLength: fn(
             self: *const IMediaBuffer,
-            ppBuffer: ?*?*u8,
+            ppBuffer: ?**u8,
             pcbLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -23773,7 +23773,7 @@ pub const IMediaBuffer = extern struct {
             return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const IMediaBuffer, self), pcbMaxLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaBuffer_GetBufferAndLength(self: *const T, ppBuffer: ?*?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMediaBuffer_GetBufferAndLength(self: *const T, ppBuffer: ?**u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetBufferAndLength(@ptrCast(*const IMediaBuffer, self), ppBuffer, pcbLength);
         }
     };}
@@ -26353,7 +26353,7 @@ pub const IScanningTunerEx = extern struct {
         base: IScanningTuner.VTable,
         GetCurrentLocator: fn(
             self: *const IScanningTunerEx,
-            pILocator: ?*?*ILocator,
+            pILocator: ?**ILocator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PerformExhaustiveScan: fn(
             self: *const IScanningTunerEx,
@@ -26399,7 +26399,7 @@ pub const IScanningTunerEx = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IScanningTuner.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScanningTunerEx_GetCurrentLocator(self: *const T, pILocator: ?*?*ILocator) callconv(.Inline) HRESULT {
+        pub fn IScanningTunerEx_GetCurrentLocator(self: *const T, pILocator: ?**ILocator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScanningTunerEx.VTable, self.vtable).GetCurrentLocator(@ptrCast(*const IScanningTunerEx, self), pILocator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -37792,55 +37792,55 @@ pub const IAtscPsipParser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPAT: fn(
             self: *const IAtscPsipParser,
-            ppPAT: ?*?*IPAT,
+            ppPAT: ?**IPAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCAT: fn(
             self: *const IAtscPsipParser,
             dwTimeout: u32,
-            ppCAT: ?*?*ICAT,
+            ppCAT: ?**ICAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPMT: fn(
             self: *const IAtscPsipParser,
             pid: u16,
             pwProgramNumber: *u16,
-            ppPMT: ?*?*IPMT,
+            ppPMT: ?**IPMT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTSDT: fn(
             self: *const IAtscPsipParser,
-            ppTSDT: ?*?*ITSDT,
+            ppTSDT: ?**ITSDT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMGT: fn(
             self: *const IAtscPsipParser,
-            ppMGT: ?*?*IATSC_MGT,
+            ppMGT: ?**IATSC_MGT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVCT: fn(
             self: *const IAtscPsipParser,
             tableId: u8,
             fGetNextTable: BOOL,
-            ppVCT: ?*?*IATSC_VCT,
+            ppVCT: ?**IATSC_VCT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEIT: fn(
             self: *const IAtscPsipParser,
             pid: u16,
             pwSourceId: *u16,
             dwTimeout: u32,
-            ppEIT: ?*?*IATSC_EIT,
+            ppEIT: ?**IATSC_EIT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetETT: fn(
             self: *const IAtscPsipParser,
             pid: u16,
             wSourceId: *u16,
             pwEventId: *u16,
-            ppETT: ?*?*IATSC_ETT,
+            ppETT: ?**IATSC_ETT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSTT: fn(
             self: *const IAtscPsipParser,
-            ppSTT: ?*?*IATSC_STT,
+            ppSTT: ?**IATSC_STT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEAS: fn(
             self: *const IAtscPsipParser,
             pid: u16,
-            ppEAS: ?*?*ISCTE_EAS,
+            ppEAS: ?**ISCTE_EAS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -37851,43 +37851,43 @@ pub const IAtscPsipParser = extern struct {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).Initialize(@ptrCast(*const IAtscPsipParser, self), punkMpeg2Data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetPAT(self: *const T, ppPAT: ?*?*IPAT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetPAT(self: *const T, ppPAT: ?**IPAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetPAT(@ptrCast(*const IAtscPsipParser, self), ppPAT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetCAT(self: *const T, dwTimeout: u32, ppCAT: ?*?*ICAT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetCAT(self: *const T, dwTimeout: u32, ppCAT: ?**ICAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetCAT(@ptrCast(*const IAtscPsipParser, self), dwTimeout, ppCAT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetPMT(self: *const T, pid: u16, pwProgramNumber: *u16, ppPMT: ?*?*IPMT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetPMT(self: *const T, pid: u16, pwProgramNumber: *u16, ppPMT: ?**IPMT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetPMT(@ptrCast(*const IAtscPsipParser, self), pid, pwProgramNumber, ppPMT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetTSDT(self: *const T, ppTSDT: ?*?*ITSDT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetTSDT(self: *const T, ppTSDT: ?**ITSDT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetTSDT(@ptrCast(*const IAtscPsipParser, self), ppTSDT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetMGT(self: *const T, ppMGT: ?*?*IATSC_MGT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetMGT(self: *const T, ppMGT: ?**IATSC_MGT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetMGT(@ptrCast(*const IAtscPsipParser, self), ppMGT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetVCT(self: *const T, tableId: u8, fGetNextTable: BOOL, ppVCT: ?*?*IATSC_VCT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetVCT(self: *const T, tableId: u8, fGetNextTable: BOOL, ppVCT: ?**IATSC_VCT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetVCT(@ptrCast(*const IAtscPsipParser, self), tableId, fGetNextTable, ppVCT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetEIT(self: *const T, pid: u16, pwSourceId: *u16, dwTimeout: u32, ppEIT: ?*?*IATSC_EIT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetEIT(self: *const T, pid: u16, pwSourceId: *u16, dwTimeout: u32, ppEIT: ?**IATSC_EIT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetEIT(@ptrCast(*const IAtscPsipParser, self), pid, pwSourceId, dwTimeout, ppEIT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetETT(self: *const T, pid: u16, wSourceId: *u16, pwEventId: *u16, ppETT: ?*?*IATSC_ETT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetETT(self: *const T, pid: u16, wSourceId: *u16, pwEventId: *u16, ppETT: ?**IATSC_ETT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetETT(@ptrCast(*const IAtscPsipParser, self), pid, wSourceId, pwEventId, ppETT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetSTT(self: *const T, ppSTT: ?*?*IATSC_STT) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetSTT(self: *const T, ppSTT: ?**IATSC_STT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetSTT(@ptrCast(*const IAtscPsipParser, self), ppSTT);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscPsipParser_GetEAS(self: *const T, pid: u16, ppEAS: ?*?*ISCTE_EAS) callconv(.Inline) HRESULT {
+        pub fn IAtscPsipParser_GetEAS(self: *const T, pid: u16, ppEAS: ?**ISCTE_EAS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscPsipParser.VTable, self.vtable).GetEAS(@ptrCast(*const IAtscPsipParser, self), pid, ppEAS);
         }
     };}
@@ -37940,14 +37940,14 @@ pub const IATSC_MGT = extern struct {
             self: *const IATSC_MGT,
             dwRecordIndex: u32,
             dwIndex: u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecordDescriptorByTag: fn(
             self: *const IATSC_MGT,
             dwRecordIndex: u32,
             bTag: u8,
             pdwCookie: *u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCountOfTableDescriptors: fn(
             self: *const IATSC_MGT,
@@ -37956,13 +37956,13 @@ pub const IATSC_MGT = extern struct {
         GetTableDescriptorByIndex: fn(
             self: *const IATSC_MGT,
             dwIndex: u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTableDescriptorByTag: fn(
             self: *const IATSC_MGT,
             bTag: u8,
             pdwCookie: *u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38001,11 +38001,11 @@ pub const IATSC_MGT = extern struct {
             return @ptrCast(*const IATSC_MGT.VTable, self.vtable).GetRecordCountOfDescriptors(@ptrCast(*const IATSC_MGT, self), dwRecordIndex, pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_MGT_GetRecordDescriptorByIndex(self: *const T, dwRecordIndex: u32, dwIndex: u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_MGT_GetRecordDescriptorByIndex(self: *const T, dwRecordIndex: u32, dwIndex: u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_MGT.VTable, self.vtable).GetRecordDescriptorByIndex(@ptrCast(*const IATSC_MGT, self), dwRecordIndex, dwIndex, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_MGT_GetRecordDescriptorByTag(self: *const T, dwRecordIndex: u32, bTag: u8, pdwCookie: *u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_MGT_GetRecordDescriptorByTag(self: *const T, dwRecordIndex: u32, bTag: u8, pdwCookie: *u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_MGT.VTable, self.vtable).GetRecordDescriptorByTag(@ptrCast(*const IATSC_MGT, self), dwRecordIndex, bTag, pdwCookie, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -38013,11 +38013,11 @@ pub const IATSC_MGT = extern struct {
             return @ptrCast(*const IATSC_MGT.VTable, self.vtable).GetCountOfTableDescriptors(@ptrCast(*const IATSC_MGT, self), pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_MGT_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_MGT_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_MGT.VTable, self.vtable).GetTableDescriptorByIndex(@ptrCast(*const IATSC_MGT, self), dwIndex, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_MGT_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_MGT_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_MGT.VTable, self.vtable).GetTableDescriptorByTag(@ptrCast(*const IATSC_MGT, self), bTag, pdwCookie, ppDescriptor);
         }
     };}
@@ -38053,7 +38053,7 @@ pub const IATSC_VCT = extern struct {
         GetRecordName: fn(
             self: *const IATSC_VCT,
             dwRecordIndex: u32,
-            pwsName: ?*?PWSTR,
+            pwsName: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecordMajorChannelNumber: fn(
             self: *const IATSC_VCT,
@@ -38134,14 +38134,14 @@ pub const IATSC_VCT = extern struct {
             self: *const IATSC_VCT,
             dwRecordIndex: u32,
             dwIndex: u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecordDescriptorByTag: fn(
             self: *const IATSC_VCT,
             dwRecordIndex: u32,
             bTag: u8,
             pdwCookie: *u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCountOfTableDescriptors: fn(
             self: *const IATSC_VCT,
@@ -38150,13 +38150,13 @@ pub const IATSC_VCT = extern struct {
         GetTableDescriptorByIndex: fn(
             self: *const IATSC_VCT,
             dwIndex: u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTableDescriptorByTag: fn(
             self: *const IATSC_VCT,
             bTag: u8,
             pdwCookie: *u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38183,7 +38183,7 @@ pub const IATSC_VCT = extern struct {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetCountOfRecords(@ptrCast(*const IATSC_VCT, self), pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_VCT_GetRecordName(self: *const T, dwRecordIndex: u32, pwsName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IATSC_VCT_GetRecordName(self: *const T, dwRecordIndex: u32, pwsName: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetRecordName(@ptrCast(*const IATSC_VCT, self), dwRecordIndex, pwsName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -38247,11 +38247,11 @@ pub const IATSC_VCT = extern struct {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetRecordCountOfDescriptors(@ptrCast(*const IATSC_VCT, self), dwRecordIndex, pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_VCT_GetRecordDescriptorByIndex(self: *const T, dwRecordIndex: u32, dwIndex: u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_VCT_GetRecordDescriptorByIndex(self: *const T, dwRecordIndex: u32, dwIndex: u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetRecordDescriptorByIndex(@ptrCast(*const IATSC_VCT, self), dwRecordIndex, dwIndex, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_VCT_GetRecordDescriptorByTag(self: *const T, dwRecordIndex: u32, bTag: u8, pdwCookie: *u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_VCT_GetRecordDescriptorByTag(self: *const T, dwRecordIndex: u32, bTag: u8, pdwCookie: *u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetRecordDescriptorByTag(@ptrCast(*const IATSC_VCT, self), dwRecordIndex, bTag, pdwCookie, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -38259,11 +38259,11 @@ pub const IATSC_VCT = extern struct {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetCountOfTableDescriptors(@ptrCast(*const IATSC_VCT, self), pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_VCT_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_VCT_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetTableDescriptorByIndex(@ptrCast(*const IATSC_VCT, self), dwIndex, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_VCT_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_VCT_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_VCT.VTable, self.vtable).GetTableDescriptorByTag(@ptrCast(*const IATSC_VCT, self), bTag, pdwCookie, ppDescriptor);
         }
     };}
@@ -38320,7 +38320,7 @@ pub const IATSC_EIT = extern struct {
             self: *const IATSC_EIT,
             dwRecordIndex: u32,
             pdwLength: *u32,
-            ppText: ?*?*u8,
+            ppText: ?**u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecordCountOfDescriptors: fn(
             self: *const IATSC_EIT,
@@ -38331,14 +38331,14 @@ pub const IATSC_EIT = extern struct {
             self: *const IATSC_EIT,
             dwRecordIndex: u32,
             dwIndex: u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecordDescriptorByTag: fn(
             self: *const IATSC_EIT,
             dwRecordIndex: u32,
             bTag: u8,
             pdwCookie: *u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38381,7 +38381,7 @@ pub const IATSC_EIT = extern struct {
             return @ptrCast(*const IATSC_EIT.VTable, self.vtable).GetRecordDuration(@ptrCast(*const IATSC_EIT, self), dwRecordIndex, pmdVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_EIT_GetRecordTitleText(self: *const T, dwRecordIndex: u32, pdwLength: *u32, ppText: ?*?*u8) callconv(.Inline) HRESULT {
+        pub fn IATSC_EIT_GetRecordTitleText(self: *const T, dwRecordIndex: u32, pdwLength: *u32, ppText: ?**u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_EIT.VTable, self.vtable).GetRecordTitleText(@ptrCast(*const IATSC_EIT, self), dwRecordIndex, pdwLength, ppText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -38389,11 +38389,11 @@ pub const IATSC_EIT = extern struct {
             return @ptrCast(*const IATSC_EIT.VTable, self.vtable).GetRecordCountOfDescriptors(@ptrCast(*const IATSC_EIT, self), dwRecordIndex, pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_EIT_GetRecordDescriptorByIndex(self: *const T, dwRecordIndex: u32, dwIndex: u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_EIT_GetRecordDescriptorByIndex(self: *const T, dwRecordIndex: u32, dwIndex: u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_EIT.VTable, self.vtable).GetRecordDescriptorByIndex(@ptrCast(*const IATSC_EIT, self), dwRecordIndex, dwIndex, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_EIT_GetRecordDescriptorByTag(self: *const T, dwRecordIndex: u32, bTag: u8, pdwCookie: *u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_EIT_GetRecordDescriptorByTag(self: *const T, dwRecordIndex: u32, bTag: u8, pdwCookie: *u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_EIT.VTable, self.vtable).GetRecordDescriptorByTag(@ptrCast(*const IATSC_EIT, self), dwRecordIndex, bTag, pdwCookie, ppDescriptor);
         }
     };}
@@ -38425,7 +38425,7 @@ pub const IATSC_ETT = extern struct {
         GetExtendedMessageText: fn(
             self: *const IATSC_ETT,
             pdwLength: *u32,
-            ppText: ?*?*u8,
+            ppText: ?**u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38448,7 +38448,7 @@ pub const IATSC_ETT = extern struct {
             return @ptrCast(*const IATSC_ETT.VTable, self.vtable).GetEtmId(@ptrCast(*const IATSC_ETT, self), pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_ETT_GetExtendedMessageText(self: *const T, pdwLength: *u32, ppText: ?*?*u8) callconv(.Inline) HRESULT {
+        pub fn IATSC_ETT_GetExtendedMessageText(self: *const T, pdwLength: *u32, ppText: ?**u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_ETT.VTable, self.vtable).GetExtendedMessageText(@ptrCast(*const IATSC_ETT, self), pdwLength, ppText);
         }
     };}
@@ -38488,13 +38488,13 @@ pub const IATSC_STT = extern struct {
         GetTableDescriptorByIndex: fn(
             self: *const IATSC_STT,
             dwIndex: u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTableDescriptorByTag: fn(
             self: *const IATSC_STT,
             bTag: u8,
             pdwCookie: *u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38525,11 +38525,11 @@ pub const IATSC_STT = extern struct {
             return @ptrCast(*const IATSC_STT.VTable, self.vtable).GetCountOfTableDescriptors(@ptrCast(*const IATSC_STT, self), pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_STT_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_STT_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_STT.VTable, self.vtable).GetTableDescriptorByIndex(@ptrCast(*const IATSC_STT, self), dwIndex, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IATSC_STT_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn IATSC_STT_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IATSC_STT.VTable, self.vtable).GetTableDescriptorByTag(@ptrCast(*const IATSC_STT, self), bTag, pdwCookie, ppDescriptor);
         }
     };}
@@ -38662,13 +38662,13 @@ pub const ISCTE_EAS = extern struct {
         GetTableDescriptorByIndex: fn(
             self: *const ISCTE_EAS,
             dwIndex: u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTableDescriptorByTag: fn(
             self: *const ISCTE_EAS,
             bTag: u8,
             pdwCookie: *u32,
-            ppDescriptor: ?*?*IGenericDescriptor,
+            ppDescriptor: ?**IGenericDescriptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38783,11 +38783,11 @@ pub const ISCTE_EAS = extern struct {
             return @ptrCast(*const ISCTE_EAS.VTable, self.vtable).GetCountOfTableDescriptors(@ptrCast(*const ISCTE_EAS, self), pdwVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCTE_EAS_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn ISCTE_EAS_GetTableDescriptorByIndex(self: *const T, dwIndex: u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCTE_EAS.VTable, self.vtable).GetTableDescriptorByIndex(@ptrCast(*const ISCTE_EAS, self), dwIndex, ppDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCTE_EAS_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?*?*IGenericDescriptor) callconv(.Inline) HRESULT {
+        pub fn ISCTE_EAS_GetTableDescriptorByTag(self: *const T, bTag: u8, pdwCookie: *u32, ppDescriptor: ?**IGenericDescriptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCTE_EAS.VTable, self.vtable).GetTableDescriptorByTag(@ptrCast(*const ISCTE_EAS, self), bTag, pdwCookie, ppDescriptor);
         }
     };}
@@ -38837,7 +38837,7 @@ pub const IAtscContentAdvisoryDescriptor = extern struct {
             self: *const IAtscContentAdvisoryDescriptor,
             bIndex: u8,
             pbLength: *u8,
-            ppText: ?*?*u8,
+            ppText: ?**u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38872,7 +38872,7 @@ pub const IAtscContentAdvisoryDescriptor = extern struct {
             return @ptrCast(*const IAtscContentAdvisoryDescriptor.VTable, self.vtable).GetRecordRatingValue(@ptrCast(*const IAtscContentAdvisoryDescriptor, self), bIndexOuter, bIndexInner, pbVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAtscContentAdvisoryDescriptor_GetRecordRatingDescriptionText(self: *const T, bIndex: u8, pbLength: *u8, ppText: ?*?*u8) callconv(.Inline) HRESULT {
+        pub fn IAtscContentAdvisoryDescriptor_GetRecordRatingDescriptionText(self: *const T, bIndex: u8, pbLength: *u8, ppText: ?**u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAtscContentAdvisoryDescriptor.VTable, self.vtable).GetRecordRatingDescriptionText(@ptrCast(*const IAtscContentAdvisoryDescriptor, self), bIndex, pbLength, ppText);
         }
     };}

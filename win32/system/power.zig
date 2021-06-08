@@ -115,7 +115,7 @@ pub const THERMAL_EVENT_VERSION = @as(u32, 1);
 // Section: Types (57)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
-pub const HPOWERNOTIFY = ?*opaque{};
+pub const HPOWERNOTIFY = *opaque{};
 
 pub const SYSTEM_POWER_STATE = extern enum(i32) {
     Unspecified = 0,
@@ -925,7 +925,7 @@ pub extern "POWRPROF" fn PowerUnregisterSuspendResumeNotification(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadACValue(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -937,7 +937,7 @@ pub extern "POWRPROF" fn PowerReadACValue(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadDCValue(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -949,7 +949,7 @@ pub extern "POWRPROF" fn PowerReadDCValue(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteACValueIndex(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -958,7 +958,7 @@ pub extern "POWRPROF" fn PowerWriteACValueIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteDCValueIndex(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -967,13 +967,13 @@ pub extern "POWRPROF" fn PowerWriteDCValueIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerGetActiveScheme(
-    UserRootPowerKey: HKEY,
+    UserRootPowerKey: ?HKEY,
     ActivePolicyGuid: **Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerSetActiveScheme(
-    UserRootPowerKey: HKEY,
+    UserRootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1127,7 +1127,7 @@ pub extern "POWRPROF" fn PowerSettingAccessCheck(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadACValueIndex(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1136,7 +1136,7 @@ pub extern "POWRPROF" fn PowerReadACValueIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadDCValueIndex(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1145,7 +1145,7 @@ pub extern "POWRPROF" fn PowerReadDCValueIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadFriendlyName(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1156,7 +1156,7 @@ pub extern "POWRPROF" fn PowerReadFriendlyName(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadDescription(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1167,7 +1167,7 @@ pub extern "POWRPROF" fn PowerReadDescription(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadPossibleValue(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     Type: ?*u32,
@@ -1179,7 +1179,7 @@ pub extern "POWRPROF" fn PowerReadPossibleValue(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadPossibleFriendlyName(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
@@ -1190,7 +1190,7 @@ pub extern "POWRPROF" fn PowerReadPossibleFriendlyName(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadPossibleDescription(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
@@ -1201,7 +1201,7 @@ pub extern "POWRPROF" fn PowerReadPossibleDescription(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadValueMin(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     ValueMinimum: *u32,
@@ -1209,7 +1209,7 @@ pub extern "POWRPROF" fn PowerReadValueMin(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadValueMax(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     ValueMaximum: *u32,
@@ -1217,7 +1217,7 @@ pub extern "POWRPROF" fn PowerReadValueMax(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadValueIncrement(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     ValueIncrement: *u32,
@@ -1225,7 +1225,7 @@ pub extern "POWRPROF" fn PowerReadValueIncrement(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadValueUnitsSpecifier(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     // TODO: what to do with BytesParamIndex 4?
@@ -1235,7 +1235,7 @@ pub extern "POWRPROF" fn PowerReadValueUnitsSpecifier(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadACDefaultIndex(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemePersonalityGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: *const Guid,
@@ -1244,7 +1244,7 @@ pub extern "POWRPROF" fn PowerReadACDefaultIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadDCDefaultIndex(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemePersonalityGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: *const Guid,
@@ -1253,7 +1253,7 @@ pub extern "POWRPROF" fn PowerReadDCDefaultIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerReadIconResourceSpecifier(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1270,7 +1270,7 @@ pub extern "POWRPROF" fn PowerReadSettingAttributes(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteFriendlyName(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1281,7 +1281,7 @@ pub extern "POWRPROF" fn PowerWriteFriendlyName(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteDescription(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1292,7 +1292,7 @@ pub extern "POWRPROF" fn PowerWriteDescription(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWritePossibleValue(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     Type: u32,
@@ -1304,7 +1304,7 @@ pub extern "POWRPROF" fn PowerWritePossibleValue(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWritePossibleFriendlyName(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
@@ -1315,7 +1315,7 @@ pub extern "POWRPROF" fn PowerWritePossibleFriendlyName(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWritePossibleDescription(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
@@ -1326,7 +1326,7 @@ pub extern "POWRPROF" fn PowerWritePossibleDescription(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteValueMin(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     ValueMinimum: u32,
@@ -1334,7 +1334,7 @@ pub extern "POWRPROF" fn PowerWriteValueMin(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteValueMax(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     ValueMaximum: u32,
@@ -1342,7 +1342,7 @@ pub extern "POWRPROF" fn PowerWriteValueMax(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteValueIncrement(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     ValueIncrement: u32,
@@ -1350,7 +1350,7 @@ pub extern "POWRPROF" fn PowerWriteValueIncrement(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteValueUnitsSpecifier(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     // TODO: what to do with BytesParamIndex 4?
@@ -1360,7 +1360,7 @@ pub extern "POWRPROF" fn PowerWriteValueUnitsSpecifier(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteACDefaultIndex(
-    RootSystemPowerKey: HKEY,
+    RootSystemPowerKey: ?HKEY,
     SchemePersonalityGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: *const Guid,
@@ -1369,7 +1369,7 @@ pub extern "POWRPROF" fn PowerWriteACDefaultIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteDCDefaultIndex(
-    RootSystemPowerKey: HKEY,
+    RootSystemPowerKey: ?HKEY,
     SchemePersonalityGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: *const Guid,
@@ -1378,7 +1378,7 @@ pub extern "POWRPROF" fn PowerWriteDCDefaultIndex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerWriteIconResourceSpecifier(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: *const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
@@ -1396,21 +1396,21 @@ pub extern "POWRPROF" fn PowerWriteSettingAttributes(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerDuplicateScheme(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SourceSchemeGuid: *const Guid,
     DestinationSchemeGuid: **Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerImportPowerScheme(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     ImportFileNamePath: [*:0]const u16,
     DestinationSchemeGuid: **Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerDeleteScheme(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1422,14 +1422,14 @@ pub extern "POWRPROF" fn PowerRemovePowerSetting(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerCreateSetting(
-    RootSystemPowerKey: HKEY,
+    RootSystemPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: *const Guid,
     PowerSettingGuid: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerCreatePossibleSetting(
-    RootSystemPowerKey: HKEY,
+    RootSystemPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: *const Guid,
     PowerSettingGuid: *const Guid,
     PossibleSettingIndex: u32,
@@ -1437,7 +1437,7 @@ pub extern "POWRPROF" fn PowerCreatePossibleSetting(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn PowerEnumerate(
-    RootPowerKey: HKEY,
+    RootPowerKey: ?HKEY,
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     AccessFlags: POWER_DATA_ACCESSOR,

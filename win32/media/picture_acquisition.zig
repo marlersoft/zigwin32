@@ -79,7 +79,7 @@ pub const IPhotoAcquireItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IPhotoAcquireItem,
-            ppStream: ?*?*IStream,
+            ppStream: ?**IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CanDelete: fn(
             self: *const IPhotoAcquireItem,
@@ -95,7 +95,7 @@ pub const IPhotoAcquireItem = extern struct {
         GetSubItemAt: fn(
             self: *const IPhotoAcquireItem,
             nItemIndex: u32,
-            ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
+            ppPhotoAcquireItem: ?**IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -118,7 +118,7 @@ pub const IPhotoAcquireItem = extern struct {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).SetProperty(@ptrCast(*const IPhotoAcquireItem, self), key, pv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetStream(self: *const T, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireItem_GetStream(self: *const T, ppStream: ?**IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetStream(@ptrCast(*const IPhotoAcquireItem, self), ppStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -134,7 +134,7 @@ pub const IPhotoAcquireItem = extern struct {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemCount(@ptrCast(*const IPhotoAcquireItem, self), pnCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetSubItemAt(self: *const T, nItemIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireItem_GetSubItemAt(self: *const T, nItemIndex: u32, ppPhotoAcquireItem: ?**IPhotoAcquireItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemAt(@ptrCast(*const IPhotoAcquireItem, self), nItemIndex, ppPhotoAcquireItem);
         }
     };}
@@ -539,8 +539,8 @@ pub const IPhotoProgressDialog = extern struct {
         SetImage: fn(
             self: *const IPhotoProgressDialog,
             nImageType: PROGRESS_DIALOG_IMAGE_TYPE,
-            hIcon: HICON,
-            hBitmap: HBITMAP,
+            hIcon: ?HICON,
+            hBitmap: ?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPercentComplete: fn(
             self: *const IPhotoProgressDialog,
@@ -618,7 +618,7 @@ pub const IPhotoProgressDialog = extern struct {
             return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCaption(@ptrCast(*const IPhotoProgressDialog, self), pszTitle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetImage(self: *const T, nImageType: PROGRESS_DIALOG_IMAGE_TYPE, hIcon: HICON, hBitmap: HBITMAP) callconv(.Inline) HRESULT {
+        pub fn IPhotoProgressDialog_SetImage(self: *const T, nImageType: PROGRESS_DIALOG_IMAGE_TYPE, hIcon: ?HICON, hBitmap: ?HBITMAP) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetImage(@ptrCast(*const IPhotoProgressDialog, self), nImageType, hIcon, hBitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -681,11 +681,11 @@ pub const IPhotoAcquireSource = extern struct {
         GetItemAt: fn(
             self: *const IPhotoAcquireSource,
             nIndex: u32,
-            ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
+            ppPhotoAcquireItem: ?**IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPhotoAcquireSettings: fn(
             self: *const IPhotoAcquireSource,
-            ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings,
+            ppPhotoAcquireSettings: ?**IPhotoAcquireSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceId: fn(
             self: *const IPhotoAcquireSource,
@@ -694,7 +694,7 @@ pub const IPhotoAcquireSource = extern struct {
         BindToObject: fn(
             self: *const IPhotoAcquireSource,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -717,11 +717,11 @@ pub const IPhotoAcquireSource = extern struct {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemCount(@ptrCast(*const IPhotoAcquireSource, self), pnItemCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetItemAt(self: *const T, nIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_GetItemAt(self: *const T, nIndex: u32, ppPhotoAcquireItem: ?**IPhotoAcquireItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemAt(@ptrCast(*const IPhotoAcquireSource, self), nIndex, ppPhotoAcquireItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetPhotoAcquireSettings(self: *const T, ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_GetPhotoAcquireSettings(self: *const T, ppPhotoAcquireSettings: ?**IPhotoAcquireSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetPhotoAcquireSettings(@ptrCast(*const IPhotoAcquireSource, self), ppPhotoAcquireSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -729,7 +729,7 @@ pub const IPhotoAcquireSource = extern struct {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetDeviceId(@ptrCast(*const IPhotoAcquireSource, self), pbstrDeviceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_BindToObject(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_BindToObject(self: *const T, riid: *const Guid, ppv: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).BindToObject(@ptrCast(*const IPhotoAcquireSource, self), riid, ppv);
         }
     };}
@@ -744,34 +744,34 @@ pub const IPhotoAcquire = extern struct {
         CreatePhotoSource: fn(
             self: *const IPhotoAcquire,
             pszDevice: [*:0]const u16,
-            ppPhotoAcquireSource: ?*?*IPhotoAcquireSource,
+            ppPhotoAcquireSource: ?**IPhotoAcquireSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Acquire: fn(
             self: *const IPhotoAcquire,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
             fShowProgress: BOOL,
-            hWndParent: HWND,
+            hWndParent: ?HWND,
             pszApplicationName: ?[*:0]const u16,
             pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumResults: fn(
             self: *const IPhotoAcquire,
-            ppEnumFilePaths: ?*?*IEnumString,
+            ppEnumFilePaths: ?**IEnumString,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_CreatePhotoSource(self: *const T, pszDevice: [*:0]const u16, ppPhotoAcquireSource: ?*?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquire_CreatePhotoSource(self: *const T, pszDevice: [*:0]const u16, ppPhotoAcquireSource: ?**IPhotoAcquireSource) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).CreatePhotoSource(@ptrCast(*const IPhotoAcquire, self), pszDevice, ppPhotoAcquireSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_Acquire(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource, fShowProgress: BOOL, hWndParent: HWND, pszApplicationName: ?[*:0]const u16, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquire_Acquire(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource, fShowProgress: BOOL, hWndParent: ?HWND, pszApplicationName: ?[*:0]const u16, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).Acquire(@ptrCast(*const IPhotoAcquire, self), pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_EnumResults(self: *const T, ppEnumFilePaths: ?*?*IEnumString) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquire_EnumResults(self: *const T, ppEnumFilePaths: ?**IEnumString) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).EnumResults(@ptrCast(*const IPhotoAcquire, self), ppEnumFilePaths);
         }
     };}

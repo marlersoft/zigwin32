@@ -279,7 +279,7 @@ pub extern "srpapi" fn SrpGetEnterpriseIds(
     tokenHandle: HANDLE,
     numberOfBytes: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
-    enterpriseIds: ?*?PWSTR,
+    enterpriseIds: ?*PWSTR,
     enterpriseIdCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

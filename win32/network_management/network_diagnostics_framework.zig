@@ -618,7 +618,7 @@ pub extern "NDFAPI" fn NdfCreateGroupingIncident(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NDFAPI" fn NdfExecuteDiagnosis(
     handle: *c_void,
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

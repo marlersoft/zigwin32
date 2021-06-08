@@ -226,7 +226,7 @@ pub const ILocation = extern struct {
         GetReport: fn(
             self: *const ILocation,
             reportType: *const Guid,
-            ppLocationReport: ?*?*ILocationReport,
+            ppLocationReport: ?**ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReportStatus: fn(
             self: *const ILocation,
@@ -255,7 +255,7 @@ pub const ILocation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestPermissions: fn(
             self: *const ILocation,
-            hParent: HWND,
+            hParent: ?HWND,
             pReportTypes: [*]Guid,
             count: u32,
             fModal: BOOL,
@@ -273,7 +273,7 @@ pub const ILocation = extern struct {
             return @ptrCast(*const ILocation.VTable, self.vtable).UnregisterForReport(@ptrCast(*const ILocation, self), reportType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
+        pub fn ILocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?**ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).GetReport(@ptrCast(*const ILocation, self), reportType, ppLocationReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -297,7 +297,7 @@ pub const ILocation = extern struct {
             return @ptrCast(*const ILocation.VTable, self.vtable).SetDesiredAccuracy(@ptrCast(*const ILocation, self), reportType, desiredAccuracy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_RequestPermissions(self: *const T, hParent: HWND, pReportTypes: [*]Guid, count: u32, fModal: BOOL) callconv(.Inline) HRESULT {
+        pub fn ILocation_RequestPermissions(self: *const T, hParent: ?HWND, pReportTypes: [*]Guid, count: u32, fModal: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).RequestPermissions(@ptrCast(*const ILocation, self), hParent, pReportTypes, count, fModal);
         }
     };}
@@ -346,7 +346,7 @@ pub const IDefaultLocation = extern struct {
         GetReport: fn(
             self: *const IDefaultLocation,
             reportType: *const Guid,
-            ppLocationReport: ?*?*ILocationReport,
+            ppLocationReport: ?**ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -357,7 +357,7 @@ pub const IDefaultLocation = extern struct {
             return @ptrCast(*const IDefaultLocation.VTable, self.vtable).SetReport(@ptrCast(*const IDefaultLocation, self), reportType, pLocationReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDefaultLocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
+        pub fn IDefaultLocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?**ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDefaultLocation.VTable, self.vtable).GetReport(@ptrCast(*const IDefaultLocation, self), reportType, ppLocationReport);
         }
     };}
@@ -637,14 +637,14 @@ pub const ILatLongReportFactory = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LatLongReport: fn(
             self: *const ILatLongReportFactory,
-            pVal: ?*?*IDispLatLongReport,
+            pVal: ?**IDispLatLongReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReportFactory_get_LatLongReport(self: *const T, pVal: ?*?*IDispLatLongReport) callconv(.Inline) HRESULT {
+        pub fn ILatLongReportFactory_get_LatLongReport(self: *const T, pVal: ?**IDispLatLongReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReportFactory.VTable, self.vtable).get_LatLongReport(@ptrCast(*const ILatLongReportFactory, self), pVal);
         }
     };}
@@ -659,14 +659,14 @@ pub const ICivicAddressReportFactory = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CivicAddressReport: fn(
             self: *const ICivicAddressReportFactory,
-            pVal: ?*?*IDispCivicAddressReport,
+            pVal: ?**IDispCivicAddressReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReportFactory_get_CivicAddressReport(self: *const T, pVal: ?*?*IDispCivicAddressReport) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReportFactory_get_CivicAddressReport(self: *const T, pVal: ?**IDispCivicAddressReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReportFactory.VTable, self.vtable).get_CivicAddressReport(@ptrCast(*const ICivicAddressReportFactory, self), pVal);
         }
     };}

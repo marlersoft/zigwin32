@@ -151,7 +151,7 @@ pub extern "wcmapi" fn WcmQueryProperty(
     Property: WCM_PROPERTY,
     pReserved: *c_void,
     pdwDataSize: *u32,
-    ppData: ?*?*u8,
+    ppData: ?**u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'

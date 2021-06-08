@@ -3115,7 +3115,7 @@ pub const IPrintCoreHelper = extern struct {
             cbSize: u32,
             pszFeatureKeyword: [*:0]const u8,
             pszOptionKeyword: [*:0]const u8,
-            ppFOConstraints: *const *const PRINT_FEATURE_OPTION,
+            ppFOConstraints: *const *PRINT_FEATURE_OPTION,
             pdwNumOptions: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFeatures: fn(
@@ -3164,7 +3164,7 @@ pub const IPrintCoreHelper = extern struct {
             return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumConstrainedOptions(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_WhyConstrained(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: [*:0]const u8, pszOptionKeyword: [*:0]const u8, ppFOConstraints: *const *const PRINT_FEATURE_OPTION, pdwNumOptions: *u32) callconv(.Inline) HRESULT {
+        pub fn IPrintCoreHelper_WhyConstrained(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: [*:0]const u8, pszOptionKeyword: [*:0]const u8, ppFOConstraints: *const *PRINT_FEATURE_OPTION, pdwNumOptions: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).WhyConstrained(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5553,9 +5553,9 @@ pub const IPrintAsyncNotifyDataObject = extern struct {
         base: IUnknown.VTable,
         AcquireData: fn(
             self: *const IPrintAsyncNotifyDataObject,
-            ppNotificationData: ?*?*u8,
+            ppNotificationData: ?**u8,
             pSize: ?*u32,
-            ppSchema: ?*?*Guid,
+            ppSchema: ?**Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseData: fn(
             self: *const IPrintAsyncNotifyDataObject,
@@ -5565,7 +5565,7 @@ pub const IPrintAsyncNotifyDataObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyDataObject_AcquireData(self: *const T, ppNotificationData: ?*?*u8, pSize: ?*u32, ppSchema: ?*?*Guid) callconv(.Inline) HRESULT {
+        pub fn IPrintAsyncNotifyDataObject_AcquireData(self: *const T, ppNotificationData: ?**u8, pSize: ?*u32, ppSchema: ?**Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintAsyncNotifyDataObject.VTable, self.vtable).AcquireData(@ptrCast(*const IPrintAsyncNotifyDataObject, self), ppNotificationData, pSize, ppSchema);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6680,7 +6680,7 @@ pub const IXpsRasterizer = extern struct {
             width: i32,
             height: i32,
             notificationCallback: ?*IXpsRasterizerNotificationCallback,
-            bitmap: ?*?*IWICBitmap,
+            bitmap: ?**IWICBitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMinimalLineWidth: fn(
             self: *const IXpsRasterizer,
@@ -6691,7 +6691,7 @@ pub const IXpsRasterizer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizer_RasterizeRect(self: *const T, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+        pub fn IXpsRasterizer_RasterizeRect(self: *const T, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?**IWICBitmap) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXpsRasterizer.VTable, self.vtable).RasterizeRect(@ptrCast(*const IXpsRasterizer, self), x, y, width, height, notificationCallback, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6713,14 +6713,14 @@ pub const IXpsRasterizationFactory = extern struct {
             DPI: f32,
             nonTextRenderingMode: XPSRAS_RENDERING_MODE,
             textRenderingMode: XPSRAS_RENDERING_MODE,
-            ppIXPSRasterizer: ?*?*IXpsRasterizer,
+            ppIXPSRasterizer: ?**IXpsRasterizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizationFactory_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+        pub fn IXpsRasterizationFactory_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?**IXpsRasterizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXpsRasterizationFactory.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
         }
     };}
@@ -6748,14 +6748,14 @@ pub const IXpsRasterizationFactory1 = extern struct {
             nonTextRenderingMode: XPSRAS_RENDERING_MODE,
             textRenderingMode: XPSRAS_RENDERING_MODE,
             pixelFormat: XPSRAS_PIXEL_FORMAT,
-            ppIXPSRasterizer: ?*?*IXpsRasterizer,
+            ppIXPSRasterizer: ?**IXpsRasterizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizationFactory1_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+        pub fn IXpsRasterizationFactory1_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?**IXpsRasterizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXpsRasterizationFactory1.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory1, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
         }
     };}
@@ -6783,14 +6783,14 @@ pub const IXpsRasterizationFactory2 = extern struct {
             textRenderingMode: XPSRAS_RENDERING_MODE,
             pixelFormat: XPSRAS_PIXEL_FORMAT,
             backgroundColor: XPSRAS_BACKGROUND_COLOR,
-            ppIXpsRasterizer: ?*?*IXpsRasterizer,
+            ppIXpsRasterizer: ?**IXpsRasterizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizationFactory2_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+        pub fn IXpsRasterizationFactory2_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?**IXpsRasterizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXpsRasterizationFactory2.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory2, self), xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
         }
     };}
@@ -7279,7 +7279,7 @@ pub extern "WINSPOOL" fn PrinterProperties(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn DocumentPropertiesA(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hPrinter: HANDLE,
     pDeviceName: PSTR,
     pDevModeOutput: ?*DEVMODEA,
@@ -7288,7 +7288,7 @@ pub extern "WINSPOOL" fn DocumentPropertiesA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "WINSPOOL" fn DocumentPropertiesW(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hPrinter: HANDLE,
     pDeviceName: PWSTR,
     pDevModeOutput: ?*DEVMODEW,
@@ -7504,7 +7504,7 @@ pub extern "WINSPOOL" fn FindNextPrinterChangeNotification(
     hChange: HANDLE,
     pdwChange: ?*u32,
     pvReserved: ?*c_void,
-    ppPrinterNotifyInfo: ?*?*c_void,
+    ppPrinterNotifyInfo: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn FreePrinterNotifyInfo(
@@ -7828,14 +7828,14 @@ pub extern "WINSPOOL" fn OpenPrinter2W(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn AddPrinterConnection2A(
-    hWnd: HWND,
+    hWnd: ?HWND,
     pszName: [*:0]const u8,
     dwLevel: u32,
     pConnectionInfo: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn AddPrinterConnection2W(
-    hWnd: HWND,
+    hWnd: ?HWND,
     pszName: [*:0]const u16,
     dwLevel: u32,
     pConnectionInfo: *c_void,
@@ -7939,7 +7939,7 @@ pub extern "WINSPOOL" fn ReportJobProcessingProgress(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WINSPOOL" fn GetPrinterDriver2A(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hPrinter: HANDLE,
     pEnvironment: ?PSTR,
     Level: u32,
@@ -7950,7 +7950,7 @@ pub extern "WINSPOOL" fn GetPrinterDriver2A(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn GetPrinterDriver2W(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hPrinter: HANDLE,
     pEnvironment: ?PWSTR,
     Level: u32,
@@ -7977,7 +7977,7 @@ pub extern "WINSPOOL" fn FreePrintPropertyValue(
 
 pub extern "WINSPOOL" fn FreePrintNamedPropertyArray(
     cProperties: u32,
-    ppProperties: ?[*]?*PrintNamedProperty,
+    ppProperties: ?[*]*PrintNamedProperty,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WINSPOOL" fn SetJobNamedProperty(
@@ -8232,14 +8232,14 @@ pub extern "SPOOLSS" fn SpoolerFindNextPrinterChangeNotification(
     hPrinter: HANDLE,
     pfdwChange: *u32,
     pPrinterNotifyOptions: ?*c_void,
-    ppPrinterNotifyInfo: ?*?*c_void,
+    ppPrinterNotifyInfo: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SPOOLSS" fn SpoolerRefreshPrinterChangeNotification(
     hPrinter: HANDLE,
     dwColor: u32,
     pOptions: *PRINTER_NOTIFY_OPTIONS,
-    ppInfo: ?*?*PRINTER_NOTIFY_INFO,
+    ppInfo: ?**PRINTER_NOTIFY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SPOOLSS" fn SpoolerFreePrinterNotifyInfo(

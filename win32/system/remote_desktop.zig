@@ -4391,7 +4391,7 @@ pub const IWorkspaceResTypeRegistry = extern struct {
         GetRegisteredFileExtensions: fn(
             self: *const IWorkspaceResTypeRegistry,
             fMachineWide: i16,
-            psaFileExtensions: ?*?*SAFEARRAY,
+            psaFileExtensions: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResourceTypeInfo: fn(
             self: *const IWorkspaceResTypeRegistry,
@@ -4418,7 +4418,7 @@ pub const IWorkspaceResTypeRegistry = extern struct {
             return @ptrCast(*const IWorkspaceResTypeRegistry.VTable, self.vtable).DeleteResourceType(@ptrCast(*const IWorkspaceResTypeRegistry, self), fMachineWide, bstrFileExtension);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWorkspaceResTypeRegistry_GetRegisteredFileExtensions(self: *const T, fMachineWide: i16, psaFileExtensions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IWorkspaceResTypeRegistry_GetRegisteredFileExtensions(self: *const T, fMachineWide: i16, psaFileExtensions: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWorkspaceResTypeRegistry.VTable, self.vtable).GetRegisteredFileExtensions(@ptrCast(*const IWorkspaceResTypeRegistry, self), fMachineWide, psaFileExtensions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4508,7 +4508,7 @@ pub const IWTSListenerCallback = extern struct {
         OnNewChannelConnection: fn(
             self: *const IWTSListenerCallback,
             pChannel: *IWTSVirtualChannel,
-            data: BSTR,
+            data: ?BSTR,
             pbAccept: *BOOL,
             ppCallback: **IWTSVirtualChannelCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4517,7 +4517,7 @@ pub const IWTSListenerCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWTSListenerCallback_OnNewChannelConnection(self: *const T, pChannel: *IWTSVirtualChannel, data: BSTR, pbAccept: *BOOL, ppCallback: **IWTSVirtualChannelCallback) callconv(.Inline) HRESULT {
+        pub fn IWTSListenerCallback_OnNewChannelConnection(self: *const T, pChannel: *IWTSVirtualChannel, data: ?BSTR, pbAccept: *BOOL, ppCallback: **IWTSVirtualChannelCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWTSListenerCallback.VTable, self.vtable).OnNewChannelConnection(@ptrCast(*const IWTSListenerCallback, self), pChannel, data, pbAccept, ppCallback);
         }
     };}
@@ -6931,17 +6931,17 @@ pub const IRemoteDesktopClient = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Settings: fn(
             self: *const IRemoteDesktopClient,
-            settings: ?*?*IRemoteDesktopClientSettings,
+            settings: ?**IRemoteDesktopClientSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Actions: fn(
             self: *const IRemoteDesktopClient,
-            actions: ?*?*IRemoteDesktopClientActions,
+            actions: ?**IRemoteDesktopClientActions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TouchPointer: fn(
             self: *const IRemoteDesktopClient,
-            touchPointer: ?*?*IRemoteDesktopClientTouchPointer,
+            touchPointer: ?**IRemoteDesktopClientTouchPointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteSavedCredentials: fn(
             self: *const IRemoteDesktopClient,
@@ -6979,15 +6979,15 @@ pub const IRemoteDesktopClient = extern struct {
             return @ptrCast(*const IRemoteDesktopClient.VTable, self.vtable).Reconnect(@ptrCast(*const IRemoteDesktopClient, self), width, height);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDesktopClient_get_Settings(self: *const T, settings: ?*?*IRemoteDesktopClientSettings) callconv(.Inline) HRESULT {
+        pub fn IRemoteDesktopClient_get_Settings(self: *const T, settings: ?**IRemoteDesktopClientSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRemoteDesktopClient.VTable, self.vtable).get_Settings(@ptrCast(*const IRemoteDesktopClient, self), settings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDesktopClient_get_Actions(self: *const T, actions: ?*?*IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
+        pub fn IRemoteDesktopClient_get_Actions(self: *const T, actions: ?**IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRemoteDesktopClient.VTable, self.vtable).get_Actions(@ptrCast(*const IRemoteDesktopClient, self), actions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDesktopClient_get_TouchPointer(self: *const T, touchPointer: ?*?*IRemoteDesktopClientTouchPointer) callconv(.Inline) HRESULT {
+        pub fn IRemoteDesktopClient_get_TouchPointer(self: *const T, touchPointer: ?**IRemoteDesktopClientTouchPointer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRemoteDesktopClient.VTable, self.vtable).get_TouchPointer(@ptrCast(*const IRemoteDesktopClient, self), touchPointer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7701,7 +7701,7 @@ pub extern "WTSAPI32" fn WTSEnumerateListenersW(
     hServer: HANDLE,
     pReserved: *c_void,
     Reserved: u32,
-    pListeners: ?[*]?*u16,
+    pListeners: ?[*]*u16,
     pCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7710,7 +7710,7 @@ pub extern "WTSAPI32" fn WTSEnumerateListenersA(
     hServer: HANDLE,
     pReserved: *c_void,
     Reserved: u32,
-    pListeners: ?[*]?*i8,
+    pListeners: ?[*]*i8,
     pCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

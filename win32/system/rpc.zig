@@ -572,8 +572,8 @@ pub const RPC_NEW_HTTP_PROXY_CHANNEL = fn(
     Interface: ?*c_void,
     Reserved: ?*c_void,
     Flags: u32,
-    NewServerName: ?*?*u16,
-    NewServerPort: ?*?*u16,
+    NewServerName: ?**u16,
+    NewServerPort: ?**u16,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub const RPC_HTTP_PROXY_FREE_STRING = fn(
@@ -1483,7 +1483,7 @@ pub const MIDL_METHOD_PROPERTY_MAP = extern struct {
 
 pub const MIDL_INTERFACE_METHOD_PROPERTIES = extern struct {
     MethodCount: u16,
-    MethodProperties: *const *const MIDL_METHOD_PROPERTY_MAP,
+    MethodProperties: *const *MIDL_METHOD_PROPERTY_MAP,
 };
 
 pub const MIDL_SERVER_INFO = extern struct {
@@ -2112,7 +2112,7 @@ pub extern "RPCRT4" fn RpcStringBindingComposeA(
     NetworkAddr: ?*u8,
     Endpoint: ?*u8,
     Options: ?*u8,
-    StringBinding: ?*?*u8,
+    StringBinding: ?**u8,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2122,27 +2122,27 @@ pub extern "RPCRT4" fn RpcStringBindingComposeW(
     NetworkAddr: ?*u16,
     Endpoint: ?*u16,
     Options: ?*u16,
-    StringBinding: ?*?*u16,
+    StringBinding: ?**u16,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringBindingParseA(
     StringBinding: *u8,
-    ObjUuid: ?*?*u8,
-    Protseq: ?*?*u8,
-    NetworkAddr: ?*?*u8,
-    Endpoint: ?*?*u8,
-    NetworkOptions: ?*?*u8,
+    ObjUuid: ?**u8,
+    Protseq: ?**u8,
+    NetworkAddr: ?**u8,
+    Endpoint: ?**u8,
+    NetworkOptions: ?**u8,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcStringBindingParseW(
     StringBinding: *u16,
-    ObjUuid: ?*?*u16,
-    Protseq: ?*?*u16,
-    NetworkAddr: ?*?*u16,
-    Endpoint: ?*?*u16,
-    NetworkOptions: ?*?*u16,
+    ObjUuid: ?**u16,
+    Protseq: ?**u16,
+    NetworkAddr: ?**u16,
+    Endpoint: ?**u16,
+    NetworkOptions: ?**u16,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2579,7 +2579,7 @@ pub extern "RPCRT4" fn RpcRevertContainerImpersonation(
 pub extern "RPCRT4" fn RpcBindingInqAuthClientA(
     ClientBinding: ?*c_void,
     Privs: **c_void,
-    ServerPrincName: ?*?*u8,
+    ServerPrincName: ?**u8,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
     AuthzSvc: ?*u32,
@@ -2589,7 +2589,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientA(
 pub extern "RPCRT4" fn RpcBindingInqAuthClientW(
     ClientBinding: ?*c_void,
     Privs: **c_void,
-    ServerPrincName: ?*?*u16,
+    ServerPrincName: ?**u16,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
     AuthzSvc: ?*u32,
@@ -2599,7 +2599,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientW(
 pub extern "RPCRT4" fn RpcBindingInqAuthClientExA(
     ClientBinding: ?*c_void,
     Privs: **c_void,
-    ServerPrincName: ?*?*u8,
+    ServerPrincName: ?**u8,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
     AuthzSvc: ?*u32,
@@ -2610,7 +2610,7 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientExA(
 pub extern "RPCRT4" fn RpcBindingInqAuthClientExW(
     ClientBinding: ?*c_void,
     Privs: **c_void,
-    ServerPrincName: ?*?*u16,
+    ServerPrincName: ?**u16,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
     AuthzSvc: ?*u32,
@@ -2620,20 +2620,20 @@ pub extern "RPCRT4" fn RpcBindingInqAuthClientExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoA(
     Binding: *c_void,
-    ServerPrincName: ?*?*u8,
+    ServerPrincName: ?**u8,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
-    AuthIdentity: ?*?*c_void,
+    AuthIdentity: ?**c_void,
     AuthzSvc: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoW(
     Binding: *c_void,
-    ServerPrincName: ?*?*u16,
+    ServerPrincName: ?**u16,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
-    AuthIdentity: ?*?*c_void,
+    AuthIdentity: ?**c_void,
     AuthzSvc: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
@@ -2682,10 +2682,10 @@ pub extern "RPCRT4" fn RpcBindingSetAuthInfoExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoExA(
     Binding: *c_void,
-    ServerPrincName: ?*?*u8,
+    ServerPrincName: ?**u8,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
-    AuthIdentity: ?*?*c_void,
+    AuthIdentity: ?**c_void,
     AuthzSvc: ?*u32,
     RpcQosVersion: u32,
     SecurityQOS: ?*RPC_SECURITY_QOS,
@@ -2694,10 +2694,10 @@ pub extern "RPCRT4" fn RpcBindingInqAuthInfoExA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcBindingInqAuthInfoExW(
     Binding: *c_void,
-    ServerPrincName: ?*?*u16,
+    ServerPrincName: ?**u16,
     AuthnLevel: ?*u32,
     AuthnSvc: ?*u32,
-    AuthIdentity: ?*?*c_void,
+    AuthIdentity: ?**c_void,
     AuthzSvc: ?*u32,
     RpcQosVersion: u32,
     SecurityQOS: ?*RPC_SECURITY_QOS,
@@ -2891,18 +2891,18 @@ pub extern "RPCRT4" fn RpcMgmtEpEltInqDone(
 pub extern "RPCRT4" fn RpcMgmtEpEltInqNextA(
     InquiryContext: **c_void,
     IfId: *RPC_IF_ID,
-    Binding: ?*?*c_void,
+    Binding: ?**c_void,
     ObjectUuid: ?*Guid,
-    Annotation: ?*?*u8,
+    Annotation: ?**u8,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn RpcMgmtEpEltInqNextW(
     InquiryContext: **c_void,
     IfId: *RPC_IF_ID,
-    Binding: ?*?*c_void,
+    Binding: ?**c_void,
     ObjectUuid: ?*Guid,
-    Annotation: ?*?*u16,
+    Annotation: ?**u16,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "RPCRT4" fn RpcMgmtEpUnregister(
@@ -3147,12 +3147,12 @@ pub extern "RPCRT4" fn I_RpcServerStartService(
 
 pub extern "RPCRT4" fn I_RpcBindingInqDynamicEndpointW(
     Binding: *c_void,
-    DynamicEndpoint: ?*?*u16,
+    DynamicEndpoint: ?**u16,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "RPCRT4" fn I_RpcBindingInqDynamicEndpointA(
     Binding: *c_void,
-    DynamicEndpoint: ?*?*u8,
+    DynamicEndpoint: ?**u8,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "RPCRT4" fn I_RpcServerCheckClientRestriction(
@@ -5020,7 +5020,7 @@ pub extern "RPCRT4" fn MesBufferHandleReset(
     HandleStyle: u32,
     Operation: MIDL_ES_CODE,
     // TODO: what to do with BytesParamIndex 4?
-    pBuffer: ?*?*i8,
+    pBuffer: ?**i8,
     BufferSize: u32,
     pEncodedSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
@@ -5124,7 +5124,7 @@ pub extern "RPCRT4" fn NdrMesTypeAlignSize3(
     Handle: *c_void,
     pPicklingInfo: *const MIDL_TYPE_PICKLING_INFO,
     pProxyInfo: *const MIDL_STUBLESS_PROXY_INFO,
-    ArrTypeOffset: *const *const u32,
+    ArrTypeOffset: *const *u32,
     nTypeIndex: u32,
     pObject: *const c_void,
 ) callconv(@import("std").os.windows.WINAPI) usize;
@@ -5133,7 +5133,7 @@ pub extern "RPCRT4" fn NdrMesTypeEncode3(
     Handle: *c_void,
     pPicklingInfo: *const MIDL_TYPE_PICKLING_INFO,
     pProxyInfo: *const MIDL_STUBLESS_PROXY_INFO,
-    ArrTypeOffset: *const *const u32,
+    ArrTypeOffset: *const *u32,
     nTypeIndex: u32,
     pObject: *const c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -5142,7 +5142,7 @@ pub extern "RPCRT4" fn NdrMesTypeDecode3(
     Handle: *c_void,
     pPicklingInfo: *const MIDL_TYPE_PICKLING_INFO,
     pProxyInfo: *const MIDL_STUBLESS_PROXY_INFO,
-    ArrTypeOffset: *const *const u32,
+    ArrTypeOffset: *const *u32,
     nTypeIndex: u32,
     pObject: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -5151,7 +5151,7 @@ pub extern "RPCRT4" fn NdrMesTypeFree3(
     Handle: *c_void,
     pPicklingInfo: *const MIDL_TYPE_PICKLING_INFO,
     pProxyInfo: *const MIDL_STUBLESS_PROXY_INFO,
-    ArrTypeOffset: *const *const u32,
+    ArrTypeOffset: *const *u32,
     nTypeIndex: u32,
     pObject: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
