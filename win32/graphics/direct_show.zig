@@ -26954,16 +26954,70 @@ pub const IAnalogAudioComponentType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// WARNING: this COM type has been skipped because it causes some sort of error
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMPEG2Component_Value = @import("../zig.zig").Guid.initString("1493e353-1eb6-473c-802d-8e6b8ec9d2a9");
 pub const IID_IMPEG2Component = &IID_IMPEG2Component_Value;
 pub const IMPEG2Component = extern struct {
     pub const VTable = extern struct {
-        _: *opaque{}, // just a placeholder because this COM type is skipped
+        base: IComponent.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PID: fn(
+            self: *const IMPEG2Component,
+            PID: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PID: fn(
+            self: *const IMPEG2Component,
+            PID: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PCRPID: fn(
+            self: *const IMPEG2Component,
+            PCRPID: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_PCRPID: fn(
+            self: *const IMPEG2Component,
+            PCRPID: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ProgramNumber: fn(
+            self: *const IMPEG2Component,
+            ProgramNumber: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ProgramNumber: fn(
+            self: *const IMPEG2Component,
+            ProgramNumber: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IComponent.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMPEG2Component_get_PID(self: *const T, PID: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMPEG2Component.VTable, self.vtable).get_PID(@ptrCast(*const IMPEG2Component, self), PID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMPEG2Component_put_PID(self: *const T, PID: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMPEG2Component.VTable, self.vtable).put_PID(@ptrCast(*const IMPEG2Component, self), PID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMPEG2Component_get_PCRPID(self: *const T, PCRPID: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMPEG2Component.VTable, self.vtable).get_PCRPID(@ptrCast(*const IMPEG2Component, self), PCRPID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMPEG2Component_put_PCRPID(self: *const T, PCRPID: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMPEG2Component.VTable, self.vtable).put_PCRPID(@ptrCast(*const IMPEG2Component, self), PCRPID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMPEG2Component_get_ProgramNumber(self: *const T, ProgramNumber: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMPEG2Component.VTable, self.vtable).get_ProgramNumber(@ptrCast(*const IMPEG2Component, self), ProgramNumber);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMPEG2Component_put_ProgramNumber(self: *const T, ProgramNumber: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMPEG2Component.VTable, self.vtable).put_ProgramNumber(@ptrCast(*const IMPEG2Component, self), ProgramNumber);
+        }
     };}
     pub usingnamespace MethodMixin(@This());
 };

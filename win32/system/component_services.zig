@@ -2650,15 +2650,38 @@ pub const ILastResourceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// WARNING: this COM type has been skipped because it causes some sort of error
 const IID_IResourceManager2_Value = @import("../zig.zig").Guid.initString("d136c69a-f749-11d1-8f47-00c04f8ee57d");
 pub const IID_IResourceManager2 = &IID_IResourceManager2_Value;
 pub const IResourceManager2 = extern struct {
     pub const VTable = extern struct {
-        _: *opaque{}, // just a placeholder because this COM type is skipped
+        base: IResourceManager.VTable,
+        Enlist2: fn(
+            self: *const IResourceManager2,
+            pTransaction: ?*ITransaction,
+            pResAsync: ?*ITransactionResourceAsync,
+            pUOW: *BOID,
+            pisoLevel: *i32,
+            pXid: *xid_t,
+            ppEnlist: ?**ITransactionEnlistmentAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reenlist2: fn(
+            self: *const IResourceManager2,
+            pXid: *xid_t,
+            dwTimeout: u32,
+            pXactStat: *XACTSTAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IResourceManager.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IResourceManager2_Enlist2(self: *const T, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: *BOID, pisoLevel: *i32, pXid: *xid_t, ppEnlist: ?**ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IResourceManager2.VTable, self.vtable).Enlist2(@ptrCast(*const IResourceManager2, self), pTransaction, pResAsync, pUOW, pisoLevel, pXid, ppEnlist);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IResourceManager2_Reenlist2(self: *const T, pXid: *xid_t, dwTimeout: u32, pXactStat: *XACTSTAT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IResourceManager2.VTable, self.vtable).Reenlist2(@ptrCast(*const IResourceManager2, self), pXid, dwTimeout, pXactStat);
+        }
     };}
     pub usingnamespace MethodMixin(@This());
 };
