@@ -5938,10 +5938,10 @@ pub const WNDCLASSA = extern struct {
     cbClsExtra: i32,
     cbWndExtra: i32,
     hInstance: HINSTANCE,
-    hIcon: HICON,
-    hCursor: HCURSOR,
-    hbrBackground: HBRUSH,
-    lpszMenuName: [*:0]const u8,
+    hIcon: ?HICON,
+    hCursor: ?HCURSOR,
+    hbrBackground: ?HBRUSH,
+    lpszMenuName: ?[*:0]const u8,
     lpszClassName: [*:0]const u8,
 };
 
@@ -5951,10 +5951,10 @@ pub const WNDCLASSW = extern struct {
     cbClsExtra: i32,
     cbWndExtra: i32,
     hInstance: HINSTANCE,
-    hIcon: HICON,
-    hCursor: HCURSOR,
-    hbrBackground: HBRUSH,
-    lpszMenuName: [*:0]const u16,
+    hIcon: ?HICON,
+    hCursor: ?HCURSOR,
+    hbrBackground: ?HBRUSH,
+    lpszMenuName: ?[*:0]const u16,
     lpszClassName: [*:0]const u16,
 };
 
@@ -7478,7 +7478,7 @@ pub extern "USER32" fn CreateWindowExA(
     hMenu: ?HMENU,
     hInstance: ?HINSTANCE,
     lpParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HWND;
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn CreateWindowExW(
@@ -7494,7 +7494,7 @@ pub extern "USER32" fn CreateWindowExW(
     hMenu: ?HMENU,
     hInstance: ?HINSTANCE,
     lpParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HWND;
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn IsWindow(
@@ -7519,7 +7519,7 @@ pub extern "USER32" fn DestroyWindow(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ShowWindow(
-    hWnd: HWND,
+    hWnd: ?HWND,
     nCmdShow: SHOW_WINDOW_CMD,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
