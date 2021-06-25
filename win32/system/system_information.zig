@@ -11,7 +11,7 @@ pub const WOW64_ARCHITECTURE_INFORMATION = extern struct {
     _bitfield: u32,
 };
 
-pub const FIRMWARE_TYPE = extern enum(i32) {
+pub const FIRMWARE_TYPE = enum(i32) {
     Unknown = 0,
     Bios = 1,
     Uefi = 2,
@@ -22,7 +22,7 @@ pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
 pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
 pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
 
-pub const LOGICAL_PROCESSOR_RELATIONSHIP = extern enum(i32) {
+pub const LOGICAL_PROCESSOR_RELATIONSHIP = enum(i32) {
     ProcessorCore = 0,
     NumaNode = 1,
     Cache = 2,
@@ -113,7 +113,7 @@ pub const MEMORYSTATUS = extern struct {
     dwAvailVirtual: usize,
 };
 
-pub const DEP_SYSTEM_POLICY_TYPE = extern enum(i32) {
+pub const DEP_SYSTEM_POLICY_TYPE = enum(i32) {
     PolicyAlwaysOff = 0,
     PolicyAlwaysOn = 1,
     PolicyOptIn = 2,
@@ -136,7 +136,7 @@ pub const PGET_SYSTEM_WOW64_DIRECTORY_W = fn(
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const VER_FLAGS = extern enum(u32) {
+pub const VER_FLAGS = enum(u32) {
     MINORVERSION = 1,
     MAJORVERSION = 2,
     BUILDNUMBER = 4,
@@ -177,7 +177,7 @@ pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
 pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
 pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
 
-pub const USER_CET_ENVIRONMENT = extern enum(u32) {
+pub const USER_CET_ENVIRONMENT = enum(u32) {
     WIN32_PROCESS = 0,
     SGX2_ENCLAVE = 2,
     VBS_BASIC_ENCLAVE = 17,
@@ -186,7 +186,7 @@ pub const USER_CET_ENVIRONMENT_WIN32_PROCESS = USER_CET_ENVIRONMENT.WIN32_PROCES
 pub const USER_CET_ENVIRONMENT_SGX2_ENCLAVE = USER_CET_ENVIRONMENT.SGX2_ENCLAVE;
 pub const USER_CET_ENVIRONMENT_VBS_BASIC_ENCLAVE = USER_CET_ENVIRONMENT.VBS_BASIC_ENCLAVE;
 
-pub const OS_PRODUCT_TYPE = extern enum(u32) {
+pub const OS_PRODUCT_TYPE = enum(u32) {
     BUSINESS = 6,
     BUSINESS_N = 16,
     CLUSTER_SERVER = 18,
@@ -412,7 +412,7 @@ pub const MEMORYSTATUSEX = extern struct {
     ullAvailExtendedVirtual: u64,
 };
 
-pub const COMPUTER_NAME_FORMAT = extern enum(i32) {
+pub const COMPUTER_NAME_FORMAT = enum(i32) {
     NetBIOS = 0,
     DnsHostname = 1,
     DnsDomain = 2,

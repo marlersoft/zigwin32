@@ -459,7 +459,7 @@ pub const WMIREGINFOW = extern struct {
     WmiRegGuid: WMIREGGUIDW,
 };
 
-pub const WMIDPREQUESTCODE = extern enum(i32) {
+pub const WMIDPREQUESTCODE = enum(i32) {
     GET_ALL_DATA = 0,
     GET_SINGLE_INSTANCE = 1,
     SET_SINGLE_INSTANCE = 2,
@@ -484,7 +484,7 @@ pub const WMI_REGINFO = WMIDPREQUESTCODE.REGINFO;
 pub const WMI_EXECUTE_METHOD = WMIDPREQUESTCODE.EXECUTE_METHOD;
 pub const WMI_CAPTURE_STATE = WMIDPREQUESTCODE.CAPTURE_STATE;
 
-pub const ETW_COMPRESSION_RESUMPTION_MODE = extern enum(i32) {
+pub const ETW_COMPRESSION_RESUMPTION_MODE = enum(i32) {
     Restart = 0,
     NoDisable = 1,
     NoRestart = 2,
@@ -907,7 +907,7 @@ pub const ENABLE_TRACE_PARAMETERS = extern struct {
     FilterDescCount: u32,
 };
 
-pub const TRACE_QUERY_INFO_CLASS = extern enum(i32) {
+pub const TRACE_QUERY_INFO_CLASS = enum(i32) {
     TraceGuidQueryList = 0,
     TraceGuidQueryInfo = 1,
     TraceGuidQueryProcess = 2,
@@ -980,7 +980,7 @@ pub const TRACE_PERIODIC_CAPTURE_STATE_INFO = extern struct {
     Reserved: u16,
 };
 
-pub const ETW_PROCESS_HANDLE_INFO_TYPE = extern enum(i32) {
+pub const ETW_PROCESS_HANDLE_INFO_TYPE = enum(i32) {
     PartitionInformation = 1,
     PartitionInformationV2 = 2,
     LastDroppedTimes = 3,
@@ -1066,7 +1066,7 @@ pub const EVENT_FILTER_LEVEL_KW = extern struct {
     FilterIn: u8,
 };
 
-pub const EVENT_INFO_CLASS = extern enum(i32) {
+pub const EVENT_INFO_CLASS = enum(i32) {
     EventProviderBinaryTrackInfo = 0,
     EventProviderSetReserved1 = 1,
     EventProviderSetTraits = 2,
@@ -1169,7 +1169,7 @@ pub const EVENT_RECORD = extern struct {
     UserContext: *c_void,
 };
 
-pub const ETW_PROVIDER_TRAIT_TYPE = extern enum(i32) {
+pub const ETW_PROVIDER_TRAIT_TYPE = enum(i32) {
     TypeGroup = 1,
     DecodeGuid = 2,
     TypeMax = 3,
@@ -1178,7 +1178,7 @@ pub const EtwProviderTraitTypeGroup = ETW_PROVIDER_TRAIT_TYPE.TypeGroup;
 pub const EtwProviderTraitDecodeGuid = ETW_PROVIDER_TRAIT_TYPE.DecodeGuid;
 pub const EtwProviderTraitTypeMax = ETW_PROVIDER_TRAIT_TYPE.TypeMax;
 
-pub const EVENTSECURITYOPERATION = extern enum(i32) {
+pub const EVENTSECURITYOPERATION = enum(i32) {
     SetDACL = 0,
     SetSACL = 1,
     AddDACL = 2,
@@ -1199,7 +1199,7 @@ pub const EVENT_MAP_ENTRY = extern struct {
     },
 };
 
-pub const MAP_FLAGS = extern enum(i32) {
+pub const MAP_FLAGS = enum(i32) {
     MANIFEST_VALUEMAP = 1,
     MANIFEST_BITMAP = 2,
     MANIFEST_PATTERNMAP = 4,
@@ -1216,7 +1216,7 @@ pub const EVENTMAP_INFO_FLAG_WBEM_BITMAP = MAP_FLAGS.WBEM_BITMAP;
 pub const EVENTMAP_INFO_FLAG_WBEM_FLAG = MAP_FLAGS.WBEM_FLAG;
 pub const EVENTMAP_INFO_FLAG_WBEM_NO_MAP = MAP_FLAGS.WBEM_NO_MAP;
 
-pub const MAP_VALUETYPE = extern enum(i32) {
+pub const MAP_VALUETYPE = enum(i32) {
     ULONG = 0,
     STRING = 1,
 };
@@ -1234,7 +1234,7 @@ pub const EVENT_MAP_INFO = extern struct {
     MapEntryArray: [1]EVENT_MAP_ENTRY,
 };
 
-pub const _TDH_IN_TYPE = extern enum(i32) {
+pub const _TDH_IN_TYPE = enum(i32) {
     NULL = 0,
     UNICODESTRING = 1,
     ANSISTRING = 2,
@@ -1311,7 +1311,7 @@ pub const TDH_INTYPE_SIZET = _TDH_IN_TYPE.SIZET;
 pub const TDH_INTYPE_HEXDUMP = _TDH_IN_TYPE.HEXDUMP;
 pub const TDH_INTYPE_WBEMSID = _TDH_IN_TYPE.WBEMSID;
 
-pub const _TDH_OUT_TYPE = extern enum(i32) {
+pub const _TDH_OUT_TYPE = enum(i32) {
     NULL = 0,
     STRING = 1,
     DATETIME = 2,
@@ -1396,7 +1396,7 @@ pub const TDH_OUTTYPE_DATETIME_UTC = _TDH_OUT_TYPE.DATETIME_UTC;
 pub const TDH_OUTTYPE_REDUCEDSTRING = _TDH_OUT_TYPE.REDUCEDSTRING;
 pub const TDH_OUTTYPE_NOPRINT = _TDH_OUT_TYPE.NOPRINT;
 
-pub const PROPERTY_FLAGS = extern enum(i32) {
+pub const PROPERTY_FLAGS = enum(i32) {
     Struct = 1,
     ParamLength = 2,
     ParamCount = 4,
@@ -1454,7 +1454,7 @@ pub const EVENT_PROPERTY_INFO = extern struct {
     },
 };
 
-pub const DECODING_SOURCE = extern enum(i32) {
+pub const DECODING_SOURCE = enum(i32) {
     XMLFile = 0,
     Wbem = 1,
     WPP = 2,
@@ -1467,7 +1467,7 @@ pub const DecodingSourceWPP = DECODING_SOURCE.WPP;
 pub const DecodingSourceTlg = DECODING_SOURCE.Tlg;
 pub const DecodingSourceMax = DECODING_SOURCE.Max;
 
-pub const TEMPLATE_FLAGS = extern enum(i32) {
+pub const TEMPLATE_FLAGS = enum(i32) {
     EVENT_DATA = 1,
     USER_DATA = 2,
     CONTROL_GUID = 4,
@@ -1516,7 +1516,7 @@ pub const PROPERTY_DATA_DESCRIPTOR = extern struct {
     Reserved: u32,
 };
 
-pub const PAYLOAD_OPERATOR = extern enum(i32) {
+pub const PAYLOAD_OPERATOR = enum(i32) {
     EQ = 0,
     NE = 1,
     LE = 2,
@@ -1562,7 +1562,7 @@ pub const PROVIDER_FILTER_INFO = extern struct {
     EventPropertyInfoArray: [1]EVENT_PROPERTY_INFO,
 };
 
-pub const EVENT_FIELD_TYPE = extern enum(i32) {
+pub const EVENT_FIELD_TYPE = enum(i32) {
     KeywordInformation = 0,
     LevelInformation = 1,
     ChannelInformation = 2,
@@ -1607,7 +1607,7 @@ pub const PROVIDER_EVENT_INFO = extern struct {
     EventDescriptorsArray: [1]EVENT_DESCRIPTOR,
 };
 
-pub const TDH_CONTEXT_TYPE = extern enum(i32) {
+pub const TDH_CONTEXT_TYPE = enum(i32) {
     WPP_TMFFILE = 0,
     WPP_TMFSEARCHPATH = 1,
     WPP_GMT = 2,
@@ -1873,7 +1873,7 @@ pub const ITraceRelogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TRACE_MESSAGE_FLAGS = extern enum(u32) {
+pub const TRACE_MESSAGE_FLAGS = enum(u32) {
     COMPONENTID = 4,
     GUID = 2,
     SEQUENCE = 1,
@@ -1902,7 +1902,7 @@ pub const TRACE_MESSAGE_SEQUENCE = TRACE_MESSAGE_FLAGS.SEQUENCE;
 pub const TRACE_MESSAGE_SYSTEMINFO = TRACE_MESSAGE_FLAGS.SYSTEMINFO;
 pub const TRACE_MESSAGE_TIMESTAMP = TRACE_MESSAGE_FLAGS.TIMESTAMP;
 
-pub const ENABLECALLBACK_ENABLED_STATE = extern enum(u32) {
+pub const ENABLECALLBACK_ENABLED_STATE = enum(u32) {
     DISABLE_PROVIDER = 0,
     ENABLE_PROVIDER = 1,
     CAPTURE_STATE = 2,
@@ -1911,7 +1911,7 @@ pub const EVENT_CONTROL_CODE_DISABLE_PROVIDER = ENABLECALLBACK_ENABLED_STATE.DIS
 pub const EVENT_CONTROL_CODE_ENABLE_PROVIDER = ENABLECALLBACK_ENABLED_STATE.ENABLE_PROVIDER;
 pub const EVENT_CONTROL_CODE_CAPTURE_STATE = ENABLECALLBACK_ENABLED_STATE.CAPTURE_STATE;
 
-pub const EVENT_TRACE_CONTROL = extern enum(u32) {
+pub const EVENT_TRACE_CONTROL = enum(u32) {
     FLUSH = 3,
     QUERY = 0,
     STOP = 1,
@@ -1922,7 +1922,7 @@ pub const EVENT_TRACE_CONTROL_QUERY = EVENT_TRACE_CONTROL.QUERY;
 pub const EVENT_TRACE_CONTROL_STOP = EVENT_TRACE_CONTROL.STOP;
 pub const EVENT_TRACE_CONTROL_UPDATE = EVENT_TRACE_CONTROL.UPDATE;
 
-pub const EVENT_TRACE_FLAG = extern enum(u32) {
+pub const EVENT_TRACE_FLAG = enum(u32) {
     ALPC = 1048576,
     CSWITCH = 16,
     DBGPRINT = 262144,

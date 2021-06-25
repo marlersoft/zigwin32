@@ -202,7 +202,7 @@ pub const CLSID_GPMTemplate = &CLSID_GPMTemplate_Value;
 const CLSID_GPMStarterGPOCollection_Value = @import("../zig.zig").Guid.initString("82f8aa8b-49ba-43b2-956e-3397f9b94c3a");
 pub const CLSID_GPMStarterGPOCollection = &CLSID_GPMStarterGPOCollection_Value;
 
-pub const GPMRSOPMode = extern enum(i32) {
+pub const GPMRSOPMode = enum(i32) {
     Unknown = 0,
     Planning = 1,
     Logging = 2,
@@ -211,7 +211,7 @@ pub const rsopUnknown = GPMRSOPMode.Unknown;
 pub const rsopPlanning = GPMRSOPMode.Planning;
 pub const rsopLogging = GPMRSOPMode.Logging;
 
-pub const GPMPermissionType = extern enum(i32) {
+pub const GPMPermissionType = enum(i32) {
     GPOApply = 65536,
     GPORead = 65792,
     GPOEdit = 65793,
@@ -252,7 +252,7 @@ pub const permStarterGPOFullControl = GPMPermissionType.StarterGPOFullControl;
 pub const permStarterGPOCustom = GPMPermissionType.StarterGPOCustom;
 pub const permSOMStarterGPOCreate = GPMPermissionType.SOMStarterGPOCreate;
 
-pub const GPMSearchProperty = extern enum(i32) {
+pub const GPMSearchProperty = enum(i32) {
     gpoPermissions = 0,
     gpoEffectivePermissions = 1,
     gpoDisplayName = 2,
@@ -285,7 +285,7 @@ pub const starterGPODisplayName = GPMSearchProperty.starterGPODisplayName;
 pub const starterGPOID = GPMSearchProperty.starterGPOID;
 pub const starterGPODomain = GPMSearchProperty.starterGPODomain;
 
-pub const GPMSearchOperation = extern enum(i32) {
+pub const GPMSearchOperation = enum(i32) {
     Equals = 0,
     Contains = 1,
     NotContains = 2,
@@ -296,7 +296,7 @@ pub const opContains = GPMSearchOperation.Contains;
 pub const opNotContains = GPMSearchOperation.NotContains;
 pub const opNotEquals = GPMSearchOperation.NotEquals;
 
-pub const GPMReportType = extern enum(i32) {
+pub const GPMReportType = enum(i32) {
     XML = 0,
     HTML = 1,
     InfraXML = 2,
@@ -311,7 +311,7 @@ pub const repInfraRefreshXML = GPMReportType.InfraRefreshXML;
 pub const repClientHealthXML = GPMReportType.ClientHealthXML;
 pub const repClientHealthRefreshXML = GPMReportType.ClientHealthRefreshXML;
 
-pub const GPMEntryType = extern enum(i32) {
+pub const GPMEntryType = enum(i32) {
     User = 0,
     Computer = 1,
     LocalGroup = 2,
@@ -328,7 +328,7 @@ pub const typeUniversalGroup = GPMEntryType.UniversalGroup;
 pub const typeUNCPath = GPMEntryType.UNCPath;
 pub const typeUnknown = GPMEntryType.Unknown;
 
-pub const GPMDestinationOption = extern enum(i32) {
+pub const GPMDestinationOption = enum(i32) {
     SameAsSource = 0,
     None = 1,
     ByRelativeName = 2,
@@ -339,7 +339,7 @@ pub const opDestinationNone = GPMDestinationOption.None;
 pub const opDestinationByRelativeName = GPMDestinationOption.ByRelativeName;
 pub const opDestinationSet = GPMDestinationOption.Set;
 
-pub const GPMReportingOptions = extern enum(i32) {
+pub const GPMReportingOptions = enum(i32) {
     Legacy = 0,
     Comments = 1,
 };
@@ -1033,7 +1033,7 @@ pub const IGPMBackupCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GPMSOMType = extern enum(i32) {
+pub const GPMSOMType = enum(i32) {
     Site = 0,
     Domain = 1,
     OU = 2,
@@ -3109,14 +3109,14 @@ pub const IGPMMigrationTable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GPMBackupType = extern enum(i32) {
+pub const GPMBackupType = enum(i32) {
     GPO = 0,
     StarterGPO = 1,
 };
 pub const typeGPO = GPMBackupType.GPO;
 pub const typeStarterGPO = GPMBackupType.StarterGPO;
 
-pub const GPMStarterGPOType = extern enum(i32) {
+pub const GPMStarterGPOType = enum(i32) {
     System = 0,
     Custom = 1,
 };
@@ -3964,7 +3964,7 @@ pub const IGPMGPO3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GPO_LINK = extern enum(i32) {
+pub const GPO_LINK = enum(i32) {
     Unknown = 0,
     Machine = 1,
     Site = 2,
@@ -4055,7 +4055,7 @@ pub const PFNGENERATEGROUPPOLICY = fn(
     pUserTarget: ?*RSOP_TARGET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const SETTINGSTATUS = extern enum(i32) {
+pub const SETTINGSTATUS = enum(i32) {
     Unspecified = 0,
     Applied = 1,
     Ignored = 2,
@@ -4078,7 +4078,7 @@ pub const POLICYSETTINGSTATUSINFO = extern struct {
     timeLogged: SYSTEMTIME,
 };
 
-pub const INSTALLSPECTYPE = extern enum(i32) {
+pub const INSTALLSPECTYPE = enum(i32) {
     APPNAME = 1,
     FILEEXT = 2,
     PROGID = 3,
@@ -4107,7 +4107,7 @@ pub const INSTALLDATA = extern struct {
     Spec: INSTALLSPEC,
 };
 
-pub const APPSTATE = extern enum(i32) {
+pub const APPSTATE = enum(i32) {
     ABSENT = 0,
     ASSIGNED = 1,
     PUBLISHED = 2,
@@ -4142,7 +4142,7 @@ pub const MANAGEDAPPLICATION = extern struct {
     bInstalled: BOOL,
 };
 
-pub const GROUP_POLICY_OBJECT_TYPE = extern enum(i32) {
+pub const GROUP_POLICY_OBJECT_TYPE = enum(i32) {
     Local = 0,
     Remote = 1,
     DS = 2,
@@ -4155,7 +4155,7 @@ pub const GPOTypeDS = GROUP_POLICY_OBJECT_TYPE.DS;
 pub const GPOTypeLocalUser = GROUP_POLICY_OBJECT_TYPE.LocalUser;
 pub const GPOTypeLocalGroup = GROUP_POLICY_OBJECT_TYPE.LocalGroup;
 
-pub const GROUP_POLICY_HINT_TYPE = extern enum(i32) {
+pub const GROUP_POLICY_HINT_TYPE = enum(i32) {
     Unknown = 0,
     Machine = 1,
     Site = 2,

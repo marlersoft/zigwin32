@@ -33,7 +33,7 @@ pub const DEFAULT_CONTEXT_PRIORITY = @as(u32, 100);
 //--------------------------------------------------------------------------------
 // Section: Types (20)
 //--------------------------------------------------------------------------------
-pub const NS_CMD_FLAGS = extern enum(i32) {
+pub const NS_CMD_FLAGS = enum(i32) {
     PRIVATE = 1,
     INTERACTIVE = 2,
     LOCAL = 8,
@@ -50,7 +50,7 @@ pub const CMD_FLAG_HIDDEN = NS_CMD_FLAGS.HIDDEN;
 pub const CMD_FLAG_LIMIT_MASK = NS_CMD_FLAGS.LIMIT_MASK;
 pub const CMD_FLAG_PRIORITY = NS_CMD_FLAGS.PRIORITY;
 
-pub const NS_REQS = extern enum(i32) {
+pub const NS_REQS = enum(i32) {
     ZERO = 0,
     PRESENT = 1,
     ALLOW_MULTIPLE = 2,
@@ -61,7 +61,7 @@ pub const NS_REQ_PRESENT = NS_REQS.PRESENT;
 pub const NS_REQ_ALLOW_MULTIPLE = NS_REQS.ALLOW_MULTIPLE;
 pub const NS_REQ_ONE_OR_MORE = NS_REQS.ONE_OR_MORE;
 
-pub const NS_EVENTS = extern enum(i32) {
+pub const NS_EVENTS = enum(i32) {
     LOOP = 65536,
     LAST_N = 1,
     LAST_SECS = 2,
@@ -74,7 +74,7 @@ pub const NS_EVENT_LAST_SECS = NS_EVENTS.LAST_SECS;
 pub const NS_EVENT_FROM_N = NS_EVENTS.FROM_N;
 pub const NS_EVENT_FROM_START = NS_EVENTS.FROM_START;
 
-pub const NS_MODE_CHANGE = extern enum(i32) {
+pub const NS_MODE_CHANGE = enum(i32) {
     COMMIT = 0,
     UNCOMMIT = 1,
     FLUSH = 2,

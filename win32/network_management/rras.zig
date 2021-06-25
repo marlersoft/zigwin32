@@ -377,7 +377,7 @@ pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 //--------------------------------------------------------------------------------
 pub const HRASCONN = *opaque{};
 
-pub const MPR_INTERFACE_DIAL_MODE = extern enum(u32) {
+pub const MPR_INTERFACE_DIAL_MODE = enum(u32) {
     First = 0,
     All = 1,
     AsNeeded = 2,
@@ -386,29 +386,29 @@ pub const MPRDM_DialFirst = MPR_INTERFACE_DIAL_MODE.First;
 pub const MPRDM_DialAll = MPR_INTERFACE_DIAL_MODE.All;
 pub const MPRDM_DialAsNeeded = MPR_INTERFACE_DIAL_MODE.AsNeeded;
 
-pub const RASENTRY_DIAL_MODE = extern enum(u32) {
+pub const RASENTRY_DIAL_MODE = enum(u32) {
     ll = 1,
     sNeeded = 2,
 };
 pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
 pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
 
-pub const RAS_FLAGS = extern enum(u32) {
+pub const RAS_FLAGS = enum(u32) {
     PPP_CONNECTION = 1,
     MESSENGER_PRESENT = 2,
     QUARANTINE_PRESENT = 8,
     ARAP_CONNECTION = 16,
-    IKEV2_CONNECTION = 16,
+    // IKEV2_CONNECTION = 16, this enum value conflicts with ARAP_CONNECTION
     DORMANT = 32,
 };
 pub const RAS_FLAGS_PPP_CONNECTION = RAS_FLAGS.PPP_CONNECTION;
 pub const RAS_FLAGS_MESSENGER_PRESENT = RAS_FLAGS.MESSENGER_PRESENT;
 pub const RAS_FLAGS_QUARANTINE_PRESENT = RAS_FLAGS.QUARANTINE_PRESENT;
 pub const RAS_FLAGS_ARAP_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
-pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.IKEV2_CONNECTION;
+pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
 pub const RAS_FLAGS_DORMANT = RAS_FLAGS.DORMANT;
 
-pub const MPR_ET = extern enum(u32) {
+pub const MPR_ET = enum(u32) {
     None = 0,
     Require = 1,
     RequireMax = 2,
@@ -419,7 +419,7 @@ pub const MPR_ET_Require = MPR_ET.Require;
 pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
 pub const MPR_ET_Optional = MPR_ET.Optional;
 
-pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA = extern enum(u32) {
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA = enum(u32) {
     D5 = 5,
     S = 128,
     SV2 = 129,
@@ -428,7 +428,7 @@ pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.D5;
 pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.S;
 pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.SV2;
 
-pub const PPP_LCP = extern enum(u32) {
+pub const PPP_LCP = enum(u32) {
     PAP = 49187,
     CHAP = 49699,
     EAP = 49703,
@@ -439,7 +439,7 @@ pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
 pub const PPP_LCP_EAP = PPP_LCP.EAP;
 pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
 
-pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL = extern enum(u32) {
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL = enum(u32) {
     PAP = 49187,
     SPAP = 49191,
     CHAP = 49699,
@@ -450,7 +450,7 @@ pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.SPAP;
 pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.CHAP;
 pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.EAP;
 
-pub const PPP_LCP_INFO_AUTH_DATA = extern enum(u32) {
+pub const PPP_LCP_INFO_AUTH_DATA = enum(u32) {
     D5 = 5,
     S = 128,
     SV2 = 129,
@@ -459,7 +459,7 @@ pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_AUTH_DATA.D5;
 pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_AUTH_DATA.S;
 pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_AUTH_DATA.SV2;
 
-pub const RASIKEV_PROJECTION_INFO_FLAGS = extern enum(u32) {
+pub const RASIKEV_PROJECTION_INFO_FLAGS = enum(u32) {
     MOBIKESUPPORTED = 1,
     BEHIND_NAT = 2,
     SERVERBEHIND_NAT = 4,
@@ -480,7 +480,7 @@ pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS.MOBIKES
 pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT;
 pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT;
 
-pub const MPR_VS = extern enum(u32) {
+pub const MPR_VS = enum(u32) {
     Default = 0,
     PptpOnly = 1,
     PptpFirst = 2,
@@ -493,7 +493,7 @@ pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
 pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
 pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
 
-pub const SECURITY_MESSAGE_MSG_ID = extern enum(u32) {
+pub const SECURITY_MESSAGE_MSG_ID = enum(u32) {
     SUCCESS = 1,
     FAILURE = 2,
     ERROR = 3,
@@ -747,7 +747,7 @@ pub const RASDIALDLG = extern struct {
 
 }, else => struct { } };
 
-pub const RASAPIVERSION = extern enum(i32) {
+pub const RASAPIVERSION = enum(i32) {
     @"500" = 1,
     @"501" = 2,
     @"600" = 3,
@@ -813,7 +813,7 @@ pub const RASCONNA = extern struct {
 
 }, else => struct { } };
 
-pub const RASCONNSTATE = extern enum(i32) {
+pub const RASCONNSTATE = enum(i32) {
     OpenPort = 0,
     PortOpened = 1,
     ConnectDevice = 2,
@@ -880,7 +880,7 @@ pub const RASCS_InvokeEapUI = RASCONNSTATE.InvokeEapUI;
 pub const RASCS_Connected = RASCONNSTATE.Connected;
 pub const RASCS_Disconnected = RASCONNSTATE.Disconnected;
 
-pub const RASCONNSUBSTATE = extern enum(i32) {
+pub const RASCONNSUBSTATE = enum(i32) {
     None = 0,
     Dormant = 1,
     Reconnecting = 2,
@@ -1008,7 +1008,7 @@ pub const RASENTRYNAMEA = extern struct {
     szPhonebookPath: [261]CHAR,
 };
 
-pub const RASPROJECTION = extern enum(i32) {
+pub const RASPROJECTION = enum(i32) {
     Amb = 65536,
     PppNbf = 32831,
     PppIpx = 32811,
@@ -1191,14 +1191,14 @@ pub const RASIKEV2_PROJECTION_INFO = extern struct {
 
 }, else => struct { } };
 
-pub const RASPROJECTION_INFO_TYPE = extern enum(i32) {
+pub const RASPROJECTION_INFO_TYPE = enum(i32) {
     PPP = 1,
     IKEv2 = 2,
 };
 pub const PROJECTION_INFO_TYPE_PPP = RASPROJECTION_INFO_TYPE.PPP;
 pub const PROJECTION_INFO_TYPE_IKEv2 = RASPROJECTION_INFO_TYPE.IKEv2;
 
-pub const IKEV2_ID_PAYLOAD_TYPE = extern enum(i32) {
+pub const IKEV2_ID_PAYLOAD_TYPE = enum(i32) {
     INVALID = 0,
     IPV4_ADDR = 1,
     FQDN = 2,
@@ -1761,7 +1761,7 @@ pub const RasCustomEntryDlgFn = fn(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ROUTER_INTERFACE_TYPE = extern enum(i32) {
+pub const ROUTER_INTERFACE_TYPE = enum(i32) {
     CLIENT = 0,
     HOME_ROUTER = 1,
     FULL_ROUTER = 2,
@@ -1782,7 +1782,7 @@ pub const ROUTER_IF_TYPE_TUNNEL1 = ROUTER_INTERFACE_TYPE.TUNNEL1;
 pub const ROUTER_IF_TYPE_DIALOUT = ROUTER_INTERFACE_TYPE.DIALOUT;
 pub const ROUTER_IF_TYPE_MAX = ROUTER_INTERFACE_TYPE.MAX;
 
-pub const ROUTER_CONNECTION_STATE = extern enum(i32) {
+pub const ROUTER_CONNECTION_STATE = enum(i32) {
     UNREACHABLE = 0,
     DISCONNECTED = 1,
     CONNECTING = 2,
@@ -1960,7 +1960,7 @@ pub const MPR_SERVER_2 = extern struct {
     dwSstpPortFlags: u32,
 };
 
-pub const RAS_PORT_CONDITION = extern enum(i32) {
+pub const RAS_PORT_CONDITION = enum(i32) {
     NON_OPERATIONAL = 0,
     DISCONNECTED = 1,
     CALLING_BACK = 2,
@@ -1977,7 +1977,7 @@ pub const RAS_PORT_AUTHENTICATING = RAS_PORT_CONDITION.AUTHENTICATING;
 pub const RAS_PORT_AUTHENTICATED = RAS_PORT_CONDITION.AUTHENTICATED;
 pub const RAS_PORT_INITIALIZING = RAS_PORT_CONDITION.INITIALIZING;
 
-pub const RAS_HARDWARE_CONDITION = extern enum(i32) {
+pub const RAS_HARDWARE_CONDITION = enum(i32) {
     OPERATIONAL = 0,
     FAILURE = 1,
 };
@@ -2170,7 +2170,7 @@ pub const RAS_CONNECTION_2 = extern struct {
     PppInfo2: PPP_INFO_2,
 };
 
-pub const RAS_QUARANTINE_STATE = extern enum(i32) {
+pub const RAS_QUARANTINE_STATE = enum(i32) {
     NORMAL = 0,
     QUARANTINE = 1,
     PROBATION = 2,
@@ -2214,7 +2214,7 @@ pub const MPRAPI_OBJECT_HEADER = extern struct {
     size: u16,
 };
 
-pub const MPRAPI_OBJECT_TYPE = extern enum(i32) {
+pub const MPRAPI_OBJECT_TYPE = enum(i32) {
     RAS_CONNECTION_OBJECT = 1,
     MPR_SERVER_OBJECT = 2,
     MPR_SERVER_SET_CONFIG_OBJECT = 3,
@@ -2446,7 +2446,7 @@ pub const VPN_TS_IP_ADDRESS = extern struct {
     },
 };
 
-pub const MPR_VPN_TS_TYPE = extern enum(i32) {
+pub const MPR_VPN_TS_TYPE = enum(i32) {
     @"4_ADDR_RANGE" = 7,
     @"6_ADDR_RANGE" = 8,
 };
@@ -2903,7 +2903,7 @@ pub const ROUTING_PROTOCOL_CONFIG = extern struct {
     pfnEnableIgmpCallback: PMGM_ENABLE_IGMP_CALLBACK,
 };
 
-pub const MGM_ENUM_TYPES = extern enum(i32) {
+pub const MGM_ENUM_TYPES = enum(i32) {
     NY_SOURCE = 0,
     LL_SOURCES = 1,
 };
@@ -2995,7 +2995,7 @@ pub const RTM_ENTITY_INFO = extern struct {
     EntityId: RTM_ENTITY_ID,
 };
 
-pub const RTM_EVENT_TYPE = extern enum(i32) {
+pub const RTM_EVENT_TYPE = enum(i32) {
     ENTITY_REGISTERED = 0,
     ENTITY_DEREGISTERED = 1,
     ROUTE_EXPIRED = 2,

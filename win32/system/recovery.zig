@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const REGISTER_APPLICATION_RESTART_FLAGS = extern enum(u32) {
+pub const REGISTER_APPLICATION_RESTART_FLAGS = enum(u32) {
     CRASH = 1,
     HANG = 2,
     PATCH = 4,

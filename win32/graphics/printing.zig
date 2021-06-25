@@ -1164,7 +1164,7 @@ pub const IBidiSpl2 = extern struct {
     lpVtbl: *IBidiSpl2Vtbl,
 };
 
-pub const EXpsCompressionOptions = extern enum(i32) {
+pub const EXpsCompressionOptions = enum(i32) {
     NotCompressed = 0,
     Normal = 1,
     Small = 2,
@@ -1175,14 +1175,14 @@ pub const Compression_Normal = EXpsCompressionOptions.Normal;
 pub const Compression_Small = EXpsCompressionOptions.Small;
 pub const Compression_Fast = EXpsCompressionOptions.Fast;
 
-pub const EXpsFontOptions = extern enum(i32) {
+pub const EXpsFontOptions = enum(i32) {
     Normal = 0,
     Obfusticate = 1,
 };
 pub const Font_Normal = EXpsFontOptions.Normal;
 pub const Font_Obfusticate = EXpsFontOptions.Obfusticate;
 
-pub const EXpsJobConsumption = extern enum(i32) {
+pub const EXpsJobConsumption = enum(i32) {
     DocumentSequenceAdded = 0,
     FixedDocumentAdded = 1,
     FixedPageAdded = 2,
@@ -1191,7 +1191,7 @@ pub const XpsJob_DocumentSequenceAdded = EXpsJobConsumption.DocumentSequenceAdde
 pub const XpsJob_FixedDocumentAdded = EXpsJobConsumption.FixedDocumentAdded;
 pub const XpsJob_FixedPageAdded = EXpsJobConsumption.FixedPageAdded;
 
-pub const EXpsFontRestriction = extern enum(i32) {
+pub const EXpsFontRestriction = enum(i32) {
     Installable = 0,
     NoEmbedding = 2,
     PreviewPrint = 4,
@@ -2528,7 +2528,7 @@ pub const BIDI_RESPONSE_CONTAINER = extern struct {
     aData: [1]BIDI_RESPONSE_DATA,
 };
 
-pub const BIDI_TYPE = extern enum(i32) {
+pub const BIDI_TYPE = enum(i32) {
     NULL = 0,
     INT = 1,
     FLOAT = 2,
@@ -2567,7 +2567,7 @@ pub const PROVIDOR_INFO_2W = extern struct {
     pOrder: PWSTR,
 };
 
-pub const PRINTER_OPTION_FLAGS = extern enum(i32) {
+pub const PRINTER_OPTION_FLAGS = enum(i32) {
     NO_CACHE = 1,
     CACHE = 2,
     CLIENT_CHANGE = 4,
@@ -2612,7 +2612,7 @@ pub const CORE_PRINTER_DRIVERW = extern struct {
     szPackageID: [260]u16,
 };
 
-pub const EPrintPropertyType = extern enum(i32) {
+pub const EPrintPropertyType = enum(i32) {
     String = 1,
     Int32 = 2,
     Int64 = 3,
@@ -2635,7 +2635,7 @@ pub const kPropertyTypeNotificationReply = EPrintPropertyType.NotificationReply;
 pub const kPropertyTypeNotificationOptions = EPrintPropertyType.NotificationOptions;
 pub const kPropertyTypeBuffer = EPrintPropertyType.Buffer;
 
-pub const EPrintXPSJobProgress = extern enum(i32) {
+pub const EPrintXPSJobProgress = enum(i32) {
     AddingDocumentSequence = 0,
     DocumentSequenceAdded = 1,
     AddingFixedDocument = 2,
@@ -2658,7 +2658,7 @@ pub const kFontAdded = EPrintXPSJobProgress.FontAdded;
 pub const kImageAdded = EPrintXPSJobProgress.ImageAdded;
 pub const kXpsDocumentCommitted = EPrintXPSJobProgress.XpsDocumentCommitted;
 
-pub const EPrintXPSJobOperation = extern enum(i32) {
+pub const EPrintXPSJobOperation = enum(i32) {
     Production = 1,
     Consumption = 2,
 };
@@ -2689,7 +2689,7 @@ pub const PrintPropertiesCollection = extern struct {
     propertiesCollection: *PrintNamedProperty,
 };
 
-pub const PRINT_EXECUTION_CONTEXT = extern enum(i32) {
+pub const PRINT_EXECUTION_CONTEXT = enum(i32) {
     APPLICATION = 0,
     SPOOLER_SERVICE = 1,
     SPOOLER_ISOLATION_HOST = 2,
@@ -2707,7 +2707,7 @@ pub const PRINT_EXECUTION_DATA = extern struct {
     clientAppPID: u32,
 };
 
-pub const MxdcLandscapeRotationEnums = extern enum(i32) {
+pub const MxdcLandscapeRotationEnums = enum(i32) {
     COUNTERCLOCKWISE_90_DEGREES = 90,
     NONE = 0,
     COUNTERCLOCKWISE_270_DEGREES = -90,
@@ -2716,7 +2716,7 @@ pub const MXDC_LANDSCAPE_ROTATE_COUNTERCLOCKWISE_90_DEGREES = MxdcLandscapeRotat
 pub const MXDC_LANDSCAPE_ROTATE_NONE = MxdcLandscapeRotationEnums.NONE;
 pub const MXDC_LANDSCAPE_ROTATE_COUNTERCLOCKWISE_270_DEGREES = MxdcLandscapeRotationEnums.COUNTERCLOCKWISE_270_DEGREES;
 
-pub const MxdcImageTypeEnums = extern enum(i32) {
+pub const MxdcImageTypeEnums = enum(i32) {
     JPEGHIGH_COMPRESSION = 1,
     JPEGMEDIUM_COMPRESSION = 2,
     JPEGLOW_COMPRESSION = 3,
@@ -2743,7 +2743,7 @@ pub const MxdcS0PageData = packed struct {
     bData: [1]u8,
 };
 
-pub const MxdcS0PageEnums = extern enum(i32) {
+pub const MxdcS0PageEnums = enum(i32) {
     TTF = 0,
     JPEG = 1,
     PNG = 2,
@@ -3041,7 +3041,7 @@ pub const OEMUIPSPARAM = extern struct {
     pOemEntry: *c_void,
 };
 
-pub const EATTRIBUTE_DATATYPE = extern enum(i32) {
+pub const EATTRIBUTE_DATATYPE = enum(i32) {
     UNKNOWN = 0,
     BOOL = 1,
     INT = 2,
@@ -3780,7 +3780,7 @@ pub const IPrintCoreUI2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHIMOPTS = extern enum(i32) {
+pub const SHIMOPTS = enum(i32) {
     DEFAULT = 0,
     NOSNAPSHOT = 1,
 };
@@ -3976,7 +3976,7 @@ pub const IPrintSchemaDisplayableElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PrintSchemaConstrainedSetting = extern enum(i32) {
+pub const PrintSchemaConstrainedSetting = enum(i32) {
     None = 0,
     PrintTicket = 1,
     Admin = 2,
@@ -4081,7 +4081,7 @@ pub const IPrintSchemaNUpOption = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PrintSchemaSelectionType = extern enum(i32) {
+pub const PrintSchemaSelectionType = enum(i32) {
     One = 0,
     Many = 1,
 };
@@ -4254,7 +4254,7 @@ pub const IPrintSchemaPageImageableSize = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PrintSchemaParameterDataType = extern enum(i32) {
+pub const PrintSchemaParameterDataType = enum(i32) {
     Integer = 0,
     NumericString = 1,
     String = 2,
@@ -4952,7 +4952,7 @@ pub const IPrinterQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PrintJobStatus = extern enum(i32) {
+pub const PrintJobStatus = enum(i32) {
     Paused = 1,
     Error = 2,
     Deleting = 4,
@@ -5531,14 +5531,14 @@ pub const IPrinterScriptContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PrintAsyncNotifyUserFilter = extern enum(i32) {
+pub const PrintAsyncNotifyUserFilter = enum(i32) {
     PerUser = 0,
     AllUsers = 1,
 };
 pub const kPerUser = PrintAsyncNotifyUserFilter.PerUser;
 pub const kAllUsers = PrintAsyncNotifyUserFilter.AllUsers;
 
-pub const PrintAsyncNotifyConversationStyle = extern enum(i32) {
+pub const PrintAsyncNotifyConversationStyle = enum(i32) {
     BiDirectional = 0,
     UniDirectional = 1,
 };
@@ -5638,7 +5638,7 @@ pub const IPrintAsyncNotifyCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PrintAsyncNotifyError = extern enum(i32) {
+pub const PrintAsyncNotifyError = enum(i32) {
     CHANNEL_CLOSED_BY_SERVER = 1,
     CHANNEL_CLOSED_BY_ANOTHER_LISTENER = 2,
     CHANNEL_CLOSED_BY_SAME_LISTENER = 3,
@@ -6268,7 +6268,7 @@ pub const EMFPLAYPROC = fn(
     param2: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const EBranchOfficeJobEventType = extern enum(i32) {
+pub const EBranchOfficeJobEventType = enum(i32) {
     InvalidJobState = 0,
     LogJobPrinted = 1,
     LogJobRendered = 2,
@@ -6595,7 +6595,7 @@ pub const ROUTER_NOTIFY_CALLBACK = fn(
     pdwResult: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const NOTIFICATION_CALLBACK_COMMANDS = extern enum(i32) {
+pub const NOTIFICATION_CALLBACK_COMMANDS = enum(i32) {
     NOTIFY = 0,
     CONTEXT_ACQUIRE = 1,
     CONTEXT_RELEASE = 2,
@@ -6611,7 +6611,7 @@ pub const NOTIFICATION_CONFIG_1 = extern struct {
     pContext: *c_void,
 };
 
-pub const NOTIFICATION_CONFIG_FLAGS = extern enum(i32) {
+pub const NOTIFICATION_CONFIG_FLAGS = enum(i32) {
     CREATE_EVENT = 1,
     REGISTER_CALLBACK = 2,
     EVENT_TRIGGER = 4,
@@ -6622,7 +6622,7 @@ pub const NOTIFICATION_CONFIG_REGISTER_CALLBACK = NOTIFICATION_CONFIG_FLAGS.REGI
 pub const NOTIFICATION_CONFIG_EVENT_TRIGGER = NOTIFICATION_CONFIG_FLAGS.EVENT_TRIGGER;
 pub const NOTIFICATION_CONFIG_ASYNC_CHANNEL = NOTIFICATION_CONFIG_FLAGS.ASYNC_CHANNEL;
 
-pub const UI_TYPE = extern enum(i32) {
+pub const UI_TYPE = enum(i32) {
     x = 0,
 };
 pub const kMessageBox = UI_TYPE.x;
@@ -6661,7 +6661,7 @@ pub const IXpsRasterizerNotificationCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const XPSRAS_RENDERING_MODE = extern enum(i32) {
+pub const XPSRAS_RENDERING_MODE = enum(i32) {
     NTIALIASED = 0,
     LIASED = 1,
 };
@@ -6727,7 +6727,7 @@ pub const IXpsRasterizationFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const XPSRAS_PIXEL_FORMAT = extern enum(i32) {
+pub const XPSRAS_PIXEL_FORMAT = enum(i32) {
     @"32BPP_PBGRA_UINT_SRGB" = 1,
     @"64BPP_PRGBA_HALF_SCRGB" = 2,
     @"128BPP_PRGBA_FLOAT_SCRGB" = 3,
@@ -6762,7 +6762,7 @@ pub const IXpsRasterizationFactory1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const XPSRAS_BACKGROUND_COLOR = extern enum(i32) {
+pub const XPSRAS_BACKGROUND_COLOR = enum(i32) {
     TRANSPARENT = 0,
     OPAQUE = 1,
 };

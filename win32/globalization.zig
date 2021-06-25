@@ -1361,7 +1361,7 @@ pub const LOCALESIGNATURE = extern struct {
     lsCsbSupported: [2]u32,
 };
 
-pub const FOLD_STRING_MAP_FLAGS = extern enum(u32) {
+pub const FOLD_STRING_MAP_FLAGS = enum(u32) {
     COMPOSITE = 64,
     EXPAND_LIGATURES = 8192,
     FOLDCZONE = 16,
@@ -1390,7 +1390,7 @@ pub const MAP_FOLDCZONE = FOLD_STRING_MAP_FLAGS.FOLDCZONE;
 pub const MAP_FOLDDIGITS = FOLD_STRING_MAP_FLAGS.FOLDDIGITS;
 pub const MAP_PRECOMPOSED = FOLD_STRING_MAP_FLAGS.PRECOMPOSED;
 
-pub const SET_COMPOSITION_STRING_TYPE = extern enum(u32) {
+pub const SET_COMPOSITION_STRING_TYPE = enum(u32) {
     SETSTR = 9,
     CHANGEATTR = 18,
     CHANGECLAUSE = 36,
@@ -1403,7 +1403,7 @@ pub const SCS_CHANGECLAUSE = SET_COMPOSITION_STRING_TYPE.CHANGECLAUSE;
 pub const SCS_SETRECONVERTSTRING = SET_COMPOSITION_STRING_TYPE.SETRECONVERTSTRING;
 pub const SCS_QUERYRECONVERTSTRING = SET_COMPOSITION_STRING_TYPE.QUERYRECONVERTSTRING;
 
-pub const GET_GUIDE_LINE_TYPE = extern enum(u32) {
+pub const GET_GUIDE_LINE_TYPE = enum(u32) {
     LEVEL = 1,
     INDEX = 2,
     STRING = 3,
@@ -1414,7 +1414,7 @@ pub const GGL_INDEX = GET_GUIDE_LINE_TYPE.INDEX;
 pub const GGL_STRING = GET_GUIDE_LINE_TYPE.STRING;
 pub const GGL_PRIVATE = GET_GUIDE_LINE_TYPE.PRIVATE;
 
-pub const ENUM_DATE_FORMATS_FLAGS = extern enum(u32) {
+pub const ENUM_DATE_FORMATS_FLAGS = enum(u32) {
     SHORTDATE = 1,
     LONGDATE = 2,
     YEARMONTH = 8,
@@ -1433,7 +1433,7 @@ pub const DATE_LTRREADING = ENUM_DATE_FORMATS_FLAGS.LTRREADING;
 pub const DATE_RTLREADING = ENUM_DATE_FORMATS_FLAGS.RTLREADING;
 pub const DATE_USE_ALT_CALENDAR = ENUM_DATE_FORMATS_FLAGS.USE_ALT_CALENDAR;
 
-pub const NOTIFY_IME_INDEX = extern enum(u32) {
+pub const NOTIFY_IME_INDEX = enum(u32) {
     CANCEL = 4,
     COMPLETE = 1,
     CONVERT = 2,
@@ -1444,7 +1444,7 @@ pub const CPS_COMPLETE = NOTIFY_IME_INDEX.COMPLETE;
 pub const CPS_CONVERT = NOTIFY_IME_INDEX.CONVERT;
 pub const CPS_REVERT = NOTIFY_IME_INDEX.REVERT;
 
-pub const TRANSLATE_CHARSET_INFO_FLAGS = extern enum(u32) {
+pub const TRANSLATE_CHARSET_INFO_FLAGS = enum(u32) {
     CHARSET = 1,
     CODEPAGE = 2,
     FONTSIG = 3,
@@ -1455,7 +1455,7 @@ pub const TCI_SRCCODEPAGE = TRANSLATE_CHARSET_INFO_FLAGS.CODEPAGE;
 pub const TCI_SRCFONTSIG = TRANSLATE_CHARSET_INFO_FLAGS.FONTSIG;
 pub const TCI_SRCLOCALE = TRANSLATE_CHARSET_INFO_FLAGS.LOCALE;
 
-pub const TIME_FORMAT_FLAGS = extern enum(u32) {
+pub const TIME_FORMAT_FLAGS = enum(u32) {
     NOMINUTESORSECONDS = 1,
     NOSECONDS = 2,
     NOTIMEMARKER = 4,
@@ -1480,7 +1480,7 @@ pub const TIME_NOSECONDS = TIME_FORMAT_FLAGS.NOSECONDS;
 pub const TIME_NOTIMEMARKER = TIME_FORMAT_FLAGS.NOTIMEMARKER;
 pub const TIME_FORCE24HOURFORMAT = TIME_FORMAT_FLAGS.FORCE24HOURFORMAT;
 
-pub const NOTIFY_IME_ACTION = extern enum(u32) {
+pub const NOTIFY_IME_ACTION = enum(u32) {
     CHANGECANDIDATELIST = 19,
     CLOSECANDIDATE = 17,
     COMPOSITIONSTR = 21,
@@ -1499,7 +1499,7 @@ pub const NI_SELECTCANDIDATESTR = NOTIFY_IME_ACTION.SELECTCANDIDATESTR;
 pub const NI_SETCANDIDATE_PAGESIZE = NOTIFY_IME_ACTION.SETCANDIDATE_PAGESIZE;
 pub const NI_SETCANDIDATE_PAGESTART = NOTIFY_IME_ACTION.SETCANDIDATE_PAGESTART;
 
-pub const GET_CONVERSION_LIST_FLAG = extern enum(u32) {
+pub const GET_CONVERSION_LIST_FLAG = enum(u32) {
     CONVERSION = 1,
     REVERSECONVERSION = 2,
     REVERSE_LENGTH = 3,
@@ -1508,14 +1508,14 @@ pub const GCL_CONVERSION = GET_CONVERSION_LIST_FLAG.CONVERSION;
 pub const GCL_REVERSECONVERSION = GET_CONVERSION_LIST_FLAG.REVERSECONVERSION;
 pub const GCL_REVERSE_LENGTH = GET_CONVERSION_LIST_FLAG.REVERSE_LENGTH;
 
-pub const ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS = extern enum(u32) {
+pub const ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS = enum(u32) {
     INSTALLED = 1,
     SUPPORTED = 2,
 };
 pub const LGRPID_INSTALLED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.INSTALLED;
 pub const LGRPID_SUPPORTED = ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS.SUPPORTED;
 
-pub const MULTI_BYTE_TO_WIDE_CHAR_FLAGS = extern enum(u32) {
+pub const MULTI_BYTE_TO_WIDE_CHAR_FLAGS = enum(u32) {
     COMPOSITE = 2,
     ERR_INVALID_CHARS = 8,
     PRECOMPOSED = 1,
@@ -1540,7 +1540,7 @@ pub const MB_ERR_INVALID_CHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS.ERR_INVALID_CHARS
 pub const MB_PRECOMPOSED = MULTI_BYTE_TO_WIDE_CHAR_FLAGS.PRECOMPOSED;
 pub const MB_USEGLYPHCHARS = MULTI_BYTE_TO_WIDE_CHAR_FLAGS.USEGLYPHCHARS;
 
-pub const COMPARE_STRING_FLAGS = extern enum(u32) {
+pub const COMPARE_STRING_FLAGS = enum(u32) {
     LINGUISTIC_IGNORECASE = 16,
     LINGUISTIC_IGNOREDIACRITIC = 32,
     NORM_IGNORECASE = 1,
@@ -1589,21 +1589,21 @@ pub const NORM_LINGUISTIC_CASING = COMPARE_STRING_FLAGS.NORM_LINGUISTIC_CASING;
 pub const SORT_DIGITSASNUMBERS = COMPARE_STRING_FLAGS.SORT_DIGITSASNUMBERS;
 pub const SORT_STRINGSORT = COMPARE_STRING_FLAGS.SORT_STRINGSORT;
 
-pub const IS_VALID_LOCALE_FLAGS = extern enum(u32) {
+pub const IS_VALID_LOCALE_FLAGS = enum(u32) {
     INSTALLED = 1,
     SUPPORTED = 2,
 };
 pub const LCID_INSTALLED = IS_VALID_LOCALE_FLAGS.INSTALLED;
 pub const LCID_SUPPORTED = IS_VALID_LOCALE_FLAGS.SUPPORTED;
 
-pub const ENUM_SYSTEM_CODE_PAGES_FLAGS = extern enum(u32) {
+pub const ENUM_SYSTEM_CODE_PAGES_FLAGS = enum(u32) {
     INSTALLED = 1,
     SUPPORTED = 2,
 };
 pub const CP_INSTALLED = ENUM_SYSTEM_CODE_PAGES_FLAGS.INSTALLED;
 pub const CP_SUPPORTED = ENUM_SYSTEM_CODE_PAGES_FLAGS.SUPPORTED;
 
-pub const IME_PAD_REQUEST_FLAGS = extern enum(u32) {
+pub const IME_PAD_REQUEST_FLAGS = enum(u32) {
     INSERTSTRING = 4097,
     SENDCONTROL = 4100,
     SETAPPLETSIZE = 4104,
@@ -1644,7 +1644,7 @@ pub const IMEPADREQ_GETCONVERSIONSTATUS = IME_PAD_REQUEST_FLAGS.GETCONVERSIONSTA
 pub const IMEPADREQ_GETVERSION = IME_PAD_REQUEST_FLAGS.GETVERSION;
 pub const IMEPADREQ_GETCURRENTIMEINFO = IME_PAD_REQUEST_FLAGS.GETCURRENTIMEINFO;
 
-pub const SCRIPT_IS_COMPLEX_FLAGS = extern enum(u32) {
+pub const SCRIPT_IS_COMPLEX_FLAGS = enum(u32) {
     ASCIIDIGIT = 2,
     COMPLEX = 1,
     NEUTRAL = 4,
@@ -1653,7 +1653,7 @@ pub const SIC_ASCIIDIGIT = SCRIPT_IS_COMPLEX_FLAGS.ASCIIDIGIT;
 pub const SIC_COMPLEX = SCRIPT_IS_COMPLEX_FLAGS.COMPLEX;
 pub const SIC_NEUTRAL = SCRIPT_IS_COMPLEX_FLAGS.NEUTRAL;
 
-pub const IS_TEXT_UNICODE_RESULT = extern enum(u32) {
+pub const IS_TEXT_UNICODE_RESULT = enum(u32) {
     ASCII16 = 1,
     REVERSE_ASCII16 = 16,
     STATISTICS = 2,
@@ -1918,7 +1918,7 @@ pub const CURRENCYFMTW = extern struct {
     lpCurrencySymbol: PWSTR,
 };
 
-pub const SYSNLS_FUNCTION = extern enum(i32) {
+pub const SYSNLS_FUNCTION = enum(i32) {
     G = 1,
 };
 pub const COMPARE_STRING = SYSNLS_FUNCTION.G;
@@ -1939,7 +1939,7 @@ pub const NLSVERSIONINFOEX = extern struct {
     guidCustomVersion: Guid,
 };
 
-pub const SYSGEOTYPE = extern enum(i32) {
+pub const SYSGEOTYPE = enum(i32) {
     NATION = 1,
     LATITUDE = 2,
     LONGITUDE = 3,
@@ -1978,7 +1978,7 @@ pub const GEO_CURRENCYSYMBOL = SYSGEOTYPE.CURRENCYSYMBOL;
 pub const GEO_NAME = SYSGEOTYPE.NAME;
 pub const GEO_ID = SYSGEOTYPE.ID;
 
-pub const SYSGEOCLASS = extern enum(i32) {
+pub const SYSGEOCLASS = enum(i32) {
     NATION = 16,
     REGION = 14,
     ALL = 0,
@@ -1995,7 +1995,7 @@ pub const LOCALE_ENUMPROCW = fn(
     param0: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const NORM_FORM = extern enum(i32) {
+pub const NORM_FORM = enum(i32) {
     Other = 0,
     C = 1,
     D = 2,
@@ -2348,7 +2348,7 @@ pub const MAPPING_PROPERTY_BAG = extern struct {
 const CLSID_SpellCheckerFactory_Value = @import("zig.zig").Guid.initString("7ab36653-1796-484b-bdfa-e74f1db7c1dc");
 pub const CLSID_SpellCheckerFactory = &CLSID_SpellCheckerFactory_Value;
 
-pub const WORDLIST_TYPE = extern enum(i32) {
+pub const WORDLIST_TYPE = enum(i32) {
     IGNORE = 0,
     ADD = 1,
     EXCLUDE = 2,
@@ -2359,7 +2359,7 @@ pub const WORDLIST_TYPE_ADD = WORDLIST_TYPE.ADD;
 pub const WORDLIST_TYPE_EXCLUDE = WORDLIST_TYPE.EXCLUDE;
 pub const WORDLIST_TYPE_AUTOCORRECT = WORDLIST_TYPE.AUTOCORRECT;
 
-pub const CORRECTIVE_ACTION = extern enum(i32) {
+pub const CORRECTIVE_ACTION = enum(i32) {
     NONE = 0,
     GET_SUGGESTIONS = 1,
     REPLACE = 2,
@@ -3090,7 +3090,7 @@ pub const IFELanguage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMEREG = extern enum(i32) {
+pub const IMEREG = enum(i32) {
     HEAD = 0,
     TAIL = 1,
     DEL = 2,
@@ -3099,7 +3099,7 @@ pub const IFED_REG_HEAD = IMEREG.HEAD;
 pub const IFED_REG_TAIL = IMEREG.TAIL;
 pub const IFED_REG_DEL = IMEREG.DEL;
 
-pub const IMEFMT = extern enum(i32) {
+pub const IMEFMT = enum(i32) {
     UNKNOWN = 0,
     MSIME2_BIN_SYSTEM = 1,
     MSIME2_BIN_USER = 2,
@@ -3156,7 +3156,7 @@ pub const IFED_PIME2_BIN_USER = IMEFMT.PIME2_BIN_USER;
 pub const IFED_PIME2_BIN_SYSTEM = IMEFMT.PIME2_BIN_SYSTEM;
 pub const IFED_PIME2_BIN_STANDARD_SYSTEM = IMEFMT.PIME2_BIN_STANDARD_SYSTEM;
 
-pub const IMEUCT = extern enum(i32) {
+pub const IMEUCT = enum(i32) {
     NONE = 0,
     STRING_SJIS = 1,
     STRING_UNICODE = 2,
@@ -3198,7 +3198,7 @@ pub const POSTBL = packed struct {
     szName: *u8,
 };
 
-pub const IMEREL = extern enum(i32) {
+pub const IMEREL = enum(i32) {
     NONE = 0,
     NO = 1,
     GA = 2,
@@ -3843,7 +3843,7 @@ pub const SCRIPT_ITEM = extern struct {
     a: SCRIPT_ANALYSIS,
 };
 
-pub const SCRIPT_JUSTIFY = extern enum(i32) {
+pub const SCRIPT_JUSTIFY = enum(i32) {
     NONE = 0,
     ARABIC_BLANK = 1,
     CHARACTER = 2,
@@ -3937,9 +3937,9 @@ pub const script_glyphprop = extern struct {
     reserved: u16,
 };
 
-pub const UErrorCode = extern enum(i32) {
+pub const UErrorCode = enum(i32) {
     USING_FALLBACK_WARNING = -128,
-    ERROR_WARNING_START = -128,
+    // ERROR_WARNING_START = -128, this enum value conflicts with USING_FALLBACK_WARNING
     USING_DEFAULT_WARNING = -127,
     SAFECLONE_ALLOCATED_WARNING = -126,
     STATE_OLD_WARNING = -125,
@@ -3980,7 +3980,7 @@ pub const UErrorCode = extern enum(i32) {
     USELESS_COLLATOR_ERROR = 29,
     NO_WRITE_PERMISSION = 30,
     BAD_VARIABLE_DEFINITION = 65536,
-    PARSE_ERROR_START = 65536,
+    // PARSE_ERROR_START = 65536, this enum value conflicts with BAD_VARIABLE_DEFINITION
     MALFORMED_RULE = 65537,
     MALFORMED_SET = 65538,
     MALFORMED_SYMBOL_REFERENCE = 65539,
@@ -4016,9 +4016,9 @@ pub const UErrorCode = extern enum(i32) {
     INVALID_ID = 65569,
     INVALID_FUNCTION = 65570,
     UNEXPECTED_TOKEN = 65792,
-    FMT_PARSE_ERROR_START = 65792,
+    // FMT_PARSE_ERROR_START = 65792, this enum value conflicts with UNEXPECTED_TOKEN
     MULTIPLE_DECIMAL_SEPARATORS = 65793,
-    MULTIPLE_DECIMAL_SEPERATORS = 65793,
+    // MULTIPLE_DECIMAL_SEPERATORS = 65793, this enum value conflicts with MULTIPLE_DECIMAL_SEPARATORS
     MULTIPLE_EXPONENTIAL_SYMBOLS = 65794,
     MALFORMED_EXPONENTIAL_PATTERN = 65795,
     MULTIPLE_PERCENT_SYMBOLS = 65796,
@@ -4038,7 +4038,7 @@ pub const UErrorCode = extern enum(i32) {
     NUMBER_ARG_OUTOFBOUNDS_ERROR = 65810,
     NUMBER_SKELETON_SYNTAX_ERROR = 65811,
     BRK_INTERNAL_ERROR = 66048,
-    BRK_ERROR_START = 66048,
+    // BRK_ERROR_START = 66048, this enum value conflicts with BRK_INTERNAL_ERROR
     BRK_HEX_DIGITS_EXPECTED = 66049,
     BRK_SEMICOLON_EXPECTED = 66050,
     BRK_RULE_SYNTAX = 66051,
@@ -4053,7 +4053,7 @@ pub const UErrorCode = extern enum(i32) {
     BRK_UNRECOGNIZED_OPTION = 66060,
     BRK_MALFORMED_RULE_TAG = 66061,
     REGEX_INTERNAL_ERROR = 66304,
-    REGEX_ERROR_START = 66304,
+    // REGEX_ERROR_START = 66304, this enum value conflicts with REGEX_INTERNAL_ERROR
     REGEX_RULE_SYNTAX = 66305,
     REGEX_INVALID_STATE = 66306,
     REGEX_BAD_ESCAPE_SEQUENCE = 66307,
@@ -4075,7 +4075,7 @@ pub const UErrorCode = extern enum(i32) {
     REGEX_PATTERN_TOO_BIG = 66324,
     REGEX_INVALID_CAPTURE_GROUP_NAME = 66325,
     IDNA_PROHIBITED_ERROR = 66560,
-    IDNA_ERROR_START = 66560,
+    // IDNA_ERROR_START = 66560, this enum value conflicts with IDNA_PROHIBITED_ERROR
     IDNA_UNASSIGNED_ERROR = 66561,
     IDNA_CHECK_BIDI_ERROR = 66562,
     IDNA_STD3_ASCII_RULES_ERROR = 66563,
@@ -4084,15 +4084,15 @@ pub const UErrorCode = extern enum(i32) {
     IDNA_LABEL_TOO_LONG_ERROR = 66566,
     IDNA_ZERO_LENGTH_LABEL_ERROR = 66567,
     IDNA_DOMAIN_NAME_TOO_LONG_ERROR = 66568,
-    STRINGPREP_PROHIBITED_ERROR = 66560,
-    STRINGPREP_UNASSIGNED_ERROR = 66561,
-    STRINGPREP_CHECK_BIDI_ERROR = 66562,
+    // STRINGPREP_PROHIBITED_ERROR = 66560, this enum value conflicts with IDNA_PROHIBITED_ERROR
+    // STRINGPREP_UNASSIGNED_ERROR = 66561, this enum value conflicts with IDNA_UNASSIGNED_ERROR
+    // STRINGPREP_CHECK_BIDI_ERROR = 66562, this enum value conflicts with IDNA_CHECK_BIDI_ERROR
     PLUGIN_ERROR_START = 66816,
-    PLUGIN_TOO_HIGH = 66816,
+    // PLUGIN_TOO_HIGH = 66816, this enum value conflicts with PLUGIN_ERROR_START
     PLUGIN_DIDNT_SET_LEVEL = 66817,
 };
 pub const U_USING_FALLBACK_WARNING = UErrorCode.USING_FALLBACK_WARNING;
-pub const U_ERROR_WARNING_START = UErrorCode.ERROR_WARNING_START;
+pub const U_ERROR_WARNING_START = UErrorCode.USING_FALLBACK_WARNING;
 pub const U_USING_DEFAULT_WARNING = UErrorCode.USING_DEFAULT_WARNING;
 pub const U_SAFECLONE_ALLOCATED_WARNING = UErrorCode.SAFECLONE_ALLOCATED_WARNING;
 pub const U_STATE_OLD_WARNING = UErrorCode.STATE_OLD_WARNING;
@@ -4133,7 +4133,7 @@ pub const U_COLLATOR_VERSION_MISMATCH = UErrorCode.COLLATOR_VERSION_MISMATCH;
 pub const U_USELESS_COLLATOR_ERROR = UErrorCode.USELESS_COLLATOR_ERROR;
 pub const U_NO_WRITE_PERMISSION = UErrorCode.NO_WRITE_PERMISSION;
 pub const U_BAD_VARIABLE_DEFINITION = UErrorCode.BAD_VARIABLE_DEFINITION;
-pub const U_PARSE_ERROR_START = UErrorCode.PARSE_ERROR_START;
+pub const U_PARSE_ERROR_START = UErrorCode.BAD_VARIABLE_DEFINITION;
 pub const U_MALFORMED_RULE = UErrorCode.MALFORMED_RULE;
 pub const U_MALFORMED_SET = UErrorCode.MALFORMED_SET;
 pub const U_MALFORMED_SYMBOL_REFERENCE = UErrorCode.MALFORMED_SYMBOL_REFERENCE;
@@ -4169,9 +4169,9 @@ pub const U_INTERNAL_TRANSLITERATOR_ERROR = UErrorCode.INTERNAL_TRANSLITERATOR_E
 pub const U_INVALID_ID = UErrorCode.INVALID_ID;
 pub const U_INVALID_FUNCTION = UErrorCode.INVALID_FUNCTION;
 pub const U_UNEXPECTED_TOKEN = UErrorCode.UNEXPECTED_TOKEN;
-pub const U_FMT_PARSE_ERROR_START = UErrorCode.FMT_PARSE_ERROR_START;
+pub const U_FMT_PARSE_ERROR_START = UErrorCode.UNEXPECTED_TOKEN;
 pub const U_MULTIPLE_DECIMAL_SEPARATORS = UErrorCode.MULTIPLE_DECIMAL_SEPARATORS;
-pub const U_MULTIPLE_DECIMAL_SEPERATORS = UErrorCode.MULTIPLE_DECIMAL_SEPERATORS;
+pub const U_MULTIPLE_DECIMAL_SEPERATORS = UErrorCode.MULTIPLE_DECIMAL_SEPARATORS;
 pub const U_MULTIPLE_EXPONENTIAL_SYMBOLS = UErrorCode.MULTIPLE_EXPONENTIAL_SYMBOLS;
 pub const U_MALFORMED_EXPONENTIAL_PATTERN = UErrorCode.MALFORMED_EXPONENTIAL_PATTERN;
 pub const U_MULTIPLE_PERCENT_SYMBOLS = UErrorCode.MULTIPLE_PERCENT_SYMBOLS;
@@ -4191,7 +4191,7 @@ pub const U_FORMAT_INEXACT_ERROR = UErrorCode.FORMAT_INEXACT_ERROR;
 pub const U_NUMBER_ARG_OUTOFBOUNDS_ERROR = UErrorCode.NUMBER_ARG_OUTOFBOUNDS_ERROR;
 pub const U_NUMBER_SKELETON_SYNTAX_ERROR = UErrorCode.NUMBER_SKELETON_SYNTAX_ERROR;
 pub const U_BRK_INTERNAL_ERROR = UErrorCode.BRK_INTERNAL_ERROR;
-pub const U_BRK_ERROR_START = UErrorCode.BRK_ERROR_START;
+pub const U_BRK_ERROR_START = UErrorCode.BRK_INTERNAL_ERROR;
 pub const U_BRK_HEX_DIGITS_EXPECTED = UErrorCode.BRK_HEX_DIGITS_EXPECTED;
 pub const U_BRK_SEMICOLON_EXPECTED = UErrorCode.BRK_SEMICOLON_EXPECTED;
 pub const U_BRK_RULE_SYNTAX = UErrorCode.BRK_RULE_SYNTAX;
@@ -4206,7 +4206,7 @@ pub const U_BRK_RULE_EMPTY_SET = UErrorCode.BRK_RULE_EMPTY_SET;
 pub const U_BRK_UNRECOGNIZED_OPTION = UErrorCode.BRK_UNRECOGNIZED_OPTION;
 pub const U_BRK_MALFORMED_RULE_TAG = UErrorCode.BRK_MALFORMED_RULE_TAG;
 pub const U_REGEX_INTERNAL_ERROR = UErrorCode.REGEX_INTERNAL_ERROR;
-pub const U_REGEX_ERROR_START = UErrorCode.REGEX_ERROR_START;
+pub const U_REGEX_ERROR_START = UErrorCode.REGEX_INTERNAL_ERROR;
 pub const U_REGEX_RULE_SYNTAX = UErrorCode.REGEX_RULE_SYNTAX;
 pub const U_REGEX_INVALID_STATE = UErrorCode.REGEX_INVALID_STATE;
 pub const U_REGEX_BAD_ESCAPE_SEQUENCE = UErrorCode.REGEX_BAD_ESCAPE_SEQUENCE;
@@ -4228,7 +4228,7 @@ pub const U_REGEX_STOPPED_BY_CALLER = UErrorCode.REGEX_STOPPED_BY_CALLER;
 pub const U_REGEX_PATTERN_TOO_BIG = UErrorCode.REGEX_PATTERN_TOO_BIG;
 pub const U_REGEX_INVALID_CAPTURE_GROUP_NAME = UErrorCode.REGEX_INVALID_CAPTURE_GROUP_NAME;
 pub const U_IDNA_PROHIBITED_ERROR = UErrorCode.IDNA_PROHIBITED_ERROR;
-pub const U_IDNA_ERROR_START = UErrorCode.IDNA_ERROR_START;
+pub const U_IDNA_ERROR_START = UErrorCode.IDNA_PROHIBITED_ERROR;
 pub const U_IDNA_UNASSIGNED_ERROR = UErrorCode.IDNA_UNASSIGNED_ERROR;
 pub const U_IDNA_CHECK_BIDI_ERROR = UErrorCode.IDNA_CHECK_BIDI_ERROR;
 pub const U_IDNA_STD3_ASCII_RULES_ERROR = UErrorCode.IDNA_STD3_ASCII_RULES_ERROR;
@@ -4237,14 +4237,14 @@ pub const U_IDNA_VERIFICATION_ERROR = UErrorCode.IDNA_VERIFICATION_ERROR;
 pub const U_IDNA_LABEL_TOO_LONG_ERROR = UErrorCode.IDNA_LABEL_TOO_LONG_ERROR;
 pub const U_IDNA_ZERO_LENGTH_LABEL_ERROR = UErrorCode.IDNA_ZERO_LENGTH_LABEL_ERROR;
 pub const U_IDNA_DOMAIN_NAME_TOO_LONG_ERROR = UErrorCode.IDNA_DOMAIN_NAME_TOO_LONG_ERROR;
-pub const U_STRINGPREP_PROHIBITED_ERROR = UErrorCode.STRINGPREP_PROHIBITED_ERROR;
-pub const U_STRINGPREP_UNASSIGNED_ERROR = UErrorCode.STRINGPREP_UNASSIGNED_ERROR;
-pub const U_STRINGPREP_CHECK_BIDI_ERROR = UErrorCode.STRINGPREP_CHECK_BIDI_ERROR;
+pub const U_STRINGPREP_PROHIBITED_ERROR = UErrorCode.IDNA_PROHIBITED_ERROR;
+pub const U_STRINGPREP_UNASSIGNED_ERROR = UErrorCode.IDNA_UNASSIGNED_ERROR;
+pub const U_STRINGPREP_CHECK_BIDI_ERROR = UErrorCode.IDNA_CHECK_BIDI_ERROR;
 pub const U_PLUGIN_ERROR_START = UErrorCode.PLUGIN_ERROR_START;
-pub const U_PLUGIN_TOO_HIGH = UErrorCode.PLUGIN_TOO_HIGH;
+pub const U_PLUGIN_TOO_HIGH = UErrorCode.PLUGIN_ERROR_START;
 pub const U_PLUGIN_DIDNT_SET_LEVEL = UErrorCode.PLUGIN_DIDNT_SET_LEVEL;
 
-pub const UTraceLevel = extern enum(i32) {
+pub const UTraceLevel = enum(i32) {
     OFF = -1,
     ERROR = 0,
     WARNING = 3,
@@ -4259,12 +4259,12 @@ pub const UTRACE_OPEN_CLOSE = UTraceLevel.OPEN_CLOSE;
 pub const UTRACE_INFO = UTraceLevel.INFO;
 pub const UTRACE_VERBOSE = UTraceLevel.VERBOSE;
 
-pub const UTraceFunctionNumber = extern enum(i32) {
+pub const UTraceFunctionNumber = enum(i32) {
     FUNCTION_START = 0,
-    U_INIT = 0,
+    // U_INIT = 0, this enum value conflicts with FUNCTION_START
     U_CLEANUP = 1,
     CONVERSION_START = 4096,
-    UCNV_OPEN = 4096,
+    // UCNV_OPEN = 4096, this enum value conflicts with CONVERSION_START
     UCNV_OPEN_PACKAGE = 4097,
     UCNV_OPEN_ALGORITHMIC = 4098,
     UCNV_CLONE = 4099,
@@ -4273,7 +4273,7 @@ pub const UTraceFunctionNumber = extern enum(i32) {
     UCNV_LOAD = 4102,
     UCNV_UNLOAD = 4103,
     COLLATION_START = 8192,
-    UCOL_OPEN = 8192,
+    // UCOL_OPEN = 8192, this enum value conflicts with COLLATION_START
     UCOL_CLOSE = 8193,
     UCOL_STRCOLL = 8194,
     UCOL_GET_SORTKEY = 8195,
@@ -4284,10 +4284,10 @@ pub const UTraceFunctionNumber = extern enum(i32) {
     UCOL_STRCOLLUTF8 = 8200,
 };
 pub const UTRACE_FUNCTION_START = UTraceFunctionNumber.FUNCTION_START;
-pub const UTRACE_U_INIT = UTraceFunctionNumber.U_INIT;
+pub const UTRACE_U_INIT = UTraceFunctionNumber.FUNCTION_START;
 pub const UTRACE_U_CLEANUP = UTraceFunctionNumber.U_CLEANUP;
 pub const UTRACE_CONVERSION_START = UTraceFunctionNumber.CONVERSION_START;
-pub const UTRACE_UCNV_OPEN = UTraceFunctionNumber.UCNV_OPEN;
+pub const UTRACE_UCNV_OPEN = UTraceFunctionNumber.CONVERSION_START;
 pub const UTRACE_UCNV_OPEN_PACKAGE = UTraceFunctionNumber.UCNV_OPEN_PACKAGE;
 pub const UTRACE_UCNV_OPEN_ALGORITHMIC = UTraceFunctionNumber.UCNV_OPEN_ALGORITHMIC;
 pub const UTRACE_UCNV_CLONE = UTraceFunctionNumber.UCNV_CLONE;
@@ -4296,7 +4296,7 @@ pub const UTRACE_UCNV_FLUSH_CACHE = UTraceFunctionNumber.UCNV_FLUSH_CACHE;
 pub const UTRACE_UCNV_LOAD = UTraceFunctionNumber.UCNV_LOAD;
 pub const UTRACE_UCNV_UNLOAD = UTraceFunctionNumber.UCNV_UNLOAD;
 pub const UTRACE_COLLATION_START = UTraceFunctionNumber.COLLATION_START;
-pub const UTRACE_UCOL_OPEN = UTraceFunctionNumber.UCOL_OPEN;
+pub const UTRACE_UCOL_OPEN = UTraceFunctionNumber.COLLATION_START;
 pub const UTRACE_UCOL_CLOSE = UTraceFunctionNumber.UCOL_CLOSE;
 pub const UTRACE_UCOL_STRCOLL = UTraceFunctionNumber.UCOL_STRCOLL;
 pub const UTRACE_UCOL_GET_SORTKEY = UTraceFunctionNumber.UCOL_GET_SORTKEY;
@@ -4326,7 +4326,7 @@ pub const UTraceData = fn(
     args: *i8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const UStringTrieResult = extern enum(i32) {
+pub const UStringTrieResult = enum(i32) {
     NO_MATCH = 0,
     NO_VALUE = 1,
     FINAL_VALUE = 2,
@@ -4337,7 +4337,7 @@ pub const USTRINGTRIE_NO_VALUE = UStringTrieResult.NO_VALUE;
 pub const USTRINGTRIE_FINAL_VALUE = UStringTrieResult.FINAL_VALUE;
 pub const USTRINGTRIE_INTERMEDIATE_VALUE = UStringTrieResult.INTERMEDIATE_VALUE;
 
-pub const UScriptCode = extern enum(i32) {
+pub const UScriptCode = enum(i32) {
     INVALID_CODE = -1,
     COMMON = 0,
     INHERITED = 1,
@@ -4380,7 +4380,7 @@ pub const UScriptCode = extern enum(i32) {
     THAI = 38,
     TIBETAN = 39,
     CANADIAN_ABORIGINAL = 40,
-    UCAS = 40,
+    // UCAS = 40, this enum value conflicts with CANADIAN_ABORIGINAL
     YI = 41,
     TAGALOG = 42,
     HANUNOO = 43,
@@ -4425,17 +4425,17 @@ pub const UScriptCode = extern enum(i32) {
     LEPCHA = 82,
     LINEAR_A = 83,
     MANDAIC = 84,
-    MANDAEAN = 84,
+    // MANDAEAN = 84, this enum value conflicts with MANDAIC
     MAYAN_HIEROGLYPHS = 85,
     MEROITIC_HIEROGLYPHS = 86,
-    MEROITIC = 86,
+    // MEROITIC = 86, this enum value conflicts with MEROITIC_HIEROGLYPHS
     NKO = 87,
     ORKHON = 88,
     OLD_PERMIC = 89,
     PHAGS_PA = 90,
     PHOENICIAN = 91,
     MIAO = 92,
-    PHONETIC_POLLARD = 92,
+    // PHONETIC_POLLARD = 92, this enum value conflicts with MIAO
     RONGORONGO = 93,
     SARATI = 94,
     ESTRANGELO_SYRIAC = 95,
@@ -4489,7 +4489,7 @@ pub const UScriptCode = extern enum(i32) {
     NABATAEAN = 143,
     PALMYRENE = 144,
     KHUDAWADI = 145,
-    SINDHI = 145,
+    // SINDHI = 145, this enum value conflicts with KHUDAWADI
     WARANG_CITI = 146,
     AFAKA = 147,
     JURCHEN = 148,
@@ -4576,7 +4576,7 @@ pub const USCRIPT_THAANA = UScriptCode.THAANA;
 pub const USCRIPT_THAI = UScriptCode.THAI;
 pub const USCRIPT_TIBETAN = UScriptCode.TIBETAN;
 pub const USCRIPT_CANADIAN_ABORIGINAL = UScriptCode.CANADIAN_ABORIGINAL;
-pub const USCRIPT_UCAS = UScriptCode.UCAS;
+pub const USCRIPT_UCAS = UScriptCode.CANADIAN_ABORIGINAL;
 pub const USCRIPT_YI = UScriptCode.YI;
 pub const USCRIPT_TAGALOG = UScriptCode.TAGALOG;
 pub const USCRIPT_HANUNOO = UScriptCode.HANUNOO;
@@ -4621,17 +4621,17 @@ pub const USCRIPT_LATIN_GAELIC = UScriptCode.LATIN_GAELIC;
 pub const USCRIPT_LEPCHA = UScriptCode.LEPCHA;
 pub const USCRIPT_LINEAR_A = UScriptCode.LINEAR_A;
 pub const USCRIPT_MANDAIC = UScriptCode.MANDAIC;
-pub const USCRIPT_MANDAEAN = UScriptCode.MANDAEAN;
+pub const USCRIPT_MANDAEAN = UScriptCode.MANDAIC;
 pub const USCRIPT_MAYAN_HIEROGLYPHS = UScriptCode.MAYAN_HIEROGLYPHS;
 pub const USCRIPT_MEROITIC_HIEROGLYPHS = UScriptCode.MEROITIC_HIEROGLYPHS;
-pub const USCRIPT_MEROITIC = UScriptCode.MEROITIC;
+pub const USCRIPT_MEROITIC = UScriptCode.MEROITIC_HIEROGLYPHS;
 pub const USCRIPT_NKO = UScriptCode.NKO;
 pub const USCRIPT_ORKHON = UScriptCode.ORKHON;
 pub const USCRIPT_OLD_PERMIC = UScriptCode.OLD_PERMIC;
 pub const USCRIPT_PHAGS_PA = UScriptCode.PHAGS_PA;
 pub const USCRIPT_PHOENICIAN = UScriptCode.PHOENICIAN;
 pub const USCRIPT_MIAO = UScriptCode.MIAO;
-pub const USCRIPT_PHONETIC_POLLARD = UScriptCode.PHONETIC_POLLARD;
+pub const USCRIPT_PHONETIC_POLLARD = UScriptCode.MIAO;
 pub const USCRIPT_RONGORONGO = UScriptCode.RONGORONGO;
 pub const USCRIPT_SARATI = UScriptCode.SARATI;
 pub const USCRIPT_ESTRANGELO_SYRIAC = UScriptCode.ESTRANGELO_SYRIAC;
@@ -4685,7 +4685,7 @@ pub const USCRIPT_OLD_NORTH_ARABIAN = UScriptCode.OLD_NORTH_ARABIAN;
 pub const USCRIPT_NABATAEAN = UScriptCode.NABATAEAN;
 pub const USCRIPT_PALMYRENE = UScriptCode.PALMYRENE;
 pub const USCRIPT_KHUDAWADI = UScriptCode.KHUDAWADI;
-pub const USCRIPT_SINDHI = UScriptCode.SINDHI;
+pub const USCRIPT_SINDHI = UScriptCode.KHUDAWADI;
 pub const USCRIPT_WARANG_CITI = UScriptCode.WARANG_CITI;
 pub const USCRIPT_AFAKA = UScriptCode.AFAKA;
 pub const USCRIPT_JURCHEN = UScriptCode.JURCHEN;
@@ -4730,7 +4730,7 @@ pub const USCRIPT_NYIAKENG_PUACHUE_HMONG = UScriptCode.NYIAKENG_PUACHUE_HMONG;
 pub const USCRIPT_NANDINAGARI = UScriptCode.NANDINAGARI;
 pub const USCRIPT_WANCHO = UScriptCode.WANCHO;
 
-pub const UScriptUsage = extern enum(i32) {
+pub const UScriptUsage = enum(i32) {
     NOT_ENCODED = 0,
     UNKNOWN = 1,
     EXCLUDED = 2,
@@ -4760,7 +4760,7 @@ pub const UFieldPosition = extern struct {
     endIndex: i32,
 };
 
-pub const UCharIteratorOrigin = extern enum(i32) {
+pub const UCharIteratorOrigin = enum(i32) {
     START = 0,
     CURRENT = 1,
     LIMIT = 2,
@@ -4838,14 +4838,14 @@ pub const UCharIterator = extern struct {
     setState: UCharIteratorSetState,
 };
 
-pub const ULocDataLocaleType = extern enum(i32) {
+pub const ULocDataLocaleType = enum(i32) {
     ACTUAL_LOCALE = 0,
     VALID_LOCALE = 1,
 };
 pub const ULOC_ACTUAL_LOCALE = ULocDataLocaleType.ACTUAL_LOCALE;
 pub const ULOC_VALID_LOCALE = ULocDataLocaleType.VALID_LOCALE;
 
-pub const ULayoutType = extern enum(i32) {
+pub const ULayoutType = enum(i32) {
     LTR = 0,
     RTL = 1,
     TTB = 2,
@@ -4858,7 +4858,7 @@ pub const ULOC_LAYOUT_TTB = ULayoutType.TTB;
 pub const ULOC_LAYOUT_BTT = ULayoutType.BTT;
 pub const ULOC_LAYOUT_UNKNOWN = ULayoutType.UNKNOWN;
 
-pub const UAcceptResult = extern enum(i32) {
+pub const UAcceptResult = enum(i32) {
     FAILED = 0,
     VALID = 1,
     FALLBACK = 2,
@@ -4867,7 +4867,7 @@ pub const ULOC_ACCEPT_FAILED = UAcceptResult.FAILED;
 pub const ULOC_ACCEPT_VALID = UAcceptResult.VALID;
 pub const ULOC_ACCEPT_FALLBACK = UAcceptResult.FALLBACK;
 
-pub const UResType = extern enum(i32) {
+pub const UResType = enum(i32) {
     NONE = -1,
     STRING = 0,
     BINARY = 1,
@@ -4886,7 +4886,7 @@ pub const URES_INT = UResType.INT;
 pub const URES_ARRAY = UResType.ARRAY;
 pub const URES_INT_VECTOR = UResType.INT_VECTOR;
 
-pub const UDisplayContextType = extern enum(i32) {
+pub const UDisplayContextType = enum(i32) {
     DIALECT_HANDLING = 0,
     CAPITALIZATION = 1,
     DISPLAY_LENGTH = 2,
@@ -4897,7 +4897,7 @@ pub const UDISPCTX_TYPE_CAPITALIZATION = UDisplayContextType.CAPITALIZATION;
 pub const UDISPCTX_TYPE_DISPLAY_LENGTH = UDisplayContextType.DISPLAY_LENGTH;
 pub const UDISPCTX_TYPE_SUBSTITUTE_HANDLING = UDisplayContextType.SUBSTITUTE_HANDLING;
 
-pub const UDisplayContext = extern enum(i32) {
+pub const UDisplayContext = enum(i32) {
     STANDARD_NAMES = 0,
     DIALECT_NAMES = 1,
     CAPITALIZATION_NONE = 256,
@@ -4922,21 +4922,21 @@ pub const UDISPCTX_LENGTH_SHORT = UDisplayContext.LENGTH_SHORT;
 pub const UDISPCTX_SUBSTITUTE = UDisplayContext.SUBSTITUTE;
 pub const UDISPCTX_NO_SUBSTITUTE = UDisplayContext.NO_SUBSTITUTE;
 
-pub const UDialectHandling = extern enum(i32) {
+pub const UDialectHandling = enum(i32) {
     STANDARD_NAMES = 0,
     DIALECT_NAMES = 1,
 };
 pub const ULDN_STANDARD_NAMES = UDialectHandling.STANDARD_NAMES;
 pub const ULDN_DIALECT_NAMES = UDialectHandling.DIALECT_NAMES;
 
-pub const UCurrencyUsage = extern enum(i32) {
+pub const UCurrencyUsage = enum(i32) {
     STANDARD = 0,
     CASH = 1,
 };
 pub const UCURR_USAGE_STANDARD = UCurrencyUsage.STANDARD;
 pub const UCURR_USAGE_CASH = UCurrencyUsage.CASH;
 
-pub const UCurrNameStyle = extern enum(i32) {
+pub const UCurrNameStyle = enum(i32) {
     SYMBOL_NAME = 0,
     LONG_NAME = 1,
     NARROW_SYMBOL_NAME = 2,
@@ -4945,7 +4945,7 @@ pub const UCURR_SYMBOL_NAME = UCurrNameStyle.SYMBOL_NAME;
 pub const UCURR_LONG_NAME = UCurrNameStyle.LONG_NAME;
 pub const UCURR_NARROW_SYMBOL_NAME = UCurrNameStyle.NARROW_SYMBOL_NAME;
 
-pub const UCurrCurrencyType = extern enum(i32) {
+pub const UCurrCurrencyType = enum(i32) {
     ALL = 2147483647,
     COMMON = 1,
     UNCOMMON = 2,
@@ -4958,7 +4958,7 @@ pub const UCURR_UNCOMMON = UCurrCurrencyType.UNCOMMON;
 pub const UCURR_DEPRECATED = UCurrCurrencyType.DEPRECATED;
 pub const UCURR_NON_DEPRECATED = UCurrCurrencyType.NON_DEPRECATED;
 
-pub const UConverterCallbackReason = extern enum(i32) {
+pub const UConverterCallbackReason = enum(i32) {
     UNASSIGNED = 0,
     ILLEGAL = 1,
     IRREGULAR = 2,
@@ -4995,7 +4995,7 @@ pub const UConverterToUnicodeArgs = extern struct {
     offsets: *i32,
 };
 
-pub const UConverterType = extern enum(i32) {
+pub const UConverterType = enum(i32) {
     UNSUPPORTED_CONVERTER = -1,
     SBCS = 0,
     DBCS = 1,
@@ -5020,7 +5020,7 @@ pub const UConverterType = extern enum(i32) {
     LMBCS_17 = 20,
     LMBCS_18 = 21,
     LMBCS_19 = 22,
-    LMBCS_LAST = 22,
+    // LMBCS_LAST = 22, this enum value conflicts with LMBCS_19
     HZ = 23,
     SCSU = 24,
     ISCII = 25,
@@ -5058,7 +5058,7 @@ pub const UCNV_LMBCS_16 = UConverterType.LMBCS_16;
 pub const UCNV_LMBCS_17 = UConverterType.LMBCS_17;
 pub const UCNV_LMBCS_18 = UConverterType.LMBCS_18;
 pub const UCNV_LMBCS_19 = UConverterType.LMBCS_19;
-pub const UCNV_LMBCS_LAST = UConverterType.LMBCS_LAST;
+pub const UCNV_LMBCS_LAST = UConverterType.LMBCS_19;
 pub const UCNV_HZ = UConverterType.HZ;
 pub const UCNV_SCSU = UConverterType.SCSU;
 pub const UCNV_ISCII = UConverterType.ISCII;
@@ -5072,7 +5072,7 @@ pub const UCNV_IMAP_MAILBOX = UConverterType.IMAP_MAILBOX;
 pub const UCNV_COMPOUND_TEXT = UConverterType.COMPOUND_TEXT;
 pub const UCNV_NUMBER_OF_SUPPORTED_CONVERTER_TYPES = UConverterType.NUMBER_OF_SUPPORTED_CONVERTER_TYPES;
 
-pub const UConverterPlatform = extern enum(i32) {
+pub const UConverterPlatform = enum(i32) {
     UNKNOWN = -1,
     IBM = 0,
 };
@@ -5098,7 +5098,7 @@ pub const UConverterFromUCallback = fn(
     pErrorCode: *UErrorCode,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const UConverterUnicodeSet = extern enum(i32) {
+pub const UConverterUnicodeSet = enum(i32) {
     SET = 0,
     AND_FALLBACK_SET = 1,
 };
@@ -5121,9 +5121,9 @@ pub const UMemFreeFn = fn(
     mem: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const UProperty = extern enum(i32) {
+pub const UProperty = enum(i32) {
     ALPHABETIC = 0,
-    BINARY_START = 0,
+    // BINARY_START = 0, this enum value conflicts with ALPHABETIC
     ASCII_HEX_DIGIT = 1,
     BIDI_CONTROL = 2,
     BIDI_MIRRORED = 3,
@@ -5189,7 +5189,7 @@ pub const UProperty = extern enum(i32) {
     PREPENDED_CONCATENATION_MARK = 63,
     EXTENDED_PICTOGRAPHIC = 64,
     BIDI_CLASS = 4096,
-    INT_START = 4096,
+    // INT_START = 4096, this enum value conflicts with BIDI_CLASS
     BLOCK = 4097,
     CANONICAL_COMBINING_CLASS = 4098,
     DECOMPOSITION_TYPE = 4099,
@@ -5215,11 +5215,11 @@ pub const UProperty = extern enum(i32) {
     INDIC_SYLLABIC_CATEGORY = 4119,
     VERTICAL_ORIENTATION = 4120,
     GENERAL_CATEGORY_MASK = 8192,
-    MASK_START = 8192,
+    // MASK_START = 8192, this enum value conflicts with GENERAL_CATEGORY_MASK
     NUMERIC_VALUE = 12288,
-    DOUBLE_START = 12288,
+    // DOUBLE_START = 12288, this enum value conflicts with NUMERIC_VALUE
     AGE = 16384,
-    STRING_START = 16384,
+    // STRING_START = 16384, this enum value conflicts with AGE
     BIDI_MIRRORING_GLYPH = 16385,
     CASE_FOLDING = 16386,
     LOWERCASE_MAPPING = 16388,
@@ -5232,11 +5232,11 @@ pub const UProperty = extern enum(i32) {
     UPPERCASE_MAPPING = 16396,
     BIDI_PAIRED_BRACKET = 16397,
     SCRIPT_EXTENSIONS = 28672,
-    OTHER_PROPERTY_START = 28672,
+    // OTHER_PROPERTY_START = 28672, this enum value conflicts with SCRIPT_EXTENSIONS
     INVALID_CODE = -1,
 };
 pub const UCHAR_ALPHABETIC = UProperty.ALPHABETIC;
-pub const UCHAR_BINARY_START = UProperty.BINARY_START;
+pub const UCHAR_BINARY_START = UProperty.ALPHABETIC;
 pub const UCHAR_ASCII_HEX_DIGIT = UProperty.ASCII_HEX_DIGIT;
 pub const UCHAR_BIDI_CONTROL = UProperty.BIDI_CONTROL;
 pub const UCHAR_BIDI_MIRRORED = UProperty.BIDI_MIRRORED;
@@ -5302,7 +5302,7 @@ pub const UCHAR_REGIONAL_INDICATOR = UProperty.REGIONAL_INDICATOR;
 pub const UCHAR_PREPENDED_CONCATENATION_MARK = UProperty.PREPENDED_CONCATENATION_MARK;
 pub const UCHAR_EXTENDED_PICTOGRAPHIC = UProperty.EXTENDED_PICTOGRAPHIC;
 pub const UCHAR_BIDI_CLASS = UProperty.BIDI_CLASS;
-pub const UCHAR_INT_START = UProperty.INT_START;
+pub const UCHAR_INT_START = UProperty.BIDI_CLASS;
 pub const UCHAR_BLOCK = UProperty.BLOCK;
 pub const UCHAR_CANONICAL_COMBINING_CLASS = UProperty.CANONICAL_COMBINING_CLASS;
 pub const UCHAR_DECOMPOSITION_TYPE = UProperty.DECOMPOSITION_TYPE;
@@ -5328,11 +5328,11 @@ pub const UCHAR_INDIC_POSITIONAL_CATEGORY = UProperty.INDIC_POSITIONAL_CATEGORY;
 pub const UCHAR_INDIC_SYLLABIC_CATEGORY = UProperty.INDIC_SYLLABIC_CATEGORY;
 pub const UCHAR_VERTICAL_ORIENTATION = UProperty.VERTICAL_ORIENTATION;
 pub const UCHAR_GENERAL_CATEGORY_MASK = UProperty.GENERAL_CATEGORY_MASK;
-pub const UCHAR_MASK_START = UProperty.MASK_START;
+pub const UCHAR_MASK_START = UProperty.GENERAL_CATEGORY_MASK;
 pub const UCHAR_NUMERIC_VALUE = UProperty.NUMERIC_VALUE;
-pub const UCHAR_DOUBLE_START = UProperty.DOUBLE_START;
+pub const UCHAR_DOUBLE_START = UProperty.NUMERIC_VALUE;
 pub const UCHAR_AGE = UProperty.AGE;
-pub const UCHAR_STRING_START = UProperty.STRING_START;
+pub const UCHAR_STRING_START = UProperty.AGE;
 pub const UCHAR_BIDI_MIRRORING_GLYPH = UProperty.BIDI_MIRRORING_GLYPH;
 pub const UCHAR_CASE_FOLDING = UProperty.CASE_FOLDING;
 pub const UCHAR_LOWERCASE_MAPPING = UProperty.LOWERCASE_MAPPING;
@@ -5345,12 +5345,12 @@ pub const UCHAR_TITLECASE_MAPPING = UProperty.TITLECASE_MAPPING;
 pub const UCHAR_UPPERCASE_MAPPING = UProperty.UPPERCASE_MAPPING;
 pub const UCHAR_BIDI_PAIRED_BRACKET = UProperty.BIDI_PAIRED_BRACKET;
 pub const UCHAR_SCRIPT_EXTENSIONS = UProperty.SCRIPT_EXTENSIONS;
-pub const UCHAR_OTHER_PROPERTY_START = UProperty.OTHER_PROPERTY_START;
+pub const UCHAR_OTHER_PROPERTY_START = UProperty.SCRIPT_EXTENSIONS;
 pub const UCHAR_INVALID_CODE = UProperty.INVALID_CODE;
 
-pub const UCharCategory = extern enum(i32) {
+pub const UCharCategory = enum(i32) {
     UNASSIGNED = 0,
-    GENERAL_OTHER_TYPES = 0,
+    // GENERAL_OTHER_TYPES = 0, this enum value conflicts with UNASSIGNED
     UPPERCASE_LETTER = 1,
     LOWERCASE_LETTER = 2,
     TITLECASE_LETTER = 3,
@@ -5383,7 +5383,7 @@ pub const UCharCategory = extern enum(i32) {
     CHAR_CATEGORY_COUNT = 30,
 };
 pub const U_UNASSIGNED = UCharCategory.UNASSIGNED;
-pub const U_GENERAL_OTHER_TYPES = UCharCategory.GENERAL_OTHER_TYPES;
+pub const U_GENERAL_OTHER_TYPES = UCharCategory.UNASSIGNED;
 pub const U_UPPERCASE_LETTER = UCharCategory.UPPERCASE_LETTER;
 pub const U_LOWERCASE_LETTER = UCharCategory.LOWERCASE_LETTER;
 pub const U_TITLECASE_LETTER = UCharCategory.TITLECASE_LETTER;
@@ -5415,7 +5415,7 @@ pub const U_INITIAL_PUNCTUATION = UCharCategory.INITIAL_PUNCTUATION;
 pub const U_FINAL_PUNCTUATION = UCharCategory.FINAL_PUNCTUATION;
 pub const U_CHAR_CATEGORY_COUNT = UCharCategory.CHAR_CATEGORY_COUNT;
 
-pub const UCharDirection = extern enum(i32) {
+pub const UCharDirection = enum(i32) {
     LEFT_TO_RIGHT = 0,
     RIGHT_TO_LEFT = 1,
     EUROPEAN_NUMBER = 2,
@@ -5464,7 +5464,7 @@ pub const U_LEFT_TO_RIGHT_ISOLATE = UCharDirection.LEFT_TO_RIGHT_ISOLATE;
 pub const U_RIGHT_TO_LEFT_ISOLATE = UCharDirection.RIGHT_TO_LEFT_ISOLATE;
 pub const U_POP_DIRECTIONAL_ISOLATE = UCharDirection.POP_DIRECTIONAL_ISOLATE;
 
-pub const UBidiPairedBracketType = extern enum(i32) {
+pub const UBidiPairedBracketType = enum(i32) {
     NONE = 0,
     OPEN = 1,
     CLOSE = 2,
@@ -5473,7 +5473,7 @@ pub const U_BPT_NONE = UBidiPairedBracketType.NONE;
 pub const U_BPT_OPEN = UBidiPairedBracketType.OPEN;
 pub const U_BPT_CLOSE = UBidiPairedBracketType.CLOSE;
 
-pub const UBlockCode = extern enum(i32) {
+pub const UBlockCode = enum(i32) {
     NO_BLOCK = 0,
     BASIC_LATIN = 1,
     LATIN_1_SUPPLEMENT = 2,
@@ -5553,7 +5553,7 @@ pub const UBlockCode = extern enum(i32) {
     HIGH_PRIVATE_USE_SURROGATES = 76,
     LOW_SURROGATES = 77,
     PRIVATE_USE_AREA = 78,
-    PRIVATE_USE = 78,
+    // PRIVATE_USE = 78, this enum value conflicts with PRIVATE_USE_AREA
     CJK_COMPATIBILITY_IDEOGRAPHS = 79,
     ALPHABETIC_PRESENTATION_FORMS = 80,
     ARABIC_PRESENTATION_FORMS_A = 81,
@@ -5573,7 +5573,7 @@ pub const UBlockCode = extern enum(i32) {
     CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT = 95,
     TAGS = 96,
     CYRILLIC_SUPPLEMENT = 97,
-    CYRILLIC_SUPPLEMENTARY = 97,
+    // CYRILLIC_SUPPLEMENTARY = 97, this enum value conflicts with CYRILLIC_SUPPLEMENT
     TAGALOG = 98,
     HANUNOO = 99,
     BUHID = 100,
@@ -5858,7 +5858,7 @@ pub const UBLOCK_HIGH_SURROGATES = UBlockCode.HIGH_SURROGATES;
 pub const UBLOCK_HIGH_PRIVATE_USE_SURROGATES = UBlockCode.HIGH_PRIVATE_USE_SURROGATES;
 pub const UBLOCK_LOW_SURROGATES = UBlockCode.LOW_SURROGATES;
 pub const UBLOCK_PRIVATE_USE_AREA = UBlockCode.PRIVATE_USE_AREA;
-pub const UBLOCK_PRIVATE_USE = UBlockCode.PRIVATE_USE;
+pub const UBLOCK_PRIVATE_USE = UBlockCode.PRIVATE_USE_AREA;
 pub const UBLOCK_CJK_COMPATIBILITY_IDEOGRAPHS = UBlockCode.CJK_COMPATIBILITY_IDEOGRAPHS;
 pub const UBLOCK_ALPHABETIC_PRESENTATION_FORMS = UBlockCode.ALPHABETIC_PRESENTATION_FORMS;
 pub const UBLOCK_ARABIC_PRESENTATION_FORMS_A = UBlockCode.ARABIC_PRESENTATION_FORMS_A;
@@ -5878,7 +5878,7 @@ pub const UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B = UBlockCode.CJK_UNIFIED_IDE
 pub const UBLOCK_CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT = UBlockCode.CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT;
 pub const UBLOCK_TAGS = UBlockCode.TAGS;
 pub const UBLOCK_CYRILLIC_SUPPLEMENT = UBlockCode.CYRILLIC_SUPPLEMENT;
-pub const UBLOCK_CYRILLIC_SUPPLEMENTARY = UBlockCode.CYRILLIC_SUPPLEMENTARY;
+pub const UBLOCK_CYRILLIC_SUPPLEMENTARY = UBlockCode.CYRILLIC_SUPPLEMENT;
 pub const UBLOCK_TAGALOG = UBlockCode.TAGALOG;
 pub const UBLOCK_HANUNOO = UBlockCode.HANUNOO;
 pub const UBLOCK_BUHID = UBlockCode.BUHID;
@@ -6084,7 +6084,7 @@ pub const UBLOCK_TAMIL_SUPPLEMENT = UBlockCode.TAMIL_SUPPLEMENT;
 pub const UBLOCK_WANCHO = UBlockCode.WANCHO;
 pub const UBLOCK_INVALID_CODE = UBlockCode.INVALID_CODE;
 
-pub const UEastAsianWidth = extern enum(i32) {
+pub const UEastAsianWidth = enum(i32) {
     NEUTRAL = 0,
     AMBIGUOUS = 1,
     HALFWIDTH = 2,
@@ -6099,7 +6099,7 @@ pub const U_EA_FULLWIDTH = UEastAsianWidth.FULLWIDTH;
 pub const U_EA_NARROW = UEastAsianWidth.NARROW;
 pub const U_EA_WIDE = UEastAsianWidth.WIDE;
 
-pub const UCharNameChoice = extern enum(i32) {
+pub const UCharNameChoice = enum(i32) {
     UNICODE_CHAR_NAME = 0,
     EXTENDED_CHAR_NAME = 2,
     CHAR_NAME_ALIAS = 3,
@@ -6108,14 +6108,14 @@ pub const U_UNICODE_CHAR_NAME = UCharNameChoice.UNICODE_CHAR_NAME;
 pub const U_EXTENDED_CHAR_NAME = UCharNameChoice.EXTENDED_CHAR_NAME;
 pub const U_CHAR_NAME_ALIAS = UCharNameChoice.CHAR_NAME_ALIAS;
 
-pub const UPropertyNameChoice = extern enum(i32) {
+pub const UPropertyNameChoice = enum(i32) {
     SHORT_PROPERTY_NAME = 0,
     LONG_PROPERTY_NAME = 1,
 };
 pub const U_SHORT_PROPERTY_NAME = UPropertyNameChoice.SHORT_PROPERTY_NAME;
 pub const U_LONG_PROPERTY_NAME = UPropertyNameChoice.LONG_PROPERTY_NAME;
 
-pub const UDecompositionType = extern enum(i32) {
+pub const UDecompositionType = enum(i32) {
     NONE = 0,
     CANONICAL = 1,
     COMPAT = 2,
@@ -6154,7 +6154,7 @@ pub const U_DT_SUPER = UDecompositionType.SUPER;
 pub const U_DT_VERTICAL = UDecompositionType.VERTICAL;
 pub const U_DT_WIDE = UDecompositionType.WIDE;
 
-pub const UJoiningType = extern enum(i32) {
+pub const UJoiningType = enum(i32) {
     NON_JOINING = 0,
     JOIN_CAUSING = 1,
     DUAL_JOINING = 2,
@@ -6169,7 +6169,7 @@ pub const U_JT_LEFT_JOINING = UJoiningType.LEFT_JOINING;
 pub const U_JT_RIGHT_JOINING = UJoiningType.RIGHT_JOINING;
 pub const U_JT_TRANSPARENT = UJoiningType.TRANSPARENT;
 
-pub const UJoiningGroup = extern enum(i32) {
+pub const UJoiningGroup = enum(i32) {
     NO_JOINING_GROUP = 0,
     AIN = 1,
     ALAPH = 2,
@@ -6185,7 +6185,7 @@ pub const UJoiningGroup = extern enum(i32) {
     GAMAL = 12,
     HAH = 13,
     TEH_MARBUTA_GOAL = 14,
-    HAMZA_ON_HEH_GOAL = 14,
+    // HAMZA_ON_HEH_GOAL = 14, this enum value conflicts with TEH_MARBUTA_GOAL
     HE = 15,
     HEH = 16,
     HEH_GOAL = 17,
@@ -6289,7 +6289,7 @@ pub const U_JG_GAF = UJoiningGroup.GAF;
 pub const U_JG_GAMAL = UJoiningGroup.GAMAL;
 pub const U_JG_HAH = UJoiningGroup.HAH;
 pub const U_JG_TEH_MARBUTA_GOAL = UJoiningGroup.TEH_MARBUTA_GOAL;
-pub const U_JG_HAMZA_ON_HEH_GOAL = UJoiningGroup.HAMZA_ON_HEH_GOAL;
+pub const U_JG_HAMZA_ON_HEH_GOAL = UJoiningGroup.TEH_MARBUTA_GOAL;
 pub const U_JG_HE = UJoiningGroup.HE;
 pub const U_JG_HEH = UJoiningGroup.HEH;
 pub const U_JG_HEH_GOAL = UJoiningGroup.HEH_GOAL;
@@ -6378,7 +6378,7 @@ pub const U_JG_MALAYALAM_TTA = UJoiningGroup.MALAYALAM_TTA;
 pub const U_JG_HANIFI_ROHINGYA_KINNA_YA = UJoiningGroup.HANIFI_ROHINGYA_KINNA_YA;
 pub const U_JG_HANIFI_ROHINGYA_PA = UJoiningGroup.HANIFI_ROHINGYA_PA;
 
-pub const UGraphemeClusterBreak = extern enum(i32) {
+pub const UGraphemeClusterBreak = enum(i32) {
     OTHER = 0,
     CONTROL = 1,
     CR = 2,
@@ -6417,7 +6417,7 @@ pub const U_GCB_E_MODIFIER = UGraphemeClusterBreak.E_MODIFIER;
 pub const U_GCB_GLUE_AFTER_ZWJ = UGraphemeClusterBreak.GLUE_AFTER_ZWJ;
 pub const U_GCB_ZWJ = UGraphemeClusterBreak.ZWJ;
 
-pub const UWordBreakValues = extern enum(i32) {
+pub const UWordBreakValues = enum(i32) {
     OTHER = 0,
     ALETTER = 1,
     FORMAT = 2,
@@ -6466,7 +6466,7 @@ pub const U_WB_GLUE_AFTER_ZWJ = UWordBreakValues.GLUE_AFTER_ZWJ;
 pub const U_WB_ZWJ = UWordBreakValues.ZWJ;
 pub const U_WB_WSEGSPACE = UWordBreakValues.WSEGSPACE;
 
-pub const USentenceBreak = extern enum(i32) {
+pub const USentenceBreak = enum(i32) {
     OTHER = 0,
     ATERM = 1,
     CLOSE = 2,
@@ -6499,7 +6499,7 @@ pub const U_SB_EXTEND = USentenceBreak.EXTEND;
 pub const U_SB_LF = USentenceBreak.LF;
 pub const U_SB_SCONTINUE = USentenceBreak.SCONTINUE;
 
-pub const ULineBreak = extern enum(i32) {
+pub const ULineBreak = enum(i32) {
     UNKNOWN = 0,
     AMBIGUOUS = 1,
     ALPHABETIC = 2,
@@ -6516,7 +6516,7 @@ pub const ULineBreak = extern enum(i32) {
     HYPHEN = 13,
     IDEOGRAPHIC = 14,
     INSEPARABLE = 15,
-    INSEPERABLE = 15,
+    // INSEPERABLE = 15, this enum value conflicts with INSEPARABLE
     INFIX_NUMERIC = 16,
     LINE_FEED = 17,
     NONSTARTER = 18,
@@ -6561,7 +6561,7 @@ pub const U_LB_GLUE = ULineBreak.GLUE;
 pub const U_LB_HYPHEN = ULineBreak.HYPHEN;
 pub const U_LB_IDEOGRAPHIC = ULineBreak.IDEOGRAPHIC;
 pub const U_LB_INSEPARABLE = ULineBreak.INSEPARABLE;
-pub const U_LB_INSEPERABLE = ULineBreak.INSEPERABLE;
+pub const U_LB_INSEPERABLE = ULineBreak.INSEPARABLE;
 pub const U_LB_INFIX_NUMERIC = ULineBreak.INFIX_NUMERIC;
 pub const U_LB_LINE_FEED = ULineBreak.LINE_FEED;
 pub const U_LB_NONSTARTER = ULineBreak.NONSTARTER;
@@ -6590,7 +6590,7 @@ pub const U_LB_E_BASE = ULineBreak.E_BASE;
 pub const U_LB_E_MODIFIER = ULineBreak.E_MODIFIER;
 pub const U_LB_ZWJ = ULineBreak.ZWJ;
 
-pub const UNumericType = extern enum(i32) {
+pub const UNumericType = enum(i32) {
     NONE = 0,
     DECIMAL = 1,
     DIGIT = 2,
@@ -6601,7 +6601,7 @@ pub const U_NT_DECIMAL = UNumericType.DECIMAL;
 pub const U_NT_DIGIT = UNumericType.DIGIT;
 pub const U_NT_NUMERIC = UNumericType.NUMERIC;
 
-pub const UHangulSyllableType = extern enum(i32) {
+pub const UHangulSyllableType = enum(i32) {
     NOT_APPLICABLE = 0,
     LEADING_JAMO = 1,
     VOWEL_JAMO = 2,
@@ -6616,7 +6616,7 @@ pub const U_HST_TRAILING_JAMO = UHangulSyllableType.TRAILING_JAMO;
 pub const U_HST_LV_SYLLABLE = UHangulSyllableType.LV_SYLLABLE;
 pub const U_HST_LVT_SYLLABLE = UHangulSyllableType.LVT_SYLLABLE;
 
-pub const UIndicPositionalCategory = extern enum(i32) {
+pub const UIndicPositionalCategory = enum(i32) {
     NA = 0,
     BOTTOM = 1,
     BOTTOM_AND_LEFT = 2,
@@ -6649,7 +6649,7 @@ pub const U_INPC_TOP_AND_LEFT_AND_RIGHT = UIndicPositionalCategory.TOP_AND_LEFT_
 pub const U_INPC_TOP_AND_RIGHT = UIndicPositionalCategory.TOP_AND_RIGHT;
 pub const U_INPC_VISUAL_ORDER_LEFT = UIndicPositionalCategory.VISUAL_ORDER_LEFT;
 
-pub const UIndicSyllabicCategory = extern enum(i32) {
+pub const UIndicSyllabicCategory = enum(i32) {
     OTHER = 0,
     AVAGRAHA = 1,
     BINDU = 2,
@@ -6724,7 +6724,7 @@ pub const U_INSC_VOWEL = UIndicSyllabicCategory.VOWEL;
 pub const U_INSC_VOWEL_DEPENDENT = UIndicSyllabicCategory.VOWEL_DEPENDENT;
 pub const U_INSC_VOWEL_INDEPENDENT = UIndicSyllabicCategory.VOWEL_INDEPENDENT;
 
-pub const UVerticalOrientation = extern enum(i32) {
+pub const UVerticalOrientation = enum(i32) {
     ROTATED = 0,
     TRANSFORMED_ROTATED = 1,
     TRANSFORMED_UPRIGHT = 2,
@@ -6750,7 +6750,7 @@ pub const UEnumCharNamesFn = fn(
     length: i32,
 ) callconv(@import("std").os.windows.WINAPI) i8;
 
-pub const UBiDiDirection = extern enum(i32) {
+pub const UBiDiDirection = enum(i32) {
     LTR = 0,
     RTL = 1,
     MIXED = 2,
@@ -6761,7 +6761,7 @@ pub const UBIDI_RTL = UBiDiDirection.RTL;
 pub const UBIDI_MIXED = UBiDiDirection.MIXED;
 pub const UBIDI_NEUTRAL = UBiDiDirection.NEUTRAL;
 
-pub const UBiDiReorderingMode = extern enum(i32) {
+pub const UBiDiReorderingMode = enum(i32) {
     DEFAULT = 0,
     NUMBERS_SPECIAL = 1,
     GROUP_NUMBERS_WITH_R = 2,
@@ -6778,7 +6778,7 @@ pub const UBIDI_REORDER_INVERSE_NUMBERS_AS_L = UBiDiReorderingMode.INVERSE_NUMBE
 pub const UBIDI_REORDER_INVERSE_LIKE_DIRECT = UBiDiReorderingMode.INVERSE_LIKE_DIRECT;
 pub const UBIDI_REORDER_INVERSE_FOR_NUMBERS_SPECIAL = UBiDiReorderingMode.INVERSE_FOR_NUMBERS_SPECIAL;
 
-pub const UBiDiReorderingOption = extern enum(i32) {
+pub const UBiDiReorderingOption = enum(i32) {
     DEFAULT = 0,
     INSERT_MARKS = 1,
     REMOVE_CONTROLS = 2,
@@ -6794,14 +6794,14 @@ pub const UBiDiClassCallback = fn(
     c: i32,
 ) callconv(@import("std").os.windows.WINAPI) UCharDirection;
 
-pub const UBiDiOrder = extern enum(i32) {
+pub const UBiDiOrder = enum(i32) {
     LOGICAL = 0,
     VISUAL = 1,
 };
 pub const UBIDI_LOGICAL = UBiDiOrder.LOGICAL;
 pub const UBIDI_VISUAL = UBiDiOrder.VISUAL;
 
-pub const UBiDiMirroring = extern enum(i32) {
+pub const UBiDiMirroring = enum(i32) {
     FF = 0,
     N = 1,
 };
@@ -6911,7 +6911,7 @@ pub const UText = extern struct {
     privC: i32,
 };
 
-pub const USetSpanCondition = extern enum(i32) {
+pub const USetSpanCondition = enum(i32) {
     NOT_CONTAINED = 0,
     CONTAINED = 1,
     SIMPLE = 2,
@@ -6927,7 +6927,7 @@ pub const USerializedSet = extern struct {
     staticArray: [8]u16,
 };
 
-pub const UNormalization2Mode = extern enum(i32) {
+pub const UNormalization2Mode = enum(i32) {
     COMPOSE = 0,
     DECOMPOSE = 1,
     FCD = 2,
@@ -6938,7 +6938,7 @@ pub const UNORM2_DECOMPOSE = UNormalization2Mode.DECOMPOSE;
 pub const UNORM2_FCD = UNormalization2Mode.FCD;
 pub const UNORM2_COMPOSE_CONTIGUOUS = UNormalization2Mode.COMPOSE_CONTIGUOUS;
 
-pub const UNormalizationCheckResult = extern enum(i32) {
+pub const UNormalizationCheckResult = enum(i32) {
     NO = 0,
     YES = 1,
     MAYBE = 2,
@@ -6947,12 +6947,12 @@ pub const UNORM_NO = UNormalizationCheckResult.NO;
 pub const UNORM_YES = UNormalizationCheckResult.YES;
 pub const UNORM_MAYBE = UNormalizationCheckResult.MAYBE;
 
-pub const UNormalizationMode = extern enum(i32) {
+pub const UNormalizationMode = enum(i32) {
     NONE = 1,
     NFD = 2,
     NFKD = 3,
     NFC = 4,
-    DEFAULT = 4,
+    // DEFAULT = 4, this enum value conflicts with NFC
     NFKC = 5,
     FCD = 6,
     MODE_COUNT = 7,
@@ -6961,7 +6961,7 @@ pub const UNORM_NONE = UNormalizationMode.NONE;
 pub const UNORM_NFD = UNormalizationMode.NFD;
 pub const UNORM_NFKD = UNormalizationMode.NFKD;
 pub const UNORM_NFC = UNormalizationMode.NFC;
-pub const UNORM_DEFAULT = UNormalizationMode.DEFAULT;
+pub const UNORM_DEFAULT = UNormalizationMode.NFC;
 pub const UNORM_NFKC = UNormalizationMode.NFKC;
 pub const UNORM_FCD = UNormalizationMode.FCD;
 pub const UNORM_MODE_COUNT = UNormalizationMode.MODE_COUNT;
@@ -6978,7 +6978,7 @@ pub const UParseError = extern struct {
     postContext: [16]u16,
 };
 
-pub const UStringPrepProfileType = extern enum(i32) {
+pub const UStringPrepProfileType = enum(i32) {
     @"3491_NAMEPREP" = 0,
     @"3530_NFS4_CS_PREP" = 1,
     @"3530_NFS4_CS_PREP_CI" = 2,
@@ -7018,7 +7018,7 @@ pub const UIDNAInfo = extern struct {
     reservedI3: i32,
 };
 
-pub const UBreakIteratorType = extern enum(i32) {
+pub const UBreakIteratorType = enum(i32) {
     CHARACTER = 0,
     WORD = 1,
     LINE = 2,
@@ -7029,61 +7029,61 @@ pub const UBRK_WORD = UBreakIteratorType.WORD;
 pub const UBRK_LINE = UBreakIteratorType.LINE;
 pub const UBRK_SENTENCE = UBreakIteratorType.SENTENCE;
 
-pub const UWordBreak = extern enum(i32) {
+pub const UWordBreak = enum(i32) {
     NONE = 0,
     NONE_LIMIT = 100,
-    NUMBER = 100,
+    // NUMBER = 100, this enum value conflicts with NONE_LIMIT
     NUMBER_LIMIT = 200,
-    LETTER = 200,
+    // LETTER = 200, this enum value conflicts with NUMBER_LIMIT
     LETTER_LIMIT = 300,
-    KANA = 300,
+    // KANA = 300, this enum value conflicts with LETTER_LIMIT
     KANA_LIMIT = 400,
-    IDEO = 400,
+    // IDEO = 400, this enum value conflicts with KANA_LIMIT
     IDEO_LIMIT = 500,
 };
 pub const UBRK_WORD_NONE = UWordBreak.NONE;
 pub const UBRK_WORD_NONE_LIMIT = UWordBreak.NONE_LIMIT;
-pub const UBRK_WORD_NUMBER = UWordBreak.NUMBER;
+pub const UBRK_WORD_NUMBER = UWordBreak.NONE_LIMIT;
 pub const UBRK_WORD_NUMBER_LIMIT = UWordBreak.NUMBER_LIMIT;
-pub const UBRK_WORD_LETTER = UWordBreak.LETTER;
+pub const UBRK_WORD_LETTER = UWordBreak.NUMBER_LIMIT;
 pub const UBRK_WORD_LETTER_LIMIT = UWordBreak.LETTER_LIMIT;
-pub const UBRK_WORD_KANA = UWordBreak.KANA;
+pub const UBRK_WORD_KANA = UWordBreak.LETTER_LIMIT;
 pub const UBRK_WORD_KANA_LIMIT = UWordBreak.KANA_LIMIT;
-pub const UBRK_WORD_IDEO = UWordBreak.IDEO;
+pub const UBRK_WORD_IDEO = UWordBreak.KANA_LIMIT;
 pub const UBRK_WORD_IDEO_LIMIT = UWordBreak.IDEO_LIMIT;
 
-pub const ULineBreakTag = extern enum(i32) {
+pub const ULineBreakTag = enum(i32) {
     SOFT = 0,
     SOFT_LIMIT = 100,
-    HARD = 100,
+    // HARD = 100, this enum value conflicts with SOFT_LIMIT
     HARD_LIMIT = 200,
 };
 pub const UBRK_LINE_SOFT = ULineBreakTag.SOFT;
 pub const UBRK_LINE_SOFT_LIMIT = ULineBreakTag.SOFT_LIMIT;
-pub const UBRK_LINE_HARD = ULineBreakTag.HARD;
+pub const UBRK_LINE_HARD = ULineBreakTag.SOFT_LIMIT;
 pub const UBRK_LINE_HARD_LIMIT = ULineBreakTag.HARD_LIMIT;
 
-pub const USentenceBreakTag = extern enum(i32) {
+pub const USentenceBreakTag = enum(i32) {
     TERM = 0,
     TERM_LIMIT = 100,
-    SEP = 100,
+    // SEP = 100, this enum value conflicts with TERM_LIMIT
     SEP_LIMIT = 200,
 };
 pub const UBRK_SENTENCE_TERM = USentenceBreakTag.TERM;
 pub const UBRK_SENTENCE_TERM_LIMIT = USentenceBreakTag.TERM_LIMIT;
-pub const UBRK_SENTENCE_SEP = USentenceBreakTag.SEP;
+pub const UBRK_SENTENCE_SEP = USentenceBreakTag.TERM_LIMIT;
 pub const UBRK_SENTENCE_SEP_LIMIT = USentenceBreakTag.SEP_LIMIT;
 
-pub const UCalendarType = extern enum(i32) {
+pub const UCalendarType = enum(i32) {
     TRADITIONAL = 0,
-    DEFAULT = 0,
+    // DEFAULT = 0, this enum value conflicts with TRADITIONAL
     GREGORIAN = 1,
 };
 pub const UCAL_TRADITIONAL = UCalendarType.TRADITIONAL;
-pub const UCAL_DEFAULT = UCalendarType.DEFAULT;
+pub const UCAL_DEFAULT = UCalendarType.TRADITIONAL;
 pub const UCAL_GREGORIAN = UCalendarType.GREGORIAN;
 
-pub const UCalendarDateFields = extern enum(i32) {
+pub const UCalendarDateFields = enum(i32) {
     ERA = 0,
     YEAR = 1,
     MONTH = 2,
@@ -7108,7 +7108,7 @@ pub const UCalendarDateFields = extern enum(i32) {
     MILLISECONDS_IN_DAY = 21,
     IS_LEAP_MONTH = 22,
     FIELD_COUNT = 23,
-    DAY_OF_MONTH = 5,
+    // DAY_OF_MONTH = 5, this enum value conflicts with DATE
 };
 pub const UCAL_ERA = UCalendarDateFields.ERA;
 pub const UCAL_YEAR = UCalendarDateFields.YEAR;
@@ -7134,9 +7134,9 @@ pub const UCAL_JULIAN_DAY = UCalendarDateFields.JULIAN_DAY;
 pub const UCAL_MILLISECONDS_IN_DAY = UCalendarDateFields.MILLISECONDS_IN_DAY;
 pub const UCAL_IS_LEAP_MONTH = UCalendarDateFields.IS_LEAP_MONTH;
 pub const UCAL_FIELD_COUNT = UCalendarDateFields.FIELD_COUNT;
-pub const UCAL_DAY_OF_MONTH = UCalendarDateFields.DAY_OF_MONTH;
+pub const UCAL_DAY_OF_MONTH = UCalendarDateFields.DATE;
 
-pub const UCalendarDaysOfWeek = extern enum(i32) {
+pub const UCalendarDaysOfWeek = enum(i32) {
     SUNDAY = 1,
     MONDAY = 2,
     TUESDAY = 3,
@@ -7153,7 +7153,7 @@ pub const UCAL_THURSDAY = UCalendarDaysOfWeek.THURSDAY;
 pub const UCAL_FRIDAY = UCalendarDaysOfWeek.FRIDAY;
 pub const UCAL_SATURDAY = UCalendarDaysOfWeek.SATURDAY;
 
-pub const UCalendarMonths = extern enum(i32) {
+pub const UCalendarMonths = enum(i32) {
     JANUARY = 0,
     FEBRUARY = 1,
     MARCH = 2,
@@ -7182,14 +7182,14 @@ pub const UCAL_NOVEMBER = UCalendarMonths.NOVEMBER;
 pub const UCAL_DECEMBER = UCalendarMonths.DECEMBER;
 pub const UCAL_UNDECIMBER = UCalendarMonths.UNDECIMBER;
 
-pub const UCalendarAMPMs = extern enum(i32) {
+pub const UCalendarAMPMs = enum(i32) {
     AM = 0,
     PM = 1,
 };
 pub const UCAL_AM = UCalendarAMPMs.AM;
 pub const UCAL_PM = UCalendarAMPMs.PM;
 
-pub const USystemTimeZoneType = extern enum(i32) {
+pub const USystemTimeZoneType = enum(i32) {
     ANY = 0,
     CANONICAL = 1,
     CANONICAL_LOCATION = 2,
@@ -7198,7 +7198,7 @@ pub const UCAL_ZONE_TYPE_ANY = USystemTimeZoneType.ANY;
 pub const UCAL_ZONE_TYPE_CANONICAL = USystemTimeZoneType.CANONICAL;
 pub const UCAL_ZONE_TYPE_CANONICAL_LOCATION = USystemTimeZoneType.CANONICAL_LOCATION;
 
-pub const UCalendarDisplayNameType = extern enum(i32) {
+pub const UCalendarDisplayNameType = enum(i32) {
     STANDARD = 0,
     SHORT_STANDARD = 1,
     DST = 2,
@@ -7209,7 +7209,7 @@ pub const UCAL_SHORT_STANDARD = UCalendarDisplayNameType.SHORT_STANDARD;
 pub const UCAL_DST = UCalendarDisplayNameType.DST;
 pub const UCAL_SHORT_DST = UCalendarDisplayNameType.SHORT_DST;
 
-pub const UCalendarAttribute = extern enum(i32) {
+pub const UCalendarAttribute = enum(i32) {
     LENIENT = 0,
     FIRST_DAY_OF_WEEK = 1,
     MINIMAL_DAYS_IN_FIRST_WEEK = 2,
@@ -7222,7 +7222,7 @@ pub const UCAL_MINIMAL_DAYS_IN_FIRST_WEEK = UCalendarAttribute.MINIMAL_DAYS_IN_F
 pub const UCAL_REPEATED_WALL_TIME = UCalendarAttribute.REPEATED_WALL_TIME;
 pub const UCAL_SKIPPED_WALL_TIME = UCalendarAttribute.SKIPPED_WALL_TIME;
 
-pub const UCalendarWallTimeOption = extern enum(i32) {
+pub const UCalendarWallTimeOption = enum(i32) {
     LAST = 0,
     FIRST = 1,
     NEXT_VALID = 2,
@@ -7231,7 +7231,7 @@ pub const UCAL_WALLTIME_LAST = UCalendarWallTimeOption.LAST;
 pub const UCAL_WALLTIME_FIRST = UCalendarWallTimeOption.FIRST;
 pub const UCAL_WALLTIME_NEXT_VALID = UCalendarWallTimeOption.NEXT_VALID;
 
-pub const UCalendarLimitType = extern enum(i32) {
+pub const UCalendarLimitType = enum(i32) {
     MINIMUM = 0,
     MAXIMUM = 1,
     GREATEST_MINIMUM = 2,
@@ -7246,7 +7246,7 @@ pub const UCAL_LEAST_MAXIMUM = UCalendarLimitType.LEAST_MAXIMUM;
 pub const UCAL_ACTUAL_MINIMUM = UCalendarLimitType.ACTUAL_MINIMUM;
 pub const UCAL_ACTUAL_MAXIMUM = UCalendarLimitType.ACTUAL_MAXIMUM;
 
-pub const UCalendarWeekdayType = extern enum(i32) {
+pub const UCalendarWeekdayType = enum(i32) {
     DAY = 0,
     END = 1,
     END_ONSET = 2,
@@ -7257,7 +7257,7 @@ pub const UCAL_WEEKEND = UCalendarWeekdayType.END;
 pub const UCAL_WEEKEND_ONSET = UCalendarWeekdayType.END_ONSET;
 pub const UCAL_WEEKEND_CEASE = UCalendarWeekdayType.END_CEASE;
 
-pub const UTimeZoneTransitionType = extern enum(i32) {
+pub const UTimeZoneTransitionType = enum(i32) {
     NEXT = 0,
     NEXT_INCLUSIVE = 1,
     PREVIOUS = 2,
@@ -7268,7 +7268,7 @@ pub const UCAL_TZ_TRANSITION_NEXT_INCLUSIVE = UTimeZoneTransitionType.NEXT_INCLU
 pub const UCAL_TZ_TRANSITION_PREVIOUS = UTimeZoneTransitionType.PREVIOUS;
 pub const UCAL_TZ_TRANSITION_PREVIOUS_INCLUSIVE = UTimeZoneTransitionType.PREVIOUS_INCLUSIVE;
 
-pub const UCollationResult = extern enum(i32) {
+pub const UCollationResult = enum(i32) {
     EQUAL = 0,
     GREATER = 1,
     LESS = -1,
@@ -7277,17 +7277,17 @@ pub const UCOL_EQUAL = UCollationResult.EQUAL;
 pub const UCOL_GREATER = UCollationResult.GREATER;
 pub const UCOL_LESS = UCollationResult.LESS;
 
-pub const UColAttributeValue = extern enum(i32) {
+pub const UColAttributeValue = enum(i32) {
     DEFAULT = -1,
     PRIMARY = 0,
     SECONDARY = 1,
     TERTIARY = 2,
-    DEFAULT_STRENGTH = 2,
+    // DEFAULT_STRENGTH = 2, this enum value conflicts with TERTIARY
     CE_STRENGTH_LIMIT = 3,
-    QUATERNARY = 3,
+    // QUATERNARY = 3, this enum value conflicts with CE_STRENGTH_LIMIT
     IDENTICAL = 15,
     STRENGTH_LIMIT = 16,
-    OFF = 16,
+    // OFF = 16, this enum value conflicts with STRENGTH_LIMIT
     ON = 17,
     SHIFTED = 20,
     NON_IGNORABLE = 21,
@@ -7298,24 +7298,24 @@ pub const UCOL_DEFAULT = UColAttributeValue.DEFAULT;
 pub const UCOL_PRIMARY = UColAttributeValue.PRIMARY;
 pub const UCOL_SECONDARY = UColAttributeValue.SECONDARY;
 pub const UCOL_TERTIARY = UColAttributeValue.TERTIARY;
-pub const UCOL_DEFAULT_STRENGTH = UColAttributeValue.DEFAULT_STRENGTH;
+pub const UCOL_DEFAULT_STRENGTH = UColAttributeValue.TERTIARY;
 pub const UCOL_CE_STRENGTH_LIMIT = UColAttributeValue.CE_STRENGTH_LIMIT;
-pub const UCOL_QUATERNARY = UColAttributeValue.QUATERNARY;
+pub const UCOL_QUATERNARY = UColAttributeValue.CE_STRENGTH_LIMIT;
 pub const UCOL_IDENTICAL = UColAttributeValue.IDENTICAL;
 pub const UCOL_STRENGTH_LIMIT = UColAttributeValue.STRENGTH_LIMIT;
-pub const UCOL_OFF = UColAttributeValue.OFF;
+pub const UCOL_OFF = UColAttributeValue.STRENGTH_LIMIT;
 pub const UCOL_ON = UColAttributeValue.ON;
 pub const UCOL_SHIFTED = UColAttributeValue.SHIFTED;
 pub const UCOL_NON_IGNORABLE = UColAttributeValue.NON_IGNORABLE;
 pub const UCOL_LOWER_FIRST = UColAttributeValue.LOWER_FIRST;
 pub const UCOL_UPPER_FIRST = UColAttributeValue.UPPER_FIRST;
 
-pub const UColReorderCode = extern enum(i32) {
+pub const UColReorderCode = enum(i32) {
     DEFAULT = -1,
     NONE = 103,
-    OTHERS = 103,
+    // OTHERS = 103, this enum value conflicts with NONE
     SPACE = 4096,
-    FIRST = 4096,
+    // FIRST = 4096, this enum value conflicts with SPACE
     PUNCTUATION = 4097,
     SYMBOL = 4098,
     CURRENCY = 4099,
@@ -7323,21 +7323,21 @@ pub const UColReorderCode = extern enum(i32) {
 };
 pub const UCOL_REORDER_CODE_DEFAULT = UColReorderCode.DEFAULT;
 pub const UCOL_REORDER_CODE_NONE = UColReorderCode.NONE;
-pub const UCOL_REORDER_CODE_OTHERS = UColReorderCode.OTHERS;
+pub const UCOL_REORDER_CODE_OTHERS = UColReorderCode.NONE;
 pub const UCOL_REORDER_CODE_SPACE = UColReorderCode.SPACE;
-pub const UCOL_REORDER_CODE_FIRST = UColReorderCode.FIRST;
+pub const UCOL_REORDER_CODE_FIRST = UColReorderCode.SPACE;
 pub const UCOL_REORDER_CODE_PUNCTUATION = UColReorderCode.PUNCTUATION;
 pub const UCOL_REORDER_CODE_SYMBOL = UColReorderCode.SYMBOL;
 pub const UCOL_REORDER_CODE_CURRENCY = UColReorderCode.CURRENCY;
 pub const UCOL_REORDER_CODE_DIGIT = UColReorderCode.DIGIT;
 
-pub const UColAttribute = extern enum(i32) {
+pub const UColAttribute = enum(i32) {
     FRENCH_COLLATION = 0,
     ALTERNATE_HANDLING = 1,
     CASE_FIRST = 2,
     CASE_LEVEL = 3,
     NORMALIZATION_MODE = 4,
-    DECOMPOSITION_MODE = 4,
+    // DECOMPOSITION_MODE = 4, this enum value conflicts with NORMALIZATION_MODE
     STRENGTH = 5,
     NUMERIC_COLLATION = 7,
     ATTRIBUTE_COUNT = 8,
@@ -7347,19 +7347,19 @@ pub const UCOL_ALTERNATE_HANDLING = UColAttribute.ALTERNATE_HANDLING;
 pub const UCOL_CASE_FIRST = UColAttribute.CASE_FIRST;
 pub const UCOL_CASE_LEVEL = UColAttribute.CASE_LEVEL;
 pub const UCOL_NORMALIZATION_MODE = UColAttribute.NORMALIZATION_MODE;
-pub const UCOL_DECOMPOSITION_MODE = UColAttribute.DECOMPOSITION_MODE;
+pub const UCOL_DECOMPOSITION_MODE = UColAttribute.NORMALIZATION_MODE;
 pub const UCOL_STRENGTH = UColAttribute.STRENGTH;
 pub const UCOL_NUMERIC_COLLATION = UColAttribute.NUMERIC_COLLATION;
 pub const UCOL_ATTRIBUTE_COUNT = UColAttribute.ATTRIBUTE_COUNT;
 
-pub const UColRuleOption = extern enum(i32) {
+pub const UColRuleOption = enum(i32) {
     TAILORING_ONLY = 0,
     FULL_RULES = 1,
 };
 pub const UCOL_TAILORING_ONLY = UColRuleOption.TAILORING_ONLY;
 pub const UCOL_FULL_RULES = UColRuleOption.FULL_RULES;
 
-pub const UColBoundMode = extern enum(i32) {
+pub const UColBoundMode = enum(i32) {
     LOWER = 0,
     UPPER = 1,
     UPPER_LONG = 2,
@@ -7368,7 +7368,7 @@ pub const UCOL_BOUND_LOWER = UColBoundMode.LOWER;
 pub const UCOL_BOUND_UPPER = UColBoundMode.UPPER;
 pub const UCOL_BOUND_UPPER_LONG = UColBoundMode.UPPER_LONG;
 
-pub const UDateTimePatternField = extern enum(i32) {
+pub const UDateTimePatternField = enum(i32) {
     ERA_FIELD = 0,
     YEAR_FIELD = 1,
     QUARTER_FIELD = 2,
@@ -7405,7 +7405,7 @@ pub const UDATPG_FRACTIONAL_SECOND_FIELD = UDateTimePatternField.FRACTIONAL_SECO
 pub const UDATPG_ZONE_FIELD = UDateTimePatternField.ZONE_FIELD;
 pub const UDATPG_FIELD_COUNT = UDateTimePatternField.FIELD_COUNT;
 
-pub const UDateTimePGDisplayWidth = extern enum(i32) {
+pub const UDateTimePGDisplayWidth = enum(i32) {
     WIDE = 0,
     ABBREVIATED = 1,
     NARROW = 2,
@@ -7414,7 +7414,7 @@ pub const UDATPG_WIDE = UDateTimePGDisplayWidth.WIDE;
 pub const UDATPG_ABBREVIATED = UDateTimePGDisplayWidth.ABBREVIATED;
 pub const UDATPG_NARROW = UDateTimePGDisplayWidth.NARROW;
 
-pub const UDateTimePatternMatchOptions = extern enum(i32) {
+pub const UDateTimePatternMatchOptions = enum(i32) {
     NO_OPTIONS = 0,
     HOUR_FIELD_LENGTH = 2048,
     ALL_FIELDS_LENGTH = 65535,
@@ -7423,7 +7423,7 @@ pub const UDATPG_MATCH_NO_OPTIONS = UDateTimePatternMatchOptions.NO_OPTIONS;
 pub const UDATPG_MATCH_HOUR_FIELD_LENGTH = UDateTimePatternMatchOptions.HOUR_FIELD_LENGTH;
 pub const UDATPG_MATCH_ALL_FIELDS_LENGTH = UDateTimePatternMatchOptions.ALL_FIELDS_LENGTH;
 
-pub const UDateTimePatternConflict = extern enum(i32) {
+pub const UDateTimePatternConflict = enum(i32) {
     NO_CONFLICT = 0,
     BASE_CONFLICT = 1,
     CONFLICT = 2,
@@ -7432,7 +7432,7 @@ pub const UDATPG_NO_CONFLICT = UDateTimePatternConflict.NO_CONFLICT;
 pub const UDATPG_BASE_CONFLICT = UDateTimePatternConflict.BASE_CONFLICT;
 pub const UDATPG_CONFLICT = UDateTimePatternConflict.CONFLICT;
 
-pub const UFormattableType = extern enum(i32) {
+pub const UFormattableType = enum(i32) {
     DATE = 0,
     DOUBLE = 1,
     LONG = 2,
@@ -7449,7 +7449,7 @@ pub const UFMT_ARRAY = UFormattableType.ARRAY;
 pub const UFMT_INT64 = UFormattableType.INT64;
 pub const UFMT_OBJECT = UFormattableType.OBJECT;
 
-pub const UGender = extern enum(i32) {
+pub const UGender = enum(i32) {
     MALE = 0,
     FEMALE = 1,
     OTHER = 2,
@@ -7458,7 +7458,7 @@ pub const UGENDER_MALE = UGender.MALE;
 pub const UGENDER_FEMALE = UGender.FEMALE;
 pub const UGENDER_OTHER = UGender.OTHER;
 
-pub const ULocaleDataExemplarSetType = extern enum(i32) {
+pub const ULocaleDataExemplarSetType = enum(i32) {
     STANDARD = 0,
     AUXILIARY = 1,
     INDEX = 2,
@@ -7469,7 +7469,7 @@ pub const ULOCDATA_ES_AUXILIARY = ULocaleDataExemplarSetType.AUXILIARY;
 pub const ULOCDATA_ES_INDEX = ULocaleDataExemplarSetType.INDEX;
 pub const ULOCDATA_ES_PUNCTUATION = ULocaleDataExemplarSetType.PUNCTUATION;
 
-pub const ULocaleDataDelimiterType = extern enum(i32) {
+pub const ULocaleDataDelimiterType = enum(i32) {
     QUOTATION_START = 0,
     QUOTATION_END = 1,
     ALT_QUOTATION_START = 2,
@@ -7480,7 +7480,7 @@ pub const ULOCDATA_QUOTATION_END = ULocaleDataDelimiterType.QUOTATION_END;
 pub const ULOCDATA_ALT_QUOTATION_START = ULocaleDataDelimiterType.ALT_QUOTATION_START;
 pub const ULOCDATA_ALT_QUOTATION_END = ULocaleDataDelimiterType.ALT_QUOTATION_END;
 
-pub const UMeasurementSystem = extern enum(i32) {
+pub const UMeasurementSystem = enum(i32) {
     SI = 0,
     US = 1,
     UK = 2,
@@ -7489,7 +7489,7 @@ pub const UMS_SI = UMeasurementSystem.SI;
 pub const UMS_US = UMeasurementSystem.US;
 pub const UMS_UK = UMeasurementSystem.UK;
 
-pub const UNumberFormatStyle = extern enum(i32) {
+pub const UNumberFormatStyle = enum(i32) {
     PATTERN_DECIMAL = 0,
     DECIMAL = 1,
     CURRENCY = 2,
@@ -7507,8 +7507,8 @@ pub const UNumberFormatStyle = extern enum(i32) {
     DECIMAL_COMPACT_SHORT = 14,
     DECIMAL_COMPACT_LONG = 15,
     CURRENCY_STANDARD = 16,
-    DEFAULT = 1,
-    IGNORE = 0,
+    // DEFAULT = 1, this enum value conflicts with DECIMAL
+    // IGNORE = 0, this enum value conflicts with PATTERN_DECIMAL
 };
 pub const UNUM_PATTERN_DECIMAL = UNumberFormatStyle.PATTERN_DECIMAL;
 pub const UNUM_DECIMAL = UNumberFormatStyle.DECIMAL;
@@ -7527,10 +7527,10 @@ pub const UNUM_CASH_CURRENCY = UNumberFormatStyle.CASH_CURRENCY;
 pub const UNUM_DECIMAL_COMPACT_SHORT = UNumberFormatStyle.DECIMAL_COMPACT_SHORT;
 pub const UNUM_DECIMAL_COMPACT_LONG = UNumberFormatStyle.DECIMAL_COMPACT_LONG;
 pub const UNUM_CURRENCY_STANDARD = UNumberFormatStyle.CURRENCY_STANDARD;
-pub const UNUM_DEFAULT = UNumberFormatStyle.DEFAULT;
-pub const UNUM_IGNORE = UNumberFormatStyle.IGNORE;
+pub const UNUM_DEFAULT = UNumberFormatStyle.DECIMAL;
+pub const UNUM_IGNORE = UNumberFormatStyle.PATTERN_DECIMAL;
 
-pub const UNumberFormatRoundingMode = extern enum(i32) {
+pub const UNumberFormatRoundingMode = enum(i32) {
     CEILING = 0,
     FLOOR = 1,
     DOWN = 2,
@@ -7549,7 +7549,7 @@ pub const UNUM_ROUND_HALFDOWN = UNumberFormatRoundingMode.HALFDOWN;
 pub const UNUM_ROUND_HALFUP = UNumberFormatRoundingMode.HALFUP;
 pub const UNUM_ROUND_UNNECESSARY = UNumberFormatRoundingMode.UNNECESSARY;
 
-pub const UNumberFormatPadPosition = extern enum(i32) {
+pub const UNumberFormatPadPosition = enum(i32) {
     BEFORE_PREFIX = 0,
     AFTER_PREFIX = 1,
     BEFORE_SUFFIX = 2,
@@ -7560,14 +7560,14 @@ pub const UNUM_PAD_AFTER_PREFIX = UNumberFormatPadPosition.AFTER_PREFIX;
 pub const UNUM_PAD_BEFORE_SUFFIX = UNumberFormatPadPosition.BEFORE_SUFFIX;
 pub const UNUM_PAD_AFTER_SUFFIX = UNumberFormatPadPosition.AFTER_SUFFIX;
 
-pub const UNumberCompactStyle = extern enum(i32) {
+pub const UNumberCompactStyle = enum(i32) {
     SHORT = 0,
     LONG = 1,
 };
 pub const UNUM_SHORT = UNumberCompactStyle.SHORT;
 pub const UNUM_LONG = UNumberCompactStyle.LONG;
 
-pub const UCurrencySpacing = extern enum(i32) {
+pub const UCurrencySpacing = enum(i32) {
     MATCH = 0,
     SURROUNDING_MATCH = 1,
     INSERT = 2,
@@ -7578,7 +7578,7 @@ pub const UNUM_CURRENCY_SURROUNDING_MATCH = UCurrencySpacing.SURROUNDING_MATCH;
 pub const UNUM_CURRENCY_INSERT = UCurrencySpacing.INSERT;
 pub const UNUM_CURRENCY_SPACING_COUNT = UCurrencySpacing.SPACING_COUNT;
 
-pub const UNumberFormatFields = extern enum(i32) {
+pub const UNumberFormatFields = enum(i32) {
     INTEGER_FIELD = 0,
     FRACTION_FIELD = 1,
     DECIMAL_SEPARATOR_FIELD = 2,
@@ -7603,12 +7603,12 @@ pub const UNUM_PERCENT_FIELD = UNumberFormatFields.PERCENT_FIELD;
 pub const UNUM_PERMILL_FIELD = UNumberFormatFields.PERMILL_FIELD;
 pub const UNUM_SIGN_FIELD = UNumberFormatFields.SIGN_FIELD;
 
-pub const UNumberFormatAttributeValue = extern enum(i32) {
+pub const UNumberFormatAttributeValue = enum(i32) {
     N = 0,
 };
 pub const UNUM_FORMAT_ATTRIBUTE_VALUE_HIDDEN = UNumberFormatAttributeValue.N;
 
-pub const UNumberFormatAttribute = extern enum(i32) {
+pub const UNumberFormatAttribute = enum(i32) {
     PARSE_INT_ONLY = 0,
     GROUPING_USED = 1,
     DECIMAL_ALWAYS_SHOWN = 2,
@@ -7663,7 +7663,7 @@ pub const UNUM_FORMAT_FAIL_IF_MORE_THAN_MAX_DIGITS = UNumberFormatAttribute.FORM
 pub const UNUM_PARSE_NO_EXPONENT = UNumberFormatAttribute.PARSE_NO_EXPONENT;
 pub const UNUM_PARSE_DECIMAL_MARK_REQUIRED = UNumberFormatAttribute.PARSE_DECIMAL_MARK_REQUIRED;
 
-pub const UNumberFormatTextAttribute = extern enum(i32) {
+pub const UNumberFormatTextAttribute = enum(i32) {
     POSITIVE_PREFIX = 0,
     POSITIVE_SUFFIX = 1,
     NEGATIVE_PREFIX = 2,
@@ -7682,7 +7682,7 @@ pub const UNUM_CURRENCY_CODE = UNumberFormatTextAttribute.CURRENCY_CODE;
 pub const UNUM_DEFAULT_RULESET = UNumberFormatTextAttribute.DEFAULT_RULESET;
 pub const UNUM_PUBLIC_RULESETS = UNumberFormatTextAttribute.PUBLIC_RULESETS;
 
-pub const UNumberFormatSymbol = extern enum(i32) {
+pub const UNumberFormatSymbol = enum(i32) {
     DECIMAL_SEPARATOR_SYMBOL = 0,
     GROUPING_SEPARATOR_SYMBOL = 1,
     PATTERN_SEPARATOR_SYMBOL = 2,
@@ -7741,14 +7741,14 @@ pub const UNUM_EIGHT_DIGIT_SYMBOL = UNumberFormatSymbol.EIGHT_DIGIT_SYMBOL;
 pub const UNUM_NINE_DIGIT_SYMBOL = UNumberFormatSymbol.NINE_DIGIT_SYMBOL;
 pub const UNUM_EXPONENT_MULTIPLICATION_SYMBOL = UNumberFormatSymbol.EXPONENT_MULTIPLICATION_SYMBOL;
 
-pub const UDateFormatStyle = extern enum(i32) {
+pub const UDateFormatStyle = enum(i32) {
     FULL = 0,
     LONG = 1,
     MEDIUM = 2,
     SHORT = 3,
-    DEFAULT = 2,
+    // DEFAULT = 2, this enum value conflicts with MEDIUM
     RELATIVE = 128,
-    FULL_RELATIVE = 128,
+    // FULL_RELATIVE = 128, this enum value conflicts with RELATIVE
     LONG_RELATIVE = 129,
     MEDIUM_RELATIVE = 130,
     SHORT_RELATIVE = 131,
@@ -7759,16 +7759,16 @@ pub const UDAT_FULL = UDateFormatStyle.FULL;
 pub const UDAT_LONG = UDateFormatStyle.LONG;
 pub const UDAT_MEDIUM = UDateFormatStyle.MEDIUM;
 pub const UDAT_SHORT = UDateFormatStyle.SHORT;
-pub const UDAT_DEFAULT = UDateFormatStyle.DEFAULT;
+pub const UDAT_DEFAULT = UDateFormatStyle.MEDIUM;
 pub const UDAT_RELATIVE = UDateFormatStyle.RELATIVE;
-pub const UDAT_FULL_RELATIVE = UDateFormatStyle.FULL_RELATIVE;
+pub const UDAT_FULL_RELATIVE = UDateFormatStyle.RELATIVE;
 pub const UDAT_LONG_RELATIVE = UDateFormatStyle.LONG_RELATIVE;
 pub const UDAT_MEDIUM_RELATIVE = UDateFormatStyle.MEDIUM_RELATIVE;
 pub const UDAT_SHORT_RELATIVE = UDateFormatStyle.SHORT_RELATIVE;
 pub const UDAT_NONE = UDateFormatStyle.NONE;
 pub const UDAT_PATTERN = UDateFormatStyle.PATTERN;
 
-pub const UDateFormatField = extern enum(i32) {
+pub const UDateFormatField = enum(i32) {
     ERA_FIELD = 0,
     YEAR_FIELD = 1,
     MONTH_FIELD = 2,
@@ -7843,7 +7843,7 @@ pub const UDAT_TIMEZONE_ISO_LOCAL_FIELD = UDateFormatField.TIMEZONE_ISO_LOCAL_FI
 pub const UDAT_AM_PM_MIDNIGHT_NOON_FIELD = UDateFormatField.AM_PM_MIDNIGHT_NOON_FIELD;
 pub const UDAT_FLEXIBLE_DAY_PERIOD_FIELD = UDateFormatField.FLEXIBLE_DAY_PERIOD_FIELD;
 
-pub const UDateFormatBooleanAttribute = extern enum(i32) {
+pub const UDateFormatBooleanAttribute = enum(i32) {
     PARSE_ALLOW_WHITESPACE = 0,
     PARSE_ALLOW_NUMERIC = 1,
     PARSE_PARTIAL_LITERAL_MATCH = 2,
@@ -7856,7 +7856,7 @@ pub const UDAT_PARSE_PARTIAL_LITERAL_MATCH = UDateFormatBooleanAttribute.PARSE_P
 pub const UDAT_PARSE_MULTIPLE_PATTERNS_FOR_MATCH = UDateFormatBooleanAttribute.PARSE_MULTIPLE_PATTERNS_FOR_MATCH;
 pub const UDAT_BOOLEAN_ATTRIBUTE_COUNT = UDateFormatBooleanAttribute.BOOLEAN_ATTRIBUTE_COUNT;
 
-pub const UDateFormatSymbolType = extern enum(i32) {
+pub const UDateFormatSymbolType = enum(i32) {
     ERAS = 0,
     MONTHS = 1,
     SHORT_MONTHS = 2,
@@ -7915,14 +7915,14 @@ pub const UDAT_ZODIAC_NAMES_WIDE = UDateFormatSymbolType.ZODIAC_NAMES_WIDE;
 pub const UDAT_ZODIAC_NAMES_ABBREVIATED = UDateFormatSymbolType.ZODIAC_NAMES_ABBREVIATED;
 pub const UDAT_ZODIAC_NAMES_NARROW = UDateFormatSymbolType.ZODIAC_NAMES_NARROW;
 
-pub const UPluralType = extern enum(i32) {
+pub const UPluralType = enum(i32) {
     CARDINAL = 0,
     ORDINAL = 1,
 };
 pub const UPLURAL_TYPE_CARDINAL = UPluralType.CARDINAL;
 pub const UPLURAL_TYPE_ORDINAL = UPluralType.ORDINAL;
 
-pub const URegexpFlag = extern enum(i32) {
+pub const URegexpFlag = enum(i32) {
     CASE_INSENSITIVE = 2,
     COMMENTS = 4,
     DOTALL = 32,
@@ -7951,7 +7951,7 @@ pub const URegexFindProgressCallback = fn(
     matchIndex: i64,
 ) callconv(@import("std").os.windows.WINAPI) i8;
 
-pub const URegionType = extern enum(i32) {
+pub const URegionType = enum(i32) {
     UNKNOWN = 0,
     TERRITORY = 1,
     WORLD = 2,
@@ -7968,7 +7968,7 @@ pub const URGN_SUBCONTINENT = URegionType.SUBCONTINENT;
 pub const URGN_GROUPING = URegionType.GROUPING;
 pub const URGN_DEPRECATED = URegionType.DEPRECATED;
 
-pub const UDateRelativeDateTimeFormatterStyle = extern enum(i32) {
+pub const UDateRelativeDateTimeFormatterStyle = enum(i32) {
     LONG = 0,
     SHORT = 1,
     NARROW = 2,
@@ -7977,7 +7977,7 @@ pub const UDAT_STYLE_LONG = UDateRelativeDateTimeFormatterStyle.LONG;
 pub const UDAT_STYLE_SHORT = UDateRelativeDateTimeFormatterStyle.SHORT;
 pub const UDAT_STYLE_NARROW = UDateRelativeDateTimeFormatterStyle.NARROW;
 
-pub const URelativeDateTimeUnit = extern enum(i32) {
+pub const URelativeDateTimeUnit = enum(i32) {
     YEAR = 0,
     QUARTER = 1,
     MONTH = 2,
@@ -8010,14 +8010,14 @@ pub const UDAT_REL_UNIT_THURSDAY = URelativeDateTimeUnit.THURSDAY;
 pub const UDAT_REL_UNIT_FRIDAY = URelativeDateTimeUnit.FRIDAY;
 pub const UDAT_REL_UNIT_SATURDAY = URelativeDateTimeUnit.SATURDAY;
 
-pub const USearchAttribute = extern enum(i32) {
+pub const USearchAttribute = enum(i32) {
     OVERLAP = 0,
     ELEMENT_COMPARISON = 2,
 };
 pub const USEARCH_OVERLAP = USearchAttribute.OVERLAP;
 pub const USEARCH_ELEMENT_COMPARISON = USearchAttribute.ELEMENT_COMPARISON;
 
-pub const USearchAttributeValue = extern enum(i32) {
+pub const USearchAttributeValue = enum(i32) {
     DEFAULT = -1,
     OFF = 0,
     ON = 1,
@@ -8032,7 +8032,7 @@ pub const USEARCH_STANDARD_ELEMENT_COMPARISON = USearchAttributeValue.STANDARD_E
 pub const USEARCH_PATTERN_BASE_WEIGHT_IS_WILDCARD = USearchAttributeValue.PATTERN_BASE_WEIGHT_IS_WILDCARD;
 pub const USEARCH_ANY_BASE_WEIGHT_IS_WILDCARD = USearchAttributeValue.ANY_BASE_WEIGHT_IS_WILDCARD;
 
-pub const USpoofChecks = extern enum(i32) {
+pub const USpoofChecks = enum(i32) {
     SINGLE_SCRIPT_CONFUSABLE = 1,
     MIXED_SCRIPT_CONFUSABLE = 2,
     WHOLE_SCRIPT_CONFUSABLE = 4,
@@ -8055,7 +8055,7 @@ pub const USPOOF_MIXED_NUMBERS = USpoofChecks.MIXED_NUMBERS;
 pub const USPOOF_ALL_CHECKS = USpoofChecks.ALL_CHECKS;
 pub const USPOOF_AUX_INFO = USpoofChecks.AUX_INFO;
 
-pub const URestrictionLevel = extern enum(i32) {
+pub const URestrictionLevel = enum(i32) {
     ASCII = 268435456,
     SINGLE_SCRIPT_RESTRICTIVE = 536870912,
     HIGHLY_RESTRICTIVE = 805306368,
@@ -8072,7 +8072,7 @@ pub const USPOOF_MINIMALLY_RESTRICTIVE = URestrictionLevel.MINIMALLY_RESTRICTIVE
 pub const USPOOF_UNRESTRICTIVE = URestrictionLevel.UNRESTRICTIVE;
 pub const USPOOF_RESTRICTION_LEVEL_MASK = URestrictionLevel.RESTRICTION_LEVEL_MASK;
 
-pub const UDateTimeScale = extern enum(i32) {
+pub const UDateTimeScale = enum(i32) {
     JAVA_TIME = 0,
     UNIX_TIME = 1,
     ICU4C_TIME = 2,
@@ -8095,7 +8095,7 @@ pub const UDTS_EXCEL_TIME = UDateTimeScale.EXCEL_TIME;
 pub const UDTS_DB2_TIME = UDateTimeScale.DB2_TIME;
 pub const UDTS_UNIX_MICROSECONDS_TIME = UDateTimeScale.UNIX_MICROSECONDS_TIME;
 
-pub const UTimeScaleValue = extern enum(i32) {
+pub const UTimeScaleValue = enum(i32) {
     UNITS_VALUE = 0,
     EPOCH_OFFSET_VALUE = 1,
     FROM_MIN_VALUE = 2,
@@ -8110,7 +8110,7 @@ pub const UTSV_FROM_MAX_VALUE = UTimeScaleValue.FROM_MAX_VALUE;
 pub const UTSV_TO_MIN_VALUE = UTimeScaleValue.TO_MIN_VALUE;
 pub const UTSV_TO_MAX_VALUE = UTimeScaleValue.TO_MAX_VALUE;
 
-pub const UTransDirection = extern enum(i32) {
+pub const UTransDirection = enum(i32) {
     FORWARD = 0,
     REVERSE = 1,
 };

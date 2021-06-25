@@ -23,7 +23,7 @@ pub const MAXULONG = @as(u32, 4294967295);
 //--------------------------------------------------------------------------------
 // Section: Types (31)
 //--------------------------------------------------------------------------------
-pub const EXCEPTION_DISPOSITION = extern enum(i32) {
+pub const EXCEPTION_DISPOSITION = enum(i32) {
     ContinueExecution = 0,
     ContinueSearch = 1,
     NestedException = 2,
@@ -34,7 +34,7 @@ pub const ExceptionContinueSearch = EXCEPTION_DISPOSITION.ContinueSearch;
 pub const ExceptionNestedException = EXCEPTION_DISPOSITION.NestedException;
 pub const ExceptionCollidedUnwind = EXCEPTION_DISPOSITION.CollidedUnwind;
 
-pub const COMPARTMENT_ID = extern enum(i32) {
+pub const COMPARTMENT_ID = enum(i32) {
     UNSPECIFIED_COMPARTMENT_ID = 0,
     DEFAULT_COMPARTMENT_ID = 1,
 };
@@ -96,21 +96,21 @@ pub const GROUP_AFFINITY = extern struct {
     Reserved: [3]u16,
 };
 
-pub const EVENT_TYPE = extern enum(i32) {
+pub const EVENT_TYPE = enum(i32) {
     NotificationEvent = 0,
     SynchronizationEvent = 1,
 };
 pub const NotificationEvent = EVENT_TYPE.NotificationEvent;
 pub const SynchronizationEvent = EVENT_TYPE.SynchronizationEvent;
 
-pub const TIMER_TYPE = extern enum(i32) {
+pub const TIMER_TYPE = enum(i32) {
     NotificationTimer = 0,
     SynchronizationTimer = 1,
 };
 pub const NotificationTimer = TIMER_TYPE.NotificationTimer;
 pub const SynchronizationTimer = TIMER_TYPE.SynchronizationTimer;
 
-pub const WAIT_TYPE = extern enum(i32) {
+pub const WAIT_TYPE = enum(i32) {
     All = 0,
     Any = 1,
     Notification = 2,
@@ -218,7 +218,7 @@ pub const EXCEPTION_ROUTINE = fn(
     DispatcherContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION;
 
-pub const NT_PRODUCT_TYPE = extern enum(i32) {
+pub const NT_PRODUCT_TYPE = enum(i32) {
     WinNt = 1,
     LanManNt = 2,
     Server = 3,
@@ -227,7 +227,7 @@ pub const NtProductWinNt = NT_PRODUCT_TYPE.WinNt;
 pub const NtProductLanManNt = NT_PRODUCT_TYPE.LanManNt;
 pub const NtProductServer = NT_PRODUCT_TYPE.Server;
 
-pub const SUITE_TYPE = extern enum(i32) {
+pub const SUITE_TYPE = enum(i32) {
     SmallBusiness = 0,
     Enterprise = 1,
     BackOffice = 2,

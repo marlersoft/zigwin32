@@ -33,21 +33,21 @@ pub const CLSID_UIAnimationTransitionFactory2 = &CLSID_UIAnimationTransitionFact
 const CLSID_UIAnimationTimer_Value = @import("../zig.zig").Guid.initString("bfcd4a0c-06b6-4384-b768-0daa792c380e");
 pub const CLSID_UIAnimationTimer = &CLSID_UIAnimationTimer_Value;
 
-pub const UI_ANIMATION_UPDATE_RESULT = extern enum(i32) {
+pub const UI_ANIMATION_UPDATE_RESULT = enum(i32) {
     NO_CHANGE = 0,
     VARIABLES_CHANGED = 1,
 };
 pub const UI_ANIMATION_UPDATE_NO_CHANGE = UI_ANIMATION_UPDATE_RESULT.NO_CHANGE;
 pub const UI_ANIMATION_UPDATE_VARIABLES_CHANGED = UI_ANIMATION_UPDATE_RESULT.VARIABLES_CHANGED;
 
-pub const UI_ANIMATION_MANAGER_STATUS = extern enum(i32) {
+pub const UI_ANIMATION_MANAGER_STATUS = enum(i32) {
     IDLE = 0,
     BUSY = 1,
 };
 pub const UI_ANIMATION_MANAGER_IDLE = UI_ANIMATION_MANAGER_STATUS.IDLE;
 pub const UI_ANIMATION_MANAGER_BUSY = UI_ANIMATION_MANAGER_STATUS.BUSY;
 
-pub const UI_ANIMATION_MODE = extern enum(i32) {
+pub const UI_ANIMATION_MODE = enum(i32) {
     DISABLED = 0,
     SYSTEM_DEFAULT = 1,
     ENABLED = 2,
@@ -56,7 +56,7 @@ pub const UI_ANIMATION_MODE_DISABLED = UI_ANIMATION_MODE.DISABLED;
 pub const UI_ANIMATION_MODE_SYSTEM_DEFAULT = UI_ANIMATION_MODE.SYSTEM_DEFAULT;
 pub const UI_ANIMATION_MODE_ENABLED = UI_ANIMATION_MODE.ENABLED;
 
-pub const UI_ANIMATION_REPEAT_MODE = extern enum(i32) {
+pub const UI_ANIMATION_REPEAT_MODE = enum(i32) {
     NORMAL = 0,
     ALTERNATE = 1,
 };
@@ -233,7 +233,7 @@ pub const IUIAnimationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_ROUNDING_MODE = extern enum(i32) {
+pub const UI_ANIMATION_ROUNDING_MODE = enum(i32) {
     NEAREST = 0,
     FLOOR = 1,
     CEILING = 2,
@@ -370,7 +370,7 @@ pub const IUIAnimationVariable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_STORYBOARD_STATUS = extern enum(i32) {
+pub const UI_ANIMATION_STORYBOARD_STATUS = enum(i32) {
     BUILDING = 0,
     SCHEDULED = 1,
     CANCELLED = 2,
@@ -389,7 +389,7 @@ pub const UI_ANIMATION_STORYBOARD_FINISHED = UI_ANIMATION_STORYBOARD_STATUS.FINI
 pub const UI_ANIMATION_STORYBOARD_READY = UI_ANIMATION_STORYBOARD_STATUS.READY;
 pub const UI_ANIMATION_STORYBOARD_INSUFFICIENT_PRIORITY = UI_ANIMATION_STORYBOARD_STATUS.INSUFFICIENT_PRIORITY;
 
-pub const UI_ANIMATION_SCHEDULING_RESULT = extern enum(i32) {
+pub const UI_ANIMATION_SCHEDULING_RESULT = enum(i32) {
     UNEXPECTED_FAILURE = 0,
     INSUFFICIENT_PRIORITY = 1,
     ALREADY_SCHEDULED = 2,
@@ -714,7 +714,7 @@ pub const IUIAnimationStoryboardEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_PRIORITY_EFFECT = extern enum(i32) {
+pub const UI_ANIMATION_PRIORITY_EFFECT = enum(i32) {
     FAILURE = 0,
     DELAY = 1,
 };
@@ -745,7 +745,7 @@ pub const IUIAnimationPriorityComparison = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_SLOPE = extern enum(i32) {
+pub const UI_ANIMATION_SLOPE = enum(i32) {
     INCREASING = 0,
     DECREASING = 1,
 };
@@ -891,7 +891,7 @@ pub const IUIAnimationTransitionLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_DEPENDENCIES = extern enum(u32) {
+pub const UI_ANIMATION_DEPENDENCIES = enum(u32) {
     NONE = 0,
     INTERMEDIATE_VALUES = 1,
     FINAL_VALUE = 2,
@@ -1018,7 +1018,7 @@ pub const IUIAnimationTransitionFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_IDLE_BEHAVIOR = extern enum(i32) {
+pub const UI_ANIMATION_IDLE_BEHAVIOR = enum(i32) {
     CONTINUE = 0,
     DISABLE = 1,
 };
@@ -1131,7 +1131,7 @@ pub const IUIAnimationTimerUpdateHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_TIMER_CLIENT_STATUS = extern enum(i32) {
+pub const UI_ANIMATION_TIMER_CLIENT_STATUS = enum(i32) {
     IDLE = 0,
     BUSY = 1,
 };

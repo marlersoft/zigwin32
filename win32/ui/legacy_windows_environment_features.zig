@@ -179,7 +179,7 @@ pub const IReconcileInitiator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _reconcilef = extern enum(i32) {
+pub const _reconcilef = enum(i32) {
     RECONCILEF_MAYBOTHERUSER = 1,
     RECONCILEF_FEEDBACKWINDOWVALID = 2,
     RECONCILEF_NORESIDUESOK = 4,

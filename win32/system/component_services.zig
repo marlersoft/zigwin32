@@ -365,7 +365,7 @@ pub const ICOMAdminCatalog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const COMAdminInUse = extern enum(i32) {
+pub const COMAdminInUse = enum(i32) {
     NotInUse = 0,
     InUseByCatalog = 1,
     InUseByRegistryUnknown = 2,
@@ -922,14 +922,14 @@ pub const ICatalogCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const COMAdminComponentType = extern enum(i32) {
+pub const COMAdminComponentType = enum(i32) {
     @"32BitComponent" = 1,
     @"64BitComponent" = 2,
 };
 pub const COMAdmin32BitComponent = COMAdminComponentType.@"32BitComponent";
 pub const COMAdmin64BitComponent = COMAdminComponentType.@"64BitComponent";
 
-pub const COMAdminApplicationInstallOptions = extern enum(i32) {
+pub const COMAdminApplicationInstallOptions = enum(i32) {
     NoUsers = 0,
     Users = 1,
     ForceOverwriteOfFiles = 2,
@@ -938,7 +938,7 @@ pub const COMAdminInstallNoUsers = COMAdminApplicationInstallOptions.NoUsers;
 pub const COMAdminInstallUsers = COMAdminApplicationInstallOptions.Users;
 pub const COMAdminInstallForceOverwriteOfFiles = COMAdminApplicationInstallOptions.ForceOverwriteOfFiles;
 
-pub const COMAdminApplicationExportOptions = extern enum(i32) {
+pub const COMAdminApplicationExportOptions = enum(i32) {
     NoUsers = 0,
     Users = 1,
     ApplicationProxy = 2,
@@ -951,7 +951,7 @@ pub const COMAdminExportApplicationProxy = COMAdminApplicationExportOptions.Appl
 pub const COMAdminExportForceOverwriteOfFiles = COMAdminApplicationExportOptions.ForceOverwriteOfFiles;
 pub const COMAdminExportIn10Format = COMAdminApplicationExportOptions.In10Format;
 
-pub const COMAdminThreadingModels = extern enum(i32) {
+pub const COMAdminThreadingModels = enum(i32) {
     Apartment = 0,
     Free = 1,
     Main = 2,
@@ -966,7 +966,7 @@ pub const COMAdminThreadingModelBoth = COMAdminThreadingModels.Both;
 pub const COMAdminThreadingModelNeutral = COMAdminThreadingModels.Neutral;
 pub const COMAdminThreadingModelNotSpecified = COMAdminThreadingModels.NotSpecified;
 
-pub const COMAdminTransactionOptions = extern enum(i32) {
+pub const COMAdminTransactionOptions = enum(i32) {
     Ignored = 0,
     None = 1,
     Supported = 2,
@@ -979,7 +979,7 @@ pub const COMAdminTransactionSupported = COMAdminTransactionOptions.Supported;
 pub const COMAdminTransactionRequired = COMAdminTransactionOptions.Required;
 pub const COMAdminTransactionRequiresNew = COMAdminTransactionOptions.RequiresNew;
 
-pub const COMAdminTxIsolationLevelOptions = extern enum(i32) {
+pub const COMAdminTxIsolationLevelOptions = enum(i32) {
     Any = 0,
     ReadUnCommitted = 1,
     ReadCommitted = 2,
@@ -992,7 +992,7 @@ pub const COMAdminTxIsolationLevelReadCommitted = COMAdminTxIsolationLevelOption
 pub const COMAdminTxIsolationLevelRepeatableRead = COMAdminTxIsolationLevelOptions.RepeatableRead;
 pub const COMAdminTxIsolationLevelSerializable = COMAdminTxIsolationLevelOptions.Serializable;
 
-pub const COMAdminSynchronizationOptions = extern enum(i32) {
+pub const COMAdminSynchronizationOptions = enum(i32) {
     Ignored = 0,
     None = 1,
     Supported = 2,
@@ -1005,21 +1005,21 @@ pub const COMAdminSynchronizationSupported = COMAdminSynchronizationOptions.Supp
 pub const COMAdminSynchronizationRequired = COMAdminSynchronizationOptions.Required;
 pub const COMAdminSynchronizationRequiresNew = COMAdminSynchronizationOptions.RequiresNew;
 
-pub const COMAdminActivationOptions = extern enum(i32) {
+pub const COMAdminActivationOptions = enum(i32) {
     Inproc = 0,
     Local = 1,
 };
 pub const COMAdminActivationInproc = COMAdminActivationOptions.Inproc;
 pub const COMAdminActivationLocal = COMAdminActivationOptions.Local;
 
-pub const COMAdminAccessChecksLevelOptions = extern enum(i32) {
+pub const COMAdminAccessChecksLevelOptions = enum(i32) {
     Level = 0,
     ComponentLevel = 1,
 };
 pub const COMAdminAccessChecksApplicationLevel = COMAdminAccessChecksLevelOptions.Level;
 pub const COMAdminAccessChecksApplicationComponentLevel = COMAdminAccessChecksLevelOptions.ComponentLevel;
 
-pub const COMAdminAuthenticationLevelOptions = extern enum(i32) {
+pub const COMAdminAuthenticationLevelOptions = enum(i32) {
     Default = 0,
     None = 1,
     Connect = 2,
@@ -1036,7 +1036,7 @@ pub const COMAdminAuthenticationPacket = COMAdminAuthenticationLevelOptions.Pack
 pub const COMAdminAuthenticationIntegrity = COMAdminAuthenticationLevelOptions.Integrity;
 pub const COMAdminAuthenticationPrivacy = COMAdminAuthenticationLevelOptions.Privacy;
 
-pub const COMAdminImpersonationLevelOptions = extern enum(i32) {
+pub const COMAdminImpersonationLevelOptions = enum(i32) {
     Anonymous = 1,
     Identify = 2,
     Impersonate = 3,
@@ -1047,7 +1047,7 @@ pub const COMAdminImpersonationIdentify = COMAdminImpersonationLevelOptions.Iden
 pub const COMAdminImpersonationImpersonate = COMAdminImpersonationLevelOptions.Impersonate;
 pub const COMAdminImpersonationDelegate = COMAdminImpersonationLevelOptions.Delegate;
 
-pub const COMAdminAuthenticationCapabilitiesOptions = extern enum(i32) {
+pub const COMAdminAuthenticationCapabilitiesOptions = enum(i32) {
     None = 0,
     SecureReference = 2,
     StaticCloaking = 32,
@@ -1058,7 +1058,7 @@ pub const COMAdminAuthenticationCapabilitiesSecureReference = COMAdminAuthentica
 pub const COMAdminAuthenticationCapabilitiesStaticCloaking = COMAdminAuthenticationCapabilitiesOptions.StaticCloaking;
 pub const COMAdminAuthenticationCapabilitiesDynamicCloaking = COMAdminAuthenticationCapabilitiesOptions.DynamicCloaking;
 
-pub const COMAdminOS = extern enum(i32) {
+pub const COMAdminOS = enum(i32) {
     NotInitialized = 0,
     Windows3_1 = 1,
     Windows9x = 2,
@@ -1135,12 +1135,12 @@ pub const COMAdminOSWindowsBlueEnterpriseServer = COMAdminOS.WindowsBlueEnterpri
 pub const COMAdminOSWindowsBlueDatacenterServer = COMAdminOS.WindowsBlueDatacenterServer;
 pub const COMAdminOSWindowsBlueWebServer = COMAdminOS.WindowsBlueWebServer;
 
-pub const COMAdminServiceOptions = extern enum(i32) {
+pub const COMAdminServiceOptions = enum(i32) {
     r = 1,
 };
 pub const COMAdminServiceLoadBalanceRouter = COMAdminServiceOptions.r;
 
-pub const COMAdminServiceStatusOptions = extern enum(i32) {
+pub const COMAdminServiceStatusOptions = enum(i32) {
     Stopped = 0,
     StartPending = 1,
     StopPending = 2,
@@ -1159,7 +1159,7 @@ pub const COMAdminServicePausePending = COMAdminServiceStatusOptions.PausePendin
 pub const COMAdminServicePaused = COMAdminServiceStatusOptions.Paused;
 pub const COMAdminServiceUnknownState = COMAdminServiceStatusOptions.UnknownState;
 
-pub const COMAdminQCMessageAuthenticateOptions = extern enum(i32) {
+pub const COMAdminQCMessageAuthenticateOptions = enum(i32) {
     SecureApps = 0,
     Off = 1,
     On = 2,
@@ -1168,7 +1168,7 @@ pub const COMAdminQCMessageAuthenticateSecureApps = COMAdminQCMessageAuthenticat
 pub const COMAdminQCMessageAuthenticateOff = COMAdminQCMessageAuthenticateOptions.Off;
 pub const COMAdminQCMessageAuthenticateOn = COMAdminQCMessageAuthenticateOptions.On;
 
-pub const COMAdminFileFlags = extern enum(i32) {
+pub const COMAdminFileFlags = enum(i32) {
     Loadable = 1,
     COM = 2,
     ContainsPS = 4,
@@ -1209,7 +1209,7 @@ pub const COMAdminFileFlagRegTLBFailed = COMAdminFileFlags.RegTLBFailed;
 pub const COMAdminFileFlagRegistrarFailed = COMAdminFileFlags.RegistrarFailed;
 pub const COMAdminFileFlagError = COMAdminFileFlags.Error;
 
-pub const COMAdminComponentFlags = extern enum(i32) {
+pub const COMAdminComponentFlags = enum(i32) {
     TypeInfoFound = 1,
     COMPlusPropertiesFound = 2,
     ProxyFound = 4,
@@ -1224,7 +1224,7 @@ pub const COMAdminCompFlagInterfacesFound = COMAdminComponentFlags.InterfacesFou
 pub const COMAdminCompFlagAlreadyInstalled = COMAdminComponentFlags.AlreadyInstalled;
 pub const COMAdminCompFlagNotInApplication = COMAdminComponentFlags.NotInApplication;
 
-pub const COMAdminErrorCodes = extern enum(i32) {
+pub const COMAdminErrorCodes = enum(i32) {
     ObjectErrors = -2146368511,
     ObjectInvalid = -2146368510,
     KeyMissing = -2146368509,
@@ -1407,31 +1407,31 @@ pub const BOID = extern struct {
     rgb: [16]u8,
 };
 
-pub const TX_MISC_CONSTANTS = extern enum(i32) {
+pub const TX_MISC_CONSTANTS = enum(i32) {
     C = 40,
 };
 pub const MAX_TRAN_DESC = TX_MISC_CONSTANTS.C;
 
-pub const ISOLATIONLEVEL = extern enum(i32) {
+pub const ISOLATIONLEVEL = enum(i32) {
     UNSPECIFIED = -1,
     CHAOS = 16,
     READUNCOMMITTED = 256,
-    BROWSE = 256,
+    // BROWSE = 256, this enum value conflicts with READUNCOMMITTED
     CURSORSTABILITY = 4096,
-    READCOMMITTED = 4096,
+    // READCOMMITTED = 4096, this enum value conflicts with CURSORSTABILITY
     REPEATABLEREAD = 65536,
     SERIALIZABLE = 1048576,
-    ISOLATED = 1048576,
+    // ISOLATED = 1048576, this enum value conflicts with SERIALIZABLE
 };
 pub const ISOLATIONLEVEL_UNSPECIFIED = ISOLATIONLEVEL.UNSPECIFIED;
 pub const ISOLATIONLEVEL_CHAOS = ISOLATIONLEVEL.CHAOS;
 pub const ISOLATIONLEVEL_READUNCOMMITTED = ISOLATIONLEVEL.READUNCOMMITTED;
-pub const ISOLATIONLEVEL_BROWSE = ISOLATIONLEVEL.BROWSE;
+pub const ISOLATIONLEVEL_BROWSE = ISOLATIONLEVEL.READUNCOMMITTED;
 pub const ISOLATIONLEVEL_CURSORSTABILITY = ISOLATIONLEVEL.CURSORSTABILITY;
-pub const ISOLATIONLEVEL_READCOMMITTED = ISOLATIONLEVEL.READCOMMITTED;
+pub const ISOLATIONLEVEL_READCOMMITTED = ISOLATIONLEVEL.CURSORSTABILITY;
 pub const ISOLATIONLEVEL_REPEATABLEREAD = ISOLATIONLEVEL.REPEATABLEREAD;
 pub const ISOLATIONLEVEL_SERIALIZABLE = ISOLATIONLEVEL.SERIALIZABLE;
-pub const ISOLATIONLEVEL_ISOLATED = ISOLATIONLEVEL.ISOLATED;
+pub const ISOLATIONLEVEL_ISOLATED = ISOLATIONLEVEL.SERIALIZABLE;
 
 pub const XACTTRANSINFO = extern struct {
     uow: BOID,
@@ -1454,7 +1454,7 @@ pub const XACTSTATS = extern struct {
     timeTransactionsUp: FILETIME,
 };
 
-pub const ISOFLAG = extern enum(i32) {
+pub const ISOFLAG = enum(i32) {
     RETAIN_COMMIT_DC = 1,
     RETAIN_COMMIT = 2,
     RETAIN_COMMIT_NO = 3,
@@ -1479,34 +1479,34 @@ pub const ISOFLAG_RETAIN_NONE = ISOFLAG.RETAIN_NONE;
 pub const ISOFLAG_OPTIMISTIC = ISOFLAG.OPTIMISTIC;
 pub const ISOFLAG_READONLY = ISOFLAG.READONLY;
 
-pub const XACTTC = extern enum(i32) {
+pub const XACTTC = enum(i32) {
     NONE = 0,
     SYNC_PHASEONE = 1,
     SYNC_PHASETWO = 2,
-    SYNC = 2,
+    // SYNC = 2, this enum value conflicts with SYNC_PHASETWO
     ASYNC_PHASEONE = 4,
-    ASYNC = 4,
+    // ASYNC = 4, this enum value conflicts with ASYNC_PHASEONE
 };
 pub const XACTTC_NONE = XACTTC.NONE;
 pub const XACTTC_SYNC_PHASEONE = XACTTC.SYNC_PHASEONE;
 pub const XACTTC_SYNC_PHASETWO = XACTTC.SYNC_PHASETWO;
-pub const XACTTC_SYNC = XACTTC.SYNC;
+pub const XACTTC_SYNC = XACTTC.SYNC_PHASETWO;
 pub const XACTTC_ASYNC_PHASEONE = XACTTC.ASYNC_PHASEONE;
-pub const XACTTC_ASYNC = XACTTC.ASYNC;
+pub const XACTTC_ASYNC = XACTTC.ASYNC_PHASEONE;
 
-pub const XACTRM = extern enum(i32) {
+pub const XACTRM = enum(i32) {
     OPTIMISTICLASTWINS = 1,
     NOREADONLYPREPARES = 2,
 };
 pub const XACTRM_OPTIMISTICLASTWINS = XACTRM.OPTIMISTICLASTWINS;
 pub const XACTRM_NOREADONLYPREPARES = XACTRM.NOREADONLYPREPARES;
 
-pub const XACTCONST = extern enum(i32) {
+pub const XACTCONST = enum(i32) {
     E = 0,
 };
 pub const XACTCONST_TIMEOUTINFINITE = XACTCONST.E;
 
-pub const XACTHEURISTIC = extern enum(i32) {
+pub const XACTHEURISTIC = enum(i32) {
     ABORT = 1,
     COMMIT = 2,
     DAMAGE = 3,
@@ -1517,7 +1517,7 @@ pub const XACTHEURISTIC_COMMIT = XACTHEURISTIC.COMMIT;
 pub const XACTHEURISTIC_DAMAGE = XACTHEURISTIC.DAMAGE;
 pub const XACTHEURISTIC_DANGER = XACTHEURISTIC.DANGER;
 
-pub const XACTSTAT = extern enum(i32) {
+pub const XACTSTAT = enum(i32) {
     NONE = 0,
     OPENNORMAL = 1,
     OPENREFUSED = 2,
@@ -2334,7 +2334,7 @@ pub const IDtcNetworkAccessConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AUTHENTICATION_LEVEL = extern enum(i32) {
+pub const AUTHENTICATION_LEVEL = enum(i32) {
     NO_AUTHENTICATION_REQUIRED = 0,
     INCOMING_AUTHENTICATION_REQUIRED = 1,
     MUTUAL_AUTHENTICATION_REQUIRED = 2,
@@ -2433,7 +2433,7 @@ pub const IDtcNetworkAccessConfig3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const XACT_DTC_CONSTANTS = extern enum(i32) {
+pub const XACT_DTC_CONSTANTS = enum(i32) {
     XACT_E_CONNECTION_REQUEST_DENIED = -2147168000,
     XACT_E_TOOMANY_ENLISTMENTS = -2147167999,
     XACT_E_DUPLICATE_GUID = -2147167998,
@@ -3303,7 +3303,7 @@ pub const IDtcLuRecoveryFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _DtcLu_LocalRecovery_Work = extern enum(i32) {
+pub const _DtcLu_LocalRecovery_Work = enum(i32) {
     CHECKLUSTATUS = 1,
     TRANS = 2,
     TMDOWN = 3,
@@ -3312,14 +3312,14 @@ pub const DTCINITIATEDRECOVERYWORK_CHECKLUSTATUS = _DtcLu_LocalRecovery_Work.CHE
 pub const DTCINITIATEDRECOVERYWORK_TRANS = _DtcLu_LocalRecovery_Work.TRANS;
 pub const DTCINITIATEDRECOVERYWORK_TMDOWN = _DtcLu_LocalRecovery_Work.TMDOWN;
 
-pub const _DtcLu_Xln = extern enum(i32) {
+pub const _DtcLu_Xln = enum(i32) {
     COLD = 1,
     WARM = 2,
 };
 pub const DTCLUXLN_COLD = _DtcLu_Xln.COLD;
 pub const DTCLUXLN_WARM = _DtcLu_Xln.WARM;
 
-pub const _DtcLu_Xln_Confirmation = extern enum(i32) {
+pub const _DtcLu_Xln_Confirmation = enum(i32) {
     CONFIRM = 1,
     LOGNAMEMISMATCH = 2,
     COLDWARMMISMATCH = 3,
@@ -3330,7 +3330,7 @@ pub const DTCLUXLNCONFIRMATION_LOGNAMEMISMATCH = _DtcLu_Xln_Confirmation.LOGNAME
 pub const DTCLUXLNCONFIRMATION_COLDWARMMISMATCH = _DtcLu_Xln_Confirmation.COLDWARMMISMATCH;
 pub const DTCLUXLNCONFIRMATION_OBSOLETE = _DtcLu_Xln_Confirmation.OBSOLETE;
 
-pub const _DtcLu_Xln_Response = extern enum(i32) {
+pub const _DtcLu_Xln_Response = enum(i32) {
     OK_SENDOURXLNBACK = 1,
     OK_SENDCONFIRMATION = 2,
     LOGNAMEMISMATCH = 3,
@@ -3341,7 +3341,7 @@ pub const DTCLUXLNRESPONSE_OK_SENDCONFIRMATION = _DtcLu_Xln_Response.OK_SENDCONF
 pub const DTCLUXLNRESPONSE_LOGNAMEMISMATCH = _DtcLu_Xln_Response.LOGNAMEMISMATCH;
 pub const DTCLUXLNRESPONSE_COLDWARMMISMATCH = _DtcLu_Xln_Response.COLDWARMMISMATCH;
 
-pub const _DtcLu_Xln_Error = extern enum(i32) {
+pub const _DtcLu_Xln_Error = enum(i32) {
     PROTOCOL = 1,
     LOGNAMEMISMATCH = 2,
     COLDWARMMISMATCH = 3,
@@ -3350,7 +3350,7 @@ pub const DTCLUXLNERROR_PROTOCOL = _DtcLu_Xln_Error.PROTOCOL;
 pub const DTCLUXLNERROR_LOGNAMEMISMATCH = _DtcLu_Xln_Error.LOGNAMEMISMATCH;
 pub const DTCLUXLNERROR_COLDWARMMISMATCH = _DtcLu_Xln_Error.COLDWARMMISMATCH;
 
-pub const _DtcLu_CompareState = extern enum(i32) {
+pub const _DtcLu_CompareState = enum(i32) {
     COMMITTED = 1,
     HEURISTICCOMMITTED = 2,
     HEURISTICMIXED = 3,
@@ -3365,19 +3365,19 @@ pub const DTCLUCOMPARESTATE_HEURISTICRESET = _DtcLu_CompareState.HEURISTICRESET;
 pub const DTCLUCOMPARESTATE_INDOUBT = _DtcLu_CompareState.INDOUBT;
 pub const DTCLUCOMPARESTATE_RESET = _DtcLu_CompareState.RESET;
 
-pub const _DtcLu_CompareStates_Confirmation = extern enum(i32) {
+pub const _DtcLu_CompareStates_Confirmation = enum(i32) {
     CONFIRM = 1,
     PROTOCOL = 2,
 };
 pub const DTCLUCOMPARESTATESCONFIRMATION_CONFIRM = _DtcLu_CompareStates_Confirmation.CONFIRM;
 pub const DTCLUCOMPARESTATESCONFIRMATION_PROTOCOL = _DtcLu_CompareStates_Confirmation.PROTOCOL;
 
-pub const _DtcLu_CompareStates_Error = extern enum(i32) {
+pub const _DtcLu_CompareStates_Error = enum(i32) {
     L = 1,
 };
 pub const DTCLUCOMPARESTATESERROR_PROTOCOL = _DtcLu_CompareStates_Error.L;
 
-pub const _DtcLu_CompareStates_Response = extern enum(i32) {
+pub const _DtcLu_CompareStates_Response = enum(i32) {
     OK = 1,
     PROTOCOL = 2,
 };
@@ -5839,7 +5839,7 @@ pub const IComTrackingInfoEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TRACKING_COLL_TYPE = extern enum(i32) {
+pub const TRACKING_COLL_TYPE = enum(i32) {
     PROCESSES = 0,
     APPLICATIONS = 1,
     COMPONENTS = 2,
@@ -6524,7 +6524,7 @@ pub const RECYCLE_INFO = extern struct {
     dwRecycleExpirationTimeout: u32,
 };
 
-pub const DUMPTYPE = extern enum(i32) {
+pub const DUMPTYPE = enum(i32) {
     FULL = 0,
     MINI = 1,
     NONE = 2,
@@ -6542,7 +6542,7 @@ pub const HANG_INFO = extern struct {
     dwInfoMsgCount: u32,
 };
 
-pub const COMPLUS_APPTYPE = extern enum(i32) {
+pub const COMPLUS_APPTYPE = enum(i32) {
     UNKNOWN = -1,
     SERVER = 1,
     LIBRARY = 0,
@@ -6594,7 +6594,7 @@ pub const CCLSIDData2 = extern struct {
     m_cCallsFailed: u32,
 };
 
-pub const GetAppTrackerDataFlags = extern enum(i32) {
+pub const GetAppTrackerDataFlags = enum(i32) {
     PROCESS_EXE_NAME = 1,
     LIBRARY_APPS = 2,
     SWC = 4,
@@ -7741,7 +7741,7 @@ pub const IGetContextProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TransactionVote = extern enum(i32) {
+pub const TransactionVote = enum(i32) {
     Commit = 0,
     Abort = 1,
 };
@@ -8158,7 +8158,7 @@ pub const ICrmCompensator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CrmTransactionState = extern enum(i32) {
+pub const CrmTransactionState = enum(i32) {
     Active = 0,
     Committed = 1,
     Aborted = 2,
@@ -8384,14 +8384,14 @@ pub const ICrmFormatLogRecords = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CSC_InheritanceConfig = extern enum(i32) {
+pub const CSC_InheritanceConfig = enum(i32) {
     nherit = 0,
     gnore = 1,
 };
 pub const CSC_Inherit = CSC_InheritanceConfig.nherit;
 pub const CSC_Ignore = CSC_InheritanceConfig.gnore;
 
-pub const CSC_ThreadPool = extern enum(i32) {
+pub const CSC_ThreadPool = enum(i32) {
     ThreadPoolNone = 0,
     ThreadPoolInherit = 1,
     STAThreadPool = 2,
@@ -8402,14 +8402,14 @@ pub const CSC_ThreadPoolInherit = CSC_ThreadPool.ThreadPoolInherit;
 pub const CSC_STAThreadPool = CSC_ThreadPool.STAThreadPool;
 pub const CSC_MTAThreadPool = CSC_ThreadPool.MTAThreadPool;
 
-pub const CSC_Binding = extern enum(i32) {
+pub const CSC_Binding = enum(i32) {
     NoBinding = 0,
     BindToPoolThread = 1,
 };
 pub const CSC_NoBinding = CSC_Binding.NoBinding;
 pub const CSC_BindToPoolThread = CSC_Binding.BindToPoolThread;
 
-pub const CSC_TransactionConfig = extern enum(i32) {
+pub const CSC_TransactionConfig = enum(i32) {
     NoTransaction = 0,
     IfContainerIsTransactional = 1,
     CreateTransactionIfNecessary = 2,
@@ -8420,7 +8420,7 @@ pub const CSC_IfContainerIsTransactional = CSC_TransactionConfig.IfContainerIsTr
 pub const CSC_CreateTransactionIfNecessary = CSC_TransactionConfig.CreateTransactionIfNecessary;
 pub const CSC_NewTransaction = CSC_TransactionConfig.NewTransaction;
 
-pub const CSC_SynchronizationConfig = extern enum(i32) {
+pub const CSC_SynchronizationConfig = enum(i32) {
     NoSynchronization = 0,
     IfContainerIsSynchronized = 1,
     NewSynchronizationIfNecessary = 2,
@@ -8431,14 +8431,14 @@ pub const CSC_IfContainerIsSynchronized = CSC_SynchronizationConfig.IfContainerI
 pub const CSC_NewSynchronizationIfNecessary = CSC_SynchronizationConfig.NewSynchronizationIfNecessary;
 pub const CSC_NewSynchronization = CSC_SynchronizationConfig.NewSynchronization;
 
-pub const CSC_TrackerConfig = extern enum(i32) {
+pub const CSC_TrackerConfig = enum(i32) {
     DontUseTracker = 0,
     UseTracker = 1,
 };
 pub const CSC_DontUseTracker = CSC_TrackerConfig.DontUseTracker;
 pub const CSC_UseTracker = CSC_TrackerConfig.UseTracker;
 
-pub const CSC_PartitionConfig = extern enum(i32) {
+pub const CSC_PartitionConfig = enum(i32) {
     NoPartition = 0,
     InheritPartition = 1,
     NewPartition = 2,
@@ -8447,21 +8447,21 @@ pub const CSC_NoPartition = CSC_PartitionConfig.NoPartition;
 pub const CSC_InheritPartition = CSC_PartitionConfig.InheritPartition;
 pub const CSC_NewPartition = CSC_PartitionConfig.NewPartition;
 
-pub const CSC_IISIntrinsicsConfig = extern enum(i32) {
+pub const CSC_IISIntrinsicsConfig = enum(i32) {
     NoIISIntrinsics = 0,
     InheritIISIntrinsics = 1,
 };
 pub const CSC_NoIISIntrinsics = CSC_IISIntrinsicsConfig.NoIISIntrinsics;
 pub const CSC_InheritIISIntrinsics = CSC_IISIntrinsicsConfig.InheritIISIntrinsics;
 
-pub const CSC_COMTIIntrinsicsConfig = extern enum(i32) {
+pub const CSC_COMTIIntrinsicsConfig = enum(i32) {
     NoCOMTIIntrinsics = 0,
     InheritCOMTIIntrinsics = 1,
 };
 pub const CSC_NoCOMTIIntrinsics = CSC_COMTIIntrinsicsConfig.NoCOMTIIntrinsics;
 pub const CSC_InheritCOMTIIntrinsics = CSC_COMTIIntrinsicsConfig.InheritCOMTIIntrinsics;
 
-pub const CSC_SxsConfig = extern enum(i32) {
+pub const CSC_SxsConfig = enum(i32) {
     NoSxs = 0,
     InheritSxs = 1,
     NewSxs = 2,
@@ -9974,7 +9974,7 @@ pub const IMTSActivity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AutoSvcs_Error_Constants = extern enum(u32) {
+pub const AutoSvcs_Error_Constants = enum(u32) {
     mtsErrCtxAborted = 2147803138,
     mtsErrCtxAborting = 2147803139,
     mtsErrCtxNoContext = 2147803140,
@@ -10029,21 +10029,21 @@ pub const comqcErrMsgNotAuthenticated = AutoSvcs_Error_Constants.comqcErrMsgNotA
 pub const comqcErrMsmqConnectorUsed = AutoSvcs_Error_Constants.comqcErrMsmqConnectorUsed;
 pub const comqcErrBadMarshaledObject = AutoSvcs_Error_Constants.comqcErrBadMarshaledObject;
 
-pub const LockModes = extern enum(i32) {
+pub const LockModes = enum(i32) {
     SetGet = 0,
     Method = 1,
 };
 pub const LockSetGet = LockModes.SetGet;
 pub const LockMethod = LockModes.Method;
 
-pub const ReleaseModes = extern enum(i32) {
+pub const ReleaseModes = enum(i32) {
     Standard = 0,
     Process = 1,
 };
 pub const Standard = ReleaseModes.Standard;
 pub const Process = ReleaseModes.Process;
 
-pub const CRMFLAGS = extern enum(i32) {
+pub const CRMFLAGS = enum(i32) {
     FORGETTARGET = 1,
     WRITTENDURINGPREPARE = 2,
     WRITTENDURINGCOMMIT = 4,
@@ -10060,7 +10060,7 @@ pub const CRMFLAG_WRITTENDURINGRECOVERY = CRMFLAGS.WRITTENDURINGRECOVERY;
 pub const CRMFLAG_WRITTENDURINGREPLAY = CRMFLAGS.WRITTENDURINGREPLAY;
 pub const CRMFLAG_REPLAYINPROGRESS = CRMFLAGS.REPLAYINPROGRESS;
 
-pub const CRMREGFLAGS = extern enum(i32) {
+pub const CRMREGFLAGS = enum(i32) {
     PREPAREPHASE = 1,
     COMMITPHASE = 2,
     ABORTPHASE = 4,

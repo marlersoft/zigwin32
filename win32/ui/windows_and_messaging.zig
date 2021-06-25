@@ -1549,7 +1549,7 @@ pub const DESKTOPENUMPROCW = fn(
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DI_FLAGS = extern enum(u32) {
+pub const DI_FLAGS = enum(u32) {
     MASK = 1,
     IMAGE = 2,
     NORMAL = 3,
@@ -1599,7 +1599,7 @@ pub const MESSAGE_RESOURCE_DATA = extern struct {
     Blocks: [1]MESSAGE_RESOURCE_BLOCK,
 };
 
-pub const WNDCLASS_STYLES = extern enum(u32) {
+pub const WNDCLASS_STYLES = enum(u32) {
     VREDRAW = 1,
     HREDRAW = 2,
     DBLCLKS = 8,
@@ -1660,7 +1660,7 @@ pub const CS_GLOBALCLASS = WNDCLASS_STYLES.GLOBALCLASS;
 pub const CS_IME = WNDCLASS_STYLES.IME;
 pub const CS_DROPSHADOW = WNDCLASS_STYLES.DROPSHADOW;
 
-pub const CWP_FLAGS = extern enum(u32) {
+pub const CWP_FLAGS = enum(u32) {
     ALL = 0,
     SKIPINVISIBLE = 1,
     SKIPDISABLED = 2,
@@ -1685,7 +1685,7 @@ pub const CWP_SKIPINVISIBLE = CWP_FLAGS.SKIPINVISIBLE;
 pub const CWP_SKIPDISABLED = CWP_FLAGS.SKIPDISABLED;
 pub const CWP_SKIPTRANSPARENT = CWP_FLAGS.SKIPTRANSPARENT;
 
-pub const MESSAGEBOX_STYLE = extern enum(u32) {
+pub const MESSAGEBOX_STYLE = enum(u32) {
     ABORTRETRYIGNORE = 2,
     CANCELTRYCONTINUE = 6,
     HELP = 16384,
@@ -1699,15 +1699,15 @@ pub const MESSAGEBOX_STYLE = extern enum(u32) {
     ICONEXCLAMATION = 48,
     ICONASTERISK = 64,
     USERICON = 128,
-    ICONWARNING = 48,
-    ICONERROR = 16,
-    ICONINFORMATION = 64,
-    ICONSTOP = 16,
-    DEFBUTTON1 = 0,
+    // ICONWARNING = 48, this enum value conflicts with ICONEXCLAMATION
+    // ICONERROR = 16, this enum value conflicts with ICONHAND
+    // ICONINFORMATION = 64, this enum value conflicts with ICONASTERISK
+    // ICONSTOP = 16, this enum value conflicts with ICONHAND
+    // DEFBUTTON1 = 0, this enum value conflicts with OK
     DEFBUTTON2 = 256,
     DEFBUTTON3 = 512,
     DEFBUTTON4 = 768,
-    APPLMODAL = 0,
+    // APPLMODAL = 0, this enum value conflicts with OK
     SYSTEMMODAL = 4096,
     TASKMODAL = 8192,
     NOFOCUS = 32768,
@@ -1717,7 +1717,7 @@ pub const MESSAGEBOX_STYLE = extern enum(u32) {
     RIGHT = 524288,
     RTLREADING = 1048576,
     SERVICE_NOTIFICATION = 2097152,
-    SERVICE_NOTIFICATION_NT3X = 262144,
+    // SERVICE_NOTIFICATION_NT3X = 262144, this enum value conflicts with TOPMOST
     TYPEMASK = 15,
     ICONMASK = 240,
     DEFMASK = 3840,
@@ -1738,15 +1738,9 @@ pub const MESSAGEBOX_STYLE = extern enum(u32) {
         ICONEXCLAMATION: u1 = 0,
         ICONASTERISK: u1 = 0,
         USERICON: u1 = 0,
-        ICONWARNING: u1 = 0,
-        ICONERROR: u1 = 0,
-        ICONINFORMATION: u1 = 0,
-        ICONSTOP: u1 = 0,
-        DEFBUTTON1: u1 = 0,
         DEFBUTTON2: u1 = 0,
         DEFBUTTON3: u1 = 0,
         DEFBUTTON4: u1 = 0,
-        APPLMODAL: u1 = 0,
         SYSTEMMODAL: u1 = 0,
         TASKMODAL: u1 = 0,
         NOFOCUS: u1 = 0,
@@ -1756,7 +1750,6 @@ pub const MESSAGEBOX_STYLE = extern enum(u32) {
         RIGHT: u1 = 0,
         RTLREADING: u1 = 0,
         SERVICE_NOTIFICATION: u1 = 0,
-        SERVICE_NOTIFICATION_NT3X: u1 = 0,
         TYPEMASK: u1 = 0,
         ICONMASK: u1 = 0,
         DEFMASK: u1 = 0,
@@ -1777,15 +1770,9 @@ pub const MESSAGEBOX_STYLE = extern enum(u32) {
             | (if (o.ICONEXCLAMATION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONEXCLAMATION) else 0)
             | (if (o.ICONASTERISK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONASTERISK) else 0)
             | (if (o.USERICON == 1) @enumToInt(MESSAGEBOX_STYLE.USERICON) else 0)
-            | (if (o.ICONWARNING == 1) @enumToInt(MESSAGEBOX_STYLE.ICONWARNING) else 0)
-            | (if (o.ICONERROR == 1) @enumToInt(MESSAGEBOX_STYLE.ICONERROR) else 0)
-            | (if (o.ICONINFORMATION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONINFORMATION) else 0)
-            | (if (o.ICONSTOP == 1) @enumToInt(MESSAGEBOX_STYLE.ICONSTOP) else 0)
-            | (if (o.DEFBUTTON1 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON1) else 0)
             | (if (o.DEFBUTTON2 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON2) else 0)
             | (if (o.DEFBUTTON3 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON3) else 0)
             | (if (o.DEFBUTTON4 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON4) else 0)
-            | (if (o.APPLMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.APPLMODAL) else 0)
             | (if (o.SYSTEMMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.SYSTEMMODAL) else 0)
             | (if (o.TASKMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.TASKMODAL) else 0)
             | (if (o.NOFOCUS == 1) @enumToInt(MESSAGEBOX_STYLE.NOFOCUS) else 0)
@@ -1795,7 +1782,6 @@ pub const MESSAGEBOX_STYLE = extern enum(u32) {
             | (if (o.RIGHT == 1) @enumToInt(MESSAGEBOX_STYLE.RIGHT) else 0)
             | (if (o.RTLREADING == 1) @enumToInt(MESSAGEBOX_STYLE.RTLREADING) else 0)
             | (if (o.SERVICE_NOTIFICATION == 1) @enumToInt(MESSAGEBOX_STYLE.SERVICE_NOTIFICATION) else 0)
-            | (if (o.SERVICE_NOTIFICATION_NT3X == 1) @enumToInt(MESSAGEBOX_STYLE.SERVICE_NOTIFICATION_NT3X) else 0)
             | (if (o.TYPEMASK == 1) @enumToInt(MESSAGEBOX_STYLE.TYPEMASK) else 0)
             | (if (o.ICONMASK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONMASK) else 0)
             | (if (o.DEFMASK == 1) @enumToInt(MESSAGEBOX_STYLE.DEFMASK) else 0)
@@ -1817,15 +1803,15 @@ pub const MB_ICONQUESTION = MESSAGEBOX_STYLE.ICONQUESTION;
 pub const MB_ICONEXCLAMATION = MESSAGEBOX_STYLE.ICONEXCLAMATION;
 pub const MB_ICONASTERISK = MESSAGEBOX_STYLE.ICONASTERISK;
 pub const MB_USERICON = MESSAGEBOX_STYLE.USERICON;
-pub const MB_ICONWARNING = MESSAGEBOX_STYLE.ICONWARNING;
-pub const MB_ICONERROR = MESSAGEBOX_STYLE.ICONERROR;
-pub const MB_ICONINFORMATION = MESSAGEBOX_STYLE.ICONINFORMATION;
-pub const MB_ICONSTOP = MESSAGEBOX_STYLE.ICONSTOP;
-pub const MB_DEFBUTTON1 = MESSAGEBOX_STYLE.DEFBUTTON1;
+pub const MB_ICONWARNING = MESSAGEBOX_STYLE.ICONEXCLAMATION;
+pub const MB_ICONERROR = MESSAGEBOX_STYLE.ICONHAND;
+pub const MB_ICONINFORMATION = MESSAGEBOX_STYLE.ICONASTERISK;
+pub const MB_ICONSTOP = MESSAGEBOX_STYLE.ICONHAND;
+pub const MB_DEFBUTTON1 = MESSAGEBOX_STYLE.OK;
 pub const MB_DEFBUTTON2 = MESSAGEBOX_STYLE.DEFBUTTON2;
 pub const MB_DEFBUTTON3 = MESSAGEBOX_STYLE.DEFBUTTON3;
 pub const MB_DEFBUTTON4 = MESSAGEBOX_STYLE.DEFBUTTON4;
-pub const MB_APPLMODAL = MESSAGEBOX_STYLE.APPLMODAL;
+pub const MB_APPLMODAL = MESSAGEBOX_STYLE.OK;
 pub const MB_SYSTEMMODAL = MESSAGEBOX_STYLE.SYSTEMMODAL;
 pub const MB_TASKMODAL = MESSAGEBOX_STYLE.TASKMODAL;
 pub const MB_NOFOCUS = MESSAGEBOX_STYLE.NOFOCUS;
@@ -1835,42 +1821,42 @@ pub const MB_TOPMOST = MESSAGEBOX_STYLE.TOPMOST;
 pub const MB_RIGHT = MESSAGEBOX_STYLE.RIGHT;
 pub const MB_RTLREADING = MESSAGEBOX_STYLE.RTLREADING;
 pub const MB_SERVICE_NOTIFICATION = MESSAGEBOX_STYLE.SERVICE_NOTIFICATION;
-pub const MB_SERVICE_NOTIFICATION_NT3X = MESSAGEBOX_STYLE.SERVICE_NOTIFICATION_NT3X;
+pub const MB_SERVICE_NOTIFICATION_NT3X = MESSAGEBOX_STYLE.TOPMOST;
 pub const MB_TYPEMASK = MESSAGEBOX_STYLE.TYPEMASK;
 pub const MB_ICONMASK = MESSAGEBOX_STYLE.ICONMASK;
 pub const MB_DEFMASK = MESSAGEBOX_STYLE.DEFMASK;
 pub const MB_MODEMASK = MESSAGEBOX_STYLE.MODEMASK;
 pub const MB_MISCMASK = MESSAGEBOX_STYLE.MISCMASK;
 
-pub const MENU_ITEM_FLAGS = extern enum(u32) {
+pub const MENU_ITEM_FLAGS = enum(u32) {
     BYCOMMAND = 0,
     BYPOSITION = 1024,
     BITMAP = 4,
     CHECKED = 8,
     DISABLED = 2,
-    ENABLED = 0,
+    // ENABLED = 0, this enum value conflicts with BYCOMMAND
     GRAYED = 1,
     MENUBARBREAK = 32,
     MENUBREAK = 64,
     OWNERDRAW = 256,
     POPUP = 16,
     SEPARATOR = 2048,
-    STRING = 0,
-    UNCHECKED = 0,
-    INSERT = 0,
+    // STRING = 0, this enum value conflicts with BYCOMMAND
+    // UNCHECKED = 0, this enum value conflicts with BYCOMMAND
+    // INSERT = 0, this enum value conflicts with BYCOMMAND
     CHANGE = 128,
-    APPEND = 256,
+    // APPEND = 256, this enum value conflicts with OWNERDRAW
     DELETE = 512,
     REMOVE = 4096,
-    USECHECKBITMAPS = 512,
-    UNHILITE = 0,
-    HILITE = 128,
-    DEFAULT = 4096,
+    // USECHECKBITMAPS = 512, this enum value conflicts with DELETE
+    // UNHILITE = 0, this enum value conflicts with BYCOMMAND
+    // HILITE = 128, this enum value conflicts with CHANGE
+    // DEFAULT = 4096, this enum value conflicts with REMOVE
     SYSMENU = 8192,
     HELP = 16384,
-    RIGHTJUSTIFY = 16384,
+    // RIGHTJUSTIFY = 16384, this enum value conflicts with HELP
     MOUSESELECT = 32768,
-    END = 128,
+    // END = 128, this enum value conflicts with CHANGE
     _,
     pub fn initFlags(o: struct {
         BYCOMMAND: u1 = 0,
@@ -1878,29 +1864,18 @@ pub const MENU_ITEM_FLAGS = extern enum(u32) {
         BITMAP: u1 = 0,
         CHECKED: u1 = 0,
         DISABLED: u1 = 0,
-        ENABLED: u1 = 0,
         GRAYED: u1 = 0,
         MENUBARBREAK: u1 = 0,
         MENUBREAK: u1 = 0,
         OWNERDRAW: u1 = 0,
         POPUP: u1 = 0,
         SEPARATOR: u1 = 0,
-        STRING: u1 = 0,
-        UNCHECKED: u1 = 0,
-        INSERT: u1 = 0,
         CHANGE: u1 = 0,
-        APPEND: u1 = 0,
         DELETE: u1 = 0,
         REMOVE: u1 = 0,
-        USECHECKBITMAPS: u1 = 0,
-        UNHILITE: u1 = 0,
-        HILITE: u1 = 0,
-        DEFAULT: u1 = 0,
         SYSMENU: u1 = 0,
         HELP: u1 = 0,
-        RIGHTJUSTIFY: u1 = 0,
         MOUSESELECT: u1 = 0,
-        END: u1 = 0,
     }) MENU_ITEM_FLAGS {
         return @intToEnum(MENU_ITEM_FLAGS,
               (if (o.BYCOMMAND == 1) @enumToInt(MENU_ITEM_FLAGS.BYCOMMAND) else 0)
@@ -1908,29 +1883,18 @@ pub const MENU_ITEM_FLAGS = extern enum(u32) {
             | (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_FLAGS.BITMAP) else 0)
             | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_FLAGS.CHECKED) else 0)
             | (if (o.DISABLED == 1) @enumToInt(MENU_ITEM_FLAGS.DISABLED) else 0)
-            | (if (o.ENABLED == 1) @enumToInt(MENU_ITEM_FLAGS.ENABLED) else 0)
             | (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_FLAGS.GRAYED) else 0)
             | (if (o.MENUBARBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBARBREAK) else 0)
             | (if (o.MENUBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBREAK) else 0)
             | (if (o.OWNERDRAW == 1) @enumToInt(MENU_ITEM_FLAGS.OWNERDRAW) else 0)
             | (if (o.POPUP == 1) @enumToInt(MENU_ITEM_FLAGS.POPUP) else 0)
             | (if (o.SEPARATOR == 1) @enumToInt(MENU_ITEM_FLAGS.SEPARATOR) else 0)
-            | (if (o.STRING == 1) @enumToInt(MENU_ITEM_FLAGS.STRING) else 0)
-            | (if (o.UNCHECKED == 1) @enumToInt(MENU_ITEM_FLAGS.UNCHECKED) else 0)
-            | (if (o.INSERT == 1) @enumToInt(MENU_ITEM_FLAGS.INSERT) else 0)
             | (if (o.CHANGE == 1) @enumToInt(MENU_ITEM_FLAGS.CHANGE) else 0)
-            | (if (o.APPEND == 1) @enumToInt(MENU_ITEM_FLAGS.APPEND) else 0)
             | (if (o.DELETE == 1) @enumToInt(MENU_ITEM_FLAGS.DELETE) else 0)
             | (if (o.REMOVE == 1) @enumToInt(MENU_ITEM_FLAGS.REMOVE) else 0)
-            | (if (o.USECHECKBITMAPS == 1) @enumToInt(MENU_ITEM_FLAGS.USECHECKBITMAPS) else 0)
-            | (if (o.UNHILITE == 1) @enumToInt(MENU_ITEM_FLAGS.UNHILITE) else 0)
-            | (if (o.HILITE == 1) @enumToInt(MENU_ITEM_FLAGS.HILITE) else 0)
-            | (if (o.DEFAULT == 1) @enumToInt(MENU_ITEM_FLAGS.DEFAULT) else 0)
             | (if (o.SYSMENU == 1) @enumToInt(MENU_ITEM_FLAGS.SYSMENU) else 0)
             | (if (o.HELP == 1) @enumToInt(MENU_ITEM_FLAGS.HELP) else 0)
-            | (if (o.RIGHTJUSTIFY == 1) @enumToInt(MENU_ITEM_FLAGS.RIGHTJUSTIFY) else 0)
             | (if (o.MOUSESELECT == 1) @enumToInt(MENU_ITEM_FLAGS.MOUSESELECT) else 0)
-            | (if (o.END == 1) @enumToInt(MENU_ITEM_FLAGS.END) else 0)
         );
     }
 };
@@ -1939,31 +1903,31 @@ pub const MF_BYPOSITION = MENU_ITEM_FLAGS.BYPOSITION;
 pub const MF_BITMAP = MENU_ITEM_FLAGS.BITMAP;
 pub const MF_CHECKED = MENU_ITEM_FLAGS.CHECKED;
 pub const MF_DISABLED = MENU_ITEM_FLAGS.DISABLED;
-pub const MF_ENABLED = MENU_ITEM_FLAGS.ENABLED;
+pub const MF_ENABLED = MENU_ITEM_FLAGS.BYCOMMAND;
 pub const MF_GRAYED = MENU_ITEM_FLAGS.GRAYED;
 pub const MF_MENUBARBREAK = MENU_ITEM_FLAGS.MENUBARBREAK;
 pub const MF_MENUBREAK = MENU_ITEM_FLAGS.MENUBREAK;
 pub const MF_OWNERDRAW = MENU_ITEM_FLAGS.OWNERDRAW;
 pub const MF_POPUP = MENU_ITEM_FLAGS.POPUP;
 pub const MF_SEPARATOR = MENU_ITEM_FLAGS.SEPARATOR;
-pub const MF_STRING = MENU_ITEM_FLAGS.STRING;
-pub const MF_UNCHECKED = MENU_ITEM_FLAGS.UNCHECKED;
-pub const MF_INSERT = MENU_ITEM_FLAGS.INSERT;
+pub const MF_STRING = MENU_ITEM_FLAGS.BYCOMMAND;
+pub const MF_UNCHECKED = MENU_ITEM_FLAGS.BYCOMMAND;
+pub const MF_INSERT = MENU_ITEM_FLAGS.BYCOMMAND;
 pub const MF_CHANGE = MENU_ITEM_FLAGS.CHANGE;
-pub const MF_APPEND = MENU_ITEM_FLAGS.APPEND;
+pub const MF_APPEND = MENU_ITEM_FLAGS.OWNERDRAW;
 pub const MF_DELETE = MENU_ITEM_FLAGS.DELETE;
 pub const MF_REMOVE = MENU_ITEM_FLAGS.REMOVE;
-pub const MF_USECHECKBITMAPS = MENU_ITEM_FLAGS.USECHECKBITMAPS;
-pub const MF_UNHILITE = MENU_ITEM_FLAGS.UNHILITE;
-pub const MF_HILITE = MENU_ITEM_FLAGS.HILITE;
-pub const MF_DEFAULT = MENU_ITEM_FLAGS.DEFAULT;
+pub const MF_USECHECKBITMAPS = MENU_ITEM_FLAGS.DELETE;
+pub const MF_UNHILITE = MENU_ITEM_FLAGS.BYCOMMAND;
+pub const MF_HILITE = MENU_ITEM_FLAGS.CHANGE;
+pub const MF_DEFAULT = MENU_ITEM_FLAGS.REMOVE;
 pub const MF_SYSMENU = MENU_ITEM_FLAGS.SYSMENU;
 pub const MF_HELP = MENU_ITEM_FLAGS.HELP;
-pub const MF_RIGHTJUSTIFY = MENU_ITEM_FLAGS.RIGHTJUSTIFY;
+pub const MF_RIGHTJUSTIFY = MENU_ITEM_FLAGS.HELP;
 pub const MF_MOUSESELECT = MENU_ITEM_FLAGS.MOUSESELECT;
-pub const MF_END = MENU_ITEM_FLAGS.END;
+pub const MF_END = MENU_ITEM_FLAGS.CHANGE;
 
-pub const SHOW_WINDOW_CMD = extern enum(u32) {
+pub const SHOW_WINDOW_CMD = enum(u32) {
     FORCEMINIMIZE = 11,
     HIDE = 0,
     MAXIMIZE = 3,
@@ -1971,21 +1935,21 @@ pub const SHOW_WINDOW_CMD = extern enum(u32) {
     RESTORE = 9,
     SHOW = 5,
     SHOWDEFAULT = 10,
-    SHOWMAXIMIZED = 3,
+    // SHOWMAXIMIZED = 3, this enum value conflicts with MAXIMIZE
     SHOWMINIMIZED = 2,
     SHOWMINNOACTIVE = 7,
     SHOWNA = 8,
     SHOWNOACTIVATE = 4,
     SHOWNORMAL = 1,
-    NORMAL = 1,
-    MAX = 11,
-    PARENTCLOSING = 1,
-    OTHERZOOM = 2,
-    PARENTOPENING = 3,
-    OTHERUNZOOM = 4,
-    SCROLLCHILDREN = 1,
-    INVALIDATE = 2,
-    ERASE = 4,
+    // NORMAL = 1, this enum value conflicts with SHOWNORMAL
+    // MAX = 11, this enum value conflicts with FORCEMINIMIZE
+    // PARENTCLOSING = 1, this enum value conflicts with SHOWNORMAL
+    // OTHERZOOM = 2, this enum value conflicts with SHOWMINIMIZED
+    // PARENTOPENING = 3, this enum value conflicts with MAXIMIZE
+    // OTHERUNZOOM = 4, this enum value conflicts with SHOWNOACTIVATE
+    // SCROLLCHILDREN = 1, this enum value conflicts with SHOWNORMAL
+    // INVALIDATE = 2, this enum value conflicts with SHOWMINIMIZED
+    // ERASE = 4, this enum value conflicts with SHOWNOACTIVATE
     SMOOTHSCROLL = 16,
     _,
     pub fn initFlags(o: struct {
@@ -1996,21 +1960,11 @@ pub const SHOW_WINDOW_CMD = extern enum(u32) {
         RESTORE: u1 = 0,
         SHOW: u1 = 0,
         SHOWDEFAULT: u1 = 0,
-        SHOWMAXIMIZED: u1 = 0,
         SHOWMINIMIZED: u1 = 0,
         SHOWMINNOACTIVE: u1 = 0,
         SHOWNA: u1 = 0,
         SHOWNOACTIVATE: u1 = 0,
         SHOWNORMAL: u1 = 0,
-        NORMAL: u1 = 0,
-        MAX: u1 = 0,
-        PARENTCLOSING: u1 = 0,
-        OTHERZOOM: u1 = 0,
-        PARENTOPENING: u1 = 0,
-        OTHERUNZOOM: u1 = 0,
-        SCROLLCHILDREN: u1 = 0,
-        INVALIDATE: u1 = 0,
-        ERASE: u1 = 0,
         SMOOTHSCROLL: u1 = 0,
     }) SHOW_WINDOW_CMD {
         return @intToEnum(SHOW_WINDOW_CMD,
@@ -2021,21 +1975,11 @@ pub const SHOW_WINDOW_CMD = extern enum(u32) {
             | (if (o.RESTORE == 1) @enumToInt(SHOW_WINDOW_CMD.RESTORE) else 0)
             | (if (o.SHOW == 1) @enumToInt(SHOW_WINDOW_CMD.SHOW) else 0)
             | (if (o.SHOWDEFAULT == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWDEFAULT) else 0)
-            | (if (o.SHOWMAXIMIZED == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMAXIMIZED) else 0)
             | (if (o.SHOWMINIMIZED == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINIMIZED) else 0)
             | (if (o.SHOWMINNOACTIVE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINNOACTIVE) else 0)
             | (if (o.SHOWNA == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNA) else 0)
             | (if (o.SHOWNOACTIVATE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNOACTIVATE) else 0)
             | (if (o.SHOWNORMAL == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNORMAL) else 0)
-            | (if (o.NORMAL == 1) @enumToInt(SHOW_WINDOW_CMD.NORMAL) else 0)
-            | (if (o.MAX == 1) @enumToInt(SHOW_WINDOW_CMD.MAX) else 0)
-            | (if (o.PARENTCLOSING == 1) @enumToInt(SHOW_WINDOW_CMD.PARENTCLOSING) else 0)
-            | (if (o.OTHERZOOM == 1) @enumToInt(SHOW_WINDOW_CMD.OTHERZOOM) else 0)
-            | (if (o.PARENTOPENING == 1) @enumToInt(SHOW_WINDOW_CMD.PARENTOPENING) else 0)
-            | (if (o.OTHERUNZOOM == 1) @enumToInt(SHOW_WINDOW_CMD.OTHERUNZOOM) else 0)
-            | (if (o.SCROLLCHILDREN == 1) @enumToInt(SHOW_WINDOW_CMD.SCROLLCHILDREN) else 0)
-            | (if (o.INVALIDATE == 1) @enumToInt(SHOW_WINDOW_CMD.INVALIDATE) else 0)
-            | (if (o.ERASE == 1) @enumToInt(SHOW_WINDOW_CMD.ERASE) else 0)
             | (if (o.SMOOTHSCROLL == 1) @enumToInt(SHOW_WINDOW_CMD.SMOOTHSCROLL) else 0)
         );
     }
@@ -2047,24 +1991,24 @@ pub const SW_MINIMIZE = SHOW_WINDOW_CMD.MINIMIZE;
 pub const SW_RESTORE = SHOW_WINDOW_CMD.RESTORE;
 pub const SW_SHOW = SHOW_WINDOW_CMD.SHOW;
 pub const SW_SHOWDEFAULT = SHOW_WINDOW_CMD.SHOWDEFAULT;
-pub const SW_SHOWMAXIMIZED = SHOW_WINDOW_CMD.SHOWMAXIMIZED;
+pub const SW_SHOWMAXIMIZED = SHOW_WINDOW_CMD.MAXIMIZE;
 pub const SW_SHOWMINIMIZED = SHOW_WINDOW_CMD.SHOWMINIMIZED;
 pub const SW_SHOWMINNOACTIVE = SHOW_WINDOW_CMD.SHOWMINNOACTIVE;
 pub const SW_SHOWNA = SHOW_WINDOW_CMD.SHOWNA;
 pub const SW_SHOWNOACTIVATE = SHOW_WINDOW_CMD.SHOWNOACTIVATE;
 pub const SW_SHOWNORMAL = SHOW_WINDOW_CMD.SHOWNORMAL;
-pub const SW_NORMAL = SHOW_WINDOW_CMD.NORMAL;
-pub const SW_MAX = SHOW_WINDOW_CMD.MAX;
-pub const SW_PARENTCLOSING = SHOW_WINDOW_CMD.PARENTCLOSING;
-pub const SW_OTHERZOOM = SHOW_WINDOW_CMD.OTHERZOOM;
-pub const SW_PARENTOPENING = SHOW_WINDOW_CMD.PARENTOPENING;
-pub const SW_OTHERUNZOOM = SHOW_WINDOW_CMD.OTHERUNZOOM;
-pub const SW_SCROLLCHILDREN = SHOW_WINDOW_CMD.SCROLLCHILDREN;
-pub const SW_INVALIDATE = SHOW_WINDOW_CMD.INVALIDATE;
-pub const SW_ERASE = SHOW_WINDOW_CMD.ERASE;
+pub const SW_NORMAL = SHOW_WINDOW_CMD.SHOWNORMAL;
+pub const SW_MAX = SHOW_WINDOW_CMD.FORCEMINIMIZE;
+pub const SW_PARENTCLOSING = SHOW_WINDOW_CMD.SHOWNORMAL;
+pub const SW_OTHERZOOM = SHOW_WINDOW_CMD.SHOWMINIMIZED;
+pub const SW_PARENTOPENING = SHOW_WINDOW_CMD.MAXIMIZE;
+pub const SW_OTHERUNZOOM = SHOW_WINDOW_CMD.SHOWNOACTIVATE;
+pub const SW_SCROLLCHILDREN = SHOW_WINDOW_CMD.SHOWNORMAL;
+pub const SW_INVALIDATE = SHOW_WINDOW_CMD.SHOWMINIMIZED;
+pub const SW_ERASE = SHOW_WINDOW_CMD.SHOWNOACTIVATE;
 pub const SW_SMOOTHSCROLL = SHOW_WINDOW_CMD.SMOOTHSCROLL;
 
-pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
+pub const SYSTEM_PARAMETERS_INFO_ACTION = enum(u32) {
     GETBEEP = 1,
     SETBEEP = 2,
     GETMOUSE = 3,
@@ -2139,7 +2083,7 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
     SETMOUSETRAILS = 93,
     GETMOUSETRAILS = 94,
     SETSCREENSAVERRUNNING = 97,
-    SCREENSAVERRUNNING = 97,
+    // SCREENSAVERRUNNING = 97, this enum value conflicts with SETSCREENSAVERRUNNING
     GETFILTERKEYS = 50,
     SETFILTERKEYS = 51,
     GETTOGGLEKEYS = 52,
@@ -2224,8 +2168,8 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
     SETGRADIENTCAPTIONS = 4105,
     GETKEYBOARDCUES = 4106,
     SETKEYBOARDCUES = 4107,
-    GETMENUUNDERLINES = 4106,
-    SETMENUUNDERLINES = 4107,
+    // GETMENUUNDERLINES = 4106, this enum value conflicts with GETKEYBOARDCUES
+    // SETMENUUNDERLINES = 4107, this enum value conflicts with SETKEYBOARDCUES
     GETACTIVEWNDTRKZORDER = 4108,
     SETACTIVEWNDTRKZORDER = 4109,
     GETHOTTRACKING = 4110,
@@ -2382,7 +2326,6 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
         SETMOUSETRAILS: u1 = 0,
         GETMOUSETRAILS: u1 = 0,
         SETSCREENSAVERRUNNING: u1 = 0,
-        SCREENSAVERRUNNING: u1 = 0,
         GETFILTERKEYS: u1 = 0,
         SETFILTERKEYS: u1 = 0,
         GETTOGGLEKEYS: u1 = 0,
@@ -2467,8 +2410,6 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
         SETGRADIENTCAPTIONS: u1 = 0,
         GETKEYBOARDCUES: u1 = 0,
         SETKEYBOARDCUES: u1 = 0,
-        GETMENUUNDERLINES: u1 = 0,
-        SETMENUUNDERLINES: u1 = 0,
         GETACTIVEWNDTRKZORDER: u1 = 0,
         SETACTIVEWNDTRKZORDER: u1 = 0,
         GETHOTTRACKING: u1 = 0,
@@ -2625,7 +2566,6 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
             | (if (o.SETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSETRAILS) else 0)
             | (if (o.GETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSETRAILS) else 0)
             | (if (o.SETSCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVERRUNNING) else 0)
-            | (if (o.SCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SCREENSAVERRUNNING) else 0)
             | (if (o.GETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFILTERKEYS) else 0)
             | (if (o.SETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFILTERKEYS) else 0)
             | (if (o.GETTOGGLEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOGGLEKEYS) else 0)
@@ -2710,8 +2650,6 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = extern enum(u32) {
             | (if (o.SETGRADIENTCAPTIONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGRADIENTCAPTIONS) else 0)
             | (if (o.GETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDCUES) else 0)
             | (if (o.SETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDCUES) else 0)
-            | (if (o.GETMENUUNDERLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUUNDERLINES) else 0)
-            | (if (o.SETMENUUNDERLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUUNDERLINES) else 0)
             | (if (o.GETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKZORDER) else 0)
             | (if (o.SETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKZORDER) else 0)
             | (if (o.GETHOTTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHOTTRACKING) else 0)
@@ -2869,7 +2807,7 @@ pub const SPI_GETWINDOWSEXTENSION = SYSTEM_PARAMETERS_INFO_ACTION.GETWINDOWSEXTE
 pub const SPI_SETMOUSETRAILS = SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSETRAILS;
 pub const SPI_GETMOUSETRAILS = SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSETRAILS;
 pub const SPI_SETSCREENSAVERRUNNING = SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVERRUNNING;
-pub const SPI_SCREENSAVERRUNNING = SYSTEM_PARAMETERS_INFO_ACTION.SCREENSAVERRUNNING;
+pub const SPI_SCREENSAVERRUNNING = SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVERRUNNING;
 pub const SPI_GETFILTERKEYS = SYSTEM_PARAMETERS_INFO_ACTION.GETFILTERKEYS;
 pub const SPI_SETFILTERKEYS = SYSTEM_PARAMETERS_INFO_ACTION.SETFILTERKEYS;
 pub const SPI_GETTOGGLEKEYS = SYSTEM_PARAMETERS_INFO_ACTION.GETTOGGLEKEYS;
@@ -2954,8 +2892,8 @@ pub const SPI_GETGRADIENTCAPTIONS = SYSTEM_PARAMETERS_INFO_ACTION.GETGRADIENTCAP
 pub const SPI_SETGRADIENTCAPTIONS = SYSTEM_PARAMETERS_INFO_ACTION.SETGRADIENTCAPTIONS;
 pub const SPI_GETKEYBOARDCUES = SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDCUES;
 pub const SPI_SETKEYBOARDCUES = SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDCUES;
-pub const SPI_GETMENUUNDERLINES = SYSTEM_PARAMETERS_INFO_ACTION.GETMENUUNDERLINES;
-pub const SPI_SETMENUUNDERLINES = SYSTEM_PARAMETERS_INFO_ACTION.SETMENUUNDERLINES;
+pub const SPI_GETMENUUNDERLINES = SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDCUES;
+pub const SPI_SETMENUUNDERLINES = SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDCUES;
 pub const SPI_GETACTIVEWNDTRKZORDER = SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKZORDER;
 pub const SPI_SETACTIVEWNDTRKZORDER = SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKZORDER;
 pub const SPI_GETHOTTRACKING = SYSTEM_PARAMETERS_INFO_ACTION.GETHOTTRACKING;
@@ -3037,16 +2975,16 @@ pub const SPI_SETCARETTIMEOUT = SYSTEM_PARAMETERS_INFO_ACTION.SETCARETTIMEOUT;
 pub const SPI_GETHANDEDNESS = SYSTEM_PARAMETERS_INFO_ACTION.GETHANDEDNESS;
 pub const SPI_SETHANDEDNESS = SYSTEM_PARAMETERS_INFO_ACTION.SETHANDEDNESS;
 
-pub const TRACK_POPUP_MENU_FLAGS = extern enum(u32) {
+pub const TRACK_POPUP_MENU_FLAGS = enum(u32) {
     LEFTBUTTON = 0,
     RIGHTBUTTON = 2,
-    LEFTALIGN = 0,
+    // LEFTALIGN = 0, this enum value conflicts with LEFTBUTTON
     CENTERALIGN = 4,
     RIGHTALIGN = 8,
-    TOPALIGN = 0,
+    // TOPALIGN = 0, this enum value conflicts with LEFTBUTTON
     VCENTERALIGN = 16,
     BOTTOMALIGN = 32,
-    HORIZONTAL = 0,
+    // HORIZONTAL = 0, this enum value conflicts with LEFTBUTTON
     VERTICAL = 64,
     NONOTIFY = 128,
     RETURNCMD = 256,
@@ -3062,13 +3000,10 @@ pub const TRACK_POPUP_MENU_FLAGS = extern enum(u32) {
     pub fn initFlags(o: struct {
         LEFTBUTTON: u1 = 0,
         RIGHTBUTTON: u1 = 0,
-        LEFTALIGN: u1 = 0,
         CENTERALIGN: u1 = 0,
         RIGHTALIGN: u1 = 0,
-        TOPALIGN: u1 = 0,
         VCENTERALIGN: u1 = 0,
         BOTTOMALIGN: u1 = 0,
-        HORIZONTAL: u1 = 0,
         VERTICAL: u1 = 0,
         NONOTIFY: u1 = 0,
         RETURNCMD: u1 = 0,
@@ -3084,13 +3019,10 @@ pub const TRACK_POPUP_MENU_FLAGS = extern enum(u32) {
         return @intToEnum(TRACK_POPUP_MENU_FLAGS,
               (if (o.LEFTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LEFTBUTTON) else 0)
             | (if (o.RIGHTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTBUTTON) else 0)
-            | (if (o.LEFTALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LEFTALIGN) else 0)
             | (if (o.CENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.CENTERALIGN) else 0)
             | (if (o.RIGHTALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTALIGN) else 0)
-            | (if (o.TOPALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.TOPALIGN) else 0)
             | (if (o.VCENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VCENTERALIGN) else 0)
             | (if (o.BOTTOMALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.BOTTOMALIGN) else 0)
-            | (if (o.HORIZONTAL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORIZONTAL) else 0)
             | (if (o.VERTICAL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERTICAL) else 0)
             | (if (o.NONOTIFY == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.NONOTIFY) else 0)
             | (if (o.RETURNCMD == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RETURNCMD) else 0)
@@ -3107,13 +3039,13 @@ pub const TRACK_POPUP_MENU_FLAGS = extern enum(u32) {
 };
 pub const TPM_LEFTBUTTON = TRACK_POPUP_MENU_FLAGS.LEFTBUTTON;
 pub const TPM_RIGHTBUTTON = TRACK_POPUP_MENU_FLAGS.RIGHTBUTTON;
-pub const TPM_LEFTALIGN = TRACK_POPUP_MENU_FLAGS.LEFTALIGN;
+pub const TPM_LEFTALIGN = TRACK_POPUP_MENU_FLAGS.LEFTBUTTON;
 pub const TPM_CENTERALIGN = TRACK_POPUP_MENU_FLAGS.CENTERALIGN;
 pub const TPM_RIGHTALIGN = TRACK_POPUP_MENU_FLAGS.RIGHTALIGN;
-pub const TPM_TOPALIGN = TRACK_POPUP_MENU_FLAGS.TOPALIGN;
+pub const TPM_TOPALIGN = TRACK_POPUP_MENU_FLAGS.LEFTBUTTON;
 pub const TPM_VCENTERALIGN = TRACK_POPUP_MENU_FLAGS.VCENTERALIGN;
 pub const TPM_BOTTOMALIGN = TRACK_POPUP_MENU_FLAGS.BOTTOMALIGN;
-pub const TPM_HORIZONTAL = TRACK_POPUP_MENU_FLAGS.HORIZONTAL;
+pub const TPM_HORIZONTAL = TRACK_POPUP_MENU_FLAGS.LEFTBUTTON;
 pub const TPM_VERTICAL = TRACK_POPUP_MENU_FLAGS.VERTICAL;
 pub const TPM_NONOTIFY = TRACK_POPUP_MENU_FLAGS.NONOTIFY;
 pub const TPM_RETURNCMD = TRACK_POPUP_MENU_FLAGS.RETURNCMD;
@@ -3126,7 +3058,7 @@ pub const TPM_NOANIMATION = TRACK_POPUP_MENU_FLAGS.NOANIMATION;
 pub const TPM_LAYOUTRTL = TRACK_POPUP_MENU_FLAGS.LAYOUTRTL;
 pub const TPM_WORKAREA = TRACK_POPUP_MENU_FLAGS.WORKAREA;
 
-pub const WINDOW_EX_STYLE = extern enum(u32) {
+pub const WINDOW_EX_STYLE = enum(u32) {
     DLGMODALFRAME = 1,
     NOPARENTNOTIFY = 4,
     TOPMOST = 8,
@@ -3140,9 +3072,9 @@ pub const WINDOW_EX_STYLE = extern enum(u32) {
     RIGHT = 4096,
     LEFT = 0,
     RTLREADING = 8192,
-    LTRREADING = 0,
+    // LTRREADING = 0, this enum value conflicts with LEFT
     LEFTSCROLLBAR = 16384,
-    RIGHTSCROLLBAR = 0,
+    // RIGHTSCROLLBAR = 0, this enum value conflicts with LEFT
     CONTROLPARENT = 65536,
     STATICEDGE = 131072,
     APPWINDOW = 262144,
@@ -3169,9 +3101,7 @@ pub const WINDOW_EX_STYLE = extern enum(u32) {
         RIGHT: u1 = 0,
         LEFT: u1 = 0,
         RTLREADING: u1 = 0,
-        LTRREADING: u1 = 0,
         LEFTSCROLLBAR: u1 = 0,
-        RIGHTSCROLLBAR: u1 = 0,
         CONTROLPARENT: u1 = 0,
         STATICEDGE: u1 = 0,
         APPWINDOW: u1 = 0,
@@ -3198,9 +3128,7 @@ pub const WINDOW_EX_STYLE = extern enum(u32) {
             | (if (o.RIGHT == 1) @enumToInt(WINDOW_EX_STYLE.RIGHT) else 0)
             | (if (o.LEFT == 1) @enumToInt(WINDOW_EX_STYLE.LEFT) else 0)
             | (if (o.RTLREADING == 1) @enumToInt(WINDOW_EX_STYLE.RTLREADING) else 0)
-            | (if (o.LTRREADING == 1) @enumToInt(WINDOW_EX_STYLE.LTRREADING) else 0)
             | (if (o.LEFTSCROLLBAR == 1) @enumToInt(WINDOW_EX_STYLE.LEFTSCROLLBAR) else 0)
-            | (if (o.RIGHTSCROLLBAR == 1) @enumToInt(WINDOW_EX_STYLE.RIGHTSCROLLBAR) else 0)
             | (if (o.CONTROLPARENT == 1) @enumToInt(WINDOW_EX_STYLE.CONTROLPARENT) else 0)
             | (if (o.STATICEDGE == 1) @enumToInt(WINDOW_EX_STYLE.STATICEDGE) else 0)
             | (if (o.APPWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.APPWINDOW) else 0)
@@ -3228,9 +3156,9 @@ pub const WS_EX_CONTEXTHELP = WINDOW_EX_STYLE.CONTEXTHELP;
 pub const WS_EX_RIGHT = WINDOW_EX_STYLE.RIGHT;
 pub const WS_EX_LEFT = WINDOW_EX_STYLE.LEFT;
 pub const WS_EX_RTLREADING = WINDOW_EX_STYLE.RTLREADING;
-pub const WS_EX_LTRREADING = WINDOW_EX_STYLE.LTRREADING;
+pub const WS_EX_LTRREADING = WINDOW_EX_STYLE.LEFT;
 pub const WS_EX_LEFTSCROLLBAR = WINDOW_EX_STYLE.LEFTSCROLLBAR;
-pub const WS_EX_RIGHTSCROLLBAR = WINDOW_EX_STYLE.RIGHTSCROLLBAR;
+pub const WS_EX_RIGHTSCROLLBAR = WINDOW_EX_STYLE.LEFT;
 pub const WS_EX_CONTROLPARENT = WINDOW_EX_STYLE.CONTROLPARENT;
 pub const WS_EX_STATICEDGE = WINDOW_EX_STYLE.STATICEDGE;
 pub const WS_EX_APPWINDOW = WINDOW_EX_STYLE.APPWINDOW;
@@ -3243,7 +3171,7 @@ pub const WS_EX_LAYOUTRTL = WINDOW_EX_STYLE.LAYOUTRTL;
 pub const WS_EX_COMPOSITED = WINDOW_EX_STYLE.COMPOSITED;
 pub const WS_EX_NOACTIVATE = WINDOW_EX_STYLE.NOACTIVATE;
 
-pub const WINDOW_STYLE = extern enum(u32) {
+pub const WINDOW_STYLE = enum(u32) {
     OVERLAPPED = 0,
     POPUP = 2147483648,
     CHILD = 1073741824,
@@ -3262,15 +3190,15 @@ pub const WINDOW_STYLE = extern enum(u32) {
     THICKFRAME = 262144,
     GROUP = 131072,
     TABSTOP = 65536,
-    MINIMIZEBOX = 131072,
-    MAXIMIZEBOX = 65536,
-    TILED = 0,
-    ICONIC = 536870912,
-    SIZEBOX = 262144,
+    // MINIMIZEBOX = 131072, this enum value conflicts with GROUP
+    // MAXIMIZEBOX = 65536, this enum value conflicts with TABSTOP
+    // TILED = 0, this enum value conflicts with OVERLAPPED
+    // ICONIC = 536870912, this enum value conflicts with MINIMIZE
+    // SIZEBOX = 262144, this enum value conflicts with THICKFRAME
     TILEDWINDOW = 13565952,
-    OVERLAPPEDWINDOW = 13565952,
+    // OVERLAPPEDWINDOW = 13565952, this enum value conflicts with TILEDWINDOW
     POPUPWINDOW = 2156396544,
-    CHILDWINDOW = 1073741824,
+    // CHILDWINDOW = 1073741824, this enum value conflicts with CHILD
     ACTIVECAPTION = 1,
     _,
     pub fn initFlags(o: struct {
@@ -3292,15 +3220,8 @@ pub const WINDOW_STYLE = extern enum(u32) {
         THICKFRAME: u1 = 0,
         GROUP: u1 = 0,
         TABSTOP: u1 = 0,
-        MINIMIZEBOX: u1 = 0,
-        MAXIMIZEBOX: u1 = 0,
-        TILED: u1 = 0,
-        ICONIC: u1 = 0,
-        SIZEBOX: u1 = 0,
         TILEDWINDOW: u1 = 0,
-        OVERLAPPEDWINDOW: u1 = 0,
         POPUPWINDOW: u1 = 0,
-        CHILDWINDOW: u1 = 0,
         ACTIVECAPTION: u1 = 0,
     }) WINDOW_STYLE {
         return @intToEnum(WINDOW_STYLE,
@@ -3322,15 +3243,8 @@ pub const WINDOW_STYLE = extern enum(u32) {
             | (if (o.THICKFRAME == 1) @enumToInt(WINDOW_STYLE.THICKFRAME) else 0)
             | (if (o.GROUP == 1) @enumToInt(WINDOW_STYLE.GROUP) else 0)
             | (if (o.TABSTOP == 1) @enumToInt(WINDOW_STYLE.TABSTOP) else 0)
-            | (if (o.MINIMIZEBOX == 1) @enumToInt(WINDOW_STYLE.MINIMIZEBOX) else 0)
-            | (if (o.MAXIMIZEBOX == 1) @enumToInt(WINDOW_STYLE.MAXIMIZEBOX) else 0)
-            | (if (o.TILED == 1) @enumToInt(WINDOW_STYLE.TILED) else 0)
-            | (if (o.ICONIC == 1) @enumToInt(WINDOW_STYLE.ICONIC) else 0)
-            | (if (o.SIZEBOX == 1) @enumToInt(WINDOW_STYLE.SIZEBOX) else 0)
             | (if (o.TILEDWINDOW == 1) @enumToInt(WINDOW_STYLE.TILEDWINDOW) else 0)
-            | (if (o.OVERLAPPEDWINDOW == 1) @enumToInt(WINDOW_STYLE.OVERLAPPEDWINDOW) else 0)
             | (if (o.POPUPWINDOW == 1) @enumToInt(WINDOW_STYLE.POPUPWINDOW) else 0)
-            | (if (o.CHILDWINDOW == 1) @enumToInt(WINDOW_STYLE.CHILDWINDOW) else 0)
             | (if (o.ACTIVECAPTION == 1) @enumToInt(WINDOW_STYLE.ACTIVECAPTION) else 0)
         );
     }
@@ -3353,18 +3267,18 @@ pub const WS_SYSMENU = WINDOW_STYLE.SYSMENU;
 pub const WS_THICKFRAME = WINDOW_STYLE.THICKFRAME;
 pub const WS_GROUP = WINDOW_STYLE.GROUP;
 pub const WS_TABSTOP = WINDOW_STYLE.TABSTOP;
-pub const WS_MINIMIZEBOX = WINDOW_STYLE.MINIMIZEBOX;
-pub const WS_MAXIMIZEBOX = WINDOW_STYLE.MAXIMIZEBOX;
-pub const WS_TILED = WINDOW_STYLE.TILED;
-pub const WS_ICONIC = WINDOW_STYLE.ICONIC;
-pub const WS_SIZEBOX = WINDOW_STYLE.SIZEBOX;
+pub const WS_MINIMIZEBOX = WINDOW_STYLE.GROUP;
+pub const WS_MAXIMIZEBOX = WINDOW_STYLE.TABSTOP;
+pub const WS_TILED = WINDOW_STYLE.OVERLAPPED;
+pub const WS_ICONIC = WINDOW_STYLE.MINIMIZE;
+pub const WS_SIZEBOX = WINDOW_STYLE.THICKFRAME;
 pub const WS_TILEDWINDOW = WINDOW_STYLE.TILEDWINDOW;
-pub const WS_OVERLAPPEDWINDOW = WINDOW_STYLE.OVERLAPPEDWINDOW;
+pub const WS_OVERLAPPEDWINDOW = WINDOW_STYLE.TILEDWINDOW;
 pub const WS_POPUPWINDOW = WINDOW_STYLE.POPUPWINDOW;
-pub const WS_CHILDWINDOW = WINDOW_STYLE.CHILDWINDOW;
+pub const WS_CHILDWINDOW = WINDOW_STYLE.CHILD;
 pub const WS_ACTIVECAPTION = WINDOW_STYLE.ACTIVECAPTION;
 
-pub const MENU_ITEM_TYPE = extern enum(u32) {
+pub const MENU_ITEM_TYPE = enum(u32) {
     BITMAP = 4,
     MENUBARBREAK = 32,
     MENUBREAK = 64,
@@ -3409,7 +3323,7 @@ pub const MFT_RIGHTORDER = MENU_ITEM_TYPE.RIGHTORDER;
 pub const MFT_SEPARATOR = MENU_ITEM_TYPE.SEPARATOR;
 pub const MFT_STRING = MENU_ITEM_TYPE.STRING;
 
-pub const MESSAGEBOX_RESULT = extern enum(i32) {
+pub const MESSAGEBOX_RESULT = enum(i32) {
     OK = 1,
     CANCEL = 2,
     ABORT = 3,
@@ -3438,7 +3352,7 @@ pub const IDCONTINUE = MESSAGEBOX_RESULT.CONTINUE;
 pub const IDASYNC = MESSAGEBOX_RESULT.ASYNC;
 pub const IDTIMEOUT = MESSAGEBOX_RESULT.TIMEOUT;
 
-pub const OPEN_FILENAME_FLAGS = extern enum(u32) {
+pub const OPEN_FILENAME_FLAGS = enum(u32) {
     READONLY = 1,
     OVERWRITEPROMPT = 2,
     HIDEREADONLY = 4,
@@ -3551,7 +3465,7 @@ pub const OFN_ENABLESIZING = OPEN_FILENAME_FLAGS.ENABLESIZING;
 pub const OFN_DONTADDTORECENT = OPEN_FILENAME_FLAGS.DONTADDTORECENT;
 pub const OFN_FORCESHOWHIDDEN = OPEN_FILENAME_FLAGS.FORCESHOWHIDDEN;
 
-pub const OPEN_FILENAME_FLAGS_EX = extern enum(u32) {
+pub const OPEN_FILENAME_FLAGS_EX = enum(u32) {
     NE = 0,
     PLACESBAR = 1,
     _,
@@ -3568,48 +3482,42 @@ pub const OPEN_FILENAME_FLAGS_EX = extern enum(u32) {
 pub const OFN_EX_NONE = OPEN_FILENAME_FLAGS_EX.NE;
 pub const OFN_EX_NOPLACESBAR = OPEN_FILENAME_FLAGS_EX.PLACESBAR;
 
-pub const MENU_ITEM_STATE = extern enum(u32) {
+pub const MENU_ITEM_STATE = enum(u32) {
     GRAYED = 3,
-    DISABLED = 3,
+    // DISABLED = 3, this enum value conflicts with GRAYED
     CHECKED = 8,
     HILITE = 128,
     ENABLED = 0,
-    UNCHECKED = 0,
-    UNHILITE = 0,
+    // UNCHECKED = 0, this enum value conflicts with ENABLED
+    // UNHILITE = 0, this enum value conflicts with ENABLED
     DEFAULT = 4096,
     _,
     pub fn initFlags(o: struct {
         GRAYED: u1 = 0,
-        DISABLED: u1 = 0,
         CHECKED: u1 = 0,
         HILITE: u1 = 0,
         ENABLED: u1 = 0,
-        UNCHECKED: u1 = 0,
-        UNHILITE: u1 = 0,
         DEFAULT: u1 = 0,
     }) MENU_ITEM_STATE {
         return @intToEnum(MENU_ITEM_STATE,
               (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_STATE.GRAYED) else 0)
-            | (if (o.DISABLED == 1) @enumToInt(MENU_ITEM_STATE.DISABLED) else 0)
             | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_STATE.CHECKED) else 0)
             | (if (o.HILITE == 1) @enumToInt(MENU_ITEM_STATE.HILITE) else 0)
             | (if (o.ENABLED == 1) @enumToInt(MENU_ITEM_STATE.ENABLED) else 0)
-            | (if (o.UNCHECKED == 1) @enumToInt(MENU_ITEM_STATE.UNCHECKED) else 0)
-            | (if (o.UNHILITE == 1) @enumToInt(MENU_ITEM_STATE.UNHILITE) else 0)
             | (if (o.DEFAULT == 1) @enumToInt(MENU_ITEM_STATE.DEFAULT) else 0)
         );
     }
 };
 pub const MFS_GRAYED = MENU_ITEM_STATE.GRAYED;
-pub const MFS_DISABLED = MENU_ITEM_STATE.DISABLED;
+pub const MFS_DISABLED = MENU_ITEM_STATE.GRAYED;
 pub const MFS_CHECKED = MENU_ITEM_STATE.CHECKED;
 pub const MFS_HILITE = MENU_ITEM_STATE.HILITE;
 pub const MFS_ENABLED = MENU_ITEM_STATE.ENABLED;
-pub const MFS_UNCHECKED = MENU_ITEM_STATE.UNCHECKED;
-pub const MFS_UNHILITE = MENU_ITEM_STATE.UNHILITE;
+pub const MFS_UNCHECKED = MENU_ITEM_STATE.ENABLED;
+pub const MFS_UNHILITE = MENU_ITEM_STATE.ENABLED;
 pub const MFS_DEFAULT = MENU_ITEM_STATE.DEFAULT;
 
-pub const GET_CLASS_LONG_INDEX = extern enum(i32) {
+pub const GET_CLASS_LONG_INDEX = enum(i32) {
     W_ATOM = -32,
     L_CBCLSEXTRA = -20,
     L_CBWNDEXTRA = -18,
@@ -3621,13 +3529,13 @@ pub const GET_CLASS_LONG_INDEX = extern enum(i32) {
     L_MENUNAME = -8,
     L_STYLE = -26,
     L_WNDPROC = -24,
-    LP_HBRBACKGROUND = -10,
-    LP_HCURSOR = -12,
-    LP_HICON = -14,
-    LP_HICONSM = -34,
-    LP_HMODULE = -16,
-    LP_MENUNAME = -8,
-    LP_WNDPROC = -24,
+    // LP_HBRBACKGROUND = -10, this enum value conflicts with L_HBRBACKGROUND
+    // LP_HCURSOR = -12, this enum value conflicts with L_HCURSOR
+    // LP_HICON = -14, this enum value conflicts with L_HICON
+    // LP_HICONSM = -34, this enum value conflicts with L_HICONSM
+    // LP_HMODULE = -16, this enum value conflicts with L_HMODULE
+    // LP_MENUNAME = -8, this enum value conflicts with L_MENUNAME
+    // LP_WNDPROC = -24, this enum value conflicts with L_WNDPROC
 };
 pub const GCW_ATOM = GET_CLASS_LONG_INDEX.W_ATOM;
 pub const GCL_CBCLSEXTRA = GET_CLASS_LONG_INDEX.L_CBCLSEXTRA;
@@ -3640,15 +3548,15 @@ pub const GCL_HMODULE = GET_CLASS_LONG_INDEX.L_HMODULE;
 pub const GCL_MENUNAME = GET_CLASS_LONG_INDEX.L_MENUNAME;
 pub const GCL_STYLE = GET_CLASS_LONG_INDEX.L_STYLE;
 pub const GCL_WNDPROC = GET_CLASS_LONG_INDEX.L_WNDPROC;
-pub const GCLP_HBRBACKGROUND = GET_CLASS_LONG_INDEX.LP_HBRBACKGROUND;
-pub const GCLP_HCURSOR = GET_CLASS_LONG_INDEX.LP_HCURSOR;
-pub const GCLP_HICON = GET_CLASS_LONG_INDEX.LP_HICON;
-pub const GCLP_HICONSM = GET_CLASS_LONG_INDEX.LP_HICONSM;
-pub const GCLP_HMODULE = GET_CLASS_LONG_INDEX.LP_HMODULE;
-pub const GCLP_MENUNAME = GET_CLASS_LONG_INDEX.LP_MENUNAME;
-pub const GCLP_WNDPROC = GET_CLASS_LONG_INDEX.LP_WNDPROC;
+pub const GCLP_HBRBACKGROUND = GET_CLASS_LONG_INDEX.L_HBRBACKGROUND;
+pub const GCLP_HCURSOR = GET_CLASS_LONG_INDEX.L_HCURSOR;
+pub const GCLP_HICON = GET_CLASS_LONG_INDEX.L_HICON;
+pub const GCLP_HICONSM = GET_CLASS_LONG_INDEX.L_HICONSM;
+pub const GCLP_HMODULE = GET_CLASS_LONG_INDEX.L_HMODULE;
+pub const GCLP_MENUNAME = GET_CLASS_LONG_INDEX.L_MENUNAME;
+pub const GCLP_WNDPROC = GET_CLASS_LONG_INDEX.L_WNDPROC;
 
-pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = extern enum(u32) {
+pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = enum(u32) {
     ALLOWSFW = 128,
     FLUSHDISK = 4,
     FORCEIFHUNG = 32,
@@ -3701,7 +3609,7 @@ pub const BSF_SENDNOTIFYMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSA
 pub const BSF_LUID = BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID;
 pub const BSF_RETURNHDESK = BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK;
 
-pub const UPDATE_LAYERED_WINDOW_FLAGS = extern enum(u32) {
+pub const UPDATE_LAYERED_WINDOW_FLAGS = enum(u32) {
     ALPHA = 2,
     COLORKEY = 1,
     OPAQUE = 4,
@@ -3712,7 +3620,7 @@ pub const ULW_COLORKEY = UPDATE_LAYERED_WINDOW_FLAGS.COLORKEY;
 pub const ULW_OPAQUE = UPDATE_LAYERED_WINDOW_FLAGS.OPAQUE;
 pub const ULW_EX_NORESIZE = UPDATE_LAYERED_WINDOW_FLAGS.EX_NORESIZE;
 
-pub const WINDOW_LONG_PTR_INDEX = extern enum(i32) {
+pub const WINDOW_LONG_PTR_INDEX = enum(i32) {
     _EXSTYLE = -20,
     P_HINSTANCE = -6,
     P_HWNDPARENT = -8,
@@ -3720,11 +3628,11 @@ pub const WINDOW_LONG_PTR_INDEX = extern enum(i32) {
     _STYLE = -16,
     P_USERDATA = -21,
     P_WNDPROC = -4,
-    _HINSTANCE = -6,
-    _ID = -12,
-    _USERDATA = -21,
-    _WNDPROC = -4,
-    _HWNDPARENT = -8,
+    // _HINSTANCE = -6, this enum value conflicts with P_HINSTANCE
+    // _ID = -12, this enum value conflicts with P_ID
+    // _USERDATA = -21, this enum value conflicts with P_USERDATA
+    // _WNDPROC = -4, this enum value conflicts with P_WNDPROC
+    // _HWNDPARENT = -8, this enum value conflicts with P_HWNDPARENT
 };
 pub const GWL_EXSTYLE = WINDOW_LONG_PTR_INDEX._EXSTYLE;
 pub const GWLP_HINSTANCE = WINDOW_LONG_PTR_INDEX.P_HINSTANCE;
@@ -3733,13 +3641,13 @@ pub const GWLP_ID = WINDOW_LONG_PTR_INDEX.P_ID;
 pub const GWL_STYLE = WINDOW_LONG_PTR_INDEX._STYLE;
 pub const GWLP_USERDATA = WINDOW_LONG_PTR_INDEX.P_USERDATA;
 pub const GWLP_WNDPROC = WINDOW_LONG_PTR_INDEX.P_WNDPROC;
-pub const GWL_HINSTANCE = WINDOW_LONG_PTR_INDEX._HINSTANCE;
-pub const GWL_ID = WINDOW_LONG_PTR_INDEX._ID;
-pub const GWL_USERDATA = WINDOW_LONG_PTR_INDEX._USERDATA;
-pub const GWL_WNDPROC = WINDOW_LONG_PTR_INDEX._WNDPROC;
-pub const GWL_HWNDPARENT = WINDOW_LONG_PTR_INDEX._HWNDPARENT;
+pub const GWL_HINSTANCE = WINDOW_LONG_PTR_INDEX.P_HINSTANCE;
+pub const GWL_ID = WINDOW_LONG_PTR_INDEX.P_ID;
+pub const GWL_USERDATA = WINDOW_LONG_PTR_INDEX.P_USERDATA;
+pub const GWL_WNDPROC = WINDOW_LONG_PTR_INDEX.P_WNDPROC;
+pub const GWL_HWNDPARENT = WINDOW_LONG_PTR_INDEX.P_HWNDPARENT;
 
-pub const ANIMATE_WINDOW_FLAGS = extern enum(u32) {
+pub const ANIMATE_WINDOW_FLAGS = enum(u32) {
     ACTIVATE = 131072,
     BLEND = 524288,
     CENTER = 16,
@@ -3784,14 +3692,14 @@ pub const AW_SLIDE = ANIMATE_WINDOW_FLAGS.SLIDE;
 pub const AW_VER_POSITIVE = ANIMATE_WINDOW_FLAGS.VER_POSITIVE;
 pub const AW_VER_NEGATIVE = ANIMATE_WINDOW_FLAGS.VER_NEGATIVE;
 
-pub const CHANGE_WINDOW_MESSAGE_FILTER_FLAGS = extern enum(u32) {
+pub const CHANGE_WINDOW_MESSAGE_FILTER_FLAGS = enum(u32) {
     ADD = 1,
     REMOVE = 2,
 };
 pub const MSGFLT_ADD = CHANGE_WINDOW_MESSAGE_FILTER_FLAGS.ADD;
 pub const MSGFLT_REMOVE = CHANGE_WINDOW_MESSAGE_FILTER_FLAGS.REMOVE;
 
-pub const GDI_IMAGE_TYPE = extern enum(u32) {
+pub const GDI_IMAGE_TYPE = enum(u32) {
     BITMAP = 0,
     CURSOR = 2,
     ICON = 1,
@@ -3800,7 +3708,7 @@ pub const IMAGE_BITMAP = GDI_IMAGE_TYPE.BITMAP;
 pub const IMAGE_CURSOR = GDI_IMAGE_TYPE.CURSOR;
 pub const IMAGE_ICON = GDI_IMAGE_TYPE.ICON;
 
-pub const WINDOWS_HOOK_ID = extern enum(i32) {
+pub const WINDOWS_HOOK_ID = enum(i32) {
     CALLWNDPROC = 4,
     CALLWNDPROCRET = 12,
     CBT = 5,
@@ -3833,7 +3741,7 @@ pub const WH_MSGFILTER = WINDOWS_HOOK_ID.MSGFILTER;
 pub const WH_SHELL = WINDOWS_HOOK_ID.SHELL;
 pub const WH_SYSMSGFILTER = WINDOWS_HOOK_ID.SYSMSGFILTER;
 
-pub const BROADCAST_SYSTEM_MESSAGE_INFO = extern enum(u32) {
+pub const BROADCAST_SYSTEM_MESSAGE_INFO = enum(u32) {
     LLCOMPONENTS = 0,
     LLDESKTOPS = 16,
     PPLICATIONS = 8,
@@ -3854,101 +3762,93 @@ pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS;
 pub const BSM_ALLDESKTOPS = BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS;
 pub const BSM_APPLICATIONS = BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS;
 
-pub const SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS = extern enum(u32) {
+pub const SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS = enum(u32) {
     UPDATEINIFILE = 1,
     SENDCHANGE = 2,
-    SENDWININICHANGE = 2,
+    // SENDWININICHANGE = 2, this enum value conflicts with SENDCHANGE
     _,
     pub fn initFlags(o: struct {
         UPDATEINIFILE: u1 = 0,
         SENDCHANGE: u1 = 0,
-        SENDWININICHANGE: u1 = 0,
     }) SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS {
         return @intToEnum(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS,
               (if (o.UPDATEINIFILE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.UPDATEINIFILE) else 0)
             | (if (o.SENDCHANGE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDCHANGE) else 0)
-            | (if (o.SENDWININICHANGE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDWININICHANGE) else 0)
         );
     }
 };
 pub const SPIF_UPDATEINIFILE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.UPDATEINIFILE;
 pub const SPIF_SENDCHANGE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDCHANGE;
-pub const SPIF_SENDWININICHANGE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDWININICHANGE;
+pub const SPIF_SENDWININICHANGE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDCHANGE;
 
-pub const SET_WINDOW_POS_FLAGS = extern enum(u32) {
+pub const SET_WINDOW_POS_FLAGS = enum(u32) {
     ASYNCWINDOWPOS = 16384,
     DEFERERASE = 8192,
     DRAWFRAME = 32,
-    FRAMECHANGED = 32,
+    // FRAMECHANGED = 32, this enum value conflicts with DRAWFRAME
     HIDEWINDOW = 128,
     NOACTIVATE = 16,
     NOCOPYBITS = 256,
     NOMOVE = 2,
     NOOWNERZORDER = 512,
     NOREDRAW = 8,
-    NOREPOSITION = 512,
+    // NOREPOSITION = 512, this enum value conflicts with NOOWNERZORDER
     NOSENDCHANGING = 1024,
     NOSIZE = 1,
     NOZORDER = 4,
     SHOWWINDOW = 64,
-    _NOOWNERZORDER = 512,
+    // _NOOWNERZORDER = 512, this enum value conflicts with NOOWNERZORDER
     _,
     pub fn initFlags(o: struct {
         ASYNCWINDOWPOS: u1 = 0,
         DEFERERASE: u1 = 0,
         DRAWFRAME: u1 = 0,
-        FRAMECHANGED: u1 = 0,
         HIDEWINDOW: u1 = 0,
         NOACTIVATE: u1 = 0,
         NOCOPYBITS: u1 = 0,
         NOMOVE: u1 = 0,
         NOOWNERZORDER: u1 = 0,
         NOREDRAW: u1 = 0,
-        NOREPOSITION: u1 = 0,
         NOSENDCHANGING: u1 = 0,
         NOSIZE: u1 = 0,
         NOZORDER: u1 = 0,
         SHOWWINDOW: u1 = 0,
-        _NOOWNERZORDER: u1 = 0,
     }) SET_WINDOW_POS_FLAGS {
         return @intToEnum(SET_WINDOW_POS_FLAGS,
               (if (o.ASYNCWINDOWPOS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.ASYNCWINDOWPOS) else 0)
             | (if (o.DEFERERASE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DEFERERASE) else 0)
             | (if (o.DRAWFRAME == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DRAWFRAME) else 0)
-            | (if (o.FRAMECHANGED == 1) @enumToInt(SET_WINDOW_POS_FLAGS.FRAMECHANGED) else 0)
             | (if (o.HIDEWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.HIDEWINDOW) else 0)
             | (if (o.NOACTIVATE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOACTIVATE) else 0)
             | (if (o.NOCOPYBITS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOCOPYBITS) else 0)
             | (if (o.NOMOVE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOMOVE) else 0)
             | (if (o.NOOWNERZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOOWNERZORDER) else 0)
             | (if (o.NOREDRAW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOREDRAW) else 0)
-            | (if (o.NOREPOSITION == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOREPOSITION) else 0)
             | (if (o.NOSENDCHANGING == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSENDCHANGING) else 0)
             | (if (o.NOSIZE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSIZE) else 0)
             | (if (o.NOZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOZORDER) else 0)
             | (if (o.SHOWWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.SHOWWINDOW) else 0)
-            | (if (o._NOOWNERZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS._NOOWNERZORDER) else 0)
         );
     }
 };
 pub const SWP_ASYNCWINDOWPOS = SET_WINDOW_POS_FLAGS.ASYNCWINDOWPOS;
 pub const SWP_DEFERERASE = SET_WINDOW_POS_FLAGS.DEFERERASE;
 pub const SWP_DRAWFRAME = SET_WINDOW_POS_FLAGS.DRAWFRAME;
-pub const SWP_FRAMECHANGED = SET_WINDOW_POS_FLAGS.FRAMECHANGED;
+pub const SWP_FRAMECHANGED = SET_WINDOW_POS_FLAGS.DRAWFRAME;
 pub const SWP_HIDEWINDOW = SET_WINDOW_POS_FLAGS.HIDEWINDOW;
 pub const SWP_NOACTIVATE = SET_WINDOW_POS_FLAGS.NOACTIVATE;
 pub const SWP_NOCOPYBITS = SET_WINDOW_POS_FLAGS.NOCOPYBITS;
 pub const SWP_NOMOVE = SET_WINDOW_POS_FLAGS.NOMOVE;
 pub const SWP_NOOWNERZORDER = SET_WINDOW_POS_FLAGS.NOOWNERZORDER;
 pub const SWP_NOREDRAW = SET_WINDOW_POS_FLAGS.NOREDRAW;
-pub const SWP_NOREPOSITION = SET_WINDOW_POS_FLAGS.NOREPOSITION;
+pub const SWP_NOREPOSITION = SET_WINDOW_POS_FLAGS.NOOWNERZORDER;
 pub const SWP_NOSENDCHANGING = SET_WINDOW_POS_FLAGS.NOSENDCHANGING;
 pub const SWP_NOSIZE = SET_WINDOW_POS_FLAGS.NOSIZE;
 pub const SWP_NOZORDER = SET_WINDOW_POS_FLAGS.NOZORDER;
 pub const SWP_SHOWWINDOW = SET_WINDOW_POS_FLAGS.SHOWWINDOW;
-pub const SWP__NOOWNERZORDER = SET_WINDOW_POS_FLAGS._NOOWNERZORDER;
+pub const SWP__NOOWNERZORDER = SET_WINDOW_POS_FLAGS.NOOWNERZORDER;
 
-pub const QUEUE_STATUS_FLAGS = extern enum(u32) {
+pub const QUEUE_STATUS_FLAGS = enum(u32) {
     ALLEVENTS = 1215,
     ALLINPUT = 1279,
     ALLPOSTMESSAGE = 256,
@@ -4013,7 +3913,7 @@ pub const QS_RAWINPUT = QUEUE_STATUS_FLAGS.RAWINPUT;
 pub const QS_SENDMESSAGE = QUEUE_STATUS_FLAGS.SENDMESSAGE;
 pub const QS_TIMER = QUEUE_STATUS_FLAGS.TIMER;
 
-pub const SYSTEM_CURSOR_ID = extern enum(u32) {
+pub const SYSTEM_CURSOR_ID = enum(u32) {
     APPSTARTING = 32650,
     NORMAL = 32512,
     CROSS = 32515,
@@ -4044,7 +3944,7 @@ pub const OCR_SIZEWE = SYSTEM_CURSOR_ID.SIZEWE;
 pub const OCR_UP = SYSTEM_CURSOR_ID.UP;
 pub const OCR_WAIT = SYSTEM_CURSOR_ID.WAIT;
 
-pub const LAYERED_WINDOW_ATTRIBUTES_FLAGS = extern enum(u32) {
+pub const LAYERED_WINDOW_ATTRIBUTES_FLAGS = enum(u32) {
     ALPHA = 2,
     COLORKEY = 1,
     _,
@@ -4061,7 +3961,7 @@ pub const LAYERED_WINDOW_ATTRIBUTES_FLAGS = extern enum(u32) {
 pub const LWA_ALPHA = LAYERED_WINDOW_ATTRIBUTES_FLAGS.ALPHA;
 pub const LWA_COLORKEY = LAYERED_WINDOW_ATTRIBUTES_FLAGS.COLORKEY;
 
-pub const SEND_MESSAGE_TIMEOUT_FLAGS = extern enum(u32) {
+pub const SEND_MESSAGE_TIMEOUT_FLAGS = enum(u32) {
     ABORTIFHUNG = 2,
     BLOCK = 1,
     NORMAL = 0,
@@ -4090,7 +3990,7 @@ pub const SMTO_NORMAL = SEND_MESSAGE_TIMEOUT_FLAGS.NORMAL;
 pub const SMTO_NOTIMEOUTIFNOTHUNG = SEND_MESSAGE_TIMEOUT_FLAGS.NOTIMEOUTIFNOTHUNG;
 pub const SMTO_ERRORONEXIT = SEND_MESSAGE_TIMEOUT_FLAGS.ERRORONEXIT;
 
-pub const PEEK_MESSAGE_REMOVE_TYPE = extern enum(u32) {
+pub const PEEK_MESSAGE_REMOVE_TYPE = enum(u32) {
     NOREMOVE = 0,
     REMOVE = 1,
     NOYIELD = 2,
@@ -4127,24 +4027,24 @@ pub const PM_QS_POSTMESSAGE = PEEK_MESSAGE_REMOVE_TYPE.QS_POSTMESSAGE;
 pub const PM_QS_PAINT = PEEK_MESSAGE_REMOVE_TYPE.QS_PAINT;
 pub const PM_QS_SENDMESSAGE = PEEK_MESSAGE_REMOVE_TYPE.QS_SENDMESSAGE;
 
-pub const SYS_COLOR_INDEX = extern enum(u32) {
+pub const SYS_COLOR_INDEX = enum(u32) {
     COLOR_3DDKSHADOW = 21,
     COLOR_3DFACE = 15,
     COLOR_3DHIGHLIGHT = 20,
-    COLOR_3DHILIGHT = 20,
+    // COLOR_3DHILIGHT = 20, this enum value conflicts with COLOR_3DHIGHLIGHT
     COLOR_3DLIGHT = 22,
     COLOR_3DSHADOW = 16,
     COLOR_ACTIVEBORDER = 10,
     COLOR_ACTIVECAPTION = 2,
     COLOR_APPWORKSPACE = 12,
     COLOR_BACKGROUND = 1,
-    COLOR_BTNFACE = 15,
-    _COLOR_BTNHIGHLIGHT = 20,
-    _COLOR_BTNHILIGHT = 20,
-    COLOR_BTNSHADOW = 16,
+    // COLOR_BTNFACE = 15, this enum value conflicts with COLOR_3DFACE
+    // _COLOR_BTNHIGHLIGHT = 20, this enum value conflicts with COLOR_3DHIGHLIGHT
+    // _COLOR_BTNHILIGHT = 20, this enum value conflicts with COLOR_3DHIGHLIGHT
+    // COLOR_BTNSHADOW = 16, this enum value conflicts with COLOR_3DSHADOW
     COLOR_BTNTEXT = 18,
     COLOR_CAPTIONTEXT = 9,
-    COLOR_DESKTOP = 1,
+    // COLOR_DESKTOP = 1, this enum value conflicts with COLOR_BACKGROUND
     COLOR_GRADIENTACTIVECAPTION = 27,
     COLOR_GRADIENTINACTIVECAPTION = 28,
     COLOR_GRAYTEXT = 17,
@@ -4168,20 +4068,20 @@ pub const SYS_COLOR_INDEX = extern enum(u32) {
 pub const COLOR_3DDKSHADOW = SYS_COLOR_INDEX.COLOR_3DDKSHADOW;
 pub const COLOR_3DFACE = SYS_COLOR_INDEX.COLOR_3DFACE;
 pub const COLOR_3DHIGHLIGHT = SYS_COLOR_INDEX.COLOR_3DHIGHLIGHT;
-pub const COLOR_3DHILIGHT = SYS_COLOR_INDEX.COLOR_3DHILIGHT;
+pub const COLOR_3DHILIGHT = SYS_COLOR_INDEX.COLOR_3DHIGHLIGHT;
 pub const COLOR_3DLIGHT = SYS_COLOR_INDEX.COLOR_3DLIGHT;
 pub const COLOR_3DSHADOW = SYS_COLOR_INDEX.COLOR_3DSHADOW;
 pub const COLOR_ACTIVEBORDER = SYS_COLOR_INDEX.COLOR_ACTIVEBORDER;
 pub const COLOR_ACTIVECAPTION = SYS_COLOR_INDEX.COLOR_ACTIVECAPTION;
 pub const COLOR_APPWORKSPACE = SYS_COLOR_INDEX.COLOR_APPWORKSPACE;
 pub const COLOR_BACKGROUND = SYS_COLOR_INDEX.COLOR_BACKGROUND;
-pub const COLOR_BTNFACE = SYS_COLOR_INDEX.COLOR_BTNFACE;
-pub const _COLOR_BTNHIGHLIGHT = SYS_COLOR_INDEX._COLOR_BTNHIGHLIGHT;
-pub const _COLOR_BTNHILIGHT = SYS_COLOR_INDEX._COLOR_BTNHILIGHT;
-pub const COLOR_BTNSHADOW = SYS_COLOR_INDEX.COLOR_BTNSHADOW;
+pub const COLOR_BTNFACE = SYS_COLOR_INDEX.COLOR_3DFACE;
+pub const _COLOR_BTNHIGHLIGHT = SYS_COLOR_INDEX.COLOR_3DHIGHLIGHT;
+pub const _COLOR_BTNHILIGHT = SYS_COLOR_INDEX.COLOR_3DHIGHLIGHT;
+pub const COLOR_BTNSHADOW = SYS_COLOR_INDEX.COLOR_3DSHADOW;
 pub const COLOR_BTNTEXT = SYS_COLOR_INDEX.COLOR_BTNTEXT;
 pub const COLOR_CAPTIONTEXT = SYS_COLOR_INDEX.COLOR_CAPTIONTEXT;
-pub const COLOR_DESKTOP = SYS_COLOR_INDEX.COLOR_DESKTOP;
+pub const COLOR_DESKTOP = SYS_COLOR_INDEX.COLOR_BACKGROUND;
 pub const COLOR_GRADIENTACTIVECAPTION = SYS_COLOR_INDEX.COLOR_GRADIENTACTIVECAPTION;
 pub const COLOR_GRADIENTINACTIVECAPTION = SYS_COLOR_INDEX.COLOR_GRADIENTINACTIVECAPTION;
 pub const COLOR_GRAYTEXT = SYS_COLOR_INDEX.COLOR_GRAYTEXT;
@@ -4202,7 +4102,7 @@ pub const COLOR_WINDOW = SYS_COLOR_INDEX.COLOR_WINDOW;
 pub const COLOR_WINDOWFRAME = SYS_COLOR_INDEX.COLOR_WINDOWFRAME;
 pub const COLOR_WINDOWTEXT = SYS_COLOR_INDEX.COLOR_WINDOWTEXT;
 
-pub const GET_WINDOW_CMD = extern enum(u32) {
+pub const GET_WINDOW_CMD = enum(u32) {
     CHILD = 5,
     ENABLEDPOPUP = 6,
     HWNDFIRST = 0,
@@ -4219,7 +4119,7 @@ pub const GW_HWNDNEXT = GET_WINDOW_CMD.HWNDNEXT;
 pub const GW_HWNDPREV = GET_WINDOW_CMD.HWNDPREV;
 pub const GW_OWNER = GET_WINDOW_CMD.OWNER;
 
-pub const SYSTEM_METRICS_INDEX = extern enum(u32) {
+pub const SYSTEM_METRICS_INDEX = enum(u32) {
     ARRANGE = 56,
     CLEANBOOT = 67,
     CMONITORS = 80,
@@ -4231,7 +4131,7 @@ pub const SYSTEM_METRICS_INDEX = extern enum(u32) {
     CXDOUBLECLK = 36,
     CXDRAG = 68,
     CXEDGE = 45,
-    CXFIXEDFRAME = 7,
+    // CXFIXEDFRAME = 7, this enum value conflicts with CXDLGFRAME
     CXFOCUSBORDER = 83,
     CXFRAME = 32,
     CXFULLSCREEN = 16,
@@ -4250,7 +4150,7 @@ pub const SYSTEM_METRICS_INDEX = extern enum(u32) {
     CXPADDEDBORDER = 92,
     CXSCREEN = 0,
     CXSIZE = 30,
-    CXSIZEFRAME = 32,
+    // CXSIZEFRAME = 32, this enum value conflicts with CXFRAME
     CXSMICON = 49,
     CXSMSIZE = 52,
     CXVIRTUALSCREEN = 78,
@@ -4262,7 +4162,7 @@ pub const SYSTEM_METRICS_INDEX = extern enum(u32) {
     CYDOUBLECLK = 37,
     CYDRAG = 69,
     CYEDGE = 46,
-    CYFIXEDFRAME = 8,
+    // CYFIXEDFRAME = 8, this enum value conflicts with CYDLGFRAME
     CYFOCUSBORDER = 84,
     CYFRAME = 33,
     CYFULLSCREEN = 17,
@@ -4281,7 +4181,7 @@ pub const SYSTEM_METRICS_INDEX = extern enum(u32) {
     CYMINTRACK = 35,
     CYSCREEN = 1,
     CYSIZE = 31,
-    CYSIZEFRAME = 33,
+    // CYSIZEFRAME = 33, this enum value conflicts with CYFRAME
     CYSMCAPTION = 51,
     CYSMICON = 50,
     CYSMSIZE = 53,
@@ -4327,7 +4227,7 @@ pub const SM_CXDLGFRAME = SYSTEM_METRICS_INDEX.CXDLGFRAME;
 pub const SM_CXDOUBLECLK = SYSTEM_METRICS_INDEX.CXDOUBLECLK;
 pub const SM_CXDRAG = SYSTEM_METRICS_INDEX.CXDRAG;
 pub const SM_CXEDGE = SYSTEM_METRICS_INDEX.CXEDGE;
-pub const SM_CXFIXEDFRAME = SYSTEM_METRICS_INDEX.CXFIXEDFRAME;
+pub const SM_CXFIXEDFRAME = SYSTEM_METRICS_INDEX.CXDLGFRAME;
 pub const SM_CXFOCUSBORDER = SYSTEM_METRICS_INDEX.CXFOCUSBORDER;
 pub const SM_CXFRAME = SYSTEM_METRICS_INDEX.CXFRAME;
 pub const SM_CXFULLSCREEN = SYSTEM_METRICS_INDEX.CXFULLSCREEN;
@@ -4346,7 +4246,7 @@ pub const SM_CXMINTRACK = SYSTEM_METRICS_INDEX.CXMINTRACK;
 pub const SM_CXPADDEDBORDER = SYSTEM_METRICS_INDEX.CXPADDEDBORDER;
 pub const SM_CXSCREEN = SYSTEM_METRICS_INDEX.CXSCREEN;
 pub const SM_CXSIZE = SYSTEM_METRICS_INDEX.CXSIZE;
-pub const SM_CXSIZEFRAME = SYSTEM_METRICS_INDEX.CXSIZEFRAME;
+pub const SM_CXSIZEFRAME = SYSTEM_METRICS_INDEX.CXFRAME;
 pub const SM_CXSMICON = SYSTEM_METRICS_INDEX.CXSMICON;
 pub const SM_CXSMSIZE = SYSTEM_METRICS_INDEX.CXSMSIZE;
 pub const SM_CXVIRTUALSCREEN = SYSTEM_METRICS_INDEX.CXVIRTUALSCREEN;
@@ -4358,7 +4258,7 @@ pub const SM_CYDLGFRAME = SYSTEM_METRICS_INDEX.CYDLGFRAME;
 pub const SM_CYDOUBLECLK = SYSTEM_METRICS_INDEX.CYDOUBLECLK;
 pub const SM_CYDRAG = SYSTEM_METRICS_INDEX.CYDRAG;
 pub const SM_CYEDGE = SYSTEM_METRICS_INDEX.CYEDGE;
-pub const SM_CYFIXEDFRAME = SYSTEM_METRICS_INDEX.CYFIXEDFRAME;
+pub const SM_CYFIXEDFRAME = SYSTEM_METRICS_INDEX.CYDLGFRAME;
 pub const SM_CYFOCUSBORDER = SYSTEM_METRICS_INDEX.CYFOCUSBORDER;
 pub const SM_CYFRAME = SYSTEM_METRICS_INDEX.CYFRAME;
 pub const SM_CYFULLSCREEN = SYSTEM_METRICS_INDEX.CYFULLSCREEN;
@@ -4377,7 +4277,7 @@ pub const SM_CYMINSPACING = SYSTEM_METRICS_INDEX.CYMINSPACING;
 pub const SM_CYMINTRACK = SYSTEM_METRICS_INDEX.CYMINTRACK;
 pub const SM_CYSCREEN = SYSTEM_METRICS_INDEX.CYSCREEN;
 pub const SM_CYSIZE = SYSTEM_METRICS_INDEX.CYSIZE;
-pub const SM_CYSIZEFRAME = SYSTEM_METRICS_INDEX.CYSIZEFRAME;
+pub const SM_CYSIZEFRAME = SYSTEM_METRICS_INDEX.CYFRAME;
 pub const SM_CYSMCAPTION = SYSTEM_METRICS_INDEX.CYSMCAPTION;
 pub const SM_CYSMICON = SYSTEM_METRICS_INDEX.CYSMICON;
 pub const SM_CYSMSIZE = SYSTEM_METRICS_INDEX.CYSMSIZE;
@@ -4412,7 +4312,7 @@ pub const SM_TABLETPC = SYSTEM_METRICS_INDEX.TABLETPC;
 pub const SM_XVIRTUALSCREEN = SYSTEM_METRICS_INDEX.XVIRTUALSCREEN;
 pub const SM_YVIRTUALSCREEN = SYSTEM_METRICS_INDEX.YVIRTUALSCREEN;
 
-pub const GET_ANCESTOR_FLAGS = extern enum(u32) {
+pub const GET_ANCESTOR_FLAGS = enum(u32) {
     PARENT = 1,
     ROOT = 2,
     ROOTOWNER = 3,
@@ -4421,14 +4321,14 @@ pub const GA_PARENT = GET_ANCESTOR_FLAGS.PARENT;
 pub const GA_ROOT = GET_ANCESTOR_FLAGS.ROOT;
 pub const GA_ROOTOWNER = GET_ANCESTOR_FLAGS.ROOTOWNER;
 
-pub const TILE_WINDOWS_HOW = extern enum(u32) {
+pub const TILE_WINDOWS_HOW = enum(u32) {
     HORIZONTAL = 1,
     VERTICAL = 0,
 };
 pub const MDITILE_HORIZONTAL = TILE_WINDOWS_HOW.HORIZONTAL;
 pub const MDITILE_VERTICAL = TILE_WINDOWS_HOW.VERTICAL;
 
-pub const WINDOW_DISPLAY_AFFINITY = extern enum(u32) {
+pub const WINDOW_DISPLAY_AFFINITY = enum(u32) {
     NONE = 0,
     MONITOR = 1,
     EXCLUDEFROMCAPTURE = 17,
@@ -4437,14 +4337,14 @@ pub const WDA_NONE = WINDOW_DISPLAY_AFFINITY.NONE;
 pub const WDA_MONITOR = WINDOW_DISPLAY_AFFINITY.MONITOR;
 pub const WDA_EXCLUDEFROMCAPTURE = WINDOW_DISPLAY_AFFINITY.EXCLUDEFROMCAPTURE;
 
-pub const FOREGROUND_WINDOW_LOCK_CODE = extern enum(u32) {
+pub const FOREGROUND_WINDOW_LOCK_CODE = enum(u32) {
     LOCK = 1,
     UNLOCK = 2,
 };
 pub const LSFW_LOCK = FOREGROUND_WINDOW_LOCK_CODE.LOCK;
 pub const LSFW_UNLOCK = FOREGROUND_WINDOW_LOCK_CODE.UNLOCK;
 
-pub const CASCADE_WINDOWS_HOW = extern enum(u32) {
+pub const CASCADE_WINDOWS_HOW = enum(u32) {
     SKIPDISABLED = 2,
     ZORDER = 4,
     _,
@@ -4461,7 +4361,7 @@ pub const CASCADE_WINDOWS_HOW = extern enum(u32) {
 pub const MDITILE_SKIPDISABLED = CASCADE_WINDOWS_HOW.SKIPDISABLED;
 pub const MDITILE_ZORDER = CASCADE_WINDOWS_HOW.ZORDER;
 
-pub const WINDOW_MESSAGE_FILTER_ACTION = extern enum(u32) {
+pub const WINDOW_MESSAGE_FILTER_ACTION = enum(u32) {
     ALLOW = 1,
     DISALLOW = 2,
     RESET = 0,
@@ -4470,7 +4370,7 @@ pub const MSGFLT_ALLOW = WINDOW_MESSAGE_FILTER_ACTION.ALLOW;
 pub const MSGFLT_DISALLOW = WINDOW_MESSAGE_FILTER_ACTION.DISALLOW;
 pub const MSGFLT_RESET = WINDOW_MESSAGE_FILTER_ACTION.RESET;
 
-pub const GET_MENU_DEFAULT_ITEM_FLAGS = extern enum(u32) {
+pub const GET_MENU_DEFAULT_ITEM_FLAGS = enum(u32) {
     GOINTOPOPUPS = 2,
     USEDISABLED = 1,
     _,
@@ -4487,7 +4387,7 @@ pub const GET_MENU_DEFAULT_ITEM_FLAGS = extern enum(u32) {
 pub const GMDI_GOINTOPOPUPS = GET_MENU_DEFAULT_ITEM_FLAGS.GOINTOPOPUPS;
 pub const GMDI_USEDISABLED = GET_MENU_DEFAULT_ITEM_FLAGS.USEDISABLED;
 
-pub const PAGESETUPDLG_FLAGS = extern enum(u32) {
+pub const PAGESETUPDLG_FLAGS = enum(u32) {
     DEFAULTMINMARGINS = 0,
     DISABLEMARGINS = 16,
     DISABLEORIENTATION = 256,
@@ -4500,7 +4400,7 @@ pub const PAGESETUPDLG_FLAGS = extern enum(u32) {
     ENABLEPAGESETUPTEMPLATEHANDLE = 131072,
     INHUNDREDTHSOFMILLIMETERS = 8,
     INTHOUSANDTHSOFINCHES = 4,
-    INWININIINTLMEASURE = 0,
+    // INWININIINTLMEASURE = 0, this enum value conflicts with DEFAULTMINMARGINS
     MARGINS = 2,
     MINMARGINS = 1,
     NONETWORKBUTTON = 2097152,
@@ -4521,7 +4421,6 @@ pub const PAGESETUPDLG_FLAGS = extern enum(u32) {
         ENABLEPAGESETUPTEMPLATEHANDLE: u1 = 0,
         INHUNDREDTHSOFMILLIMETERS: u1 = 0,
         INTHOUSANDTHSOFINCHES: u1 = 0,
-        INWININIINTLMEASURE: u1 = 0,
         MARGINS: u1 = 0,
         MINMARGINS: u1 = 0,
         NONETWORKBUTTON: u1 = 0,
@@ -4542,7 +4441,6 @@ pub const PAGESETUPDLG_FLAGS = extern enum(u32) {
             | (if (o.ENABLEPAGESETUPTEMPLATEHANDLE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATEHANDLE) else 0)
             | (if (o.INHUNDREDTHSOFMILLIMETERS == 1) @enumToInt(PAGESETUPDLG_FLAGS.INHUNDREDTHSOFMILLIMETERS) else 0)
             | (if (o.INTHOUSANDTHSOFINCHES == 1) @enumToInt(PAGESETUPDLG_FLAGS.INTHOUSANDTHSOFINCHES) else 0)
-            | (if (o.INWININIINTLMEASURE == 1) @enumToInt(PAGESETUPDLG_FLAGS.INWININIINTLMEASURE) else 0)
             | (if (o.MARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MARGINS) else 0)
             | (if (o.MINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MINMARGINS) else 0)
             | (if (o.NONETWORKBUTTON == 1) @enumToInt(PAGESETUPDLG_FLAGS.NONETWORKBUTTON) else 0)
@@ -4564,7 +4462,7 @@ pub const PSD_ENABLEPAGESETUPTEMPLATE = PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLA
 pub const PSD_ENABLEPAGESETUPTEMPLATEHANDLE = PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATEHANDLE;
 pub const PSD_INHUNDREDTHSOFMILLIMETERS = PAGESETUPDLG_FLAGS.INHUNDREDTHSOFMILLIMETERS;
 pub const PSD_INTHOUSANDTHSOFINCHES = PAGESETUPDLG_FLAGS.INTHOUSANDTHSOFINCHES;
-pub const PSD_INWININIINTLMEASURE = PAGESETUPDLG_FLAGS.INWININIINTLMEASURE;
+pub const PSD_INWININIINTLMEASURE = PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS;
 pub const PSD_MARGINS = PAGESETUPDLG_FLAGS.MARGINS;
 pub const PSD_MINMARGINS = PAGESETUPDLG_FLAGS.MINMARGINS;
 pub const PSD_NONETWORKBUTTON = PAGESETUPDLG_FLAGS.NONETWORKBUTTON;
@@ -4572,7 +4470,7 @@ pub const PSD_NOWARNING = PAGESETUPDLG_FLAGS.NOWARNING;
 pub const PSD_RETURNDEFAULT = PAGESETUPDLG_FLAGS.RETURNDEFAULT;
 pub const PSD_SHOWHELP = PAGESETUPDLG_FLAGS.SHOWHELP;
 
-pub const MSGFLTINFO_STATUS = extern enum(u32) {
+pub const MSGFLTINFO_STATUS = enum(u32) {
     NONE = 0,
     ALLOWED_HIGHER = 3,
     ALREADYALLOWED_FORWND = 1,
@@ -4583,7 +4481,7 @@ pub const MSGFLTINFO_ALLOWED_HIGHER = MSGFLTINFO_STATUS.ALLOWED_HIGHER;
 pub const MSGFLTINFO_ALREADYALLOWED_FORWND = MSGFLTINFO_STATUS.ALREADYALLOWED_FORWND;
 pub const MSGFLTINFO_ALREADYDISALLOWED_FORWND = MSGFLTINFO_STATUS.ALREADYDISALLOWED_FORWND;
 
-pub const CHOOSEFONT_FLAGS = extern enum(u32) {
+pub const CHOOSEFONT_FLAGS = enum(u32) {
     APPLY = 512,
     ANSIONLY = 1024,
     BOTH = 3,
@@ -4602,12 +4500,12 @@ pub const CHOOSEFONT_FLAGS = extern enum(u32) {
     NOSIMULATIONS = 4096,
     NOSIZESEL = 2097152,
     NOSTYLESEL = 1048576,
-    NOVECTORFONTS = 2048,
+    // NOVECTORFONTS = 2048, this enum value conflicts with NOOEMFONTS
     NOVERTFONTS = 16777216,
     PRINTERFONTS = 2,
     SCALABLEONLY = 131072,
     SCREENFONTS = 1,
-    SCRIPTSONLY = 1024,
+    // SCRIPTSONLY = 1024, this enum value conflicts with ANSIONLY
     SELECTSCRIPT = 4194304,
     SHOWHELP = 4,
     TTONLY = 262144,
@@ -4633,12 +4531,10 @@ pub const CHOOSEFONT_FLAGS = extern enum(u32) {
         NOSIMULATIONS: u1 = 0,
         NOSIZESEL: u1 = 0,
         NOSTYLESEL: u1 = 0,
-        NOVECTORFONTS: u1 = 0,
         NOVERTFONTS: u1 = 0,
         PRINTERFONTS: u1 = 0,
         SCALABLEONLY: u1 = 0,
         SCREENFONTS: u1 = 0,
-        SCRIPTSONLY: u1 = 0,
         SELECTSCRIPT: u1 = 0,
         SHOWHELP: u1 = 0,
         TTONLY: u1 = 0,
@@ -4664,12 +4560,10 @@ pub const CHOOSEFONT_FLAGS = extern enum(u32) {
             | (if (o.NOSIMULATIONS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIMULATIONS) else 0)
             | (if (o.NOSIZESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIZESEL) else 0)
             | (if (o.NOSTYLESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSTYLESEL) else 0)
-            | (if (o.NOVECTORFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOVECTORFONTS) else 0)
             | (if (o.NOVERTFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOVERTFONTS) else 0)
             | (if (o.PRINTERFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.PRINTERFONTS) else 0)
             | (if (o.SCALABLEONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.SCALABLEONLY) else 0)
             | (if (o.SCREENFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.SCREENFONTS) else 0)
-            | (if (o.SCRIPTSONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.SCRIPTSONLY) else 0)
             | (if (o.SELECTSCRIPT == 1) @enumToInt(CHOOSEFONT_FLAGS.SELECTSCRIPT) else 0)
             | (if (o.SHOWHELP == 1) @enumToInt(CHOOSEFONT_FLAGS.SHOWHELP) else 0)
             | (if (o.TTONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.TTONLY) else 0)
@@ -4696,19 +4590,19 @@ pub const CF_NOSCRIPTSEL = CHOOSEFONT_FLAGS.NOSCRIPTSEL;
 pub const CF_NOSIMULATIONS = CHOOSEFONT_FLAGS.NOSIMULATIONS;
 pub const CF_NOSIZESEL = CHOOSEFONT_FLAGS.NOSIZESEL;
 pub const CF_NOSTYLESEL = CHOOSEFONT_FLAGS.NOSTYLESEL;
-pub const CF_NOVECTORFONTS = CHOOSEFONT_FLAGS.NOVECTORFONTS;
+pub const CF_NOVECTORFONTS = CHOOSEFONT_FLAGS.NOOEMFONTS;
 pub const CF_NOVERTFONTS = CHOOSEFONT_FLAGS.NOVERTFONTS;
 pub const CF_PRINTERFONTS = CHOOSEFONT_FLAGS.PRINTERFONTS;
 pub const CF_SCALABLEONLY = CHOOSEFONT_FLAGS.SCALABLEONLY;
 pub const CF_SCREENFONTS = CHOOSEFONT_FLAGS.SCREENFONTS;
-pub const CF_SCRIPTSONLY = CHOOSEFONT_FLAGS.SCRIPTSONLY;
+pub const CF_SCRIPTSONLY = CHOOSEFONT_FLAGS.ANSIONLY;
 pub const CF_SELECTSCRIPT = CHOOSEFONT_FLAGS.SELECTSCRIPT;
 pub const CF_SHOWHELP = CHOOSEFONT_FLAGS.SHOWHELP;
 pub const CF_TTONLY = CHOOSEFONT_FLAGS.TTONLY;
 pub const CF_USESTYLE = CHOOSEFONT_FLAGS.USESTYLE;
 pub const CF_WYSIWYG = CHOOSEFONT_FLAGS.WYSIWYG;
 
-pub const FINDREPLACE_FLAGS = extern enum(u32) {
+pub const FINDREPLACE_FLAGS = enum(u32) {
     DIALOGTERM = 64,
     DOWN = 1,
     ENABLEHOOK = 256,
@@ -4785,7 +4679,7 @@ pub const FR_REPLACEALL = FINDREPLACE_FLAGS.REPLACEALL;
 pub const FR_SHOWHELP = FINDREPLACE_FLAGS.SHOWHELP;
 pub const FR_WHOLEWORD = FINDREPLACE_FLAGS.WHOLEWORD;
 
-pub const PRINTDLGEX_FLAGS = extern enum(u32) {
+pub const PRINTDLGEX_FLAGS = enum(u32) {
     ALLPAGES = 0,
     COLLATE = 16,
     CURRENTPAGE = 4194304,
@@ -4805,7 +4699,7 @@ pub const PRINTDLGEX_FLAGS = extern enum(u32) {
     RETURNIC = 512,
     SELECTION = 1,
     USEDEVMODECOPIES = 262144,
-    USEDEVMODECOPIESANDCOLLATE = 262144,
+    // USEDEVMODECOPIESANDCOLLATE = 262144, this enum value conflicts with USEDEVMODECOPIES
     USELARGETEMPLATE = 268435456,
     ENABLEPRINTHOOK = 4096,
     ENABLESETUPHOOK = 8192,
@@ -4835,7 +4729,6 @@ pub const PRINTDLGEX_FLAGS = extern enum(u32) {
         RETURNIC: u1 = 0,
         SELECTION: u1 = 0,
         USEDEVMODECOPIES: u1 = 0,
-        USEDEVMODECOPIESANDCOLLATE: u1 = 0,
         USELARGETEMPLATE: u1 = 0,
         ENABLEPRINTHOOK: u1 = 0,
         ENABLESETUPHOOK: u1 = 0,
@@ -4865,7 +4758,6 @@ pub const PRINTDLGEX_FLAGS = extern enum(u32) {
             | (if (o.RETURNIC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNIC) else 0)
             | (if (o.SELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.SELECTION) else 0)
             | (if (o.USEDEVMODECOPIES == 1) @enumToInt(PRINTDLGEX_FLAGS.USEDEVMODECOPIES) else 0)
-            | (if (o.USEDEVMODECOPIESANDCOLLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.USEDEVMODECOPIESANDCOLLATE) else 0)
             | (if (o.USELARGETEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.USELARGETEMPLATE) else 0)
             | (if (o.ENABLEPRINTHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTHOOK) else 0)
             | (if (o.ENABLESETUPHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPHOOK) else 0)
@@ -4896,7 +4788,7 @@ pub const PD_RETURNDEFAULT = PRINTDLGEX_FLAGS.RETURNDEFAULT;
 pub const PD_RETURNIC = PRINTDLGEX_FLAGS.RETURNIC;
 pub const PD_SELECTION = PRINTDLGEX_FLAGS.SELECTION;
 pub const PD_USEDEVMODECOPIES = PRINTDLGEX_FLAGS.USEDEVMODECOPIES;
-pub const PD_USEDEVMODECOPIESANDCOLLATE = PRINTDLGEX_FLAGS.USEDEVMODECOPIESANDCOLLATE;
+pub const PD_USEDEVMODECOPIESANDCOLLATE = PRINTDLGEX_FLAGS.USEDEVMODECOPIES;
 pub const PD_USELARGETEMPLATE = PRINTDLGEX_FLAGS.USELARGETEMPLATE;
 pub const PD_ENABLEPRINTHOOK = PRINTDLGEX_FLAGS.ENABLEPRINTHOOK;
 pub const PD_ENABLESETUPHOOK = PRINTDLGEX_FLAGS.ENABLESETUPHOOK;
@@ -4906,7 +4798,7 @@ pub const PD_NONETWORKBUTTON = PRINTDLGEX_FLAGS.NONETWORKBUTTON;
 pub const PD_PRINTSETUP = PRINTDLGEX_FLAGS.PRINTSETUP;
 pub const PD_SHOWHELP = PRINTDLGEX_FLAGS.SHOWHELP;
 
-pub const MOUSEHOOKSTRUCTEX_MOUSE_DATA = extern enum(u32) {
+pub const MOUSEHOOKSTRUCTEX_MOUSE_DATA = enum(u32) {
     @"1" = 1,
     @"2" = 2,
     _,
@@ -4923,7 +4815,7 @@ pub const MOUSEHOOKSTRUCTEX_MOUSE_DATA = extern enum(u32) {
 pub const XBUTTON1 = MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"1";
 pub const XBUTTON2 = MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"2";
 
-pub const MENU_ITEM_MASK = extern enum(u32) {
+pub const MENU_ITEM_MASK = enum(u32) {
     BITMAP = 128,
     CHECKMARKS = 8,
     DATA = 32,
@@ -4968,14 +4860,14 @@ pub const MIIM_STRING = MENU_ITEM_MASK.STRING;
 pub const MIIM_SUBMENU = MENU_ITEM_MASK.SUBMENU;
 pub const MIIM_TYPE = MENU_ITEM_MASK.TYPE;
 
-pub const CURSORINFO_FLAGS = extern enum(u32) {
+pub const CURSORINFO_FLAGS = enum(u32) {
     HOWING = 1,
     UPPRESSED = 2,
 };
 pub const CURSOR_SHOWING = CURSORINFO_FLAGS.HOWING;
 pub const CURSOR_SUPPRESSED = CURSORINFO_FLAGS.UPPRESSED;
 
-pub const MENUINFO_STYLE = extern enum(u32) {
+pub const MENUINFO_STYLE = enum(u32) {
     AUTODISMISS = 268435456,
     CHECKORBMP = 67108864,
     DRAGDROP = 536870912,
@@ -5008,7 +4900,7 @@ pub const MNS_MODELESS = MENUINFO_STYLE.MODELESS;
 pub const MNS_NOCHECK = MENUINFO_STYLE.NOCHECK;
 pub const MNS_NOTIFYBYPOS = MENUINFO_STYLE.NOTIFYBYPOS;
 
-pub const WINDOWPLACEMENT_FLAGS = extern enum(u32) {
+pub const WINDOWPLACEMENT_FLAGS = enum(u32) {
     ASYNCWINDOWPLACEMENT = 4,
     RESTORETOMAXIMIZED = 2,
     SETMINPOSITION = 1,
@@ -5029,7 +4921,7 @@ pub const WPF_ASYNCWINDOWPLACEMENT = WINDOWPLACEMENT_FLAGS.ASYNCWINDOWPLACEMENT;
 pub const WPF_RESTORETOMAXIMIZED = WINDOWPLACEMENT_FLAGS.RESTORETOMAXIMIZED;
 pub const WPF_SETMINPOSITION = WINDOWPLACEMENT_FLAGS.SETMINPOSITION;
 
-pub const CHOOSEFONT_FONT_TYPE = extern enum(u32) {
+pub const CHOOSEFONT_FONT_TYPE = enum(u32) {
     BOLD_FONTTYPE = 256,
     ITALIC_FONTTYPE = 512,
     PRINTER_FONTTYPE = 16384,
@@ -5062,7 +4954,7 @@ pub const REGULAR_FONTTYPE = CHOOSEFONT_FONT_TYPE.REGULAR_FONTTYPE;
 pub const SCREEN_FONTTYPE = CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE;
 pub const SIMULATED_FONTTYPE = CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE;
 
-pub const MENUINFO_MASK = extern enum(u32) {
+pub const MENUINFO_MASK = enum(u32) {
     APPLYTOSUBMENUS = 2147483648,
     BACKGROUND = 2,
     HELPID = 4,
@@ -5095,7 +4987,7 @@ pub const MIM_MAXHEIGHT = MENUINFO_MASK.MAXHEIGHT;
 pub const MIM_MENUDATA = MENUINFO_MASK.MENUDATA;
 pub const MIM_STYLE = MENUINFO_MASK.STYLE;
 
-pub const MINIMIZEDMETRICS_ARRANGE = extern enum(i32) {
+pub const MINIMIZEDMETRICS_ARRANGE = enum(i32) {
     BOTTOMLEFT = 0,
     BOTTOMRIGHT = 1,
     TOPLEFT = 2,
@@ -5106,14 +4998,14 @@ pub const ARW_BOTTOMRIGHT = MINIMIZEDMETRICS_ARRANGE.BOTTOMRIGHT;
 pub const ARW_TOPLEFT = MINIMIZEDMETRICS_ARRANGE.TOPLEFT;
 pub const ARW_TOPRIGHT = MINIMIZEDMETRICS_ARRANGE.TOPRIGHT;
 
-pub const MENUGETOBJECTINFO_FLAGS = extern enum(u32) {
+pub const MENUGETOBJECTINFO_FLAGS = enum(u32) {
     BOTTOMGAP = 2,
     TOPGAP = 1,
 };
 pub const MNGOF_BOTTOMGAP = MENUGETOBJECTINFO_FLAGS.BOTTOMGAP;
 pub const MNGOF_TOPGAP = MENUGETOBJECTINFO_FLAGS.TOPGAP;
 
-pub const GUITHREADINFO_FLAGS = extern enum(u32) {
+pub const GUITHREADINFO_FLAGS = enum(u32) {
     CARETBLINKING = 1,
     INMENUMODE = 4,
     INMOVESIZE = 2,
@@ -6092,7 +5984,7 @@ pub const DLGITEMTEMPLATE = extern struct {
     id: u16,
 };
 
-pub const POINTER_INPUT_TYPE = extern enum(i32) {
+pub const POINTER_INPUT_TYPE = enum(i32) {
     POINTER = 1,
     TOUCH = 2,
     PEN = 3,
@@ -6250,7 +6142,7 @@ pub const ICONINFOEXW = extern struct {
     szResName: [260]u16,
 };
 
-pub const EDIT_CONTROL_FEATURE = extern enum(i32) {
+pub const EDIT_CONTROL_FEATURE = enum(i32) {
     ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT = 0,
     PASTE_NOTIFICATIONS = 1,
 };
@@ -6293,7 +6185,7 @@ pub const TouchPredictionParameters = extern struct {
     bUseHWTimeStamp: u32,
 };
 
-pub const HANDEDNESS = extern enum(i32) {
+pub const HANDEDNESS = enum(i32) {
     LEFT = 0,
     RIGHT = 1,
 };
@@ -6448,7 +6340,7 @@ pub const IndexedResourceQualifier = extern struct {
     value: PWSTR,
 };
 
-pub const MrmPlatformVersion = extern enum(i32) {
+pub const MrmPlatformVersion = enum(i32) {
     Default = 0,
     Windows10_0_0_0 = 17432576,
     Windows10_0_0_5 = 17432581,
@@ -6461,7 +6353,7 @@ pub const MrmResourceIndexerHandle = extern struct {
     handle: *c_void,
 };
 
-pub const MrmPackagingMode = extern enum(i32) {
+pub const MrmPackagingMode = enum(i32) {
     StandaloneFile = 0,
     AutoSplit = 1,
     ResourcePack = 2,
@@ -6470,7 +6362,7 @@ pub const MrmPackagingModeStandaloneFile = MrmPackagingMode.StandaloneFile;
 pub const MrmPackagingModeAutoSplit = MrmPackagingMode.AutoSplit;
 pub const MrmPackagingModeResourcePack = MrmPackagingMode.ResourcePack;
 
-pub const MrmPackagingOptions = extern enum(i32) {
+pub const MrmPackagingOptions = enum(i32) {
     None = 0,
     OmitSchemaFromResourcePacks = 1,
     SplitLanguageVariants = 2,
@@ -6479,7 +6371,7 @@ pub const MrmPackagingOptionsNone = MrmPackagingOptions.None;
 pub const MrmPackagingOptionsOmitSchemaFromResourcePacks = MrmPackagingOptions.OmitSchemaFromResourcePacks;
 pub const MrmPackagingOptionsSplitLanguageVariants = MrmPackagingOptions.SplitLanguageVariants;
 
-pub const MrmDumpType = extern enum(i32) {
+pub const MrmDumpType = enum(i32) {
     Basic = 0,
     Detailed = 1,
     Schema = 2,
@@ -6488,7 +6380,7 @@ pub const MrmDumpType_Basic = MrmDumpType.Basic;
 pub const MrmDumpType_Detailed = MrmDumpType.Detailed;
 pub const MrmDumpType_Schema = MrmDumpType.Schema;
 
-pub const MrmResourceIndexerMessageSeverity = extern enum(i32) {
+pub const MrmResourceIndexerMessageSeverity = enum(i32) {
     Verbose = 0,
     Info = 1,
     Warning = 2,

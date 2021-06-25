@@ -380,7 +380,7 @@ pub const DNS_WIRE_RECORD = packed struct {
     DataLength: u16,
 };
 
-pub const DNS_CONFIG_TYPE = extern enum(i32) {
+pub const DNS_CONFIG_TYPE = enum(i32) {
     PrimaryDomainName_W = 0,
     PrimaryDomainName_A = 1,
     PrimaryDomainName_UTF8 = 2,
@@ -749,7 +749,7 @@ pub const DNS_RECORD_FLAGS = extern struct {
     _bitfield: u32,
 };
 
-pub const DNS_SECTION = extern enum(i32) {
+pub const DNS_SECTION = enum(i32) {
     Question = 0,
     Answer = 1,
     Authority = 2,
@@ -1004,7 +1004,7 @@ pub const DNS_PROXY_COMPLETION_ROUTINE = fn(
     status: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const DNS_PROXY_INFORMATION_TYPE = extern enum(i32) {
+pub const DNS_PROXY_INFORMATION_TYPE = enum(i32) {
     DIRECT = 0,
     DEFAULT_SETTINGS = 1,
     PROXY_NAME = 2,
@@ -1021,7 +1021,7 @@ pub const DNS_PROXY_INFORMATION = extern struct {
     proxyName: PWSTR,
 };
 
-pub const DNS_CHARSET = extern enum(i32) {
+pub const DNS_CHARSET = enum(i32) {
     Unknown = 0,
     Unicode = 1,
     Utf8 = 2,
@@ -1032,7 +1032,7 @@ pub const DnsCharSetUnicode = DNS_CHARSET.Unicode;
 pub const DnsCharSetUtf8 = DNS_CHARSET.Utf8;
 pub const DnsCharSetAnsi = DNS_CHARSET.Ansi;
 
-pub const DNS_FREE_TYPE = extern enum(i32) {
+pub const DNS_FREE_TYPE = enum(i32) {
     Flat = 0,
     RecordList = 1,
     ParsedMessageFields = 2,
@@ -1069,7 +1069,7 @@ pub const DNS_QUERY_CANCEL = extern struct {
     Reserved: [32]CHAR,
 };
 
-pub const DNS_NAME_FORMAT = extern enum(i32) {
+pub const DNS_NAME_FORMAT = enum(i32) {
     Domain = 0,
     DomainLabel = 1,
     HostnameFull = 2,
@@ -1091,7 +1091,7 @@ pub const DNS_MESSAGE_BUFFER = extern struct {
     MessageBody: [1]CHAR,
 };
 
-pub const DNS_CONNECTION_PROXY_TYPE = extern enum(i32) {
+pub const DNS_CONNECTION_PROXY_TYPE = enum(i32) {
     NULL = 0,
     HTTP = 1,
     WAP = 2,
@@ -1104,7 +1104,7 @@ pub const DNS_CONNECTION_PROXY_TYPE_WAP = DNS_CONNECTION_PROXY_TYPE.WAP;
 pub const DNS_CONNECTION_PROXY_TYPE_SOCKS4 = DNS_CONNECTION_PROXY_TYPE.SOCKS4;
 pub const DNS_CONNECTION_PROXY_TYPE_SOCKS5 = DNS_CONNECTION_PROXY_TYPE.SOCKS5;
 
-pub const DNS_CONNECTION_PROXY_INFO_SWITCH = extern enum(i32) {
+pub const DNS_CONNECTION_PROXY_INFO_SWITCH = enum(i32) {
     CONFIG = 0,
     SCRIPT = 1,
     WPAD = 2,
@@ -1189,7 +1189,7 @@ pub const DNS_CONNECTION_POLICY_ENTRY_LIST = extern struct {
     nEntries: u32,
 };
 
-pub const DNS_CONNECTION_POLICY_TAG = extern enum(i32) {
+pub const DNS_CONNECTION_POLICY_TAG = enum(i32) {
     DEFAULT = 0,
     CONNECTION_MANAGER = 1,
     WWWPT = 2,

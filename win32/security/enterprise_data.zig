@@ -224,7 +224,7 @@ pub const HTHREAD_NETWORK_CONTEXT = extern struct {
     ThreadContext: HANDLE,
 };
 
-pub const ENTERPRISE_DATA_POLICIES = extern enum(u32) {
+pub const ENTERPRISE_DATA_POLICIES = enum(u32) {
     NONE = 0,
     ALLOWED = 1,
     ENLIGHTENED = 2,

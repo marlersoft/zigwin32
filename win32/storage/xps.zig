@@ -93,7 +93,7 @@ pub const XPS_E_PACKAGE_WRITER_NOT_CLOSED = @import("../zig.zig").typedConst(HRE
 //--------------------------------------------------------------------------------
 pub const HPTPROVIDER = *opaque{};
 
-pub const PSINJECT_POINT = extern enum(u16) {
+pub const PSINJECT_POINT = enum(u16) {
     BEGINSTREAM = 1,
     PSADOBE = 2,
     PAGESATEND = 3,
@@ -279,7 +279,7 @@ pub const CLSID_XpsOMObjectFactory = &CLSID_XpsOMObjectFactory_Value;
 const CLSID_XpsOMThumbnailGenerator_Value = @import("../zig.zig").Guid.initString("7e4a23e2-b969-4761-be35-1a8ced58e323");
 pub const CLSID_XpsOMThumbnailGenerator = &CLSID_XpsOMThumbnailGenerator_Value;
 
-pub const XPS_TILE_MODE = extern enum(i32) {
+pub const XPS_TILE_MODE = enum(i32) {
     NONE = 1,
     TILE = 2,
     FLIPX = 3,
@@ -292,14 +292,14 @@ pub const XPS_TILE_MODE_FLIPX = XPS_TILE_MODE.FLIPX;
 pub const XPS_TILE_MODE_FLIPY = XPS_TILE_MODE.FLIPY;
 pub const XPS_TILE_MODE_FLIPXY = XPS_TILE_MODE.FLIPXY;
 
-pub const XPS_COLOR_INTERPOLATION = extern enum(i32) {
+pub const XPS_COLOR_INTERPOLATION = enum(i32) {
     CRGBLINEAR = 1,
     RGBLINEAR = 2,
 };
 pub const XPS_COLOR_INTERPOLATION_SCRGBLINEAR = XPS_COLOR_INTERPOLATION.CRGBLINEAR;
 pub const XPS_COLOR_INTERPOLATION_SRGBLINEAR = XPS_COLOR_INTERPOLATION.RGBLINEAR;
 
-pub const XPS_SPREAD_METHOD = extern enum(i32) {
+pub const XPS_SPREAD_METHOD = enum(i32) {
     PAD = 1,
     REFLECT = 2,
     REPEAT = 3,
@@ -308,7 +308,7 @@ pub const XPS_SPREAD_METHOD_PAD = XPS_SPREAD_METHOD.PAD;
 pub const XPS_SPREAD_METHOD_REFLECT = XPS_SPREAD_METHOD.REFLECT;
 pub const XPS_SPREAD_METHOD_REPEAT = XPS_SPREAD_METHOD.REPEAT;
 
-pub const XPS_STYLE_SIMULATION = extern enum(i32) {
+pub const XPS_STYLE_SIMULATION = enum(i32) {
     NONE = 1,
     ITALIC = 2,
     BOLD = 3,
@@ -319,7 +319,7 @@ pub const XPS_STYLE_SIMULATION_ITALIC = XPS_STYLE_SIMULATION.ITALIC;
 pub const XPS_STYLE_SIMULATION_BOLD = XPS_STYLE_SIMULATION.BOLD;
 pub const XPS_STYLE_SIMULATION_BOLDITALIC = XPS_STYLE_SIMULATION.BOLDITALIC;
 
-pub const XPS_LINE_CAP = extern enum(i32) {
+pub const XPS_LINE_CAP = enum(i32) {
     FLAT = 1,
     ROUND = 2,
     SQUARE = 3,
@@ -330,7 +330,7 @@ pub const XPS_LINE_CAP_ROUND = XPS_LINE_CAP.ROUND;
 pub const XPS_LINE_CAP_SQUARE = XPS_LINE_CAP.SQUARE;
 pub const XPS_LINE_CAP_TRIANGLE = XPS_LINE_CAP.TRIANGLE;
 
-pub const XPS_DASH_CAP = extern enum(i32) {
+pub const XPS_DASH_CAP = enum(i32) {
     FLAT = 1,
     ROUND = 2,
     SQUARE = 3,
@@ -341,7 +341,7 @@ pub const XPS_DASH_CAP_ROUND = XPS_DASH_CAP.ROUND;
 pub const XPS_DASH_CAP_SQUARE = XPS_DASH_CAP.SQUARE;
 pub const XPS_DASH_CAP_TRIANGLE = XPS_DASH_CAP.TRIANGLE;
 
-pub const XPS_LINE_JOIN = extern enum(i32) {
+pub const XPS_LINE_JOIN = enum(i32) {
     MITER = 1,
     BEVEL = 2,
     ROUND = 3,
@@ -350,7 +350,7 @@ pub const XPS_LINE_JOIN_MITER = XPS_LINE_JOIN.MITER;
 pub const XPS_LINE_JOIN_BEVEL = XPS_LINE_JOIN.BEVEL;
 pub const XPS_LINE_JOIN_ROUND = XPS_LINE_JOIN.ROUND;
 
-pub const XPS_IMAGE_TYPE = extern enum(i32) {
+pub const XPS_IMAGE_TYPE = enum(i32) {
     JPEG = 1,
     PNG = 2,
     TIFF = 3,
@@ -363,7 +363,7 @@ pub const XPS_IMAGE_TYPE_TIFF = XPS_IMAGE_TYPE.TIFF;
 pub const XPS_IMAGE_TYPE_WDP = XPS_IMAGE_TYPE.WDP;
 pub const XPS_IMAGE_TYPE_JXR = XPS_IMAGE_TYPE.JXR;
 
-pub const XPS_COLOR_TYPE = extern enum(i32) {
+pub const XPS_COLOR_TYPE = enum(i32) {
     SRGB = 1,
     SCRGB = 2,
     CONTEXT = 3,
@@ -372,14 +372,14 @@ pub const XPS_COLOR_TYPE_SRGB = XPS_COLOR_TYPE.SRGB;
 pub const XPS_COLOR_TYPE_SCRGB = XPS_COLOR_TYPE.SCRGB;
 pub const XPS_COLOR_TYPE_CONTEXT = XPS_COLOR_TYPE.CONTEXT;
 
-pub const XPS_FILL_RULE = extern enum(i32) {
+pub const XPS_FILL_RULE = enum(i32) {
     EVENODD = 1,
     NONZERO = 2,
 };
 pub const XPS_FILL_RULE_EVENODD = XPS_FILL_RULE.EVENODD;
 pub const XPS_FILL_RULE_NONZERO = XPS_FILL_RULE.NONZERO;
 
-pub const XPS_SEGMENT_TYPE = extern enum(i32) {
+pub const XPS_SEGMENT_TYPE = enum(i32) {
     ARC_LARGE_CLOCKWISE = 1,
     ARC_LARGE_COUNTERCLOCKWISE = 2,
     ARC_SMALL_CLOCKWISE = 3,
@@ -396,7 +396,7 @@ pub const XPS_SEGMENT_TYPE_BEZIER = XPS_SEGMENT_TYPE.BEZIER;
 pub const XPS_SEGMENT_TYPE_LINE = XPS_SEGMENT_TYPE.LINE;
 pub const XPS_SEGMENT_TYPE_QUADRATIC_BEZIER = XPS_SEGMENT_TYPE.QUADRATIC_BEZIER;
 
-pub const XPS_SEGMENT_STROKE_PATTERN = extern enum(i32) {
+pub const XPS_SEGMENT_STROKE_PATTERN = enum(i32) {
     ALL = 1,
     NONE = 2,
     MIXED = 3,
@@ -405,7 +405,7 @@ pub const XPS_SEGMENT_STROKE_PATTERN_ALL = XPS_SEGMENT_STROKE_PATTERN.ALL;
 pub const XPS_SEGMENT_STROKE_PATTERN_NONE = XPS_SEGMENT_STROKE_PATTERN.NONE;
 pub const XPS_SEGMENT_STROKE_PATTERN_MIXED = XPS_SEGMENT_STROKE_PATTERN.MIXED;
 
-pub const XPS_FONT_EMBEDDING = extern enum(i32) {
+pub const XPS_FONT_EMBEDDING = enum(i32) {
     NORMAL = 1,
     OBFUSCATED = 2,
     RESTRICTED = 3,
@@ -416,7 +416,7 @@ pub const XPS_FONT_EMBEDDING_OBFUSCATED = XPS_FONT_EMBEDDING.OBFUSCATED;
 pub const XPS_FONT_EMBEDDING_RESTRICTED = XPS_FONT_EMBEDDING.RESTRICTED;
 pub const XPS_FONT_EMBEDDING_RESTRICTED_UNOBFUSCATED = XPS_FONT_EMBEDDING.RESTRICTED_UNOBFUSCATED;
 
-pub const XPS_OBJECT_TYPE = extern enum(i32) {
+pub const XPS_OBJECT_TYPE = enum(i32) {
     CANVAS = 1,
     GLYPHS = 2,
     PATH = 3,
@@ -439,7 +439,7 @@ pub const XPS_OBJECT_TYPE_LINEAR_GRADIENT_BRUSH = XPS_OBJECT_TYPE.LINEAR_GRADIEN
 pub const XPS_OBJECT_TYPE_RADIAL_GRADIENT_BRUSH = XPS_OBJECT_TYPE.RADIAL_GRADIENT_BRUSH;
 pub const XPS_OBJECT_TYPE_VISUAL_BRUSH = XPS_OBJECT_TYPE.VISUAL_BRUSH;
 
-pub const XPS_THUMBNAIL_SIZE = extern enum(i32) {
+pub const XPS_THUMBNAIL_SIZE = enum(i32) {
     VERYSMALL = 1,
     SMALL = 2,
     MEDIUM = 3,
@@ -450,7 +450,7 @@ pub const XPS_THUMBNAIL_SIZE_SMALL = XPS_THUMBNAIL_SIZE.SMALL;
 pub const XPS_THUMBNAIL_SIZE_MEDIUM = XPS_THUMBNAIL_SIZE.MEDIUM;
 pub const XPS_THUMBNAIL_SIZE_LARGE = XPS_THUMBNAIL_SIZE.LARGE;
 
-pub const XPS_INTERLEAVING = extern enum(i32) {
+pub const XPS_INTERLEAVING = enum(i32) {
     FF = 1,
     N = 2,
 };
@@ -5118,7 +5118,7 @@ pub const IXpsOMThumbnailGenerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const XPS_DOCUMENT_TYPE = extern enum(i32) {
+pub const XPS_DOCUMENT_TYPE = enum(i32) {
     UNSPECIFIED = 1,
     XPS = 2,
     OPENXPS = 3,
@@ -5489,7 +5489,7 @@ pub const IXpsDocumentPackageTarget3D = extern struct {
 const CLSID_XpsSignatureManager_Value = @import("../zig.zig").Guid.initString("b0c43320-2315-44a2-b70a-0943a140a8ee");
 pub const CLSID_XpsSignatureManager = &CLSID_XpsSignatureManager_Value;
 
-pub const XPS_SIGNATURE_STATUS = extern enum(i32) {
+pub const XPS_SIGNATURE_STATUS = enum(i32) {
     INCOMPLIANT = 1,
     INCOMPLETE = 2,
     BROKEN = 3,
@@ -5502,7 +5502,7 @@ pub const XPS_SIGNATURE_STATUS_BROKEN = XPS_SIGNATURE_STATUS.BROKEN;
 pub const XPS_SIGNATURE_STATUS_QUESTIONABLE = XPS_SIGNATURE_STATUS.QUESTIONABLE;
 pub const XPS_SIGNATURE_STATUS_VALID = XPS_SIGNATURE_STATUS.VALID;
 
-pub const XPS_SIGN_POLICY = extern enum(i32) {
+pub const XPS_SIGN_POLICY = enum(i32) {
     NONE = 0,
     CORE_PROPERTIES = 1,
     SIGNATURE_RELATIONSHIPS = 2,
@@ -5517,7 +5517,7 @@ pub const XPS_SIGN_POLICY_PRINT_TICKET = XPS_SIGN_POLICY.PRINT_TICKET;
 pub const XPS_SIGN_POLICY_DISCARD_CONTROL = XPS_SIGN_POLICY.DISCARD_CONTROL;
 pub const XPS_SIGN_POLICY_ALL = XPS_SIGN_POLICY.ALL;
 
-pub const XPS_SIGN_FLAGS = extern enum(i32) {
+pub const XPS_SIGN_FLAGS = enum(i32) {
     NONE = 0,
     IGNORE_MARKUP_COMPATIBILITY = 1,
 };
@@ -6183,12 +6183,12 @@ pub const IXpsSignatureManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PRINT_WINDOW_FLAGS = extern enum(u32) {
+pub const PRINT_WINDOW_FLAGS = enum(u32) {
     Y = 1,
 };
 pub const PW_CLIENTONLY = PRINT_WINDOW_FLAGS.Y;
 
-pub const DEVICE_CAPABILITIES = extern enum(u32) {
+pub const DEVICE_CAPABILITIES = enum(u32) {
     BINNAMES = 12,
     BINS = 6,
     COLLATE = 22,

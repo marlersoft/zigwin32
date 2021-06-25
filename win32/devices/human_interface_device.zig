@@ -5163,7 +5163,7 @@ pub const MOUSE_UNIT_ID_PARAMETER = extern struct {
     UnitId: u16,
 };
 
-pub const HIDP_REPORT_TYPE = extern enum(i32) {
+pub const HIDP_REPORT_TYPE = enum(i32) {
     Input = 0,
     Output = 1,
     Feature = 2,
@@ -5329,7 +5329,7 @@ pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
 
 }, else => struct { } };
 
-pub const HIDP_KEYBOARD_DIRECTION = extern enum(i32) {
+pub const HIDP_KEYBOARD_DIRECTION = enum(i32) {
     Break = 0,
     Make = 1,
 };

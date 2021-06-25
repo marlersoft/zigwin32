@@ -27,7 +27,7 @@ pub const EventRegistrationToken = extern struct {
     value: i64,
 };
 
-pub const ACTIVATIONTYPE = extern enum(i32) {
+pub const ACTIVATIONTYPE = enum(i32) {
     UNCATEGORIZED = 0,
     FROM_MONIKER = 1,
     FROM_DATA = 2,
@@ -93,7 +93,7 @@ pub const ServerInformation = extern struct {
     ui64ServerAddress: u64,
 };
 
-pub const AgileReferenceOptions = extern enum(i32) {
+pub const AgileReferenceOptions = enum(i32) {
     FAULT = 0,
     LAYEDMARSHAL = 1,
 };
@@ -107,7 +107,7 @@ pub const HSTRING_HEADER = extern struct {
     },
 };
 
-pub const TrustLevel = extern enum(i32) {
+pub const TrustLevel = enum(i32) {
     BaseTrust = 0,
     PartialTrust = 1,
     FullTrust = 2,
@@ -169,7 +169,7 @@ pub const PINSPECT_HSTRING_CALLBACK2 = fn(
     buffer: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const DISPATCHERQUEUE_THREAD_APARTMENTTYPE = extern enum(i32) {
+pub const DISPATCHERQUEUE_THREAD_APARTMENTTYPE = enum(i32) {
     NONE = 0,
     ASTA = 1,
     STA = 2,
@@ -178,7 +178,7 @@ pub const DQTAT_COM_NONE = DISPATCHERQUEUE_THREAD_APARTMENTTYPE.NONE;
 pub const DQTAT_COM_ASTA = DISPATCHERQUEUE_THREAD_APARTMENTTYPE.ASTA;
 pub const DQTAT_COM_STA = DISPATCHERQUEUE_THREAD_APARTMENTTYPE.STA;
 
-pub const DISPATCHERQUEUE_THREAD_TYPE = extern enum(i32) {
+pub const DISPATCHERQUEUE_THREAD_TYPE = enum(i32) {
     DEDICATED = 1,
     CURRENT = 2,
 };
@@ -278,7 +278,7 @@ pub const ICorrelationVectorSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CASTING_CONNECTION_ERROR_STATUS = extern enum(i32) {
+pub const CASTING_CONNECTION_ERROR_STATUS = enum(i32) {
     SUCCEEDED = 0,
     DEVICE_DID_NOT_RESPOND = 1,
     DEVICE_ERROR = 2,
@@ -295,7 +295,7 @@ pub const CASTING_CONNECTION_ERROR_STATUS_PROTECTED_PLAYBACK_FAILED = CASTING_CO
 pub const CASTING_CONNECTION_ERROR_STATUS_INVALID_CASTING_SOURCE = CASTING_CONNECTION_ERROR_STATUS.INVALID_CASTING_SOURCE;
 pub const CASTING_CONNECTION_ERROR_STATUS_UNKNOWN = CASTING_CONNECTION_ERROR_STATUS.UNKNOWN;
 
-pub const CASTING_CONNECTION_STATE = extern enum(i32) {
+pub const CASTING_CONNECTION_STATE = enum(i32) {
     DISCONNECTED = 0,
     CONNECTED = 1,
     RENDERING = 2,
@@ -1347,7 +1347,7 @@ pub const ISwapChainPanelNative2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GRAPHICS_EFFECT_PROPERTY_MAPPING = extern enum(i32) {
+pub const GRAPHICS_EFFECT_PROPERTY_MAPPING = enum(i32) {
     UNKNOWN = 0,
     DIRECT = 1,
     VECTORX = 2,
@@ -1942,7 +1942,7 @@ pub const IActivationFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RO_INIT_TYPE = extern enum(i32) {
+pub const RO_INIT_TYPE = enum(i32) {
     SINGLETHREADED = 0,
     MULTITHREADED = 1,
 };
@@ -1974,7 +1974,7 @@ pub const IBufferByteAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RO_ERROR_REPORTING_FLAGS = extern enum(u32) {
+pub const RO_ERROR_REPORTING_FLAGS = enum(u32) {
     NONE = 0,
     SUPPRESSEXCEPTIONS = 1,
     FORCEEXCEPTIONS = 2,
@@ -2130,7 +2130,7 @@ pub const IRoMetaDataLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BSOS_OPTIONS = extern enum(i32) {
+pub const BSOS_OPTIONS = enum(i32) {
     DEFAULT = 0,
     PREFERDESTINATIONSTREAM = 1,
 };
@@ -2963,7 +2963,7 @@ pub const IFindReferenceTargetsCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const XAML_REFERENCETRACKER_DISCONNECT = extern enum(i32) {
+pub const XAML_REFERENCETRACKER_DISCONNECT = enum(i32) {
     DEFAULT = 0,
     SUSPEND = 1,
 };

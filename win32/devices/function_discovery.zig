@@ -38,7 +38,7 @@ pub const FD_LONGHORN = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-pub const PropertyConstraint = extern enum(i32) {
+pub const PropertyConstraint = enum(i32) {
     EQUALS = 0,
     NOTEQUAL = 1,
     LESSTHAN = 2,
@@ -61,14 +61,14 @@ pub const QC_EXISTS = PropertyConstraint.EXISTS;
 pub const QC_DOESNOTEXIST = PropertyConstraint.DOESNOTEXIST;
 pub const QC_CONTAINS = PropertyConstraint.CONTAINS;
 
-pub const SystemVisibilityFlags = extern enum(i32) {
+pub const SystemVisibilityFlags = enum(i32) {
     SYSTEM = 0,
     USER = 1,
 };
 pub const SVF_SYSTEM = SystemVisibilityFlags.SYSTEM;
 pub const SVF_USER = SystemVisibilityFlags.USER;
 
-pub const QueryUpdateAction = extern enum(i32) {
+pub const QueryUpdateAction = enum(i32) {
     ADD = 0,
     REMOVE = 1,
     CHANGE = 2,
@@ -77,7 +77,7 @@ pub const QUA_ADD = QueryUpdateAction.ADD;
 pub const QUA_REMOVE = QueryUpdateAction.REMOVE;
 pub const QUA_CHANGE = QueryUpdateAction.CHANGE;
 
-pub const QueryCategoryType = extern enum(i32) {
+pub const QueryCategoryType = enum(i32) {
     PROVIDER = 0,
     LAYERED = 1,
 };

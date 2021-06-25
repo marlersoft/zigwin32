@@ -175,7 +175,7 @@ pub const INamedPropertyStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GETPROPERTYSTOREFLAGS = extern enum(i32) {
+pub const GETPROPERTYSTOREFLAGS = enum(i32) {
     DEFAULT = 0,
     HANDLERPROPERTIESONLY = 1,
     READWRITE = 2,
@@ -238,7 +238,7 @@ pub const IObjectWithPropertyKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PKA_FLAGS = extern enum(i32) {
+pub const PKA_FLAGS = enum(i32) {
     SET = 0,
     APPEND = 1,
     DELETE = 2,
@@ -365,7 +365,7 @@ pub const IPropertyStoreCapabilities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PSC_STATE = extern enum(i32) {
+pub const PSC_STATE = enum(i32) {
     NORMAL = 0,
     NOTINSOURCE = 1,
     DIRTY = 2,
@@ -428,7 +428,7 @@ pub const IPropertyStoreCache = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPENUMTYPE = extern enum(i32) {
+pub const PROPENUMTYPE = enum(i32) {
     DISCRETEVALUE = 0,
     RANGEDVALUE = 1,
     DEFAULTVALUE = 2,
@@ -566,7 +566,7 @@ pub const IPropertyEnumTypeList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPDESC_TYPE_FLAGS = extern enum(i32) {
+pub const PROPDESC_TYPE_FLAGS = enum(i32) {
     DEFAULT = 0,
     MULTIPLEVALUES = 1,
     ISINNATE = 2,
@@ -601,7 +601,7 @@ pub const PDTF_ALWAYSINSUPPLEMENTALSTORE = PROPDESC_TYPE_FLAGS.ALWAYSINSUPPLEMEN
 pub const PDTF_ISSYSTEMPROPERTY = PROPDESC_TYPE_FLAGS.ISSYSTEMPROPERTY;
 pub const PDTF_MASK_ALL = PROPDESC_TYPE_FLAGS.MASK_ALL;
 
-pub const PROPDESC_VIEW_FLAGS = extern enum(i32) {
+pub const PROPDESC_VIEW_FLAGS = enum(i32) {
     DEFAULT = 0,
     CENTERALIGN = 1,
     RIGHTALIGN = 2,
@@ -632,7 +632,7 @@ pub const PDVF_HIDDEN = PROPDESC_VIEW_FLAGS.HIDDEN;
 pub const PDVF_CANWRAP = PROPDESC_VIEW_FLAGS.CANWRAP;
 pub const PDVF_MASK_ALL = PROPDESC_VIEW_FLAGS.MASK_ALL;
 
-pub const PROPDESC_DISPLAYTYPE = extern enum(i32) {
+pub const PROPDESC_DISPLAYTYPE = enum(i32) {
     STRING = 0,
     NUMBER = 1,
     BOOLEAN = 2,
@@ -645,7 +645,7 @@ pub const PDDT_BOOLEAN = PROPDESC_DISPLAYTYPE.BOOLEAN;
 pub const PDDT_DATETIME = PROPDESC_DISPLAYTYPE.DATETIME;
 pub const PDDT_ENUMERATED = PROPDESC_DISPLAYTYPE.ENUMERATED;
 
-pub const PROPDESC_GROUPING_RANGE = extern enum(i32) {
+pub const PROPDESC_GROUPING_RANGE = enum(i32) {
     DISCRETE = 0,
     ALPHANUMERIC = 1,
     SIZE = 2,
@@ -662,7 +662,7 @@ pub const PDGR_DATE = PROPDESC_GROUPING_RANGE.DATE;
 pub const PDGR_PERCENT = PROPDESC_GROUPING_RANGE.PERCENT;
 pub const PDGR_ENUMERATED = PROPDESC_GROUPING_RANGE.ENUMERATED;
 
-pub const PROPDESC_FORMAT_FLAGS = extern enum(i32) {
+pub const PROPDESC_FORMAT_FLAGS = enum(i32) {
     DEFAULT = 0,
     PREFIXNAME = 1,
     FILENAME = 2,
@@ -695,7 +695,7 @@ pub const PDFF_USEEDITINVITATION = PROPDESC_FORMAT_FLAGS.USEEDITINVITATION;
 pub const PDFF_READONLY = PROPDESC_FORMAT_FLAGS.READONLY;
 pub const PDFF_NOAUTOREADINGORDER = PROPDESC_FORMAT_FLAGS.NOAUTOREADINGORDER;
 
-pub const PROPDESC_SORTDESCRIPTION = extern enum(i32) {
+pub const PROPDESC_SORTDESCRIPTION = enum(i32) {
     GENERAL = 0,
     A_Z = 1,
     LOWEST_HIGHEST = 2,
@@ -708,7 +708,7 @@ pub const PDSD_LOWEST_HIGHEST = PROPDESC_SORTDESCRIPTION.LOWEST_HIGHEST;
 pub const PDSD_SMALLEST_BIGGEST = PROPDESC_SORTDESCRIPTION.SMALLEST_BIGGEST;
 pub const PDSD_OLDEST_NEWEST = PROPDESC_SORTDESCRIPTION.OLDEST_NEWEST;
 
-pub const PROPDESC_RELATIVEDESCRIPTION_TYPE = extern enum(i32) {
+pub const PROPDESC_RELATIVEDESCRIPTION_TYPE = enum(i32) {
     GENERAL = 0,
     DATE = 1,
     SIZE = 2,
@@ -733,7 +733,7 @@ pub const PDRDT_RATE = PROPDESC_RELATIVEDESCRIPTION_TYPE.RATE;
 pub const PDRDT_RATING = PROPDESC_RELATIVEDESCRIPTION_TYPE.RATING;
 pub const PDRDT_PRIORITY = PROPDESC_RELATIVEDESCRIPTION_TYPE.PRIORITY;
 
-pub const PROPDESC_AGGREGATION_TYPE = extern enum(i32) {
+pub const PROPDESC_AGGREGATION_TYPE = enum(i32) {
     DEFAULT = 0,
     FIRST = 1,
     SUM = 2,
@@ -752,7 +752,7 @@ pub const PDAT_UNION = PROPDESC_AGGREGATION_TYPE.UNION;
 pub const PDAT_MAX = PROPDESC_AGGREGATION_TYPE.MAX;
 pub const PDAT_MIN = PROPDESC_AGGREGATION_TYPE.MIN;
 
-pub const PROPDESC_CONDITION_TYPE = extern enum(i32) {
+pub const PROPDESC_CONDITION_TYPE = enum(i32) {
     NONE = 0,
     STRING = 1,
     SIZE = 2,
@@ -1013,7 +1013,7 @@ pub const IPropertyDescriptionAliasInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPDESC_SEARCHINFO_FLAGS = extern enum(i32) {
+pub const PROPDESC_SEARCHINFO_FLAGS = enum(i32) {
     DEFAULT = 0,
     ININVERTEDINDEX = 1,
     ISCOLUMN = 2,
@@ -1028,7 +1028,7 @@ pub const PDSIF_ISCOLUMNSPARSE = PROPDESC_SEARCHINFO_FLAGS.ISCOLUMNSPARSE;
 pub const PDSIF_ALWAYSINCLUDE = PROPDESC_SEARCHINFO_FLAGS.ALWAYSINCLUDE;
 pub const PDSIF_USEFORTYPEAHEAD = PROPDESC_SEARCHINFO_FLAGS.USEFORTYPEAHEAD;
 
-pub const PROPDESC_COLUMNINDEX_TYPE = extern enum(i32) {
+pub const PROPDESC_COLUMNINDEX_TYPE = enum(i32) {
     NONE = 0,
     ONDISK = 1,
     INMEMORY = 2,
@@ -1113,7 +1113,7 @@ pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPDESC_ENUMFILTER = extern enum(i32) {
+pub const PROPDESC_ENUMFILTER = enum(i32) {
     ALL = 0,
     SYSTEM = 1,
     NONSYSTEM = 2,
@@ -1324,7 +1324,7 @@ pub const IDelayedPropertyStoreFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _PERSIST_SPROPSTORE_FLAGS = extern enum(i32) {
+pub const _PERSIST_SPROPSTORE_FLAGS = enum(i32) {
     DEFAULT = 0,
     READONLY = 1,
     TREAT_NEW_VALUES_AS_DIRTY = 2,
@@ -1452,14 +1452,14 @@ pub const ICreateObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PSTIME_FLAGS = extern enum(i32) {
+pub const PSTIME_FLAGS = enum(i32) {
     UTC = 0,
     LOCAL = 1,
 };
 pub const PSTF_UTC = PSTIME_FLAGS.UTC;
 pub const PSTF_LOCAL = PSTIME_FLAGS.LOCAL;
 
-pub const PROPVAR_COMPARE_UNIT = extern enum(i32) {
+pub const PROPVAR_COMPARE_UNIT = enum(i32) {
     DEFAULT = 0,
     SECOND = 1,
     MINUTE = 2,
@@ -1476,7 +1476,7 @@ pub const PVCU_DAY = PROPVAR_COMPARE_UNIT.DAY;
 pub const PVCU_MONTH = PROPVAR_COMPARE_UNIT.MONTH;
 pub const PVCU_YEAR = PROPVAR_COMPARE_UNIT.YEAR;
 
-pub const PROPVAR_COMPARE_FLAGS = extern enum(i32) {
+pub const PROPVAR_COMPARE_FLAGS = enum(i32) {
     DEFAULT = 0,
     TREATEMPTYASGREATERTHAN = 1,
     USESTRCMP = 2,
@@ -1493,7 +1493,7 @@ pub const PVCF_USESTRCMPI = PROPVAR_COMPARE_FLAGS.USESTRCMPI;
 pub const PVCF_USESTRCMPIC = PROPVAR_COMPARE_FLAGS.USESTRCMPIC;
 pub const PVCF_DIGITSASNUMBERS_CASESENSITIVE = PROPVAR_COMPARE_FLAGS.DIGITSASNUMBERS_CASESENSITIVE;
 
-pub const PROPVAR_CHANGE_FLAGS = extern enum(i32) {
+pub const PROPVAR_CHANGE_FLAGS = enum(i32) {
     DEFAULT = 0,
     NOVALUEPROP = 1,
     ALPHABOOL = 2,
@@ -1508,7 +1508,7 @@ pub const PVCHF_NOUSEROVERRIDE = PROPVAR_CHANGE_FLAGS.NOUSEROVERRIDE;
 pub const PVCHF_LOCALBOOL = PROPVAR_CHANGE_FLAGS.LOCALBOOL;
 pub const PVCHF_NOHEXSTRING = PROPVAR_CHANGE_FLAGS.NOHEXSTRING;
 
-pub const DRAWPROGRESSFLAGS = extern enum(i32) {
+pub const DRAWPROGRESSFLAGS = enum(i32) {
     NONE = 0,
     MARQUEE = 1,
     MARQUEE_COMPLETE = 2,
@@ -1523,7 +1523,7 @@ pub const DPF_ERROR = DRAWPROGRESSFLAGS.ERROR;
 pub const DPF_WARNING = DRAWPROGRESSFLAGS.WARNING;
 pub const DPF_STOPPED = DRAWPROGRESSFLAGS.STOPPED;
 
-pub const SYNC_TRANSFER_STATUS = extern enum(i32) {
+pub const SYNC_TRANSFER_STATUS = enum(i32) {
     NONE = 0,
     NEEDSUPLOAD = 1,
     NEEDSDOWNLOAD = 2,
@@ -1550,7 +1550,7 @@ pub const STS_EXCLUDED = SYNC_TRANSFER_STATUS.EXCLUDED;
 pub const STS_INCOMPLETE = SYNC_TRANSFER_STATUS.INCOMPLETE;
 pub const STS_PLACEHOLDER_IFEMPTY = SYNC_TRANSFER_STATUS.PLACEHOLDER_IFEMPTY;
 
-pub const PLACEHOLDER_STATES = extern enum(i32) {
+pub const PLACEHOLDER_STATES = enum(i32) {
     NONE = 0,
     MARKED_FOR_OFFLINE_AVAILABILITY = 1,
     FULL_PRIMARY_STREAM_AVAILABLE = 2,
@@ -1567,7 +1567,7 @@ pub const PS_CLOUDFILE_PLACEHOLDER = PLACEHOLDER_STATES.CLOUDFILE_PLACEHOLDER;
 pub const PS_DEFAULT = PLACEHOLDER_STATES.DEFAULT;
 pub const PS_ALL = PLACEHOLDER_STATES.ALL;
 
-pub const _PROPERTYUI_FLAGS = extern enum(i32) {
+pub const _PROPERTYUI_FLAGS = enum(i32) {
     DEFAULT = 0,
     RIGHTALIGN = 1,
     NOLABELININFOTIP = 2,
@@ -1680,7 +1680,7 @@ pub const IPropertyUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PDOPSTATUS = extern enum(i32) {
+pub const PDOPSTATUS = enum(i32) {
     RUNNING = 1,
     PAUSED = 2,
     CANCELLED = 3,
@@ -1693,7 +1693,7 @@ pub const PDOPS_CANCELLED = PDOPSTATUS.CANCELLED;
 pub const PDOPS_STOPPED = PDOPSTATUS.STOPPED;
 pub const PDOPS_ERRORS = PDOPSTATUS.ERRORS;
 
-pub const SYNC_ENGINE_STATE_FLAGS = extern enum(i32) {
+pub const SYNC_ENGINE_STATE_FLAGS = enum(i32) {
     NONE = 0,
     SERVICE_QUOTA_NEARING_LIMIT = 1,
     SERVICE_QUOTA_EXCEEDED_LIMIT = 2,

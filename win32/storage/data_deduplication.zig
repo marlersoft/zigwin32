@@ -21,7 +21,7 @@ pub const DDP_FILE_EXTENT = extern struct {
     Offset: i64,
 };
 
-pub const DEDUP_BACKUP_SUPPORT_PARAM_TYPE = extern enum(i32) {
+pub const DEDUP_BACKUP_SUPPORT_PARAM_TYPE = enum(i32) {
     UNOPTIMIZED = 1,
     OPTIMIZED = 2,
 };
@@ -102,7 +102,7 @@ pub const IDedupBackupSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DEDUP_SET_PARAM_TYPE = extern enum(i32) {
+pub const DEDUP_SET_PARAM_TYPE = enum(i32) {
     MinChunkSizeBytes = 1,
     MaxChunkSizeBytes = 2,
     AvgChunkSizeBytes = 3,
@@ -213,7 +213,7 @@ pub const IDedupIterateChunksHash32 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DedupDataPortManagerOption = extern enum(i32) {
+pub const DedupDataPortManagerOption = enum(i32) {
     None = 0,
     AutoStart = 1,
     SkipReconciliation = 2,
@@ -222,7 +222,7 @@ pub const DedupDataPortManagerOption_None = DedupDataPortManagerOption.None;
 pub const DedupDataPortManagerOption_AutoStart = DedupDataPortManagerOption.AutoStart;
 pub const DedupDataPortManagerOption_SkipReconciliation = DedupDataPortManagerOption.SkipReconciliation;
 
-pub const DedupDataPortVolumeStatus = extern enum(i32) {
+pub const DedupDataPortVolumeStatus = enum(i32) {
     Unknown = 0,
     NotEnabled = 1,
     NotAvailable = 2,
@@ -239,7 +239,7 @@ pub const DedupDataPortVolumeStatus_Ready = DedupDataPortVolumeStatus.Ready;
 pub const DedupDataPortVolumeStatus_Maintenance = DedupDataPortVolumeStatus.Maintenance;
 pub const DedupDataPortVolumeStatus_Shutdown = DedupDataPortVolumeStatus.Shutdown;
 
-pub const DedupDataPortRequestStatus = extern enum(i32) {
+pub const DedupDataPortRequestStatus = enum(i32) {
     Unknown = 0,
     Queued = 1,
     Processing = 2,
@@ -254,7 +254,7 @@ pub const DedupDataPortRequestStatus_Partial = DedupDataPortRequestStatus.Partia
 pub const DedupDataPortRequestStatus_Complete = DedupDataPortRequestStatus.Complete;
 pub const DedupDataPortRequestStatus_Failed = DedupDataPortRequestStatus.Failed;
 
-pub const DedupChunkFlags = extern enum(i32) {
+pub const DedupChunkFlags = enum(i32) {
     None = 0,
     Compressed = 1,
 };
@@ -285,21 +285,21 @@ pub const DedupStream = extern struct {
     ChunkCount: u32,
 };
 
-pub const DedupChunkingAlgorithm = extern enum(i32) {
+pub const DedupChunkingAlgorithm = enum(i32) {
     Unknonwn = 0,
     V1 = 1,
 };
 pub const DedupChunkingAlgorithm_Unknonwn = DedupChunkingAlgorithm.Unknonwn;
 pub const DedupChunkingAlgorithm_V1 = DedupChunkingAlgorithm.V1;
 
-pub const DedupHashingAlgorithm = extern enum(i32) {
+pub const DedupHashingAlgorithm = enum(i32) {
     Unknonwn = 0,
     V1 = 1,
 };
 pub const DedupHashingAlgorithm_Unknonwn = DedupHashingAlgorithm.Unknonwn;
 pub const DedupHashingAlgorithm_V1 = DedupHashingAlgorithm.V1;
 
-pub const DedupCompressionAlgorithm = extern enum(i32) {
+pub const DedupCompressionAlgorithm = enum(i32) {
     Unknonwn = 0,
     Xpress = 1,
 };

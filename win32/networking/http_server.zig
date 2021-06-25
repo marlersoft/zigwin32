@@ -96,7 +96,7 @@ pub const HTTP_REQUEST_PROPERTY_SNI_FLAG_NO_SNI = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (111)
 //--------------------------------------------------------------------------------
-pub const HTTP_SERVER_PROPERTY = extern enum(i32) {
+pub const HTTP_SERVER_PROPERTY = enum(i32) {
     AuthenticationProperty = 0,
     LoggingProperty = 1,
     QosProperty = 2,
@@ -127,7 +127,7 @@ pub const HTTP_PROPERTY_FLAGS = extern struct {
     _bitfield: u32,
 };
 
-pub const HTTP_ENABLED_STATE = extern enum(i32) {
+pub const HTTP_ENABLED_STATE = enum(i32) {
     Active = 0,
     Inactive = 1,
 };
@@ -139,7 +139,7 @@ pub const HTTP_STATE_INFO = extern struct {
     State: HTTP_ENABLED_STATE,
 };
 
-pub const HTTP_503_RESPONSE_VERBOSITY = extern enum(i32) {
+pub const HTTP_503_RESPONSE_VERBOSITY = enum(i32) {
     Basic = 0,
     Limited = 1,
     Full = 2,
@@ -148,7 +148,7 @@ pub const Http503ResponseVerbosityBasic = HTTP_503_RESPONSE_VERBOSITY.Basic;
 pub const Http503ResponseVerbosityLimited = HTTP_503_RESPONSE_VERBOSITY.Limited;
 pub const Http503ResponseVerbosityFull = HTTP_503_RESPONSE_VERBOSITY.Full;
 
-pub const HTTP_QOS_SETTING_TYPE = extern enum(i32) {
+pub const HTTP_QOS_SETTING_TYPE = enum(i32) {
     Bandwidth = 0,
     ConnectionLimit = 1,
     FlowRate = 2,
@@ -179,7 +179,7 @@ pub const HTTP_FLOWRATE_INFO = extern struct {
     BurstSize: u32,
 };
 
-pub const HTTP_SERVICE_CONFIG_TIMEOUT_KEY = extern enum(i32) {
+pub const HTTP_SERVICE_CONFIG_TIMEOUT_KEY = enum(i32) {
     IdleConnectionTimeout = 0,
     HeaderWaitTimeout = 1,
 };
@@ -201,7 +201,7 @@ pub const HTTP_TIMEOUT_LIMIT_INFO = extern struct {
     MinSendRate: u32,
 };
 
-pub const HTTP_SERVICE_CONFIG_SETTING_KEY = extern enum(i32) {
+pub const HTTP_SERVICE_CONFIG_SETTING_KEY = enum(i32) {
     None = 0,
     TlsThrottle = 1,
 };
@@ -241,7 +241,7 @@ pub const HTTP_SERVER_AUTHENTICATION_INFO = extern struct {
     BasicParams: HTTP_SERVER_AUTHENTICATION_BASIC_PARAMS,
 };
 
-pub const HTTP_SERVICE_BINDING_TYPE = extern enum(i32) {
+pub const HTTP_SERVICE_BINDING_TYPE = enum(i32) {
     None = 0,
     W = 1,
     A = 2,
@@ -266,7 +266,7 @@ pub const HTTP_SERVICE_BINDING_W = extern struct {
     BufferSize: u32,
 };
 
-pub const HTTP_AUTHENTICATION_HARDENING_LEVELS = extern enum(i32) {
+pub const HTTP_AUTHENTICATION_HARDENING_LEVELS = enum(i32) {
     Legacy = 0,
     Medium = 1,
     Strict = 2,
@@ -297,7 +297,7 @@ pub const HTTP_REQUEST_TOKEN_BINDING_INFO = extern struct {
     KeyType: u8,
 };
 
-pub const HTTP_LOGGING_TYPE = extern enum(i32) {
+pub const HTTP_LOGGING_TYPE = enum(i32) {
     W3C = 0,
     IIS = 1,
     NCSA = 2,
@@ -308,7 +308,7 @@ pub const HttpLoggingTypeIIS = HTTP_LOGGING_TYPE.IIS;
 pub const HttpLoggingTypeNCSA = HTTP_LOGGING_TYPE.NCSA;
 pub const HttpLoggingTypeRaw = HTTP_LOGGING_TYPE.Raw;
 
-pub const HTTP_LOGGING_ROLLOVER_TYPE = extern enum(i32) {
+pub const HTTP_LOGGING_ROLLOVER_TYPE = enum(i32) {
     Size = 0,
     Daily = 1,
     Weekly = 2,
@@ -343,7 +343,7 @@ pub const HTTP_BINDING_INFO = extern struct {
     RequestQueueHandle: HANDLE,
 };
 
-pub const HTTP_PROTECTION_LEVEL_TYPE = extern enum(i32) {
+pub const HTTP_PROTECTION_LEVEL_TYPE = enum(i32) {
     Unrestricted = 0,
     EdgeRestricted = 1,
     Restricted = 2,
@@ -367,7 +367,7 @@ pub const HTTP_VERSION = extern struct {
     MinorVersion: u16,
 };
 
-pub const HTTP_SCHEME = extern enum(i32) {
+pub const HTTP_SCHEME = enum(i32) {
     Http = 0,
     Https = 1,
     Maximum = 2,
@@ -376,7 +376,7 @@ pub const HttpSchemeHttp = HTTP_SCHEME.Http;
 pub const HttpSchemeHttps = HTTP_SCHEME.Https;
 pub const HttpSchemeMaximum = HTTP_SCHEME.Maximum;
 
-pub const HTTP_VERB = extern enum(i32) {
+pub const HTTP_VERB = enum(i32) {
     Unparsed = 0,
     Unknown = 1,
     Invalid = 2,
@@ -421,7 +421,7 @@ pub const HttpVerbUNLOCK = HTTP_VERB.UNLOCK;
 pub const HttpVerbSEARCH = HTTP_VERB.SEARCH;
 pub const HttpVerbMaximum = HTTP_VERB.Maximum;
 
-pub const HTTP_HEADER_ID = extern enum(i32) {
+pub const HTTP_HEADER_ID = enum(i32) {
     CacheControl = 0,
     Connection = 1,
     Date = 2,
@@ -464,18 +464,18 @@ pub const HTTP_HEADER_ID = extern enum(i32) {
     Translate = 39,
     UserAgent = 40,
     RequestMaximum = 41,
-    AcceptRanges = 20,
-    Age = 21,
-    Etag = 22,
-    Location = 23,
-    ProxyAuthenticate = 24,
-    RetryAfter = 25,
-    Server = 26,
-    SetCookie = 27,
-    Vary = 28,
-    WwwAuthenticate = 29,
-    ResponseMaximum = 30,
-    Maximum = 41,
+    // AcceptRanges = 20, this enum value conflicts with Accept
+    // Age = 21, this enum value conflicts with AcceptCharset
+    // Etag = 22, this enum value conflicts with AcceptEncoding
+    // Location = 23, this enum value conflicts with AcceptLanguage
+    // ProxyAuthenticate = 24, this enum value conflicts with Authorization
+    // RetryAfter = 25, this enum value conflicts with Cookie
+    // Server = 26, this enum value conflicts with Expect
+    // SetCookie = 27, this enum value conflicts with From
+    // Vary = 28, this enum value conflicts with Host
+    // WwwAuthenticate = 29, this enum value conflicts with IfMatch
+    // ResponseMaximum = 30, this enum value conflicts with IfModifiedSince
+    // Maximum = 41, this enum value conflicts with RequestMaximum
 };
 pub const HttpHeaderCacheControl = HTTP_HEADER_ID.CacheControl;
 pub const HttpHeaderConnection = HTTP_HEADER_ID.Connection;
@@ -519,18 +519,18 @@ pub const HttpHeaderTe = HTTP_HEADER_ID.Te;
 pub const HttpHeaderTranslate = HTTP_HEADER_ID.Translate;
 pub const HttpHeaderUserAgent = HTTP_HEADER_ID.UserAgent;
 pub const HttpHeaderRequestMaximum = HTTP_HEADER_ID.RequestMaximum;
-pub const HttpHeaderAcceptRanges = HTTP_HEADER_ID.AcceptRanges;
-pub const HttpHeaderAge = HTTP_HEADER_ID.Age;
-pub const HttpHeaderEtag = HTTP_HEADER_ID.Etag;
-pub const HttpHeaderLocation = HTTP_HEADER_ID.Location;
-pub const HttpHeaderProxyAuthenticate = HTTP_HEADER_ID.ProxyAuthenticate;
-pub const HttpHeaderRetryAfter = HTTP_HEADER_ID.RetryAfter;
-pub const HttpHeaderServer = HTTP_HEADER_ID.Server;
-pub const HttpHeaderSetCookie = HTTP_HEADER_ID.SetCookie;
-pub const HttpHeaderVary = HTTP_HEADER_ID.Vary;
-pub const HttpHeaderWwwAuthenticate = HTTP_HEADER_ID.WwwAuthenticate;
-pub const HttpHeaderResponseMaximum = HTTP_HEADER_ID.ResponseMaximum;
-pub const HttpHeaderMaximum = HTTP_HEADER_ID.Maximum;
+pub const HttpHeaderAcceptRanges = HTTP_HEADER_ID.Accept;
+pub const HttpHeaderAge = HTTP_HEADER_ID.AcceptCharset;
+pub const HttpHeaderEtag = HTTP_HEADER_ID.AcceptEncoding;
+pub const HttpHeaderLocation = HTTP_HEADER_ID.AcceptLanguage;
+pub const HttpHeaderProxyAuthenticate = HTTP_HEADER_ID.Authorization;
+pub const HttpHeaderRetryAfter = HTTP_HEADER_ID.Cookie;
+pub const HttpHeaderServer = HTTP_HEADER_ID.Expect;
+pub const HttpHeaderSetCookie = HTTP_HEADER_ID.From;
+pub const HttpHeaderVary = HTTP_HEADER_ID.Host;
+pub const HttpHeaderWwwAuthenticate = HTTP_HEADER_ID.IfMatch;
+pub const HttpHeaderResponseMaximum = HTTP_HEADER_ID.IfModifiedSince;
+pub const HttpHeaderMaximum = HTTP_HEADER_ID.RequestMaximum;
 
 pub const HTTP_KNOWN_HEADER = extern struct {
     RawValueLength: u16,
@@ -544,7 +544,7 @@ pub const HTTP_UNKNOWN_HEADER = extern struct {
     pRawValue: [*:0]const u8,
 };
 
-pub const HTTP_LOG_DATA_TYPE = extern enum(i32) {
+pub const HTTP_LOG_DATA_TYPE = enum(i32) {
     s = 0,
 };
 pub const HttpLogDataTypeFields = HTTP_LOG_DATA_TYPE.s;
@@ -586,7 +586,7 @@ pub const HTTP_LOG_FIELDS_DATA = extern struct {
     SubStatus: u16,
 };
 
-pub const HTTP_DATA_CHUNK_TYPE = extern enum(i32) {
+pub const HTTP_DATA_CHUNK_TYPE = enum(i32) {
     FromMemory = 0,
     FromFileHandle = 1,
     FromFragmentCache = 2,
@@ -637,7 +637,7 @@ pub const HTTP_RESPONSE_HEADERS = extern struct {
     KnownHeaders: [30]HTTP_KNOWN_HEADER,
 };
 
-pub const HTTP_DELEGATE_REQUEST_PROPERTY_ID = extern enum(i32) {
+pub const HTTP_DELEGATE_REQUEST_PROPERTY_ID = enum(i32) {
     y = 0,
 };
 pub const DelegateRequestReservedProperty = HTTP_DELEGATE_REQUEST_PROPERTY_ID.y;
@@ -664,7 +664,7 @@ pub const HTTP_COOKED_URL = extern struct {
     pQueryString: [*:0]const u16,
 };
 
-pub const HTTP_AUTH_STATUS = extern enum(i32) {
+pub const HTTP_AUTH_STATUS = enum(i32) {
     Success = 0,
     NotAuthenticated = 1,
     Failure = 2,
@@ -673,7 +673,7 @@ pub const HttpAuthStatusSuccess = HTTP_AUTH_STATUS.Success;
 pub const HttpAuthStatusNotAuthenticated = HTTP_AUTH_STATUS.NotAuthenticated;
 pub const HttpAuthStatusFailure = HTTP_AUTH_STATUS.Failure;
 
-pub const HTTP_REQUEST_AUTH_TYPE = extern enum(i32) {
+pub const HTTP_REQUEST_AUTH_TYPE = enum(i32) {
     None = 0,
     Basic = 1,
     Digest = 2,
@@ -717,7 +717,7 @@ pub const HTTP_SSL_PROTOCOL_INFO = extern struct {
     KeyExchangeStrength: u32,
 };
 
-pub const HTTP_REQUEST_SIZING_TYPE = extern enum(i32) {
+pub const HTTP_REQUEST_SIZING_TYPE = enum(i32) {
     TlsHandshakeLeg1ClientData = 0,
     TlsHandshakeLeg1ServerData = 1,
     TlsHandshakeLeg2ClientData = 2,
@@ -739,7 +739,7 @@ pub const HTTP_REQUEST_SIZING_INFO = extern struct {
     RequestSizing: [5]u64,
 };
 
-pub const HTTP_REQUEST_TIMING_TYPE = extern enum(i32) {
+pub const HTTP_REQUEST_TIMING_TYPE = enum(i32) {
     ConnectionStart = 0,
     DataStart = 1,
     TlsCertificateLoadStart = 2,
@@ -809,7 +809,7 @@ pub const HTTP_REQUEST_TIMING_INFO = extern struct {
     RequestTiming: [30]u64,
 };
 
-pub const HTTP_REQUEST_INFO_TYPE = extern enum(i32) {
+pub const HTTP_REQUEST_INFO_TYPE = enum(i32) {
     Auth = 0,
     ChannelBind = 1,
     SslProtocol = 2,
@@ -892,7 +892,7 @@ pub const HTTP_RESPONSE_V1 = extern struct {
     pEntityChunks: *HTTP_DATA_CHUNK,
 };
 
-pub const HTTP_RESPONSE_INFO_TYPE = extern enum(i32) {
+pub const HTTP_RESPONSE_INFO_TYPE = enum(i32) {
     MultipleKnownHeaders = 0,
     AuthenticationProperty = 1,
     QoSProperty = 2,
@@ -927,7 +927,7 @@ pub const HTTPAPI_VERSION = extern struct {
     HttpApiMinorVersion: u16,
 };
 
-pub const HTTP_CACHE_POLICY_TYPE = extern enum(i32) {
+pub const HTTP_CACHE_POLICY_TYPE = enum(i32) {
     Nocache = 0,
     UserInvalidates = 1,
     TimeToLive = 2,
@@ -943,7 +943,7 @@ pub const HTTP_CACHE_POLICY = extern struct {
     SecondsToLive: u32,
 };
 
-pub const HTTP_SERVICE_CONFIG_ID = extern enum(i32) {
+pub const HTTP_SERVICE_CONFIG_ID = enum(i32) {
     IPListenList = 0,
     SSLCertInfo = 1,
     UrlAclInfo = 2,
@@ -974,7 +974,7 @@ pub const HttpServiceConfigSslScopedCcsCertInfo = HTTP_SERVICE_CONFIG_ID.SslScop
 pub const HttpServiceConfigSslScopedCcsCertInfoEx = HTTP_SERVICE_CONFIG_ID.SslScopedCcsCertInfoEx;
 pub const HttpServiceConfigMax = HTTP_SERVICE_CONFIG_ID.Max;
 
-pub const HTTP_SERVICE_CONFIG_QUERY_TYPE = extern enum(i32) {
+pub const HTTP_SERVICE_CONFIG_QUERY_TYPE = enum(i32) {
     Exact = 0,
     Next = 1,
     Max = 2,
@@ -1013,7 +1013,7 @@ pub const HTTP_SERVICE_CONFIG_SSL_PARAM = extern struct {
     DefaultFlags: u32,
 };
 
-pub const HTTP_SSL_SERVICE_CONFIG_EX_PARAM_TYPE = extern enum(i32) {
+pub const HTTP_SSL_SERVICE_CONFIG_EX_PARAM_TYPE = enum(i32) {
     Http2Window = 0,
     Http2SettingsLimits = 1,
     HttpPerformance = 2,
@@ -1148,7 +1148,7 @@ pub const HTTP_SERVICE_CONFIG_URLACL_QUERY = extern struct {
     dwToken: u32,
 };
 
-pub const HTTP_SERVICE_CONFIG_CACHE_KEY = extern enum(i32) {
+pub const HTTP_SERVICE_CONFIG_CACHE_KEY = enum(i32) {
     MaxCacheResponseSize = 0,
     CacheRangeChunkSize = 1,
 };
@@ -1160,7 +1160,7 @@ pub const HTTP_SERVICE_CONFIG_CACHE_SET = extern struct {
     ParamDesc: u32,
 };
 
-pub const HTTP_REQUEST_PROPERTY = extern enum(i32) {
+pub const HTTP_REQUEST_PROPERTY = enum(i32) {
     Isb = 0,
     TcpInfoV0 = 1,
     QuicStats = 2,
@@ -1186,14 +1186,14 @@ pub const HTTP_REQUEST_PROPERTY_SNI = extern struct {
     Flags: u32,
 };
 
-pub const HTTP_RECEIVE_HTTP_REQUEST_FLAGS = extern enum(u32) {
+pub const HTTP_RECEIVE_HTTP_REQUEST_FLAGS = enum(u32) {
     COPY_BODY = 1,
     FLUSH_BODY = 2,
 };
 pub const HTTP_RECEIVE_REQUEST_FLAG_COPY_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.COPY_BODY;
 pub const HTTP_RECEIVE_REQUEST_FLAG_FLUSH_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.FLUSH_BODY;
 
-pub const HTTP_INITIALIZE = extern enum(u32) {
+pub const HTTP_INITIALIZE = enum(u32) {
     CONFIG = 2,
     SERVER = 1,
     _,

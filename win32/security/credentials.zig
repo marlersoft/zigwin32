@@ -120,7 +120,7 @@ pub const SCARD_AUDIT_CHV_SUCCESS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (46)
 //--------------------------------------------------------------------------------
-pub const KeyCredentialManagerOperationErrorStates = extern enum(u32) {
+pub const KeyCredentialManagerOperationErrorStates = enum(u32) {
     None = 0,
     DeviceJoinFailure = 1,
     TokenFailure = 2,
@@ -161,7 +161,7 @@ pub const KeyCredentialManagerOperationErrorStatePolicyFailure = KeyCredentialMa
 pub const KeyCredentialManagerOperationErrorStateHardwareFailure = KeyCredentialManagerOperationErrorStates.HardwareFailure;
 pub const KeyCredentialManagerOperationErrorStatePinExistsFailure = KeyCredentialManagerOperationErrorStates.PinExistsFailure;
 
-pub const KeyCredentialManagerOperationType = extern enum(i32) {
+pub const KeyCredentialManagerOperationType = enum(i32) {
     rovisioning = 0,
     inChange = 1,
     inReset = 2,
@@ -263,7 +263,7 @@ pub const BINARY_BLOB_CREDENTIAL_INFO = extern struct {
     pbBlob: *u8,
 };
 
-pub const CRED_MARSHAL_TYPE = extern enum(i32) {
+pub const CRED_MARSHAL_TYPE = enum(i32) {
     CertCredential = 1,
     UsernameTargetCredential = 2,
     BinaryBlobCredential = 3,
@@ -276,7 +276,7 @@ pub const BinaryBlobCredential = CRED_MARSHAL_TYPE.BinaryBlobCredential;
 pub const UsernameForPackedCredentials = CRED_MARSHAL_TYPE.UsernameForPackedCredentials;
 pub const BinaryBlobForSystem = CRED_MARSHAL_TYPE.BinaryBlobForSystem;
 
-pub const CRED_PROTECTION_TYPE = extern enum(i32) {
+pub const CRED_PROTECTION_TYPE = enum(i32) {
     Unprotected = 0,
     UserProtection = 1,
     TrustedProtection = 2,
@@ -454,7 +454,7 @@ pub const OPENCARDNAME_EXW = extern struct {
     hCardHandle: usize,
 };
 
-pub const READER_SEL_REQUEST_MATCH_TYPE = extern enum(i32) {
+pub const READER_SEL_REQUEST_MATCH_TYPE = enum(i32) {
     READER_AND_CONTAINER = 1,
     SERIAL_NUMBER = 2,
     ALL_CARDS = 3,
@@ -543,7 +543,7 @@ pub const OPENCARDNAMEW = extern struct {
     hCardHandle: usize,
 };
 
-pub const CRED_FLAGS = extern enum(u32) {
+pub const CRED_FLAGS = enum(u32) {
     PASSWORD_FOR_CERT = 1,
     PROMPT_NOW = 2,
     USERNAME_TARGET = 4,
@@ -592,7 +592,7 @@ pub const CRED_FLAGS_NGC_CERT = CRED_FLAGS.NGC_CERT;
 pub const CRED_FLAGS_VALID_FLAGS = CRED_FLAGS.VALID_FLAGS;
 pub const CRED_FLAGS_VALID_INPUT_FLAGS = CRED_FLAGS.VALID_INPUT_FLAGS;
 
-pub const CRED_TYPE = extern enum(u32) {
+pub const CRED_TYPE = enum(u32) {
     GENERIC = 1,
     DOMAIN_PASSWORD = 2,
     DOMAIN_CERTIFICATE = 3,
@@ -611,7 +611,7 @@ pub const CRED_TYPE_DOMAIN_EXTENDED = CRED_TYPE.DOMAIN_EXTENDED;
 pub const CRED_TYPE_MAXIMUM = CRED_TYPE.MAXIMUM;
 pub const CRED_TYPE_MAXIMUM_EX = CRED_TYPE.MAXIMUM_EX;
 
-pub const CRED_PERSIST = extern enum(u32) {
+pub const CRED_PERSIST = enum(u32) {
     NONE = 0,
     SESSION = 1,
     LOCAL_MACHINE = 2,
@@ -622,7 +622,7 @@ pub const CRED_PERSIST_SESSION = CRED_PERSIST.SESSION;
 pub const CRED_PERSIST_LOCAL_MACHINE = CRED_PERSIST.LOCAL_MACHINE;
 pub const CRED_PERSIST_ENTERPRISE = CRED_PERSIST.ENTERPRISE;
 
-pub const CREDUI_FLAGS = extern enum(u32) {
+pub const CREDUI_FLAGS = enum(u32) {
     ALWAYS_SHOW_UI = 128,
     COMPLETE_USERNAME = 2048,
     DO_NOT_PERSIST = 2,
@@ -699,14 +699,14 @@ pub const CREDUI_FLAGS_SHOW_SAVE_CHECK_BOX = CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX;
 pub const CREDUI_FLAGS_USERNAME_TARGET_CREDENTIALS = CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS;
 pub const CREDUI_FLAGS_VALIDATE_USERNAME = CREDUI_FLAGS.VALIDATE_USERNAME;
 
-pub const SCARD_SCOPE = extern enum(u32) {
+pub const SCARD_SCOPE = enum(u32) {
     USER = 0,
     SYSTEM = 2,
 };
 pub const SCARD_SCOPE_USER = SCARD_SCOPE.USER;
 pub const SCARD_SCOPE_SYSTEM = SCARD_SCOPE.SYSTEM;
 
-pub const CRED_ENUMERATE_FLAGS = extern enum(u32) {
+pub const CRED_ENUMERATE_FLAGS = enum(u32) {
     S = 1,
     _,
     pub fn initFlags(o: struct {
@@ -719,7 +719,7 @@ pub const CRED_ENUMERATE_FLAGS = extern enum(u32) {
 };
 pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS.S;
 
-pub const CREDUIWIN_FLAGS = extern enum(u32) {
+pub const CREDUIWIN_FLAGS = enum(u32) {
     GENERIC = 1,
     CHECKBOX = 2,
     AUTHPACKAGE_ONLY = 16,
@@ -764,7 +764,7 @@ pub const CREDUIWIN_SECURE_PROMPT = CREDUIWIN_FLAGS.SECURE_PROMPT;
 pub const CREDUIWIN_PREPROMPTING = CREDUIWIN_FLAGS.PREPROMPTING;
 pub const CREDUIWIN_PACK_32_WOW = CREDUIWIN_FLAGS.PACK_32_WOW;
 
-pub const SCARD_STATE = extern enum(u32) {
+pub const SCARD_STATE = enum(u32) {
     UNAWARE = 0,
     IGNORE = 1,
     UNAVAILABLE = 8,
@@ -789,7 +789,7 @@ pub const SCARD_STATE_MUTE = SCARD_STATE.MUTE;
 pub const SCARD_STATE_CHANGED = SCARD_STATE.CHANGED;
 pub const SCARD_STATE_UNKNOWN = SCARD_STATE.UNKNOWN;
 
-pub const CRED_PACK_FLAGS = extern enum(u32) {
+pub const CRED_PACK_FLAGS = enum(u32) {
     PROTECTED_CREDENTIALS = 1,
     WOW_BUFFER = 2,
     GENERIC_CREDENTIALS = 4,

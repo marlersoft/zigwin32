@@ -189,7 +189,7 @@ pub const XAPO_LOCKFORPROCESS_PARAMETERS = packed struct {
     MaxFrameCount: u32,
 };
 
-pub const XAPO_BUFFER_FLAGS = extern enum(i32) {
+pub const XAPO_BUFFER_FLAGS = enum(i32) {
     SILENT = 0,
     VALID = 1,
 };
@@ -414,7 +414,7 @@ pub const XAUDIO2_EFFECT_CHAIN = packed struct {
     pEffectDescriptors: *XAUDIO2_EFFECT_DESCRIPTOR,
 };
 
-pub const XAUDIO2_FILTER_TYPE = extern enum(i32) {
+pub const XAUDIO2_FILTER_TYPE = enum(i32) {
     LowPassFilter = 0,
     BandPassFilter = 1,
     HighPassFilter = 2,
@@ -1093,7 +1093,7 @@ pub const HrtfOrientation = extern struct {
     element: [9]f32,
 };
 
-pub const HrtfDirectivityType = extern enum(i32) {
+pub const HrtfDirectivityType = enum(i32) {
     OmniDirectional = 0,
     Cardioid = 1,
     Cone = 2,
@@ -1102,7 +1102,7 @@ pub const OmniDirectional = HrtfDirectivityType.OmniDirectional;
 pub const Cardioid = HrtfDirectivityType.Cardioid;
 pub const Cone = HrtfDirectivityType.Cone;
 
-pub const HrtfEnvironment = extern enum(i32) {
+pub const HrtfEnvironment = enum(i32) {
     Small = 0,
     Medium = 1,
     Large = 2,
@@ -1129,7 +1129,7 @@ pub const HrtfDirectivityCone = extern struct {
     outerAngle: f32,
 };
 
-pub const HrtfDistanceDecayType = extern enum(i32) {
+pub const HrtfDistanceDecayType = enum(i32) {
     NaturalDecay = 0,
     CustomDecay = 1,
 };

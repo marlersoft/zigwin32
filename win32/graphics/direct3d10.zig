@@ -292,7 +292,7 @@ pub const GUID_DeviceType = Guid.initString("d722fb4d-7a68-437a-b20c-5804ee2494a
 //--------------------------------------------------------------------------------
 // Section: Types (177)
 //--------------------------------------------------------------------------------
-pub const D3D10_INPUT_CLASSIFICATION = extern enum(i32) {
+pub const D3D10_INPUT_CLASSIFICATION = enum(i32) {
     VERTEX_DATA = 0,
     INSTANCE_DATA = 1,
 };
@@ -309,14 +309,14 @@ pub const D3D10_INPUT_ELEMENT_DESC = extern struct {
     InstanceDataStepRate: u32,
 };
 
-pub const D3D10_FILL_MODE = extern enum(i32) {
+pub const D3D10_FILL_MODE = enum(i32) {
     WIREFRAME = 2,
     SOLID = 3,
 };
 pub const D3D10_FILL_WIREFRAME = D3D10_FILL_MODE.WIREFRAME;
 pub const D3D10_FILL_SOLID = D3D10_FILL_MODE.SOLID;
 
-pub const D3D10_CULL_MODE = extern enum(i32) {
+pub const D3D10_CULL_MODE = enum(i32) {
     NONE = 1,
     FRONT = 2,
     BACK = 3,
@@ -342,7 +342,7 @@ pub const D3D10_VIEWPORT = extern struct {
     MaxDepth: f32,
 };
 
-pub const D3D10_RESOURCE_DIMENSION = extern enum(i32) {
+pub const D3D10_RESOURCE_DIMENSION = enum(i32) {
     UNKNOWN = 0,
     BUFFER = 1,
     TEXTURE1D = 2,
@@ -355,7 +355,7 @@ pub const D3D10_RESOURCE_DIMENSION_TEXTURE1D = D3D10_RESOURCE_DIMENSION.TEXTURE1
 pub const D3D10_RESOURCE_DIMENSION_TEXTURE2D = D3D10_RESOURCE_DIMENSION.TEXTURE2D;
 pub const D3D10_RESOURCE_DIMENSION_TEXTURE3D = D3D10_RESOURCE_DIMENSION.TEXTURE3D;
 
-pub const D3D10_DSV_DIMENSION = extern enum(i32) {
+pub const D3D10_DSV_DIMENSION = enum(i32) {
     UNKNOWN = 0,
     TEXTURE1D = 1,
     TEXTURE1DARRAY = 2,
@@ -372,7 +372,7 @@ pub const D3D10_DSV_DIMENSION_TEXTURE2DARRAY = D3D10_DSV_DIMENSION.TEXTURE2DARRA
 pub const D3D10_DSV_DIMENSION_TEXTURE2DMS = D3D10_DSV_DIMENSION.TEXTURE2DMS;
 pub const D3D10_DSV_DIMENSION_TEXTURE2DMSARRAY = D3D10_DSV_DIMENSION.TEXTURE2DMSARRAY;
 
-pub const D3D10_RTV_DIMENSION = extern enum(i32) {
+pub const D3D10_RTV_DIMENSION = enum(i32) {
     UNKNOWN = 0,
     BUFFER = 1,
     TEXTURE1D = 2,
@@ -393,7 +393,7 @@ pub const D3D10_RTV_DIMENSION_TEXTURE2DMS = D3D10_RTV_DIMENSION.TEXTURE2DMS;
 pub const D3D10_RTV_DIMENSION_TEXTURE2DMSARRAY = D3D10_RTV_DIMENSION.TEXTURE2DMSARRAY;
 pub const D3D10_RTV_DIMENSION_TEXTURE3D = D3D10_RTV_DIMENSION.TEXTURE3D;
 
-pub const D3D10_USAGE = extern enum(i32) {
+pub const D3D10_USAGE = enum(i32) {
     DEFAULT = 0,
     IMMUTABLE = 1,
     DYNAMIC = 2,
@@ -404,7 +404,7 @@ pub const D3D10_USAGE_IMMUTABLE = D3D10_USAGE.IMMUTABLE;
 pub const D3D10_USAGE_DYNAMIC = D3D10_USAGE.DYNAMIC;
 pub const D3D10_USAGE_STAGING = D3D10_USAGE.STAGING;
 
-pub const D3D10_BIND_FLAG = extern enum(i32) {
+pub const D3D10_BIND_FLAG = enum(i32) {
     VERTEX_BUFFER = 1,
     INDEX_BUFFER = 2,
     CONSTANT_BUFFER = 4,
@@ -421,14 +421,14 @@ pub const D3D10_BIND_STREAM_OUTPUT = D3D10_BIND_FLAG.STREAM_OUTPUT;
 pub const D3D10_BIND_RENDER_TARGET = D3D10_BIND_FLAG.RENDER_TARGET;
 pub const D3D10_BIND_DEPTH_STENCIL = D3D10_BIND_FLAG.DEPTH_STENCIL;
 
-pub const D3D10_CPU_ACCESS_FLAG = extern enum(i32) {
+pub const D3D10_CPU_ACCESS_FLAG = enum(i32) {
     WRITE = 65536,
     READ = 131072,
 };
 pub const D3D10_CPU_ACCESS_WRITE = D3D10_CPU_ACCESS_FLAG.WRITE;
 pub const D3D10_CPU_ACCESS_READ = D3D10_CPU_ACCESS_FLAG.READ;
 
-pub const D3D10_RESOURCE_MISC_FLAG = extern enum(i32) {
+pub const D3D10_RESOURCE_MISC_FLAG = enum(i32) {
     GENERATE_MIPS = 1,
     SHARED = 2,
     TEXTURECUBE = 4,
@@ -441,7 +441,7 @@ pub const D3D10_RESOURCE_MISC_TEXTURECUBE = D3D10_RESOURCE_MISC_FLAG.TEXTURECUBE
 pub const D3D10_RESOURCE_MISC_SHARED_KEYEDMUTEX = D3D10_RESOURCE_MISC_FLAG.SHARED_KEYEDMUTEX;
 pub const D3D10_RESOURCE_MISC_GDI_COMPATIBLE = D3D10_RESOURCE_MISC_FLAG.GDI_COMPATIBLE;
 
-pub const D3D10_MAP = extern enum(i32) {
+pub const D3D10_MAP = enum(i32) {
     READ = 1,
     WRITE = 2,
     READ_WRITE = 3,
@@ -454,17 +454,17 @@ pub const D3D10_MAP_READ_WRITE = D3D10_MAP.READ_WRITE;
 pub const D3D10_MAP_WRITE_DISCARD = D3D10_MAP.WRITE_DISCARD;
 pub const D3D10_MAP_WRITE_NO_OVERWRITE = D3D10_MAP.WRITE_NO_OVERWRITE;
 
-pub const D3D10_MAP_FLAG = extern enum(i32) {
+pub const D3D10_MAP_FLAG = enum(i32) {
     T = 1048576,
 };
 pub const D3D10_MAP_FLAG_DO_NOT_WAIT = D3D10_MAP_FLAG.T;
 
-pub const D3D10_RAISE_FLAG = extern enum(i32) {
+pub const D3D10_RAISE_FLAG = enum(i32) {
     R = 1,
 };
 pub const D3D10_RAISE_FLAG_DRIVER_INTERNAL_ERROR = D3D10_RAISE_FLAG.R;
 
-pub const D3D10_CLEAR_FLAG = extern enum(i32) {
+pub const D3D10_CLEAR_FLAG = enum(i32) {
     DEPTH = 1,
     STENCIL = 2,
 };
@@ -532,7 +532,7 @@ pub const ID3D10DeviceChild = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_COMPARISON_FUNC = extern enum(i32) {
+pub const D3D10_COMPARISON_FUNC = enum(i32) {
     NEVER = 1,
     LESS = 2,
     EQUAL = 3,
@@ -551,14 +551,14 @@ pub const D3D10_COMPARISON_NOT_EQUAL = D3D10_COMPARISON_FUNC.NOT_EQUAL;
 pub const D3D10_COMPARISON_GREATER_EQUAL = D3D10_COMPARISON_FUNC.GREATER_EQUAL;
 pub const D3D10_COMPARISON_ALWAYS = D3D10_COMPARISON_FUNC.ALWAYS;
 
-pub const D3D10_DEPTH_WRITE_MASK = extern enum(i32) {
+pub const D3D10_DEPTH_WRITE_MASK = enum(i32) {
     ZERO = 0,
     ALL = 1,
 };
 pub const D3D10_DEPTH_WRITE_MASK_ZERO = D3D10_DEPTH_WRITE_MASK.ZERO;
 pub const D3D10_DEPTH_WRITE_MASK_ALL = D3D10_DEPTH_WRITE_MASK.ALL;
 
-pub const D3D10_STENCIL_OP = extern enum(i32) {
+pub const D3D10_STENCIL_OP = enum(i32) {
     KEEP = 1,
     ZERO = 2,
     REPLACE = 3,
@@ -616,7 +616,7 @@ pub const ID3D10DepthStencilState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_BLEND = extern enum(i32) {
+pub const D3D10_BLEND = enum(i32) {
     ZERO = 1,
     ONE = 2,
     SRC_COLOR = 3,
@@ -653,7 +653,7 @@ pub const D3D10_BLEND_INV_SRC1_COLOR = D3D10_BLEND.INV_SRC1_COLOR;
 pub const D3D10_BLEND_SRC1_ALPHA = D3D10_BLEND.SRC1_ALPHA;
 pub const D3D10_BLEND_INV_SRC1_ALPHA = D3D10_BLEND.INV_SRC1_ALPHA;
 
-pub const D3D10_BLEND_OP = extern enum(i32) {
+pub const D3D10_BLEND_OP = enum(i32) {
     ADD = 1,
     SUBTRACT = 2,
     REV_SUBTRACT = 3,
@@ -666,7 +666,7 @@ pub const D3D10_BLEND_OP_REV_SUBTRACT = D3D10_BLEND_OP.REV_SUBTRACT;
 pub const D3D10_BLEND_OP_MIN = D3D10_BLEND_OP.MIN;
 pub const D3D10_BLEND_OP_MAX = D3D10_BLEND_OP.MAX;
 
-pub const D3D10_COLOR_WRITE_ENABLE = extern enum(i32) {
+pub const D3D10_COLOR_WRITE_ENABLE = enum(i32) {
     RED = 1,
     GREEN = 2,
     BLUE = 4,
@@ -1001,7 +1001,7 @@ pub const ID3D10Texture3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_TEXTURECUBE_FACE = extern enum(i32) {
+pub const D3D10_TEXTURECUBE_FACE = enum(i32) {
     POSITIVE_X = 0,
     NEGATIVE_X = 1,
     POSITIVE_Y = 2,
@@ -1325,7 +1325,7 @@ pub const ID3D10InputLayout = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_FILTER = extern enum(i32) {
+pub const D3D10_FILTER = enum(i32) {
     MIN_MAG_MIP_POINT = 0,
     MIN_MAG_POINT_MIP_LINEAR = 1,
     MIN_POINT_MAG_LINEAR_MIP_POINT = 4,
@@ -1366,14 +1366,14 @@ pub const D3D10_FILTER_COMPARISON_MIN_MAG_MIP_LINEAR = D3D10_FILTER.COMPARISON_M
 pub const D3D10_FILTER_COMPARISON_ANISOTROPIC = D3D10_FILTER.COMPARISON_ANISOTROPIC;
 pub const D3D10_FILTER_TEXT_1BIT = D3D10_FILTER.TEXT_1BIT;
 
-pub const D3D10_FILTER_TYPE = extern enum(i32) {
+pub const D3D10_FILTER_TYPE = enum(i32) {
     POINT = 0,
     LINEAR = 1,
 };
 pub const D3D10_FILTER_TYPE_POINT = D3D10_FILTER_TYPE.POINT;
 pub const D3D10_FILTER_TYPE_LINEAR = D3D10_FILTER_TYPE.LINEAR;
 
-pub const D3D10_TEXTURE_ADDRESS_MODE = extern enum(i32) {
+pub const D3D10_TEXTURE_ADDRESS_MODE = enum(i32) {
     WRAP = 1,
     MIRROR = 2,
     CLAMP = 3,
@@ -1420,7 +1420,7 @@ pub const ID3D10SamplerState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_FORMAT_SUPPORT = extern enum(i32) {
+pub const D3D10_FORMAT_SUPPORT = enum(i32) {
     BUFFER = 1,
     IA_VERTEX_BUFFER = 2,
     IA_INDEX_BUFFER = 4,
@@ -1518,12 +1518,12 @@ pub const ID3D10Asynchronous = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_ASYNC_GETDATA_FLAG = extern enum(i32) {
+pub const D3D10_ASYNC_GETDATA_FLAG = enum(i32) {
     H = 1,
 };
 pub const D3D10_ASYNC_GETDATA_DONOTFLUSH = D3D10_ASYNC_GETDATA_FLAG.H;
 
-pub const D3D10_QUERY = extern enum(i32) {
+pub const D3D10_QUERY = enum(i32) {
     EVENT = 0,
     OCCLUSION = 1,
     TIMESTAMP = 2,
@@ -1542,7 +1542,7 @@ pub const D3D10_QUERY_OCCLUSION_PREDICATE = D3D10_QUERY.OCCLUSION_PREDICATE;
 pub const D3D10_QUERY_SO_STATISTICS = D3D10_QUERY.SO_STATISTICS;
 pub const D3D10_QUERY_SO_OVERFLOW_PREDICATE = D3D10_QUERY.SO_OVERFLOW_PREDICATE;
 
-pub const D3D10_QUERY_MISC_FLAG = extern enum(i32) {
+pub const D3D10_QUERY_MISC_FLAG = enum(i32) {
     T = 1,
 };
 pub const D3D10_QUERY_MISC_PREDICATEHINT = D3D10_QUERY_MISC_FLAG.T;
@@ -1607,7 +1607,7 @@ pub const D3D10_QUERY_DATA_SO_STATISTICS = extern struct {
     PrimitivesStorageNeeded: u64,
 };
 
-pub const D3D10_COUNTER = extern enum(i32) {
+pub const D3D10_COUNTER = enum(i32) {
     GPU_IDLE = 0,
     VERTEX_PROCESSING = 1,
     GEOMETRY_PROCESSING = 2,
@@ -1648,7 +1648,7 @@ pub const D3D10_COUNTER_POST_TRANSFORM_CACHE_HIT_RATE = D3D10_COUNTER.POST_TRANS
 pub const D3D10_COUNTER_TEXTURE_CACHE_HIT_RATE = D3D10_COUNTER.TEXTURE_CACHE_HIT_RATE;
 pub const D3D10_COUNTER_DEVICE_DEPENDENT_0 = D3D10_COUNTER.DEVICE_DEPENDENT_0;
 
-pub const D3D10_COUNTER_TYPE = extern enum(i32) {
+pub const D3D10_COUNTER_TYPE = enum(i32) {
     FLOAT32 = 0,
     UINT16 = 1,
     UINT32 = 2,
@@ -2657,7 +2657,7 @@ pub const ID3D10Multithread = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_CREATE_DEVICE_FLAG = extern enum(i32) {
+pub const D3D10_CREATE_DEVICE_FLAG = enum(i32) {
     SINGLETHREADED = 1,
     DEBUG = 2,
     SWITCH_TO_REF = 4,
@@ -2772,7 +2772,7 @@ pub const ID3D10SwitchToRef = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_MESSAGE_CATEGORY = extern enum(i32) {
+pub const D3D10_MESSAGE_CATEGORY = enum(i32) {
     APPLICATION_DEFINED = 0,
     MISCELLANEOUS = 1,
     INITIALIZATION = 2,
@@ -2797,7 +2797,7 @@ pub const D3D10_MESSAGE_CATEGORY_RESOURCE_MANIPULATION = D3D10_MESSAGE_CATEGORY.
 pub const D3D10_MESSAGE_CATEGORY_EXECUTION = D3D10_MESSAGE_CATEGORY.EXECUTION;
 pub const D3D10_MESSAGE_CATEGORY_SHADER = D3D10_MESSAGE_CATEGORY.SHADER;
 
-pub const D3D10_MESSAGE_SEVERITY = extern enum(i32) {
+pub const D3D10_MESSAGE_SEVERITY = enum(i32) {
     CORRUPTION = 0,
     ERROR = 1,
     WARNING = 2,
@@ -2810,7 +2810,7 @@ pub const D3D10_MESSAGE_SEVERITY_WARNING = D3D10_MESSAGE_SEVERITY.WARNING;
 pub const D3D10_MESSAGE_SEVERITY_INFO = D3D10_MESSAGE_SEVERITY.INFO;
 pub const D3D10_MESSAGE_SEVERITY_MESSAGE = D3D10_MESSAGE_SEVERITY.MESSAGE;
 
-pub const D3D10_MESSAGE_ID = extern enum(i32) {
+pub const D3D10_MESSAGE_ID = enum(i32) {
     UNKNOWN = 0,
     DEVICE_IASETVERTEXBUFFERS_HAZARD = 1,
     DEVICE_IASETINDEXBUFFER_HAZARD = 2,
@@ -4138,7 +4138,7 @@ pub const ID3D10InfoQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_DRIVER_TYPE = extern enum(i32) {
+pub const D3D10_DRIVER_TYPE = enum(i32) {
     HARDWARE = 0,
     REFERENCE = 1,
     NULL = 2,
@@ -4397,7 +4397,7 @@ pub const ID3D10ShaderReflection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_DEVICE_STATE_TYPES = extern enum(i32) {
+pub const D3D10_DEVICE_STATE_TYPES = enum(i32) {
     SO_BUFFERS = 1,
     OM_RENDER_TARGETS = 2,
     OM_DEPTH_STENCIL_STATE = 3,
@@ -5870,7 +5870,7 @@ pub const ID3D10EffectPool = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_FEATURE_LEVEL1 = extern enum(i32) {
+pub const D3D10_FEATURE_LEVEL1 = enum(i32) {
     @"10_0" = 40960,
     @"10_1" = 41216,
     @"9_1" = 37120,
@@ -5966,7 +5966,7 @@ pub const ID3D10ShaderResourceView1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS = extern enum(i32) {
+pub const D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS = enum(i32) {
     STANDARD_MULTISAMPLE_PATTERN = -1,
     CENTER_MULTISAMPLE_PATTERN = -2,
 };
@@ -6012,7 +6012,7 @@ pub const ID3D10Device1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D10_SHADER_DEBUG_REGTYPE = extern enum(i32) {
+pub const D3D10_SHADER_DEBUG_REGTYPE = enum(i32) {
     @"0_SHADER_DEBUG_REG_INPUT" = 0,
     @"0_SHADER_DEBUG_REG_OUTPUT" = 1,
     @"0_SHADER_DEBUG_REG_CBUFFER" = 2,
@@ -6043,7 +6043,7 @@ pub const D3D11_SHADER_DEBUG_REG_INTERFACE_POINTERS = D3D10_SHADER_DEBUG_REGTYPE
 pub const D3D11_SHADER_DEBUG_REG_UAV = D3D10_SHADER_DEBUG_REGTYPE.@"1_SHADER_DEBUG_REG_UAV";
 pub const D3D10_SHADER_DEBUG_REG_FORCE_DWORD = D3D10_SHADER_DEBUG_REGTYPE.@"0_SHADER_DEBUG_REG_FORCE_DWORD";
 
-pub const D3D10_SHADER_DEBUG_SCOPETYPE = extern enum(i32) {
+pub const D3D10_SHADER_DEBUG_SCOPETYPE = enum(i32) {
     GLOBAL = 0,
     BLOCK = 1,
     FORLOOP = 2,
@@ -6064,7 +6064,7 @@ pub const D3D10_SHADER_DEBUG_SCOPE_NAMESPACE = D3D10_SHADER_DEBUG_SCOPETYPE.NAME
 pub const D3D10_SHADER_DEBUG_SCOPE_ANNOTATION = D3D10_SHADER_DEBUG_SCOPETYPE.ANNOTATION;
 pub const D3D10_SHADER_DEBUG_SCOPE_FORCE_DWORD = D3D10_SHADER_DEBUG_SCOPETYPE.FORCE_DWORD;
 
-pub const D3D10_SHADER_DEBUG_VARTYPE = extern enum(i32) {
+pub const D3D10_SHADER_DEBUG_VARTYPE = enum(i32) {
     VARIABLE = 0,
     FUNCTION = 1,
     FORCE_DWORD = 2147483647,

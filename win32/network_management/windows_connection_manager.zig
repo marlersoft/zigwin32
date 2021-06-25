@@ -11,7 +11,7 @@ pub const NET_INTERFACE_FLAG_CONNECT_IF_NEEDED = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (15)
 //--------------------------------------------------------------------------------
-pub const WCM_PROPERTY = extern enum(i32) {
+pub const WCM_PROPERTY = enum(i32) {
     global_property_domain_policy = 0,
     global_property_minimize_policy = 1,
     global_property_roaming_policy = 2,
@@ -28,7 +28,7 @@ pub const wcm_intf_property_connection_cost = WCM_PROPERTY.intf_property_connect
 pub const wcm_intf_property_dataplan_status = WCM_PROPERTY.intf_property_dataplan_status;
 pub const wcm_intf_property_hotspot_profile = WCM_PROPERTY.intf_property_hotspot_profile;
 
-pub const WCM_MEDIA_TYPE = extern enum(i32) {
+pub const WCM_MEDIA_TYPE = enum(i32) {
     unknown = 0,
     ethernet = 1,
     wlan = 2,
@@ -59,7 +59,7 @@ pub const WCM_PROFILE_INFO_LIST = extern struct {
     ProfileInfo: [1]WCM_PROFILE_INFO,
 };
 
-pub const WCM_CONNECTION_COST = extern enum(i32) {
+pub const WCM_CONNECTION_COST = enum(i32) {
     UNKNOWN = 0,
     UNRESTRICTED = 1,
     FIXED = 2,
@@ -78,7 +78,7 @@ pub const WCM_CONNECTION_COST_CONGESTED = WCM_CONNECTION_COST.CONGESTED;
 pub const WCM_CONNECTION_COST_ROAMING = WCM_CONNECTION_COST.ROAMING;
 pub const WCM_CONNECTION_COST_APPROACHINGDATALIMIT = WCM_CONNECTION_COST.APPROACHINGDATALIMIT;
 
-pub const WCM_CONNECTION_COST_SOURCE = extern enum(i32) {
+pub const WCM_CONNECTION_COST_SOURCE = enum(i32) {
     DEFAULT = 0,
     GP = 1,
     USER = 2,

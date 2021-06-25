@@ -246,7 +246,7 @@ pub const SILO_INFO = extern struct {
     capabilities: u8,
 };
 
-pub const ACT_AUTHORIZATION_STATE_VALUE = extern enum(i32) {
+pub const ACT_AUTHORIZATION_STATE_VALUE = enum(i32) {
     UNAUTHORIZED = 0,
     AUTHORIZED = 1,
 };

@@ -106,26 +106,26 @@ pub const CLSID_Sensor = &CLSID_Sensor_Value;
 const CLSID_SensorDataReport_Value = @import("../zig.zig").Guid.initString("4ea9d6ef-694b-4218-8816-ccda8da74bba");
 pub const CLSID_SensorDataReport = &CLSID_SensorDataReport_Value;
 
-pub const SensorState = extern enum(i32) {
+pub const SensorState = enum(i32) {
     MIN = 0,
-    READY = 0,
+    // READY = 0, this enum value conflicts with MIN
     NOT_AVAILABLE = 1,
     NO_DATA = 2,
     INITIALIZING = 3,
     ACCESS_DENIED = 4,
     ERROR = 5,
-    MAX = 5,
+    // MAX = 5, this enum value conflicts with ERROR
 };
 pub const SENSOR_STATE_MIN = SensorState.MIN;
-pub const SENSOR_STATE_READY = SensorState.READY;
+pub const SENSOR_STATE_READY = SensorState.MIN;
 pub const SENSOR_STATE_NOT_AVAILABLE = SensorState.NOT_AVAILABLE;
 pub const SENSOR_STATE_NO_DATA = SensorState.NO_DATA;
 pub const SENSOR_STATE_INITIALIZING = SensorState.INITIALIZING;
 pub const SENSOR_STATE_ACCESS_DENIED = SensorState.ACCESS_DENIED;
 pub const SENSOR_STATE_ERROR = SensorState.ERROR;
-pub const SENSOR_STATE_MAX = SensorState.MAX;
+pub const SENSOR_STATE_MAX = SensorState.ERROR;
 
-pub const SensorConnectionType = extern enum(i32) {
+pub const SensorConnectionType = enum(i32) {
     INTEGRATED = 0,
     ATTACHED = 1,
     EXTERNAL = 2,
@@ -134,14 +134,14 @@ pub const SENSOR_CONNECTION_TYPE_PC_INTEGRATED = SensorConnectionType.INTEGRATED
 pub const SENSOR_CONNECTION_TYPE_PC_ATTACHED = SensorConnectionType.ATTACHED;
 pub const SENSOR_CONNECTION_TYPE_PC_EXTERNAL = SensorConnectionType.EXTERNAL;
 
-pub const LOCATION_DESIRED_ACCURACY = extern enum(i32) {
+pub const LOCATION_DESIRED_ACCURACY = enum(i32) {
     DEFAULT = 0,
     HIGH = 1,
 };
 pub const LOCATION_DESIRED_ACCURACY_DEFAULT = LOCATION_DESIRED_ACCURACY.DEFAULT;
 pub const LOCATION_DESIRED_ACCURACY_HIGH = LOCATION_DESIRED_ACCURACY.HIGH;
 
-pub const LOCATION_POSITION_SOURCE = extern enum(i32) {
+pub const LOCATION_POSITION_SOURCE = enum(i32) {
     CELLULAR = 0,
     SATELLITE = 1,
     WIFI = 2,
@@ -154,7 +154,7 @@ pub const LOCATION_POSITION_SOURCE_WIFI = LOCATION_POSITION_SOURCE.WIFI;
 pub const LOCATION_POSITION_SOURCE_IPADDRESS = LOCATION_POSITION_SOURCE.IPADDRESS;
 pub const LOCATION_POSITION_SOURCE_UNKNOWN = LOCATION_POSITION_SOURCE.UNKNOWN;
 
-pub const SimpleDeviceOrientation = extern enum(i32) {
+pub const SimpleDeviceOrientation = enum(i32) {
     NOT_ROTATED = 0,
     ROTATED_90 = 1,
     ROTATED_180 = 2,
@@ -169,7 +169,7 @@ pub const SIMPLE_DEVICE_ORIENTATION_ROTATED_270 = SimpleDeviceOrientation.ROTATE
 pub const SIMPLE_DEVICE_ORIENTATION_ROTATED_FACE_UP = SimpleDeviceOrientation.ROTATED_FACE_UP;
 pub const SIMPLE_DEVICE_ORIENTATION_ROTATED_FACE_DOWN = SimpleDeviceOrientation.ROTATED_FACE_DOWN;
 
-pub const MagnetometerAccuracy = extern enum(i32) {
+pub const MagnetometerAccuracy = enum(i32) {
     UNKNOWN = 0,
     UNRELIABLE = 1,
     APPROXIMATE = 2,

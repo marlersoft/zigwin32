@@ -31,7 +31,7 @@ pub const CLSID_DispLatLongReport = &CLSID_DispLatLongReport_Value;
 const CLSID_DispCivicAddressReport_Value = @import("../zig.zig").Guid.initString("4c596aec-8544-4082-ba9f-eb0a7d8e65c6");
 pub const CLSID_DispCivicAddressReport = &CLSID_DispCivicAddressReport_Value;
 
-pub const LOCATION_REPORT_STATUS = extern enum(i32) {
+pub const LOCATION_REPORT_STATUS = enum(i32) {
     NOT_SUPPORTED = 0,
     ERROR = 1,
     ACCESS_DENIED = 2,

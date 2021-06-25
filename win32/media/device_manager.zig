@@ -309,7 +309,7 @@ pub const CLSID_WMDMDeviceEnum = &CLSID_WMDMDeviceEnum_Value;
 const CLSID_WMDMStorageEnum_Value = @import("../zig.zig").Guid.initString("eb401a3b-3af7-11d3-8474-00c04f79dbc0");
 pub const CLSID_WMDMStorageEnum = &CLSID_WMDMStorageEnum_Value;
 
-pub const WMDM_TAG_DATATYPE = extern enum(i32) {
+pub const WMDM_TAG_DATATYPE = enum(i32) {
     DWORD = 0,
     STRING = 1,
     BINARY = 2,
@@ -328,7 +328,7 @@ pub const WMDM_TYPE_WORD = WMDM_TAG_DATATYPE.WORD;
 pub const WMDM_TYPE_GUID = WMDM_TAG_DATATYPE.GUID;
 pub const WMDM_TYPE_DATE = WMDM_TAG_DATATYPE.DATE;
 
-pub const WMDM_SESSION_TYPE = extern enum(i32) {
+pub const WMDM_SESSION_TYPE = enum(i32) {
     NONE = 0,
     TRANSFER_TO_DEVICE = 1,
     TRANSFER_FROM_DEVICE = 16,
@@ -418,7 +418,7 @@ pub const WMDMMetadataView = extern struct {
     ppwszTags: **u16,
 };
 
-pub const WMDM_STORAGE_ENUM_MODE = extern enum(i32) {
+pub const WMDM_STORAGE_ENUM_MODE = enum(i32) {
     RAW = 0,
     USE_DEVICE_PREF = 1,
     METADATA_VIEWS = 2,
@@ -427,7 +427,7 @@ pub const ENUM_MODE_RAW = WMDM_STORAGE_ENUM_MODE.RAW;
 pub const ENUM_MODE_USE_DEVICE_PREF = WMDM_STORAGE_ENUM_MODE.USE_DEVICE_PREF;
 pub const ENUM_MODE_METADATA_VIEWS = WMDM_STORAGE_ENUM_MODE.METADATA_VIEWS;
 
-pub const WMDM_FORMATCODE = extern enum(i32) {
+pub const WMDM_FORMATCODE = enum(i32) {
     NOTUSED = 0,
     ALLIMAGES = -1,
     UNDEFINED = 12288,
@@ -620,7 +620,7 @@ pub const WMDM_FORMATCODE_3GPA = WMDM_FORMATCODE.@"3GPA";
 pub const WMDM_FORMATCODE_3G2A = WMDM_FORMATCODE.@"3G2A";
 pub const WMDM_FORMATCODE_SECTION = WMDM_FORMATCODE.SECTION;
 
-pub const WMDM_ENUM_PROP_VALID_VALUES_FORM = extern enum(i32) {
+pub const WMDM_ENUM_PROP_VALID_VALUES_FORM = enum(i32) {
     ANY = 0,
     RANGE = 1,
     ENUM = 2,
@@ -660,14 +660,14 @@ pub const WMDM_FORMAT_CAPABILITY = extern struct {
     pConfigs: *WMDM_PROP_CONFIG,
 };
 
-pub const WMDM_FIND_SCOPE = extern enum(i32) {
+pub const WMDM_FIND_SCOPE = enum(i32) {
     GLOBAL = 0,
     IMMEDIATE_CHILDREN = 1,
 };
 pub const WMDM_FIND_SCOPE_GLOBAL = WMDM_FIND_SCOPE.GLOBAL;
 pub const WMDM_FIND_SCOPE_IMMEDIATE_CHILDREN = WMDM_FIND_SCOPE.IMMEDIATE_CHILDREN;
 
-pub const WMDMMessage = extern enum(i32) {
+pub const WMDMMessage = enum(i32) {
     DEVICE_ARRIVAL = 0,
     DEVICE_REMOVAL = 1,
     MEDIA_ARRIVAL = 2,

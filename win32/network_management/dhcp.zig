@@ -411,7 +411,7 @@ pub const DHCPV6CAPI_CLASSID = extern struct {
     nBytesData: u32,
 };
 
-pub const StatusCode = extern enum(i32) {
+pub const StatusCode = enum(i32) {
     NO_ERROR = 0,
     UNSPECIFIED_FAILURE = 1,
     NO_BINDING = 3,
@@ -563,7 +563,7 @@ pub const DHCP_HOST_INFO = extern struct {
     HostName: PWSTR,
 };
 
-pub const DHCP_FORCE_FLAG = extern enum(i32) {
+pub const DHCP_FORCE_FLAG = enum(i32) {
     FullForce = 0,
     NoForce = 1,
     FailoverForce = 2,
@@ -577,7 +577,7 @@ pub const DWORD_DWORD = extern struct {
     DWord2: u32,
 };
 
-pub const DHCP_SUBNET_STATE = extern enum(i32) {
+pub const DHCP_SUBNET_STATE = enum(i32) {
     Enabled = 0,
     Disabled = 1,
     EnabledSwitched = 2,
@@ -628,7 +628,7 @@ pub const DHCP_IP_RESERVATION = extern struct {
     ReservedForClient: *DHCP_BINARY_DATA,
 };
 
-pub const DHCP_SUBNET_ELEMENT_TYPE = extern enum(i32) {
+pub const DHCP_SUBNET_ELEMENT_TYPE = enum(i32) {
     IpRanges = 0,
     SecondaryHosts = 1,
     ReservedIps = 2,
@@ -673,7 +673,7 @@ pub const DHCP_IPV6_ADDRESS = extern struct {
     LowOrderBits: u64,
 };
 
-pub const DHCP_FILTER_LIST_TYPE = extern enum(i32) {
+pub const DHCP_FILTER_LIST_TYPE = enum(i32) {
     Deny = 0,
     Allow = 1,
 };
@@ -709,7 +709,7 @@ pub const DHCP_FILTER_ENUM_INFO = extern struct {
     pEnumRecords: *DHCP_FILTER_RECORD,
 };
 
-pub const DHCP_OPTION_DATA_TYPE = extern enum(i32) {
+pub const DHCP_OPTION_DATA_TYPE = enum(i32) {
     ByteOption = 0,
     WordOption = 1,
     DWordOption = 2,
@@ -755,7 +755,7 @@ pub const DHCP_OPTION_DATA = extern struct {
     Elements: *DHCP_OPTION_DATA_ELEMENT,
 };
 
-pub const DHCP_OPTION_TYPE = extern enum(i32) {
+pub const DHCP_OPTION_TYPE = enum(i32) {
     UnaryElementTypeOption = 0,
     ArrayTypeOption = 1,
 };
@@ -785,7 +785,7 @@ pub const DHCP_OPTION_VALUE_ARRAY = extern struct {
     Values: *DHCP_OPTION_VALUE,
 };
 
-pub const DHCP_OPTION_SCOPE_TYPE = extern enum(i32) {
+pub const DHCP_OPTION_SCOPE_TYPE = enum(i32) {
     DefaultOptions = 0,
     GlobalOptions = 1,
     SubnetOptions = 2,
@@ -815,7 +815,7 @@ pub const DHCP_OPTION_SCOPE_INFO = extern struct {
     ScopeInfo: _DHCP_OPTION_SCOPE_UNION,
 };
 
-pub const DHCP_OPTION_SCOPE_TYPE6 = extern enum(i32) {
+pub const DHCP_OPTION_SCOPE_TYPE6 = enum(i32) {
     DefaultOptions6 = 0,
     ScopeOptions6 = 1,
     ReservedOptions6 = 2,
@@ -865,7 +865,7 @@ pub const DHCP_CLIENT_INFO_ARRAY = extern struct {
     Clients: **DHCP_CLIENT_INFO,
 };
 
-pub const QuarantineStatus = extern enum(i32) {
+pub const QuarantineStatus = enum(i32) {
     NOQUARANTINE = 0,
     RESTRICTEDACCESS = 1,
     DROPPACKET = 2,
@@ -945,7 +945,7 @@ pub const DHCP_CLIENT_INFO_PB_ARRAY = extern struct {
     Clients: **DHCP_CLIENT_INFO_PB,
 };
 
-pub const DHCP_SEARCH_INFO_TYPE = extern enum(i32) {
+pub const DHCP_SEARCH_INFO_TYPE = enum(i32) {
     IpAddress = 0,
     HardwareAddress = 1,
     Name = 2,
@@ -968,7 +968,7 @@ pub const DHCP_CLIENT_SEARCH_UNION = extern union {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const DHCP_PROPERTY_TYPE = extern enum(i32) {
+pub const DHCP_PROPERTY_TYPE = enum(i32) {
     Byte = 0,
     Word = 1,
     Dword = 2,
@@ -981,7 +981,7 @@ pub const DhcpPropTypeDword = DHCP_PROPERTY_TYPE.Dword;
 pub const DhcpPropTypeString = DHCP_PROPERTY_TYPE.String;
 pub const DhcpPropTypeBinary = DHCP_PROPERTY_TYPE.Binary;
 
-pub const DHCP_PROPERTY_ID = extern enum(i32) {
+pub const DHCP_PROPERTY_ID = enum(i32) {
     PolicyDnsSuffix = 0,
     ClientAddressStateEx = 1,
 };
@@ -1123,7 +1123,7 @@ pub const DHCP_SERVER_CONFIG_INFO = extern struct {
     DebugFlag: u32,
 };
 
-pub const DHCP_SCAN_FLAG = extern enum(i32) {
+pub const DHCP_SCAN_FLAG = enum(i32) {
     RegistryFix = 0,
     DatabaseFix = 1,
 };
@@ -1497,7 +1497,7 @@ pub const DHCP_IP_RESERVATION_V6 = extern struct {
     InterfaceId: u32,
 };
 
-pub const DHCP_SUBNET_ELEMENT_TYPE_V6 = extern enum(i32) {
+pub const DHCP_SUBNET_ELEMENT_TYPE_V6 = enum(i32) {
     IpRanges = 0,
     ReservedIps = 1,
     ExcludedIpRanges = 2,
@@ -1547,7 +1547,7 @@ pub const DHCP_CLIENT_INFO_ARRAY_V6 = extern struct {
     Clients: **DHCP_CLIENT_INFO_V6,
 };
 
-pub const DHCP_SEARCH_INFO_TYPE_V6 = extern enum(i32) {
+pub const DHCP_SEARCH_INFO_TYPE_V6 = enum(i32) {
     IpAddress = 0,
     DUID = 1,
     Name = 2,
@@ -1566,7 +1566,7 @@ pub const DHCP_SEARCH_INFO_V6 = extern struct {
     SearchInfo: _DHCP_CLIENT_SEARCH_UNION_V6,
 };
 
-pub const DHCP_POL_ATTR_TYPE = extern enum(i32) {
+pub const DHCP_POL_ATTR_TYPE = enum(i32) {
     HWAddr = 0,
     Option = 1,
     SubOption = 2,
@@ -1579,7 +1579,7 @@ pub const DhcpAttrSubOption = DHCP_POL_ATTR_TYPE.SubOption;
 pub const DhcpAttrFqdn = DHCP_POL_ATTR_TYPE.Fqdn;
 pub const DhcpAttrFqdnSingleLabel = DHCP_POL_ATTR_TYPE.FqdnSingleLabel;
 
-pub const DHCP_POL_COMPARATOR = extern enum(i32) {
+pub const DHCP_POL_COMPARATOR = enum(i32) {
     Equal = 0,
     NotEqual = 1,
     BeginsWith = 2,
@@ -1594,14 +1594,14 @@ pub const DhcpCompNotBeginWith = DHCP_POL_COMPARATOR.NotBeginWith;
 pub const DhcpCompEndsWith = DHCP_POL_COMPARATOR.EndsWith;
 pub const DhcpCompNotEndWith = DHCP_POL_COMPARATOR.NotEndWith;
 
-pub const DHCP_POL_LOGIC_OPER = extern enum(i32) {
+pub const DHCP_POL_LOGIC_OPER = enum(i32) {
     Or = 0,
     And = 1,
 };
 pub const DhcpLogicalOr = DHCP_POL_LOGIC_OPER.Or;
 pub const DhcpLogicalAnd = DHCP_POL_LOGIC_OPER.And;
 
-pub const DHCP_POLICY_FIELDS_TO_UPDATE = extern enum(i32) {
+pub const DHCP_POLICY_FIELDS_TO_UPDATE = enum(i32) {
     Name = 1,
     Order = 2,
     Expr = 4,
@@ -1684,7 +1684,7 @@ pub const DHCP_POLICY_EX_ARRAY = extern struct {
     Elements: *DHCP_POLICY_EX,
 };
 
-pub const DHCPV6_STATELESS_PARAM_TYPE = extern enum(i32) {
+pub const DHCPV6_STATELESS_PARAM_TYPE = enum(i32) {
     PurgeInterval = 1,
     Status = 2,
 };
@@ -1707,21 +1707,21 @@ pub const DHCPV6_STATELESS_STATS = extern struct {
     ScopeStats: *DHCPV6_STATELESS_SCOPE_STATS,
 };
 
-pub const DHCP_FAILOVER_MODE = extern enum(i32) {
+pub const DHCP_FAILOVER_MODE = enum(i32) {
     LoadBalance = 0,
     HotStandby = 1,
 };
 pub const LoadBalance = DHCP_FAILOVER_MODE.LoadBalance;
 pub const HotStandby = DHCP_FAILOVER_MODE.HotStandby;
 
-pub const DHCP_FAILOVER_SERVER = extern enum(i32) {
+pub const DHCP_FAILOVER_SERVER = enum(i32) {
     PrimaryServer = 0,
     SecondaryServer = 1,
 };
 pub const PrimaryServer = DHCP_FAILOVER_SERVER.PrimaryServer;
 pub const SecondaryServer = DHCP_FAILOVER_SERVER.SecondaryServer;
 
-pub const FSM_STATE = extern enum(i32) {
+pub const FSM_STATE = enum(i32) {
     NO_STATE = 0,
     INIT = 1,
     STARTUP = 2,

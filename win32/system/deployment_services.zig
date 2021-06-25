@@ -121,7 +121,7 @@ pub const PFN_WdsCliTraceFunction = fn(
     Params: *i8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WDS_CLI_IMAGE_TYPE = extern enum(i32) {
+pub const WDS_CLI_IMAGE_TYPE = enum(i32) {
     UNKNOWN = 0,
     WIM = 1,
     VHD = 2,
@@ -132,7 +132,7 @@ pub const WDS_CLI_IMAGE_TYPE_WIM = WDS_CLI_IMAGE_TYPE.WIM;
 pub const WDS_CLI_IMAGE_TYPE_VHD = WDS_CLI_IMAGE_TYPE.VHD;
 pub const WDS_CLI_IMAGE_TYPE_VHDX = WDS_CLI_IMAGE_TYPE.VHDX;
 
-pub const WDS_CLI_FIRMWARE_TYPE = extern enum(i32) {
+pub const WDS_CLI_FIRMWARE_TYPE = enum(i32) {
     UNKNOWN = 0,
     BIOS = 1,
     EFI = 2,
@@ -141,7 +141,7 @@ pub const WDS_CLI_FIRMWARE_UNKNOWN = WDS_CLI_FIRMWARE_TYPE.UNKNOWN;
 pub const WDS_CLI_FIRMWARE_BIOS = WDS_CLI_FIRMWARE_TYPE.BIOS;
 pub const WDS_CLI_FIRMWARE_EFI = WDS_CLI_FIRMWARE_TYPE.EFI;
 
-pub const WDS_CLI_IMAGE_PARAM_TYPE = extern enum(i32) {
+pub const WDS_CLI_IMAGE_PARAM_TYPE = enum(i32) {
     UNKNOWN = 0,
     SPARSE_FILE = 1,
     SUPPORTED_FIRMWARES = 2,
@@ -237,7 +237,7 @@ pub const PXE_DHCPV6_NESTED_RELAY_MESSAGE = extern struct {
     cbInterfaceIdOption: u16,
 };
 
-pub const TRANSPORTPROVIDER_CALLBACK_ID = extern enum(i32) {
+pub const TRANSPORTPROVIDER_CALLBACK_ID = enum(i32) {
     CREATE_INSTANCE = 0,
     COMPARE_CONTENT = 1,
     OPEN_CONTENT = 2,
@@ -278,7 +278,7 @@ pub const WDS_TRANSPORTPROVIDER_SETTINGS = extern struct {
     ulProviderVersion: u32,
 };
 
-pub const TRANSPORTCLIENT_CALLBACK_ID = extern enum(i32) {
+pub const TRANSPORTCLIENT_CALLBACK_ID = enum(i32) {
     SESSION_START = 0,
     RECEIVE_CONTENTS = 1,
     SESSION_COMPLETE = 2,
@@ -428,7 +428,7 @@ pub const CLSID_WdsTransportTftpManager = &CLSID_WdsTransportTftpManager_Value;
 const CLSID_WdsTransportContentProvider_Value = @import("../zig.zig").Guid.initString("e0be741f-5a75-4eb9-8a2d-5e189b45f327");
 pub const CLSID_WdsTransportContentProvider = &CLSID_WdsTransportContentProvider_Value;
 
-pub const WDSTRANSPORT_FEATURE_FLAGS = extern enum(i32) {
+pub const WDSTRANSPORT_FEATURE_FLAGS = enum(i32) {
     AdminPack = 1,
     TransportServer = 2,
     DeploymentServer = 4,
@@ -437,14 +437,14 @@ pub const WdsTptFeatureAdminPack = WDSTRANSPORT_FEATURE_FLAGS.AdminPack;
 pub const WdsTptFeatureTransportServer = WDSTRANSPORT_FEATURE_FLAGS.TransportServer;
 pub const WdsTptFeatureDeploymentServer = WDSTRANSPORT_FEATURE_FLAGS.DeploymentServer;
 
-pub const WDSTRANSPORT_PROTOCOL_FLAGS = extern enum(i32) {
+pub const WDSTRANSPORT_PROTOCOL_FLAGS = enum(i32) {
     Unicast = 1,
     Multicast = 2,
 };
 pub const WdsTptProtocolUnicast = WDSTRANSPORT_PROTOCOL_FLAGS.Unicast;
 pub const WdsTptProtocolMulticast = WDSTRANSPORT_PROTOCOL_FLAGS.Multicast;
 
-pub const WDSTRANSPORT_NAMESPACE_TYPE = extern enum(i32) {
+pub const WDSTRANSPORT_NAMESPACE_TYPE = enum(i32) {
     Unknown = 0,
     AutoCast = 1,
     ScheduledCastManualStart = 2,
@@ -455,7 +455,7 @@ pub const WdsTptNamespaceTypeAutoCast = WDSTRANSPORT_NAMESPACE_TYPE.AutoCast;
 pub const WdsTptNamespaceTypeScheduledCastManualStart = WDSTRANSPORT_NAMESPACE_TYPE.ScheduledCastManualStart;
 pub const WdsTptNamespaceTypeScheduledCastAutoStart = WDSTRANSPORT_NAMESPACE_TYPE.ScheduledCastAutoStart;
 
-pub const WDSTRANSPORT_DISCONNECT_TYPE = extern enum(i32) {
+pub const WDSTRANSPORT_DISCONNECT_TYPE = enum(i32) {
     Unknown = 0,
     Fallback = 1,
     Abort = 2,
@@ -464,14 +464,14 @@ pub const WdsTptDisconnectUnknown = WDSTRANSPORT_DISCONNECT_TYPE.Unknown;
 pub const WdsTptDisconnectFallback = WDSTRANSPORT_DISCONNECT_TYPE.Fallback;
 pub const WdsTptDisconnectAbort = WDSTRANSPORT_DISCONNECT_TYPE.Abort;
 
-pub const WDSTRANSPORT_SERVICE_NOTIFICATION = extern enum(i32) {
+pub const WDSTRANSPORT_SERVICE_NOTIFICATION = enum(i32) {
     Unknown = 0,
     ReadSettings = 1,
 };
 pub const WdsTptServiceNotifyUnknown = WDSTRANSPORT_SERVICE_NOTIFICATION.Unknown;
 pub const WdsTptServiceNotifyReadSettings = WDSTRANSPORT_SERVICE_NOTIFICATION.ReadSettings;
 
-pub const WDSTRANSPORT_IP_ADDRESS_TYPE = extern enum(i32) {
+pub const WDSTRANSPORT_IP_ADDRESS_TYPE = enum(i32) {
     Unknown = 0,
     Ipv4 = 1,
     Ipv6 = 2,
@@ -480,7 +480,7 @@ pub const WdsTptIpAddressUnknown = WDSTRANSPORT_IP_ADDRESS_TYPE.Unknown;
 pub const WdsTptIpAddressIpv4 = WDSTRANSPORT_IP_ADDRESS_TYPE.Ipv4;
 pub const WdsTptIpAddressIpv6 = WDSTRANSPORT_IP_ADDRESS_TYPE.Ipv6;
 
-pub const WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE = extern enum(i32) {
+pub const WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE = enum(i32) {
     Unknown = 0,
     Dhcp = 1,
     Range = 2,
@@ -489,7 +489,7 @@ pub const WdsTptIpAddressSourceUnknown = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Unk
 pub const WdsTptIpAddressSourceDhcp = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Dhcp;
 pub const WdsTptIpAddressSourceRange = WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE.Range;
 
-pub const WDSTRANSPORT_NETWORK_PROFILE_TYPE = extern enum(i32) {
+pub const WDSTRANSPORT_NETWORK_PROFILE_TYPE = enum(i32) {
     Unknown = 0,
     Custom = 1,
     @"10Mbps" = 2,
@@ -502,7 +502,7 @@ pub const WdsTptNetworkProfile10Mbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"10Mbp
 pub const WdsTptNetworkProfile100Mbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"100Mbps";
 pub const WdsTptNetworkProfile1Gbps = WDSTRANSPORT_NETWORK_PROFILE_TYPE.@"1Gbps";
 
-pub const WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS = extern enum(i32) {
+pub const WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS = enum(i32) {
     Pxe = 1,
     Tftp = 2,
     ImageServer = 4,
@@ -513,7 +513,7 @@ pub const WdsTptDiagnosticsComponentTftp = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FL
 pub const WdsTptDiagnosticsComponentImageServer = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.ImageServer;
 pub const WdsTptDiagnosticsComponentMulticast = WDSTRANSPORT_DIAGNOSTICS_COMPONENT_FLAGS.Multicast;
 
-pub const WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE = extern enum(i32) {
+pub const WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE = enum(i32) {
     Unknown = 0,
     None = 1,
     AutoDisconnect = 2,
@@ -524,14 +524,14 @@ pub const WdsTptSlowClientHandlingNone = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.
 pub const WdsTptSlowClientHandlingAutoDisconnect = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.AutoDisconnect;
 pub const WdsTptSlowClientHandlingMultistream = WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE.Multistream;
 
-pub const WDSTRANSPORT_UDP_PORT_POLICY = extern enum(i32) {
+pub const WDSTRANSPORT_UDP_PORT_POLICY = enum(i32) {
     Dynamic = 0,
     Fixed = 1,
 };
 pub const WdsTptUdpPortPolicyDynamic = WDSTRANSPORT_UDP_PORT_POLICY.Dynamic;
 pub const WdsTptUdpPortPolicyFixed = WDSTRANSPORT_UDP_PORT_POLICY.Fixed;
 
-pub const WDSTRANSPORT_TFTP_CAPABILITY = extern enum(i32) {
+pub const WDSTRANSPORT_TFTP_CAPABILITY = enum(i32) {
     MaximumBlockSize = 1,
     VariableWindow = 2,
 };
@@ -2011,7 +2011,7 @@ pub const IWdsTransportContentProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROCESSOR_ARCHITECTURE = extern enum(u32) {
+pub const PROCESSOR_ARCHITECTURE = enum(u32) {
     AMD64 = 9,
     IA64 = 6,
     INTEL = 0,
@@ -2024,7 +2024,7 @@ pub const PROCESSOR_ARCHITECTURE_INTEL = PROCESSOR_ARCHITECTURE.INTEL;
 pub const PROCESSOR_ARCHITECTURE_ARM = PROCESSOR_ARCHITECTURE.ARM;
 pub const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE.UNKNOWN;
 
-pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = extern enum(u32) {
+pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = enum(u32) {
     START = 0,
     COMPLETE = 1,
     PROGRESS = 2,
@@ -2032,7 +2032,7 @@ pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = extern enum(u32) {
 };
 // TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
 
-pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = extern enum(u32) {
+pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = enum(u32) {
     AUTH = 1,
     NO_AUTH = 2,
 };

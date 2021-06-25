@@ -853,7 +853,7 @@ pub const HTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 10000);
 //--------------------------------------------------------------------------------
 pub const HTTP_PUSH_WAIT_HANDLE = isize;
 
-pub const INTERNET_SCHEME = extern enum(i32) {
+pub const INTERNET_SCHEME = enum(i32) {
     PARTIAL = -2,
     UNKNOWN = -1,
     DEFAULT = 0,
@@ -868,8 +868,8 @@ pub const INTERNET_SCHEME = extern enum(i32) {
     JAVASCRIPT = 9,
     VBSCRIPT = 10,
     RES = 11,
-    FIRST = 1,
-    LAST = 11,
+    // FIRST = 1, this enum value conflicts with FTP
+    // LAST = 11, this enum value conflicts with RES
 };
 pub const INTERNET_SCHEME_PARTIAL = INTERNET_SCHEME.PARTIAL;
 pub const INTERNET_SCHEME_UNKNOWN = INTERNET_SCHEME.UNKNOWN;
@@ -885,8 +885,8 @@ pub const INTERNET_SCHEME_SOCKS = INTERNET_SCHEME.SOCKS;
 pub const INTERNET_SCHEME_JAVASCRIPT = INTERNET_SCHEME.JAVASCRIPT;
 pub const INTERNET_SCHEME_VBSCRIPT = INTERNET_SCHEME.VBSCRIPT;
 pub const INTERNET_SCHEME_RES = INTERNET_SCHEME.RES;
-pub const INTERNET_SCHEME_FIRST = INTERNET_SCHEME.FIRST;
-pub const INTERNET_SCHEME_LAST = INTERNET_SCHEME.LAST;
+pub const INTERNET_SCHEME_FIRST = INTERNET_SCHEME.FTP;
+pub const INTERNET_SCHEME_LAST = INTERNET_SCHEME.RES;
 
 pub const INTERNET_ASYNC_RESULT = extern struct {
     dwResult: usize,
@@ -1031,14 +1031,14 @@ pub const LPINTERNET_STATUS_CALLBACK = fn(
     dwStatusInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const InternetCookieState = extern enum(i32) {
+pub const InternetCookieState = enum(i32) {
     UNKNOWN = 0,
     ACCEPT = 1,
     PROMPT = 2,
     LEASH = 3,
     DOWNGRADE = 4,
     REJECT = 5,
-    MAX = 5,
+    // MAX = 5, this enum value conflicts with REJECT
 };
 pub const COOKIE_STATE_UNKNOWN = InternetCookieState.UNKNOWN;
 pub const COOKIE_STATE_ACCEPT = InternetCookieState.ACCEPT;
@@ -1046,7 +1046,7 @@ pub const COOKIE_STATE_PROMPT = InternetCookieState.PROMPT;
 pub const COOKIE_STATE_LEASH = InternetCookieState.LEASH;
 pub const COOKIE_STATE_DOWNGRADE = InternetCookieState.DOWNGRADE;
 pub const COOKIE_STATE_REJECT = InternetCookieState.REJECT;
-pub const COOKIE_STATE_MAX = InternetCookieState.MAX;
+pub const COOKIE_STATE_MAX = InternetCookieState.REJECT;
 
 pub const IncomingCookieState = extern struct {
     cSession: i32,
@@ -1338,7 +1338,7 @@ pub const pfnInternetGetProxyInfo = fn(
     lpdwProxyHostNameLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const WPAD_CACHE_DELETE = extern enum(i32) {
+pub const WPAD_CACHE_DELETE = enum(i32) {
     CURRENT = 0,
     ALL = 1,
 };
@@ -1497,7 +1497,7 @@ pub const INTERNET_SECURITY_CONNECTION_INFO = extern struct {
     cipherInfo: SecPkgContext_CipherInfo,
 };
 
-pub const FORTCMD = extern enum(i32) {
+pub const FORTCMD = enum(i32) {
     LOGON = 1,
     LOGOFF = 2,
     CHG_PERSONALITY = 3,
@@ -1506,7 +1506,7 @@ pub const FORTCMD_LOGON = FORTCMD.LOGON;
 pub const FORTCMD_LOGOFF = FORTCMD.LOGOFF;
 pub const FORTCMD_CHG_PERSONALITY = FORTCMD.CHG_PERSONALITY;
 
-pub const FORTSTAT = extern enum(i32) {
+pub const FORTSTAT = enum(i32) {
     INSTALLED = 1,
     LOGGEDON = 2,
 };
@@ -1518,7 +1518,7 @@ pub const INTERNET_DOWNLOAD_MODE_HANDLE = extern struct {
     phFile: *HANDLE,
 };
 
-pub const REQUEST_TIMES = extern enum(i32) {
+pub const REQUEST_TIMES = enum(i32) {
     NameResolutionStart = 0,
     NameResolutionEnd = 1,
     ConnectionEstablishmentStart = 2,
@@ -1591,7 +1591,7 @@ pub const HTTP_PUSH_NOTIFICATION_STATUS = extern struct {
     ChannelStatus: u32,
 };
 
-pub const HTTP_PUSH_WAIT_TYPE = extern enum(i32) {
+pub const HTTP_PUSH_WAIT_TYPE = enum(i32) {
     EnableComplete = 0,
     ReceiveComplete = 1,
     SendComplete = 2,
@@ -1686,22 +1686,22 @@ pub const INTERNET_CACHE_CONTAINER_INFOW = extern struct {
     lpszVolumeTitle: PWSTR,
 };
 
-pub const WININET_SYNC_MODE = extern enum(i32) {
+pub const WININET_SYNC_MODE = enum(i32) {
     NEVER = 0,
     ON_EXPIRY = 1,
     ONCE_PER_SESSION = 2,
     ALWAYS = 3,
     AUTOMATIC = 4,
-    DEFAULT = 4,
+    // DEFAULT = 4, this enum value conflicts with AUTOMATIC
 };
 pub const WININET_SYNC_MODE_NEVER = WININET_SYNC_MODE.NEVER;
 pub const WININET_SYNC_MODE_ON_EXPIRY = WININET_SYNC_MODE.ON_EXPIRY;
 pub const WININET_SYNC_MODE_ONCE_PER_SESSION = WININET_SYNC_MODE.ONCE_PER_SESSION;
 pub const WININET_SYNC_MODE_ALWAYS = WININET_SYNC_MODE.ALWAYS;
 pub const WININET_SYNC_MODE_AUTOMATIC = WININET_SYNC_MODE.AUTOMATIC;
-pub const WININET_SYNC_MODE_DEFAULT = WININET_SYNC_MODE.DEFAULT;
+pub const WININET_SYNC_MODE_DEFAULT = WININET_SYNC_MODE.AUTOMATIC;
 
-pub const APP_CACHE_STATE = extern enum(i32) {
+pub const APP_CACHE_STATE = enum(i32) {
     NoUpdateNeeded = 0,
     UpdateNeeded = 1,
     UpdateNeededNew = 2,
@@ -1722,7 +1722,7 @@ pub const APP_CACHE_DOWNLOAD_LIST = extern struct {
     pEntries: *APP_CACHE_DOWNLOAD_ENTRY,
 };
 
-pub const APP_CACHE_FINALIZE_STATE = extern enum(i32) {
+pub const APP_CACHE_FINALIZE_STATE = enum(i32) {
     Incomplete = 0,
     ManifestChange = 1,
     Complete = 2,
@@ -1760,7 +1760,7 @@ pub const URLCACHE_ENTRY_INFO = extern struct {
     cbExtraDataSize: u32,
 };
 
-pub const URL_CACHE_LIMIT_TYPE = extern enum(i32) {
+pub const URL_CACHE_LIMIT_TYPE = enum(i32) {
     IE = 0,
     IETotal = 1,
     AppContainer = 2,
@@ -1792,7 +1792,7 @@ pub const CACHE_OPERATOR = fn(
     pOpData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const HTTP_WEB_SOCKET_OPERATION = extern enum(i32) {
+pub const HTTP_WEB_SOCKET_OPERATION = enum(i32) {
     SEND_OPERATION = 0,
     RECEIVE_OPERATION = 1,
     CLOSE_OPERATION = 2,
@@ -1803,7 +1803,7 @@ pub const HTTP_WEB_SOCKET_RECEIVE_OPERATION = HTTP_WEB_SOCKET_OPERATION.RECEIVE_
 pub const HTTP_WEB_SOCKET_CLOSE_OPERATION = HTTP_WEB_SOCKET_OPERATION.CLOSE_OPERATION;
 pub const HTTP_WEB_SOCKET_SHUTDOWN_OPERATION = HTTP_WEB_SOCKET_OPERATION.SHUTDOWN_OPERATION;
 
-pub const HTTP_WEB_SOCKET_BUFFER_TYPE = extern enum(i32) {
+pub const HTTP_WEB_SOCKET_BUFFER_TYPE = enum(i32) {
     BINARY_MESSAGE_TYPE = 0,
     BINARY_FRAGMENT_TYPE = 1,
     UTF8_MESSAGE_TYPE = 2,
@@ -1818,7 +1818,7 @@ pub const HTTP_WEB_SOCKET_UTF8_FRAGMENT_TYPE = HTTP_WEB_SOCKET_BUFFER_TYPE.UTF8_
 pub const HTTP_WEB_SOCKET_CLOSE_TYPE = HTTP_WEB_SOCKET_BUFFER_TYPE.CLOSE_TYPE;
 pub const HTTP_WEB_SOCKET_PING_TYPE = HTTP_WEB_SOCKET_BUFFER_TYPE.PING_TYPE;
 
-pub const HTTP_WEB_SOCKET_CLOSE_STATUS = extern enum(i32) {
+pub const HTTP_WEB_SOCKET_CLOSE_STATUS = enum(i32) {
     SUCCESS_CLOSE_STATUS = 1000,
     ENDPOINT_TERMINATED_CLOSE_STATUS = 1001,
     PROTOCOL_ERROR_CLOSE_STATUS = 1002,
@@ -1909,7 +1909,7 @@ pub const IProofOfPossessionCookieInfoManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CACHE_CONFIG = extern enum(u32) {
+pub const CACHE_CONFIG = enum(u32) {
     FORCE_CLEANUP_FC = 32,
     DISK_CACHE_PATHS_FC = 64,
     SYNC_MODE_FC = 128,
@@ -1932,20 +1932,20 @@ pub const CACHE_CONFIG_USER_MODE_FC = CACHE_CONFIG.USER_MODE_FC;
 pub const CACHE_CONFIG_CONTENT_USAGE_FC = CACHE_CONFIG.CONTENT_USAGE_FC;
 pub const CACHE_CONFIG_STICKY_CONTENT_USAGE_FC = CACHE_CONFIG.STICKY_CONTENT_USAGE_FC;
 
-pub const FTP_FLAGS = extern enum(u32) {
+pub const FTP_FLAGS = enum(u32) {
     FTP_TRANSFER_TYPE_ASCII = 1,
     FTP_TRANSFER_TYPE_BINARY = 2,
     FTP_TRANSFER_TYPE_UNKNOWN = 0,
-    INTERNET_FLAG_TRANSFER_ASCII = 1,
-    INTERNET_FLAG_TRANSFER_BINARY = 2,
+    // INTERNET_FLAG_TRANSFER_ASCII = 1, this enum value conflicts with FTP_TRANSFER_TYPE_ASCII
+    // INTERNET_FLAG_TRANSFER_BINARY = 2, this enum value conflicts with FTP_TRANSFER_TYPE_BINARY
 };
 pub const FTP_TRANSFER_TYPE_ASCII = FTP_FLAGS.FTP_TRANSFER_TYPE_ASCII;
 pub const FTP_TRANSFER_TYPE_BINARY = FTP_FLAGS.FTP_TRANSFER_TYPE_BINARY;
 pub const FTP_TRANSFER_TYPE_UNKNOWN = FTP_FLAGS.FTP_TRANSFER_TYPE_UNKNOWN;
-pub const INTERNET_FLAG_TRANSFER_ASCII = FTP_FLAGS.INTERNET_FLAG_TRANSFER_ASCII;
-pub const INTERNET_FLAG_TRANSFER_BINARY = FTP_FLAGS.INTERNET_FLAG_TRANSFER_BINARY;
+pub const INTERNET_FLAG_TRANSFER_ASCII = FTP_FLAGS.FTP_TRANSFER_TYPE_ASCII;
+pub const INTERNET_FLAG_TRANSFER_BINARY = FTP_FLAGS.FTP_TRANSFER_TYPE_BINARY;
 
-pub const INTERNET_CONNECTION = extern enum(u32) {
+pub const INTERNET_CONNECTION = enum(u32) {
     CONNECTION_CONFIGURED = 64,
     CONNECTION_LAN_ = 2,
     CONNECTION_MODEM = 1,
@@ -1982,11 +1982,11 @@ pub const INTERNET_CONNECTION_OFFLINE_ = INTERNET_CONNECTION.CONNECTION_OFFLINE_
 pub const INTERNET_CONNECTION_PROXY = INTERNET_CONNECTION.CONNECTION_PROXY;
 pub const INTERNET_RAS_INSTALLED = INTERNET_CONNECTION.RAS_INSTALLED;
 
-pub const HTTP_ADDREQ_FLAG = extern enum(u32) {
+pub const HTTP_ADDREQ_FLAG = enum(u32) {
     ADD = 536870912,
     ADD_IF_NEW = 268435456,
     COALESCE = 1073741824,
-    COALESCE_WITH_COMMA = 1073741824,
+    // COALESCE_WITH_COMMA = 1073741824, this enum value conflicts with COALESCE
     COALESCE_WITH_SEMICOLON = 16777216,
     REPLACE = 2147483648,
     _,
@@ -1994,7 +1994,6 @@ pub const HTTP_ADDREQ_FLAG = extern enum(u32) {
         ADD: u1 = 0,
         ADD_IF_NEW: u1 = 0,
         COALESCE: u1 = 0,
-        COALESCE_WITH_COMMA: u1 = 0,
         COALESCE_WITH_SEMICOLON: u1 = 0,
         REPLACE: u1 = 0,
     }) HTTP_ADDREQ_FLAG {
@@ -2002,7 +2001,6 @@ pub const HTTP_ADDREQ_FLAG = extern enum(u32) {
               (if (o.ADD == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD) else 0)
             | (if (o.ADD_IF_NEW == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD_IF_NEW) else 0)
             | (if (o.COALESCE == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE) else 0)
-            | (if (o.COALESCE_WITH_COMMA == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE_WITH_COMMA) else 0)
             | (if (o.COALESCE_WITH_SEMICOLON == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON) else 0)
             | (if (o.REPLACE == 1) @enumToInt(HTTP_ADDREQ_FLAG.REPLACE) else 0)
         );
@@ -2011,11 +2009,11 @@ pub const HTTP_ADDREQ_FLAG = extern enum(u32) {
 pub const HTTP_ADDREQ_FLAG_ADD = HTTP_ADDREQ_FLAG.ADD;
 pub const HTTP_ADDREQ_FLAG_ADD_IF_NEW = HTTP_ADDREQ_FLAG.ADD_IF_NEW;
 pub const HTTP_ADDREQ_FLAG_COALESCE = HTTP_ADDREQ_FLAG.COALESCE;
-pub const HTTP_ADDREQ_FLAG_COALESCE_WITH_COMMA = HTTP_ADDREQ_FLAG.COALESCE_WITH_COMMA;
+pub const HTTP_ADDREQ_FLAG_COALESCE_WITH_COMMA = HTTP_ADDREQ_FLAG.COALESCE;
 pub const HTTP_ADDREQ_FLAG_COALESCE_WITH_SEMICOLON = HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON;
 pub const HTTP_ADDREQ_FLAG_REPLACE = HTTP_ADDREQ_FLAG.REPLACE;
 
-pub const INTERNET_COOKIE_FLAGS = extern enum(u32) {
+pub const INTERNET_COOKIE_FLAGS = enum(u32) {
     COOKIE_HTTPONLY = 8192,
     COOKIE_THIRD_PARTY = 16,
     FLAG_RESTRICTED_ZONE = 131072,
@@ -2024,7 +2022,7 @@ pub const INTERNET_COOKIE_HTTPONLY = INTERNET_COOKIE_FLAGS.COOKIE_HTTPONLY;
 pub const INTERNET_COOKIE_THIRD_PARTY = INTERNET_COOKIE_FLAGS.COOKIE_THIRD_PARTY;
 pub const INTERNET_FLAG_RESTRICTED_ZONE = INTERNET_COOKIE_FLAGS.FLAG_RESTRICTED_ZONE;
 
-pub const PROXY_AUTO_DETECT_TYPE = extern enum(u32) {
+pub const PROXY_AUTO_DETECT_TYPE = enum(u32) {
     HCP = 1,
     NS_A = 2,
     _,
@@ -2041,7 +2039,7 @@ pub const PROXY_AUTO_DETECT_TYPE = extern enum(u32) {
 pub const PROXY_AUTO_DETECT_TYPE_DHCP = PROXY_AUTO_DETECT_TYPE.HCP;
 pub const PROXY_AUTO_DETECT_TYPE_DNS_A = PROXY_AUTO_DETECT_TYPE.NS_A;
 
-pub const INTERNET_AUTODIAL = extern enum(u32) {
+pub const INTERNET_AUTODIAL = enum(u32) {
     FAILIFSECURITYCHECK = 4,
     FORCE_ONLINE = 1,
     FORCE_UNATTENDED = 2,
@@ -2052,7 +2050,7 @@ pub const INTERNET_AUTODIAL_FORCE_ONLINE = INTERNET_AUTODIAL.FORCE_ONLINE;
 pub const INTERNET_AUTODIAL_FORCE_UNATTENDED = INTERNET_AUTODIAL.FORCE_UNATTENDED;
 pub const INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT = INTERNET_AUTODIAL.OVERRIDE_NET_PRESENT;
 
-pub const GOPHER_TYPE = extern enum(u32) {
+pub const GOPHER_TYPE = enum(u32) {
     ASK = 1073741824,
     BINARY = 512,
     BITMAP = 16384,
@@ -2103,7 +2101,7 @@ pub const GOPHER_TYPE_TN3270 = GOPHER_TYPE.TN3270;
 pub const GOPHER_TYPE_UNIX_UUENCODED = GOPHER_TYPE.UNIX_UUENCODED;
 pub const GOPHER_TYPE_UNKNOWN = GOPHER_TYPE.UNKNOWN;
 
-pub const INTERNET_PER_CONN = extern enum(u32) {
+pub const INTERNET_PER_CONN = enum(u32) {
     AUTOCONFIG_URL = 4,
     AUTODISCOVERY_FLAGS = 5,
     FLAGS = 1,
@@ -2124,7 +2122,7 @@ pub const INTERNET_PER_CONN_AUTOCONFIG_RELOAD_DELAY_MINS = INTERNET_PER_CONN.AUT
 pub const INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_TIME = INTERNET_PER_CONN.AUTOCONFIG_LAST_DETECT_TIME;
 pub const INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_URL = INTERNET_PER_CONN.AUTOCONFIG_LAST_DETECT_URL;
 
-pub const INTERNET_ACCESS_TYPE = extern enum(u32) {
+pub const INTERNET_ACCESS_TYPE = enum(u32) {
     DIRECT = 1,
     PRECONFIG = 0,
     PROXY = 3,
@@ -2133,7 +2131,7 @@ pub const INTERNET_OPEN_TYPE_DIRECT = INTERNET_ACCESS_TYPE.DIRECT;
 pub const INTERNET_OPEN_TYPE_PRECONFIG = INTERNET_ACCESS_TYPE.PRECONFIG;
 pub const INTERNET_OPEN_TYPE_PROXY = INTERNET_ACCESS_TYPE.PROXY;
 
-pub const INTERNET_STATE = extern enum(u32) {
+pub const INTERNET_STATE = enum(u32) {
     CONNECTED = 1,
     DISCONNECTED = 2,
     DISCONNECTED_BY_USER = 16,

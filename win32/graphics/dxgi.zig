@@ -102,7 +102,7 @@ pub const DXGI_SAMPLE_DESC = extern struct {
     Quality: u32,
 };
 
-pub const DXGI_COLOR_SPACE_TYPE = extern enum(i32) {
+pub const DXGI_COLOR_SPACE_TYPE = enum(i32) {
     RGB_FULL_G22_NONE_P709 = 0,
     RGB_FULL_G10_NONE_P709 = 1,
     RGB_STUDIO_G22_NONE_P709 = 2,
@@ -157,7 +157,7 @@ pub const DXGI_COLOR_SPACE_YCBCR_STUDIO_G24_LEFT_P2020 = DXGI_COLOR_SPACE_TYPE.Y
 pub const DXGI_COLOR_SPACE_YCBCR_STUDIO_G24_TOPLEFT_P2020 = DXGI_COLOR_SPACE_TYPE.YCBCR_STUDIO_G24_TOPLEFT_P2020;
 pub const DXGI_COLOR_SPACE_CUSTOM = DXGI_COLOR_SPACE_TYPE.CUSTOM;
 
-pub const DXGI_FORMAT = extern enum(u32) {
+pub const DXGI_FORMAT = enum(u32) {
     UNKNOWN = 0,
     R32G32B32A32_TYPELESS = 1,
     R32G32B32A32_FLOAT = 2,
@@ -424,7 +424,7 @@ pub const DXGI_GAMMA_CONTROL_CAPABILITIES = extern struct {
     ControlPointPositions: [1025]f32,
 };
 
-pub const DXGI_MODE_SCANLINE_ORDER = extern enum(i32) {
+pub const DXGI_MODE_SCANLINE_ORDER = enum(i32) {
     UNSPECIFIED = 0,
     PROGRESSIVE = 1,
     UPPER_FIELD_FIRST = 2,
@@ -435,7 +435,7 @@ pub const DXGI_MODE_SCANLINE_ORDER_PROGRESSIVE = DXGI_MODE_SCANLINE_ORDER.PROGRE
 pub const DXGI_MODE_SCANLINE_ORDER_UPPER_FIELD_FIRST = DXGI_MODE_SCANLINE_ORDER.UPPER_FIELD_FIRST;
 pub const DXGI_MODE_SCANLINE_ORDER_LOWER_FIELD_FIRST = DXGI_MODE_SCANLINE_ORDER.LOWER_FIELD_FIRST;
 
-pub const DXGI_MODE_SCALING = extern enum(i32) {
+pub const DXGI_MODE_SCALING = enum(i32) {
     UNSPECIFIED = 0,
     CENTERED = 1,
     STRETCHED = 2,
@@ -444,7 +444,7 @@ pub const DXGI_MODE_SCALING_UNSPECIFIED = DXGI_MODE_SCALING.UNSPECIFIED;
 pub const DXGI_MODE_SCALING_CENTERED = DXGI_MODE_SCALING.CENTERED;
 pub const DXGI_MODE_SCALING_STRETCHED = DXGI_MODE_SCALING.STRETCHED;
 
-pub const DXGI_MODE_ROTATION = extern enum(i32) {
+pub const DXGI_MODE_ROTATION = enum(i32) {
     UNSPECIFIED = 0,
     IDENTITY = 1,
     ROTATE90 = 2,
@@ -517,7 +517,7 @@ pub const DXGI_SHARED_RESOURCE = extern struct {
     Handle: HANDLE,
 };
 
-pub const DXGI_RESIDENCY = extern enum(i32) {
+pub const DXGI_RESIDENCY = enum(i32) {
     FULLY_RESIDENT = 1,
     RESIDENT_IN_SHARED_MEMORY = 2,
     EVICTED_TO_DISK = 3,
@@ -533,7 +533,7 @@ pub const DXGI_SURFACE_DESC = extern struct {
     SampleDesc: DXGI_SAMPLE_DESC,
 };
 
-pub const DXGI_SWAP_EFFECT = extern enum(i32) {
+pub const DXGI_SWAP_EFFECT = enum(i32) {
     DISCARD = 0,
     SEQUENTIAL = 1,
     FLIP_SEQUENTIAL = 3,
@@ -544,7 +544,7 @@ pub const DXGI_SWAP_EFFECT_SEQUENTIAL = DXGI_SWAP_EFFECT.SEQUENTIAL;
 pub const DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL = DXGI_SWAP_EFFECT.FLIP_SEQUENTIAL;
 pub const DXGI_SWAP_EFFECT_FLIP_DISCARD = DXGI_SWAP_EFFECT.FLIP_DISCARD;
 
-pub const DXGI_SWAP_CHAIN_FLAG = extern enum(i32) {
+pub const DXGI_SWAP_CHAIN_FLAG = enum(i32) {
     NONPREROTATED = 1,
     ALLOW_MODE_SWITCH = 2,
     GDI_COMPATIBLE = 4,
@@ -1173,7 +1173,7 @@ pub const IDXGIDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_ADAPTER_FLAG = extern enum(u32) {
+pub const DXGI_ADAPTER_FLAG = enum(u32) {
     NONE = 0,
     REMOTE = 1,
     SOFTWARE = 2,
@@ -1339,7 +1339,7 @@ pub const DXGI_OUTDUPL_POINTER_POSITION = extern struct {
     Visible: BOOL,
 };
 
-pub const DXGI_OUTDUPL_POINTER_SHAPE_TYPE = extern enum(i32) {
+pub const DXGI_OUTDUPL_POINTER_SHAPE_TYPE = enum(i32) {
     MONOCHROME = 1,
     COLOR = 2,
     MASKED_COLOR = 4,
@@ -1455,7 +1455,7 @@ pub const IDXGIOutputDuplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_ALPHA_MODE = extern enum(u32) {
+pub const DXGI_ALPHA_MODE = enum(u32) {
     UNSPECIFIED = 0,
     PREMULTIPLIED = 1,
     STRAIGHT = 2,
@@ -1526,7 +1526,7 @@ pub const IDXGIResource1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_OFFER_RESOURCE_PRIORITY = extern enum(i32) {
+pub const DXGI_OFFER_RESOURCE_PRIORITY = enum(i32) {
     LOW = 1,
     NORMAL = 2,
     HIGH = 3,
@@ -1587,7 +1587,7 @@ pub const DXGI_MODE_DESC1 = extern struct {
     Stereo: BOOL,
 };
 
-pub const DXGI_SCALING = extern enum(i32) {
+pub const DXGI_SCALING = enum(i32) {
     STRETCH = 0,
     NONE = 1,
     ASPECT_RATIO_STRETCH = 2,
@@ -1848,7 +1848,7 @@ pub const IDXGIFactory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_GRAPHICS_PREEMPTION_GRANULARITY = extern enum(i32) {
+pub const DXGI_GRAPHICS_PREEMPTION_GRANULARITY = enum(i32) {
     DMA_BUFFER_BOUNDARY = 0,
     PRIMITIVE_BOUNDARY = 1,
     TRIANGLE_BOUNDARY = 2,
@@ -1861,7 +1861,7 @@ pub const DXGI_GRAPHICS_PREEMPTION_TRIANGLE_BOUNDARY = DXGI_GRAPHICS_PREEMPTION_
 pub const DXGI_GRAPHICS_PREEMPTION_PIXEL_BOUNDARY = DXGI_GRAPHICS_PREEMPTION_GRANULARITY.PIXEL_BOUNDARY;
 pub const DXGI_GRAPHICS_PREEMPTION_INSTRUCTION_BOUNDARY = DXGI_GRAPHICS_PREEMPTION_GRANULARITY.INSTRUCTION_BOUNDARY;
 
-pub const DXGI_COMPUTE_PREEMPTION_GRANULARITY = extern enum(i32) {
+pub const DXGI_COMPUTE_PREEMPTION_GRANULARITY = enum(i32) {
     DMA_BUFFER_BOUNDARY = 0,
     DISPATCH_BOUNDARY = 1,
     THREAD_GROUP_BOUNDARY = 2,
@@ -2110,7 +2110,7 @@ pub const DXGI_DECODE_SWAP_CHAIN_DESC = extern struct {
     Flags: u32,
 };
 
-pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS = extern enum(i32) {
+pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS = enum(i32) {
     NOMINAL_RANGE = 1,
     BT709 = 2,
     xvYCC = 4,
@@ -2247,7 +2247,7 @@ pub const IDXGIFactoryMedia = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_FRAME_PRESENTATION_MODE = extern enum(i32) {
+pub const DXGI_FRAME_PRESENTATION_MODE = enum(i32) {
     COMPOSED = 0,
     OVERLAY = 1,
     NONE = 2,
@@ -2308,7 +2308,7 @@ pub const IDXGISwapChainMedia = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_OVERLAY_SUPPORT_FLAG = extern enum(i32) {
+pub const DXGI_OVERLAY_SUPPORT_FLAG = enum(i32) {
     DIRECT = 1,
     SCALING = 2,
 };
@@ -2339,7 +2339,7 @@ pub const IDXGIOutput3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG = extern enum(i32) {
+pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG = enum(i32) {
     PRESENT = 1,
     OVERLAY_PRESENT = 2,
 };
@@ -2398,7 +2398,7 @@ pub const IDXGISwapChain3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG = extern enum(i32) {
+pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG = enum(i32) {
     T = 1,
 };
 pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT = DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG.T;
@@ -2460,7 +2460,7 @@ pub const IDXGIFactory4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_MEMORY_SEGMENT_GROUP = extern enum(i32) {
+pub const DXGI_MEMORY_SEGMENT_GROUP = enum(i32) {
     LOCAL = 0,
     NON_LOCAL = 1,
 };
@@ -2541,7 +2541,7 @@ pub const IDXGIAdapter3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_OUTDUPL_FLAG = extern enum(i32) {
+pub const DXGI_OUTDUPL_FLAG = enum(i32) {
     Y = 1,
 };
 pub const DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY = DXGI_OUTDUPL_FLAG.Y;
@@ -2572,7 +2572,7 @@ pub const IDXGIOutput5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_HDR_METADATA_TYPE = extern enum(i32) {
+pub const DXGI_HDR_METADATA_TYPE = enum(i32) {
     NONE = 0,
     HDR10 = 1,
     HDR10PLUS = 2,
@@ -2619,12 +2619,12 @@ pub const IDXGISwapChain4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_OFFER_RESOURCE_FLAGS = extern enum(i32) {
+pub const DXGI_OFFER_RESOURCE_FLAGS = enum(i32) {
     T = 1,
 };
 pub const DXGI_OFFER_RESOURCE_FLAG_ALLOW_DECOMMIT = DXGI_OFFER_RESOURCE_FLAGS.T;
 
-pub const DXGI_RECLAIM_RESOURCE_RESULTS = extern enum(i32) {
+pub const DXGI_RECLAIM_RESOURCE_RESULTS = enum(i32) {
     OK = 0,
     DISCARDED = 1,
     NOT_COMMITTED = 2,
@@ -2667,7 +2667,7 @@ pub const IDXGIDevice4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_FEATURE = extern enum(i32) {
+pub const DXGI_FEATURE = enum(i32) {
     G = 0,
 };
 pub const DXGI_FEATURE_PRESENT_ALLOW_TEARING = DXGI_FEATURE.G;
@@ -2696,7 +2696,7 @@ pub const IDXGIFactory5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_ADAPTER_FLAG3 = extern enum(u32) {
+pub const DXGI_ADAPTER_FLAG3 = enum(u32) {
     NONE = 0,
     REMOTE = 1,
     SOFTWARE = 2,
@@ -2790,7 +2790,7 @@ pub const DXGI_OUTPUT_DESC1 = extern struct {
     MaxFullFrameLuminance: f32,
 };
 
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = extern enum(u32) {
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = enum(u32) {
     FULLSCREEN = 1,
     WINDOWED = 2,
     CURSOR_STRETCHED = 4,
@@ -2841,7 +2841,7 @@ pub const IDXGIOutput6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_GPU_PREFERENCE = extern enum(i32) {
+pub const DXGI_GPU_PREFERENCE = enum(i32) {
     UNSPECIFIED = 0,
     MINIMUM_POWER = 1,
     HIGH_PERFORMANCE = 2,
@@ -2906,7 +2906,7 @@ pub const IDXGIFactory7 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_DEBUG_RLO_FLAGS = extern enum(u32) {
+pub const DXGI_DEBUG_RLO_FLAGS = enum(u32) {
     SUMMARY = 1,
     DETAIL = 2,
     IGNORE_INTERNAL = 4,
@@ -2931,7 +2931,7 @@ pub const DXGI_DEBUG_RLO_DETAIL = DXGI_DEBUG_RLO_FLAGS.DETAIL;
 pub const DXGI_DEBUG_RLO_IGNORE_INTERNAL = DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL;
 pub const DXGI_DEBUG_RLO_ALL = DXGI_DEBUG_RLO_FLAGS.ALL;
 
-pub const DXGI_INFO_QUEUE_MESSAGE_CATEGORY = extern enum(i32) {
+pub const DXGI_INFO_QUEUE_MESSAGE_CATEGORY = enum(i32) {
     UNKNOWN = 0,
     MISCELLANEOUS = 1,
     INITIALIZATION = 2,
@@ -2956,7 +2956,7 @@ pub const DXGI_INFO_QUEUE_MESSAGE_CATEGORY_RESOURCE_MANIPULATION = DXGI_INFO_QUE
 pub const DXGI_INFO_QUEUE_MESSAGE_CATEGORY_EXECUTION = DXGI_INFO_QUEUE_MESSAGE_CATEGORY.EXECUTION;
 pub const DXGI_INFO_QUEUE_MESSAGE_CATEGORY_SHADER = DXGI_INFO_QUEUE_MESSAGE_CATEGORY.SHADER;
 
-pub const DXGI_INFO_QUEUE_MESSAGE_SEVERITY = extern enum(i32) {
+pub const DXGI_INFO_QUEUE_MESSAGE_SEVERITY = enum(i32) {
     CORRUPTION = 0,
     ERROR = 1,
     WARNING = 2,
@@ -3390,7 +3390,7 @@ pub const IDXGIDebug1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_RESOURCE_PRIORITY = extern enum(u32) {
+pub const DXGI_RESOURCE_PRIORITY = enum(u32) {
     MINIMUM = 671088640,
     LOW = 1342177280,
     NORMAL = 2013265920,

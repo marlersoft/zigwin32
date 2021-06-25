@@ -173,7 +173,7 @@ pub const IEnumBackgroundCopyFiles = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BG_ERROR_CONTEXT = extern enum(i32) {
+pub const BG_ERROR_CONTEXT = enum(i32) {
     NONE = 0,
     UNKNOWN = 1,
     GENERAL_QUEUE_MANAGER = 2,
@@ -269,7 +269,7 @@ pub const BG_JOB_TIMES = extern struct {
     TransferCompletionTime: FILETIME,
 };
 
-pub const BG_JOB_PRIORITY = extern enum(i32) {
+pub const BG_JOB_PRIORITY = enum(i32) {
     FOREGROUND = 0,
     HIGH = 1,
     NORMAL = 2,
@@ -280,7 +280,7 @@ pub const BG_JOB_PRIORITY_HIGH = BG_JOB_PRIORITY.HIGH;
 pub const BG_JOB_PRIORITY_NORMAL = BG_JOB_PRIORITY.NORMAL;
 pub const BG_JOB_PRIORITY_LOW = BG_JOB_PRIORITY.LOW;
 
-pub const BG_JOB_STATE = extern enum(i32) {
+pub const BG_JOB_STATE = enum(i32) {
     QUEUED = 0,
     CONNECTING = 1,
     TRANSFERRING = 2,
@@ -301,7 +301,7 @@ pub const BG_JOB_STATE_TRANSFERRED = BG_JOB_STATE.TRANSFERRED;
 pub const BG_JOB_STATE_ACKNOWLEDGED = BG_JOB_STATE.ACKNOWLEDGED;
 pub const BG_JOB_STATE_CANCELLED = BG_JOB_STATE.CANCELLED;
 
-pub const BG_JOB_TYPE = extern enum(i32) {
+pub const BG_JOB_TYPE = enum(i32) {
     DOWNLOAD = 0,
     UPLOAD = 1,
     UPLOAD_REPLY = 2,
@@ -310,7 +310,7 @@ pub const BG_JOB_TYPE_DOWNLOAD = BG_JOB_TYPE.DOWNLOAD;
 pub const BG_JOB_TYPE_UPLOAD = BG_JOB_TYPE.UPLOAD;
 pub const BG_JOB_TYPE_UPLOAD_REPLY = BG_JOB_TYPE.UPLOAD_REPLY;
 
-pub const BG_JOB_PROXY_USAGE = extern enum(i32) {
+pub const BG_JOB_PROXY_USAGE = enum(i32) {
     PRECONFIG = 0,
     NO_PROXY = 1,
     OVERRIDE = 2,
@@ -808,14 +808,14 @@ pub const BG_JOB_REPLY_PROGRESS = extern struct {
     BytesTransferred: u64,
 };
 
-pub const BG_AUTH_TARGET = extern enum(i32) {
+pub const BG_AUTH_TARGET = enum(i32) {
     SERVER = 1,
     PROXY = 2,
 };
 pub const BG_AUTH_TARGET_SERVER = BG_AUTH_TARGET.SERVER;
 pub const BG_AUTH_TARGET_PROXY = BG_AUTH_TARGET.PROXY;
 
-pub const BG_AUTH_SCHEME = extern enum(i32) {
+pub const BG_AUTH_SCHEME = enum(i32) {
     BASIC = 1,
     DIGEST = 2,
     NTLM = 3,
@@ -1017,7 +1017,7 @@ pub const IBackgroundCopyFile2 = extern struct {
 const CLSID_BackgroundCopyManager2_5_Value = @import("../zig.zig").Guid.initString("03ca98d6-ff5d-49b8-abc6-03dd84127020");
 pub const CLSID_BackgroundCopyManager2_5 = &CLSID_BackgroundCopyManager2_5_Value;
 
-pub const BG_CERT_STORE_LOCATION = extern enum(i32) {
+pub const BG_CERT_STORE_LOCATION = enum(i32) {
     CURRENT_USER = 0,
     LOCAL_MACHINE = 1,
     CURRENT_SERVICE = 2,
@@ -1677,7 +1677,7 @@ pub const IBackgroundCopyFile4 = extern struct {
 const CLSID_BackgroundCopyManager5_0_Value = @import("../zig.zig").Guid.initString("1ecca34c-e88a-44e3-8d6a-8921bde9e452");
 pub const CLSID_BackgroundCopyManager5_0 = &CLSID_BackgroundCopyManager5_0_Value;
 
-pub const BITS_JOB_TRANSFER_POLICY = extern enum(i32) {
+pub const BITS_JOB_TRANSFER_POLICY = enum(i32) {
     ALWAYS = -2147483393,
     NOT_ROAMING = -2147483521,
     NO_SURCHARGE = -2147483537,
@@ -1690,7 +1690,7 @@ pub const BITS_JOB_TRANSFER_POLICY_NO_SURCHARGE = BITS_JOB_TRANSFER_POLICY.NO_SU
 pub const BITS_JOB_TRANSFER_POLICY_STANDARD = BITS_JOB_TRANSFER_POLICY.STANDARD;
 pub const BITS_JOB_TRANSFER_POLICY_UNRESTRICTED = BITS_JOB_TRANSFER_POLICY.UNRESTRICTED;
 
-pub const BITS_JOB_PROPERTY_ID = extern enum(i32) {
+pub const BITS_JOB_PROPERTY_ID = enum(i32) {
     ID_COST_FLAGS = 1,
     NOTIFICATION_CLSID = 2,
     DYNAMIC_CONTENT = 3,
@@ -1717,7 +1717,7 @@ pub const BITS_JOB_PROPERTY_VALUE = extern union {
     Target: BG_AUTH_TARGET,
 };
 
-pub const BITS_FILE_PROPERTY_ID = extern enum(i32) {
+pub const BITS_FILE_PROPERTY_ID = enum(i32) {
     S = 1,
 };
 pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.S;
@@ -2167,7 +2167,7 @@ pub const IEnumBackgroundCopyJobs1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GROUPPROP = extern enum(i32) {
+pub const GROUPPROP = enum(i32) {
     PRIORITY = 0,
     REMOTEUSERID = 1,
     REMOTEUSERPWD = 2,
@@ -2487,7 +2487,7 @@ pub const IBackgroundCopyQMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BG_TOKEN = extern enum(u32) {
+pub const BG_TOKEN = enum(u32) {
     LOCAL_FILE = 1,
     NETWORK = 2,
 };

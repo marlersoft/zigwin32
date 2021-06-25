@@ -10,7 +10,7 @@ pub const DML_MINIMUM_BUFFER_TENSOR_ALIGNMENT = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (137)
 //--------------------------------------------------------------------------------
-pub const DML_TENSOR_DATA_TYPE = extern enum(i32) {
+pub const DML_TENSOR_DATA_TYPE = enum(i32) {
     UNKNOWN = 0,
     FLOAT32 = 1,
     FLOAT16 = 2,
@@ -31,14 +31,14 @@ pub const DML_TENSOR_DATA_TYPE_INT32 = DML_TENSOR_DATA_TYPE.INT32;
 pub const DML_TENSOR_DATA_TYPE_INT16 = DML_TENSOR_DATA_TYPE.INT16;
 pub const DML_TENSOR_DATA_TYPE_INT8 = DML_TENSOR_DATA_TYPE.INT8;
 
-pub const DML_TENSOR_TYPE = extern enum(i32) {
+pub const DML_TENSOR_TYPE = enum(i32) {
     INVALID = 0,
     BUFFER = 1,
 };
 pub const DML_TENSOR_TYPE_INVALID = DML_TENSOR_TYPE.INVALID;
 pub const DML_TENSOR_TYPE_BUFFER = DML_TENSOR_TYPE.BUFFER;
 
-pub const DML_TENSOR_FLAGS = extern enum(u32) {
+pub const DML_TENSOR_FLAGS = enum(u32) {
     NONE = 0,
     OWNED_BY_DML = 1,
     _,
@@ -70,7 +70,7 @@ pub const DML_TENSOR_DESC = extern struct {
     Desc: *const c_void,
 };
 
-pub const DML_OPERATOR_TYPE = extern enum(i32) {
+pub const DML_OPERATOR_TYPE = enum(i32) {
     INVALID = 0,
     ELEMENT_WISE_IDENTITY = 1,
     ELEMENT_WISE_ABS = 2,
@@ -267,7 +267,7 @@ pub const DML_OPERATOR_SCATTER = DML_OPERATOR_TYPE.SCATTER;
 pub const DML_OPERATOR_ONE_HOT = DML_OPERATOR_TYPE.ONE_HOT;
 pub const DML_OPERATOR_RESAMPLE = DML_OPERATOR_TYPE.RESAMPLE;
 
-pub const DML_REDUCE_FUNCTION = extern enum(i32) {
+pub const DML_REDUCE_FUNCTION = enum(i32) {
     ARGMAX = 0,
     ARGMIN = 1,
     AVERAGE = 2,
@@ -294,28 +294,28 @@ pub const DML_REDUCE_FUNCTION_MULTIPLY = DML_REDUCE_FUNCTION.MULTIPLY;
 pub const DML_REDUCE_FUNCTION_SUM = DML_REDUCE_FUNCTION.SUM;
 pub const DML_REDUCE_FUNCTION_SUM_SQUARE = DML_REDUCE_FUNCTION.SUM_SQUARE;
 
-pub const DML_MATRIX_TRANSFORM = extern enum(i32) {
+pub const DML_MATRIX_TRANSFORM = enum(i32) {
     NONE = 0,
     TRANSPOSE = 1,
 };
 pub const DML_MATRIX_TRANSFORM_NONE = DML_MATRIX_TRANSFORM.NONE;
 pub const DML_MATRIX_TRANSFORM_TRANSPOSE = DML_MATRIX_TRANSFORM.TRANSPOSE;
 
-pub const DML_CONVOLUTION_MODE = extern enum(i32) {
+pub const DML_CONVOLUTION_MODE = enum(i32) {
     ONVOLUTION = 0,
     ROSS_CORRELATION = 1,
 };
 pub const DML_CONVOLUTION_MODE_CONVOLUTION = DML_CONVOLUTION_MODE.ONVOLUTION;
 pub const DML_CONVOLUTION_MODE_CROSS_CORRELATION = DML_CONVOLUTION_MODE.ROSS_CORRELATION;
 
-pub const DML_CONVOLUTION_DIRECTION = extern enum(i32) {
+pub const DML_CONVOLUTION_DIRECTION = enum(i32) {
     FORWARD = 0,
     BACKWARD = 1,
 };
 pub const DML_CONVOLUTION_DIRECTION_FORWARD = DML_CONVOLUTION_DIRECTION.FORWARD;
 pub const DML_CONVOLUTION_DIRECTION_BACKWARD = DML_CONVOLUTION_DIRECTION.BACKWARD;
 
-pub const DML_PADDING_MODE = extern enum(i32) {
+pub const DML_PADDING_MODE = enum(i32) {
     CONSTANT = 0,
     EDGE = 1,
     REFLECTION = 2,
@@ -324,7 +324,7 @@ pub const DML_PADDING_MODE_CONSTANT = DML_PADDING_MODE.CONSTANT;
 pub const DML_PADDING_MODE_EDGE = DML_PADDING_MODE.EDGE;
 pub const DML_PADDING_MODE_REFLECTION = DML_PADDING_MODE.REFLECTION;
 
-pub const DML_INTERPOLATION_MODE = extern enum(i32) {
+pub const DML_INTERPOLATION_MODE = enum(i32) {
     NEAREST_NEIGHBOR = 0,
     LINEAR = 1,
 };
@@ -341,7 +341,7 @@ pub const DML_SIZE_2D = extern struct {
     Height: u32,
 };
 
-pub const DML_RECURRENT_NETWORK_DIRECTION = extern enum(i32) {
+pub const DML_RECURRENT_NETWORK_DIRECTION = enum(i32) {
     FORWARD = 0,
     BACKWARD = 1,
     BIDIRECTIONAL = 2,
@@ -1044,14 +1044,14 @@ pub const DML_RESAMPLE_OPERATOR_DESC = extern struct {
     Scales: *const f32,
 };
 
-pub const DML_FEATURE_LEVEL = extern enum(i32) {
+pub const DML_FEATURE_LEVEL = enum(i32) {
     @"1_0" = 4096,
     @"2_0" = 8192,
 };
 pub const DML_FEATURE_LEVEL_1_0 = DML_FEATURE_LEVEL.@"1_0";
 pub const DML_FEATURE_LEVEL_2_0 = DML_FEATURE_LEVEL.@"2_0";
 
-pub const DML_FEATURE = extern enum(i32) {
+pub const DML_FEATURE = enum(i32) {
     TENSOR_DATA_TYPE_SUPPORT = 0,
     FEATURE_LEVELS = 1,
 };
@@ -1082,7 +1082,7 @@ pub const DML_BINDING_TABLE_DESC = extern struct {
     SizeInDescriptors: u32,
 };
 
-pub const DML_EXECUTION_FLAGS = extern enum(u32) {
+pub const DML_EXECUTION_FLAGS = enum(u32) {
     NONE = 0,
     ALLOW_HALF_PRECISION_COMPUTATION = 1,
     DISABLE_META_COMMANDS = 2,
@@ -1107,7 +1107,7 @@ pub const DML_EXECUTION_FLAG_ALLOW_HALF_PRECISION_COMPUTATION = DML_EXECUTION_FL
 pub const DML_EXECUTION_FLAG_DISABLE_META_COMMANDS = DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS;
 pub const DML_EXECUTION_FLAG_DESCRIPTORS_VOLATILE = DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE;
 
-pub const DML_CREATE_DEVICE_FLAGS = extern enum(u32) {
+pub const DML_CREATE_DEVICE_FLAGS = enum(u32) {
     NONE = 0,
     DEBUG = 1,
     _,
@@ -1397,7 +1397,7 @@ pub const IDMLOperatorInitializer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DML_BINDING_TYPE = extern enum(i32) {
+pub const DML_BINDING_TYPE = enum(i32) {
     NONE = 0,
     BUFFER = 1,
     BUFFER_ARRAY = 2,

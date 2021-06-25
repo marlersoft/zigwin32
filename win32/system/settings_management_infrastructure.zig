@@ -13,14 +13,14 @@ pub const LIMITED_VALIDATION_MODE = @as(u32, 1);
 const CLSID_SettingsEngine_Value = @import("../zig.zig").Guid.initString("9f7d7bb5-20b3-11da-81a5-0030f1642e3c");
 pub const CLSID_SettingsEngine = &CLSID_SettingsEngine_Value;
 
-pub const WcmTargetMode = extern enum(i32) {
+pub const WcmTargetMode = enum(i32) {
     fflineMode = 1,
     nlineMode = 2,
 };
 pub const OfflineMode = WcmTargetMode.fflineMode;
 pub const OnlineMode = WcmTargetMode.nlineMode;
 
-pub const WcmNamespaceEnumerationFlags = extern enum(i32) {
+pub const WcmNamespaceEnumerationFlags = enum(i32) {
     SharedEnumeration = 1,
     UserEnumeration = 2,
     AllEnumeration = 3,
@@ -29,7 +29,7 @@ pub const SharedEnumeration = WcmNamespaceEnumerationFlags.SharedEnumeration;
 pub const UserEnumeration = WcmNamespaceEnumerationFlags.UserEnumeration;
 pub const AllEnumeration = WcmNamespaceEnumerationFlags.AllEnumeration;
 
-pub const WcmDataType = extern enum(i32) {
+pub const WcmDataType = enum(i32) {
     Byte = 1,
     SByte = 2,
     UInt16 = 3,
@@ -54,7 +54,7 @@ pub const dataTypeBoolean = WcmDataType.Boolean;
 pub const dataTypeString = WcmDataType.String;
 pub const dataTypeFlagArray = WcmDataType.FlagArray;
 
-pub const WcmSettingType = extern enum(i32) {
+pub const WcmSettingType = enum(i32) {
     Scalar = 1,
     Complex = 2,
     List = 3,
@@ -63,7 +63,7 @@ pub const settingTypeScalar = WcmSettingType.Scalar;
 pub const settingTypeComplex = WcmSettingType.Complex;
 pub const settingTypeList = WcmSettingType.List;
 
-pub const WcmRestrictionFacets = extern enum(i32) {
+pub const WcmRestrictionFacets = enum(i32) {
     MaxLength = 1,
     Enumeration = 2,
     MaxInclusive = 4,
@@ -74,7 +74,7 @@ pub const restrictionFacetEnumeration = WcmRestrictionFacets.Enumeration;
 pub const restrictionFacetMaxInclusive = WcmRestrictionFacets.MaxInclusive;
 pub const restrictionFacetMinInclusive = WcmRestrictionFacets.MinInclusive;
 
-pub const WcmUserStatus = extern enum(i32) {
+pub const WcmUserStatus = enum(i32) {
     nknownStatus = 0,
     serRegistered = 1,
     serUnregistered = 2,
@@ -87,7 +87,7 @@ pub const UserUnregistered = WcmUserStatus.serUnregistered;
 pub const UserLoaded = WcmUserStatus.serLoaded;
 pub const UserUnloaded = WcmUserStatus.serUnloaded;
 
-pub const WcmNamespaceAccess = extern enum(i32) {
+pub const WcmNamespaceAccess = enum(i32) {
     OnlyAccess = 1,
     WriteAccess = 2,
 };

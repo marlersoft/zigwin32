@@ -84,7 +84,7 @@ pub const VER_VDS_LUN_INFORMATION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (139)
 //--------------------------------------------------------------------------------
-pub const VDS_STORAGE_IDENTIFIER_CODE_SET = extern enum(i32) {
+pub const VDS_STORAGE_IDENTIFIER_CODE_SET = enum(i32) {
     Reserved = 0,
     Binary = 1,
     Ascii = 2,
@@ -95,7 +95,7 @@ pub const VDSStorageIdCodeSetBinary = VDS_STORAGE_IDENTIFIER_CODE_SET.Binary;
 pub const VDSStorageIdCodeSetAscii = VDS_STORAGE_IDENTIFIER_CODE_SET.Ascii;
 pub const VDSStorageIdCodeSetUtf8 = VDS_STORAGE_IDENTIFIER_CODE_SET.Utf8;
 
-pub const VDS_STORAGE_IDENTIFIER_TYPE = extern enum(i32) {
+pub const VDS_STORAGE_IDENTIFIER_TYPE = enum(i32) {
     VendorSpecific = 0,
     VendorId = 1,
     EUI64 = 2,
@@ -116,7 +116,7 @@ pub const VDSStorageIdTypeLogicalUnitGroup = VDS_STORAGE_IDENTIFIER_TYPE.Logical
 pub const VDSStorageIdTypeMD5LogicalUnitIdentifier = VDS_STORAGE_IDENTIFIER_TYPE.MD5LogicalUnitIdentifier;
 pub const VDSStorageIdTypeScsiNameString = VDS_STORAGE_IDENTIFIER_TYPE.ScsiNameString;
 
-pub const VDS_STORAGE_BUS_TYPE = extern enum(i32) {
+pub const VDS_STORAGE_BUS_TYPE = enum(i32) {
     Unknown = 0,
     Scsi = 1,
     Atapi = 2,
@@ -132,7 +132,7 @@ pub const VDS_STORAGE_BUS_TYPE = extern enum(i32) {
     Sd = 12,
     Mmc = 13,
     Max = 14,
-    Virtual = 14,
+    // Virtual = 14, this enum value conflicts with Max
     FileBackedVirtual = 15,
     Spaces = 16,
     NVMe = 17,
@@ -155,7 +155,7 @@ pub const VDSBusTypeSata = VDS_STORAGE_BUS_TYPE.Sata;
 pub const VDSBusTypeSd = VDS_STORAGE_BUS_TYPE.Sd;
 pub const VDSBusTypeMmc = VDS_STORAGE_BUS_TYPE.Mmc;
 pub const VDSBusTypeMax = VDS_STORAGE_BUS_TYPE.Max;
-pub const VDSBusTypeVirtual = VDS_STORAGE_BUS_TYPE.Virtual;
+pub const VDSBusTypeVirtual = VDS_STORAGE_BUS_TYPE.Max;
 pub const VDSBusTypeFileBackedVirtual = VDS_STORAGE_BUS_TYPE.FileBackedVirtual;
 pub const VDSBusTypeSpaces = VDS_STORAGE_BUS_TYPE.Spaces;
 pub const VDSBusTypeNVMe = VDS_STORAGE_BUS_TYPE.NVMe;
@@ -176,7 +176,7 @@ pub const VDS_STORAGE_DEVICE_ID_DESCRIPTOR = extern struct {
     m_rgIdentifiers: *VDS_STORAGE_IDENTIFIER,
 };
 
-pub const VDS_INTERCONNECT_ADDRESS_TYPE = extern enum(i32) {
+pub const VDS_INTERCONNECT_ADDRESS_TYPE = enum(i32) {
     UNKNOWN = 0,
     FCFS = 1,
     FCPH = 2,
@@ -215,7 +215,7 @@ pub const VDS_LUN_INFORMATION = extern struct {
     m_rgInterconnects: *VDS_INTERCONNECT,
 };
 
-pub const VDS_OBJECT_TYPE = extern enum(i32) {
+pub const VDS_OBJECT_TYPE = enum(i32) {
     UNKNOWN = 0,
     PROVIDER = 1,
     PACK = 10,
@@ -264,7 +264,7 @@ pub const VDS_OT_ENUM = VDS_OBJECT_TYPE.ENUM;
 pub const VDS_OT_VDISK = VDS_OBJECT_TYPE.VDISK;
 pub const VDS_OT_OPEN_VDISK = VDS_OBJECT_TYPE.OPEN_VDISK;
 
-pub const VDS_PROVIDER_TYPE = extern enum(i32) {
+pub const VDS_PROVIDER_TYPE = enum(i32) {
     UNKNOWN = 0,
     SOFTWARE = 1,
     HARDWARE = 2,
@@ -277,7 +277,7 @@ pub const VDS_PT_HARDWARE = VDS_PROVIDER_TYPE.HARDWARE;
 pub const VDS_PT_VIRTUALDISK = VDS_PROVIDER_TYPE.VIRTUALDISK;
 pub const VDS_PT_MAX = VDS_PROVIDER_TYPE.MAX;
 
-pub const VDS_PROVIDER_FLAG = extern enum(i32) {
+pub const VDS_PROVIDER_FLAG = enum(i32) {
     DYNAMIC = 1,
     INTERNAL_HARDWARE_PROVIDER = 2,
     ONE_DISK_ONLY_PER_PACK = 4,
@@ -300,7 +300,7 @@ pub const VDS_PF_SUPPORT_DYNAMIC_1394 = VDS_PROVIDER_FLAG.SUPPORT_DYNAMIC_1394;
 pub const VDS_PF_SUPPORT_MIRROR = VDS_PROVIDER_FLAG.SUPPORT_MIRROR;
 pub const VDS_PF_SUPPORT_RAID5 = VDS_PROVIDER_FLAG.SUPPORT_RAID5;
 
-pub const VDS_RECOVER_ACTION = extern enum(i32) {
+pub const VDS_RECOVER_ACTION = enum(i32) {
     UNKNOWN = 0,
     REFRESH = 1,
     RESTART = 2,
@@ -309,7 +309,7 @@ pub const VDS_RA_UNKNOWN = VDS_RECOVER_ACTION.UNKNOWN;
 pub const VDS_RA_REFRESH = VDS_RECOVER_ACTION.REFRESH;
 pub const VDS_RA_RESTART = VDS_RECOVER_ACTION.RESTART;
 
-pub const VDS_NOTIFICATION_TARGET_TYPE = extern enum(i32) {
+pub const VDS_NOTIFICATION_TARGET_TYPE = enum(i32) {
     UNKNOWN = 0,
     PACK = 10,
     VOLUME = 11,
@@ -453,7 +453,7 @@ pub const VDS_NOTIFICATION = extern struct {
     },
 };
 
-pub const VDS_ASYNC_OUTPUT_TYPE = extern enum(i32) {
+pub const VDS_ASYNC_OUTPUT_TYPE = enum(i32) {
     UNKNOWN = 0,
     CREATEVOLUME = 1,
     EXTENDVOLUME = 2,
@@ -559,7 +559,7 @@ pub const VDS_ASYNC_OUTPUT = extern struct {
     },
 };
 
-pub const VDS_IPADDRESS_TYPE = extern enum(i32) {
+pub const VDS_IPADDRESS_TYPE = enum(i32) {
     TEXT = 0,
     IPV4 = 1,
     IPV6 = 2,
@@ -570,7 +570,7 @@ pub const VDS_IPT_IPV4 = VDS_IPADDRESS_TYPE.IPV4;
 pub const VDS_IPT_IPV6 = VDS_IPADDRESS_TYPE.IPV6;
 pub const VDS_IPT_EMPTY = VDS_IPADDRESS_TYPE.EMPTY;
 
-pub const VDS_HEALTH = extern enum(i32) {
+pub const VDS_HEALTH = enum(i32) {
     UNKNOWN = 0,
     HEALTHY = 1,
     REBUILDING = 2,
@@ -597,7 +597,7 @@ pub const VDS_H_REPLACED = VDS_HEALTH.REPLACED;
 pub const VDS_H_PENDING_FAILURE = VDS_HEALTH.PENDING_FAILURE;
 pub const VDS_H_DEGRADED = VDS_HEALTH.DEGRADED;
 
-pub const VDS_TRANSITION_STATE = extern enum(i32) {
+pub const VDS_TRANSITION_STATE = enum(i32) {
     UNKNOWN = 0,
     STABLE = 1,
     EXTENDING = 2,
@@ -612,7 +612,7 @@ pub const VDS_TS_SHRINKING = VDS_TRANSITION_STATE.SHRINKING;
 pub const VDS_TS_RECONFIGING = VDS_TRANSITION_STATE.RECONFIGING;
 pub const VDS_TS_RESTRIPING = VDS_TRANSITION_STATE.RESTRIPING;
 
-pub const VDS_FILE_SYSTEM_TYPE = extern enum(i32) {
+pub const VDS_FILE_SYSTEM_TYPE = enum(i32) {
     UNKNOWN = 0,
     RAW = 1,
     FAT = 2,
@@ -635,7 +635,7 @@ pub const VDS_FST_EXFAT = VDS_FILE_SYSTEM_TYPE.EXFAT;
 pub const VDS_FST_CSVFS = VDS_FILE_SYSTEM_TYPE.CSVFS;
 pub const VDS_FST_REFS = VDS_FILE_SYSTEM_TYPE.REFS;
 
-pub const VDS_HBAPORT_TYPE = extern enum(i32) {
+pub const VDS_HBAPORT_TYPE = enum(i32) {
     UNKNOWN = 1,
     OTHER = 2,
     NOTPRESENT = 3,
@@ -660,7 +660,7 @@ pub const VDS_HPT_GPORT = VDS_HBAPORT_TYPE.GPORT;
 pub const VDS_HPT_LPORT = VDS_HBAPORT_TYPE.LPORT;
 pub const VDS_HPT_PTP = VDS_HBAPORT_TYPE.PTP;
 
-pub const VDS_HBAPORT_STATUS = extern enum(i32) {
+pub const VDS_HBAPORT_STATUS = enum(i32) {
     UNKNOWN = 1,
     ONLINE = 2,
     OFFLINE = 3,
@@ -679,7 +679,7 @@ pub const VDS_HPS_LINKDOWN = VDS_HBAPORT_STATUS.LINKDOWN;
 pub const VDS_HPS_ERROR = VDS_HBAPORT_STATUS.ERROR;
 pub const VDS_HPS_LOOPBACK = VDS_HBAPORT_STATUS.LOOPBACK;
 
-pub const VDS_HBAPORT_SPEED_FLAG = extern enum(i32) {
+pub const VDS_HBAPORT_SPEED_FLAG = enum(i32) {
     UNKNOWN = 0,
     @"1GBIT" = 1,
     @"2GBIT" = 2,
@@ -694,7 +694,7 @@ pub const VDS_HSF_10GBIT = VDS_HBAPORT_SPEED_FLAG.@"10GBIT";
 pub const VDS_HSF_4GBIT = VDS_HBAPORT_SPEED_FLAG.@"4GBIT";
 pub const VDS_HSF_NOT_NEGOTIATED = VDS_HBAPORT_SPEED_FLAG.NOT_NEGOTIATED;
 
-pub const VDS_PATH_STATUS = extern enum(i32) {
+pub const VDS_PATH_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     FAILED = 5,
@@ -705,7 +705,7 @@ pub const VDS_MPS_ONLINE = VDS_PATH_STATUS.ONLINE;
 pub const VDS_MPS_FAILED = VDS_PATH_STATUS.FAILED;
 pub const VDS_MPS_STANDBY = VDS_PATH_STATUS.STANDBY;
 
-pub const VDS_LOADBALANCE_POLICY_ENUM = extern enum(i32) {
+pub const VDS_LOADBALANCE_POLICY_ENUM = enum(i32) {
     UNKNOWN = 0,
     FAILOVER = 1,
     ROUND_ROBIN = 2,
@@ -724,7 +724,7 @@ pub const VDS_LBP_WEIGHTED_PATHS = VDS_LOADBALANCE_POLICY_ENUM.WEIGHTED_PATHS;
 pub const VDS_LBP_LEAST_BLOCKS = VDS_LOADBALANCE_POLICY_ENUM.LEAST_BLOCKS;
 pub const VDS_LBP_VENDOR_SPECIFIC = VDS_LOADBALANCE_POLICY_ENUM.VENDOR_SPECIFIC;
 
-pub const VDS_PROVIDER_LBSUPPORT_FLAG = extern enum(i32) {
+pub const VDS_PROVIDER_LBSUPPORT_FLAG = enum(i32) {
     FAILOVER = 1,
     ROUND_ROBIN = 2,
     ROUND_ROBIN_WITH_SUBSET = 4,
@@ -741,7 +741,7 @@ pub const VDS_LBF_WEIGHTED_PATHS = VDS_PROVIDER_LBSUPPORT_FLAG.WEIGHTED_PATHS;
 pub const VDS_LBF_LEAST_BLOCKS = VDS_PROVIDER_LBSUPPORT_FLAG.LEAST_BLOCKS;
 pub const VDS_LBF_VENDOR_SPECIFIC = VDS_PROVIDER_LBSUPPORT_FLAG.VENDOR_SPECIFIC;
 
-pub const VDS_VERSION_SUPPORT_FLAG = extern enum(i32) {
+pub const VDS_VERSION_SUPPORT_FLAG = enum(i32) {
     @"1_0" = 1,
     @"1_1" = 2,
     @"2_0" = 4,
@@ -754,7 +754,7 @@ pub const VDS_VSF_2_0 = VDS_VERSION_SUPPORT_FLAG.@"2_0";
 pub const VDS_VSF_2_1 = VDS_VERSION_SUPPORT_FLAG.@"2_1";
 pub const VDS_VSF_3_0 = VDS_VERSION_SUPPORT_FLAG.@"3_0";
 
-pub const VDS_HWPROVIDER_TYPE = extern enum(i32) {
+pub const VDS_HWPROVIDER_TYPE = enum(i32) {
     UNKNOWN = 0,
     PCI_RAID = 1,
     FIBRE_CHANNEL = 2,
@@ -769,7 +769,7 @@ pub const VDS_HWT_ISCSI = VDS_HWPROVIDER_TYPE.ISCSI;
 pub const VDS_HWT_SAS = VDS_HWPROVIDER_TYPE.SAS;
 pub const VDS_HWT_HYBRID = VDS_HWPROVIDER_TYPE.HYBRID;
 
-pub const VDS_ISCSI_LOGIN_TYPE = extern enum(i32) {
+pub const VDS_ISCSI_LOGIN_TYPE = enum(i32) {
     MANUAL = 0,
     PERSISTENT = 1,
     BOOT = 2,
@@ -778,7 +778,7 @@ pub const VDS_ILT_MANUAL = VDS_ISCSI_LOGIN_TYPE.MANUAL;
 pub const VDS_ILT_PERSISTENT = VDS_ISCSI_LOGIN_TYPE.PERSISTENT;
 pub const VDS_ILT_BOOT = VDS_ISCSI_LOGIN_TYPE.BOOT;
 
-pub const VDS_ISCSI_AUTH_TYPE = extern enum(i32) {
+pub const VDS_ISCSI_AUTH_TYPE = enum(i32) {
     NONE = 0,
     CHAP = 1,
     MUTUAL_CHAP = 2,
@@ -787,7 +787,7 @@ pub const VDS_IAT_NONE = VDS_ISCSI_AUTH_TYPE.NONE;
 pub const VDS_IAT_CHAP = VDS_ISCSI_AUTH_TYPE.CHAP;
 pub const VDS_IAT_MUTUAL_CHAP = VDS_ISCSI_AUTH_TYPE.MUTUAL_CHAP;
 
-pub const VDS_ISCSI_IPSEC_FLAG = extern enum(i32) {
+pub const VDS_ISCSI_IPSEC_FLAG = enum(i32) {
     VALID = 1,
     IKE = 2,
     MAIN_MODE = 4,
@@ -804,7 +804,7 @@ pub const VDS_IIF_PFS_ENABLE = VDS_ISCSI_IPSEC_FLAG.PFS_ENABLE;
 pub const VDS_IIF_TRANSPORT_MODE_PREFERRED = VDS_ISCSI_IPSEC_FLAG.TRANSPORT_MODE_PREFERRED;
 pub const VDS_IIF_TUNNEL_MODE_PREFERRED = VDS_ISCSI_IPSEC_FLAG.TUNNEL_MODE_PREFERRED;
 
-pub const VDS_ISCSI_LOGIN_FLAG = extern enum(i32) {
+pub const VDS_ISCSI_LOGIN_FLAG = enum(i32) {
     REQUIRE_IPSEC = 1,
     MULTIPATH_ENABLED = 2,
 };
@@ -1090,7 +1090,7 @@ pub const IVdsProviderPrivate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VDS_SUB_SYSTEM_STATUS = extern enum(i32) {
+pub const VDS_SUB_SYSTEM_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1105,7 +1105,7 @@ pub const VDS_SSS_OFFLINE = VDS_SUB_SYSTEM_STATUS.OFFLINE;
 pub const VDS_SSS_FAILED = VDS_SUB_SYSTEM_STATUS.FAILED;
 pub const VDS_SSS_PARTIALLY_MANAGED = VDS_SUB_SYSTEM_STATUS.PARTIALLY_MANAGED;
 
-pub const VDS_SUB_SYSTEM_FLAG = extern enum(i32) {
+pub const VDS_SUB_SYSTEM_FLAG = enum(i32) {
     LUN_MASKING_CAPABLE = 1,
     LUN_PLEXING_CAPABLE = 2,
     LUN_REMAPPING_CAPABLE = 4,
@@ -1156,7 +1156,7 @@ pub const VDS_SF_WRITE_CACHING_CAPABLE = VDS_SUB_SYSTEM_FLAG.WRITE_CACHING_CAPAB
 pub const VDS_SF_MEDIA_SCAN_CAPABLE = VDS_SUB_SYSTEM_FLAG.MEDIA_SCAN_CAPABLE;
 pub const VDS_SF_CONSISTENCY_CHECK_CAPABLE = VDS_SUB_SYSTEM_FLAG.CONSISTENCY_CHECK_CAPABLE;
 
-pub const VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG = extern enum(i32) {
+pub const VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG = enum(i32) {
     @"2_LUNS" = 1,
     @"3_LUNS" = 2,
     @"4_LUNS" = 4,
@@ -1191,7 +1191,7 @@ pub const VDS_SF_SUPPORTS_RAID53_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.
 pub const VDS_SF_SUPPORTS_RAID60_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"60_LUNS";
 pub const VDS_SF_SUPPORTS_RAID61_LUNS = VDS_SUB_SYSTEM_SUPPORTED_RAID_TYPE_FLAG.@"61_LUNS";
 
-pub const VDS_INTERCONNECT_FLAG = extern enum(i32) {
+pub const VDS_INTERCONNECT_FLAG = enum(i32) {
     PCI_RAID = 1,
     FIBRE_CHANNEL = 2,
     ISCSI = 4,
@@ -1202,7 +1202,7 @@ pub const VDS_ITF_FIBRE_CHANNEL = VDS_INTERCONNECT_FLAG.FIBRE_CHANNEL;
 pub const VDS_ITF_ISCSI = VDS_INTERCONNECT_FLAG.ISCSI;
 pub const VDS_ITF_SAS = VDS_INTERCONNECT_FLAG.SAS;
 
-pub const VDS_CONTROLLER_STATUS = extern enum(i32) {
+pub const VDS_CONTROLLER_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1217,7 +1217,7 @@ pub const VDS_CS_OFFLINE = VDS_CONTROLLER_STATUS.OFFLINE;
 pub const VDS_CS_FAILED = VDS_CONTROLLER_STATUS.FAILED;
 pub const VDS_CS_REMOVED = VDS_CONTROLLER_STATUS.REMOVED;
 
-pub const VDS_PORT_STATUS = extern enum(i32) {
+pub const VDS_PORT_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1232,7 +1232,7 @@ pub const VDS_PRS_OFFLINE = VDS_PORT_STATUS.OFFLINE;
 pub const VDS_PRS_FAILED = VDS_PORT_STATUS.FAILED;
 pub const VDS_PRS_REMOVED = VDS_PORT_STATUS.REMOVED;
 
-pub const VDS_DRIVE_STATUS = extern enum(i32) {
+pub const VDS_DRIVE_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1247,7 +1247,7 @@ pub const VDS_DRS_OFFLINE = VDS_DRIVE_STATUS.OFFLINE;
 pub const VDS_DRS_FAILED = VDS_DRIVE_STATUS.FAILED;
 pub const VDS_DRS_REMOVED = VDS_DRIVE_STATUS.REMOVED;
 
-pub const VDS_DRIVE_FLAG = extern enum(i32) {
+pub const VDS_DRIVE_FLAG = enum(i32) {
     HOTSPARE = 1,
     ASSIGNED = 2,
     UNASSIGNED = 4,
@@ -1260,7 +1260,7 @@ pub const VDS_DRF_UNASSIGNED = VDS_DRIVE_FLAG.UNASSIGNED;
 pub const VDS_DRF_HOTSPARE_IN_USE = VDS_DRIVE_FLAG.HOTSPARE_IN_USE;
 pub const VDS_DRF_HOTSPARE_STANDBY = VDS_DRIVE_FLAG.HOTSPARE_STANDBY;
 
-pub const VDS_LUN_TYPE = extern enum(i32) {
+pub const VDS_LUN_TYPE = enum(i32) {
     UNKNOWN = 0,
     DEFAULT = 1,
     FAULT_TOLERANT = 2,
@@ -1313,7 +1313,7 @@ pub const VDS_LT_RAID53 = VDS_LUN_TYPE.RAID53;
 pub const VDS_LT_RAID60 = VDS_LUN_TYPE.RAID60;
 pub const VDS_LT_RAID61 = VDS_LUN_TYPE.RAID61;
 
-pub const VDS_LUN_STATUS = extern enum(i32) {
+pub const VDS_LUN_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1326,7 +1326,7 @@ pub const VDS_LS_NOT_READY = VDS_LUN_STATUS.NOT_READY;
 pub const VDS_LS_OFFLINE = VDS_LUN_STATUS.OFFLINE;
 pub const VDS_LS_FAILED = VDS_LUN_STATUS.FAILED;
 
-pub const VDS_LUN_FLAG = extern enum(i32) {
+pub const VDS_LUN_FLAG = enum(i32) {
     LBN_REMAP_ENABLED = 1,
     READ_BACK_VERIFY_ENABLED = 2,
     WRITE_THROUGH_CACHING_ENABLED = 4,
@@ -1347,7 +1347,7 @@ pub const VDS_LF_MEDIA_SCAN_ENABLED = VDS_LUN_FLAG.MEDIA_SCAN_ENABLED;
 pub const VDS_LF_CONSISTENCY_CHECK_ENABLED = VDS_LUN_FLAG.CONSISTENCY_CHECK_ENABLED;
 pub const VDS_LF_SNAPSHOT = VDS_LUN_FLAG.SNAPSHOT;
 
-pub const VDS_LUN_PLEX_TYPE = extern enum(i32) {
+pub const VDS_LUN_PLEX_TYPE = enum(i32) {
     UNKNOWN = 0,
     SIMPLE = 10,
     SPAN = 11,
@@ -1386,7 +1386,7 @@ pub const VDS_LPT_RAID50 = VDS_LUN_PLEX_TYPE.RAID50;
 pub const VDS_LPT_RAID53 = VDS_LUN_PLEX_TYPE.RAID53;
 pub const VDS_LPT_RAID60 = VDS_LUN_PLEX_TYPE.RAID60;
 
-pub const VDS_LUN_PLEX_STATUS = extern enum(i32) {
+pub const VDS_LUN_PLEX_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1399,12 +1399,12 @@ pub const VDS_LPS_NOT_READY = VDS_LUN_PLEX_STATUS.NOT_READY;
 pub const VDS_LPS_OFFLINE = VDS_LUN_PLEX_STATUS.OFFLINE;
 pub const VDS_LPS_FAILED = VDS_LUN_PLEX_STATUS.FAILED;
 
-pub const VDS_LUN_PLEX_FLAG = extern enum(i32) {
+pub const VDS_LUN_PLEX_FLAG = enum(i32) {
     D = 1,
 };
 pub const VDS_LPF_LBN_REMAP_ENABLED = VDS_LUN_PLEX_FLAG.D;
 
-pub const VDS_ISCSI_PORTAL_STATUS = extern enum(i32) {
+pub const VDS_ISCSI_PORTAL_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1417,7 +1417,7 @@ pub const VDS_IPS_NOT_READY = VDS_ISCSI_PORTAL_STATUS.NOT_READY;
 pub const VDS_IPS_OFFLINE = VDS_ISCSI_PORTAL_STATUS.OFFLINE;
 pub const VDS_IPS_FAILED = VDS_ISCSI_PORTAL_STATUS.FAILED;
 
-pub const VDS_STORAGE_POOL_STATUS = extern enum(i32) {
+pub const VDS_STORAGE_POOL_STATUS = enum(i32) {
     UNKNOWN = 0,
     ONLINE = 1,
     NOT_READY = 2,
@@ -1428,7 +1428,7 @@ pub const VDS_SPS_ONLINE = VDS_STORAGE_POOL_STATUS.ONLINE;
 pub const VDS_SPS_NOT_READY = VDS_STORAGE_POOL_STATUS.NOT_READY;
 pub const VDS_SPS_OFFLINE = VDS_STORAGE_POOL_STATUS.OFFLINE;
 
-pub const VDS_STORAGE_POOL_TYPE = extern enum(i32) {
+pub const VDS_STORAGE_POOL_TYPE = enum(i32) {
     UNKNOWN = 0,
     PRIMORDIAL = 1,
     CONCRETE = 2,
@@ -1437,7 +1437,7 @@ pub const VDS_SPT_UNKNOWN = VDS_STORAGE_POOL_TYPE.UNKNOWN;
 pub const VDS_SPT_PRIMORDIAL = VDS_STORAGE_POOL_TYPE.PRIMORDIAL;
 pub const VDS_SPT_CONCRETE = VDS_STORAGE_POOL_TYPE.CONCRETE;
 
-pub const VDS_MAINTENANCE_OPERATION = extern enum(i32) {
+pub const VDS_MAINTENANCE_OPERATION = enum(i32) {
     BlinkLight = 1,
     BeepAlarm = 2,
     SpinDown = 3,
@@ -1629,7 +1629,7 @@ pub const VDS_ISCSI_PORTALGROUP_PROP = extern struct {
     tag: u16,
 };
 
-pub const VDS_RAID_TYPE = extern enum(i32) {
+pub const VDS_RAID_TYPE = enum(i32) {
     UNKNOWN = 0,
     RAID0 = 10,
     RAID1 = 11,
@@ -3199,7 +3199,7 @@ pub const IVdsAdmin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VDS_NF_PACK = extern enum(u32) {
+pub const VDS_NF_PACK = enum(u32) {
     ARRIVE = 1,
     DEPART = 2,
     MODIFY = 3,
@@ -3208,14 +3208,14 @@ pub const VDS_NF_PACK_ARRIVE = VDS_NF_PACK.ARRIVE;
 pub const VDS_NF_PACK_DEPART = VDS_NF_PACK.DEPART;
 pub const VDS_NF_PACK_MODIFY = VDS_NF_PACK.MODIFY;
 
-pub const VDS_NF_FILE_SYSTEM = extern enum(u32) {
+pub const VDS_NF_FILE_SYSTEM = enum(u32) {
     MODIFY = 203,
     FORMAT_PROGRESS = 204,
 };
 pub const VDS_NF_FILE_SYSTEM_MODIFY = VDS_NF_FILE_SYSTEM.MODIFY;
 pub const VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS = VDS_NF_FILE_SYSTEM.FORMAT_PROGRESS;
 
-pub const VDS_NF_CONTROLLER = extern enum(u32) {
+pub const VDS_NF_CONTROLLER = enum(u32) {
     ARRIVE = 103,
     DEPART = 104,
     MODIFY = 350,
@@ -3226,7 +3226,7 @@ pub const VDS_NF_CONTROLLER_DEPART = VDS_NF_CONTROLLER.DEPART;
 pub const VDS_NF_CONTROLLER_MODIFY = VDS_NF_CONTROLLER.MODIFY;
 pub const VDS_NF_CONTROLLER_REMOVED = VDS_NF_CONTROLLER.REMOVED;
 
-pub const VDS_NF_DRIVE = extern enum(u32) {
+pub const VDS_NF_DRIVE = enum(u32) {
     ARRIVE = 105,
     DEPART = 106,
     MODIFY = 107,
@@ -3237,7 +3237,7 @@ pub const VDS_NF_DRIVE_DEPART = VDS_NF_DRIVE.DEPART;
 pub const VDS_NF_DRIVE_MODIFY = VDS_NF_DRIVE.MODIFY;
 pub const VDS_NF_DRIVE_REMOVED = VDS_NF_DRIVE.REMOVED;
 
-pub const VDS_NF_PORT = extern enum(u32) {
+pub const VDS_NF_PORT = enum(u32) {
     ARRIVE = 121,
     DEPART = 122,
     MODIFY = 352,
@@ -3248,7 +3248,7 @@ pub const VDS_NF_PORT_DEPART = VDS_NF_PORT.DEPART;
 pub const VDS_NF_PORT_MODIFY = VDS_NF_PORT.MODIFY;
 pub const VDS_NF_PORT_REMOVED = VDS_NF_PORT.REMOVED;
 
-pub const VDS_NF_LUN = extern enum(u32) {
+pub const VDS_NF_LUN = enum(u32) {
     ARRIVE = 108,
     DEPART = 109,
     MODIFY = 110,
@@ -3257,7 +3257,7 @@ pub const VDS_NF_LUN_ARRIVE = VDS_NF_LUN.ARRIVE;
 pub const VDS_NF_LUN_DEPART = VDS_NF_LUN.DEPART;
 pub const VDS_NF_LUN_MODIFY = VDS_NF_LUN.MODIFY;
 
-pub const VDS_NF_DISK = extern enum(u32) {
+pub const VDS_NF_DISK = enum(u32) {
     ARRIVE = 8,
     DEPART = 9,
     MODIFY = 10,

@@ -7,7 +7,7 @@ pub const WINML_TENSOR_DIMENSION_COUNT_MAX = @as(u32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (47)
 //--------------------------------------------------------------------------------
-pub const WINML_TENSOR_DATA_TYPE = extern enum(i32) {
+pub const WINML_TENSOR_DATA_TYPE = enum(i32) {
     UNDEFINED = 0,
     FLOAT = 1,
     UINT8 = 2,
@@ -42,7 +42,7 @@ pub const WINML_TENSOR_UINT64 = WINML_TENSOR_DATA_TYPE.UINT64;
 pub const WINML_TENSOR_COMPLEX64 = WINML_TENSOR_DATA_TYPE.COMPLEX64;
 pub const WINML_TENSOR_COMPLEX128 = WINML_TENSOR_DATA_TYPE.COMPLEX128;
 
-pub const WINML_FEATURE_TYPE = extern enum(i32) {
+pub const WINML_FEATURE_TYPE = enum(i32) {
     UNDEFINED = 0,
     TENSOR = 1,
     SEQUENCE = 2,
@@ -55,7 +55,7 @@ pub const WINML_FEATURE_SEQUENCE = WINML_FEATURE_TYPE.SEQUENCE;
 pub const WINML_FEATURE_MAP = WINML_FEATURE_TYPE.MAP;
 pub const WINML_FEATURE_IMAGE = WINML_FEATURE_TYPE.IMAGE;
 
-pub const WINML_BINDING_TYPE = extern enum(i32) {
+pub const WINML_BINDING_TYPE = enum(i32) {
     UNDEFINED = 0,
     TENSOR = 1,
     SEQUENCE = 2,
@@ -302,7 +302,7 @@ pub const IWinMLRuntime = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WINML_RUNTIME_TYPE = extern enum(i32) {
+pub const WINML_RUNTIME_TYPE = enum(i32) {
     K = 0,
 };
 pub const WINML_RUNTIME_CNTK = WINML_RUNTIME_TYPE.K;
@@ -330,7 +330,7 @@ pub const IWinMLRuntimeFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MLOperatorAttributeType = extern enum(u32) {
+pub const MLOperatorAttributeType = enum(u32) {
     Undefined = 0,
     Float = 2,
     Int = 3,
@@ -341,7 +341,7 @@ pub const MLOperatorAttributeType = extern enum(u32) {
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const MLOperatorTensorDataType = extern enum(u32) {
+pub const MLOperatorTensorDataType = enum(u32) {
     Undefined = 0,
     Float = 1,
     UInt8 = 2,
@@ -361,7 +361,7 @@ pub const MLOperatorTensorDataType = extern enum(u32) {
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const MLOperatorEdgeType = extern enum(u32) {
+pub const MLOperatorEdgeType = enum(u32) {
     Undefined = 0,
     Tensor = 1,
 };
@@ -718,7 +718,7 @@ pub const IMLOperatorKernel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MLOperatorParameterOptions = extern enum(u32) {
+pub const MLOperatorParameterOptions = enum(u32) {
     Single = 0,
     Optional = 1,
     Variadic = 2,
@@ -737,7 +737,7 @@ pub const MLOperatorParameterOptions = extern enum(u32) {
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const MLOperatorSchemaEdgeTypeFormat = extern enum(i32) {
+pub const MLOperatorSchemaEdgeTypeFormat = enum(i32) {
     EdgeDescription = 0,
     Label = 1,
 };
@@ -981,7 +981,7 @@ pub const MLOperatorSetId = extern struct {
     version: i32,
 };
 
-pub const MLOperatorKernelOptions = extern enum(u32) {
+pub const MLOperatorKernelOptions = enum(u32) {
     None = 0,
     s = 1,
     _,
@@ -997,7 +997,7 @@ pub const MLOperatorKernelOptions = extern enum(u32) {
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const MLOperatorExecutionType = extern enum(u32) {
+pub const MLOperatorExecutionType = enum(u32) {
     Undefined = 0,
     Cpu = 1,
     D3D12 = 2,

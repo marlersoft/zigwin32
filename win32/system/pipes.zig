@@ -6,43 +6,41 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-pub const NAMED_PIPE_HANDLE_STATE = extern enum(u32) {
+pub const NAMED_PIPE_HANDLE_STATE = enum(u32) {
     NOWAIT = 1,
     READMODE_MESSAGE = 2,
 };
 pub const PIPE_NOWAIT = NAMED_PIPE_HANDLE_STATE.NOWAIT;
 pub const PIPE_READMODE_MESSAGE = NAMED_PIPE_HANDLE_STATE.READMODE_MESSAGE;
 
-pub const WAIT_NAMED_PIPE_TIME_OUT_FLAGS = extern enum(u32) {
+pub const WAIT_NAMED_PIPE_TIME_OUT_FLAGS = enum(u32) {
     USE_DEFAULT_WAIT = 0,
     WAIT_FOREVER = 4294967295,
 };
 pub const NMPWAIT_USE_DEFAULT_WAIT = WAIT_NAMED_PIPE_TIME_OUT_FLAGS.USE_DEFAULT_WAIT;
 pub const NMPWAIT_WAIT_FOREVER = WAIT_NAMED_PIPE_TIME_OUT_FLAGS.WAIT_FOREVER;
 
-pub const NAMED_PIPE_INFO_FLAGS = extern enum(u32) {
+pub const NAMED_PIPE_INFO_FLAGS = enum(u32) {
     CLIENT_END = 0,
     SERVER_END = 1,
-    TYPE_BYTE = 0,
+    // TYPE_BYTE = 0, this enum value conflicts with CLIENT_END
     TYPE_MESSAGE = 4,
     _,
     pub fn initFlags(o: struct {
         CLIENT_END: u1 = 0,
         SERVER_END: u1 = 0,
-        TYPE_BYTE: u1 = 0,
         TYPE_MESSAGE: u1 = 0,
     }) NAMED_PIPE_INFO_FLAGS {
         return @intToEnum(NAMED_PIPE_INFO_FLAGS,
               (if (o.CLIENT_END == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.CLIENT_END) else 0)
             | (if (o.SERVER_END == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.SERVER_END) else 0)
-            | (if (o.TYPE_BYTE == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.TYPE_BYTE) else 0)
             | (if (o.TYPE_MESSAGE == 1) @enumToInt(NAMED_PIPE_INFO_FLAGS.TYPE_MESSAGE) else 0)
         );
     }
 };
 pub const PIPE_CLIENT_END = NAMED_PIPE_INFO_FLAGS.CLIENT_END;
 pub const PIPE_SERVER_END = NAMED_PIPE_INFO_FLAGS.SERVER_END;
-pub const PIPE_TYPE_BYTE = NAMED_PIPE_INFO_FLAGS.TYPE_BYTE;
+pub const PIPE_TYPE_BYTE = NAMED_PIPE_INFO_FLAGS.CLIENT_END;
 pub const PIPE_TYPE_MESSAGE = NAMED_PIPE_INFO_FLAGS.TYPE_MESSAGE;
 
 

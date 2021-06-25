@@ -153,7 +153,7 @@ pub const IInkDesktopHost = extern struct {
 const CLSID_InkD2DRenderer_Value = @import("../zig.zig").Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
 pub const CLSID_InkD2DRenderer = &CLSID_InkD2DRenderer_Value;
 
-pub const INK_HIGH_CONTRAST_ADJUSTMENT = extern enum(i32) {
+pub const INK_HIGH_CONTRAST_ADJUSTMENT = enum(i32) {
     SYSTEM_COLORS_WHEN_NECESSARY = 0,
     SYSTEM_COLORS = 1,
     ORIGINAL_COLORS = 2,

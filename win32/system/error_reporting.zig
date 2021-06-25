@@ -44,7 +44,7 @@ pub const WER_MAX_REGISTERED_RUNTIME_EXCEPTION_MODULES = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
-pub const WER_REPORT_UI = extern enum(i32) {
+pub const WER_REPORT_UI = enum(i32) {
     AdditionalDataDlgHeader = 1,
     IconFilePath = 2,
     ConsentDlgHeader = 3,
@@ -69,7 +69,7 @@ pub const WerUICloseDlgBody = WER_REPORT_UI.CloseDlgBody;
 pub const WerUICloseDlgButtonText = WER_REPORT_UI.CloseDlgButtonText;
 pub const WerUIMax = WER_REPORT_UI.Max;
 
-pub const WER_REGISTER_FILE_TYPE = extern enum(i32) {
+pub const WER_REGISTER_FILE_TYPE = enum(i32) {
     UserDocument = 1,
     Other = 2,
     Max = 3,
@@ -78,7 +78,7 @@ pub const WerRegFileTypeUserDocument = WER_REGISTER_FILE_TYPE.UserDocument;
 pub const WerRegFileTypeOther = WER_REGISTER_FILE_TYPE.Other;
 pub const WerRegFileTypeMax = WER_REGISTER_FILE_TYPE.Max;
 
-pub const WER_FILE_TYPE = extern enum(i32) {
+pub const WER_FILE_TYPE = enum(i32) {
     Microdump = 1,
     Minidump = 2,
     Heapdump = 3,
@@ -101,7 +101,7 @@ pub const WerFileTypeAuxiliaryDump = WER_FILE_TYPE.AuxiliaryDump;
 pub const WerFileTypeEtlTrace = WER_FILE_TYPE.EtlTrace;
 pub const WerFileTypeMax = WER_FILE_TYPE.Max;
 
-pub const WER_SUBMIT_RESULT = extern enum(i32) {
+pub const WER_SUBMIT_RESULT = enum(i32) {
     ReportQueued = 1,
     ReportUploaded = 2,
     ReportDebug = 3,
@@ -130,7 +130,7 @@ pub const WerReportUploadedCab = WER_SUBMIT_RESULT.ReportUploadedCab;
 pub const WerStorageLocationNotFound = WER_SUBMIT_RESULT.StorageLocationNotFound;
 pub const WerSubmitResultMax = WER_SUBMIT_RESULT.SubmitResultMax;
 
-pub const WER_REPORT_TYPE = extern enum(i32) {
+pub const WER_REPORT_TYPE = enum(i32) {
     NonCritical = 0,
     Critical = 1,
     ApplicationCrash = 2,
@@ -256,7 +256,7 @@ pub const WER_EXCEPTION_INFORMATION = extern struct {
     bClientPointers: BOOL,
 };
 
-pub const WER_CONSENT = extern enum(i32) {
+pub const WER_CONSENT = enum(i32) {
     NotAsked = 1,
     Approved = 2,
     Denied = 3,
@@ -269,7 +269,7 @@ pub const WerConsentDenied = WER_CONSENT.Denied;
 pub const WerConsentAlwaysPrompt = WER_CONSENT.AlwaysPrompt;
 pub const WerConsentMax = WER_CONSENT.Max;
 
-pub const WER_DUMP_TYPE = extern enum(i32) {
+pub const WER_DUMP_TYPE = enum(i32) {
     None = 0,
     MicroDump = 1,
     MiniDump = 2,
@@ -323,7 +323,7 @@ pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = fn(
     pbIsDebuggerAutolaunch: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const REPORT_STORE_TYPES = extern enum(i32) {
+pub const REPORT_STORE_TYPES = enum(i32) {
     USER_ARCHIVE = 0,
     USER_QUEUE = 1,
     MACHINE_ARCHIVE = 2,
@@ -388,7 +388,7 @@ pub const WER_REPORT_METADATA_V1 = extern struct {
     SizeInBytes: u64,
 };
 
-pub const EFaultRepRetVal = extern enum(i32) {
+pub const EFaultRepRetVal = enum(i32) {
     Ok = 0,
     OkManifest = 1,
     OkQueued = 2,
@@ -426,7 +426,7 @@ pub const pfn_ADDEREXCLUDEDAPPLICATIONW = fn(
     param0: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
 
-pub const WER_FILE = extern enum(u32) {
+pub const WER_FILE = enum(u32) {
     ANONYMOUS_DATA = 2,
     DELETE_WHEN_DONE = 1,
     _,
@@ -443,7 +443,7 @@ pub const WER_FILE = extern enum(u32) {
 pub const WER_FILE_ANONYMOUS_DATA = WER_FILE.ANONYMOUS_DATA;
 pub const WER_FILE_DELETE_WHEN_DONE = WER_FILE.DELETE_WHEN_DONE;
 
-pub const WER_SUBMIT_FLAGS = extern enum(u32) {
+pub const WER_SUBMIT_FLAGS = enum(u32) {
     ADD_REGISTERED_DATA = 16,
     HONOR_RECOVERY = 1,
     HONOR_RESTART = 2,
@@ -508,7 +508,7 @@ pub const WER_SUBMIT_BYPASS_DATA_THROTTLING = WER_SUBMIT_FLAGS.BYPASS_DATA_THROT
 pub const WER_SUBMIT_ARCHIVE_PARAMETERS_ONLY = WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY;
 pub const WER_SUBMIT_REPORT_MACHINE_ID = WER_SUBMIT_FLAGS.REPORT_MACHINE_ID;
 
-pub const WER_FAULT_REPORTING = extern enum(u32) {
+pub const WER_FAULT_REPORTING = enum(u32) {
     FLAG_DISABLE_THREAD_SUSPENSION = 4,
     FLAG_NOHEAP = 1,
     FLAG_QUEUE = 2,

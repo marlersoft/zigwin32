@@ -519,7 +519,7 @@ pub const IADsTSUserEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AAAuthSchemes = extern enum(i32) {
+pub const AAAuthSchemes = enum(i32) {
     MIN = 0,
     BASIC = 1,
     NTLM = 2,
@@ -548,7 +548,7 @@ pub const AA_AUTH_CONID = AAAuthSchemes.CONID;
 pub const AA_AUTH_SSPI_NTLM = AAAuthSchemes.SSPI_NTLM;
 pub const AA_AUTH_MAX = AAAuthSchemes.MAX;
 
-pub const AAAccountingDataType = extern enum(i32) {
+pub const AAAccountingDataType = enum(i32) {
     MAIN_SESSION_CREATION = 0,
     SUB_SESSION_CREATION = 1,
     SUB_SESSION_CLOSED = 2,
@@ -573,14 +573,14 @@ pub const AAAccountingData = extern struct {
     subSessionId: i32,
 };
 
-pub const SESSION_TIMEOUT_ACTION_TYPE = extern enum(i32) {
+pub const SESSION_TIMEOUT_ACTION_TYPE = enum(i32) {
     DISCONNECT = 0,
     SILENT_REAUTH = 1,
 };
 pub const SESSION_TIMEOUT_ACTION_DISCONNECT = SESSION_TIMEOUT_ACTION_TYPE.DISCONNECT;
 pub const SESSION_TIMEOUT_ACTION_SILENT_REAUTH = SESSION_TIMEOUT_ACTION_TYPE.SILENT_REAUTH;
 
-pub const PolicyAttributeType = extern enum(i32) {
+pub const PolicyAttributeType = enum(i32) {
     EnableAllRedirections = 0,
     DisableAllRedirections = 1,
     DriveRedirectionDisabled = 2,
@@ -599,7 +599,7 @@ pub const ClipboardRedirectionDisabled = PolicyAttributeType.ClipboardRedirectio
 pub const PnpRedirectionDisabled = PolicyAttributeType.PnpRedirectionDisabled;
 pub const AllowOnlySDRServers = PolicyAttributeType.AllowOnlySDRServers;
 
-pub const AATrustClassID = extern enum(i32) {
+pub const AATrustClassID = enum(i32) {
     UNTRUSTED = 0,
     TRUSTEDUSER_UNTRUSTEDCLIENT = 1,
     TRUSTEDUSER_TRUSTEDCLIENT = 2,
@@ -841,7 +841,7 @@ pub const ITSGAuthenticationEngine = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WTS_CONNECTSTATE_CLASS = extern enum(i32) {
+pub const WTS_CONNECTSTATE_CLASS = enum(i32) {
     Active = 0,
     Connected = 1,
     ConnectQuery = 2,
@@ -920,7 +920,7 @@ pub const WTS_PROCESS_INFOA = extern struct {
     pUserSid: PSID,
 };
 
-pub const WTS_INFO_CLASS = extern enum(i32) {
+pub const WTS_INFO_CLASS = enum(i32) {
     InitialProgram = 0,
     ApplicationName = 1,
     WorkingDirectory = 2,
@@ -1188,7 +1188,7 @@ pub const WTS_CLIENT_DISPLAY = extern struct {
     ColorDepth: u32,
 };
 
-pub const WTS_CONFIG_CLASS = extern enum(i32) {
+pub const WTS_CONFIG_CLASS = enum(i32) {
     InitialProgram = 0,
     WorkingDirectory = 1,
     fInheritInitialProgram = 2,
@@ -1231,7 +1231,7 @@ pub const WTSUserConfigTerminalServerHomeDirDrive = WTS_CONFIG_CLASS.TerminalSer
 pub const WTSUserConfigfTerminalServerRemoteHomeDir = WTS_CONFIG_CLASS.fTerminalServerRemoteHomeDir;
 pub const WTSUserConfigUser = WTS_CONFIG_CLASS.User;
 
-pub const WTS_CONFIG_SOURCE = extern enum(i32) {
+pub const WTS_CONFIG_SOURCE = enum(i32) {
     M = 0,
 };
 pub const WTSUserConfigSourceSAM = WTS_CONFIG_SOURCE.M;
@@ -1278,7 +1278,7 @@ pub const WTSUSERCONFIGW = extern struct {
     TerminalServerHomeDirDrive: [4]u16,
 };
 
-pub const WTS_VIRTUAL_CLASS = extern enum(i32) {
+pub const WTS_VIRTUAL_CLASS = enum(i32) {
     ClientData = 0,
     FileHandle = 1,
 };
@@ -1320,7 +1320,7 @@ pub const WTS_PROCESS_INFO_EXA = extern struct {
     KernelTime: LARGE_INTEGER,
 };
 
-pub const WTS_TYPE_CLASS = extern enum(i32) {
+pub const WTS_TYPE_CLASS = enum(i32) {
     ProcessInfoLevel0 = 0,
     ProcessInfoLevel1 = 1,
     SessionInfoLevel1 = 2,
@@ -1397,7 +1397,7 @@ pub const WTSLISTENERCONFIGA = extern struct {
     InitialProgram: [261]CHAR,
 };
 
-pub const WTSSBX_MACHINE_DRAIN = extern enum(i32) {
+pub const WTSSBX_MACHINE_DRAIN = enum(i32) {
     UNSPEC = 0,
     OFF = 1,
     ON = 2,
@@ -1406,7 +1406,7 @@ pub const WTSSBX_MACHINE_DRAIN_UNSPEC = WTSSBX_MACHINE_DRAIN.UNSPEC;
 pub const WTSSBX_MACHINE_DRAIN_OFF = WTSSBX_MACHINE_DRAIN.OFF;
 pub const WTSSBX_MACHINE_DRAIN_ON = WTSSBX_MACHINE_DRAIN.ON;
 
-pub const WTSSBX_MACHINE_SESSION_MODE = extern enum(i32) {
+pub const WTSSBX_MACHINE_SESSION_MODE = enum(i32) {
     UNSPEC = 0,
     SINGLE = 1,
     MULTIPLE = 2,
@@ -1415,7 +1415,7 @@ pub const WTSSBX_MACHINE_SESSION_MODE_UNSPEC = WTSSBX_MACHINE_SESSION_MODE.UNSPE
 pub const WTSSBX_MACHINE_SESSION_MODE_SINGLE = WTSSBX_MACHINE_SESSION_MODE.SINGLE;
 pub const WTSSBX_MACHINE_SESSION_MODE_MULTIPLE = WTSSBX_MACHINE_SESSION_MODE.MULTIPLE;
 
-pub const WTSSBX_ADDRESS_FAMILY = extern enum(i32) {
+pub const WTSSBX_ADDRESS_FAMILY = enum(i32) {
     UNSPEC = 0,
     INET = 1,
     INET6 = 2,
@@ -1435,7 +1435,7 @@ pub const WTSSBX_IP_ADDRESS = extern struct {
     dwScope: u32,
 };
 
-pub const WTSSBX_MACHINE_STATE = extern enum(i32) {
+pub const WTSSBX_MACHINE_STATE = enum(i32) {
     UNSPEC = 0,
     READY = 1,
     SYNCHRONIZING = 2,
@@ -1462,7 +1462,7 @@ pub const WTSSBX_MACHINE_INFO = extern struct {
     MachineState: WTSSBX_MACHINE_STATE,
 };
 
-pub const WTSSBX_SESSION_STATE = extern enum(i32) {
+pub const WTSSBX_SESSION_STATE = enum(i32) {
     UNSPEC = 0,
     ACTIVE = 1,
     DISCONNECTED = 2,
@@ -1481,7 +1481,7 @@ pub const WTSSBX_SESSION_INFO = extern struct {
     SessionState: WTSSBX_SESSION_STATE,
 };
 
-pub const WTSSBX_NOTIFICATION_TYPE = extern enum(i32) {
+pub const WTSSBX_NOTIFICATION_TYPE = enum(i32) {
     REMOVED = 1,
     CHANGED = 2,
     ADDED = 4,
@@ -2047,7 +2047,7 @@ pub const _ITSWkspEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TSSD_AddrV46Type = extern enum(i32) {
+pub const TSSD_AddrV46Type = enum(i32) {
     UNDEFINED = 0,
     IPv4 = 4,
     IPv6 = 6,
@@ -2056,7 +2056,7 @@ pub const TSSD_ADDR_UNDEFINED = TSSD_AddrV46Type.UNDEFINED;
 pub const TSSD_ADDR_IPv4 = TSSD_AddrV46Type.IPv4;
 pub const TSSD_ADDR_IPv6 = TSSD_AddrV46Type.IPv6;
 
-pub const TSSB_NOTIFICATION_TYPE = extern enum(i32) {
+pub const TSSB_NOTIFICATION_TYPE = enum(i32) {
     INVALID = 0,
     TARGET_CHANGE = 1,
     SESSION_CHANGE = 2,
@@ -2067,7 +2067,7 @@ pub const TSSB_NOTIFY_TARGET_CHANGE = TSSB_NOTIFICATION_TYPE.TARGET_CHANGE;
 pub const TSSB_NOTIFY_SESSION_CHANGE = TSSB_NOTIFICATION_TYPE.SESSION_CHANGE;
 pub const TSSB_NOTIFY_CONNECTION_REQUEST_CHANGE = TSSB_NOTIFICATION_TYPE.CONNECTION_REQUEST_CHANGE;
 
-pub const TARGET_STATE = extern enum(i32) {
+pub const TARGET_STATE = enum(i32) {
     UNKNOWN = 1,
     INITIALIZING = 2,
     RUNNING = 3,
@@ -2092,7 +2092,7 @@ pub const TARGET_STARTING = TARGET_STATE.STARTING;
 pub const TARGET_STOPPING = TARGET_STATE.STOPPING;
 pub const TARGET_MAXSTATE = TARGET_STATE.MAXSTATE;
 
-pub const TARGET_CHANGE_TYPE = extern enum(i32) {
+pub const TARGET_CHANGE_TYPE = enum(i32) {
     CHANGE_UNSPEC = 1,
     EXTERNALIP_CHANGED = 2,
     INTERNALIP_CHANGED = 4,
@@ -2117,7 +2117,7 @@ pub const TARGET_INUSE = TARGET_CHANGE_TYPE.INUSE;
 pub const TARGET_PATCH_STATE_CHANGED = TARGET_CHANGE_TYPE.PATCH_STATE_CHANGED;
 pub const TARGET_FARM_MEMBERSHIP_CHANGED = TARGET_CHANGE_TYPE.FARM_MEMBERSHIP_CHANGED;
 
-pub const TARGET_TYPE = extern enum(i32) {
+pub const TARGET_TYPE = enum(i32) {
     UNKNOWN = 0,
     FARM = 1,
     NONFARM = 2,
@@ -2126,7 +2126,7 @@ pub const UNKNOWN = TARGET_TYPE.UNKNOWN;
 pub const FARM = TARGET_TYPE.FARM;
 pub const NONFARM = TARGET_TYPE.NONFARM;
 
-pub const TARGET_PATCH_STATE = extern enum(i32) {
+pub const TARGET_PATCH_STATE = enum(i32) {
     UNKNOWN = 0,
     NOT_STARTED = 1,
     IN_PROGRESS = 2,
@@ -2139,7 +2139,7 @@ pub const TARGET_PATCH_IN_PROGRESS = TARGET_PATCH_STATE.IN_PROGRESS;
 pub const TARGET_PATCH_COMPLETED = TARGET_PATCH_STATE.COMPLETED;
 pub const TARGET_PATCH_FAILED = TARGET_PATCH_STATE.FAILED;
 
-pub const CLIENT_MESSAGE_TYPE = extern enum(i32) {
+pub const CLIENT_MESSAGE_TYPE = enum(i32) {
     INVALID = 0,
     STATUS = 1,
     ERROR = 2,
@@ -2148,7 +2148,7 @@ pub const CLIENT_MESSAGE_CONNECTION_INVALID = CLIENT_MESSAGE_TYPE.INVALID;
 pub const CLIENT_MESSAGE_CONNECTION_STATUS = CLIENT_MESSAGE_TYPE.STATUS;
 pub const CLIENT_MESSAGE_CONNECTION_ERROR = CLIENT_MESSAGE_TYPE.ERROR;
 
-pub const CONNECTION_CHANGE_NOTIFICATION = extern enum(i32) {
+pub const CONNECTION_CHANGE_NOTIFICATION = enum(i32) {
     INVALID = 0,
     PENDING = 1,
     FAILED = 2,
@@ -2169,7 +2169,7 @@ pub const CONNECTION_REQUEST_LB_COMPLETED = CONNECTION_CHANGE_NOTIFICATION.LB_CO
 pub const CONNECTION_REQUEST_QUERY_PL_COMPLETED = CONNECTION_CHANGE_NOTIFICATION.QUERY_PL_COMPLETED;
 pub const CONNECTION_REQUEST_ORCH_COMPLETED = CONNECTION_CHANGE_NOTIFICATION.ORCH_COMPLETED;
 
-pub const RD_FARM_TYPE = extern enum(i32) {
+pub const RD_FARM_TYPE = enum(i32) {
     RDSH = 0,
     TEMP_VM = 1,
     MANUAL_PERSONAL_VM = 2,
@@ -2186,7 +2186,7 @@ pub const RD_FARM_MANUAL_PERSONAL_RDSH = RD_FARM_TYPE.MANUAL_PERSONAL_RDSH;
 pub const RD_FARM_AUTO_PERSONAL_RDSH = RD_FARM_TYPE.AUTO_PERSONAL_RDSH;
 pub const RD_FARM_TYPE_UNKNOWN = RD_FARM_TYPE.TYPE_UNKNOWN;
 
-pub const PLUGIN_TYPE = extern enum(i32) {
+pub const PLUGIN_TYPE = enum(i32) {
     UNKNOWN_PLUGIN = 0,
     POLICY_PLUGIN = 1,
     RESOURCE_PLUGIN = 2,
@@ -2205,7 +2205,7 @@ pub const ORCHESTRATION_PLUGIN = PLUGIN_TYPE.ORCHESTRATION_PLUGIN;
 pub const PROVISIONING_PLUGIN = PLUGIN_TYPE.PROVISIONING_PLUGIN;
 pub const TASK_PLUGIN = PLUGIN_TYPE.TASK_PLUGIN;
 
-pub const TSSESSION_STATE = extern enum(i32) {
+pub const TSSESSION_STATE = enum(i32) {
     INVALID = -1,
     ACTIVE = 0,
     CONNECTED = 1,
@@ -2232,7 +2232,7 @@ pub const STATE_DOWN = TSSESSION_STATE.DOWN;
 pub const STATE_INIT = TSSESSION_STATE.INIT;
 pub const STATE_MAX = TSSESSION_STATE.MAX;
 
-pub const TARGET_OWNER = extern enum(i32) {
+pub const TARGET_OWNER = enum(i32) {
     UNKNOWN = 0,
     MS_TS_PLUGIN = 1,
     MS_VM_PLUGIN = 2,
@@ -2254,7 +2254,7 @@ pub const TSSD_ConnectionPoint = extern struct {
     AddressScope: u32,
 };
 
-pub const VM_NOTIFY_STATUS = extern enum(i32) {
+pub const VM_NOTIFY_STATUS = enum(i32) {
     PENDING = 0,
     IN_PROGRESS = 1,
     COMPLETE = 2,
@@ -2282,7 +2282,7 @@ pub const VM_NOTIFY_INFO = extern struct {
     ppVmEntries: **VM_NOTIFY_ENTRY,
 };
 
-pub const VM_HOST_NOTIFY_STATUS = extern enum(i32) {
+pub const VM_HOST_NOTIFY_STATUS = enum(i32) {
     PENDING = 0,
     IN_PROGRESS = 1,
     COMPLETE = 2,
@@ -2293,7 +2293,7 @@ pub const VM_HOST_STATUS_INIT_IN_PROGRESS = VM_HOST_NOTIFY_STATUS.IN_PROGRESS;
 pub const VM_HOST_STATUS_INIT_COMPLETE = VM_HOST_NOTIFY_STATUS.COMPLETE;
 pub const VM_HOST_STATUS_INIT_FAILED = VM_HOST_NOTIFY_STATUS.FAILED;
 
-pub const RDV_TASK_STATUS = extern enum(i32) {
+pub const RDV_TASK_STATUS = enum(i32) {
     UNKNOWN = 0,
     SEARCHING = 1,
     DOWNLOADING = 2,
@@ -2314,7 +2314,7 @@ pub const RDV_TASK_STATUS_SUCCESS = RDV_TASK_STATUS.SUCCESS;
 pub const RDV_TASK_STATUS_FAILED = RDV_TASK_STATUS.FAILED;
 pub const RDV_TASK_STATUS_TIMEOUT = RDV_TASK_STATUS.TIMEOUT;
 
-pub const TS_SB_SORT_BY = extern enum(i32) {
+pub const TS_SB_SORT_BY = enum(i32) {
     NONE = 0,
     NAME = 1,
     PROP = 2,
@@ -4301,14 +4301,14 @@ pub const pluginResource2 = extern struct {
     folderList: **u16,
 };
 
-pub const TSPUB_PLUGIN_PD_RESOLUTION_TYPE = extern enum(i32) {
+pub const TSPUB_PLUGIN_PD_RESOLUTION_TYPE = enum(i32) {
     OR_CREATE = 0,
     EXISTING = 1,
 };
 pub const TSPUB_PLUGIN_PD_QUERY_OR_CREATE = TSPUB_PLUGIN_PD_RESOLUTION_TYPE.OR_CREATE;
 pub const TSPUB_PLUGIN_PD_QUERY_EXISTING = TSPUB_PLUGIN_PD_RESOLUTION_TYPE.EXISTING;
 
-pub const TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE = extern enum(i32) {
+pub const TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE = enum(i32) {
     NEW = 0,
     EXISTING = 1,
 };
@@ -4826,7 +4826,7 @@ pub const IWRdsGraphicsChannel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WRdsGraphicsChannelType = extern enum(i32) {
+pub const WRdsGraphicsChannelType = enum(i32) {
     GuaranteedDelivery = 0,
     BestEffortDelivery = 1,
 };
@@ -4949,7 +4949,7 @@ pub const WTS_SMALL_RECT = extern struct {
     Bottom: i16,
 };
 
-pub const WTS_RCM_SERVICE_STATE = extern enum(i32) {
+pub const WTS_RCM_SERVICE_STATE = enum(i32) {
     NONE = 0,
     START = 1,
     STOP = 2,
@@ -4958,7 +4958,7 @@ pub const WTS_SERVICE_NONE = WTS_RCM_SERVICE_STATE.NONE;
 pub const WTS_SERVICE_START = WTS_RCM_SERVICE_STATE.START;
 pub const WTS_SERVICE_STOP = WTS_RCM_SERVICE_STATE.STOP;
 
-pub const WTS_RCM_DRAIN_STATE = extern enum(i32) {
+pub const WTS_RCM_DRAIN_STATE = enum(i32) {
     STATE_NONE = 0,
     IN_DRAIN = 1,
     NOT_IN_DRAIN = 2,
@@ -5146,7 +5146,7 @@ pub const WTS_DISPLAY_IOCTL = extern struct {
     cbDisplayIOCtlData: u32,
 };
 
-pub const WTS_LOGON_ERROR_REDIRECTOR_RESPONSE = extern enum(i32) {
+pub const WTS_LOGON_ERROR_REDIRECTOR_RESPONSE = enum(i32) {
     INVALID = 0,
     NOT_HANDLED = 1,
     HANDLED_SHOW = 2,
@@ -5175,7 +5175,7 @@ pub const WTS_PROPERTY_VALUE = extern struct {
     },
 };
 
-pub const WTS_CERT_TYPE = extern enum(i32) {
+pub const WTS_CERT_TYPE = enum(i32) {
     INVALID = 0,
     PROPRIETORY = 1,
     X509 = 2,
@@ -5193,21 +5193,21 @@ pub const WTS_LICENSE_CAPABILITIES = extern struct {
     rgbClientName: [42]u8,
 };
 
-pub const WRDS_CONNECTION_SETTING_LEVEL = extern enum(i32) {
+pub const WRDS_CONNECTION_SETTING_LEVEL = enum(i32) {
     INVALID = 0,
     @"1" = 1,
 };
 pub const WRDS_CONNECTION_SETTING_LEVEL_INVALID = WRDS_CONNECTION_SETTING_LEVEL.INVALID;
 pub const WRDS_CONNECTION_SETTING_LEVEL_1 = WRDS_CONNECTION_SETTING_LEVEL.@"1";
 
-pub const WRDS_LISTENER_SETTING_LEVEL = extern enum(i32) {
+pub const WRDS_LISTENER_SETTING_LEVEL = enum(i32) {
     INVALID = 0,
     @"1" = 1,
 };
 pub const WRDS_LISTENER_SETTING_LEVEL_INVALID = WRDS_LISTENER_SETTING_LEVEL.INVALID;
 pub const WRDS_LISTENER_SETTING_LEVEL_1 = WRDS_LISTENER_SETTING_LEVEL.@"1";
 
-pub const WRDS_SETTING_TYPE = extern enum(i32) {
+pub const WRDS_SETTING_TYPE = enum(i32) {
     INVALID = 0,
     MACHINE = 1,
     USER = 2,
@@ -5218,7 +5218,7 @@ pub const WRDS_SETTING_TYPE_MACHINE = WRDS_SETTING_TYPE.MACHINE;
 pub const WRDS_SETTING_TYPE_USER = WRDS_SETTING_TYPE.USER;
 pub const WRDS_SETTING_TYPE_SAM = WRDS_SETTING_TYPE.SAM;
 
-pub const WRDS_SETTING_STATUS = extern enum(i32) {
+pub const WRDS_SETTING_STATUS = enum(i32) {
     NOTAPPLICABLE = -1,
     DISABLED = 0,
     ENABLED = 1,
@@ -5229,7 +5229,7 @@ pub const WRDS_SETTING_STATUS_DISABLED = WRDS_SETTING_STATUS.DISABLED;
 pub const WRDS_SETTING_STATUS_ENABLED = WRDS_SETTING_STATUS.ENABLED;
 pub const WRDS_SETTING_STATUS_NOTCONFIGURED = WRDS_SETTING_STATUS.NOTCONFIGURED;
 
-pub const WRDS_SETTING_LEVEL = extern enum(i32) {
+pub const WRDS_SETTING_LEVEL = enum(i32) {
     INVALID = 0,
     @"1" = 1,
 };
@@ -6696,7 +6696,7 @@ pub const IWRdsProtocolConnectionSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PasswordEncodingType = extern enum(i32) {
+pub const PasswordEncodingType = enum(i32) {
     @"8" = 0,
     @"16LE" = 1,
     @"16BE" = 2,
@@ -6753,7 +6753,7 @@ pub const IRemoteDesktopClientSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RemoteActionType = extern enum(i32) {
+pub const RemoteActionType = enum(i32) {
     Charms = 0,
     Appbar = 1,
     Snap = 2,
@@ -6766,12 +6766,12 @@ pub const RemoteActionSnap = RemoteActionType.Snap;
 pub const RemoteActionStartScreen = RemoteActionType.StartScreen;
 pub const RemoteActionAppSwitch = RemoteActionType.AppSwitch;
 
-pub const SnapshotEncodingType = extern enum(i32) {
+pub const SnapshotEncodingType = enum(i32) {
     i = 0,
 };
 pub const SnapshotEncodingDataUri = SnapshotEncodingType.i;
 
-pub const SnapshotFormatType = extern enum(i32) {
+pub const SnapshotFormatType = enum(i32) {
     Png = 0,
     Jpeg = 1,
     Bmp = 2,
@@ -6896,7 +6896,7 @@ pub const IRemoteDesktopClientTouchPointer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KeyCombinationType = extern enum(i32) {
+pub const KeyCombinationType = enum(i32) {
     Home = 0,
     Left = 1,
     Up = 2,
@@ -7015,7 +7015,7 @@ pub const WTSSESSION_NOTIFICATION = extern struct {
     dwSessionId: u32,
 };
 
-pub const APO_BUFFER_FLAGS = extern enum(i32) {
+pub const APO_BUFFER_FLAGS = enum(i32) {
     INVALID = 0,
     VALID = 1,
     SILENT = 2,
@@ -7031,7 +7031,7 @@ pub const APO_CONNECTION_PROPERTY = extern struct {
     u32Signature: u32,
 };
 
-pub const AE_POSITION_FLAGS = extern enum(i32) {
+pub const AE_POSITION_FLAGS = enum(i32) {
     INVALID = 0,
     DISCONTINUOUS = 1,
     CONTINUOUS = 2,

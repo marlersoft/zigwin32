@@ -106,7 +106,7 @@ pub const CLSID_SpFileStream = &CLSID_SpFileStream_Value;
 const CLSID_SpMemoryStream_Value = @import("../zig.zig").Guid.initString("5fb7ef7d-dff4-468a-b6b7-2fcbd188f994");
 pub const CLSID_SpMemoryStream = &CLSID_SpMemoryStream_Value;
 
-pub const SPDATAKEYLOCATION = extern enum(i32) {
+pub const SPDATAKEYLOCATION = enum(i32) {
     DefaultLocation = 0,
     CurrentUser = 1,
     LocalMachine = 2,
@@ -117,7 +117,7 @@ pub const SPDKL_CurrentUser = SPDATAKEYLOCATION.CurrentUser;
 pub const SPDKL_LocalMachine = SPDATAKEYLOCATION.LocalMachine;
 pub const SPDKL_CurrentConfig = SPDATAKEYLOCATION.CurrentConfig;
 
-pub const SPSTREAMFORMAT = extern enum(i32) {
+pub const SPSTREAMFORMAT = enum(i32) {
     Default = -1,
     NoAssignedFormat = 0,
     Text = 1,
@@ -918,7 +918,7 @@ pub const ISpResourceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPEVENTLPARAMTYPE = extern enum(i32) {
+pub const SPEVENTLPARAMTYPE = enum(i32) {
     UNDEFINED = 0,
     TOKEN = 1,
     OBJECT = 2,
@@ -931,7 +931,7 @@ pub const SPET_LPARAM_IS_OBJECT = SPEVENTLPARAMTYPE.OBJECT;
 pub const SPET_LPARAM_IS_POINTER = SPEVENTLPARAMTYPE.POINTER;
 pub const SPET_LPARAM_IS_STRING = SPEVENTLPARAMTYPE.STRING;
 
-pub const SPEVENTENUM = extern enum(i32) {
+pub const SPEVENTENUM = enum(i32) {
     UNDEFINED = 0,
     START_INPUT_STREAM = 1,
     END_INPUT_STREAM = 2,
@@ -943,8 +943,8 @@ pub const SPEVENTENUM = extern enum(i32) {
     VISEME = 8,
     TTS_AUDIO_LEVEL = 9,
     TTS_PRIVATE = 15,
-    MIN_TTS = 1,
-    MAX_TTS = 15,
+    // MIN_TTS = 1, this enum value conflicts with START_INPUT_STREAM
+    // MAX_TTS = 15, this enum value conflicts with TTS_PRIVATE
     END_SR_STREAM = 34,
     SOUND_START = 35,
     SOUND_END = 36,
@@ -967,8 +967,8 @@ pub const SPEVENTENUM = extern enum(i32) {
     RESERVED4 = 53,
     RESERVED5 = 54,
     RESERVED6 = 55,
-    MIN_SR = 34,
-    MAX_SR = 55,
+    // MIN_SR = 34, this enum value conflicts with END_SR_STREAM
+    // MAX_SR = 55, this enum value conflicts with RESERVED6
     RESERVED1 = 30,
     RESERVED2 = 33,
     RESERVED3 = 63,
@@ -984,8 +984,8 @@ pub const SPEI_SENTENCE_BOUNDARY = SPEVENTENUM.SENTENCE_BOUNDARY;
 pub const SPEI_VISEME = SPEVENTENUM.VISEME;
 pub const SPEI_TTS_AUDIO_LEVEL = SPEVENTENUM.TTS_AUDIO_LEVEL;
 pub const SPEI_TTS_PRIVATE = SPEVENTENUM.TTS_PRIVATE;
-pub const SPEI_MIN_TTS = SPEVENTENUM.MIN_TTS;
-pub const SPEI_MAX_TTS = SPEVENTENUM.MAX_TTS;
+pub const SPEI_MIN_TTS = SPEVENTENUM.START_INPUT_STREAM;
+pub const SPEI_MAX_TTS = SPEVENTENUM.TTS_PRIVATE;
 pub const SPEI_END_SR_STREAM = SPEVENTENUM.END_SR_STREAM;
 pub const SPEI_SOUND_START = SPEVENTENUM.SOUND_START;
 pub const SPEI_SOUND_END = SPEVENTENUM.SOUND_END;
@@ -1008,8 +1008,8 @@ pub const SPEI_SR_PRIVATE = SPEVENTENUM.SR_PRIVATE;
 pub const SPEI_RESERVED4 = SPEVENTENUM.RESERVED4;
 pub const SPEI_RESERVED5 = SPEVENTENUM.RESERVED5;
 pub const SPEI_RESERVED6 = SPEVENTENUM.RESERVED6;
-pub const SPEI_MIN_SR = SPEVENTENUM.MIN_SR;
-pub const SPEI_MAX_SR = SPEVENTENUM.MAX_SR;
+pub const SPEI_MIN_SR = SPEVENTENUM.END_SR_STREAM;
+pub const SPEI_MAX_SR = SPEVENTENUM.RESERVED6;
 pub const SPEI_RESERVED1 = SPEVENTENUM.RESERVED1;
 pub const SPEI_RESERVED2 = SPEVENTENUM.RESERVED2;
 pub const SPEI_RESERVED3 = SPEVENTENUM.RESERVED3;
@@ -1047,7 +1047,7 @@ pub const SPEVENTEX = extern struct {
     ullAudioTimeOffset: u64,
 };
 
-pub const SPINTERFERENCE = extern enum(i32) {
+pub const SPINTERFERENCE = enum(i32) {
     NONE = 0,
     NOISE = 1,
     NOSIGNAL = 2,
@@ -1070,7 +1070,7 @@ pub const SPINTERFERENCE_LATENCY_WARNING = SPINTERFERENCE.LATENCY_WARNING;
 pub const SPINTERFERENCE_LATENCY_TRUNCATE_BEGIN = SPINTERFERENCE.LATENCY_TRUNCATE_BEGIN;
 pub const SPINTERFERENCE_LATENCY_TRUNCATE_END = SPINTERFERENCE.LATENCY_TRUNCATE_END;
 
-pub const SPENDSRSTREAMFLAGS = extern enum(i32) {
+pub const SPENDSRSTREAMFLAGS = enum(i32) {
     NONE = 0,
     STREAM_RELEASED = 1,
     EMULATED = 2,
@@ -1079,14 +1079,14 @@ pub const SPESF_NONE = SPENDSRSTREAMFLAGS.NONE;
 pub const SPESF_STREAM_RELEASED = SPENDSRSTREAMFLAGS.STREAM_RELEASED;
 pub const SPESF_EMULATED = SPENDSRSTREAMFLAGS.EMULATED;
 
-pub const SPVFEATURE = extern enum(i32) {
+pub const SPVFEATURE = enum(i32) {
     STRESSED = 1,
     EMPHASIS = 2,
 };
 pub const SPVFEATURE_STRESSED = SPVFEATURE.STRESSED;
 pub const SPVFEATURE_EMPHASIS = SPVFEATURE.EMPHASIS;
 
-pub const SPVISEMES = extern enum(i32) {
+pub const SPVISEMES = enum(i32) {
     @"0" = 0,
     @"1" = 1,
     @"2" = 2,
@@ -1254,7 +1254,7 @@ pub const ISpStreamFormat = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPFILEMODE = extern enum(i32) {
+pub const SPFILEMODE = enum(i32) {
     OPEN_READONLY = 0,
     OPEN_READWRITE = 1,
     CREATE = 2,
@@ -1382,7 +1382,7 @@ pub const ISpStreamFormatConverter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPAUDIOSTATE = extern enum(i32) {
+pub const SPAUDIOSTATE = enum(i32) {
     CLOSED = 0,
     STOP = 1,
     PAUSE = 2,
@@ -1594,7 +1594,7 @@ pub const ISpTranscript = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPDISPLYATTRIBUTES = extern enum(i32) {
+pub const SPDISPLYATTRIBUTES = enum(i32) {
     ONE_TRAILING_SPACE = 2,
     TWO_TRAILING_SPACES = 4,
     CONSUME_LEADING_SPACES = 8,
@@ -1637,7 +1637,7 @@ pub const SPPHRASERULE = extern struct {
     Confidence: i8,
 };
 
-pub const SPPHRASEPROPERTYUNIONTYPE = extern enum(i32) {
+pub const SPPHRASEPROPERTYUNIONTYPE = enum(i32) {
     UNUSED = 0,
     ARRAY_INDEX = 1,
 };
@@ -1679,7 +1679,7 @@ pub const SPSEMANTICERRORINFO = extern struct {
     hrResultCode: HRESULT,
 };
 
-pub const SPSEMANTICFORMAT = extern enum(i32) {
+pub const SPSEMANTICFORMAT = enum(i32) {
     SAPI_PROPERTIES = 0,
     SRGS_SEMANTICINTERPRETATION_MS = 1,
     SRGS_SAPIPROPERTIES = 2,
@@ -1728,7 +1728,7 @@ pub const SPRULE = extern struct {
     dwAttributes: u32,
 };
 
-pub const SPVALUETYPE = extern enum(i32) {
+pub const SPVALUETYPE = enum(i32) {
     PROPERTY = 1,
     REPLACEMENT = 2,
     RULE = 4,
@@ -1753,7 +1753,7 @@ pub const SPBINARYGRAMMAR = extern struct {
     ulTotalSerializedSize: u32,
 };
 
-pub const SPPHRASERNG = extern enum(i32) {
+pub const SPPHRASERNG = enum(i32) {
     S = -1,
 };
 pub const SPPR_ALL_ELEMENTS = SPPHRASERNG.S;
@@ -1762,7 +1762,7 @@ pub const SPSTATEHANDLE__ = extern struct {
     unused: i32,
 };
 
-pub const SPRECOEVENTFLAGS = extern enum(i32) {
+pub const SPRECOEVENTFLAGS = enum(i32) {
     AutoPause = 1,
     Emulated = 2,
     SMLTimeout = 4,
@@ -1779,7 +1779,7 @@ pub const SPREF_ReSent = SPRECOEVENTFLAGS.ReSent;
 pub const SPREF_Hypothesis = SPRECOEVENTFLAGS.Hypothesis;
 pub const SPREF_FalseRecognition = SPRECOEVENTFLAGS.FalseRecognition;
 
-pub const SPPARTOFSPEECH = extern enum(i32) {
+pub const SPPARTOFSPEECH = enum(i32) {
     NotOverriden = -1,
     Unknown = 0,
     Noun = 4096,
@@ -1802,7 +1802,7 @@ pub const SPPS_Noncontent = SPPARTOFSPEECH.Noncontent;
 pub const SPPS_LMA = SPPARTOFSPEECH.LMA;
 pub const SPPS_SuppressWord = SPPARTOFSPEECH.SuppressWord;
 
-pub const SPLEXICONTYPE = extern enum(i32) {
+pub const SPLEXICONTYPE = enum(i32) {
     USER = 1,
     APP = 2,
     VENDORLEXICON = 4,
@@ -1869,14 +1869,14 @@ pub const eLEXTYPE_PRIVATE18 = SPLEXICONTYPE.PRIVATE18;
 pub const eLEXTYPE_PRIVATE19 = SPLEXICONTYPE.PRIVATE19;
 pub const eLEXTYPE_PRIVATE20 = SPLEXICONTYPE.PRIVATE20;
 
-pub const SPWORDTYPE = extern enum(i32) {
+pub const SPWORDTYPE = enum(i32) {
     ADDED = 1,
     DELETED = 2,
 };
 pub const eWORDTYPE_ADDED = SPWORDTYPE.ADDED;
 pub const eWORDTYPE_DELETED = SPWORDTYPE.DELETED;
 
-pub const SPPRONUNCIATIONFLAGS = extern enum(i32) {
+pub const SPPRONUNCIATIONFLAGS = enum(i32) {
     D = 1,
 };
 pub const ePRONFLAG_USED = SPPRONUNCIATIONFLAGS.D;
@@ -2008,7 +2008,7 @@ pub const ISpContainerLexicon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPSHORTCUTTYPE = extern enum(i32) {
+pub const SPSHORTCUTTYPE = enum(i32) {
     SHT_NotOverriden = -1,
     SHT_Unknown = 0,
     SHT_EMAIL = 4096,
@@ -2255,7 +2255,7 @@ pub const SPVPITCH = extern struct {
     RangeAdj: i32,
 };
 
-pub const SPVACTIONS = extern enum(i32) {
+pub const SPVACTIONS = enum(i32) {
     Speak = 0,
     Silence = 1,
     Pronounce = 2,
@@ -2292,14 +2292,14 @@ pub const SPVSTATE = extern struct {
     Context: SPVCONTEXT,
 };
 
-pub const SPRUNSTATE = extern enum(i32) {
+pub const SPRUNSTATE = enum(i32) {
     DONE = 1,
     IS_SPEAKING = 2,
 };
 pub const SPRS_DONE = SPRUNSTATE.DONE;
 pub const SPRS_IS_SPEAKING = SPRUNSTATE.IS_SPEAKING;
 
-pub const SPVLIMITS = extern enum(i32) {
+pub const SPVLIMITS = enum(i32) {
     IN_VOLUME = 0,
     AX_VOLUME = 100,
     IN_RATE = -10,
@@ -2310,7 +2310,7 @@ pub const SPMAX_VOLUME = SPVLIMITS.AX_VOLUME;
 pub const SPMIN_RATE = SPVLIMITS.IN_RATE;
 pub const SPMAX_RATE = SPVLIMITS.AX_RATE;
 
-pub const SPVPRIORITY = extern enum(i32) {
+pub const SPVPRIORITY = enum(i32) {
     NORMAL = 0,
     ALERT = 1,
     OVER = 2,
@@ -2335,7 +2335,7 @@ pub const SPVOICESTATUS = extern struct {
     dwReserved2: u32,
 };
 
-pub const SPEAKFLAGS = extern enum(i32) {
+pub const SPEAKFLAGS = enum(i32) {
     DEFAULT = 0,
     ASYNC = 1,
     PURGEBEFORESPEAK = 2,
@@ -2346,8 +2346,8 @@ pub const SPEAKFLAGS = extern enum(i32) {
     NLP_SPEAK_PUNC = 64,
     PARSE_SAPI = 128,
     PARSE_SSML = 256,
-    PARSE_AUTODETECT = 0,
-    NLP_MASK = 64,
+    // PARSE_AUTODETECT = 0, this enum value conflicts with DEFAULT
+    // NLP_MASK = 64, this enum value conflicts with NLP_SPEAK_PUNC
     PARSE_MASK = 384,
     VOICE_MASK = 511,
     UNUSED_FLAGS = -512,
@@ -2362,8 +2362,8 @@ pub const SPF_PERSIST_XML = SPEAKFLAGS.PERSIST_XML;
 pub const SPF_NLP_SPEAK_PUNC = SPEAKFLAGS.NLP_SPEAK_PUNC;
 pub const SPF_PARSE_SAPI = SPEAKFLAGS.PARSE_SAPI;
 pub const SPF_PARSE_SSML = SPEAKFLAGS.PARSE_SSML;
-pub const SPF_PARSE_AUTODETECT = SPEAKFLAGS.PARSE_AUTODETECT;
-pub const SPF_NLP_MASK = SPEAKFLAGS.NLP_MASK;
+pub const SPF_PARSE_AUTODETECT = SPEAKFLAGS.DEFAULT;
+pub const SPF_NLP_MASK = SPEAKFLAGS.NLP_SPEAK_PUNC;
 pub const SPF_PARSE_MASK = SPEAKFLAGS.PARSE_MASK;
 pub const SPF_VOICE_MASK = SPEAKFLAGS.VOICE_MASK;
 pub const SPF_UNUSED_FLAGS = SPEAKFLAGS.UNUSED_FLAGS;
@@ -2673,7 +2673,7 @@ pub const ISpPhraseAlt = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPXMLRESULTOPTIONS = extern enum(i32) {
+pub const SPXMLRESULTOPTIONS = enum(i32) {
     SML = 0,
     Alternates_SML = 1,
 };
@@ -2810,7 +2810,7 @@ pub const ISpRecoResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPCOMMITFLAGS = extern enum(i32) {
+pub const SPCOMMITFLAGS = enum(i32) {
     NONE = 0,
     ADD_TO_USER_LEXICON = 1,
     DEFINITE_CORRECTION = 2,
@@ -2898,7 +2898,7 @@ pub const SPTEXTSELECTIONINFO = extern struct {
     cchSelection: u32,
 };
 
-pub const SPWORDPRONOUNCEABLE = extern enum(i32) {
+pub const SPWORDPRONOUNCEABLE = enum(i32) {
     UNKNOWN_WORD_UNPRONOUNCEABLE = 0,
     UNKNOWN_WORD_PRONOUNCEABLE = 1,
     KNOWN_WORD_PRONOUNCEABLE = 2,
@@ -2907,7 +2907,7 @@ pub const SPWP_UNKNOWN_WORD_UNPRONOUNCEABLE = SPWORDPRONOUNCEABLE.UNKNOWN_WORD_U
 pub const SPWP_UNKNOWN_WORD_PRONOUNCEABLE = SPWORDPRONOUNCEABLE.UNKNOWN_WORD_PRONOUNCEABLE;
 pub const SPWP_KNOWN_WORD_PRONOUNCEABLE = SPWORDPRONOUNCEABLE.KNOWN_WORD_PRONOUNCEABLE;
 
-pub const SPGRAMMARSTATE = extern enum(i32) {
+pub const SPGRAMMARSTATE = enum(i32) {
     DISABLED = 0,
     ENABLED = 1,
     EXCLUSIVE = 3,
@@ -2916,14 +2916,14 @@ pub const SPGS_DISABLED = SPGRAMMARSTATE.DISABLED;
 pub const SPGS_ENABLED = SPGRAMMARSTATE.ENABLED;
 pub const SPGS_EXCLUSIVE = SPGRAMMARSTATE.EXCLUSIVE;
 
-pub const SPCONTEXTSTATE = extern enum(i32) {
+pub const SPCONTEXTSTATE = enum(i32) {
     DISABLED = 0,
     ENABLED = 1,
 };
 pub const SPCS_DISABLED = SPCONTEXTSTATE.DISABLED;
 pub const SPCS_ENABLED = SPCONTEXTSTATE.ENABLED;
 
-pub const SPRULESTATE = extern enum(i32) {
+pub const SPRULESTATE = enum(i32) {
     INACTIVE = 0,
     ACTIVE = 1,
     ACTIVE_WITH_AUTO_PAUSE = 3,
@@ -2934,7 +2934,7 @@ pub const SPRS_ACTIVE = SPRULESTATE.ACTIVE;
 pub const SPRS_ACTIVE_WITH_AUTO_PAUSE = SPRULESTATE.ACTIVE_WITH_AUTO_PAUSE;
 pub const SPRS_ACTIVE_USER_DELIMITED = SPRULESTATE.ACTIVE_USER_DELIMITED;
 
-pub const SPGRAMMARWORDTYPE = extern enum(i32) {
+pub const SPGRAMMARWORDTYPE = enum(i32) {
     DISPLAY = 0,
     LEXICAL = 1,
     PRONUNCIATION = 2,
@@ -2952,7 +2952,7 @@ pub const SPPROPERTYINFO = extern struct {
     vValue: VARIANT,
 };
 
-pub const SPCFGRULEATTRIBUTES = extern enum(i32) {
+pub const SPCFGRULEATTRIBUTES = enum(i32) {
     TopLevel = 1,
     Active = 2,
     Export = 4,
@@ -3067,7 +3067,7 @@ pub const ISpGrammarBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPLOADOPTIONS = extern enum(i32) {
+pub const SPLOADOPTIONS = enum(i32) {
     STATIC = 0,
     DYNAMIC = 1,
 };
@@ -3250,7 +3250,7 @@ pub const ISpRecoGrammar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPMATCHINGMODE = extern enum(i32) {
+pub const SPMATCHINGMODE = enum(i32) {
     AllWords = 0,
     Subsequence = 1,
     OrderedSubset = 3,
@@ -3263,7 +3263,7 @@ pub const OrderedSubset = SPMATCHINGMODE.OrderedSubset;
 pub const SubsequenceContentRequired = SPMATCHINGMODE.SubsequenceContentRequired;
 pub const OrderedSubsetContentRequired = SPMATCHINGMODE.OrderedSubsetContentRequired;
 
-pub const PHONETICALPHABET = extern enum(i32) {
+pub const PHONETICALPHABET = enum(i32) {
     Ipa = 0,
     Ups = 1,
     Sapi = 2,
@@ -3444,7 +3444,7 @@ pub const SPRECOCONTEXTSTATUS = extern struct {
     dwReserved2: u32,
 };
 
-pub const SPBOOKMARKOPTIONS = extern enum(i32) {
+pub const SPBOOKMARKOPTIONS = enum(i32) {
     NONE = 0,
     PAUSE = 1,
     AHEAD = 2,
@@ -3455,7 +3455,7 @@ pub const SPBO_PAUSE = SPBOOKMARKOPTIONS.PAUSE;
 pub const SPBO_AHEAD = SPBOOKMARKOPTIONS.AHEAD;
 pub const SPBO_TIME_UNITS = SPBOOKMARKOPTIONS.TIME_UNITS;
 
-pub const SPAUDIOOPTIONS = extern enum(i32) {
+pub const SPAUDIOOPTIONS = enum(i32) {
     NONE = 0,
     RETAIN_AUDIO = 1,
 };
@@ -3629,7 +3629,7 @@ pub const ISpRecoContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SPGRAMMAROPTIONS = extern enum(i32) {
+pub const SPGRAMMAROPTIONS = enum(i32) {
     SAPI = 1,
     SRGS = 2,
     UPS = 4,
@@ -3658,7 +3658,7 @@ pub const SPGO_OBJECT = SPGRAMMAROPTIONS.OBJECT;
 pub const SPGO_DEFAULT = SPGRAMMAROPTIONS.DEFAULT;
 pub const SPGO_ALL = SPGRAMMAROPTIONS.ALL;
 
-pub const SPADAPTATIONSETTINGS = extern enum(i32) {
+pub const SPADAPTATIONSETTINGS = enum(i32) {
     Default = 0,
     CurrentRecognizer = 1,
     RecoProfile = 2,
@@ -3673,7 +3673,7 @@ pub const SPADS_Immediate = SPADAPTATIONSETTINGS.Immediate;
 pub const SPADS_Reset = SPADAPTATIONSETTINGS.Reset;
 pub const SPADS_HighVolumeDataSource = SPADAPTATIONSETTINGS.HighVolumeDataSource;
 
-pub const SPADAPTATIONRELEVANCE = extern enum(i32) {
+pub const SPADAPTATIONRELEVANCE = enum(i32) {
     Unknown = 0,
     Low = 1,
     Medium = 2,
@@ -3785,14 +3785,14 @@ pub const SPRECOGNIZERSTATUS = extern struct {
     ullRecognitionStreamTime: u64,
 };
 
-pub const SPWAVEFORMATTYPE = extern enum(i32) {
+pub const SPWAVEFORMATTYPE = enum(i32) {
     INPUT = 0,
     SRENGINE = 1,
 };
 pub const SPWF_INPUT = SPWAVEFORMATTYPE.INPUT;
 pub const SPWF_SRENGINE = SPWAVEFORMATTYPE.SRENGINE;
 
-pub const SPRECOSTATE = extern enum(i32) {
+pub const SPRECOSTATE = enum(i32) {
     INACTIVE = 0,
     ACTIVE = 1,
     ACTIVE_ALWAYS = 2,
@@ -4111,7 +4111,7 @@ pub const ISpDisplayAlternates = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DISPID_SpeechDataKey = extern enum(i32) {
+pub const DISPID_SpeechDataKey = enum(i32) {
     SetBinaryValue = 1,
     GetBinaryValue = 2,
     SetStringValue = 3,
@@ -4138,7 +4138,7 @@ pub const DISPID_SDKDeleteValue = DISPID_SpeechDataKey.DeleteValue;
 pub const DISPID_SDKEnumKeys = DISPID_SpeechDataKey.EnumKeys;
 pub const DISPID_SDKEnumValues = DISPID_SpeechDataKey.EnumValues;
 
-pub const DISPID_SpeechObjectToken = extern enum(i32) {
+pub const DISPID_SpeechObjectToken = enum(i32) {
     Id = 1,
     DataKey = 2,
     Category = 3,
@@ -4167,7 +4167,7 @@ pub const DISPID_SOTIsUISupported = DISPID_SpeechObjectToken.IsUISupported;
 pub const DISPID_SOTDisplayUI = DISPID_SpeechObjectToken.DisplayUI;
 pub const DISPID_SOTMatchesAttributes = DISPID_SpeechObjectToken.MatchesAttributes;
 
-pub const SpeechDataKeyLocation = extern enum(i32) {
+pub const SpeechDataKeyLocation = enum(i32) {
     DefaultLocation = 0,
     CurrentUser = 1,
     LocalMachine = 2,
@@ -4178,7 +4178,7 @@ pub const SDKLCurrentUser = SpeechDataKeyLocation.CurrentUser;
 pub const SDKLLocalMachine = SpeechDataKeyLocation.LocalMachine;
 pub const SDKLCurrentConfig = SpeechDataKeyLocation.CurrentConfig;
 
-pub const SpeechTokenContext = extern enum(u32) {
+pub const SpeechTokenContext = enum(u32) {
     InprocServer = 1,
     InprocHandler = 2,
     LocalServer = 4,
@@ -4191,7 +4191,7 @@ pub const STCLocalServer = SpeechTokenContext.LocalServer;
 pub const STCRemoteServer = SpeechTokenContext.RemoteServer;
 pub const STCAll = SpeechTokenContext.All;
 
-pub const SpeechTokenShellFolder = extern enum(i32) {
+pub const SpeechTokenShellFolder = enum(i32) {
     AppData = 26,
     LocalAppData = 28,
     CommonAppData = 35,
@@ -4202,7 +4202,7 @@ pub const STSF_LocalAppData = SpeechTokenShellFolder.LocalAppData;
 pub const STSF_CommonAppData = SpeechTokenShellFolder.CommonAppData;
 pub const STSF_FlagCreate = SpeechTokenShellFolder.FlagCreate;
 
-pub const DISPID_SpeechObjectTokens = extern enum(i32) {
+pub const DISPID_SpeechObjectTokens = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -4211,7 +4211,7 @@ pub const DISPID_SOTsCount = DISPID_SpeechObjectTokens.Count;
 pub const DISPID_SOTsItem = DISPID_SpeechObjectTokens.Item;
 pub const DISPID_SOTs_NewEnum = DISPID_SpeechObjectTokens._NewEnum;
 
-pub const DISPID_SpeechObjectTokenCategory = extern enum(i32) {
+pub const DISPID_SpeechObjectTokenCategory = enum(i32) {
     Id = 1,
     Default = 2,
     SetId = 3,
@@ -4224,7 +4224,7 @@ pub const DISPID_SOTCSetId = DISPID_SpeechObjectTokenCategory.SetId;
 pub const DISPID_SOTCGetDataKey = DISPID_SpeechObjectTokenCategory.GetDataKey;
 pub const DISPID_SOTCEnumerateTokens = DISPID_SpeechObjectTokenCategory.EnumerateTokens;
 
-pub const SpeechAudioFormatType = extern enum(i32) {
+pub const SpeechAudioFormatType = enum(i32) {
     Default = -1,
     NoAssignedFormat = 0,
     Text = 1,
@@ -4367,7 +4367,7 @@ pub const SAFTGSM610_11kHzMono = SpeechAudioFormatType.GSM610_11kHzMono;
 pub const SAFTGSM610_22kHzMono = SpeechAudioFormatType.GSM610_22kHzMono;
 pub const SAFTGSM610_44kHzMono = SpeechAudioFormatType.GSM610_44kHzMono;
 
-pub const DISPID_SpeechAudioFormat = extern enum(i32) {
+pub const DISPID_SpeechAudioFormat = enum(i32) {
     Type = 1,
     Guid = 2,
     GetWaveFormatEx = 3,
@@ -4378,7 +4378,7 @@ pub const DISPID_SAFGuid = DISPID_SpeechAudioFormat.Guid;
 pub const DISPID_SAFGetWaveFormatEx = DISPID_SpeechAudioFormat.GetWaveFormatEx;
 pub const DISPID_SAFSetWaveFormatEx = DISPID_SpeechAudioFormat.SetWaveFormatEx;
 
-pub const DISPID_SpeechBaseStream = extern enum(i32) {
+pub const DISPID_SpeechBaseStream = enum(i32) {
     Format = 1,
     Read = 2,
     Write = 3,
@@ -4389,7 +4389,7 @@ pub const DISPID_SBSRead = DISPID_SpeechBaseStream.Read;
 pub const DISPID_SBSWrite = DISPID_SpeechBaseStream.Write;
 pub const DISPID_SBSSeek = DISPID_SpeechBaseStream.Seek;
 
-pub const SpeechStreamSeekPositionType = extern enum(u32) {
+pub const SpeechStreamSeekPositionType = enum(u32) {
     Start = 0,
     CurrentPosition = 1,
     End = 2,
@@ -4398,7 +4398,7 @@ pub const SSSPTRelativeToStart = SpeechStreamSeekPositionType.Start;
 pub const SSSPTRelativeToCurrentPosition = SpeechStreamSeekPositionType.CurrentPosition;
 pub const SSSPTRelativeToEnd = SpeechStreamSeekPositionType.End;
 
-pub const DISPID_SpeechAudio = extern enum(i32) {
+pub const DISPID_SpeechAudio = enum(i32) {
     Status = 200,
     BufferInfo = 201,
     DefaultFormat = 202,
@@ -4415,7 +4415,7 @@ pub const DISPID_SABufferNotifySize = DISPID_SpeechAudio.BufferNotifySize;
 pub const DISPID_SAEventHandle = DISPID_SpeechAudio.EventHandle;
 pub const DISPID_SASetState = DISPID_SpeechAudio.SetState;
 
-pub const SpeechAudioState = extern enum(i32) {
+pub const SpeechAudioState = enum(i32) {
     Closed = 0,
     Stop = 1,
     Pause = 2,
@@ -4426,7 +4426,7 @@ pub const SASStop = SpeechAudioState.Stop;
 pub const SASPause = SpeechAudioState.Pause;
 pub const SASRun = SpeechAudioState.Run;
 
-pub const DISPID_SpeechMMSysAudio = extern enum(i32) {
+pub const DISPID_SpeechMMSysAudio = enum(i32) {
     DeviceId = 300,
     LineId = 301,
     MMHandle = 302,
@@ -4435,14 +4435,14 @@ pub const DISPID_SMSADeviceId = DISPID_SpeechMMSysAudio.DeviceId;
 pub const DISPID_SMSALineId = DISPID_SpeechMMSysAudio.LineId;
 pub const DISPID_SMSAMMHandle = DISPID_SpeechMMSysAudio.MMHandle;
 
-pub const DISPID_SpeechFileStream = extern enum(i32) {
+pub const DISPID_SpeechFileStream = enum(i32) {
     Open = 100,
     Close = 101,
 };
 pub const DISPID_SFSOpen = DISPID_SpeechFileStream.Open;
 pub const DISPID_SFSClose = DISPID_SpeechFileStream.Close;
 
-pub const SpeechStreamFileMode = extern enum(i32) {
+pub const SpeechStreamFileMode = enum(i32) {
     OpenForRead = 0,
     OpenReadWrite = 1,
     Create = 2,
@@ -4453,19 +4453,19 @@ pub const SSFMOpenReadWrite = SpeechStreamFileMode.OpenReadWrite;
 pub const SSFMCreate = SpeechStreamFileMode.Create;
 pub const SSFMCreateForWrite = SpeechStreamFileMode.CreateForWrite;
 
-pub const DISPID_SpeechCustomStream = extern enum(i32) {
+pub const DISPID_SpeechCustomStream = enum(i32) {
     m = 100,
 };
 pub const DISPID_SCSBaseStream = DISPID_SpeechCustomStream.m;
 
-pub const DISPID_SpeechMemoryStream = extern enum(i32) {
+pub const DISPID_SpeechMemoryStream = enum(i32) {
     SetData = 100,
     GetData = 101,
 };
 pub const DISPID_SMSSetData = DISPID_SpeechMemoryStream.SetData;
 pub const DISPID_SMSGetData = DISPID_SpeechMemoryStream.GetData;
 
-pub const DISPID_SpeechAudioStatus = extern enum(i32) {
+pub const DISPID_SpeechAudioStatus = enum(i32) {
     FreeBufferSpace = 1,
     NonBlockingIO = 2,
     State = 3,
@@ -4478,7 +4478,7 @@ pub const DISPID_SASState = DISPID_SpeechAudioStatus.State;
 pub const DISPID_SASCurrentSeekPosition = DISPID_SpeechAudioStatus.CurrentSeekPosition;
 pub const DISPID_SASCurrentDevicePosition = DISPID_SpeechAudioStatus.CurrentDevicePosition;
 
-pub const DISPID_SpeechAudioBufferInfo = extern enum(i32) {
+pub const DISPID_SpeechAudioBufferInfo = enum(i32) {
     MinNotification = 1,
     BufferSize = 2,
     EventBias = 3,
@@ -4487,7 +4487,7 @@ pub const DISPID_SABIMinNotification = DISPID_SpeechAudioBufferInfo.MinNotificat
 pub const DISPID_SABIBufferSize = DISPID_SpeechAudioBufferInfo.BufferSize;
 pub const DISPID_SABIEventBias = DISPID_SpeechAudioBufferInfo.EventBias;
 
-pub const DISPID_SpeechWaveFormatEx = extern enum(i32) {
+pub const DISPID_SpeechWaveFormatEx = enum(i32) {
     FormatTag = 1,
     Channels = 2,
     SamplesPerSec = 3,
@@ -4504,7 +4504,7 @@ pub const DISPID_SWFEBlockAlign = DISPID_SpeechWaveFormatEx.BlockAlign;
 pub const DISPID_SWFEBitsPerSample = DISPID_SpeechWaveFormatEx.BitsPerSample;
 pub const DISPID_SWFEExtraData = DISPID_SpeechWaveFormatEx.ExtraData;
 
-pub const DISPID_SpeechVoice = extern enum(i32) {
+pub const DISPID_SpeechVoice = enum(i32) {
     Status = 1,
     Voice = 2,
     AudioOutput = 3,
@@ -4551,7 +4551,7 @@ pub const DISPID_SVSpeakCompleteEvent = DISPID_SpeechVoice.SpeakCompleteEvent;
 pub const DISPID_SVIsUISupported = DISPID_SpeechVoice.IsUISupported;
 pub const DISPID_SVDisplayUI = DISPID_SpeechVoice.DisplayUI;
 
-pub const SpeechVoicePriority = extern enum(i32) {
+pub const SpeechVoicePriority = enum(i32) {
     Normal = 0,
     Alert = 1,
     Over = 2,
@@ -4560,7 +4560,7 @@ pub const SVPNormal = SpeechVoicePriority.Normal;
 pub const SVPAlert = SpeechVoicePriority.Alert;
 pub const SVPOver = SpeechVoicePriority.Over;
 
-pub const SpeechVoiceSpeakFlags = extern enum(i32) {
+pub const SpeechVoiceSpeakFlags = enum(i32) {
     Default = 0,
     lagsAsync = 1,
     PurgeBeforeSpeak = 2,
@@ -4571,8 +4571,8 @@ pub const SpeechVoiceSpeakFlags = extern enum(i32) {
     NLPSpeakPunc = 64,
     ParseSapi = 128,
     ParseSsml = 256,
-    ParseAutodetect = 0,
-    NLPMask = 64,
+    // ParseAutodetect = 0, this enum value conflicts with Default
+    // NLPMask = 64, this enum value conflicts with NLPSpeakPunc
     ParseMask = 384,
     VoiceMask = 511,
     UnusedFlags = -512,
@@ -4587,13 +4587,13 @@ pub const SVSFPersistXML = SpeechVoiceSpeakFlags.PersistXML;
 pub const SVSFNLPSpeakPunc = SpeechVoiceSpeakFlags.NLPSpeakPunc;
 pub const SVSFParseSapi = SpeechVoiceSpeakFlags.ParseSapi;
 pub const SVSFParseSsml = SpeechVoiceSpeakFlags.ParseSsml;
-pub const SVSFParseAutodetect = SpeechVoiceSpeakFlags.ParseAutodetect;
-pub const SVSFNLPMask = SpeechVoiceSpeakFlags.NLPMask;
+pub const SVSFParseAutodetect = SpeechVoiceSpeakFlags.Default;
+pub const SVSFNLPMask = SpeechVoiceSpeakFlags.NLPSpeakPunc;
 pub const SVSFParseMask = SpeechVoiceSpeakFlags.ParseMask;
 pub const SVSFVoiceMask = SpeechVoiceSpeakFlags.VoiceMask;
 pub const SVSFUnusedFlags = SpeechVoiceSpeakFlags.UnusedFlags;
 
-pub const SpeechVoiceEvents = extern enum(i32) {
+pub const SpeechVoiceEvents = enum(i32) {
     StartInputStream = 2,
     EndInputStream = 4,
     VoiceChange = 8,
@@ -4618,7 +4618,7 @@ pub const SVEAudioLevel = SpeechVoiceEvents.AudioLevel;
 pub const SVEPrivate = SpeechVoiceEvents.Private;
 pub const SVEAllEvents = SpeechVoiceEvents.AllEvents;
 
-pub const DISPID_SpeechVoiceStatus = extern enum(i32) {
+pub const DISPID_SpeechVoiceStatus = enum(i32) {
     CurrentStreamNumber = 1,
     LastStreamNumberQueued = 2,
     LastResult = 3,
@@ -4645,14 +4645,14 @@ pub const DISPID_SVSLastBookmarkId = DISPID_SpeechVoiceStatus.LastBookmarkId;
 pub const DISPID_SVSPhonemeId = DISPID_SpeechVoiceStatus.PhonemeId;
 pub const DISPID_SVSVisemeId = DISPID_SpeechVoiceStatus.VisemeId;
 
-pub const SpeechRunState = extern enum(i32) {
+pub const SpeechRunState = enum(i32) {
     Done = 1,
     IsSpeaking = 2,
 };
 pub const SRSEDone = SpeechRunState.Done;
 pub const SRSEIsSpeaking = SpeechRunState.IsSpeaking;
 
-pub const SpeechVisemeType = extern enum(i32) {
+pub const SpeechVisemeType = enum(i32) {
     @"0" = 0,
     @"1" = 1,
     @"2" = 2,
@@ -4699,7 +4699,7 @@ pub const SVP_19 = SpeechVisemeType.@"19";
 pub const SVP_20 = SpeechVisemeType.@"20";
 pub const SVP_21 = SpeechVisemeType.@"21";
 
-pub const SpeechVisemeFeature = extern enum(i32) {
+pub const SpeechVisemeFeature = enum(i32) {
     None = 0,
     Stressed = 1,
     Emphasis = 2,
@@ -4708,7 +4708,7 @@ pub const SVF_None = SpeechVisemeFeature.None;
 pub const SVF_Stressed = SpeechVisemeFeature.Stressed;
 pub const SVF_Emphasis = SpeechVisemeFeature.Emphasis;
 
-pub const DISPID_SpeechVoiceEvent = extern enum(i32) {
+pub const DISPID_SpeechVoiceEvent = enum(i32) {
     StreamStart = 1,
     StreamEnd = 2,
     VoiceChange = 3,
@@ -4731,7 +4731,7 @@ pub const DISPID_SVEViseme = DISPID_SpeechVoiceEvent.Viseme;
 pub const DISPID_SVEAudioLevel = DISPID_SpeechVoiceEvent.AudioLevel;
 pub const DISPID_SVEEnginePrivate = DISPID_SpeechVoiceEvent.EnginePrivate;
 
-pub const DISPID_SpeechRecognizer = extern enum(i32) {
+pub const DISPID_SpeechRecognizer = enum(i32) {
     RRecognizer = 1,
     RAllowAudioInputFormatChangesOnNextSet = 2,
     RAudioInput = 3,
@@ -4774,7 +4774,7 @@ pub const DISPID_SRGetRecognizers = DISPID_SpeechRecognizer.RGetRecognizers;
 pub const DISPID_SVGetAudioInputs = DISPID_SpeechRecognizer.VGetAudioInputs;
 pub const DISPID_SVGetProfiles = DISPID_SpeechRecognizer.VGetProfiles;
 
-pub const SpeechRecognizerState = extern enum(i32) {
+pub const SpeechRecognizerState = enum(i32) {
     Inactive = 0,
     Active = 1,
     ActiveAlways = 2,
@@ -4785,7 +4785,7 @@ pub const SRSActive = SpeechRecognizerState.Active;
 pub const SRSActiveAlways = SpeechRecognizerState.ActiveAlways;
 pub const SRSInactiveWithPurge = SpeechRecognizerState.InactiveWithPurge;
 
-pub const SpeechDisplayAttributes = extern enum(i32) {
+pub const SpeechDisplayAttributes = enum(i32) {
     No_Trailing_Space = 0,
     One_Trailing_Space = 2,
     Two_Trailing_Spaces = 4,
@@ -4796,14 +4796,14 @@ pub const SDA_One_Trailing_Space = SpeechDisplayAttributes.One_Trailing_Space;
 pub const SDA_Two_Trailing_Spaces = SpeechDisplayAttributes.Two_Trailing_Spaces;
 pub const SDA_Consume_Leading_Spaces = SpeechDisplayAttributes.Consume_Leading_Spaces;
 
-pub const SpeechFormatType = extern enum(i32) {
+pub const SpeechFormatType = enum(i32) {
     Input = 0,
     SREngine = 1,
 };
 pub const SFTInput = SpeechFormatType.Input;
 pub const SFTSREngine = SpeechFormatType.SREngine;
 
-pub const SpeechEmulationCompareFlags = extern enum(i32) {
+pub const SpeechEmulationCompareFlags = enum(i32) {
     IgnoreCase = 1,
     IgnoreKanaType = 65536,
     IgnoreWidth = 131072,
@@ -4818,7 +4818,7 @@ pub const SECFNoSpecialChars = SpeechEmulationCompareFlags.NoSpecialChars;
 pub const SECFEmulateResult = SpeechEmulationCompareFlags.EmulateResult;
 pub const SECFDefault = SpeechEmulationCompareFlags.Default;
 
-pub const DISPID_SpeechRecognizerStatus = extern enum(i32) {
+pub const DISPID_SpeechRecognizerStatus = enum(i32) {
     AudioStatus = 1,
     CurrentStreamPosition = 2,
     CurrentStreamNumber = 3,
@@ -4833,7 +4833,7 @@ pub const DISPID_SRSNumberOfActiveRules = DISPID_SpeechRecognizerStatus.NumberOf
 pub const DISPID_SRSClsidEngine = DISPID_SpeechRecognizerStatus.ClsidEngine;
 pub const DISPID_SRSSupportedLanguages = DISPID_SpeechRecognizerStatus.SupportedLanguages;
 
-pub const DISPID_SpeechRecoContext = extern enum(i32) {
+pub const DISPID_SpeechRecoContext = enum(i32) {
     CRecognizer = 1,
     CAudioInInterferenceStatus = 2,
     CRequestedUIType = 3,
@@ -4870,21 +4870,21 @@ pub const DISPID_SRCCreateResultFromMemory = DISPID_SpeechRecoContext.CCreateRes
 pub const DISPID_SRCBookmark = DISPID_SpeechRecoContext.CBookmark;
 pub const DISPID_SRCSetAdaptationData = DISPID_SpeechRecoContext.CSetAdaptationData;
 
-pub const SpeechRetainedAudioOptions = extern enum(i32) {
+pub const SpeechRetainedAudioOptions = enum(i32) {
     None = 0,
     RetainAudio = 1,
 };
 pub const SRAONone = SpeechRetainedAudioOptions.None;
 pub const SRAORetainAudio = SpeechRetainedAudioOptions.RetainAudio;
 
-pub const SpeechBookmarkOptions = extern enum(i32) {
+pub const SpeechBookmarkOptions = enum(i32) {
     None = 0,
     Pause = 1,
 };
 pub const SBONone = SpeechBookmarkOptions.None;
 pub const SBOPause = SpeechBookmarkOptions.Pause;
 
-pub const SpeechInterference = extern enum(i32) {
+pub const SpeechInterference = enum(i32) {
     None = 0,
     Noise = 1,
     NoSignal = 2,
@@ -4901,7 +4901,7 @@ pub const SITooQuiet = SpeechInterference.TooQuiet;
 pub const SITooFast = SpeechInterference.TooFast;
 pub const SITooSlow = SpeechInterference.TooSlow;
 
-pub const SpeechRecoEvents = extern enum(i32) {
+pub const SpeechRecoEvents = enum(i32) {
     StreamEnd = 1,
     SoundStart = 2,
     SoundEnd = 4,
@@ -4942,14 +4942,14 @@ pub const SREAudioLevel = SpeechRecoEvents.AudioLevel;
 pub const SREPrivate = SpeechRecoEvents.Private;
 pub const SREAllEvents = SpeechRecoEvents.AllEvents;
 
-pub const SpeechRecoContextState = extern enum(i32) {
+pub const SpeechRecoContextState = enum(i32) {
     Disabled = 0,
     Enabled = 1,
 };
 pub const SRCS_Disabled = SpeechRecoContextState.Disabled;
 pub const SRCS_Enabled = SpeechRecoContextState.Enabled;
 
-pub const DISPIDSPRG = extern enum(i32) {
+pub const DISPIDSPRG = enum(i32) {
     Id = 1,
     RecoContext = 2,
     State = 3,
@@ -4990,14 +4990,14 @@ pub const DISPID_SRGSetWordSequenceData = DISPIDSPRG.SetWordSequenceData;
 pub const DISPID_SRGSetTextSelection = DISPIDSPRG.SetTextSelection;
 pub const DISPID_SRGIsPronounceable = DISPIDSPRG.IsPronounceable;
 
-pub const SpeechLoadOption = extern enum(i32) {
+pub const SpeechLoadOption = enum(i32) {
     Static = 0,
     Dynamic = 1,
 };
 pub const SLOStatic = SpeechLoadOption.Static;
 pub const SLODynamic = SpeechLoadOption.Dynamic;
 
-pub const SpeechWordPronounceable = extern enum(i32) {
+pub const SpeechWordPronounceable = enum(i32) {
     UnknownWordUnpronounceable = 0,
     UnknownWordPronounceable = 1,
     KnownWordPronounceable = 2,
@@ -5006,7 +5006,7 @@ pub const SWPUnknownWordUnpronounceable = SpeechWordPronounceable.UnknownWordUnp
 pub const SWPUnknownWordPronounceable = SpeechWordPronounceable.UnknownWordPronounceable;
 pub const SWPKnownWordPronounceable = SpeechWordPronounceable.KnownWordPronounceable;
 
-pub const SpeechGrammarState = extern enum(i32) {
+pub const SpeechGrammarState = enum(i32) {
     Enabled = 1,
     Disabled = 0,
     Exclusive = 3,
@@ -5015,7 +5015,7 @@ pub const SGSEnabled = SpeechGrammarState.Enabled;
 pub const SGSDisabled = SpeechGrammarState.Disabled;
 pub const SGSExclusive = SpeechGrammarState.Exclusive;
 
-pub const SpeechRuleState = extern enum(i32) {
+pub const SpeechRuleState = enum(i32) {
     Inactive = 0,
     Active = 1,
     ActiveWithAutoPause = 3,
@@ -5026,7 +5026,7 @@ pub const SGDSActive = SpeechRuleState.Active;
 pub const SGDSActiveWithAutoPause = SpeechRuleState.ActiveWithAutoPause;
 pub const SGDSActiveUserDelimited = SpeechRuleState.ActiveUserDelimited;
 
-pub const SpeechRuleAttributes = extern enum(i32) {
+pub const SpeechRuleAttributes = enum(i32) {
     TopLevel = 1,
     DefaultToActive = 2,
     Export = 4,
@@ -5043,7 +5043,7 @@ pub const SRAInterpreter = SpeechRuleAttributes.Interpreter;
 pub const SRADynamic = SpeechRuleAttributes.Dynamic;
 pub const SRARoot = SpeechRuleAttributes.Root;
 
-pub const SpeechGrammarWordType = extern enum(i32) {
+pub const SpeechGrammarWordType = enum(i32) {
     Display = 0,
     Lexical = 1,
     Pronounciation = 2,
@@ -5054,7 +5054,7 @@ pub const SGLexical = SpeechGrammarWordType.Lexical;
 pub const SGPronounciation = SpeechGrammarWordType.Pronounciation;
 pub const SGLexicalNoSpecialChars = SpeechGrammarWordType.LexicalNoSpecialChars;
 
-pub const DISPID_SpeechRecoContextEvents = extern enum(i32) {
+pub const DISPID_SpeechRecoContextEvents = enum(i32) {
     StartStream = 1,
     EndStream = 2,
     Bookmark = 3,
@@ -5093,7 +5093,7 @@ pub const DISPID_SRCERecognitionForOtherContext = DISPID_SpeechRecoContextEvents
 pub const DISPID_SRCEAudioLevel = DISPID_SpeechRecoContextEvents.AudioLevel;
 pub const DISPID_SRCEEnginePrivate = DISPID_SpeechRecoContextEvents.EnginePrivate;
 
-pub const SpeechRecognitionType = extern enum(i32) {
+pub const SpeechRecognitionType = enum(i32) {
     Standard = 0,
     Autopause = 1,
     Emulated = 2,
@@ -5108,7 +5108,7 @@ pub const SRTSMLTimeout = SpeechRecognitionType.SMLTimeout;
 pub const SRTExtendableParse = SpeechRecognitionType.ExtendableParse;
 pub const SRTReSent = SpeechRecognitionType.ReSent;
 
-pub const DISPID_SpeechGrammarRule = extern enum(i32) {
+pub const DISPID_SpeechGrammarRule = enum(i32) {
     Attributes = 1,
     InitialState = 2,
     Name = 3,
@@ -5125,7 +5125,7 @@ pub const DISPID_SGRClear = DISPID_SpeechGrammarRule.Clear;
 pub const DISPID_SGRAddResource = DISPID_SpeechGrammarRule.AddResource;
 pub const DISPID_SGRAddState = DISPID_SpeechGrammarRule.AddState;
 
-pub const DISPID_SpeechGrammarRules = extern enum(i32) {
+pub const DISPID_SpeechGrammarRules = enum(i32) {
     Count = 1,
     Dynamic = 2,
     Add = 3,
@@ -5144,7 +5144,7 @@ pub const DISPID_SGRsFindRule = DISPID_SpeechGrammarRules.FindRule;
 pub const DISPID_SGRsItem = DISPID_SpeechGrammarRules.Item;
 pub const DISPID_SGRs_NewEnum = DISPID_SpeechGrammarRules._NewEnum;
 
-pub const DISPID_SpeechGrammarRuleState = extern enum(i32) {
+pub const DISPID_SpeechGrammarRuleState = enum(i32) {
     Rule = 1,
     Transitions = 2,
     AddWordTransition = 3,
@@ -5157,7 +5157,7 @@ pub const DISPID_SGRSAddWordTransition = DISPID_SpeechGrammarRuleState.AddWordTr
 pub const DISPID_SGRSAddRuleTransition = DISPID_SpeechGrammarRuleState.AddRuleTransition;
 pub const DISPID_SGRSAddSpecialTransition = DISPID_SpeechGrammarRuleState.AddSpecialTransition;
 
-pub const SpeechSpecialTransitionType = extern enum(i32) {
+pub const SpeechSpecialTransitionType = enum(i32) {
     Wildcard = 1,
     Dictation = 2,
     TextBuffer = 3,
@@ -5166,7 +5166,7 @@ pub const SSTTWildcard = SpeechSpecialTransitionType.Wildcard;
 pub const SSTTDictation = SpeechSpecialTransitionType.Dictation;
 pub const SSTTTextBuffer = SpeechSpecialTransitionType.TextBuffer;
 
-pub const DISPID_SpeechGrammarRuleStateTransitions = extern enum(i32) {
+pub const DISPID_SpeechGrammarRuleStateTransitions = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5175,7 +5175,7 @@ pub const DISPID_SGRSTsCount = DISPID_SpeechGrammarRuleStateTransitions.Count;
 pub const DISPID_SGRSTsItem = DISPID_SpeechGrammarRuleStateTransitions.Item;
 pub const DISPID_SGRSTs_NewEnum = DISPID_SpeechGrammarRuleStateTransitions._NewEnum;
 
-pub const DISPID_SpeechGrammarRuleStateTransition = extern enum(i32) {
+pub const DISPID_SpeechGrammarRuleStateTransition = enum(i32) {
     Type = 1,
     Text = 2,
     Rule = 3,
@@ -5194,7 +5194,7 @@ pub const DISPID_SGRSTPropertyId = DISPID_SpeechGrammarRuleStateTransition.Prope
 pub const DISPID_SGRSTPropertyValue = DISPID_SpeechGrammarRuleStateTransition.PropertyValue;
 pub const DISPID_SGRSTNextState = DISPID_SpeechGrammarRuleStateTransition.NextState;
 
-pub const SpeechGrammarRuleStateTransitionType = extern enum(i32) {
+pub const SpeechGrammarRuleStateTransitionType = enum(i32) {
     Epsilon = 0,
     Word = 1,
     Rule = 2,
@@ -5209,7 +5209,7 @@ pub const SGRSTTDictation = SpeechGrammarRuleStateTransitionType.Dictation;
 pub const SGRSTTWildcard = SpeechGrammarRuleStateTransitionType.Wildcard;
 pub const SGRSTTTextBuffer = SpeechGrammarRuleStateTransitionType.TextBuffer;
 
-pub const DISPIDSPTSI = extern enum(i32) {
+pub const DISPIDSPTSI = enum(i32) {
     ActiveOffset = 1,
     ActiveLength = 2,
     SelectionOffset = 3,
@@ -5220,7 +5220,7 @@ pub const DISPIDSPTSI_ActiveLength = DISPIDSPTSI.ActiveLength;
 pub const DISPIDSPTSI_SelectionOffset = DISPIDSPTSI.SelectionOffset;
 pub const DISPIDSPTSI_SelectionLength = DISPIDSPTSI.SelectionLength;
 
-pub const DISPID_SpeechRecoResult = extern enum(i32) {
+pub const DISPID_SpeechRecoResult = enum(i32) {
     RecoContext = 1,
     Times = 2,
     AudioFormat = 3,
@@ -5241,7 +5241,7 @@ pub const DISPID_SRRSpeakAudio = DISPID_SpeechRecoResult.SpeakAudio;
 pub const DISPID_SRRSaveToMemory = DISPID_SpeechRecoResult.SaveToMemory;
 pub const DISPID_SRRDiscardResultInfo = DISPID_SpeechRecoResult.DiscardResultInfo;
 
-pub const SpeechDiscardType = extern enum(i32) {
+pub const SpeechDiscardType = enum(i32) {
     Property = 1,
     Replacement = 2,
     Rule = 4,
@@ -5262,24 +5262,24 @@ pub const SDTAudio = SpeechDiscardType.Audio;
 pub const SDTAlternates = SpeechDiscardType.Alternates;
 pub const SDTAll = SpeechDiscardType.All;
 
-pub const DISPID_SpeechXMLRecoResult = extern enum(i32) {
+pub const DISPID_SpeechXMLRecoResult = enum(i32) {
     Result = 10,
     ErrorInfo = 11,
 };
 pub const DISPID_SRRGetXMLResult = DISPID_SpeechXMLRecoResult.Result;
 pub const DISPID_SRRGetXMLErrorInfo = DISPID_SpeechXMLRecoResult.ErrorInfo;
 
-pub const DISPID_SpeechRecoResult2 = extern enum(i32) {
+pub const DISPID_SpeechRecoResult2 = enum(i32) {
     k = 12,
 };
 pub const DISPID_SRRSetTextFeedback = DISPID_SpeechRecoResult2.k;
 
-pub const DISPID_SpeechPhraseBuilder = extern enum(i32) {
+pub const DISPID_SpeechPhraseBuilder = enum(i32) {
     y = 1,
 };
 pub const DISPID_SPPBRestorePhraseFromMemory = DISPID_SpeechPhraseBuilder.y;
 
-pub const DISPID_SpeechRecoResultTimes = extern enum(i32) {
+pub const DISPID_SpeechRecoResultTimes = enum(i32) {
     StreamTime = 1,
     Length = 2,
     TickCount = 3,
@@ -5290,7 +5290,7 @@ pub const DISPID_SRRTLength = DISPID_SpeechRecoResultTimes.Length;
 pub const DISPID_SRRTTickCount = DISPID_SpeechRecoResultTimes.TickCount;
 pub const DISPID_SRRTOffsetFromStart = DISPID_SpeechRecoResultTimes.OffsetFromStart;
 
-pub const DISPID_SpeechPhraseAlternate = extern enum(i32) {
+pub const DISPID_SpeechPhraseAlternate = enum(i32) {
     RecoResult = 1,
     StartElementInResult = 2,
     NumberOfElementsInResult = 3,
@@ -5303,7 +5303,7 @@ pub const DISPID_SPANumberOfElementsInResult = DISPID_SpeechPhraseAlternate.Numb
 pub const DISPID_SPAPhraseInfo = DISPID_SpeechPhraseAlternate.PhraseInfo;
 pub const DISPID_SPACommit = DISPID_SpeechPhraseAlternate.Commit;
 
-pub const DISPID_SpeechPhraseAlternates = extern enum(i32) {
+pub const DISPID_SpeechPhraseAlternates = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5312,7 +5312,7 @@ pub const DISPID_SPAsCount = DISPID_SpeechPhraseAlternates.Count;
 pub const DISPID_SPAsItem = DISPID_SpeechPhraseAlternates.Item;
 pub const DISPID_SPAs_NewEnum = DISPID_SpeechPhraseAlternates._NewEnum;
 
-pub const DISPID_SpeechPhraseInfo = extern enum(i32) {
+pub const DISPID_SpeechPhraseInfo = enum(i32) {
     LanguageId = 1,
     GrammarId = 2,
     StartTime = 3,
@@ -5347,7 +5347,7 @@ pub const DISPID_SPISaveToMemory = DISPID_SpeechPhraseInfo.SaveToMemory;
 pub const DISPID_SPIGetText = DISPID_SpeechPhraseInfo.GetText;
 pub const DISPID_SPIGetDisplayAttributes = DISPID_SpeechPhraseInfo.GetDisplayAttributes;
 
-pub const DISPID_SpeechPhraseElement = extern enum(i32) {
+pub const DISPID_SpeechPhraseElement = enum(i32) {
     AudioTimeOffset = 1,
     AudioSizeTime = 2,
     AudioStreamOffset = 3,
@@ -5376,7 +5376,7 @@ pub const DISPID_SPERequiredConfidence = DISPID_SpeechPhraseElement.RequiredConf
 pub const DISPID_SPEActualConfidence = DISPID_SpeechPhraseElement.ActualConfidence;
 pub const DISPID_SPEEngineConfidence = DISPID_SpeechPhraseElement.EngineConfidence;
 
-pub const SpeechEngineConfidence = extern enum(i32) {
+pub const SpeechEngineConfidence = enum(i32) {
     LowConfidence = -1,
     NormalConfidence = 0,
     HighConfidence = 1,
@@ -5385,7 +5385,7 @@ pub const SECLowConfidence = SpeechEngineConfidence.LowConfidence;
 pub const SECNormalConfidence = SpeechEngineConfidence.NormalConfidence;
 pub const SECHighConfidence = SpeechEngineConfidence.HighConfidence;
 
-pub const DISPID_SpeechPhraseElements = extern enum(i32) {
+pub const DISPID_SpeechPhraseElements = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5394,7 +5394,7 @@ pub const DISPID_SPEsCount = DISPID_SpeechPhraseElements.Count;
 pub const DISPID_SPEsItem = DISPID_SpeechPhraseElements.Item;
 pub const DISPID_SPEs_NewEnum = DISPID_SpeechPhraseElements._NewEnum;
 
-pub const DISPID_SpeechPhraseReplacement = extern enum(i32) {
+pub const DISPID_SpeechPhraseReplacement = enum(i32) {
     DisplayAttributes = 1,
     Text = 2,
     FirstElement = 3,
@@ -5405,7 +5405,7 @@ pub const DISPID_SPRText = DISPID_SpeechPhraseReplacement.Text;
 pub const DISPID_SPRFirstElement = DISPID_SpeechPhraseReplacement.FirstElement;
 pub const DISPID_SPRNumberOfElements = DISPID_SpeechPhraseReplacement.NumberOfElements;
 
-pub const DISPID_SpeechPhraseReplacements = extern enum(i32) {
+pub const DISPID_SpeechPhraseReplacements = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5414,7 +5414,7 @@ pub const DISPID_SPRsCount = DISPID_SpeechPhraseReplacements.Count;
 pub const DISPID_SPRsItem = DISPID_SpeechPhraseReplacements.Item;
 pub const DISPID_SPRs_NewEnum = DISPID_SpeechPhraseReplacements._NewEnum;
 
-pub const DISPID_SpeechPhraseProperty = extern enum(i32) {
+pub const DISPID_SpeechPhraseProperty = enum(i32) {
     Name = 1,
     Id = 2,
     Value = 3,
@@ -5435,7 +5435,7 @@ pub const DISPID_SPPConfidence = DISPID_SpeechPhraseProperty.Confidence;
 pub const DISPID_SPPParent = DISPID_SpeechPhraseProperty.Parent;
 pub const DISPID_SPPChildren = DISPID_SpeechPhraseProperty.Children;
 
-pub const DISPID_SpeechPhraseProperties = extern enum(i32) {
+pub const DISPID_SpeechPhraseProperties = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5444,7 +5444,7 @@ pub const DISPID_SPPsCount = DISPID_SpeechPhraseProperties.Count;
 pub const DISPID_SPPsItem = DISPID_SpeechPhraseProperties.Item;
 pub const DISPID_SPPs_NewEnum = DISPID_SpeechPhraseProperties._NewEnum;
 
-pub const DISPID_SpeechPhraseRule = extern enum(i32) {
+pub const DISPID_SpeechPhraseRule = enum(i32) {
     Name = 1,
     Id = 2,
     FirstElement = 3,
@@ -5463,7 +5463,7 @@ pub const DISPID_SPRuleChildren = DISPID_SpeechPhraseRule.Children;
 pub const DISPID_SPRuleConfidence = DISPID_SpeechPhraseRule.Confidence;
 pub const DISPID_SPRuleEngineConfidence = DISPID_SpeechPhraseRule.EngineConfidence;
 
-pub const DISPID_SpeechPhraseRules = extern enum(i32) {
+pub const DISPID_SpeechPhraseRules = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5472,7 +5472,7 @@ pub const DISPID_SPRulesCount = DISPID_SpeechPhraseRules.Count;
 pub const DISPID_SPRulesItem = DISPID_SpeechPhraseRules.Item;
 pub const DISPID_SPRules_NewEnum = DISPID_SpeechPhraseRules._NewEnum;
 
-pub const DISPID_SpeechLexicon = extern enum(i32) {
+pub const DISPID_SpeechLexicon = enum(i32) {
     GenerationId = 1,
     GetWords = 2,
     AddPronunciation = 3,
@@ -5491,14 +5491,14 @@ pub const DISPID_SLRemovePronunciationByPhoneIds = DISPID_SpeechLexicon.RemovePr
 pub const DISPID_SLGetPronunciations = DISPID_SpeechLexicon.GetPronunciations;
 pub const DISPID_SLGetGenerationChange = DISPID_SpeechLexicon.GetGenerationChange;
 
-pub const SpeechLexiconType = extern enum(i32) {
+pub const SpeechLexiconType = enum(i32) {
     User = 1,
     App = 2,
 };
 pub const SLTUser = SpeechLexiconType.User;
 pub const SLTApp = SpeechLexiconType.App;
 
-pub const SpeechPartOfSpeech = extern enum(i32) {
+pub const SpeechPartOfSpeech = enum(i32) {
     NotOverriden = -1,
     Unknown = 0,
     Noun = 4096,
@@ -5519,7 +5519,7 @@ pub const SPSInterjection = SpeechPartOfSpeech.Interjection;
 pub const SPSLMA = SpeechPartOfSpeech.LMA;
 pub const SPSSuppressWord = SpeechPartOfSpeech.SuppressWord;
 
-pub const DISPID_SpeechLexiconWords = extern enum(i32) {
+pub const DISPID_SpeechLexiconWords = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5528,14 +5528,14 @@ pub const DISPID_SLWsCount = DISPID_SpeechLexiconWords.Count;
 pub const DISPID_SLWsItem = DISPID_SpeechLexiconWords.Item;
 pub const DISPID_SLWs_NewEnum = DISPID_SpeechLexiconWords._NewEnum;
 
-pub const SpeechWordType = extern enum(i32) {
+pub const SpeechWordType = enum(i32) {
     Added = 1,
     Deleted = 2,
 };
 pub const SWTAdded = SpeechWordType.Added;
 pub const SWTDeleted = SpeechWordType.Deleted;
 
-pub const DISPID_SpeechLexiconWord = extern enum(i32) {
+pub const DISPID_SpeechLexiconWord = enum(i32) {
     LangId = 1,
     Type = 2,
     Word = 3,
@@ -5546,7 +5546,7 @@ pub const DISPID_SLWType = DISPID_SpeechLexiconWord.Type;
 pub const DISPID_SLWWord = DISPID_SpeechLexiconWord.Word;
 pub const DISPID_SLWPronunciations = DISPID_SpeechLexiconWord.Pronunciations;
 
-pub const DISPID_SpeechLexiconProns = extern enum(i32) {
+pub const DISPID_SpeechLexiconProns = enum(i32) {
     Count = 1,
     Item = 0,
     _NewEnum = -4,
@@ -5555,7 +5555,7 @@ pub const DISPID_SLPsCount = DISPID_SpeechLexiconProns.Count;
 pub const DISPID_SLPsItem = DISPID_SpeechLexiconProns.Item;
 pub const DISPID_SLPs_NewEnum = DISPID_SpeechLexiconProns._NewEnum;
 
-pub const DISPID_SpeechLexiconPronunciation = extern enum(i32) {
+pub const DISPID_SpeechLexiconPronunciation = enum(i32) {
     Type = 1,
     LangId = 2,
     PartOfSpeech = 3,
@@ -5568,7 +5568,7 @@ pub const DISPID_SLPPartOfSpeech = DISPID_SpeechLexiconPronunciation.PartOfSpeec
 pub const DISPID_SLPPhoneIds = DISPID_SpeechLexiconPronunciation.PhoneIds;
 pub const DISPID_SLPSymbolic = DISPID_SpeechLexiconPronunciation.Symbolic;
 
-pub const DISPID_SpeechPhoneConverter = extern enum(i32) {
+pub const DISPID_SpeechPhoneConverter = enum(i32) {
     LangId = 1,
     PhoneToId = 2,
     IdToPhone = 3,

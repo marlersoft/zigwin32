@@ -6,14 +6,14 @@
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
-pub const GAMING_DEVICE_VENDOR_ID = extern enum(i32) {
+pub const GAMING_DEVICE_VENDOR_ID = enum(i32) {
     NONE = 0,
     MICROSOFT = -1024700366,
 };
 pub const GAMING_DEVICE_VENDOR_ID_NONE = GAMING_DEVICE_VENDOR_ID.NONE;
 pub const GAMING_DEVICE_VENDOR_ID_MICROSOFT = GAMING_DEVICE_VENDOR_ID.MICROSOFT;
 
-pub const GAMING_DEVICE_DEVICE_ID = extern enum(i32) {
+pub const GAMING_DEVICE_DEVICE_ID = enum(i32) {
     NONE = 0,
     XBOX_ONE = 1988865574,
     XBOX_ONE_S = 712204761,
@@ -37,7 +37,7 @@ pub const CLSID_XblIdpAuthManager = &CLSID_XblIdpAuthManager_Value;
 const CLSID_XblIdpAuthTokenResult_Value = @import("zig.zig").Guid.initString("9f493441-744a-410c-ae2b-9a22f7c7731f");
 pub const CLSID_XblIdpAuthTokenResult = &CLSID_XblIdpAuthTokenResult_Value;
 
-pub const XBL_IDP_AUTH_TOKEN_STATUS = extern enum(i32) {
+pub const XBL_IDP_AUTH_TOKEN_STATUS = enum(i32) {
     SUCCESS = 0,
     OFFLINE_SUCCESS = 1,
     NO_ACCOUNT_SET = 2,
@@ -354,7 +354,7 @@ pub const PlayerPickerUICompletionRoutine = fn(
     selectedXuidsCount: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const KnownGamingPrivileges = extern enum(i32) {
+pub const KnownGamingPrivileges = enum(i32) {
     BROADCAST = 190,
     VIEW_FRIENDS_LIST = 197,
     GAME_DVR = 198,

@@ -1309,7 +1309,7 @@ pub const HGDIOBJ = *opaque{};
 
 pub const HMONITOR = *opaque{};
 
-pub const R2_MODE = extern enum(i32) {
+pub const R2_MODE = enum(i32) {
     BLACK = 1,
     NOTMERGEPEN = 2,
     MASKNOTPEN = 3,
@@ -1326,7 +1326,7 @@ pub const R2_MODE = extern enum(i32) {
     MERGEPENNOT = 14,
     MERGEPEN = 15,
     WHITE = 16,
-    LAST = 16,
+    // LAST = 16, this enum value conflicts with WHITE
 };
 pub const R2_BLACK = R2_MODE.BLACK;
 pub const R2_NOTMERGEPEN = R2_MODE.NOTMERGEPEN;
@@ -1344,26 +1344,26 @@ pub const R2_COPYPEN = R2_MODE.COPYPEN;
 pub const R2_MERGEPENNOT = R2_MODE.MERGEPENNOT;
 pub const R2_MERGEPEN = R2_MODE.MERGEPEN;
 pub const R2_WHITE = R2_MODE.WHITE;
-pub const R2_LAST = R2_MODE.LAST;
+pub const R2_LAST = R2_MODE.WHITE;
 
-pub const RGN_COMBINE_MODE = extern enum(i32) {
+pub const RGN_COMBINE_MODE = enum(i32) {
     AND = 1,
     OR = 2,
     XOR = 3,
     DIFF = 4,
     COPY = 5,
-    MIN = 1,
-    MAX = 5,
+    // MIN = 1, this enum value conflicts with AND
+    // MAX = 5, this enum value conflicts with COPY
 };
 pub const RGN_AND = RGN_COMBINE_MODE.AND;
 pub const RGN_OR = RGN_COMBINE_MODE.OR;
 pub const RGN_XOR = RGN_COMBINE_MODE.XOR;
 pub const RGN_DIFF = RGN_COMBINE_MODE.DIFF;
 pub const RGN_COPY = RGN_COMBINE_MODE.COPY;
-pub const RGN_MIN = RGN_COMBINE_MODE.MIN;
-pub const RGN_MAX = RGN_COMBINE_MODE.MAX;
+pub const RGN_MIN = RGN_COMBINE_MODE.AND;
+pub const RGN_MAX = RGN_COMBINE_MODE.COPY;
 
-pub const ETO_OPTIONS = extern enum(u32) {
+pub const ETO_OPTIONS = enum(u32) {
     OPAQUE = 2,
     CLIPPED = 4,
     GLYPH_INDEX = 16,
@@ -1408,7 +1408,7 @@ pub const ETO_IGNORELANGUAGE = ETO_OPTIONS.IGNORELANGUAGE;
 pub const ETO_PDY = ETO_OPTIONS.PDY;
 pub const ETO_REVERSE_INDEX_MAP = ETO_OPTIONS.REVERSE_INDEX_MAP;
 
-pub const OBJ_TYPE = extern enum(i32) {
+pub const OBJ_TYPE = enum(i32) {
     PEN = 1,
     BRUSH = 2,
     DC = 3,
@@ -1439,7 +1439,7 @@ pub const OBJ_ENHMETADC = OBJ_TYPE.ENHMETADC;
 pub const OBJ_ENHMETAFILE = OBJ_TYPE.ENHMETAFILE;
 pub const OBJ_COLORSPACE = OBJ_TYPE.COLORSPACE;
 
-pub const ROP_CODE = extern enum(u32) {
+pub const ROP_CODE = enum(u32) {
     SRCCOPY = 13369376,
     SRCPAINT = 15597702,
     SRCAND = 8913094,
@@ -1476,7 +1476,7 @@ pub const WHITENESS = ROP_CODE.WHITENESS;
 pub const NOMIRRORBITMAP = ROP_CODE.NOMIRRORBITMAP;
 pub const CAPTUREBLT = ROP_CODE.CAPTUREBLT;
 
-pub const DIB_USAGE = extern enum(u32) {
+pub const DIB_USAGE = enum(u32) {
     RGB_COLORS = 0,
     PAL_COLORS = 1,
 };
@@ -1941,7 +1941,7 @@ pub const DISPLAY_DEVICEW = extern struct {
     DeviceKey: [128]u16,
 };
 
-pub const DISPLAYCONFIG_COLOR_ENCODING = extern enum(i32) {
+pub const DISPLAYCONFIG_COLOR_ENCODING = enum(i32) {
     RGB = 0,
     YCBCR444 = 1,
     YCBCR422 = 2,
@@ -2999,7 +2999,7 @@ pub const TTVALIDATIONTESTSPARAMSEX = extern struct {
     pulCharCodeSet: *u32,
 };
 
-pub const DRAWEDGE_FLAGS = extern enum(u32) {
+pub const DRAWEDGE_FLAGS = enum(u32) {
     BDR_RAISEDOUTER = 1,
     BDR_SUNKENOUTER = 2,
     BDR_RAISEDINNER = 4,
@@ -3008,8 +3008,8 @@ pub const DRAWEDGE_FLAGS = extern enum(u32) {
     BDR_INNER = 12,
     BDR_RAISED = 5,
     BDR_SUNKEN = 10,
-    EDGE_RAISED = 5,
-    EDGE_SUNKEN = 10,
+    // EDGE_RAISED = 5, this enum value conflicts with BDR_RAISED
+    // EDGE_SUNKEN = 10, this enum value conflicts with BDR_SUNKEN
     EDGE_ETCHED = 6,
     EDGE_BUMP = 9,
     _,
@@ -3022,8 +3022,6 @@ pub const DRAWEDGE_FLAGS = extern enum(u32) {
         BDR_INNER: u1 = 0,
         BDR_RAISED: u1 = 0,
         BDR_SUNKEN: u1 = 0,
-        EDGE_RAISED: u1 = 0,
-        EDGE_SUNKEN: u1 = 0,
         EDGE_ETCHED: u1 = 0,
         EDGE_BUMP: u1 = 0,
     }) DRAWEDGE_FLAGS {
@@ -3036,8 +3034,6 @@ pub const DRAWEDGE_FLAGS = extern enum(u32) {
             | (if (o.BDR_INNER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_INNER) else 0)
             | (if (o.BDR_RAISED == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_RAISED) else 0)
             | (if (o.BDR_SUNKEN == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_SUNKEN) else 0)
-            | (if (o.EDGE_RAISED == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_RAISED) else 0)
-            | (if (o.EDGE_SUNKEN == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_SUNKEN) else 0)
             | (if (o.EDGE_ETCHED == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_ETCHED) else 0)
             | (if (o.EDGE_BUMP == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_BUMP) else 0)
         );
@@ -3051,12 +3047,12 @@ pub const BDR_OUTER = DRAWEDGE_FLAGS.BDR_OUTER;
 pub const BDR_INNER = DRAWEDGE_FLAGS.BDR_INNER;
 pub const BDR_RAISED = DRAWEDGE_FLAGS.BDR_RAISED;
 pub const BDR_SUNKEN = DRAWEDGE_FLAGS.BDR_SUNKEN;
-pub const EDGE_RAISED = DRAWEDGE_FLAGS.EDGE_RAISED;
-pub const EDGE_SUNKEN = DRAWEDGE_FLAGS.EDGE_SUNKEN;
+pub const EDGE_RAISED = DRAWEDGE_FLAGS.BDR_RAISED;
+pub const EDGE_SUNKEN = DRAWEDGE_FLAGS.BDR_SUNKEN;
 pub const EDGE_ETCHED = DRAWEDGE_FLAGS.EDGE_ETCHED;
 pub const EDGE_BUMP = DRAWEDGE_FLAGS.EDGE_BUMP;
 
-pub const DFC_TYPE = extern enum(u32) {
+pub const DFC_TYPE = enum(u32) {
     CAPTION = 1,
     MENU = 2,
     SCROLL = 3,
@@ -3069,29 +3065,29 @@ pub const DFC_SCROLL = DFC_TYPE.SCROLL;
 pub const DFC_BUTTON = DFC_TYPE.BUTTON;
 pub const DFC_POPUPMENU = DFC_TYPE.POPUPMENU;
 
-pub const DFCS_STATE = extern enum(u32) {
+pub const DFCS_STATE = enum(u32) {
     CAPTIONCLOSE = 0,
     CAPTIONMIN = 1,
     CAPTIONMAX = 2,
     CAPTIONRESTORE = 3,
     CAPTIONHELP = 4,
-    MENUARROW = 0,
-    MENUCHECK = 1,
-    MENUBULLET = 2,
-    MENUARROWRIGHT = 4,
-    SCROLLUP = 0,
-    SCROLLDOWN = 1,
-    SCROLLLEFT = 2,
-    SCROLLRIGHT = 3,
+    // MENUARROW = 0, this enum value conflicts with CAPTIONCLOSE
+    // MENUCHECK = 1, this enum value conflicts with CAPTIONMIN
+    // MENUBULLET = 2, this enum value conflicts with CAPTIONMAX
+    // MENUARROWRIGHT = 4, this enum value conflicts with CAPTIONHELP
+    // SCROLLUP = 0, this enum value conflicts with CAPTIONCLOSE
+    // SCROLLDOWN = 1, this enum value conflicts with CAPTIONMIN
+    // SCROLLLEFT = 2, this enum value conflicts with CAPTIONMAX
+    // SCROLLRIGHT = 3, this enum value conflicts with CAPTIONRESTORE
     SCROLLCOMBOBOX = 5,
     SCROLLSIZEGRIP = 8,
     SCROLLSIZEGRIPRIGHT = 16,
-    BUTTONCHECK = 0,
-    BUTTONRADIOIMAGE = 1,
-    BUTTONRADIOMASK = 2,
-    BUTTONRADIO = 4,
-    BUTTON3STATE = 8,
-    BUTTONPUSH = 16,
+    // BUTTONCHECK = 0, this enum value conflicts with CAPTIONCLOSE
+    // BUTTONRADIOIMAGE = 1, this enum value conflicts with CAPTIONMIN
+    // BUTTONRADIOMASK = 2, this enum value conflicts with CAPTIONMAX
+    // BUTTONRADIO = 4, this enum value conflicts with CAPTIONHELP
+    // BUTTON3STATE = 8, this enum value conflicts with SCROLLSIZEGRIP
+    // BUTTONPUSH = 16, this enum value conflicts with SCROLLSIZEGRIPRIGHT
     INACTIVE = 256,
     PUSHED = 512,
     CHECKED = 1024,
@@ -3107,23 +3103,9 @@ pub const DFCS_STATE = extern enum(u32) {
         CAPTIONMAX: u1 = 0,
         CAPTIONRESTORE: u1 = 0,
         CAPTIONHELP: u1 = 0,
-        MENUARROW: u1 = 0,
-        MENUCHECK: u1 = 0,
-        MENUBULLET: u1 = 0,
-        MENUARROWRIGHT: u1 = 0,
-        SCROLLUP: u1 = 0,
-        SCROLLDOWN: u1 = 0,
-        SCROLLLEFT: u1 = 0,
-        SCROLLRIGHT: u1 = 0,
         SCROLLCOMBOBOX: u1 = 0,
         SCROLLSIZEGRIP: u1 = 0,
         SCROLLSIZEGRIPRIGHT: u1 = 0,
-        BUTTONCHECK: u1 = 0,
-        BUTTONRADIOIMAGE: u1 = 0,
-        BUTTONRADIOMASK: u1 = 0,
-        BUTTONRADIO: u1 = 0,
-        BUTTON3STATE: u1 = 0,
-        BUTTONPUSH: u1 = 0,
         INACTIVE: u1 = 0,
         PUSHED: u1 = 0,
         CHECKED: u1 = 0,
@@ -3139,23 +3121,9 @@ pub const DFCS_STATE = extern enum(u32) {
             | (if (o.CAPTIONMAX == 1) @enumToInt(DFCS_STATE.CAPTIONMAX) else 0)
             | (if (o.CAPTIONRESTORE == 1) @enumToInt(DFCS_STATE.CAPTIONRESTORE) else 0)
             | (if (o.CAPTIONHELP == 1) @enumToInt(DFCS_STATE.CAPTIONHELP) else 0)
-            | (if (o.MENUARROW == 1) @enumToInt(DFCS_STATE.MENUARROW) else 0)
-            | (if (o.MENUCHECK == 1) @enumToInt(DFCS_STATE.MENUCHECK) else 0)
-            | (if (o.MENUBULLET == 1) @enumToInt(DFCS_STATE.MENUBULLET) else 0)
-            | (if (o.MENUARROWRIGHT == 1) @enumToInt(DFCS_STATE.MENUARROWRIGHT) else 0)
-            | (if (o.SCROLLUP == 1) @enumToInt(DFCS_STATE.SCROLLUP) else 0)
-            | (if (o.SCROLLDOWN == 1) @enumToInt(DFCS_STATE.SCROLLDOWN) else 0)
-            | (if (o.SCROLLLEFT == 1) @enumToInt(DFCS_STATE.SCROLLLEFT) else 0)
-            | (if (o.SCROLLRIGHT == 1) @enumToInt(DFCS_STATE.SCROLLRIGHT) else 0)
             | (if (o.SCROLLCOMBOBOX == 1) @enumToInt(DFCS_STATE.SCROLLCOMBOBOX) else 0)
             | (if (o.SCROLLSIZEGRIP == 1) @enumToInt(DFCS_STATE.SCROLLSIZEGRIP) else 0)
             | (if (o.SCROLLSIZEGRIPRIGHT == 1) @enumToInt(DFCS_STATE.SCROLLSIZEGRIPRIGHT) else 0)
-            | (if (o.BUTTONCHECK == 1) @enumToInt(DFCS_STATE.BUTTONCHECK) else 0)
-            | (if (o.BUTTONRADIOIMAGE == 1) @enumToInt(DFCS_STATE.BUTTONRADIOIMAGE) else 0)
-            | (if (o.BUTTONRADIOMASK == 1) @enumToInt(DFCS_STATE.BUTTONRADIOMASK) else 0)
-            | (if (o.BUTTONRADIO == 1) @enumToInt(DFCS_STATE.BUTTONRADIO) else 0)
-            | (if (o.BUTTON3STATE == 1) @enumToInt(DFCS_STATE.BUTTON3STATE) else 0)
-            | (if (o.BUTTONPUSH == 1) @enumToInt(DFCS_STATE.BUTTONPUSH) else 0)
             | (if (o.INACTIVE == 1) @enumToInt(DFCS_STATE.INACTIVE) else 0)
             | (if (o.PUSHED == 1) @enumToInt(DFCS_STATE.PUSHED) else 0)
             | (if (o.CHECKED == 1) @enumToInt(DFCS_STATE.CHECKED) else 0)
@@ -3172,23 +3140,23 @@ pub const DFCS_CAPTIONMIN = DFCS_STATE.CAPTIONMIN;
 pub const DFCS_CAPTIONMAX = DFCS_STATE.CAPTIONMAX;
 pub const DFCS_CAPTIONRESTORE = DFCS_STATE.CAPTIONRESTORE;
 pub const DFCS_CAPTIONHELP = DFCS_STATE.CAPTIONHELP;
-pub const DFCS_MENUARROW = DFCS_STATE.MENUARROW;
-pub const DFCS_MENUCHECK = DFCS_STATE.MENUCHECK;
-pub const DFCS_MENUBULLET = DFCS_STATE.MENUBULLET;
-pub const DFCS_MENUARROWRIGHT = DFCS_STATE.MENUARROWRIGHT;
-pub const DFCS_SCROLLUP = DFCS_STATE.SCROLLUP;
-pub const DFCS_SCROLLDOWN = DFCS_STATE.SCROLLDOWN;
-pub const DFCS_SCROLLLEFT = DFCS_STATE.SCROLLLEFT;
-pub const DFCS_SCROLLRIGHT = DFCS_STATE.SCROLLRIGHT;
+pub const DFCS_MENUARROW = DFCS_STATE.CAPTIONCLOSE;
+pub const DFCS_MENUCHECK = DFCS_STATE.CAPTIONMIN;
+pub const DFCS_MENUBULLET = DFCS_STATE.CAPTIONMAX;
+pub const DFCS_MENUARROWRIGHT = DFCS_STATE.CAPTIONHELP;
+pub const DFCS_SCROLLUP = DFCS_STATE.CAPTIONCLOSE;
+pub const DFCS_SCROLLDOWN = DFCS_STATE.CAPTIONMIN;
+pub const DFCS_SCROLLLEFT = DFCS_STATE.CAPTIONMAX;
+pub const DFCS_SCROLLRIGHT = DFCS_STATE.CAPTIONRESTORE;
 pub const DFCS_SCROLLCOMBOBOX = DFCS_STATE.SCROLLCOMBOBOX;
 pub const DFCS_SCROLLSIZEGRIP = DFCS_STATE.SCROLLSIZEGRIP;
 pub const DFCS_SCROLLSIZEGRIPRIGHT = DFCS_STATE.SCROLLSIZEGRIPRIGHT;
-pub const DFCS_BUTTONCHECK = DFCS_STATE.BUTTONCHECK;
-pub const DFCS_BUTTONRADIOIMAGE = DFCS_STATE.BUTTONRADIOIMAGE;
-pub const DFCS_BUTTONRADIOMASK = DFCS_STATE.BUTTONRADIOMASK;
-pub const DFCS_BUTTONRADIO = DFCS_STATE.BUTTONRADIO;
-pub const DFCS_BUTTON3STATE = DFCS_STATE.BUTTON3STATE;
-pub const DFCS_BUTTONPUSH = DFCS_STATE.BUTTONPUSH;
+pub const DFCS_BUTTONCHECK = DFCS_STATE.CAPTIONCLOSE;
+pub const DFCS_BUTTONRADIOIMAGE = DFCS_STATE.CAPTIONMIN;
+pub const DFCS_BUTTONRADIOMASK = DFCS_STATE.CAPTIONMAX;
+pub const DFCS_BUTTONRADIO = DFCS_STATE.CAPTIONHELP;
+pub const DFCS_BUTTON3STATE = DFCS_STATE.SCROLLSIZEGRIP;
+pub const DFCS_BUTTONPUSH = DFCS_STATE.SCROLLSIZEGRIPRIGHT;
 pub const DFCS_INACTIVE = DFCS_STATE.INACTIVE;
 pub const DFCS_PUSHED = DFCS_STATE.PUSHED;
 pub const DFCS_CHECKED = DFCS_STATE.CHECKED;
@@ -3198,7 +3166,7 @@ pub const DFCS_ADJUSTRECT = DFCS_STATE.ADJUSTRECT;
 pub const DFCS_FLAT = DFCS_STATE.FLAT;
 pub const DFCS_MONO = DFCS_STATE.MONO;
 
-pub const CDS_TYPE = extern enum(u32) {
+pub const CDS_TYPE = enum(u32) {
     FULLSCREEN = 4,
     GLOBAL = 8,
     NORESET = 268435456,
@@ -3251,7 +3219,7 @@ pub const CDS_ENABLE_UNSAFE_MODES = CDS_TYPE.ENABLE_UNSAFE_MODES;
 pub const CDS_DISABLE_UNSAFE_MODES = CDS_TYPE.DISABLE_UNSAFE_MODES;
 pub const CDS_RESET_EX = CDS_TYPE.RESET_EX;
 
-pub const DISP_CHANGE = extern enum(i32) {
+pub const DISP_CHANGE = enum(i32) {
     SUCCESSFUL = 0,
     RESTART = 1,
     FAILED = -1,
@@ -3270,13 +3238,13 @@ pub const DISP_CHANGE_BADFLAGS = DISP_CHANGE.BADFLAGS;
 pub const DISP_CHANGE_BADPARAM = DISP_CHANGE.BADPARAM;
 pub const DISP_CHANGE_BADDUALVIEW = DISP_CHANGE.BADDUALVIEW;
 
-pub const DRAWSTATE_FLAGS = extern enum(u32) {
+pub const DRAWSTATE_FLAGS = enum(u32) {
     T_COMPLEX = 0,
     T_TEXT = 1,
     T_PREFIXTEXT = 2,
     T_ICON = 3,
     T_BITMAP = 4,
-    S_NORMAL = 0,
+    // S_NORMAL = 0, this enum value conflicts with T_COMPLEX
     S_UNION = 16,
     S_DISABLED = 32,
     S_MONO = 128,
@@ -3290,7 +3258,6 @@ pub const DRAWSTATE_FLAGS = extern enum(u32) {
         T_PREFIXTEXT: u1 = 0,
         T_ICON: u1 = 0,
         T_BITMAP: u1 = 0,
-        S_NORMAL: u1 = 0,
         S_UNION: u1 = 0,
         S_DISABLED: u1 = 0,
         S_MONO: u1 = 0,
@@ -3304,7 +3271,6 @@ pub const DRAWSTATE_FLAGS = extern enum(u32) {
             | (if (o.T_PREFIXTEXT == 1) @enumToInt(DRAWSTATE_FLAGS.T_PREFIXTEXT) else 0)
             | (if (o.T_ICON == 1) @enumToInt(DRAWSTATE_FLAGS.T_ICON) else 0)
             | (if (o.T_BITMAP == 1) @enumToInt(DRAWSTATE_FLAGS.T_BITMAP) else 0)
-            | (if (o.S_NORMAL == 1) @enumToInt(DRAWSTATE_FLAGS.S_NORMAL) else 0)
             | (if (o.S_UNION == 1) @enumToInt(DRAWSTATE_FLAGS.S_UNION) else 0)
             | (if (o.S_DISABLED == 1) @enumToInt(DRAWSTATE_FLAGS.S_DISABLED) else 0)
             | (if (o.S_MONO == 1) @enumToInt(DRAWSTATE_FLAGS.S_MONO) else 0)
@@ -3319,7 +3285,7 @@ pub const DST_TEXT = DRAWSTATE_FLAGS.T_TEXT;
 pub const DST_PREFIXTEXT = DRAWSTATE_FLAGS.T_PREFIXTEXT;
 pub const DST_ICON = DRAWSTATE_FLAGS.T_ICON;
 pub const DST_BITMAP = DRAWSTATE_FLAGS.T_BITMAP;
-pub const DSS_NORMAL = DRAWSTATE_FLAGS.S_NORMAL;
+pub const DSS_NORMAL = DRAWSTATE_FLAGS.T_COMPLEX;
 pub const DSS_UNION = DRAWSTATE_FLAGS.S_UNION;
 pub const DSS_DISABLED = DRAWSTATE_FLAGS.S_DISABLED;
 pub const DSS_MONO = DRAWSTATE_FLAGS.S_MONO;
@@ -3327,7 +3293,7 @@ pub const DSS_HIDEPREFIX = DRAWSTATE_FLAGS.S_HIDEPREFIX;
 pub const DSS_PREFIXONLY = DRAWSTATE_FLAGS.S_PREFIXONLY;
 pub const DSS_RIGHT = DRAWSTATE_FLAGS.S_RIGHT;
 
-pub const REDRAW_WINDOW_FLAGS = extern enum(u32) {
+pub const REDRAW_WINDOW_FLAGS = enum(u32) {
     INVALIDATE = 1,
     INTERNALPAINT = 2,
     ERASE = 4,
@@ -3384,17 +3350,17 @@ pub const RDW_ERASENOW = REDRAW_WINDOW_FLAGS.ERASENOW;
 pub const RDW_FRAME = REDRAW_WINDOW_FLAGS.FRAME;
 pub const RDW_NOFRAME = REDRAW_WINDOW_FLAGS.NOFRAME;
 
-pub const ENUM_DISPLAY_SETTINGS_MODE = extern enum(u32) {
+pub const ENUM_DISPLAY_SETTINGS_MODE = enum(u32) {
     CURRENT_SETTINGS = 4294967295,
     REGISTRY_SETTINGS = 4294967294,
 };
 pub const ENUM_CURRENT_SETTINGS = ENUM_DISPLAY_SETTINGS_MODE.CURRENT_SETTINGS;
 pub const ENUM_REGISTRY_SETTINGS = ENUM_DISPLAY_SETTINGS_MODE.REGISTRY_SETTINGS;
 
-pub const PEN_STYLE = extern enum(u32) {
+pub const PEN_STYLE = enum(u32) {
     GEOMETRIC = 65536,
     COSMETIC = 0,
-    SOLID = 0,
+    // SOLID = 0, this enum value conflicts with COSMETIC
     DASH = 1,
     DOT = 2,
     DASHDOT = 3,
@@ -3404,11 +3370,11 @@ pub const PEN_STYLE = extern enum(u32) {
     USERSTYLE = 7,
     ALTERNATE = 8,
     STYLE_MASK = 15,
-    ENDCAP_ROUND = 0,
+    // ENDCAP_ROUND = 0, this enum value conflicts with COSMETIC
     ENDCAP_SQUARE = 256,
     ENDCAP_FLAT = 512,
     ENDCAP_MASK = 3840,
-    JOIN_ROUND = 0,
+    // JOIN_ROUND = 0, this enum value conflicts with COSMETIC
     JOIN_BEVEL = 4096,
     JOIN_MITER = 8192,
     JOIN_MASK = 61440,
@@ -3417,7 +3383,6 @@ pub const PEN_STYLE = extern enum(u32) {
     pub fn initFlags(o: struct {
         GEOMETRIC: u1 = 0,
         COSMETIC: u1 = 0,
-        SOLID: u1 = 0,
         DASH: u1 = 0,
         DOT: u1 = 0,
         DASHDOT: u1 = 0,
@@ -3427,11 +3392,9 @@ pub const PEN_STYLE = extern enum(u32) {
         USERSTYLE: u1 = 0,
         ALTERNATE: u1 = 0,
         STYLE_MASK: u1 = 0,
-        ENDCAP_ROUND: u1 = 0,
         ENDCAP_SQUARE: u1 = 0,
         ENDCAP_FLAT: u1 = 0,
         ENDCAP_MASK: u1 = 0,
-        JOIN_ROUND: u1 = 0,
         JOIN_BEVEL: u1 = 0,
         JOIN_MITER: u1 = 0,
         JOIN_MASK: u1 = 0,
@@ -3440,7 +3403,6 @@ pub const PEN_STYLE = extern enum(u32) {
         return @intToEnum(PEN_STYLE,
               (if (o.GEOMETRIC == 1) @enumToInt(PEN_STYLE.GEOMETRIC) else 0)
             | (if (o.COSMETIC == 1) @enumToInt(PEN_STYLE.COSMETIC) else 0)
-            | (if (o.SOLID == 1) @enumToInt(PEN_STYLE.SOLID) else 0)
             | (if (o.DASH == 1) @enumToInt(PEN_STYLE.DASH) else 0)
             | (if (o.DOT == 1) @enumToInt(PEN_STYLE.DOT) else 0)
             | (if (o.DASHDOT == 1) @enumToInt(PEN_STYLE.DASHDOT) else 0)
@@ -3450,11 +3412,9 @@ pub const PEN_STYLE = extern enum(u32) {
             | (if (o.USERSTYLE == 1) @enumToInt(PEN_STYLE.USERSTYLE) else 0)
             | (if (o.ALTERNATE == 1) @enumToInt(PEN_STYLE.ALTERNATE) else 0)
             | (if (o.STYLE_MASK == 1) @enumToInt(PEN_STYLE.STYLE_MASK) else 0)
-            | (if (o.ENDCAP_ROUND == 1) @enumToInt(PEN_STYLE.ENDCAP_ROUND) else 0)
             | (if (o.ENDCAP_SQUARE == 1) @enumToInt(PEN_STYLE.ENDCAP_SQUARE) else 0)
             | (if (o.ENDCAP_FLAT == 1) @enumToInt(PEN_STYLE.ENDCAP_FLAT) else 0)
             | (if (o.ENDCAP_MASK == 1) @enumToInt(PEN_STYLE.ENDCAP_MASK) else 0)
-            | (if (o.JOIN_ROUND == 1) @enumToInt(PEN_STYLE.JOIN_ROUND) else 0)
             | (if (o.JOIN_BEVEL == 1) @enumToInt(PEN_STYLE.JOIN_BEVEL) else 0)
             | (if (o.JOIN_MITER == 1) @enumToInt(PEN_STYLE.JOIN_MITER) else 0)
             | (if (o.JOIN_MASK == 1) @enumToInt(PEN_STYLE.JOIN_MASK) else 0)
@@ -3464,7 +3424,7 @@ pub const PEN_STYLE = extern enum(u32) {
 };
 pub const PS_GEOMETRIC = PEN_STYLE.GEOMETRIC;
 pub const PS_COSMETIC = PEN_STYLE.COSMETIC;
-pub const PS_SOLID = PEN_STYLE.SOLID;
+pub const PS_SOLID = PEN_STYLE.COSMETIC;
 pub const PS_DASH = PEN_STYLE.DASH;
 pub const PS_DOT = PEN_STYLE.DOT;
 pub const PS_DASHDOT = PEN_STYLE.DASHDOT;
@@ -3474,17 +3434,17 @@ pub const PS_INSIDEFRAME = PEN_STYLE.INSIDEFRAME;
 pub const PS_USERSTYLE = PEN_STYLE.USERSTYLE;
 pub const PS_ALTERNATE = PEN_STYLE.ALTERNATE;
 pub const PS_STYLE_MASK = PEN_STYLE.STYLE_MASK;
-pub const PS_ENDCAP_ROUND = PEN_STYLE.ENDCAP_ROUND;
+pub const PS_ENDCAP_ROUND = PEN_STYLE.COSMETIC;
 pub const PS_ENDCAP_SQUARE = PEN_STYLE.ENDCAP_SQUARE;
 pub const PS_ENDCAP_FLAT = PEN_STYLE.ENDCAP_FLAT;
 pub const PS_ENDCAP_MASK = PEN_STYLE.ENDCAP_MASK;
-pub const PS_JOIN_ROUND = PEN_STYLE.JOIN_ROUND;
+pub const PS_JOIN_ROUND = PEN_STYLE.COSMETIC;
 pub const PS_JOIN_BEVEL = PEN_STYLE.JOIN_BEVEL;
 pub const PS_JOIN_MITER = PEN_STYLE.JOIN_MITER;
 pub const PS_JOIN_MASK = PEN_STYLE.JOIN_MASK;
 pub const PS_TYPE_MASK = PEN_STYLE.TYPE_MASK;
 
-pub const TTEMBED_FLAGS = extern enum(u32) {
+pub const TTEMBED_FLAGS = enum(u32) {
     EMBEDEUDC = 32,
     RAW = 0,
     SUBSET = 1,
@@ -3509,7 +3469,7 @@ pub const TTEMBED_RAW = TTEMBED_FLAGS.RAW;
 pub const TTEMBED_SUBSET = TTEMBED_FLAGS.SUBSET;
 pub const TTEMBED_TTCOMPRESSED = TTEMBED_FLAGS.TTCOMPRESSED;
 
-pub const DRAW_TEXT_FORMAT = extern enum(u32) {
+pub const DRAW_TEXT_FORMAT = enum(u32) {
     BOTTOM = 8,
     CALCRECT = 1024,
     CENTER = 1,
@@ -3530,7 +3490,7 @@ pub const DRAW_TEXT_FORMAT = extern enum(u32) {
     RTLREADING = 131072,
     SINGLELINE = 32,
     TABSTOP = 128,
-    TOP = 0,
+    // TOP = 0, this enum value conflicts with LEFT
     VCENTER = 4,
     WORDBREAK = 16,
     WORD_ELLIPSIS = 262144,
@@ -3556,7 +3516,6 @@ pub const DRAW_TEXT_FORMAT = extern enum(u32) {
         RTLREADING: u1 = 0,
         SINGLELINE: u1 = 0,
         TABSTOP: u1 = 0,
-        TOP: u1 = 0,
         VCENTER: u1 = 0,
         WORDBREAK: u1 = 0,
         WORD_ELLIPSIS: u1 = 0,
@@ -3582,7 +3541,6 @@ pub const DRAW_TEXT_FORMAT = extern enum(u32) {
             | (if (o.RTLREADING == 1) @enumToInt(DRAW_TEXT_FORMAT.RTLREADING) else 0)
             | (if (o.SINGLELINE == 1) @enumToInt(DRAW_TEXT_FORMAT.SINGLELINE) else 0)
             | (if (o.TABSTOP == 1) @enumToInt(DRAW_TEXT_FORMAT.TABSTOP) else 0)
-            | (if (o.TOP == 1) @enumToInt(DRAW_TEXT_FORMAT.TOP) else 0)
             | (if (o.VCENTER == 1) @enumToInt(DRAW_TEXT_FORMAT.VCENTER) else 0)
             | (if (o.WORDBREAK == 1) @enumToInt(DRAW_TEXT_FORMAT.WORDBREAK) else 0)
             | (if (o.WORD_ELLIPSIS == 1) @enumToInt(DRAW_TEXT_FORMAT.WORD_ELLIPSIS) else 0)
@@ -3609,19 +3567,19 @@ pub const DT_RIGHT = DRAW_TEXT_FORMAT.RIGHT;
 pub const DT_RTLREADING = DRAW_TEXT_FORMAT.RTLREADING;
 pub const DT_SINGLELINE = DRAW_TEXT_FORMAT.SINGLELINE;
 pub const DT_TABSTOP = DRAW_TEXT_FORMAT.TABSTOP;
-pub const DT_TOP = DRAW_TEXT_FORMAT.TOP;
+pub const DT_TOP = DRAW_TEXT_FORMAT.LEFT;
 pub const DT_VCENTER = DRAW_TEXT_FORMAT.VCENTER;
 pub const DT_WORDBREAK = DRAW_TEXT_FORMAT.WORDBREAK;
 pub const DT_WORD_ELLIPSIS = DRAW_TEXT_FORMAT.WORD_ELLIPSIS;
 
-pub const EMBED_FONT_CHARSET = extern enum(u32) {
+pub const EMBED_FONT_CHARSET = enum(u32) {
     UNICODE = 1,
     SYMBOL = 2,
 };
 pub const CHARSET_UNICODE = EMBED_FONT_CHARSET.UNICODE;
 pub const CHARSET_SYMBOL = EMBED_FONT_CHARSET.SYMBOL;
 
-pub const GET_DCX_FLAGS = extern enum(u32) {
+pub const GET_DCX_FLAGS = enum(u32) {
     WINDOW = 1,
     CACHE = 2,
     PARENTCLIP = 32,
@@ -3674,7 +3632,7 @@ pub const DCX_INTERSECTRGN = GET_DCX_FLAGS.INTERSECTRGN;
 pub const DCX_INTERSECTUPDATE = GET_DCX_FLAGS.INTERSECTUPDATE;
 pub const DCX_VALIDATE = GET_DCX_FLAGS.VALIDATE;
 
-pub const GET_GLYPH_OUTLINE_FORMAT = extern enum(u32) {
+pub const GET_GLYPH_OUTLINE_FORMAT = enum(u32) {
     BEZIER = 3,
     BITMAP = 1,
     GLYPH_INDEX = 128,
@@ -3695,7 +3653,7 @@ pub const GGO_METRICS = GET_GLYPH_OUTLINE_FORMAT.METRICS;
 pub const GGO_NATIVE = GET_GLYPH_OUTLINE_FORMAT.NATIVE;
 pub const GGO_UNHINTED = GET_GLYPH_OUTLINE_FORMAT.UNHINTED;
 
-pub const SET_BOUNDS_RECT_FLAGS = extern enum(u32) {
+pub const SET_BOUNDS_RECT_FLAGS = enum(u32) {
     ACCUMULATE = 2,
     DISABLE = 8,
     ENABLE = 4,
@@ -3706,14 +3664,14 @@ pub const DCB_DISABLE = SET_BOUNDS_RECT_FLAGS.DISABLE;
 pub const DCB_ENABLE = SET_BOUNDS_RECT_FLAGS.ENABLE;
 pub const DCB_RESET = SET_BOUNDS_RECT_FLAGS.RESET;
 
-pub const GET_STOCK_OBJECT_FLAGS = extern enum(u32) {
+pub const GET_STOCK_OBJECT_FLAGS = enum(u32) {
     BLACK_BRUSH = 4,
     DKGRAY_BRUSH = 3,
     DC_BRUSH = 18,
     GRAY_BRUSH = 2,
     HOLLOW_BRUSH = 5,
     LTGRAY_BRUSH = 1,
-    NULL_BRUSH = 5,
+    // NULL_BRUSH = 5, this enum value conflicts with HOLLOW_BRUSH
     WHITE_BRUSH = 0,
     BLACK_PEN = 7,
     DC_PEN = 19,
@@ -3734,7 +3692,7 @@ pub const DC_BRUSH = GET_STOCK_OBJECT_FLAGS.DC_BRUSH;
 pub const GRAY_BRUSH = GET_STOCK_OBJECT_FLAGS.GRAY_BRUSH;
 pub const HOLLOW_BRUSH = GET_STOCK_OBJECT_FLAGS.HOLLOW_BRUSH;
 pub const LTGRAY_BRUSH = GET_STOCK_OBJECT_FLAGS.LTGRAY_BRUSH;
-pub const NULL_BRUSH = GET_STOCK_OBJECT_FLAGS.NULL_BRUSH;
+pub const NULL_BRUSH = GET_STOCK_OBJECT_FLAGS.HOLLOW_BRUSH;
 pub const WHITE_BRUSH = GET_STOCK_OBJECT_FLAGS.WHITE_BRUSH;
 pub const BLACK_PEN = GET_STOCK_OBJECT_FLAGS.BLACK_PEN;
 pub const DC_PEN = GET_STOCK_OBJECT_FLAGS.DC_PEN;
@@ -3749,7 +3707,7 @@ pub const SYSTEM_FONT = GET_STOCK_OBJECT_FLAGS.SYSTEM_FONT;
 pub const SYSTEM_FIXED_FONT = GET_STOCK_OBJECT_FLAGS.SYSTEM_FIXED_FONT;
 pub const DEFAULT_PALETTE = GET_STOCK_OBJECT_FLAGS.DEFAULT_PALETTE;
 
-pub const MODIFY_WORLD_TRANSFORM_MODE = extern enum(u32) {
+pub const MODIFY_WORLD_TRANSFORM_MODE = enum(u32) {
     IDENTITY = 1,
     LEFTMULTIPLY = 2,
     RIGHTMULTIPLY = 3,
@@ -3758,7 +3716,7 @@ pub const MWT_IDENTITY = MODIFY_WORLD_TRANSFORM_MODE.IDENTITY;
 pub const MWT_LEFTMULTIPLY = MODIFY_WORLD_TRANSFORM_MODE.LEFTMULTIPLY;
 pub const MWT_RIGHTMULTIPLY = MODIFY_WORLD_TRANSFORM_MODE.RIGHTMULTIPLY;
 
-pub const FONT_CLIP_PRECISION = extern enum(u32) {
+pub const FONT_CLIP_PRECISION = enum(u32) {
     CHARACTER_PRECIS = 1,
     DEFAULT_PRECIS = 0,
     DFA_DISABLE = 64,
@@ -3799,14 +3757,14 @@ pub const CLIP_MASK = FONT_CLIP_PRECISION.MASK;
 pub const CLIP_STROKE_PRECIS = FONT_CLIP_PRECISION.STROKE_PRECIS;
 pub const CLIP_TT_ALWAYS = FONT_CLIP_PRECISION.TT_ALWAYS;
 
-pub const CREATE_POLYGON_RGN_MODE = extern enum(u32) {
+pub const CREATE_POLYGON_RGN_MODE = enum(u32) {
     ALTERNATE = 1,
     WINDING = 2,
 };
 pub const ALTERNATE = CREATE_POLYGON_RGN_MODE.ALTERNATE;
 pub const WINDING = CREATE_POLYGON_RGN_MODE.WINDING;
 
-pub const EMBEDDED_FONT_PRIV_STATUS = extern enum(u32) {
+pub const EMBEDDED_FONT_PRIV_STATUS = enum(u32) {
     PREVIEWPRINT = 1,
     EDITABLE = 2,
     INSTALLABLE = 3,
@@ -3817,7 +3775,7 @@ pub const EMBED_EDITABLE = EMBEDDED_FONT_PRIV_STATUS.EDITABLE;
 pub const EMBED_INSTALLABLE = EMBEDDED_FONT_PRIV_STATUS.INSTALLABLE;
 pub const EMBED_NOEMBEDDING = EMBEDDED_FONT_PRIV_STATUS.NOEMBEDDING;
 
-pub const MONITOR_FROM_FLAGS = extern enum(u32) {
+pub const MONITOR_FROM_FLAGS = enum(u32) {
     NEAREST = 2,
     NULL = 0,
     PRIMARY = 1,
@@ -3826,14 +3784,14 @@ pub const MONITOR_DEFAULTTONEAREST = MONITOR_FROM_FLAGS.NEAREST;
 pub const MONITOR_DEFAULTTONULL = MONITOR_FROM_FLAGS.NULL;
 pub const MONITOR_DEFAULTTOPRIMARY = MONITOR_FROM_FLAGS.PRIMARY;
 
-pub const FONT_RESOURCE_CHARACTERISTICS = extern enum(u32) {
+pub const FONT_RESOURCE_CHARACTERISTICS = enum(u32) {
     PRIVATE = 16,
     NOT_ENUM = 32,
 };
 pub const FR_PRIVATE = FONT_RESOURCE_CHARACTERISTICS.PRIVATE;
 pub const FR_NOT_ENUM = FONT_RESOURCE_CHARACTERISTICS.NOT_ENUM;
 
-pub const DC_LAYOUT = extern enum(u32) {
+pub const DC_LAYOUT = enum(u32) {
     BITMAPORIENTATIONPRESERVED = 8,
     RTL = 1,
     _,
@@ -3850,12 +3808,12 @@ pub const DC_LAYOUT = extern enum(u32) {
 pub const LAYOUT_BITMAPORIENTATIONPRESERVED = DC_LAYOUT.BITMAPORIENTATIONPRESERVED;
 pub const LAYOUT_RTL = DC_LAYOUT.RTL;
 
-pub const GET_DEVICE_CAPS_INDEX = extern enum(u32) {
+pub const GET_DEVICE_CAPS_INDEX = enum(u32) {
     N = 0,
 };
 pub const DRIVERVERSION = GET_DEVICE_CAPS_INDEX.N;
 
-pub const FONT_OUTPUT_PRECISION = extern enum(u32) {
+pub const FONT_OUTPUT_PRECISION = enum(u32) {
     CHARACTER_PRECIS = 2,
     DEFAULT_PRECIS = 0,
     DEVICE_PRECIS = 5,
@@ -3878,14 +3836,14 @@ pub const OUT_STROKE_PRECIS = FONT_OUTPUT_PRECISION.STROKE_PRECIS;
 pub const OUT_TT_ONLY_PRECIS = FONT_OUTPUT_PRECISION.TT_ONLY_PRECIS;
 pub const OUT_TT_PRECIS = FONT_OUTPUT_PRECISION.TT_PRECIS;
 
-pub const ARC_DIRECTION = extern enum(u32) {
+pub const ARC_DIRECTION = enum(u32) {
     OUNTERCLOCKWISE = 1,
     LOCKWISE = 2,
 };
 pub const AD_COUNTERCLOCKWISE = ARC_DIRECTION.OUNTERCLOCKWISE;
 pub const AD_CLOCKWISE = ARC_DIRECTION.LOCKWISE;
 
-pub const TTLOAD_EMBEDDED_FONT_STATUS = extern enum(u32) {
+pub const TTLOAD_EMBEDDED_FONT_STATUS = enum(u32) {
     SUBSETTED = 1,
     IN_SYSSTARTUP = 2,
     _,
@@ -3902,26 +3860,26 @@ pub const TTLOAD_EMBEDDED_FONT_STATUS = extern enum(u32) {
 pub const TTLOAD_FONT_SUBSETTED = TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED;
 pub const TTLOAD_FONT_IN_SYSSTARTUP = TTLOAD_EMBEDDED_FONT_STATUS.IN_SYSSTARTUP;
 
-pub const STRETCH_BLT_MODE = extern enum(u32) {
+pub const STRETCH_BLT_MODE = enum(u32) {
     BLACKONWHITE = 1,
     COLORONCOLOR = 3,
     HALFTONE = 4,
-    STRETCH_ANDSCANS = 1,
-    STRETCH_DELETESCANS = 3,
-    STRETCH_HALFTONE = 4,
+    // STRETCH_ANDSCANS = 1, this enum value conflicts with BLACKONWHITE
+    // STRETCH_DELETESCANS = 3, this enum value conflicts with COLORONCOLOR
+    // STRETCH_HALFTONE = 4, this enum value conflicts with HALFTONE
     STRETCH_ORSCANS = 2,
-    WHITEONBLACK = 2,
+    // WHITEONBLACK = 2, this enum value conflicts with STRETCH_ORSCANS
 };
 pub const BLACKONWHITE = STRETCH_BLT_MODE.BLACKONWHITE;
 pub const COLORONCOLOR = STRETCH_BLT_MODE.COLORONCOLOR;
 pub const HALFTONE = STRETCH_BLT_MODE.HALFTONE;
-pub const STRETCH_ANDSCANS = STRETCH_BLT_MODE.STRETCH_ANDSCANS;
-pub const STRETCH_DELETESCANS = STRETCH_BLT_MODE.STRETCH_DELETESCANS;
-pub const STRETCH_HALFTONE = STRETCH_BLT_MODE.STRETCH_HALFTONE;
+pub const STRETCH_ANDSCANS = STRETCH_BLT_MODE.BLACKONWHITE;
+pub const STRETCH_DELETESCANS = STRETCH_BLT_MODE.COLORONCOLOR;
+pub const STRETCH_HALFTONE = STRETCH_BLT_MODE.HALFTONE;
 pub const STRETCH_ORSCANS = STRETCH_BLT_MODE.STRETCH_ORSCANS;
-pub const WHITEONBLACK = STRETCH_BLT_MODE.WHITEONBLACK;
+pub const WHITEONBLACK = STRETCH_BLT_MODE.STRETCH_ORSCANS;
 
-pub const FONT_QUALITY = extern enum(u32) {
+pub const FONT_QUALITY = enum(u32) {
     ANTIALIASED_QUALITY = 4,
     CLEARTYPE_QUALITY = 5,
     DEFAULT_QUALITY = 0,
@@ -3936,14 +3894,14 @@ pub const DRAFT_QUALITY = FONT_QUALITY.DRAFT_QUALITY;
 pub const NONANTIALIASED_QUALITY = FONT_QUALITY.NONANTIALIASED_QUALITY;
 pub const PROOF_QUALITY = FONT_QUALITY.PROOF_QUALITY;
 
-pub const BACKGROUND_MODE = extern enum(u32) {
+pub const BACKGROUND_MODE = enum(u32) {
     OPAQUE = 2,
     TRANSPARENT = 1,
 };
 pub const OPAQUE = BACKGROUND_MODE.OPAQUE;
 pub const TRANSPARENT = BACKGROUND_MODE.TRANSPARENT;
 
-pub const GET_CHARACTER_PLACEMENT_FLAGS = extern enum(u32) {
+pub const GET_CHARACTER_PLACEMENT_FLAGS = enum(u32) {
     CLASSIN = 524288,
     DIACRITIC = 256,
     DISPLAYZWG = 4194304,
@@ -4012,7 +3970,7 @@ pub const GCP_REORDER = GET_CHARACTER_PLACEMENT_FLAGS.REORDER;
 pub const GCP_SYMSWAPOFF = GET_CHARACTER_PLACEMENT_FLAGS.SYMSWAPOFF;
 pub const GCP_USEKERNING = GET_CHARACTER_PLACEMENT_FLAGS.USEKERNING;
 
-pub const DRAW_EDGE_FLAGS = extern enum(u32) {
+pub const DRAW_EDGE_FLAGS = enum(u32) {
     ADJUST = 8192,
     BOTTOM = 8,
     BOTTOMLEFT = 9,
@@ -4097,20 +4055,20 @@ pub const BF_TOP = DRAW_EDGE_FLAGS.TOP;
 pub const BF_TOPLEFT = DRAW_EDGE_FLAGS.TOPLEFT;
 pub const BF_TOPRIGHT = DRAW_EDGE_FLAGS.TOPRIGHT;
 
-pub const FONT_LICENSE_PRIVS = extern enum(u32) {
+pub const FONT_LICENSE_PRIVS = enum(u32) {
     PREVIEWPRINT = 4,
     EDITABLE = 8,
     INSTALLABLE = 0,
     NOEMBEDDING = 2,
-    DEFAULT = 0,
+    // DEFAULT = 0, this enum value conflicts with INSTALLABLE
 };
 pub const LICENSE_PREVIEWPRINT = FONT_LICENSE_PRIVS.PREVIEWPRINT;
 pub const LICENSE_EDITABLE = FONT_LICENSE_PRIVS.EDITABLE;
 pub const LICENSE_INSTALLABLE = FONT_LICENSE_PRIVS.INSTALLABLE;
 pub const LICENSE_NOEMBEDDING = FONT_LICENSE_PRIVS.NOEMBEDDING;
-pub const LICENSE_DEFAULT = FONT_LICENSE_PRIVS.DEFAULT;
+pub const LICENSE_DEFAULT = FONT_LICENSE_PRIVS.INSTALLABLE;
 
-pub const GRADIENT_FILL = extern enum(u32) {
+pub const GRADIENT_FILL = enum(u32) {
     RECT_H = 0,
     RECT_V = 1,
     TRIANGLE = 2,
@@ -4119,23 +4077,23 @@ pub const GRADIENT_FILL_RECT_H = GRADIENT_FILL.RECT_H;
 pub const GRADIENT_FILL_RECT_V = GRADIENT_FILL.RECT_V;
 pub const GRADIENT_FILL_TRIANGLE = GRADIENT_FILL.TRIANGLE;
 
-pub const CREATE_FONT_PACKAGE_SUBSET_ENCODING = extern enum(u32) {
+pub const CREATE_FONT_PACKAGE_SUBSET_ENCODING = enum(u32) {
     STD_MAC_CHAR_SET = 0,
-    SYMBOL_CHAR_SET = 0,
+    // SYMBOL_CHAR_SET = 0, this enum value conflicts with STD_MAC_CHAR_SET
     UNICODE_CHAR_SET = 1,
 };
 pub const TTFCFP_STD_MAC_CHAR_SET = CREATE_FONT_PACKAGE_SUBSET_ENCODING.STD_MAC_CHAR_SET;
-pub const TTFCFP_SYMBOL_CHAR_SET = CREATE_FONT_PACKAGE_SUBSET_ENCODING.SYMBOL_CHAR_SET;
+pub const TTFCFP_SYMBOL_CHAR_SET = CREATE_FONT_PACKAGE_SUBSET_ENCODING.STD_MAC_CHAR_SET;
 pub const TTFCFP_UNICODE_CHAR_SET = CREATE_FONT_PACKAGE_SUBSET_ENCODING.UNICODE_CHAR_SET;
 
-pub const EXT_FLOOD_FILL_TYPE = extern enum(u32) {
+pub const EXT_FLOOD_FILL_TYPE = enum(u32) {
     BORDER = 0,
     SURFACE = 1,
 };
 pub const FLOODFILLBORDER = EXT_FLOOD_FILL_TYPE.BORDER;
 pub const FLOODFILLSURFACE = EXT_FLOOD_FILL_TYPE.SURFACE;
 
-pub const HATCH_BRUSH_STYLE = extern enum(u32) {
+pub const HATCH_BRUSH_STYLE = enum(u32) {
     BDIAGONAL = 3,
     CROSS = 4,
     DIAGCROSS = 5,
@@ -4150,7 +4108,7 @@ pub const HS_FDIAGONAL = HATCH_BRUSH_STYLE.FDIAGONAL;
 pub const HS_HORIZONTAL = HATCH_BRUSH_STYLE.HORIZONTAL;
 pub const HS_VERTICAL = HATCH_BRUSH_STYLE.VERTICAL;
 
-pub const DRAW_CAPTION_FLAGS = extern enum(u32) {
+pub const DRAW_CAPTION_FLAGS = enum(u32) {
     ACTIVE = 1,
     BUTTONS = 4096,
     GRADIENT = 32,
@@ -4187,7 +4145,7 @@ pub const DC_INBUTTON = DRAW_CAPTION_FLAGS.INBUTTON;
 pub const DC_SMALLCAP = DRAW_CAPTION_FLAGS.SMALLCAP;
 pub const DC_TEXT = DRAW_CAPTION_FLAGS.TEXT;
 
-pub const SYSTEM_PALETTE_USE = extern enum(u32) {
+pub const SYSTEM_PALETTE_USE = enum(u32) {
     NOSTATIC = 2,
     NOSTATIC256 = 3,
     STATIC = 1,
@@ -4196,14 +4154,14 @@ pub const SYSPAL_NOSTATIC = SYSTEM_PALETTE_USE.NOSTATIC;
 pub const SYSPAL_NOSTATIC256 = SYSTEM_PALETTE_USE.NOSTATIC256;
 pub const SYSPAL_STATIC = SYSTEM_PALETTE_USE.STATIC;
 
-pub const GRAPHICS_MODE = extern enum(u32) {
+pub const GRAPHICS_MODE = enum(u32) {
     COMPATIBLE = 1,
     ADVANCED = 2,
 };
 pub const GM_COMPATIBLE = GRAPHICS_MODE.COMPATIBLE;
 pub const GM_ADVANCED = GRAPHICS_MODE.ADVANCED;
 
-pub const FONT_PITCH_AND_FAMILY = extern enum(u32) {
+pub const FONT_PITCH_AND_FAMILY = enum(u32) {
     DECORATIVE = 80,
     DONTCARE = 0,
     MODERN = 48,
@@ -4218,14 +4176,14 @@ pub const FF_ROMAN = FONT_PITCH_AND_FAMILY.ROMAN;
 pub const FF_SCRIPT = FONT_PITCH_AND_FAMILY.SCRIPT;
 pub const FF_SWISS = FONT_PITCH_AND_FAMILY.SWISS;
 
-pub const CREATE_FONT_PACKAGE_SUBSET_PLATFORM = extern enum(u32) {
+pub const CREATE_FONT_PACKAGE_SUBSET_PLATFORM = enum(u32) {
     UNICODE_PLATFORMID = 0,
     ISO_PLATFORMID = 2,
 };
 pub const TTFCFP_UNICODE_PLATFORMID = CREATE_FONT_PACKAGE_SUBSET_PLATFORM.UNICODE_PLATFORMID;
 pub const TTFCFP_ISO_PLATFORMID = CREATE_FONT_PACKAGE_SUBSET_PLATFORM.ISO_PLATFORMID;
 
-pub const HDC_MAP_MODE = extern enum(u32) {
+pub const HDC_MAP_MODE = enum(u32) {
     ANISOTROPIC = 8,
     HIENGLISH = 5,
     HIMETRIC = 3,

@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const POINTER_FLAGS = extern enum(u32) {
+pub const POINTER_FLAGS = enum(u32) {
     NONE = 0,
     NEW = 1,
     INRANGE = 2,
@@ -91,7 +91,7 @@ pub const POINTER_FLAG_HWHEEL = POINTER_FLAGS.HWHEEL;
 pub const POINTER_FLAG_CAPTURECHANGED = POINTER_FLAGS.CAPTURECHANGED;
 pub const POINTER_FLAG_HASTRANSFORM = POINTER_FLAGS.HASTRANSFORM;
 
-pub const POINTER_BUTTON_CHANGE_TYPE = extern enum(i32) {
+pub const POINTER_BUTTON_CHANGE_TYPE = enum(i32) {
     NONE = 0,
     FIRSTBUTTON_DOWN = 1,
     FIRSTBUTTON_UP = 2,

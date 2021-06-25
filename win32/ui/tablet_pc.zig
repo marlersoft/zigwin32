@@ -192,7 +192,7 @@ pub const CLSID_Ink = &CLSID_Ink_Value;
 const CLSID_SketchInk_Value = @import("../zig.zig").Guid.initString("f0291081-e87c-4e07-97da-a0a03761e586");
 pub const CLSID_SketchInk = &CLSID_SketchInk_Value;
 
-pub const PROPERTY_UNITS = extern enum(i32) {
+pub const PROPERTY_UNITS = enum(i32) {
     DEFAULT = 0,
     INCHES = 1,
     CENTIMETERS = 2,
@@ -263,7 +263,7 @@ pub const PACKET_DESCRIPTION = extern struct {
     pguidButtons: *Guid,
 };
 
-pub const enumINKMETRIC_FLAGS = extern enum(i32) {
+pub const enumINKMETRIC_FLAGS = enum(i32) {
     FONT_SELECTED_IN_HDC = 1,
     ITALIC = 2,
     BOLD = 4,
@@ -272,7 +272,7 @@ pub const IMF_FONT_SELECTED_IN_HDC = enumINKMETRIC_FLAGS.FONT_SELECTED_IN_HDC;
 pub const IMF_ITALIC = enumINKMETRIC_FLAGS.ITALIC;
 pub const IMF_BOLD = enumINKMETRIC_FLAGS.BOLD;
 
-pub const enumGetCandidateFlags = extern enum(i32) {
+pub const enumGetCandidateFlags = enum(i32) {
     ALLOW_RECOGNITION = 1,
     FORCE_RECOGNITION = 2,
 };
@@ -287,14 +287,14 @@ pub const INKMETRIC = extern struct {
     color: u32,
 };
 
-pub const InkSelectionConstants = extern enum(i32) {
+pub const InkSelectionConstants = enum(i32) {
     FirstElement = 0,
     AllElements = -1,
 };
 pub const ISC_FirstElement = InkSelectionConstants.FirstElement;
 pub const ISC_AllElements = InkSelectionConstants.AllElements;
 
-pub const InkBoundingBoxMode = extern enum(i32) {
+pub const InkBoundingBoxMode = enum(i32) {
     Default = 0,
     NoCurveFit = 1,
     CurveFit = 2,
@@ -307,16 +307,16 @@ pub const IBBM_CurveFit = InkBoundingBoxMode.CurveFit;
 pub const IBBM_PointsOnly = InkBoundingBoxMode.PointsOnly;
 pub const IBBM_Union = InkBoundingBoxMode.Union;
 
-pub const InkExtractFlags = extern enum(i32) {
+pub const InkExtractFlags = enum(i32) {
     CopyFromOriginal = 0,
     RemoveFromOriginal = 1,
-    Default = 1,
+    // Default = 1, this enum value conflicts with RemoveFromOriginal
 };
 pub const IEF_CopyFromOriginal = InkExtractFlags.CopyFromOriginal;
 pub const IEF_RemoveFromOriginal = InkExtractFlags.RemoveFromOriginal;
-pub const IEF_Default = InkExtractFlags.Default;
+pub const IEF_Default = InkExtractFlags.RemoveFromOriginal;
 
-pub const InkPersistenceFormat = extern enum(i32) {
+pub const InkPersistenceFormat = enum(i32) {
     InkSerializedFormat = 0,
     Base64InkSerializedFormat = 1,
     GIF = 2,
@@ -327,7 +327,7 @@ pub const IPF_Base64InkSerializedFormat = InkPersistenceFormat.Base64InkSerializ
 pub const IPF_GIF = InkPersistenceFormat.GIF;
 pub const IPF_Base64GIF = InkPersistenceFormat.Base64GIF;
 
-pub const InkPersistenceCompressionMode = extern enum(i32) {
+pub const InkPersistenceCompressionMode = enum(i32) {
     Default = 0,
     MaximumCompression = 1,
     NoCompression = 2,
@@ -336,14 +336,14 @@ pub const IPCM_Default = InkPersistenceCompressionMode.Default;
 pub const IPCM_MaximumCompression = InkPersistenceCompressionMode.MaximumCompression;
 pub const IPCM_NoCompression = InkPersistenceCompressionMode.NoCompression;
 
-pub const InkPenTip = extern enum(i32) {
+pub const InkPenTip = enum(i32) {
     Ball = 0,
     Rectangle = 1,
 };
 pub const IPT_Ball = InkPenTip.Ball;
 pub const IPT_Rectangle = InkPenTip.Rectangle;
 
-pub const InkRasterOperation = extern enum(i32) {
+pub const InkRasterOperation = enum(i32) {
     Black = 1,
     NotMergePen = 2,
     MaskNotPen = 3,
@@ -378,7 +378,7 @@ pub const IRO_MergePenNot = InkRasterOperation.MergePenNot;
 pub const IRO_MergePen = InkRasterOperation.MergePen;
 pub const IRO_White = InkRasterOperation.White;
 
-pub const InkMousePointer = extern enum(i32) {
+pub const InkMousePointer = enum(i32) {
     Default = 0,
     Arrow = 1,
     Crosshair = 2,
@@ -413,20 +413,20 @@ pub const IMP_SizeAll = InkMousePointer.SizeAll;
 pub const IMP_Hand = InkMousePointer.Hand;
 pub const IMP_Custom = InkMousePointer.Custom;
 
-pub const InkClipboardModes = extern enum(i32) {
+pub const InkClipboardModes = enum(i32) {
     Copy = 0,
     Cut = 1,
     ExtractOnly = 48,
     DelayedCopy = 32,
-    Default = 0,
+    // Default = 0, this enum value conflicts with Copy
 };
 pub const ICB_Copy = InkClipboardModes.Copy;
 pub const ICB_Cut = InkClipboardModes.Cut;
 pub const ICB_ExtractOnly = InkClipboardModes.ExtractOnly;
 pub const ICB_DelayedCopy = InkClipboardModes.DelayedCopy;
-pub const ICB_Default = InkClipboardModes.Default;
+pub const ICB_Default = InkClipboardModes.Copy;
 
-pub const InkClipboardFormats = extern enum(i32) {
+pub const InkClipboardFormats = enum(i32) {
     None = 0,
     InkSerializedFormat = 1,
     SketchInk = 2,
@@ -436,7 +436,7 @@ pub const InkClipboardFormats = extern enum(i32) {
     Bitmap = 64,
     PasteMask = 7,
     CopyMask = 127,
-    Default = 127,
+    // Default = 127, this enum value conflicts with CopyMask
 };
 pub const ICF_None = InkClipboardFormats.None;
 pub const ICF_InkSerializedFormat = InkClipboardFormats.InkSerializedFormat;
@@ -447,9 +447,9 @@ pub const ICF_Metafile = InkClipboardFormats.Metafile;
 pub const ICF_Bitmap = InkClipboardFormats.Bitmap;
 pub const ICF_PasteMask = InkClipboardFormats.PasteMask;
 pub const ICF_CopyMask = InkClipboardFormats.CopyMask;
-pub const ICF_Default = InkClipboardFormats.Default;
+pub const ICF_Default = InkClipboardFormats.CopyMask;
 
-pub const SelectionHitResult = extern enum(i32) {
+pub const SelectionHitResult = enum(i32) {
     None = 0,
     NW = 1,
     SE = 2,
@@ -472,7 +472,7 @@ pub const SHR_N = SelectionHitResult.N;
 pub const SHR_S = SelectionHitResult.S;
 pub const SHR_Selection = SelectionHitResult.Selection;
 
-pub const InkRecognitionStatus = extern enum(i32) {
+pub const InkRecognitionStatus = enum(i32) {
     NoError = 0,
     Interrupted = 1,
     ProcessFailed = 2,
@@ -497,7 +497,7 @@ pub const IRS_SetFactoidFailed = InkRecognitionStatus.SetFactoidFailed;
 pub const IRS_SetPrefixSuffixFailed = InkRecognitionStatus.SetPrefixSuffixFailed;
 pub const IRS_SetWordListFailed = InkRecognitionStatus.SetWordListFailed;
 
-pub const DISPID_InkRectangle = extern enum(i32) {
+pub const DISPID_InkRectangle = enum(i32) {
     Top = 1,
     Left = 2,
     Bottom = 3,
@@ -514,14 +514,14 @@ pub const DISPID_IRGetRectangle = DISPID_InkRectangle.GetRectangle;
 pub const DISPID_IRSetRectangle = DISPID_InkRectangle.SetRectangle;
 pub const DISPID_IRData = DISPID_InkRectangle.Data;
 
-pub const DISPID_InkExtendedProperty = extern enum(i32) {
+pub const DISPID_InkExtendedProperty = enum(i32) {
     Guid = 1,
     Data = 2,
 };
 pub const DISPID_IEPGuid = DISPID_InkExtendedProperty.Guid;
 pub const DISPID_IEPData = DISPID_InkExtendedProperty.Data;
 
-pub const DISPID_InkExtendedProperties = extern enum(i32) {
+pub const DISPID_InkExtendedProperties = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -538,7 +538,7 @@ pub const DISPID_IEPsRemove = DISPID_InkExtendedProperties.Remove;
 pub const DISPID_IEPsClear = DISPID_InkExtendedProperties.Clear;
 pub const DISPID_IEPsDoesPropertyExist = DISPID_InkExtendedProperties.DoesPropertyExist;
 
-pub const DISPID_InkDrawingAttributes = extern enum(i32) {
+pub const DISPID_InkDrawingAttributes = enum(i32) {
     Height = 1,
     Color = 2,
     Width = 3,
@@ -563,7 +563,7 @@ pub const DISPID_DAPenTip = DISPID_InkDrawingAttributes.PenTip;
 pub const DISPID_DAClone = DISPID_InkDrawingAttributes.Clone;
 pub const DISPID_DAExtendedProperties = DISPID_InkDrawingAttributes.ExtendedProperties;
 
-pub const DISPID_InkTransform = extern enum(i32) {
+pub const DISPID_InkTransform = enum(i32) {
     Reset = 1,
     Translate = 2,
     Rotate = 3,
@@ -596,7 +596,7 @@ pub const DISPID_ITGetTransform = DISPID_InkTransform.GetTransform;
 pub const DISPID_ITSetTransform = DISPID_InkTransform.SetTransform;
 pub const DISPID_ITData = DISPID_InkTransform.Data;
 
-pub const InkApplicationGesture = extern enum(i32) {
+pub const InkApplicationGesture = enum(i32) {
     AllGestures = 0,
     NoGesture = 61440,
     Scratchout = 61441,
@@ -687,7 +687,7 @@ pub const IAG_Exclamation = InkApplicationGesture.Exclamation;
 pub const IAG_Tap = InkApplicationGesture.Tap;
 pub const IAG_DoubleTap = InkApplicationGesture.DoubleTap;
 
-pub const InkSystemGesture = extern enum(i32) {
+pub const InkSystemGesture = enum(i32) {
     Tap = 16,
     DoubleTap = 17,
     RightTap = 18,
@@ -710,7 +710,7 @@ pub const ISG_HoverEnter = InkSystemGesture.HoverEnter;
 pub const ISG_HoverLeave = InkSystemGesture.HoverLeave;
 pub const ISG_Flick = InkSystemGesture.Flick;
 
-pub const InkRecognitionConfidence = extern enum(i32) {
+pub const InkRecognitionConfidence = enum(i32) {
     Strong = 0,
     Intermediate = 1,
     Poor = 2,
@@ -719,7 +719,7 @@ pub const IRC_Strong = InkRecognitionConfidence.Strong;
 pub const IRC_Intermediate = InkRecognitionConfidence.Intermediate;
 pub const IRC_Poor = InkRecognitionConfidence.Poor;
 
-pub const DISPID_InkGesture = extern enum(i32) {
+pub const DISPID_InkGesture = enum(i32) {
     Id = 0,
     GetHotPoint = 1,
     Confidence = 2,
@@ -728,7 +728,7 @@ pub const DISPID_IGId = DISPID_InkGesture.Id;
 pub const DISPID_IGGetHotPoint = DISPID_InkGesture.GetHotPoint;
 pub const DISPID_IGConfidence = DISPID_InkGesture.Confidence;
 
-pub const DISPID_InkCursor = extern enum(i32) {
+pub const DISPID_InkCursor = enum(i32) {
     Name = 0,
     Id = 1,
     DrawingAttributes = 2,
@@ -743,7 +743,7 @@ pub const DISPID_ICsrButtons = DISPID_InkCursor.Buttons;
 pub const DISPID_ICsrInverted = DISPID_InkCursor.Inverted;
 pub const DISPID_ICsrTablet = DISPID_InkCursor.Tablet;
 
-pub const DISPID_InkCursors = extern enum(i32) {
+pub const DISPID_InkCursors = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -752,7 +752,7 @@ pub const DISPID_ICs_NewEnum = DISPID_InkCursors._NewEnum;
 pub const DISPID_ICsItem = DISPID_InkCursors.Item;
 pub const DISPID_ICsCount = DISPID_InkCursors.Count;
 
-pub const InkCursorButtonState = extern enum(i32) {
+pub const InkCursorButtonState = enum(i32) {
     Unavailable = 0,
     Up = 1,
     Down = 2,
@@ -761,7 +761,7 @@ pub const ICBS_Unavailable = InkCursorButtonState.Unavailable;
 pub const ICBS_Up = InkCursorButtonState.Up;
 pub const ICBS_Down = InkCursorButtonState.Down;
 
-pub const DISPID_InkCursorButton = extern enum(i32) {
+pub const DISPID_InkCursorButton = enum(i32) {
     Name = 0,
     Id = 1,
     State = 2,
@@ -770,7 +770,7 @@ pub const DISPID_ICBName = DISPID_InkCursorButton.Name;
 pub const DISPID_ICBId = DISPID_InkCursorButton.Id;
 pub const DISPID_ICBState = DISPID_InkCursorButton.State;
 
-pub const DISPID_InkCursorButtons = extern enum(i32) {
+pub const DISPID_InkCursorButtons = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -779,7 +779,7 @@ pub const DISPID_ICBs_NewEnum = DISPID_InkCursorButtons._NewEnum;
 pub const DISPID_ICBsItem = DISPID_InkCursorButtons.Item;
 pub const DISPID_ICBsCount = DISPID_InkCursorButtons.Count;
 
-pub const TabletHardwareCapabilities = extern enum(i32) {
+pub const TabletHardwareCapabilities = enum(i32) {
     Integrated = 1,
     CursorMustTouch = 2,
     HardProximity = 4,
@@ -790,7 +790,7 @@ pub const THWC_CursorMustTouch = TabletHardwareCapabilities.CursorMustTouch;
 pub const THWC_HardProximity = TabletHardwareCapabilities.HardProximity;
 pub const THWC_CursorsHavePhysicalIds = TabletHardwareCapabilities.CursorsHavePhysicalIds;
 
-pub const TabletPropertyMetricUnit = extern enum(i32) {
+pub const TabletPropertyMetricUnit = enum(i32) {
     Default = 0,
     Inches = 1,
     Centimeters = 2,
@@ -809,7 +809,7 @@ pub const TPMU_Seconds = TabletPropertyMetricUnit.Seconds;
 pub const TPMU_Pounds = TabletPropertyMetricUnit.Pounds;
 pub const TPMU_Grams = TabletPropertyMetricUnit.Grams;
 
-pub const DISPID_InkTablet = extern enum(i32) {
+pub const DISPID_InkTablet = enum(i32) {
     Name = 0,
     PlugAndPlayId = 1,
     PropertyMetrics = 2,
@@ -824,7 +824,7 @@ pub const DISPID_ITIsPacketPropertySupported = DISPID_InkTablet.IsPacketProperty
 pub const DISPID_ITMaximumInputRectangle = DISPID_InkTablet.MaximumInputRectangle;
 pub const DISPID_ITHardwareCapabilities = DISPID_InkTablet.HardwareCapabilities;
 
-pub const TabletDeviceKind = extern enum(i32) {
+pub const TabletDeviceKind = enum(i32) {
     Mouse = 0,
     Pen = 1,
     Touch = 2,
@@ -833,19 +833,19 @@ pub const TDK_Mouse = TabletDeviceKind.Mouse;
 pub const TDK_Pen = TabletDeviceKind.Pen;
 pub const TDK_Touch = TabletDeviceKind.Touch;
 
-pub const DISPID_InkTablet2 = extern enum(i32) {
+pub const DISPID_InkTablet2 = enum(i32) {
     d = 0,
 };
 pub const DISPID_IT2DeviceKind = DISPID_InkTablet2.d;
 
-pub const DISPID_InkTablet3 = extern enum(i32) {
+pub const DISPID_InkTablet3 = enum(i32) {
     IsMultiTouch = 0,
     MaximumCursors = 1,
 };
 pub const DISPID_IT3IsMultiTouch = DISPID_InkTablet3.IsMultiTouch;
 pub const DISPID_IT3MaximumCursors = DISPID_InkTablet3.MaximumCursors;
 
-pub const DISPID_InkTablets = extern enum(i32) {
+pub const DISPID_InkTablets = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     DefaultTablet = 1,
@@ -858,7 +858,7 @@ pub const DISPID_ITsDefaultTablet = DISPID_InkTablets.DefaultTablet;
 pub const DISPID_ITsCount = DISPID_InkTablets.Count;
 pub const DISPID_ITsIsPacketPropertySupported = DISPID_InkTablets.IsPacketPropertySupported;
 
-pub const DISPID_InkStrokeDisp = extern enum(i32) {
+pub const DISPID_InkStrokeDisp = enum(i32) {
     InkIndex = 1,
     ID = 2,
     GetBoundingBox = 3,
@@ -927,7 +927,7 @@ pub const DISPID_ISDRotate = DISPID_InkStrokeDisp.Rotate;
 pub const DISPID_ISDShear = DISPID_InkStrokeDisp.Shear;
 pub const DISPID_ISDScale = DISPID_InkStrokeDisp.Scale;
 
-pub const DISPID_InkStrokes = extern enum(i32) {
+pub const DISPID_InkStrokes = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -972,7 +972,7 @@ pub const DISPID_ISsClip = DISPID_InkStrokes.Clip;
 pub const DISPID_ISsRecognitionResult = DISPID_InkStrokes.RecognitionResult;
 pub const DISPID_ISsRemoveRecognitionResult = DISPID_InkStrokes.RemoveRecognitionResult;
 
-pub const DISPID_InkCustomStrokes = extern enum(i32) {
+pub const DISPID_InkCustomStrokes = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -987,14 +987,14 @@ pub const DISPID_ICSsAdd = DISPID_InkCustomStrokes.Add;
 pub const DISPID_ICSsRemove = DISPID_InkCustomStrokes.Remove;
 pub const DISPID_ICSsClear = DISPID_InkCustomStrokes.Clear;
 
-pub const DISPID_StrokeEvent = extern enum(i32) {
+pub const DISPID_StrokeEvent = enum(i32) {
     Added = 1,
     Removed = 2,
 };
 pub const DISPID_SEStrokesAdded = DISPID_StrokeEvent.Added;
 pub const DISPID_SEStrokesRemoved = DISPID_StrokeEvent.Removed;
 
-pub const DISPID_Ink = extern enum(i32) {
+pub const DISPID_Ink = enum(i32) {
     Strokes = 1,
     ExtendedProperties = 2,
     GetBoundingBox = 3,
@@ -1047,14 +1047,14 @@ pub const DISPID_IClipboardCopy = DISPID_Ink.ClipboardCopy;
 pub const DISPID_ICanPaste = DISPID_Ink.CanPaste;
 pub const DISPID_IClipboardPaste = DISPID_Ink.ClipboardPaste;
 
-pub const DISPID_InkEvent = extern enum(i32) {
+pub const DISPID_InkEvent = enum(i32) {
     Added = 1,
     Deleted = 2,
 };
 pub const DISPID_IEInkAdded = DISPID_InkEvent.Added;
 pub const DISPID_IEInkDeleted = DISPID_InkEvent.Deleted;
 
-pub const DISPID_InkRenderer = extern enum(i32) {
+pub const DISPID_InkRenderer = enum(i32) {
     GetViewTransform = 1,
     SetViewTransform = 2,
     GetObjectTransform = 3,
@@ -1087,7 +1087,7 @@ pub const DISPID_IRMove = DISPID_InkRenderer.Move;
 pub const DISPID_IRRotate = DISPID_InkRenderer.Rotate;
 pub const DISPID_IRScale = DISPID_InkRenderer.Scale;
 
-pub const InkCollectorEventInterest = extern enum(i32) {
+pub const InkCollectorEventInterest = enum(i32) {
     DefaultEvents = -1,
     CursorDown = 0,
     Stroke = 1,
@@ -1126,7 +1126,7 @@ pub const ICEI_MouseWheel = InkCollectorEventInterest.MouseWheel;
 pub const ICEI_DblClick = InkCollectorEventInterest.DblClick;
 pub const ICEI_AllEvents = InkCollectorEventInterest.AllEvents;
 
-pub const InkMouseButton = extern enum(i32) {
+pub const InkMouseButton = enum(i32) {
     Left = 1,
     Right = 2,
     Middle = 4,
@@ -1135,7 +1135,7 @@ pub const IMF_Left = InkMouseButton.Left;
 pub const IMF_Right = InkMouseButton.Right;
 pub const IMF_Middle = InkMouseButton.Middle;
 
-pub const InkShiftKeyModifierFlags = extern enum(i32) {
+pub const InkShiftKeyModifierFlags = enum(i32) {
     Shift = 1,
     Control = 2,
     Alt = 4,
@@ -1144,7 +1144,7 @@ pub const IKM_Shift = InkShiftKeyModifierFlags.Shift;
 pub const IKM_Control = InkShiftKeyModifierFlags.Control;
 pub const IKM_Alt = InkShiftKeyModifierFlags.Alt;
 
-pub const DISPID_InkCollectorEvent = extern enum(i32) {
+pub const DISPID_InkCollectorEvent = enum(i32) {
     CEStroke = 1,
     CECursorDown = 2,
     CENewPackets = 3,
@@ -1229,7 +1229,7 @@ pub const DISPID_IPEKeyUp = DISPID_InkCollectorEvent.PEKeyUp;
 pub const DISPID_IPEResize = DISPID_InkCollectorEvent.PEResize;
 pub const DISPID_IPESizeChanged = DISPID_InkCollectorEvent.PESizeChanged;
 
-pub const InkOverlayEditingMode = extern enum(i32) {
+pub const InkOverlayEditingMode = enum(i32) {
     Ink = 0,
     Delete = 1,
     Select = 2,
@@ -1238,14 +1238,14 @@ pub const IOEM_Ink = InkOverlayEditingMode.Ink;
 pub const IOEM_Delete = InkOverlayEditingMode.Delete;
 pub const IOEM_Select = InkOverlayEditingMode.Select;
 
-pub const InkOverlayAttachMode = extern enum(i32) {
+pub const InkOverlayAttachMode = enum(i32) {
     Behind = 0,
     InFront = 1,
 };
 pub const IOAM_Behind = InkOverlayAttachMode.Behind;
 pub const IOAM_InFront = InkOverlayAttachMode.InFront;
 
-pub const InkPictureSizeMode = extern enum(i32) {
+pub const InkPictureSizeMode = enum(i32) {
     AutoSize = 0,
     CenterImage = 1,
     Normal = 2,
@@ -1256,14 +1256,14 @@ pub const IPSM_CenterImage = InkPictureSizeMode.CenterImage;
 pub const IPSM_Normal = InkPictureSizeMode.Normal;
 pub const IPSM_StretchImage = InkPictureSizeMode.StretchImage;
 
-pub const InkOverlayEraserMode = extern enum(i32) {
+pub const InkOverlayEraserMode = enum(i32) {
     StrokeErase = 0,
     PointErase = 1,
 };
 pub const IOERM_StrokeErase = InkOverlayEraserMode.StrokeErase;
 pub const IOERM_PointErase = InkOverlayEraserMode.PointErase;
 
-pub const InkCollectionMode = extern enum(i32) {
+pub const InkCollectionMode = enum(i32) {
     InkOnly = 0,
     GestureOnly = 1,
     InkAndGesture = 2,
@@ -1272,7 +1272,7 @@ pub const ICM_InkOnly = InkCollectionMode.InkOnly;
 pub const ICM_GestureOnly = InkCollectionMode.GestureOnly;
 pub const ICM_InkAndGesture = InkCollectionMode.InkAndGesture;
 
-pub const DISPID_InkCollector = extern enum(i32) {
+pub const DISPID_InkCollector = enum(i32) {
     CEnabled = 1,
     CHwnd = 2,
     CPaint = 3,
@@ -1353,7 +1353,7 @@ pub const DISPID_IPInkEnabled = DISPID_InkCollector.PInkEnabled;
 pub const DISPID_ICSupportHighContrastInk = DISPID_InkCollector.CSupportHighContrastInk;
 pub const DISPID_IOSupportHighContrastSelectionUI = DISPID_InkCollector.OSupportHighContrastSelectionUI;
 
-pub const DISPID_InkRecognizer = extern enum(i32) {
+pub const DISPID_InkRecognizer = enum(i32) {
     Clsid = 1,
     Name = 2,
     Vendor = 3,
@@ -1372,7 +1372,7 @@ pub const DISPID_RecoPreferredPacketDescription = DISPID_InkRecognizer.Preferred
 pub const DISPID_RecoCreateRecognizerContext = DISPID_InkRecognizer.CreateRecognizerContext;
 pub const DISPID_RecoSupportedProperties = DISPID_InkRecognizer.SupportedProperties;
 
-pub const InkRecognizerCapabilities = extern enum(i32) {
+pub const InkRecognizerCapabilities = enum(i32) {
     DontCare = 1,
     Object = 2,
     FreeInput = 4,
@@ -1419,14 +1419,14 @@ pub const IRC_TextPrediction = InkRecognizerCapabilities.TextPrediction;
 pub const IRC_Alpha = InkRecognizerCapabilities.Alpha;
 pub const IRC_Beta = InkRecognizerCapabilities.Beta;
 
-pub const DISPID_InkRecognizer2 = extern enum(i32) {
+pub const DISPID_InkRecognizer2 = enum(i32) {
     Id = 0,
     UnicodeRanges = 1,
 };
 pub const DISPID_RecoId = DISPID_InkRecognizer2.Id;
 pub const DISPID_RecoUnicodeRanges = DISPID_InkRecognizer2.UnicodeRanges;
 
-pub const DISPID_InkRecognizers = extern enum(i32) {
+pub const DISPID_InkRecognizers = enum(i32) {
     _NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -1437,7 +1437,7 @@ pub const DISPID_IRecosItem = DISPID_InkRecognizers.Item;
 pub const DISPID_IRecosCount = DISPID_InkRecognizers.Count;
 pub const DISPID_IRecosGetDefaultRecognizer = DISPID_InkRecognizers.GetDefaultRecognizer;
 
-pub const InkRecognizerCharacterAutoCompletionMode = extern enum(i32) {
+pub const InkRecognizerCharacterAutoCompletionMode = enum(i32) {
     Full = 0,
     Prefix = 1,
     Random = 2,
@@ -1446,7 +1446,7 @@ pub const IRCACM_Full = InkRecognizerCharacterAutoCompletionMode.Full;
 pub const IRCACM_Prefix = InkRecognizerCharacterAutoCompletionMode.Prefix;
 pub const IRCACM_Random = InkRecognizerCharacterAutoCompletionMode.Random;
 
-pub const InkRecognitionModes = extern enum(i32) {
+pub const InkRecognitionModes = enum(i32) {
     None = 0,
     WordModeOnly = 1,
     Coerce = 2,
@@ -1467,14 +1467,14 @@ pub const IRM_DisablePersonalization = InkRecognitionModes.DisablePersonalizatio
 pub const IRM_AutoSpace = InkRecognitionModes.AutoSpace;
 pub const IRM_Max = InkRecognitionModes.Max;
 
-pub const DISPID_InkRecognitionEvent = extern enum(i32) {
+pub const DISPID_InkRecognitionEvent = enum(i32) {
     WithAlternates = 1,
     n = 2,
 };
 pub const DISPID_IRERecognitionWithAlternates = DISPID_InkRecognitionEvent.WithAlternates;
 pub const DISPID_IRERecognition = DISPID_InkRecognitionEvent.n;
 
-pub const DISPID_InkRecoContext = extern enum(i32) {
+pub const DISPID_InkRecoContext = enum(i32) {
     Strokes = 1,
     CharacterAutoCompletionMode = 2,
     Factoid = 3,
@@ -1511,12 +1511,12 @@ pub const DISPID_IRecoCtx_BackgroundRecognize = DISPID_InkRecoContext.Background
 pub const DISPID_IRecoCtx_BackgroundRecognizeWithAlternates = DISPID_InkRecoContext.BackgroundRecognizeWithAlternates;
 pub const DISPID_IRecoCtx_IsStringSupported = DISPID_InkRecoContext.IsStringSupported;
 
-pub const DISPID_InkRecoContext2 = extern enum(i32) {
+pub const DISPID_InkRecoContext2 = enum(i32) {
     s = 0,
 };
 pub const DISPID_IRecoCtx2_EnabledUnicodeRanges = DISPID_InkRecoContext2.s;
 
-pub const InkRecognitionAlternatesSelection = extern enum(i32) {
+pub const InkRecognitionAlternatesSelection = enum(i32) {
     Start = 0,
     DefaultCount = 10,
     All = -1,
@@ -1525,7 +1525,7 @@ pub const IRAS_Start = InkRecognitionAlternatesSelection.Start;
 pub const IRAS_DefaultCount = InkRecognitionAlternatesSelection.DefaultCount;
 pub const IRAS_All = InkRecognitionAlternatesSelection.All;
 
-pub const DISPID_InkRecognitionResult = extern enum(i32) {
+pub const DISPID_InkRecognitionResult = enum(i32) {
     TopString = 1,
     TopAlternate = 2,
     Strokes = 3,
@@ -1542,7 +1542,7 @@ pub const DISPID_InkRecognitionResult_AlternatesFromSelection = DISPID_InkRecogn
 pub const DISPID_InkRecognitionResult_ModifyTopAlternate = DISPID_InkRecognitionResult.ModifyTopAlternate;
 pub const DISPID_InkRecognitionResult_SetResultOnStrokes = DISPID_InkRecognitionResult.SetResultOnStrokes;
 
-pub const DISPID_InkRecoAlternate = extern enum(i32) {
+pub const DISPID_InkRecoAlternate = enum(i32) {
     String = 1,
     LineNumber = 2,
     Baseline = 3,
@@ -1575,7 +1575,7 @@ pub const DISPID_InkRecoAlternate_LineAlternates = DISPID_InkRecoAlternate.LineA
 pub const DISPID_InkRecoAlternate_ConfidenceAlternates = DISPID_InkRecoAlternate.ConfidenceAlternates;
 pub const DISPID_InkRecoAlternate_AlternatesWithConstantPropertyValues = DISPID_InkRecoAlternate.AlternatesWithConstantPropertyValues;
 
-pub const DISPID_InkRecognitionAlternates = extern enum(i32) {
+pub const DISPID_InkRecognitionAlternates = enum(i32) {
     NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -1594,7 +1594,7 @@ pub const InkRecoGuide = extern struct {
     midline: i32,
 };
 
-pub const DISPID_InkRecognizerGuide = extern enum(i32) {
+pub const DISPID_InkRecognizerGuide = enum(i32) {
     WritingBox = 1,
     DrawnBox = 2,
     Rows = 3,
@@ -1609,7 +1609,7 @@ pub const DISPID_IRGColumns = DISPID_InkRecognizerGuide.Columns;
 pub const DISPID_IRGMidline = DISPID_InkRecognizerGuide.Midline;
 pub const DISPID_IRGGuideData = DISPID_InkRecognizerGuide.GuideData;
 
-pub const DISPID_InkWordList = extern enum(i32) {
+pub const DISPID_InkWordList = enum(i32) {
     AddWord = 0,
     RemoveWord = 1,
     Merge = 2,
@@ -1618,7 +1618,7 @@ pub const DISPID_InkWordList_AddWord = DISPID_InkWordList.AddWord;
 pub const DISPID_InkWordList_RemoveWord = DISPID_InkWordList.RemoveWord;
 pub const DISPID_InkWordList_Merge = DISPID_InkWordList.Merge;
 
-pub const DISPID_InkWordList2 = extern enum(i32) {
+pub const DISPID_InkWordList2 = enum(i32) {
     s = 3,
 };
 pub const DISPID_InkWordList2_AddWords = DISPID_InkWordList2.s;
@@ -6103,7 +6103,7 @@ pub const ISketchInk = extern struct {
 const CLSID_InkDivider_Value = @import("../zig.zig").Guid.initString("8854f6a0-4683-4ae7-9191-752fe64612c3");
 pub const CLSID_InkDivider = &CLSID_InkDivider_Value;
 
-pub const InkDivisionType = extern enum(i32) {
+pub const InkDivisionType = enum(i32) {
     Segment = 0,
     Line = 1,
     Paragraph = 2,
@@ -6114,7 +6114,7 @@ pub const IDT_Line = InkDivisionType.Line;
 pub const IDT_Paragraph = InkDivisionType.Paragraph;
 pub const IDT_Drawing = InkDivisionType.Drawing;
 
-pub const DISPID_InkDivider = extern enum(i32) {
+pub const DISPID_InkDivider = enum(i32) {
     Strokes = 1,
     RecognizerContext = 2,
     LineHeight = 3,
@@ -6125,14 +6125,14 @@ pub const DISPID_IInkDivider_RecognizerContext = DISPID_InkDivider.RecognizerCon
 pub const DISPID_IInkDivider_LineHeight = DISPID_InkDivider.LineHeight;
 pub const DISPID_IInkDivider_Divide = DISPID_InkDivider.Divide;
 
-pub const DISPID_InkDivisionResult = extern enum(i32) {
+pub const DISPID_InkDivisionResult = enum(i32) {
     Strokes = 1,
     ResultByType = 2,
 };
 pub const DISPID_IInkDivisionResult_Strokes = DISPID_InkDivisionResult.Strokes;
 pub const DISPID_IInkDivisionResult_ResultByType = DISPID_InkDivisionResult.ResultByType;
 
-pub const DISPID_InkDivisionUnit = extern enum(i32) {
+pub const DISPID_InkDivisionUnit = enum(i32) {
     Strokes = 1,
     DivisionType = 2,
     RecognizedString = 3,
@@ -6143,7 +6143,7 @@ pub const DISPID_IInkDivisionUnit_DivisionType = DISPID_InkDivisionUnit.Division
 pub const DISPID_IInkDivisionUnit_RecognizedString = DISPID_InkDivisionUnit.RecognizedString;
 pub const DISPID_IInkDivisionUnit_RotationTransform = DISPID_InkDivisionUnit.RotationTransform;
 
-pub const DISPID_InkDivisionUnits = extern enum(i32) {
+pub const DISPID_InkDivisionUnits = enum(i32) {
     NewEnum = -4,
     Item = 0,
     Count = 1,
@@ -6360,7 +6360,7 @@ pub const CLSID_TextInputPanel = &CLSID_TextInputPanel_Value;
 const CLSID_PenInputPanel_Internal_Value = @import("../zig.zig").Guid.initString("802b1fb9-056b-4720-b0cc-80d23b71171e");
 pub const CLSID_PenInputPanel_Internal = &CLSID_PenInputPanel_Internal_Value;
 
-pub const DISPID_PenInputPanel = extern enum(i32) {
+pub const DISPID_PenInputPanel = enum(i32) {
     AttachedEditWindow = 0,
     Factoid = 1,
     CurrentPanel = 2,
@@ -6397,7 +6397,7 @@ pub const DISPID_PIPHorizontalOffset = DISPID_PenInputPanel.HorizontalOffset;
 pub const DISPID_PIPEnableTsf = DISPID_PenInputPanel.EnableTsf;
 pub const DISPID_PIPAutoShow = DISPID_PenInputPanel.AutoShow;
 
-pub const DISPID_PenInputPanelEvents = extern enum(i32) {
+pub const DISPID_PenInputPanelEvents = enum(i32) {
     VisibleChanged = 0,
     PanelChanged = 1,
     InputFailed = 2,
@@ -6408,7 +6408,7 @@ pub const DISPID_PIPEPanelChanged = DISPID_PenInputPanelEvents.PanelChanged;
 pub const DISPID_PIPEInputFailed = DISPID_PenInputPanelEvents.InputFailed;
 pub const DISPID_PIPEPanelMoving = DISPID_PenInputPanelEvents.PanelMoving;
 
-pub const VisualState = extern enum(i32) {
+pub const VisualState = enum(i32) {
     InPlace = 0,
     Floating = 1,
     DockedTop = 2,
@@ -6421,7 +6421,7 @@ pub const DockedTop = VisualState.DockedTop;
 pub const DockedBottom = VisualState.DockedBottom;
 pub const Closed = VisualState.Closed;
 
-pub const InteractionMode = extern enum(i32) {
+pub const InteractionMode = enum(i32) {
     InPlace = 0,
     Floating = 1,
     DockedTop = 2,
@@ -6432,7 +6432,7 @@ pub const InteractionMode_Floating = InteractionMode.Floating;
 pub const InteractionMode_DockedTop = InteractionMode.DockedTop;
 pub const InteractionMode_DockedBottom = InteractionMode.DockedBottom;
 
-pub const InPlaceState = extern enum(i32) {
+pub const InPlaceState = enum(i32) {
     Auto = 0,
     HoverTarget = 1,
     Expanded = 2,
@@ -6441,7 +6441,7 @@ pub const InPlaceState_Auto = InPlaceState.Auto;
 pub const InPlaceState_HoverTarget = InPlaceState.HoverTarget;
 pub const InPlaceState_Expanded = InPlaceState.Expanded;
 
-pub const PanelInputArea = extern enum(i32) {
+pub const PanelInputArea = enum(i32) {
     Auto = 0,
     Keyboard = 1,
     WritingPad = 2,
@@ -6452,7 +6452,7 @@ pub const PanelInputArea_Keyboard = PanelInputArea.Keyboard;
 pub const PanelInputArea_WritingPad = PanelInputArea.WritingPad;
 pub const PanelInputArea_CharacterPad = PanelInputArea.CharacterPad;
 
-pub const CorrectionMode = extern enum(i32) {
+pub const CorrectionMode = enum(i32) {
     NotVisible = 0,
     PreInsertion = 1,
     PostInsertionCollapsed = 2,
@@ -6463,7 +6463,7 @@ pub const CorrectionMode_PreInsertion = CorrectionMode.PreInsertion;
 pub const CorrectionMode_PostInsertionCollapsed = CorrectionMode.PostInsertionCollapsed;
 pub const CorrectionMode_PostInsertionExpanded = CorrectionMode.PostInsertionExpanded;
 
-pub const CorrectionPosition = extern enum(i32) {
+pub const CorrectionPosition = enum(i32) {
     Auto = 0,
     Bottom = 1,
     Top = 2,
@@ -6472,7 +6472,7 @@ pub const CorrectionPosition_Auto = CorrectionPosition.Auto;
 pub const CorrectionPosition_Bottom = CorrectionPosition.Bottom;
 pub const CorrectionPosition_Top = CorrectionPosition.Top;
 
-pub const InPlaceDirection = extern enum(i32) {
+pub const InPlaceDirection = enum(i32) {
     Auto = 0,
     Bottom = 1,
     Top = 2,
@@ -6481,7 +6481,7 @@ pub const InPlaceDirection_Auto = InPlaceDirection.Auto;
 pub const InPlaceDirection_Bottom = InPlaceDirection.Bottom;
 pub const InPlaceDirection_Top = InPlaceDirection.Top;
 
-pub const EventMask = extern enum(i32) {
+pub const EventMask = enum(i32) {
     InPlaceStateChanging = 1,
     InPlaceStateChanged = 2,
     InPlaceSizeChanging = 4,
@@ -6510,7 +6510,7 @@ pub const EventMask_TextInserting = EventMask.TextInserting;
 pub const EventMask_TextInserted = EventMask.TextInserted;
 pub const EventMask_All = EventMask.All;
 
-pub const PanelType = extern enum(i32) {
+pub const PanelType = enum(i32) {
     Default = 0,
     Inactive = 1,
     Handwriting = 2,
@@ -7228,9 +7228,9 @@ pub const ITextInputPanelRunInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FLICKDIRECTION = extern enum(i32) {
+pub const FLICKDIRECTION = enum(i32) {
     MIN = 0,
-    RIGHT = 0,
+    // RIGHT = 0, this enum value conflicts with MIN
     UPRIGHT = 1,
     UP = 2,
     UPLEFT = 3,
@@ -7241,7 +7241,7 @@ pub const FLICKDIRECTION = extern enum(i32) {
     INVALID = 8,
 };
 pub const FLICKDIRECTION_MIN = FLICKDIRECTION.MIN;
-pub const FLICKDIRECTION_RIGHT = FLICKDIRECTION.RIGHT;
+pub const FLICKDIRECTION_RIGHT = FLICKDIRECTION.MIN;
 pub const FLICKDIRECTION_UPRIGHT = FLICKDIRECTION.UPRIGHT;
 pub const FLICKDIRECTION_UP = FLICKDIRECTION.UP;
 pub const FLICKDIRECTION_UPLEFT = FLICKDIRECTION.UPLEFT;
@@ -7251,22 +7251,22 @@ pub const FLICKDIRECTION_DOWN = FLICKDIRECTION.DOWN;
 pub const FLICKDIRECTION_DOWNRIGHT = FLICKDIRECTION.DOWNRIGHT;
 pub const FLICKDIRECTION_INVALID = FLICKDIRECTION.INVALID;
 
-pub const FLICKMODE = extern enum(i32) {
+pub const FLICKMODE = enum(i32) {
     MIN = 0,
-    OFF = 0,
+    // OFF = 0, this enum value conflicts with MIN
     ON = 1,
     LEARNING = 2,
-    MAX = 2,
-    DEFAULT = 1,
+    // MAX = 2, this enum value conflicts with LEARNING
+    // DEFAULT = 1, this enum value conflicts with ON
 };
 pub const FLICKMODE_MIN = FLICKMODE.MIN;
-pub const FLICKMODE_OFF = FLICKMODE.OFF;
+pub const FLICKMODE_OFF = FLICKMODE.MIN;
 pub const FLICKMODE_ON = FLICKMODE.ON;
 pub const FLICKMODE_LEARNING = FLICKMODE.LEARNING;
-pub const FLICKMODE_MAX = FLICKMODE.MAX;
-pub const FLICKMODE_DEFAULT = FLICKMODE.DEFAULT;
+pub const FLICKMODE_MAX = FLICKMODE.LEARNING;
+pub const FLICKMODE_DEFAULT = FLICKMODE.ON;
 
-pub const FLICKACTION_COMMANDCODE = extern enum(i32) {
+pub const FLICKACTION_COMMANDCODE = enum(i32) {
     NULL = 0,
     SCROLL = 1,
     APPCOMMAND = 2,
@@ -7287,14 +7287,14 @@ pub const FLICK_DATA = extern struct {
     _bitfield: i32,
 };
 
-pub const SCROLLDIRECTION = extern enum(i32) {
+pub const SCROLLDIRECTION = enum(i32) {
     UP = 0,
     DOWN = 1,
 };
 pub const SCROLLDIRECTION_UP = SCROLLDIRECTION.UP;
 pub const SCROLLDIRECTION_DOWN = SCROLLDIRECTION.DOWN;
 
-pub const KEYMODIFIER = extern enum(i32) {
+pub const KEYMODIFIER = enum(i32) {
     CONTROL = 1,
     MENU = 2,
     SHIFT = 4,
@@ -7330,7 +7330,7 @@ pub const IEC_RECOGNITIONRESULTINFO = extern struct {
     RecognitionResult: *IInkRecognitionResult,
 };
 
-pub const MouseButton = extern enum(i32) {
+pub const MouseButton = enum(i32) {
     NO_BUTTON = 0,
     LEFT_BUTTON = 1,
     RIGHT_BUTTON = 2,
@@ -7341,7 +7341,7 @@ pub const LEFT_BUTTON = MouseButton.LEFT_BUTTON;
 pub const RIGHT_BUTTON = MouseButton.RIGHT_BUTTON;
 pub const MIDDLE_BUTTON = MouseButton.MIDDLE_BUTTON;
 
-pub const SelAlignmentConstants = extern enum(i32) {
+pub const SelAlignmentConstants = enum(i32) {
     Left = 0,
     Right = 1,
     Center = 2,
@@ -7350,7 +7350,7 @@ pub const rtfLeft = SelAlignmentConstants.Left;
 pub const rtfRight = SelAlignmentConstants.Right;
 pub const rtfCenter = SelAlignmentConstants.Center;
 
-pub const DISPID_InkEdit = extern enum(i32) {
+pub const DISPID_InkEdit = enum(i32) {
     Text = 0,
     TextRTF = 1,
     Hwnd = 2,
@@ -7425,7 +7425,7 @@ pub const DISPID_GetGestStatus = DISPID_InkEdit.GetGestStatus;
 pub const DISPID_SetGestStatus = DISPID_InkEdit.SetGestStatus;
 pub const DISPID_Refresh = DISPID_InkEdit.Refresh;
 
-pub const DISPID_InkEditEvents = extern enum(i32) {
+pub const DISPID_InkEditEvents = enum(i32) {
     Change = 1,
     SelChange = 2,
     KeyDown = 3,
@@ -7456,7 +7456,7 @@ pub const DISPID_IeeStroke = DISPID_InkEditEvents.Stroke;
 pub const DISPID_IeeGesture = DISPID_InkEditEvents.Gesture;
 pub const DISPID_IeeRecognitionResult = DISPID_InkEditEvents.RecognitionResult;
 
-pub const InkMode = extern enum(i32) {
+pub const InkMode = enum(i32) {
     Disabled = 0,
     Ink = 1,
     InkAndGesture = 2,
@@ -7465,14 +7465,14 @@ pub const IEM_Disabled = InkMode.Disabled;
 pub const IEM_Ink = InkMode.Ink;
 pub const IEM_InkAndGesture = InkMode.InkAndGesture;
 
-pub const InkInsertMode = extern enum(i32) {
+pub const InkInsertMode = enum(i32) {
     Text = 0,
     Ink = 1,
 };
 pub const IEM_InsertText = InkInsertMode.Text;
 pub const IEM_InsertInk = InkInsertMode.Ink;
 
-pub const InkEditStatus = extern enum(i32) {
+pub const InkEditStatus = enum(i32) {
     Idle = 0,
     Collecting = 1,
     Recognizing = 2,
@@ -7481,28 +7481,28 @@ pub const IES_Idle = InkEditStatus.Idle;
 pub const IES_Collecting = InkEditStatus.Collecting;
 pub const IES_Recognizing = InkEditStatus.Recognizing;
 
-pub const InkDisplayMode = extern enum(i32) {
+pub const InkDisplayMode = enum(i32) {
     Ink = 0,
     Text = 1,
 };
 pub const IDM_Ink = InkDisplayMode.Ink;
 pub const IDM_Text = InkDisplayMode.Text;
 
-pub const AppearanceConstants = extern enum(i32) {
+pub const AppearanceConstants = enum(i32) {
     Flat = 0,
     ThreeD = 1,
 };
 pub const rtfFlat = AppearanceConstants.Flat;
 pub const rtfThreeD = AppearanceConstants.ThreeD;
 
-pub const BorderStyleConstants = extern enum(i32) {
+pub const BorderStyleConstants = enum(i32) {
     NoBorder = 0,
     FixedSingle = 1,
 };
 pub const rtfNoBorder = BorderStyleConstants.NoBorder;
 pub const rtfFixedSingle = BorderStyleConstants.FixedSingle;
 
-pub const ScrollBarsConstants = extern enum(i32) {
+pub const ScrollBarsConstants = enum(i32) {
     None = 0,
     Horizontal = 1,
     Vertical = 2,
@@ -8227,7 +8227,7 @@ pub const _IInkEditEvents = extern struct {
 const CLSID_MathInputControl_Value = @import("../zig.zig").Guid.initString("c561816c-14d8-4090-830c-98d994b21c7b");
 pub const CLSID_MathInputControl = &CLSID_MathInputControl_Value;
 
-pub const MICUIELEMENT = extern enum(i32) {
+pub const MICUIELEMENT = enum(i32) {
     BUTTON_WRITE = 1,
     BUTTON_ERASE = 2,
     BUTTON_CORRECT = 4,
@@ -8250,7 +8250,7 @@ pub const MICUIELEMENT_BUTTON_CANCEL = MICUIELEMENT.BUTTON_CANCEL;
 pub const MICUIELEMENT_INKPANEL_BACKGROUND = MICUIELEMENT.INKPANEL_BACKGROUND;
 pub const MICUIELEMENT_RESULTPANEL_BACKGROUND = MICUIELEMENT.RESULTPANEL_BACKGROUND;
 
-pub const MICUIELEMENTSTATE = extern enum(i32) {
+pub const MICUIELEMENTSTATE = enum(i32) {
     NORMAL = 1,
     HOT = 2,
     PRESSED = 3,
@@ -8261,7 +8261,7 @@ pub const MICUIELEMENTSTATE_HOT = MICUIELEMENTSTATE.HOT;
 pub const MICUIELEMENTSTATE_PRESSED = MICUIELEMENTSTATE.PRESSED;
 pub const MICUIELEMENTSTATE_DISABLED = MICUIELEMENTSTATE.DISABLED;
 
-pub const DISPID_MathInputControlEvents = extern enum(i32) {
+pub const DISPID_MathInputControlEvents = enum(i32) {
     Insert = 0,
     Close = 1,
     Paint = 2,
@@ -8450,7 +8450,7 @@ pub const CLSID_GestureRecognizer = &CLSID_GestureRecognizer_Value;
 const CLSID_StrokeBuilder_Value = @import("../zig.zig").Guid.initString("e810cee7-6e51-4cb0-aa3a-0b985b70daf7");
 pub const CLSID_StrokeBuilder = &CLSID_StrokeBuilder_Value;
 
-pub const RealTimeStylusDataInterest = extern enum(i32) {
+pub const RealTimeStylusDataInterest = enum(i32) {
     AllData = -1,
     None = 0,
     Error = 1,
@@ -8499,7 +8499,7 @@ pub const StylusInfo = extern struct {
     bIsInvertedCursor: BOOL,
 };
 
-pub const StylusQueue = extern enum(i32) {
+pub const StylusQueue = enum(i32) {
     SyncStylusQueue = 1,
     AsyncStylusQueueImmediate = 2,
     AsyncStylusQueue = 3,
@@ -8508,7 +8508,7 @@ pub const SyncStylusQueue = StylusQueue.SyncStylusQueue;
 pub const AsyncStylusQueueImmediate = StylusQueue.AsyncStylusQueueImmediate;
 pub const AsyncStylusQueue = StylusQueue.AsyncStylusQueue;
 
-pub const RealTimeStylusLockType = extern enum(i32) {
+pub const RealTimeStylusLockType = enum(i32) {
     ObjLock = 1,
     SyncEventLock = 2,
     AsyncEventLock = 4,
@@ -9464,7 +9464,7 @@ pub const LATTICE_METRICS = extern struct {
     iMidlineOffset: i16,
 };
 
-pub const LINE_METRICS = extern enum(i32) {
+pub const LINE_METRICS = enum(i32) {
     BASELINE = 0,
     MIDLINE = 1,
     ASCENDER = 2,
@@ -9475,7 +9475,7 @@ pub const LM_MIDLINE = LINE_METRICS.MIDLINE;
 pub const LM_ASCENDER = LINE_METRICS.ASCENDER;
 pub const LM_DESCENDER = LINE_METRICS.DESCENDER;
 
-pub const CONFIDENCE_LEVEL = extern enum(i32) {
+pub const CONFIDENCE_LEVEL = enum(i32) {
     STRONG = 0,
     INTERMEDIATE = 1,
     POOR = 2,
@@ -9484,7 +9484,7 @@ pub const CFL_STRONG = CONFIDENCE_LEVEL.STRONG;
 pub const CFL_INTERMEDIATE = CONFIDENCE_LEVEL.INTERMEDIATE;
 pub const CFL_POOR = CONFIDENCE_LEVEL.POOR;
 
-pub const ALT_BREAKS = extern enum(i32) {
+pub const ALT_BREAKS = enum(i32) {
     SAME = 0,
     UNIQUE = 1,
     FULL = 2,
@@ -9493,7 +9493,7 @@ pub const ALT_BREAKS_SAME = ALT_BREAKS.SAME;
 pub const ALT_BREAKS_UNIQUE = ALT_BREAKS.UNIQUE;
 pub const ALT_BREAKS_FULL = ALT_BREAKS.FULL;
 
-pub const enumRECO_TYPE = extern enum(i32) {
+pub const enumRECO_TYPE = enum(i32) {
     STRING = 0,
     CHAR = 1,
 };

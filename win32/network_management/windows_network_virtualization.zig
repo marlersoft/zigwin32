@@ -8,7 +8,7 @@ pub const WNV_API_MINOR_VERSION_0 = @as(u32, 0);
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const WNV_NOTIFICATION_TYPE = extern enum(i32) {
+pub const WNV_NOTIFICATION_TYPE = enum(i32) {
     PolicyMismatchType = 0,
     RedirectType = 1,
     ObjectChangeType = 2,
@@ -19,7 +19,7 @@ pub const WnvRedirectType = WNV_NOTIFICATION_TYPE.RedirectType;
 pub const WnvObjectChangeType = WNV_NOTIFICATION_TYPE.ObjectChangeType;
 pub const WnvNotificationTypeMax = WNV_NOTIFICATION_TYPE.NotificationTypeMax;
 
-pub const WNV_OBJECT_TYPE = extern enum(i32) {
+pub const WNV_OBJECT_TYPE = enum(i32) {
     ProviderAddressType = 0,
     CustomerAddressType = 1,
     ObjectTypeMax = 2,
@@ -28,7 +28,7 @@ pub const WnvProviderAddressType = WNV_OBJECT_TYPE.ProviderAddressType;
 pub const WnvCustomerAddressType = WNV_OBJECT_TYPE.CustomerAddressType;
 pub const WnvObjectTypeMax = WNV_OBJECT_TYPE.ObjectTypeMax;
 
-pub const WNV_CA_NOTIFICATION_TYPE = extern enum(i32) {
+pub const WNV_CA_NOTIFICATION_TYPE = enum(i32) {
     Added = 0,
     Deleted = 1,
     Moved = 2,

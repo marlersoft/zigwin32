@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const WSL_DISTRIBUTION_FLAGS = extern enum(u32) {
+pub const WSL_DISTRIBUTION_FLAGS = enum(u32) {
     NONE = 0,
     ENABLE_INTEROP = 1,
     APPEND_NT_PATH = 2,

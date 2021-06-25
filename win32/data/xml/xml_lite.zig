@@ -9,7 +9,7 @@ pub const _IID_IXmlResolver = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
-pub const XmlNodeType = extern enum(i32) {
+pub const XmlNodeType = enum(i32) {
     XmlNodeType_None = 0,
     XmlNodeType_Element = 1,
     XmlNodeType_Attribute = 2,
@@ -21,7 +21,7 @@ pub const XmlNodeType = extern enum(i32) {
     XmlNodeType_Whitespace = 13,
     XmlNodeType_EndElement = 15,
     XmlNodeType_XmlDeclaration = 17,
-    _XmlNodeType_Last = 17,
+    // _XmlNodeType_Last = 17, this enum value conflicts with XmlNodeType_XmlDeclaration
 };
 pub const XmlNodeType_None = XmlNodeType.XmlNodeType_None;
 pub const XmlNodeType_Element = XmlNodeType.XmlNodeType_Element;
@@ -34,29 +34,29 @@ pub const XmlNodeType_DocumentType = XmlNodeType.XmlNodeType_DocumentType;
 pub const XmlNodeType_Whitespace = XmlNodeType.XmlNodeType_Whitespace;
 pub const XmlNodeType_EndElement = XmlNodeType.XmlNodeType_EndElement;
 pub const XmlNodeType_XmlDeclaration = XmlNodeType.XmlNodeType_XmlDeclaration;
-pub const _XmlNodeType_Last = XmlNodeType._XmlNodeType_Last;
+pub const _XmlNodeType_Last = XmlNodeType.XmlNodeType_XmlDeclaration;
 
-pub const XmlConformanceLevel = extern enum(i32) {
+pub const XmlConformanceLevel = enum(i32) {
     XmlConformanceLevel_Auto = 0,
     XmlConformanceLevel_Fragment = 1,
     XmlConformanceLevel_Document = 2,
-    _XmlConformanceLevel_Last = 2,
+    // _XmlConformanceLevel_Last = 2, this enum value conflicts with XmlConformanceLevel_Document
 };
 pub const XmlConformanceLevel_Auto = XmlConformanceLevel.XmlConformanceLevel_Auto;
 pub const XmlConformanceLevel_Fragment = XmlConformanceLevel.XmlConformanceLevel_Fragment;
 pub const XmlConformanceLevel_Document = XmlConformanceLevel.XmlConformanceLevel_Document;
-pub const _XmlConformanceLevel_Last = XmlConformanceLevel._XmlConformanceLevel_Last;
+pub const _XmlConformanceLevel_Last = XmlConformanceLevel.XmlConformanceLevel_Document;
 
-pub const DtdProcessing = extern enum(i32) {
+pub const DtdProcessing = enum(i32) {
     DtdProcessing_Prohibit = 0,
     DtdProcessing_Parse = 1,
-    _DtdProcessing_Last = 1,
+    // _DtdProcessing_Last = 1, this enum value conflicts with DtdProcessing_Parse
 };
 pub const DtdProcessing_Prohibit = DtdProcessing.DtdProcessing_Prohibit;
 pub const DtdProcessing_Parse = DtdProcessing.DtdProcessing_Parse;
-pub const _DtdProcessing_Last = DtdProcessing._DtdProcessing_Last;
+pub const _DtdProcessing_Last = DtdProcessing.DtdProcessing_Parse;
 
-pub const XmlReadState = extern enum(i32) {
+pub const XmlReadState = enum(i32) {
     Initial = 0,
     Interactive = 1,
     Error = 2,
@@ -69,7 +69,7 @@ pub const XmlReadState_Error = XmlReadState.Error;
 pub const XmlReadState_EndOfFile = XmlReadState.EndOfFile;
 pub const XmlReadState_Closed = XmlReadState.Closed;
 
-pub const XmlReaderProperty = extern enum(i32) {
+pub const XmlReaderProperty = enum(i32) {
     XmlReaderProperty_MultiLanguage = 0,
     XmlReaderProperty_ConformanceLevel = 1,
     XmlReaderProperty_RandomAccess = 2,
@@ -78,7 +78,7 @@ pub const XmlReaderProperty = extern enum(i32) {
     XmlReaderProperty_ReadState = 5,
     XmlReaderProperty_MaxElementDepth = 6,
     XmlReaderProperty_MaxEntityExpansion = 7,
-    _XmlReaderProperty_Last = 7,
+    // _XmlReaderProperty_Last = 7, this enum value conflicts with XmlReaderProperty_MaxEntityExpansion
 };
 pub const XmlReaderProperty_MultiLanguage = XmlReaderProperty.XmlReaderProperty_MultiLanguage;
 pub const XmlReaderProperty_ConformanceLevel = XmlReaderProperty.XmlReaderProperty_ConformanceLevel;
@@ -88,9 +88,9 @@ pub const XmlReaderProperty_DtdProcessing = XmlReaderProperty.XmlReaderProperty_
 pub const XmlReaderProperty_ReadState = XmlReaderProperty.XmlReaderProperty_ReadState;
 pub const XmlReaderProperty_MaxElementDepth = XmlReaderProperty.XmlReaderProperty_MaxElementDepth;
 pub const XmlReaderProperty_MaxEntityExpansion = XmlReaderProperty.XmlReaderProperty_MaxEntityExpansion;
-pub const _XmlReaderProperty_Last = XmlReaderProperty._XmlReaderProperty_Last;
+pub const _XmlReaderProperty_Last = XmlReaderProperty.XmlReaderProperty_MaxEntityExpansion;
 
-pub const XmlError = extern enum(i32) {
+pub const XmlError = enum(i32) {
     MX_E_MX = -1072894464,
     MX_E_INPUTEND = -1072894463,
     MX_E_ENCODING = -1072894462,
@@ -263,25 +263,25 @@ pub const XML_E_INVALID_HEXIDECIMAL = XmlError.XML_E_INVALID_HEXIDECIMAL;
 pub const XML_E_INVALID_UNICODE = XmlError.XML_E_INVALID_UNICODE;
 pub const XML_E_INVALIDENCODING = XmlError.XML_E_INVALIDENCODING;
 
-pub const XmlStandalone = extern enum(i32) {
+pub const XmlStandalone = enum(i32) {
     XmlStandalone_Omit = 0,
     XmlStandalone_Yes = 1,
     XmlStandalone_No = 2,
-    _XmlStandalone_Last = 2,
+    // _XmlStandalone_Last = 2, this enum value conflicts with XmlStandalone_No
 };
 pub const XmlStandalone_Omit = XmlStandalone.XmlStandalone_Omit;
 pub const XmlStandalone_Yes = XmlStandalone.XmlStandalone_Yes;
 pub const XmlStandalone_No = XmlStandalone.XmlStandalone_No;
-pub const _XmlStandalone_Last = XmlStandalone._XmlStandalone_Last;
+pub const _XmlStandalone_Last = XmlStandalone.XmlStandalone_No;
 
-pub const XmlWriterProperty = extern enum(i32) {
+pub const XmlWriterProperty = enum(i32) {
     XmlWriterProperty_MultiLanguage = 0,
     XmlWriterProperty_Indent = 1,
     XmlWriterProperty_ByteOrderMark = 2,
     XmlWriterProperty_OmitXmlDeclaration = 3,
     XmlWriterProperty_ConformanceLevel = 4,
     XmlWriterProperty_CompactEmptyElement = 5,
-    _XmlWriterProperty_Last = 5,
+    // _XmlWriterProperty_Last = 5, this enum value conflicts with XmlWriterProperty_CompactEmptyElement
 };
 pub const XmlWriterProperty_MultiLanguage = XmlWriterProperty.XmlWriterProperty_MultiLanguage;
 pub const XmlWriterProperty_Indent = XmlWriterProperty.XmlWriterProperty_Indent;
@@ -289,7 +289,7 @@ pub const XmlWriterProperty_ByteOrderMark = XmlWriterProperty.XmlWriterProperty_
 pub const XmlWriterProperty_OmitXmlDeclaration = XmlWriterProperty.XmlWriterProperty_OmitXmlDeclaration;
 pub const XmlWriterProperty_ConformanceLevel = XmlWriterProperty.XmlWriterProperty_ConformanceLevel;
 pub const XmlWriterProperty_CompactEmptyElement = XmlWriterProperty.XmlWriterProperty_CompactEmptyElement;
-pub const _XmlWriterProperty_Last = XmlWriterProperty._XmlWriterProperty_Last;
+pub const _XmlWriterProperty_Last = XmlWriterProperty.XmlWriterProperty_CompactEmptyElement;
 
 const IID_IXmlReader_Value = @import("../../zig.zig").Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlReader = &IID_IXmlReader_Value;

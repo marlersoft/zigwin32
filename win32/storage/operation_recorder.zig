@@ -18,7 +18,7 @@ pub const OPERATION_END_PARAMETERS = extern struct {
     Flags: OPERATION_END_PARAMETERS_FLAGS,
 };
 
-pub const OPERATION_START_FLAGS = extern enum(u32) {
+pub const OPERATION_START_FLAGS = enum(u32) {
     D = 1,
     _,
     pub fn initFlags(o: struct {
@@ -31,7 +31,7 @@ pub const OPERATION_START_FLAGS = extern enum(u32) {
 };
 pub const OPERATION_START_TRACE_CURRENT_THREAD = OPERATION_START_FLAGS.D;
 
-pub const OPERATION_END_PARAMETERS_FLAGS = extern enum(u32) {
+pub const OPERATION_END_PARAMETERS_FLAGS = enum(u32) {
     D = 1,
     _,
     pub fn initFlags(o: struct {

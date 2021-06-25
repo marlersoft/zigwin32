@@ -130,7 +130,7 @@ pub const g_szStationEvent_Skipped = "TrackSkipped";
 const CLSID_WindowsMediaPlayer_Value = @import("../zig.zig").Guid.initString("6bf52a52-394a-11d3-b153-00c04f79faa6");
 pub const CLSID_WindowsMediaPlayer = &CLSID_WindowsMediaPlayer_Value;
 
-pub const WMPOpenState = extern enum(i32) {
+pub const WMPOpenState = enum(i32) {
     Undefined = 0,
     PlaylistChanging = 1,
     PlaylistLocating = 2,
@@ -177,7 +177,7 @@ pub const wmposEndIndividualization = WMPOpenState.EndIndividualization;
 pub const wmposMediaWaiting = WMPOpenState.MediaWaiting;
 pub const wmposOpeningUnknownURL = WMPOpenState.OpeningUnknownURL;
 
-pub const WMPPlayState = extern enum(i32) {
+pub const WMPPlayState = enum(i32) {
     Undefined = 0,
     Stopped = 1,
     Paused = 2,
@@ -206,7 +206,7 @@ pub const wmppsReady = WMPPlayState.Ready;
 pub const wmppsReconnecting = WMPPlayState.Reconnecting;
 pub const wmppsLast = WMPPlayState.Last;
 
-pub const WMPPlaylistChangeEventType = extern enum(i32) {
+pub const WMPPlaylistChangeEventType = enum(i32) {
     Unknown = 0,
     Clear = 1,
     InfoChange = 2,
@@ -3019,7 +3019,7 @@ pub const IWMPPlayerServices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPSyncState = extern enum(i32) {
+pub const WMPSyncState = enum(i32) {
     Unknown = 0,
     Synchronizing = 1,
     Stopped = 2,
@@ -3032,7 +3032,7 @@ pub const wmpssStopped = WMPSyncState.Stopped;
 pub const wmpssEstimating = WMPSyncState.Estimating;
 pub const wmpssLast = WMPSyncState.Last;
 
-pub const WMPDeviceStatus = extern enum(i32) {
+pub const WMPDeviceStatus = enum(i32) {
     Unknown = 0,
     PartnershipExists = 1,
     PartnershipDeclined = 2,
@@ -3249,7 +3249,7 @@ pub const IWMPPlayerServices2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPRipState = extern enum(i32) {
+pub const WMPRipState = enum(i32) {
     Unknown = 0,
     Ripping = 1,
     Stopped = 2,
@@ -3258,14 +3258,14 @@ pub const wmprsUnknown = WMPRipState.Unknown;
 pub const wmprsRipping = WMPRipState.Ripping;
 pub const wmprsStopped = WMPRipState.Stopped;
 
-pub const WMPBurnFormat = extern enum(i32) {
+pub const WMPBurnFormat = enum(i32) {
     AudioCD = 0,
     DataCD = 1,
 };
 pub const wmpbfAudioCD = WMPBurnFormat.AudioCD;
 pub const wmpbfDataCD = WMPBurnFormat.DataCD;
 
-pub const WMPBurnState = extern enum(i32) {
+pub const WMPBurnState = enum(i32) {
     Unknown = 0,
     Busy = 1,
     Ready = 2,
@@ -3288,7 +3288,7 @@ pub const wmpbsStopped = WMPBurnState.Stopped;
 pub const wmpbsErasing = WMPBurnState.Erasing;
 pub const wmpbsDownloading = WMPBurnState.Downloading;
 
-pub const WMPStringCollectionChangeEventType = extern enum(i32) {
+pub const WMPStringCollectionChangeEventType = enum(i32) {
     Unknown = 0,
     Insert = 1,
     Change = 2,
@@ -3623,7 +3623,7 @@ pub const IWMPStringCollection2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPLibraryType = extern enum(i32) {
+pub const WMPLibraryType = enum(i32) {
     Unknown = 0,
     All = 1,
     Local = 2,
@@ -3755,7 +3755,7 @@ pub const IWMPLibrarySharingServices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPFolderScanState = extern enum(i32) {
+pub const WMPFolderScanState = enum(i32) {
     Unknown = 0,
     Scanning = 1,
     Updating = 2,
@@ -4862,7 +4862,7 @@ pub const IWMPRenderConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPServices_StreamState = extern enum(i32) {
+pub const WMPServices_StreamState = enum(i32) {
     Stop = 0,
     Pause = 1,
     Play = 2,
@@ -4937,7 +4937,7 @@ pub const IWMPMediaPluginRegistrar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPPlugin_Caps = extern enum(i32) {
+pub const WMPPlugin_Caps = enum(i32) {
     s = 1,
 };
 pub const WMPPlugin_Caps_CannotConvertFormats = WMPPlugin_Caps.s;
@@ -5150,7 +5150,7 @@ pub const CLSID_FeedFolderWatcher = &CLSID_FeedFolderWatcher_Value;
 const CLSID_FeedWatcher_Value = @import("../zig.zig").Guid.initString("18a6737b-f433-4687-89bc-a1b4dfb9f123");
 pub const CLSID_FeedWatcher = &CLSID_FeedWatcher_Value;
 
-pub const FEEDS_BACKGROUNDSYNC_ACTION = extern enum(i32) {
+pub const FEEDS_BACKGROUNDSYNC_ACTION = enum(i32) {
     DISABLE = 0,
     ENABLE = 1,
     RUNNOW = 2,
@@ -5159,14 +5159,14 @@ pub const FBSA_DISABLE = FEEDS_BACKGROUNDSYNC_ACTION.DISABLE;
 pub const FBSA_ENABLE = FEEDS_BACKGROUNDSYNC_ACTION.ENABLE;
 pub const FBSA_RUNNOW = FEEDS_BACKGROUNDSYNC_ACTION.RUNNOW;
 
-pub const FEEDS_BACKGROUNDSYNC_STATUS = extern enum(i32) {
+pub const FEEDS_BACKGROUNDSYNC_STATUS = enum(i32) {
     DISABLED = 0,
     ENABLED = 1,
 };
 pub const FBSS_DISABLED = FEEDS_BACKGROUNDSYNC_STATUS.DISABLED;
 pub const FBSS_ENABLED = FEEDS_BACKGROUNDSYNC_STATUS.ENABLED;
 
-pub const FEEDS_EVENTS_SCOPE = extern enum(i32) {
+pub const FEEDS_EVENTS_SCOPE = enum(i32) {
     ALL = 0,
     SELF_ONLY = 1,
     SELF_AND_CHILDREN_ONLY = 2,
@@ -5175,14 +5175,14 @@ pub const FES_ALL = FEEDS_EVENTS_SCOPE.ALL;
 pub const FES_SELF_ONLY = FEEDS_EVENTS_SCOPE.SELF_ONLY;
 pub const FES_SELF_AND_CHILDREN_ONLY = FEEDS_EVENTS_SCOPE.SELF_AND_CHILDREN_ONLY;
 
-pub const FEEDS_EVENTS_MASK = extern enum(i32) {
+pub const FEEDS_EVENTS_MASK = enum(i32) {
     OLDEREVENTS = 1,
     EEDEVENTS = 2,
 };
 pub const FEM_FOLDEREVENTS = FEEDS_EVENTS_MASK.OLDEREVENTS;
 pub const FEM_FEEDEVENTS = FEEDS_EVENTS_MASK.EEDEVENTS;
 
-pub const FEEDS_XML_SORT_PROPERTY = extern enum(i32) {
+pub const FEEDS_XML_SORT_PROPERTY = enum(i32) {
     NONE = 0,
     PUBDATE = 1,
     DOWNLOADTIME = 2,
@@ -5191,7 +5191,7 @@ pub const FXSP_NONE = FEEDS_XML_SORT_PROPERTY.NONE;
 pub const FXSP_PUBDATE = FEEDS_XML_SORT_PROPERTY.PUBDATE;
 pub const FXSP_DOWNLOADTIME = FEEDS_XML_SORT_PROPERTY.DOWNLOADTIME;
 
-pub const FEEDS_XML_SORT_ORDER = extern enum(i32) {
+pub const FEEDS_XML_SORT_ORDER = enum(i32) {
     NONE = 0,
     ASCENDING = 1,
     DESCENDING = 2,
@@ -5200,7 +5200,7 @@ pub const FXSO_NONE = FEEDS_XML_SORT_ORDER.NONE;
 pub const FXSO_ASCENDING = FEEDS_XML_SORT_ORDER.ASCENDING;
 pub const FXSO_DESCENDING = FEEDS_XML_SORT_ORDER.DESCENDING;
 
-pub const FEEDS_XML_FILTER_FLAGS = extern enum(i32) {
+pub const FEEDS_XML_FILTER_FLAGS = enum(i32) {
     ALL = 0,
     UNREAD = 1,
     READ = 2,
@@ -5209,14 +5209,14 @@ pub const FXFF_ALL = FEEDS_XML_FILTER_FLAGS.ALL;
 pub const FXFF_UNREAD = FEEDS_XML_FILTER_FLAGS.UNREAD;
 pub const FXFF_READ = FEEDS_XML_FILTER_FLAGS.READ;
 
-pub const FEEDS_XML_INCLUDE_FLAGS = extern enum(i32) {
+pub const FEEDS_XML_INCLUDE_FLAGS = enum(i32) {
     NONE = 0,
     CF_EXTENSIONS = 1,
 };
 pub const FXIF_NONE = FEEDS_XML_INCLUDE_FLAGS.NONE;
 pub const FXIF_CF_EXTENSIONS = FEEDS_XML_INCLUDE_FLAGS.CF_EXTENSIONS;
 
-pub const FEEDS_DOWNLOAD_STATUS = extern enum(i32) {
+pub const FEEDS_DOWNLOAD_STATUS = enum(i32) {
     NONE = 0,
     PENDING = 1,
     DOWNLOADING = 2,
@@ -5229,7 +5229,7 @@ pub const FDS_DOWNLOADING = FEEDS_DOWNLOAD_STATUS.DOWNLOADING;
 pub const FDS_DOWNLOADED = FEEDS_DOWNLOAD_STATUS.DOWNLOADED;
 pub const FDS_DOWNLOAD_FAILED = FEEDS_DOWNLOAD_STATUS.DOWNLOAD_FAILED;
 
-pub const FEEDS_SYNC_SETTING = extern enum(i32) {
+pub const FEEDS_SYNC_SETTING = enum(i32) {
     DEFAULT = 0,
     INTERVAL = 1,
     MANUAL = 2,
@@ -5240,7 +5240,7 @@ pub const FSS_INTERVAL = FEEDS_SYNC_SETTING.INTERVAL;
 pub const FSS_MANUAL = FEEDS_SYNC_SETTING.MANUAL;
 pub const FSS_SUGGESTED = FEEDS_SYNC_SETTING.SUGGESTED;
 
-pub const FEEDS_DOWNLOAD_ERROR = extern enum(i32) {
+pub const FEEDS_DOWNLOAD_ERROR = enum(i32) {
     NONE = 0,
     DOWNLOAD_FAILED = 1,
     INVALID_FEED_FORMAT = 2,
@@ -5275,20 +5275,20 @@ pub const FDE_ACCESS_DENIED = FEEDS_DOWNLOAD_ERROR.ACCESS_DENIED;
 pub const FDE_AUTH_FAILED = FEEDS_DOWNLOAD_ERROR.AUTH_FAILED;
 pub const FDE_INVALID_AUTH = FEEDS_DOWNLOAD_ERROR.INVALID_AUTH;
 
-pub const FEEDS_EVENTS_ITEM_COUNT_FLAGS = extern enum(i32) {
+pub const FEEDS_EVENTS_ITEM_COUNT_FLAGS = enum(i32) {
     READ_ITEM_COUNT_CHANGED = 1,
     UNREAD_ITEM_COUNT_CHANGED = 2,
 };
 pub const FEICF_READ_ITEM_COUNT_CHANGED = FEEDS_EVENTS_ITEM_COUNT_FLAGS.READ_ITEM_COUNT_CHANGED;
 pub const FEICF_UNREAD_ITEM_COUNT_CHANGED = FEEDS_EVENTS_ITEM_COUNT_FLAGS.UNREAD_ITEM_COUNT_CHANGED;
 
-pub const FEEDS_ERROR_CODE = extern enum(i32) {
+pub const FEEDS_ERROR_CODE = enum(i32) {
     ERRORBASE = -1073479168,
-    INVALIDMSXMLPROPERTY = -1073479168,
+    // INVALIDMSXMLPROPERTY = -1073479168, this enum value conflicts with ERRORBASE
     DOWNLOADSIZELIMITEXCEEDED = -1073479167,
 };
 pub const FEC_E_ERRORBASE = FEEDS_ERROR_CODE.ERRORBASE;
-pub const FEC_E_INVALIDMSXMLPROPERTY = FEEDS_ERROR_CODE.INVALIDMSXMLPROPERTY;
+pub const FEC_E_INVALIDMSXMLPROPERTY = FEEDS_ERROR_CODE.ERRORBASE;
 pub const FEC_E_DOWNLOADSIZELIMITEXCEEDED = FEEDS_ERROR_CODE.DOWNLOADSIZELIMITEXCEEDED;
 
 const IID_IXFeedsManager_Value = @import("../zig.zig").Guid.initString("5357e238-fb12-4aca-a930-cab7832b84bf");
@@ -7971,7 +7971,7 @@ pub const IFeedEnclosure = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PlayerState = extern enum(i32) {
+pub const PlayerState = enum(i32) {
     stop_state = 0,
     pause_state = 1,
     play_state = 2,
@@ -8228,7 +8228,7 @@ pub const IWMPPluginUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPPartnerNotification = extern enum(i32) {
+pub const WMPPartnerNotification = enum(i32) {
     BackgroundProcessingBegin = 1,
     BackgroundProcessingEnd = 2,
     CatalogDownloadFailure = 3,
@@ -8239,7 +8239,7 @@ pub const wmpsnBackgroundProcessingEnd = WMPPartnerNotification.BackgroundProces
 pub const wmpsnCatalogDownloadFailure = WMPPartnerNotification.CatalogDownloadFailure;
 pub const wmpsnCatalogDownloadComplete = WMPPartnerNotification.CatalogDownloadComplete;
 
-pub const WMPCallbackNotification = extern enum(i32) {
+pub const WMPCallbackNotification = enum(i32) {
     LoginStateChange = 1,
     AuthResult = 2,
     LicenseUpdated = 3,
@@ -8254,7 +8254,7 @@ pub const wmpcnNewCatalogAvailable = WMPCallbackNotification.NewCatalogAvailable
 pub const wmpcnNewPluginAvailable = WMPCallbackNotification.NewPluginAvailable;
 pub const wmpcnDisableRadioSkipping = WMPCallbackNotification.DisableRadioSkipping;
 
-pub const WMPTaskType = extern enum(i32) {
+pub const WMPTaskType = enum(i32) {
     Browse = 1,
     Sync = 2,
     Burn = 3,
@@ -8334,7 +8334,7 @@ pub const IWMPContentContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPTransactionType = extern enum(i32) {
+pub const WMPTransactionType = enum(i32) {
     NoTransaction = 0,
     Download = 1,
     Buy = 2,
@@ -8381,7 +8381,7 @@ pub const IWMPContentContainerList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPTemplateSize = extern enum(i32) {
+pub const WMPTemplateSize = enum(i32) {
     Small = 0,
     Medium = 1,
     Large = 2,
@@ -8390,7 +8390,7 @@ pub const wmptsSmall = WMPTemplateSize.Small;
 pub const wmptsMedium = WMPTemplateSize.Medium;
 pub const wmptsLarge = WMPTemplateSize.Large;
 
-pub const WMPStreamingType = extern enum(i32) {
+pub const WMPStreamingType = enum(i32) {
     Unknown = 0,
     Music = 1,
     Video = 2,
@@ -8401,7 +8401,7 @@ pub const wmpstMusic = WMPStreamingType.Music;
 pub const wmpstVideo = WMPStreamingType.Video;
 pub const wmpstRadio = WMPStreamingType.Radio;
 
-pub const WMPAccountType = extern enum(i32) {
+pub const WMPAccountType = enum(i32) {
     BuyOnly = 1,
     Subscription = 2,
     Janus = 3,
@@ -8803,7 +8803,7 @@ pub const IWMPContentPartner = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPSubscriptionServiceEvent = extern enum(i32) {
+pub const WMPSubscriptionServiceEvent = enum(i32) {
     CurrentBegin = 1,
     CurrentEnd = 2,
     FullBegin = 3,
@@ -8933,7 +8933,7 @@ pub const IWMPSubscriptionService2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMPSubscriptionDownloadState = extern enum(i32) {
+pub const WMPSubscriptionDownloadState = enum(i32) {
     Downloading = 0,
     Paused = 1,
     Processing = 2,

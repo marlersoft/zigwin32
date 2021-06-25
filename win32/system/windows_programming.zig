@@ -624,7 +624,7 @@ pub const JIT_DEBUG_INFO = extern struct {
     lpContextRecord: u64,
 };
 
-pub const PROC_THREAD_ATTRIBUTE_NUM = extern enum(i32) {
+pub const PROC_THREAD_ATTRIBUTE_NUM = enum(i32) {
     ParentProcess = 0,
     HandleList = 2,
     GroupAffinity = 3,
@@ -850,7 +850,7 @@ pub const SYSTEM_POLICY_INFORMATION = extern struct {
     Reserved2: [3]u32,
 };
 
-pub const FILE_INFORMATION_CLASS = extern enum(i32) {
+pub const FILE_INFORMATION_CLASS = enum(i32) {
     n = 1,
 };
 pub const FileDirectoryInformation = FILE_INFORMATION_CLASS.n;
@@ -860,7 +860,7 @@ pub const SYSTEM_CODEINTEGRITY_INFORMATION = extern struct {
     CodeIntegrityOptions: u32,
 };
 
-pub const SYSTEM_INFORMATION_CLASS = extern enum(i32) {
+pub const SYSTEM_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     PerformanceInformation = 2,
     TimeOfDayInformation = 3,
@@ -885,7 +885,7 @@ pub const SystemLookasideInformation = SYSTEM_INFORMATION_CLASS.LookasideInforma
 pub const SystemCodeIntegrityInformation = SYSTEM_INFORMATION_CLASS.CodeIntegrityInformation;
 pub const SystemPolicyInformation = SYSTEM_INFORMATION_CLASS.PolicyInformation;
 
-pub const OBJECT_INFORMATION_CLASS = extern enum(i32) {
+pub const OBJECT_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     TypeInformation = 2,
 };
@@ -912,7 +912,7 @@ pub const KEY_VALUE_ENTRY = extern struct {
     Type: u32,
 };
 
-pub const KEY_SET_INFORMATION_CLASS = extern enum(i32) {
+pub const KEY_SET_INFORMATION_CLASS = enum(i32) {
     KeyWriteTimeInformation = 0,
     KeyWow64FlagsInformation = 1,
     KeyControlFlagsInformation = 2,
@@ -929,7 +929,7 @@ pub const KeySetDebugInformation = KEY_SET_INFORMATION_CLASS.KeySetDebugInformat
 pub const KeySetHandleTagsInformation = KEY_SET_INFORMATION_CLASS.KeySetHandleTagsInformation;
 pub const MaxKeySetInfoClass = KEY_SET_INFORMATION_CLASS.MaxKeySetInfoClass;
 
-pub const WINSTATIONINFOCLASS = extern enum(i32) {
+pub const WINSTATIONINFOCLASS = enum(i32) {
     n = 8,
 };
 pub const WinStationInformation = WINSTATIONINFOCLASS.n;
@@ -955,7 +955,7 @@ pub const AVRF_BACKTRACE_INFORMATION = extern struct {
     ReturnAddresses: [32]u64,
 };
 
-pub const eUserAllocationState = extern enum(i32) {
+pub const eUserAllocationState = enum(i32) {
     Unknown = 0,
     Busy = 1,
     Free = 2,
@@ -964,7 +964,7 @@ pub const AllocationStateUnknown = eUserAllocationState.Unknown;
 pub const AllocationStateBusy = eUserAllocationState.Busy;
 pub const AllocationStateFree = eUserAllocationState.Free;
 
-pub const eHeapAllocationState = extern enum(i32) {
+pub const eHeapAllocationState = enum(i32) {
     FullPageHeap = 1073741824,
     Metadata = -2147483648,
     StateMask = -65536,
@@ -973,7 +973,7 @@ pub const HeapFullPageHeap = eHeapAllocationState.FullPageHeap;
 pub const HeapMetadata = eHeapAllocationState.Metadata;
 pub const HeapStateMask = eHeapAllocationState.StateMask;
 
-pub const eHeapEnumerationLevel = extern enum(i32) {
+pub const eHeapEnumerationLevel = enum(i32) {
     Everything = 0,
     Stop = -1,
 };
@@ -992,7 +992,7 @@ pub const AVRF_HEAP_ALLOCATION = extern struct {
     BackTraceInformation: *AVRF_BACKTRACE_INFORMATION,
 };
 
-pub const eHANDLE_TRACE_OPERATIONS = extern enum(i32) {
+pub const eHANDLE_TRACE_OPERATIONS = enum(i32) {
     Unused = 0,
     OPEN = 1,
     CLOSE = 2,
@@ -1012,7 +1012,7 @@ pub const AVRF_HANDLE_OPERATION = extern struct {
     BackTraceInformation: AVRF_BACKTRACE_INFORMATION,
 };
 
-pub const eAvrfResourceTypes = extern enum(i32) {
+pub const eAvrfResourceTypes = enum(i32) {
     HeapAllocation = 0,
     HandleTrace = 1,
     Max = 2,
@@ -1042,39 +1042,39 @@ pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = fn(
 const CLSID_CameraUIControl_Value = @import("../zig.zig").Guid.initString("16d5a2be-b1c5-47b3-8eae-ccbcf452c7e8");
 pub const CLSID_CameraUIControl = &CLSID_CameraUIControl_Value;
 
-pub const CameraUIControlMode = extern enum(i32) {
+pub const CameraUIControlMode = enum(i32) {
     Browse = 0,
     Linear = 1,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const CameraUIControlLinearSelectionMode = extern enum(i32) {
+pub const CameraUIControlLinearSelectionMode = enum(i32) {
     Single = 0,
     Multiple = 1,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const CameraUIControlCaptureMode = extern enum(i32) {
+pub const CameraUIControlCaptureMode = enum(i32) {
     PhotoOrVideo = 0,
     Photo = 1,
     Video = 2,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const CameraUIControlPhotoFormat = extern enum(i32) {
+pub const CameraUIControlPhotoFormat = enum(i32) {
     Jpeg = 0,
     Png = 1,
     JpegXR = 2,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const CameraUIControlVideoFormat = extern enum(i32) {
+pub const CameraUIControlVideoFormat = enum(i32) {
     Mp4 = 0,
     Wmv = 1,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const CameraUIControlViewType = extern enum(i32) {
+pub const CameraUIControlViewType = enum(i32) {
     SingleItem = 0,
     ItemList = 1,
 };
@@ -1383,7 +1383,7 @@ pub const IClipServiceNotificationHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FEATURE_CHANGE_TIME = extern enum(i32) {
+pub const FEATURE_CHANGE_TIME = enum(i32) {
     READ = 0,
     MODULE_RELOAD = 1,
     SESSION = 2,
@@ -1394,7 +1394,7 @@ pub const FEATURE_CHANGE_TIME_MODULE_RELOAD = FEATURE_CHANGE_TIME.MODULE_RELOAD;
 pub const FEATURE_CHANGE_TIME_SESSION = FEATURE_CHANGE_TIME.SESSION;
 pub const FEATURE_CHANGE_TIME_REBOOT = FEATURE_CHANGE_TIME.REBOOT;
 
-pub const FEATURE_ENABLED_STATE = extern enum(i32) {
+pub const FEATURE_ENABLED_STATE = enum(i32) {
     DEFAULT = 0,
     DISABLED = 1,
     ENABLED = 2,
@@ -1667,7 +1667,7 @@ pub const CLSID_ShellNameSpace = &CLSID_ShellNameSpace_Value;
 const CLSID_CScriptErrorList_Value = @import("../zig.zig").Guid.initString("efd01300-160f-11d2-bb2e-00805ff7efca");
 pub const CLSID_CScriptErrorList = &CLSID_CScriptErrorList_Value;
 
-pub const CommandStateChangeConstants = extern enum(i32) {
+pub const CommandStateChangeConstants = enum(i32) {
     UPDATECOMMANDS = -1,
     NAVIGATEFORWARD = 1,
     NAVIGATEBACK = 2,
@@ -1676,7 +1676,7 @@ pub const CSC_UPDATECOMMANDS = CommandStateChangeConstants.UPDATECOMMANDS;
 pub const CSC_NAVIGATEFORWARD = CommandStateChangeConstants.NAVIGATEFORWARD;
 pub const CSC_NAVIGATEBACK = CommandStateChangeConstants.NAVIGATEBACK;
 
-pub const SecureLockIconConstants = extern enum(i32) {
+pub const SecureLockIconConstants = enum(i32) {
     Unsecure = 0,
     Mixed = 1,
     SecureUnknownBits = 2,
@@ -1693,12 +1693,12 @@ pub const secureLockIconSecure56Bit = SecureLockIconConstants.Secure56Bit;
 pub const secureLockIconSecureFortezza = SecureLockIconConstants.SecureFortezza;
 pub const secureLockIconSecure128Bit = SecureLockIconConstants.Secure128Bit;
 
-pub const NewProcessCauseConstants = extern enum(i32) {
+pub const NewProcessCauseConstants = enum(i32) {
     t = 1,
 };
 pub const ProtectedModeRedirect = NewProcessCauseConstants.t;
 
-pub const BrowserNavConstants = extern enum(i32) {
+pub const BrowserNavConstants = enum(i32) {
     OpenInNewWindow = 1,
     NoHistory = 2,
     NoReadFromCache = 4,
@@ -1765,7 +1765,7 @@ pub const navReserved5 = BrowserNavConstants.Reserved5;
 pub const navReserved6 = BrowserNavConstants.Reserved6;
 pub const navReserved7 = BrowserNavConstants.Reserved7;
 
-pub const RefreshConstants = extern enum(i32) {
+pub const RefreshConstants = enum(i32) {
     NORMAL = 0,
     IFEXPIRED = 1,
     COMPLETELY = 3,
@@ -3930,7 +3930,7 @@ pub const tcp_request_set_information_ex = extern struct {
     Buffer: [1]u8,
 };
 
-pub const TDI_TL_IO_CONTROL_TYPE = extern enum(i32) {
+pub const TDI_TL_IO_CONTROL_TYPE = enum(i32) {
     EndpointIoControlType = 0,
     SetSockOptIoControlType = 1,
     GetSockOptIoControlType = 2,
@@ -3954,7 +3954,7 @@ pub const TDI_TL_IO_CONTROL_ENDPOINT = extern struct {
     OutputBufferLength: u32,
 };
 
-pub const WLDP_HOST = extern enum(i32) {
+pub const WLDP_HOST = enum(i32) {
     RUNDLL32 = 0,
     SVCHOST = 1,
     MAX = 2,
@@ -3963,7 +3963,7 @@ pub const WLDP_HOST_RUNDLL32 = WLDP_HOST.RUNDLL32;
 pub const WLDP_HOST_SVCHOST = WLDP_HOST.SVCHOST;
 pub const WLDP_HOST_MAX = WLDP_HOST.MAX;
 
-pub const WLDP_HOST_ID = extern enum(i32) {
+pub const WLDP_HOST_ID = enum(i32) {
     UNKNOWN = 0,
     GLOBAL = 1,
     VBA = 2,
@@ -3984,7 +3984,7 @@ pub const WLDP_HOST_ID_MSI = WLDP_HOST_ID.MSI;
 pub const WLDP_HOST_ID_ALL = WLDP_HOST_ID.ALL;
 pub const WLDP_HOST_ID_MAX = WLDP_HOST_ID.MAX;
 
-pub const DECISION_LOCATION = extern enum(i32) {
+pub const DECISION_LOCATION = enum(i32) {
     REFRESH_GLOBAL_DATA = 0,
     PARAMETER_VALIDATION = 1,
     AUDIT = 2,
@@ -4007,7 +4007,7 @@ pub const DECISION_LOCATION_ENFORCE_STATE_LIST = DECISION_LOCATION.ENFORCE_STATE
 pub const DECISION_LOCATION_NOT_FOUND = DECISION_LOCATION.NOT_FOUND;
 pub const DECISION_LOCATION_UNKNOWN = DECISION_LOCATION.UNKNOWN;
 
-pub const WLDP_KEY = extern enum(i32) {
+pub const WLDP_KEY = enum(i32) {
     UNKNOWN = 0,
     OVERRIDE = 1,
     ALL_KEYS = 2,
@@ -4016,7 +4016,7 @@ pub const KEY_UNKNOWN = WLDP_KEY.UNKNOWN;
 pub const KEY_OVERRIDE = WLDP_KEY.OVERRIDE;
 pub const KEY_ALL_KEYS = WLDP_KEY.ALL_KEYS;
 
-pub const VALUENAME = extern enum(i32) {
+pub const VALUENAME = enum(i32) {
     UNKNOWN = 0,
     ENTERPRISE_DEFINED_CLASS_ID = 1,
     BUILT_IN_LIST = 2,
@@ -4025,7 +4025,7 @@ pub const VALUENAME_UNKNOWN = VALUENAME.UNKNOWN;
 pub const VALUENAME_ENTERPRISE_DEFINED_CLASS_ID = VALUENAME.ENTERPRISE_DEFINED_CLASS_ID;
 pub const VALUENAME_BUILT_IN_LIST = VALUENAME.BUILT_IN_LIST;
 
-pub const WLDP_WINDOWS_LOCKDOWN_MODE = extern enum(i32) {
+pub const WLDP_WINDOWS_LOCKDOWN_MODE = enum(i32) {
     UNLOCKED = 0,
     TRIAL = 1,
     LOCKED = 2,
@@ -4036,7 +4036,7 @@ pub const WLDP_WINDOWS_LOCKDOWN_MODE_TRIAL = WLDP_WINDOWS_LOCKDOWN_MODE.TRIAL;
 pub const WLDP_WINDOWS_LOCKDOWN_MODE_LOCKED = WLDP_WINDOWS_LOCKDOWN_MODE.LOCKED;
 pub const WLDP_WINDOWS_LOCKDOWN_MODE_MAX = WLDP_WINDOWS_LOCKDOWN_MODE.MAX;
 
-pub const WLDP_WINDOWS_LOCKDOWN_RESTRICTION = extern enum(i32) {
+pub const WLDP_WINDOWS_LOCKDOWN_RESTRICTION = enum(i32) {
     NONE = 0,
     NOUNLOCK = 1,
     NOUNLOCK_PERMANENT = 2,
@@ -4086,7 +4086,7 @@ pub const PWLDP_WLDPISAPPAPPROVEDBYPOLICY_API = fn(
     PackageVersion: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const VERIFIER_ENUM_RESOURCE_FLAGS = extern enum(u32) {
+pub const VERIFIER_ENUM_RESOURCE_FLAGS = enum(u32) {
     DONT_RESOLVE_TRACES = 2,
     SUSPEND = 1,
     _,
@@ -4103,7 +4103,7 @@ pub const VERIFIER_ENUM_RESOURCE_FLAGS = extern enum(u32) {
 pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES;
 pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND;
 
-pub const NT_CREATE_FILE_DISPOSITION = extern enum(u32) {
+pub const NT_CREATE_FILE_DISPOSITION = enum(u32) {
     SUPERSEDE = 0,
     CREATE = 2,
     OPEN = 1,
@@ -4118,7 +4118,7 @@ pub const FILE_OPEN_IF = NT_CREATE_FILE_DISPOSITION.OPEN_IF;
 pub const FILE_OVERWRITE = NT_CREATE_FILE_DISPOSITION.OVERWRITE;
 pub const FILE_OVERWRITE_IF = NT_CREATE_FILE_DISPOSITION.OVERWRITE_IF;
 
-pub const TDIENTITY_ENTITY_TYPE = extern enum(u32) {
+pub const TDIENTITY_ENTITY_TYPE = enum(u32) {
     GENERIC_ENTITY = 0,
     AT_ENTITY = 640,
     CL_NL_ENTITY = 769,

@@ -10,7 +10,7 @@ pub const HGESTUREINFO = *opaque{};
 
 pub const HTOUCHINPUT = *opaque{};
 
-pub const GESTURECONFIG_ID = extern enum(u32) {
+pub const GESTURECONFIG_ID = enum(u32) {
     BEGIN = 1,
     END = 2,
     ZOOM = 3,
@@ -18,7 +18,7 @@ pub const GESTURECONFIG_ID = extern enum(u32) {
     ROTATE = 5,
     TWOFINGERTAP = 6,
     PRESSANDTAP = 7,
-    ROLLOVER = 7,
+    // ROLLOVER = 7, this enum value conflicts with PRESSANDTAP
     _,
     pub fn initFlags(o: struct {
         BEGIN: u1 = 0,
@@ -28,7 +28,6 @@ pub const GESTURECONFIG_ID = extern enum(u32) {
         ROTATE: u1 = 0,
         TWOFINGERTAP: u1 = 0,
         PRESSANDTAP: u1 = 0,
-        ROLLOVER: u1 = 0,
     }) GESTURECONFIG_ID {
         return @intToEnum(GESTURECONFIG_ID,
               (if (o.BEGIN == 1) @enumToInt(GESTURECONFIG_ID.BEGIN) else 0)
@@ -38,7 +37,6 @@ pub const GESTURECONFIG_ID = extern enum(u32) {
             | (if (o.ROTATE == 1) @enumToInt(GESTURECONFIG_ID.ROTATE) else 0)
             | (if (o.TWOFINGERTAP == 1) @enumToInt(GESTURECONFIG_ID.TWOFINGERTAP) else 0)
             | (if (o.PRESSANDTAP == 1) @enumToInt(GESTURECONFIG_ID.PRESSANDTAP) else 0)
-            | (if (o.ROLLOVER == 1) @enumToInt(GESTURECONFIG_ID.ROLLOVER) else 0)
         );
     }
 };
@@ -49,9 +47,9 @@ pub const GID_PAN = GESTURECONFIG_ID.PAN;
 pub const GID_ROTATE = GESTURECONFIG_ID.ROTATE;
 pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
 pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
-pub const GID_ROLLOVER = GESTURECONFIG_ID.ROLLOVER;
+pub const GID_ROLLOVER = GESTURECONFIG_ID.PRESSANDTAP;
 
-pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
+pub const TOUCHEVENTF_FLAGS = enum(u32) {
     MOVE = 1,
     DOWN = 2,
     UP = 4,
@@ -92,7 +90,7 @@ pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
 pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
 pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
 
-pub const TOUCHINPUTMASKF_MASK = extern enum(u32) {
+pub const TOUCHINPUTMASKF_MASK = enum(u32) {
     TIMEFROMSYSTEM = 1,
     EXTRAINFO = 2,
     CONTACTAREA = 4,
@@ -113,7 +111,7 @@ pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
 pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;
 pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK.CONTACTAREA;
 
-pub const REGISTER_TOUCH_WINDOW_FLAGS = extern enum(u32) {
+pub const REGISTER_TOUCH_WINDOW_FLAGS = enum(u32) {
     FINETOUCH = 1,
     WANTPALM = 2,
 };
@@ -126,7 +124,7 @@ pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
 const CLSID_ManipulationProcessor_Value = @import("../zig.zig").Guid.initString("597d4fb0-47fd-4aff-89b9-c6cfae8cf08e");
 pub const CLSID_ManipulationProcessor = &CLSID_ManipulationProcessor_Value;
 
-pub const MANIPULATION_PROCESSOR_MANIPULATIONS = extern enum(i32) {
+pub const MANIPULATION_PROCESSOR_MANIPULATIONS = enum(i32) {
     NONE = 0,
     TRANSLATE_X = 1,
     TRANSLATE_Y = 2,

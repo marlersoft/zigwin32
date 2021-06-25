@@ -7,14 +7,14 @@ pub const JS_SOURCE_CONTEXT_NONE = @as(u64, 18446744073709551615);
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const JsRuntimeVersion = extern enum(i32) {
+pub const JsRuntimeVersion = enum(i32) {
     @"10" = 0,
     @"11" = 1,
     Edge = -1,
 };
 // TODO: enum 'JsRuntimeVersion' has known issues with its value aliases
 
-pub const JsErrorCode = extern enum(u32) {
+pub const JsErrorCode = enum(u32) {
     NoError = 0,
     ErrorCategoryUsage = 65536,
     ErrorInvalidArgument = 65537,
@@ -75,7 +75,7 @@ pub const JsErrorScriptEvalDisabled = JsErrorCode.ErrorScriptEvalDisabled;
 pub const JsErrorCategoryFatal = JsErrorCode.ErrorCategoryFatal;
 pub const JsErrorFatal = JsErrorCode.ErrorFatal;
 
-pub const JsRuntimeAttributes = extern enum(i32) {
+pub const JsRuntimeAttributes = enum(i32) {
     None = 0,
     DisableBackgroundWork = 1,
     AllowScriptInterrupt = 2,
@@ -90,7 +90,7 @@ pub const JsRuntimeAttributeEnableIdleProcessing = JsRuntimeAttributes.EnableIdl
 pub const JsRuntimeAttributeDisableNativeCodeGeneration = JsRuntimeAttributes.DisableNativeCodeGeneration;
 pub const JsRuntimeAttributeDisableEval = JsRuntimeAttributes.DisableEval;
 
-pub const JsMemoryEventType = extern enum(i32) {
+pub const JsMemoryEventType = enum(i32) {
     Allocate = 0,
     Free = 1,
     Failure = 2,
@@ -118,7 +118,7 @@ pub const JsThreadServiceCallback = fn(
     callbackState: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) bool;
 
-pub const JsValueType = extern enum(i32) {
+pub const JsValueType = enum(i32) {
     Undefined = 0,
     Null = 1,
     Number = 2,

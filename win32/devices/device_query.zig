@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const DEVPROP_OPERATOR = extern enum(u32) {
+pub const DEVPROP_OPERATOR = enum(u32) {
     MODIFIER_NOT = 65536,
     MODIFIER_IGNORE_CASE = 131072,
     NONE = 0,
@@ -188,7 +188,7 @@ pub const DEVPROP_FILTER_EXPRESSION = extern struct {
     Property: DEVPROPERTY,
 };
 
-pub const DEV_OBJECT_TYPE = extern enum(i32) {
+pub const DEV_OBJECT_TYPE = enum(i32) {
     Unknown = 0,
     DeviceInterface = 1,
     DeviceContainer = 2,
@@ -215,7 +215,7 @@ pub const DevObjectTypeDeviceContainerDisplay = DEV_OBJECT_TYPE.DeviceContainerD
 pub const DevObjectTypeAEPService = DEV_OBJECT_TYPE.AEPService;
 pub const DevObjectTypeDevicePanel = DEV_OBJECT_TYPE.DevicePanel;
 
-pub const DEV_QUERY_FLAGS = extern enum(i32) {
+pub const DEV_QUERY_FLAGS = enum(i32) {
     None = 0,
     UpdateResults = 1,
     AllProperties = 2,
@@ -228,7 +228,7 @@ pub const DevQueryFlagAllProperties = DEV_QUERY_FLAGS.AllProperties;
 pub const DevQueryFlagLocalize = DEV_QUERY_FLAGS.Localize;
 pub const DevQueryFlagAsyncClose = DEV_QUERY_FLAGS.AsyncClose;
 
-pub const DEV_QUERY_STATE = extern enum(i32) {
+pub const DEV_QUERY_STATE = enum(i32) {
     Initialized = 0,
     EnumCompleted = 1,
     Aborted = 2,
@@ -239,7 +239,7 @@ pub const DevQueryStateEnumCompleted = DEV_QUERY_STATE.EnumCompleted;
 pub const DevQueryStateAborted = DEV_QUERY_STATE.Aborted;
 pub const DevQueryStateClosed = DEV_QUERY_STATE.Closed;
 
-pub const DEV_QUERY_RESULT_ACTION = extern enum(i32) {
+pub const DEV_QUERY_RESULT_ACTION = enum(i32) {
     StateChange = 0,
     Add = 1,
     Update = 2,

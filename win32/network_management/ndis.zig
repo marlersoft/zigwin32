@@ -1597,7 +1597,7 @@ pub const NDIS_OBJECT_HEADER = extern struct {
     Size: u16,
 };
 
-pub const NDIS_REQUEST_TYPE = extern enum(i32) {
+pub const NDIS_REQUEST_TYPE = enum(i32) {
     QueryInformation = 0,
     SetInformation = 1,
     QueryStatistics = 2,
@@ -1647,7 +1647,7 @@ pub const NDIS_STATISTICS_INFO = extern struct {
     ifHCOutBroadcastOctets: u64,
 };
 
-pub const NDIS_INTERRUPT_MODERATION = extern enum(i32) {
+pub const NDIS_INTERRUPT_MODERATION = enum(i32) {
     Unknown = 0,
     NotSupported = 1,
     Enabled = 2,
@@ -1687,7 +1687,7 @@ pub const NDIS_PCI_DEVICE_CUSTOM_PROPERTIES = extern struct {
     MaxInterruptMessages: u32,
 };
 
-pub const NDIS_802_11_STATUS_TYPE = extern enum(i32) {
+pub const NDIS_802_11_STATUS_TYPE = enum(i32) {
     _Authentication = 0,
     _MediaStreamMode = 1,
     _PMKID_CandidateList = 2,
@@ -1719,7 +1719,7 @@ pub const NDIS_802_11_PMKID_CANDIDATE_LIST = extern struct {
     CandidateList: [1]PMKID_CANDIDATE,
 };
 
-pub const NDIS_802_11_NETWORK_TYPE = extern enum(i32) {
+pub const NDIS_802_11_NETWORK_TYPE = enum(i32) {
     FH = 0,
     DS = 1,
     OFDM5 = 2,
@@ -1739,7 +1739,7 @@ pub const NDIS_802_11_NETWORK_TYPE_LIST = extern struct {
     NetworkType: [1]NDIS_802_11_NETWORK_TYPE,
 };
 
-pub const NDIS_802_11_POWER_MODE = extern enum(i32) {
+pub const NDIS_802_11_POWER_MODE = enum(i32) {
     CAM = 0,
     MAX_PSP = 1,
     Fast_PSP = 2,
@@ -1815,7 +1815,7 @@ pub const NDIS_802_11_WEP = extern struct {
     KeyMaterial: [1]u8,
 };
 
-pub const NDIS_802_11_NETWORK_INFRASTRUCTURE = extern enum(i32) {
+pub const NDIS_802_11_NETWORK_INFRASTRUCTURE = enum(i32) {
     IBSS = 0,
     Infrastructure = 1,
     AutoUnknown = 2,
@@ -1826,7 +1826,7 @@ pub const Ndis802_11Infrastructure = NDIS_802_11_NETWORK_INFRASTRUCTURE.Infrastr
 pub const Ndis802_11AutoUnknown = NDIS_802_11_NETWORK_INFRASTRUCTURE.AutoUnknown;
 pub const Ndis802_11InfrastructureMax = NDIS_802_11_NETWORK_INFRASTRUCTURE.InfrastructureMax;
 
-pub const NDIS_802_11_AUTHENTICATION_MODE = extern enum(i32) {
+pub const NDIS_802_11_AUTHENTICATION_MODE = enum(i32) {
     Open = 0,
     Shared = 1,
     AutoSwitch = 2,
@@ -1906,41 +1906,41 @@ pub const NDIS_802_11_VARIABLE_IEs = extern struct {
     data: [1]u8,
 };
 
-pub const NDIS_802_11_PRIVACY_FILTER = extern enum(i32) {
+pub const NDIS_802_11_PRIVACY_FILTER = enum(i32) {
     AcceptAll = 0,
     @"8021xWEP" = 1,
 };
 pub const Ndis802_11PrivFilterAcceptAll = NDIS_802_11_PRIVACY_FILTER.AcceptAll;
 pub const Ndis802_11PrivFilter8021xWEP = NDIS_802_11_PRIVACY_FILTER.@"8021xWEP";
 
-pub const NDIS_802_11_WEP_STATUS = extern enum(i32) {
+pub const NDIS_802_11_WEP_STATUS = enum(i32) {
     WEPEnabled = 0,
-    Encryption1Enabled = 0,
+    // Encryption1Enabled = 0, this enum value conflicts with WEPEnabled
     WEPDisabled = 1,
-    EncryptionDisabled = 1,
+    // EncryptionDisabled = 1, this enum value conflicts with WEPDisabled
     WEPKeyAbsent = 2,
-    Encryption1KeyAbsent = 2,
+    // Encryption1KeyAbsent = 2, this enum value conflicts with WEPKeyAbsent
     WEPNotSupported = 3,
-    EncryptionNotSupported = 3,
+    // EncryptionNotSupported = 3, this enum value conflicts with WEPNotSupported
     Encryption2Enabled = 4,
     Encryption2KeyAbsent = 5,
     Encryption3Enabled = 6,
     Encryption3KeyAbsent = 7,
 };
 pub const Ndis802_11WEPEnabled = NDIS_802_11_WEP_STATUS.WEPEnabled;
-pub const Ndis802_11Encryption1Enabled = NDIS_802_11_WEP_STATUS.Encryption1Enabled;
+pub const Ndis802_11Encryption1Enabled = NDIS_802_11_WEP_STATUS.WEPEnabled;
 pub const Ndis802_11WEPDisabled = NDIS_802_11_WEP_STATUS.WEPDisabled;
-pub const Ndis802_11EncryptionDisabled = NDIS_802_11_WEP_STATUS.EncryptionDisabled;
+pub const Ndis802_11EncryptionDisabled = NDIS_802_11_WEP_STATUS.WEPDisabled;
 pub const Ndis802_11WEPKeyAbsent = NDIS_802_11_WEP_STATUS.WEPKeyAbsent;
-pub const Ndis802_11Encryption1KeyAbsent = NDIS_802_11_WEP_STATUS.Encryption1KeyAbsent;
+pub const Ndis802_11Encryption1KeyAbsent = NDIS_802_11_WEP_STATUS.WEPKeyAbsent;
 pub const Ndis802_11WEPNotSupported = NDIS_802_11_WEP_STATUS.WEPNotSupported;
-pub const Ndis802_11EncryptionNotSupported = NDIS_802_11_WEP_STATUS.EncryptionNotSupported;
+pub const Ndis802_11EncryptionNotSupported = NDIS_802_11_WEP_STATUS.WEPNotSupported;
 pub const Ndis802_11Encryption2Enabled = NDIS_802_11_WEP_STATUS.Encryption2Enabled;
 pub const Ndis802_11Encryption2KeyAbsent = NDIS_802_11_WEP_STATUS.Encryption2KeyAbsent;
 pub const Ndis802_11Encryption3Enabled = NDIS_802_11_WEP_STATUS.Encryption3Enabled;
 pub const Ndis802_11Encryption3KeyAbsent = NDIS_802_11_WEP_STATUS.Encryption3KeyAbsent;
 
-pub const NDIS_802_11_RELOAD_DEFAULTS = extern enum(i32) {
+pub const NDIS_802_11_RELOAD_DEFAULTS = enum(i32) {
     s = 0,
 };
 pub const Ndis802_11ReloadWEPKeys = NDIS_802_11_RELOAD_DEFAULTS.s;
@@ -1983,7 +1983,7 @@ pub const NDIS_802_11_TEST = extern struct {
     },
 };
 
-pub const NDIS_802_11_MEDIA_STREAM_MODE = extern enum(i32) {
+pub const NDIS_802_11_MEDIA_STREAM_MODE = enum(i32) {
     ff = 0,
     n = 1,
 };
@@ -2019,7 +2019,7 @@ pub const NDIS_802_11_NON_BCAST_SSID_LIST = extern struct {
     Non_Bcast_Ssid: [1]NDIS_802_11_SSID,
 };
 
-pub const NDIS_802_11_RADIO_STATUS = extern enum(i32) {
+pub const NDIS_802_11_RADIO_STATUS = enum(i32) {
     On = 0,
     HardwareOff = 1,
     SoftwareOff = 2,
@@ -2063,7 +2063,7 @@ pub const NDIS_CO_DEVICE_PROFILE = extern struct {
     ulUUICallInfoSize: u32,
 };
 
-pub const OFFLOAD_OPERATION_E = extern enum(i32) {
+pub const OFFLOAD_OPERATION_E = enum(i32) {
     AUTHENTICATE = 1,
     ENCRYPT = 2,
 };
@@ -2076,7 +2076,7 @@ pub const OFFLOAD_ALGO_INFO = extern struct {
     algoRounds: u32,
 };
 
-pub const OFFLOAD_CONF_ALGO = extern enum(i32) {
+pub const OFFLOAD_CONF_ALGO = enum(i32) {
     NONE = 0,
     DES = 1,
     RESERVED = 2,
@@ -2089,7 +2089,7 @@ pub const OFFLOAD_IPSEC_CONF_RESERVED = OFFLOAD_CONF_ALGO.RESERVED;
 pub const OFFLOAD_IPSEC_CONF_3_DES = OFFLOAD_CONF_ALGO.@"3_DES";
 pub const OFFLOAD_IPSEC_CONF_MAX = OFFLOAD_CONF_ALGO.MAX;
 
-pub const OFFLOAD_INTEGRITY_ALGO = extern enum(i32) {
+pub const OFFLOAD_INTEGRITY_ALGO = enum(i32) {
     NONE = 0,
     MD5 = 1,
     SHA = 2,
@@ -2130,7 +2130,7 @@ pub const OFFLOAD_IPSEC_DELETE_SA = extern struct {
     OffloadHandle: HANDLE,
 };
 
-pub const UDP_ENCAP_TYPE = extern enum(i32) {
+pub const UDP_ENCAP_TYPE = enum(i32) {
     IKE = 0,
     OTHER = 1,
 };
@@ -2167,7 +2167,7 @@ pub const OFFLOAD_IPSEC_DELETE_UDPESP_SA = extern struct {
     EncapTypeEntryOffldHandle: HANDLE,
 };
 
-pub const NDIS_MEDIUM = extern enum(i32) {
+pub const NDIS_MEDIUM = enum(i32) {
     @"802_3" = 0,
     @"802_5" = 1,
     Fddi = 2,
@@ -2212,7 +2212,7 @@ pub const NdisMediumWiMAX = NDIS_MEDIUM.WiMAX;
 pub const NdisMediumIP = NDIS_MEDIUM.IP;
 pub const NdisMediumMax = NDIS_MEDIUM.Max;
 
-pub const NDIS_PHYSICAL_MEDIUM = extern enum(i32) {
+pub const NDIS_PHYSICAL_MEDIUM = enum(i32) {
     Unspecified = 0,
     WirelessLan = 1,
     CableModem = 2,
@@ -2295,7 +2295,7 @@ pub const NETWORK_ADDRESS_IPX = extern struct {
     Socket: u16,
 };
 
-pub const NDIS_HARDWARE_STATUS = extern enum(i32) {
+pub const NDIS_HARDWARE_STATUS = enum(i32) {
     Ready = 0,
     Initializing = 1,
     Reset = 2,
@@ -2326,7 +2326,7 @@ pub const NDIS_PM_PACKET_PATTERN = extern struct {
     PatternFlags: u32,
 };
 
-pub const NDIS_DEVICE_POWER_STATE = extern enum(i32) {
+pub const NDIS_DEVICE_POWER_STATE = enum(i32) {
     Unspecified = 0,
     D0 = 1,
     D1 = 2,
@@ -2352,7 +2352,7 @@ pub const NDIS_PNP_CAPABILITIES = extern struct {
     WakeUpCapabilities: NDIS_PM_WAKE_UP_CAPABILITIES,
 };
 
-pub const NDIS_FDDI_ATTACHMENT_TYPE = extern enum(i32) {
+pub const NDIS_FDDI_ATTACHMENT_TYPE = enum(i32) {
     Isolated = 1,
     LocalA = 2,
     LocalB = 3,
@@ -2381,7 +2381,7 @@ pub const NdisFddiTypeCWrapB = NDIS_FDDI_ATTACHMENT_TYPE.CWrapB;
 pub const NdisFddiTypeCWrapS = NDIS_FDDI_ATTACHMENT_TYPE.CWrapS;
 pub const NdisFddiTypeThrough = NDIS_FDDI_ATTACHMENT_TYPE.Through;
 
-pub const NDIS_FDDI_RING_MGT_STATE = extern enum(i32) {
+pub const NDIS_FDDI_RING_MGT_STATE = enum(i32) {
     Isolated = 1,
     NonOperational = 2,
     Operational = 3,
@@ -2400,7 +2400,7 @@ pub const NdisFddiRingOperationalDup = NDIS_FDDI_RING_MGT_STATE.OperationalDup;
 pub const NdisFddiRingDirected = NDIS_FDDI_RING_MGT_STATE.Directed;
 pub const NdisFddiRingTrace = NDIS_FDDI_RING_MGT_STATE.Trace;
 
-pub const NDIS_FDDI_LCONNECTION_STATE = extern enum(i32) {
+pub const NDIS_FDDI_LCONNECTION_STATE = enum(i32) {
     Off = 1,
     Break = 2,
     Trace = 3,
@@ -2423,7 +2423,7 @@ pub const NdisFddiStateVerify = NDIS_FDDI_LCONNECTION_STATE.Verify;
 pub const NdisFddiStateActive = NDIS_FDDI_LCONNECTION_STATE.Active;
 pub const NdisFddiStateMaintenance = NDIS_FDDI_LCONNECTION_STATE.Maintenance;
 
-pub const NDIS_WAN_MEDIUM_SUBTYPE = extern enum(i32) {
+pub const NDIS_WAN_MEDIUM_SUBTYPE = enum(i32) {
     Hub = 0,
     X_25 = 1,
     Isdn = 2,
@@ -2460,14 +2460,14 @@ pub const NdisWanMediumAgileVPN = NDIS_WAN_MEDIUM_SUBTYPE.AgileVPN;
 pub const NdisWanMediumGre = NDIS_WAN_MEDIUM_SUBTYPE.Gre;
 pub const NdisWanMediumSubTypeMax = NDIS_WAN_MEDIUM_SUBTYPE.SubTypeMax;
 
-pub const NDIS_WAN_HEADER_FORMAT = extern enum(i32) {
+pub const NDIS_WAN_HEADER_FORMAT = enum(i32) {
     Native = 0,
     Ethernet = 1,
 };
 pub const NdisWanHeaderNative = NDIS_WAN_HEADER_FORMAT.Native;
 pub const NdisWanHeaderEthernet = NDIS_WAN_HEADER_FORMAT.Ethernet;
 
-pub const NDIS_WAN_QUALITY = extern enum(i32) {
+pub const NDIS_WAN_QUALITY = enum(i32) {
     Raw = 0,
     ErrorControl = 1,
     Reliable = 2,
@@ -2481,7 +2481,7 @@ pub const NDIS_WAN_PROTOCOL_CAPS = extern struct {
     Reserved: u32,
 };
 
-pub const NDIS_802_5_RING_STATE = extern enum(i32) {
+pub const NDIS_802_5_RING_STATE = enum(i32) {
     Opened = 1,
     Closed = 2,
     Opening = 3,
@@ -2496,7 +2496,7 @@ pub const NdisRingStateClosing = NDIS_802_5_RING_STATE.Closing;
 pub const NdisRingStateOpenFailure = NDIS_802_5_RING_STATE.OpenFailure;
 pub const NdisRingStateRingFailure = NDIS_802_5_RING_STATE.RingFailure;
 
-pub const NDIS_MEDIA_STATE = extern enum(i32) {
+pub const NDIS_MEDIA_STATE = enum(i32) {
     Connected = 0,
     Disconnected = 1,
 };
@@ -2528,7 +2528,7 @@ pub const NDIS_IRDA_PACKET_INFO = extern struct {
     MinTurnAroundTime: u32,
 };
 
-pub const NDIS_SUPPORTED_PAUSE_FUNCTIONS = extern enum(i32) {
+pub const NDIS_SUPPORTED_PAUSE_FUNCTIONS = enum(i32) {
     Unsupported = 0,
     SendOnly = 1,
     ReceiveOnly = 2,
@@ -2782,7 +2782,7 @@ pub const NDIS_WMI_TCP_CONNECTION_OFFLOAD = extern struct {
     Flags: u32,
 };
 
-pub const NDIS_PORT_TYPE = extern enum(i32) {
+pub const NDIS_PORT_TYPE = enum(i32) {
     Undefined = 0,
     Bridge = 1,
     RasConnection = 2,
@@ -2795,7 +2795,7 @@ pub const NdisPortTypeRasConnection = NDIS_PORT_TYPE.RasConnection;
 pub const NdisPortType8021xSupplicant = NDIS_PORT_TYPE.@"8021xSupplicant";
 pub const NdisPortTypeMax = NDIS_PORT_TYPE.Max;
 
-pub const NDIS_PORT_AUTHORIZATION_STATE = extern enum(i32) {
+pub const NDIS_PORT_AUTHORIZATION_STATE = enum(i32) {
     AuthorizationUnknown = 0,
     Authorized = 1,
     Unauthorized = 2,
@@ -2806,7 +2806,7 @@ pub const NdisPortAuthorized = NDIS_PORT_AUTHORIZATION_STATE.Authorized;
 pub const NdisPortUnauthorized = NDIS_PORT_AUTHORIZATION_STATE.Unauthorized;
 pub const NdisPortReauthorizing = NDIS_PORT_AUTHORIZATION_STATE.Reauthorizing;
 
-pub const NDIS_PORT_CONTROL_STATE = extern enum(i32) {
+pub const NDIS_PORT_CONTROL_STATE = enum(i32) {
     Unknown = 0,
     Controlled = 1,
     Uncontrolled = 2,
@@ -2823,7 +2823,7 @@ pub const NDIS_PORT_AUTHENTICATION_PARAMETERS = extern struct {
     RcvAuthorizationState: NDIS_PORT_AUTHORIZATION_STATE,
 };
 
-pub const NDIS_NETWORK_CHANGE_TYPE = extern enum(i32) {
+pub const NDIS_NETWORK_CHANGE_TYPE = enum(i32) {
     PossibleNetworkChange = 1,
     DefinitelyNetworkChange = 2,
     NetworkChangeFromMediaConnect = 3,
@@ -2904,15 +2904,15 @@ pub const NDIS_RECEIVE_HASH_PARAMETERS = extern struct {
     HashSecretKeyOffset: u32,
 };
 
-pub const NDIS_PROCESSOR_VENDOR = extern enum(i32) {
+pub const NDIS_PROCESSOR_VENDOR = enum(i32) {
     Unknown = 0,
     GenuinIntel = 1,
-    GenuineIntel = 1,
+    // GenuineIntel = 1, this enum value conflicts with GenuinIntel
     AuthenticAMD = 2,
 };
 pub const NdisProcessorVendorUnknown = NDIS_PROCESSOR_VENDOR.Unknown;
 pub const NdisProcessorVendorGenuinIntel = NDIS_PROCESSOR_VENDOR.GenuinIntel;
-pub const NdisProcessorVendorGenuineIntel = NDIS_PROCESSOR_VENDOR.GenuineIntel;
+pub const NdisProcessorVendorGenuineIntel = NDIS_PROCESSOR_VENDOR.GenuinIntel;
 pub const NdisProcessorVendorAuthenticAMD = NDIS_PROCESSOR_VENDOR.AuthenticAMD;
 
 pub const NDIS_PORT_STATE = extern struct {

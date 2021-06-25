@@ -1391,14 +1391,14 @@ pub const MCI_OVLY_LOAD_PARMSW = packed struct {
     rc: RECT,
 };
 
-pub const AUDCLNT_SHAREMODE = extern enum(i32) {
+pub const AUDCLNT_SHAREMODE = enum(i32) {
     SHARED = 0,
     EXCLUSIVE = 1,
 };
 pub const AUDCLNT_SHAREMODE_SHARED = AUDCLNT_SHAREMODE.SHARED;
 pub const AUDCLNT_SHAREMODE_EXCLUSIVE = AUDCLNT_SHAREMODE.EXCLUSIVE;
 
-pub const AUDIO_STREAM_CATEGORY = extern enum(i32) {
+pub const AUDIO_STREAM_CATEGORY = enum(i32) {
     Other = 0,
     ForegroundOnlyMedia = 1,
     Communications = 3,
@@ -1423,7 +1423,7 @@ pub const AudioCategory_Speech = AUDIO_STREAM_CATEGORY.Speech;
 pub const AudioCategory_Movie = AUDIO_STREAM_CATEGORY.Movie;
 pub const AudioCategory_Media = AUDIO_STREAM_CATEGORY.Media;
 
-pub const AudioSessionState = extern enum(i32) {
+pub const AudioSessionState = enum(i32) {
     Inactive = 0,
     Active = 1,
     Expired = 2,
@@ -1435,14 +1435,14 @@ pub const AudioSessionStateExpired = AudioSessionState.Expired;
 const CLSID_GUID_NULL_Value = @import("../../zig.zig").Guid.initString("00000000-0000-0000-0000-000000000000");
 pub const CLSID_GUID_NULL = &CLSID_GUID_NULL_Value;
 
-pub const KSRESET = extern enum(i32) {
+pub const KSRESET = enum(i32) {
     BEGIN = 0,
     END = 1,
 };
 pub const KSRESET_BEGIN = KSRESET.BEGIN;
 pub const KSRESET_END = KSRESET.END;
 
-pub const KSSTATE = extern enum(i32) {
+pub const KSSTATE = enum(i32) {
     STOP = 0,
     ACQUIRE = 1,
     PAUSE = 2,
@@ -1599,7 +1599,7 @@ pub const KSINTERVAL = extern struct {
 const CLSID_KSPROPSETID_General_Value = @import("../../zig.zig").Guid.initString("1464eda5-6a8f-11d1-9aa7-00a0c9223196");
 pub const CLSID_KSPROPSETID_General = &CLSID_KSPROPSETID_General_Value;
 
-pub const KSPROPERTY_GENERAL = extern enum(i32) {
+pub const KSPROPERTY_GENERAL = enum(i32) {
     D = 0,
 };
 pub const KSPROPERTY_GENERAL_COMPONENTID = KSPROPERTY_GENERAL.D;
@@ -1616,7 +1616,7 @@ pub const KSCOMPONENTID = extern struct {
 const CLSID_KSMETHODSETID_StreamIo_Value = @import("../../zig.zig").Guid.initString("65d003ca-1523-11d2-b27a-00a0c9223196");
 pub const CLSID_KSMETHODSETID_StreamIo = &CLSID_KSMETHODSETID_StreamIo_Value;
 
-pub const KSMETHOD_STREAMIO = extern enum(i32) {
+pub const KSMETHOD_STREAMIO = enum(i32) {
     READ = 0,
     WRITE = 1,
 };
@@ -1626,7 +1626,7 @@ pub const KSMETHOD_STREAMIO_WRITE = KSMETHOD_STREAMIO.WRITE;
 const CLSID_KSPROPSETID_MediaSeeking_Value = @import("../../zig.zig").Guid.initString("ee904f0c-d09b-11d0-abe9-00a0c9223196");
 pub const CLSID_KSPROPSETID_MediaSeeking = &CLSID_KSPROPSETID_MediaSeeking_Value;
 
-pub const KSPROPERTY_MEDIASEEKING = extern enum(i32) {
+pub const KSPROPERTY_MEDIASEEKING = enum(i32) {
     CAPABILITIES = 0,
     FORMATS = 1,
     TIMEFORMAT = 2,
@@ -1649,12 +1649,12 @@ pub const KSPROPERTY_MEDIASEEKING_AVAILABLE = KSPROPERTY_MEDIASEEKING.AVAILABLE;
 pub const KSPROPERTY_MEDIASEEKING_PREROLL = KSPROPERTY_MEDIASEEKING.PREROLL;
 pub const KSPROPERTY_MEDIASEEKING_CONVERTTIMEFORMAT = KSPROPERTY_MEDIASEEKING.CONVERTTIMEFORMAT;
 
-pub const KS_SEEKING_FLAGS = extern enum(i32) {
+pub const KS_SEEKING_FLAGS = enum(i32) {
     NoPositioning = 0,
     AbsolutePositioning = 1,
     RelativePositioning = 2,
     IncrementalPositioning = 3,
-    PositioningBitsMask = 3,
+    // PositioningBitsMask = 3, this enum value conflicts with IncrementalPositioning
     SeekToKeyFrame = 4,
     ReturnTime = 8,
 };
@@ -1662,11 +1662,11 @@ pub const KS_SEEKING_NoPositioning = KS_SEEKING_FLAGS.NoPositioning;
 pub const KS_SEEKING_AbsolutePositioning = KS_SEEKING_FLAGS.AbsolutePositioning;
 pub const KS_SEEKING_RelativePositioning = KS_SEEKING_FLAGS.RelativePositioning;
 pub const KS_SEEKING_IncrementalPositioning = KS_SEEKING_FLAGS.IncrementalPositioning;
-pub const KS_SEEKING_PositioningBitsMask = KS_SEEKING_FLAGS.PositioningBitsMask;
+pub const KS_SEEKING_PositioningBitsMask = KS_SEEKING_FLAGS.IncrementalPositioning;
 pub const KS_SEEKING_SeekToKeyFrame = KS_SEEKING_FLAGS.SeekToKeyFrame;
 pub const KS_SEEKING_ReturnTime = KS_SEEKING_FLAGS.ReturnTime;
 
-pub const KS_SEEKING_CAPABILITIES = extern enum(i32) {
+pub const KS_SEEKING_CAPABILITIES = enum(i32) {
     SeekAbsolute = 1,
     SeekForwards = 2,
     SeekBackwards = 4,
@@ -1705,7 +1705,7 @@ pub const KSP_TIMEFORMAT = extern struct {
 const CLSID_KSPROPSETID_Topology_Value = @import("../../zig.zig").Guid.initString("720d4ac0-7533-11d0-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Topology = &CLSID_KSPROPSETID_Topology_Value;
 
-pub const KSPROPERTY_TOPOLOGY = extern enum(i32) {
+pub const KSPROPERTY_TOPOLOGY = enum(i32) {
     CATEGORIES = 0,
     NODES = 1,
     CONNECTIONS = 2,
@@ -1837,7 +1837,7 @@ pub const CLSID_KSTIME_FORMAT_MEDIA_TIME = &CLSID_KSTIME_FORMAT_MEDIA_TIME_Value
 const CLSID_KSINTERFACESETID_Standard_Value = @import("../../zig.zig").Guid.initString("1a8766a0-62ce-11cf-a5d6-28db04c10000");
 pub const CLSID_KSINTERFACESETID_Standard = &CLSID_KSINTERFACESETID_Standard_Value;
 
-pub const KSINTERFACE_STANDARD = extern enum(i32) {
+pub const KSINTERFACE_STANDARD = enum(i32) {
     STREAMING = 0,
     LOOPED_STREAMING = 1,
     CONTROL = 2,
@@ -1849,7 +1849,7 @@ pub const KSINTERFACE_STANDARD_CONTROL = KSINTERFACE_STANDARD.CONTROL;
 const CLSID_KSINTERFACESETID_FileIo_Value = @import("../../zig.zig").Guid.initString("8c6f932c-e771-11d0-b8ff-00a0c9223196");
 pub const CLSID_KSINTERFACESETID_FileIo = &CLSID_KSINTERFACESETID_FileIo_Value;
 
-pub const KSINTERFACE_FILEIO = extern enum(i32) {
+pub const KSINTERFACE_FILEIO = enum(i32) {
     G = 0,
 };
 pub const KSINTERFACE_FILEIO_STREAMING = KSINTERFACE_FILEIO.G;
@@ -1860,7 +1860,7 @@ pub const CLSID_KSMEDIUMSETID_Standard = &CLSID_KSMEDIUMSETID_Standard_Value;
 const CLSID_KSPROPSETID_Pin_Value = @import("../../zig.zig").Guid.initString("8c134960-51ad-11cf-878a-94f801c10000");
 pub const CLSID_KSPROPSETID_Pin = &CLSID_KSPROPSETID_Pin_Value;
 
-pub const KSPROPERTY_PIN = extern enum(i32) {
+pub const KSPROPERTY_PIN = enum(i32) {
     CINSTANCES = 0,
     CTYPES = 1,
     DATAFLOW = 2,
@@ -1917,7 +1917,7 @@ pub const KSPIN_CINSTANCES = extern struct {
     CurrentCount: u32,
 };
 
-pub const KSPIN_DATAFLOW = extern enum(i32) {
+pub const KSPIN_DATAFLOW = enum(i32) {
     IN = 1,
     OUT = 2,
 };
@@ -1943,7 +1943,7 @@ pub const KSATTRIBUTE = extern struct {
     Attribute: Guid,
 };
 
-pub const KSPIN_COMMUNICATION = extern enum(i32) {
+pub const KSPIN_COMMUNICATION = enum(i32) {
     NONE = 0,
     SINK = 1,
     SOURCE = 2,
@@ -1973,7 +1973,7 @@ pub const KSPIN_PHYSICALCONNECTION = extern struct {
 const CLSID_KSEVENTSETID_PinCapsChange_Value = @import("../../zig.zig").Guid.initString("dd4f192e-3b78-49ad-a534-2c315b822000");
 pub const CLSID_KSEVENTSETID_PinCapsChange = &CLSID_KSEVENTSETID_PinCapsChange_Value;
 
-pub const KSEVENT_PINCAPS_CHANGENOTIFICATIONS = extern enum(i32) {
+pub const KSEVENT_PINCAPS_CHANGENOTIFICATIONS = enum(i32) {
     FORMATCHANGE = 0,
     JACKINFOCHANGE = 1,
 };
@@ -1983,7 +1983,7 @@ pub const KSEVENT_PINCAPS_JACKINFOCHANGE = KSEVENT_PINCAPS_CHANGENOTIFICATIONS.J
 const CLSID_KSEVENTSETID_VolumeLimit_Value = @import("../../zig.zig").Guid.initString("da168465-3a7c-4858-9d4a-3e8e24701aef");
 pub const CLSID_KSEVENTSETID_VolumeLimit = &CLSID_KSEVENTSETID_VolumeLimit_Value;
 
-pub const KSEVENT_VOLUMELIMIT = extern enum(i32) {
+pub const KSEVENT_VOLUMELIMIT = enum(i32) {
     D = 0,
 };
 pub const KSEVENT_VOLUMELIMIT_CHANGED = KSEVENT_VOLUMELIMIT.D;
@@ -2021,7 +2021,7 @@ pub const CLSID_KSDATAFORMAT_SPECIFIER_NONE = &CLSID_KSDATAFORMAT_SPECIFIER_NONE
 const CLSID_KSPROPSETID_Quality_Value = @import("../../zig.zig").Guid.initString("d16ad380-ac1a-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Quality = &CLSID_KSPROPSETID_Quality_Value;
 
-pub const KSPROPERTY_QUALITY = extern enum(i32) {
+pub const KSPROPERTY_QUALITY = enum(i32) {
     REPORT = 0,
     ERROR = 1,
 };
@@ -2031,7 +2031,7 @@ pub const KSPROPERTY_QUALITY_ERROR = KSPROPERTY_QUALITY.ERROR;
 const CLSID_KSPROPSETID_Connection_Value = @import("../../zig.zig").Guid.initString("1d58c920-ac9b-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Connection = &CLSID_KSPROPSETID_Connection_Value;
 
-pub const KSPROPERTY_CONNECTION = extern enum(i32) {
+pub const KSPROPERTY_CONNECTION = enum(i32) {
     STATE = 0,
     PRIORITY = 1,
     DATAFORMAT = 2,
@@ -2128,7 +2128,7 @@ pub const CLSID_KSMEMORY_TYPE_DEVICE_UNKNOWN = &CLSID_KSMEMORY_TYPE_DEVICE_UNKNO
 const CLSID_KSEVENTSETID_StreamAllocator_Value = @import("../../zig.zig").Guid.initString("75d95571-073c-11d0-a161-0020afd156e4");
 pub const CLSID_KSEVENTSETID_StreamAllocator = &CLSID_KSEVENTSETID_StreamAllocator_Value;
 
-pub const KSEVENT_STREAMALLOCATOR = extern enum(i32) {
+pub const KSEVENT_STREAMALLOCATOR = enum(i32) {
     INTERNAL_FREEFRAME = 0,
     FREEFRAME = 1,
 };
@@ -2138,7 +2138,7 @@ pub const KSEVENT_STREAMALLOCATOR_FREEFRAME = KSEVENT_STREAMALLOCATOR.FREEFRAME;
 const CLSID_KSMETHODSETID_StreamAllocator_Value = @import("../../zig.zig").Guid.initString("cf6e4341-ec87-11cf-a130-0020afd156e4");
 pub const CLSID_KSMETHODSETID_StreamAllocator = &CLSID_KSMETHODSETID_StreamAllocator_Value;
 
-pub const KSMETHOD_STREAMALLOCATOR = extern enum(i32) {
+pub const KSMETHOD_STREAMALLOCATOR = enum(i32) {
     ALLOC = 0,
     FREE = 1,
 };
@@ -2193,7 +2193,7 @@ pub const KSSTREAM_UVC_METADATA = extern struct {
     EndOfFrameTimestamp: KSSTREAM_UVC_METADATATYPE_TIMESTAMP,
 };
 
-pub const KSPIN_MDL_CACHING_EVENT = extern enum(i32) {
+pub const KSPIN_MDL_CACHING_EVENT = enum(i32) {
     CLEANUP = 0,
     CLEANALL_WAIT = 1,
     CLEANALL_NOWAIT = 2,
@@ -2217,7 +2217,7 @@ pub const KSPIN_MDL_CACHING_NOTIFICATION32 = extern struct {
 const CLSID_KSPROPSETID_StreamInterface_Value = @import("../../zig.zig").Guid.initString("1fdd8ee1-9cd3-11d0-82aa-0000f822fe8a");
 pub const CLSID_KSPROPSETID_StreamInterface = &CLSID_KSPROPSETID_StreamInterface_Value;
 
-pub const KSPROPERTY_STREAMINTERFACE = extern enum(i32) {
+pub const KSPROPERTY_STREAMINTERFACE = enum(i32) {
     E = 0,
 };
 pub const KSPROPERTY_STREAMINTERFACE_HEADERSIZE = KSPROPERTY_STREAMINTERFACE.E;
@@ -2225,7 +2225,7 @@ pub const KSPROPERTY_STREAMINTERFACE_HEADERSIZE = KSPROPERTY_STREAMINTERFACE.E;
 const CLSID_KSPROPSETID_Stream_Value = @import("../../zig.zig").Guid.initString("65aaba60-98ae-11cf-a10d-0020afd156e4");
 pub const CLSID_KSPROPSETID_Stream = &CLSID_KSPROPSETID_Stream_Value;
 
-pub const KSPROPERTY_STREAM = extern enum(i32) {
+pub const KSPROPERTY_STREAM = enum(i32) {
     ALLOCATOR = 0,
     QUALITY = 1,
     DEGRADATION = 2,
@@ -2250,7 +2250,7 @@ pub const KSPROPERTY_STREAM_RATECAPABILITY = KSPROPERTY_STREAM.RATECAPABILITY;
 pub const KSPROPERTY_STREAM_RATE = KSPROPERTY_STREAM.RATE;
 pub const KSPROPERTY_STREAM_PIPE_ID = KSPROPERTY_STREAM.PIPE_ID;
 
-pub const KSPPROPERTY_ALLOCATOR_MDLCACHING = extern enum(i32) {
+pub const KSPPROPERTY_ALLOCATOR_MDLCACHING = enum(i32) {
     S = 1,
 };
 pub const KSPROPERTY_ALLOCATOR_CLEANUP_CACHEDMDLPAGES = KSPPROPERTY_ALLOCATOR_MDLCACHING.S;
@@ -2299,7 +2299,7 @@ pub const KSRESOLUTION = extern struct {
     Error: i64,
 };
 
-pub const KSPROPERTY_CLOCK = extern enum(i32) {
+pub const KSPROPERTY_CLOCK = enum(i32) {
     TIME = 0,
     PHYSICALTIME = 1,
     CORRELATEDTIME = 2,
@@ -2317,7 +2317,7 @@ pub const KSPROPERTY_CLOCK_STATE = KSPROPERTY_CLOCK.STATE;
 const CLSID_KSEVENTSETID_Clock_Value = @import("../../zig.zig").Guid.initString("364d8e20-62c7-11cf-a5d6-28db04c10000");
 pub const CLSID_KSEVENTSETID_Clock = &CLSID_KSEVENTSETID_Clock_Value;
 
-pub const KSEVENT_CLOCK_POSITION = extern enum(i32) {
+pub const KSEVENT_CLOCK_POSITION = enum(i32) {
     INTERVAL_MARK = 0,
     POSITION_MARK = 1,
 };
@@ -2327,7 +2327,7 @@ pub const KSEVENT_CLOCK_POSITION_MARK = KSEVENT_CLOCK_POSITION.POSITION_MARK;
 const CLSID_KSEVENTSETID_Connection_Value = @import("../../zig.zig").Guid.initString("7f4bcbe0-9ea5-11cf-a5d6-28db04c10000");
 pub const CLSID_KSEVENTSETID_Connection = &CLSID_KSEVENTSETID_Connection_Value;
 
-pub const KSEVENT_CONNECTION = extern enum(i32) {
+pub const KSEVENT_CONNECTION = enum(i32) {
     POSITIONUPDATE = 0,
     DATADISCONTINUITY = 1,
     TIMEDISCONTINUITY = 2,
@@ -2351,7 +2351,7 @@ pub const KSERROR = extern struct {
     Status: u32,
 };
 
-pub const KSDEVICE_THERMAL_STATE = extern enum(i32) {
+pub const KSDEVICE_THERMAL_STATE = enum(i32) {
     LOW = 0,
     HIGH = 1,
 };
@@ -2361,7 +2361,7 @@ pub const KSDEVICE_THERMAL_STATE_HIGH = KSDEVICE_THERMAL_STATE.HIGH;
 const CLSID_KSEVENTSETID_Device_Value = @import("../../zig.zig").Guid.initString("288296ec-9f94-41b4-a153-aa31aeecb33f");
 pub const CLSID_KSEVENTSETID_Device = &CLSID_KSEVENTSETID_Device_Value;
 
-pub const KSEVENT_DEVICE = extern enum(i32) {
+pub const KSEVENT_DEVICE = enum(i32) {
     LOST = 0,
     PREEMPTED = 1,
     THERMAL_HIGH = 2,
@@ -2375,7 +2375,7 @@ pub const KSEVENT_DEVICE_THERMAL_LOW = KSEVENT_DEVICE.THERMAL_LOW;
 const CLSID_KSDEGRADESETID_Standard_Value = @import("../../zig.zig").Guid.initString("9f564180-704c-11d0-a5d6-28db04c10000");
 pub const CLSID_KSDEGRADESETID_Standard = &CLSID_KSDEGRADESETID_Standard_Value;
 
-pub const KSDEGRADE_STANDARD = extern enum(i32) {
+pub const KSDEGRADE_STANDARD = enum(i32) {
     SAMPLE = 0,
     QUALITY = 1,
     COMPUTATION = 2,
@@ -2420,7 +2420,7 @@ pub const CLSID_KSMEDIUMSETID_VPBus = &CLSID_KSMEDIUMSETID_VPBus_Value;
 const CLSID_KSINTERFACESETID_Media_Value = @import("../../zig.zig").Guid.initString("3a13eb40-30a7-11d0-a5d6-28db04c10000");
 pub const CLSID_KSINTERFACESETID_Media = &CLSID_KSINTERFACESETID_Media_Value;
 
-pub const KSINTERFACE_MEDIA = extern enum(i32) {
+pub const KSINTERFACE_MEDIA = enum(i32) {
     MUSIC = 0,
     WAVE_BUFFERED = 1,
     WAVE_QUEUED = 2,
@@ -2743,7 +2743,7 @@ pub const KSAUDIO_PRESENTATION_POSITION = extern struct {
     u64QPCPosition: u64,
 };
 
-pub const CONSTRICTOR_OPTION = extern enum(i32) {
+pub const CONSTRICTOR_OPTION = enum(i32) {
     DISABLE = 0,
     MUTE = 1,
 };
@@ -2772,7 +2772,7 @@ pub const KSAUDIO_PACKETSIZE_CONSTRAINTS2 = extern struct {
     ProcessingModeConstraints: [1]_KSAUDIO_PACKETSIZE_SIGNALPROCESSINGMODE_CONSTRAINT,
 };
 
-pub const KSMICARRAY_MICTYPE = extern enum(i32) {
+pub const KSMICARRAY_MICTYPE = enum(i32) {
     OMNIDIRECTIONAL = 0,
     SUBCARDIOID = 1,
     CARDIOID = 2,
@@ -2798,7 +2798,7 @@ pub const KSAUDIO_MICROPHONE_COORDINATES = extern struct {
     wHorizontalAngle: i16,
 };
 
-pub const KSMICARRAY_MICARRAYTYPE = extern enum(i32) {
+pub const KSMICARRAY_MICARRAYTYPE = enum(i32) {
     LINEAR = 0,
     PLANAR = 1,
     @"3D" = 2,
@@ -2838,7 +2838,7 @@ pub const DS3DVECTOR = extern struct {
 const CLSID_KSPROPSETID_DirectSound3DListener_Value = @import("../../zig.zig").Guid.initString("437b3414-d060-11d0-8583-00c04fd9baf3");
 pub const CLSID_KSPROPSETID_DirectSound3DListener = &CLSID_KSPROPSETID_DirectSound3DListener_Value;
 
-pub const KSPROPERTY_DIRECTSOUND3DLISTENER = extern enum(i32) {
+pub const KSPROPERTY_DIRECTSOUND3DLISTENER = enum(i32) {
     ALL = 0,
     POSITION = 1,
     VELOCITY = 2,
@@ -2877,7 +2877,7 @@ pub const KSDS3D_LISTENER_ORIENTATION = extern struct {
 const CLSID_KSPROPSETID_DirectSound3DBuffer_Value = @import("../../zig.zig").Guid.initString("437b3411-d060-11d0-8583-00c04fd9baf3");
 pub const CLSID_KSPROPSETID_DirectSound3DBuffer = &CLSID_KSPROPSETID_DirectSound3DBuffer_Value;
 
-pub const KSPROPERTY_DIRECTSOUND3DBUFFER = extern enum(i32) {
+pub const KSPROPERTY_DIRECTSOUND3DBUFFER = enum(i32) {
     ALL = 0,
     POSITION = 1,
     VELOCITY = 2,
@@ -2924,7 +2924,7 @@ pub const KSDS3D_HRTF_PARAMS_MSG = extern struct {
     FilterSize: u32,
 };
 
-pub const KSDS3D_HRTF_FILTER_QUALITY = extern enum(i32) {
+pub const KSDS3D_HRTF_FILTER_QUALITY = enum(i32) {
     FULL_FILTER = 0,
     LIGHT_FILTER = 1,
     KSDS3D_FILTER_QUALITY_COUNT = 2,
@@ -2944,7 +2944,7 @@ pub const KSDS3D_HRTF_INIT_MSG = extern struct {
     Reserved: u32,
 };
 
-pub const KSDS3D_HRTF_COEFF_FORMAT = extern enum(i32) {
+pub const KSDS3D_HRTF_COEFF_FORMAT = enum(i32) {
     FLOAT_COEFF = 0,
     SHORT_COEFF = 1,
     KSDS3D_COEFF_COUNT = 2,
@@ -2953,7 +2953,7 @@ pub const FLOAT_COEFF = KSDS3D_HRTF_COEFF_FORMAT.FLOAT_COEFF;
 pub const SHORT_COEFF = KSDS3D_HRTF_COEFF_FORMAT.SHORT_COEFF;
 pub const KSDS3D_COEFF_COUNT = KSDS3D_HRTF_COEFF_FORMAT.KSDS3D_COEFF_COUNT;
 
-pub const KSDS3D_HRTF_FILTER_METHOD = extern enum(i32) {
+pub const KSDS3D_HRTF_FILTER_METHOD = enum(i32) {
     DIRECT_FORM = 0,
     CASCADE_FORM = 1,
     KSDS3D_FILTER_METHOD_COUNT = 2,
@@ -2962,7 +2962,7 @@ pub const DIRECT_FORM = KSDS3D_HRTF_FILTER_METHOD.DIRECT_FORM;
 pub const CASCADE_FORM = KSDS3D_HRTF_FILTER_METHOD.CASCADE_FORM;
 pub const KSDS3D_FILTER_METHOD_COUNT = KSDS3D_HRTF_FILTER_METHOD.KSDS3D_FILTER_METHOD_COUNT;
 
-pub const KSDS3D_HRTF_FILTER_VERSION = extern enum(i32) {
+pub const KSDS3D_HRTF_FILTER_VERSION = enum(i32) {
     @"1" = 0,
 };
 pub const DS3D_HRTF_VERSION_1 = KSDS3D_HRTF_FILTER_VERSION.@"1";
@@ -2977,7 +2977,7 @@ pub const KSDS3D_HRTF_FILTER_FORMAT_MSG = extern struct {
 const CLSID_KSPROPSETID_Hrtf3d_Value = @import("../../zig.zig").Guid.initString("b66decb0-a083-11d0-851e-00c04fd9baf3");
 pub const CLSID_KSPROPSETID_Hrtf3d = &CLSID_KSPROPSETID_Hrtf3d_Value;
 
-pub const KSPROPERTY_HRTF3D = extern enum(i32) {
+pub const KSPROPERTY_HRTF3D = enum(i32) {
     PARAMS = 0,
     INITIALIZE = 1,
     FILTER_FORMAT = 2,
@@ -3005,7 +3005,7 @@ pub const KSDS3D_ITD_PARAMS_MSG = extern struct {
 const CLSID_KSPROPSETID_Itd3d_Value = @import("../../zig.zig").Guid.initString("6429f090-9fd9-11d0-a75b-00a0c90365e3");
 pub const CLSID_KSPROPSETID_Itd3d = &CLSID_KSPROPSETID_Itd3d_Value;
 
-pub const KSPROPERTY_ITD3D = extern enum(i32) {
+pub const KSPROPERTY_ITD3D = enum(i32) {
     S = 0,
 };
 pub const KSPROPERTY_ITD3D_PARAMS = KSPROPERTY_ITD3D.S;
@@ -3028,7 +3028,7 @@ pub const CLSID_KSDATAFORMAT_SUBTYPE_RIFFWAVE = &CLSID_KSDATAFORMAT_SUBTYPE_RIFF
 const CLSID_KSPROPSETID_Bibliographic_Value = @import("../../zig.zig").Guid.initString("07ba150e-e2b1-11d0-ac17-00a0c9223196");
 pub const CLSID_KSPROPSETID_Bibliographic = &CLSID_KSPROPSETID_Bibliographic_Value;
 
-pub const KSPROPERTY_BIBLIOGRAPHIC = extern enum(i32) {
+pub const KSPROPERTY_BIBLIOGRAPHIC = enum(i32) {
     LEADER = 1380207648,
     LCCN = 808529952,
     ISBN = 808595488,
@@ -3106,7 +3106,7 @@ pub const KSPROPERTY_BIBLIOGRAPHIC_SERIESSTATEMENTUNIFORMTITLE = KSPROPERTY_BIBL
 const CLSID_KSPROPSETID_TopologyNode_Value = @import("../../zig.zig").Guid.initString("45ffaaa1-6e1b-11d0-bcf2-444553540000");
 pub const CLSID_KSPROPSETID_TopologyNode = &CLSID_KSPROPSETID_TopologyNode_Value;
 
-pub const KSPROPERTY_TOPOLOGYNODE = extern enum(i32) {
+pub const KSPROPERTY_TOPOLOGYNODE = enum(i32) {
     ENABLE = 1,
     RESET = 2,
 };
@@ -3116,7 +3116,7 @@ pub const KSPROPERTY_TOPOLOGYNODE_RESET = KSPROPERTY_TOPOLOGYNODE.RESET;
 const CLSID_KSPROPSETID_RtAudio_Value = @import("../../zig.zig").Guid.initString("a855a48c-2f78-4729-9051-1968746b9eef");
 pub const CLSID_KSPROPSETID_RtAudio = &CLSID_KSPROPSETID_RtAudio_Value;
 
-pub const KSPROPERTY_RTAUDIO = extern enum(i32) {
+pub const KSPROPERTY_RTAUDIO = enum(i32) {
     GETPOSITIONFUNCTION = 0,
     BUFFER = 1,
     HWLATENCY = 2,
@@ -3254,7 +3254,7 @@ pub const KSRTAUDIO_PACKETVREGISTER = extern struct {
 const CLSID_KSPROPSETID_BtAudio_Value = @import("../../zig.zig").Guid.initString("7fa06c40-b8f6-4c7e-8556-e8c33a12e54d");
 pub const CLSID_KSPROPSETID_BtAudio = &CLSID_KSPROPSETID_BtAudio_Value;
 
-pub const KSPROPERTY_BTAUDIO = extern enum(i32) {
+pub const KSPROPERTY_BTAUDIO = enum(i32) {
     RECONNECT = 0,
     DISCONNECT = 1,
 };
@@ -3264,7 +3264,7 @@ pub const KSPROPERTY_ONESHOT_DISCONNECT = KSPROPERTY_BTAUDIO.DISCONNECT;
 const CLSID_KSPROPSETID_DrmAudioStream_Value = @import("../../zig.zig").Guid.initString("2f2c8ddd-4198-4fac-ba29-61bb05b7de06");
 pub const CLSID_KSPROPSETID_DrmAudioStream = &CLSID_KSPROPSETID_DrmAudioStream_Value;
 
-pub const KSPROPERTY_DRMAUDIOSTREAM = extern enum(i32) {
+pub const KSPROPERTY_DRMAUDIOSTREAM = enum(i32) {
     D = 0,
 };
 pub const KSPROPERTY_DRMAUDIOSTREAM_CONTENTID = KSPROPERTY_DRMAUDIOSTREAM.D;
@@ -3278,7 +3278,7 @@ pub const CLSID_KSPROPSETID_SoundDetector2 = &CLSID_KSPROPSETID_SoundDetector2_V
 const CLSID_KSPROPSETID_InterleavedAudio_Value = @import("../../zig.zig").Guid.initString("e9ebe550-d619-4c0a-976b-7062322b3006");
 pub const CLSID_KSPROPSETID_InterleavedAudio = &CLSID_KSPROPSETID_InterleavedAudio_Value;
 
-pub const KSPROPERTY_INTERLEAVEDAUDIO = extern enum(i32) {
+pub const KSPROPERTY_INTERLEAVEDAUDIO = enum(i32) {
     N = 1,
 };
 pub const KSPROPERTY_INTERLEAVEDAUDIO_FORMATINFORMATION = KSPROPERTY_INTERLEAVEDAUDIO.N;
@@ -3298,7 +3298,7 @@ pub const KSSOUNDDETECTORPROPERTY = extern struct {
     EventId: Guid,
 };
 
-pub const KSPROPERTY_SOUNDDETECTOR = extern enum(i32) {
+pub const KSPROPERTY_SOUNDDETECTOR = enum(i32) {
     SUPPORTEDPATTERNS = 1,
     PATTERNS = 2,
     ARMED = 3,
@@ -3321,7 +3321,7 @@ pub const SOUNDDETECTOR_PATTERNHEADER = extern struct {
 const CLSID_KSEVENTSETID_SoundDetector_Value = @import("../../zig.zig").Guid.initString("69785c9b-fc2d-49d6-ac32-4799f87de9f6");
 pub const CLSID_KSEVENTSETID_SoundDetector = &CLSID_KSEVENTSETID_SoundDetector_Value;
 
-pub const KSEVENT_SOUNDDETECTOR = extern enum(i32) {
+pub const KSEVENT_SOUNDDETECTOR = enum(i32) {
     D = 1,
 };
 pub const KSEVENT_SOUNDDETECTOR_MATCHDETECTED = KSEVENT_SOUNDDETECTOR.D;
@@ -3332,7 +3332,7 @@ pub const CLSID_KSNOTIFICATIONID_SoundDetector = &CLSID_KSNOTIFICATIONID_SoundDe
 const CLSID_KSPROPSETID_Audio_Value = @import("../../zig.zig").Guid.initString("45ffaaa0-6e1b-11d0-bcf2-444553540000");
 pub const CLSID_KSPROPSETID_Audio = &CLSID_KSPROPSETID_Audio_Value;
 
-pub const KSPROPERTY_AUDIO = extern enum(i32) {
+pub const KSPROPERTY_AUDIO = enum(i32) {
     LATENCY = 1,
     COPY_PROTECTION = 2,
     CHANNEL_CONFIG = 3,
@@ -3500,7 +3500,7 @@ pub const KSAUDIO_POSITIONEX = extern struct {
 const CLSID_KSPROPSETID_TelephonyControl_Value = @import("../../zig.zig").Guid.initString("b6df7eb1-d099-489f-a6a0-c0106f0887a7");
 pub const CLSID_KSPROPSETID_TelephonyControl = &CLSID_KSPROPSETID_TelephonyControl_Value;
 
-pub const KSPROPERTY_TELEPHONY_CONTROL = extern enum(i32) {
+pub const KSPROPERTY_TELEPHONY_CONTROL = enum(i32) {
     PROVIDERID = 0,
     CALLINFO = 1,
     CALLCONTROL = 2,
@@ -3515,7 +3515,7 @@ pub const KSPROPERTY_TELEPHONY_PROVIDERCHANGE = KSPROPERTY_TELEPHONY_CONTROL.PRO
 pub const KSPROPERTY_TELEPHONY_CALLHOLD = KSPROPERTY_TELEPHONY_CONTROL.CALLHOLD;
 pub const KSPROPERTY_TELEPHONY_MUTE_TX = KSPROPERTY_TELEPHONY_CONTROL.MUTE_TX;
 
-pub const TELEPHONY_CALLTYPE = extern enum(i32) {
+pub const TELEPHONY_CALLTYPE = enum(i32) {
     CIRCUITSWITCHED = 0,
     PACKETSWITCHED_LTE = 1,
     PACKETSWITCHED_WLAN = 2,
@@ -3524,7 +3524,7 @@ pub const TELEPHONY_CALLTYPE_CIRCUITSWITCHED = TELEPHONY_CALLTYPE.CIRCUITSWITCHE
 pub const TELEPHONY_CALLTYPE_PACKETSWITCHED_LTE = TELEPHONY_CALLTYPE.PACKETSWITCHED_LTE;
 pub const TELEPHONY_CALLTYPE_PACKETSWITCHED_WLAN = TELEPHONY_CALLTYPE.PACKETSWITCHED_WLAN;
 
-pub const TELEPHONY_CALLCONTROLOP = extern enum(i32) {
+pub const TELEPHONY_CALLCONTROLOP = enum(i32) {
     DISABLE = 0,
     ENABLE = 1,
 };
@@ -3536,7 +3536,7 @@ pub const KSTELEPHONY_CALLCONTROL = extern struct {
     CallControlOp: TELEPHONY_CALLCONTROLOP,
 };
 
-pub const TELEPHONY_PROVIDERCHANGEOP = extern enum(i32) {
+pub const TELEPHONY_PROVIDERCHANGEOP = enum(i32) {
     END = 0,
     BEGIN = 1,
     CANCEL = 2,
@@ -3550,7 +3550,7 @@ pub const KSTELEPHONY_PROVIDERCHANGE = extern struct {
     ProviderChangeOp: TELEPHONY_PROVIDERCHANGEOP,
 };
 
-pub const TELEPHONY_CALLSTATE = extern enum(i32) {
+pub const TELEPHONY_CALLSTATE = enum(i32) {
     DISABLED = 0,
     ENABLED = 1,
     HOLD = 2,
@@ -3569,7 +3569,7 @@ pub const KSTELEPHONY_CALLINFO = extern struct {
 const CLSID_KSPROPSETID_TelephonyTopology_Value = @import("../../zig.zig").Guid.initString("abf25c7e-0e64-4e32-b190-d0f6d7c53e97");
 pub const CLSID_KSPROPSETID_TelephonyTopology = &CLSID_KSPROPSETID_TelephonyTopology_Value;
 
-pub const KSPROPERTY_TELEPHONY_TOPOLOGY = extern enum(i32) {
+pub const KSPROPERTY_TELEPHONY_TOPOLOGY = enum(i32) {
     ENDPOINTIDPAIR = 0,
     VOLUME = 1,
 };
@@ -3589,7 +3589,7 @@ pub const KSTOPOLOGY_ENDPOINTIDPAIR = extern struct {
 const CLSID_KSPROPSETID_FMRXTopology_Value = @import("../../zig.zig").Guid.initString("0c46ce8f-dc2d-4204-9dc9-f58963366563");
 pub const CLSID_KSPROPSETID_FMRXTopology = &CLSID_KSPROPSETID_FMRXTopology_Value;
 
-pub const KSPROPERTY_FMRX_TOPOLOGY = extern enum(i32) {
+pub const KSPROPERTY_FMRX_TOPOLOGY = enum(i32) {
     ENDPOINTID = 0,
     VOLUME = 1,
     ANTENNAENDPOINTID = 2,
@@ -3601,7 +3601,7 @@ pub const KSPROPERTY_FMRX_ANTENNAENDPOINTID = KSPROPERTY_FMRX_TOPOLOGY.ANTENNAEN
 const CLSID_KSPROPSETID_FMRXControl_Value = @import("../../zig.zig").Guid.initString("947bba3a-e8ee-4786-90c4-8428185f05be");
 pub const CLSID_KSPROPSETID_FMRXControl = &CLSID_KSPROPSETID_FMRXControl_Value;
 
-pub const KSPROPERTY_FMRX_CONTROL = extern enum(i32) {
+pub const KSPROPERTY_FMRX_CONTROL = enum(i32) {
     E = 0,
 };
 pub const KSPROPERTY_FMRX_STATE = KSPROPERTY_FMRX_CONTROL.E;
@@ -3609,7 +3609,7 @@ pub const KSPROPERTY_FMRX_STATE = KSPROPERTY_FMRX_CONTROL.E;
 const CLSID_KSEVENTSETID_Telephony_Value = @import("../../zig.zig").Guid.initString("b77f12b4-ceb4-4484-8d5e-52c1e7d8762d");
 pub const CLSID_KSEVENTSETID_Telephony = &CLSID_KSEVENTSETID_Telephony_Value;
 
-pub const KSEVENT_TELEPHONY = extern enum(i32) {
+pub const KSEVENT_TELEPHONY = enum(i32) {
     D = 0,
 };
 pub const KSEVENT_TELEPHONY_ENDPOINTPAIRS_CHANGED = KSEVENT_TELEPHONY.D;
@@ -3860,7 +3860,7 @@ pub const CLSID_KSAUDFNAME_PEAKMETER = &CLSID_KSAUDFNAME_PEAKMETER_Value;
 const CLSID_KSMETHODSETID_Wavetable_Value = @import("../../zig.zig").Guid.initString("dcef31eb-d907-11d0-9583-00c04fb925d3");
 pub const CLSID_KSMETHODSETID_Wavetable = &CLSID_KSMETHODSETID_Wavetable_Value;
 
-pub const KSMETHOD_WAVETABLE = extern enum(i32) {
+pub const KSMETHOD_WAVETABLE = enum(i32) {
     ALLOC = 0,
     FREE = 1,
     FIND = 2,
@@ -3883,7 +3883,7 @@ pub const KSWAVETABLE_WAVE_DESC = extern struct {
 const CLSID_KSPROPSETID_Wave_Value = @import("../../zig.zig").Guid.initString("924e54b0-630f-11cf-ada7-08003e30494a");
 pub const CLSID_KSPROPSETID_Wave = &CLSID_KSPROPSETID_Wave_Value;
 
-pub const KSPROPERTY_WAVE = extern enum(i32) {
+pub const KSPROPERTY_WAVE = enum(i32) {
     COMPATIBLE_CAPABILITIES = 0,
     INPUT_CAPABILITIES = 1,
     OUTPUT_CAPABILITIES = 2,
@@ -3974,7 +3974,7 @@ pub const KSDATARANGE_MUSIC = extern struct {
 const CLSID_KSPROPSETID_Cyclic_Value = @import("../../zig.zig").Guid.initString("3ffeaea0-2bee-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Cyclic = &CLSID_KSPROPSETID_Cyclic_Value;
 
-pub const KSPROPERTY_CYCLIC = extern enum(i32) {
+pub const KSPROPERTY_CYCLIC = enum(i32) {
     N = 0,
 };
 pub const KSPROPERTY_CYCLIC_POSITION = KSPROPERTY_CYCLIC.N;
@@ -3982,7 +3982,7 @@ pub const KSPROPERTY_CYCLIC_POSITION = KSPROPERTY_CYCLIC.N;
 const CLSID_KSEVENTSETID_AudioControlChange_Value = @import("../../zig.zig").Guid.initString("e85e9698-fa2f-11d1-95bd-00c04fb925d3");
 pub const CLSID_KSEVENTSETID_AudioControlChange = &CLSID_KSEVENTSETID_AudioControlChange_Value;
 
-pub const KSEVENT_AUDIO_CONTROL_CHANGE = extern enum(i32) {
+pub const KSEVENT_AUDIO_CONTROL_CHANGE = enum(i32) {
     E = 0,
 };
 pub const KSEVENT_CONTROL_CHANGE = KSEVENT_AUDIO_CONTROL_CHANGE.E;
@@ -3990,7 +3990,7 @@ pub const KSEVENT_CONTROL_CHANGE = KSEVENT_AUDIO_CONTROL_CHANGE.E;
 const CLSID_KSEVENTSETID_LoopedStreaming_Value = @import("../../zig.zig").Guid.initString("4682b940-c6ef-11d0-96d8-00aa0051e51d");
 pub const CLSID_KSEVENTSETID_LoopedStreaming = &CLSID_KSEVENTSETID_LoopedStreaming_Value;
 
-pub const KSEVENT_LOOPEDSTREAMING = extern enum(i32) {
+pub const KSEVENT_LOOPEDSTREAMING = enum(i32) {
     N = 0,
 };
 pub const KSEVENT_LOOPEDSTREAMING_POSITION = KSEVENT_LOOPEDSTREAMING.N;
@@ -4114,7 +4114,7 @@ pub const CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_VIDEO = &CLSID_KSDATAFORMAT_SPECIFI
 const CLSID_KSPROPSETID_Mpeg2Vid_Value = @import("../../zig.zig").Guid.initString("c8e11b60-0cc9-11d0-bd69-003505c103a9");
 pub const CLSID_KSPROPSETID_Mpeg2Vid = &CLSID_KSPROPSETID_Mpeg2Vid_Value;
 
-pub const KSPROPERTY_MPEG2VID = extern enum(i32) {
+pub const KSPROPERTY_MPEG2VID = enum(i32) {
     MODES = 0,
     CUR_MODE = 1,
     @"4_3_RECT" = 2,
@@ -4155,7 +4155,7 @@ pub const CLSID_KSDATAFORMAT_SPECIFIER_AC3_AUDIO = &CLSID_KSDATAFORMAT_SPECIFIER
 const CLSID_KSPROPSETID_AC3_Value = @import("../../zig.zig").Guid.initString("bfabe720-6e1f-11d0-bcf2-444553540000");
 pub const CLSID_KSPROPSETID_AC3 = &CLSID_KSPROPSETID_AC3_Value;
 
-pub const KSPROPERTY_AC3 = extern enum(i32) {
+pub const KSPROPERTY_AC3 = enum(i32) {
     ERROR_CONCEALMENT = 1,
     ALTERNATE_AUDIO = 2,
     DOWNMIX = 3,
@@ -4271,7 +4271,7 @@ pub const CLSID_KSDATAFORMAT_SUBTYPE_SDDS_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_SD
 const CLSID_KSPROPSETID_AudioDecoderOut_Value = @import("../../zig.zig").Guid.initString("6ca6e020-43bd-11d0-bd6a-003505c103a9");
 pub const CLSID_KSPROPSETID_AudioDecoderOut = &CLSID_KSPROPSETID_AudioDecoderOut_Value;
 
-pub const KSPROPERTY_AUDDECOUT = extern enum(i32) {
+pub const KSPROPERTY_AUDDECOUT = enum(i32) {
     MODES = 0,
     CUR_MODE = 1,
 };
@@ -4284,7 +4284,7 @@ pub const CLSID_KSDATAFORMAT_SUBTYPE_SUBPICTURE = &CLSID_KSDATAFORMAT_SUBTYPE_SU
 const CLSID_KSPROPSETID_DvdSubPic_Value = @import("../../zig.zig").Guid.initString("ac390460-43af-11d0-bd6a-003505c103a9");
 pub const CLSID_KSPROPSETID_DvdSubPic = &CLSID_KSPROPSETID_DvdSubPic_Value;
 
-pub const KSPROPERTY_DVDSUBPIC = extern enum(i32) {
+pub const KSPROPERTY_DVDSUBPIC = enum(i32) {
     PALETTE = 0,
     HLI = 1,
     COMPOSIT_ON = 2,
@@ -4333,7 +4333,7 @@ pub const KSPROPERTY_SPHLI = extern struct {
 const CLSID_KSPROPSETID_CopyProt_Value = @import("../../zig.zig").Guid.initString("0e8a0a40-6aef-11d0-9ed0-00a024ca19b3");
 pub const CLSID_KSPROPSETID_CopyProt = &CLSID_KSPROPSETID_CopyProt_Value;
 
-pub const KSPROPERTY_COPYPROT = extern enum(i32) {
+pub const KSPROPERTY_COPYPROT = enum(i32) {
     DVDCOPY_CHLG_KEY = 1,
     DVDCOPY_DVD_KEY1 = 2,
     DVDCOPY_DEC_KEY2 = 3,
@@ -4387,7 +4387,7 @@ pub const KS_DVDCOPY_SET_COPY_STATE = extern struct {
     DVDCopyState: u32,
 };
 
-pub const KS_DVDCOPYSTATE = extern enum(i32) {
+pub const KS_DVDCOPYSTATE = enum(i32) {
     INITIALIZE = 0,
     INITIALIZE_TITLE = 1,
     AUTHENTICATION_NOT_REQUIRED = 2,
@@ -4400,7 +4400,7 @@ pub const KS_DVDCOPYSTATE_AUTHENTICATION_NOT_REQUIRED = KS_DVDCOPYSTATE.AUTHENTI
 pub const KS_DVDCOPYSTATE_AUTHENTICATION_REQUIRED = KS_DVDCOPYSTATE.AUTHENTICATION_REQUIRED;
 pub const KS_DVDCOPYSTATE_DONE = KS_DVDCOPYSTATE.DONE;
 
-pub const KS_COPY_MACROVISION_LEVEL = extern enum(i32) {
+pub const KS_COPY_MACROVISION_LEVEL = enum(i32) {
     DISABLED = 0,
     LEVEL1 = 1,
     LEVEL2 = 2,
@@ -4591,7 +4591,7 @@ pub const KS_TVTUNER_CHANGE_INFO = extern struct {
     dwChannel: u32,
 };
 
-pub const KS_MPEG2Level = extern enum(i32) {
+pub const KS_MPEG2Level = enum(i32) {
     Low = 0,
     Main = 1,
     High1440 = 2,
@@ -4602,7 +4602,7 @@ pub const KS_MPEG2Level_Main = KS_MPEG2Level.Main;
 pub const KS_MPEG2Level_High1440 = KS_MPEG2Level.High1440;
 pub const KS_MPEG2Level_High = KS_MPEG2Level.High;
 
-pub const KS_MPEG2Profile = extern enum(i32) {
+pub const KS_MPEG2Profile = enum(i32) {
     Simple = 0,
     Main = 1,
     SNRScalable = 2,
@@ -4841,7 +4841,7 @@ pub const KS_DATARANGE_ANALOGVIDEO = extern struct {
 const CLSID_KSPROPSETID_VBICAP_PROPERTIES_Value = @import("../../zig.zig").Guid.initString("f162c607-7b35-496f-ad7f-2dca3b46b718");
 pub const CLSID_KSPROPSETID_VBICAP_PROPERTIES = &CLSID_KSPROPSETID_VBICAP_PROPERTIES_Value;
 
-pub const KSPROPERTY_VBICAP = extern enum(i32) {
+pub const KSPROPERTY_VBICAP = enum(i32) {
     N = 1,
 };
 pub const KSPROPERTY_VBICAP_PROPERTIES_PROTECTION = KSPROPERTY_VBICAP.N;
@@ -4868,7 +4868,7 @@ pub const NABTSFEC_BUFFER = extern struct {
 const CLSID_KSPROPSETID_VBICodecFiltering_Value = @import("../../zig.zig").Guid.initString("cafeb0ca-8715-11d0-bd6a-0035c0edbabe");
 pub const CLSID_KSPROPSETID_VBICodecFiltering = &CLSID_KSPROPSETID_VBICodecFiltering_Value;
 
-pub const KSPROPERTY_VBICODECFILTERING = extern enum(i32) {
+pub const KSPROPERTY_VBICODECFILTERING = enum(i32) {
     CANLINES_REQUESTED_BIT_ARRAY = 1,
     CANLINES_DISCOVERED_BIT_ARRAY = 2,
     UBSTREAMS_REQUESTED_BIT_ARRAY = 3,
@@ -5075,7 +5075,7 @@ pub const CLSID_PINNAME_VIDEO_TIMECODE = &CLSID_PINNAME_VIDEO_TIMECODE_Value;
 const CLSID_PINNAME_VIDEO_VIDEOPORT_VBI_Value = @import("../../zig.zig").Guid.initString("fb6c428c-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_VIDEOPORT_VBI = &CLSID_PINNAME_VIDEO_VIDEOPORT_VBI_Value;
 
-pub const CAPTURE_MEMORY_ALLOCATION_FLAGS = extern enum(i32) {
+pub const CAPTURE_MEMORY_ALLOCATION_FLAGS = enum(i32) {
     INVALID = 0,
     SYSTEM = 1,
     VRAM = 2,
@@ -5093,7 +5093,7 @@ pub const KS_CAPTURE_ALLOC_SECURE_BUFFER = CAPTURE_MEMORY_ALLOCATION_FLAGS.SECUR
 const CLSID_KSPROPSETID_VramCapture_Value = @import("../../zig.zig").Guid.initString("e73face3-2880-4902-b799-88d0cd634e0f");
 pub const CLSID_KSPROPSETID_VramCapture = &CLSID_KSPROPSETID_VramCapture_Value;
 
-pub const KSPROPERTY_VIDMEM_TRANSPORT = extern enum(i32) {
+pub const KSPROPERTY_VIDMEM_TRANSPORT = enum(i32) {
     DISPLAY_ADAPTER_GUID = 1,
     PREFERRED_CAPTURE_SURFACE = 2,
     CURRENT_CAPTURE_SURFACE = 3,
@@ -5133,7 +5133,7 @@ pub const CLSID_KS_SECURE_CAMERA_SCENARIO_ID = &CLSID_KS_SECURE_CAMERA_SCENARIO_
 const CLSID_KSPROPSETID_MPEG4_MediaType_Attributes_Value = @import("../../zig.zig").Guid.initString("ff6c4bfa-07a9-4c7b-a237-672f9d68065f");
 pub const CLSID_KSPROPSETID_MPEG4_MediaType_Attributes = &CLSID_KSPROPSETID_MPEG4_MediaType_Attributes_Value;
 
-pub const KSPROPERTY_MPEG4_MEDIATYPE_ATTRIBUTES = extern enum(i32) {
+pub const KSPROPERTY_MPEG4_MEDIATYPE_ATTRIBUTES = enum(i32) {
     X = 1,
 };
 pub const KSPROPERTY_MPEG4_MEDIATYPE_SD_BOX = KSPROPERTY_MPEG4_MEDIATYPE_ATTRIBUTES.X;
@@ -5141,7 +5141,7 @@ pub const KSPROPERTY_MPEG4_MEDIATYPE_SD_BOX = KSPROPERTY_MPEG4_MEDIATYPE_ATTRIBU
 const CLSID_KSEVENTSETID_DynamicFormatChange_Value = @import("../../zig.zig").Guid.initString("162ac456-83d7-4239-96df-c75ffa138bc6");
 pub const CLSID_KSEVENTSETID_DynamicFormatChange = &CLSID_KSEVENTSETID_DynamicFormatChange_Value;
 
-pub const KSEVENT_DYNAMICFORMATCHANGE = extern enum(i32) {
+pub const KSEVENT_DYNAMICFORMATCHANGE = enum(i32) {
     E = 0,
 };
 pub const KSEVENT_DYNAMIC_FORMAT_CHANGE = KSEVENT_DYNAMICFORMATCHANGE.E;
@@ -5178,7 +5178,7 @@ pub const KS_VBI_FRAME_INFO = extern struct {
     VBIInfoHeader: KS_VBIINFOHEADER,
 };
 
-pub const KS_AnalogVideoStandard = extern enum(i32) {
+pub const KS_AnalogVideoStandard = enum(i32) {
     None = 0,
     NTSC_M = 1,
     NTSC_M_J = 2,
@@ -5226,7 +5226,7 @@ pub const KS_AnalogVideo_PAL_N_COMBO = KS_AnalogVideoStandard.PAL_N_COMBO;
 const CLSID_PROPSETID_ALLOCATOR_CONTROL_Value = @import("../../zig.zig").Guid.initString("53171960-148e-11d2-9979-0000c0cc16ba");
 pub const CLSID_PROPSETID_ALLOCATOR_CONTROL = &CLSID_PROPSETID_ALLOCATOR_CONTROL_Value;
 
-pub const KSPROPERTY_ALLOCATOR_CONTROL = extern enum(i32) {
+pub const KSPROPERTY_ALLOCATOR_CONTROL = enum(i32) {
     HONOR_COUNT = 0,
     SURFACE_SIZE = 1,
     CAPTURE_CAPS = 2,
@@ -5253,7 +5253,7 @@ pub const KSPROPERTY_ALLOCATOR_CONTROL_CAPTURE_INTERLEAVE_S = extern struct {
 const CLSID_PROPSETID_VIDCAP_VIDEOPROCAMP_Value = @import("../../zig.zig").Guid.initString("c6e13360-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOPROCAMP = &CLSID_PROPSETID_VIDCAP_VIDEOPROCAMP_Value;
 
-pub const KSPROPERTY_VIDCAP_VIDEOPROCAMP = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_VIDEOPROCAMP = enum(i32) {
     BRIGHTNESS = 0,
     CONTRAST = 1,
     HUE = 2,
@@ -5317,7 +5317,7 @@ pub const KSPROPERTY_VIDEOPROCAMP_NODE_S2 = extern struct {
 const CLSID_PROPSETID_VIDCAP_SELECTOR_Value = @import("../../zig.zig").Guid.initString("1abdaeca-68b6-4f83-9371-b413907c7b9f");
 pub const CLSID_PROPSETID_VIDCAP_SELECTOR = &CLSID_PROPSETID_VIDCAP_SELECTOR_Value;
 
-pub const KSPROPERTY_VIDCAP_SELECTOR = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_SELECTOR = enum(i32) {
     SOURCE_NODE_ID = 0,
     NUM_SOURCES = 1,
 };
@@ -5341,7 +5341,7 @@ pub const KSPROPERTY_SELECTOR_NODE_S = extern struct {
 const CLSID_PROPSETID_TUNER_Value = @import("../../zig.zig").Guid.initString("6a2e0605-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_TUNER = &CLSID_PROPSETID_TUNER_Value;
 
-pub const KSPROPERTY_TUNER = extern enum(i32) {
+pub const KSPROPERTY_TUNER = enum(i32) {
     CAPS = 0,
     MODE_CAPS = 1,
     MODE = 2,
@@ -5368,7 +5368,7 @@ pub const KSPROPERTY_TUNER_SCAN_STATUS = KSPROPERTY_TUNER.SCAN_STATUS;
 pub const KSPROPERTY_TUNER_STANDARD_MODE = KSPROPERTY_TUNER.STANDARD_MODE;
 pub const KSPROPERTY_TUNER_NETWORKTYPE_SCAN_CAPS = KSPROPERTY_TUNER.NETWORKTYPE_SCAN_CAPS;
 
-pub const KSPROPERTY_TUNER_MODES = extern enum(i32) {
+pub const KSPROPERTY_TUNER_MODES = enum(i32) {
     TV = 1,
     FM_RADIO = 2,
     AM_RADIO = 4,
@@ -5381,7 +5381,7 @@ pub const KSPROPERTY_TUNER_MODE_AM_RADIO = KSPROPERTY_TUNER_MODES.AM_RADIO;
 pub const KSPROPERTY_TUNER_MODE_DSS = KSPROPERTY_TUNER_MODES.DSS;
 pub const KSPROPERTY_TUNER_MODE_ATSC = KSPROPERTY_TUNER_MODES.ATSC;
 
-pub const KS_TUNER_TUNING_FLAGS = extern enum(i32) {
+pub const KS_TUNER_TUNING_FLAGS = enum(i32) {
     EXACT = 1,
     FINE = 2,
     COARSE = 3,
@@ -5390,7 +5390,7 @@ pub const KS_TUNER_TUNING_EXACT = KS_TUNER_TUNING_FLAGS.EXACT;
 pub const KS_TUNER_TUNING_FINE = KS_TUNER_TUNING_FLAGS.FINE;
 pub const KS_TUNER_TUNING_COARSE = KS_TUNER_TUNING_FLAGS.COARSE;
 
-pub const KS_TUNER_STRATEGY = extern enum(i32) {
+pub const KS_TUNER_STRATEGY = enum(i32) {
     PLL = 1,
     SIGNAL_STRENGTH = 2,
     DRIVER_TUNES = 4,
@@ -5463,7 +5463,7 @@ pub const KSPROPERTY_TUNER_STATUS_S = extern struct {
     Busy: u32,
 };
 
-pub const _TunerDecoderLockType = extern enum(i32) {
+pub const _TunerDecoderLockType = enum(i32) {
     None = 0,
     Within_Scan_Sensing_Range = 1,
     Locked = 2,
@@ -5486,7 +5486,7 @@ pub const TUNER_ANALOG_CAPS_S = extern struct {
 const CLSID_EVENTSETID_TUNER_Value = @import("../../zig.zig").Guid.initString("6a2e0606-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_EVENTSETID_TUNER = &CLSID_EVENTSETID_TUNER_Value;
 
-pub const KSEVENT_TUNER = extern enum(i32) {
+pub const KSEVENT_TUNER = enum(i32) {
     CHANGED = 0,
     INITIATE_SCAN = 1,
 };
@@ -5547,7 +5547,7 @@ pub const CLSID_KSNODETYPE_VIDEO_OUTPUT_MTT = &CLSID_KSNODETYPE_VIDEO_OUTPUT_MTT
 const CLSID_PROPSETID_VIDCAP_VIDEOENCODER_Value = @import("../../zig.zig").Guid.initString("6a2e0610-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOENCODER = &CLSID_PROPSETID_VIDCAP_VIDEOENCODER_Value;
 
-pub const KSPROPERTY_VIDCAP_VIDEOENCODER = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_VIDEOENCODER = enum(i32) {
     CAPS = 0,
     STANDARD = 1,
     COPYPROTECTION = 2,
@@ -5568,7 +5568,7 @@ pub const KSPROPERTY_VIDEOENCODER_S = extern struct {
 const CLSID_PROPSETID_VIDCAP_VIDEODECODER_Value = @import("../../zig.zig").Guid.initString("c6e13350-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEODECODER = &CLSID_PROPSETID_VIDCAP_VIDEODECODER_Value;
 
-pub const KSPROPERTY_VIDCAP_VIDEODECODER = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_VIDEODECODER = enum(i32) {
     CAPS = 0,
     STANDARD = 1,
     STATUS = 2,
@@ -5583,7 +5583,7 @@ pub const KSPROPERTY_VIDEODECODER_OUTPUT_ENABLE = KSPROPERTY_VIDCAP_VIDEODECODER
 pub const KSPROPERTY_VIDEODECODER_VCR_TIMING = KSPROPERTY_VIDCAP_VIDEODECODER.VCR_TIMING;
 pub const KSPROPERTY_VIDEODECODER_STATUS2 = KSPROPERTY_VIDCAP_VIDEODECODER.STATUS2;
 
-pub const KS_VIDEODECODER_FLAGS = extern enum(i32) {
+pub const KS_VIDEODECODER_FLAGS = enum(i32) {
     DISABLE_OUTPUT = 1,
     USE_VCR_LOCKING = 2,
     INDICATE_LOCKED = 4,
@@ -5621,7 +5621,7 @@ pub const KSPROPERTY_VIDEODECODER_S = extern struct {
 const CLSID_EVENTSETID_VIDEODECODER_Value = @import("../../zig.zig").Guid.initString("6a2e0621-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_EVENTSETID_VIDEODECODER = &CLSID_EVENTSETID_VIDEODECODER_Value;
 
-pub const KSEVENT_VIDEODECODER = extern enum(i32) {
+pub const KSEVENT_VIDEODECODER = enum(i32) {
     D = 0,
 };
 pub const KSEVENT_VIDEODECODER_CHANGED = KSEVENT_VIDEODECODER.D;
@@ -5629,7 +5629,7 @@ pub const KSEVENT_VIDEODECODER_CHANGED = KSEVENT_VIDEODECODER.D;
 const CLSID_KSEVENTSETID_CameraAsyncControl_Value = @import("../../zig.zig").Guid.initString("22a11754-9701-4088-b33f-6b9cbc52df5e");
 pub const CLSID_KSEVENTSETID_CameraAsyncControl = &CLSID_KSEVENTSETID_CameraAsyncControl_Value;
 
-pub const KSEVENT_CAMERACONTROL = extern enum(i32) {
+pub const KSEVENT_CAMERACONTROL = enum(i32) {
     FOCUS = 0,
     ZOOM = 1,
 };
@@ -5639,7 +5639,7 @@ pub const KSEVENT_CAMERACONTROL_ZOOM = KSEVENT_CAMERACONTROL.ZOOM;
 const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_Value = @import("../../zig.zig").Guid.initString("c6e13370-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_Value;
 
-pub const KSPROPERTY_VIDCAP_CAMERACONTROL = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_CAMERACONTROL = enum(i32) {
     PAN = 0,
     TILT = 1,
     ROLL = 2,
@@ -5682,7 +5682,7 @@ pub const KSPROPERTY_CAMERACONTROL_PANTILT_RELATIVE = KSPROPERTY_VIDCAP_CAMERACO
 pub const KSPROPERTY_CAMERACONTROL_FOCAL_LENGTH = KSPROPERTY_VIDCAP_CAMERACONTROL.FOCAL_LENGTH;
 pub const KSPROPERTY_CAMERACONTROL_AUTO_EXPOSURE_PRIORITY = KSPROPERTY_VIDCAP_CAMERACONTROL.AUTO_EXPOSURE_PRIORITY;
 
-pub const KS_CameraControlAsyncOperation = extern enum(i32) {
+pub const KS_CameraControlAsyncOperation = enum(i32) {
     START = 1,
     STOP = 2,
     RESET = 3,
@@ -5746,7 +5746,7 @@ pub const KSPROPERTY_CAMERACONTROL_NODE_FOCAL_LENGTH_S = extern struct {
 const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_FLASH_Value = @import("../../zig.zig").Guid.initString("785e8f49-63a2-4144-ab70-ffb278fa26ce");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_FLASH = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_FLASH_Value;
 
-pub const KSPROPERTY_CAMERACONTROL_FLASH = extern enum(i32) {
+pub const KSPROPERTY_CAMERACONTROL_FLASH = enum(i32) {
     D = 0,
 };
 pub const KSPROPERTY_CAMERACONTROL_FLASH_PROPERTY_ID = KSPROPERTY_CAMERACONTROL_FLASH.D;
@@ -5759,7 +5759,7 @@ pub const KSPROPERTY_CAMERACONTROL_FLASH_S = extern struct {
 const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_VIDEO_STABILIZATION_Value = @import("../../zig.zig").Guid.initString("43964bd3-7716-404e-8be1-d299b20e50fd");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_VIDEO_STABILIZATION = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_VIDEO_STABILIZATION_Value;
 
-pub const KSPROPERTY_CAMERACONTROL_VIDEO_STABILIZATION_MODE = extern enum(i32) {
+pub const KSPROPERTY_CAMERACONTROL_VIDEO_STABILIZATION_MODE = enum(i32) {
     D = 0,
 };
 pub const KSPROPERTY_CAMERACONTROL_VIDEO_STABILIZATION_MODE_PROPERTY_ID = KSPROPERTY_CAMERACONTROL_VIDEO_STABILIZATION_MODE.D;
@@ -5772,7 +5772,7 @@ pub const KSPROPERTY_CAMERACONTROL_VIDEOSTABILIZATION_MODE_S = extern struct {
 const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value = @import("../../zig.zig").Guid.initString("9d12d198-f86c-4fed-b023-5d87653da793");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value;
 
-pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST = extern enum(i32) {
+pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST = enum(i32) {
     D = 0,
 };
 pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST_PROPERTY_ID = KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST.D;
@@ -5794,7 +5794,7 @@ pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST_S = extern struct {
 const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_IMAGE_PIN_CAPABILITY_Value = @import("../../zig.zig").Guid.initString("9d3d7bbf-5c6d-4138-bb00-584edd20f7c5");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_IMAGE_PIN_CAPABILITY = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_IMAGE_PIN_CAPABILITY_Value;
 
-pub const KSPROPERTY_CAMERACONTROL_IMAGE_PIN_CAPABILITY = extern enum(i32) {
+pub const KSPROPERTY_CAMERACONTROL_IMAGE_PIN_CAPABILITY = enum(i32) {
     D = 0,
 };
 pub const KSPROPERTY_CAMERACONTROL_IMAGE_PIN_CAPABILITY_PROPERTY_ID = KSPROPERTY_CAMERACONTROL_IMAGE_PIN_CAPABILITY.D;
@@ -5804,7 +5804,7 @@ pub const KSPROPERTY_CAMERACONTROL_IMAGE_PIN_CAPABILITY_S = extern struct {
     Reserved0: u32,
 };
 
-pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY = extern enum(i32) {
+pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY = enum(i32) {
     PHOTOMODE = 0,
     PHOTOFRAMERATE = 1,
     PHOTOMAXFRAMERATE = 2,
@@ -5846,7 +5846,7 @@ pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY = extern enum(i32) {
     IRTORCHMODE = 38,
     RELATIVEPANELOPTIMIZATION = 39,
     END = 40,
-    END2 = 40,
+    // END2 = 40, this enum value conflicts with END
 };
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PHOTOMODE = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.PHOTOMODE;
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_PHOTOFRAMERATE = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.PHOTOFRAMERATE;
@@ -5889,7 +5889,7 @@ pub const KSPROPERTY_CAMERACONTROL_EXTENDED_VIDEOTEMPORALDENOISING = KSPROPERTY_
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_IRTORCHMODE = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.IRTORCHMODE;
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_RELATIVEPANELOPTIMIZATION = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.RELATIVEPANELOPTIMIZATION;
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_END = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.END;
-pub const KSPROPERTY_CAMERACONTROL_EXTENDED_END2 = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.END2;
+pub const KSPROPERTY_CAMERACONTROL_EXTENDED_END2 = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.END;
 
 const CLSID_KSPROPERTYSETID_ExtendedCameraControl_Value = @import("../../zig.zig").Guid.initString("1cb79112-c0d2-4213-9ca6-cd4fdb927972");
 pub const CLSID_KSPROPERTYSETID_ExtendedCameraControl = &CLSID_KSPROPERTYSETID_ExtendedCameraControl_Value;
@@ -5900,19 +5900,19 @@ pub const CLSID_KSEVENTSETID_ExtendedCameraControl = &CLSID_KSEVENTSETID_Extende
 const CLSID_KSEVENTSETID_CameraEvent_Value = @import("../../zig.zig").Guid.initString("7899b2e0-6b43-4964-9d2a-a21f4061f576");
 pub const CLSID_KSEVENTSETID_CameraEvent = &CLSID_KSEVENTSETID_CameraEvent_Value;
 
-pub const KSEVENT_CAMERAEVENT = extern enum(i32) {
+pub const KSEVENT_CAMERAEVENT = enum(i32) {
     D = 0,
 };
 pub const KSEVENT_PHOTO_SAMPLE_SCANNED = KSEVENT_CAMERAEVENT.D;
 
-pub const KSCAMERA_EXTENDEDPROP_WHITEBALANCE_MODE = extern enum(i32) {
+pub const KSCAMERA_EXTENDEDPROP_WHITEBALANCE_MODE = enum(i32) {
     TEMPERATURE = 1,
     PRESET = 2,
 };
 pub const KSCAMERA_EXTENDEDPROP_WHITEBALANCE_TEMPERATURE = KSCAMERA_EXTENDEDPROP_WHITEBALANCE_MODE.TEMPERATURE;
 pub const KSCAMERA_EXTENDEDPROP_WHITEBALANCE_PRESET = KSCAMERA_EXTENDEDPROP_WHITEBALANCE_MODE.PRESET;
 
-pub const KSCAMERA_EXTENDEDPROP_WBPRESET = extern enum(i32) {
+pub const KSCAMERA_EXTENDEDPROP_WBPRESET = enum(i32) {
     CLOUDY = 1,
     DAYLIGHT = 2,
     FLASH = 3,
@@ -5927,7 +5927,7 @@ pub const KSCAMERA_EXTENDEDPROP_WBPRESET_FLUORESCENT = KSCAMERA_EXTENDEDPROP_WBP
 pub const KSCAMERA_EXTENDEDPROP_WBPRESET_TUNGSTEN = KSCAMERA_EXTENDEDPROP_WBPRESET.TUNGSTEN;
 pub const KSCAMERA_EXTENDEDPROP_WBPRESET_CANDLELIGHT = KSCAMERA_EXTENDEDPROP_WBPRESET.CANDLELIGHT;
 
-pub const KSPROPERTY_CAMERA_PHOTOTRIGGERTIME_FLAGS = extern enum(i32) {
+pub const KSPROPERTY_CAMERA_PHOTOTRIGGERTIME_FLAGS = enum(i32) {
     CLEAR = 0,
     SET = 1,
 };
@@ -6006,7 +6006,7 @@ pub const KSCAMERA_EXTENDEDPROP_METADATAINFO = extern struct {
     MaxMetadataBufferSize: u32,
 };
 
-pub const KSCAMERA_EXTENDEDPROP_MetadataAlignment = extern enum(i32) {
+pub const KSCAMERA_EXTENDEDPROP_MetadataAlignment = enum(i32) {
     @"16" = 4,
     @"32" = 5,
     @"64" = 6,
@@ -6029,25 +6029,25 @@ pub const KSCAMERA_EXTENDEDPROP_MetadataAlignment_2048 = KSCAMERA_EXTENDEDPROP_M
 pub const KSCAMERA_EXTENDEDPROP_MetadataAlignment_4096 = KSCAMERA_EXTENDEDPROP_MetadataAlignment.@"4096";
 pub const KSCAMERA_EXTENDEDPROP_MetadataAlignment_8192 = KSCAMERA_EXTENDEDPROP_MetadataAlignment.@"8192";
 
-pub const KSCAMERA_MetadataId = extern enum(i32) {
+pub const KSCAMERA_MetadataId = enum(i32) {
     Standard_Start = 1,
-    PhotoConfirmation = 1,
+    // PhotoConfirmation = 1, this enum value conflicts with Standard_Start
     UsbVideoHeader = 2,
     CaptureStats = 3,
     CameraExtrinsics = 4,
     CameraIntrinsics = 5,
     FrameIllumination = 6,
-    Standard_End = 6,
+    // Standard_End = 6, this enum value conflicts with FrameIllumination
     Custom_Start = -2147483648,
 };
 pub const MetadataId_Standard_Start = KSCAMERA_MetadataId.Standard_Start;
-pub const MetadataId_PhotoConfirmation = KSCAMERA_MetadataId.PhotoConfirmation;
+pub const MetadataId_PhotoConfirmation = KSCAMERA_MetadataId.Standard_Start;
 pub const MetadataId_UsbVideoHeader = KSCAMERA_MetadataId.UsbVideoHeader;
 pub const MetadataId_CaptureStats = KSCAMERA_MetadataId.CaptureStats;
 pub const MetadataId_CameraExtrinsics = KSCAMERA_MetadataId.CameraExtrinsics;
 pub const MetadataId_CameraIntrinsics = KSCAMERA_MetadataId.CameraIntrinsics;
 pub const MetadataId_FrameIllumination = KSCAMERA_MetadataId.FrameIllumination;
-pub const MetadataId_Standard_End = KSCAMERA_MetadataId.Standard_End;
+pub const MetadataId_Standard_End = KSCAMERA_MetadataId.FrameIllumination;
 pub const MetadataId_Custom_Start = KSCAMERA_MetadataId.Custom_Start;
 
 pub const KSCAMERA_METADATA_ITEMHEADER = extern struct {
@@ -6085,7 +6085,7 @@ pub const KSCAMERA_METADATA_CAPTURESTATS = extern struct {
     SensorFramerate: u64,
 };
 
-pub const KSCAMERA_EXTENDEDPROP_FOCUSSTATE = extern enum(i32) {
+pub const KSCAMERA_EXTENDEDPROP_FOCUSSTATE = enum(i32) {
     UNINITIALIZED = 0,
     LOST = 1,
     SEARCHING = 2,
@@ -6130,7 +6130,7 @@ pub const KSCAMERA_EXTENDEDPROP_ROI_INFO = extern struct {
     RegionOfInterestType: i32,
 };
 
-pub const KSCAMERA_EXTENDEDPROP_ROITYPE = extern enum(i32) {
+pub const KSCAMERA_EXTENDEDPROP_ROITYPE = enum(i32) {
     UNKNOWN = 0,
     FACE = 1,
 };
@@ -6155,7 +6155,7 @@ pub const KSCAMERA_EXTENDEDPROP_ROI_FOCUS = extern struct {
 const CLSID_KSPROPERTYSETID_PerFrameSettingControl_Value = @import("../../zig.zig").Guid.initString("f1f3e261-dee6-4537-bff5-ee206db54aac");
 pub const CLSID_KSPROPERTYSETID_PerFrameSettingControl = &CLSID_KSPROPERTYSETID_PerFrameSettingControl_Value;
 
-pub const KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_PROPERTY = extern enum(i32) {
+pub const KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_PROPERTY = enum(i32) {
     CAPABILITY = 0,
     SET = 1,
     CLEAR = 2,
@@ -6164,7 +6164,7 @@ pub const KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_CAPABILITY = KSPROPERTY_CAMER
 pub const KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_SET = KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_PROPERTY.SET;
 pub const KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_CLEAR = KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_PROPERTY.CLEAR;
 
-pub const KSCAMERA_PERFRAMESETTING_ITEM_TYPE = extern enum(i32) {
+pub const KSCAMERA_PERFRAMESETTING_ITEM_TYPE = enum(i32) {
     EXPOSURE_TIME = 1,
     FLASH = 2,
     EXPOSURE_COMPENSATION = 3,
@@ -6326,7 +6326,7 @@ pub const WNF_KSCAMERA_STREAMSTATE_INFO = extern struct {
     Reserved: u32,
 };
 
-pub const KSPROPERTY_NETWORKCAMERACONTROL_NTPINFO_TYPE = extern enum(i32) {
+pub const KSPROPERTY_NETWORKCAMERACONTROL_NTPINFO_TYPE = enum(i32) {
     TY_NETWORKCAMERACONTROL_NTPINFO_TYPE_DISABLE = 0,
     TY_NETWORKCAMERACONTROL_NTPINFO_TYPE_HOSTNTP = 1,
     YT_NETWORKCAMERACONTROL_NTPINFO_TYPE_CUSTOM = 2,
@@ -6343,7 +6343,7 @@ pub const KSPROPERTY_NETWORKCAMERACONTROL_NTPINFO_HEADER = extern struct {
 const CLSID_KSPROPERTYSETID_NetworkCameraControl_Value = @import("../../zig.zig").Guid.initString("0e780f09-5745-4e3a-bc9f-f226ea43a6ec");
 pub const CLSID_KSPROPERTYSETID_NetworkCameraControl = &CLSID_KSPROPERTYSETID_NetworkCameraControl_Value;
 
-pub const KSPROPERTY_NETWORKCAMERACONTROL_PROPERTY = extern enum(i32) {
+pub const KSPROPERTY_NETWORKCAMERACONTROL_PROPERTY = enum(i32) {
     NTP = 0,
     URI = 1,
 };
@@ -6353,7 +6353,7 @@ pub const KSPROPERTY_NETWORKCAMERACONTROL_URI = KSPROPERTY_NETWORKCAMERACONTROL_
 const CLSID_PROPSETID_EXT_DEVICE_Value = @import("../../zig.zig").Guid.initString("b5730a90-1a2c-11cf-8c23-00aa006b6814");
 pub const CLSID_PROPSETID_EXT_DEVICE = &CLSID_PROPSETID_EXT_DEVICE_Value;
 
-pub const KSPROPERTY_EXTDEVICE = extern enum(i32) {
+pub const KSPROPERTY_EXTDEVICE = enum(i32) {
     ID = 0,
     VERSION = 1,
     POWER_STATE = 2,
@@ -6406,7 +6406,7 @@ pub const KSPROPERTY_EXTDEVICE_S = extern struct {
 const CLSID_PROPSETID_EXT_TRANSPORT_Value = @import("../../zig.zig").Guid.initString("a03cd5f0-3045-11cf-8c44-00aa006b6814");
 pub const CLSID_PROPSETID_EXT_TRANSPORT = &CLSID_PROPSETID_EXT_TRANSPORT_Value;
 
-pub const KSPROPERTY_EXTXPORT = extern enum(i32) {
+pub const KSPROPERTY_EXTXPORT = enum(i32) {
     EXTXPORT_CAPABILITIES = 0,
     EXTXPORT_INPUT_SIGNAL_MODE = 1,
     EXTXPORT_OUTPUT_SIGNAL_MODE = 2,
@@ -6553,7 +6553,7 @@ pub const KSPROPERTY_EXTXPORT_NODE_S = extern struct {
 const CLSID_PROPSETID_TIMECODE_READER_Value = @import("../../zig.zig").Guid.initString("9b496ce1-811b-11cf-8c77-00aa006b6814");
 pub const CLSID_PROPSETID_TIMECODE_READER = &CLSID_PROPSETID_TIMECODE_READER_Value;
 
-pub const KSPROPERTY_TIMECODE = extern enum(i32) {
+pub const KSPROPERTY_TIMECODE = enum(i32) {
     TIMECODE_READER = 0,
     ATN_READER = 1,
     RTC_READER = 2,
@@ -6575,7 +6575,7 @@ pub const KSPROPERTY_TIMECODE_NODE_S = extern struct {
 const CLSID_KSEVENTSETID_EXTDEV_Command_Value = @import("../../zig.zig").Guid.initString("109c7988-b3cb-11d2-b48e-006097b3391b");
 pub const CLSID_KSEVENTSETID_EXTDEV_Command = &CLSID_KSEVENTSETID_EXTDEV_Command_Value;
 
-pub const KSEVENT_DEVCMD = extern enum(i32) {
+pub const KSEVENT_DEVCMD = enum(i32) {
     COMMAND_NOTIFY_INTERIM_READY = 0,
     COMMAND_CONTROL_INTERIM_READY = 1,
     COMMAND_BUSRESET = 2,
@@ -6597,7 +6597,7 @@ pub const KSEVENT_EXTDEV_NOTIFY_MEDIUM_CHANGE = KSEVENT_DEVCMD.NOTIFY_MEDIUM_CHA
 const CLSID_PROPSETID_VIDCAP_CROSSBAR_Value = @import("../../zig.zig").Guid.initString("6a2e0640-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_CROSSBAR = &CLSID_PROPSETID_VIDCAP_CROSSBAR_Value;
 
-pub const KSPROPERTY_VIDCAP_CROSSBAR = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_CROSSBAR = enum(i32) {
     CAPS = 0,
     PININFO = 1,
     CAN_ROUTE = 2,
@@ -6641,12 +6641,12 @@ pub const KSPROPERTY_CROSSBAR_ACTIVE_S = extern struct {
 const CLSID_EVENTSETID_CROSSBAR_Value = @import("../../zig.zig").Guid.initString("6a2e0641-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_EVENTSETID_CROSSBAR = &CLSID_EVENTSETID_CROSSBAR_Value;
 
-pub const KSEVENT_CROSSBAR = extern enum(i32) {
+pub const KSEVENT_CROSSBAR = enum(i32) {
     D = 0,
 };
 pub const KSEVENT_CROSSBAR_CHANGED = KSEVENT_CROSSBAR.D;
 
-pub const KS_PhysicalConnectorType = extern enum(i32) {
+pub const KS_PhysicalConnectorType = enum(i32) {
     Video_Tuner = 1,
     Video_Composite = 2,
     Video_SVideo = 3,
@@ -6700,7 +6700,7 @@ pub const KS_PhysConn_Audio_AudioDecoder = KS_PhysicalConnectorType.Audio_AudioD
 const CLSID_PROPSETID_VIDCAP_TVAUDIO_Value = @import("../../zig.zig").Guid.initString("6a2e0650-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_TVAUDIO = &CLSID_PROPSETID_VIDCAP_TVAUDIO_Value;
 
-pub const KSPROPERTY_VIDCAP_TVAUDIO = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_TVAUDIO = enum(i32) {
     CAPS = 0,
     MODE = 1,
     CURRENTLY_AVAILABLE_MODES = 2,
@@ -6724,7 +6724,7 @@ pub const KSPROPERTY_TVAUDIO_S = extern struct {
 const CLSID_KSEVENTSETID_VIDCAP_TVAUDIO_Value = @import("../../zig.zig").Guid.initString("6a2e0651-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_KSEVENTSETID_VIDCAP_TVAUDIO = &CLSID_KSEVENTSETID_VIDCAP_TVAUDIO_Value;
 
-pub const KSEVENT_TVAUDIO = extern enum(i32) {
+pub const KSEVENT_TVAUDIO = enum(i32) {
     D = 0,
 };
 pub const KSEVENT_TVAUDIO_CHANGED = KSEVENT_TVAUDIO.D;
@@ -6732,7 +6732,7 @@ pub const KSEVENT_TVAUDIO_CHANGED = KSEVENT_TVAUDIO.D;
 const CLSID_PROPSETID_VIDCAP_VIDEOCOMPRESSION_Value = @import("../../zig.zig").Guid.initString("c6e13343-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOCOMPRESSION = &CLSID_PROPSETID_VIDCAP_VIDEOCOMPRESSION_Value;
 
-pub const KSPROPERTY_VIDCAP_VIDEOCOMPRESSION = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_VIDEOCOMPRESSION = enum(i32) {
     GETINFO = 0,
     KEYFRAME_RATE = 1,
     PFRAMES_PER_KEYFRAME = 2,
@@ -6749,7 +6749,7 @@ pub const KSPROPERTY_VIDEOCOMPRESSION_OVERRIDE_KEYFRAME = KSPROPERTY_VIDCAP_VIDE
 pub const KSPROPERTY_VIDEOCOMPRESSION_OVERRIDE_FRAME_SIZE = KSPROPERTY_VIDCAP_VIDEOCOMPRESSION.OVERRIDE_FRAME_SIZE;
 pub const KSPROPERTY_VIDEOCOMPRESSION_WINDOWSIZE = KSPROPERTY_VIDCAP_VIDEOCOMPRESSION.WINDOWSIZE;
 
-pub const KS_CompressionCaps = extern enum(i32) {
+pub const KS_CompressionCaps = enum(i32) {
     Quality = 1,
     Crunch = 2,
     KeyFrame = 4,
@@ -6762,7 +6762,7 @@ pub const KS_CompressionCaps_CanKeyFrame = KS_CompressionCaps.KeyFrame;
 pub const KS_CompressionCaps_CanBFrame = KS_CompressionCaps.BFrame;
 pub const KS_CompressionCaps_CanWindow = KS_CompressionCaps.Window;
 
-pub const KS_VideoStreamingHints = extern enum(i32) {
+pub const KS_VideoStreamingHints = enum(i32) {
     FrameInterval = 256,
     KeyFrameRate = 512,
     PFrameRate = 1024,
@@ -6804,7 +6804,7 @@ pub const CLSID_KSDATAFORMAT_SUBTYPE_OVERLAY = &CLSID_KSDATAFORMAT_SUBTYPE_OVERL
 const CLSID_KSPROPSETID_OverlayUpdate_Value = @import("../../zig.zig").Guid.initString("490ea5cf-7681-11d1-a21c-00a0c9223196");
 pub const CLSID_KSPROPSETID_OverlayUpdate = &CLSID_KSPROPSETID_OverlayUpdate_Value;
 
-pub const KSPROPERTY_OVERLAYUPDATE = extern enum(i32) {
+pub const KSPROPERTY_OVERLAYUPDATE = enum(i32) {
     INTERESTS = 0,
     CLIPLIST = 1,
     PALETTE = 2,
@@ -6831,7 +6831,7 @@ pub const KSDISPLAYCHANGE = extern struct {
 const CLSID_PROPSETID_VIDCAP_VIDEOCONTROL_Value = @import("../../zig.zig").Guid.initString("6a2e0670-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOCONTROL = &CLSID_PROPSETID_VIDCAP_VIDEOCONTROL_Value;
 
-pub const KSPROPERTY_VIDCAP_VIDEOCONTROL = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_VIDEOCONTROL = enum(i32) {
     CAPS = 0,
     ACTUAL_FRAME_RATE = 1,
     FRAME_RATES = 2,
@@ -6842,7 +6842,7 @@ pub const KSPROPERTY_VIDEOCONTROL_ACTUAL_FRAME_RATE = KSPROPERTY_VIDCAP_VIDEOCON
 pub const KSPROPERTY_VIDEOCONTROL_FRAME_RATES = KSPROPERTY_VIDCAP_VIDEOCONTROL.FRAME_RATES;
 pub const KSPROPERTY_VIDEOCONTROL_MODE = KSPROPERTY_VIDCAP_VIDEOCONTROL.MODE;
 
-pub const KS_VideoControlFlags = extern enum(i32) {
+pub const KS_VideoControlFlags = enum(i32) {
     VideoControlFlag_FlipHorizontal = 1,
     VideoControlFlag_FlipVertical = 2,
     Obsolete_VideoControlFlag_ExternalTriggerEnable = 16,
@@ -6896,7 +6896,7 @@ pub const KSPROPERTY_VIDEOCONTROL_FRAME_RATES_S = extern struct {
 const CLSID_PROPSETID_VIDCAP_DROPPEDFRAMES_Value = @import("../../zig.zig").Guid.initString("c6e13344-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_DROPPEDFRAMES = &CLSID_PROPSETID_VIDCAP_DROPPEDFRAMES_Value;
 
-pub const KSPROPERTY_VIDCAP_DROPPEDFRAMES = extern enum(i32) {
+pub const KSPROPERTY_VIDCAP_DROPPEDFRAMES = enum(i32) {
     T = 0,
 };
 pub const KSPROPERTY_DROPPEDFRAMES_CURRENT = KSPROPERTY_VIDCAP_DROPPEDFRAMES.T;
@@ -6914,7 +6914,7 @@ pub const CLSID_KSPROPSETID_VPConfig = &CLSID_KSPROPSETID_VPConfig_Value;
 const CLSID_KSPROPSETID_VPVBIConfig_Value = @import("../../zig.zig").Guid.initString("ec529b00-1a1f-11d1-bad9-00609744111a");
 pub const CLSID_KSPROPSETID_VPVBIConfig = &CLSID_KSPROPSETID_VPVBIConfig_Value;
 
-pub const KSPROPERTY_VPCONFIG = extern enum(i32) {
+pub const KSPROPERTY_VPCONFIG = enum(i32) {
     NUMCONNECTINFO = 0,
     GETCONNECTINFO = 1,
     SETCONNECTINFO = 2,
@@ -6952,7 +6952,7 @@ pub const KSPROPERTY_VPCONFIG_SURFACEPARAMS = KSPROPERTY_VPCONFIG.SURFACEPARAMS;
 const CLSID_CLSID_KsIBasicAudioInterfaceHandler_Value = @import("../../zig.zig").Guid.initString("b9f8ac3e-0f71-11d2-b72c-00c04fb6bd3d");
 pub const CLSID_CLSID_KsIBasicAudioInterfaceHandler = &CLSID_CLSID_KsIBasicAudioInterfaceHandler_Value;
 
-pub const KS_AMPixAspectRatio = extern enum(i32) {
+pub const KS_AMPixAspectRatio = enum(i32) {
     NTSC4x3 = 0,
     NTSC16x9 = 1,
     PAL4x3 = 2,
@@ -6963,7 +6963,7 @@ pub const KS_PixAspectRatio_NTSC16x9 = KS_AMPixAspectRatio.NTSC16x9;
 pub const KS_PixAspectRatio_PAL4x3 = KS_AMPixAspectRatio.PAL4x3;
 pub const KS_PixAspectRatio_PAL16x9 = KS_AMPixAspectRatio.PAL16x9;
 
-pub const KS_AMVP_SELECTFORMATBY = extern enum(i32) {
+pub const KS_AMVP_SELECTFORMATBY = enum(i32) {
     DO_NOT_CARE = 0,
     BEST_BANDWIDTH = 1,
     INPUT_SAME_AS_OUTPUT = 2,
@@ -6972,7 +6972,7 @@ pub const KS_AMVP_DO_NOT_CARE = KS_AMVP_SELECTFORMATBY.DO_NOT_CARE;
 pub const KS_AMVP_BEST_BANDWIDTH = KS_AMVP_SELECTFORMATBY.BEST_BANDWIDTH;
 pub const KS_AMVP_INPUT_SAME_AS_OUTPUT = KS_AMVP_SELECTFORMATBY.INPUT_SAME_AS_OUTPUT;
 
-pub const KS_AMVP_MODE = extern enum(i32) {
+pub const KS_AMVP_MODE = enum(i32) {
     WEAVE = 0,
     BOBINTERLEAVED = 1,
     BOBNONINTERLEAVED = 2,
@@ -7034,7 +7034,7 @@ pub const KSVPSURFACEPARAMS = extern struct {
 const CLSID_KSEVENTSETID_VPNotify_Value = @import("../../zig.zig").Guid.initString("20c5598e-d3c8-11d0-8dfc-00c04fd7c08b");
 pub const CLSID_KSEVENTSETID_VPNotify = &CLSID_KSEVENTSETID_VPNotify_Value;
 
-pub const KSEVENT_VPNOTIFY = extern enum(i32) {
+pub const KSEVENT_VPNOTIFY = enum(i32) {
     E = 0,
 };
 pub const KSEVENT_VPNOTIFY_FORMATCHANGE = KSEVENT_VPNOTIFY.E;
@@ -7042,7 +7042,7 @@ pub const KSEVENT_VPNOTIFY_FORMATCHANGE = KSEVENT_VPNOTIFY.E;
 const CLSID_KSEVENTSETID_VIDCAPTOSTI_Value = @import("../../zig.zig").Guid.initString("db47de20-f628-11d1-ba41-00a0c90d2b05");
 pub const CLSID_KSEVENTSETID_VIDCAPTOSTI = &CLSID_KSEVENTSETID_VIDCAPTOSTI_Value;
 
-pub const KSEVENT_VIDCAPTOSTI = extern enum(i32) {
+pub const KSEVENT_VIDCAPTOSTI = enum(i32) {
     TOSTI_EXT_TRIGGER = 0,
     _AUTO_UPDATE = 1,
     _SEARCH = 2,
@@ -7051,7 +7051,7 @@ pub const KSEVENT_VIDCAPTOSTI_EXT_TRIGGER = KSEVENT_VIDCAPTOSTI.TOSTI_EXT_TRIGGE
 pub const KSEVENT_VIDCAP_AUTO_UPDATE = KSEVENT_VIDCAPTOSTI._AUTO_UPDATE;
 pub const KSEVENT_VIDCAP_SEARCH = KSEVENT_VIDCAPTOSTI._SEARCH;
 
-pub const KSPROPERTY_EXTENSION_UNIT = extern enum(i32) {
+pub const KSPROPERTY_EXTENSION_UNIT = enum(i32) {
     INFO = 0,
     CONTROL = 1,
     PASS_THROUGH = 65535,
@@ -7063,7 +7063,7 @@ pub const KSPROPERTY_EXTENSION_UNIT_PASS_THROUGH = KSPROPERTY_EXTENSION_UNIT.PAS
 const CLSID_KSEVENTSETID_VPVBINotify_Value = @import("../../zig.zig").Guid.initString("ec529b01-1a1f-11d1-bad9-00609744111a");
 pub const CLSID_KSEVENTSETID_VPVBINotify = &CLSID_KSEVENTSETID_VPVBINotify_Value;
 
-pub const KSEVENT_VPVBINOTIFY = extern enum(i32) {
+pub const KSEVENT_VPVBINOTIFY = enum(i32) {
     E = 0,
 };
 pub const KSEVENT_VPVBINOTIFY_FORMATCHANGE = KSEVENT_VPVBINOTIFY.E;
@@ -7090,7 +7090,7 @@ pub const CLSID_KSDATAFORMAT_TYPE_DVD_ENCRYPTED_PACK = &CLSID_KSDATAFORMAT_TYPE_
 const CLSID_KSPROPSETID_TSRateChange_Value = @import("../../zig.zig").Guid.initString("a503c5c0-1d1d-11d1-ad80-444553540000");
 pub const CLSID_KSPROPSETID_TSRateChange = &CLSID_KSPROPSETID_TSRateChange_Value;
 
-pub const KS_AM_PROPERTY_TS_RATE_CHANGE = extern enum(i32) {
+pub const KS_AM_PROPERTY_TS_RATE_CHANGE = enum(i32) {
     SimpleRateChange = 1,
     ExactRateChange = 2,
     MaxFullDataRate = 3,
@@ -7150,7 +7150,7 @@ pub const CLSID_CODECAPI_CURRENTCHANGELIST = &CLSID_CODECAPI_CURRENTCHANGELIST_V
 const CLSID_KSPROPSETID_Jack_Value = @import("../../zig.zig").Guid.initString("4509f757-2d46-4637-8e62-ce7db944f57b");
 pub const CLSID_KSPROPSETID_Jack = &CLSID_KSPROPSETID_Jack_Value;
 
-pub const KSPROPERTY_JACK = extern enum(i32) {
+pub const KSPROPERTY_JACK = enum(i32) {
     DESCRIPTION = 1,
     DESCRIPTION2 = 2,
     SINK_INFO = 3,
@@ -7161,7 +7161,7 @@ pub const KSPROPERTY_JACK_DESCRIPTION2 = KSPROPERTY_JACK.DESCRIPTION2;
 pub const KSPROPERTY_JACK_SINK_INFO = KSPROPERTY_JACK.SINK_INFO;
 pub const KSPROPERTY_JACK_CONTAINERID = KSPROPERTY_JACK.CONTAINERID;
 
-pub const EPcxConnectionType = extern enum(i32) {
+pub const EPcxConnectionType = enum(i32) {
     Unknown = 0,
     @"3Point5mm" = 1,
     Quarter = 2,
@@ -7188,7 +7188,7 @@ pub const eConnTypeXlrProfessional = EPcxConnectionType.XlrProfessional;
 pub const eConnTypeRJ11Modem = EPcxConnectionType.RJ11Modem;
 pub const eConnTypeCombination = EPcxConnectionType.Combination;
 
-pub const EPcxGeoLocation = extern enum(i32) {
+pub const EPcxGeoLocation = enum(i32) {
     eGeoLocRear = 1,
     eGeoLocFront = 2,
     eGeoLocLeft = 3,
@@ -7223,7 +7223,7 @@ pub const eGeoLocNotApplicable = EPcxGeoLocation.eGeoLocNotApplicable;
 pub const eGeoLocReserved6 = EPcxGeoLocation.eGeoLocReserved6;
 pub const EPcxGeoLocation_enum_count = EPcxGeoLocation.EPcxGeoLocation_enum_count;
 
-pub const EPcxGenLocation = extern enum(i32) {
+pub const EPcxGenLocation = enum(i32) {
     eGenLocPrimaryBox = 0,
     eGenLocInternal = 1,
     eGenLocSeparate = 2,
@@ -7236,7 +7236,7 @@ pub const eGenLocSeparate = EPcxGenLocation.eGenLocSeparate;
 pub const eGenLocOther = EPcxGenLocation.eGenLocOther;
 pub const EPcxGenLocation_enum_count = EPcxGenLocation.EPcxGenLocation_enum_count;
 
-pub const EPxcPortConnection = extern enum(i32) {
+pub const EPxcPortConnection = enum(i32) {
     Jack = 0,
     IntegratedDevice = 1,
     BothIntegratedAndJack = 2,
@@ -7257,7 +7257,7 @@ pub const KSJACK_DESCRIPTION = extern struct {
     IsConnected: BOOL,
 };
 
-pub const KSJACK_SINK_CONNECTIONTYPE = extern enum(i32) {
+pub const KSJACK_SINK_CONNECTIONTYPE = enum(i32) {
     HDMI = 0,
     DISPLAYPORT = 1,
 };
@@ -7284,12 +7284,12 @@ pub const KSJACK_DESCRIPTION2 = extern struct {
 const CLSID_KSPROPSETID_AudioPosture_Value = @import("../../zig.zig").Guid.initString("db14e8da-0267-4aab-8759-bac88e46b653");
 pub const CLSID_KSPROPSETID_AudioPosture = &CLSID_KSPROPSETID_AudioPosture_Value;
 
-pub const KSPROPERTY_AUDIOPOSTURE = extern enum(i32) {
+pub const KSPROPERTY_AUDIOPOSTURE = enum(i32) {
     N = 1,
 };
 pub const KSPROPERTY_AUDIOPOSTURE_DESCRIPTION = KSPROPERTY_AUDIOPOSTURE.N;
 
-pub const AUDIOPOSTURE_PANEL_ORIENTATION = extern enum(i32) {
+pub const AUDIOPOSTURE_PANEL_ORIENTATION = enum(i32) {
     NOTROTATED = 0,
     ROTATED90DEGREESCOUNTERCLOCKWISE = 1,
     ROTATED180DEGREESCOUNTERCLOCKWISE = 2,
@@ -7306,7 +7306,7 @@ pub const AUDIOPOSTURE_PANEL_ORIENTATION_FACEUP = AUDIOPOSTURE_PANEL_ORIENTATION
 pub const AUDIOPOSTURE_PANEL_ORIENTATION_FACEDOWN = AUDIOPOSTURE_PANEL_ORIENTATION.FACEDOWN;
 pub const AUDIOPOSTURE_PANEL_ORIENTATION_COUNT = AUDIOPOSTURE_PANEL_ORIENTATION.COUNT;
 
-pub const AUDIOPOSTURE_PANEL_POWER = extern enum(i32) {
+pub const AUDIOPOSTURE_PANEL_POWER = enum(i32) {
     FF = 0,
     N = 1,
 };
@@ -7318,7 +7318,7 @@ pub const KSAUDIOPOSTURE_PANEL_STATE = extern struct {
     Orientation: AUDIOPOSTURE_PANEL_ORIENTATION,
 };
 
-pub const AUDIOPOSTURE_MEMBER_FLAGS = extern enum(i32) {
+pub const AUDIOPOSTURE_MEMBER_FLAGS = enum(i32) {
     HINGEANGLE = 1,
     PANELSTATE = 2,
 };
@@ -7336,7 +7336,7 @@ pub const CLSID_KSPROPSETID_AudioBufferDuration = &CLSID_KSPROPSETID_AudioBuffer
 const CLSID_KSPROPSETID_AudioEngine_Value = @import("../../zig.zig").Guid.initString("3a2f82dc-886f-4baa-9eb4-082b9025c536");
 pub const CLSID_KSPROPSETID_AudioEngine = &CLSID_KSPROPSETID_AudioEngine_Value;
 
-pub const KSPROPERTY_AUDIOENGINE = extern enum(i32) {
+pub const KSPROPERTY_AUDIOENGINE = enum(i32) {
     LFXENABLE = 0,
     GFXENABLE = 1,
     MIXFORMAT = 2,
@@ -7368,7 +7368,7 @@ pub const KSAUDIOENGINE_BUFFER_SIZE_RANGE = extern struct {
     MaxBufferBytes: u32,
 };
 
-pub const AUDIO_CURVE_TYPE = extern enum(i32) {
+pub const AUDIO_CURVE_TYPE = enum(i32) {
     NONE = 0,
     WINDOWS_FADE = 1,
 };
@@ -7384,7 +7384,7 @@ pub const KSAUDIOENGINE_VOLUMELEVEL = extern struct {
 const CLSID_KSPROPSETID_AudioSignalProcessing_Value = @import("../../zig.zig").Guid.initString("4f67b528-30c9-40de-b2fb-859ddd1f3470");
 pub const CLSID_KSPROPSETID_AudioSignalProcessing = &CLSID_KSPROPSETID_AudioSignalProcessing_Value;
 
-pub const KSPROPERTY_AUDIOSIGNALPROCESSING = extern enum(i32) {
+pub const KSPROPERTY_AUDIOSIGNALPROCESSING = enum(i32) {
     S = 0,
 };
 pub const KSPROPERTY_AUDIOSIGNALPROCESSING_MODES = KSPROPERTY_AUDIOSIGNALPROCESSING.S;
@@ -7484,7 +7484,7 @@ pub const CLSID_AUDIO_EFFECT_TYPE_DYNAMIC_RANGE_COMPRESSION = &CLSID_AUDIO_EFFEC
 const CLSID_KSPROPSETID_AudioModule_Value = @import("../../zig.zig").Guid.initString("c034fdb0-ff75-47c8-aa3c-ee46716b50c6");
 pub const CLSID_KSPROPSETID_AudioModule = &CLSID_KSPROPSETID_AudioModule_Value;
 
-pub const KSPROPERTY_AUDIOMODULE = extern enum(i32) {
+pub const KSPROPERTY_AUDIOMODULE = enum(i32) {
     DESCRIPTORS = 1,
     COMMAND = 2,
     NOTIFICATION_DEVICE_ID = 3,
@@ -7522,7 +7522,7 @@ pub const KSAUDIOMODULE_NOTIFICATION = extern struct {
     },
 };
 
-pub const _AUDCLNT_BUFFERFLAGS = extern enum(i32) {
+pub const _AUDCLNT_BUFFERFLAGS = enum(i32) {
     DATA_DISCONTINUITY = 1,
     SILENT = 2,
     TIMESTAMP_ERROR = 4,
@@ -7531,7 +7531,7 @@ pub const AUDCLNT_BUFFERFLAGS_DATA_DISCONTINUITY = _AUDCLNT_BUFFERFLAGS.DATA_DIS
 pub const AUDCLNT_BUFFERFLAGS_SILENT = _AUDCLNT_BUFFERFLAGS.SILENT;
 pub const AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR = _AUDCLNT_BUFFERFLAGS.TIMESTAMP_ERROR;
 
-pub const AUDCLNT_STREAMOPTIONS = extern enum(u32) {
+pub const AUDCLNT_STREAMOPTIONS = enum(u32) {
     NONE = 0,
     RAW = 1,
     MATCH_FORMAT = 2,
@@ -8035,17 +8035,17 @@ pub const IAudioStreamVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AMBISONICS_TYPE = extern enum(i32) {
+pub const AMBISONICS_TYPE = enum(i32) {
     D = 0,
 };
 pub const AMBISONICS_TYPE_FULL3D = AMBISONICS_TYPE.D;
 
-pub const AMBISONICS_CHANNEL_ORDERING = extern enum(i32) {
+pub const AMBISONICS_CHANNEL_ORDERING = enum(i32) {
     N = 0,
 };
 pub const AMBISONICS_CHANNEL_ORDERING_ACN = AMBISONICS_CHANNEL_ORDERING.N;
 
-pub const AMBISONICS_NORMALIZATION = extern enum(i32) {
+pub const AMBISONICS_NORMALIZATION = enum(i32) {
     SN3D = 0,
     N3D = 1,
 };
@@ -8172,7 +8172,7 @@ pub const IChannelAudioVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AudioObjectType = extern enum(u32) {
+pub const AudioObjectType = enum(u32) {
     None = 0,
     Dynamic = 1,
     FrontLeft = 2,
@@ -8585,7 +8585,7 @@ pub const SpatialAudioClientActivationParams = extern struct {
     minorVersion3: i32,
 };
 
-pub const SpatialAudioHrtfDirectivityType = extern enum(i32) {
+pub const SpatialAudioHrtfDirectivityType = enum(i32) {
     OmniDirectional = 0,
     Cardioid = 1,
     Cone = 2,
@@ -8594,7 +8594,7 @@ pub const SpatialAudioHrtfDirectivity_OmniDirectional = SpatialAudioHrtfDirectiv
 pub const SpatialAudioHrtfDirectivity_Cardioid = SpatialAudioHrtfDirectivityType.Cardioid;
 pub const SpatialAudioHrtfDirectivity_Cone = SpatialAudioHrtfDirectivityType.Cone;
 
-pub const SpatialAudioHrtfEnvironmentType = extern enum(i32) {
+pub const SpatialAudioHrtfEnvironmentType = enum(i32) {
     Small = 0,
     Medium = 1,
     Large = 2,
@@ -8607,7 +8607,7 @@ pub const SpatialAudioHrtfEnvironment_Large = SpatialAudioHrtfEnvironmentType.La
 pub const SpatialAudioHrtfEnvironment_Outdoors = SpatialAudioHrtfEnvironmentType.Outdoors;
 pub const SpatialAudioHrtfEnvironment_Average = SpatialAudioHrtfEnvironmentType.Average;
 
-pub const SpatialAudioHrtfDistanceDecayType = extern enum(i32) {
+pub const SpatialAudioHrtfDistanceDecayType = enum(i32) {
     NaturalDecay = 0,
     CustomDecay = 1,
 };
@@ -8776,7 +8776,7 @@ pub const DIRECTX_AUDIO_ACTIVATION_PARAMS = extern struct {
     dwAudioStreamFlags: u32,
 };
 
-pub const EDataFlow = extern enum(i32) {
+pub const EDataFlow = enum(i32) {
     eRender = 0,
     eCapture = 1,
     eAll = 2,
@@ -8787,7 +8787,7 @@ pub const eCapture = EDataFlow.eCapture;
 pub const eAll = EDataFlow.eAll;
 pub const EDataFlow_enum_count = EDataFlow.EDataFlow_enum_count;
 
-pub const ERole = extern enum(i32) {
+pub const ERole = enum(i32) {
     eConsole = 0,
     eMultimedia = 1,
     eCommunications = 2,
@@ -8798,7 +8798,7 @@ pub const eMultimedia = ERole.eMultimedia;
 pub const eCommunications = ERole.eCommunications;
 pub const ERole_enum_count = ERole.ERole_enum_count;
 
-pub const EndpointFormFactor = extern enum(i32) {
+pub const EndpointFormFactor = enum(i32) {
     RemoteNetworkDevice = 0,
     Speakers = 1,
     LineLevel = 2,
@@ -9121,7 +9121,7 @@ pub const AudioExtensionParams = extern struct {
     pPnpDevnode: *IMMDevice,
 };
 
-pub const EndpointConnectorType = extern enum(i32) {
+pub const EndpointConnectorType = enum(i32) {
     HostProcessConnector = 0,
     OffloadConnector = 1,
     LoopbackConnector = 2,
@@ -9368,21 +9368,21 @@ pub const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN = &CLSID_DEVINTERFACE_AUDIOENDP
 const CLSID_DeviceTopology_Value = @import("../../zig.zig").Guid.initString("1df639d0-5ec1-47aa-9379-828dc1aa8c59");
 pub const CLSID_DeviceTopology = &CLSID_DeviceTopology_Value;
 
-pub const DataFlow = extern enum(i32) {
+pub const DataFlow = enum(i32) {
     In = 0,
     Out = 1,
 };
 pub const In = DataFlow.In;
 pub const Out = DataFlow.Out;
 
-pub const PartType = extern enum(i32) {
+pub const PartType = enum(i32) {
     Connector = 0,
     Subunit = 1,
 };
 pub const Connector = PartType.Connector;
 pub const Subunit = PartType.Subunit;
 
-pub const ConnectorType = extern enum(i32) {
+pub const ConnectorType = enum(i32) {
     Unknown_Connector = 0,
     Physical_Internal = 1,
     Physical_External = 2,
@@ -10569,7 +10569,7 @@ pub const IAudioMeterInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AudioSessionDisconnectReason = extern enum(i32) {
+pub const AudioSessionDisconnectReason = enum(i32) {
     DeviceRemoval = 0,
     ServerShutdown = 1,
     FormatChanged = 2,
@@ -10977,7 +10977,7 @@ pub const IAudioSessionManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SpatialAudioMetadataWriterOverflowMode = extern enum(i32) {
+pub const SpatialAudioMetadataWriterOverflowMode = enum(i32) {
     Fail = 0,
     MergeWithNew = 1,
     MergeWithLast = 2,
@@ -10986,7 +10986,7 @@ pub const SpatialAudioMetadataWriterOverflow_Fail = SpatialAudioMetadataWriterOv
 pub const SpatialAudioMetadataWriterOverflow_MergeWithNew = SpatialAudioMetadataWriterOverflowMode.MergeWithNew;
 pub const SpatialAudioMetadataWriterOverflow_MergeWithLast = SpatialAudioMetadataWriterOverflowMode.MergeWithLast;
 
-pub const SpatialAudioMetadataCopyMode = extern enum(i32) {
+pub const SpatialAudioMetadataCopyMode = enum(i32) {
     Overwrite = 0,
     Append = 1,
     AppendMergeWithLast = 2,

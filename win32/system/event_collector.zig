@@ -13,7 +13,7 @@ pub const EC_OPEN_EXISTING = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
-pub const EC_SUBSCRIPTION_PROPERTY_ID = extern enum(i32) {
+pub const EC_SUBSCRIPTION_PROPERTY_ID = enum(i32) {
     Enabled = 0,
     EventSources = 1,
     EventSourceAddress = 2,
@@ -82,7 +82,7 @@ pub const EcSubscriptionDeniedSubjects = EC_SUBSCRIPTION_PROPERTY_ID.DeniedSubje
 pub const EcSubscriptionAllowedSourceDomainComputers = EC_SUBSCRIPTION_PROPERTY_ID.AllowedSourceDomainComputers;
 pub const EcSubscriptionPropertyIdEND = EC_SUBSCRIPTION_PROPERTY_ID.PropertyIdEND;
 
-pub const EC_SUBSCRIPTION_CREDENTIALS_TYPE = extern enum(i32) {
+pub const EC_SUBSCRIPTION_CREDENTIALS_TYPE = enum(i32) {
     Default = 0,
     Negotiate = 1,
     Digest = 2,
@@ -95,14 +95,14 @@ pub const EcSubscriptionCredDigest = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Digest;
 pub const EcSubscriptionCredBasic = EC_SUBSCRIPTION_CREDENTIALS_TYPE.Basic;
 pub const EcSubscriptionCredLocalMachine = EC_SUBSCRIPTION_CREDENTIALS_TYPE.LocalMachine;
 
-pub const EC_SUBSCRIPTION_TYPE = extern enum(i32) {
+pub const EC_SUBSCRIPTION_TYPE = enum(i32) {
     SourceInitiated = 0,
     CollectorInitiated = 1,
 };
 pub const EcSubscriptionTypeSourceInitiated = EC_SUBSCRIPTION_TYPE.SourceInitiated;
 pub const EcSubscriptionTypeCollectorInitiated = EC_SUBSCRIPTION_TYPE.CollectorInitiated;
 
-pub const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID = extern enum(i32) {
+pub const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID = enum(i32) {
     Active = 0,
     LastError = 1,
     LastErrorMessage = 2,
@@ -121,7 +121,7 @@ pub const EcSubscriptionRunTimeStatusEventSources = EC_SUBSCRIPTION_RUNTIME_STAT
 pub const EcSubscriptionRunTimeStatusLastHeartbeatTime = EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID.LastHeartbeatTime;
 pub const EcSubscriptionRunTimeStatusInfoIdEND = EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID.InfoIdEND;
 
-pub const EC_VARIANT_TYPE = extern enum(i32) {
+pub const EC_VARIANT_TYPE = enum(i32) {
     TypeNull = 0,
     TypeBoolean = 1,
     TypeUInt32 = 2,
@@ -152,7 +152,7 @@ pub const EC_VARIANT = extern struct {
     Type: u32,
 };
 
-pub const EC_SUBSCRIPTION_CONFIGURATION_MODE = extern enum(i32) {
+pub const EC_SUBSCRIPTION_CONFIGURATION_MODE = enum(i32) {
     Normal = 0,
     Custom = 1,
     MinLatency = 2,
@@ -163,21 +163,21 @@ pub const EcConfigurationModeCustom = EC_SUBSCRIPTION_CONFIGURATION_MODE.Custom;
 pub const EcConfigurationModeMinLatency = EC_SUBSCRIPTION_CONFIGURATION_MODE.MinLatency;
 pub const EcConfigurationModeMinBandwidth = EC_SUBSCRIPTION_CONFIGURATION_MODE.MinBandwidth;
 
-pub const EC_SUBSCRIPTION_DELIVERY_MODE = extern enum(i32) {
+pub const EC_SUBSCRIPTION_DELIVERY_MODE = enum(i32) {
     ll = 1,
     sh = 2,
 };
 pub const EcDeliveryModePull = EC_SUBSCRIPTION_DELIVERY_MODE.ll;
 pub const EcDeliveryModePush = EC_SUBSCRIPTION_DELIVERY_MODE.sh;
 
-pub const EC_SUBSCRIPTION_CONTENT_FORMAT = extern enum(i32) {
+pub const EC_SUBSCRIPTION_CONTENT_FORMAT = enum(i32) {
     Events = 1,
     RenderedText = 2,
 };
 pub const EcContentFormatEvents = EC_SUBSCRIPTION_CONTENT_FORMAT.Events;
 pub const EcContentFormatRenderedText = EC_SUBSCRIPTION_CONTENT_FORMAT.RenderedText;
 
-pub const EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS = extern enum(i32) {
+pub const EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS = enum(i32) {
     Disabled = 1,
     Active = 2,
     Inactive = 3,

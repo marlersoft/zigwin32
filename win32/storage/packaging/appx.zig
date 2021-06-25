@@ -102,7 +102,7 @@ pub const APPX_PACKAGE_SETTINGS = extern struct {
     hashMethod: *IUri,
 };
 
-pub const APPX_COMPRESSION_OPTION = extern enum(i32) {
+pub const APPX_COMPRESSION_OPTION = enum(i32) {
     NONE = 0,
     NORMAL = 1,
     MAXIMUM = 2,
@@ -122,7 +122,7 @@ pub const APPX_PACKAGE_WRITER_PAYLOAD_STREAM = extern struct {
     compressionOption: APPX_COMPRESSION_OPTION,
 };
 
-pub const APPX_FOOTPRINT_FILE_TYPE = extern enum(i32) {
+pub const APPX_FOOTPRINT_FILE_TYPE = enum(i32) {
     MANIFEST = 0,
     BLOCKMAP = 1,
     SIGNATURE = 2,
@@ -135,20 +135,20 @@ pub const APPX_FOOTPRINT_FILE_TYPE_SIGNATURE = APPX_FOOTPRINT_FILE_TYPE.SIGNATUR
 pub const APPX_FOOTPRINT_FILE_TYPE_CODEINTEGRITY = APPX_FOOTPRINT_FILE_TYPE.CODEINTEGRITY;
 pub const APPX_FOOTPRINT_FILE_TYPE_CONTENTGROUPMAP = APPX_FOOTPRINT_FILE_TYPE.CONTENTGROUPMAP;
 
-pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE = extern enum(i32) {
+pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE = enum(i32) {
     FIRST = 0,
-    MANIFEST = 0,
+    // MANIFEST = 0, this enum value conflicts with FIRST
     BLOCKMAP = 1,
     SIGNATURE = 2,
-    LAST = 2,
+    // LAST = 2, this enum value conflicts with SIGNATURE
 };
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_FIRST = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.FIRST;
-pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_MANIFEST = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.MANIFEST;
+pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_MANIFEST = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.FIRST;
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_BLOCKMAP = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.BLOCKMAP;
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_SIGNATURE = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.SIGNATURE;
-pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_LAST = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.LAST;
+pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_LAST = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.SIGNATURE;
 
-pub const APPX_CAPABILITIES = extern enum(u32) {
+pub const APPX_CAPABILITIES = enum(u32) {
     INTERNET_CLIENT = 1,
     INTERNET_CLIENT_SERVER = 2,
     PRIVATE_NETWORK_CLIENT_SERVER = 4,
@@ -205,7 +205,7 @@ pub const APPX_CAPABILITY_REMOVABLE_STORAGE = APPX_CAPABILITIES.REMOVABLE_STORAG
 pub const APPX_CAPABILITY_APPOINTMENTS = APPX_CAPABILITIES.APPOINTMENTS;
 pub const APPX_CAPABILITY_CONTACTS = APPX_CAPABILITIES.CONTACTS;
 
-pub const APPX_PACKAGE_ARCHITECTURE = extern enum(i32) {
+pub const APPX_PACKAGE_ARCHITECTURE = enum(i32) {
     X86 = 0,
     ARM = 5,
     X64 = 9,
@@ -218,7 +218,7 @@ pub const APPX_PACKAGE_ARCHITECTURE_X64 = APPX_PACKAGE_ARCHITECTURE.X64;
 pub const APPX_PACKAGE_ARCHITECTURE_NEUTRAL = APPX_PACKAGE_ARCHITECTURE.NEUTRAL;
 pub const APPX_PACKAGE_ARCHITECTURE_ARM64 = APPX_PACKAGE_ARCHITECTURE.ARM64;
 
-pub const APPX_PACKAGE_ARCHITECTURE2 = extern enum(i32) {
+pub const APPX_PACKAGE_ARCHITECTURE2 = enum(i32) {
     X86 = 0,
     ARM = 5,
     X64 = 9,
@@ -235,14 +235,14 @@ pub const APPX_PACKAGE_ARCHITECTURE2_ARM64 = APPX_PACKAGE_ARCHITECTURE2.ARM64;
 pub const APPX_PACKAGE_ARCHITECTURE2_X86_ON_ARM64 = APPX_PACKAGE_ARCHITECTURE2.X86_ON_ARM64;
 pub const APPX_PACKAGE_ARCHITECTURE2_UNKNOWN = APPX_PACKAGE_ARCHITECTURE2.UNKNOWN;
 
-pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE = extern enum(i32) {
+pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE = enum(i32) {
     APPLICATION = 0,
     RESOURCE = 1,
 };
 pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE_APPLICATION = APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE.APPLICATION;
 pub const APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE_RESOURCE = APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE.RESOURCE;
 
-pub const DX_FEATURE_LEVEL = extern enum(i32) {
+pub const DX_FEATURE_LEVEL = enum(i32) {
     UNSPECIFIED = 0,
     @"9" = 1,
     @"10" = 2,
@@ -253,7 +253,7 @@ pub const DX_FEATURE_LEVEL_9 = DX_FEATURE_LEVEL.@"9";
 pub const DX_FEATURE_LEVEL_10 = DX_FEATURE_LEVEL.@"10";
 pub const DX_FEATURE_LEVEL_11 = DX_FEATURE_LEVEL.@"11";
 
-pub const APPX_CAPABILITY_CLASS_TYPE = extern enum(i32) {
+pub const APPX_CAPABILITY_CLASS_TYPE = enum(i32) {
     DEFAULT = 0,
     GENERAL = 1,
     RESTRICTED = 2,
@@ -268,7 +268,7 @@ pub const APPX_CAPABILITY_CLASS_WINDOWS = APPX_CAPABILITY_CLASS_TYPE.WINDOWS;
 pub const APPX_CAPABILITY_CLASS_ALL = APPX_CAPABILITY_CLASS_TYPE.ALL;
 pub const APPX_CAPABILITY_CLASS_CUSTOM = APPX_CAPABILITY_CLASS_TYPE.CUSTOM;
 
-pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE = extern enum(i32) {
+pub const APPX_PACKAGING_CONTEXT_CHANGE_TYPE = enum(i32) {
     START = 0,
     CHANGE = 1,
     DETAILS = 2,
@@ -2826,7 +2826,7 @@ pub const APPX_ENCRYPTED_PACKAGE_SETTINGS = extern struct {
     blockMapHashAlgorithm: *IUri,
 };
 
-pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = extern enum(u32) {
+pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = enum(u32) {
     NONE = 0,
     DIFFUSION = 1,
     PAGE_HASHING = 2,
@@ -3198,12 +3198,12 @@ pub const IAppxEncryptedBundleWriter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION = extern enum(i32) {
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION = enum(i32) {
     A = 0,
 };
 pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION_APPEND_DELTA = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION.A;
 
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS = extern enum(u32) {
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS = enum(u32) {
     NONE = 0,
     SKIP_VALIDATION = 1,
     LOCALIZED = 2,
@@ -3347,7 +3347,7 @@ pub const PACKAGE_VERSION = extern struct {
     },
 };
 
-pub const PackagePathType = extern enum(i32) {
+pub const PackagePathType = enum(i32) {
     Install = 0,
     Mutable = 1,
     Effective = 2,
@@ -3362,7 +3362,7 @@ pub const PackagePathType_MachineExternal = PackagePathType.MachineExternal;
 pub const PackagePathType_UserExternal = PackagePathType.UserExternal;
 pub const PackagePathType_EffectiveExternal = PackagePathType.EffectiveExternal;
 
-pub const PackageOrigin = extern enum(i32) {
+pub const PackageOrigin = enum(i32) {
     Unknown = 0,
     Unsigned = 1,
     Inbox = 2,
@@ -3383,14 +3383,14 @@ pub const _PACKAGE_INFO_REFERENCE = extern struct {
     reserved: *c_void,
 };
 
-pub const AppPolicyLifecycleManagement = extern enum(i32) {
+pub const AppPolicyLifecycleManagement = enum(i32) {
     Unmanaged = 0,
     Managed = 1,
 };
 pub const AppPolicyLifecycleManagement_Unmanaged = AppPolicyLifecycleManagement.Unmanaged;
 pub const AppPolicyLifecycleManagement_Managed = AppPolicyLifecycleManagement.Managed;
 
-pub const AppPolicyWindowingModel = extern enum(i32) {
+pub const AppPolicyWindowingModel = enum(i32) {
     None = 0,
     Universal = 1,
     ClassicDesktop = 2,
@@ -3401,14 +3401,14 @@ pub const AppPolicyWindowingModel_Universal = AppPolicyWindowingModel.Universal;
 pub const AppPolicyWindowingModel_ClassicDesktop = AppPolicyWindowingModel.ClassicDesktop;
 pub const AppPolicyWindowingModel_ClassicPhone = AppPolicyWindowingModel.ClassicPhone;
 
-pub const AppPolicyMediaFoundationCodecLoading = extern enum(i32) {
+pub const AppPolicyMediaFoundationCodecLoading = enum(i32) {
     All = 0,
     InboxOnly = 1,
 };
 pub const AppPolicyMediaFoundationCodecLoading_All = AppPolicyMediaFoundationCodecLoading.All;
 pub const AppPolicyMediaFoundationCodecLoading_InboxOnly = AppPolicyMediaFoundationCodecLoading.InboxOnly;
 
-pub const AppPolicyClrCompat = extern enum(i32) {
+pub const AppPolicyClrCompat = enum(i32) {
     Other = 0,
     ClassicDesktop = 1,
     Universal = 2,
@@ -3419,28 +3419,28 @@ pub const AppPolicyClrCompat_ClassicDesktop = AppPolicyClrCompat.ClassicDesktop;
 pub const AppPolicyClrCompat_Universal = AppPolicyClrCompat.Universal;
 pub const AppPolicyClrCompat_PackagedDesktop = AppPolicyClrCompat.PackagedDesktop;
 
-pub const AppPolicyThreadInitializationType = extern enum(i32) {
+pub const AppPolicyThreadInitializationType = enum(i32) {
     None = 0,
     InitializeWinRT = 1,
 };
 pub const AppPolicyThreadInitializationType_None = AppPolicyThreadInitializationType.None;
 pub const AppPolicyThreadInitializationType_InitializeWinRT = AppPolicyThreadInitializationType.InitializeWinRT;
 
-pub const AppPolicyShowDeveloperDiagnostic = extern enum(i32) {
+pub const AppPolicyShowDeveloperDiagnostic = enum(i32) {
     None = 0,
     ShowUI = 1,
 };
 pub const AppPolicyShowDeveloperDiagnostic_None = AppPolicyShowDeveloperDiagnostic.None;
 pub const AppPolicyShowDeveloperDiagnostic_ShowUI = AppPolicyShowDeveloperDiagnostic.ShowUI;
 
-pub const AppPolicyProcessTerminationMethod = extern enum(i32) {
+pub const AppPolicyProcessTerminationMethod = enum(i32) {
     ExitProcess = 0,
     TerminateProcess = 1,
 };
 pub const AppPolicyProcessTerminationMethod_ExitProcess = AppPolicyProcessTerminationMethod.ExitProcess;
 pub const AppPolicyProcessTerminationMethod_TerminateProcess = AppPolicyProcessTerminationMethod.TerminateProcess;
 
-pub const AppPolicyCreateFileAccess = extern enum(i32) {
+pub const AppPolicyCreateFileAccess = enum(i32) {
     Full = 0,
     Limited = 1,
 };

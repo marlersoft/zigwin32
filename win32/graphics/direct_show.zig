@@ -723,14 +723,14 @@ pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
 //--------------------------------------------------------------------------------
 // Section: Types (1475)
 //--------------------------------------------------------------------------------
-pub const OA_BOOL = extern enum(i32) {
+pub const OA_BOOL = enum(i32) {
     TRUE = -1,
     FALSE = 0,
 };
 pub const OATRUE = OA_BOOL.TRUE;
 pub const OAFALSE = OA_BOOL.FALSE;
 
-pub const MPEG2VIDEOINFO_FLAGS = extern enum(u32) {
+pub const MPEG2VIDEOINFO_FLAGS = enum(u32) {
     DoPanScan = 1,
     DVDLine21Field1 = 2,
     DVDLine21Field2 = 4,
@@ -779,7 +779,7 @@ pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
 pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
 pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
 
-pub const MPEGLAYER3WAVEFORMAT_FLAGS = extern enum(u32) {
+pub const MPEGLAYER3WAVEFORMAT_FLAGS = enum(u32) {
     ISO = 0,
     ON = 1,
     OFF = 2,
@@ -811,7 +811,7 @@ pub const TIMECODE_SAMPLE = extern struct {
     dwFlags: u32,
 };
 
-pub const VIDEOENCODER_BITRATE_MODE = extern enum(i32) {
+pub const VIDEOENCODER_BITRATE_MODE = enum(i32) {
     ConstantBitRate = 0,
     VariableBitRateAverage = 1,
     VariableBitRatePeak = 2,
@@ -820,7 +820,7 @@ pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
 pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
 pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
 
-pub const AMVP_SELECT_FORMAT_BY = extern enum(i32) {
+pub const AMVP_SELECT_FORMAT_BY = enum(i32) {
     DO_NOT_CARE = 0,
     BEST_BANDWIDTH = 1,
     INPUT_SAME_AS_OUTPUT = 2,
@@ -829,7 +829,7 @@ pub const AMVP_DO_NOT_CARE = AMVP_SELECT_FORMAT_BY.DO_NOT_CARE;
 pub const AMVP_BEST_BANDWIDTH = AMVP_SELECT_FORMAT_BY.BEST_BANDWIDTH;
 pub const AMVP_INPUT_SAME_AS_OUTPUT = AMVP_SELECT_FORMAT_BY.INPUT_SAME_AS_OUTPUT;
 
-pub const AMVP_MODE = extern enum(i32) {
+pub const AMVP_MODE = enum(i32) {
     WEAVE = 0,
     BOBINTERLEAVED = 1,
     BOBNONINTERLEAVED = 2,
@@ -907,7 +907,7 @@ pub const AM_MEDIA_TYPE = extern struct {
     pbFormat: *u8,
 };
 
-pub const PIN_DIRECTION = extern enum(i32) {
+pub const PIN_DIRECTION = enum(i32) {
     INPUT = 0,
     OUTPUT = 1,
 };
@@ -1284,7 +1284,7 @@ pub const IEnumFilters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FILTER_STATE = extern enum(i32) {
+pub const FILTER_STATE = enum(i32) {
     Stopped = 0,
     Paused = 1,
     Running = 2,
@@ -1651,7 +1651,7 @@ pub const IMediaSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_SAMPLE_PROPERTY_FLAGS = extern enum(i32) {
+pub const AM_SAMPLE_PROPERTY_FLAGS = enum(i32) {
     AMPLE_SPLICEPOINT = 1,
     AMPLE_PREROLL = 2,
     AMPLE_DATADISCONTINUITY = 4,
@@ -1662,7 +1662,7 @@ pub const AM_SAMPLE_PROPERTY_FLAGS = extern enum(i32) {
     AMPLE_STOPVALID = 256,
     AMPLE_ENDOFSTREAM = 512,
     TREAM_MEDIA = 0,
-    TREAM_CONTROL = 1,
+    // TREAM_CONTROL = 1, this enum value conflicts with AMPLE_SPLICEPOINT
 };
 pub const AM_SAMPLE_SPLICEPOINT = AM_SAMPLE_PROPERTY_FLAGS.AMPLE_SPLICEPOINT;
 pub const AM_SAMPLE_PREROLL = AM_SAMPLE_PROPERTY_FLAGS.AMPLE_PREROLL;
@@ -1674,7 +1674,7 @@ pub const AM_SAMPLE_FLUSH_ON_PAUSE = AM_SAMPLE_PROPERTY_FLAGS.AMPLE_FLUSH_ON_PAU
 pub const AM_SAMPLE_STOPVALID = AM_SAMPLE_PROPERTY_FLAGS.AMPLE_STOPVALID;
 pub const AM_SAMPLE_ENDOFSTREAM = AM_SAMPLE_PROPERTY_FLAGS.AMPLE_ENDOFSTREAM;
 pub const AM_STREAM_MEDIA = AM_SAMPLE_PROPERTY_FLAGS.TREAM_MEDIA;
-pub const AM_STREAM_CONTROL = AM_SAMPLE_PROPERTY_FLAGS.TREAM_CONTROL;
+pub const AM_STREAM_CONTROL = AM_SAMPLE_PROPERTY_FLAGS.AMPLE_SPLICEPOINT;
 
 pub const AM_SAMPLE2_PROPERTIES = extern struct {
     cbData: u32,
@@ -1951,12 +1951,12 @@ pub const IAMovieSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_SEEKING_SeekingFlags = extern enum(i32) {
+pub const AM_SEEKING_SeekingFlags = enum(i32) {
     NoPositioning = 0,
     AbsolutePositioning = 1,
     RelativePositioning = 2,
     IncrementalPositioning = 3,
-    PositioningBitsMask = 3,
+    // PositioningBitsMask = 3, this enum value conflicts with IncrementalPositioning
     SeekToKeyFrame = 4,
     ReturnTime = 8,
     Segment = 16,
@@ -1966,13 +1966,13 @@ pub const AM_SEEKING_NoPositioning = AM_SEEKING_SeekingFlags.NoPositioning;
 pub const AM_SEEKING_AbsolutePositioning = AM_SEEKING_SeekingFlags.AbsolutePositioning;
 pub const AM_SEEKING_RelativePositioning = AM_SEEKING_SeekingFlags.RelativePositioning;
 pub const AM_SEEKING_IncrementalPositioning = AM_SEEKING_SeekingFlags.IncrementalPositioning;
-pub const AM_SEEKING_PositioningBitsMask = AM_SEEKING_SeekingFlags.PositioningBitsMask;
+pub const AM_SEEKING_PositioningBitsMask = AM_SEEKING_SeekingFlags.IncrementalPositioning;
 pub const AM_SEEKING_SeekToKeyFrame = AM_SEEKING_SeekingFlags.SeekToKeyFrame;
 pub const AM_SEEKING_ReturnTime = AM_SEEKING_SeekingFlags.ReturnTime;
 pub const AM_SEEKING_Segment = AM_SEEKING_SeekingFlags.Segment;
 pub const AM_SEEKING_NoFlush = AM_SEEKING_SeekingFlags.NoFlush;
 
-pub const AM_SEEKING_SEEKING_CAPABILITIES = extern enum(i32) {
+pub const AM_SEEKING_SEEKING_CAPABILITIES = enum(i32) {
     CanSeekAbsolute = 1,
     CanSeekForwards = 2,
     CanSeekBackwards = 4,
@@ -2151,7 +2151,7 @@ pub const IMediaSeeking = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_MEDIAEVENT_FLAGS = extern enum(i32) {
+pub const AM_MEDIAEVENT_FLAGS = enum(i32) {
     Y = 1,
 };
 pub const AM_MEDIAEVENT_NONOTIFY = AM_MEDIAEVENT_FLAGS.Y;
@@ -2207,7 +2207,7 @@ pub const IEnumRegFilters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IFILTERMAPPER_MERIT = extern enum(i32) {
+pub const IFILTERMAPPER_MERIT = enum(i32) {
     PREFERRED = 8388608,
     NORMAL = 6291456,
     UNLIKELY = 4194304,
@@ -2345,7 +2345,7 @@ pub const REGPINMEDIUM = extern struct {
     dw2: u32,
 };
 
-pub const REG_PINFLAG = extern enum(u32) {
+pub const REG_PINFLAG = enum(u32) {
     ZERO = 1,
     RENDERER = 2,
     MANY = 4,
@@ -2486,7 +2486,7 @@ pub const IFilterMapper3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const QualityMessageType = extern enum(i32) {
+pub const QualityMessageType = enum(i32) {
     amine = 0,
     lood = 1,
 };
@@ -2531,7 +2531,7 @@ pub const IQualityControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const COLORKEY_TYPE = extern enum(i32) {
+pub const COLORKEY_TYPE = enum(i32) {
     NOCOLORKEY = 0,
     INDEX = 1,
     RGB = 2,
@@ -2547,7 +2547,7 @@ pub const COLORKEY = extern struct {
     HighColorValue: u32,
 };
 
-pub const ADVISE_TYPE = extern enum(u32) {
+pub const ADVISE_TYPE = enum(u32) {
     NONE = 0,
     CLIPPING = 1,
     PALETTE = 2,
@@ -2869,7 +2869,7 @@ pub const IFileSinkFilter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_FILESINK_FLAGS = extern enum(i32) {
+pub const AM_FILESINK_FLAGS = enum(i32) {
     E = 1,
 };
 pub const AM_FILE_OVERWRITE = AM_FILESINK_FLAGS.E;
@@ -3176,7 +3176,7 @@ pub const ICaptureGraphBuilder2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AM_RENSDEREXFLAGS = extern enum(i32) {
+pub const _AM_RENSDEREXFLAGS = enum(i32) {
     S = 1,
 };
 pub const AM_RENDEREX_RENDERTOEXISTINGRENDERERS = _AM_RENSDEREXFLAGS.S;
@@ -3559,7 +3559,7 @@ pub const IDistributorNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_STREAM_INFO_FLAGS = extern enum(i32) {
+pub const AM_STREAM_INFO_FLAGS = enum(i32) {
     START_DEFINED = 1,
     STOP_DEFINED = 2,
     DISCARDING = 4,
@@ -3728,7 +3728,7 @@ pub const IAMStreamConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const InterleavingMode = extern enum(i32) {
+pub const InterleavingMode = enum(i32) {
     NONE = 0,
     CAPTURE = 1,
     FULL = 2,
@@ -3837,7 +3837,7 @@ pub const IConfigAviMux = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CompressionCaps = extern enum(i32) {
+pub const CompressionCaps = enum(i32) {
     Quality = 1,
     Crunch = 2,
     KeyFrame = 4,
@@ -3970,7 +3970,7 @@ pub const IAMVideoCompression = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VfwCaptureDialogs = extern enum(i32) {
+pub const VfwCaptureDialogs = enum(i32) {
     Source = 1,
     Format = 2,
     Display = 4,
@@ -3979,7 +3979,7 @@ pub const VfwCaptureDialog_Source = VfwCaptureDialogs.Source;
 pub const VfwCaptureDialog_Format = VfwCaptureDialogs.Format;
 pub const VfwCaptureDialog_Display = VfwCaptureDialogs.Display;
 
-pub const VfwCompressDialogs = extern enum(i32) {
+pub const VfwCompressDialogs = enum(i32) {
     Config = 1,
     About = 2,
     QueryConfig = 4,
@@ -4321,7 +4321,7 @@ pub const IAMBufferNegotiation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AnalogVideoStandard = extern enum(i32) {
+pub const AnalogVideoStandard = enum(i32) {
     _None = 0,
     _NTSC_M = 1,
     _NTSC_M_J = 2,
@@ -4372,21 +4372,21 @@ pub const AnalogVideoMask_MCE_NTSC = AnalogVideoStandard.Mask_MCE_NTSC;
 pub const AnalogVideoMask_MCE_PAL = AnalogVideoStandard.Mask_MCE_PAL;
 pub const AnalogVideoMask_MCE_SECAM = AnalogVideoStandard.Mask_MCE_SECAM;
 
-pub const TunerInputType = extern enum(i32) {
+pub const TunerInputType = enum(i32) {
     Cable = 0,
     Antenna = 1,
 };
 pub const TunerInputCable = TunerInputType.Cable;
 pub const TunerInputAntenna = TunerInputType.Antenna;
 
-pub const VideoCopyProtectionType = extern enum(i32) {
+pub const VideoCopyProtectionType = enum(i32) {
     Basic = 0,
     CBI = 1,
 };
 pub const VideoCopyProtectionMacrovisionBasic = VideoCopyProtectionType.Basic;
 pub const VideoCopyProtectionMacrovisionCBI = VideoCopyProtectionType.CBI;
 
-pub const PhysicalConnectorType = extern enum(i32) {
+pub const PhysicalConnectorType = enum(i32) {
     Video_Tuner = 1,
     Video_Composite = 2,
     Video_SVideo = 3,
@@ -4534,7 +4534,7 @@ pub const IAMAnalogVideoDecoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VideoProcAmpProperty = extern enum(i32) {
+pub const VideoProcAmpProperty = enum(i32) {
     Brightness = 0,
     Contrast = 1,
     Hue = 2,
@@ -4557,7 +4557,7 @@ pub const VideoProcAmp_WhiteBalance = VideoProcAmpProperty.WhiteBalance;
 pub const VideoProcAmp_BacklightCompensation = VideoProcAmpProperty.BacklightCompensation;
 pub const VideoProcAmp_Gain = VideoProcAmpProperty.Gain;
 
-pub const VideoProcAmpFlags = extern enum(i32) {
+pub const VideoProcAmpFlags = enum(i32) {
     Auto = 1,
     Manual = 2,
 };
@@ -4611,7 +4611,7 @@ pub const IAMVideoProcAmp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CameraControlProperty = extern enum(i32) {
+pub const CameraControlProperty = enum(i32) {
     Pan = 0,
     Tilt = 1,
     Roll = 2,
@@ -4628,7 +4628,7 @@ pub const CameraControl_Exposure = CameraControlProperty.Exposure;
 pub const CameraControl_Iris = CameraControlProperty.Iris;
 pub const CameraControl_Focus = CameraControlProperty.Focus;
 
-pub const CameraControlFlags = extern enum(i32) {
+pub const CameraControlFlags = enum(i32) {
     Auto = 1,
     Manual = 2,
 };
@@ -4682,7 +4682,7 @@ pub const IAMCameraControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VideoControlFlags = extern enum(i32) {
+pub const VideoControlFlags = enum(i32) {
     FlipHorizontal = 1,
     FlipVertical = 2,
     ExternalTriggerEnable = 4,
@@ -4830,14 +4830,14 @@ pub const IAMCrossbar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AMTunerSubChannel = extern enum(i32) {
+pub const AMTunerSubChannel = enum(i32) {
     NO_TUNE = -2,
     DEFAULT = -1,
 };
 pub const AMTUNER_SUBCHAN_NO_TUNE = AMTunerSubChannel.NO_TUNE;
 pub const AMTUNER_SUBCHAN_DEFAULT = AMTunerSubChannel.DEFAULT;
 
-pub const AMTunerSignalStrength = extern enum(i32) {
+pub const AMTunerSignalStrength = enum(i32) {
     HASNOSIGNALSTRENGTH = -1,
     NOSIGNAL = 0,
     SIGNALPRESENT = 1,
@@ -4846,7 +4846,7 @@ pub const AMTUNER_HASNOSIGNALSTRENGTH = AMTunerSignalStrength.HASNOSIGNALSTRENGT
 pub const AMTUNER_NOSIGNAL = AMTunerSignalStrength.NOSIGNAL;
 pub const AMTUNER_SIGNALPRESENT = AMTunerSignalStrength.SIGNALPRESENT;
 
-pub const AMTunerModeType = extern enum(i32) {
+pub const AMTunerModeType = enum(i32) {
     DEFAULT = 0,
     TV = 1,
     FM_RADIO = 2,
@@ -4859,7 +4859,7 @@ pub const AMTUNER_MODE_FM_RADIO = AMTunerModeType.FM_RADIO;
 pub const AMTUNER_MODE_AM_RADIO = AMTunerModeType.AM_RADIO;
 pub const AMTUNER_MODE_DSS = AMTunerModeType.DSS;
 
-pub const AMTunerEventType = extern enum(i32) {
+pub const AMTunerEventType = enum(i32) {
     D = 1,
 };
 pub const AMTUNER_EVENT_CHANGED = AMTunerEventType.D;
@@ -5185,7 +5185,7 @@ pub const IBPCSatelliteTuner = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TVAudioMode = extern enum(i32) {
+pub const TVAudioMode = enum(i32) {
     MODE_MONO = 1,
     MODE_STEREO = 2,
     MODE_LANG_A = 16,
@@ -5206,7 +5206,7 @@ pub const AMTVAUDIO_PRESET_LANG_A = TVAudioMode.PRESET_LANG_A;
 pub const AMTVAUDIO_PRESET_LANG_B = TVAudioMode.PRESET_LANG_B;
 pub const AMTVAUDIO_PRESET_LANG_C = TVAudioMode.PRESET_LANG_C;
 
-pub const AMTVAudioEventType = extern enum(i32) {
+pub const AMTVAudioEventType = enum(i32) {
     D = 1,
 };
 pub const AMTVAUDIO_EVENT_CHANGED = AMTVAudioEventType.D;
@@ -5373,7 +5373,7 @@ pub const IAMAnalogVideoEncoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AMPROPERTY_PIN = extern enum(i32) {
+pub const AMPROPERTY_PIN = enum(i32) {
     CATEGORY = 0,
     MEDIUM = 1,
 };
@@ -6146,14 +6146,14 @@ pub const IAMDevMemoryControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AMSTREAMSELECTINFOFLAGS = extern enum(i32) {
+pub const _AMSTREAMSELECTINFOFLAGS = enum(i32) {
     NABLED = 1,
     XCLUSIVE = 2,
 };
 pub const AMSTREAMSELECTINFO_ENABLED = _AMSTREAMSELECTINFOFLAGS.NABLED;
 pub const AMSTREAMSELECTINFO_EXCLUSIVE = _AMSTREAMSELECTINFOFLAGS.XCLUSIVE;
 
-pub const _AMSTREAMSELECTENABLEFLAGS = extern enum(i32) {
+pub const _AMSTREAMSELECTENABLEFLAGS = enum(i32) {
     E = 1,
     ALL = 2,
 };
@@ -6206,7 +6206,7 @@ pub const IAMStreamSelect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AMRESCTL_RESERVEFLAGS = extern enum(i32) {
+pub const _AMRESCTL_RESERVEFLAGS = enum(i32) {
     RESERVE = 0,
     UNRESERVE = 1,
 };
@@ -6258,7 +6258,7 @@ pub const IAMClockAdjust = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AM_FILTER_MISC_FLAGS = extern enum(i32) {
+pub const _AM_FILTER_MISC_FLAGS = enum(i32) {
     RENDERER = 1,
     SOURCE = 2,
 };
@@ -6353,7 +6353,7 @@ pub const IDecimateVideoImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DECIMATION_USAGE = extern enum(i32) {
+pub const DECIMATION_USAGE = enum(i32) {
     LEGACY = 0,
     USE_DECODER_ONLY = 1,
     USE_VIDEOPORT_ONLY = 2,
@@ -6435,7 +6435,7 @@ pub const IVideoFrameStep = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AM_PUSHSOURCE_FLAGS = extern enum(i32) {
+pub const _AM_PUSHSOURCE_FLAGS = enum(i32) {
     CAPS_INTERNAL_RM = 1,
     CAPS_NOT_LIVE = 2,
     CAPS_PRIVATE_CLOCK = 4,
@@ -6579,7 +6579,7 @@ pub const DVINFO = extern struct {
     dwDVReserved: [2]u32,
 };
 
-pub const _DVENCODERRESOLUTION = extern enum(i32) {
+pub const _DVENCODERRESOLUTION = enum(i32) {
     @"720x480" = 2012,
     @"360x240" = 2013,
     @"180x120" = 2014,
@@ -6590,14 +6590,14 @@ pub const DVENCODERRESOLUTION_360x240 = _DVENCODERRESOLUTION.@"360x240";
 pub const DVENCODERRESOLUTION_180x120 = _DVENCODERRESOLUTION.@"180x120";
 pub const DVENCODERRESOLUTION_88x60 = _DVENCODERRESOLUTION.@"88x60";
 
-pub const _DVENCODERVIDEOFORMAT = extern enum(i32) {
+pub const _DVENCODERVIDEOFORMAT = enum(i32) {
     NTSC = 2000,
     PAL = 2001,
 };
 pub const DVENCODERVIDEOFORMAT_NTSC = _DVENCODERVIDEOFORMAT.NTSC;
 pub const DVENCODERVIDEOFORMAT_PAL = _DVENCODERVIDEOFORMAT.PAL;
 
-pub const _DVENCODERFORMAT = extern enum(i32) {
+pub const _DVENCODERFORMAT = enum(i32) {
     SD = 2007,
     HD = 2008,
     SL = 2009,
@@ -6646,7 +6646,7 @@ pub const IDVEnc = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _DVDECODERRESOLUTION = extern enum(i32) {
+pub const _DVDECODERRESOLUTION = enum(i32) {
     @"720x480" = 1000,
     @"360x240" = 1001,
     @"180x120" = 1002,
@@ -6657,7 +6657,7 @@ pub const DVDECODERRESOLUTION_360x240 = _DVDECODERRESOLUTION.@"360x240";
 pub const DVDECODERRESOLUTION_180x120 = _DVDECODERRESOLUTION.@"180x120";
 pub const DVDECODERRESOLUTION_88x60 = _DVDECODERRESOLUTION.@"88x60";
 
-pub const _DVRESOLUTION = extern enum(i32) {
+pub const _DVRESOLUTION = enum(i32) {
     FULL = 1000,
     HALF = 1001,
     QUARTER = 1002,
@@ -6744,7 +6744,7 @@ pub const IDVSplitter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AM_AUDIO_RENDERER_STAT_PARAM = extern enum(i32) {
+pub const _AM_AUDIO_RENDERER_STAT_PARAM = enum(i32) {
     BREAK_COUNT = 1,
     SLAVE_MODE = 2,
     SILENCE_DUR = 3,
@@ -6795,7 +6795,7 @@ pub const IAMAudioRendererStats = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AM_INTF_SEARCH_FLAGS = extern enum(i32) {
+pub const _AM_INTF_SEARCH_FLAGS = enum(i32) {
     INPUT_PIN = 1,
     OUTPUT_PIN = 2,
     FILTER = 4,
@@ -6845,7 +6845,7 @@ pub const IAMGraphStreams = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AMOVERLAYFX = extern enum(i32) {
+pub const AMOVERLAYFX = enum(i32) {
     NOFX = 0,
     MIRRORLEFTRIGHT = 2,
     MIRRORUPDOWN = 4,
@@ -7549,12 +7549,12 @@ pub const IPinFlowControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AM_PIN_FLOW_CONTROL_BLOCK_FLAGS = extern enum(i32) {
+pub const _AM_PIN_FLOW_CONTROL_BLOCK_FLAGS = enum(i32) {
     K = 1,
 };
 pub const AM_PIN_FLOW_CONTROL_BLOCK = _AM_PIN_FLOW_CONTROL_BLOCK_FLAGS.K;
 
-pub const AM_GRAPH_CONFIG_RECONNECT_FLAGS = extern enum(i32) {
+pub const AM_GRAPH_CONFIG_RECONNECT_FLAGS = enum(i32) {
     DIRECTCONNECT = 1,
     CACHE_REMOVED_FILTERS = 2,
     USE_ONLY_CACHED_FILTERS = 4,
@@ -7563,12 +7563,12 @@ pub const AM_GRAPH_CONFIG_RECONNECT_DIRECTCONNECT = AM_GRAPH_CONFIG_RECONNECT_FL
 pub const AM_GRAPH_CONFIG_RECONNECT_CACHE_REMOVED_FILTERS = AM_GRAPH_CONFIG_RECONNECT_FLAGS.CACHE_REMOVED_FILTERS;
 pub const AM_GRAPH_CONFIG_RECONNECT_USE_ONLY_CACHED_FILTERS = AM_GRAPH_CONFIG_RECONNECT_FLAGS.USE_ONLY_CACHED_FILTERS;
 
-pub const _REM_FILTER_FLAGS = extern enum(i32) {
+pub const _REM_FILTER_FLAGS = enum(i32) {
     D = 1,
 };
 pub const REMFILTERF_LEAVECONNECTED = _REM_FILTER_FLAGS.D;
 
-pub const AM_FILTER_FLAGS = extern enum(i32) {
+pub const AM_FILTER_FLAGS = enum(i32) {
     E = 1,
 };
 pub const AM_FILTER_FLAGS_REMOVABLE = AM_FILTER_FLAGS.E;
@@ -7753,7 +7753,7 @@ pub const IFilterChain = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMRPresentationFlags = extern enum(i32) {
+pub const VMRPresentationFlags = enum(i32) {
     SyncPoint = 1,
     Preroll = 2,
     Discontinuity = 4,
@@ -7817,7 +7817,7 @@ pub const IVMRImagePresenter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMRSurfaceAllocationFlags = extern enum(i32) {
+pub const VMRSurfaceAllocationFlags = enum(i32) {
     PIXELFORMAT_VALID = 1,
     @"3D_TARGET" = 2,
     ALLOW_SYSMEM = 4,
@@ -7960,7 +7960,7 @@ pub const IVMRSurfaceAllocatorNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR_ASPECT_RATIO_MODE = extern enum(i32) {
+pub const VMR_ASPECT_RATIO_MODE = enum(i32) {
     NONE = 0,
     LETTER_BOX = 1,
 };
@@ -8108,7 +8108,7 @@ pub const IVMRWindowlessControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMRMixerPrefs = extern enum(i32) {
+pub const VMRMixerPrefs = enum(i32) {
     NoDecimation = 1,
     DecimateOutput = 2,
     ARAdjustXorY = 4,
@@ -8331,12 +8331,12 @@ pub const IVMRMonitorConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMRRenderPrefs = extern enum(i32) {
+pub const VMRRenderPrefs = enum(i32) {
     RestrictToInitialMonitor = 0,
     ForceOffscreen = 1,
     ForceOverlays = 2,
-    AllowOverlays = 0,
-    AllowOffscreen = 0,
+    // AllowOverlays = 0, this enum value conflicts with RestrictToInitialMonitor
+    // AllowOffscreen = 0, this enum value conflicts with RestrictToInitialMonitor
     DoNotRenderColorKeyAndBorder = 8,
     Reserved = 16,
     PreferAGPMemWhenMixing = 32,
@@ -8345,14 +8345,14 @@ pub const VMRRenderPrefs = extern enum(i32) {
 pub const RenderPrefs_RestrictToInitialMonitor = VMRRenderPrefs.RestrictToInitialMonitor;
 pub const RenderPrefs_ForceOffscreen = VMRRenderPrefs.ForceOffscreen;
 pub const RenderPrefs_ForceOverlays = VMRRenderPrefs.ForceOverlays;
-pub const RenderPrefs_AllowOverlays = VMRRenderPrefs.AllowOverlays;
-pub const RenderPrefs_AllowOffscreen = VMRRenderPrefs.AllowOffscreen;
+pub const RenderPrefs_AllowOverlays = VMRRenderPrefs.RestrictToInitialMonitor;
+pub const RenderPrefs_AllowOffscreen = VMRRenderPrefs.RestrictToInitialMonitor;
 pub const RenderPrefs_DoNotRenderColorKeyAndBorder = VMRRenderPrefs.DoNotRenderColorKeyAndBorder;
 pub const RenderPrefs_Reserved = VMRRenderPrefs.Reserved;
 pub const RenderPrefs_PreferAGPMemWhenMixing = VMRRenderPrefs.PreferAGPMemWhenMixing;
 pub const RenderPrefs_Mask = VMRRenderPrefs.Mask;
 
-pub const VMRMode = extern enum(i32) {
+pub const VMRMode = enum(i32) {
     Windowed = 1,
     Windowless = 2,
     Renderless = 4,
@@ -8363,7 +8363,7 @@ pub const VMRMode_Windowless = VMRMode.Windowless;
 pub const VMRMode_Renderless = VMRMode.Renderless;
 pub const VMRMode_Mask = VMRMode.Mask;
 
-pub const STREAMIF_CONSTANTS = extern enum(i32) {
+pub const STREAMIF_CONSTANTS = enum(i32) {
     S = 16,
 };
 pub const MAX_NUMBER_OF_STREAMS = STREAMIF_CONSTANTS.S;
@@ -8468,7 +8468,7 @@ pub const IVMRAspectRatioControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMRDeinterlacePrefs = extern enum(i32) {
+pub const VMRDeinterlacePrefs = enum(i32) {
     NextBest = 1,
     BOB = 2,
     Weave = 4,
@@ -8479,7 +8479,7 @@ pub const DeinterlacePref_BOB = VMRDeinterlacePrefs.BOB;
 pub const DeinterlacePref_Weave = VMRDeinterlacePrefs.Weave;
 pub const DeinterlacePref_Mask = VMRDeinterlacePrefs.Mask;
 
-pub const VMRDeinterlaceTech = extern enum(i32) {
+pub const VMRDeinterlaceTech = enum(i32) {
     Unknown = 0,
     BOBLineReplicate = 1,
     BOBVerticalStretch = 2,
@@ -8895,7 +8895,7 @@ pub const IVPManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DVD_DOMAIN = extern enum(i32) {
+pub const DVD_DOMAIN = enum(i32) {
     FirstPlay = 1,
     VideoManagerMenu = 2,
     VideoTitleSetMenu = 3,
@@ -8908,7 +8908,7 @@ pub const DVD_DOMAIN_VideoTitleSetMenu = DVD_DOMAIN.VideoTitleSetMenu;
 pub const DVD_DOMAIN_Title = DVD_DOMAIN.Title;
 pub const DVD_DOMAIN_Stop = DVD_DOMAIN.Stop;
 
-pub const DVD_MENU_ID = extern enum(i32) {
+pub const DVD_MENU_ID = enum(i32) {
     Title = 2,
     Root = 3,
     Subpicture = 4,
@@ -8923,14 +8923,14 @@ pub const DVD_MENU_Audio = DVD_MENU_ID.Audio;
 pub const DVD_MENU_Angle = DVD_MENU_ID.Angle;
 pub const DVD_MENU_Chapter = DVD_MENU_ID.Chapter;
 
-pub const DVD_DISC_SIDE = extern enum(i32) {
+pub const DVD_DISC_SIDE = enum(i32) {
     A = 1,
     B = 2,
 };
 pub const DVD_SIDE_A = DVD_DISC_SIDE.A;
 pub const DVD_SIDE_B = DVD_DISC_SIDE.B;
 
-pub const DVD_PREFERRED_DISPLAY_MODE = extern enum(i32) {
+pub const DVD_PREFERRED_DISPLAY_MODE = enum(i32) {
     CONTENT_DEFAULT = 0,
     @"16x9" = 1,
     @"4x3_PANSCAN_PREFERRED" = 2,
@@ -8946,7 +8946,7 @@ pub const DVD_ATR = extern struct {
     pbATRI: [768]u8,
 };
 
-pub const DVD_FRAMERATE = extern enum(i32) {
+pub const DVD_FRAMERATE = enum(i32) {
     @"25" = 1,
     @"30NonDrop" = 3,
 };
@@ -8957,7 +8957,7 @@ pub const DVD_TIMECODE = extern struct {
     _bitfield: u32,
 };
 
-pub const DVD_NavCmdType = extern enum(i32) {
+pub const DVD_NavCmdType = enum(i32) {
     Pre = 1,
     Post = 2,
     Cell = 3,
@@ -8968,7 +8968,7 @@ pub const DVD_NavCmdType_Post = DVD_NavCmdType.Post;
 pub const DVD_NavCmdType_Cell = DVD_NavCmdType.Cell;
 pub const DVD_NavCmdType_Button = DVD_NavCmdType.Button;
 
-pub const DVD_TIMECODE_FLAGS = extern enum(i32) {
+pub const DVD_TIMECODE_FLAGS = enum(i32) {
     @"25fps" = 1,
     @"30fps" = 2,
     DropFrame = 4,
@@ -8999,7 +8999,7 @@ pub const DVD_PLAYBACK_LOCATION = extern struct {
     TimeCode: u32,
 };
 
-pub const VALID_UOP_FLAG = extern enum(i32) {
+pub const VALID_UOP_FLAG = enum(i32) {
     Play_Title_Or_AtTime = 1,
     Play_Chapter = 2,
     Play_Title = 4,
@@ -9052,7 +9052,7 @@ pub const UOP_FLAG_Select_Angle = VALID_UOP_FLAG.Select_Angle;
 pub const UOP_FLAG_Select_Karaoke_Audio_Presentation_Mode = VALID_UOP_FLAG.Select_Karaoke_Audio_Presentation_Mode;
 pub const UOP_FLAG_Select_Video_Mode_Preference = VALID_UOP_FLAG.Select_Video_Mode_Preference;
 
-pub const DVD_CMD_FLAGS = extern enum(i32) {
+pub const DVD_CMD_FLAGS = enum(i32) {
     None = 0,
     Flush = 1,
     SendEvents = 2,
@@ -9067,7 +9067,7 @@ pub const DVD_CMD_FLAG_Block = DVD_CMD_FLAGS.Block;
 pub const DVD_CMD_FLAG_StartWhenRendered = DVD_CMD_FLAGS.StartWhenRendered;
 pub const DVD_CMD_FLAG_EndAfterRendered = DVD_CMD_FLAGS.EndAfterRendered;
 
-pub const DVD_OPTION_FLAG = extern enum(i32) {
+pub const DVD_OPTION_FLAG = enum(i32) {
     ResetOnStop = 1,
     NotifyParentalLevelChange = 2,
     HMSF_TimeCodeEvents = 3,
@@ -9108,7 +9108,7 @@ pub const DVD_ReadBurstPeriodInMS = DVD_OPTION_FLAG.ReadBurstPeriodInMS;
 pub const DVD_RestartDisc = DVD_OPTION_FLAG.RestartDisc;
 pub const DVD_EnableCC = DVD_OPTION_FLAG.EnableCC;
 
-pub const DVD_RELATIVE_BUTTON = extern enum(i32) {
+pub const DVD_RELATIVE_BUTTON = enum(i32) {
     Upper = 1,
     Lower = 2,
     Left = 3,
@@ -9119,7 +9119,7 @@ pub const DVD_Relative_Lower = DVD_RELATIVE_BUTTON.Lower;
 pub const DVD_Relative_Left = DVD_RELATIVE_BUTTON.Left;
 pub const DVD_Relative_Right = DVD_RELATIVE_BUTTON.Right;
 
-pub const DVD_PARENTAL_LEVEL = extern enum(i32) {
+pub const DVD_PARENTAL_LEVEL = enum(i32) {
     @"8" = 32768,
     @"7" = 16384,
     @"6" = 8192,
@@ -9138,7 +9138,7 @@ pub const DVD_PARENTAL_LEVEL_3 = DVD_PARENTAL_LEVEL.@"3";
 pub const DVD_PARENTAL_LEVEL_2 = DVD_PARENTAL_LEVEL.@"2";
 pub const DVD_PARENTAL_LEVEL_1 = DVD_PARENTAL_LEVEL.@"1";
 
-pub const DVD_AUDIO_LANG_EXT = extern enum(i32) {
+pub const DVD_AUDIO_LANG_EXT = enum(i32) {
     NotSpecified = 0,
     Captions = 1,
     VisuallyImpaired = 2,
@@ -9151,7 +9151,7 @@ pub const DVD_AUD_EXT_VisuallyImpaired = DVD_AUDIO_LANG_EXT.VisuallyImpaired;
 pub const DVD_AUD_EXT_DirectorComments1 = DVD_AUDIO_LANG_EXT.DirectorComments1;
 pub const DVD_AUD_EXT_DirectorComments2 = DVD_AUDIO_LANG_EXT.DirectorComments2;
 
-pub const DVD_SUBPICTURE_LANG_EXT = extern enum(i32) {
+pub const DVD_SUBPICTURE_LANG_EXT = enum(i32) {
     NotSpecified = 0,
     Caption_Normal = 1,
     Caption_Big = 2,
@@ -9176,7 +9176,7 @@ pub const DVD_SP_EXT_DirectorComments_Normal = DVD_SUBPICTURE_LANG_EXT.DirectorC
 pub const DVD_SP_EXT_DirectorComments_Big = DVD_SUBPICTURE_LANG_EXT.DirectorComments_Big;
 pub const DVD_SP_EXT_DirectorComments_Children = DVD_SUBPICTURE_LANG_EXT.DirectorComments_Children;
 
-pub const DVD_AUDIO_APPMODE = extern enum(i32) {
+pub const DVD_AUDIO_APPMODE = enum(i32) {
     None = 0,
     Karaoke = 1,
     Surround = 2,
@@ -9187,7 +9187,7 @@ pub const DVD_AudioMode_Karaoke = DVD_AUDIO_APPMODE.Karaoke;
 pub const DVD_AudioMode_Surround = DVD_AUDIO_APPMODE.Surround;
 pub const DVD_AudioMode_Other = DVD_AUDIO_APPMODE.Other;
 
-pub const DVD_AUDIO_FORMAT = extern enum(i32) {
+pub const DVD_AUDIO_FORMAT = enum(i32) {
     AC3 = 0,
     MPEG1 = 1,
     MPEG1_DRC = 2,
@@ -9208,7 +9208,7 @@ pub const DVD_AudioFormat_DTS = DVD_AUDIO_FORMAT.DTS;
 pub const DVD_AudioFormat_SDDS = DVD_AUDIO_FORMAT.SDDS;
 pub const DVD_AudioFormat_Other = DVD_AUDIO_FORMAT.Other;
 
-pub const DVD_KARAOKE_DOWNMIX = extern enum(i32) {
+pub const DVD_KARAOKE_DOWNMIX = enum(i32) {
     @"0to0" = 1,
     @"1to0" = 2,
     @"2to0" = 4,
@@ -9270,7 +9270,7 @@ pub const DVD_MultichannelAudioAttributes = extern struct {
     Coeff: [8]DVD_MUA_Coeff,
 };
 
-pub const DVD_KARAOKE_CONTENTS = extern enum(i32) {
+pub const DVD_KARAOKE_CONTENTS = enum(i32) {
     GuideVocal1 = 1,
     GuideVocal2 = 2,
     GuideMelody1 = 4,
@@ -9289,7 +9289,7 @@ pub const DVD_Karaoke_GuideMelodyB = DVD_KARAOKE_CONTENTS.GuideMelodyB;
 pub const DVD_Karaoke_SoundEffectA = DVD_KARAOKE_CONTENTS.SoundEffectA;
 pub const DVD_Karaoke_SoundEffectB = DVD_KARAOKE_CONTENTS.SoundEffectB;
 
-pub const DVD_KARAOKE_ASSIGNMENT = extern enum(i32) {
+pub const DVD_KARAOKE_ASSIGNMENT = enum(i32) {
     reserved0 = 0,
     reserved1 = 1,
     LR = 2,
@@ -9316,7 +9316,7 @@ pub const DVD_KaraokeAttributes = extern struct {
     wChannelContents: [8]u16,
 };
 
-pub const DVD_VIDEO_COMPRESSION = extern enum(i32) {
+pub const DVD_VIDEO_COMPRESSION = enum(i32) {
     Other = 0,
     MPEG1 = 1,
     MPEG2 = 2,
@@ -9341,7 +9341,7 @@ pub const DVD_VideoAttributes = extern struct {
     fIsFilmMode: BOOL,
 };
 
-pub const DVD_SUBPICTURE_TYPE = extern enum(i32) {
+pub const DVD_SUBPICTURE_TYPE = enum(i32) {
     NotSpecified = 0,
     Language = 1,
     Other = 2,
@@ -9350,7 +9350,7 @@ pub const DVD_SPType_NotSpecified = DVD_SUBPICTURE_TYPE.NotSpecified;
 pub const DVD_SPType_Language = DVD_SUBPICTURE_TYPE.Language;
 pub const DVD_SPType_Other = DVD_SUBPICTURE_TYPE.Other;
 
-pub const DVD_SUBPICTURE_CODING = extern enum(i32) {
+pub const DVD_SUBPICTURE_CODING = enum(i32) {
     RunLength = 0,
     Extended = 1,
     Other = 2,
@@ -9366,7 +9366,7 @@ pub const DVD_SubpictureAttributes = extern struct {
     LanguageExtension: DVD_SUBPICTURE_LANG_EXT,
 };
 
-pub const DVD_TITLE_APPMODE = extern enum(i32) {
+pub const DVD_TITLE_APPMODE = enum(i32) {
     Not_Specified = 0,
     Karaoke = 1,
     Other = 3,
@@ -10333,7 +10333,7 @@ pub const IDvdControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DVD_TextStringType = extern enum(i32) {
+pub const DVD_TextStringType = enum(i32) {
     Struct_Volume = 1,
     Struct_Title = 2,
     Struct_ParentalID = 3,
@@ -10400,7 +10400,7 @@ pub const DVD_Other_Scene = DVD_TextStringType.Other_Scene;
 pub const DVD_Other_Cut = DVD_TextStringType.Other_Cut;
 pub const DVD_Other_Take = DVD_TextStringType.Other_Take;
 
-pub const DVD_TextCharSet = extern enum(i32) {
+pub const DVD_TextCharSet = enum(i32) {
     Unicode = 0,
     ISO646 = 1,
     JIS_Roman_Kanji = 2,
@@ -10798,7 +10798,7 @@ pub const IDvdInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_DVD_GRAPH_FLAGS = extern enum(i32) {
+pub const AM_DVD_GRAPH_FLAGS = enum(i32) {
     HWDEC_PREFER = 1,
     HWDEC_ONLY = 2,
     SWDEC_PREFER = 4,
@@ -10823,7 +10823,7 @@ pub const AM_DVD_EVR_QOS = AM_DVD_GRAPH_FLAGS.EVR_QOS;
 pub const AM_DVD_ADAPT_GRAPH = AM_DVD_GRAPH_FLAGS.ADAPT_GRAPH;
 pub const AM_DVD_MASK = AM_DVD_GRAPH_FLAGS.MASK;
 
-pub const AM_DVD_STREAM_FLAGS = extern enum(i32) {
+pub const AM_DVD_STREAM_FLAGS = enum(i32) {
     VIDEO = 1,
     AUDIO = 2,
     SUBPIC = 4,
@@ -10961,7 +10961,7 @@ pub const IDDrawExclModeVideo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _AM_OVERLAY_NOTIFY_FLAGS = extern enum(i32) {
+pub const _AM_OVERLAY_NOTIFY_FLAGS = enum(i32) {
     VISIBLE_CHANGE = 1,
     SOURCE_CHANGE = 2,
     DEST_CHANGE = 4,
@@ -11031,7 +11031,7 @@ pub const BDA_TEMPLATE_PIN_JOINT = extern struct {
     ulcInstancesMax: u32,
 };
 
-pub const BDA_EVENT_ID = extern enum(i32) {
+pub const BDA_EVENT_ID = enum(i32) {
     SIGNAL_LOSS = 0,
     SIGNAL_LOCK = 1,
     DATA_START = 2,
@@ -11092,7 +11092,7 @@ pub const BDA_ETHERNET_ADDRESS_LIST = extern struct {
     rgAddressl: [1]BDA_ETHERNET_ADDRESS,
 };
 
-pub const BDA_MULTICAST_MODE = extern enum(i32) {
+pub const BDA_MULTICAST_MODE = enum(i32) {
     PROMISCUOUS_MULTICAST = 0,
     FILTERED_MULTICAST = 1,
     NO_MULTICAST = 2,
@@ -11119,7 +11119,7 @@ pub const BDA_IPv6_ADDRESS_LIST = extern struct {
     rgAddressl: [1]BDA_IPv6_ADDRESS,
 };
 
-pub const BDA_SIGNAL_STATE = extern enum(i32) {
+pub const BDA_SIGNAL_STATE = enum(i32) {
     UNAVAILABLE = 0,
     INACTIVE = 1,
     ACTIVE = 2,
@@ -11128,7 +11128,7 @@ pub const BDA_SIGNAL_UNAVAILABLE = BDA_SIGNAL_STATE.UNAVAILABLE;
 pub const BDA_SIGNAL_INACTIVE = BDA_SIGNAL_STATE.INACTIVE;
 pub const BDA_SIGNAL_ACTIVE = BDA_SIGNAL_STATE.ACTIVE;
 
-pub const BDA_CHANGE_STATE = extern enum(i32) {
+pub const BDA_CHANGE_STATE = enum(i32) {
     COMPLETE = 0,
     PENDING = 1,
 };
@@ -11160,7 +11160,7 @@ pub const BDA_DISEQC_RESPONSE = extern struct {
     argbPacketData: [8]u8,
 };
 
-pub const MEDIA_SAMPLE_CONTENT = extern enum(i32) {
+pub const MEDIA_SAMPLE_CONTENT = enum(i32) {
     TRANSPORT_PACKET = 0,
     ELEMENTARY_STREAM = 1,
     MPEG2_PSI = 2,
@@ -11333,7 +11333,7 @@ pub const BDA_CAS_CLOSEMMIDATA = extern struct {
     ulDialogNumber: u32,
 };
 
-pub const ISDBCAS_REQUEST_ID = extern enum(i32) {
+pub const ISDBCAS_REQUEST_ID = enum(i32) {
     G = 56,
     D = 58,
 };
@@ -11368,7 +11368,7 @@ pub const BDA_ISDBCAS_EMG_REQ = extern struct {
     bMessageCode: [1]u8,
 };
 
-pub const MUX_PID_TYPE = extern enum(i32) {
+pub const MUX_PID_TYPE = enum(i32) {
     OTHER = -1,
     ELEMENTARY_STREAM = 0,
     MPEG2_SECTION_PSI_SI = 1,
@@ -11418,7 +11418,7 @@ pub const BDA_RATING_PINRESET = extern struct {
     argbNewPin: [1]u8,
 };
 
-pub const DVBSystemType = extern enum(i32) {
+pub const DVBSystemType = enum(i32) {
     DVB_Cable = 0,
     DVB_Terrestrial = 1,
     DVB_Satellite = 2,
@@ -11431,12 +11431,12 @@ pub const DVB_Satellite = DVBSystemType.DVB_Satellite;
 pub const ISDB_Terrestrial = DVBSystemType.ISDB_Terrestrial;
 pub const ISDB_Satellite = DVBSystemType.ISDB_Satellite;
 
-pub const BDA_Channel = extern enum(i32) {
+pub const BDA_Channel = enum(i32) {
     L = -1,
 };
 pub const BDA_UNDEFINED_CHANNEL = BDA_Channel.L;
 
-pub const ComponentCategory = extern enum(i32) {
+pub const ComponentCategory = enum(i32) {
     ategoryNotSet = -1,
     ategoryOther = 0,
     ategoryVideo = 1,
@@ -11459,7 +11459,7 @@ pub const CategorySuperimpose = ComponentCategory.ategorySuperimpose;
 pub const CategoryData = ComponentCategory.ategoryData;
 pub const CATEGORY_COUNT = ComponentCategory.ATEGORY_COUNT;
 
-pub const ComponentStatus = extern enum(i32) {
+pub const ComponentStatus = enum(i32) {
     Active = 0,
     Inactive = 1,
     Unavailable = 2,
@@ -11468,7 +11468,7 @@ pub const StatusActive = ComponentStatus.Active;
 pub const StatusInactive = ComponentStatus.Inactive;
 pub const StatusUnavailable = ComponentStatus.Unavailable;
 
-pub const MPEG2StreamType = extern enum(i32) {
+pub const MPEG2StreamType = enum(i32) {
     BDA_UNITIALIZED_MPEG2STREAMTYPE = -1,
     Reserved1 = 0,
     ISO_IEC_11172_2_VIDEO = 1,
@@ -11499,7 +11499,7 @@ pub const MPEG2StreamType = extern enum(i32) {
     IRPM_STREAMM = 26,
     ITU_T_H264 = 27,
     ISO_IEC_13818_1_RESERVED = 28,
-    USER_PRIVATE = 16,
+    // USER_PRIVATE = 16, this enum value conflicts with ISO_IEC_14496_2_VISUAL
     HEVC_VIDEO_OR_TEMPORAL_VIDEO = 36,
     HEVC_TEMPORAL_VIDEO_SUBSET = 37,
     ISO_IEC_USER_PRIVATE = 128,
@@ -11536,7 +11536,7 @@ pub const METADATA_IN_DOWNLOAD_PROTOCOL = MPEG2StreamType.METADATA_IN_DOWNLOAD_P
 pub const IRPM_STREAMM = MPEG2StreamType.IRPM_STREAMM;
 pub const ITU_T_H264 = MPEG2StreamType.ITU_T_H264;
 pub const ISO_IEC_13818_1_RESERVED = MPEG2StreamType.ISO_IEC_13818_1_RESERVED;
-pub const USER_PRIVATE = MPEG2StreamType.USER_PRIVATE;
+pub const USER_PRIVATE = MPEG2StreamType.ISO_IEC_14496_2_VISUAL;
 pub const HEVC_VIDEO_OR_TEMPORAL_VIDEO = MPEG2StreamType.HEVC_VIDEO_OR_TEMPORAL_VIDEO;
 pub const HEVC_TEMPORAL_VIDEO_SUBSET = MPEG2StreamType.HEVC_TEMPORAL_VIDEO_SUBSET;
 pub const ISO_IEC_USER_PRIVATE = MPEG2StreamType.ISO_IEC_USER_PRIVATE;
@@ -11549,12 +11549,12 @@ pub const MPEG2_TRANSPORT_STRIDE = extern struct {
     dwStride: u32,
 };
 
-pub const ATSCComponentTypeFlags = extern enum(i32) {
+pub const ATSCComponentTypeFlags = enum(i32) {
     @"3" = 1,
 };
 pub const ATSCCT_AC3 = ATSCComponentTypeFlags.@"3";
 
-pub const BinaryConvolutionCodeRate = extern enum(i32) {
+pub const BinaryConvolutionCodeRate = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     @"1_2" = 1,
@@ -11591,7 +11591,7 @@ pub const BDA_BCC_RATE_8_9 = BinaryConvolutionCodeRate.@"8_9";
 pub const BDA_BCC_RATE_9_10 = BinaryConvolutionCodeRate.@"9_10";
 pub const BDA_BCC_RATE_MAX = BinaryConvolutionCodeRate.MAX;
 
-pub const FECMethod = extern enum(i32) {
+pub const FECMethod = enum(i32) {
     METHOD_NOT_SET = -1,
     METHOD_NOT_DEFINED = 0,
     VITERBI = 1,
@@ -11610,7 +11610,7 @@ pub const BDA_FEC_BCH = FECMethod.BCH;
 pub const BDA_FEC_RS_147_130 = FECMethod.RS_147_130;
 pub const BDA_FEC_MAX = FECMethod.MAX;
 
-pub const ModulationType = extern enum(i32) {
+pub const ModulationType = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     @"16QAM" = 1,
@@ -11689,7 +11689,7 @@ pub const BDA_MOD_ISDB_T_TMCC = ModulationType.ISDB_T_TMCC;
 pub const BDA_MOD_ISDB_S_TMCC = ModulationType.ISDB_S_TMCC;
 pub const BDA_MOD_MAX = ModulationType.MAX;
 
-pub const ScanModulationTypes = extern enum(i32) {
+pub const ScanModulationTypes = enum(i32) {
     BDA_SCAN_MOD_16QAM = 1,
     BDA_SCAN_MOD_32QAM = 2,
     BDA_SCAN_MOD_64QAM = 4,
@@ -11762,7 +11762,7 @@ pub const ScanModulationTypesMask_DVBC = ScanModulationTypes.ScanModulationTypes
 pub const BDA_SCAN_MOD_16APSK = ScanModulationTypes.BDA_SCAN_MOD_16APSK;
 pub const BDA_SCAN_MOD_32APSK = ScanModulationTypes.BDA_SCAN_MOD_32APSK;
 
-pub const SpectralInversion = extern enum(i32) {
+pub const SpectralInversion = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     AUTOMATIC = 1,
@@ -11777,7 +11777,7 @@ pub const BDA_SPECTRAL_INVERSION_NORMAL = SpectralInversion.NORMAL;
 pub const BDA_SPECTRAL_INVERSION_INVERTED = SpectralInversion.INVERTED;
 pub const BDA_SPECTRAL_INVERSION_MAX = SpectralInversion.MAX;
 
-pub const Polarisation = extern enum(i32) {
+pub const Polarisation = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     LINEAR_H = 1,
@@ -11794,7 +11794,7 @@ pub const BDA_POLARISATION_CIRCULAR_L = Polarisation.CIRCULAR_L;
 pub const BDA_POLARISATION_CIRCULAR_R = Polarisation.CIRCULAR_R;
 pub const BDA_POLARISATION_MAX = Polarisation.MAX;
 
-pub const LNB_Source = extern enum(i32) {
+pub const LNB_Source = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     A = 1,
@@ -11811,7 +11811,7 @@ pub const BDA_LNB_SOURCE_C = LNB_Source.C;
 pub const BDA_LNB_SOURCE_D = LNB_Source.D;
 pub const BDA_LNB_SOURCE_MAX = LNB_Source.MAX;
 
-pub const GuardInterval = extern enum(i32) {
+pub const GuardInterval = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     @"1_32" = 1,
@@ -11834,7 +11834,7 @@ pub const BDA_GUARD_19_128 = GuardInterval.@"19_128";
 pub const BDA_GUARD_19_256 = GuardInterval.@"19_256";
 pub const BDA_GUARD_MAX = GuardInterval.MAX;
 
-pub const HierarchyAlpha = extern enum(i32) {
+pub const HierarchyAlpha = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     @"1" = 1,
@@ -11849,7 +11849,7 @@ pub const BDA_HALPHA_2 = HierarchyAlpha.@"2";
 pub const BDA_HALPHA_4 = HierarchyAlpha.@"4";
 pub const BDA_HALPHA_MAX = HierarchyAlpha.MAX;
 
-pub const TransmissionMode = extern enum(i32) {
+pub const TransmissionMode = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     @"2K" = 1,
@@ -11874,7 +11874,7 @@ pub const BDA_XMIT_MODE_16K = TransmissionMode.@"16K";
 pub const BDA_XMIT_MODE_32K = TransmissionMode.@"32K";
 pub const BDA_XMIT_MODE_MAX = TransmissionMode.MAX;
 
-pub const RollOff = extern enum(i32) {
+pub const RollOff = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     @"20" = 1,
@@ -11889,7 +11889,7 @@ pub const BDA_ROLL_OFF_25 = RollOff.@"25";
 pub const BDA_ROLL_OFF_35 = RollOff.@"35";
 pub const BDA_ROLL_OFF_MAX = RollOff.MAX;
 
-pub const Pilot = extern enum(i32) {
+pub const Pilot = enum(i32) {
     NOT_SET = -1,
     NOT_DEFINED = 0,
     OFF = 1,
@@ -11908,35 +11908,35 @@ pub const BDA_SIGNAL_TIMEOUTS = extern struct {
     ulTuningTimeoutMs: u32,
 };
 
-pub const BDA_Frequency = extern enum(i32) {
+pub const BDA_Frequency = enum(i32) {
     SET = -1,
     DEFINED = 0,
 };
 pub const BDA_FREQUENCY_NOT_SET = BDA_Frequency.SET;
 pub const BDA_FREQUENCY_NOT_DEFINED = BDA_Frequency.DEFINED;
 
-pub const BDA_Range = extern enum(i32) {
+pub const BDA_Range = enum(i32) {
     SET = -1,
     DEFINED = 0,
 };
 pub const BDA_RANGE_NOT_SET = BDA_Range.SET;
 pub const BDA_RANGE_NOT_DEFINED = BDA_Range.DEFINED;
 
-pub const BDA_Channel_Bandwidth = extern enum(i32) {
+pub const BDA_Channel_Bandwidth = enum(i32) {
     SET = -1,
     DEFINED = 0,
 };
 pub const BDA_CHAN_BANDWITH_NOT_SET = BDA_Channel_Bandwidth.SET;
 pub const BDA_CHAN_BANDWITH_NOT_DEFINED = BDA_Channel_Bandwidth.DEFINED;
 
-pub const BDA_Frequency_Multiplier = extern enum(i32) {
+pub const BDA_Frequency_Multiplier = enum(i32) {
     SET = -1,
     DEFINED = 0,
 };
 pub const BDA_FREQUENCY_MULTIPLIER_NOT_SET = BDA_Frequency_Multiplier.SET;
 pub const BDA_FREQUENCY_MULTIPLIER_NOT_DEFINED = BDA_Frequency_Multiplier.DEFINED;
 
-pub const BDA_Comp_Flags = extern enum(i32) {
+pub const BDA_Comp_Flags = enum(i32) {
     NOT_DEFINED = 0,
     EXCLUDE_TS_FROM_TR = 1,
     INCLUDE_LOCATOR_IN_TR = 2,
@@ -11947,7 +11947,7 @@ pub const BDACOMP_EXCLUDE_TS_FROM_TR = BDA_Comp_Flags.EXCLUDE_TS_FROM_TR;
 pub const BDACOMP_INCLUDE_LOCATOR_IN_TR = BDA_Comp_Flags.INCLUDE_LOCATOR_IN_TR;
 pub const BDACOMP_INCLUDE_COMPONENTS_IN_TR = BDA_Comp_Flags.INCLUDE_COMPONENTS_IN_TR;
 
-pub const ApplicationTypeType = extern enum(i32) {
+pub const ApplicationTypeType = enum(i32) {
     ConditionalAccess = 0,
     POD_Host_Binding_Information = 1,
     IPService = 2,
@@ -11968,7 +11968,7 @@ pub const SCTE28_Diagnostic = ApplicationTypeType.Diagnostic;
 pub const SCTE28_Undesignated = ApplicationTypeType.Undesignated;
 pub const SCTE28_Reserved = ApplicationTypeType.Reserved;
 
-pub const BDA_CONDITIONALACCESS_REQUESTTYPE = extern enum(i32) {
+pub const BDA_CONDITIONALACCESS_REQUESTTYPE = enum(i32) {
     UNSPECIFIED = 0,
     NOT_POSSIBLE = 1,
     POSSIBLE = 2,
@@ -11979,7 +11979,7 @@ pub const CONDITIONALACCESS_ACCESS_NOT_POSSIBLE = BDA_CONDITIONALACCESS_REQUESTT
 pub const CONDITIONALACCESS_ACCESS_POSSIBLE = BDA_CONDITIONALACCESS_REQUESTTYPE.POSSIBLE;
 pub const CONDITIONALACCESS_ACCESS_POSSIBLE_NO_STREAMING_DISRUPTION = BDA_CONDITIONALACCESS_REQUESTTYPE.POSSIBLE_NO_STREAMING_DISRUPTION;
 
-pub const BDA_CONDITIONALACCESS_MMICLOSEREASON = extern enum(i32) {
+pub const BDA_CONDITIONALACCESS_MMICLOSEREASON = enum(i32) {
     UNSPECIFIED = 0,
     CLOSED_ITSELF = 1,
     TUNER_REQUESTED_CLOSE = 2,
@@ -11996,7 +11996,7 @@ pub const CONDITIONALACCESS_DIALOG_FOCUS_CHANGE = BDA_CONDITIONALACCESS_MMICLOSE
 pub const CONDITIONALACCESS_DIALOG_USER_DISMISSED = BDA_CONDITIONALACCESS_MMICLOSEREASON.DIALOG_USER_DISMISSED;
 pub const CONDITIONALACCESS_DIALOG_USER_NOT_AVAILABLE = BDA_CONDITIONALACCESS_MMICLOSEREASON.DIALOG_USER_NOT_AVAILABLE;
 
-pub const BDA_CONDITIONALACCESS_SESSION_RESULT = extern enum(i32) {
+pub const BDA_CONDITIONALACCESS_SESSION_RESULT = enum(i32) {
     SUCCESSFULL = 0,
     ENDED_NOCHANGE = 1,
     ABORTED = 2,
@@ -12005,7 +12005,7 @@ pub const CONDITIONALACCESS_SUCCESSFULL = BDA_CONDITIONALACCESS_SESSION_RESULT.S
 pub const CONDITIONALACCESS_ENDED_NOCHANGE = BDA_CONDITIONALACCESS_SESSION_RESULT.ENDED_NOCHANGE;
 pub const CONDITIONALACCESS_ABORTED = BDA_CONDITIONALACCESS_SESSION_RESULT.ABORTED;
 
-pub const BDA_DISCOVERY_STATE = extern enum(i32) {
+pub const BDA_DISCOVERY_STATE = enum(i32) {
     UNSPECIFIED = 0,
     REQUIRED = 1,
     COMPLETE = 2,
@@ -12014,7 +12014,7 @@ pub const BDA_DISCOVERY_UNSPECIFIED = BDA_DISCOVERY_STATE.UNSPECIFIED;
 pub const BDA_DISCOVERY_REQUIRED = BDA_DISCOVERY_STATE.REQUIRED;
 pub const BDA_DISCOVERY_COMPLETE = BDA_DISCOVERY_STATE.COMPLETE;
 
-pub const SmartCardStatusType = extern enum(i32) {
+pub const SmartCardStatusType = enum(i32) {
     Inserted = 0,
     Removed = 1,
     Error = 2,
@@ -12027,7 +12027,7 @@ pub const CardError = SmartCardStatusType.Error;
 pub const CardDataChanged = SmartCardStatusType.DataChanged;
 pub const CardFirmwareUpgrade = SmartCardStatusType.FirmwareUpgrade;
 
-pub const SmartCardAssociationType = extern enum(i32) {
+pub const SmartCardAssociationType = enum(i32) {
     NotAssociated = 0,
     Associated = 1,
     AssociationUnknown = 2,
@@ -12036,7 +12036,7 @@ pub const NotAssociated = SmartCardAssociationType.NotAssociated;
 pub const Associated = SmartCardAssociationType.Associated;
 pub const AssociationUnknown = SmartCardAssociationType.AssociationUnknown;
 
-pub const LocationCodeSchemeType = extern enum(i32) {
+pub const LocationCodeSchemeType = enum(i32) {
     @"8" = 0,
 };
 pub const SCTE_18 = LocationCodeSchemeType.@"8";
@@ -12048,7 +12048,7 @@ pub const EALocationCodeType = extern struct {
     county_code: u16,
 };
 
-pub const EntitlementType = extern enum(i32) {
+pub const EntitlementType = enum(i32) {
     Entitled = 0,
     NotEntitled = 1,
     TechnicalFailure = 2,
@@ -12057,7 +12057,7 @@ pub const Entitled = EntitlementType.Entitled;
 pub const NotEntitled = EntitlementType.NotEntitled;
 pub const TechnicalFailure = EntitlementType.TechnicalFailure;
 
-pub const UICloseReasonType = extern enum(i32) {
+pub const UICloseReasonType = enum(i32) {
     NotReady = 0,
     UserClosed = 1,
     SystemClosed = 2,
@@ -12077,7 +12077,7 @@ pub const SmartCardApplication = extern struct {
     pbstrApplicationURL: BSTR,
 };
 
-pub const BDA_DrmPairingError = extern enum(i32) {
+pub const BDA_DrmPairingError = enum(i32) {
     Succeeded = 0,
     HardwareFailure = 1,
     NeedRevocationData = 2,
@@ -13349,7 +13349,7 @@ pub const IBDA_DigitalDemodulator3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KSPROPERTY_IPSINK = extern enum(u32) {
+pub const KSPROPERTY_IPSINK = enum(u32) {
     MULTICASTLIST = 0,
     ADAPTER_DESCRIPTION = 1,
     ADAPTER_ADDRESS = 2,
@@ -15161,7 +15161,7 @@ pub const IAMNetworkStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AMExtendedSeekingCapabilities = extern enum(i32) {
+pub const AMExtendedSeekingCapabilities = enum(i32) {
     CANSEEK = 1,
     CANSCAN = 2,
     MARKERSEEK = 4,
@@ -15709,12 +15709,12 @@ pub const IAMDirectSound = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_LINE21_CCLEVEL = extern enum(i32) {
+pub const AM_LINE21_CCLEVEL = enum(i32) {
     @"2" = 0,
 };
 pub const AM_L21_CCLEVEL_TC2 = AM_LINE21_CCLEVEL.@"2";
 
-pub const AM_LINE21_CCSERVICE = extern enum(i32) {
+pub const AM_LINE21_CCSERVICE = enum(i32) {
     None = 0,
     Caption1 = 1,
     Caption2 = 2,
@@ -15733,14 +15733,14 @@ pub const AM_L21_CCSERVICE_XDS = AM_LINE21_CCSERVICE.XDS;
 pub const AM_L21_CCSERVICE_DefChannel = AM_LINE21_CCSERVICE.DefChannel;
 pub const AM_L21_CCSERVICE_Invalid = AM_LINE21_CCSERVICE.Invalid;
 
-pub const AM_LINE21_CCSTATE = extern enum(i32) {
+pub const AM_LINE21_CCSTATE = enum(i32) {
     ff = 0,
     n = 1,
 };
 pub const AM_L21_CCSTATE_Off = AM_LINE21_CCSTATE.ff;
 pub const AM_L21_CCSTATE_On = AM_LINE21_CCSTATE.n;
 
-pub const AM_LINE21_CCSTYLE = extern enum(i32) {
+pub const AM_LINE21_CCSTYLE = enum(i32) {
     None = 0,
     PopOn = 1,
     PaintOn = 2,
@@ -15751,7 +15751,7 @@ pub const AM_L21_CCSTYLE_PopOn = AM_LINE21_CCSTYLE.PopOn;
 pub const AM_L21_CCSTYLE_PaintOn = AM_LINE21_CCSTYLE.PaintOn;
 pub const AM_L21_CCSTYLE_RollUp = AM_LINE21_CCSTYLE.RollUp;
 
-pub const AM_LINE21_DRAWBGMODE = extern enum(i32) {
+pub const AM_LINE21_DRAWBGMODE = enum(i32) {
     Opaque = 0,
     Transparent = 1,
 };
@@ -17671,12 +17671,12 @@ pub const AM_WST_PAGE = extern struct {
     pucPageData: *u8,
 };
 
-pub const AM_WST_LEVEL = extern enum(i32) {
+pub const AM_WST_LEVEL = enum(i32) {
     @"5" = 0,
 };
 pub const AM_WST_LEVEL_1_5 = AM_WST_LEVEL.@"5";
 
-pub const AM_WST_SERVICE = extern enum(i32) {
+pub const AM_WST_SERVICE = enum(i32) {
     None = 0,
     Text = 1,
     IDS = 2,
@@ -17687,21 +17687,21 @@ pub const AM_WST_SERVICE_Text = AM_WST_SERVICE.Text;
 pub const AM_WST_SERVICE_IDS = AM_WST_SERVICE.IDS;
 pub const AM_WST_SERVICE_Invalid = AM_WST_SERVICE.Invalid;
 
-pub const AM_WST_STATE = extern enum(i32) {
+pub const AM_WST_STATE = enum(i32) {
     ff = 0,
     n = 1,
 };
 pub const AM_WST_STATE_Off = AM_WST_STATE.ff;
 pub const AM_WST_STATE_On = AM_WST_STATE.n;
 
-pub const AM_WST_STYLE = extern enum(i32) {
+pub const AM_WST_STYLE = enum(i32) {
     None = 0,
     Invers = 1,
 };
 pub const AM_WST_STYLE_None = AM_WST_STYLE.None;
 pub const AM_WST_STYLE_Invers = AM_WST_STYLE.Invers;
 
-pub const AM_WST_DRAWBGMODE = extern enum(i32) {
+pub const AM_WST_DRAWBGMODE = enum(i32) {
     Opaque = 0,
     Transparent = 1,
 };
@@ -19148,7 +19148,7 @@ pub const IConfigAsfWriter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const STREAM_TYPE = extern enum(i32) {
+pub const STREAM_TYPE = enum(i32) {
     READ = 0,
     WRITE = 1,
     TRANSFORM = 2,
@@ -19157,14 +19157,14 @@ pub const STREAMTYPE_READ = STREAM_TYPE.READ;
 pub const STREAMTYPE_WRITE = STREAM_TYPE.WRITE;
 pub const STREAMTYPE_TRANSFORM = STREAM_TYPE.TRANSFORM;
 
-pub const STREAM_STATE = extern enum(i32) {
+pub const STREAM_STATE = enum(i32) {
     STOP = 0,
     RUN = 1,
 };
 pub const STREAMSTATE_STOP = STREAM_STATE.STOP;
 pub const STREAMSTATE_RUN = STREAM_STATE.RUN;
 
-pub const COMPLETION_STATUS_FLAGS = extern enum(i32) {
+pub const COMPLETION_STATUS_FLAGS = enum(i32) {
     NOUPDATEOK = 1,
     WAIT = 2,
     ABORT = 4,
@@ -19173,7 +19173,7 @@ pub const COMPSTAT_NOUPDATEOK = COMPLETION_STATUS_FLAGS.NOUPDATEOK;
 pub const COMPSTAT_WAIT = COMPLETION_STATUS_FLAGS.WAIT;
 pub const COMPSTAT_ABORT = COMPLETION_STATUS_FLAGS.ABORT;
 
-pub const MMSSF_GET_INFORMATION_FLAGS = extern enum(u32) {
+pub const MMSSF_GET_INFORMATION_FLAGS = enum(u32) {
     HASCLOCK = 1,
     SUPPORTSEEK = 2,
     ASYNCHRONOUS = 4,
@@ -19194,7 +19194,7 @@ pub const MMSSF_HASCLOCK = MMSSF_GET_INFORMATION_FLAGS.HASCLOCK;
 pub const MMSSF_SUPPORTSEEK = MMSSF_GET_INFORMATION_FLAGS.SUPPORTSEEK;
 pub const MMSSF_ASYNCHRONOUS = MMSSF_GET_INFORMATION_FLAGS.ASYNCHRONOUS;
 
-pub const SSUPDATE_TYPE = extern enum(i32) {
+pub const SSUPDATE_TYPE = enum(i32) {
     ASYNC = 1,
     CONTINUOUS = 2,
 };
@@ -19415,7 +19415,7 @@ pub const IStreamSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DDSFF_FLAGS = extern enum(u32) {
+pub const DDSFF_FLAGS = enum(u32) {
     R = 1,
     _,
     pub fn initFlags(o: struct {
@@ -19656,7 +19656,7 @@ pub const IAudioData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AMMSF_MMS_INIT_FLAGS = extern enum(u32) {
+pub const AMMSF_MMS_INIT_FLAGS = enum(u32) {
     D = 1,
     _,
     pub fn initFlags(o: struct {
@@ -19669,7 +19669,7 @@ pub const AMMSF_MMS_INIT_FLAGS = extern enum(u32) {
 };
 pub const AMMSF_NOGRAPHTHREAD = AMMSF_MMS_INIT_FLAGS.D;
 
-pub const AMMSF_MS_FLAGS = extern enum(u32) {
+pub const AMMSF_MS_FLAGS = enum(u32) {
     ADDDEFAULTRENDERER = 1,
     CREATEPEER = 2,
     STOPIFNOSAMPLES = 4,
@@ -19694,7 +19694,7 @@ pub const AMMSF_CREATEPEER = AMMSF_MS_FLAGS.CREATEPEER;
 pub const AMMSF_STOPIFNOSAMPLES = AMMSF_MS_FLAGS.STOPIFNOSAMPLES;
 pub const AMMSF_NOSTALL = AMMSF_MS_FLAGS.NOSTALL;
 
-pub const AMMSF_RENDER_FLAGS = extern enum(u32) {
+pub const AMMSF_RENDER_FLAGS = enum(u32) {
     RENDERTYPEMASK = 3,
     RENDERTOEXISTING = 0,
     RENDERALLSTREAMS = 1,
@@ -19727,7 +19727,7 @@ pub const AMMSF_NORENDER = AMMSF_RENDER_FLAGS.NORENDER;
 pub const AMMSF_NOCLOCK = AMMSF_RENDER_FLAGS.NOCLOCK;
 pub const AMMSF_RUN = AMMSF_RENDER_FLAGS.RUN;
 
-pub const OUTPUT_STATE = extern enum(u32) {
+pub const OUTPUT_STATE = enum(u32) {
     Disabled = 0,
     ReadData = 1,
     RenderData = 2,
@@ -20738,7 +20738,7 @@ pub const ANALOGVIDEOINFO = extern struct {
     AvgTimePerFrame: i64,
 };
 
-pub const AM_PROPERTY_FRAMESTEP = extern enum(i32) {
+pub const AM_PROPERTY_FRAMESTEP = enum(i32) {
     STEP = 1,
     CANCEL = 2,
     CANSTEP = 3,
@@ -20776,14 +20776,14 @@ pub const IDMOWrapperFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KSALLOCATORMODE = extern enum(i32) {
+pub const KSALLOCATORMODE = enum(i32) {
     User = 0,
     Kernel = 1,
 };
 pub const KsAllocatorMode_User = KSALLOCATORMODE.User;
 pub const KsAllocatorMode_Kernel = KSALLOCATORMODE.Kernel;
 
-pub const FRAMING_PROP = extern enum(i32) {
+pub const FRAMING_PROP = enum(i32) {
     Uninitialized = 0,
     None = 1,
     Old = 2,
@@ -20794,7 +20794,7 @@ pub const FramingProp_None = FRAMING_PROP.None;
 pub const FramingProp_Old = FRAMING_PROP.Old;
 pub const FramingProp_Ex = FRAMING_PROP.Ex;
 
-pub const FRAMING_CACHE_OPS = extern enum(i32) {
+pub const FRAMING_CACHE_OPS = enum(i32) {
     Update = 0,
     ReadLast = 1,
     ReadOrig = 2,
@@ -20823,7 +20823,7 @@ pub const IKsAllocatorEx = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const PIPE_STATE = extern enum(i32) {
+pub const PIPE_STATE = enum(i32) {
     DontCare = 0,
     RangeNotFixed = 1,
     RangeFixed = 2,
@@ -20842,7 +20842,7 @@ pub const PIPE_DIMENSIONS = extern struct {
     EndPin: KS_COMPRESSION,
 };
 
-pub const PIPE_ALLOCATOR_PLACE = extern enum(i32) {
+pub const PIPE_ALLOCATOR_PLACE = enum(i32) {
     None = 0,
     FirstPin = 1,
     LastPin = 2,
@@ -20853,7 +20853,7 @@ pub const Pipe_Allocator_FirstPin = PIPE_ALLOCATOR_PLACE.FirstPin;
 pub const Pipe_Allocator_LastPin = PIPE_ALLOCATOR_PLACE.LastPin;
 pub const Pipe_Allocator_MiddlePin = PIPE_ALLOCATOR_PLACE.MiddlePin;
 
-pub const KS_LogicalMemoryType = extern enum(i32) {
+pub const KS_LogicalMemoryType = enum(i32) {
     DontCare = 0,
     KernelPaged = 1,
     KernelNonPaged = 2,
@@ -21138,7 +21138,7 @@ pub const IMixerOCX = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AM_ASPECT_RATIO_MODE = extern enum(i32) {
+pub const AM_ASPECT_RATIO_MODE = enum(i32) {
     STRETCHED = 0,
     LETTER_BOX = 1,
     CROP = 2,
@@ -21434,7 +21434,7 @@ pub const IMpegAudioDecoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR9PresentationFlags = extern enum(i32) {
+pub const VMR9PresentationFlags = enum(i32) {
     SyncPoint = 1,
     Preroll = 2,
     Discontinuity = 4,
@@ -21498,7 +21498,7 @@ pub const IVMRImagePresenter9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR9SurfaceAllocationFlags = extern enum(i32) {
+pub const VMR9SurfaceAllocationFlags = enum(i32) {
     @"3DRenderTarget" = 1,
     DXVATarget = 2,
     TextureSurface = 4,
@@ -21664,7 +21664,7 @@ pub const IVMRSurfaceAllocatorNotify9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR9AspectRatioMode = extern enum(i32) {
+pub const VMR9AspectRatioMode = enum(i32) {
     None = 0,
     LetterBox = 1,
 };
@@ -21796,7 +21796,7 @@ pub const IVMRWindowlessControl9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR9MixerPrefs = extern enum(i32) {
+pub const VMR9MixerPrefs = enum(i32) {
     NoDecimation = 1,
     DecimateOutput = 2,
     ARAdjustXorY = 4,
@@ -21846,7 +21846,7 @@ pub const VMR9NormalizedRect = extern struct {
     bottom: f32,
 };
 
-pub const VMR9ProcAmpControlFlags = extern enum(i32) {
+pub const VMR9ProcAmpControlFlags = enum(i32) {
     Brightness = 1,
     Contrast = 2,
     Hue = 4,
@@ -22015,7 +22015,7 @@ pub const VMR9AlphaBitmap = extern struct {
     dwFilterMode: u32,
 };
 
-pub const VMR9AlphaBitmapFlags = extern enum(i32) {
+pub const VMR9AlphaBitmapFlags = enum(i32) {
     Disable = 1,
     hDC = 2,
     EntireDDS = 4,
@@ -22112,12 +22112,12 @@ pub const IVMRSurface9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR9RenderPrefs = extern enum(i32) {
+pub const VMR9RenderPrefs = enum(i32) {
     DoNotRenderBorder = 1,
-    Mask = 1,
+    // Mask = 1, this enum value conflicts with DoNotRenderBorder
 };
 pub const RenderPrefs9_DoNotRenderBorder = VMR9RenderPrefs.DoNotRenderBorder;
-pub const RenderPrefs9_Mask = VMR9RenderPrefs.Mask;
+pub const RenderPrefs9_Mask = VMR9RenderPrefs.DoNotRenderBorder;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVMRImagePresenterConfig9_Value = @import("../zig.zig").Guid.initString("45c15cab-6e22-420a-8043-ae1f0ac02c7d");
@@ -22179,7 +22179,7 @@ pub const IVMRVideoStreamControl9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR9Mode = extern enum(i32) {
+pub const VMR9Mode = enum(i32) {
     Windowed = 1,
     Windowless = 2,
     Renderless = 4,
@@ -22360,7 +22360,7 @@ pub const IVMRMonitorConfig9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VMR9DeinterlacePrefs = extern enum(i32) {
+pub const VMR9DeinterlacePrefs = enum(i32) {
     NextBest = 1,
     BOB = 2,
     Weave = 4,
@@ -22371,7 +22371,7 @@ pub const DeinterlacePref9_BOB = VMR9DeinterlacePrefs.BOB;
 pub const DeinterlacePref9_Weave = VMR9DeinterlacePrefs.Weave;
 pub const DeinterlacePref9_Mask = VMR9DeinterlacePrefs.Mask;
 
-pub const VMR9DeinterlaceTech = extern enum(i32) {
+pub const VMR9DeinterlaceTech = enum(i32) {
     Unknown = 0,
     BOBLineReplicate = 1,
     BOBVerticalStretch = 2,
@@ -22395,7 +22395,7 @@ pub const VMR9Frequency = extern struct {
     dwDenominator: u32,
 };
 
-pub const VMR9_SampleFormat = extern enum(i32) {
+pub const VMR9_SampleFormat = enum(i32) {
     Reserved = 1,
     ProgressiveFrame = 2,
     FieldInterleavedEvenFirst = 3,
@@ -23120,7 +23120,7 @@ pub const AVIPALCHANGE = extern struct {
     peNew: PALETTEENTRY,
 };
 
-pub const AM_PROPERTY_AC3 = extern enum(i32) {
+pub const AM_PROPERTY_AC3 = enum(i32) {
     ERROR_CONCEALMENT = 1,
     ALTERNATE_AUDIO = 2,
     DOWNMIX = 3,
@@ -23164,7 +23164,7 @@ pub const AM_AC3_ROOM_TYPE = extern struct {
     fLargeRoom: BOOL,
 };
 
-pub const AM_PROPERTY_DVDSUBPIC = extern enum(i32) {
+pub const AM_PROPERTY_DVDSUBPIC = enum(i32) {
     PALETTE = 0,
     HLI = 1,
     COMPOSIT_ON = 2,
@@ -23203,7 +23203,7 @@ pub const AM_PROPERTY_SPHLI = extern struct {
     ColCon: AM_COLCON,
 };
 
-pub const AM_PROPERTY_DVDCOPYPROT = extern enum(i32) {
+pub const AM_PROPERTY_DVDCOPYPROT = enum(i32) {
     DVDCOPY_CHLG_KEY = 1,
     DVDCOPY_DVD_KEY1 = 2,
     DVDCOPY_DEC_KEY2 = 3,
@@ -23230,7 +23230,7 @@ pub const AM_PROPERTY_COPY_DVD_SRM = AM_PROPERTY_DVDCOPYPROT.COPY_DVD_SRM;
 pub const AM_PROPERTY_DVDCOPY_SUPPORTS_NEW_KEYCOUNT = AM_PROPERTY_DVDCOPYPROT.DVDCOPY_SUPPORTS_NEW_KEYCOUNT;
 pub const AM_PROPERTY_DVDCOPY_DISC_KEY = AM_PROPERTY_DVDCOPYPROT.DVDCOPY_DISC_KEY;
 
-pub const AM_DIGITAL_CP = extern enum(i32) {
+pub const AM_DIGITAL_CP = enum(i32) {
     OFF = 0,
     ON = 1,
     DVD_COMPLIANT = 2,
@@ -23268,7 +23268,7 @@ pub const AM_DVDCOPY_SET_COPY_STATE = extern struct {
     DVDCopyState: u32,
 };
 
-pub const AM_DVDCOPYSTATE = extern enum(i32) {
+pub const AM_DVDCOPYSTATE = enum(i32) {
     INITIALIZE = 0,
     INITIALIZE_TITLE = 1,
     AUTHENTICATION_NOT_REQUIRED = 2,
@@ -23281,7 +23281,7 @@ pub const AM_DVDCOPYSTATE_AUTHENTICATION_NOT_REQUIRED = AM_DVDCOPYSTATE.AUTHENTI
 pub const AM_DVDCOPYSTATE_AUTHENTICATION_REQUIRED = AM_DVDCOPYSTATE.AUTHENTICATION_REQUIRED;
 pub const AM_DVDCOPYSTATE_DONE = AM_DVDCOPYSTATE.DONE;
 
-pub const AM_COPY_MACROVISION_LEVEL = extern enum(i32) {
+pub const AM_COPY_MACROVISION_LEVEL = enum(i32) {
     DISABLED = 0,
     LEVEL1 = 1,
     LEVEL2 = 2,
@@ -23299,7 +23299,7 @@ pub const DVD_REGION = extern struct {
     ResetCount: u8,
 };
 
-pub const AM_MPEG2Level = extern enum(i32) {
+pub const AM_MPEG2Level = enum(i32) {
     Low = 1,
     Main = 2,
     High1440 = 3,
@@ -23310,7 +23310,7 @@ pub const AM_MPEG2Level_Main = AM_MPEG2Level.Main;
 pub const AM_MPEG2Level_High1440 = AM_MPEG2Level.High1440;
 pub const AM_MPEG2Level_High = AM_MPEG2Level.High;
 
-pub const AM_MPEG2Profile = extern enum(i32) {
+pub const AM_MPEG2Profile = enum(i32) {
     Simple = 1,
     Main = 2,
     SNRScalable = 3,
@@ -23356,14 +23356,14 @@ pub const AM_DvdKaraokeData = extern struct {
     dwSpeakerAssignment: u32,
 };
 
-pub const AM_PROPERTY_DVDKARAOKE = extern enum(i32) {
+pub const AM_PROPERTY_DVDKARAOKE = enum(i32) {
     ENABLE = 0,
     DATA = 1,
 };
 pub const AM_PROPERTY_DVDKARAOKE_ENABLE = AM_PROPERTY_DVDKARAOKE.ENABLE;
 pub const AM_PROPERTY_DVDKARAOKE_DATA = AM_PROPERTY_DVDKARAOKE.DATA;
 
-pub const AM_PROPERTY_TS_RATE_CHANGE = extern enum(i32) {
+pub const AM_PROPERTY_TS_RATE_CHANGE = enum(i32) {
     SimpleRateChange = 1,
     ExactRateChange = 2,
     MaxFullDataRate = 3,
@@ -23388,7 +23388,7 @@ pub const AM_RATE_ReverseMaxFullDataRate = AM_PROPERTY_TS_RATE_CHANGE.ReverseMax
 pub const AM_RATE_ResetOnTimeDisc = AM_PROPERTY_TS_RATE_CHANGE.ResetOnTimeDisc;
 pub const AM_RATE_QueryMapping = AM_PROPERTY_TS_RATE_CHANGE.QueryMapping;
 
-pub const AM_PROPERTY_DVD_RATE_CHANGE = extern enum(i32) {
+pub const AM_PROPERTY_DVD_RATE_CHANGE = enum(i32) {
     ChangeRate = 1,
     FullDataRateMax = 2,
     ReverseDecode = 3,
@@ -23422,14 +23422,14 @@ pub const AM_DVD_ChangeRate = extern struct {
     Rate: i32,
 };
 
-pub const DVD_PLAY_DIRECTION = extern enum(i32) {
+pub const DVD_PLAY_DIRECTION = enum(i32) {
     FORWARD = 0,
     BACKWARD = 1,
 };
 pub const DVD_DIR_FORWARD = DVD_PLAY_DIRECTION.FORWARD;
 pub const DVD_DIR_BACKWARD = DVD_PLAY_DIRECTION.BACKWARD;
 
-pub const DVD_ERROR = extern enum(i32) {
+pub const DVD_ERROR = enum(i32) {
     Unexpected = 1,
     CopyProtectFail = 2,
     InvalidDVD1_0Disc = 3,
@@ -23452,7 +23452,7 @@ pub const DVD_ERROR_IncompatibleDiscAndDecoderRegions = DVD_ERROR.IncompatibleDi
 pub const DVD_ERROR_CopyProtectOutputFail = DVD_ERROR.CopyProtectOutputFail;
 pub const DVD_ERROR_CopyProtectOutputNotSupported = DVD_ERROR.CopyProtectOutputNotSupported;
 
-pub const DVD_WARNING = extern enum(i32) {
+pub const DVD_WARNING = enum(i32) {
     InvalidDVD1_0Disc = 1,
     FormatNotSupported = 2,
     IllegalNavCommand = 3,
@@ -23467,7 +23467,7 @@ pub const DVD_WARNING_Open = DVD_WARNING.Open;
 pub const DVD_WARNING_Seek = DVD_WARNING.Seek;
 pub const DVD_WARNING_Read = DVD_WARNING.Read;
 
-pub const DVD_PB_STOPPED = extern enum(i32) {
+pub const DVD_PB_STOPPED = enum(i32) {
     Other = 0,
     NoBranch = 1,
     NoFirstPlayDomain = 2,
@@ -23514,7 +23514,7 @@ pub const AMGETERRORTEXTPROCW = fn(
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const SNDDEV_ERR = extern enum(i32) {
+pub const SNDDEV_ERR = enum(i32) {
     Open = 1,
     Close = 2,
     GetCaps = 3,
@@ -23545,7 +23545,7 @@ pub const SNDDEV_ERROR_Start = SNDDEV_ERR.Start;
 pub const SNDDEV_ERROR_AddBuffer = SNDDEV_ERR.AddBuffer;
 pub const SNDDEV_ERROR_Query = SNDDEV_ERR.Query;
 
-pub const MP_TYPE = extern enum(i32) {
+pub const MP_TYPE = enum(i32) {
     INT = 0,
     FLOAT = 1,
     BOOL = 2,
@@ -23558,7 +23558,7 @@ pub const MPT_BOOL = MP_TYPE.BOOL;
 pub const MPT_ENUM = MP_TYPE.ENUM;
 pub const MPT_MAX = MP_TYPE.MAX;
 
-pub const MP_CURVE_TYPE = extern enum(i32) {
+pub const MP_CURVE_TYPE = enum(i32) {
     JUMP = 1,
     LINEAR = 2,
     SQUARE = 4,
@@ -23720,12 +23720,12 @@ pub const DMO_PARTIAL_MEDIATYPE = extern struct {
     subtype: Guid,
 };
 
-pub const DMO_REGISTER_FLAGS = extern enum(i32) {
+pub const DMO_REGISTER_FLAGS = enum(i32) {
     D = 1,
 };
 pub const DMO_REGISTERF_IS_KEYED = DMO_REGISTER_FLAGS.D;
 
-pub const DMO_ENUM_FLAGS = extern enum(i32) {
+pub const DMO_ENUM_FLAGS = enum(i32) {
     D = 1,
 };
 pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
@@ -24174,22 +24174,22 @@ pub const DXVA_COPPSetProtectionLevelCmdData = extern struct {
     ExtendedInfoData: u32,
 };
 
-pub const COPP_HDCP_Protection_Level = extern enum(i32) {
+pub const COPP_HDCP_Protection_Level = enum(i32) {
     Level0 = 0,
-    LevelMin = 0,
+    // LevelMin = 0, this enum value conflicts with Level0
     Level1 = 1,
-    LevelMax = 1,
+    // LevelMax = 1, this enum value conflicts with Level1
     ForceDWORD = 2147483647,
 };
 pub const COPP_HDCP_Level0 = COPP_HDCP_Protection_Level.Level0;
-pub const COPP_HDCP_LevelMin = COPP_HDCP_Protection_Level.LevelMin;
+pub const COPP_HDCP_LevelMin = COPP_HDCP_Protection_Level.Level0;
 pub const COPP_HDCP_Level1 = COPP_HDCP_Protection_Level.Level1;
-pub const COPP_HDCP_LevelMax = COPP_HDCP_Protection_Level.LevelMax;
+pub const COPP_HDCP_LevelMax = COPP_HDCP_Protection_Level.Level1;
 pub const COPP_HDCP_ForceDWORD = COPP_HDCP_Protection_Level.ForceDWORD;
 
-pub const COPP_CGMSA_Protection_Level = extern enum(i32) {
+pub const COPP_CGMSA_Protection_Level = enum(i32) {
     Disabled = 0,
-    LevelMin = 0,
+    // LevelMin = 0, this enum value conflicts with Disabled
     CopyFreely = 1,
     CopyNoMore = 2,
     CopyOneGeneration = 3,
@@ -24199,7 +24199,7 @@ pub const COPP_CGMSA_Protection_Level = extern enum(i32) {
     ForceDWORD = 2147483647,
 };
 pub const COPP_CGMSA_Disabled = COPP_CGMSA_Protection_Level.Disabled;
-pub const COPP_CGMSA_LevelMin = COPP_CGMSA_Protection_Level.LevelMin;
+pub const COPP_CGMSA_LevelMin = COPP_CGMSA_Protection_Level.Disabled;
 pub const COPP_CGMSA_CopyFreely = COPP_CGMSA_Protection_Level.CopyFreely;
 pub const COPP_CGMSA_CopyNoMore = COPP_CGMSA_Protection_Level.CopyNoMore;
 pub const COPP_CGMSA_CopyOneGeneration = COPP_CGMSA_Protection_Level.CopyOneGeneration;
@@ -24208,21 +24208,21 @@ pub const COPP_CGMSA_RedistributionControlRequired = COPP_CGMSA_Protection_Level
 pub const COPP_CGMSA_LevelMax = COPP_CGMSA_Protection_Level.LevelMax;
 pub const COPP_CGMSA_ForceDWORD = COPP_CGMSA_Protection_Level.ForceDWORD;
 
-pub const COPP_ACP_Protection_Level = extern enum(i32) {
+pub const COPP_ACP_Protection_Level = enum(i32) {
     Level0 = 0,
-    LevelMin = 0,
+    // LevelMin = 0, this enum value conflicts with Level0
     Level1 = 1,
     Level2 = 2,
     Level3 = 3,
-    LevelMax = 3,
+    // LevelMax = 3, this enum value conflicts with Level3
     ForceDWORD = 2147483647,
 };
 pub const COPP_ACP_Level0 = COPP_ACP_Protection_Level.Level0;
-pub const COPP_ACP_LevelMin = COPP_ACP_Protection_Level.LevelMin;
+pub const COPP_ACP_LevelMin = COPP_ACP_Protection_Level.Level0;
 pub const COPP_ACP_Level1 = COPP_ACP_Protection_Level.Level1;
 pub const COPP_ACP_Level2 = COPP_ACP_Protection_Level.Level2;
 pub const COPP_ACP_Level3 = COPP_ACP_Protection_Level.Level3;
-pub const COPP_ACP_LevelMax = COPP_ACP_Protection_Level.LevelMax;
+pub const COPP_ACP_LevelMax = COPP_ACP_Protection_Level.Level3;
 pub const COPP_ACP_ForceDWORD = COPP_ACP_Protection_Level.ForceDWORD;
 
 pub const DXVA_COPPSetSignalingCmdData = extern struct {
@@ -24238,7 +24238,7 @@ pub const DXVA_COPPSetSignalingCmdData = extern struct {
     Reserved: u32,
 };
 
-pub const COPP_TVProtectionStandard = extern enum(i32) {
+pub const COPP_TVProtectionStandard = enum(i32) {
     Unknown = -2147483648,
     None = 0,
     IEC61880_525i = 1,
@@ -24279,7 +24279,7 @@ pub const COPP_ProtectionStandard_ARIBTRB15_1125i = COPP_TVProtectionStandard.AR
 pub const COPP_ProtectionStandard_Mask = COPP_TVProtectionStandard.Mask;
 pub const COPP_ProtectionStandard_Reserved = COPP_TVProtectionStandard.Reserved;
 
-pub const COPP_ImageAspectRatio_EN300294 = extern enum(i32) {
+pub const COPP_ImageAspectRatio_EN300294 = enum(i32) {
     EN300294_FullFormat4by3 = 0,
     EN300294_Box14by9Center = 1,
     EN300294_Box14by9Top = 2,
@@ -24300,7 +24300,7 @@ pub const COPP_AspectRatio_EN300294_FullFormat4by3ProtectedCenter = COPP_ImageAs
 pub const COPP_AspectRatio_EN300294_FullFormat16by9Anamorphic = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat16by9Anamorphic;
 pub const COPP_AspectRatio_ForceDWORD = COPP_ImageAspectRatio_EN300294.ForceDWORD;
 
-pub const COPP_StatusFlags = extern enum(i32) {
+pub const COPP_StatusFlags = enum(i32) {
     StatusNormal = 0,
     LinkLost = 1,
     RenegotiationRequired = 2,
@@ -24330,7 +24330,7 @@ pub const DXVA_COPPStatusDisplayData = extern struct {
     FreqDenominator: u32,
 };
 
-pub const COPP_StatusHDCPFlags = extern enum(i32) {
+pub const COPP_StatusHDCPFlags = enum(i32) {
     Repeater = 1,
     FlagsReserved = -2,
 };
@@ -24346,7 +24346,7 @@ pub const DXVA_COPPStatusHDCPKeyData = extern struct {
     Reserved2: Guid,
 };
 
-pub const COPP_ConnectorType = extern enum(i32) {
+pub const COPP_ConnectorType = enum(i32) {
     Unknown = -1,
     VGA = 0,
     SVideo = 1,
@@ -24373,7 +24373,7 @@ pub const COPP_ConnectorType_D_JPN = COPP_ConnectorType.D_JPN;
 pub const COPP_ConnectorType_Internal = COPP_ConnectorType.Internal;
 pub const COPP_ConnectorType_ForceDWORD = COPP_ConnectorType.ForceDWORD;
 
-pub const COPP_BusType = extern enum(i32) {
+pub const COPP_BusType = enum(i32) {
     Unknown = 0,
     PCI = 1,
     PCIX = 2,
@@ -24562,7 +24562,7 @@ pub const ICreatePropBagOnRegKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DISPID_TUNER = extern enum(i32) {
+pub const DISPID_TUNER = enum(i32) {
     TUNER_TS_UNIQUENAME = 1,
     TUNER_TS_FRIENDLYNAME = 2,
     TUNER_TS_CLSID = 3,
@@ -24575,30 +24575,30 @@ pub const DISPID_TUNER = extern enum(i32) {
     TUNER_TS_FREQMAP = 10,
     TUNER_TS_DEFLOCATOR = 11,
     TUNER_TS_CLONE = 12,
-    TUNER_TR_TUNINGSPACE = 1,
-    TUNER_TR_COMPONENTS = 2,
-    TUNER_TR_CLONE = 3,
-    TUNER_TR_LOCATOR = 4,
-    TUNER_CT_CATEGORY = 1,
-    TUNER_CT_MEDIAMAJORTYPE = 2,
-    TUNER_CT__MEDIAMAJORTYPE = 3,
-    TUNER_CT_MEDIASUBTYPE = 4,
-    TUNER_CT__MEDIASUBTYPE = 5,
-    TUNER_CT_MEDIAFORMATTYPE = 6,
-    TUNER_CT__MEDIAFORMATTYPE = 7,
-    TUNER_CT_MEDIATYPE = 8,
-    TUNER_CT_CLONE = 9,
+    // TUNER_TR_TUNINGSPACE = 1, this enum value conflicts with TUNER_TS_UNIQUENAME
+    // TUNER_TR_COMPONENTS = 2, this enum value conflicts with TUNER_TS_FRIENDLYNAME
+    // TUNER_TR_CLONE = 3, this enum value conflicts with TUNER_TS_CLSID
+    // TUNER_TR_LOCATOR = 4, this enum value conflicts with TUNER_TS_NETWORKTYPE
+    // TUNER_CT_CATEGORY = 1, this enum value conflicts with TUNER_TS_UNIQUENAME
+    // TUNER_CT_MEDIAMAJORTYPE = 2, this enum value conflicts with TUNER_TS_FRIENDLYNAME
+    // TUNER_CT__MEDIAMAJORTYPE = 3, this enum value conflicts with TUNER_TS_CLSID
+    // TUNER_CT_MEDIASUBTYPE = 4, this enum value conflicts with TUNER_TS_NETWORKTYPE
+    // TUNER_CT__MEDIASUBTYPE = 5, this enum value conflicts with TUNER_TS__NETWORKTYPE
+    // TUNER_CT_MEDIAFORMATTYPE = 6, this enum value conflicts with TUNER_TS_CREATETUNEREQUEST
+    // TUNER_CT__MEDIAFORMATTYPE = 7, this enum value conflicts with TUNER_TS_ENUMCATEGORYGUIDS
+    // TUNER_CT_MEDIATYPE = 8, this enum value conflicts with TUNER_TS_ENUMDEVICEMONIKERS
+    // TUNER_CT_CLONE = 9, this enum value conflicts with TUNER_TS_DEFAULTPREFERREDCOMPONENTTYPES
     TUNER_LCT_LANGID = 100,
     TUNER_MP2CT_TYPE = 200,
     TUNER_ATSCCT_FLAGS = 300,
-    TUNER_L_CARRFREQ = 1,
-    TUNER_L_INNERFECMETHOD = 2,
-    TUNER_L_INNERFECRATE = 3,
-    TUNER_L_OUTERFECMETHOD = 4,
-    TUNER_L_OUTERFECRATE = 5,
-    TUNER_L_MOD = 6,
-    TUNER_L_SYMRATE = 7,
-    TUNER_L_CLONE = 8,
+    // TUNER_L_CARRFREQ = 1, this enum value conflicts with TUNER_TS_UNIQUENAME
+    // TUNER_L_INNERFECMETHOD = 2, this enum value conflicts with TUNER_TS_FRIENDLYNAME
+    // TUNER_L_INNERFECRATE = 3, this enum value conflicts with TUNER_TS_CLSID
+    // TUNER_L_OUTERFECMETHOD = 4, this enum value conflicts with TUNER_TS_NETWORKTYPE
+    // TUNER_L_OUTERFECRATE = 5, this enum value conflicts with TUNER_TS__NETWORKTYPE
+    // TUNER_L_MOD = 6, this enum value conflicts with TUNER_TS_CREATETUNEREQUEST
+    // TUNER_L_SYMRATE = 7, this enum value conflicts with TUNER_TS_ENUMCATEGORYGUIDS
+    // TUNER_L_CLONE = 8, this enum value conflicts with TUNER_TS_ENUMDEVICEMONIKERS
     TUNER_L_ATSC_PHYS_CHANNEL = 201,
     TUNER_L_ATSC_TSID = 202,
     TUNER_L_ATSC_MP2_PROGNO = 203,
@@ -24624,57 +24624,57 @@ pub const DISPID_TUNER = extern enum(i32) {
     TUNER_L_DVBS2_PILOT = 412,
     TUNER_L_ANALOG_STANDARD = 601,
     TUNER_L_DTV_O_MAJOR_CHANNEL = 701,
-    TUNER_C_TYPE = 1,
-    TUNER_C_STATUS = 2,
-    TUNER_C_LANGID = 3,
-    TUNER_C_DESCRIPTION = 4,
-    TUNER_C_CLONE = 5,
+    // TUNER_C_TYPE = 1, this enum value conflicts with TUNER_TS_UNIQUENAME
+    // TUNER_C_STATUS = 2, this enum value conflicts with TUNER_TS_FRIENDLYNAME
+    // TUNER_C_LANGID = 3, this enum value conflicts with TUNER_TS_CLSID
+    // TUNER_C_DESCRIPTION = 4, this enum value conflicts with TUNER_TS_NETWORKTYPE
+    // TUNER_C_CLONE = 5, this enum value conflicts with TUNER_TS__NETWORKTYPE
     TUNER_C_MP2_PID = 101,
     TUNER_C_MP2_PCRPID = 102,
     TUNER_C_MP2_PROGNO = 103,
-    TUNER_C_ANALOG_AUDIO = 201,
-    TUNER_TS_DVB_SYSTEMTYPE = 101,
-    TUNER_TS_DVB2_NETWORK_ID = 102,
+    // TUNER_C_ANALOG_AUDIO = 201, this enum value conflicts with TUNER_L_ATSC_PHYS_CHANNEL
+    // TUNER_TS_DVB_SYSTEMTYPE = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // TUNER_TS_DVB2_NETWORK_ID = 102, this enum value conflicts with TUNER_C_MP2_PCRPID
     TUNER_TS_DVBS_LOW_OSC_FREQ = 1001,
     TUNER_TS_DVBS_HI_OSC_FREQ = 1002,
     TUNER_TS_DVBS_LNB_SWITCH_FREQ = 1003,
     TUNER_TS_DVBS_INPUT_RANGE = 1004,
     TUNER_TS_DVBS_SPECTRAL_INVERSION = 1005,
-    TUNER_TS_AR_MINFREQUENCY = 101,
-    TUNER_TS_AR_MAXFREQUENCY = 102,
-    TUNER_TS_AR_STEP = 103,
+    // TUNER_TS_AR_MINFREQUENCY = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // TUNER_TS_AR_MAXFREQUENCY = 102, this enum value conflicts with TUNER_C_MP2_PCRPID
+    // TUNER_TS_AR_STEP = 103, this enum value conflicts with TUNER_C_MP2_PROGNO
     TUNER_TS_AR_COUNTRYCODE = 104,
-    TUNER_TS_AUX_COUNTRYCODE = 101,
-    TUNER_TS_ATV_MINCHANNEL = 101,
-    TUNER_TS_ATV_MAXCHANNEL = 102,
-    TUNER_TS_ATV_INPUTTYPE = 103,
-    TUNER_TS_ATV_COUNTRYCODE = 104,
-    TUNER_TS_ATSC_MINMINORCHANNEL = 201,
-    TUNER_TS_ATSC_MAXMINORCHANNEL = 202,
-    TUNER_TS_ATSC_MINPHYSCHANNEL = 203,
+    // TUNER_TS_AUX_COUNTRYCODE = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // TUNER_TS_ATV_MINCHANNEL = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // TUNER_TS_ATV_MAXCHANNEL = 102, this enum value conflicts with TUNER_C_MP2_PCRPID
+    // TUNER_TS_ATV_INPUTTYPE = 103, this enum value conflicts with TUNER_C_MP2_PROGNO
+    // TUNER_TS_ATV_COUNTRYCODE = 104, this enum value conflicts with TUNER_TS_AR_COUNTRYCODE
+    // TUNER_TS_ATSC_MINMINORCHANNEL = 201, this enum value conflicts with TUNER_L_ATSC_PHYS_CHANNEL
+    // TUNER_TS_ATSC_MAXMINORCHANNEL = 202, this enum value conflicts with TUNER_L_ATSC_TSID
+    // TUNER_TS_ATSC_MINPHYSCHANNEL = 203, this enum value conflicts with TUNER_L_ATSC_MP2_PROGNO
     TUNER_TS_ATSC_MAXPHYSCHANNEL = 204,
-    TUNER_TS_DC_MINMAJORCHANNEL = 301,
-    TUNER_TS_DC_MAXMAJORCHANNEL = 302,
-    TUNER_TS_DC_MINSOURCEID = 303,
-    TUNER_TS_DC_MAXSOURCEID = 304,
-    CHTUNER_ATVAC_CHANNEL = 101,
-    CHTUNER_ATVDC_SYSTEM = 101,
-    CHTUNER_ATVDC_CONTENT = 102,
-    CHTUNER_CIDTR_CHANNELID = 101,
-    CHTUNER_CTR_CHANNEL = 101,
-    CHTUNER_ACTR_MINOR_CHANNEL = 201,
-    CHTUNER_DCTR_MAJOR_CHANNEL = 301,
-    CHTUNER_DCTR_SRCID = 302,
-    DVBTUNER_DVBC_ATTRIBUTESVALID = 101,
-    DVBTUNER_DVBC_PID = 102,
-    DVBTUNER_DVBC_TAG = 103,
-    DVBTUNER_DVBC_COMPONENTTYPE = 104,
-    DVBTUNER_ONID = 101,
-    DVBTUNER_TSID = 102,
-    DVBTUNER_SID = 103,
-    MP2TUNER_TSID = 101,
-    MP2TUNER_PROGNO = 102,
-    MP2TUNERFACTORY_CREATETUNEREQUEST = 1,
+    // TUNER_TS_DC_MINMAJORCHANNEL = 301, this enum value conflicts with TUNER_L_DVBT_BANDWIDTH
+    // TUNER_TS_DC_MAXMAJORCHANNEL = 302, this enum value conflicts with TUNER_L_DVBT_LPINNERFECMETHOD
+    // TUNER_TS_DC_MINSOURCEID = 303, this enum value conflicts with TUNER_L_DVBT_LPINNERFECRATE
+    // TUNER_TS_DC_MAXSOURCEID = 304, this enum value conflicts with TUNER_L_DVBT_GUARDINTERVAL
+    // CHTUNER_ATVAC_CHANNEL = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // CHTUNER_ATVDC_SYSTEM = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // CHTUNER_ATVDC_CONTENT = 102, this enum value conflicts with TUNER_C_MP2_PCRPID
+    // CHTUNER_CIDTR_CHANNELID = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // CHTUNER_CTR_CHANNEL = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // CHTUNER_ACTR_MINOR_CHANNEL = 201, this enum value conflicts with TUNER_L_ATSC_PHYS_CHANNEL
+    // CHTUNER_DCTR_MAJOR_CHANNEL = 301, this enum value conflicts with TUNER_L_DVBT_BANDWIDTH
+    // CHTUNER_DCTR_SRCID = 302, this enum value conflicts with TUNER_L_DVBT_LPINNERFECMETHOD
+    // DVBTUNER_DVBC_ATTRIBUTESVALID = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // DVBTUNER_DVBC_PID = 102, this enum value conflicts with TUNER_C_MP2_PCRPID
+    // DVBTUNER_DVBC_TAG = 103, this enum value conflicts with TUNER_C_MP2_PROGNO
+    // DVBTUNER_DVBC_COMPONENTTYPE = 104, this enum value conflicts with TUNER_TS_AR_COUNTRYCODE
+    // DVBTUNER_ONID = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // DVBTUNER_TSID = 102, this enum value conflicts with TUNER_C_MP2_PCRPID
+    // DVBTUNER_SID = 103, this enum value conflicts with TUNER_C_MP2_PROGNO
+    // MP2TUNER_TSID = 101, this enum value conflicts with TUNER_C_MP2_PID
+    // MP2TUNER_PROGNO = 102, this enum value conflicts with TUNER_C_MP2_PCRPID
+    // MP2TUNERFACTORY_CREATETUNEREQUEST = 1, this enum value conflicts with TUNER_TS_UNIQUENAME
 };
 pub const DISPID_TUNER_TS_UNIQUENAME = DISPID_TUNER.TUNER_TS_UNIQUENAME;
 pub const DISPID_TUNER_TS_FRIENDLYNAME = DISPID_TUNER.TUNER_TS_FRIENDLYNAME;
@@ -24688,30 +24688,30 @@ pub const DISPID_TUNER_TS_DEFAULTPREFERREDCOMPONENTTYPES = DISPID_TUNER.TUNER_TS
 pub const DISPID_TUNER_TS_FREQMAP = DISPID_TUNER.TUNER_TS_FREQMAP;
 pub const DISPID_TUNER_TS_DEFLOCATOR = DISPID_TUNER.TUNER_TS_DEFLOCATOR;
 pub const DISPID_TUNER_TS_CLONE = DISPID_TUNER.TUNER_TS_CLONE;
-pub const DISPID_TUNER_TR_TUNINGSPACE = DISPID_TUNER.TUNER_TR_TUNINGSPACE;
-pub const DISPID_TUNER_TR_COMPONENTS = DISPID_TUNER.TUNER_TR_COMPONENTS;
-pub const DISPID_TUNER_TR_CLONE = DISPID_TUNER.TUNER_TR_CLONE;
-pub const DISPID_TUNER_TR_LOCATOR = DISPID_TUNER.TUNER_TR_LOCATOR;
-pub const DISPID_TUNER_CT_CATEGORY = DISPID_TUNER.TUNER_CT_CATEGORY;
-pub const DISPID_TUNER_CT_MEDIAMAJORTYPE = DISPID_TUNER.TUNER_CT_MEDIAMAJORTYPE;
-pub const DISPID_TUNER_CT__MEDIAMAJORTYPE = DISPID_TUNER.TUNER_CT__MEDIAMAJORTYPE;
-pub const DISPID_TUNER_CT_MEDIASUBTYPE = DISPID_TUNER.TUNER_CT_MEDIASUBTYPE;
-pub const DISPID_TUNER_CT__MEDIASUBTYPE = DISPID_TUNER.TUNER_CT__MEDIASUBTYPE;
-pub const DISPID_TUNER_CT_MEDIAFORMATTYPE = DISPID_TUNER.TUNER_CT_MEDIAFORMATTYPE;
-pub const DISPID_TUNER_CT__MEDIAFORMATTYPE = DISPID_TUNER.TUNER_CT__MEDIAFORMATTYPE;
-pub const DISPID_TUNER_CT_MEDIATYPE = DISPID_TUNER.TUNER_CT_MEDIATYPE;
-pub const DISPID_TUNER_CT_CLONE = DISPID_TUNER.TUNER_CT_CLONE;
+pub const DISPID_TUNER_TR_TUNINGSPACE = DISPID_TUNER.TUNER_TS_UNIQUENAME;
+pub const DISPID_TUNER_TR_COMPONENTS = DISPID_TUNER.TUNER_TS_FRIENDLYNAME;
+pub const DISPID_TUNER_TR_CLONE = DISPID_TUNER.TUNER_TS_CLSID;
+pub const DISPID_TUNER_TR_LOCATOR = DISPID_TUNER.TUNER_TS_NETWORKTYPE;
+pub const DISPID_TUNER_CT_CATEGORY = DISPID_TUNER.TUNER_TS_UNIQUENAME;
+pub const DISPID_TUNER_CT_MEDIAMAJORTYPE = DISPID_TUNER.TUNER_TS_FRIENDLYNAME;
+pub const DISPID_TUNER_CT__MEDIAMAJORTYPE = DISPID_TUNER.TUNER_TS_CLSID;
+pub const DISPID_TUNER_CT_MEDIASUBTYPE = DISPID_TUNER.TUNER_TS_NETWORKTYPE;
+pub const DISPID_TUNER_CT__MEDIASUBTYPE = DISPID_TUNER.TUNER_TS__NETWORKTYPE;
+pub const DISPID_TUNER_CT_MEDIAFORMATTYPE = DISPID_TUNER.TUNER_TS_CREATETUNEREQUEST;
+pub const DISPID_TUNER_CT__MEDIAFORMATTYPE = DISPID_TUNER.TUNER_TS_ENUMCATEGORYGUIDS;
+pub const DISPID_TUNER_CT_MEDIATYPE = DISPID_TUNER.TUNER_TS_ENUMDEVICEMONIKERS;
+pub const DISPID_TUNER_CT_CLONE = DISPID_TUNER.TUNER_TS_DEFAULTPREFERREDCOMPONENTTYPES;
 pub const DISPID_TUNER_LCT_LANGID = DISPID_TUNER.TUNER_LCT_LANGID;
 pub const DISPID_TUNER_MP2CT_TYPE = DISPID_TUNER.TUNER_MP2CT_TYPE;
 pub const DISPID_TUNER_ATSCCT_FLAGS = DISPID_TUNER.TUNER_ATSCCT_FLAGS;
-pub const DISPID_TUNER_L_CARRFREQ = DISPID_TUNER.TUNER_L_CARRFREQ;
-pub const DISPID_TUNER_L_INNERFECMETHOD = DISPID_TUNER.TUNER_L_INNERFECMETHOD;
-pub const DISPID_TUNER_L_INNERFECRATE = DISPID_TUNER.TUNER_L_INNERFECRATE;
-pub const DISPID_TUNER_L_OUTERFECMETHOD = DISPID_TUNER.TUNER_L_OUTERFECMETHOD;
-pub const DISPID_TUNER_L_OUTERFECRATE = DISPID_TUNER.TUNER_L_OUTERFECRATE;
-pub const DISPID_TUNER_L_MOD = DISPID_TUNER.TUNER_L_MOD;
-pub const DISPID_TUNER_L_SYMRATE = DISPID_TUNER.TUNER_L_SYMRATE;
-pub const DISPID_TUNER_L_CLONE = DISPID_TUNER.TUNER_L_CLONE;
+pub const DISPID_TUNER_L_CARRFREQ = DISPID_TUNER.TUNER_TS_UNIQUENAME;
+pub const DISPID_TUNER_L_INNERFECMETHOD = DISPID_TUNER.TUNER_TS_FRIENDLYNAME;
+pub const DISPID_TUNER_L_INNERFECRATE = DISPID_TUNER.TUNER_TS_CLSID;
+pub const DISPID_TUNER_L_OUTERFECMETHOD = DISPID_TUNER.TUNER_TS_NETWORKTYPE;
+pub const DISPID_TUNER_L_OUTERFECRATE = DISPID_TUNER.TUNER_TS__NETWORKTYPE;
+pub const DISPID_TUNER_L_MOD = DISPID_TUNER.TUNER_TS_CREATETUNEREQUEST;
+pub const DISPID_TUNER_L_SYMRATE = DISPID_TUNER.TUNER_TS_ENUMCATEGORYGUIDS;
+pub const DISPID_TUNER_L_CLONE = DISPID_TUNER.TUNER_TS_ENUMDEVICEMONIKERS;
 pub const DISPID_TUNER_L_ATSC_PHYS_CHANNEL = DISPID_TUNER.TUNER_L_ATSC_PHYS_CHANNEL;
 pub const DISPID_TUNER_L_ATSC_TSID = DISPID_TUNER.TUNER_L_ATSC_TSID;
 pub const DISPID_TUNER_L_ATSC_MP2_PROGNO = DISPID_TUNER.TUNER_L_ATSC_MP2_PROGNO;
@@ -24737,57 +24737,57 @@ pub const DISPID_TUNER_L_DVBS2_ROLLOFF = DISPID_TUNER.TUNER_L_DVBS2_ROLLOFF;
 pub const DISPID_TUNER_L_DVBS2_PILOT = DISPID_TUNER.TUNER_L_DVBS2_PILOT;
 pub const DISPID_TUNER_L_ANALOG_STANDARD = DISPID_TUNER.TUNER_L_ANALOG_STANDARD;
 pub const DISPID_TUNER_L_DTV_O_MAJOR_CHANNEL = DISPID_TUNER.TUNER_L_DTV_O_MAJOR_CHANNEL;
-pub const DISPID_TUNER_C_TYPE = DISPID_TUNER.TUNER_C_TYPE;
-pub const DISPID_TUNER_C_STATUS = DISPID_TUNER.TUNER_C_STATUS;
-pub const DISPID_TUNER_C_LANGID = DISPID_TUNER.TUNER_C_LANGID;
-pub const DISPID_TUNER_C_DESCRIPTION = DISPID_TUNER.TUNER_C_DESCRIPTION;
-pub const DISPID_TUNER_C_CLONE = DISPID_TUNER.TUNER_C_CLONE;
+pub const DISPID_TUNER_C_TYPE = DISPID_TUNER.TUNER_TS_UNIQUENAME;
+pub const DISPID_TUNER_C_STATUS = DISPID_TUNER.TUNER_TS_FRIENDLYNAME;
+pub const DISPID_TUNER_C_LANGID = DISPID_TUNER.TUNER_TS_CLSID;
+pub const DISPID_TUNER_C_DESCRIPTION = DISPID_TUNER.TUNER_TS_NETWORKTYPE;
+pub const DISPID_TUNER_C_CLONE = DISPID_TUNER.TUNER_TS__NETWORKTYPE;
 pub const DISPID_TUNER_C_MP2_PID = DISPID_TUNER.TUNER_C_MP2_PID;
 pub const DISPID_TUNER_C_MP2_PCRPID = DISPID_TUNER.TUNER_C_MP2_PCRPID;
 pub const DISPID_TUNER_C_MP2_PROGNO = DISPID_TUNER.TUNER_C_MP2_PROGNO;
-pub const DISPID_TUNER_C_ANALOG_AUDIO = DISPID_TUNER.TUNER_C_ANALOG_AUDIO;
-pub const DISPID_TUNER_TS_DVB_SYSTEMTYPE = DISPID_TUNER.TUNER_TS_DVB_SYSTEMTYPE;
-pub const DISPID_TUNER_TS_DVB2_NETWORK_ID = DISPID_TUNER.TUNER_TS_DVB2_NETWORK_ID;
+pub const DISPID_TUNER_C_ANALOG_AUDIO = DISPID_TUNER.TUNER_L_ATSC_PHYS_CHANNEL;
+pub const DISPID_TUNER_TS_DVB_SYSTEMTYPE = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_TUNER_TS_DVB2_NETWORK_ID = DISPID_TUNER.TUNER_C_MP2_PCRPID;
 pub const DISPID_TUNER_TS_DVBS_LOW_OSC_FREQ = DISPID_TUNER.TUNER_TS_DVBS_LOW_OSC_FREQ;
 pub const DISPID_TUNER_TS_DVBS_HI_OSC_FREQ = DISPID_TUNER.TUNER_TS_DVBS_HI_OSC_FREQ;
 pub const DISPID_TUNER_TS_DVBS_LNB_SWITCH_FREQ = DISPID_TUNER.TUNER_TS_DVBS_LNB_SWITCH_FREQ;
 pub const DISPID_TUNER_TS_DVBS_INPUT_RANGE = DISPID_TUNER.TUNER_TS_DVBS_INPUT_RANGE;
 pub const DISPID_TUNER_TS_DVBS_SPECTRAL_INVERSION = DISPID_TUNER.TUNER_TS_DVBS_SPECTRAL_INVERSION;
-pub const DISPID_TUNER_TS_AR_MINFREQUENCY = DISPID_TUNER.TUNER_TS_AR_MINFREQUENCY;
-pub const DISPID_TUNER_TS_AR_MAXFREQUENCY = DISPID_TUNER.TUNER_TS_AR_MAXFREQUENCY;
-pub const DISPID_TUNER_TS_AR_STEP = DISPID_TUNER.TUNER_TS_AR_STEP;
+pub const DISPID_TUNER_TS_AR_MINFREQUENCY = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_TUNER_TS_AR_MAXFREQUENCY = DISPID_TUNER.TUNER_C_MP2_PCRPID;
+pub const DISPID_TUNER_TS_AR_STEP = DISPID_TUNER.TUNER_C_MP2_PROGNO;
 pub const DISPID_TUNER_TS_AR_COUNTRYCODE = DISPID_TUNER.TUNER_TS_AR_COUNTRYCODE;
-pub const DISPID_TUNER_TS_AUX_COUNTRYCODE = DISPID_TUNER.TUNER_TS_AUX_COUNTRYCODE;
-pub const DISPID_TUNER_TS_ATV_MINCHANNEL = DISPID_TUNER.TUNER_TS_ATV_MINCHANNEL;
-pub const DISPID_TUNER_TS_ATV_MAXCHANNEL = DISPID_TUNER.TUNER_TS_ATV_MAXCHANNEL;
-pub const DISPID_TUNER_TS_ATV_INPUTTYPE = DISPID_TUNER.TUNER_TS_ATV_INPUTTYPE;
-pub const DISPID_TUNER_TS_ATV_COUNTRYCODE = DISPID_TUNER.TUNER_TS_ATV_COUNTRYCODE;
-pub const DISPID_TUNER_TS_ATSC_MINMINORCHANNEL = DISPID_TUNER.TUNER_TS_ATSC_MINMINORCHANNEL;
-pub const DISPID_TUNER_TS_ATSC_MAXMINORCHANNEL = DISPID_TUNER.TUNER_TS_ATSC_MAXMINORCHANNEL;
-pub const DISPID_TUNER_TS_ATSC_MINPHYSCHANNEL = DISPID_TUNER.TUNER_TS_ATSC_MINPHYSCHANNEL;
+pub const DISPID_TUNER_TS_AUX_COUNTRYCODE = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_TUNER_TS_ATV_MINCHANNEL = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_TUNER_TS_ATV_MAXCHANNEL = DISPID_TUNER.TUNER_C_MP2_PCRPID;
+pub const DISPID_TUNER_TS_ATV_INPUTTYPE = DISPID_TUNER.TUNER_C_MP2_PROGNO;
+pub const DISPID_TUNER_TS_ATV_COUNTRYCODE = DISPID_TUNER.TUNER_TS_AR_COUNTRYCODE;
+pub const DISPID_TUNER_TS_ATSC_MINMINORCHANNEL = DISPID_TUNER.TUNER_L_ATSC_PHYS_CHANNEL;
+pub const DISPID_TUNER_TS_ATSC_MAXMINORCHANNEL = DISPID_TUNER.TUNER_L_ATSC_TSID;
+pub const DISPID_TUNER_TS_ATSC_MINPHYSCHANNEL = DISPID_TUNER.TUNER_L_ATSC_MP2_PROGNO;
 pub const DISPID_TUNER_TS_ATSC_MAXPHYSCHANNEL = DISPID_TUNER.TUNER_TS_ATSC_MAXPHYSCHANNEL;
-pub const DISPID_TUNER_TS_DC_MINMAJORCHANNEL = DISPID_TUNER.TUNER_TS_DC_MINMAJORCHANNEL;
-pub const DISPID_TUNER_TS_DC_MAXMAJORCHANNEL = DISPID_TUNER.TUNER_TS_DC_MAXMAJORCHANNEL;
-pub const DISPID_TUNER_TS_DC_MINSOURCEID = DISPID_TUNER.TUNER_TS_DC_MINSOURCEID;
-pub const DISPID_TUNER_TS_DC_MAXSOURCEID = DISPID_TUNER.TUNER_TS_DC_MAXSOURCEID;
-pub const DISPID_CHTUNER_ATVAC_CHANNEL = DISPID_TUNER.CHTUNER_ATVAC_CHANNEL;
-pub const DISPID_CHTUNER_ATVDC_SYSTEM = DISPID_TUNER.CHTUNER_ATVDC_SYSTEM;
-pub const DISPID_CHTUNER_ATVDC_CONTENT = DISPID_TUNER.CHTUNER_ATVDC_CONTENT;
-pub const DISPID_CHTUNER_CIDTR_CHANNELID = DISPID_TUNER.CHTUNER_CIDTR_CHANNELID;
-pub const DISPID_CHTUNER_CTR_CHANNEL = DISPID_TUNER.CHTUNER_CTR_CHANNEL;
-pub const DISPID_CHTUNER_ACTR_MINOR_CHANNEL = DISPID_TUNER.CHTUNER_ACTR_MINOR_CHANNEL;
-pub const DISPID_CHTUNER_DCTR_MAJOR_CHANNEL = DISPID_TUNER.CHTUNER_DCTR_MAJOR_CHANNEL;
-pub const DISPID_CHTUNER_DCTR_SRCID = DISPID_TUNER.CHTUNER_DCTR_SRCID;
-pub const DISPID_DVBTUNER_DVBC_ATTRIBUTESVALID = DISPID_TUNER.DVBTUNER_DVBC_ATTRIBUTESVALID;
-pub const DISPID_DVBTUNER_DVBC_PID = DISPID_TUNER.DVBTUNER_DVBC_PID;
-pub const DISPID_DVBTUNER_DVBC_TAG = DISPID_TUNER.DVBTUNER_DVBC_TAG;
-pub const DISPID_DVBTUNER_DVBC_COMPONENTTYPE = DISPID_TUNER.DVBTUNER_DVBC_COMPONENTTYPE;
-pub const DISPID_DVBTUNER_ONID = DISPID_TUNER.DVBTUNER_ONID;
-pub const DISPID_DVBTUNER_TSID = DISPID_TUNER.DVBTUNER_TSID;
-pub const DISPID_DVBTUNER_SID = DISPID_TUNER.DVBTUNER_SID;
-pub const DISPID_MP2TUNER_TSID = DISPID_TUNER.MP2TUNER_TSID;
-pub const DISPID_MP2TUNER_PROGNO = DISPID_TUNER.MP2TUNER_PROGNO;
-pub const DISPID_MP2TUNERFACTORY_CREATETUNEREQUEST = DISPID_TUNER.MP2TUNERFACTORY_CREATETUNEREQUEST;
+pub const DISPID_TUNER_TS_DC_MINMAJORCHANNEL = DISPID_TUNER.TUNER_L_DVBT_BANDWIDTH;
+pub const DISPID_TUNER_TS_DC_MAXMAJORCHANNEL = DISPID_TUNER.TUNER_L_DVBT_LPINNERFECMETHOD;
+pub const DISPID_TUNER_TS_DC_MINSOURCEID = DISPID_TUNER.TUNER_L_DVBT_LPINNERFECRATE;
+pub const DISPID_TUNER_TS_DC_MAXSOURCEID = DISPID_TUNER.TUNER_L_DVBT_GUARDINTERVAL;
+pub const DISPID_CHTUNER_ATVAC_CHANNEL = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_CHTUNER_ATVDC_SYSTEM = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_CHTUNER_ATVDC_CONTENT = DISPID_TUNER.TUNER_C_MP2_PCRPID;
+pub const DISPID_CHTUNER_CIDTR_CHANNELID = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_CHTUNER_CTR_CHANNEL = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_CHTUNER_ACTR_MINOR_CHANNEL = DISPID_TUNER.TUNER_L_ATSC_PHYS_CHANNEL;
+pub const DISPID_CHTUNER_DCTR_MAJOR_CHANNEL = DISPID_TUNER.TUNER_L_DVBT_BANDWIDTH;
+pub const DISPID_CHTUNER_DCTR_SRCID = DISPID_TUNER.TUNER_L_DVBT_LPINNERFECMETHOD;
+pub const DISPID_DVBTUNER_DVBC_ATTRIBUTESVALID = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_DVBTUNER_DVBC_PID = DISPID_TUNER.TUNER_C_MP2_PCRPID;
+pub const DISPID_DVBTUNER_DVBC_TAG = DISPID_TUNER.TUNER_C_MP2_PROGNO;
+pub const DISPID_DVBTUNER_DVBC_COMPONENTTYPE = DISPID_TUNER.TUNER_TS_AR_COUNTRYCODE;
+pub const DISPID_DVBTUNER_ONID = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_DVBTUNER_TSID = DISPID_TUNER.TUNER_C_MP2_PCRPID;
+pub const DISPID_DVBTUNER_SID = DISPID_TUNER.TUNER_C_MP2_PROGNO;
+pub const DISPID_MP2TUNER_TSID = DISPID_TUNER.TUNER_C_MP2_PID;
+pub const DISPID_MP2TUNER_PROGNO = DISPID_TUNER.TUNER_C_MP2_PCRPID;
+pub const DISPID_MP2TUNERFACTORY_CREATETUNEREQUEST = DISPID_TUNER.TUNER_TS_UNIQUENAME;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITuningSpaces_Value = @import("../zig.zig").Guid.initString("901284e4-33fe-4b69-8d63-634a596f3756");
@@ -28661,7 +28661,7 @@ pub const CLSID_XDSCodec = &CLSID_XDSCodec_Value;
 const CLSID_CXDSData_Value = @import("../zig.zig").Guid.initString("c4c4c4f4-0049-4e2b-98fb-9537f6ce516d");
 pub const CLSID_CXDSData = &CLSID_CXDSData_Value;
 
-pub const EnTvRat_System = extern enum(i32) {
+pub const EnTvRat_System = enum(i32) {
     MPAA = 0,
     US_TV = 1,
     Canadian_English = 2,
@@ -28688,7 +28688,7 @@ pub const AgeBased = EnTvRat_System.AgeBased;
 pub const TvRat_kSystems = EnTvRat_System.TvRat_kSystems;
 pub const TvRat_SystemDontKnow = EnTvRat_System.TvRat_SystemDontKnow;
 
-pub const EnTvRat_GenericLevel = extern enum(i32) {
+pub const EnTvRat_GenericLevel = enum(i32) {
     @"0" = 0,
     @"1" = 1,
     @"2" = 2,
@@ -28741,7 +28741,7 @@ pub const TvRat_kLevels = EnTvRat_GenericLevel.kLevels;
 pub const TvRat_Unblock = EnTvRat_GenericLevel.Unblock;
 pub const TvRat_LevelDontKnow = EnTvRat_GenericLevel.LevelDontKnow;
 
-pub const EnTvRat_MPAA = extern enum(i32) {
+pub const EnTvRat_MPAA = enum(i32) {
     NotApplicable = 0,
     G = 1,
     PG = 2,
@@ -28760,7 +28760,7 @@ pub const MPAA_NC17 = EnTvRat_MPAA.NC17;
 pub const MPAA_X = EnTvRat_MPAA.X;
 pub const MPAA_NotRated = EnTvRat_MPAA.NotRated;
 
-pub const EnTvRat_US_TV = extern enum(i32) {
+pub const EnTvRat_US_TV = enum(i32) {
     None = 0,
     Y = 1,
     Y7 = 2,
@@ -28779,7 +28779,7 @@ pub const US_TV_14 = EnTvRat_US_TV.@"14";
 pub const US_TV_MA = EnTvRat_US_TV.MA;
 pub const US_TV_None7 = EnTvRat_US_TV.None7;
 
-pub const EnTvRat_CAE_TV = extern enum(i32) {
+pub const EnTvRat_CAE_TV = enum(i32) {
     Exempt = 0,
     C = 1,
     C8 = 2,
@@ -28798,7 +28798,7 @@ pub const CAE_TV_14 = EnTvRat_CAE_TV.@"14";
 pub const CAE_TV_18 = EnTvRat_CAE_TV.@"18";
 pub const CAE_TV_Reserved = EnTvRat_CAE_TV.Reserved;
 
-pub const EnTvRat_CAF_TV = extern enum(i32) {
+pub const EnTvRat_CAF_TV = enum(i32) {
     Exempt = 0,
     G = 1,
     @"8" = 2,
@@ -28817,7 +28817,7 @@ pub const CAF_TV_18 = EnTvRat_CAF_TV.@"18";
 pub const CAF_TV_Reserved6 = EnTvRat_CAF_TV.Reserved6;
 pub const CAF_TV_Reserved = EnTvRat_CAF_TV.Reserved;
 
-pub const BfEnTvRat_GenericAttributes = extern enum(i32) {
+pub const BfEnTvRat_GenericAttributes = enum(i32) {
     AttrNone = 0,
     IsBlocked = 1,
     IsAttr_1 = 2,
@@ -28840,7 +28840,7 @@ pub const BfIsAttr_6 = BfEnTvRat_GenericAttributes.IsAttr_6;
 pub const BfIsAttr_7 = BfEnTvRat_GenericAttributes.IsAttr_7;
 pub const BfValidAttrSubmask = BfEnTvRat_GenericAttributes.ValidAttrSubmask;
 
-pub const BfEnTvRat_Attributes_US_TV = extern enum(i32) {
+pub const BfEnTvRat_Attributes_US_TV = enum(i32) {
     IsBlocked = 1,
     IsViolent = 2,
     IsSexualSituation = 4,
@@ -28855,28 +28855,28 @@ pub const US_TV_IsAdultLanguage = BfEnTvRat_Attributes_US_TV.IsAdultLanguage;
 pub const US_TV_IsSexuallySuggestiveDialog = BfEnTvRat_Attributes_US_TV.IsSexuallySuggestiveDialog;
 pub const US_TV_ValidAttrSubmask = BfEnTvRat_Attributes_US_TV.ValidAttrSubmask;
 
-pub const BfEnTvRat_Attributes_MPAA = extern enum(i32) {
+pub const BfEnTvRat_Attributes_MPAA = enum(i32) {
     IsBlocked = 1,
-    ValidAttrSubmask = 1,
+    // ValidAttrSubmask = 1, this enum value conflicts with IsBlocked
 };
 pub const MPAA_IsBlocked = BfEnTvRat_Attributes_MPAA.IsBlocked;
-pub const MPAA_ValidAttrSubmask = BfEnTvRat_Attributes_MPAA.ValidAttrSubmask;
+pub const MPAA_ValidAttrSubmask = BfEnTvRat_Attributes_MPAA.IsBlocked;
 
-pub const BfEnTvRat_Attributes_CAE_TV = extern enum(i32) {
+pub const BfEnTvRat_Attributes_CAE_TV = enum(i32) {
     IsBlocked = 1,
-    ValidAttrSubmask = 1,
+    // ValidAttrSubmask = 1, this enum value conflicts with IsBlocked
 };
 pub const CAE_IsBlocked = BfEnTvRat_Attributes_CAE_TV.IsBlocked;
-pub const CAE_ValidAttrSubmask = BfEnTvRat_Attributes_CAE_TV.ValidAttrSubmask;
+pub const CAE_ValidAttrSubmask = BfEnTvRat_Attributes_CAE_TV.IsBlocked;
 
-pub const BfEnTvRat_Attributes_CAF_TV = extern enum(i32) {
+pub const BfEnTvRat_Attributes_CAF_TV = enum(i32) {
     IsBlocked = 1,
-    ValidAttrSubmask = 1,
+    // ValidAttrSubmask = 1, this enum value conflicts with IsBlocked
 };
 pub const CAF_IsBlocked = BfEnTvRat_Attributes_CAF_TV.IsBlocked;
-pub const CAF_ValidAttrSubmask = BfEnTvRat_Attributes_CAF_TV.ValidAttrSubmask;
+pub const CAF_ValidAttrSubmask = BfEnTvRat_Attributes_CAF_TV.IsBlocked;
 
-pub const FormatNotSupportedEvents = extern enum(i32) {
+pub const FormatNotSupportedEvents = enum(i32) {
     CLEAR = 0,
     NOTSUPPORTED = 1,
 };
@@ -28894,7 +28894,7 @@ pub const BadSampleInfo = packed struct {
     hrReason: HRESULT,
 };
 
-pub const ProtType = extern enum(i32) {
+pub const ProtType = enum(i32) {
     FREE = 1,
     ONCE = 2,
     NEVER = 3,
@@ -28917,21 +28917,21 @@ pub const PROT_COPY_CN_RECORDING_STOP = ProtType.CN_RECORDING_STOP;
 pub const PROT_COPY_FREE_SECURE = ProtType.FREE_SECURE;
 pub const PROT_COPY_INVALID = ProtType.INVALID;
 
-pub const EncDecEvents = extern enum(i32) {
+pub const EncDecEvents = enum(i32) {
     CPEVENT = 0,
     RECORDING_STATUS = 1,
 };
 pub const ENCDEC_CPEVENT = EncDecEvents.CPEVENT;
 pub const ENCDEC_RECORDING_STATUS = EncDecEvents.RECORDING_STATUS;
 
-pub const CPRecordingStatus = extern enum(i32) {
+pub const CPRecordingStatus = enum(i32) {
     OPPED = 0,
     ARTED = 1,
 };
 pub const RECORDING_STOPPED = CPRecordingStatus.OPPED;
 pub const RECORDING_STARTED = CPRecordingStatus.ARTED;
 
-pub const CPEventBitShift = extern enum(i32) {
+pub const CPEventBitShift = enum(i32) {
     RATINGS = 0,
     COPP = 1,
     LICENSE = 2,
@@ -28954,7 +28954,7 @@ pub const CPEVENT_BITSHIFT_UNTRUSTEDGRAPH = CPEventBitShift.UNTRUSTEDGRAPH;
 pub const CPEVENT_BITSHIFT_PENDING_CERTIFICATE = CPEventBitShift.PENDING_CERTIFICATE;
 pub const CPEVENT_BITSHIFT_NO_PLAYREADY = CPEventBitShift.NO_PLAYREADY;
 
-pub const CPEvents = extern enum(i32) {
+pub const CPEvents = enum(i32) {
     NONE = 0,
     RATINGS = 1,
     COPP = 2,
@@ -28977,7 +28977,7 @@ pub const CPEVENT_STUBLIB = CPEvents.STUBLIB;
 pub const CPEVENT_UNTRUSTEDGRAPH = CPEvents.UNTRUSTEDGRAPH;
 pub const CPEVENT_PROTECTWINDOWED = CPEvents.PROTECTWINDOWED;
 
-pub const RevokedComponent = extern enum(i32) {
+pub const RevokedComponent = enum(i32) {
     COPP = 0,
     SAC = 1,
     APP_STUB = 2,
@@ -28990,7 +28990,7 @@ pub const REVOKED_APP_STUB = RevokedComponent.APP_STUB;
 pub const REVOKED_SECURE_PIPELINE = RevokedComponent.SECURE_PIPELINE;
 pub const REVOKED_MAX_TYPES = RevokedComponent.MAX_TYPES;
 
-pub const EnTag_Mode = extern enum(i32) {
+pub const EnTag_Mode = enum(i32) {
     Remove = 0,
     Once = 1,
     Repeat = 2,
@@ -28999,7 +28999,7 @@ pub const EnTag_Remove = EnTag_Mode.Remove;
 pub const EnTag_Once = EnTag_Mode.Once;
 pub const EnTag_Repeat = EnTag_Mode.Repeat;
 
-pub const COPPEventBlockReason = extern enum(i32) {
+pub const COPPEventBlockReason = enum(i32) {
     Unknown = -1,
     BadDriver = 0,
     NoCardHDCPSupport = 1,
@@ -29024,7 +29024,7 @@ pub const COPP_ForbiddenVideo = COPPEventBlockReason.ForbiddenVideo;
 pub const COPP_Activate = COPPEventBlockReason.Activate;
 pub const COPP_DigitalAudioUnprotected = COPPEventBlockReason.DigitalAudioUnprotected;
 
-pub const LicenseEventBlockReason = extern enum(i32) {
+pub const LicenseEventBlockReason = enum(i32) {
     BadLicense = 0,
     NeedIndiv = 1,
     Expired = 2,
@@ -29037,7 +29037,7 @@ pub const LIC_Expired = LicenseEventBlockReason.Expired;
 pub const LIC_NeedActivation = LicenseEventBlockReason.NeedActivation;
 pub const LIC_ExtenderBlocked = LicenseEventBlockReason.ExtenderBlocked;
 
-pub const DownResEventParam = extern enum(i32) {
+pub const DownResEventParam = enum(i32) {
     Always = 0,
     InWindowOnly = 1,
     Undefined = 2,
@@ -29661,7 +29661,7 @@ pub const IEvalRat = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SegDispidList = extern enum(i32) {
+pub const SegDispidList = enum(i32) {
     dispidName = 0,
     dispidStatus = 1,
     dispidDevImageSourceWidth = 2,
@@ -30110,7 +30110,7 @@ pub const dispidUserEvent = SegDispidList.dispidUserEvent;
 pub const dispid_Bookmark = SegDispidList.dispid_Bookmark;
 pub const LastReservedDeviceDispid = SegDispidList.LastReservedDeviceDispid;
 
-pub const SegEventidList = extern enum(i32) {
+pub const SegEventidList = enum(i32) {
     eventidStateChange = 0,
     eventidOnTuneChanged = 1,
     eventidEndOfMedia = 2,
@@ -30231,21 +30231,21 @@ pub const dispidAVDecCommonOutputFormatEvent = SegEventidList.dispidAVDecCommonO
 pub const eventidWriteFailureClear = SegEventidList.eventidWriteFailureClear;
 pub const LastReservedDeviceEvent = SegEventidList.LastReservedDeviceEvent;
 
-pub const PositionModeList = extern enum(i32) {
+pub const PositionModeList = enum(i32) {
     FrameMode = 0,
     TenthsSecondsMode = 1,
 };
 pub const FrameMode = PositionModeList.FrameMode;
 pub const TenthsSecondsMode = PositionModeList.TenthsSecondsMode;
 
-pub const RecordingType = extern enum(i32) {
+pub const RecordingType = enum(i32) {
     CONTENT = 0,
     REFERENCE = 1,
 };
 pub const CONTENT = RecordingType.CONTENT;
 pub const REFERENCE = RecordingType.REFERENCE;
 
-pub const MSVidCCService = extern enum(i32) {
+pub const MSVidCCService = enum(i32) {
     None = 0,
     Caption1 = 1,
     Caption2 = 2,
@@ -30255,7 +30255,7 @@ pub const MSVidCCService = extern enum(i32) {
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const MSVidSinkStreams = extern enum(i32) {
+pub const MSVidSinkStreams = enum(i32) {
     Video = 1,
     Audio = 2,
     Other = 4,
@@ -30485,7 +30485,7 @@ pub const IMSVidGraphSegmentContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MSVidSegmentType = extern enum(i32) {
+pub const MSVidSegmentType = enum(i32) {
     SOURCE = 0,
     XFORM = 1,
     DEST = 2,
@@ -30628,24 +30628,24 @@ pub const IMSVidGraphSegment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MSVidCtlButtonstate = extern enum(i32) {
+pub const MSVidCtlButtonstate = enum(i32) {
     LEFT_BUTTON = 1,
     RIGHT_BUTTON = 2,
     MIDDLE_BUTTON = 4,
     X_BUTTON1 = 8,
     X_BUTTON2 = 16,
-    SHIFT = 1,
-    CTRL = 2,
-    ALT = 4,
+    // SHIFT = 1, this enum value conflicts with LEFT_BUTTON
+    // CTRL = 2, this enum value conflicts with RIGHT_BUTTON
+    // ALT = 4, this enum value conflicts with MIDDLE_BUTTON
 };
 pub const MSVIDCTL_LEFT_BUTTON = MSVidCtlButtonstate.LEFT_BUTTON;
 pub const MSVIDCTL_RIGHT_BUTTON = MSVidCtlButtonstate.RIGHT_BUTTON;
 pub const MSVIDCTL_MIDDLE_BUTTON = MSVidCtlButtonstate.MIDDLE_BUTTON;
 pub const MSVIDCTL_X_BUTTON1 = MSVidCtlButtonstate.X_BUTTON1;
 pub const MSVIDCTL_X_BUTTON2 = MSVidCtlButtonstate.X_BUTTON2;
-pub const MSVIDCTL_SHIFT = MSVidCtlButtonstate.SHIFT;
-pub const MSVIDCTL_CTRL = MSVidCtlButtonstate.CTRL;
-pub const MSVIDCTL_ALT = MSVidCtlButtonstate.ALT;
+pub const MSVIDCTL_SHIFT = MSVidCtlButtonstate.LEFT_BUTTON;
+pub const MSVIDCTL_CTRL = MSVidCtlButtonstate.RIGHT_BUTTON;
+pub const MSVIDCTL_ALT = MSVidCtlButtonstate.MIDDLE_BUTTON;
 
 const IID_IMSVidGraphSegmentUserInput_Value = @import("../zig.zig").Guid.initString("301c060e-20d9-4587-9b03-f82ed9a9943c");
 pub const IID_IMSVidGraphSegmentUserInput = &IID_IMSVidGraphSegmentUserInput_Value;
@@ -31666,7 +31666,7 @@ pub const IMSVidFilePlaybackEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DVDMenuIDConstants = extern enum(i32) {
+pub const DVDMenuIDConstants = enum(i32) {
     Title = 2,
     Root = 3,
     Subpicture = 4,
@@ -31681,7 +31681,7 @@ pub const dvdMenu_Audio = DVDMenuIDConstants.Audio;
 pub const dvdMenu_Angle = DVDMenuIDConstants.Angle;
 pub const dvdMenu_Chapter = DVDMenuIDConstants.Chapter;
 
-pub const DVDFilterState = extern enum(i32) {
+pub const DVDFilterState = enum(i32) {
     Undefined = -2,
     Unitialized = -1,
     Stopped = 0,
@@ -31694,7 +31694,7 @@ pub const dvdState_Stopped = DVDFilterState.Stopped;
 pub const dvdState_Paused = DVDFilterState.Paused;
 pub const dvdState_Running = DVDFilterState.Running;
 
-pub const DVDTextStringType = extern enum(i32) {
+pub const DVDTextStringType = enum(i32) {
     Struct_Volume = 1,
     Struct_Title = 2,
     Struct_ParentalID = 3,
@@ -31761,7 +31761,7 @@ pub const dvdOther_Scene = DVDTextStringType.Other_Scene;
 pub const dvdOther_Cut = DVDTextStringType.Other_Cut;
 pub const dvdOther_Take = DVDTextStringType.Other_Take;
 
-pub const DVDSPExt = extern enum(i32) {
+pub const DVDSPExt = enum(i32) {
     NotSpecified = 0,
     Caption_Normal = 1,
     Caption_Big = 2,
@@ -33263,7 +33263,7 @@ pub const IMSVidDataServicesEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SourceSizeList = extern enum(i32) {
+pub const SourceSizeList = enum(i32) {
     FullSize = 0,
     ClipByOverScan = 1,
     ClipByClipRect = 2,
@@ -35311,7 +35311,7 @@ pub const CLSID_MSVidFeature = &CLSID_MSVidFeature_Value;
 const CLSID_MSVidOutput_Value = @import("../zig.zig").Guid.initString("87eb890d-03ad-4e9d-9866-376e5ec572ed");
 pub const CLSID_MSVidOutput = &CLSID_MSVidOutput_Value;
 
-pub const MSViddispidList = extern enum(i32) {
+pub const MSViddispidList = enum(i32) {
     Inputs = 0,
     Outputs = 1,
     _Inputs = 2,
@@ -35372,9 +35372,9 @@ pub const dispidDisableAudio = MSViddispidList.DisableAudio;
 pub const dispidViewNext = MSViddispidList.ViewNext;
 pub const dispidServiceP = MSViddispidList.ServiceP;
 
-pub const DisplaySizeList = extern enum(i32) {
+pub const DisplaySizeList = enum(i32) {
     DefaultSize = 0,
-    SourceSize = 0,
+    // SourceSize = 0, this enum value conflicts with DefaultSize
     HalfSourceSize = 1,
     DoubleSourceSize = 2,
     FullScreen = 3,
@@ -35383,7 +35383,7 @@ pub const DisplaySizeList = extern enum(i32) {
     SixteenthScreen = 6,
 };
 pub const dslDefaultSize = DisplaySizeList.DefaultSize;
-pub const dslSourceSize = DisplaySizeList.SourceSize;
+pub const dslSourceSize = DisplaySizeList.DefaultSize;
 pub const dslHalfSourceSize = DisplaySizeList.HalfSourceSize;
 pub const dslDoubleSourceSize = DisplaySizeList.DoubleSourceSize;
 pub const dslFullScreen = DisplaySizeList.FullScreen;
@@ -35391,7 +35391,7 @@ pub const dslHalfScreen = DisplaySizeList.HalfScreen;
 pub const dslQuarterScreen = DisplaySizeList.QuarterScreen;
 pub const dslSixteenthScreen = DisplaySizeList.SixteenthScreen;
 
-pub const MSVidCtlStateList = extern enum(i32) {
+pub const MSVidCtlStateList = enum(i32) {
     UNBUILT = -1,
     STOP = 0,
     PAUSE = 1,
@@ -35865,7 +35865,7 @@ pub const IStreamBufferInitialize = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RECORDING_TYPE = extern enum(i32) {
+pub const RECORDING_TYPE = enum(i32) {
     CONTENT = 0,
     REFERENCE = 1,
 };
@@ -36079,7 +36079,7 @@ pub const IStreamBufferRecComp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const STREAMBUFFER_ATTR_DATATYPE = extern enum(i32) {
+pub const STREAMBUFFER_ATTR_DATATYPE = enum(i32) {
     DWORD = 0,
     STRING = 1,
     BINARY = 2,
@@ -36451,7 +36451,7 @@ pub const IStreamBufferDataCounters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CROSSBAR_DEFAULT_FLAGS = extern enum(i32) {
+pub const CROSSBAR_DEFAULT_FLAGS = enum(i32) {
     PROFILE = 1,
     STREAMS = 2,
 };
@@ -36783,7 +36783,7 @@ pub const MPEG_HEADER_VERSION_BITS_MIDL = extern struct {
     Bits: u8,
 };
 
-pub const MPEG_CURRENT_NEXT_BIT = extern enum(i32) {
+pub const MPEG_CURRENT_NEXT_BIT = enum(i32) {
     NEXT = 0,
     CURRENT = 1,
 };
@@ -36952,7 +36952,7 @@ pub const MPEG_DATE_AND_TIME = extern struct {
     T: MPEG_TIME,
 };
 
-pub const MPEG_CONTEXT_TYPE = extern enum(i32) {
+pub const MPEG_CONTEXT_TYPE = enum(i32) {
     BCS_DEMUX = 0,
     WINSOCK = 1,
 };
@@ -36975,7 +36975,7 @@ pub const MPEG_CONTEXT = packed struct {
     },
 };
 
-pub const MPEG_REQUEST_TYPE = extern enum(i32) {
+pub const MPEG_REQUEST_TYPE = enum(i32) {
     UNKNOWN = 0,
     GET_SECTION = 1,
     GET_SECTION_ASYNC = 2,
@@ -39140,7 +39140,7 @@ pub const SAMPLE_SEQ_OFFSET = extern struct {
     _bitfield: u32,
 };
 
-pub const VA_VIDEO_FORMAT = extern enum(i32) {
+pub const VA_VIDEO_FORMAT = enum(i32) {
     COMPONENT = 0,
     PAL = 1,
     NTSC = 2,
@@ -39155,7 +39155,7 @@ pub const VA_VIDEO_SECAM = VA_VIDEO_FORMAT.SECAM;
 pub const VA_VIDEO_MAC = VA_VIDEO_FORMAT.MAC;
 pub const VA_VIDEO_UNSPECIFIED = VA_VIDEO_FORMAT.UNSPECIFIED;
 
-pub const VA_COLOR_PRIMARIES = extern enum(i32) {
+pub const VA_COLOR_PRIMARIES = enum(i32) {
     ITU_R_BT_709 = 1,
     UNSPECIFIED = 2,
     ITU_R_BT_470_SYSTEM_M = 4,
@@ -39172,7 +39172,7 @@ pub const VA_PRIMARIES_SMPTE_170M = VA_COLOR_PRIMARIES.SMPTE_170M;
 pub const VA_PRIMARIES_SMPTE_240M = VA_COLOR_PRIMARIES.SMPTE_240M;
 pub const VA_PRIMARIES_H264_GENERIC_FILM = VA_COLOR_PRIMARIES.H264_GENERIC_FILM;
 
-pub const VA_TRANSFER_CHARACTERISTICS = extern enum(i32) {
+pub const VA_TRANSFER_CHARACTERISTICS = enum(i32) {
     ITU_R_BT_709 = 1,
     UNSPECIFIED = 2,
     ITU_R_BT_470_SYSTEM_M = 4,
@@ -39193,7 +39193,7 @@ pub const VA_TRANSFER_CHARACTERISTICS_LINEAR = VA_TRANSFER_CHARACTERISTICS.LINEA
 pub const VA_TRANSFER_CHARACTERISTICS_H264_LOG_100_TO_1 = VA_TRANSFER_CHARACTERISTICS.H264_LOG_100_TO_1;
 pub const VA_TRANSFER_CHARACTERISTICS_H264_LOG_316_TO_1 = VA_TRANSFER_CHARACTERISTICS.H264_LOG_316_TO_1;
 
-pub const VA_MATRIX_COEFFICIENTS = extern enum(i32) {
+pub const VA_MATRIX_COEFFICIENTS = enum(i32) {
     H264_RGB = 0,
     ITU_R_BT_709 = 1,
     UNSPECIFIED = 2,
@@ -39263,7 +39263,7 @@ pub const SAMPLE_LIVE_STREAM_TIME = extern struct {
 const CLSID_TIFLoad_Value = @import("../zig.zig").Guid.initString("14eb8748-1753-4393-95ae-4f7e7a87aad6");
 pub const CLSID_TIFLoad = &CLSID_TIFLoad_Value;
 
-pub const DVB_STRCONV_MODE = extern enum(i32) {
+pub const DVB_STRCONV_MODE = enum(i32) {
     DVB = 0,
     DVB_EMPHASIS = 1,
     DVB_WITHOUT_EMPHASIS = 2,
@@ -41461,7 +41461,7 @@ pub const IDvbServiceAttributeDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CRID_LOCATION = extern enum(i32) {
+pub const CRID_LOCATION = enum(i32) {
     IN_DESCRIPTOR = 0,
     IN_CIT = 1,
     DVB_RESERVED1 = 2,
@@ -42341,7 +42341,7 @@ pub const IDvbDataBroadcastDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DESC_LINKAGE_TYPE = extern enum(i32) {
+pub const DESC_LINKAGE_TYPE = enum(i32) {
     RESERVED0 = 0,
     INFORMATION = 1,
     EPG = 2,
@@ -45695,7 +45695,7 @@ pub const CLSID_EVENTTYPE_CASDescrambleFailureEvent = &CLSID_EVENTTYPE_CASDescra
 const CLSID_EVENTID_CASFailureSpanningEvent_Value = @import("../zig.zig").Guid.initString("ead831ae-5529-4d1f-afce-0d8cd1257d30");
 pub const CLSID_EVENTID_CASFailureSpanningEvent = &CLSID_EVENTID_CASFailureSpanningEvent_Value;
 
-pub const ChannelChangeSpanningEvent_State = extern enum(i32) {
+pub const ChannelChangeSpanningEvent_State = enum(i32) {
     Start = 0,
     End = 2,
 };
@@ -45713,7 +45713,7 @@ pub const ChannelChangeInfo = extern struct {
 const CLSID_EVENTID_ChannelTypeSpanningEvent_Value = @import("../zig.zig").Guid.initString("72ab1d51-87d2-489b-ba11-0e08dc210243");
 pub const CLSID_EVENTID_ChannelTypeSpanningEvent = &CLSID_EVENTID_ChannelTypeSpanningEvent_Value;
 
-pub const ChannelType = extern enum(i32) {
+pub const ChannelType = enum(i32) {
     None = 0,
     Other = 1,
     Video = 2,
@@ -45783,7 +45783,7 @@ pub const DVBScramblingControlSpanningEvent = extern struct {
 const CLSID_EVENTID_DVBScramblingControlSpanningEvent_Value = @import("../zig.zig").Guid.initString("4bd4e1c4-90a1-4109-8236-27f00e7dcc5b");
 pub const CLSID_EVENTID_DVBScramblingControlSpanningEvent = &CLSID_EVENTID_DVBScramblingControlSpanningEvent_Value;
 
-pub const SignalAndServiceStatusSpanningEvent_State = extern enum(i32) {
+pub const SignalAndServiceStatusSpanningEvent_State = enum(i32) {
     None = -1,
     Clear = 0,
     NoTVSignal = 1,
@@ -45971,7 +45971,7 @@ pub const CLSID_PINNAME_BDA_OPENCABLE_PSIP_PIN = &CLSID_PINNAME_BDA_OPENCABLE_PS
 const CLSID_KSPROPSETID_BdaEthernetFilter_Value = @import("../zig.zig").Guid.initString("71985f43-1ca1-11d3-9cc8-00c04f7971e0");
 pub const CLSID_KSPROPSETID_BdaEthernetFilter = &CLSID_KSPROPSETID_BdaEthernetFilter_Value;
 
-pub const KSPROPERTY_BDA_ETHERNET_FILTER = extern enum(i32) {
+pub const KSPROPERTY_BDA_ETHERNET_FILTER = enum(i32) {
     LIST_SIZE = 0,
     LIST = 1,
     MODE = 2,
@@ -45983,7 +45983,7 @@ pub const KSPROPERTY_BDA_ETHERNET_FILTER_MULTICAST_MODE = KSPROPERTY_BDA_ETHERNE
 const CLSID_KSPROPSETID_BdaIPv4Filter_Value = @import("../zig.zig").Guid.initString("71985f44-1ca1-11d3-9cc8-00c04f7971e0");
 pub const CLSID_KSPROPSETID_BdaIPv4Filter = &CLSID_KSPROPSETID_BdaIPv4Filter_Value;
 
-pub const KSPROPERTY_BDA_IPv4_FILTER = extern enum(i32) {
+pub const KSPROPERTY_BDA_IPv4_FILTER = enum(i32) {
     LIST_SIZE = 0,
     LIST = 1,
     MODE = 2,
@@ -45995,7 +45995,7 @@ pub const KSPROPERTY_BDA_IPv4_FILTER_MULTICAST_MODE = KSPROPERTY_BDA_IPv4_FILTER
 const CLSID_KSPROPSETID_BdaIPv6Filter_Value = @import("../zig.zig").Guid.initString("e1785a74-2a23-4fb3-9245-a8f88017ef33");
 pub const CLSID_KSPROPSETID_BdaIPv6Filter = &CLSID_KSPROPSETID_BdaIPv6Filter_Value;
 
-pub const KSPROPERTY_BDA_IPv6_FILTER = extern enum(i32) {
+pub const KSPROPERTY_BDA_IPv6_FILTER = enum(i32) {
     LIST_SIZE = 0,
     LIST = 1,
     MODE = 2,
@@ -46007,7 +46007,7 @@ pub const KSPROPERTY_BDA_IPv6_FILTER_MULTICAST_MODE = KSPROPERTY_BDA_IPv6_FILTER
 const CLSID_KSPROPSETID_BdaSignalStats_Value = @import("../zig.zig").Guid.initString("1347d106-cf3a-428a-a5cb-ac0d9a2a4338");
 pub const CLSID_KSPROPSETID_BdaSignalStats = &CLSID_KSPROPSETID_BdaSignalStats_Value;
 
-pub const KSPROPERTY_BDA_SIGNAL_STATS = extern enum(i32) {
+pub const KSPROPERTY_BDA_SIGNAL_STATS = enum(i32) {
     IGNAL_STRENGTH = 0,
     IGNAL_QUALITY = 1,
     IGNAL_PRESENT = 2,
@@ -46024,7 +46024,7 @@ pub const KSPROPERTY_BDA_SAMPLE_TIME = KSPROPERTY_BDA_SIGNAL_STATS.AMPLE_TIME;
 pub const KSPROPERTY_BDA_SIGNAL_LOCK_CAPS = KSPROPERTY_BDA_SIGNAL_STATS.IGNAL_LOCK_CAPS;
 pub const KSPROPERTY_BDA_SIGNAL_LOCK_TYPE = KSPROPERTY_BDA_SIGNAL_STATS.IGNAL_LOCK_TYPE;
 
-pub const BDA_LockType = extern enum(i32) {
+pub const BDA_LockType = enum(i32) {
     None = 0,
     PLL = 1,
     DecoderDemod = 2,
@@ -46038,7 +46038,7 @@ pub const Bda_LockType_Complete = BDA_LockType.Complete;
 const CLSID_KSMETHODSETID_BdaChangeSync_Value = @import("../zig.zig").Guid.initString("fd0a5af3-b41d-11d2-9c95-00c04f7971e0");
 pub const CLSID_KSMETHODSETID_BdaChangeSync = &CLSID_KSMETHODSETID_BdaChangeSync_Value;
 
-pub const KSMETHOD_BDA_CHANGE_SYNC = extern enum(i32) {
+pub const KSMETHOD_BDA_CHANGE_SYNC = enum(i32) {
     START_CHANGES = 0,
     CHECK_CHANGES = 1,
     COMMIT_CHANGES = 2,
@@ -46052,7 +46052,7 @@ pub const KSMETHOD_BDA_GET_CHANGE_STATE = KSMETHOD_BDA_CHANGE_SYNC.GET_CHANGE_ST
 const CLSID_KSMETHODSETID_BdaDeviceConfiguration_Value = @import("../zig.zig").Guid.initString("71985f45-1ca1-11d3-9cc8-00c04f7971e0");
 pub const CLSID_KSMETHODSETID_BdaDeviceConfiguration = &CLSID_KSMETHODSETID_BdaDeviceConfiguration_Value;
 
-pub const KSMETHOD_BDA_DEVICE_CONFIGURATION = extern enum(i32) {
+pub const KSMETHOD_BDA_DEVICE_CONFIGURATION = enum(i32) {
     CREATE_PIN_FACTORY = 0,
     DELETE_PIN_FACTORY = 1,
     CREATE_TOPOLOGY = 2,
@@ -46064,7 +46064,7 @@ pub const KSMETHOD_BDA_CREATE_TOPOLOGY = KSMETHOD_BDA_DEVICE_CONFIGURATION.CREAT
 const CLSID_KSPROPSETID_BdaTopology_Value = @import("../zig.zig").Guid.initString("a14ee835-0a23-11d3-9cc7-00c04f7971e0");
 pub const CLSID_KSPROPSETID_BdaTopology = &CLSID_KSPROPSETID_BdaTopology_Value;
 
-pub const KSPROPERTY_BDA_TOPOLOGY = extern enum(i32) {
+pub const KSPROPERTY_BDA_TOPOLOGY = enum(i32) {
     NODE_TYPES = 0,
     PIN_TYPES = 1,
     TEMPLATE_CONNECTIONS = 2,
@@ -46086,7 +46086,7 @@ pub const KSPROPERTY_BDA_NODE_DESCRIPTORS = KSPROPERTY_BDA_TOPOLOGY.NODE_DESCRIP
 const CLSID_KSPROPSETID_BdaPinControl_Value = @import("../zig.zig").Guid.initString("0ded49d5-a8b7-4d5d-97a1-12b0c195874d");
 pub const CLSID_KSPROPSETID_BdaPinControl = &CLSID_KSPROPSETID_BdaPinControl_Value;
 
-pub const KSPROPERTY_BDA_PIN_CONTROL = extern enum(i32) {
+pub const KSPROPERTY_BDA_PIN_CONTROL = enum(i32) {
     ID = 0,
     TYPE = 1,
 };
@@ -46096,7 +46096,7 @@ pub const KSPROPERTY_BDA_PIN_TYPE = KSPROPERTY_BDA_PIN_CONTROL.TYPE;
 const CLSID_KSEVENTSETID_BdaPinEvent_Value = @import("../zig.zig").Guid.initString("104781cd-50bd-40d5-95fb-087e0e86a591");
 pub const CLSID_KSEVENTSETID_BdaPinEvent = &CLSID_KSEVENTSETID_BdaPinEvent_Value;
 
-pub const KSPROPERTY_BDA_PIN_EVENT = extern enum(i32) {
+pub const KSPROPERTY_BDA_PIN_EVENT = enum(i32) {
     CONNECTED = 0,
     DISCONNECTED = 1,
 };
@@ -46106,7 +46106,7 @@ pub const KSEVENT_BDA_PIN_DISCONNECTED = KSPROPERTY_BDA_PIN_EVENT.DISCONNECTED;
 const CLSID_KSPROPSETID_BdaVoidTransform_Value = @import("../zig.zig").Guid.initString("71985f46-1ca1-11d3-9cc8-00c04f7971e0");
 pub const CLSID_KSPROPSETID_BdaVoidTransform = &CLSID_KSPROPSETID_BdaVoidTransform_Value;
 
-pub const KSPROPERTY_BDA_VOID_TRANSFORM = extern enum(i32) {
+pub const KSPROPERTY_BDA_VOID_TRANSFORM = enum(i32) {
     ART = 0,
     OP = 1,
 };
@@ -46116,7 +46116,7 @@ pub const KSPROPERTY_BDA_VOID_TRANSFORM_STOP = KSPROPERTY_BDA_VOID_TRANSFORM.OP;
 const CLSID_KSPROPSETID_BdaNullTransform_Value = @import("../zig.zig").Guid.initString("ddf15b0d-bd25-11d2-9ca0-00c04f7971e0");
 pub const CLSID_KSPROPSETID_BdaNullTransform = &CLSID_KSPROPSETID_BdaNullTransform_Value;
 
-pub const KSPROPERTY_BDA_NULL_TRANSFORM = extern enum(i32) {
+pub const KSPROPERTY_BDA_NULL_TRANSFORM = enum(i32) {
     ART = 0,
     OP = 1,
 };
@@ -46126,7 +46126,7 @@ pub const KSPROPERTY_BDA_NULL_TRANSFORM_STOP = KSPROPERTY_BDA_NULL_TRANSFORM.OP;
 const CLSID_KSPROPSETID_BdaFrequencyFilter_Value = @import("../zig.zig").Guid.initString("71985f47-1ca1-11d3-9cc8-00c04f7971e0");
 pub const CLSID_KSPROPSETID_BdaFrequencyFilter = &CLSID_KSPROPSETID_BdaFrequencyFilter_Value;
 
-pub const KSPROPERTY_BDA_FREQUENCY_FILTER = extern enum(i32) {
+pub const KSPROPERTY_BDA_FREQUENCY_FILTER = enum(i32) {
     FREQUENCY = 0,
     POLARITY = 1,
     RANGE = 2,
@@ -46149,7 +46149,7 @@ pub const KSPROPERTY_BDA_RF_TUNER_SCAN_STATUS = KSPROPERTY_BDA_FREQUENCY_FILTER.
 pub const KSPROPERTY_BDA_RF_TUNER_STANDARD = KSPROPERTY_BDA_FREQUENCY_FILTER.STANDARD;
 pub const KSPROPERTY_BDA_RF_TUNER_STANDARD_MODE = KSPROPERTY_BDA_FREQUENCY_FILTER.STANDARD_MODE;
 
-pub const BDA_SignalType = extern enum(i32) {
+pub const BDA_SignalType = enum(i32) {
     Unknown = 0,
     Analog = 1,
     Digital = 2,
@@ -46158,7 +46158,7 @@ pub const Bda_SignalType_Unknown = BDA_SignalType.Unknown;
 pub const Bda_SignalType_Analog = BDA_SignalType.Analog;
 pub const Bda_SignalType_Digital = BDA_SignalType.Digital;
 
-pub const BDA_DigitalSignalStandard = extern enum(i32) {
+pub const BDA_DigitalSignalStandard = enum(i32) {
     None = 0,
     DVB_T = 1,
     DVB_S = 2,
@@ -46212,7 +46212,7 @@ pub const KSPROPERTY_BDA_RF_TUNER_STANDARD_MODE_S = extern struct {
 const CLSID_KSEVENTSETID_BdaTunerEvent_Value = @import("../zig.zig").Guid.initString("aab59e17-01c9-4ebf-93f2-fc3b79b46f91");
 pub const CLSID_KSEVENTSETID_BdaTunerEvent = &CLSID_KSEVENTSETID_BdaTunerEvent_Value;
 
-pub const KSEVENT_BDA_TUNER = extern enum(i32) {
+pub const KSEVENT_BDA_TUNER = enum(i32) {
     N = 0,
 };
 pub const KSEVENT_BDA_TUNER_SCAN = KSEVENT_BDA_TUNER.N;
@@ -46227,7 +46227,7 @@ pub const KSEVENTDATA_BDA_RF_TUNER_SCAN_S = extern struct {
 const CLSID_KSPROPSETID_BdaLNBInfo_Value = @import("../zig.zig").Guid.initString("992cf102-49f9-4719-a664-c4f23e2408f4");
 pub const CLSID_KSPROPSETID_BdaLNBInfo = &CLSID_KSPROPSETID_BdaLNBInfo_Value;
 
-pub const KSPROPERTY_BDA_LNB_INFO = extern enum(i32) {
+pub const KSPROPERTY_BDA_LNB_INFO = enum(i32) {
     LOF_LOW_BAND = 0,
     LOF_HIGH_BAND = 1,
     SWITCH_FREQUENCY = 2,
@@ -46239,7 +46239,7 @@ pub const KSPROPERTY_BDA_LNB_SWITCH_FREQUENCY = KSPROPERTY_BDA_LNB_INFO.SWITCH_F
 const CLSID_KSPROPSETID_BdaDiseqCommand_Value = @import("../zig.zig").Guid.initString("f84e2ab0-3c6b-45e3-a0fc-8669d4b81f11");
 pub const CLSID_KSPROPSETID_BdaDiseqCommand = &CLSID_KSPROPSETID_BdaDiseqCommand_Value;
 
-pub const KSPROPERTY_BDA_DISEQC_COMMAND = extern enum(i32) {
+pub const KSPROPERTY_BDA_DISEQC_COMMAND = enum(i32) {
     ENABLE = 0,
     LNB_SOURCE = 1,
     USETONEBURST = 2,
@@ -46257,7 +46257,7 @@ pub const KSPROPERTY_BDA_DISEQC_RESPONSE = KSPROPERTY_BDA_DISEQC_COMMAND.RESPONS
 const CLSID_KSEVENTSETID_BdaDiseqCEvent_Value = @import("../zig.zig").Guid.initString("8b19bbf0-4184-43ac-ad3c-0c889be4c212");
 pub const CLSID_KSEVENTSETID_BdaDiseqCEvent = &CLSID_KSEVENTSETID_BdaDiseqCEvent_Value;
 
-pub const KSPROPERTY_BDA_DISEQC_EVENT = extern enum(i32) {
+pub const KSPROPERTY_BDA_DISEQC_EVENT = enum(i32) {
     D = 0,
 };
 pub const KSEVENT_BDA_DISEQC_DATA_RECEIVED = KSPROPERTY_BDA_DISEQC_EVENT.D;
@@ -46265,7 +46265,7 @@ pub const KSEVENT_BDA_DISEQC_DATA_RECEIVED = KSPROPERTY_BDA_DISEQC_EVENT.D;
 const CLSID_KSPROPSETID_BdaDigitalDemodulator_Value = @import("../zig.zig").Guid.initString("ef30f379-985b-4d10-b640-a79d5e04e1e0");
 pub const CLSID_KSPROPSETID_BdaDigitalDemodulator = &CLSID_KSPROPSETID_BdaDigitalDemodulator_Value;
 
-pub const KSPROPERTY_BDA_DIGITAL_DEMODULATOR = extern enum(i32) {
+pub const KSPROPERTY_BDA_DIGITAL_DEMODULATOR = enum(i32) {
     MODULATION_TYPE = 0,
     INNER_FEC_TYPE = 1,
     INNER_FEC_RATE = 2,
@@ -46297,7 +46297,7 @@ pub const KSPROPERTY_BDA_PLP_NUMBER = KSPROPERTY_BDA_DIGITAL_DEMODULATOR.PLP_NUM
 const CLSID_KSPROPSETID_BdaAutodemodulate_Value = @import("../zig.zig").Guid.initString("ddf15b12-bd25-11d2-9ca0-00c04f7971e0");
 pub const CLSID_KSPROPSETID_BdaAutodemodulate = &CLSID_KSPROPSETID_BdaAutodemodulate_Value;
 
-pub const KSPROPERTY_BDA_AUTODEMODULATE = extern enum(i32) {
+pub const KSPROPERTY_BDA_AUTODEMODULATE = enum(i32) {
     ART = 0,
     OP = 1,
 };
@@ -46307,7 +46307,7 @@ pub const KSPROPERTY_BDA_AUTODEMODULATE_STOP = KSPROPERTY_BDA_AUTODEMODULATE.OP;
 const CLSID_KSPROPSETID_BdaTableSection_Value = @import("../zig.zig").Guid.initString("516b99c5-971c-4aaf-b3f3-d9fda8a15e16");
 pub const CLSID_KSPROPSETID_BdaTableSection = &CLSID_KSPROPSETID_BdaTableSection_Value;
 
-pub const KSPROPERTY_IDS_BDA_TABLE = extern enum(i32) {
+pub const KSPROPERTY_IDS_BDA_TABLE = enum(i32) {
     N = 0,
 };
 pub const KSPROPERTY_BDA_TABLE_SECTION = KSPROPERTY_IDS_BDA_TABLE.N;
@@ -46315,7 +46315,7 @@ pub const KSPROPERTY_BDA_TABLE_SECTION = KSPROPERTY_IDS_BDA_TABLE.N;
 const CLSID_KSPROPSETID_BdaPIDFilter_Value = @import("../zig.zig").Guid.initString("d0a67d65-08df-4fec-8533-e5b550410b85");
 pub const CLSID_KSPROPSETID_BdaPIDFilter = &CLSID_KSPROPSETID_BdaPIDFilter_Value;
 
-pub const KSPROPERTY_BDA_PIDFILTER = extern enum(i32) {
+pub const KSPROPERTY_BDA_PIDFILTER = enum(i32) {
     MAP_PIDS = 0,
     UNMAP_PIDS = 1,
     LIST_PIDS = 2,
@@ -46327,7 +46327,7 @@ pub const KSPROPERTY_BDA_PIDFILTER_LIST_PIDS = KSPROPERTY_BDA_PIDFILTER.LIST_PID
 const CLSID_KSPROPSETID_BdaCA_Value = @import("../zig.zig").Guid.initString("b0693766-5278-4ec6-b9e1-3ce40560ef5a");
 pub const CLSID_KSPROPSETID_BdaCA = &CLSID_KSPROPSETID_BdaCA_Value;
 
-pub const KSPROPERTY_BDA_CA = extern enum(i32) {
+pub const KSPROPERTY_BDA_CA = enum(i32) {
     ECM_MAP_STATUS = 0,
     CA_MODULE_STATUS = 1,
     CA_SMART_CARD_STATUS = 2,
@@ -46345,7 +46345,7 @@ pub const KSPROPERTY_BDA_CA_REMOVE_PROGRAM = KSPROPERTY_BDA_CA.CA_REMOVE_PROGRAM
 const CLSID_KSEVENTSETID_BdaCAEvent_Value = @import("../zig.zig").Guid.initString("488c4ccc-b768-4129-8eb1-b00a071f9068");
 pub const CLSID_KSEVENTSETID_BdaCAEvent = &CLSID_KSEVENTSETID_BdaCAEvent_Value;
 
-pub const KSPROPERTY_BDA_CA_EVENT = extern enum(i32) {
+pub const KSPROPERTY_BDA_CA_EVENT = enum(i32) {
     PROGRAM_FLOW_STATUS_CHANGED = 0,
     CA_MODULE_STATUS_CHANGED = 1,
     CA_SMART_CARD_STATUS_CHANGED = 2,
@@ -46359,7 +46359,7 @@ pub const KSEVENT_BDA_CA_MODULE_UI_REQUESTED = KSPROPERTY_BDA_CA_EVENT.CA_MODULE
 const CLSID_KSMETHODSETID_BdaDrmService_Value = @import("../zig.zig").Guid.initString("bff6b5bb-b0ae-484c-9dca-73528fb0b46e");
 pub const CLSID_KSMETHODSETID_BdaDrmService = &CLSID_KSMETHODSETID_BdaDrmService_Value;
 
-pub const KSMETHOD_BDA_DRM = extern enum(i32) {
+pub const KSMETHOD_BDA_DRM = enum(i32) {
     CURRENT = 0,
     DRMSTATUS = 1,
 };
@@ -46369,7 +46369,7 @@ pub const KSMETHOD_BDA_DRM_DRMSTATUS = KSMETHOD_BDA_DRM.DRMSTATUS;
 const CLSID_KSMETHODSETID_BdaWmdrmSession_Value = @import("../zig.zig").Guid.initString("4be6fa3d-07cd-4139-8b80-8c18ba3aec88");
 pub const CLSID_KSMETHODSETID_BdaWmdrmSession = &CLSID_KSMETHODSETID_BdaWmdrmSession_Value;
 
-pub const KSMETHOD_BDA_WMDRM = extern enum(i32) {
+pub const KSMETHOD_BDA_WMDRM = enum(i32) {
     STATUS = 0,
     REVINFO = 1,
     CRL = 2,
@@ -46391,7 +46391,7 @@ pub const KSMETHOD_BDA_WMDRM_KEYINFO = KSMETHOD_BDA_WMDRM.KEYINFO;
 const CLSID_KSMETHODSETID_BdaWmdrmTuner_Value = @import("../zig.zig").Guid.initString("86d979cf-a8a7-4f94-b5fb-14c0aca68fe6");
 pub const CLSID_KSMETHODSETID_BdaWmdrmTuner = &CLSID_KSMETHODSETID_BdaWmdrmTuner_Value;
 
-pub const KSMETHOD_BDA_WMDRM_TUNER = extern enum(i32) {
+pub const KSMETHOD_BDA_WMDRM_TUNER = enum(i32) {
     CANCELCAPTURETOKEN = 0,
     SETPIDPROTECTION = 1,
     GETPIDPROTECTION = 2,
@@ -46409,7 +46409,7 @@ pub const KSMETHOD_BDA_WMDRMTUNER_PURCHASE_ENTITLEMENT = KSMETHOD_BDA_WMDRM_TUNE
 const CLSID_KSMETHODSETID_BdaEventing_Value = @import("../zig.zig").Guid.initString("f99492da-6193-4eb0-8690-6686cbff713e");
 pub const CLSID_KSMETHODSETID_BdaEventing = &CLSID_KSMETHODSETID_BdaEventing_Value;
 
-pub const KSMETHOD_BDA_EVENTING_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_EVENTING_SERVICE = enum(i32) {
     DATA = 0,
     COMPLETE = 1,
 };
@@ -46419,7 +46419,7 @@ pub const KSMETHOD_BDA_EVENT_COMPLETE = KSMETHOD_BDA_EVENTING_SERVICE.COMPLETE;
 const CLSID_KSEVENTSETID_BdaEvent_Value = @import("../zig.zig").Guid.initString("ae7e55b2-96d7-4e29-908f-62f95b2a1679");
 pub const CLSID_KSEVENTSETID_BdaEvent = &CLSID_KSEVENTSETID_BdaEvent_Value;
 
-pub const KSEVENT_BDA_EVENT_TYPE = extern enum(i32) {
+pub const KSEVENT_BDA_EVENT_TYPE = enum(i32) {
     T = 0,
 };
 pub const KSEVENT_BDA_EVENT_PENDINGEVENT = KSEVENT_BDA_EVENT_TYPE.T;
@@ -46427,7 +46427,7 @@ pub const KSEVENT_BDA_EVENT_PENDINGEVENT = KSEVENT_BDA_EVENT_TYPE.T;
 const CLSID_KSMETHODSETID_BdaDebug_Value = @import("../zig.zig").Guid.initString("0d4a90ec-c69d-4ee2-8c5a-fb1f63a50da1");
 pub const CLSID_KSMETHODSETID_BdaDebug = &CLSID_KSMETHODSETID_BdaDebug_Value;
 
-pub const KSMETHOD_BDA_DEBUG_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_DEBUG_SERVICE = enum(i32) {
     LEVEL = 0,
     DATA = 1,
 };
@@ -46437,7 +46437,7 @@ pub const KSMETHOD_BDA_DEBUG_DATA = KSMETHOD_BDA_DEBUG_SERVICE.DATA;
 const CLSID_KSMETHODSETID_BdaTuner_Value = @import("../zig.zig").Guid.initString("b774102f-ac07-478a-8228-2742d961fa7e");
 pub const CLSID_KSMETHODSETID_BdaTuner = &CLSID_KSMETHODSETID_BdaTuner_Value;
 
-pub const KSMETHOD_BDA_TUNER_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_TUNER_SERVICE = enum(i32) {
     SETTUNER = 0,
     GETTUNERSTATE = 1,
     SIGNALNOISERATIO = 2,
@@ -46452,7 +46452,7 @@ pub const CLSID_KSMETHODSETID_BdaNameValueA = &CLSID_KSMETHODSETID_BdaNameValueA
 const CLSID_KSMETHODSETID_BdaNameValue_Value = @import("../zig.zig").Guid.initString("36e07304-9f0d-4e88-9118-ac0ba317b7f2");
 pub const CLSID_KSMETHODSETID_BdaNameValue = &CLSID_KSMETHODSETID_BdaNameValue_Value;
 
-pub const KSMETHOD_BDA_GPNV_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_GPNV_SERVICE = enum(i32) {
     GETVALUE = 0,
     SETVALUE = 1,
     NAMEFROMINDEX = 2,
@@ -46466,7 +46466,7 @@ pub const KSMETHOD_BDA_GPNV_GETVALUEUPDATENAME = KSMETHOD_BDA_GPNV_SERVICE.GETVA
 const CLSID_KSMETHODSETID_BdaMux_Value = @import("../zig.zig").Guid.initString("942aafec-4c05-4c74-b8eb-8706c2a4943f");
 pub const CLSID_KSMETHODSETID_BdaMux = &CLSID_KSMETHODSETID_BdaMux_Value;
 
-pub const KSMETHOD_BDA_MUX_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_MUX_SERVICE = enum(i32) {
     GETPIDLIST = 0,
     SETPIDLIST = 1,
 };
@@ -46476,7 +46476,7 @@ pub const KSMETHOD_BDA_MUX_SETPIDLIST = KSMETHOD_BDA_MUX_SERVICE.SETPIDLIST;
 const CLSID_KSMETHODSETID_BdaScanning_Value = @import("../zig.zig").Guid.initString("12eb49df-6249-47f3-b190-e21e6e2f8a9c");
 pub const CLSID_KSMETHODSETID_BdaScanning = &CLSID_KSMETHODSETID_BdaScanning_Value;
 
-pub const KSMETHOD_BDA_SCAN_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_SCAN_SERVICE = enum(i32) {
     _CAPABILTIES = 0,
     NING_STATE = 1,
     _FILTER = 2,
@@ -46494,7 +46494,7 @@ pub const KSMETHOD_BDA_SCAN_STOP = KSMETHOD_BDA_SCAN_SERVICE._STOP;
 const CLSID_KSMETHODSETID_BdaGuideDataDeliveryService_Value = @import("../zig.zig").Guid.initString("8d9d5562-1589-417d-99ce-ac531dda19f9");
 pub const CLSID_KSMETHODSETID_BdaGuideDataDeliveryService = &CLSID_KSMETHODSETID_BdaGuideDataDeliveryService_Value;
 
-pub const KSMETHOD_BDA_GDDS_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_GDDS_SERVICE = enum(i32) {
     DATATYPE = 0,
     DATA = 1,
     TUNEXMLFROMIDX = 2,
@@ -46512,7 +46512,7 @@ pub const KSMETHOD_BDA_GDDS_DATAUPDATE = KSMETHOD_BDA_GDDS_SERVICE.DATAUPDATE;
 const CLSID_KSMETHODSETID_BdaConditionalAccessService_Value = @import("../zig.zig").Guid.initString("10ced3b4-320b-41bf-9824-1b2e68e71eb9");
 pub const CLSID_KSMETHODSETID_BdaConditionalAccessService = &CLSID_KSMETHODSETID_BdaConditionalAccessService_Value;
 
-pub const KSMETHOD_BDA_CAS_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_CAS_SERVICE = enum(i32) {
     CHECKENTITLEMENTTOKEN = 0,
     SETCAPTURETOKEN = 1,
     OPENBROADCASTMMI = 2,
@@ -46526,7 +46526,7 @@ pub const KSMETHOD_BDA_CAS_CLOSEMMIDIALOG = KSMETHOD_BDA_CAS_SERVICE.CLOSEMMIDIA
 const CLSID_KSMETHODSETID_BdaIsdbConditionalAccess_Value = @import("../zig.zig").Guid.initString("5e68c627-16c2-4e6c-b1e2-d00170cdaa0f");
 pub const CLSID_KSMETHODSETID_BdaIsdbConditionalAccess = &CLSID_KSMETHODSETID_BdaIsdbConditionalAccess_Value;
 
-pub const KSMETHOD_BDA_ISDB_CAS = extern enum(i32) {
+pub const KSMETHOD_BDA_ISDB_CAS = enum(i32) {
     SETREQUEST = 0,
     RESPONSEDATA = 1,
 };
@@ -46536,7 +46536,7 @@ pub const KSMETHOD_BDA_ISDBCAS_RESPONSEDATA = KSMETHOD_BDA_ISDB_CAS.RESPONSEDATA
 const CLSID_KSMETHODSETID_BdaTSSelector_Value = @import("../zig.zig").Guid.initString("1dcfafe9-b45e-41b3-bb2a-561eb129ae98");
 pub const CLSID_KSMETHODSETID_BdaTSSelector = &CLSID_KSMETHODSETID_BdaTSSelector_Value;
 
-pub const KSMETHOD_BDA_TS_SELECTOR = extern enum(i32) {
+pub const KSMETHOD_BDA_TS_SELECTOR = enum(i32) {
     SETTSID = 0,
     GETTSINFORMATION = 1,
 };
@@ -46546,7 +46546,7 @@ pub const KSMETHOD_BDA_TS_SELECTOR_GETTSINFORMATION = KSMETHOD_BDA_TS_SELECTOR.G
 const CLSID_KSMETHODSETID_BdaUserActivity_Value = @import("../zig.zig").Guid.initString("eda5c834-4531-483c-be0a-94e6c96ff396");
 pub const CLSID_KSMETHODSETID_BdaUserActivity = &CLSID_KSMETHODSETID_BdaUserActivity_Value;
 
-pub const KSMETHOD_BDA_USERACTIVITY_SERVICE = extern enum(i32) {
+pub const KSMETHOD_BDA_USERACTIVITY_SERVICE = enum(i32) {
     USEREASON = 0,
     INTERVAL = 1,
     DETECTED = 2,

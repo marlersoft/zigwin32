@@ -1612,7 +1612,7 @@ pub const IOCSPAdmin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OCSPSigningFlag = extern enum(i32) {
+pub const OCSPSigningFlag = enum(i32) {
     SILENT = 1,
     USE_CACERT = 2,
     ALLOW_SIGNINGCERT_AUTORENEWAL = 4,
@@ -1635,7 +1635,7 @@ pub const OCSP_SF_RESPONDER_ID_NAME = OCSPSigningFlag.RESPONDER_ID_NAME;
 pub const OCSP_SF_ALLOW_NONCE_EXTENSION = OCSPSigningFlag.ALLOW_NONCE_EXTENSION;
 pub const OCSP_SF_ALLOW_SIGNINGCERT_AUTOENROLLMENT = OCSPSigningFlag.ALLOW_SIGNINGCERT_AUTOENROLLMENT;
 
-pub const OCSPRequestFlag = extern enum(i32) {
+pub const OCSPRequestFlag = enum(i32) {
     S = 1,
 };
 pub const OCSP_RF_REJECT_SIGNED_REQUESTS = OCSPRequestFlag.S;
@@ -2264,7 +2264,7 @@ pub const ICertRequest2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509EnrollmentAuthFlags = extern enum(i32) {
+pub const X509EnrollmentAuthFlags = enum(i32) {
     None = 0,
     Anonymous = 1,
     Kerberos = 2,
@@ -2710,7 +2710,7 @@ pub const ICertPolicy2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509SCEPMessageType = extern enum(i32) {
+pub const X509SCEPMessageType = enum(i32) {
     Unknown = -1,
     CertResponse = 3,
     PKCSRequest = 19,
@@ -2727,7 +2727,7 @@ pub const SCEPMessageGetCert = X509SCEPMessageType.GetCert;
 pub const SCEPMessageGetCRL = X509SCEPMessageType.GetCRL;
 pub const SCEPMessageClaimChallengeAnswer = X509SCEPMessageType.ClaimChallengeAnswer;
 
-pub const X509SCEPDisposition = extern enum(i32) {
+pub const X509SCEPDisposition = enum(i32) {
     Unknown = -1,
     Success = 0,
     Failure = 2,
@@ -2740,7 +2740,7 @@ pub const SCEPDispositionFailure = X509SCEPDisposition.Failure;
 pub const SCEPDispositionPending = X509SCEPDisposition.Pending;
 pub const SCEPDispositionPendingChallenge = X509SCEPDisposition.PendingChallenge;
 
-pub const X509SCEPFailInfo = extern enum(i32) {
+pub const X509SCEPFailInfo = enum(i32) {
     Unknown = -1,
     BadAlgorithm = 0,
     BadMessageCheck = 1,
@@ -2816,7 +2816,7 @@ pub const INDESPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CERTENROLL_OBJECTID = extern enum(i32) {
+pub const CERTENROLL_OBJECTID = enum(i32) {
     _NONE = 0,
     _RSA = 1,
     _PKCS = 2,
@@ -3695,14 +3695,14 @@ pub const XCN_OID_ENROLL_ATTESTATION_STATEMENT = CERTENROLL_OBJECTID._ENROLL_ATT
 pub const XCN_OID_ENROLL_ENCRYPTION_ALGORITHM = CERTENROLL_OBJECTID._ENROLL_ENCRYPTION_ALGORITHM;
 pub const XCN_OID_ENROLL_KSP_NAME = CERTENROLL_OBJECTID._ENROLL_KSP_NAME;
 
-pub const WebSecurityLevel = extern enum(i32) {
+pub const WebSecurityLevel = enum(i32) {
     Unsafe = 0,
     Safe = 1,
 };
 pub const LevelUnsafe = WebSecurityLevel.Unsafe;
 pub const LevelSafe = WebSecurityLevel.Safe;
 
-pub const EncodingType = extern enum(i32) {
+pub const EncodingType = enum(i32) {
     BASE64HEADER = 0,
     BASE64 = 1,
     BINARY = 2,
@@ -3749,7 +3749,7 @@ pub const XCN_CRYPT_STRING_STRICT = EncodingType.STRICT;
 pub const XCN_CRYPT_STRING_NOCRLF = EncodingType.NOCRLF;
 pub const XCN_CRYPT_STRING_NOCR = EncodingType.NOCR;
 
-pub const PFXExportOptions = extern enum(i32) {
+pub const PFXExportOptions = enum(i32) {
     EEOnly = 0,
     ChainNoRoot = 1,
     ChainWithRoot = 2,
@@ -3758,7 +3758,7 @@ pub const PFXExportEEOnly = PFXExportOptions.EEOnly;
 pub const PFXExportChainNoRoot = PFXExportOptions.ChainNoRoot;
 pub const PFXExportChainWithRoot = PFXExportOptions.ChainWithRoot;
 
-pub const ObjectIdGroupId = extern enum(i32) {
+pub const ObjectIdGroupId = enum(i32) {
     ANY_GROUP_ID = 0,
     HASH_ALG_OID_GROUP_ID = 1,
     ENCRYPT_ALG_OID_GROUP_ID = 2,
@@ -3770,15 +3770,15 @@ pub const ObjectIdGroupId = extern enum(i32) {
     POLICY_OID_GROUP_ID = 8,
     TEMPLATE_OID_GROUP_ID = 9,
     KDF_OID_GROUP_ID = 10,
-    LAST_OID_GROUP_ID = 10,
-    FIRST_ALG_OID_GROUP_ID = 1,
-    LAST_ALG_OID_GROUP_ID = 4,
+    // LAST_OID_GROUP_ID = 10, this enum value conflicts with KDF_OID_GROUP_ID
+    // FIRST_ALG_OID_GROUP_ID = 1, this enum value conflicts with HASH_ALG_OID_GROUP_ID
+    // LAST_ALG_OID_GROUP_ID = 4, this enum value conflicts with SIGN_ALG_OID_GROUP_ID
     GROUP_ID_MASK = 65535,
     OID_PREFER_CNG_ALGID_FLAG = 1073741824,
     OID_DISABLE_SEARCH_DS_FLAG = -2147483648,
     OID_INFO_OID_GROUP_BIT_LEN_MASK = 268369920,
     OID_INFO_OID_GROUP_BIT_LEN_SHIFT = 16,
-    KEY_LENGTH_MASK = 268369920,
+    // KEY_LENGTH_MASK = 268369920, this enum value conflicts with OID_INFO_OID_GROUP_BIT_LEN_MASK
 };
 pub const XCN_CRYPT_ANY_GROUP_ID = ObjectIdGroupId.ANY_GROUP_ID;
 pub const XCN_CRYPT_HASH_ALG_OID_GROUP_ID = ObjectIdGroupId.HASH_ALG_OID_GROUP_ID;
@@ -3791,17 +3791,17 @@ pub const XCN_CRYPT_ENHKEY_USAGE_OID_GROUP_ID = ObjectIdGroupId.ENHKEY_USAGE_OID
 pub const XCN_CRYPT_POLICY_OID_GROUP_ID = ObjectIdGroupId.POLICY_OID_GROUP_ID;
 pub const XCN_CRYPT_TEMPLATE_OID_GROUP_ID = ObjectIdGroupId.TEMPLATE_OID_GROUP_ID;
 pub const XCN_CRYPT_KDF_OID_GROUP_ID = ObjectIdGroupId.KDF_OID_GROUP_ID;
-pub const XCN_CRYPT_LAST_OID_GROUP_ID = ObjectIdGroupId.LAST_OID_GROUP_ID;
-pub const XCN_CRYPT_FIRST_ALG_OID_GROUP_ID = ObjectIdGroupId.FIRST_ALG_OID_GROUP_ID;
-pub const XCN_CRYPT_LAST_ALG_OID_GROUP_ID = ObjectIdGroupId.LAST_ALG_OID_GROUP_ID;
+pub const XCN_CRYPT_LAST_OID_GROUP_ID = ObjectIdGroupId.KDF_OID_GROUP_ID;
+pub const XCN_CRYPT_FIRST_ALG_OID_GROUP_ID = ObjectIdGroupId.HASH_ALG_OID_GROUP_ID;
+pub const XCN_CRYPT_LAST_ALG_OID_GROUP_ID = ObjectIdGroupId.SIGN_ALG_OID_GROUP_ID;
 pub const XCN_CRYPT_GROUP_ID_MASK = ObjectIdGroupId.GROUP_ID_MASK;
 pub const XCN_CRYPT_OID_PREFER_CNG_ALGID_FLAG = ObjectIdGroupId.OID_PREFER_CNG_ALGID_FLAG;
 pub const XCN_CRYPT_OID_DISABLE_SEARCH_DS_FLAG = ObjectIdGroupId.OID_DISABLE_SEARCH_DS_FLAG;
 pub const XCN_CRYPT_OID_INFO_OID_GROUP_BIT_LEN_MASK = ObjectIdGroupId.OID_INFO_OID_GROUP_BIT_LEN_MASK;
 pub const XCN_CRYPT_OID_INFO_OID_GROUP_BIT_LEN_SHIFT = ObjectIdGroupId.OID_INFO_OID_GROUP_BIT_LEN_SHIFT;
-pub const XCN_CRYPT_KEY_LENGTH_MASK = ObjectIdGroupId.KEY_LENGTH_MASK;
+pub const XCN_CRYPT_KEY_LENGTH_MASK = ObjectIdGroupId.OID_INFO_OID_GROUP_BIT_LEN_MASK;
 
-pub const ObjectIdPublicKeyFlags = extern enum(i32) {
+pub const ObjectIdPublicKeyFlags = enum(i32) {
     ANY = 0,
     SIGN_KEY_FLAG = -2147483648,
     ENCRYPT_KEY_FLAG = 1073741824,
@@ -3810,7 +3810,7 @@ pub const XCN_CRYPT_OID_INFO_PUBKEY_ANY = ObjectIdPublicKeyFlags.ANY;
 pub const XCN_CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG = ObjectIdPublicKeyFlags.SIGN_KEY_FLAG;
 pub const XCN_CRYPT_OID_INFO_PUBKEY_ENCRYPT_KEY_FLAG = ObjectIdPublicKeyFlags.ENCRYPT_KEY_FLAG;
 
-pub const AlgorithmFlags = extern enum(i32) {
+pub const AlgorithmFlags = enum(i32) {
     None = 0,
     Wrap = 1,
 };
@@ -4053,7 +4053,7 @@ pub const IBinaryConverter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X500NameFlags = extern enum(i32) {
+pub const X500NameFlags = enum(i32) {
     NAME_STR_NONE = 0,
     SIMPLE_NAME_STR = 1,
     OID_NAME_STR = 2,
@@ -4148,7 +4148,7 @@ pub const IX500DistinguishedName = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509CertificateEnrollmentContext = extern enum(i32) {
+pub const X509CertificateEnrollmentContext = enum(i32) {
     None = 0,
     User = 1,
     Machine = 2,
@@ -4159,7 +4159,7 @@ pub const ContextUser = X509CertificateEnrollmentContext.User;
 pub const ContextMachine = X509CertificateEnrollmentContext.Machine;
 pub const ContextAdministratorForceMachine = X509CertificateEnrollmentContext.AdministratorForceMachine;
 
-pub const EnrollmentEnrollStatus = extern enum(i32) {
+pub const EnrollmentEnrollStatus = enum(i32) {
     ed = 1,
     Pended = 2,
     UIDeferredEnrollmentRequired = 4,
@@ -4176,14 +4176,14 @@ pub const EnrollUnknown = EnrollmentEnrollStatus.Unknown;
 pub const EnrollSkipped = EnrollmentEnrollStatus.Skipped;
 pub const EnrollDenied = EnrollmentEnrollStatus.Denied;
 
-pub const EnrollmentSelectionStatus = extern enum(i32) {
+pub const EnrollmentSelectionStatus = enum(i32) {
     No = 0,
     Yes = 1,
 };
 pub const SelectedNo = EnrollmentSelectionStatus.No;
 pub const SelectedYes = EnrollmentSelectionStatus.Yes;
 
-pub const EnrollmentDisplayStatus = extern enum(i32) {
+pub const EnrollmentDisplayStatus = enum(i32) {
     No = 0,
     Yes = 1,
 };
@@ -4311,7 +4311,7 @@ pub const IX509EnrollmentStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509ProviderType = extern enum(i32) {
+pub const X509ProviderType = enum(i32) {
     NONE = 0,
     RSA_FULL = 1,
     RSA_SIG = 2,
@@ -4352,7 +4352,7 @@ pub const XCN_PROV_INTEL_SEC = X509ProviderType.INTEL_SEC;
 pub const XCN_PROV_REPLACE_OWF = X509ProviderType.REPLACE_OWF;
 pub const XCN_PROV_RSA_AES = X509ProviderType.RSA_AES;
 
-pub const AlgorithmType = extern enum(i32) {
+pub const AlgorithmType = enum(i32) {
     UNKNOWN_INTERFACE = 0,
     CIPHER_INTERFACE = 1,
     HASH_INTERFACE = 2,
@@ -4371,7 +4371,7 @@ pub const XCN_BCRYPT_SECRET_AGREEMENT_INTERFACE = AlgorithmType.SECRET_AGREEMENT
 pub const XCN_BCRYPT_RNG_INTERFACE = AlgorithmType.RNG_INTERFACE;
 pub const XCN_BCRYPT_KEY_DERIVATION_INTERFACE = AlgorithmType.KEY_DERIVATION_INTERFACE;
 
-pub const AlgorithmOperationFlags = extern enum(i32) {
+pub const AlgorithmOperationFlags = enum(i32) {
     NO_OPERATION = 0,
     CIPHER_OPERATION = 1,
     HASH_OPERATION = 2,
@@ -4590,7 +4590,7 @@ pub const ICspAlgorithms = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509KeySpec = extern enum(i32) {
+pub const X509KeySpec = enum(i32) {
     NONE = 0,
     KEYEXCHANGE = 1,
     SIGNATURE = 2,
@@ -5072,7 +5072,7 @@ pub const ICspStatuses = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KeyIdentifierHashAlgorithm = extern enum(i32) {
+pub const KeyIdentifierHashAlgorithm = enum(i32) {
     Default = 0,
     Sha1 = 1,
     CapiSha1 = 2,
@@ -5167,7 +5167,7 @@ pub const IX509PublicKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509PrivateKeyExportFlags = extern enum(i32) {
+pub const X509PrivateKeyExportFlags = enum(i32) {
     EXPORT_NONE = 0,
     EXPORT_FLAG = 1,
     PLAINTEXT_EXPORT_FLAG = 2,
@@ -5180,7 +5180,7 @@ pub const XCN_NCRYPT_ALLOW_PLAINTEXT_EXPORT_FLAG = X509PrivateKeyExportFlags.PLA
 pub const XCN_NCRYPT_ALLOW_ARCHIVING_FLAG = X509PrivateKeyExportFlags.ARCHIVING_FLAG;
 pub const XCN_NCRYPT_ALLOW_PLAINTEXT_ARCHIVING_FLAG = X509PrivateKeyExportFlags.PLAINTEXT_ARCHIVING_FLAG;
 
-pub const X509PrivateKeyUsageFlags = extern enum(i32) {
+pub const X509PrivateKeyUsageFlags = enum(i32) {
     USAGES_NONE = 0,
     DECRYPT_FLAG = 1,
     SIGNING_FLAG = 2,
@@ -5195,7 +5195,7 @@ pub const XCN_NCRYPT_ALLOW_KEY_AGREEMENT_FLAG = X509PrivateKeyUsageFlags.KEY_AGR
 pub const XCN_NCRYPT_ALLOW_KEY_IMPORT_FLAG = X509PrivateKeyUsageFlags.KEY_IMPORT_FLAG;
 pub const XCN_NCRYPT_ALLOW_ALL_USAGES = X509PrivateKeyUsageFlags.ALL_USAGES;
 
-pub const X509PrivateKeyProtection = extern enum(i32) {
+pub const X509PrivateKeyProtection = enum(i32) {
     NO_PROTECTION_FLAG = 0,
     PROTECT_KEY_FLAG = 1,
     FORCE_HIGH_PROTECTION_FLAG = 2,
@@ -5208,7 +5208,7 @@ pub const XCN_NCRYPT_UI_FORCE_HIGH_PROTECTION_FLAG = X509PrivateKeyProtection.FO
 pub const XCN_NCRYPT_UI_FINGERPRINT_PROTECTION_FLAG = X509PrivateKeyProtection.FINGERPRINT_PROTECTION_FLAG;
 pub const XCN_NCRYPT_UI_APPCONTAINER_ACCESS_MEDIUM_FLAG = X509PrivateKeyProtection.APPCONTAINER_ACCESS_MEDIUM_FLAG;
 
-pub const X509PrivateKeyVerify = extern enum(i32) {
+pub const X509PrivateKeyVerify = enum(i32) {
     None = 0,
     Silent = 1,
     SmartCardNone = 2,
@@ -5751,7 +5751,7 @@ pub const IX509PrivateKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509HardwareKeyUsageFlags = extern enum(i32) {
+pub const X509HardwareKeyUsageFlags = enum(i32) {
     PCP_NONE = 0,
     TPM12_PROVIDER = 65536,
     PCP_SIGNATURE_KEY = 1,
@@ -5768,7 +5768,7 @@ pub const XCN_NCRYPT_PCP_GENERIC_KEY = X509HardwareKeyUsageFlags.PCP_GENERIC_KEY
 pub const XCN_NCRYPT_PCP_STORAGE_KEY = X509HardwareKeyUsageFlags.PCP_STORAGE_KEY;
 pub const XCN_NCRYPT_PCP_IDENTITY_KEY = X509HardwareKeyUsageFlags.PCP_IDENTITY_KEY;
 
-pub const X509KeyParametersExportType = extern enum(i32) {
+pub const X509KeyParametersExportType = enum(i32) {
     NONE = 0,
     NAME_FOR_ENCODE_FLAG = 536870912,
     PARAMETERS_FOR_ENCODE_FLAG = 268435456,
@@ -6135,7 +6135,7 @@ pub const IX509Extensions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509KeyUsageFlags = extern enum(i32) {
+pub const X509KeyUsageFlags = enum(i32) {
     NO_KEY_USAGE = 0,
     DIGITAL_SIGNATURE_KEY_USAGE = 128,
     NON_REPUDIATION_KEY_USAGE = 64,
@@ -6144,7 +6144,7 @@ pub const X509KeyUsageFlags = extern enum(i32) {
     KEY_AGREEMENT_KEY_USAGE = 8,
     KEY_CERT_SIGN_KEY_USAGE = 4,
     OFFLINE_CRL_SIGN_KEY_USAGE = 2,
-    CRL_SIGN_KEY_USAGE = 2,
+    // CRL_SIGN_KEY_USAGE = 2, this enum value conflicts with OFFLINE_CRL_SIGN_KEY_USAGE
     ENCIPHER_ONLY_KEY_USAGE = 1,
     DECIPHER_ONLY_KEY_USAGE = 32768,
 };
@@ -6156,7 +6156,7 @@ pub const XCN_CERT_DATA_ENCIPHERMENT_KEY_USAGE = X509KeyUsageFlags.DATA_ENCIPHER
 pub const XCN_CERT_KEY_AGREEMENT_KEY_USAGE = X509KeyUsageFlags.KEY_AGREEMENT_KEY_USAGE;
 pub const XCN_CERT_KEY_CERT_SIGN_KEY_USAGE = X509KeyUsageFlags.KEY_CERT_SIGN_KEY_USAGE;
 pub const XCN_CERT_OFFLINE_CRL_SIGN_KEY_USAGE = X509KeyUsageFlags.OFFLINE_CRL_SIGN_KEY_USAGE;
-pub const XCN_CERT_CRL_SIGN_KEY_USAGE = X509KeyUsageFlags.CRL_SIGN_KEY_USAGE;
+pub const XCN_CERT_CRL_SIGN_KEY_USAGE = X509KeyUsageFlags.OFFLINE_CRL_SIGN_KEY_USAGE;
 pub const XCN_CERT_ENCIPHER_ONLY_KEY_USAGE = X509KeyUsageFlags.ENCIPHER_ONLY_KEY_USAGE;
 pub const XCN_CERT_DECIPHER_ONLY_KEY_USAGE = X509KeyUsageFlags.DECIPHER_ONLY_KEY_USAGE;
 
@@ -6340,7 +6340,7 @@ pub const IX509ExtensionTemplate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AlternativeNameType = extern enum(i32) {
+pub const AlternativeNameType = enum(i32) {
     UNKNOWN = 0,
     OTHER_NAME = 1,
     RFC822_NAME = 2,
@@ -6849,7 +6849,7 @@ pub const IX509ExtensionSmimeCapabilities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PolicyQualifierType = extern enum(i32) {
+pub const PolicyQualifierType = enum(i32) {
     Unknown = 0,
     Url = 1,
     UserNotice = 2,
@@ -7318,7 +7318,7 @@ pub const IX509AttributeExtensions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RequestClientInfoClientId = extern enum(i32) {
+pub const RequestClientInfoClientId = enum(i32) {
     None = 0,
     XEnroll2003 = 1,
     AutoEnroll2003 = 2,
@@ -7797,19 +7797,19 @@ pub const ICryptAttributes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CERTENROLL_PROPERTYID = extern enum(i32) {
+pub const CERTENROLL_PROPERTYID = enum(i32) {
     PROPERTYID_NONE = 0,
     CERT_KEY_PROV_HANDLE_PROP_ID = 1,
     CERT_KEY_PROV_INFO_PROP_ID = 2,
     CERT_SHA1_HASH_PROP_ID = 3,
     CERT_MD5_HASH_PROP_ID = 4,
-    CERT_HASH_PROP_ID = 3,
+    // CERT_HASH_PROP_ID = 3, this enum value conflicts with CERT_SHA1_HASH_PROP_ID
     CERT_KEY_CONTEXT_PROP_ID = 5,
     CERT_KEY_SPEC_PROP_ID = 6,
     CERT_IE30_RESERVED_PROP_ID = 7,
     CERT_PUBKEY_HASH_RESERVED_PROP_ID = 8,
     CERT_ENHKEY_USAGE_PROP_ID = 9,
-    CERT_CTL_USAGE_PROP_ID = 9,
+    // CERT_CTL_USAGE_PROP_ID = 9, this enum value conflicts with CERT_ENHKEY_USAGE_PROP_ID
     CERT_NEXT_UPDATE_LOCATION_PROP_ID = 10,
     CERT_FRIENDLY_NAME_PROP_ID = 11,
     CERT_PVK_FILE_PROP_ID = 12,
@@ -7904,13 +7904,13 @@ pub const XCN_CERT_KEY_PROV_HANDLE_PROP_ID = CERTENROLL_PROPERTYID.CERT_KEY_PROV
 pub const XCN_CERT_KEY_PROV_INFO_PROP_ID = CERTENROLL_PROPERTYID.CERT_KEY_PROV_INFO_PROP_ID;
 pub const XCN_CERT_SHA1_HASH_PROP_ID = CERTENROLL_PROPERTYID.CERT_SHA1_HASH_PROP_ID;
 pub const XCN_CERT_MD5_HASH_PROP_ID = CERTENROLL_PROPERTYID.CERT_MD5_HASH_PROP_ID;
-pub const XCN_CERT_HASH_PROP_ID = CERTENROLL_PROPERTYID.CERT_HASH_PROP_ID;
+pub const XCN_CERT_HASH_PROP_ID = CERTENROLL_PROPERTYID.CERT_SHA1_HASH_PROP_ID;
 pub const XCN_CERT_KEY_CONTEXT_PROP_ID = CERTENROLL_PROPERTYID.CERT_KEY_CONTEXT_PROP_ID;
 pub const XCN_CERT_KEY_SPEC_PROP_ID = CERTENROLL_PROPERTYID.CERT_KEY_SPEC_PROP_ID;
 pub const XCN_CERT_IE30_RESERVED_PROP_ID = CERTENROLL_PROPERTYID.CERT_IE30_RESERVED_PROP_ID;
 pub const XCN_CERT_PUBKEY_HASH_RESERVED_PROP_ID = CERTENROLL_PROPERTYID.CERT_PUBKEY_HASH_RESERVED_PROP_ID;
 pub const XCN_CERT_ENHKEY_USAGE_PROP_ID = CERTENROLL_PROPERTYID.CERT_ENHKEY_USAGE_PROP_ID;
-pub const XCN_CERT_CTL_USAGE_PROP_ID = CERTENROLL_PROPERTYID.CERT_CTL_USAGE_PROP_ID;
+pub const XCN_CERT_CTL_USAGE_PROP_ID = CERTENROLL_PROPERTYID.CERT_ENHKEY_USAGE_PROP_ID;
 pub const XCN_CERT_NEXT_UPDATE_LOCATION_PROP_ID = CERTENROLL_PROPERTYID.CERT_NEXT_UPDATE_LOCATION_PROP_ID;
 pub const XCN_CERT_FRIENDLY_NAME_PROP_ID = CERTENROLL_PROPERTYID.CERT_FRIENDLY_NAME_PROP_ID;
 pub const XCN_CERT_PVK_FILE_PROP_ID = CERTENROLL_PROPERTYID.CERT_PVK_FILE_PROP_ID;
@@ -8568,14 +8568,14 @@ pub const ICertPropertyArchivedKeyHash = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EnrollmentPolicyServerPropertyFlags = extern enum(i32) {
+pub const EnrollmentPolicyServerPropertyFlags = enum(i32) {
     None = 0,
     PolicyServer = 1,
 };
 pub const DefaultNone = EnrollmentPolicyServerPropertyFlags.None;
 pub const DefaultPolicyServer = EnrollmentPolicyServerPropertyFlags.PolicyServer;
 
-pub const PolicyServerUrlFlags = extern enum(i32) {
+pub const PolicyServerUrlFlags = enum(i32) {
     None = 0,
     LocationGroupPolicy = 1,
     LocationRegistry = 2,
@@ -9111,7 +9111,7 @@ pub const IX509NameValuePairs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EnrollmentTemplateProperty = extern enum(i32) {
+pub const EnrollmentTemplateProperty = enum(i32) {
     CommonName = 1,
     FriendlyName = 2,
     EKUs = 3,
@@ -9285,7 +9285,7 @@ pub const IX509CertificateTemplates = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CommitTemplateFlags = extern enum(i32) {
+pub const CommitTemplateFlags = enum(i32) {
     SaveTemplateGenerateOID = 1,
     SaveTemplateUseCurrentOID = 2,
     SaveTemplateOverwrite = 3,
@@ -9356,7 +9356,7 @@ pub const IX509CertificateTemplateWritable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EnrollmentCAProperty = extern enum(i32) {
+pub const EnrollmentCAProperty = enum(i32) {
     CommonName = 1,
     DistinguishedName = 2,
     SanitizedName = 3,
@@ -9489,7 +9489,7 @@ pub const ICertificationAuthorities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509EnrollmentPolicyLoadOption = extern enum(i32) {
+pub const X509EnrollmentPolicyLoadOption = enum(i32) {
     Default = 0,
     CacheOnly = 1,
     Reload = 2,
@@ -9500,21 +9500,21 @@ pub const LoadOptionCacheOnly = X509EnrollmentPolicyLoadOption.CacheOnly;
 pub const LoadOptionReload = X509EnrollmentPolicyLoadOption.Reload;
 pub const LoadOptionRegisterForADChanges = X509EnrollmentPolicyLoadOption.RegisterForADChanges;
 
-pub const EnrollmentPolicyFlags = extern enum(i32) {
+pub const EnrollmentPolicyFlags = enum(i32) {
     GroupPolicyList = 2,
     UserServerList = 4,
 };
 pub const DisableGroupPolicyList = EnrollmentPolicyFlags.GroupPolicyList;
 pub const DisableUserServerList = EnrollmentPolicyFlags.UserServerList;
 
-pub const PolicyServerUrlPropertyID = extern enum(i32) {
+pub const PolicyServerUrlPropertyID = enum(i32) {
     PolicyID = 0,
     FriendlyName = 1,
 };
 pub const PsPolicyID = PolicyServerUrlPropertyID.PolicyID;
 pub const PsFriendlyName = PolicyServerUrlPropertyID.FriendlyName;
 
-pub const X509EnrollmentPolicyExportFlags = extern enum(i32) {
+pub const X509EnrollmentPolicyExportFlags = enum(i32) {
     Templates = 1,
     OIDs = 2,
     CAs = 4,
@@ -9959,7 +9959,7 @@ pub const IX509PolicyServerListManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509RequestType = extern enum(i32) {
+pub const X509RequestType = enum(i32) {
     Any = 0,
     Pkcs10 = 1,
     Pkcs7 = 2,
@@ -9972,7 +9972,7 @@ pub const TypePkcs7 = X509RequestType.Pkcs7;
 pub const TypeCmc = X509RequestType.Cmc;
 pub const TypeCertificate = X509RequestType.Certificate;
 
-pub const X509RequestInheritOptions = extern enum(i32) {
+pub const X509RequestInheritOptions = enum(i32) {
     Default = 0,
     NewDefaultKey = 1,
     NewSimilarKey = 2,
@@ -10003,7 +10003,7 @@ pub const InheritSubjectAltNameFlag = X509RequestInheritOptions.SubjectAltNameFl
 pub const InheritValidityPeriodFlag = X509RequestInheritOptions.ValidityPeriodFlag;
 pub const InheritReserved80000000 = X509RequestInheritOptions.Reserved80000000;
 
-pub const InnerRequestLevel = extern enum(i32) {
+pub const InnerRequestLevel = enum(i32) {
     Innermost = 0,
     Next = 1,
 };
@@ -10247,7 +10247,7 @@ pub const IX509CertificateRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const Pkcs10AllowedSignatureTypes = extern enum(i32) {
+pub const Pkcs10AllowedSignatureTypes = enum(i32) {
     KeySignature = 1,
     NullSignature = 2,
 };
@@ -10703,7 +10703,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KeyAttestationClaimType = extern enum(i32) {
+pub const KeyAttestationClaimType = enum(i32) {
     NONE = 0,
     AUTHORITY_AND_SUBJECT = 3,
     AUTHORITY_ONLY = 1,
@@ -11365,7 +11365,7 @@ pub const IX509CertificateRequestCmc2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const InstallResponseRestrictionFlags = extern enum(i32) {
+pub const InstallResponseRestrictionFlags = enum(i32) {
     None = 0,
     NoOutstandingRequest = 1,
     UntrustedCertificate = 2,
@@ -11665,7 +11665,7 @@ pub const IX509Enrollment2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WebEnrollmentFlags = extern enum(i32) {
+pub const WebEnrollmentFlags = enum(i32) {
     t = 1,
 };
 pub const EnrollPrompt = WebEnrollmentFlags.t;
@@ -11774,7 +11774,7 @@ pub const IX509MachineEnrollmentFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CRLRevocationReason = extern enum(i32) {
+pub const CRLRevocationReason = enum(i32) {
     UNSPECIFIED = 0,
     KEY_COMPROMISE = 1,
     CA_COMPROMISE = 2,
@@ -12538,14 +12538,14 @@ pub const IX509SCEPEnrollment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509SCEPProcessMessageFlags = extern enum(i32) {
+pub const X509SCEPProcessMessageFlags = enum(i32) {
     Default = 0,
     SkipCertInstall = 1,
 };
 pub const SCEPProcessDefault = X509SCEPProcessMessageFlags.Default;
 pub const SCEPProcessSkipCertInstall = X509SCEPProcessMessageFlags.SkipCertInstall;
 
-pub const DelayRetryAction = extern enum(i32) {
+pub const DelayRetryAction = enum(i32) {
     Unknown = 0,
     None = 1,
     Short = 2,
@@ -12700,7 +12700,7 @@ pub const IX509SCEPEnrollmentHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const X509CertificateTemplateGeneralFlag = extern enum(i32) {
+pub const X509CertificateTemplateGeneralFlag = enum(i32) {
     MachineType = 64,
     CA = 128,
     CrossCA = 2048,
@@ -12715,7 +12715,7 @@ pub const GeneralDefault = X509CertificateTemplateGeneralFlag.Default;
 pub const GeneralModified = X509CertificateTemplateGeneralFlag.Modified;
 pub const GeneralDonotPersist = X509CertificateTemplateGeneralFlag.DonotPersist;
 
-pub const X509CertificateTemplateEnrollmentFlag = extern enum(i32) {
+pub const X509CertificateTemplateEnrollmentFlag = enum(i32) {
     IncludeSymmetricAlgorithms = 1,
     PendAllRequests = 2,
     PublishToKRAContainer = 4,
@@ -12756,7 +12756,7 @@ pub const EnrollmentPreviousApprovalKeyBasedValidateReenrollment = X509Certifica
 pub const EnrollmentCertificateIssuancePoliciesFromRequest = X509CertificateTemplateEnrollmentFlag.CertificateIssuancePoliciesFromRequest;
 pub const EnrollmentSkipAutoRenewal = X509CertificateTemplateEnrollmentFlag.SkipAutoRenewal;
 
-pub const X509CertificateTemplateSubjectNameFlag = extern enum(i32) {
+pub const X509CertificateTemplateSubjectNameFlag = enum(i32) {
     NameEnrolleeSupplies = 1,
     NameRequireDirectoryPath = -2147483648,
     NameRequireCommonName = 1073741824,
@@ -12785,7 +12785,7 @@ pub const SubjectAlternativeNameRequireSPN = X509CertificateTemplateSubjectNameF
 pub const SubjectAlternativeNameRequireDNS = X509CertificateTemplateSubjectNameFlag.AlternativeNameRequireDNS;
 pub const SubjectAlternativeNameRequireDomainDNS = X509CertificateTemplateSubjectNameFlag.AlternativeNameRequireDomainDNS;
 
-pub const X509CertificateTemplatePrivateKeyFlag = extern enum(i32) {
+pub const X509CertificateTemplatePrivateKeyFlag = enum(i32) {
     RequireArchival = 1,
     Exportable = 16,
     RequireStrongKeyProtection = 32,
@@ -12801,7 +12801,7 @@ pub const X509CertificateTemplatePrivateKeyFlag = extern enum(i32) {
     AttestMask = 12288,
     AttestWithoutPolicy = 16384,
     ServerVersionMask = 983040,
-    ServerVersionShift = 16,
+    // ServerVersionShift = 16, this enum value conflicts with Exportable
     HelloKspKey = 1048576,
     HelloLogonKey = 2097152,
     ClientVersionMask = 251658240,
@@ -12822,13 +12822,13 @@ pub const PrivateKeyAttestRequired = X509CertificateTemplatePrivateKeyFlag.Attes
 pub const PrivateKeyAttestMask = X509CertificateTemplatePrivateKeyFlag.AttestMask;
 pub const PrivateKeyAttestWithoutPolicy = X509CertificateTemplatePrivateKeyFlag.AttestWithoutPolicy;
 pub const PrivateKeyServerVersionMask = X509CertificateTemplatePrivateKeyFlag.ServerVersionMask;
-pub const PrivateKeyServerVersionShift = X509CertificateTemplatePrivateKeyFlag.ServerVersionShift;
+pub const PrivateKeyServerVersionShift = X509CertificateTemplatePrivateKeyFlag.Exportable;
 pub const PrivateKeyHelloKspKey = X509CertificateTemplatePrivateKeyFlag.HelloKspKey;
 pub const PrivateKeyHelloLogonKey = X509CertificateTemplatePrivateKeyFlag.HelloLogonKey;
 pub const PrivateKeyClientVersionMask = X509CertificateTemplatePrivateKeyFlag.ClientVersionMask;
 pub const PrivateKeyClientVersionShift = X509CertificateTemplatePrivateKeyFlag.ClientVersionShift;
 
-pub const ImportPFXFlags = extern enum(i32) {
+pub const ImportPFXFlags = enum(i32) {
     None = 0,
     MachineContext = 1,
     ForceOverwrite = 2,
@@ -13577,7 +13577,7 @@ pub const ICertExit2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ENUM_CATYPES = extern enum(i32) {
+pub const ENUM_CATYPES = enum(i32) {
     ENTERPRISE_ROOTCA = 0,
     ENTERPRISE_SUBCA = 1,
     STANDALONE_ROOTCA = 3,
@@ -15766,7 +15766,7 @@ pub const IEnroll4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CERT_RDN_ATTR_VALUE_TYPE = extern enum(u32) {
+pub const CERT_RDN_ATTR_VALUE_TYPE = enum(u32) {
     ANY_TYPE = 0,
     NUMERIC_STRING = 3,
     PRINTABLE_STRING = 4,
@@ -15778,13 +15778,13 @@ pub const CERT_RDN_ATTR_VALUE_TYPE = extern enum(u32) {
     GENERAL_STRING = 10,
     INT4_STRING = 11,
     UNICODE_STRING = 12,
-    BMP_STRING = 12,
+    // BMP_STRING = 12, this enum value conflicts with UNICODE_STRING
     ENCODED_BLOB = 1,
     OCTET_STRING = 2,
-    TELETEX_STRING = 5,
-    UNIVERSAL_STRING = 11,
+    // TELETEX_STRING = 5, this enum value conflicts with T61_STRING
+    // UNIVERSAL_STRING = 11, this enum value conflicts with INT4_STRING
     UTF8_STRING = 13,
-    VISIBLE_STRING = 9,
+    // VISIBLE_STRING = 9, this enum value conflicts with ISO646_STRING
 };
 pub const CERT_RDN_ANY_TYPE = CERT_RDN_ATTR_VALUE_TYPE.ANY_TYPE;
 pub const CERT_RDN_NUMERIC_STRING = CERT_RDN_ATTR_VALUE_TYPE.NUMERIC_STRING;
@@ -15797,15 +15797,15 @@ pub const CERT_RDN_ISO646_STRING = CERT_RDN_ATTR_VALUE_TYPE.ISO646_STRING;
 pub const CERT_RDN_GENERAL_STRING = CERT_RDN_ATTR_VALUE_TYPE.GENERAL_STRING;
 pub const CERT_RDN_INT4_STRING = CERT_RDN_ATTR_VALUE_TYPE.INT4_STRING;
 pub const CERT_RDN_UNICODE_STRING = CERT_RDN_ATTR_VALUE_TYPE.UNICODE_STRING;
-pub const CERT_RDN_BMP_STRING = CERT_RDN_ATTR_VALUE_TYPE.BMP_STRING;
+pub const CERT_RDN_BMP_STRING = CERT_RDN_ATTR_VALUE_TYPE.UNICODE_STRING;
 pub const CERT_RDN_ENCODED_BLOB = CERT_RDN_ATTR_VALUE_TYPE.ENCODED_BLOB;
 pub const CERT_RDN_OCTET_STRING = CERT_RDN_ATTR_VALUE_TYPE.OCTET_STRING;
-pub const CERT_RDN_TELETEX_STRING = CERT_RDN_ATTR_VALUE_TYPE.TELETEX_STRING;
-pub const CERT_RDN_UNIVERSAL_STRING = CERT_RDN_ATTR_VALUE_TYPE.UNIVERSAL_STRING;
+pub const CERT_RDN_TELETEX_STRING = CERT_RDN_ATTR_VALUE_TYPE.T61_STRING;
+pub const CERT_RDN_UNIVERSAL_STRING = CERT_RDN_ATTR_VALUE_TYPE.INT4_STRING;
 pub const CERT_RDN_UTF8_STRING = CERT_RDN_ATTR_VALUE_TYPE.UTF8_STRING;
-pub const CERT_RDN_VISIBLE_STRING = CERT_RDN_ATTR_VALUE_TYPE.VISIBLE_STRING;
+pub const CERT_RDN_VISIBLE_STRING = CERT_RDN_ATTR_VALUE_TYPE.ISO646_STRING;
 
-pub const CERT_VIEW_COLUMN_INDEX = extern enum(i32) {
+pub const CERT_VIEW_COLUMN_INDEX = enum(i32) {
     LOG_DEFAULT = -2,
     LOG_FAILED_DEFAULT = -3,
     QUEUE_DEFAULT = -1,
@@ -15814,14 +15814,14 @@ pub const CV_COLUMN_LOG_DEFAULT = CERT_VIEW_COLUMN_INDEX.LOG_DEFAULT;
 pub const CV_COLUMN_LOG_FAILED_DEFAULT = CERT_VIEW_COLUMN_INDEX.LOG_FAILED_DEFAULT;
 pub const CV_COLUMN_QUEUE_DEFAULT = CERT_VIEW_COLUMN_INDEX.QUEUE_DEFAULT;
 
-pub const CERT_DELETE_ROW_FLAGS = extern enum(u32) {
+pub const CERT_DELETE_ROW_FLAGS = enum(u32) {
     EXPIRED = 1,
     REQUEST_LAST_CHANGED = 2,
 };
 pub const CDR_EXPIRED = CERT_DELETE_ROW_FLAGS.EXPIRED;
 pub const CDR_REQUEST_LAST_CHANGED = CERT_DELETE_ROW_FLAGS.REQUEST_LAST_CHANGED;
 
-pub const FULL_RESPONSE_PROPERTY_ID = extern enum(u32) {
+pub const FULL_RESPONSE_PROPERTY_ID = enum(u32) {
     NONE = 0,
     FULLRESPONSE = 1,
     STATUSINFOCOUNT = 2,
@@ -15868,7 +15868,7 @@ pub const FR_PROP_CAEXCHANGECERTIFICATECRLCHAIN = FULL_RESPONSE_PROPERTY_ID.CAEX
 pub const FR_PROP_ATTESTATIONCHALLENGE = FULL_RESPONSE_PROPERTY_ID.ATTESTATIONCHALLENGE;
 pub const FR_PROP_ATTESTATIONPROVIDERNAME = FULL_RESPONSE_PROPERTY_ID.ATTESTATIONPROVIDERNAME;
 
-pub const CVRC_COLUMN = extern enum(u32) {
+pub const CVRC_COLUMN = enum(u32) {
     SCHEMA = 0,
     RESULT = 1,
     VALUE = 2,
@@ -15879,7 +15879,7 @@ pub const CVRC_COLUMN_RESULT = CVRC_COLUMN.RESULT;
 pub const CVRC_COLUMN_VALUE = CVRC_COLUMN.VALUE;
 pub const CVRC_COLUMN_MASK = CVRC_COLUMN.MASK;
 
-pub const CERT_IMPORT_FLAGS = extern enum(u32) {
+pub const CERT_IMPORT_FLAGS = enum(u32) {
     ASE64HEADER = 0,
     ASE64 = 1,
     INARY = 2,
@@ -15888,7 +15888,7 @@ pub const CR_IN_BASE64HEADER = CERT_IMPORT_FLAGS.ASE64HEADER;
 pub const CR_IN_BASE64 = CERT_IMPORT_FLAGS.ASE64;
 pub const CR_IN_BINARY = CERT_IMPORT_FLAGS.INARY;
 
-pub const CERT_GET_CONFIG_FLAGS = extern enum(u32) {
+pub const CERT_GET_CONFIG_FLAGS = enum(u32) {
     DEFAULTCONFIG = 0,
     FIRSTCONFIG = 2,
     LOCALACTIVECONFIG = 4,
@@ -15903,7 +15903,7 @@ pub const CC_LOCALCONFIG = CERT_GET_CONFIG_FLAGS.LOCALCONFIG;
 pub const CC_UIPICKCONFIG = CERT_GET_CONFIG_FLAGS.UIPICKCONFIG;
 pub const CC_UIPICKCONFIGSKIPLOCALCA_ = CERT_GET_CONFIG_FLAGS.UIPICKCONFIGSKIPLOCALCA_;
 
-pub const ENUM_CERT_COLUMN_VALUE_FLAGS = extern enum(u32) {
+pub const ENUM_CERT_COLUMN_VALUE_FLAGS = enum(u32) {
     BASE64 = 1,
     BASE64HEADER = 0,
     BASE64REQUESTHEADER = 3,
@@ -15924,7 +15924,7 @@ pub const CV_OUT_HEXADDR = ENUM_CERT_COLUMN_VALUE_FLAGS.HEXADDR;
 pub const CV_OUT_HEXASCII = ENUM_CERT_COLUMN_VALUE_FLAGS.HEXASCII;
 pub const CV_OUT_HEXASCIIADDR = ENUM_CERT_COLUMN_VALUE_FLAGS.HEXASCIIADDR;
 
-pub const PENDING_REQUEST_DESIRED_PROPERTY = extern enum(u32) {
+pub const PENDING_REQUEST_DESIRED_PROPERTY = enum(u32) {
     CADNS = 1,
     CAFRIENDLYNAME = 3,
     CANAME = 2,
@@ -15937,7 +15937,7 @@ pub const XEPR_CANAME = PENDING_REQUEST_DESIRED_PROPERTY.CANAME;
 pub const XEPR_HASH = PENDING_REQUEST_DESIRED_PROPERTY.HASH;
 pub const XEPR_REQUESTID = PENDING_REQUEST_DESIRED_PROPERTY.REQUESTID;
 
-pub const CERTADMIN_GET_ROLES_FLAGS = extern enum(u32) {
+pub const CERTADMIN_GET_ROLES_FLAGS = enum(u32) {
     ADMIN = 1,
     AUDITOR = 4,
     ENROLL = 512,
@@ -15970,7 +15970,7 @@ pub const CA_ACCESS_OFFICER = CERTADMIN_GET_ROLES_FLAGS.OFFICER;
 pub const CA_ACCESS_OPERATOR = CERTADMIN_GET_ROLES_FLAGS.OPERATOR;
 pub const CA_ACCESS_READ = CERTADMIN_GET_ROLES_FLAGS.READ;
 
-pub const CR_DISP = extern enum(u32) {
+pub const CR_DISP = enum(u32) {
     DENIED = 2,
     ERROR = 1,
     INCOMPLETE = 0,
@@ -15985,7 +15985,7 @@ pub const CR_DISP_ISSUED = CR_DISP.ISSUED;
 pub const CR_DISP_ISSUED_OUT_OF_BAND = CR_DISP.ISSUED_OUT_OF_BAND;
 pub const CR_DISP_UNDER_SUBMISSION = CR_DISP.UNDER_SUBMISSION;
 
-pub const XEKL_KEYSIZE = extern enum(u32) {
+pub const XEKL_KEYSIZE = enum(u32) {
     MIN = 1,
     MAX = 2,
     INC = 3,
@@ -15994,7 +15994,7 @@ pub const XEKL_KEYSIZE_MIN = XEKL_KEYSIZE.MIN;
 pub const XEKL_KEYSIZE_MAX = XEKL_KEYSIZE.MAX;
 pub const XEKL_KEYSIZE_INC = XEKL_KEYSIZE.INC;
 
-pub const CERT_CREATE_REQUEST_FLAGS = extern enum(u32) {
+pub const CERT_CREATE_REQUEST_FLAGS = enum(u32) {
     CMC = 3,
     PKCS10_V1_5 = 4,
     PKCS10_V2_0 = 1,
@@ -16005,7 +16005,7 @@ pub const XECR_PKCS10_V1_5 = CERT_CREATE_REQUEST_FLAGS.PKCS10_V1_5;
 pub const XECR_PKCS10_V2_0 = CERT_CREATE_REQUEST_FLAGS.PKCS10_V2_0;
 pub const XECR_PKCS7 = CERT_CREATE_REQUEST_FLAGS.PKCS7;
 
-pub const CERT_EXIT_EVENT_MASK = extern enum(u32) {
+pub const CERT_EXIT_EVENT_MASK = enum(u32) {
     CERTDENIED = 4,
     CERTISSUED = 1,
     CERTPENDING = 2,
@@ -16042,14 +16042,14 @@ pub const EXITEVENT_CERTREVOKED = CERT_EXIT_EVENT_MASK.CERTREVOKED;
 pub const EXITEVENT_CRLISSUED = CERT_EXIT_EVENT_MASK.CRLISSUED;
 pub const EXITEVENT_SHUTDOWN = CERT_EXIT_EVENT_MASK.SHUTDOWN;
 
-pub const ADDED_CERT_TYPE = extern enum(u32) {
+pub const ADDED_CERT_TYPE = enum(u32) {
     @"1" = 1,
     @"2" = 2,
 };
 pub const XECT_EXTENSION_V1 = ADDED_CERT_TYPE.@"1";
 pub const XECT_EXTENSION_V2 = ADDED_CERT_TYPE.@"2";
 
-pub const CVRC_TABLE = extern enum(u32) {
+pub const CVRC_TABLE = enum(u32) {
     ATTRIBUTES = 16384,
     CRL = 20480,
     EXTENSIONS = 12288,
@@ -16060,7 +16060,7 @@ pub const CVRC_TABLE_CRL = CVRC_TABLE.CRL;
 pub const CVRC_TABLE_EXTENSIONS = CVRC_TABLE.EXTENSIONS;
 pub const CVRC_TABLE_REQCERT = CVRC_TABLE.REQCERT;
 
-pub const CERT_PROPERTY_TYPE = extern enum(u32) {
+pub const CERT_PROPERTY_TYPE = enum(u32) {
     BINARY = 3,
     DATE = 2,
     LONG = 1,
@@ -16071,7 +16071,7 @@ pub const PROPTYPE_DATE = CERT_PROPERTY_TYPE.DATE;
 pub const PROPTYPE_LONG = CERT_PROPERTY_TYPE.LONG;
 pub const PROPTYPE_STRING = CERT_PROPERTY_TYPE.STRING;
 
-pub const CERT_ALT_NAME = extern enum(u32) {
+pub const CERT_ALT_NAME = enum(u32) {
     RFC822_NAME = 2,
     DNS_NAME = 3,
     URL = 7,
@@ -16088,21 +16088,21 @@ pub const CERT_ALT_NAME_DIRECTORY_NAME = CERT_ALT_NAME.DIRECTORY_NAME;
 pub const CERT_ALT_NAME_IP_ADDRESS = CERT_ALT_NAME.IP_ADDRESS;
 pub const CERT_ALT_NAME_OTHER_NAME = CERT_ALT_NAME.OTHER_NAME;
 
-pub const CSBACKUP_TYPE = extern enum(u32) {
+pub const CSBACKUP_TYPE = enum(u32) {
     FULL = 1,
     LOGS_ONLY = 2,
 };
 pub const CSBACKUP_TYPE_FULL = CSBACKUP_TYPE.FULL;
 pub const CSBACKUP_TYPE_LOGS_ONLY = CSBACKUP_TYPE.LOGS_ONLY;
 
-pub const XEKL_KEYSPEC = extern enum(u32) {
+pub const XEKL_KEYSPEC = enum(u32) {
     KEYX = 1,
     SIG = 2,
 };
 pub const XEKL_KEYSPEC_KEYX = XEKL_KEYSPEC.KEYX;
 pub const XEKL_KEYSPEC_SIG = XEKL_KEYSPEC.SIG;
 
-pub const CERT_REQUEST_OUT_TYPE = extern enum(u32) {
+pub const CERT_REQUEST_OUT_TYPE = enum(u32) {
     ASE64HEADER = 0,
     ASE64 = 1,
     INARY = 2,
@@ -16111,7 +16111,7 @@ pub const CR_OUT_BASE64HEADER = CERT_REQUEST_OUT_TYPE.ASE64HEADER;
 pub const CR_OUT_BASE64 = CERT_REQUEST_OUT_TYPE.ASE64;
 pub const CR_OUT_BINARY = CERT_REQUEST_OUT_TYPE.INARY;
 
-pub const CERT_VIEW_SEEK_OPERATOR_FLAGS = extern enum(u32) {
+pub const CERT_VIEW_SEEK_OPERATOR_FLAGS = enum(u32) {
     EQ = 1,
     LE = 4,
     LT = 2,

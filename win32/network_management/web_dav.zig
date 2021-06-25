@@ -33,7 +33,7 @@ pub const DAV_CALLBACK_CRED = extern struct {
     bSave: BOOL,
 };
 
-pub const AUTHNEXTSTEP = extern enum(i32) {
+pub const AUTHNEXTSTEP = enum(i32) {
     DefaultBehavior = 0,
     RetryRequest = 1,
     CancelRequest = 2,

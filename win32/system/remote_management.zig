@@ -43,7 +43,7 @@ pub const WSMAN_DATA_BINARY = extern struct {
     data: *u8,
 };
 
-pub const WSManDataType = extern enum(i32) {
+pub const WSManDataType = enum(i32) {
     NONE = 0,
     TYPE_TEXT = 1,
     TYPE_BINARY = 2,
@@ -76,7 +76,7 @@ pub const WSMAN_USERNAME_PASSWORD_CREDS = extern struct {
     password: [*:0]const u16,
 };
 
-pub const WSManAuthenticationFlags = extern enum(i32) {
+pub const WSManAuthenticationFlags = enum(i32) {
     DEFAULT_AUTHENTICATION = 0,
     NO_AUTHENTICATION = 1,
     AUTH_DIGEST = 2,
@@ -165,7 +165,7 @@ pub const WSMAN_API = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const WSManProxyAccessType = extern enum(i32) {
+pub const WSManProxyAccessType = enum(i32) {
     IE_PROXY_CONFIG = 1,
     WINHTTP_PROXY_CONFIG = 2,
     AUTO_DETECT = 4,
@@ -185,7 +185,7 @@ pub const WSMAN_SESSION = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const WSManSessionOption = extern enum(i32) {
+pub const WSManSessionOption = enum(i32) {
     DEFAULT_OPERATION_TIMEOUTMS = 1,
     MAX_RETRY_TIME = 11,
     TIMEOUTMS_CREATE_SHELL = 12,
@@ -238,7 +238,7 @@ pub const WSMAN_OPERATION = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const WSManCallbackFlags = extern enum(i32) {
+pub const WSManCallbackFlags = enum(i32) {
     END_OF_OPERATION = 1,
     END_OF_STREAM = 8,
     SHELL_SUPPORTS_DISCONNECT = 32,
@@ -301,7 +301,7 @@ pub const WSMAN_SHELL_DISCONNECT_INFO = extern struct {
     idleTimeoutMs: u32,
 };
 
-pub const WSManShellFlag = extern enum(i32) {
+pub const WSManShellFlag = enum(i32) {
     NO_COMPRESSION = 1,
     DELETE_SERVER_SESSION = 2,
     SERVER_BUFFERING_MODE_DROP = 4,
@@ -489,7 +489,7 @@ pub const CLSID_WSMan = &CLSID_WSMan_Value;
 const CLSID_WSManInternal_Value = @import("../zig.zig").Guid.initString("7de087a5-5dcb-4df7-bb12-0924ad8fbd9a");
 pub const CLSID_WSManInternal = &CLSID_WSManInternal_Value;
 
-pub const WSManSessionFlags = extern enum(i32) {
+pub const WSManSessionFlags = enum(i32) {
     UTF8 = 1,
     CredUsernamePassword = 4096,
     SkipCACheck = 8192,
@@ -526,28 +526,28 @@ pub const WSManFlagSkipRevocationCheck = WSManSessionFlags.SkipRevocationCheck;
 pub const WSManFlagAllowNegotiateImplicitCredentials = WSManSessionFlags.AllowNegotiateImplicitCredentials;
 pub const WSManFlagUseSsl = WSManSessionFlags.UseSsl;
 
-pub const WSManEnumFlags = extern enum(i32) {
+pub const WSManEnumFlags = enum(i32) {
     NonXmlText = 1,
     ReturnObject = 0,
     ReturnEPR = 2,
     ReturnObjectAndEPR = 4,
-    HierarchyDeep = 0,
+    // HierarchyDeep = 0, this enum value conflicts with ReturnObject
     HierarchyShallow = 32,
     HierarchyDeepBasePropsOnly = 64,
-    AssociatedInstance = 0,
+    // AssociatedInstance = 0, this enum value conflicts with ReturnObject
     AssociationInstance = 128,
 };
 pub const WSManFlagNonXmlText = WSManEnumFlags.NonXmlText;
 pub const WSManFlagReturnObject = WSManEnumFlags.ReturnObject;
 pub const WSManFlagReturnEPR = WSManEnumFlags.ReturnEPR;
 pub const WSManFlagReturnObjectAndEPR = WSManEnumFlags.ReturnObjectAndEPR;
-pub const WSManFlagHierarchyDeep = WSManEnumFlags.HierarchyDeep;
+pub const WSManFlagHierarchyDeep = WSManEnumFlags.ReturnObject;
 pub const WSManFlagHierarchyShallow = WSManEnumFlags.HierarchyShallow;
 pub const WSManFlagHierarchyDeepBasePropsOnly = WSManEnumFlags.HierarchyDeepBasePropsOnly;
-pub const WSManFlagAssociatedInstance = WSManEnumFlags.AssociatedInstance;
+pub const WSManFlagAssociatedInstance = WSManEnumFlags.ReturnObject;
 pub const WSManFlagAssociationInstance = WSManEnumFlags.AssociationInstance;
 
-pub const WSManProxyAccessTypeFlags = extern enum(i32) {
+pub const WSManProxyAccessTypeFlags = enum(i32) {
     IEConfig = 1,
     WinHttpConfig = 2,
     AutoDetect = 4,
@@ -558,7 +558,7 @@ pub const WSManProxyWinHttpConfig = WSManProxyAccessTypeFlags.WinHttpConfig;
 pub const WSManProxyAutoDetect = WSManProxyAccessTypeFlags.AutoDetect;
 pub const WSManProxyNoProxyServer = WSManProxyAccessTypeFlags.NoProxyServer;
 
-pub const WSManProxyAuthenticationFlags = extern enum(i32) {
+pub const WSManProxyAuthenticationFlags = enum(i32) {
     Negotiate = 1,
     Basic = 2,
     Digest = 4,

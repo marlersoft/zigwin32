@@ -353,7 +353,7 @@ pub const TS_TEXTCHANGE = extern struct {
     acpNewEnd: i32,
 };
 
-pub const TsActiveSelEnd = extern enum(i32) {
+pub const TsActiveSelEnd = enum(i32) {
     NONE = 0,
     START = 1,
     END = 2,
@@ -385,7 +385,7 @@ pub const TS_ATTRVAL = extern struct {
     varValue: VARIANT,
 };
 
-pub const TsLayoutCode = extern enum(i32) {
+pub const TsLayoutCode = enum(i32) {
     CREATE = 0,
     CHANGE = 1,
     DESTROY = 2,
@@ -394,7 +394,7 @@ pub const TS_LC_CREATE = TsLayoutCode.CREATE;
 pub const TS_LC_CHANGE = TsLayoutCode.CHANGE;
 pub const TS_LC_DESTROY = TsLayoutCode.DESTROY;
 
-pub const TsRunType = extern enum(i32) {
+pub const TsRunType = enum(i32) {
     PLAIN = 0,
     HIDDEN = 1,
     OPAQUE = 2,
@@ -1063,14 +1063,14 @@ pub const ITextStoreACPSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TsGravity = extern enum(i32) {
+pub const TsGravity = enum(i32) {
     BACKWARD = 0,
     FORWARD = 1,
 };
 pub const TS_GR_BACKWARD = TsGravity.BACKWARD;
 pub const TS_GR_FORWARD = TsGravity.FORWARD;
 
-pub const TsShiftDir = extern enum(i32) {
+pub const TsShiftDir = enum(i32) {
     BACKWARD = 0,
     FORWARD = 1,
 };
@@ -2096,7 +2096,7 @@ pub const ITfSystemDeviceTypeLangBarItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfLBIClick = extern enum(i32) {
+pub const TfLBIClick = enum(i32) {
     RIGHT = 1,
     LEFT = 2,
 };
@@ -2273,7 +2273,7 @@ pub const ITfLangBarItemBitmap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfLBBalloonStyle = extern enum(i32) {
+pub const TfLBBalloonStyle = enum(i32) {
     RECO = 0,
     SHOW = 1,
     MISS = 2,
@@ -2373,7 +2373,7 @@ pub const TF_LANGUAGEPROFILE = extern struct {
     guidProfile: Guid,
 };
 
-pub const TfAnchor = extern enum(i32) {
+pub const TfAnchor = enum(i32) {
     START = 0,
     END = 1,
 };
@@ -3245,7 +3245,7 @@ pub const IEnumTfContextViews = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfActiveSelEnd = extern enum(i32) {
+pub const TfActiveSelEnd = enum(i32) {
     NONE = 0,
     START = 1,
     END = 2,
@@ -3778,7 +3778,7 @@ pub const ITfTextEditSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfLayoutCode = extern enum(i32) {
+pub const TfLayoutCode = enum(i32) {
     CREATE = 0,
     CHANGE = 1,
     DESTROY = 2,
@@ -4085,14 +4085,14 @@ pub const ITfEditSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfGravity = extern enum(i32) {
+pub const TfGravity = enum(i32) {
     BACKWARD = 0,
     FORWARD = 1,
 };
 pub const TF_GRAVITY_BACKWARD = TfGravity.BACKWARD;
 pub const TF_GRAVITY_FORWARD = TfGravity.FORWARD;
 
-pub const TfShiftDir = extern enum(i32) {
+pub const TfShiftDir = enum(i32) {
     BACKWARD = 0,
     FORWARD = 1,
 };
@@ -5949,7 +5949,7 @@ pub const ITfClientId = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TF_DA_LINESTYLE = extern enum(i32) {
+pub const TF_DA_LINESTYLE = enum(i32) {
     NONE = 0,
     SOLID = 1,
     DOT = 2,
@@ -5962,7 +5962,7 @@ pub const TF_LS_DOT = TF_DA_LINESTYLE.DOT;
 pub const TF_LS_DASH = TF_DA_LINESTYLE.DASH;
 pub const TF_LS_SQUIGGLE = TF_DA_LINESTYLE.SQUIGGLE;
 
-pub const TF_DA_COLORTYPE = extern enum(i32) {
+pub const TF_DA_COLORTYPE = enum(i32) {
     NONE = 0,
     SYSCOLOR = 1,
     COLORREF = 2,
@@ -5979,7 +5979,7 @@ pub const TF_DA_COLOR = extern struct {
     },
 };
 
-pub const TF_DA_ATTR_INFO = extern enum(i32) {
+pub const TF_DA_ATTR_INFO = enum(i32) {
     INPUT = 0,
     TARGET_CONVERTED = 1,
     CONVERTED = 2,
@@ -7004,7 +7004,7 @@ pub const IEnumTfCandidates = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfCandidateResult = extern enum(i32) {
+pub const TfCandidateResult = enum(i32) {
     FINALIZED = 0,
     SELECTED = 1,
     CANCELED = 2,
@@ -7284,7 +7284,7 @@ pub const ITfFnBalloon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfSapiObject = extern enum(i32) {
+pub const TfSapiObject = enum(i32) {
     RESMGR = 0,
     RECOCONTEXT = 1,
     RECOGNIZER = 2,
@@ -7712,7 +7712,7 @@ pub const ITfFnSearchCandidateProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TfIntegratableCandidateListSelectionStyle = extern enum(i32) {
+pub const TfIntegratableCandidateListSelectionStyle = enum(i32) {
     ACTIVE_SELECTION = 0,
     IMPLIED_SELECTION = 1,
 };
@@ -7774,7 +7774,7 @@ pub const ITfIntegratableCandidateListUIElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TKBLayoutType = extern enum(i32) {
+pub const TKBLayoutType = enum(i32) {
     UNDEFINED = 0,
     CLASSIC = 1,
     OPTIMIZED = 2,
@@ -7889,7 +7889,7 @@ pub const IUIManagerEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const InputScope = extern enum(i32) {
+pub const InputScope = enum(i32) {
     DEFAULT = 0,
     URL = 1,
     FILE_FULLFILEPATH = 2,
@@ -8706,14 +8706,14 @@ pub const ITfSpeechUIServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const LANG_BAR_ITEM_ICON_MODE_FLAGS = extern enum(u32) {
+pub const LANG_BAR_ITEM_ICON_MODE_FLAGS = enum(u32) {
     NONE = 0,
     USEPROFILEICON = 1,
 };
 pub const TF_DTLBI_NONE = LANG_BAR_ITEM_ICON_MODE_FLAGS.NONE;
 pub const TF_DTLBI_USEPROFILEICON = LANG_BAR_ITEM_ICON_MODE_FLAGS.USEPROFILEICON;
 
-pub const TEXT_STORE_TEXT_CHANGE_FLAGS = extern enum(u32) {
+pub const TEXT_STORE_TEXT_CHANGE_FLAGS = enum(u32) {
     NONE = 0,
     CORRECTION = 1,
     _,
@@ -8730,7 +8730,7 @@ pub const TEXT_STORE_TEXT_CHANGE_FLAGS = extern enum(u32) {
 pub const TS_ST_NONE = TEXT_STORE_TEXT_CHANGE_FLAGS.NONE;
 pub const TS_ST_CORRECTION = TEXT_STORE_TEXT_CHANGE_FLAGS.CORRECTION;
 
-pub const TEXT_STORE_CHANGE_FLAGS = extern enum(u32) {
+pub const TEXT_STORE_CHANGE_FLAGS = enum(u32) {
     NONE = 0,
     CORRECTION = 1,
     _,
@@ -8747,7 +8747,7 @@ pub const TEXT_STORE_CHANGE_FLAGS = extern enum(u32) {
 pub const TS_TC_NONE = TEXT_STORE_CHANGE_FLAGS.NONE;
 pub const TS_TC_CORRECTION = TEXT_STORE_CHANGE_FLAGS.CORRECTION;
 
-pub const INSERT_TEXT_AT_SELECTION_FLAGS = extern enum(u32) {
+pub const INSERT_TEXT_AT_SELECTION_FLAGS = enum(u32) {
     NOQUERY = 1,
     QUERYONLY = 2,
     NO_DEFAULT_COMPOSITION = 2147483648,
@@ -8756,7 +8756,7 @@ pub const TF_IAS_NOQUERY = INSERT_TEXT_AT_SELECTION_FLAGS.NOQUERY;
 pub const TF_IAS_QUERYONLY = INSERT_TEXT_AT_SELECTION_FLAGS.QUERYONLY;
 pub const TF_IAS_NO_DEFAULT_COMPOSITION = INSERT_TEXT_AT_SELECTION_FLAGS.NO_DEFAULT_COMPOSITION;
 
-pub const ANCHOR_CHANGE_HISTORY_FLAGS = extern enum(u32) {
+pub const ANCHOR_CHANGE_HISTORY_FLAGS = enum(u32) {
     PRECEDING_DEL = 1,
     FOLLOWING_DEL = 2,
     _,
@@ -8773,14 +8773,14 @@ pub const ANCHOR_CHANGE_HISTORY_FLAGS = extern enum(u32) {
 pub const TS_CH_PRECEDING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS.PRECEDING_DEL;
 pub const TS_CH_FOLLOWING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS.FOLLOWING_DEL;
 
-pub const TEXT_STORE_LOCK_FLAGS = extern enum(u32) {
+pub const TEXT_STORE_LOCK_FLAGS = enum(u32) {
     D = 2,
     WRITE = 6,
 };
 pub const TS_LF_READ = TEXT_STORE_LOCK_FLAGS.D;
 pub const TS_LF_READWRITE = TEXT_STORE_LOCK_FLAGS.WRITE;
 
-pub const GET_TEXT_AND_PROPERTY_UPDATES_FLAGS = extern enum(u32) {
+pub const GET_TEXT_AND_PROPERTY_UPDATES_FLAGS = enum(u32) {
     NONE = 0,
     INCL_TEXT = 1,
     _,
@@ -8797,7 +8797,7 @@ pub const GET_TEXT_AND_PROPERTY_UPDATES_FLAGS = extern enum(u32) {
 pub const TF_GTP_NONE = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS.NONE;
 pub const TF_GTP_INCL_TEXT = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS.INCL_TEXT;
 
-pub const TF_CONTEXT_EDIT_CONTEXT_FLAGS = extern enum(u32) {
+pub const TF_CONTEXT_EDIT_CONTEXT_FLAGS = enum(u32) {
     ASYNCDONTCARE = 0,
     SYNC = 1,
     READ = 2,

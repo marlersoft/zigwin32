@@ -174,7 +174,7 @@ pub const GUID_EapHost_Cause_Method_Config_Does_Not_Support_Sso = Guid.initStrin
 //--------------------------------------------------------------------------------
 // Section: Types (68)
 //--------------------------------------------------------------------------------
-pub const RAS_AUTH_ATTRIBUTE_TYPE = extern enum(i32) {
+pub const RAS_AUTH_ATTRIBUTE_TYPE = enum(i32) {
     Minimum = 0,
     UserName = 1,
     UserPassword = 2,
@@ -259,9 +259,9 @@ pub const RAS_AUTH_ATTRIBUTE_TYPE = extern enum(i32) {
     CertificateOID = 8097,
     EAPConfiguration = 8098,
     PEAPEmbeddedEAPTypeId = 8099,
-    InnerEAPTypeId = 8099,
+    // InnerEAPTypeId = 8099, this enum value conflicts with PEAPEmbeddedEAPTypeId
     PEAPFastRoamedSession = 8100,
-    FastRoamedSession = 8100,
+    // FastRoamedSession = 8100, this enum value conflicts with PEAPFastRoamedSession
     EAPTLV = 8102,
     CredentialsChanged = 8103,
     CertificateThumbprint = 8250,
@@ -356,9 +356,9 @@ pub const raatARAPGuestLogon = RAS_AUTH_ATTRIBUTE_TYPE.ARAPGuestLogon;
 pub const raatCertificateOID = RAS_AUTH_ATTRIBUTE_TYPE.CertificateOID;
 pub const raatEAPConfiguration = RAS_AUTH_ATTRIBUTE_TYPE.EAPConfiguration;
 pub const raatPEAPEmbeddedEAPTypeId = RAS_AUTH_ATTRIBUTE_TYPE.PEAPEmbeddedEAPTypeId;
-pub const raatInnerEAPTypeId = RAS_AUTH_ATTRIBUTE_TYPE.InnerEAPTypeId;
+pub const raatInnerEAPTypeId = RAS_AUTH_ATTRIBUTE_TYPE.PEAPEmbeddedEAPTypeId;
 pub const raatPEAPFastRoamedSession = RAS_AUTH_ATTRIBUTE_TYPE.PEAPFastRoamedSession;
-pub const raatFastRoamedSession = RAS_AUTH_ATTRIBUTE_TYPE.FastRoamedSession;
+pub const raatFastRoamedSession = RAS_AUTH_ATTRIBUTE_TYPE.PEAPFastRoamedSession;
 pub const raatEAPTLV = RAS_AUTH_ATTRIBUTE_TYPE.EAPTLV;
 pub const raatCredentialsChanged = RAS_AUTH_ATTRIBUTE_TYPE.CredentialsChanged;
 pub const raatCertificateThumbprint = RAS_AUTH_ATTRIBUTE_TYPE.CertificateThumbprint;
@@ -412,7 +412,7 @@ pub const PPP_EAP_INPUT = extern struct {
     isVpn: BOOL,
 };
 
-pub const PPP_EAP_ACTION = extern enum(i32) {
+pub const PPP_EAP_ACTION = enum(i32) {
     NoAction = 0,
     Authenticate = 1,
     Done = 2,
@@ -837,7 +837,7 @@ pub const EAP_ERROR = extern struct {
     pRepairString: PWSTR,
 };
 
-pub const EAP_ATTRIBUTE_TYPE = extern enum(i32) {
+pub const EAP_ATTRIBUTE_TYPE = enum(i32) {
     Minimum = 0,
     UserName = 1,
     UserPassword = 2,
@@ -923,7 +923,7 @@ pub const EAP_ATTRIBUTE_TYPE = extern enum(i32) {
     EAPConfiguration = 8098,
     PEAPEmbeddedEAPTypeId = 8099,
     PEAPFastRoamedSession = 8100,
-    FastRoamedSession = 8100,
+    // FastRoamedSession = 8100, this enum value conflicts with PEAPFastRoamedSession
     EAPTLV = 8102,
     CredentialsChanged = 8103,
     InnerEapMethodType = 8104,
@@ -1022,7 +1022,7 @@ pub const eatCertificateOID = EAP_ATTRIBUTE_TYPE.CertificateOID;
 pub const eatEAPConfiguration = EAP_ATTRIBUTE_TYPE.EAPConfiguration;
 pub const eatPEAPEmbeddedEAPTypeId = EAP_ATTRIBUTE_TYPE.PEAPEmbeddedEAPTypeId;
 pub const eatPEAPFastRoamedSession = EAP_ATTRIBUTE_TYPE.PEAPFastRoamedSession;
-pub const eatFastRoamedSession = EAP_ATTRIBUTE_TYPE.FastRoamedSession;
+pub const eatFastRoamedSession = EAP_ATTRIBUTE_TYPE.PEAPFastRoamedSession;
 pub const eatEAPTLV = EAP_ATTRIBUTE_TYPE.EAPTLV;
 pub const eatCredentialsChanged = EAP_ATTRIBUTE_TYPE.CredentialsChanged;
 pub const eatInnerEapMethodType = EAP_ATTRIBUTE_TYPE.InnerEapMethodType;
@@ -1047,7 +1047,7 @@ pub const EAP_ATTRIBUTES = extern struct {
     pAttribs: *EAP_ATTRIBUTE,
 };
 
-pub const EAP_CONFIG_INPUT_FIELD_TYPE = extern enum(i32) {
+pub const EAP_CONFIG_INPUT_FIELD_TYPE = enum(i32) {
     InputUsername = 0,
     InputPassword = 1,
     InputNetworkUsername = 2,
@@ -1084,7 +1084,7 @@ pub const EAP_CONFIG_INPUT_FIELD_ARRAY = extern struct {
     pFields: *EAP_CONFIG_INPUT_FIELD_DATA,
 };
 
-pub const EAP_INTERACTIVE_UI_DATA_TYPE = extern enum(i32) {
+pub const EAP_INTERACTIVE_UI_DATA_TYPE = enum(i32) {
     Req = 0,
     Resp = 1,
     ExpiryReq = 2,
@@ -1118,7 +1118,7 @@ pub const EAP_INTERACTIVE_UI_DATA = extern struct {
     pbUiData: EAP_UI_DATA_FORMAT,
 };
 
-pub const EAP_METHOD_PROPERTY_TYPE = extern enum(i32) {
+pub const EAP_METHOD_PROPERTY_TYPE = enum(i32) {
     PropCipherSuiteNegotiation = 0,
     PropMutualAuth = 1,
     PropIntegrity = 2,
@@ -1183,7 +1183,7 @@ pub const emptPropSharedStateEquivalence = EAP_METHOD_PROPERTY_TYPE.PropSharedSt
 pub const emptLegacyMethodPropertyFlag = EAP_METHOD_PROPERTY_TYPE.LegacyMethodPropertyFlag;
 pub const emptPropVendorSpecific = EAP_METHOD_PROPERTY_TYPE.PropVendorSpecific;
 
-pub const EAP_METHOD_PROPERTY_VALUE_TYPE = extern enum(i32) {
+pub const EAP_METHOD_PROPERTY_VALUE_TYPE = enum(i32) {
     Bool = 0,
     Dword = 1,
     String = 2,
@@ -1247,7 +1247,7 @@ pub const EAPHOST_INTERACTIVE_UI_PARAMS = extern struct {
     pEapError: *EAP_ERROR,
 };
 
-pub const EapCredentialType = extern enum(i32) {
+pub const EapCredentialType = enum(i32) {
     EMPTY_CREDENTIAL = 0,
     USERNAME_PASSWORD_CREDENTIAL = 1,
     WINLOGON_CREDENTIAL = 2,
@@ -1285,7 +1285,7 @@ pub const EapCredential = extern struct {
     credData: EapCredentialTypeData,
 };
 
-pub const EapHostPeerMethodResultReason = extern enum(i32) {
+pub const EapHostPeerMethodResultReason = enum(i32) {
     AltSuccessReceived = 1,
     Timeout = 2,
     FromMethod = 3,
@@ -1294,7 +1294,7 @@ pub const EapHostPeerMethodResultAltSuccessReceived = EapHostPeerMethodResultRea
 pub const EapHostPeerMethodResultTimeout = EapHostPeerMethodResultReason.Timeout;
 pub const EapHostPeerMethodResultFromMethod = EapHostPeerMethodResultReason.FromMethod;
 
-pub const EapHostPeerResponseAction = extern enum(i32) {
+pub const EapHostPeerResponseAction = enum(i32) {
     Discard = 0,
     Send = 1,
     Result = 2,
@@ -1311,7 +1311,7 @@ pub const EapHostPeerResponseRespond = EapHostPeerResponseAction.Respond;
 pub const EapHostPeerResponseStartAuthentication = EapHostPeerResponseAction.StartAuthentication;
 pub const EapHostPeerResponseNone = EapHostPeerResponseAction.None;
 
-pub const EapHostPeerAuthParams = extern enum(i32) {
+pub const EapHostPeerAuthParams = enum(i32) {
     PeerAuthStatus = 1,
     PeerIdentity = 2,
     PeerIdentityExtendedInfo = 3,
@@ -1322,7 +1322,7 @@ pub const EapHostPeerIdentity = EapHostPeerAuthParams.PeerIdentity;
 pub const EapHostPeerIdentityExtendedInfo = EapHostPeerAuthParams.PeerIdentityExtendedInfo;
 pub const EapHostNapInfo = EapHostPeerAuthParams.NapInfo;
 
-pub const EAPHOST_AUTH_STATUS = extern enum(i32) {
+pub const EAPHOST_AUTH_STATUS = enum(i32) {
     InvalidSession = 0,
     AuthNotStarted = 1,
     AuthIdentityExchange = 2,
@@ -1345,7 +1345,7 @@ pub const EAPHOST_AUTH_INFO = extern struct {
     dwReasonCode: u32,
 };
 
-pub const ISOLATION_STATE = extern enum(i32) {
+pub const ISOLATION_STATE = enum(i32) {
     UNKNOWN = 0,
     NOT_RESTRICTED = 1,
     IN_PROBATION = 2,
@@ -1378,27 +1378,27 @@ pub const EapPacket = extern struct {
     Data: [1]u8,
 };
 
-pub const EapCode = extern enum(i32) {
+pub const EapCode = enum(i32) {
     Minimum = 1,
-    Request = 1,
+    // Request = 1, this enum value conflicts with Minimum
     Response = 2,
     Success = 3,
     Failure = 4,
-    Maximum = 4,
+    // Maximum = 4, this enum value conflicts with Failure
 };
 pub const EapCodeMinimum = EapCode.Minimum;
-pub const EapCodeRequest = EapCode.Request;
+pub const EapCodeRequest = EapCode.Minimum;
 pub const EapCodeResponse = EapCode.Response;
 pub const EapCodeSuccess = EapCode.Success;
 pub const EapCodeFailure = EapCode.Failure;
-pub const EapCodeMaximum = EapCode.Maximum;
+pub const EapCodeMaximum = EapCode.Failure;
 
 pub const NotificationHandler = fn(
     connectionId: Guid,
     pContextData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const EAP_METHOD_AUTHENTICATOR_RESPONSE_ACTION = extern enum(i32) {
+pub const EAP_METHOD_AUTHENTICATOR_RESPONSE_ACTION = enum(i32) {
     DISCARD = 0,
     SEND = 1,
     RESULT = 2,
@@ -1419,7 +1419,7 @@ pub const EAP_METHOD_AUTHENTICATOR_RESULT = extern struct {
     pAuthAttribs: *EAP_ATTRIBUTES,
 };
 
-pub const EapPeerMethodResponseAction = extern enum(i32) {
+pub const EapPeerMethodResponseAction = enum(i32) {
     Discard = 0,
     Send = 1,
     Result = 2,
@@ -1439,7 +1439,7 @@ pub const EapPeerMethodOutput = extern struct {
     fAllowNotifications: BOOL,
 };
 
-pub const EapPeerMethodResultReason = extern enum(i32) {
+pub const EapPeerMethodResultReason = enum(i32) {
     Unknown = 1,
     Success = 2,
     Failure = 3,
@@ -1481,7 +1481,7 @@ pub const EAP_PEER_METHOD_ROUTINES = extern struct {
     EapPeerShutdown: isize,
 };
 
-pub const EAP_AUTHENTICATOR_SEND_TIMEOUT = extern enum(i32) {
+pub const EAP_AUTHENTICATOR_SEND_TIMEOUT = enum(i32) {
     NONE = 0,
     BASIC = 1,
     INTERACTIVE = 2,

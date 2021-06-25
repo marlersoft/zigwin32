@@ -942,28 +942,28 @@ pub const ROLLBACK_BITS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 pub const HCMNOTIFICATION = *opaque{};
 
-pub const CONFIGRET = extern enum(u32) {
+pub const CONFIGRET = enum(u32) {
     CR_SUCCESS = 0,
     CR_DEFAULT = 1,
     CR_OUT_OF_MEMORY = 2,
     CR_INVALID_POINTER = 3,
     CR_INVALID_FLAG = 4,
     CR_INVALID_DEVNODE = 5,
-    CR_INVALID_DEVINST = 5,
+    // CR_INVALID_DEVINST = 5, this enum value conflicts with CR_INVALID_DEVNODE
     CR_INVALID_RES_DES = 6,
     CR_INVALID_LOG_CONF = 7,
     CR_INVALID_ARBITRATOR = 8,
     CR_INVALID_NODELIST = 9,
     CR_DEVNODE_HAS_REQS = 10,
-    CR_DEVINST_HAS_REQS = 10,
+    // CR_DEVINST_HAS_REQS = 10, this enum value conflicts with CR_DEVNODE_HAS_REQS
     CR_INVALID_RESOURCEID = 11,
     CR_DLVXD_NOT_FOUND = 12,
     CR_NO_SUCH_DEVNODE = 13,
-    CR_NO_SUCH_DEVINST = 13,
+    // CR_NO_SUCH_DEVINST = 13, this enum value conflicts with CR_NO_SUCH_DEVNODE
     CR_NO_MORE_LOG_CONF = 14,
     CR_NO_MORE_RES_DES = 15,
     CR_ALREADY_SUCH_DEVNODE = 16,
-    CR_ALREADY_SUCH_DEVINST = 16,
+    // CR_ALREADY_SUCH_DEVINST = 16, this enum value conflicts with CR_ALREADY_SUCH_DEVNODE
     CR_INVALID_RANGE_LIST = 17,
     CR_INVALID_RANGE = 18,
     CR_FAILURE = 19,
@@ -1015,21 +1015,21 @@ pub const CR_OUT_OF_MEMORY = CONFIGRET.CR_OUT_OF_MEMORY;
 pub const CR_INVALID_POINTER = CONFIGRET.CR_INVALID_POINTER;
 pub const CR_INVALID_FLAG = CONFIGRET.CR_INVALID_FLAG;
 pub const CR_INVALID_DEVNODE = CONFIGRET.CR_INVALID_DEVNODE;
-pub const CR_INVALID_DEVINST = CONFIGRET.CR_INVALID_DEVINST;
+pub const CR_INVALID_DEVINST = CONFIGRET.CR_INVALID_DEVNODE;
 pub const CR_INVALID_RES_DES = CONFIGRET.CR_INVALID_RES_DES;
 pub const CR_INVALID_LOG_CONF = CONFIGRET.CR_INVALID_LOG_CONF;
 pub const CR_INVALID_ARBITRATOR = CONFIGRET.CR_INVALID_ARBITRATOR;
 pub const CR_INVALID_NODELIST = CONFIGRET.CR_INVALID_NODELIST;
 pub const CR_DEVNODE_HAS_REQS = CONFIGRET.CR_DEVNODE_HAS_REQS;
-pub const CR_DEVINST_HAS_REQS = CONFIGRET.CR_DEVINST_HAS_REQS;
+pub const CR_DEVINST_HAS_REQS = CONFIGRET.CR_DEVNODE_HAS_REQS;
 pub const CR_INVALID_RESOURCEID = CONFIGRET.CR_INVALID_RESOURCEID;
 pub const CR_DLVXD_NOT_FOUND = CONFIGRET.CR_DLVXD_NOT_FOUND;
 pub const CR_NO_SUCH_DEVNODE = CONFIGRET.CR_NO_SUCH_DEVNODE;
-pub const CR_NO_SUCH_DEVINST = CONFIGRET.CR_NO_SUCH_DEVINST;
+pub const CR_NO_SUCH_DEVINST = CONFIGRET.CR_NO_SUCH_DEVNODE;
 pub const CR_NO_MORE_LOG_CONF = CONFIGRET.CR_NO_MORE_LOG_CONF;
 pub const CR_NO_MORE_RES_DES = CONFIGRET.CR_NO_MORE_RES_DES;
 pub const CR_ALREADY_SUCH_DEVNODE = CONFIGRET.CR_ALREADY_SUCH_DEVNODE;
-pub const CR_ALREADY_SUCH_DEVINST = CONFIGRET.CR_ALREADY_SUCH_DEVINST;
+pub const CR_ALREADY_SUCH_DEVINST = CONFIGRET.CR_ALREADY_SUCH_DEVNODE;
 pub const CR_INVALID_RANGE_LIST = CONFIGRET.CR_INVALID_RANGE_LIST;
 pub const CR_INVALID_RANGE = CONFIGRET.CR_INVALID_RANGE;
 pub const CR_FAILURE = CONFIGRET.CR_FAILURE;
@@ -1847,7 +1847,7 @@ pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
 
 }, else => struct { } };
 
-pub const SP_COPY_STYLE = extern enum(u32) {
+pub const SP_COPY_STYLE = enum(u32) {
     DELETESOURCE = 1,
     REPLACEONLY = 2,
     NEWER_OR_SAME = 4,
@@ -1864,7 +1864,7 @@ pub const SP_COPY_STYLE = extern enum(u32) {
     FORCE_NEWER = 8192,
     WARNIFSKIP = 16384,
     NOBROWSE = 32768,
-    NEWER = 4,
+    // NEWER = 4, this enum value conflicts with NEWER_OR_SAME
     RESERVED = 131072,
     OEMINF_CATALOG_ONLY = 262144,
     REPLACE_BOOT_FILE = 524288,
@@ -1894,7 +1894,6 @@ pub const SP_COPY_STYLE = extern enum(u32) {
         FORCE_NEWER: u1 = 0,
         WARNIFSKIP: u1 = 0,
         NOBROWSE: u1 = 0,
-        NEWER: u1 = 0,
         RESERVED: u1 = 0,
         OEMINF_CATALOG_ONLY: u1 = 0,
         REPLACE_BOOT_FILE: u1 = 0,
@@ -1924,7 +1923,6 @@ pub const SP_COPY_STYLE = extern enum(u32) {
             | (if (o.FORCE_NEWER == 1) @enumToInt(SP_COPY_STYLE.FORCE_NEWER) else 0)
             | (if (o.WARNIFSKIP == 1) @enumToInt(SP_COPY_STYLE.WARNIFSKIP) else 0)
             | (if (o.NOBROWSE == 1) @enumToInt(SP_COPY_STYLE.NOBROWSE) else 0)
-            | (if (o.NEWER == 1) @enumToInt(SP_COPY_STYLE.NEWER) else 0)
             | (if (o.RESERVED == 1) @enumToInt(SP_COPY_STYLE.RESERVED) else 0)
             | (if (o.OEMINF_CATALOG_ONLY == 1) @enumToInt(SP_COPY_STYLE.OEMINF_CATALOG_ONLY) else 0)
             | (if (o.REPLACE_BOOT_FILE == 1) @enumToInt(SP_COPY_STYLE.REPLACE_BOOT_FILE) else 0)
@@ -1955,7 +1953,7 @@ pub const SP_COPY_FORCE_NOOVERWRITE = SP_COPY_STYLE.FORCE_NOOVERWRITE;
 pub const SP_COPY_FORCE_NEWER = SP_COPY_STYLE.FORCE_NEWER;
 pub const SP_COPY_WARNIFSKIP = SP_COPY_STYLE.WARNIFSKIP;
 pub const SP_COPY_NOBROWSE = SP_COPY_STYLE.NOBROWSE;
-pub const SP_COPY_NEWER = SP_COPY_STYLE.NEWER;
+pub const SP_COPY_NEWER = SP_COPY_STYLE.NEWER_OR_SAME;
 pub const SP_COPY_RESERVED = SP_COPY_STYLE.RESERVED;
 pub const SP_COPY_OEMINF_CATALOG_ONLY = SP_COPY_STYLE.OEMINF_CATALOG_ONLY;
 pub const SP_COPY_REPLACE_BOOT_FILE = SP_COPY_STYLE.REPLACE_BOOT_FILE;
@@ -1968,14 +1966,14 @@ pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE.IN_USE_TRY_RENAME;
 pub const SP_COPY_INBOX_INF = SP_COPY_STYLE.INBOX_INF;
 pub const SP_COPY_HARDLINK = SP_COPY_STYLE.HARDLINK;
 
-pub const SETUP_FILE_OPERATION = extern enum(u32) {
+pub const SETUP_FILE_OPERATION = enum(u32) {
     DELETE = 2,
     COPY = 0,
 };
 pub const FILEOP_DELETE = SETUP_FILE_OPERATION.DELETE;
 pub const FILEOP_COPY = SETUP_FILE_OPERATION.COPY;
 
-pub const OEM_SOURCE_MEDIA_TYPE = extern enum(u32) {
+pub const OEM_SOURCE_MEDIA_TYPE = enum(u32) {
     NONE = 0,
     PATH = 1,
     URL = 2,
@@ -1984,14 +1982,14 @@ pub const SPOST_NONE = OEM_SOURCE_MEDIA_TYPE.NONE;
 pub const SPOST_PATH = OEM_SOURCE_MEDIA_TYPE.PATH;
 pub const SPOST_URL = OEM_SOURCE_MEDIA_TYPE.URL;
 
-pub const SETUP_DI_BUILD_DRIVER_DRIVER_TYPE = extern enum(u32) {
+pub const SETUP_DI_BUILD_DRIVER_DRIVER_TYPE = enum(u32) {
     LASSDRIVER = 1,
     OMPATDRIVER = 2,
 };
 pub const SPDIT_CLASSDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.LASSDRIVER;
 pub const SPDIT_COMPATDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.OMPATDRIVER;
 
-pub const SP_INF_STYLE = extern enum(u32) {
+pub const SP_INF_STYLE = enum(u32) {
     NONE = 0,
     OLDNT = 1,
     WIN4 = 2,
@@ -2046,7 +2044,7 @@ pub const PSP_DETSIG_CMPPROC = fn(
     CompareContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const SetupFileLogInfo = extern enum(i32) {
+pub const SetupFileLogInfo = enum(i32) {
     SourceFilename = 0,
     Checksum = 1,
     DiskTagfile = 2,
@@ -2061,7 +2059,7 @@ pub const SetupFileLogDiskDescription = SetupFileLogInfo.DiskDescription;
 pub const SetupFileLogOtherInfo = SetupFileLogInfo.OtherInfo;
 pub const SetupFileLogMax = SetupFileLogInfo.Max;
 
-pub const PNP_VETO_TYPE = extern enum(i32) {
+pub const PNP_VETO_TYPE = enum(i32) {
     TypeUnknown = 0,
     LegacyDevice = 1,
     PendingClose = 2,
@@ -2338,7 +2336,7 @@ pub const HWProfileInfo_sW = packed struct {
     HWPI_dwFlags: u32,
 };
 
-pub const CM_NOTIFY_FILTER_TYPE = extern enum(i32) {
+pub const CM_NOTIFY_FILTER_TYPE = enum(i32) {
     DEVICEINTERFACE = 0,
     DEVICEHANDLE = 1,
     DEVICEINSTANCE = 2,
@@ -2367,7 +2365,7 @@ pub const CM_NOTIFY_FILTER = extern struct {
     },
 };
 
-pub const CM_NOTIFY_ACTION = extern enum(i32) {
+pub const CM_NOTIFY_ACTION = enum(i32) {
     DEVICEINTERFACEARRIVAL = 0,
     DEVICEINTERFACEREMOVAL = 1,
     DEVICEQUERYREMOVE = 2,

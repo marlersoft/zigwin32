@@ -1952,7 +1952,7 @@ pub const IWiaItemExtras = extern struct {
 const CLSID_WiaVideo_Value = @import("../zig.zig").Guid.initString("3908c3cd-4478-4536-af2f-10c25d4ef89a");
 pub const CLSID_WiaVideo = &CLSID_WiaVideo_Value;
 
-pub const WIAVIDEO_STATE = extern enum(i32) {
+pub const WIAVIDEO_STATE = enum(i32) {
     NO_VIDEO = 1,
     CREATING_VIDEO = 2,
     VIDEO_CREATED = 3,

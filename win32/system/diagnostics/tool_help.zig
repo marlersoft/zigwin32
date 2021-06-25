@@ -9,7 +9,7 @@ pub const HF32_SHARED = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = extern enum(u32) {
+pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = enum(u32) {
     INHERIT = 2147483648,
     SNAPALL = 15,
     SNAPHEAPLIST = 1,
@@ -46,7 +46,7 @@ pub const TH32CS_SNAPMODULE32 = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32;
 pub const TH32CS_SNAPPROCESS = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS;
 pub const TH32CS_SNAPTHREAD = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD;
 
-pub const HEAPENTRY32_FLAGS = extern enum(u32) {
+pub const HEAPENTRY32_FLAGS = enum(u32) {
     FIXED = 1,
     FREE = 2,
     MOVEABLE = 4,

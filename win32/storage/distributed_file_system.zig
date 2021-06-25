@@ -99,7 +99,7 @@ pub const DFS_INFO_4_32 = extern struct {
 
 }, else => struct { } };
 
-pub const DFS_TARGET_PRIORITY_CLASS = extern enum(i32) {
+pub const DFS_TARGET_PRIORITY_CLASS = enum(i32) {
     InvalidPriorityClass = -1,
     SiteCostNormalPriorityClass = 0,
     GlobalHighPriorityClass = 1,
@@ -290,7 +290,7 @@ pub const DFS_SITELIST_INFO = extern struct {
     Site: [1]DFS_SITENAME_INFO,
 };
 
-pub const DFS_NAMESPACE_VERSION_ORIGIN = extern enum(i32) {
+pub const DFS_NAMESPACE_VERSION_ORIGIN = enum(i32) {
     COMBINED = 0,
     SERVER = 1,
     DOMAIN = 2,

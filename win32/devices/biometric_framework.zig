@@ -29,7 +29,7 @@ pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const WINBIO_SETTING_SOURCE = extern enum(u32) {
+pub const WINBIO_SETTING_SOURCE = enum(u32) {
     INVALID = 0,
     DEFAULT = 1,
     LOCAL = 3,
@@ -40,7 +40,7 @@ pub const WINBIO_SETTING_SOURCE_DEFAULT = WINBIO_SETTING_SOURCE.DEFAULT;
 pub const WINBIO_SETTING_SOURCE_LOCAL = WINBIO_SETTING_SOURCE.LOCAL;
 pub const WINBIO_SETTING_SOURCE_POLICY = WINBIO_SETTING_SOURCE.POLICY;
 
-pub const WINBIO_COMPONENT = extern enum(u32) {
+pub const WINBIO_COMPONENT = enum(u32) {
     SENSOR = 1,
     ENGINE = 2,
     STORAGE = 3,
@@ -49,7 +49,7 @@ pub const WINBIO_COMPONENT_SENSOR = WINBIO_COMPONENT.SENSOR;
 pub const WINBIO_COMPONENT_ENGINE = WINBIO_COMPONENT.ENGINE;
 pub const WINBIO_COMPONENT_STORAGE = WINBIO_COMPONENT.STORAGE;
 
-pub const WINBIO_POOL = extern enum(u32) {
+pub const WINBIO_POOL = enum(u32) {
     SYSTEM = 1,
     PRIVATE = 2,
 };
@@ -386,7 +386,7 @@ pub const WINBIO_FP_BU_STATE = extern struct {
     CreationResult: HRESULT,
 };
 
-pub const WINBIO_ANTI_SPOOF_POLICY_ACTION = extern enum(i32) {
+pub const WINBIO_ANTI_SPOOF_POLICY_ACTION = enum(i32) {
     DISABLE = 0,
     ENABLE = 1,
     REMOVE = 2,
@@ -395,7 +395,7 @@ pub const WINBIO_ANTI_SPOOF_DISABLE = WINBIO_ANTI_SPOOF_POLICY_ACTION.DISABLE;
 pub const WINBIO_ANTI_SPOOF_ENABLE = WINBIO_ANTI_SPOOF_POLICY_ACTION.ENABLE;
 pub const WINBIO_ANTI_SPOOF_REMOVE = WINBIO_ANTI_SPOOF_POLICY_ACTION.REMOVE;
 
-pub const WINBIO_POLICY_SOURCE = extern enum(i32) {
+pub const WINBIO_POLICY_SOURCE = enum(i32) {
     UNKNOWN = 0,
     DEFAULT = 1,
     LOCAL = 2,
@@ -411,14 +411,14 @@ pub const WINBIO_ANTI_SPOOF_POLICY = extern struct {
     Source: WINBIO_POLICY_SOURCE,
 };
 
-pub const WINBIO_CREDENTIAL_TYPE = extern enum(i32) {
+pub const WINBIO_CREDENTIAL_TYPE = enum(i32) {
     PASSWORD = 1,
     ALL = -1,
 };
 pub const WINBIO_CREDENTIAL_PASSWORD = WINBIO_CREDENTIAL_TYPE.PASSWORD;
 pub const WINBIO_CREDENTIAL_ALL = WINBIO_CREDENTIAL_TYPE.ALL;
 
-pub const WINBIO_CREDENTIAL_FORMAT = extern enum(i32) {
+pub const WINBIO_CREDENTIAL_FORMAT = enum(i32) {
     GENERIC = 1,
     PACKED = 2,
     PROTECTED = 3,
@@ -427,7 +427,7 @@ pub const WINBIO_PASSWORD_GENERIC = WINBIO_CREDENTIAL_FORMAT.GENERIC;
 pub const WINBIO_PASSWORD_PACKED = WINBIO_CREDENTIAL_FORMAT.PACKED;
 pub const WINBIO_PASSWORD_PROTECTED = WINBIO_CREDENTIAL_FORMAT.PROTECTED;
 
-pub const WINBIO_CREDENTIAL_STATE = extern enum(i32) {
+pub const WINBIO_CREDENTIAL_STATE = enum(i32) {
     NOT_SET = 1,
     SET = 2,
 };
@@ -460,7 +460,7 @@ pub const WINBIO_GESTURE_METADATA = extern struct {
     ProtectionType: u32,
 };
 
-pub const WINBIO_ASYNC_NOTIFICATION_METHOD = extern enum(i32) {
+pub const WINBIO_ASYNC_NOTIFICATION_METHOD = enum(i32) {
     NONE = 0,
     CALLBACK = 1,
     MESSAGE = 2,

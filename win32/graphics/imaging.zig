@@ -307,7 +307,7 @@ pub const WICRect = extern struct {
     Height: i32,
 };
 
-pub const WICColorContextType = extern enum(i32) {
+pub const WICColorContextType = enum(i32) {
     Uninitialized = 0,
     Profile = 1,
     ExifColorSpace = 2,
@@ -316,7 +316,7 @@ pub const WICColorContextUninitialized = WICColorContextType.Uninitialized;
 pub const WICColorContextProfile = WICColorContextType.Profile;
 pub const WICColorContextExifColorSpace = WICColorContextType.ExifColorSpace;
 
-pub const WICBitmapCreateCacheOption = extern enum(i32) {
+pub const WICBitmapCreateCacheOption = enum(i32) {
     itmapNoCache = 0,
     itmapCacheOnDemand = 1,
     itmapCacheOnLoad = 2,
@@ -327,7 +327,7 @@ pub const WICBitmapCacheOnDemand = WICBitmapCreateCacheOption.itmapCacheOnDemand
 pub const WICBitmapCacheOnLoad = WICBitmapCreateCacheOption.itmapCacheOnLoad;
 pub const WICBITMAPCREATECACHEOPTION_FORCE_DWORD = WICBitmapCreateCacheOption.ITMAPCREATECACHEOPTION_FORCE_DWORD;
 
-pub const WICDecodeOptions = extern enum(i32) {
+pub const WICDecodeOptions = enum(i32) {
     DecodeMetadataCacheOnDemand = 0,
     DecodeMetadataCacheOnLoad = 1,
     METADATACACHEOPTION_FORCE_DWORD = 2147483647,
@@ -336,7 +336,7 @@ pub const WICDecodeMetadataCacheOnDemand = WICDecodeOptions.DecodeMetadataCacheO
 pub const WICDecodeMetadataCacheOnLoad = WICDecodeOptions.DecodeMetadataCacheOnLoad;
 pub const WICMETADATACACHEOPTION_FORCE_DWORD = WICDecodeOptions.METADATACACHEOPTION_FORCE_DWORD;
 
-pub const WICBitmapEncoderCacheOption = extern enum(i32) {
+pub const WICBitmapEncoderCacheOption = enum(i32) {
     itmapEncoderCacheInMemory = 0,
     itmapEncoderCacheTempFile = 1,
     itmapEncoderNoCache = 2,
@@ -347,7 +347,7 @@ pub const WICBitmapEncoderCacheTempFile = WICBitmapEncoderCacheOption.itmapEncod
 pub const WICBitmapEncoderNoCache = WICBitmapEncoderCacheOption.itmapEncoderNoCache;
 pub const WICBITMAPENCODERCACHEOPTION_FORCE_DWORD = WICBitmapEncoderCacheOption.ITMAPENCODERCACHEOPTION_FORCE_DWORD;
 
-pub const WICComponentType = extern enum(i32) {
+pub const WICComponentType = enum(i32) {
     Decoder = 1,
     Encoder = 2,
     PixelFormatConverter = 4,
@@ -366,7 +366,7 @@ pub const WICPixelFormat = WICComponentType.PixelFormat;
 pub const WICAllComponents = WICComponentType.AllComponents;
 pub const WICCOMPONENTTYPE_FORCE_DWORD = WICComponentType.COMPONENTTYPE_FORCE_DWORD;
 
-pub const WICComponentEnumerateOptions = extern enum(i32) {
+pub const WICComponentEnumerateOptions = enum(i32) {
     omponentEnumerateDefault = 0,
     omponentEnumerateRefresh = 1,
     omponentEnumerateDisabled = -2147483648,
@@ -389,7 +389,7 @@ pub const WICBitmapPattern = extern struct {
     EndOfStream: BOOL,
 };
 
-pub const WICBitmapInterpolationMode = extern enum(i32) {
+pub const WICBitmapInterpolationMode = enum(i32) {
     itmapInterpolationModeNearestNeighbor = 0,
     itmapInterpolationModeLinear = 1,
     itmapInterpolationModeCubic = 2,
@@ -404,7 +404,7 @@ pub const WICBitmapInterpolationModeFant = WICBitmapInterpolationMode.itmapInter
 pub const WICBitmapInterpolationModeHighQualityCubic = WICBitmapInterpolationMode.itmapInterpolationModeHighQualityCubic;
 pub const WICBITMAPINTERPOLATIONMODE_FORCE_DWORD = WICBitmapInterpolationMode.ITMAPINTERPOLATIONMODE_FORCE_DWORD;
 
-pub const WICBitmapPaletteType = extern enum(i32) {
+pub const WICBitmapPaletteType = enum(i32) {
     itmapPaletteTypeCustom = 0,
     itmapPaletteTypeMedianCut = 1,
     itmapPaletteTypeFixedBW = 2,
@@ -413,7 +413,7 @@ pub const WICBitmapPaletteType = extern enum(i32) {
     itmapPaletteTypeFixedHalftone64 = 5,
     itmapPaletteTypeFixedHalftone125 = 6,
     itmapPaletteTypeFixedHalftone216 = 7,
-    itmapPaletteTypeFixedWebPalette = 7,
+    // itmapPaletteTypeFixedWebPalette = 7, this enum value conflicts with itmapPaletteTypeFixedHalftone216
     itmapPaletteTypeFixedHalftone252 = 8,
     itmapPaletteTypeFixedHalftone256 = 9,
     itmapPaletteTypeFixedGray4 = 10,
@@ -429,7 +429,7 @@ pub const WICBitmapPaletteTypeFixedHalftone27 = WICBitmapPaletteType.itmapPalett
 pub const WICBitmapPaletteTypeFixedHalftone64 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone64;
 pub const WICBitmapPaletteTypeFixedHalftone125 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone125;
 pub const WICBitmapPaletteTypeFixedHalftone216 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone216;
-pub const WICBitmapPaletteTypeFixedWebPalette = WICBitmapPaletteType.itmapPaletteTypeFixedWebPalette;
+pub const WICBitmapPaletteTypeFixedWebPalette = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone216;
 pub const WICBitmapPaletteTypeFixedHalftone252 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone252;
 pub const WICBitmapPaletteTypeFixedHalftone256 = WICBitmapPaletteType.itmapPaletteTypeFixedHalftone256;
 pub const WICBitmapPaletteTypeFixedGray4 = WICBitmapPaletteType.itmapPaletteTypeFixedGray4;
@@ -437,9 +437,9 @@ pub const WICBitmapPaletteTypeFixedGray16 = WICBitmapPaletteType.itmapPaletteTyp
 pub const WICBitmapPaletteTypeFixedGray256 = WICBitmapPaletteType.itmapPaletteTypeFixedGray256;
 pub const WICBITMAPPALETTETYPE_FORCE_DWORD = WICBitmapPaletteType.ITMAPPALETTETYPE_FORCE_DWORD;
 
-pub const WICBitmapDitherType = extern enum(i32) {
+pub const WICBitmapDitherType = enum(i32) {
     itmapDitherTypeNone = 0,
-    itmapDitherTypeSolid = 0,
+    // itmapDitherTypeSolid = 0, this enum value conflicts with itmapDitherTypeNone
     itmapDitherTypeOrdered4x4 = 1,
     itmapDitherTypeOrdered8x8 = 2,
     itmapDitherTypeOrdered16x16 = 3,
@@ -451,7 +451,7 @@ pub const WICBitmapDitherType = extern enum(i32) {
     ITMAPDITHERTYPE_FORCE_DWORD = 2147483647,
 };
 pub const WICBitmapDitherTypeNone = WICBitmapDitherType.itmapDitherTypeNone;
-pub const WICBitmapDitherTypeSolid = WICBitmapDitherType.itmapDitherTypeSolid;
+pub const WICBitmapDitherTypeSolid = WICBitmapDitherType.itmapDitherTypeNone;
 pub const WICBitmapDitherTypeOrdered4x4 = WICBitmapDitherType.itmapDitherTypeOrdered4x4;
 pub const WICBitmapDitherTypeOrdered8x8 = WICBitmapDitherType.itmapDitherTypeOrdered8x8;
 pub const WICBitmapDitherTypeOrdered16x16 = WICBitmapDitherType.itmapDitherTypeOrdered16x16;
@@ -462,7 +462,7 @@ pub const WICBitmapDitherTypeDualSpiral8x8 = WICBitmapDitherType.itmapDitherType
 pub const WICBitmapDitherTypeErrorDiffusion = WICBitmapDitherType.itmapDitherTypeErrorDiffusion;
 pub const WICBITMAPDITHERTYPE_FORCE_DWORD = WICBitmapDitherType.ITMAPDITHERTYPE_FORCE_DWORD;
 
-pub const WICBitmapAlphaChannelOption = extern enum(i32) {
+pub const WICBitmapAlphaChannelOption = enum(i32) {
     itmapUseAlpha = 0,
     itmapUsePremultipliedAlpha = 1,
     itmapIgnoreAlpha = 2,
@@ -473,7 +473,7 @@ pub const WICBitmapUsePremultipliedAlpha = WICBitmapAlphaChannelOption.itmapUseP
 pub const WICBitmapIgnoreAlpha = WICBitmapAlphaChannelOption.itmapIgnoreAlpha;
 pub const WICBITMAPALPHACHANNELOPTIONS_FORCE_DWORD = WICBitmapAlphaChannelOption.ITMAPALPHACHANNELOPTIONS_FORCE_DWORD;
 
-pub const WICBitmapTransformOptions = extern enum(i32) {
+pub const WICBitmapTransformOptions = enum(i32) {
     itmapTransformRotate0 = 0,
     itmapTransformRotate90 = 1,
     itmapTransformRotate180 = 2,
@@ -490,7 +490,7 @@ pub const WICBitmapTransformFlipHorizontal = WICBitmapTransformOptions.itmapTran
 pub const WICBitmapTransformFlipVertical = WICBitmapTransformOptions.itmapTransformFlipVertical;
 pub const WICBITMAPTRANSFORMOPTIONS_FORCE_DWORD = WICBitmapTransformOptions.ITMAPTRANSFORMOPTIONS_FORCE_DWORD;
 
-pub const WICBitmapLockFlags = extern enum(i32) {
+pub const WICBitmapLockFlags = enum(i32) {
     itmapLockRead = 1,
     itmapLockWrite = 2,
     ITMAPLOCKFLAGS_FORCE_DWORD = 2147483647,
@@ -499,7 +499,7 @@ pub const WICBitmapLockRead = WICBitmapLockFlags.itmapLockRead;
 pub const WICBitmapLockWrite = WICBitmapLockFlags.itmapLockWrite;
 pub const WICBITMAPLOCKFLAGS_FORCE_DWORD = WICBitmapLockFlags.ITMAPLOCKFLAGS_FORCE_DWORD;
 
-pub const WICBitmapDecoderCapabilities = extern enum(i32) {
+pub const WICBitmapDecoderCapabilities = enum(i32) {
     itmapDecoderCapabilitySameEncoder = 1,
     itmapDecoderCapabilityCanDecodeAllImages = 2,
     itmapDecoderCapabilityCanDecodeSomeImages = 4,
@@ -514,7 +514,7 @@ pub const WICBitmapDecoderCapabilityCanEnumerateMetadata = WICBitmapDecoderCapab
 pub const WICBitmapDecoderCapabilityCanDecodeThumbnail = WICBitmapDecoderCapabilities.itmapDecoderCapabilityCanDecodeThumbnail;
 pub const WICBITMAPDECODERCAPABILITIES_FORCE_DWORD = WICBitmapDecoderCapabilities.ITMAPDECODERCAPABILITIES_FORCE_DWORD;
 
-pub const WICProgressOperation = extern enum(i32) {
+pub const WICProgressOperation = enum(i32) {
     rogressOperationCopyPixels = 1,
     rogressOperationWritePixels = 2,
     rogressOperationAll = 65535,
@@ -525,7 +525,7 @@ pub const WICProgressOperationWritePixels = WICProgressOperation.rogressOperatio
 pub const WICProgressOperationAll = WICProgressOperation.rogressOperationAll;
 pub const WICPROGRESSOPERATION_FORCE_DWORD = WICProgressOperation.ROGRESSOPERATION_FORCE_DWORD;
 
-pub const WICProgressNotification = extern enum(i32) {
+pub const WICProgressNotification = enum(i32) {
     rogressNotificationBegin = 65536,
     rogressNotificationEnd = 131072,
     rogressNotificationFrequent = 262144,
@@ -538,7 +538,7 @@ pub const WICProgressNotificationFrequent = WICProgressNotification.rogressNotif
 pub const WICProgressNotificationAll = WICProgressNotification.rogressNotificationAll;
 pub const WICPROGRESSNOTIFICATION_FORCE_DWORD = WICProgressNotification.ROGRESSNOTIFICATION_FORCE_DWORD;
 
-pub const WICComponentSigning = extern enum(i32) {
+pub const WICComponentSigning = enum(i32) {
     omponentSigned = 1,
     omponentUnsigned = 2,
     omponentSafe = 4,
@@ -551,7 +551,7 @@ pub const WICComponentSafe = WICComponentSigning.omponentSafe;
 pub const WICComponentDisabled = WICComponentSigning.omponentDisabled;
 pub const WICCOMPONENTSIGNING_FORCE_DWORD = WICComponentSigning.OMPONENTSIGNING_FORCE_DWORD;
 
-pub const WICGifLogicalScreenDescriptorProperties = extern enum(u32) {
+pub const WICGifLogicalScreenDescriptorProperties = enum(u32) {
     Signature = 1,
     DescriptorWidth = 2,
     DescriptorHeight = 3,
@@ -574,7 +574,7 @@ pub const WICGifLogicalScreenDescriptorBackgroundColorIndex = WICGifLogicalScree
 pub const WICGifLogicalScreenDescriptorPixelAspectRatio = WICGifLogicalScreenDescriptorProperties.DescriptorPixelAspectRatio;
 pub const WICGifLogicalScreenDescriptorProperties_FORCE_DWORD = WICGifLogicalScreenDescriptorProperties.DescriptorProperties_FORCE_DWORD;
 
-pub const WICGifImageDescriptorProperties = extern enum(u32) {
+pub const WICGifImageDescriptorProperties = enum(u32) {
     Left = 1,
     Top = 2,
     Width = 3,
@@ -595,7 +595,7 @@ pub const WICGifImageDescriptorSortFlag = WICGifImageDescriptorProperties.SortFl
 pub const WICGifImageDescriptorLocalColorTableSize = WICGifImageDescriptorProperties.LocalColorTableSize;
 pub const WICGifImageDescriptorProperties_FORCE_DWORD = WICGifImageDescriptorProperties.Properties_FORCE_DWORD;
 
-pub const WICGifGraphicControlExtensionProperties = extern enum(u32) {
+pub const WICGifGraphicControlExtensionProperties = enum(u32) {
     Disposal = 1,
     UserInputFlag = 2,
     TransparencyFlag = 3,
@@ -610,7 +610,7 @@ pub const WICGifGraphicControlExtensionDelay = WICGifGraphicControlExtensionProp
 pub const WICGifGraphicControlExtensionTransparentColorIndex = WICGifGraphicControlExtensionProperties.TransparentColorIndex;
 pub const WICGifGraphicControlExtensionProperties_FORCE_DWORD = WICGifGraphicControlExtensionProperties.Properties_FORCE_DWORD;
 
-pub const WICGifApplicationExtensionProperties = extern enum(u32) {
+pub const WICGifApplicationExtensionProperties = enum(u32) {
     Application = 1,
     Data = 2,
     Properties_FORCE_DWORD = 2147483647,
@@ -619,35 +619,35 @@ pub const WICGifApplicationExtensionApplication = WICGifApplicationExtensionProp
 pub const WICGifApplicationExtensionData = WICGifApplicationExtensionProperties.Data;
 pub const WICGifApplicationExtensionProperties_FORCE_DWORD = WICGifApplicationExtensionProperties.Properties_FORCE_DWORD;
 
-pub const WICGifCommentExtensionProperties = extern enum(u32) {
+pub const WICGifCommentExtensionProperties = enum(u32) {
     Text = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICGifCommentExtensionText = WICGifCommentExtensionProperties.Text;
 pub const WICGifCommentExtensionProperties_FORCE_DWORD = WICGifCommentExtensionProperties.Properties_FORCE_DWORD;
 
-pub const WICJpegCommentProperties = extern enum(u32) {
+pub const WICJpegCommentProperties = enum(u32) {
     Text = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICJpegCommentText = WICJpegCommentProperties.Text;
 pub const WICJpegCommentProperties_FORCE_DWORD = WICJpegCommentProperties.Properties_FORCE_DWORD;
 
-pub const WICJpegLuminanceProperties = extern enum(u32) {
+pub const WICJpegLuminanceProperties = enum(u32) {
     Table = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICJpegLuminanceTable = WICJpegLuminanceProperties.Table;
 pub const WICJpegLuminanceProperties_FORCE_DWORD = WICJpegLuminanceProperties.Properties_FORCE_DWORD;
 
-pub const WICJpegChrominanceProperties = extern enum(u32) {
+pub const WICJpegChrominanceProperties = enum(u32) {
     Table = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICJpegChrominanceTable = WICJpegChrominanceProperties.Table;
 pub const WICJpegChrominanceProperties_FORCE_DWORD = WICJpegChrominanceProperties.Properties_FORCE_DWORD;
 
-pub const WIC8BIMIptcProperties = extern enum(u32) {
+pub const WIC8BIMIptcProperties = enum(u32) {
     PString = 0,
     EmbeddedIPTC = 1,
     Properties_FORCE_DWORD = 2147483647,
@@ -656,7 +656,7 @@ pub const WIC8BIMIptcPString = WIC8BIMIptcProperties.PString;
 pub const WIC8BIMIptcEmbeddedIPTC = WIC8BIMIptcProperties.EmbeddedIPTC;
 pub const WIC8BIMIptcProperties_FORCE_DWORD = WIC8BIMIptcProperties.Properties_FORCE_DWORD;
 
-pub const WIC8BIMResolutionInfoProperties = extern enum(u32) {
+pub const WIC8BIMResolutionInfoProperties = enum(u32) {
     PString = 1,
     HResolution = 2,
     HResolutionUnit = 3,
@@ -675,7 +675,7 @@ pub const WIC8BIMResolutionInfoVResolutionUnit = WIC8BIMResolutionInfoProperties
 pub const WIC8BIMResolutionInfoHeightUnit = WIC8BIMResolutionInfoProperties.HeightUnit;
 pub const WIC8BIMResolutionInfoProperties_FORCE_DWORD = WIC8BIMResolutionInfoProperties.Properties_FORCE_DWORD;
 
-pub const WIC8BIMIptcDigestProperties = extern enum(u32) {
+pub const WIC8BIMIptcDigestProperties = enum(u32) {
     PString = 1,
     IptcDigest = 2,
     Properties_FORCE_DWORD = 2147483647,
@@ -684,21 +684,21 @@ pub const WIC8BIMIptcDigestPString = WIC8BIMIptcDigestProperties.PString;
 pub const WIC8BIMIptcDigestIptcDigest = WIC8BIMIptcDigestProperties.IptcDigest;
 pub const WIC8BIMIptcDigestProperties_FORCE_DWORD = WIC8BIMIptcDigestProperties.Properties_FORCE_DWORD;
 
-pub const WICPngGamaProperties = extern enum(u32) {
+pub const WICPngGamaProperties = enum(u32) {
     Gamma = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICPngGamaGamma = WICPngGamaProperties.Gamma;
 pub const WICPngGamaProperties_FORCE_DWORD = WICPngGamaProperties.Properties_FORCE_DWORD;
 
-pub const WICPngBkgdProperties = extern enum(u32) {
+pub const WICPngBkgdProperties = enum(u32) {
     BackgroundColor = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICPngBkgdBackgroundColor = WICPngBkgdProperties.BackgroundColor;
 pub const WICPngBkgdProperties_FORCE_DWORD = WICPngBkgdProperties.Properties_FORCE_DWORD;
 
-pub const WICPngItxtProperties = extern enum(u32) {
+pub const WICPngItxtProperties = enum(u32) {
     Keyword = 1,
     CompressionFlag = 2,
     LanguageTag = 3,
@@ -713,7 +713,7 @@ pub const WICPngItxtTranslatedKeyword = WICPngItxtProperties.TranslatedKeyword;
 pub const WICPngItxtText = WICPngItxtProperties.Text;
 pub const WICPngItxtProperties_FORCE_DWORD = WICPngItxtProperties.Properties_FORCE_DWORD;
 
-pub const WICPngChrmProperties = extern enum(u32) {
+pub const WICPngChrmProperties = enum(u32) {
     WhitePointX = 1,
     WhitePointY = 2,
     RedX = 3,
@@ -734,14 +734,14 @@ pub const WICPngChrmBlueX = WICPngChrmProperties.BlueX;
 pub const WICPngChrmBlueY = WICPngChrmProperties.BlueY;
 pub const WICPngChrmProperties_FORCE_DWORD = WICPngChrmProperties.Properties_FORCE_DWORD;
 
-pub const WICPngHistProperties = extern enum(u32) {
+pub const WICPngHistProperties = enum(u32) {
     Frequencies = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICPngHistFrequencies = WICPngHistProperties.Frequencies;
 pub const WICPngHistProperties_FORCE_DWORD = WICPngHistProperties.Properties_FORCE_DWORD;
 
-pub const WICPngIccpProperties = extern enum(u32) {
+pub const WICPngIccpProperties = enum(u32) {
     fileName = 1,
     fileData = 2,
     perties_FORCE_DWORD = 2147483647,
@@ -750,14 +750,14 @@ pub const WICPngIccpProfileName = WICPngIccpProperties.fileName;
 pub const WICPngIccpProfileData = WICPngIccpProperties.fileData;
 pub const WICPngIccpProperties_FORCE_DWORD = WICPngIccpProperties.perties_FORCE_DWORD;
 
-pub const WICPngSrgbProperties = extern enum(u32) {
+pub const WICPngSrgbProperties = enum(u32) {
     RenderingIntent = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICPngSrgbRenderingIntent = WICPngSrgbProperties.RenderingIntent;
 pub const WICPngSrgbProperties_FORCE_DWORD = WICPngSrgbProperties.Properties_FORCE_DWORD;
 
-pub const WICPngTimeProperties = extern enum(u32) {
+pub const WICPngTimeProperties = enum(u32) {
     Year = 1,
     Month = 2,
     Day = 3,
@@ -774,14 +774,14 @@ pub const WICPngTimeMinute = WICPngTimeProperties.Minute;
 pub const WICPngTimeSecond = WICPngTimeProperties.Second;
 pub const WICPngTimeProperties_FORCE_DWORD = WICPngTimeProperties.Properties_FORCE_DWORD;
 
-pub const WICHeifProperties = extern enum(u32) {
+pub const WICHeifProperties = enum(u32) {
     Orientation = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICHeifOrientation = WICHeifProperties.Orientation;
 pub const WICHeifProperties_FORCE_DWORD = WICHeifProperties.Properties_FORCE_DWORD;
 
-pub const WICHeifHdrProperties = extern enum(u32) {
+pub const WICHeifHdrProperties = enum(u32) {
     MaximumLuminanceLevel = 1,
     MaximumFrameAverageLuminanceLevel = 2,
     MinimumMasteringDisplayLuminanceLevel = 3,
@@ -796,21 +796,21 @@ pub const WICHeifHdrMaximumMasteringDisplayLuminanceLevel = WICHeifHdrProperties
 pub const WICHeifHdrCustomVideoPrimaries = WICHeifHdrProperties.CustomVideoPrimaries;
 pub const WICHeifHdrProperties_FORCE_DWORD = WICHeifHdrProperties.Properties_FORCE_DWORD;
 
-pub const WICWebpAnimProperties = extern enum(u32) {
+pub const WICWebpAnimProperties = enum(u32) {
     LoopCount = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICWebpAnimLoopCount = WICWebpAnimProperties.LoopCount;
 pub const WICWebpAnimProperties_FORCE_DWORD = WICWebpAnimProperties.Properties_FORCE_DWORD;
 
-pub const WICWebpAnmfProperties = extern enum(u32) {
+pub const WICWebpAnmfProperties = enum(u32) {
     FrameDuration = 1,
     Properties_FORCE_DWORD = 2147483647,
 };
 pub const WICWebpAnmfFrameDuration = WICWebpAnmfProperties.FrameDuration;
 pub const WICWebpAnmfProperties_FORCE_DWORD = WICWebpAnmfProperties.Properties_FORCE_DWORD;
 
-pub const WICSectionAccessLevel = extern enum(u32) {
+pub const WICSectionAccessLevel = enum(u32) {
     Read = 1,
     ReadWrite = 3,
     _FORCE_DWORD = 2147483647,
@@ -819,7 +819,7 @@ pub const WICSectionAccessLevelRead = WICSectionAccessLevel.Read;
 pub const WICSectionAccessLevelReadWrite = WICSectionAccessLevel.ReadWrite;
 pub const WICSectionAccessLevel_FORCE_DWORD = WICSectionAccessLevel._FORCE_DWORD;
 
-pub const WICPixelFormatNumericRepresentation = extern enum(u32) {
+pub const WICPixelFormatNumericRepresentation = enum(u32) {
     Unspecified = 0,
     Indexed = 1,
     UnsignedInteger = 2,
@@ -836,7 +836,7 @@ pub const WICPixelFormatNumericRepresentationFixed = WICPixelFormatNumericRepres
 pub const WICPixelFormatNumericRepresentationFloat = WICPixelFormatNumericRepresentation.Float;
 pub const WICPixelFormatNumericRepresentation_FORCE_DWORD = WICPixelFormatNumericRepresentation._FORCE_DWORD;
 
-pub const WICPlanarOptions = extern enum(i32) {
+pub const WICPlanarOptions = enum(i32) {
     lanarOptionsDefault = 0,
     lanarOptionsPreserveSubsampling = 1,
     LANAROPTIONS_FORCE_DWORD = 2147483647,
@@ -845,7 +845,7 @@ pub const WICPlanarOptionsDefault = WICPlanarOptions.lanarOptionsDefault;
 pub const WICPlanarOptionsPreserveSubsampling = WICPlanarOptions.lanarOptionsPreserveSubsampling;
 pub const WICPLANAROPTIONS_FORCE_DWORD = WICPlanarOptions.LANAROPTIONS_FORCE_DWORD;
 
-pub const WICJpegIndexingOptions = extern enum(u32) {
+pub const WICJpegIndexingOptions = enum(u32) {
     GenerateOnDemand = 0,
     GenerateOnLoad = 1,
     _FORCE_DWORD = 2147483647,
@@ -854,7 +854,7 @@ pub const WICJpegIndexingOptionsGenerateOnDemand = WICJpegIndexingOptions.Genera
 pub const WICJpegIndexingOptionsGenerateOnLoad = WICJpegIndexingOptions.GenerateOnLoad;
 pub const WICJpegIndexingOptions_FORCE_DWORD = WICJpegIndexingOptions._FORCE_DWORD;
 
-pub const WICJpegTransferMatrix = extern enum(u32) {
+pub const WICJpegTransferMatrix = enum(u32) {
     Identity = 0,
     BT601 = 1,
     _FORCE_DWORD = 2147483647,
@@ -863,7 +863,7 @@ pub const WICJpegTransferMatrixIdentity = WICJpegTransferMatrix.Identity;
 pub const WICJpegTransferMatrixBT601 = WICJpegTransferMatrix.BT601;
 pub const WICJpegTransferMatrix_FORCE_DWORD = WICJpegTransferMatrix._FORCE_DWORD;
 
-pub const WICJpegScanType = extern enum(u32) {
+pub const WICJpegScanType = enum(u32) {
     Interleaved = 0,
     PlanarComponents = 1,
     Progressive = 2,
@@ -2905,7 +2905,7 @@ pub const IWICImagingFactory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WICTiffCompressionOption = extern enum(i32) {
+pub const WICTiffCompressionOption = enum(i32) {
     iffCompressionDontCare = 0,
     iffCompressionNone = 1,
     iffCompressionCCITT3 = 2,
@@ -2926,7 +2926,7 @@ pub const WICTiffCompressionZIP = WICTiffCompressionOption.iffCompressionZIP;
 pub const WICTiffCompressionLZWHDifferencing = WICTiffCompressionOption.iffCompressionLZWHDifferencing;
 pub const WICTIFFCOMPRESSIONOPTION_FORCE_DWORD = WICTiffCompressionOption.IFFCOMPRESSIONOPTION_FORCE_DWORD;
 
-pub const WICJpegYCrCbSubsamplingOption = extern enum(i32) {
+pub const WICJpegYCrCbSubsamplingOption = enum(i32) {
     pegYCrCbSubsamplingDefault = 0,
     pegYCrCbSubsampling420 = 1,
     pegYCrCbSubsampling422 = 2,
@@ -2941,7 +2941,7 @@ pub const WICJpegYCrCbSubsampling444 = WICJpegYCrCbSubsamplingOption.pegYCrCbSub
 pub const WICJpegYCrCbSubsampling440 = WICJpegYCrCbSubsamplingOption.pegYCrCbSubsampling440;
 pub const WICJPEGYCRCBSUBSAMPLING_FORCE_DWORD = WICJpegYCrCbSubsamplingOption.PEGYCRCBSUBSAMPLING_FORCE_DWORD;
 
-pub const WICPngFilterOption = extern enum(i32) {
+pub const WICPngFilterOption = enum(i32) {
     ngFilterUnspecified = 0,
     ngFilterNone = 1,
     ngFilterSub = 2,
@@ -2960,7 +2960,7 @@ pub const WICPngFilterPaeth = WICPngFilterOption.ngFilterPaeth;
 pub const WICPngFilterAdaptive = WICPngFilterOption.ngFilterAdaptive;
 pub const WICPNGFILTEROPTION_FORCE_DWORD = WICPngFilterOption.NGFILTEROPTION_FORCE_DWORD;
 
-pub const WICNamedWhitePoint = extern enum(i32) {
+pub const WICNamedWhitePoint = enum(i32) {
     WhitePointDefault = 1,
     WhitePointDaylight = 2,
     WhitePointCloudy = 4,
@@ -2971,7 +2971,7 @@ pub const WICNamedWhitePoint = extern enum(i32) {
     WhitePointUnderwater = 128,
     WhitePointCustom = 256,
     WhitePointAutoWhiteBalance = 512,
-    WhitePointAsShot = 1,
+    // WhitePointAsShot = 1, this enum value conflicts with WhitePointDefault
     NAMEDWHITEPOINT_FORCE_DWORD = 2147483647,
 };
 pub const WICWhitePointDefault = WICNamedWhitePoint.WhitePointDefault;
@@ -2984,10 +2984,10 @@ pub const WICWhitePointFlash = WICNamedWhitePoint.WhitePointFlash;
 pub const WICWhitePointUnderwater = WICNamedWhitePoint.WhitePointUnderwater;
 pub const WICWhitePointCustom = WICNamedWhitePoint.WhitePointCustom;
 pub const WICWhitePointAutoWhiteBalance = WICNamedWhitePoint.WhitePointAutoWhiteBalance;
-pub const WICWhitePointAsShot = WICNamedWhitePoint.WhitePointAsShot;
+pub const WICWhitePointAsShot = WICNamedWhitePoint.WhitePointDefault;
 pub const WICNAMEDWHITEPOINT_FORCE_DWORD = WICNamedWhitePoint.NAMEDWHITEPOINT_FORCE_DWORD;
 
-pub const WICRawCapabilities = extern enum(i32) {
+pub const WICRawCapabilities = enum(i32) {
     awCapabilityNotSupported = 0,
     awCapabilityGetSupported = 1,
     awCapabilityFullySupported = 2,
@@ -2998,7 +2998,7 @@ pub const WICRawCapabilityGetSupported = WICRawCapabilities.awCapabilityGetSuppo
 pub const WICRawCapabilityFullySupported = WICRawCapabilities.awCapabilityFullySupported;
 pub const WICRAWCAPABILITIES_FORCE_DWORD = WICRawCapabilities.AWCAPABILITIES_FORCE_DWORD;
 
-pub const WICRawRotationCapabilities = extern enum(i32) {
+pub const WICRawRotationCapabilities = enum(i32) {
     awRotationCapabilityNotSupported = 0,
     awRotationCapabilityGetSupported = 1,
     awRotationCapabilityNinetyDegreesSupported = 2,
@@ -3032,7 +3032,7 @@ pub const WICRawCapabilitiesInfo = extern struct {
     RenderModeSupport: WICRawCapabilities,
 };
 
-pub const WICRawParameterSet = extern enum(i32) {
+pub const WICRawParameterSet = enum(i32) {
     AsShotParameterSet = 1,
     UserAdjustedParameterSet = 2,
     AutoAdjustedParameterSet = 3,
@@ -3043,7 +3043,7 @@ pub const WICUserAdjustedParameterSet = WICRawParameterSet.UserAdjustedParameter
 pub const WICAutoAdjustedParameterSet = WICRawParameterSet.AutoAdjustedParameterSet;
 pub const WICRAWPARAMETERSET_FORCE_DWORD = WICRawParameterSet.RAWPARAMETERSET_FORCE_DWORD;
 
-pub const WICRawRenderMode = extern enum(i32) {
+pub const WICRawRenderMode = enum(i32) {
     awRenderModeDraft = 1,
     awRenderModeNormal = 2,
     awRenderModeBestQuality = 3,
@@ -3367,7 +3367,7 @@ pub const IWICDevelopRaw = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WICDdsDimension = extern enum(i32) {
+pub const WICDdsDimension = enum(i32) {
     dsTexture1D = 0,
     dsTexture2D = 1,
     dsTexture3D = 2,
@@ -3380,7 +3380,7 @@ pub const WICDdsTexture3D = WICDdsDimension.dsTexture3D;
 pub const WICDdsTextureCube = WICDdsDimension.dsTextureCube;
 pub const WICDDSTEXTURE_FORCE_DWORD = WICDdsDimension.DSTEXTURE_FORCE_DWORD;
 
-pub const WICDdsAlphaMode = extern enum(i32) {
+pub const WICDdsAlphaMode = enum(i32) {
     dsAlphaModeUnknown = 0,
     dsAlphaModeStraight = 1,
     dsAlphaModePremultiplied = 2,
@@ -3690,20 +3690,20 @@ pub const IWICJpegFrameEncode = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WICMetadataCreationOptions = extern enum(i32) {
+pub const WICMetadataCreationOptions = enum(i32) {
     Default = 0,
-    AllowUnknown = 0,
+    // AllowUnknown = 0, this enum value conflicts with Default
     FailUnknown = 65536,
     Mask = -65536,
 };
 pub const WICMetadataCreationDefault = WICMetadataCreationOptions.Default;
-pub const WICMetadataCreationAllowUnknown = WICMetadataCreationOptions.AllowUnknown;
+pub const WICMetadataCreationAllowUnknown = WICMetadataCreationOptions.Default;
 pub const WICMetadataCreationFailUnknown = WICMetadataCreationOptions.FailUnknown;
 pub const WICMetadataCreationMask = WICMetadataCreationOptions.Mask;
 
-pub const WICPersistOptions = extern enum(i32) {
+pub const WICPersistOptions = enum(i32) {
     Default = 0,
-    LittleEndian = 0,
+    // LittleEndian = 0, this enum value conflicts with Default
     BigEndian = 1,
     StrictFormat = 2,
     NoCacheStream = 4,
@@ -3711,7 +3711,7 @@ pub const WICPersistOptions = extern enum(i32) {
     Mask = 65535,
 };
 pub const WICPersistOptionDefault = WICPersistOptions.Default;
-pub const WICPersistOptionLittleEndian = WICPersistOptions.LittleEndian;
+pub const WICPersistOptionLittleEndian = WICPersistOptions.Default;
 pub const WICPersistOptionBigEndian = WICPersistOptions.BigEndian;
 pub const WICPersistOptionStrictFormat = WICPersistOptions.StrictFormat;
 pub const WICPersistOptionNoCacheStream = WICPersistOptions.NoCacheStream;

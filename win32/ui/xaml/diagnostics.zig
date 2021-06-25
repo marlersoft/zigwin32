@@ -7,14 +7,14 @@ pub const E_UNKNOWNTYPE = @import("../../zig.zig").typedConst(HRESULT, @as(i32, 
 //--------------------------------------------------------------------------------
 // Section: Types (21)
 //--------------------------------------------------------------------------------
-pub const VisualMutationType = extern enum(i32) {
+pub const VisualMutationType = enum(i32) {
     Add = 0,
     Remove = 1,
 };
 pub const Add = VisualMutationType.Add;
 pub const Remove = VisualMutationType.Remove;
 
-pub const BaseValueSource = extern enum(i32) {
+pub const BaseValueSource = enum(i32) {
     BaseValueSourceUnknown = 0,
     BaseValueSourceDefault = 1,
     BaseValueSourceBuiltInStyle = 2,
@@ -77,7 +77,7 @@ pub const PropertyChainSource = extern struct {
     SrcInfo: SourceInfo,
 };
 
-pub const MetadataBit = extern enum(i32) {
+pub const MetadataBit = enum(i32) {
     None = 0,
     ValueHandle = 1,
     PropertyReadOnly = 2,
@@ -115,7 +115,7 @@ pub const CollectionElementValue = extern struct {
     MetadataBits: i64,
 };
 
-pub const RenderTargetBitmapOptions = extern enum(i32) {
+pub const RenderTargetBitmapOptions = enum(i32) {
     t = 0,
     AndChildren = 1,
 };
@@ -129,14 +129,14 @@ pub const BitmapDescription = extern struct {
     AlphaMode: DXGI_ALPHA_MODE,
 };
 
-pub const ResourceType = extern enum(i32) {
+pub const ResourceType = enum(i32) {
     Static = 0,
     Theme = 1,
 };
 pub const ResourceTypeStatic = ResourceType.Static;
 pub const ResourceTypeTheme = ResourceType.Theme;
 
-pub const VisualElementState = extern enum(i32) {
+pub const VisualElementState = enum(i32) {
     Resolved = 0,
     ResourceNotFound = 1,
     InvalidResource = 2,

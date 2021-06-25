@@ -100,7 +100,7 @@ pub const CLSID_Application = &CLSID_Application_Value;
 const CLSID_AppEventsDHTMLConnector_Value = @import("../zig.zig").Guid.initString("ade6444b-c91f-4e37-92a4-5bb430a33340");
 pub const CLSID_AppEventsDHTMLConnector = &CLSID_AppEventsDHTMLConnector_Value;
 
-pub const MMC_PROPERTY_ACTION = extern enum(i32) {
+pub const MMC_PROPERTY_ACTION = enum(i32) {
     DELETING = 1,
     CHANGING = 2,
     INITIALIZED = 3,
@@ -177,7 +177,7 @@ pub const ISnapinPropertiesCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _DocumentMode = extern enum(i32) {
+pub const _DocumentMode = enum(i32) {
     Author = 0,
     User = 1,
     User_MDI = 2,
@@ -188,7 +188,7 @@ pub const DocumentMode_User = _DocumentMode.User;
 pub const DocumentMode_User_MDI = _DocumentMode.User_MDI;
 pub const DocumentMode_User_SDI = _DocumentMode.User_SDI;
 
-pub const _ListViewMode = extern enum(i32) {
+pub const _ListViewMode = enum(i32) {
     Small_Icons = 0,
     Large_Icons = 1,
     List = 2,
@@ -201,7 +201,7 @@ pub const ListMode_List = _ListViewMode.List;
 pub const ListMode_Detail = _ListViewMode.Detail;
 pub const ListMode_Filtered = _ListViewMode.Filtered;
 
-pub const _ViewOptions = extern enum(i32) {
+pub const _ViewOptions = enum(i32) {
     Default = 0,
     ScopeTreeHidden = 1,
     NoToolBars = 2,
@@ -214,7 +214,7 @@ pub const ViewOption_NoToolBars = _ViewOptions.NoToolBars;
 pub const ViewOption_NotPersistable = _ViewOptions.NotPersistable;
 pub const ViewOption_ActionPaneHidden = _ViewOptions.ActionPaneHidden;
 
-pub const _ExportListOptions = extern enum(i32) {
+pub const _ExportListOptions = enum(i32) {
     Default = 0,
     Unicode = 1,
     TabDelimited = 2,
@@ -1151,7 +1151,7 @@ pub const Columns = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _ColumnSortOrder = extern enum(i32) {
+pub const _ColumnSortOrder = enum(i32) {
     Ascending = 0,
     Descending = 1,
 };
@@ -1908,7 +1908,7 @@ pub const CLSID_MMCVersionInfo = &CLSID_MMCVersionInfo_Value;
 const CLSID_ConsolePower_Value = @import("../zig.zig").Guid.initString("f0285374-dff1-11d3-b433-00c04f8ecd78");
 pub const CLSID_ConsolePower = &CLSID_ConsolePower_Value;
 
-pub const MMC_RESULT_VIEW_STYLE = extern enum(i32) {
+pub const MMC_RESULT_VIEW_STYLE = enum(i32) {
     SINGLESEL = 1,
     SHOWSELALWAYS = 2,
     NOSORTHEADER = 4,
@@ -1919,7 +1919,7 @@ pub const MMC_SHOWSELALWAYS = MMC_RESULT_VIEW_STYLE.SHOWSELALWAYS;
 pub const MMC_NOSORTHEADER = MMC_RESULT_VIEW_STYLE.NOSORTHEADER;
 pub const MMC_ENSUREFOCUSVISIBLE = MMC_RESULT_VIEW_STYLE.ENSUREFOCUSVISIBLE;
 
-pub const MMC_CONTROL_TYPE = extern enum(i32) {
+pub const MMC_CONTROL_TYPE = enum(i32) {
     TOOLBAR = 0,
     MENUBUTTON = 1,
     COMBOBOXBAR = 2,
@@ -1928,7 +1928,7 @@ pub const TOOLBAR = MMC_CONTROL_TYPE.TOOLBAR;
 pub const MENUBUTTON = MMC_CONTROL_TYPE.MENUBUTTON;
 pub const COMBOBOXBAR = MMC_CONTROL_TYPE.COMBOBOXBAR;
 
-pub const MMC_CONSOLE_VERB = extern enum(i32) {
+pub const MMC_CONSOLE_VERB = enum(i32) {
     NONE = 0,
     OPEN = 32768,
     COPY = 32769,
@@ -1940,8 +1940,8 @@ pub const MMC_CONSOLE_VERB = extern enum(i32) {
     PRINT = 32775,
     CUT = 32776,
     MAX = 32777,
-    FIRST = 32768,
-    LAST = 32776,
+    // FIRST = 32768, this enum value conflicts with OPEN
+    // LAST = 32776, this enum value conflicts with CUT
 };
 pub const MMC_VERB_NONE = MMC_CONSOLE_VERB.NONE;
 pub const MMC_VERB_OPEN = MMC_CONSOLE_VERB.OPEN;
@@ -1954,8 +1954,8 @@ pub const MMC_VERB_REFRESH = MMC_CONSOLE_VERB.REFRESH;
 pub const MMC_VERB_PRINT = MMC_CONSOLE_VERB.PRINT;
 pub const MMC_VERB_CUT = MMC_CONSOLE_VERB.CUT;
 pub const MMC_VERB_MAX = MMC_CONSOLE_VERB.MAX;
-pub const MMC_VERB_FIRST = MMC_CONSOLE_VERB.FIRST;
-pub const MMC_VERB_LAST = MMC_CONSOLE_VERB.LAST;
+pub const MMC_VERB_FIRST = MMC_CONSOLE_VERB.OPEN;
+pub const MMC_VERB_LAST = MMC_CONSOLE_VERB.CUT;
 
 pub const MMCBUTTON = extern struct {
     nBitmap: i32,
@@ -1966,7 +1966,7 @@ pub const MMCBUTTON = extern struct {
     lpTooltipText: PWSTR,
 };
 
-pub const MMC_BUTTON_STATE = extern enum(i32) {
+pub const MMC_BUTTON_STATE = enum(i32) {
     ENABLED = 1,
     CHECKED = 2,
     HIDDEN = 4,
@@ -2010,7 +2010,7 @@ pub const SCOPEDATAITEM = extern struct {
     ID: isize,
 };
 
-pub const MMC_SCOPE_ITEM_STATE = extern enum(i32) {
+pub const MMC_SCOPE_ITEM_STATE = enum(i32) {
     NORMAL = 1,
     BOLD = 2,
     EXPANDEDONCE = 3,
@@ -2028,7 +2028,7 @@ pub const CONTEXTMENUITEM = extern struct {
     fSpecialFlags: i32,
 };
 
-pub const MMC_MENU_COMMAND_IDS = extern enum(i32) {
+pub const MMC_MENU_COMMAND_IDS = enum(i32) {
     T = -1,
 };
 pub const MMCC_STANDARD_VIEW_SELECT = MMC_MENU_COMMAND_IDS.T;
@@ -2039,7 +2039,7 @@ pub const MENUBUTTONDATA = extern struct {
     y: i32,
 };
 
-pub const MMC_FILTER_TYPE = extern enum(i32) {
+pub const MMC_FILTER_TYPE = enum(i32) {
     STRING_FILTER = 0,
     INT_FILTER = 1,
     FILTER_NOVALUE = 32768,
@@ -2054,7 +2054,7 @@ pub const MMC_FILTERDATA = extern struct {
     lValue: i32,
 };
 
-pub const MMC_FILTER_CHANGE_CODE = extern enum(i32) {
+pub const MMC_FILTER_CHANGE_CODE = enum(i32) {
     DISABLE = 0,
     ENABLE = 1,
     VALUE_CHANGE = 2,
@@ -2081,7 +2081,7 @@ pub const MMC_VISIBLE_COLUMNS = extern struct {
     rgVisibleCols: [1]i32,
 };
 
-pub const MMC_NOTIFY_TYPE = extern enum(i32) {
+pub const MMC_NOTIFY_TYPE = enum(i32) {
     ACTIVATE = 32769,
     ADD_IMAGES = 32770,
     BTN_CLICK = 32771,
@@ -2154,7 +2154,7 @@ pub const MMCN_EXPANDSYNC = MMC_NOTIFY_TYPE.EXPANDSYNC;
 pub const MMCN_COLUMNS_CHANGED = MMC_NOTIFY_TYPE.COLUMNS_CHANGED;
 pub const MMCN_CANPASTE_OUTOFPROC = MMC_NOTIFY_TYPE.CANPASTE_OUTOFPROC;
 
-pub const DATA_OBJECT_TYPES = extern enum(i32) {
+pub const DATA_OBJECT_TYPES = enum(i32) {
     SCOPE = 32768,
     RESULT = 32769,
     SNAPIN_MANAGER = 32770,
@@ -2589,7 +2589,7 @@ pub const IHeaderCtrl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CCM_INSERTIONPOINTID = extern enum(i32) {
+pub const CCM_INSERTIONPOINTID = enum(i32) {
     MASK_SPECIAL = -65536,
     MASK_SHARED = -2147483648,
     MASK_CREATE_PRIMARY = 1073741824,
@@ -2604,7 +2604,7 @@ pub const CCM_INSERTIONPOINTID = extern enum(i32) {
     PRIMARY_HELP = -1610612732,
     @"3RDPARTY_NEW" = -1879048191,
     @"3RDPARTY_TASK" = -1879048190,
-    ROOT_MENU = -2147483648,
+    // ROOT_MENU = -2147483648, this enum value conflicts with MASK_SHARED
 };
 pub const CCM_INSERTIONPOINTID_MASK_SPECIAL = CCM_INSERTIONPOINTID.MASK_SPECIAL;
 pub const CCM_INSERTIONPOINTID_MASK_SHARED = CCM_INSERTIONPOINTID.MASK_SHARED;
@@ -2620,9 +2620,9 @@ pub const CCM_INSERTIONPOINTID_PRIMARY_VIEW = CCM_INSERTIONPOINTID.PRIMARY_VIEW;
 pub const CCM_INSERTIONPOINTID_PRIMARY_HELP = CCM_INSERTIONPOINTID.PRIMARY_HELP;
 pub const CCM_INSERTIONPOINTID_3RDPARTY_NEW = CCM_INSERTIONPOINTID.@"3RDPARTY_NEW";
 pub const CCM_INSERTIONPOINTID_3RDPARTY_TASK = CCM_INSERTIONPOINTID.@"3RDPARTY_TASK";
-pub const CCM_INSERTIONPOINTID_ROOT_MENU = CCM_INSERTIONPOINTID.ROOT_MENU;
+pub const CCM_INSERTIONPOINTID_ROOT_MENU = CCM_INSERTIONPOINTID.MASK_SHARED;
 
-pub const CCM_INSERTIONALLOWED = extern enum(i32) {
+pub const CCM_INSERTIONALLOWED = enum(i32) {
     TOP = 1,
     NEW = 2,
     TASK = 4,
@@ -2633,12 +2633,12 @@ pub const CCM_INSERTIONALLOWED_NEW = CCM_INSERTIONALLOWED.NEW;
 pub const CCM_INSERTIONALLOWED_TASK = CCM_INSERTIONALLOWED.TASK;
 pub const CCM_INSERTIONALLOWED_VIEW = CCM_INSERTIONALLOWED.VIEW;
 
-pub const CCM_COMMANDID_MASK_CONSTANTS = extern enum(u32) {
+pub const CCM_COMMANDID_MASK_CONSTANTS = enum(u32) {
     D = 4294901760,
 };
 pub const CCM_COMMANDID_MASK_RESERVED = CCM_COMMANDID_MASK_CONSTANTS.D;
 
-pub const CCM_SPECIAL = extern enum(i32) {
+pub const CCM_SPECIAL = enum(i32) {
     SEPARATOR = 1,
     SUBMENU = 2,
     DEFAULT_ITEM = 4,
@@ -3572,7 +3572,7 @@ pub const ISnapinHelp2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MMC_TASK_DISPLAY_TYPE = extern enum(i32) {
+pub const MMC_TASK_DISPLAY_TYPE = enum(i32) {
     UNINITIALIZED = 0,
     TYPE_SYMBOL = 1,
     TYPE_VANILLA_GIF = 2,
@@ -3604,7 +3604,7 @@ pub const MMC_TASK_DISPLAY_OBJECT = extern struct {
     },
 };
 
-pub const MMC_ACTION_TYPE = extern enum(i32) {
+pub const MMC_ACTION_TYPE = enum(i32) {
     UNINITIALIZED = -1,
     ID = 0,
     LINK = 1,
@@ -3997,22 +3997,22 @@ pub const IColumnData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IconIdentifier = extern enum(i32) {
+pub const IconIdentifier = enum(i32) {
     None = 0,
     Error = 32513,
     Question = 32514,
     Warning = 32515,
     Information = 32516,
-    First = 32513,
-    Last = 32516,
+    // First = 32513, this enum value conflicts with Error
+    // Last = 32516, this enum value conflicts with Information
 };
 pub const Icon_None = IconIdentifier.None;
 pub const Icon_Error = IconIdentifier.Error;
 pub const Icon_Question = IconIdentifier.Question;
 pub const Icon_Warning = IconIdentifier.Warning;
 pub const Icon_Information = IconIdentifier.Information;
-pub const Icon_First = IconIdentifier.First;
-pub const Icon_Last = IconIdentifier.Last;
+pub const Icon_First = IconIdentifier.Error;
+pub const Icon_Last = IconIdentifier.Information;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IMessageView_Value = @import("../zig.zig").Guid.initString("80f94174-fccc-11d2-b991-00c04f8ecd78");
@@ -4097,7 +4097,7 @@ pub const IResultDataCompareEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MMC_VIEW_TYPE = extern enum(i32) {
+pub const MMC_VIEW_TYPE = enum(i32) {
     LIST = 0,
     HTML = 1,
     OCX = 2,

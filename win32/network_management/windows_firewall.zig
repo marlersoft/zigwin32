@@ -558,7 +558,7 @@ pub const IEnumNetConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NETCON_CHARACTERISTIC_FLAGS = extern enum(i32) {
+pub const NETCON_CHARACTERISTIC_FLAGS = enum(i32) {
     NONE = 0,
     ALL_USERS = 1,
     ALLOW_DUPLICATION = 2,
@@ -603,7 +603,7 @@ pub const NCCF_WIFI_DIRECT = NETCON_CHARACTERISTIC_FLAGS.WIFI_DIRECT;
 pub const NCCF_BLUETOOTH_MASK = NETCON_CHARACTERISTIC_FLAGS.BLUETOOTH_MASK;
 pub const NCCF_LAN_MASK = NETCON_CHARACTERISTIC_FLAGS.LAN_MASK;
 
-pub const NETCON_STATUS = extern enum(i32) {
+pub const NETCON_STATUS = enum(i32) {
     DISCONNECTED = 0,
     CONNECTING = 1,
     CONNECTED = 2,
@@ -638,7 +638,7 @@ pub const NCS_ACTION_REQUIRED = NETCON_STATUS.ACTION_REQUIRED;
 pub const NCS_ACTION_REQUIRED_RETRY = NETCON_STATUS.ACTION_REQUIRED_RETRY;
 pub const NCS_CONNECT_FAILED = NETCON_STATUS.CONNECT_FAILED;
 
-pub const NETCON_TYPE = extern enum(i32) {
+pub const NETCON_TYPE = enum(i32) {
     DIRECT_CONNECT = 0,
     INBOUND = 1,
     INTERNET = 2,
@@ -655,7 +655,7 @@ pub const NCT_PHONE = NETCON_TYPE.PHONE;
 pub const NCT_TUNNEL = NETCON_TYPE.TUNNEL;
 pub const NCT_BRIDGE = NETCON_TYPE.BRIDGE;
 
-pub const NETCON_MEDIATYPE = extern enum(i32) {
+pub const NETCON_MEDIATYPE = enum(i32) {
     NONE = 0,
     DIRECT = 1,
     ISDN = 2,
@@ -757,7 +757,7 @@ pub const INetConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NETCONMGR_ENUM_FLAGS = extern enum(i32) {
+pub const NETCONMGR_ENUM_FLAGS = enum(i32) {
     DEFAULT = 0,
     HIDDEN = 1,
 };
@@ -786,7 +786,7 @@ pub const INetConnectionManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NETCONUI_CONNECT_FLAGS = extern enum(i32) {
+pub const NETCONUI_CONNECT_FLAGS = enum(i32) {
     DEFAULT = 0,
     NO_UI = 1,
     ENABLE_DISABLE = 2,
@@ -1252,21 +1252,21 @@ pub const INetConnectionProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHARINGCONNECTIONTYPE = extern enum(i32) {
+pub const SHARINGCONNECTIONTYPE = enum(i32) {
     UBLIC = 0,
     RIVATE = 1,
 };
 pub const ICSSHARINGTYPE_PUBLIC = SHARINGCONNECTIONTYPE.UBLIC;
 pub const ICSSHARINGTYPE_PRIVATE = SHARINGCONNECTIONTYPE.RIVATE;
 
-pub const SHARINGCONNECTION_ENUM_FLAGS = extern enum(i32) {
+pub const SHARINGCONNECTION_ENUM_FLAGS = enum(i32) {
     DEFAULT = 0,
     ENABLED = 1,
 };
 pub const ICSSC_DEFAULT = SHARINGCONNECTION_ENUM_FLAGS.DEFAULT;
 pub const ICSSC_ENABLED = SHARINGCONNECTION_ENUM_FLAGS.ENABLED;
 
-pub const ICS_TARGETTYPE = extern enum(i32) {
+pub const ICS_TARGETTYPE = enum(i32) {
     NAME = 0,
     IPADDRESS = 1,
 };
@@ -1565,7 +1565,7 @@ pub const CLSID_NetFwProducts = &CLSID_NetFwProducts_Value;
 const CLSID_NetFwMgr_Value = @import("../zig.zig").Guid.initString("304ce942-6e39-40d8-943a-b913c40c9cd4");
 pub const CLSID_NetFwMgr = &CLSID_NetFwMgr_Value;
 
-pub const NET_FW_POLICY_TYPE = extern enum(i32) {
+pub const NET_FW_POLICY_TYPE = enum(i32) {
     GROUP = 0,
     LOCAL = 1,
     EFFECTIVE = 2,
@@ -1576,7 +1576,7 @@ pub const NET_FW_POLICY_LOCAL = NET_FW_POLICY_TYPE.LOCAL;
 pub const NET_FW_POLICY_EFFECTIVE = NET_FW_POLICY_TYPE.EFFECTIVE;
 pub const NET_FW_POLICY_TYPE_MAX = NET_FW_POLICY_TYPE.TYPE_MAX;
 
-pub const NET_FW_PROFILE_TYPE = extern enum(i32) {
+pub const NET_FW_PROFILE_TYPE = enum(i32) {
     DOMAIN = 0,
     STANDARD = 1,
     CURRENT = 2,
@@ -1587,7 +1587,7 @@ pub const NET_FW_PROFILE_STANDARD = NET_FW_PROFILE_TYPE.STANDARD;
 pub const NET_FW_PROFILE_CURRENT = NET_FW_PROFILE_TYPE.CURRENT;
 pub const NET_FW_PROFILE_TYPE_MAX = NET_FW_PROFILE_TYPE.TYPE_MAX;
 
-pub const NET_FW_PROFILE_TYPE2 = extern enum(i32) {
+pub const NET_FW_PROFILE_TYPE2 = enum(i32) {
     DOMAIN = 1,
     PRIVATE = 2,
     PUBLIC = 4,
@@ -1598,7 +1598,7 @@ pub const NET_FW_PROFILE2_PRIVATE = NET_FW_PROFILE_TYPE2.PRIVATE;
 pub const NET_FW_PROFILE2_PUBLIC = NET_FW_PROFILE_TYPE2.PUBLIC;
 pub const NET_FW_PROFILE2_ALL = NET_FW_PROFILE_TYPE2.ALL;
 
-pub const NET_FW_IP_VERSION = extern enum(i32) {
+pub const NET_FW_IP_VERSION = enum(i32) {
     V4 = 0,
     V6 = 1,
     ANY = 2,
@@ -1609,7 +1609,7 @@ pub const NET_FW_IP_VERSION_V6 = NET_FW_IP_VERSION.V6;
 pub const NET_FW_IP_VERSION_ANY = NET_FW_IP_VERSION.ANY;
 pub const NET_FW_IP_VERSION_MAX = NET_FW_IP_VERSION.MAX;
 
-pub const NET_FW_SCOPE = extern enum(i32) {
+pub const NET_FW_SCOPE = enum(i32) {
     ALL = 0,
     LOCAL_SUBNET = 1,
     CUSTOM = 2,
@@ -1620,7 +1620,7 @@ pub const NET_FW_SCOPE_LOCAL_SUBNET = NET_FW_SCOPE.LOCAL_SUBNET;
 pub const NET_FW_SCOPE_CUSTOM = NET_FW_SCOPE.CUSTOM;
 pub const NET_FW_SCOPE_MAX = NET_FW_SCOPE.MAX;
 
-pub const NET_FW_IP_PROTOCOL = extern enum(i32) {
+pub const NET_FW_IP_PROTOCOL = enum(i32) {
     TCP = 6,
     UDP = 17,
     ANY = 256,
@@ -1629,7 +1629,7 @@ pub const NET_FW_IP_PROTOCOL_TCP = NET_FW_IP_PROTOCOL.TCP;
 pub const NET_FW_IP_PROTOCOL_UDP = NET_FW_IP_PROTOCOL.UDP;
 pub const NET_FW_IP_PROTOCOL_ANY = NET_FW_IP_PROTOCOL.ANY;
 
-pub const NET_FW_SERVICE_TYPE = extern enum(i32) {
+pub const NET_FW_SERVICE_TYPE = enum(i32) {
     FILE_AND_PRINT = 0,
     UPNP = 1,
     REMOTE_DESKTOP = 2,
@@ -1642,7 +1642,7 @@ pub const NET_FW_SERVICE_REMOTE_DESKTOP = NET_FW_SERVICE_TYPE.REMOTE_DESKTOP;
 pub const NET_FW_SERVICE_NONE = NET_FW_SERVICE_TYPE.NONE;
 pub const NET_FW_SERVICE_TYPE_MAX = NET_FW_SERVICE_TYPE.TYPE_MAX;
 
-pub const NET_FW_RULE_DIRECTION = extern enum(i32) {
+pub const NET_FW_RULE_DIRECTION = enum(i32) {
     IN = 1,
     OUT = 2,
     MAX = 3,
@@ -1651,7 +1651,7 @@ pub const NET_FW_RULE_DIR_IN = NET_FW_RULE_DIRECTION.IN;
 pub const NET_FW_RULE_DIR_OUT = NET_FW_RULE_DIRECTION.OUT;
 pub const NET_FW_RULE_DIR_MAX = NET_FW_RULE_DIRECTION.MAX;
 
-pub const NET_FW_ACTION = extern enum(i32) {
+pub const NET_FW_ACTION = enum(i32) {
     BLOCK = 0,
     ALLOW = 1,
     MAX = 2,
@@ -1660,7 +1660,7 @@ pub const NET_FW_ACTION_BLOCK = NET_FW_ACTION.BLOCK;
 pub const NET_FW_ACTION_ALLOW = NET_FW_ACTION.ALLOW;
 pub const NET_FW_ACTION_MAX = NET_FW_ACTION.MAX;
 
-pub const NET_FW_MODIFY_STATE = extern enum(i32) {
+pub const NET_FW_MODIFY_STATE = enum(i32) {
     OK = 0,
     GP_OVERRIDE = 1,
     INBOUND_BLOCKED = 2,
@@ -1669,7 +1669,7 @@ pub const NET_FW_MODIFY_STATE_OK = NET_FW_MODIFY_STATE.OK;
 pub const NET_FW_MODIFY_STATE_GP_OVERRIDE = NET_FW_MODIFY_STATE.GP_OVERRIDE;
 pub const NET_FW_MODIFY_STATE_INBOUND_BLOCKED = NET_FW_MODIFY_STATE.INBOUND_BLOCKED;
 
-pub const NET_FW_RULE_CATEGORY = extern enum(i32) {
+pub const NET_FW_RULE_CATEGORY = enum(i32) {
     BOOT = 0,
     STEALTH = 1,
     FIREWALL = 2,
@@ -1682,7 +1682,7 @@ pub const NET_FW_RULE_CATEGORY_FIREWALL = NET_FW_RULE_CATEGORY.FIREWALL;
 pub const NET_FW_RULE_CATEGORY_CONSEC = NET_FW_RULE_CATEGORY.CONSEC;
 pub const NET_FW_RULE_CATEGORY_MAX = NET_FW_RULE_CATEGORY.MAX;
 
-pub const NET_FW_EDGE_TRAVERSAL_TYPE = extern enum(i32) {
+pub const NET_FW_EDGE_TRAVERSAL_TYPE = enum(i32) {
     DENY = 0,
     ALLOW = 1,
     DEFER_TO_APP = 2,
@@ -1693,7 +1693,7 @@ pub const NET_FW_EDGE_TRAVERSAL_TYPE_ALLOW = NET_FW_EDGE_TRAVERSAL_TYPE.ALLOW;
 pub const NET_FW_EDGE_TRAVERSAL_TYPE_DEFER_TO_APP = NET_FW_EDGE_TRAVERSAL_TYPE.DEFER_TO_APP;
 pub const NET_FW_EDGE_TRAVERSAL_TYPE_DEFER_TO_USER = NET_FW_EDGE_TRAVERSAL_TYPE.DEFER_TO_USER;
 
-pub const NET_FW_AUTHENTICATE_TYPE = extern enum(i32) {
+pub const NET_FW_AUTHENTICATE_TYPE = enum(i32) {
     NONE = 0,
     NO_ENCAPSULATION = 1,
     WITH_INTEGRITY = 2,
@@ -1706,14 +1706,14 @@ pub const NET_FW_AUTHENTICATE_WITH_INTEGRITY = NET_FW_AUTHENTICATE_TYPE.WITH_INT
 pub const NET_FW_AUTHENTICATE_AND_NEGOTIATE_ENCRYPTION = NET_FW_AUTHENTICATE_TYPE.AND_NEGOTIATE_ENCRYPTION;
 pub const NET_FW_AUTHENTICATE_AND_ENCRYPT = NET_FW_AUTHENTICATE_TYPE.AND_ENCRYPT;
 
-pub const NETISO_FLAG = extern enum(i32) {
+pub const NETISO_FLAG = enum(i32) {
     FORCE_COMPUTE_BINARIES = 1,
     MAX = 2,
 };
 pub const NETISO_FLAG_FORCE_COMPUTE_BINARIES = NETISO_FLAG.FORCE_COMPUTE_BINARIES;
 pub const NETISO_FLAG_MAX = NETISO_FLAG.MAX;
 
-pub const INET_FIREWALL_AC_CREATION_TYPE = extern enum(i32) {
+pub const INET_FIREWALL_AC_CREATION_TYPE = enum(i32) {
     NONE = 0,
     PACKAGE_ID_ONLY = 1,
     BINARY = 2,
@@ -1724,7 +1724,7 @@ pub const INET_FIREWALL_AC_PACKAGE_ID_ONLY = INET_FIREWALL_AC_CREATION_TYPE.PACK
 pub const INET_FIREWALL_AC_BINARY = INET_FIREWALL_AC_CREATION_TYPE.BINARY;
 pub const INET_FIREWALL_AC_MAX = INET_FIREWALL_AC_CREATION_TYPE.MAX;
 
-pub const INET_FIREWALL_AC_CHANGE_TYPE = extern enum(i32) {
+pub const INET_FIREWALL_AC_CHANGE_TYPE = enum(i32) {
     INVALID = 0,
     CREATE = 1,
     DELETE = 2,
@@ -1774,7 +1774,7 @@ pub const PAC_CHANGES_CALLBACK_FN = fn(
     pChange: *const INET_FIREWALL_AC_CHANGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const NETISO_ERROR_TYPE = extern enum(i32) {
+pub const NETISO_ERROR_TYPE = enum(i32) {
     NONE = 0,
     PRIVATE_NETWORK = 1,
     INTERNET_CLIENT = 2,

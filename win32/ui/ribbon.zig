@@ -15,7 +15,7 @@ pub const CLSID_UIRibbonFramework = &CLSID_UIRibbonFramework_Value;
 const CLSID_UIRibbonImageFromBitmapFactory_Value = @import("../zig.zig").Guid.initString("0f7434b6-59b6-4250-999e-d168d6ae4293");
 pub const CLSID_UIRibbonImageFromBitmapFactory = &CLSID_UIRibbonImageFromBitmapFactory_Value;
 
-pub const UI_CONTEXTAVAILABILITY = extern enum(i32) {
+pub const UI_CONTEXTAVAILABILITY = enum(i32) {
     NOTAVAILABLE = 0,
     AVAILABLE = 1,
     ACTIVE = 2,
@@ -24,7 +24,7 @@ pub const UI_CONTEXTAVAILABILITY_NOTAVAILABLE = UI_CONTEXTAVAILABILITY.NOTAVAILA
 pub const UI_CONTEXTAVAILABILITY_AVAILABLE = UI_CONTEXTAVAILABILITY.AVAILABLE;
 pub const UI_CONTEXTAVAILABILITY_ACTIVE = UI_CONTEXTAVAILABILITY.ACTIVE;
 
-pub const UI_FONTPROPERTIES = extern enum(i32) {
+pub const UI_FONTPROPERTIES = enum(i32) {
     NOTAVAILABLE = 0,
     NOTSET = 1,
     SET = 2,
@@ -33,7 +33,7 @@ pub const UI_FONTPROPERTIES_NOTAVAILABLE = UI_FONTPROPERTIES.NOTAVAILABLE;
 pub const UI_FONTPROPERTIES_NOTSET = UI_FONTPROPERTIES.NOTSET;
 pub const UI_FONTPROPERTIES_SET = UI_FONTPROPERTIES.SET;
 
-pub const UI_FONTVERTICALPOSITION = extern enum(i32) {
+pub const UI_FONTVERTICALPOSITION = enum(i32) {
     NOTAVAILABLE = 0,
     NOTSET = 1,
     SUPERSCRIPT = 2,
@@ -44,7 +44,7 @@ pub const UI_FONTVERTICALPOSITION_NOTSET = UI_FONTVERTICALPOSITION.NOTSET;
 pub const UI_FONTVERTICALPOSITION_SUPERSCRIPT = UI_FONTVERTICALPOSITION.SUPERSCRIPT;
 pub const UI_FONTVERTICALPOSITION_SUBSCRIPT = UI_FONTVERTICALPOSITION.SUBSCRIPT;
 
-pub const UI_FONTUNDERLINE = extern enum(i32) {
+pub const UI_FONTUNDERLINE = enum(i32) {
     NOTAVAILABLE = 0,
     NOTSET = 1,
     SET = 2,
@@ -53,21 +53,21 @@ pub const UI_FONTUNDERLINE_NOTAVAILABLE = UI_FONTUNDERLINE.NOTAVAILABLE;
 pub const UI_FONTUNDERLINE_NOTSET = UI_FONTUNDERLINE.NOTSET;
 pub const UI_FONTUNDERLINE_SET = UI_FONTUNDERLINE.SET;
 
-pub const UI_FONTDELTASIZE = extern enum(i32) {
+pub const UI_FONTDELTASIZE = enum(i32) {
     GROW = 0,
     SHRINK = 1,
 };
 pub const UI_FONTDELTASIZE_GROW = UI_FONTDELTASIZE.GROW;
 pub const UI_FONTDELTASIZE_SHRINK = UI_FONTDELTASIZE.SHRINK;
 
-pub const UI_CONTROLDOCK = extern enum(i32) {
+pub const UI_CONTROLDOCK = enum(i32) {
     TOP = 1,
     BOTTOM = 3,
 };
 pub const UI_CONTROLDOCK_TOP = UI_CONTROLDOCK.TOP;
 pub const UI_CONTROLDOCK_BOTTOM = UI_CONTROLDOCK.BOTTOM;
 
-pub const UI_SWATCHCOLORTYPE = extern enum(i32) {
+pub const UI_SWATCHCOLORTYPE = enum(i32) {
     NOCOLOR = 0,
     AUTOMATIC = 1,
     RGB = 2,
@@ -76,14 +76,14 @@ pub const UI_SWATCHCOLORTYPE_NOCOLOR = UI_SWATCHCOLORTYPE.NOCOLOR;
 pub const UI_SWATCHCOLORTYPE_AUTOMATIC = UI_SWATCHCOLORTYPE.AUTOMATIC;
 pub const UI_SWATCHCOLORTYPE_RGB = UI_SWATCHCOLORTYPE.RGB;
 
-pub const UI_SWATCHCOLORMODE = extern enum(i32) {
+pub const UI_SWATCHCOLORMODE = enum(i32) {
     NORMAL = 0,
     MONOCHROME = 1,
 };
 pub const UI_SWATCHCOLORMODE_NORMAL = UI_SWATCHCOLORMODE.NORMAL;
 pub const UI_SWATCHCOLORMODE_MONOCHROME = UI_SWATCHCOLORMODE.MONOCHROME;
 
-pub const UI_EVENTTYPE = extern enum(i32) {
+pub const UI_EVENTTYPE = enum(i32) {
     ApplicationMenuOpened = 0,
     RibbonMinimized = 1,
     RibbonExpanded = 2,
@@ -102,7 +102,7 @@ pub const UI_EVENTTYPE_MenuOpened = UI_EVENTTYPE.MenuOpened;
 pub const UI_EVENTTYPE_CommandExecuted = UI_EVENTTYPE.CommandExecuted;
 pub const UI_EVENTTYPE_TooltipShown = UI_EVENTTYPE.TooltipShown;
 
-pub const UI_EVENTLOCATION = extern enum(i32) {
+pub const UI_EVENTLOCATION = enum(i32) {
     Ribbon = 0,
     QAT = 1,
     ApplicationMenu = 2,
@@ -174,7 +174,7 @@ pub const IUIRibbon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_INVALIDATIONS = extern enum(i32) {
+pub const UI_INVALIDATIONS = enum(i32) {
     STATE = 1,
     VALUE = 2,
     PROPERTY = 4,
@@ -435,7 +435,7 @@ pub const IUICollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_COLLECTIONCHANGE = extern enum(i32) {
+pub const UI_COLLECTIONCHANGE = enum(i32) {
     INSERT = 0,
     REMOVE = 1,
     REPLACE = 2,
@@ -472,7 +472,7 @@ pub const IUICollectionChangedEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_EXECUTIONVERB = extern enum(i32) {
+pub const UI_EXECUTIONVERB = enum(i32) {
     EXECUTE = 0,
     PREVIEW = 1,
     CANCELPREVIEW = 2,
@@ -518,7 +518,7 @@ pub const IUICommandHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_COMMANDTYPE = extern enum(i32) {
+pub const UI_COMMANDTYPE = enum(i32) {
     UNKNOWN = 0,
     GROUP = 1,
     ACTION = 2,
@@ -547,12 +547,12 @@ pub const UI_COMMANDTYPE_RECENTITEMS = UI_COMMANDTYPE.RECENTITEMS;
 pub const UI_COMMANDTYPE_COLORANCHOR = UI_COMMANDTYPE.COLORANCHOR;
 pub const UI_COMMANDTYPE_COLORCOLLECTION = UI_COMMANDTYPE.COLORCOLLECTION;
 
-pub const UI_VIEWTYPE = extern enum(i32) {
+pub const UI_VIEWTYPE = enum(i32) {
     N = 1,
 };
 pub const UI_VIEWTYPE_RIBBON = UI_VIEWTYPE.N;
 
-pub const UI_VIEWVERB = extern enum(i32) {
+pub const UI_VIEWVERB = enum(i32) {
     CREATE = 0,
     DESTROY = 1,
     SIZE = 2,
@@ -631,7 +631,7 @@ pub const IUIImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_OWNERSHIP = extern enum(i32) {
+pub const UI_OWNERSHIP = enum(i32) {
     TRANSFER = 0,
     COPY = 1,
 };

@@ -901,14 +901,14 @@ pub const POLICY_DNS_DOMAIN_INFO = extern struct {
     Sid: PSID,
 };
 
-pub const LSA_LOOKUP_DOMAIN_INFO_CLASS = extern enum(i32) {
+pub const LSA_LOOKUP_DOMAIN_INFO_CLASS = enum(i32) {
     AccountDomainInformation = 5,
     DnsDomainInformation = 12,
 };
 pub const AccountDomainInformation = LSA_LOOKUP_DOMAIN_INFO_CLASS.AccountDomainInformation;
 pub const DnsDomainInformation = LSA_LOOKUP_DOMAIN_INFO_CLASS.DnsDomainInformation;
 
-pub const SECURITY_LOGON_TYPE = extern enum(i32) {
+pub const SECURITY_LOGON_TYPE = enum(i32) {
     UndefinedLogonType = 0,
     Interactive = 2,
     Network = 3,
@@ -925,7 +925,7 @@ pub const SECURITY_LOGON_TYPE = extern enum(i32) {
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
-pub const SE_ADT_PARAMETER_TYPE = extern enum(i32) {
+pub const SE_ADT_PARAMETER_TYPE = enum(i32) {
     None = 0,
     String = 1,
     FileSpec = 2,
@@ -1050,7 +1050,7 @@ pub const SE_ADT_PARAMETER_ARRAY_EX = extern struct {
     Parameters: [32]SE_ADT_PARAMETER_ARRAY_ENTRY,
 };
 
-pub const POLICY_AUDIT_EVENT_TYPE = extern enum(i32) {
+pub const POLICY_AUDIT_EVENT_TYPE = enum(i32) {
     System = 0,
     Logon = 1,
     ObjectAccess = 2,
@@ -1077,14 +1077,14 @@ pub const LSA_TRANSLATED_SID = extern struct {
     DomainIndex: i32,
 };
 
-pub const POLICY_LSA_SERVER_ROLE = extern enum(i32) {
+pub const POLICY_LSA_SERVER_ROLE = enum(i32) {
     Backup = 2,
     Primary = 3,
 };
 pub const PolicyServerRoleBackup = POLICY_LSA_SERVER_ROLE.Backup;
 pub const PolicyServerRolePrimary = POLICY_LSA_SERVER_ROLE.Primary;
 
-pub const POLICY_INFORMATION_CLASS = extern enum(i32) {
+pub const POLICY_INFORMATION_CLASS = enum(i32) {
     AuditLogInformation = 1,
     AuditEventsInformation = 2,
     PrimaryDomainInformation = 3,
@@ -1180,7 +1180,7 @@ pub const POLICY_AUDIT_FULL_QUERY_INFO = extern struct {
     LogIsFull: u8,
 };
 
-pub const POLICY_DOMAIN_INFORMATION_CLASS = extern enum(i32) {
+pub const POLICY_DOMAIN_INFORMATION_CLASS = enum(i32) {
     EfsInformation = 2,
     KerberosTicketInformation = 3,
 };
@@ -1206,7 +1206,7 @@ pub const POLICY_MACHINE_ACCT_INFO = extern struct {
     Sid: PSID,
 };
 
-pub const POLICY_NOTIFICATION_INFORMATION_CLASS = extern enum(i32) {
+pub const POLICY_NOTIFICATION_INFORMATION_CLASS = enum(i32) {
     AuditEventsInformation = 1,
     AccountDomainInformation = 2,
     ServerRoleInformation = 3,
@@ -1227,7 +1227,7 @@ pub const PolicyNotifyMachineAccountPasswordInformation = POLICY_NOTIFICATION_IN
 pub const PolicyNotifyGlobalSaclInformation = POLICY_NOTIFICATION_INFORMATION_CLASS.GlobalSaclInformation;
 pub const PolicyNotifyMax = POLICY_NOTIFICATION_INFORMATION_CLASS.Max;
 
-pub const TRUSTED_INFORMATION_CLASS = extern enum(i32) {
+pub const TRUSTED_INFORMATION_CLASS = enum(i32) {
     DomainNameInformation = 1,
     ControllersInformation = 2,
     PosixOffsetInformation = 3,
@@ -1326,16 +1326,16 @@ pub const TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES = extern struct {
     SupportedEncryptionTypes: u32,
 };
 
-pub const LSA_FOREST_TRUST_RECORD_TYPE = extern enum(i32) {
+pub const LSA_FOREST_TRUST_RECORD_TYPE = enum(i32) {
     TopLevelName = 0,
     TopLevelNameEx = 1,
     DomainInfo = 2,
-    RecordTypeLast = 2,
+    // RecordTypeLast = 2, this enum value conflicts with DomainInfo
 };
 pub const ForestTrustTopLevelName = LSA_FOREST_TRUST_RECORD_TYPE.TopLevelName;
 pub const ForestTrustTopLevelNameEx = LSA_FOREST_TRUST_RECORD_TYPE.TopLevelNameEx;
 pub const ForestTrustDomainInfo = LSA_FOREST_TRUST_RECORD_TYPE.DomainInfo;
-pub const ForestTrustRecordTypeLast = LSA_FOREST_TRUST_RECORD_TYPE.RecordTypeLast;
+pub const ForestTrustRecordTypeLast = LSA_FOREST_TRUST_RECORD_TYPE.DomainInfo;
 
 pub const LSA_FOREST_TRUST_DOMAIN_INFO = extern struct {
     Sid: PSID,
@@ -1364,7 +1364,7 @@ pub const LSA_FOREST_TRUST_INFORMATION = extern struct {
     Entries: **LSA_FOREST_TRUST_RECORD,
 };
 
-pub const LSA_FOREST_TRUST_COLLISION_RECORD_TYPE = extern enum(i32) {
+pub const LSA_FOREST_TRUST_COLLISION_RECORD_TYPE = enum(i32) {
     Tdo = 0,
     Xref = 1,
     Other = 2,
@@ -1444,7 +1444,7 @@ pub const CENTRAL_ACCESS_POLICY = extern struct {
     CAPEs: **CENTRAL_ACCESS_POLICY_ENTRY,
 };
 
-pub const NEGOTIATE_MESSAGES = extern enum(i32) {
+pub const NEGOTIATE_MESSAGES = enum(i32) {
     EnumPackagePrefixes = 0,
     GetCallerName = 1,
     TransferCredentials = 2,
@@ -1506,7 +1506,7 @@ pub const PSAM_PASSWORD_FILTER_ROUTINE = fn(
     SetOperation: u8,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
-pub const MSV1_0_LOGON_SUBMIT_TYPE = extern enum(i32) {
+pub const MSV1_0_LOGON_SUBMIT_TYPE = enum(i32) {
     InteractiveLogon = 2,
     Lm20Logon = 3,
     NetworkLogon = 4,
@@ -1527,7 +1527,7 @@ pub const MsV1_0VirtualLogon = MSV1_0_LOGON_SUBMIT_TYPE.VirtualLogon;
 pub const MsV1_0NoElevationLogon = MSV1_0_LOGON_SUBMIT_TYPE.NoElevationLogon;
 pub const MsV1_0LuidLogon = MSV1_0_LOGON_SUBMIT_TYPE.LuidLogon;
 
-pub const MSV1_0_PROFILE_BUFFER_TYPE = extern enum(i32) {
+pub const MSV1_0_PROFILE_BUFFER_TYPE = enum(i32) {
     InteractiveProfile = 2,
     Lm20LogonProfile = 3,
     SmartCardProfile = 4,
@@ -1604,7 +1604,7 @@ pub const MSV1_0_LM20_LOGON_PROFILE = extern struct {
     UserParameters: UNICODE_STRING,
 };
 
-pub const MSV1_0_CREDENTIAL_KEY_TYPE = extern enum(i32) {
+pub const MSV1_0_CREDENTIAL_KEY_TYPE = enum(i32) {
     InvalidCredKey = 0,
     DeprecatedIUMCredKey = 1,
     DomainUserCredKey = 2,
@@ -1671,7 +1671,7 @@ pub const MSV1_0_NTLM3_RESPONSE = extern struct {
     Buffer: [1]u8,
 };
 
-pub const MSV1_0_AVID = extern enum(i32) {
+pub const MSV1_0_AVID = enum(i32) {
     EOL = 0,
     NbComputerName = 1,
     NbDomainName = 2,
@@ -1701,7 +1701,7 @@ pub const MSV1_0_AV_PAIR = extern struct {
     AvLen: u16,
 };
 
-pub const MSV1_0_PROTOCOL_MESSAGE_TYPE = extern enum(i32) {
+pub const MSV1_0_PROTOCOL_MESSAGE_TYPE = enum(i32) {
     Lm20ChallengeRequest = 0,
     Lm20GetChallengeResponse = 1,
     EnumerateUsers = 2,
@@ -1798,7 +1798,7 @@ pub const MSV1_0_SUBAUTH_RESPONSE = extern struct {
     SubAuthReturnBuffer: *u8,
 };
 
-pub const KERB_LOGON_SUBMIT_TYPE = extern enum(i32) {
+pub const KERB_LOGON_SUBMIT_TYPE = enum(i32) {
     InteractiveLogon = 2,
     SmartCardLogon = 6,
     WorkstationUnlockLogon = 7,
@@ -1896,7 +1896,7 @@ pub const KERB_S4U_LOGON = extern struct {
     ClientRealm: UNICODE_STRING,
 };
 
-pub const KERB_PROFILE_BUFFER_TYPE = extern enum(i32) {
+pub const KERB_PROFILE_BUFFER_TYPE = enum(i32) {
     InteractiveProfile = 2,
     SmartCardProfile = 4,
     TicketProfile = 6,
@@ -1947,7 +1947,7 @@ pub const KERB_TICKET_PROFILE = extern struct {
     SessionKey: KERB_CRYPTO_KEY,
 };
 
-pub const KERB_PROTOCOL_MESSAGE_TYPE = extern enum(i32) {
+pub const KERB_PROTOCOL_MESSAGE_TYPE = enum(i32) {
     DebugRequestMessage = 0,
     QueryTicketCacheMessage = 1,
     ChangeMachinePasswordMessage = 2,
@@ -2396,7 +2396,7 @@ pub const KERB_QUERY_DOMAIN_EXTENDED_POLICIES_RESPONSE = extern struct {
     DsFlags: u32,
 };
 
-pub const KERB_CERTIFICATE_INFO_TYPE = extern enum(i32) {
+pub const KERB_CERTIFICATE_INFO_TYPE = enum(i32) {
     o = 1,
 };
 pub const CertHashInfo = KERB_CERTIFICATE_INFO_TYPE.o;
@@ -2435,7 +2435,7 @@ pub const PKU2U_CREDUI_CONTEXT = extern struct {
     CertArrayOffset: u32,
 };
 
-pub const PKU2U_LOGON_SUBMIT_TYPE = extern enum(i32) {
+pub const PKU2U_LOGON_SUBMIT_TYPE = enum(i32) {
     n = 14,
 };
 pub const Pku2uCertificateS4ULogon = PKU2U_LOGON_SUBMIT_TYPE.n;
@@ -2497,7 +2497,7 @@ pub const SEC_CHANNEL_BINDINGS = extern struct {
     dwApplicationDataOffset: u32,
 };
 
-pub const SEC_APPLICATION_PROTOCOL_NEGOTIATION_EXT = extern enum(i32) {
+pub const SEC_APPLICATION_PROTOCOL_NEGOTIATION_EXT = enum(i32) {
     None = 0,
     NPN = 1,
     ALPN = 2,
@@ -2552,7 +2552,7 @@ pub const SEC_FLAGS = extern struct {
     Flags: u64,
 };
 
-pub const SEC_TRAFFIC_SECRET_TYPE = extern enum(i32) {
+pub const SEC_TRAFFIC_SECRET_TYPE = enum(i32) {
     None = 0,
     Client = 1,
     Server = 2,
@@ -2612,7 +2612,7 @@ pub const SecPkgContext_SubjectAttributes = extern struct {
     AttributeInfo: *c_void,
 };
 
-pub const SECPKG_CRED_CLASS = extern enum(i32) {
+pub const SECPKG_CRED_CLASS = enum(i32) {
     None = 0,
     Ephemeral = 10,
     PersistedGeneric = 20,
@@ -2657,7 +2657,7 @@ pub const SecPkgContext_NamesW = extern struct {
     sUserName: *u16,
 };
 
-pub const SECPKG_ATTR_LCT_STATUS = extern enum(i32) {
+pub const SECPKG_ATTR_LCT_STATUS = enum(i32) {
     Yes = 0,
     No = 1,
     Maybe = 2,
@@ -2816,7 +2816,7 @@ pub const SecPkgContext_Bindings = extern struct {
     Bindings: *SEC_CHANNEL_BINDINGS,
 };
 
-pub const SEC_APPLICATION_PROTOCOL_NEGOTIATION_STATUS = extern enum(i32) {
+pub const SEC_APPLICATION_PROTOCOL_NEGOTIATION_STATUS = enum(i32) {
     None = 0,
     Success = 1,
     SelectedClientOnly = 2,
@@ -3126,7 +3126,7 @@ pub const QUERY_SECURITY_PACKAGE_INFO_FN_A = fn(
     param1: **SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const SecDelegationType = extern enum(i32) {
+pub const SecDelegationType = enum(i32) {
     Full = 0,
     Service = 1,
     Tree = 2,
@@ -3236,7 +3236,7 @@ pub const INIT_SECURITY_INTERFACE_A = fn(
 pub const INIT_SECURITY_INTERFACE_W = fn(
 ) callconv(@import("std").os.windows.WINAPI) *SecurityFunctionTableW;
 
-pub const SASL_AUTHZID_STATE = extern enum(i32) {
+pub const SASL_AUTHZID_STATE = enum(i32) {
     Forbidden = 0,
     Processed = 1,
 };
@@ -3302,7 +3302,7 @@ pub const SECURITY_PACKAGE_OPTIONS = extern struct {
     Signature: *c_void,
 };
 
-pub const LSA_TOKEN_INFORMATION_TYPE = extern enum(i32) {
+pub const LSA_TOKEN_INFORMATION_TYPE = enum(i32) {
     Null = 0,
     V1 = 1,
     V2 = 2,
@@ -3674,7 +3674,7 @@ pub const SECPKG_PARAMETERS = extern struct {
     DomainGuid: Guid,
 };
 
-pub const SECPKG_EXTENDED_INFORMATION_CLASS = extern enum(i32) {
+pub const SECPKG_EXTENDED_INFORMATION_CLASS = enum(i32) {
     GssInfo = 1,
     ContextThunks = 2,
     MutualAuthLevel = 3,
@@ -3753,18 +3753,18 @@ pub const SECURITY_USER_DATA = extern struct {
     pSid: PSID,
 };
 
-pub const SECPKG_CALL_PACKAGE_MESSAGE_TYPE = extern enum(i32) {
+pub const SECPKG_CALL_PACKAGE_MESSAGE_TYPE = enum(i32) {
     MinMessage = 1024,
-    PinDcMessage = 1024,
+    // PinDcMessage = 1024, this enum value conflicts with MinMessage
     UnpinAllDcsMessage = 1025,
     TransferCredMessage = 1026,
-    MaxMessage = 1026,
+    // MaxMessage = 1026, this enum value conflicts with TransferCredMessage
 };
 pub const SecPkgCallPackageMinMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.MinMessage;
-pub const SecPkgCallPackagePinDcMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.PinDcMessage;
+pub const SecPkgCallPackagePinDcMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.MinMessage;
 pub const SecPkgCallPackageUnpinAllDcsMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.UnpinAllDcsMessage;
 pub const SecPkgCallPackageTransferCredMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.TransferCredMessage;
-pub const SecPkgCallPackageMaxMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.MaxMessage;
+pub const SecPkgCallPackageMaxMessage = SECPKG_CALL_PACKAGE_MESSAGE_TYPE.TransferCredMessage;
 
 pub const SECPKG_CALL_PACKAGE_PIN_DC_REQUEST = extern struct {
     MessageType: u32,
@@ -3899,7 +3899,7 @@ pub const PLSA_CREATE_TOKEN = fn(
     SubStatus: *i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SECPKG_SESSIONINFO_TYPE = extern enum(i32) {
+pub const SECPKG_SESSIONINFO_TYPE = enum(i32) {
     d = 0,
 };
 pub const SecSessionPrimaryCred = SECPKG_SESSIONINFO_TYPE.d;
@@ -4003,7 +4003,7 @@ pub const PLSA_SET_APP_MODE_INFO = fn(
     ReturnToLsa: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SECPKG_NAME_TYPE = extern enum(i32) {
+pub const SECPKG_NAME_TYPE = enum(i32) {
     SamCompatible = 0,
     AlternateId = 1,
     Flat = 2,
@@ -4146,7 +4146,7 @@ pub const PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN = fn(
     ExpandedAuthDataSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const CRED_FETCH = extern enum(i32) {
+pub const CRED_FETCH = enum(i32) {
     Default = 0,
     DPAPI = 1,
     Forced = 2,
@@ -4784,7 +4784,7 @@ pub const SpUserModeInitializeFn = fn(
     pcTables: *u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KSEC_CONTEXT_TYPE = extern enum(i32) {
+pub const KSEC_CONTEXT_TYPE = enum(i32) {
     Paged = 0,
     NonPaged = 1,
 };
@@ -4966,7 +4966,7 @@ pub const SecPkgCred_ClientCertPolicy = extern struct {
     pwszSslCtlIdentifier: PWSTR,
 };
 
-pub const eTlsSignatureAlgorithm = extern enum(i32) {
+pub const eTlsSignatureAlgorithm = enum(i32) {
     Anonymous = 0,
     Rsa = 1,
     Dsa = 2,
@@ -4977,7 +4977,7 @@ pub const TlsSignatureAlgorithm_Rsa = eTlsSignatureAlgorithm.Rsa;
 pub const TlsSignatureAlgorithm_Dsa = eTlsSignatureAlgorithm.Dsa;
 pub const TlsSignatureAlgorithm_Ecdsa = eTlsSignatureAlgorithm.Ecdsa;
 
-pub const eTlsHashAlgorithm = extern enum(i32) {
+pub const eTlsHashAlgorithm = enum(i32) {
     None = 0,
     Md5 = 1,
     Sha1 = 2,
@@ -5312,7 +5312,7 @@ pub const SCH_EXTENSION_DATA = extern struct {
     cbExtData: u32,
 };
 
-pub const SchGetExtensionsOptions = extern enum(u32) {
+pub const SchGetExtensionsOptions = enum(u32) {
     EXTENSIONS_OPTIONS_NONE = 0,
     NO_RECORD_HEADER = 1,
     _,
@@ -5393,7 +5393,7 @@ pub const USER_SESSION_KEY = extern struct {
     data: [2]CYPHER_BLOCK,
 };
 
-pub const NETLOGON_LOGON_INFO_CLASS = extern enum(i32) {
+pub const NETLOGON_LOGON_INFO_CLASS = enum(i32) {
     InteractiveInformation = 1,
     NetworkInformation = 2,
     ServiceInformation = 3,
@@ -5456,19 +5456,19 @@ pub const MSV1_0_VALIDATION_INFO = extern struct {
     UserId: u32,
 };
 
-pub const TOKENBINDING_TYPE = extern enum(i32) {
+pub const TOKENBINDING_TYPE = enum(i32) {
     PROVIDED = 0,
     REFERRED = 1,
 };
 pub const TOKENBINDING_TYPE_PROVIDED = TOKENBINDING_TYPE.PROVIDED;
 pub const TOKENBINDING_TYPE_REFERRED = TOKENBINDING_TYPE.REFERRED;
 
-pub const TOKENBINDING_EXTENSION_FORMAT = extern enum(i32) {
+pub const TOKENBINDING_EXTENSION_FORMAT = enum(i32) {
     D = 0,
 };
 pub const TOKENBINDING_EXTENSION_FORMAT_UNDEFINED = TOKENBINDING_EXTENSION_FORMAT.D;
 
-pub const TOKENBINDING_KEY_PARAMETERS_TYPE = extern enum(i32) {
+pub const TOKENBINDING_KEY_PARAMETERS_TYPE = enum(i32) {
     RSA2048_PKCS = 0,
     RSA2048_PSS = 1,
     ECDSAP256 = 2,
@@ -5502,7 +5502,7 @@ pub const TOKENBINDING_KEY_TYPES = extern struct {
     keyType: *TOKENBINDING_KEY_PARAMETERS_TYPE,
 };
 
-pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
+pub const EXTENDED_NAME_FORMAT = enum(i32) {
     Unknown = 0,
     FullyQualifiedDN = 1,
     SamCompatible = 2,
@@ -5529,7 +5529,7 @@ pub const NameDnsDomain = EXTENDED_NAME_FORMAT.DnsDomain;
 pub const NameGivenName = EXTENDED_NAME_FORMAT.GivenName;
 pub const NameSurname = EXTENDED_NAME_FORMAT.Surname;
 
-pub const SECPKG_ATTR = extern enum(u32) {
+pub const SECPKG_ATTR = enum(u32) {
     C_ACCESS_TOKEN = 2147483666,
     C_FULL_ACCESS_TOKEN = 2147483778,
     CERT_TRUST_STATUS = 2147483780,
@@ -5614,21 +5614,21 @@ pub const SECPKG_ATTR_SUPPORTED_SIGNATURES = SECPKG_ATTR.SUPPORTED_SIGNATURES;
 pub const SECPKG_ATTR_TARGET_INFORMATION = SECPKG_ATTR.TARGET_INFORMATION;
 pub const SECPKG_ATTR_UNIQUE_BINDINGS = SECPKG_ATTR.UNIQUE_BINDINGS;
 
-pub const MSV1_0 = extern enum(u32) {
+pub const MSV1_0 = enum(u32) {
     PASSTHRU = 1,
     GUEST_LOGON = 2,
 };
 pub const MSV1_0_PASSTHRU = MSV1_0.PASSTHRU;
 pub const MSV1_0_GUEST_LOGON = MSV1_0.GUEST_LOGON;
 
-pub const SECPKG_CRED = extern enum(u32) {
+pub const SECPKG_CRED = enum(u32) {
     INBOUND = 1,
     OUTBOUND = 2,
 };
 pub const SECPKG_CRED_INBOUND = SECPKG_CRED.INBOUND;
 pub const SECPKG_CRED_OUTBOUND = SECPKG_CRED.OUTBOUND;
 
-pub const MSV_SUB_AUTHENTICATION_FILTER = extern enum(u32) {
+pub const MSV_SUB_AUTHENTICATION_FILTER = enum(u32) {
     GUEST = 1,
     NOENCRYPTION = 2,
     CACHED_ACCOUNT = 4,
@@ -5649,7 +5649,7 @@ pub const LOGON_SERVER_TRUST_ACCOUNT = MSV_SUB_AUTHENTICATION_FILTER.SERVER_TRUS
 pub const LOGON_PROFILE_PATH_RETURNED = MSV_SUB_AUTHENTICATION_FILTER.PROFILE_PATH_RETURNED;
 pub const LOGON_RESOURCE_GROUPS = MSV_SUB_AUTHENTICATION_FILTER.RESOURCE_GROUPS;
 
-pub const EXPORT_SECURITY_CONTEXT_FLAGS = extern enum(u32) {
+pub const EXPORT_SECURITY_CONTEXT_FLAGS = enum(u32) {
     RESET_NEW = 1,
     DELETE_OLD = 2,
     TO_KERNEL = 4,
@@ -5670,7 +5670,7 @@ pub const SECPKG_CONTEXT_EXPORT_RESET_NEW = EXPORT_SECURITY_CONTEXT_FLAGS.RESET_
 pub const SECPKG_CONTEXT_EXPORT_DELETE_OLD = EXPORT_SECURITY_CONTEXT_FLAGS.DELETE_OLD;
 pub const SECPKG_CONTEXT_EXPORT_TO_KERNEL = EXPORT_SECURITY_CONTEXT_FLAGS.TO_KERNEL;
 
-pub const ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ = extern enum(u32) {
+pub const ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ = enum(u32) {
     ALLOCATE_MEMORY = 256,
     CONNECTION = 2048,
     DELEGATE = 1,
@@ -5707,7 +5707,7 @@ pub const ASC_REQ_REPLAY_DETECT = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.REPLAY_DET
 pub const ASC_REQ_SEQUENCE_DETECT = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.SEQUENCE_DETECT;
 pub const ASC_REQ_STREAM = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.STREAM;
 
-pub const KERB_TICKET_FLAGS = extern enum(u32) {
+pub const KERB_TICKET_FLAGS = enum(u32) {
     forwardable = 1073741824,
     forwarded = 536870912,
     hw_authent = 1048576,
@@ -5772,14 +5772,14 @@ pub const KERB_TICKET_FLAGS_renewable = KERB_TICKET_FLAGS.renewable;
 pub const KERB_TICKET_FLAGS_reserved = KERB_TICKET_FLAGS.reserved;
 pub const KERB_TICKET_FLAGS_reserved1 = KERB_TICKET_FLAGS.reserved1;
 
-pub const KERB_ADDRESS_TYPE = extern enum(u32) {
+pub const KERB_ADDRESS_TYPE = enum(u32) {
     INET_ADDRESS = 1,
     NETBIOS_ADDRESS = 2,
 };
 pub const DS_INET_ADDRESS = KERB_ADDRESS_TYPE.INET_ADDRESS;
 pub const DS_NETBIOS_ADDRESS = KERB_ADDRESS_TYPE.NETBIOS_ADDRESS;
 
-pub const SCHANNEL_CRED_FLAGS = extern enum(u32) {
+pub const SCHANNEL_CRED_FLAGS = enum(u32) {
     CRED_AUTO_CRED_VALIDATION = 32,
     CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE = 131072,
     DISABLE_RECONNECTS = 128,
@@ -5856,7 +5856,7 @@ pub const SCH_SEND_ROOT_CERT = SCHANNEL_CRED_FLAGS.SEND_ROOT_CERT;
 pub const SCH_USE_STRONG_CRYPTO = SCHANNEL_CRED_FLAGS.USE_STRONG_CRYPTO;
 pub const SCH_USE_PRESHAREDKEY_ONLY = SCHANNEL_CRED_FLAGS.USE_PRESHAREDKEY_ONLY;
 
-pub const DOMAIN_PASSWORD_PROPERTIES = extern enum(u32) {
+pub const DOMAIN_PASSWORD_PROPERTIES = enum(u32) {
     PASSWORD_COMPLEX = 1,
     PASSWORD_NO_ANON_CHANGE = 2,
     PASSWORD_NO_CLEAR_CHANGE = 4,
@@ -5889,14 +5889,14 @@ pub const DOMAIN_LOCKOUT_ADMINS = DOMAIN_PASSWORD_PROPERTIES.LOCKOUT_ADMINS;
 pub const DOMAIN_PASSWORD_STORE_CLEARTEXT = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_STORE_CLEARTEXT;
 pub const DOMAIN_REFUSE_PASSWORD_CHANGE = DOMAIN_PASSWORD_PROPERTIES.REFUSE_PASSWORD_CHANGE;
 
-pub const SCHANNEL_ALERT_TOKEN_ALERT_TYPE = extern enum(u32) {
+pub const SCHANNEL_ALERT_TOKEN_ALERT_TYPE = enum(u32) {
     WARNING = 1,
     FATAL = 2,
 };
 pub const TLS1_ALERT_WARNING = SCHANNEL_ALERT_TOKEN_ALERT_TYPE.WARNING;
 pub const TLS1_ALERT_FATAL = SCHANNEL_ALERT_TOKEN_ALERT_TYPE.FATAL;
 
-pub const TRUSTED_DOMAIN_TRUST_TYPE = extern enum(u32) {
+pub const TRUSTED_DOMAIN_TRUST_TYPE = enum(u32) {
     DOWNLEVEL = 1,
     UPLEVEL = 2,
     MIT = 3,
@@ -5907,7 +5907,7 @@ pub const TRUST_TYPE_UPLEVEL = TRUSTED_DOMAIN_TRUST_TYPE.UPLEVEL;
 pub const TRUST_TYPE_MIT = TRUSTED_DOMAIN_TRUST_TYPE.MIT;
 pub const TRUST_TYPE_DCE = TRUSTED_DOMAIN_TRUST_TYPE.DCE;
 
-pub const MSV_SUBAUTH_LOGON_PARAMETER_CONTROL = extern enum(u32) {
+pub const MSV_SUBAUTH_LOGON_PARAMETER_CONTROL = enum(u32) {
     CLEARTEXT_PASSWORD_ALLOWED = 2,
     UPDATE_LOGON_STATISTICS = 4,
     RETURN_USER_PARAMETERS = 8,
@@ -5956,7 +5956,7 @@ pub const MSV1_0_TRY_GUEST_ACCOUNT_ONLY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TR
 pub const MSV1_0_RETURN_PROFILE_PATH = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PROFILE_PATH;
 pub const MSV1_0_TRY_SPECIFIED_DOMAIN_ONLY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_SPECIFIED_DOMAIN_ONLY;
 
-pub const KERB_REQUEST_FLAGS = extern enum(u32) {
+pub const KERB_REQUEST_FLAGS = enum(u32) {
     ADD_CREDENTIAL = 1,
     REPLACE_CREDENTIAL = 2,
     REMOVE_CREDENTIAL = 4,
@@ -5965,7 +5965,7 @@ pub const KERB_REQUEST_ADD_CREDENTIAL = KERB_REQUEST_FLAGS.ADD_CREDENTIAL;
 pub const KERB_REQUEST_REPLACE_CREDENTIAL = KERB_REQUEST_FLAGS.REPLACE_CREDENTIAL;
 pub const KERB_REQUEST_REMOVE_CREDENTIAL = KERB_REQUEST_FLAGS.REMOVE_CREDENTIAL;
 
-pub const TRUSTED_DOMAIN_TRUST_DIRECTION = extern enum(u32) {
+pub const TRUSTED_DOMAIN_TRUST_DIRECTION = enum(u32) {
     DISABLED = 0,
     INBOUND = 1,
     OUTBOUND = 2,
@@ -5976,7 +5976,7 @@ pub const TRUST_DIRECTION_INBOUND = TRUSTED_DOMAIN_TRUST_DIRECTION.INBOUND;
 pub const TRUST_DIRECTION_OUTBOUND = TRUSTED_DOMAIN_TRUST_DIRECTION.OUTBOUND;
 pub const TRUST_DIRECTION_BIDIRECTIONAL = TRUSTED_DOMAIN_TRUST_DIRECTION.BIDIRECTIONAL;
 
-pub const MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS = extern enum(u32) {
+pub const MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS = enum(u32) {
     LM_PRESENT = 1,
     NT_PRESENT = 2,
     VERSION = 0,
@@ -5997,7 +5997,7 @@ pub const MSV1_0_CRED_LM_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT;
 pub const MSV1_0_CRED_NT_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.NT_PRESENT;
 pub const MSV1_0_CRED_VERSION = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.VERSION;
 
-pub const SECURITY_PACKAGE_OPTIONS_TYPE = extern enum(u32) {
+pub const SECURITY_PACKAGE_OPTIONS_TYPE = enum(u32) {
     UNKNOWN = 0,
     LSA = 1,
     SSPI = 2,
@@ -6006,14 +6006,14 @@ pub const SECPKG_OPTIONS_TYPE_UNKNOWN = SECURITY_PACKAGE_OPTIONS_TYPE.UNKNOWN;
 pub const SECPKG_OPTIONS_TYPE_LSA = SECURITY_PACKAGE_OPTIONS_TYPE.LSA;
 pub const SECPKG_OPTIONS_TYPE_SSPI = SECURITY_PACKAGE_OPTIONS_TYPE.SSPI;
 
-pub const SCHANNEL_SESSION_TOKEN_FLAGS = extern enum(u32) {
+pub const SCHANNEL_SESSION_TOKEN_FLAGS = enum(u32) {
     ENABLE_RECONNECTS = 1,
     DISABLE_RECONNECTS = 2,
 };
 pub const SSL_SESSION_ENABLE_RECONNECTS = SCHANNEL_SESSION_TOKEN_FLAGS.ENABLE_RECONNECTS;
 pub const SSL_SESSION_DISABLE_RECONNECTS = SCHANNEL_SESSION_TOKEN_FLAGS.DISABLE_RECONNECTS;
 
-pub const KERB_CRYPTO_KEY_TYPE = extern enum(i32) {
+pub const KERB_CRYPTO_KEY_TYPE = enum(i32) {
     DES_CBC_CRC = 1,
     DES_CBC_MD4 = 2,
     DES_CBC_MD5 = 3,
@@ -6028,7 +6028,7 @@ pub const KERB_ETYPE_NULL = KERB_CRYPTO_KEY_TYPE.NULL;
 pub const KERB_ETYPE_RC4_HMAC_NT = KERB_CRYPTO_KEY_TYPE.RC4_HMAC_NT;
 pub const KERB_ETYPE_RC4_MD4 = KERB_CRYPTO_KEY_TYPE.RC4_MD4;
 
-pub const LSA_AUTH_INFORMATION_AUTH_TYPE = extern enum(u32) {
+pub const LSA_AUTH_INFORMATION_AUTH_TYPE = enum(u32) {
     NONE = 0,
     NT4OWF = 1,
     CLEAR = 2,
@@ -6039,7 +6039,7 @@ pub const TRUST_AUTH_TYPE_NT4OWF = LSA_AUTH_INFORMATION_AUTH_TYPE.NT4OWF;
 pub const TRUST_AUTH_TYPE_CLEAR = LSA_AUTH_INFORMATION_AUTH_TYPE.CLEAR;
 pub const TRUST_AUTH_TYPE_VERSION = LSA_AUTH_INFORMATION_AUTH_TYPE.VERSION;
 
-pub const SECPKG_PACKAGE_CHANGE_TYPE = extern enum(u32) {
+pub const SECPKG_PACKAGE_CHANGE_TYPE = enum(u32) {
     LOAD = 0,
     UNLOAD = 1,
     SELECT = 2,
@@ -6048,7 +6048,7 @@ pub const SECPKG_PACKAGE_CHANGE_LOAD = SECPKG_PACKAGE_CHANGE_TYPE.LOAD;
 pub const SECPKG_PACKAGE_CHANGE_UNLOAD = SECPKG_PACKAGE_CHANGE_TYPE.UNLOAD;
 pub const SECPKG_PACKAGE_CHANGE_SELECT = SECPKG_PACKAGE_CHANGE_TYPE.SELECT;
 
-pub const TRUSTED_DOMAIN_TRUST_ATTRIBUTES = extern enum(u32) {
+pub const TRUSTED_DOMAIN_TRUST_ATTRIBUTES = enum(u32) {
     NON_TRANSITIVE = 1,
     UPLEVEL_ONLY = 2,
     FILTER_SIDS = 4,

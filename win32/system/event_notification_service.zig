@@ -256,7 +256,7 @@ pub const ISensLogon2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SENS_CONNECTION_TYPE = extern enum(u32) {
+pub const SENS_CONNECTION_TYPE = enum(u32) {
     LAN = 0,
     WAN = 1,
 };

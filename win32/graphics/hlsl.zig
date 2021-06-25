@@ -103,7 +103,7 @@ pub const pD3DDisassemble = fn(
     ppDisassembly: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const D3DCOMPILER_STRIP_FLAGS = extern enum(i32) {
+pub const D3DCOMPILER_STRIP_FLAGS = enum(i32) {
     REFLECTION_DATA = 1,
     DEBUG_INFO = 2,
     TEST_BLOBS = 4,
@@ -118,7 +118,7 @@ pub const D3DCOMPILER_STRIP_PRIVATE_DATA = D3DCOMPILER_STRIP_FLAGS.PRIVATE_DATA;
 pub const D3DCOMPILER_STRIP_ROOT_SIGNATURE = D3DCOMPILER_STRIP_FLAGS.ROOT_SIGNATURE;
 pub const D3DCOMPILER_STRIP_FORCE_DWORD = D3DCOMPILER_STRIP_FLAGS.FORCE_DWORD;
 
-pub const D3D_BLOB_PART = extern enum(i32) {
+pub const D3D_BLOB_PART = enum(i32) {
     INPUT_SIGNATURE_BLOB = 0,
     OUTPUT_SIGNATURE_BLOB = 1,
     INPUT_AND_OUTPUT_SIGNATURE_BLOB = 2,
@@ -828,7 +828,7 @@ pub const IDxcVersionInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXC_CP = extern enum(u32) {
+pub const DXC_CP = enum(u32) {
     ACP = 0,
     UTF16 = 1200,
     UTF8 = 65001,

@@ -13,7 +13,7 @@ pub const DISPID_EVENT_ON_SEND_ERROR = @as(u32, 8);
 const CLSID_RendezvousApplication_Value = @import("../zig.zig").Guid.initString("0b7e019a-b5de-47fa-8966-9082f82fb192");
 pub const CLSID_RendezvousApplication = &CLSID_RendezvousApplication_Value;
 
-pub const RENDEZVOUS_SESSION_STATE = extern enum(i32) {
+pub const RENDEZVOUS_SESSION_STATE = enum(i32) {
     UNKNOWN = 0,
     READY = 1,
     INVITATION = 2,
@@ -32,7 +32,7 @@ pub const RSS_CANCELLED = RENDEZVOUS_SESSION_STATE.CANCELLED;
 pub const RSS_DECLINED = RENDEZVOUS_SESSION_STATE.DECLINED;
 pub const RSS_TERMINATED = RENDEZVOUS_SESSION_STATE.TERMINATED;
 
-pub const RENDEZVOUS_SESSION_FLAGS = extern enum(i32) {
+pub const RENDEZVOUS_SESSION_FLAGS = enum(i32) {
     NONE = 0,
     INVITER = 1,
     INVITEE = 2,

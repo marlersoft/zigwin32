@@ -878,7 +878,7 @@ pub const SOCKET_PROCESSOR_AFFINITY = extern struct {
     Reserved: u16,
 };
 
-pub const IPPROTO = extern enum(i32) {
+pub const IPPROTO = enum(i32) {
     HOPOPTS = 0,
     ICMP = 1,
     IGMP = 2,
@@ -951,7 +951,7 @@ pub const IPPROTO_RESERVED_IPSECOFFLOAD = IPPROTO.RESERVED_IPSECOFFLOAD;
 pub const IPPROTO_RESERVED_WNV = IPPROTO.RESERVED_WNV;
 pub const IPPROTO_RESERVED_MAX = IPPROTO.RESERVED_MAX;
 
-pub const SCOPE_LEVEL = extern enum(i32) {
+pub const SCOPE_LEVEL = enum(i32) {
     Interface = 1,
     Link = 2,
     Subnet = 3,
@@ -1271,7 +1271,7 @@ pub const LPWSAOVERLAPPED_COMPLETION_ROUTINE = fn(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WSACOMPLETIONTYPE = extern enum(i32) {
+pub const WSACOMPLETIONTYPE = enum(i32) {
     IMMEDIATELY = 0,
     HWND = 1,
     EVENT = 2,
@@ -1312,7 +1312,7 @@ pub const AFPROTOCOLS = extern struct {
     iProtocol: i32,
 };
 
-pub const WSAECOMPARATOR = extern enum(i32) {
+pub const WSAECOMPARATOR = enum(i32) {
     EQUAL = 0,
     NOTLESS = 1,
 };
@@ -1394,7 +1394,7 @@ pub const WSAQUERYSET2W = extern struct {
     lpBlob: *BLOB,
 };
 
-pub const WSAESETSERVICEOP = extern enum(i32) {
+pub const WSAESETSERVICEOP = enum(i32) {
     REGISTER = 0,
     DEREGISTER = 1,
     DELETE = 2,
@@ -1507,7 +1507,7 @@ pub const INTERFACE_INFO_EX = extern struct {
     iiNetmask: SOCKET_ADDRESS,
 };
 
-pub const PMTUD_STATE = extern enum(i32) {
+pub const PMTUD_STATE = enum(i32) {
     NOT_SET = 0,
     DO = 1,
     DONT = 2,
@@ -1550,7 +1550,7 @@ pub const SOCKADDR_IN6_PAIR = extern struct {
     DestinationAddress: *SOCKADDR_IN6,
 };
 
-pub const MULTICAST_MODE_TYPE = extern enum(i32) {
+pub const MULTICAST_MODE_TYPE = enum(i32) {
     INCLUDE = 0,
     EXCLUDE = 1,
 };
@@ -1634,7 +1634,7 @@ pub const ICMP_ERROR_INFO = extern struct {
     code: u8,
 };
 
-pub const eWINDOW_ADVANCE_METHOD = extern enum(i32) {
+pub const eWINDOW_ADVANCE_METHOD = enum(i32) {
     ADVANCE_BY_TIME = 1,
     USE_AS_DATA_CACHE = 2,
 };
@@ -1808,7 +1808,7 @@ pub const WINDOWS_IAS_QUERY = extern struct {
     },
 };
 
-pub const NL_PREFIX_ORIGIN = extern enum(i32) {
+pub const NL_PREFIX_ORIGIN = enum(i32) {
     Other = 0,
     Manual = 1,
     WellKnown = 2,
@@ -1823,19 +1823,19 @@ pub const IpPrefixOriginDhcp = NL_PREFIX_ORIGIN.Dhcp;
 pub const IpPrefixOriginRouterAdvertisement = NL_PREFIX_ORIGIN.RouterAdvertisement;
 pub const IpPrefixOriginUnchanged = NL_PREFIX_ORIGIN.Unchanged;
 
-pub const NL_SUFFIX_ORIGIN = extern enum(i32) {
+pub const NL_SUFFIX_ORIGIN = enum(i32) {
     NlsoOther = 0,
     NlsoManual = 1,
     NlsoWellKnown = 2,
     NlsoDhcp = 3,
     NlsoLinkLayerAddress = 4,
     NlsoRandom = 5,
-    IpSuffixOriginOther = 0,
-    IpSuffixOriginManual = 1,
-    IpSuffixOriginWellKnown = 2,
-    IpSuffixOriginDhcp = 3,
-    IpSuffixOriginLinkLayerAddress = 4,
-    IpSuffixOriginRandom = 5,
+    // IpSuffixOriginOther = 0, this enum value conflicts with NlsoOther
+    // IpSuffixOriginManual = 1, this enum value conflicts with NlsoManual
+    // IpSuffixOriginWellKnown = 2, this enum value conflicts with NlsoWellKnown
+    // IpSuffixOriginDhcp = 3, this enum value conflicts with NlsoDhcp
+    // IpSuffixOriginLinkLayerAddress = 4, this enum value conflicts with NlsoLinkLayerAddress
+    // IpSuffixOriginRandom = 5, this enum value conflicts with NlsoRandom
     IpSuffixOriginUnchanged = 16,
 };
 pub const NlsoOther = NL_SUFFIX_ORIGIN.NlsoOther;
@@ -1844,38 +1844,38 @@ pub const NlsoWellKnown = NL_SUFFIX_ORIGIN.NlsoWellKnown;
 pub const NlsoDhcp = NL_SUFFIX_ORIGIN.NlsoDhcp;
 pub const NlsoLinkLayerAddress = NL_SUFFIX_ORIGIN.NlsoLinkLayerAddress;
 pub const NlsoRandom = NL_SUFFIX_ORIGIN.NlsoRandom;
-pub const IpSuffixOriginOther = NL_SUFFIX_ORIGIN.IpSuffixOriginOther;
-pub const IpSuffixOriginManual = NL_SUFFIX_ORIGIN.IpSuffixOriginManual;
-pub const IpSuffixOriginWellKnown = NL_SUFFIX_ORIGIN.IpSuffixOriginWellKnown;
-pub const IpSuffixOriginDhcp = NL_SUFFIX_ORIGIN.IpSuffixOriginDhcp;
-pub const IpSuffixOriginLinkLayerAddress = NL_SUFFIX_ORIGIN.IpSuffixOriginLinkLayerAddress;
-pub const IpSuffixOriginRandom = NL_SUFFIX_ORIGIN.IpSuffixOriginRandom;
+pub const IpSuffixOriginOther = NL_SUFFIX_ORIGIN.NlsoOther;
+pub const IpSuffixOriginManual = NL_SUFFIX_ORIGIN.NlsoManual;
+pub const IpSuffixOriginWellKnown = NL_SUFFIX_ORIGIN.NlsoWellKnown;
+pub const IpSuffixOriginDhcp = NL_SUFFIX_ORIGIN.NlsoDhcp;
+pub const IpSuffixOriginLinkLayerAddress = NL_SUFFIX_ORIGIN.NlsoLinkLayerAddress;
+pub const IpSuffixOriginRandom = NL_SUFFIX_ORIGIN.NlsoRandom;
 pub const IpSuffixOriginUnchanged = NL_SUFFIX_ORIGIN.IpSuffixOriginUnchanged;
 
-pub const NL_DAD_STATE = extern enum(i32) {
+pub const NL_DAD_STATE = enum(i32) {
     NldsInvalid = 0,
     NldsTentative = 1,
     NldsDuplicate = 2,
     NldsDeprecated = 3,
     NldsPreferred = 4,
-    IpDadStateInvalid = 0,
-    IpDadStateTentative = 1,
-    IpDadStateDuplicate = 2,
-    IpDadStateDeprecated = 3,
-    IpDadStatePreferred = 4,
+    // IpDadStateInvalid = 0, this enum value conflicts with NldsInvalid
+    // IpDadStateTentative = 1, this enum value conflicts with NldsTentative
+    // IpDadStateDuplicate = 2, this enum value conflicts with NldsDuplicate
+    // IpDadStateDeprecated = 3, this enum value conflicts with NldsDeprecated
+    // IpDadStatePreferred = 4, this enum value conflicts with NldsPreferred
 };
 pub const NldsInvalid = NL_DAD_STATE.NldsInvalid;
 pub const NldsTentative = NL_DAD_STATE.NldsTentative;
 pub const NldsDuplicate = NL_DAD_STATE.NldsDuplicate;
 pub const NldsDeprecated = NL_DAD_STATE.NldsDeprecated;
 pub const NldsPreferred = NL_DAD_STATE.NldsPreferred;
-pub const IpDadStateInvalid = NL_DAD_STATE.IpDadStateInvalid;
-pub const IpDadStateTentative = NL_DAD_STATE.IpDadStateTentative;
-pub const IpDadStateDuplicate = NL_DAD_STATE.IpDadStateDuplicate;
-pub const IpDadStateDeprecated = NL_DAD_STATE.IpDadStateDeprecated;
-pub const IpDadStatePreferred = NL_DAD_STATE.IpDadStatePreferred;
+pub const IpDadStateInvalid = NL_DAD_STATE.NldsInvalid;
+pub const IpDadStateTentative = NL_DAD_STATE.NldsTentative;
+pub const IpDadStateDuplicate = NL_DAD_STATE.NldsDuplicate;
+pub const IpDadStateDeprecated = NL_DAD_STATE.NldsDeprecated;
+pub const IpDadStatePreferred = NL_DAD_STATE.NldsPreferred;
 
-pub const NL_ROUTE_PROTOCOL = extern enum(i32) {
+pub const NL_ROUTE_PROTOCOL = enum(i32) {
     RouteProtocolOther = 1,
     RouteProtocolLocal = 2,
     RouteProtocolNetMgmt = 3,
@@ -1895,50 +1895,50 @@ pub const NL_ROUTE_PROTOCOL = extern enum(i32) {
     RouteProtocolDvmrp = 17,
     RouteProtocolRpl = 18,
     RouteProtocolDhcp = 19,
-    MIB_IPPROTO_OTHER = 1,
-    PROTO_IP_OTHER = 1,
-    MIB_IPPROTO_LOCAL = 2,
-    PROTO_IP_LOCAL = 2,
-    MIB_IPPROTO_NETMGMT = 3,
-    PROTO_IP_NETMGMT = 3,
-    MIB_IPPROTO_ICMP = 4,
-    PROTO_IP_ICMP = 4,
-    MIB_IPPROTO_EGP = 5,
-    PROTO_IP_EGP = 5,
-    MIB_IPPROTO_GGP = 6,
-    PROTO_IP_GGP = 6,
-    MIB_IPPROTO_HELLO = 7,
-    PROTO_IP_HELLO = 7,
-    MIB_IPPROTO_RIP = 8,
-    PROTO_IP_RIP = 8,
-    MIB_IPPROTO_IS_IS = 9,
-    PROTO_IP_IS_IS = 9,
-    MIB_IPPROTO_ES_IS = 10,
-    PROTO_IP_ES_IS = 10,
-    MIB_IPPROTO_CISCO = 11,
-    PROTO_IP_CISCO = 11,
-    MIB_IPPROTO_BBN = 12,
-    PROTO_IP_BBN = 12,
-    MIB_IPPROTO_OSPF = 13,
-    PROTO_IP_OSPF = 13,
-    MIB_IPPROTO_BGP = 14,
-    PROTO_IP_BGP = 14,
-    MIB_IPPROTO_IDPR = 15,
-    PROTO_IP_IDPR = 15,
-    MIB_IPPROTO_EIGRP = 16,
-    PROTO_IP_EIGRP = 16,
-    MIB_IPPROTO_DVMRP = 17,
-    PROTO_IP_DVMRP = 17,
-    MIB_IPPROTO_RPL = 18,
-    PROTO_IP_RPL = 18,
-    MIB_IPPROTO_DHCP = 19,
-    PROTO_IP_DHCP = 19,
+    // MIB_IPPROTO_OTHER = 1, this enum value conflicts with RouteProtocolOther
+    // PROTO_IP_OTHER = 1, this enum value conflicts with RouteProtocolOther
+    // MIB_IPPROTO_LOCAL = 2, this enum value conflicts with RouteProtocolLocal
+    // PROTO_IP_LOCAL = 2, this enum value conflicts with RouteProtocolLocal
+    // MIB_IPPROTO_NETMGMT = 3, this enum value conflicts with RouteProtocolNetMgmt
+    // PROTO_IP_NETMGMT = 3, this enum value conflicts with RouteProtocolNetMgmt
+    // MIB_IPPROTO_ICMP = 4, this enum value conflicts with RouteProtocolIcmp
+    // PROTO_IP_ICMP = 4, this enum value conflicts with RouteProtocolIcmp
+    // MIB_IPPROTO_EGP = 5, this enum value conflicts with RouteProtocolEgp
+    // PROTO_IP_EGP = 5, this enum value conflicts with RouteProtocolEgp
+    // MIB_IPPROTO_GGP = 6, this enum value conflicts with RouteProtocolGgp
+    // PROTO_IP_GGP = 6, this enum value conflicts with RouteProtocolGgp
+    // MIB_IPPROTO_HELLO = 7, this enum value conflicts with RouteProtocolHello
+    // PROTO_IP_HELLO = 7, this enum value conflicts with RouteProtocolHello
+    // MIB_IPPROTO_RIP = 8, this enum value conflicts with RouteProtocolRip
+    // PROTO_IP_RIP = 8, this enum value conflicts with RouteProtocolRip
+    // MIB_IPPROTO_IS_IS = 9, this enum value conflicts with RouteProtocolIsIs
+    // PROTO_IP_IS_IS = 9, this enum value conflicts with RouteProtocolIsIs
+    // MIB_IPPROTO_ES_IS = 10, this enum value conflicts with RouteProtocolEsIs
+    // PROTO_IP_ES_IS = 10, this enum value conflicts with RouteProtocolEsIs
+    // MIB_IPPROTO_CISCO = 11, this enum value conflicts with RouteProtocolCisco
+    // PROTO_IP_CISCO = 11, this enum value conflicts with RouteProtocolCisco
+    // MIB_IPPROTO_BBN = 12, this enum value conflicts with RouteProtocolBbn
+    // PROTO_IP_BBN = 12, this enum value conflicts with RouteProtocolBbn
+    // MIB_IPPROTO_OSPF = 13, this enum value conflicts with RouteProtocolOspf
+    // PROTO_IP_OSPF = 13, this enum value conflicts with RouteProtocolOspf
+    // MIB_IPPROTO_BGP = 14, this enum value conflicts with RouteProtocolBgp
+    // PROTO_IP_BGP = 14, this enum value conflicts with RouteProtocolBgp
+    // MIB_IPPROTO_IDPR = 15, this enum value conflicts with RouteProtocolIdpr
+    // PROTO_IP_IDPR = 15, this enum value conflicts with RouteProtocolIdpr
+    // MIB_IPPROTO_EIGRP = 16, this enum value conflicts with RouteProtocolEigrp
+    // PROTO_IP_EIGRP = 16, this enum value conflicts with RouteProtocolEigrp
+    // MIB_IPPROTO_DVMRP = 17, this enum value conflicts with RouteProtocolDvmrp
+    // PROTO_IP_DVMRP = 17, this enum value conflicts with RouteProtocolDvmrp
+    // MIB_IPPROTO_RPL = 18, this enum value conflicts with RouteProtocolRpl
+    // PROTO_IP_RPL = 18, this enum value conflicts with RouteProtocolRpl
+    // MIB_IPPROTO_DHCP = 19, this enum value conflicts with RouteProtocolDhcp
+    // PROTO_IP_DHCP = 19, this enum value conflicts with RouteProtocolDhcp
     MIB_IPPROTO_NT_AUTOSTATIC = 10002,
-    PROTO_IP_NT_AUTOSTATIC = 10002,
+    // PROTO_IP_NT_AUTOSTATIC = 10002, this enum value conflicts with MIB_IPPROTO_NT_AUTOSTATIC
     MIB_IPPROTO_NT_STATIC = 10006,
-    PROTO_IP_NT_STATIC = 10006,
+    // PROTO_IP_NT_STATIC = 10006, this enum value conflicts with MIB_IPPROTO_NT_STATIC
     MIB_IPPROTO_NT_STATIC_NON_DOD = 10007,
-    PROTO_IP_NT_STATIC_NON_DOD = 10007,
+    // PROTO_IP_NT_STATIC_NON_DOD = 10007, this enum value conflicts with MIB_IPPROTO_NT_STATIC_NON_DOD
 };
 pub const RouteProtocolOther = NL_ROUTE_PROTOCOL.RouteProtocolOther;
 pub const RouteProtocolLocal = NL_ROUTE_PROTOCOL.RouteProtocolLocal;
@@ -1959,52 +1959,52 @@ pub const RouteProtocolEigrp = NL_ROUTE_PROTOCOL.RouteProtocolEigrp;
 pub const RouteProtocolDvmrp = NL_ROUTE_PROTOCOL.RouteProtocolDvmrp;
 pub const RouteProtocolRpl = NL_ROUTE_PROTOCOL.RouteProtocolRpl;
 pub const RouteProtocolDhcp = NL_ROUTE_PROTOCOL.RouteProtocolDhcp;
-pub const MIB_IPPROTO_OTHER = NL_ROUTE_PROTOCOL.MIB_IPPROTO_OTHER;
-pub const PROTO_IP_OTHER = NL_ROUTE_PROTOCOL.PROTO_IP_OTHER;
-pub const MIB_IPPROTO_LOCAL = NL_ROUTE_PROTOCOL.MIB_IPPROTO_LOCAL;
-pub const PROTO_IP_LOCAL = NL_ROUTE_PROTOCOL.PROTO_IP_LOCAL;
-pub const MIB_IPPROTO_NETMGMT = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NETMGMT;
-pub const PROTO_IP_NETMGMT = NL_ROUTE_PROTOCOL.PROTO_IP_NETMGMT;
-pub const MIB_IPPROTO_ICMP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_ICMP;
-pub const PROTO_IP_ICMP = NL_ROUTE_PROTOCOL.PROTO_IP_ICMP;
-pub const MIB_IPPROTO_EGP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_EGP;
-pub const PROTO_IP_EGP = NL_ROUTE_PROTOCOL.PROTO_IP_EGP;
-pub const MIB_IPPROTO_GGP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_GGP;
-pub const PROTO_IP_GGP = NL_ROUTE_PROTOCOL.PROTO_IP_GGP;
-pub const MIB_IPPROTO_HELLO = NL_ROUTE_PROTOCOL.MIB_IPPROTO_HELLO;
-pub const PROTO_IP_HELLO = NL_ROUTE_PROTOCOL.PROTO_IP_HELLO;
-pub const MIB_IPPROTO_RIP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_RIP;
-pub const PROTO_IP_RIP = NL_ROUTE_PROTOCOL.PROTO_IP_RIP;
-pub const MIB_IPPROTO_IS_IS = NL_ROUTE_PROTOCOL.MIB_IPPROTO_IS_IS;
-pub const PROTO_IP_IS_IS = NL_ROUTE_PROTOCOL.PROTO_IP_IS_IS;
-pub const MIB_IPPROTO_ES_IS = NL_ROUTE_PROTOCOL.MIB_IPPROTO_ES_IS;
-pub const PROTO_IP_ES_IS = NL_ROUTE_PROTOCOL.PROTO_IP_ES_IS;
-pub const MIB_IPPROTO_CISCO = NL_ROUTE_PROTOCOL.MIB_IPPROTO_CISCO;
-pub const PROTO_IP_CISCO = NL_ROUTE_PROTOCOL.PROTO_IP_CISCO;
-pub const MIB_IPPROTO_BBN = NL_ROUTE_PROTOCOL.MIB_IPPROTO_BBN;
-pub const PROTO_IP_BBN = NL_ROUTE_PROTOCOL.PROTO_IP_BBN;
-pub const MIB_IPPROTO_OSPF = NL_ROUTE_PROTOCOL.MIB_IPPROTO_OSPF;
-pub const PROTO_IP_OSPF = NL_ROUTE_PROTOCOL.PROTO_IP_OSPF;
-pub const MIB_IPPROTO_BGP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_BGP;
-pub const PROTO_IP_BGP = NL_ROUTE_PROTOCOL.PROTO_IP_BGP;
-pub const MIB_IPPROTO_IDPR = NL_ROUTE_PROTOCOL.MIB_IPPROTO_IDPR;
-pub const PROTO_IP_IDPR = NL_ROUTE_PROTOCOL.PROTO_IP_IDPR;
-pub const MIB_IPPROTO_EIGRP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_EIGRP;
-pub const PROTO_IP_EIGRP = NL_ROUTE_PROTOCOL.PROTO_IP_EIGRP;
-pub const MIB_IPPROTO_DVMRP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_DVMRP;
-pub const PROTO_IP_DVMRP = NL_ROUTE_PROTOCOL.PROTO_IP_DVMRP;
-pub const MIB_IPPROTO_RPL = NL_ROUTE_PROTOCOL.MIB_IPPROTO_RPL;
-pub const PROTO_IP_RPL = NL_ROUTE_PROTOCOL.PROTO_IP_RPL;
-pub const MIB_IPPROTO_DHCP = NL_ROUTE_PROTOCOL.MIB_IPPROTO_DHCP;
-pub const PROTO_IP_DHCP = NL_ROUTE_PROTOCOL.PROTO_IP_DHCP;
+pub const MIB_IPPROTO_OTHER = NL_ROUTE_PROTOCOL.RouteProtocolOther;
+pub const PROTO_IP_OTHER = NL_ROUTE_PROTOCOL.RouteProtocolOther;
+pub const MIB_IPPROTO_LOCAL = NL_ROUTE_PROTOCOL.RouteProtocolLocal;
+pub const PROTO_IP_LOCAL = NL_ROUTE_PROTOCOL.RouteProtocolLocal;
+pub const MIB_IPPROTO_NETMGMT = NL_ROUTE_PROTOCOL.RouteProtocolNetMgmt;
+pub const PROTO_IP_NETMGMT = NL_ROUTE_PROTOCOL.RouteProtocolNetMgmt;
+pub const MIB_IPPROTO_ICMP = NL_ROUTE_PROTOCOL.RouteProtocolIcmp;
+pub const PROTO_IP_ICMP = NL_ROUTE_PROTOCOL.RouteProtocolIcmp;
+pub const MIB_IPPROTO_EGP = NL_ROUTE_PROTOCOL.RouteProtocolEgp;
+pub const PROTO_IP_EGP = NL_ROUTE_PROTOCOL.RouteProtocolEgp;
+pub const MIB_IPPROTO_GGP = NL_ROUTE_PROTOCOL.RouteProtocolGgp;
+pub const PROTO_IP_GGP = NL_ROUTE_PROTOCOL.RouteProtocolGgp;
+pub const MIB_IPPROTO_HELLO = NL_ROUTE_PROTOCOL.RouteProtocolHello;
+pub const PROTO_IP_HELLO = NL_ROUTE_PROTOCOL.RouteProtocolHello;
+pub const MIB_IPPROTO_RIP = NL_ROUTE_PROTOCOL.RouteProtocolRip;
+pub const PROTO_IP_RIP = NL_ROUTE_PROTOCOL.RouteProtocolRip;
+pub const MIB_IPPROTO_IS_IS = NL_ROUTE_PROTOCOL.RouteProtocolIsIs;
+pub const PROTO_IP_IS_IS = NL_ROUTE_PROTOCOL.RouteProtocolIsIs;
+pub const MIB_IPPROTO_ES_IS = NL_ROUTE_PROTOCOL.RouteProtocolEsIs;
+pub const PROTO_IP_ES_IS = NL_ROUTE_PROTOCOL.RouteProtocolEsIs;
+pub const MIB_IPPROTO_CISCO = NL_ROUTE_PROTOCOL.RouteProtocolCisco;
+pub const PROTO_IP_CISCO = NL_ROUTE_PROTOCOL.RouteProtocolCisco;
+pub const MIB_IPPROTO_BBN = NL_ROUTE_PROTOCOL.RouteProtocolBbn;
+pub const PROTO_IP_BBN = NL_ROUTE_PROTOCOL.RouteProtocolBbn;
+pub const MIB_IPPROTO_OSPF = NL_ROUTE_PROTOCOL.RouteProtocolOspf;
+pub const PROTO_IP_OSPF = NL_ROUTE_PROTOCOL.RouteProtocolOspf;
+pub const MIB_IPPROTO_BGP = NL_ROUTE_PROTOCOL.RouteProtocolBgp;
+pub const PROTO_IP_BGP = NL_ROUTE_PROTOCOL.RouteProtocolBgp;
+pub const MIB_IPPROTO_IDPR = NL_ROUTE_PROTOCOL.RouteProtocolIdpr;
+pub const PROTO_IP_IDPR = NL_ROUTE_PROTOCOL.RouteProtocolIdpr;
+pub const MIB_IPPROTO_EIGRP = NL_ROUTE_PROTOCOL.RouteProtocolEigrp;
+pub const PROTO_IP_EIGRP = NL_ROUTE_PROTOCOL.RouteProtocolEigrp;
+pub const MIB_IPPROTO_DVMRP = NL_ROUTE_PROTOCOL.RouteProtocolDvmrp;
+pub const PROTO_IP_DVMRP = NL_ROUTE_PROTOCOL.RouteProtocolDvmrp;
+pub const MIB_IPPROTO_RPL = NL_ROUTE_PROTOCOL.RouteProtocolRpl;
+pub const PROTO_IP_RPL = NL_ROUTE_PROTOCOL.RouteProtocolRpl;
+pub const MIB_IPPROTO_DHCP = NL_ROUTE_PROTOCOL.RouteProtocolDhcp;
+pub const PROTO_IP_DHCP = NL_ROUTE_PROTOCOL.RouteProtocolDhcp;
 pub const MIB_IPPROTO_NT_AUTOSTATIC = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NT_AUTOSTATIC;
-pub const PROTO_IP_NT_AUTOSTATIC = NL_ROUTE_PROTOCOL.PROTO_IP_NT_AUTOSTATIC;
+pub const PROTO_IP_NT_AUTOSTATIC = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NT_AUTOSTATIC;
 pub const MIB_IPPROTO_NT_STATIC = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NT_STATIC;
-pub const PROTO_IP_NT_STATIC = NL_ROUTE_PROTOCOL.PROTO_IP_NT_STATIC;
+pub const PROTO_IP_NT_STATIC = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NT_STATIC;
 pub const MIB_IPPROTO_NT_STATIC_NON_DOD = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NT_STATIC_NON_DOD;
-pub const PROTO_IP_NT_STATIC_NON_DOD = NL_ROUTE_PROTOCOL.PROTO_IP_NT_STATIC_NON_DOD;
+pub const PROTO_IP_NT_STATIC_NON_DOD = NL_ROUTE_PROTOCOL.MIB_IPPROTO_NT_STATIC_NON_DOD;
 
-pub const NL_ADDRESS_TYPE = extern enum(i32) {
+pub const NL_ADDRESS_TYPE = enum(i32) {
     Unspecified = 0,
     Unicast = 1,
     Anycast = 2,
@@ -2019,7 +2019,7 @@ pub const NlatMulticast = NL_ADDRESS_TYPE.Multicast;
 pub const NlatBroadcast = NL_ADDRESS_TYPE.Broadcast;
 pub const NlatInvalid = NL_ADDRESS_TYPE.Invalid;
 
-pub const NL_ROUTE_ORIGIN = extern enum(i32) {
+pub const NL_ROUTE_ORIGIN = enum(i32) {
     Manual = 0,
     WellKnown = 1,
     DHCP = 2,
@@ -2032,7 +2032,7 @@ pub const NlroDHCP = NL_ROUTE_ORIGIN.DHCP;
 pub const NlroRouterAdvertisement = NL_ROUTE_ORIGIN.RouterAdvertisement;
 pub const Nlro6to4 = NL_ROUTE_ORIGIN.@"6to4";
 
-pub const NL_NEIGHBOR_STATE = extern enum(i32) {
+pub const NL_NEIGHBOR_STATE = enum(i32) {
     Unreachable = 0,
     Incomplete = 1,
     Probe = 2,
@@ -2051,7 +2051,7 @@ pub const NlnsReachable = NL_NEIGHBOR_STATE.Reachable;
 pub const NlnsPermanent = NL_NEIGHBOR_STATE.Permanent;
 pub const NlnsMaximum = NL_NEIGHBOR_STATE.Maximum;
 
-pub const NL_LINK_LOCAL_ADDRESS_BEHAVIOR = extern enum(i32) {
+pub const NL_LINK_LOCAL_ADDRESS_BEHAVIOR = enum(i32) {
     AlwaysOff = 0,
     Delayed = 1,
     AlwaysOn = 2,
@@ -2066,7 +2066,7 @@ pub const NL_INTERFACE_OFFLOAD_ROD = extern struct {
     _bitfield: u8,
 };
 
-pub const NL_ROUTER_DISCOVERY_BEHAVIOR = extern enum(i32) {
+pub const NL_ROUTER_DISCOVERY_BEHAVIOR = enum(i32) {
     Disabled = 0,
     Enabled = 1,
     Dhcp = 2,
@@ -2077,7 +2077,7 @@ pub const RouterDiscoveryEnabled = NL_ROUTER_DISCOVERY_BEHAVIOR.Enabled;
 pub const RouterDiscoveryDhcp = NL_ROUTER_DISCOVERY_BEHAVIOR.Dhcp;
 pub const RouterDiscoveryUnchanged = NL_ROUTER_DISCOVERY_BEHAVIOR.Unchanged;
 
-pub const NL_BANDWIDTH_FLAG = extern enum(i32) {
+pub const NL_BANDWIDTH_FLAG = enum(i32) {
     Disabled = 0,
     Enabled = 1,
     Unchanged = -1,
@@ -2092,20 +2092,20 @@ pub const NL_PATH_BANDWIDTH_ROD = extern struct {
     BandwidthPeaked: u8,
 };
 
-pub const NL_NETWORK_CATEGORY = extern enum(i32) {
+pub const NL_NETWORK_CATEGORY = enum(i32) {
     Public = 0,
     Private = 1,
     DomainAuthenticated = 2,
     Unchanged = -1,
-    Unknown = -1,
+    // Unknown = -1, this enum value conflicts with Unchanged
 };
 pub const NetworkCategoryPublic = NL_NETWORK_CATEGORY.Public;
 pub const NetworkCategoryPrivate = NL_NETWORK_CATEGORY.Private;
 pub const NetworkCategoryDomainAuthenticated = NL_NETWORK_CATEGORY.DomainAuthenticated;
 pub const NetworkCategoryUnchanged = NL_NETWORK_CATEGORY.Unchanged;
-pub const NetworkCategoryUnknown = NL_NETWORK_CATEGORY.Unknown;
+pub const NetworkCategoryUnknown = NL_NETWORK_CATEGORY.Unchanged;
 
-pub const NL_INTERFACE_NETWORK_CATEGORY_STATE = extern enum(i32) {
+pub const NL_INTERFACE_NETWORK_CATEGORY_STATE = enum(i32) {
     CategoryUnknown = 0,
     Public = 1,
     Private = 2,
@@ -2118,7 +2118,7 @@ pub const NlincPrivate = NL_INTERFACE_NETWORK_CATEGORY_STATE.Private;
 pub const NlincDomainAuthenticated = NL_INTERFACE_NETWORK_CATEGORY_STATE.DomainAuthenticated;
 pub const NlincCategoryStateMax = NL_INTERFACE_NETWORK_CATEGORY_STATE.CategoryStateMax;
 
-pub const NL_NETWORK_CONNECTIVITY_LEVEL_HINT = extern enum(i32) {
+pub const NL_NETWORK_CONNECTIVITY_LEVEL_HINT = enum(i32) {
     Unknown = 0,
     None = 1,
     LocalAccess = 2,
@@ -2133,7 +2133,7 @@ pub const NetworkConnectivityLevelHintInternetAccess = NL_NETWORK_CONNECTIVITY_L
 pub const NetworkConnectivityLevelHintConstrainedInternetAccess = NL_NETWORK_CONNECTIVITY_LEVEL_HINT.ConstrainedInternetAccess;
 pub const NetworkConnectivityLevelHintHidden = NL_NETWORK_CONNECTIVITY_LEVEL_HINT.Hidden;
 
-pub const NL_NETWORK_CONNECTIVITY_COST_HINT = extern enum(i32) {
+pub const NL_NETWORK_CONNECTIVITY_COST_HINT = enum(i32) {
     Unknown = 0,
     Unrestricted = 1,
     Fixed = 2,
@@ -2158,7 +2158,7 @@ pub const NL_BANDWIDTH_INFORMATION = extern struct {
     BandwidthPeaked: u8,
 };
 
-pub const TCPSTATE = extern enum(i32) {
+pub const TCPSTATE = enum(i32) {
     CLOSED = 0,
     LISTEN = 1,
     SYN_SENT = 2,
@@ -2195,7 +2195,7 @@ pub const tcp_keepalive = extern struct {
     keepaliveinterval: u32,
 };
 
-pub const CONTROL_CHANNEL_TRIGGER_STATUS = extern enum(i32) {
+pub const CONTROL_CHANNEL_TRIGGER_STATUS = enum(i32) {
     INVALID = 0,
     SOFTWARE_SLOT_ALLOCATED = 1,
     HARDWARE_SLOT_ALLOCATED = 2,
@@ -2232,7 +2232,7 @@ pub const ASSOCIATE_NAMERES_CONTEXT_INPUT = extern struct {
     Handle: u64,
 };
 
-pub const RCVALL_VALUE = extern enum(i32) {
+pub const RCVALL_VALUE = enum(i32) {
     OFF = 0,
     ON = 1,
     SOCKETLEVELONLY = 2,
@@ -2253,7 +2253,7 @@ pub const TCP_INITIAL_RTO_PARAMETERS = extern struct {
     MaxSynRetransmissions: u8,
 };
 
-pub const TCP_ICW_LEVEL = extern enum(i32) {
+pub const TCP_ICW_LEVEL = enum(i32) {
     DEFAULT = 0,
     HIGH = 1,
     VERY_HIGH = 2,
@@ -2349,12 +2349,12 @@ pub const INET_PORT_RESERVATION_INFORMATION = extern struct {
     OwningPid: u32,
 };
 
-pub const SOCKET_USAGE_TYPE = extern enum(i32) {
+pub const SOCKET_USAGE_TYPE = enum(i32) {
     T = 1,
 };
 pub const SYSTEM_CRITICAL_SOCKET = SOCKET_USAGE_TYPE.T;
 
-pub const SOCKET_SECURITY_PROTOCOL = extern enum(i32) {
+pub const SOCKET_SECURITY_PROTOCOL = enum(i32) {
     DEFAULT = 0,
     IPSEC = 1,
     IPSEC2 = 2,
@@ -2427,7 +2427,7 @@ pub const RSS_SCALABILITY_INFO = extern struct {
     RssEnabled: u8,
 };
 
-pub const WSA_COMPATIBILITY_BEHAVIOR_ID = extern enum(i32) {
+pub const WSA_COMPATIBILITY_BEHAVIOR_ID = enum(i32) {
     All = 0,
     ReceiveBuffering = 1,
     AutoTuning = 2,
@@ -2498,7 +2498,7 @@ pub const sockaddr_atm = extern struct {
     satm_bhli: ATM_BHLI,
 };
 
-pub const Q2931_IE_TYPE = extern enum(i32) {
+pub const Q2931_IE_TYPE = enum(i32) {
     AALParameters = 0,
     TrafficDescriptor = 1,
     BroadbandBearerCapability = 2,
@@ -2531,7 +2531,7 @@ pub const Q2931_IE = extern struct {
     IE: [1]u8,
 };
 
-pub const AAL_TYPE = extern enum(i32) {
+pub const AAL_TYPE = enum(i32) {
     @"5" = 5,
     USER = 16,
 };
@@ -2637,14 +2637,14 @@ pub const ATM_PVC_PARAMS = extern struct {
 
 }, else => struct { } };
 
-pub const NAPI_PROVIDER_TYPE = extern enum(i32) {
+pub const NAPI_PROVIDER_TYPE = enum(i32) {
     Application = 1,
     Service = 2,
 };
 pub const ProviderType_Application = NAPI_PROVIDER_TYPE.Application;
 pub const ProviderType_Service = NAPI_PROVIDER_TYPE.Service;
 
-pub const NAPI_PROVIDER_LEVEL = extern enum(i32) {
+pub const NAPI_PROVIDER_LEVEL = enum(i32) {
     None = 0,
     Secondary = 1,
     Primary = 2,
@@ -2747,7 +2747,7 @@ pub const LPFN_DISCONNECTEX = fn(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const NLA_BLOB_DATA_TYPE = extern enum(i32) {
+pub const NLA_BLOB_DATA_TYPE = enum(i32) {
     RAW_DATA = 0,
     INTERFACE = 1,
     @"802_1X_LOCATION" = 2,
@@ -2760,7 +2760,7 @@ pub const NLA_802_1X_LOCATION = NLA_BLOB_DATA_TYPE.@"802_1X_LOCATION";
 pub const NLA_CONNECTIVITY = NLA_BLOB_DATA_TYPE.CONNECTIVITY;
 pub const NLA_ICS = NLA_BLOB_DATA_TYPE.ICS;
 
-pub const NLA_CONNECTIVITY_TYPE = extern enum(i32) {
+pub const NLA_CONNECTIVITY_TYPE = enum(i32) {
     AD_HOC = 0,
     MANAGED = 1,
     UNMANAGED = 2,
@@ -2771,7 +2771,7 @@ pub const NLA_NETWORK_MANAGED = NLA_CONNECTIVITY_TYPE.MANAGED;
 pub const NLA_NETWORK_UNMANAGED = NLA_CONNECTIVITY_TYPE.UNMANAGED;
 pub const NLA_NETWORK_UNKNOWN = NLA_CONNECTIVITY_TYPE.UNKNOWN;
 
-pub const NLA_INTERNET = extern enum(i32) {
+pub const NLA_INTERNET = enum(i32) {
     UNKNOWN = 0,
     NO = 1,
     YES = 2,
@@ -2894,7 +2894,7 @@ pub const LPFN_RIOCLOSECOMPLETIONQUEUE = fn(
     CQ: *RIO_CQ_t,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RIO_NOTIFICATION_COMPLETION_TYPE = extern enum(i32) {
+pub const RIO_NOTIFICATION_COMPLETION_TYPE = enum(i32) {
     EVENT_COMPLETION = 1,
     IOCP_COMPLETION = 2,
 };
@@ -3456,7 +3456,7 @@ pub const LPWSCUPDATEPROVIDER = fn(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const WSC_PROVIDER_INFO_TYPE = extern enum(i32) {
+pub const WSC_PROVIDER_INFO_TYPE = enum(i32) {
     LspCategories = 0,
     Audit = 1,
 };
@@ -3808,7 +3808,7 @@ pub const LPWSCWRITENAMESPACEORDER = fn(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const WSA_ERROR = extern enum(i32) {
+pub const WSA_ERROR = enum(i32) {
     _IO_PENDING = 997,
     _IO_INCOMPLETE = 996,
     _INVALID_HANDLE = 6,
@@ -4007,7 +4007,7 @@ pub const WSA_QOS_RESERVED_PETYPE = WSA_ERROR._QOS_RESERVED_PETYPE;
 pub const WSA_SECURE_HOST_NOT_FOUND = WSA_ERROR._SECURE_HOST_NOT_FOUND;
 pub const WSA_IPSEC_NAME_POLICY_ERROR = WSA_ERROR._IPSEC_NAME_POLICY_ERROR;
 
-pub const SET_SERVICE_OPERATION = extern enum(u32) {
+pub const SET_SERVICE_OPERATION = enum(u32) {
     REGISTER = 1,
     DEREGISTER = 2,
     FLUSH = 3,
@@ -4020,7 +4020,7 @@ pub const SERVICE_FLUSH = SET_SERVICE_OPERATION.FLUSH;
 pub const SERVICE_ADD_TYPE = SET_SERVICE_OPERATION.ADD_TYPE;
 pub const SERVICE_DELETE_TYPE = SET_SERVICE_OPERATION.DELETE_TYPE;
 
-pub const SEND_FLAGS = extern enum(u32) {
+pub const SEND_FLAGS = enum(u32) {
     DONTROUTE = 4,
     OOB = 1,
     _,
@@ -4028,7 +4028,7 @@ pub const SEND_FLAGS = extern enum(u32) {
 pub const MSG_DONTROUTE = SEND_FLAGS.DONTROUTE;
 pub const MSG_OOB = SEND_FLAGS.OOB;
 
-pub const RESOURCE_DISPLAY_TYPE = extern enum(u32) {
+pub const RESOURCE_DISPLAY_TYPE = enum(u32) {
     DOMAIN = 1,
     FILE = 4,
     GENERIC = 0,

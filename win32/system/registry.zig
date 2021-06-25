@@ -28,13 +28,13 @@ pub const REG_SECURE_CONNECTION = @as(u32, 1);
 // TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
 pub const HKEY = *opaque{};
 
-pub const REG_VALUE_TYPE = extern enum(u32) {
+pub const REG_VALUE_TYPE = enum(u32) {
     NONE = 0,
     SZ = 1,
     EXPAND_SZ = 2,
     BINARY = 3,
     DWORD = 4,
-    DWORD_LITTLE_ENDIAN = 4,
+    // DWORD_LITTLE_ENDIAN = 4, this enum value conflicts with DWORD
     DWORD_BIG_ENDIAN = 5,
     LINK = 6,
     MULTI_SZ = 7,
@@ -42,14 +42,14 @@ pub const REG_VALUE_TYPE = extern enum(u32) {
     FULL_RESOURCE_DESCRIPTOR = 9,
     RESOURCE_REQUIREMENTS_LIST = 10,
     QWORD = 11,
-    QWORD_LITTLE_ENDIAN = 11,
+    // QWORD_LITTLE_ENDIAN = 11, this enum value conflicts with QWORD
 };
 pub const REG_NONE = REG_VALUE_TYPE.NONE;
 pub const REG_SZ = REG_VALUE_TYPE.SZ;
 pub const REG_EXPAND_SZ = REG_VALUE_TYPE.EXPAND_SZ;
 pub const REG_BINARY = REG_VALUE_TYPE.BINARY;
 pub const REG_DWORD = REG_VALUE_TYPE.DWORD;
-pub const REG_DWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.DWORD_LITTLE_ENDIAN;
+pub const REG_DWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.DWORD;
 pub const REG_DWORD_BIG_ENDIAN = REG_VALUE_TYPE.DWORD_BIG_ENDIAN;
 pub const REG_LINK = REG_VALUE_TYPE.LINK;
 pub const REG_MULTI_SZ = REG_VALUE_TYPE.MULTI_SZ;
@@ -57,9 +57,9 @@ pub const REG_RESOURCE_LIST = REG_VALUE_TYPE.RESOURCE_LIST;
 pub const REG_FULL_RESOURCE_DESCRIPTOR = REG_VALUE_TYPE.FULL_RESOURCE_DESCRIPTOR;
 pub const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE.RESOURCE_REQUIREMENTS_LIST;
 pub const REG_QWORD = REG_VALUE_TYPE.QWORD;
-pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD_LITTLE_ENDIAN;
+pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD;
 
-pub const REG_SAM_FLAGS = extern enum(u32) {
+pub const REG_SAM_FLAGS = enum(u32) {
     QUERY_VALUE = 1,
     SET_VALUE = 2,
     CREATE_SUB_KEY = 4,
@@ -71,7 +71,7 @@ pub const REG_SAM_FLAGS = extern enum(u32) {
     WOW64_RES = 768,
     READ = 131097,
     WRITE = 131078,
-    EXECUTE = 131097,
+    // EXECUTE = 131097, this enum value conflicts with READ
     ALL_ACCESS = 983103,
     _,
     pub fn initFlags(o: struct {
@@ -86,7 +86,6 @@ pub const REG_SAM_FLAGS = extern enum(u32) {
         WOW64_RES: u1 = 0,
         READ: u1 = 0,
         WRITE: u1 = 0,
-        EXECUTE: u1 = 0,
         ALL_ACCESS: u1 = 0,
     }) REG_SAM_FLAGS {
         return @intToEnum(REG_SAM_FLAGS,
@@ -101,7 +100,6 @@ pub const REG_SAM_FLAGS = extern enum(u32) {
             | (if (o.WOW64_RES == 1) @enumToInt(REG_SAM_FLAGS.WOW64_RES) else 0)
             | (if (o.READ == 1) @enumToInt(REG_SAM_FLAGS.READ) else 0)
             | (if (o.WRITE == 1) @enumToInt(REG_SAM_FLAGS.WRITE) else 0)
-            | (if (o.EXECUTE == 1) @enumToInt(REG_SAM_FLAGS.EXECUTE) else 0)
             | (if (o.ALL_ACCESS == 1) @enumToInt(REG_SAM_FLAGS.ALL_ACCESS) else 0)
         );
     }
@@ -117,12 +115,12 @@ pub const KEY_WOW64_64KEY = REG_SAM_FLAGS.WOW64_64KEY;
 pub const KEY_WOW64_RES = REG_SAM_FLAGS.WOW64_RES;
 pub const KEY_READ = REG_SAM_FLAGS.READ;
 pub const KEY_WRITE = REG_SAM_FLAGS.WRITE;
-pub const KEY_EXECUTE = REG_SAM_FLAGS.EXECUTE;
+pub const KEY_EXECUTE = REG_SAM_FLAGS.READ;
 pub const KEY_ALL_ACCESS = REG_SAM_FLAGS.ALL_ACCESS;
 
-pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
+pub const REG_OPEN_CREATE_OPTIONS = enum(u32) {
     RESERVED = 0,
-    NON_VOLATILE = 0,
+    // NON_VOLATILE = 0, this enum value conflicts with RESERVED
     VOLATILE = 1,
     CREATE_LINK = 2,
     BACKUP_RESTORE = 4,
@@ -131,7 +129,6 @@ pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
     _,
     pub fn initFlags(o: struct {
         RESERVED: u1 = 0,
-        NON_VOLATILE: u1 = 0,
         VOLATILE: u1 = 0,
         CREATE_LINK: u1 = 0,
         BACKUP_RESTORE: u1 = 0,
@@ -140,7 +137,6 @@ pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
     }) REG_OPEN_CREATE_OPTIONS {
         return @intToEnum(REG_OPEN_CREATE_OPTIONS,
               (if (o.RESERVED == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.RESERVED) else 0)
-            | (if (o.NON_VOLATILE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.NON_VOLATILE) else 0)
             | (if (o.VOLATILE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.VOLATILE) else 0)
             | (if (o.CREATE_LINK == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.CREATE_LINK) else 0)
             | (if (o.BACKUP_RESTORE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.BACKUP_RESTORE) else 0)
@@ -151,7 +147,7 @@ pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
 };
 // TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
 
-pub const REG_CREATE_KEY_DISPOSITION = extern enum(u32) {
+pub const REG_CREATE_KEY_DISPOSITION = enum(u32) {
     CREATED_NEW_KEY = 1,
     OPENED_EXISTING_KEY = 2,
 };
@@ -210,7 +206,7 @@ pub const VALENTW = extern struct {
     ve_type: REG_VALUE_TYPE,
 };
 
-pub const REG_SAVE_FORMAT = extern enum(u32) {
+pub const REG_SAVE_FORMAT = enum(u32) {
     STANDARD_FORMAT = 1,
     LATEST_FORMAT = 2,
     NO_COMPRESSION = 4,
@@ -219,14 +215,14 @@ pub const REG_STANDARD_FORMAT = REG_SAVE_FORMAT.STANDARD_FORMAT;
 pub const REG_LATEST_FORMAT = REG_SAVE_FORMAT.LATEST_FORMAT;
 pub const REG_NO_COMPRESSION = REG_SAVE_FORMAT.NO_COMPRESSION;
 
-pub const REG_RESTORE_KEY_FLAGS = extern enum(i32) {
+pub const REG_RESTORE_KEY_FLAGS = enum(i32) {
     FORCE_RESTORE = 8,
     WHOLE_HIVE_VOLATILE = 1,
 };
 pub const REG_FORCE_RESTORE = REG_RESTORE_KEY_FLAGS.FORCE_RESTORE;
 pub const REG_WHOLE_HIVE_VOLATILE = REG_RESTORE_KEY_FLAGS.WHOLE_HIVE_VOLATILE;
 
-pub const REG_NOTIFY_FILTER = extern enum(u32) {
+pub const REG_NOTIFY_FILTER = enum(u32) {
     CHANGE_NAME = 1,
     CHANGE_ATTRIBUTES = 2,
     CHANGE_LAST_SET = 4,
@@ -255,7 +251,7 @@ pub const REG_NOTIFY_CHANGE_LAST_SET = REG_NOTIFY_FILTER.CHANGE_LAST_SET;
 pub const REG_NOTIFY_CHANGE_SECURITY = REG_NOTIFY_FILTER.CHANGE_SECURITY;
 pub const REG_NOTIFY_THREAD_AGNOSTIC = REG_NOTIFY_FILTER.THREAD_AGNOSTIC;
 
-pub const RRF_RT = extern enum(u32) {
+pub const RRF_RT = enum(u32) {
     ANY = 65535,
     DWORD = 24,
     QWORD = 72,

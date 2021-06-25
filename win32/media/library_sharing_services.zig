@@ -9,7 +9,7 @@
 const CLSID_WindowsMediaLibrarySharingServices_Value = @import("../zig.zig").Guid.initString("ad581b00-7b64-4e59-a38d-d2c5bf51ddb3");
 pub const CLSID_WindowsMediaLibrarySharingServices = &CLSID_WindowsMediaLibrarySharingServices_Value;
 
-pub const WindowsMediaLibrarySharingDeviceAuthorizationStatus = extern enum(i32) {
+pub const WindowsMediaLibrarySharingDeviceAuthorizationStatus = enum(i32) {
     UNKNOWN = 0,
     ALLOWED = 1,
     DENIED = 2,

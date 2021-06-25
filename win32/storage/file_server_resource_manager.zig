@@ -27,7 +27,7 @@ pub const FsrmDaysNotSpecified = @as(i32, -1);
 //--------------------------------------------------------------------------------
 // Section: Types (117)
 //--------------------------------------------------------------------------------
-pub const FsrmQuotaFlags = extern enum(i32) {
+pub const FsrmQuotaFlags = enum(i32) {
     Enforce = 256,
     Disable = 512,
     StatusIncomplete = 65536,
@@ -38,12 +38,12 @@ pub const FsrmQuotaFlags_Disable = FsrmQuotaFlags.Disable;
 pub const FsrmQuotaFlags_StatusIncomplete = FsrmQuotaFlags.StatusIncomplete;
 pub const FsrmQuotaFlags_StatusRebuilding = FsrmQuotaFlags.StatusRebuilding;
 
-pub const FsrmFileScreenFlags = extern enum(i32) {
+pub const FsrmFileScreenFlags = enum(i32) {
     e = 1,
 };
 pub const FsrmFileScreenFlags_Enforce = FsrmFileScreenFlags.e;
 
-pub const FsrmCollectionState = extern enum(i32) {
+pub const FsrmCollectionState = enum(i32) {
     Fetching = 1,
     Committing = 2,
     Complete = 3,
@@ -54,7 +54,7 @@ pub const FsrmCollectionState_Committing = FsrmCollectionState.Committing;
 pub const FsrmCollectionState_Complete = FsrmCollectionState.Complete;
 pub const FsrmCollectionState_Cancelled = FsrmCollectionState.Cancelled;
 
-pub const FsrmEnumOptions = extern enum(i32) {
+pub const FsrmEnumOptions = enum(i32) {
     None = 0,
     Asynchronous = 1,
     CheckRecycleBin = 2,
@@ -67,21 +67,21 @@ pub const FsrmEnumOptions_CheckRecycleBin = FsrmEnumOptions.CheckRecycleBin;
 pub const FsrmEnumOptions_IncludeClusterNodes = FsrmEnumOptions.IncludeClusterNodes;
 pub const FsrmEnumOptions_IncludeDeprecatedObjects = FsrmEnumOptions.IncludeDeprecatedObjects;
 
-pub const FsrmCommitOptions = extern enum(i32) {
+pub const FsrmCommitOptions = enum(i32) {
     None = 0,
     Asynchronous = 1,
 };
 pub const FsrmCommitOptions_None = FsrmCommitOptions.None;
 pub const FsrmCommitOptions_Asynchronous = FsrmCommitOptions.Asynchronous;
 
-pub const FsrmTemplateApplyOptions = extern enum(i32) {
+pub const FsrmTemplateApplyOptions = enum(i32) {
     Matching = 1,
     All = 2,
 };
 pub const FsrmTemplateApplyOptions_ApplyToDerivedMatching = FsrmTemplateApplyOptions.Matching;
 pub const FsrmTemplateApplyOptions_ApplyToDerivedAll = FsrmTemplateApplyOptions.All;
 
-pub const FsrmActionType = extern enum(i32) {
+pub const FsrmActionType = enum(i32) {
     Unknown = 0,
     EventLog = 1,
     Email = 2,
@@ -94,7 +94,7 @@ pub const FsrmActionType_Email = FsrmActionType.Email;
 pub const FsrmActionType_Command = FsrmActionType.Command;
 pub const FsrmActionType_Report = FsrmActionType.Report;
 
-pub const FsrmEventType = extern enum(i32) {
+pub const FsrmEventType = enum(i32) {
     Unknown = 0,
     Information = 1,
     Warning = 2,
@@ -105,7 +105,7 @@ pub const FsrmEventType_Information = FsrmEventType.Information;
 pub const FsrmEventType_Warning = FsrmEventType.Warning;
 pub const FsrmEventType_Error = FsrmEventType.Error;
 
-pub const FsrmAccountType = extern enum(i32) {
+pub const FsrmAccountType = enum(i32) {
     Unknown = 0,
     NetworkService = 1,
     LocalService = 2,
@@ -122,7 +122,7 @@ pub const FsrmAccountType_InProc = FsrmAccountType.InProc;
 pub const FsrmAccountType_External = FsrmAccountType.External;
 pub const FsrmAccountType_Automatic = FsrmAccountType.Automatic;
 
-pub const FsrmReportType = extern enum(i32) {
+pub const FsrmReportType = enum(i32) {
     Unknown = 0,
     LargeFiles = 1,
     FilesByType = 2,
@@ -153,7 +153,7 @@ pub const FsrmReportType_AutomaticClassification = FsrmReportType.AutomaticClass
 pub const FsrmReportType_Expiration = FsrmReportType.Expiration;
 pub const FsrmReportType_FoldersByProperty = FsrmReportType.FoldersByProperty;
 
-pub const FsrmReportFormat = extern enum(i32) {
+pub const FsrmReportFormat = enum(i32) {
     Unknown = 0,
     DHtml = 1,
     Html = 2,
@@ -168,7 +168,7 @@ pub const FsrmReportFormat_Txt = FsrmReportFormat.Txt;
 pub const FsrmReportFormat_Csv = FsrmReportFormat.Csv;
 pub const FsrmReportFormat_Xml = FsrmReportFormat.Xml;
 
-pub const FsrmReportRunningStatus = extern enum(i32) {
+pub const FsrmReportRunningStatus = enum(i32) {
     Unknown = 0,
     NotRunning = 1,
     Queued = 2,
@@ -179,7 +179,7 @@ pub const FsrmReportRunningStatus_NotRunning = FsrmReportRunningStatus.NotRunnin
 pub const FsrmReportRunningStatus_Queued = FsrmReportRunningStatus.Queued;
 pub const FsrmReportRunningStatus_Running = FsrmReportRunningStatus.Running;
 
-pub const FsrmReportGenerationContext = extern enum(i32) {
+pub const FsrmReportGenerationContext = enum(i32) {
     Undefined = 1,
     ScheduledReport = 2,
     InteractiveReport = 3,
@@ -190,7 +190,7 @@ pub const FsrmReportGenerationContext_ScheduledReport = FsrmReportGenerationCont
 pub const FsrmReportGenerationContext_InteractiveReport = FsrmReportGenerationContext.InteractiveReport;
 pub const FsrmReportGenerationContext_IncidentReport = FsrmReportGenerationContext.IncidentReport;
 
-pub const FsrmReportFilter = extern enum(i32) {
+pub const FsrmReportFilter = enum(i32) {
     MinSize = 1,
     MinAgeDays = 2,
     MaxAgeDays = 3,
@@ -209,7 +209,7 @@ pub const FsrmReportFilter_Owners = FsrmReportFilter.Owners;
 pub const FsrmReportFilter_NamePattern = FsrmReportFilter.NamePattern;
 pub const FsrmReportFilter_Property = FsrmReportFilter.Property;
 
-pub const FsrmReportLimit = extern enum(i32) {
+pub const FsrmReportLimit = enum(i32) {
     Files = 1,
     FileGroups = 2,
     Owners = 3,
@@ -236,7 +236,7 @@ pub const FsrmReportLimit_MaxPropertyValues = FsrmReportLimit.PropertyValues;
 pub const FsrmReportLimit_MaxFilesPerPropertyValue = FsrmReportLimit.FilesPerPropertyValue;
 pub const FsrmReportLimit_MaxFolders = FsrmReportLimit.Folders;
 
-pub const FsrmPropertyDefinitionType = extern enum(i32) {
+pub const FsrmPropertyDefinitionType = enum(i32) {
     Unknown = 0,
     OrderedList = 1,
     MultiChoiceList = 2,
@@ -257,7 +257,7 @@ pub const FsrmPropertyDefinitionType_Int = FsrmPropertyDefinitionType.Int;
 pub const FsrmPropertyDefinitionType_Bool = FsrmPropertyDefinitionType.Bool;
 pub const FsrmPropertyDefinitionType_Date = FsrmPropertyDefinitionType.Date;
 
-pub const FsrmPropertyDefinitionFlags = extern enum(i32) {
+pub const FsrmPropertyDefinitionFlags = enum(i32) {
     Global = 1,
     Deprecated = 2,
     Secure = 4,
@@ -266,14 +266,14 @@ pub const FsrmPropertyDefinitionFlags_Global = FsrmPropertyDefinitionFlags.Globa
 pub const FsrmPropertyDefinitionFlags_Deprecated = FsrmPropertyDefinitionFlags.Deprecated;
 pub const FsrmPropertyDefinitionFlags_Secure = FsrmPropertyDefinitionFlags.Secure;
 
-pub const FsrmPropertyDefinitionAppliesTo = extern enum(i32) {
+pub const FsrmPropertyDefinitionAppliesTo = enum(i32) {
     iles = 1,
     olders = 2,
 };
 pub const FsrmPropertyDefinitionAppliesTo_Files = FsrmPropertyDefinitionAppliesTo.iles;
 pub const FsrmPropertyDefinitionAppliesTo_Folders = FsrmPropertyDefinitionAppliesTo.olders;
 
-pub const FsrmRuleType = extern enum(i32) {
+pub const FsrmRuleType = enum(i32) {
     Unknown = 0,
     Classification = 1,
     Generic = 2,
@@ -282,7 +282,7 @@ pub const FsrmRuleType_Unknown = FsrmRuleType.Unknown;
 pub const FsrmRuleType_Classification = FsrmRuleType.Classification;
 pub const FsrmRuleType_Generic = FsrmRuleType.Generic;
 
-pub const FsrmRuleFlags = extern enum(i32) {
+pub const FsrmRuleFlags = enum(i32) {
     Disabled = 256,
     ClearAutomaticallyClassifiedProperty = 1024,
     ClearManuallyClassifiedProperty = 2048,
@@ -293,7 +293,7 @@ pub const FsrmRuleFlags_ClearAutomaticallyClassifiedProperty = FsrmRuleFlags.Cle
 pub const FsrmRuleFlags_ClearManuallyClassifiedProperty = FsrmRuleFlags.ClearManuallyClassifiedProperty;
 pub const FsrmRuleFlags_Invalid = FsrmRuleFlags.Invalid;
 
-pub const FsrmClassificationLoggingFlags = extern enum(i32) {
+pub const FsrmClassificationLoggingFlags = enum(i32) {
     None = 0,
     ClassificationsInLogFile = 1,
     ErrorsInLogFile = 2,
@@ -306,7 +306,7 @@ pub const FsrmClassificationLoggingFlags_ErrorsInLogFile = FsrmClassificationLog
 pub const FsrmClassificationLoggingFlags_ClassificationsInSystemLog = FsrmClassificationLoggingFlags.ClassificationsInSystemLog;
 pub const FsrmClassificationLoggingFlags_ErrorsInSystemLog = FsrmClassificationLoggingFlags.ErrorsInSystemLog;
 
-pub const FsrmExecutionOption = extern enum(i32) {
+pub const FsrmExecutionOption = enum(i32) {
     Unknown = 0,
     EvaluateUnset = 1,
     ReEvaluate_ConsiderExistingValue = 2,
@@ -317,7 +317,7 @@ pub const FsrmExecutionOption_EvaluateUnset = FsrmExecutionOption.EvaluateUnset;
 pub const FsrmExecutionOption_ReEvaluate_ConsiderExistingValue = FsrmExecutionOption.ReEvaluate_ConsiderExistingValue;
 pub const FsrmExecutionOption_ReEvaluate_IgnoreExistingValue = FsrmExecutionOption.ReEvaluate_IgnoreExistingValue;
 
-pub const FsrmStorageModuleCaps = extern enum(i32) {
+pub const FsrmStorageModuleCaps = enum(i32) {
     Unknown = 0,
     CanGet = 1,
     CanSet = 2,
@@ -330,7 +330,7 @@ pub const FsrmStorageModuleCaps_CanSet = FsrmStorageModuleCaps.CanSet;
 pub const FsrmStorageModuleCaps_CanHandleDirectories = FsrmStorageModuleCaps.CanHandleDirectories;
 pub const FsrmStorageModuleCaps_CanHandleFiles = FsrmStorageModuleCaps.CanHandleFiles;
 
-pub const FsrmStorageModuleType = extern enum(i32) {
+pub const FsrmStorageModuleType = enum(i32) {
     Unknown = 0,
     Cache = 1,
     InFile = 2,
@@ -343,7 +343,7 @@ pub const FsrmStorageModuleType_InFile = FsrmStorageModuleType.InFile;
 pub const FsrmStorageModuleType_Database = FsrmStorageModuleType.Database;
 pub const FsrmStorageModuleType_System = FsrmStorageModuleType.System;
 
-pub const FsrmPropertyBagFlags = extern enum(i32) {
+pub const FsrmPropertyBagFlags = enum(i32) {
     UpdatedByClassifier = 1,
     FailedLoadingProperties = 2,
     FailedSavingProperties = 4,
@@ -354,14 +354,14 @@ pub const FsrmPropertyBagFlags_FailedLoadingProperties = FsrmPropertyBagFlags.Fa
 pub const FsrmPropertyBagFlags_FailedSavingProperties = FsrmPropertyBagFlags.FailedSavingProperties;
 pub const FsrmPropertyBagFlags_FailedClassifyingProperties = FsrmPropertyBagFlags.FailedClassifyingProperties;
 
-pub const FsrmPropertyBagField = extern enum(i32) {
+pub const FsrmPropertyBagField = enum(i32) {
     AccessVolume = 0,
     VolumeGuidName = 1,
 };
 pub const FsrmPropertyBagField_AccessVolume = FsrmPropertyBagField.AccessVolume;
 pub const FsrmPropertyBagField_VolumeGuidName = FsrmPropertyBagField.VolumeGuidName;
 
-pub const FsrmPropertyFlags = extern enum(i32) {
+pub const FsrmPropertyFlags = enum(i32) {
     None = 0,
     Orphaned = 1,
     RetrievedFromCache = 2,
@@ -404,7 +404,7 @@ pub const FsrmPropertyFlags_PropertyDeletedFromClear = FsrmPropertyFlags.Propert
 pub const FsrmPropertyFlags_PropertySourceMask = FsrmPropertyFlags.PropertySourceMask;
 pub const FsrmPropertyFlags_PersistentMask = FsrmPropertyFlags.PersistentMask;
 
-pub const FsrmPipelineModuleType = extern enum(i32) {
+pub const FsrmPipelineModuleType = enum(i32) {
     Unknown = 0,
     Storage = 1,
     Classifier = 2,
@@ -413,7 +413,7 @@ pub const FsrmPipelineModuleType_Unknown = FsrmPipelineModuleType.Unknown;
 pub const FsrmPipelineModuleType_Storage = FsrmPipelineModuleType.Storage;
 pub const FsrmPipelineModuleType_Classifier = FsrmPipelineModuleType.Classifier;
 
-pub const FsrmGetFilePropertyOptions = extern enum(i32) {
+pub const FsrmGetFilePropertyOptions = enum(i32) {
     None = 0,
     NoRuleEvaluation = 1,
     Persistent = 2,
@@ -426,7 +426,7 @@ pub const FsrmGetFilePropertyOptions_Persistent = FsrmGetFilePropertyOptions.Per
 pub const FsrmGetFilePropertyOptions_FailOnPersistErrors = FsrmGetFilePropertyOptions.FailOnPersistErrors;
 pub const FsrmGetFilePropertyOptions_SkipOrphaned = FsrmGetFilePropertyOptions.SkipOrphaned;
 
-pub const FsrmFileManagementType = extern enum(i32) {
+pub const FsrmFileManagementType = enum(i32) {
     Unknown = 0,
     Expiration = 1,
     Custom = 2,
@@ -437,7 +437,7 @@ pub const FsrmFileManagementType_Expiration = FsrmFileManagementType.Expiration;
 pub const FsrmFileManagementType_Custom = FsrmFileManagementType.Custom;
 pub const FsrmFileManagementType_Rms = FsrmFileManagementType.Rms;
 
-pub const FsrmFileManagementLoggingFlags = extern enum(i32) {
+pub const FsrmFileManagementLoggingFlags = enum(i32) {
     None = 0,
     Error = 1,
     Information = 2,
@@ -448,7 +448,7 @@ pub const FsrmFileManagementLoggingFlags_Error = FsrmFileManagementLoggingFlags.
 pub const FsrmFileManagementLoggingFlags_Information = FsrmFileManagementLoggingFlags.Information;
 pub const FsrmFileManagementLoggingFlags_Audit = FsrmFileManagementLoggingFlags.Audit;
 
-pub const FsrmPropertyConditionType = extern enum(i32) {
+pub const FsrmPropertyConditionType = enum(i32) {
     Unknown = 0,
     Equal = 1,
     NotEqual = 2,
@@ -479,7 +479,7 @@ pub const FsrmPropertyConditionType_PrefixOf = FsrmPropertyConditionType.PrefixO
 pub const FsrmPropertyConditionType_SuffixOf = FsrmPropertyConditionType.SuffixOf;
 pub const FsrmPropertyConditionType_MatchesPattern = FsrmPropertyConditionType.MatchesPattern;
 
-pub const FsrmFileStreamingMode = extern enum(i32) {
+pub const FsrmFileStreamingMode = enum(i32) {
     Unknown = 0,
     Read = 1,
     Write = 2,
@@ -488,7 +488,7 @@ pub const FsrmFileStreamingMode_Unknown = FsrmFileStreamingMode.Unknown;
 pub const FsrmFileStreamingMode_Read = FsrmFileStreamingMode.Read;
 pub const FsrmFileStreamingMode_Write = FsrmFileStreamingMode.Write;
 
-pub const FsrmFileStreamingInterfaceType = extern enum(i32) {
+pub const FsrmFileStreamingInterfaceType = enum(i32) {
     Unknown = 0,
     ILockBytes = 1,
     IStream = 2,
@@ -497,14 +497,14 @@ pub const FsrmFileStreamingInterfaceType_Unknown = FsrmFileStreamingInterfaceTyp
 pub const FsrmFileStreamingInterfaceType_ILockBytes = FsrmFileStreamingInterfaceType.ILockBytes;
 pub const FsrmFileStreamingInterfaceType_IStream = FsrmFileStreamingInterfaceType.IStream;
 
-pub const FsrmFileConditionType = extern enum(i32) {
+pub const FsrmFileConditionType = enum(i32) {
     Unknown = 0,
     Property = 1,
 };
 pub const FsrmFileConditionType_Unknown = FsrmFileConditionType.Unknown;
 pub const FsrmFileConditionType_Property = FsrmFileConditionType.Property;
 
-pub const FsrmFileSystemPropertyId = extern enum(i32) {
+pub const FsrmFileSystemPropertyId = enum(i32) {
     Undefined = 0,
     FileName = 1,
     DateCreated = 2,
@@ -519,7 +519,7 @@ pub const FsrmFileSystemPropertyId_DateLastAccessed = FsrmFileSystemPropertyId.D
 pub const FsrmFileSystemPropertyId_DateLastModified = FsrmFileSystemPropertyId.DateLastModified;
 pub const FsrmFileSystemPropertyId_DateNow = FsrmFileSystemPropertyId.DateNow;
 
-pub const FsrmPropertyValueType = extern enum(i32) {
+pub const FsrmPropertyValueType = enum(i32) {
     Undefined = 0,
     Literal = 1,
     DateOffset = 2,
@@ -528,14 +528,14 @@ pub const FsrmPropertyValueType_Undefined = FsrmPropertyValueType.Undefined;
 pub const FsrmPropertyValueType_Literal = FsrmPropertyValueType.Literal;
 pub const FsrmPropertyValueType_DateOffset = FsrmPropertyValueType.DateOffset;
 
-pub const AdrClientDisplayFlags = extern enum(i32) {
+pub const AdrClientDisplayFlags = enum(i32) {
     AllowEmailRequests = 1,
     ShowDeviceTroubleshooting = 2,
 };
 pub const AdrClientDisplayFlags_AllowEmailRequests = AdrClientDisplayFlags.AllowEmailRequests;
 pub const AdrClientDisplayFlags_ShowDeviceTroubleshooting = AdrClientDisplayFlags.ShowDeviceTroubleshooting;
 
-pub const AdrEmailFlags = extern enum(i32) {
+pub const AdrEmailFlags = enum(i32) {
     PutDataOwnerOnToLine = 1,
     PutAdminOnToLine = 2,
     IncludeDeviceClaims = 4,
@@ -548,7 +548,7 @@ pub const AdrEmailFlags_IncludeDeviceClaims = AdrEmailFlags.IncludeDeviceClaims;
 pub const AdrEmailFlags_IncludeUserInfo = AdrEmailFlags.IncludeUserInfo;
 pub const AdrEmailFlags_GenerateEventLog = AdrEmailFlags.GenerateEventLog;
 
-pub const AdrClientErrorType = extern enum(i32) {
+pub const AdrClientErrorType = enum(i32) {
     Unknown = 0,
     AccessDenied = 1,
     FileNotFound = 2,
@@ -557,7 +557,7 @@ pub const AdrClientErrorType_Unknown = AdrClientErrorType.Unknown;
 pub const AdrClientErrorType_AccessDenied = AdrClientErrorType.AccessDenied;
 pub const AdrClientErrorType_FileNotFound = AdrClientErrorType.FileNotFound;
 
-pub const AdrClientFlags = extern enum(i32) {
+pub const AdrClientFlags = enum(i32) {
     None = 0,
     FailForLocalPaths = 1,
     FailIfNotSupportedByServer = 2,

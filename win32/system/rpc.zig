@@ -548,7 +548,7 @@ pub const RPC_BINDING_HANDLE_OPTIONS_V1 = extern struct {
     CallTimeout: u32,
 };
 
-pub const RPC_HTTP_REDIRECTOR_STAGE = extern enum(i32) {
+pub const RPC_HTTP_REDIRECTOR_STAGE = enum(i32) {
     REDIRECT = 1,
     ACCESS_1 = 2,
     SESSION = 3,
@@ -683,7 +683,7 @@ pub const RPC_FORWARD_FUNCTION = fn(
     ppDestEndpoint: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const RPC_ADDRESS_CHANGE_TYPE = extern enum(i32) {
+pub const RPC_ADDRESS_CHANGE_TYPE = enum(i32) {
     NOT_LOADED = 1,
     LOADED = 2,
     ADDRESS_CHANGE = 3,
@@ -735,7 +735,7 @@ pub const RPC_CLIENT_INTERFACE = extern struct {
     Flags: u32,
 };
 
-pub const LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION = extern enum(i32) {
+pub const LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION = enum(i32) {
     Marshal = 0,
     Unmarshal = 1,
 };
@@ -837,7 +837,7 @@ pub const I_RpcProxyFilterIfFn = fn(
     fAllow: *i32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const RpcProxyPerfCounters = extern enum(i32) {
+pub const RpcProxyPerfCounters = enum(i32) {
     CurrentUniqueUser = 1,
     BackEndConnectionAttempts = 2,
     BackEndConnectionFailed = 3,
@@ -887,7 +887,7 @@ pub const I_RpcProxyCallbackInterface = extern struct {
     RpcProxyUpdatePerfCounterBackendServerFn: I_RpcProxyUpdatePerfCounterBackendServerFn,
 };
 
-pub const RPC_NOTIFICATION_TYPES = extern enum(i32) {
+pub const RPC_NOTIFICATION_TYPES = enum(i32) {
     None = 0,
     Event = 1,
     Apc = 2,
@@ -902,7 +902,7 @@ pub const RpcNotificationTypeIoc = RPC_NOTIFICATION_TYPES.Ioc;
 pub const RpcNotificationTypeHwnd = RPC_NOTIFICATION_TYPES.Hwnd;
 pub const RpcNotificationTypeCallback = RPC_NOTIFICATION_TYPES.Callback;
 
-pub const RPC_ASYNC_EVENT = extern enum(i32) {
+pub const RPC_ASYNC_EVENT = enum(i32) {
     CallComplete = 0,
     SendComplete = 1,
     ReceiveComplete = 2,
@@ -954,7 +954,7 @@ pub const RPC_ASYNC_STATE = extern struct {
     Reserved: [4]isize,
 };
 
-pub const ExtendedErrorParamTypes = extern enum(i32) {
+pub const ExtendedErrorParamTypes = enum(i32) {
     AnsiString = 1,
     UnicodeString = 2,
     LongVal = 3,
@@ -1010,7 +1010,7 @@ pub const RPC_ERROR_ENUM_HANDLE = extern struct {
     Head: *c_void,
 };
 
-pub const RpcLocalAddressFormat = extern enum(i32) {
+pub const RpcLocalAddressFormat = enum(i32) {
     nvalid = 0,
     Pv4 = 1,
     Pv6 = 2,
@@ -1050,7 +1050,7 @@ pub const RPC_CALL_ATTRIBUTES_V1_A = extern struct {
     NullSession: BOOL,
 };
 
-pub const RpcCallType = extern enum(i32) {
+pub const RpcCallType = enum(i32) {
     Invalid = 0,
     Normal = 1,
     Training = 2,
@@ -1061,7 +1061,7 @@ pub const rctNormal = RpcCallType.Normal;
 pub const rctTraining = RpcCallType.Training;
 pub const rctGuaranteed = RpcCallType.Guaranteed;
 
-pub const RpcCallClientLocality = extern enum(i32) {
+pub const RpcCallClientLocality = enum(i32) {
     Invalid = 0,
     Local = 1,
     Remote = 2,
@@ -1160,7 +1160,7 @@ pub const RPC_CALL_ATTRIBUTES_V3_A = extern struct {
     ClientIdentifier: *u8,
 };
 
-pub const RPC_NOTIFICATIONS = extern enum(i32) {
+pub const RPC_NOTIFICATIONS = enum(i32) {
     allNone = 0,
     lientDisconnect = 1,
     allCancel = 2,
@@ -1327,7 +1327,7 @@ pub const USER_MARSHAL_ROUTINE_QUADRUPLE = extern struct {
     pfnFree: USER_MARSHAL_FREEING_ROUTINE,
 };
 
-pub const USER_MARSHAL_CB_TYPE = extern enum(i32) {
+pub const USER_MARSHAL_CB_TYPE = enum(i32) {
     BUFFER_SIZE = 0,
     MARSHALL = 1,
     UNMARSHALL = 2,
@@ -1358,7 +1358,7 @@ pub const COMM_FAULT_OFFSETS = extern struct {
     FaultOffset: i16,
 };
 
-pub const IDL_CS_CONVERT = extern enum(i32) {
+pub const IDL_CS_CONVERT = enum(i32) {
     NO_CONVERT = 0,
     IN_PLACE_CONVERT = 1,
     NEW_BUFFER_CONVERT = 2,
@@ -1522,7 +1522,7 @@ pub const CLIENT_CALL_RETURN = extern union {
     Simple: isize,
 };
 
-pub const XLAT_SIDE = extern enum(i32) {
+pub const XLAT_SIDE = enum(i32) {
     SERVER = 1,
     CLIENT = 2,
 };
@@ -1536,7 +1536,7 @@ pub const FULL_PTR_XLAT_TABLES = extern struct {
     XlatSide: XLAT_SIDE,
 };
 
-pub const system_handle_t = extern enum(i32) {
+pub const system_handle_t = enum(i32) {
     FILE = 0,
     SEMAPHORE = 1,
     EVENT = 2,
@@ -1550,7 +1550,7 @@ pub const system_handle_t = extern enum(i32) {
     SOCKET = 10,
     JOB = 11,
     PIPE = 12,
-    MAX = 12,
+    // MAX = 12, this enum value conflicts with PIPE
     INVALID = 255,
 };
 pub const SYSTEM_HANDLE_FILE = system_handle_t.FILE;
@@ -1566,7 +1566,7 @@ pub const SYSTEM_HANDLE_COMPOSITION_OBJECT = system_handle_t.COMPOSITION_OBJECT;
 pub const SYSTEM_HANDLE_SOCKET = system_handle_t.SOCKET;
 pub const SYSTEM_HANDLE_JOB = system_handle_t.JOB;
 pub const SYSTEM_HANDLE_PIPE = system_handle_t.PIPE;
-pub const SYSTEM_HANDLE_MAX = system_handle_t.MAX;
+pub const SYSTEM_HANDLE_MAX = system_handle_t.PIPE;
 pub const SYSTEM_HANDLE_INVALID = system_handle_t.INVALID;
 
 pub const MIDL_INTERCEPTION_INFO = extern struct {
@@ -1585,7 +1585,7 @@ pub const MIDL_WINRT_TYPE_SERIALIZATION_INFO = extern struct {
     StubDesc: *MIDL_STUB_DESC,
 };
 
-pub const STUB_PHASE = extern enum(i32) {
+pub const STUB_PHASE = enum(i32) {
     UNMARSHAL = 0,
     CALL_SERVER = 1,
     MARSHAL = 2,
@@ -1596,7 +1596,7 @@ pub const STUB_CALL_SERVER = STUB_PHASE.CALL_SERVER;
 pub const STUB_MARSHAL = STUB_PHASE.MARSHAL;
 pub const STUB_CALL_SERVER_NO_HRESULT = STUB_PHASE.CALL_SERVER_NO_HRESULT;
 
-pub const PROXY_PHASE = extern enum(i32) {
+pub const PROXY_PHASE = enum(i32) {
     CALCSIZE = 0,
     GETBUFFER = 1,
     MARSHAL = 2,
@@ -1633,7 +1633,7 @@ pub const NDR_USER_MARSHAL_INFO = extern struct {
     },
 };
 
-pub const MIDL_ES_CODE = extern enum(i32) {
+pub const MIDL_ES_CODE = enum(i32) {
     ENCODE = 0,
     DECODE = 1,
     ENCODE_NDR64 = 2,
@@ -1642,7 +1642,7 @@ pub const MES_ENCODE = MIDL_ES_CODE.ENCODE;
 pub const MES_DECODE = MIDL_ES_CODE.DECODE;
 pub const MES_ENCODE_NDR64 = MIDL_ES_CODE.ENCODE_NDR64;
 
-pub const MIDL_ES_HANDLE_STYLE = extern enum(i32) {
+pub const MIDL_ES_HANDLE_STYLE = enum(i32) {
     INCREMENTAL_HANDLE = 0,
     FIXED_BUFFER_HANDLE = 1,
     DYNAMIC_BUFFER_HANDLE = 2,
@@ -1675,7 +1675,7 @@ pub const MIDL_TYPE_PICKLING_INFO = extern struct {
     Reserved: [3]usize,
 };
 
-pub const RPC_C_QOS_CAPABILITIES = extern enum(u32) {
+pub const RPC_C_QOS_CAPABILITIES = enum(u32) {
     DEFAULT = 0,
     MUTUAL_AUTH = 1,
     MAKE_FULLSIC = 2,
@@ -1712,21 +1712,21 @@ pub const RPC_C_QOS_CAPABILITIES_IGNORE_DELEGATE_FAILURE = RPC_C_QOS_CAPABILITIE
 pub const RPC_C_QOS_CAPABILITIES_LOCAL_MA_HINT = RPC_C_QOS_CAPABILITIES.LOCAL_MA_HINT;
 pub const RPC_C_QOS_CAPABILITIES_SCHANNEL_FULL_AUTH_IDENTITY = RPC_C_QOS_CAPABILITIES.SCHANNEL_FULL_AUTH_IDENTITY;
 
-pub const RPC_C_QOS_IDENTITY = extern enum(u32) {
+pub const RPC_C_QOS_IDENTITY = enum(u32) {
     STATIC = 0,
     DYNAMIC = 1,
 };
 pub const RPC_C_QOS_IDENTITY_STATIC = RPC_C_QOS_IDENTITY.STATIC;
 pub const RPC_C_QOS_IDENTITY_DYNAMIC = RPC_C_QOS_IDENTITY.DYNAMIC;
 
-pub const RPC_C_AUTHN_INFO_TYPE = extern enum(u32) {
+pub const RPC_C_AUTHN_INFO_TYPE = enum(u32) {
     NONE = 0,
     TYPE_HTTP = 1,
 };
 pub const RPC_C_AUTHN_INFO_NONE = RPC_C_AUTHN_INFO_TYPE.NONE;
 pub const RPC_C_AUTHN_INFO_TYPE_HTTP = RPC_C_AUTHN_INFO_TYPE.TYPE_HTTP;
 
-pub const RPC_C_HTTP_FLAGS = extern enum(u32) {
+pub const RPC_C_HTTP_FLAGS = enum(u32) {
     USE_SSL = 1,
     USE_FIRST_AUTH_SCHEME = 2,
     IGNORE_CERT_CN_INVALID = 8,
@@ -1751,7 +1751,7 @@ pub const RPC_C_HTTP_FLAG_USE_FIRST_AUTH_SCHEME = RPC_C_HTTP_FLAGS.USE_FIRST_AUT
 pub const RPC_C_HTTP_FLAG_IGNORE_CERT_CN_INVALID = RPC_C_HTTP_FLAGS.IGNORE_CERT_CN_INVALID;
 pub const RPC_C_HTTP_FLAG_ENABLE_CERT_REVOCATION_CHECK = RPC_C_HTTP_FLAGS.ENABLE_CERT_REVOCATION_CHECK;
 
-pub const RPC_C_HTTP_AUTHN_TARGET = extern enum(u32) {
+pub const RPC_C_HTTP_AUTHN_TARGET = enum(u32) {
     SERVER = 1,
     PROXY = 2,
     _,
@@ -1768,7 +1768,7 @@ pub const RPC_C_HTTP_AUTHN_TARGET = extern enum(u32) {
 pub const RPC_C_HTTP_AUTHN_TARGET_SERVER = RPC_C_HTTP_AUTHN_TARGET.SERVER;
 pub const RPC_C_HTTP_AUTHN_TARGET_PROXY = RPC_C_HTTP_AUTHN_TARGET.PROXY;
 
-pub const RPC_STATUS = extern enum(i32) {
+pub const RPC_STATUS = enum(i32) {
     RPC_S_INVALID_STRING_BINDING = 1700,
     RPC_S_WRONG_KIND_OF_BINDING = 1701,
     RPC_S_INVALID_BINDING = 1702,
@@ -1971,21 +1971,21 @@ pub const RPC_S_PRF_ELT_NOT_REMOVED = RPC_STATUS.RPC_S_PRF_ELT_NOT_REMOVED;
 pub const RPC_S_GRP_ELT_NOT_ADDED = RPC_STATUS.RPC_S_GRP_ELT_NOT_ADDED;
 pub const RPC_S_GRP_ELT_NOT_REMOVED = RPC_STATUS.RPC_S_GRP_ELT_NOT_REMOVED;
 
-pub const GROUP_NAME_SYNTAX = extern enum(u32) {
+pub const GROUP_NAME_SYNTAX = enum(u32) {
     EFAULT = 0,
     CE = 3,
 };
 pub const RPC_C_NS_SYNTAX_DEFAULT = GROUP_NAME_SYNTAX.EFAULT;
 pub const RPC_C_NS_SYNTAX_DCE = GROUP_NAME_SYNTAX.CE;
 
-pub const SEC_WINNT_AUTH_IDENTITY = extern enum(u32) {
+pub const SEC_WINNT_AUTH_IDENTITY = enum(u32) {
     ANSI = 1,
     UNICODE = 2,
 };
 pub const SEC_WINNT_AUTH_IDENTITY_ANSI = SEC_WINNT_AUTH_IDENTITY.ANSI;
 pub const SEC_WINNT_AUTH_IDENTITY_UNICODE = SEC_WINNT_AUTH_IDENTITY.UNICODE;
 
-pub const RPC_BINDING_HANDLE_OPTIONS_FLAGS = extern enum(u32) {
+pub const RPC_BINDING_HANDLE_OPTIONS_FLAGS = enum(u32) {
     NONCAUSAL = 1,
     DONTLINGER = 2,
     _,
