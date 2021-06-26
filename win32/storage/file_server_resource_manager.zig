@@ -3671,12 +3671,12 @@ pub const IFsrmPropertyCondition = extern struct {
             return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmPropertyCondition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_get_Type(self: *const T, type: *FsrmPropertyConditionType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmPropertyCondition, self), type);
+        pub fn IFsrmPropertyCondition_get_Type(self: *const T, type_: *FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmPropertyCondition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_put_Type(self: *const T, type: FsrmPropertyConditionType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).put_Type(@ptrCast(*const IFsrmPropertyCondition, self), type);
+        pub fn IFsrmPropertyCondition_put_Type(self: *const T, type_: FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).put_Type(@ptrCast(*const IFsrmPropertyCondition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsrmPropertyCondition_get_Value(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
@@ -3896,12 +3896,12 @@ pub const IFsrmPropertyDefinition = extern struct {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmPropertyDefinition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_get_Type(self: *const T, type: *FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmPropertyDefinition, self), type);
+        pub fn IFsrmPropertyDefinition_get_Type(self: *const T, type_: *FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmPropertyDefinition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_put_Type(self: *const T, type: FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_Type(@ptrCast(*const IFsrmPropertyDefinition, self), type);
+        pub fn IFsrmPropertyDefinition_put_Type(self: *const T, type_: FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_Type(@ptrCast(*const IFsrmPropertyDefinition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsrmPropertyDefinition_get_PossibleValues(self: *const T, possibleValues: **SAFEARRAY) callconv(.Inline) HRESULT {

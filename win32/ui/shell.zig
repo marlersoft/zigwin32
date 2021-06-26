@@ -14663,8 +14663,8 @@ pub const ISortColumnArray = extern struct {
             return @ptrCast(*const ISortColumnArray.VTable, self.vtable).GetAt(@ptrCast(*const ISortColumnArray, self), index, sortcolumn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISortColumnArray_GetSortType(self: *const T, type: *SORT_ORDER_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISortColumnArray.VTable, self.vtable).GetSortType(@ptrCast(*const ISortColumnArray, self), type);
+        pub fn ISortColumnArray_GetSortType(self: *const T, type_: *SORT_ORDER_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISortColumnArray.VTable, self.vtable).GetSortType(@ptrCast(*const ISortColumnArray, self), type_);
         }
     };}
     pub usingnamespace MethodMixin(@This());

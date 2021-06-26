@@ -389,8 +389,8 @@ pub const IAppxPackageReader = extern struct {
             return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetBlockMap(@ptrCast(*const IAppxPackageReader, self), blockMapReader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppxPackageReader_GetFootprintFile(self: *const T, type: APPX_FOOTPRINT_FILE_TYPE, file: **IAppxFile) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetFootprintFile(@ptrCast(*const IAppxPackageReader, self), type, file);
+        pub fn IAppxPackageReader_GetFootprintFile(self: *const T, type_: APPX_FOOTPRINT_FILE_TYPE, file: **IAppxFile) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAppxPackageReader.VTable, self.vtable).GetFootprintFile(@ptrCast(*const IAppxPackageReader, self), type_, file);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IAppxPackageReader_GetPayloadFile(self: *const T, fileName: [*:0]const u16, file: **IAppxFile) callconv(.Inline) HRESULT {

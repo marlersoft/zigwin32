@@ -2356,8 +2356,8 @@ pub const INetFwService = extern struct {
             return @ptrCast(*const INetFwService.VTable, self.vtable).get_Name(@ptrCast(*const INetFwService, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_Type(self: *const T, type: *NET_FW_SERVICE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_Type(@ptrCast(*const INetFwService, self), type);
+        pub fn INetFwService_get_Type(self: *const T, type_: *NET_FW_SERVICE_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INetFwService.VTable, self.vtable).get_Type(@ptrCast(*const INetFwService, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn INetFwService_get_Customized(self: *const T, customized: *i16) callconv(.Inline) HRESULT {
@@ -3297,8 +3297,8 @@ pub const INetFwProfile = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_Type(self: *const T, type: *NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_Type(@ptrCast(*const INetFwProfile, self), type);
+        pub fn INetFwProfile_get_Type(self: *const T, type_: *NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_Type(@ptrCast(*const INetFwProfile, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn INetFwProfile_get_FirewallEnabled(self: *const T, enabled: *i16) callconv(.Inline) HRESULT {
@@ -3673,8 +3673,8 @@ pub const INetFwMgr = extern struct {
             return @ptrCast(*const INetFwMgr.VTable, self.vtable).IsPortAllowed(@ptrCast(*const INetFwMgr, self), imageFileName, ipVersion, portNumber, localAddress, ipProtocol, allowed, restricted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwMgr_IsIcmpTypeAllowed(self: *const T, ipVersion: NET_FW_IP_VERSION, localAddress: BSTR, type: u8, allowed: *VARIANT, restricted: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwMgr.VTable, self.vtable).IsIcmpTypeAllowed(@ptrCast(*const INetFwMgr, self), ipVersion, localAddress, type, allowed, restricted);
+        pub fn INetFwMgr_IsIcmpTypeAllowed(self: *const T, ipVersion: NET_FW_IP_VERSION, localAddress: BSTR, type_: u8, allowed: *VARIANT, restricted: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INetFwMgr.VTable, self.vtable).IsIcmpTypeAllowed(@ptrCast(*const INetFwMgr, self), ipVersion, localAddress, type_, allowed, restricted);
         }
     };}
     pub usingnamespace MethodMixin(@This());

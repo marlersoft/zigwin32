@@ -149,7 +149,7 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
             .Pointer => return typedConst2(ReturnType, target_type_info.child, value),
             else => target_type_error,
         },
-        .Enum => |target_type_info| switch(@typeInfo(@TypeOf(value))) {
+        .Enum => |_| switch(@typeInfo(@TypeOf(value))) {
             .Int => return @intToEnum(ReturnType, value),
             else => target_type_error,
         },

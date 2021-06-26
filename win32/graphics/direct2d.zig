@@ -4699,20 +4699,20 @@ pub const ID2D1Properties = extern struct {
             return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetPropertyIndex(@ptrCast(*const ID2D1Properties, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_SetValueByName(self: *const T, name: [*:0]const u16, type: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValueByName(@ptrCast(*const ID2D1Properties, self), name, type, data, dataSize);
+        pub fn ID2D1Properties_SetValueByName(self: *const T, name: [*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValueByName(@ptrCast(*const ID2D1Properties, self), name, type_, data, dataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_SetValue(self: *const T, index: u32, type: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValue(@ptrCast(*const ID2D1Properties, self), index, type, data, dataSize);
+        pub fn ID2D1Properties_SetValue(self: *const T, index: u32, type_: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValue(@ptrCast(*const ID2D1Properties, self), index, type_, data, dataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_GetValueByName(self: *const T, name: [*:0]const u16, type: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValueByName(@ptrCast(*const ID2D1Properties, self), name, type, data, dataSize);
+        pub fn ID2D1Properties_GetValueByName(self: *const T, name: [*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValueByName(@ptrCast(*const ID2D1Properties, self), name, type_, data, dataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Properties_GetValue(self: *const T, index: u32, type: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValue(@ptrCast(*const ID2D1Properties, self), index, type, data, dataSize);
+        pub fn ID2D1Properties_GetValue(self: *const T, index: u32, type_: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValue(@ptrCast(*const ID2D1Properties, self), index, type_, data, dataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID2D1Properties_GetValueSize(self: *const T, index: u32) callconv(.Inline) u32 {
@@ -7893,24 +7893,24 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetTextValueLength(@ptrCast(*const ID2D1SvgElement, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_SetAttributeValue(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type, value);
+        pub fn ID2D1SvgElement_SetAttributeValue(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type, value, valueCount);
+        pub fn ID2D1SvgElement_GetAttributeValue(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValueLength(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValueLength(@ptrCast(*const ID2D1SvgElement, self), name, type, valueLength);
+        pub fn ID2D1SvgElement_GetAttributeValueLength(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValueLength(@ptrCast(*const ID2D1SvgElement, self), name, type_, valueLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *const c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type, value, valueSizeInBytes);
+        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *const c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type, value, valueSizeInBytes);
+        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: [*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID2D1SvgElement_SetAttributeValue2(self: *const T, name: [*:0]const u16, value: *ID2D1SvgAttribute) callconv(.Inline) HRESULT {

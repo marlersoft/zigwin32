@@ -2075,8 +2075,8 @@ pub const IDataCollector = extern struct {
             return @ptrCast(*const IDataCollector.VTable, self.vtable).put_DataCollectorSet(@ptrCast(*const IDataCollector, self), group);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollector_get_DataCollectorType(self: *const T, type: *DataCollectorType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDataCollector.VTable, self.vtable).get_DataCollectorType(@ptrCast(*const IDataCollector, self), type);
+        pub fn IDataCollector_get_DataCollectorType(self: *const T, type_: *DataCollectorType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDataCollector.VTable, self.vtable).get_DataCollectorType(@ptrCast(*const IDataCollector, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDataCollector_get_FileName(self: *const T, name: ?*BSTR) callconv(.Inline) HRESULT {
@@ -3836,12 +3836,12 @@ pub const IValueMapItem = extern struct {
             return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_Value(@ptrCast(*const IValueMapItem, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMapItem_get_ValueMapType(self: *const T, type: *ValueMapType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IValueMapItem.VTable, self.vtable).get_ValueMapType(@ptrCast(*const IValueMapItem, self), type);
+        pub fn IValueMapItem_get_ValueMapType(self: *const T, type_: *ValueMapType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IValueMapItem.VTable, self.vtable).get_ValueMapType(@ptrCast(*const IValueMapItem, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMapItem_put_ValueMapType(self: *const T, type: ValueMapType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_ValueMapType(@ptrCast(*const IValueMapItem, self), type);
+        pub fn IValueMapItem_put_ValueMapType(self: *const T, type_: ValueMapType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_ValueMapType(@ptrCast(*const IValueMapItem, self), type_);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3951,12 +3951,12 @@ pub const IValueMap = extern struct {
             return @ptrCast(*const IValueMap.VTable, self.vtable).put_Value(@ptrCast(*const IValueMap, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMap_get_ValueMapType(self: *const T, type: *ValueMapType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IValueMap.VTable, self.vtable).get_ValueMapType(@ptrCast(*const IValueMap, self), type);
+        pub fn IValueMap_get_ValueMapType(self: *const T, type_: *ValueMapType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IValueMap.VTable, self.vtable).get_ValueMapType(@ptrCast(*const IValueMap, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMap_put_ValueMapType(self: *const T, type: ValueMapType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IValueMap.VTable, self.vtable).put_ValueMapType(@ptrCast(*const IValueMap, self), type);
+        pub fn IValueMap_put_ValueMapType(self: *const T, type_: ValueMapType) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IValueMap.VTable, self.vtable).put_ValueMapType(@ptrCast(*const IValueMap, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IValueMap_Add(self: *const T, value: VARIANT) callconv(.Inline) HRESULT {

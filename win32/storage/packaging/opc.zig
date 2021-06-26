@@ -867,8 +867,8 @@ pub const IOpcSignatureReference = extern struct {
             return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetUri(@ptrCast(*const IOpcSignatureReference, self), referenceUri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcSignatureReference_GetType(self: *const T, type: ?*PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetType(@ptrCast(*const IOpcSignatureReference, self), type);
+        pub fn IOpcSignatureReference_GetType(self: *const T, type_: ?*PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetType(@ptrCast(*const IOpcSignatureReference, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IOpcSignatureReference_GetTransformMethod(self: *const T, transformMethod: *OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
@@ -1764,8 +1764,8 @@ pub const IOpcSignatureReferenceSet = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcSignatureReferenceSet_Create(self: *const T, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, type: ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?**IOpcSignatureReference) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOpcSignatureReferenceSet.VTable, self.vtable).Create(@ptrCast(*const IOpcSignatureReferenceSet, self), referenceUri, referenceId, type, digestMethod, transformMethod, reference);
+        pub fn IOpcSignatureReferenceSet_Create(self: *const T, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, type_: ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?**IOpcSignatureReference) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IOpcSignatureReferenceSet.VTable, self.vtable).Create(@ptrCast(*const IOpcSignatureReferenceSet, self), referenceUri, referenceId, type_, digestMethod, transformMethod, reference);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IOpcSignatureReferenceSet_Delete(self: *const T, reference: ?*IOpcSignatureReference) callconv(.Inline) HRESULT {
