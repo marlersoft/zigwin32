@@ -294,16 +294,16 @@ pub const _Application = extern struct {
             return @ptrCast(*const _Application.VTable, self.vtable).Quit(@ptrCast(*const _Application, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _Application_get_Document(self: *const T, Document: **Document) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _Application.VTable, self.vtable).get_Document(@ptrCast(*const _Application, self), Document);
+        pub fn _Application_get_Document(self: *const T, _param_Document: **Document) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _Application.VTable, self.vtable).get_Document(@ptrCast(*const _Application, self), _param_Document);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn _Application_Load(self: *const T, Filename: BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const _Application.VTable, self.vtable).Load(@ptrCast(*const _Application, self), Filename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _Application_get_Frame(self: *const T, Frame: **Frame) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _Application.VTable, self.vtable).get_Frame(@ptrCast(*const _Application, self), Frame);
+        pub fn _Application_get_Frame(self: *const T, _param_Frame: **Frame) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _Application.VTable, self.vtable).get_Frame(@ptrCast(*const _Application, self), _param_Frame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn _Application_get_Visible(self: *const T, Visible: *BOOL) callconv(.Inline) HRESULT {
@@ -403,36 +403,36 @@ pub const _AppEvents = extern struct {
             return @ptrCast(*const _AppEvents.VTable, self.vtable).OnQuit(@ptrCast(*const _AppEvents, self), Application);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnDocumentOpen(self: *const T, Document: *Document, New: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnDocumentOpen(@ptrCast(*const _AppEvents, self), Document, New);
+        pub fn _AppEvents_OnDocumentOpen(self: *const T, _param_Document: *Document, New: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnDocumentOpen(@ptrCast(*const _AppEvents, self), _param_Document, New);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnDocumentClose(self: *const T, Document: *Document) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnDocumentClose(@ptrCast(*const _AppEvents, self), Document);
+        pub fn _AppEvents_OnDocumentClose(self: *const T, _param_Document: *Document) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnDocumentClose(@ptrCast(*const _AppEvents, self), _param_Document);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnSnapInAdded(self: *const T, Document: *Document, SnapIn: *SnapIn) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnSnapInAdded(@ptrCast(*const _AppEvents, self), Document, SnapIn);
+        pub fn _AppEvents_OnSnapInAdded(self: *const T, _param_Document: *Document, _param_SnapIn: *SnapIn) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnSnapInAdded(@ptrCast(*const _AppEvents, self), _param_Document, _param_SnapIn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnSnapInRemoved(self: *const T, Document: *Document, SnapIn: *SnapIn) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnSnapInRemoved(@ptrCast(*const _AppEvents, self), Document, SnapIn);
+        pub fn _AppEvents_OnSnapInRemoved(self: *const T, _param_Document: *Document, _param_SnapIn: *SnapIn) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnSnapInRemoved(@ptrCast(*const _AppEvents, self), _param_Document, _param_SnapIn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnNewView(self: *const T, View: *View) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnNewView(@ptrCast(*const _AppEvents, self), View);
+        pub fn _AppEvents_OnNewView(self: *const T, _param_View: *View) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnNewView(@ptrCast(*const _AppEvents, self), _param_View);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnViewClose(self: *const T, View: *View) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnViewClose(@ptrCast(*const _AppEvents, self), View);
+        pub fn _AppEvents_OnViewClose(self: *const T, _param_View: *View) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnViewClose(@ptrCast(*const _AppEvents, self), _param_View);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnViewChange(self: *const T, View: *View, NewOwnerNode: *Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnViewChange(@ptrCast(*const _AppEvents, self), View, NewOwnerNode);
+        pub fn _AppEvents_OnViewChange(self: *const T, _param_View: *View, NewOwnerNode: *Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnViewChange(@ptrCast(*const _AppEvents, self), _param_View, NewOwnerNode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnSelectionChange(self: *const T, View: *View, NewNodes: *Nodes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnSelectionChange(@ptrCast(*const _AppEvents, self), View, NewNodes);
+        pub fn _AppEvents_OnSelectionChange(self: *const T, _param_View: *View, NewNodes: *Nodes) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnSelectionChange(@ptrCast(*const _AppEvents, self), _param_View, NewNodes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn _AppEvents_OnContextMenuExecuted(self: *const T, MenuItem: *MenuItem) callconv(.Inline) HRESULT {
@@ -443,8 +443,8 @@ pub const _AppEvents = extern struct {
             return @ptrCast(*const _AppEvents.VTable, self.vtable).OnToolbarButtonClicked(@ptrCast(*const _AppEvents, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _AppEvents_OnListUpdated(self: *const T, View: *View) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnListUpdated(@ptrCast(*const _AppEvents, self), View);
+        pub fn _AppEvents_OnListUpdated(self: *const T, _param_View: *View) callconv(.Inline) HRESULT {
+            return @ptrCast(*const _AppEvents.VTable, self.vtable).OnListUpdated(@ptrCast(*const _AppEvents, self), _param_View);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -688,24 +688,24 @@ pub const ScopeNamespace = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ScopeNamespace_GetParent(self: *const T, Node: *Node, Parent: **Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).GetParent(@ptrCast(*const ScopeNamespace, self), Node, Parent);
+        pub fn ScopeNamespace_GetParent(self: *const T, _param_Node: *Node, Parent: **Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).GetParent(@ptrCast(*const ScopeNamespace, self), _param_Node, Parent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ScopeNamespace_GetChild(self: *const T, Node: *Node, Child: **Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).GetChild(@ptrCast(*const ScopeNamespace, self), Node, Child);
+        pub fn ScopeNamespace_GetChild(self: *const T, _param_Node: *Node, Child: **Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).GetChild(@ptrCast(*const ScopeNamespace, self), _param_Node, Child);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ScopeNamespace_GetNext(self: *const T, Node: *Node, Next: **Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).GetNext(@ptrCast(*const ScopeNamespace, self), Node, Next);
+        pub fn ScopeNamespace_GetNext(self: *const T, _param_Node: *Node, Next: **Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).GetNext(@ptrCast(*const ScopeNamespace, self), _param_Node, Next);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ScopeNamespace_GetRoot(self: *const T, Root: **Node) callconv(.Inline) HRESULT {
             return @ptrCast(*const ScopeNamespace.VTable, self.vtable).GetRoot(@ptrCast(*const ScopeNamespace, self), Root);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ScopeNamespace_Expand(self: *const T, Node: *Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).Expand(@ptrCast(*const ScopeNamespace, self), Node);
+        pub fn ScopeNamespace_Expand(self: *const T, _param_Node: *Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ScopeNamespace.VTable, self.vtable).Expand(@ptrCast(*const ScopeNamespace, self), _param_Node);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -816,8 +816,8 @@ pub const Document = extern struct {
             return @ptrCast(*const Document.VTable, self.vtable).get_SnapIns(@ptrCast(*const Document, self), SnapIns);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Document_get_ActiveView(self: *const T, View: **View) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Document.VTable, self.vtable).get_ActiveView(@ptrCast(*const Document, self), View);
+        pub fn Document_get_ActiveView(self: *const T, _param_View: **View) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Document.VTable, self.vtable).get_ActiveView(@ptrCast(*const Document, self), _param_View);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn Document_get_Name(self: *const T, Name: **u16) callconv(.Inline) HRESULT {
@@ -844,12 +844,12 @@ pub const Document = extern struct {
             return @ptrCast(*const Document.VTable, self.vtable).put_Mode(@ptrCast(*const Document, self), Mode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Document_get_RootNode(self: *const T, Node: **Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Document.VTable, self.vtable).get_RootNode(@ptrCast(*const Document, self), Node);
+        pub fn Document_get_RootNode(self: *const T, _param_Node: **Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Document.VTable, self.vtable).get_RootNode(@ptrCast(*const Document, self), _param_Node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Document_get_ScopeNamespace(self: *const T, ScopeNamespace: **ScopeNamespace) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Document.VTable, self.vtable).get_ScopeNamespace(@ptrCast(*const Document, self), ScopeNamespace);
+        pub fn Document_get_ScopeNamespace(self: *const T, _param_ScopeNamespace: **ScopeNamespace) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Document.VTable, self.vtable).get_ScopeNamespace(@ptrCast(*const Document, self), _param_ScopeNamespace);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn Document_CreateProperties(self: *const T, Properties: **Properties) callconv(.Inline) HRESULT {
@@ -978,20 +978,20 @@ pub const SnapIns = extern struct {
             return @ptrCast(*const SnapIns.VTable, self.vtable).get__NewEnum(@ptrCast(*const SnapIns, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn SnapIns_Item(self: *const T, Index: i32, SnapIn: **SnapIn) callconv(.Inline) HRESULT {
-            return @ptrCast(*const SnapIns.VTable, self.vtable).Item(@ptrCast(*const SnapIns, self), Index, SnapIn);
+        pub fn SnapIns_Item(self: *const T, Index: i32, _param_SnapIn: **SnapIn) callconv(.Inline) HRESULT {
+            return @ptrCast(*const SnapIns.VTable, self.vtable).Item(@ptrCast(*const SnapIns, self), Index, _param_SnapIn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn SnapIns_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const SnapIns.VTable, self.vtable).get_Count(@ptrCast(*const SnapIns, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn SnapIns_Add(self: *const T, SnapinNameOrCLSID: BSTR, ParentSnapin: VARIANT, Properties: VARIANT, SnapIn: **SnapIn) callconv(.Inline) HRESULT {
-            return @ptrCast(*const SnapIns.VTable, self.vtable).Add(@ptrCast(*const SnapIns, self), SnapinNameOrCLSID, ParentSnapin, Properties, SnapIn);
+        pub fn SnapIns_Add(self: *const T, SnapinNameOrCLSID: BSTR, ParentSnapin: VARIANT, Properties: VARIANT, _param_SnapIn: **SnapIn) callconv(.Inline) HRESULT {
+            return @ptrCast(*const SnapIns.VTable, self.vtable).Add(@ptrCast(*const SnapIns, self), SnapinNameOrCLSID, ParentSnapin, Properties, _param_SnapIn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn SnapIns_Remove(self: *const T, SnapIn: *SnapIn) callconv(.Inline) HRESULT {
-            return @ptrCast(*const SnapIns.VTable, self.vtable).Remove(@ptrCast(*const SnapIns, self), SnapIn);
+        pub fn SnapIns_Remove(self: *const T, _param_SnapIn: *SnapIn) callconv(.Inline) HRESULT {
+            return @ptrCast(*const SnapIns.VTable, self.vtable).Remove(@ptrCast(*const SnapIns, self), _param_SnapIn);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1100,8 +1100,8 @@ pub const Extensions = extern struct {
             return @ptrCast(*const Extensions.VTable, self.vtable).get__NewEnum(@ptrCast(*const Extensions, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Extensions_Item(self: *const T, Index: i32, Extension: **Extension) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Extensions.VTable, self.vtable).Item(@ptrCast(*const Extensions, self), Index, Extension);
+        pub fn Extensions_Item(self: *const T, Index: i32, _param_Extension: **Extension) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Extensions.VTable, self.vtable).Item(@ptrCast(*const Extensions, self), Index, _param_Extension);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn Extensions_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
@@ -1136,8 +1136,8 @@ pub const Columns = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Columns_Item(self: *const T, Index: i32, Column: **Column) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Columns.VTable, self.vtable).Item(@ptrCast(*const Columns, self), Index, Column);
+        pub fn Columns_Item(self: *const T, Index: i32, _param_Column: **Column) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Columns.VTable, self.vtable).Item(@ptrCast(*const Columns, self), Index, _param_Column);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn Columns_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
@@ -1279,16 +1279,16 @@ pub const Views = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Views_Item(self: *const T, Index: i32, View: **View) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Views.VTable, self.vtable).Item(@ptrCast(*const Views, self), Index, View);
+        pub fn Views_Item(self: *const T, Index: i32, _param_View: **View) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Views.VTable, self.vtable).Item(@ptrCast(*const Views, self), Index, _param_View);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn Views_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const Views.VTable, self.vtable).get_Count(@ptrCast(*const Views, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Views_Add(self: *const T, Node: *Node, viewOptions: _ViewOptions) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Views.VTable, self.vtable).Add(@ptrCast(*const Views, self), Node, viewOptions);
+        pub fn Views_Add(self: *const T, _param_Node: *Node, viewOptions: _ViewOptions) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Views.VTable, self.vtable).Add(@ptrCast(*const Views, self), _param_Node, viewOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn Views_get__NewEnum(self: *const T, retval: **IUnknown) callconv(.Inline) HRESULT {
@@ -1497,12 +1497,12 @@ pub const View = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_get_ActiveScopeNode(self: *const T, Node: **Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).get_ActiveScopeNode(@ptrCast(*const View, self), Node);
+        pub fn View_get_ActiveScopeNode(self: *const T, _param_Node: **Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).get_ActiveScopeNode(@ptrCast(*const View, self), _param_Node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_put_ActiveScopeNode(self: *const T, Node: *Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).put_ActiveScopeNode(@ptrCast(*const View, self), Node);
+        pub fn View_put_ActiveScopeNode(self: *const T, _param_Node: *Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).put_ActiveScopeNode(@ptrCast(*const View, self), _param_Node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn View_get_Selection(self: *const T, Nodes: **Nodes) callconv(.Inline) HRESULT {
@@ -1521,28 +1521,28 @@ pub const View = extern struct {
             return @ptrCast(*const View.VTable, self.vtable).SnapinSelectionObject(@ptrCast(*const View, self), SelectionObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_Is(self: *const T, View: *View, TheSame: *i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).Is(@ptrCast(*const View, self), View, TheSame);
+        pub fn View_Is(self: *const T, _param_View: *View, TheSame: *i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).Is(@ptrCast(*const View, self), _param_View, TheSame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_get_Document(self: *const T, Document: **Document) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).get_Document(@ptrCast(*const View, self), Document);
+        pub fn View_get_Document(self: *const T, _param_Document: **Document) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).get_Document(@ptrCast(*const View, self), _param_Document);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn View_SelectAll(self: *const T) callconv(.Inline) HRESULT {
             return @ptrCast(*const View.VTable, self.vtable).SelectAll(@ptrCast(*const View, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_Select(self: *const T, Node: *Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).Select(@ptrCast(*const View, self), Node);
+        pub fn View_Select(self: *const T, _param_Node: *Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).Select(@ptrCast(*const View, self), _param_Node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_Deselect(self: *const T, Node: *Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).Deselect(@ptrCast(*const View, self), Node);
+        pub fn View_Deselect(self: *const T, _param_Node: *Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).Deselect(@ptrCast(*const View, self), _param_Node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_IsSelected(self: *const T, Node: *Node, IsSelected: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).IsSelected(@ptrCast(*const View, self), Node, IsSelected);
+        pub fn View_IsSelected(self: *const T, _param_Node: *Node, IsSelected: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).IsSelected(@ptrCast(*const View, self), _param_Node, IsSelected);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn View_DisplayScopeNodePropertySheet(self: *const T, ScopeNode: VARIANT) callconv(.Inline) HRESULT {
@@ -1605,8 +1605,8 @@ pub const View = extern struct {
             return @ptrCast(*const View.VTable, self.vtable).ExecuteShellCommand(@ptrCast(*const View, self), Command, Directory, Parameters, WindowState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_get_Frame(self: *const T, Frame: **Frame) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).get_Frame(@ptrCast(*const View, self), Frame);
+        pub fn View_get_Frame(self: *const T, _param_Frame: **Frame) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).get_Frame(@ptrCast(*const View, self), _param_Frame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn View_Close(self: *const T) callconv(.Inline) HRESULT {
@@ -1641,12 +1641,12 @@ pub const View = extern struct {
             return @ptrCast(*const View.VTable, self.vtable).ViewMemento(@ptrCast(*const View, self), Memento);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_get_Columns(self: *const T, Columns: **Columns) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).get_Columns(@ptrCast(*const View, self), Columns);
+        pub fn View_get_Columns(self: *const T, _param_Columns: **Columns) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).get_Columns(@ptrCast(*const View, self), _param_Columns);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn View_get_CellContents(self: *const T, Node: *Node, Column: i32, CellContents: **u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const View.VTable, self.vtable).get_CellContents(@ptrCast(*const View, self), Node, Column, CellContents);
+        pub fn View_get_CellContents(self: *const T, _param_Node: *Node, _param_Column: i32, CellContents: **u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const View.VTable, self.vtable).get_CellContents(@ptrCast(*const View, self), _param_Node, _param_Column, CellContents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn View_ExportList(self: *const T, File: BSTR, exportoptions: _ExportListOptions) callconv(.Inline) HRESULT {
@@ -1697,8 +1697,8 @@ pub const Nodes = extern struct {
             return @ptrCast(*const Nodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const Nodes, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn Nodes_Item(self: *const T, Index: i32, Node: **Node) callconv(.Inline) HRESULT {
-            return @ptrCast(*const Nodes.VTable, self.vtable).Item(@ptrCast(*const Nodes, self), Index, Node);
+        pub fn Nodes_Item(self: *const T, Index: i32, _param_Node: **Node) callconv(.Inline) HRESULT {
+            return @ptrCast(*const Nodes.VTable, self.vtable).Item(@ptrCast(*const Nodes, self), Index, _param_Node);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn Nodes_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {

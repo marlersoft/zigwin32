@@ -3907,8 +3907,8 @@ pub const IAMVideoCompression = extern struct {
             return @ptrCast(*const IAMVideoCompression.VTable, self.vtable).get_PFramesPerKeyFrame(@ptrCast(*const IAMVideoCompression, self), pPFramesPerKeyFrame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMVideoCompression_put_Quality(self: *const T, Quality: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAMVideoCompression.VTable, self.vtable).put_Quality(@ptrCast(*const IAMVideoCompression, self), Quality);
+        pub fn IAMVideoCompression_put_Quality(self: *const T, _param_Quality: f64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAMVideoCompression.VTable, self.vtable).put_Quality(@ptrCast(*const IAMVideoCompression, self), _param_Quality);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IAMVideoCompression_get_Quality(self: *const T, pQuality: *f64) callconv(.Inline) HRESULT {
@@ -26427,8 +26427,8 @@ pub const IScanningTunerEx = extern struct {
             return @ptrCast(*const IScanningTunerEx.VTable, self.vtable).GetCurrentTunerStandardCapability(@ptrCast(*const IScanningTunerEx, self), CurrentBroadcastStandard, SettlingTime, TvStandardsSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScanningTunerEx_SetScanSignalTypeFilter(self: *const T, ScanModulationTypes: i32, AnalogVideoStandard: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IScanningTunerEx.VTable, self.vtable).SetScanSignalTypeFilter(@ptrCast(*const IScanningTunerEx, self), ScanModulationTypes, AnalogVideoStandard);
+        pub fn IScanningTunerEx_SetScanSignalTypeFilter(self: *const T, _param_ScanModulationTypes: i32, _param_AnalogVideoStandard: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IScanningTunerEx.VTable, self.vtable).SetScanSignalTypeFilter(@ptrCast(*const IScanningTunerEx, self), _param_ScanModulationTypes, _param_AnalogVideoStandard);
         }
     };}
     pub usingnamespace MethodMixin(@This());
