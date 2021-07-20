@@ -4311,7 +4311,7 @@ pub extern "WS2_32" fn accept(
     // TODO: what to do with BytesParamIndex 2?
     addr: ?*SOCKADDR,
     addrlen: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
+) callconv(@import("std").os.windows.WINAPI) SOCKET;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn bind(
@@ -4475,7 +4475,7 @@ pub extern "WS2_32" fn socket(
     af: i32,
     type: i32,
     protocol: i32,
-) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
+) callconv(@import("std").os.windows.WINAPI) SOCKET;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn gethostbyaddr(
@@ -4916,7 +4916,7 @@ pub extern "WS2_32" fn WSASocketA(
     lpProtocolInfo: ?*WSAPROTOCOL_INFOA,
     g: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
+) callconv(@import("std").os.windows.WINAPI) SOCKET;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn WSASocketW(
@@ -4926,7 +4926,7 @@ pub extern "WS2_32" fn WSASocketW(
     lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
     g: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
+) callconv(@import("std").os.windows.WINAPI) SOCKET;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn WSAWaitForMultipleEvents(
