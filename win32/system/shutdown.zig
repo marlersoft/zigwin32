@@ -375,7 +375,7 @@ pub extern "ADVAPI32" fn InitiateShutdownW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVAPI32" fn CheckForHiberboot(
-    pHiberboot: *u8,
+    pHiberboot: ?*u8,
     bClearFlag: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -391,20 +391,20 @@ pub extern "USER32" fn LockWorkStation(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn ShutdownBlockReasonCreate(
-    hWnd: HWND,
-    pwszReason: [*:0]const u16,
+    hWnd: ?HWND,
+    pwszReason: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn ShutdownBlockReasonQuery(
-    hWnd: HWND,
+    hWnd: ?HWND,
     pwszBuff: ?[*:0]u16,
-    pcchBuff: *u32,
+    pcchBuff: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn ShutdownBlockReasonDestroy(
-    hWnd: HWND,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

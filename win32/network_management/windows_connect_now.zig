@@ -581,12 +581,12 @@ pub const IWCNDevice = extern struct {
             AttributeType: WCN_ATTRIBUTE_TYPE,
             dwMaxBufferSize: u32,
             pbBuffer: [*:0]u8,
-            pdwBufferUsed: *u32,
+            pdwBufferUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIntegerAttribute: fn(
             self: *const IWCNDevice,
             AttributeType: WCN_ATTRIBUTE_TYPE,
-            puInteger: *u32,
+            puInteger: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringAttribute: fn(
             self: *const IWCNDevice,
@@ -601,18 +601,18 @@ pub const IWCNDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNetworkProfile: fn(
             self: *const IWCNDevice,
-            pszProfileXml: [*:0]const u16,
+            pszProfileXml: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVendorExtension: fn(
             self: *const IWCNDevice,
-            pVendorExtSpec: *const WCN_VENDOR_EXTENSION_SPEC,
+            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
             dwMaxBufferSize: u32,
             pbBuffer: [*:0]u8,
-            pdwBufferUsed: *u32,
+            pdwBufferUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVendorExtension: fn(
             self: *const IWCNDevice,
-            pVendorExtSpec: *const WCN_VENDOR_EXTENSION_SPEC,
+            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
             cbBuffer: u32,
             pbBuffer: [*:0]const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -643,11 +643,11 @@ pub const IWCNDevice = extern struct {
             return @ptrCast(*const IWCNDevice.VTable, self.vtable).Connect(@ptrCast(*const IWCNDevice, self), pNotify);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: *u32) callconv(.Inline) HRESULT {
+        pub fn IWCNDevice_GetAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetIntegerAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: *u32) callconv(.Inline) HRESULT {
+        pub fn IWCNDevice_GetIntegerAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetIntegerAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, puInteger);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -659,15 +659,15 @@ pub const IWCNDevice = extern struct {
             return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetNetworkProfile(@ptrCast(*const IWCNDevice, self), cchMaxStringLength, wszProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetNetworkProfile(self: *const T, pszProfileXml: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWCNDevice_SetNetworkProfile(self: *const T, pszProfileXml: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetNetworkProfile(@ptrCast(*const IWCNDevice, self), pszProfileXml);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetVendorExtension(self: *const T, pVendorExtSpec: *const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: *u32) callconv(.Inline) HRESULT {
+        pub fn IWCNDevice_GetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetVendorExtension(@ptrCast(*const IWCNDevice, self), pVendorExtSpec, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetVendorExtension(self: *const T, pVendorExtSpec: *const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) callconv(.Inline) HRESULT {
+        pub fn IWCNDevice_SetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetVendorExtension(@ptrCast(*const IWCNDevice, self), pVendorExtSpec, cbBuffer, pbBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

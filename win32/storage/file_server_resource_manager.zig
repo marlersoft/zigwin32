@@ -577,17 +577,17 @@ pub const IFsrmObject = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IFsrmObject,
-            id: *Guid,
+            id: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IFsrmObject,
-            description: *BSTR,
+            description: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IFsrmObject,
-            description: BSTR,
+            description: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IFsrmObject,
@@ -600,15 +600,15 @@ pub const IFsrmObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmObject_get_Id(self: *const T, id: *Guid) callconv(.Inline) HRESULT {
+        pub fn IFsrmObject_get_Id(self: *const T, id: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmObject.VTable, self.vtable).get_Id(@ptrCast(*const IFsrmObject, self), id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmObject_get_Description(self: *const T, description: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmObject_get_Description(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmObject.VTable, self.vtable).get_Description(@ptrCast(*const IFsrmObject, self), description);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmObject_put_Description(self: *const T, description: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmObject_put_Description(self: *const T, description: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmObject.VTable, self.vtable).put_Description(@ptrCast(*const IFsrmObject, self), description);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -632,23 +632,23 @@ pub const IFsrmCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IFsrmCollection,
-            unknown: **IUnknown,
+            unknown: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IFsrmCollection,
             index: i32,
-            item: *VARIANT,
+            item: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IFsrmCollection,
-            count: *i32,
+            count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const IFsrmCollection,
-            state: *FsrmCollectionState,
+            state: ?*FsrmCollectionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IFsrmCollection,
@@ -656,31 +656,31 @@ pub const IFsrmCollection = extern struct {
         WaitForCompletion: fn(
             self: *const IFsrmCollection,
             waitSeconds: i32,
-            completed: *i16,
+            completed: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetById: fn(
             self: *const IFsrmCollection,
             id: Guid,
-            entry: *VARIANT,
+            entry: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmCollection_get__NewEnum(self: *const T, unknown: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFsrmCollection_get__NewEnum(self: *const T, unknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFsrmCollection, self), unknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmCollection_get_Item(self: *const T, index: i32, item: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmCollection_get_Item(self: *const T, index: i32, item: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmCollection.VTable, self.vtable).get_Item(@ptrCast(*const IFsrmCollection, self), index, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmCollection_get_Count(self: *const T, count: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmCollection_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmCollection.VTable, self.vtable).get_Count(@ptrCast(*const IFsrmCollection, self), count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmCollection_get_State(self: *const T, state: *FsrmCollectionState) callconv(.Inline) HRESULT {
+        pub fn IFsrmCollection_get_State(self: *const T, state: ?*FsrmCollectionState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmCollection.VTable, self.vtable).get_State(@ptrCast(*const IFsrmCollection, self), state);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -688,11 +688,11 @@ pub const IFsrmCollection = extern struct {
             return @ptrCast(*const IFsrmCollection.VTable, self.vtable).Cancel(@ptrCast(*const IFsrmCollection, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmCollection_WaitForCompletion(self: *const T, waitSeconds: i32, completed: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmCollection_WaitForCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmCollection.VTable, self.vtable).WaitForCompletion(@ptrCast(*const IFsrmCollection, self), waitSeconds, completed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmCollection_GetById(self: *const T, id: Guid, entry: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmCollection_GetById(self: *const T, id: Guid, entry: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmCollection.VTable, self.vtable).GetById(@ptrCast(*const IFsrmCollection, self), id, entry);
         }
     };}
@@ -719,7 +719,7 @@ pub const IFsrmMutableCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IFsrmMutableCollection,
-            collection: **IFsrmMutableCollection,
+            collection: ?*?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -738,7 +738,7 @@ pub const IFsrmMutableCollection = extern struct {
             return @ptrCast(*const IFsrmMutableCollection.VTable, self.vtable).RemoveById(@ptrCast(*const IFsrmMutableCollection, self), id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmMutableCollection_Clone(self: *const T, collection: **IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmMutableCollection_Clone(self: *const T, collection: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmMutableCollection.VTable, self.vtable).Clone(@ptrCast(*const IFsrmMutableCollection, self), collection);
         }
     };}
@@ -754,14 +754,14 @@ pub const IFsrmCommittableCollection = extern struct {
         Commit: fn(
             self: *const IFsrmCommittableCollection,
             options: FsrmCommitOptions,
-            results: **IFsrmCollection,
+            results: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmMutableCollection.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmCommittableCollection_Commit(self: *const T, options: FsrmCommitOptions, results: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmCommittableCollection_Commit(self: *const T, options: FsrmCommitOptions, results: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmCommittableCollection.VTable, self.vtable).Commit(@ptrCast(*const IFsrmCommittableCollection, self), options, results);
         }
     };}
@@ -777,17 +777,17 @@ pub const IFsrmAction = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IFsrmAction,
-            id: *Guid,
+            id: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionType: fn(
             self: *const IFsrmAction,
-            actionType: *FsrmActionType,
+            actionType: ?*FsrmActionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunLimitInterval: fn(
             self: *const IFsrmAction,
-            minutes: *i32,
+            minutes: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunLimitInterval: fn(
@@ -802,15 +802,15 @@ pub const IFsrmAction = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAction_get_Id(self: *const T, id: *Guid) callconv(.Inline) HRESULT {
+        pub fn IFsrmAction_get_Id(self: *const T, id: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAction.VTable, self.vtable).get_Id(@ptrCast(*const IFsrmAction, self), id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAction_get_ActionType(self: *const T, actionType: *FsrmActionType) callconv(.Inline) HRESULT {
+        pub fn IFsrmAction_get_ActionType(self: *const T, actionType: ?*FsrmActionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAction.VTable, self.vtable).get_ActionType(@ptrCast(*const IFsrmAction, self), actionType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAction_get_RunLimitInterval(self: *const T, minutes: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmAction_get_RunLimitInterval(self: *const T, minutes: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAction.VTable, self.vtable).get_RunLimitInterval(@ptrCast(*const IFsrmAction, self), minutes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -834,131 +834,131 @@ pub const IFsrmActionEmail = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailFrom: fn(
             self: *const IFsrmActionEmail,
-            mailFrom: *BSTR,
+            mailFrom: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailFrom: fn(
             self: *const IFsrmActionEmail,
-            mailFrom: BSTR,
+            mailFrom: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailReplyTo: fn(
             self: *const IFsrmActionEmail,
-            mailReplyTo: *BSTR,
+            mailReplyTo: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailReplyTo: fn(
             self: *const IFsrmActionEmail,
-            mailReplyTo: BSTR,
+            mailReplyTo: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: fn(
             self: *const IFsrmActionEmail,
-            mailTo: *BSTR,
+            mailTo: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: fn(
             self: *const IFsrmActionEmail,
-            mailTo: BSTR,
+            mailTo: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailCc: fn(
             self: *const IFsrmActionEmail,
-            mailCc: *BSTR,
+            mailCc: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailCc: fn(
             self: *const IFsrmActionEmail,
-            mailCc: BSTR,
+            mailCc: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailBcc: fn(
             self: *const IFsrmActionEmail,
-            mailBcc: *BSTR,
+            mailBcc: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailBcc: fn(
             self: *const IFsrmActionEmail,
-            mailBcc: BSTR,
+            mailBcc: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailSubject: fn(
             self: *const IFsrmActionEmail,
-            mailSubject: *BSTR,
+            mailSubject: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailSubject: fn(
             self: *const IFsrmActionEmail,
-            mailSubject: BSTR,
+            mailSubject: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MessageText: fn(
             self: *const IFsrmActionEmail,
-            messageText: *BSTR,
+            messageText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageText: fn(
             self: *const IFsrmActionEmail,
-            messageText: BSTR,
+            messageText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmAction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_get_MailFrom(self: *const T, mailFrom: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_get_MailFrom(self: *const T, mailFrom: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).get_MailFrom(@ptrCast(*const IFsrmActionEmail, self), mailFrom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_put_MailFrom(self: *const T, mailFrom: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_put_MailFrom(self: *const T, mailFrom: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).put_MailFrom(@ptrCast(*const IFsrmActionEmail, self), mailFrom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_get_MailReplyTo(self: *const T, mailReplyTo: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_get_MailReplyTo(self: *const T, mailReplyTo: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).get_MailReplyTo(@ptrCast(*const IFsrmActionEmail, self), mailReplyTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_put_MailReplyTo(self: *const T, mailReplyTo: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_put_MailReplyTo(self: *const T, mailReplyTo: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).put_MailReplyTo(@ptrCast(*const IFsrmActionEmail, self), mailReplyTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_get_MailTo(self: *const T, mailTo: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_get_MailTo(self: *const T, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).get_MailTo(@ptrCast(*const IFsrmActionEmail, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_put_MailTo(self: *const T, mailTo: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_put_MailTo(self: *const T, mailTo: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).put_MailTo(@ptrCast(*const IFsrmActionEmail, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_get_MailCc(self: *const T, mailCc: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_get_MailCc(self: *const T, mailCc: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).get_MailCc(@ptrCast(*const IFsrmActionEmail, self), mailCc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_put_MailCc(self: *const T, mailCc: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_put_MailCc(self: *const T, mailCc: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).put_MailCc(@ptrCast(*const IFsrmActionEmail, self), mailCc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_get_MailBcc(self: *const T, mailBcc: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_get_MailBcc(self: *const T, mailBcc: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).get_MailBcc(@ptrCast(*const IFsrmActionEmail, self), mailBcc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_put_MailBcc(self: *const T, mailBcc: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_put_MailBcc(self: *const T, mailBcc: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).put_MailBcc(@ptrCast(*const IFsrmActionEmail, self), mailBcc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_get_MailSubject(self: *const T, mailSubject: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_get_MailSubject(self: *const T, mailSubject: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).get_MailSubject(@ptrCast(*const IFsrmActionEmail, self), mailSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_put_MailSubject(self: *const T, mailSubject: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_put_MailSubject(self: *const T, mailSubject: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).put_MailSubject(@ptrCast(*const IFsrmActionEmail, self), mailSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_get_MessageText(self: *const T, messageText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_get_MessageText(self: *const T, messageText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).get_MessageText(@ptrCast(*const IFsrmActionEmail, self), messageText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail_put_MessageText(self: *const T, messageText: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail_put_MessageText(self: *const T, messageText: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail.VTable, self.vtable).put_MessageText(@ptrCast(*const IFsrmActionEmail, self), messageText);
         }
     };}
@@ -974,7 +974,7 @@ pub const IFsrmActionEmail2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttachmentFileListSize: fn(
             self: *const IFsrmActionEmail2,
-            attachmentFileListSize: *i32,
+            attachmentFileListSize: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachmentFileListSize: fn(
@@ -986,7 +986,7 @@ pub const IFsrmActionEmail2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmActionEmail.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEmail2_get_AttachmentFileListSize(self: *const T, attachmentFileListSize: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEmail2_get_AttachmentFileListSize(self: *const T, attachmentFileListSize: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEmail2.VTable, self.vtable).get_AttachmentFileListSize(@ptrCast(*const IFsrmActionEmail2, self), attachmentFileListSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1006,41 +1006,41 @@ pub const IFsrmActionReport = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportTypes: fn(
             self: *const IFsrmActionReport,
-            reportTypes: **SAFEARRAY,
+            reportTypes: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportTypes: fn(
             self: *const IFsrmActionReport,
-            reportTypes: *SAFEARRAY,
+            reportTypes: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: fn(
             self: *const IFsrmActionReport,
-            mailTo: *BSTR,
+            mailTo: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: fn(
             self: *const IFsrmActionReport,
-            mailTo: BSTR,
+            mailTo: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmAction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionReport_get_ReportTypes(self: *const T, reportTypes: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionReport_get_ReportTypes(self: *const T, reportTypes: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionReport.VTable, self.vtable).get_ReportTypes(@ptrCast(*const IFsrmActionReport, self), reportTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionReport_put_ReportTypes(self: *const T, reportTypes: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionReport_put_ReportTypes(self: *const T, reportTypes: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionReport.VTable, self.vtable).put_ReportTypes(@ptrCast(*const IFsrmActionReport, self), reportTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionReport_get_MailTo(self: *const T, mailTo: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionReport_get_MailTo(self: *const T, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionReport.VTable, self.vtable).get_MailTo(@ptrCast(*const IFsrmActionReport, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionReport_put_MailTo(self: *const T, mailTo: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionReport_put_MailTo(self: *const T, mailTo: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionReport.VTable, self.vtable).put_MailTo(@ptrCast(*const IFsrmActionReport, self), mailTo);
         }
     };}
@@ -1056,7 +1056,7 @@ pub const IFsrmActionEventLog = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventType: fn(
             self: *const IFsrmActionEventLog,
-            eventType: *FsrmEventType,
+            eventType: ?*FsrmEventType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventType: fn(
@@ -1066,19 +1066,19 @@ pub const IFsrmActionEventLog = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MessageText: fn(
             self: *const IFsrmActionEventLog,
-            messageText: *BSTR,
+            messageText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageText: fn(
             self: *const IFsrmActionEventLog,
-            messageText: BSTR,
+            messageText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmAction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEventLog_get_EventType(self: *const T, eventType: *FsrmEventType) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEventLog_get_EventType(self: *const T, eventType: ?*FsrmEventType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEventLog.VTable, self.vtable).get_EventType(@ptrCast(*const IFsrmActionEventLog, self), eventType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1086,11 +1086,11 @@ pub const IFsrmActionEventLog = extern struct {
             return @ptrCast(*const IFsrmActionEventLog.VTable, self.vtable).put_EventType(@ptrCast(*const IFsrmActionEventLog, self), eventType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEventLog_get_MessageText(self: *const T, messageText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEventLog_get_MessageText(self: *const T, messageText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEventLog.VTable, self.vtable).get_MessageText(@ptrCast(*const IFsrmActionEventLog, self), messageText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionEventLog_put_MessageText(self: *const T, messageText: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionEventLog_put_MessageText(self: *const T, messageText: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionEventLog.VTable, self.vtable).put_MessageText(@ptrCast(*const IFsrmActionEventLog, self), messageText);
         }
     };}
@@ -1106,27 +1106,27 @@ pub const IFsrmActionCommand = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExecutablePath: fn(
             self: *const IFsrmActionCommand,
-            executablePath: *BSTR,
+            executablePath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExecutablePath: fn(
             self: *const IFsrmActionCommand,
-            executablePath: BSTR,
+            executablePath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Arguments: fn(
             self: *const IFsrmActionCommand,
-            arguments: *BSTR,
+            arguments: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Arguments: fn(
             self: *const IFsrmActionCommand,
-            arguments: BSTR,
+            arguments: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Account: fn(
             self: *const IFsrmActionCommand,
-            account: *FsrmAccountType,
+            account: ?*FsrmAccountType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Account: fn(
@@ -1136,17 +1136,17 @@ pub const IFsrmActionCommand = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WorkingDirectory: fn(
             self: *const IFsrmActionCommand,
-            workingDirectory: *BSTR,
+            workingDirectory: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WorkingDirectory: fn(
             self: *const IFsrmActionCommand,
-            workingDirectory: BSTR,
+            workingDirectory: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonitorCommand: fn(
             self: *const IFsrmActionCommand,
-            monitorCommand: *i16,
+            monitorCommand: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonitorCommand: fn(
@@ -1156,7 +1156,7 @@ pub const IFsrmActionCommand = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KillTimeOut: fn(
             self: *const IFsrmActionCommand,
-            minutes: *i32,
+            minutes: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KillTimeOut: fn(
@@ -1166,7 +1166,7 @@ pub const IFsrmActionCommand = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogResult: fn(
             self: *const IFsrmActionCommand,
-            logResults: *i16,
+            logResults: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogResult: fn(
@@ -1178,23 +1178,23 @@ pub const IFsrmActionCommand = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmAction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_get_ExecutablePath(self: *const T, executablePath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_get_ExecutablePath(self: *const T, executablePath: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).get_ExecutablePath(@ptrCast(*const IFsrmActionCommand, self), executablePath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_put_ExecutablePath(self: *const T, executablePath: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_put_ExecutablePath(self: *const T, executablePath: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).put_ExecutablePath(@ptrCast(*const IFsrmActionCommand, self), executablePath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_get_Arguments(self: *const T, arguments: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_get_Arguments(self: *const T, arguments: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).get_Arguments(@ptrCast(*const IFsrmActionCommand, self), arguments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_put_Arguments(self: *const T, arguments: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_put_Arguments(self: *const T, arguments: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).put_Arguments(@ptrCast(*const IFsrmActionCommand, self), arguments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_get_Account(self: *const T, account: *FsrmAccountType) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_get_Account(self: *const T, account: ?*FsrmAccountType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).get_Account(@ptrCast(*const IFsrmActionCommand, self), account);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1202,15 +1202,15 @@ pub const IFsrmActionCommand = extern struct {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).put_Account(@ptrCast(*const IFsrmActionCommand, self), account);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_get_WorkingDirectory(self: *const T, workingDirectory: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_get_WorkingDirectory(self: *const T, workingDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).get_WorkingDirectory(@ptrCast(*const IFsrmActionCommand, self), workingDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_put_WorkingDirectory(self: *const T, workingDirectory: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_put_WorkingDirectory(self: *const T, workingDirectory: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).put_WorkingDirectory(@ptrCast(*const IFsrmActionCommand, self), workingDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_get_MonitorCommand(self: *const T, monitorCommand: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_get_MonitorCommand(self: *const T, monitorCommand: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).get_MonitorCommand(@ptrCast(*const IFsrmActionCommand, self), monitorCommand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1218,7 +1218,7 @@ pub const IFsrmActionCommand = extern struct {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).put_MonitorCommand(@ptrCast(*const IFsrmActionCommand, self), monitorCommand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_get_KillTimeOut(self: *const T, minutes: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_get_KillTimeOut(self: *const T, minutes: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).get_KillTimeOut(@ptrCast(*const IFsrmActionCommand, self), minutes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1226,7 +1226,7 @@ pub const IFsrmActionCommand = extern struct {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).put_KillTimeOut(@ptrCast(*const IFsrmActionCommand, self), minutes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmActionCommand_get_LogResult(self: *const T, logResults: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmActionCommand_get_LogResult(self: *const T, logResults: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmActionCommand.VTable, self.vtable).get_LogResult(@ptrCast(*const IFsrmActionCommand, self), logResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1246,37 +1246,37 @@ pub const IFsrmSetting = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmtpServer: fn(
             self: *const IFsrmSetting,
-            smtpServer: *BSTR,
+            smtpServer: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmtpServer: fn(
             self: *const IFsrmSetting,
-            smtpServer: BSTR,
+            smtpServer: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailFrom: fn(
             self: *const IFsrmSetting,
-            mailFrom: *BSTR,
+            mailFrom: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailFrom: fn(
             self: *const IFsrmSetting,
-            mailFrom: BSTR,
+            mailFrom: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminEmail: fn(
             self: *const IFsrmSetting,
-            adminEmail: *BSTR,
+            adminEmail: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AdminEmail: fn(
             self: *const IFsrmSetting,
-            adminEmail: BSTR,
+            adminEmail: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisableCommandLine: fn(
             self: *const IFsrmSetting,
-            disableCommandLine: *i16,
+            disableCommandLine: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisableCommandLine: fn(
@@ -1286,7 +1286,7 @@ pub const IFsrmSetting = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableScreeningAudit: fn(
             self: *const IFsrmSetting,
-            enableScreeningAudit: *i16,
+            enableScreeningAudit: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableScreeningAudit: fn(
@@ -1295,7 +1295,7 @@ pub const IFsrmSetting = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EmailTest: fn(
             self: *const IFsrmSetting,
-            mailTo: BSTR,
+            mailTo: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetActionRunLimitInterval: fn(
             self: *const IFsrmSetting,
@@ -1305,38 +1305,38 @@ pub const IFsrmSetting = extern struct {
         GetActionRunLimitInterval: fn(
             self: *const IFsrmSetting,
             actionType: FsrmActionType,
-            delayTimeMinutes: *i32,
+            delayTimeMinutes: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_get_SmtpServer(self: *const T, smtpServer: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_get_SmtpServer(self: *const T, smtpServer: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).get_SmtpServer(@ptrCast(*const IFsrmSetting, self), smtpServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_put_SmtpServer(self: *const T, smtpServer: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_put_SmtpServer(self: *const T, smtpServer: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).put_SmtpServer(@ptrCast(*const IFsrmSetting, self), smtpServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_get_MailFrom(self: *const T, mailFrom: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_get_MailFrom(self: *const T, mailFrom: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).get_MailFrom(@ptrCast(*const IFsrmSetting, self), mailFrom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_put_MailFrom(self: *const T, mailFrom: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_put_MailFrom(self: *const T, mailFrom: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).put_MailFrom(@ptrCast(*const IFsrmSetting, self), mailFrom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_get_AdminEmail(self: *const T, adminEmail: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_get_AdminEmail(self: *const T, adminEmail: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).get_AdminEmail(@ptrCast(*const IFsrmSetting, self), adminEmail);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_put_AdminEmail(self: *const T, adminEmail: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_put_AdminEmail(self: *const T, adminEmail: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).put_AdminEmail(@ptrCast(*const IFsrmSetting, self), adminEmail);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_get_DisableCommandLine(self: *const T, disableCommandLine: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_get_DisableCommandLine(self: *const T, disableCommandLine: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).get_DisableCommandLine(@ptrCast(*const IFsrmSetting, self), disableCommandLine);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1344,7 +1344,7 @@ pub const IFsrmSetting = extern struct {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).put_DisableCommandLine(@ptrCast(*const IFsrmSetting, self), disableCommandLine);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_get_EnableScreeningAudit(self: *const T, enableScreeningAudit: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_get_EnableScreeningAudit(self: *const T, enableScreeningAudit: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).get_EnableScreeningAudit(@ptrCast(*const IFsrmSetting, self), enableScreeningAudit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1352,7 +1352,7 @@ pub const IFsrmSetting = extern struct {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).put_EnableScreeningAudit(@ptrCast(*const IFsrmSetting, self), enableScreeningAudit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_EmailTest(self: *const T, mailTo: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_EmailTest(self: *const T, mailTo: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).EmailTest(@ptrCast(*const IFsrmSetting, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1360,7 +1360,7 @@ pub const IFsrmSetting = extern struct {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).SetActionRunLimitInterval(@ptrCast(*const IFsrmSetting, self), actionType, delayTimeMinutes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmSetting_GetActionRunLimitInterval(self: *const T, actionType: FsrmActionType, delayTimeMinutes: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmSetting_GetActionRunLimitInterval(self: *const T, actionType: FsrmActionType, delayTimeMinutes: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmSetting.VTable, self.vtable).GetActionRunLimitInterval(@ptrCast(*const IFsrmSetting, self), actionType, delayTimeMinutes);
         }
     };}
@@ -1375,15 +1375,15 @@ pub const IFsrmPathMapper = extern struct {
         base: IDispatch.VTable,
         GetSharePathsForLocalPath: fn(
             self: *const IFsrmPathMapper,
-            localPath: BSTR,
-            sharePaths: **SAFEARRAY,
+            localPath: ?BSTR,
+            sharePaths: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPathMapper_GetSharePathsForLocalPath(self: *const T, localPath: BSTR, sharePaths: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPathMapper_GetSharePathsForLocalPath(self: *const T, localPath: ?BSTR, sharePaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPathMapper.VTable, self.vtable).GetSharePathsForLocalPath(@ptrCast(*const IFsrmPathMapper, self), localPath, sharePaths);
         }
     };}
@@ -1398,69 +1398,69 @@ pub const IFsrmExportImport = extern struct {
         base: IDispatch.VTable,
         ExportFileGroups: fn(
             self: *const IFsrmExportImport,
-            filePath: BSTR,
-            fileGroupNamesSafeArray: *VARIANT,
-            remoteHost: BSTR,
+            filePath: ?BSTR,
+            fileGroupNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportFileGroups: fn(
             self: *const IFsrmExportImport,
-            filePath: BSTR,
-            fileGroupNamesSafeArray: *VARIANT,
-            remoteHost: BSTR,
-            fileGroups: **IFsrmCommittableCollection,
+            filePath: ?BSTR,
+            fileGroupNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+            fileGroups: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExportFileScreenTemplates: fn(
             self: *const IFsrmExportImport,
-            filePath: BSTR,
-            templateNamesSafeArray: *VARIANT,
-            remoteHost: BSTR,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportFileScreenTemplates: fn(
             self: *const IFsrmExportImport,
-            filePath: BSTR,
-            templateNamesSafeArray: *VARIANT,
-            remoteHost: BSTR,
-            templates: **IFsrmCommittableCollection,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+            templates: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExportQuotaTemplates: fn(
             self: *const IFsrmExportImport,
-            filePath: BSTR,
-            templateNamesSafeArray: *VARIANT,
-            remoteHost: BSTR,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportQuotaTemplates: fn(
             self: *const IFsrmExportImport,
-            filePath: BSTR,
-            templateNamesSafeArray: *VARIANT,
-            remoteHost: BSTR,
-            templates: **IFsrmCommittableCollection,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+            templates: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmExportImport_ExportFileGroups(self: *const T, filePath: BSTR, fileGroupNamesSafeArray: *VARIANT, remoteHost: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmExportImport_ExportFileGroups(self: *const T, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmExportImport.VTable, self.vtable).ExportFileGroups(@ptrCast(*const IFsrmExportImport, self), filePath, fileGroupNamesSafeArray, remoteHost);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmExportImport_ImportFileGroups(self: *const T, filePath: BSTR, fileGroupNamesSafeArray: *VARIANT, remoteHost: BSTR, fileGroups: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmExportImport_ImportFileGroups(self: *const T, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmExportImport.VTable, self.vtable).ImportFileGroups(@ptrCast(*const IFsrmExportImport, self), filePath, fileGroupNamesSafeArray, remoteHost, fileGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmExportImport_ExportFileScreenTemplates(self: *const T, filePath: BSTR, templateNamesSafeArray: *VARIANT, remoteHost: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmExportImport_ExportFileScreenTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmExportImport.VTable, self.vtable).ExportFileScreenTemplates(@ptrCast(*const IFsrmExportImport, self), filePath, templateNamesSafeArray, remoteHost);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmExportImport_ImportFileScreenTemplates(self: *const T, filePath: BSTR, templateNamesSafeArray: *VARIANT, remoteHost: BSTR, templates: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmExportImport_ImportFileScreenTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmExportImport.VTable, self.vtable).ImportFileScreenTemplates(@ptrCast(*const IFsrmExportImport, self), filePath, templateNamesSafeArray, remoteHost, templates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmExportImport_ExportQuotaTemplates(self: *const T, filePath: BSTR, templateNamesSafeArray: *VARIANT, remoteHost: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmExportImport_ExportQuotaTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmExportImport.VTable, self.vtable).ExportQuotaTemplates(@ptrCast(*const IFsrmExportImport, self), filePath, templateNamesSafeArray, remoteHost);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmExportImport_ImportQuotaTemplates(self: *const T, filePath: BSTR, templateNamesSafeArray: *VARIANT, remoteHost: BSTR, templates: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmExportImport_ImportQuotaTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmExportImport.VTable, self.vtable).ImportQuotaTemplates(@ptrCast(*const IFsrmExportImport, self), filePath, templateNamesSafeArray, remoteHost, templates);
         }
     };}
@@ -1476,23 +1476,23 @@ pub const IFsrmDerivedObjectsResult = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DerivedObjects: fn(
             self: *const IFsrmDerivedObjectsResult,
-            derivedObjects: **IFsrmCollection,
+            derivedObjects: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Results: fn(
             self: *const IFsrmDerivedObjectsResult,
-            results: **IFsrmCollection,
+            results: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmDerivedObjectsResult_get_DerivedObjects(self: *const T, derivedObjects: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmDerivedObjectsResult_get_DerivedObjects(self: *const T, derivedObjects: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmDerivedObjectsResult.VTable, self.vtable).get_DerivedObjects(@ptrCast(*const IFsrmDerivedObjectsResult, self), derivedObjects);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmDerivedObjectsResult_get_Results(self: *const T, results: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmDerivedObjectsResult_get_Results(self: *const T, results: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmDerivedObjectsResult.VTable, self.vtable).get_Results(@ptrCast(*const IFsrmDerivedObjectsResult, self), results);
         }
     };}
@@ -1508,19 +1508,19 @@ pub const IFsrmAccessDeniedRemediationClient = extern struct {
         Show: fn(
             self: *const IFsrmAccessDeniedRemediationClient,
             parentWnd: usize,
-            accessPath: BSTR,
+            accessPath: ?BSTR,
             errorType: AdrClientErrorType,
             flags: i32,
-            windowTitle: BSTR,
-            windowMessage: BSTR,
-            result: *i32,
+            windowTitle: ?BSTR,
+            windowMessage: ?BSTR,
+            result: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAccessDeniedRemediationClient_Show(self: *const T, parentWnd: usize, accessPath: BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: BSTR, windowMessage: BSTR, result: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmAccessDeniedRemediationClient_Show(self: *const T, parentWnd: usize, accessPath: ?BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: ?BSTR, windowMessage: ?BSTR, result: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAccessDeniedRemediationClient.VTable, self.vtable).Show(@ptrCast(*const IFsrmAccessDeniedRemediationClient, self), parentWnd, accessPath, errorType, flags, windowTitle, windowMessage, result);
         }
     };}
@@ -1581,7 +1581,7 @@ pub const IFsrmQuotaBase = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaLimit: fn(
             self: *const IFsrmQuotaBase,
-            quotaLimit: *VARIANT,
+            quotaLimit: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuotaLimit: fn(
@@ -1591,7 +1591,7 @@ pub const IFsrmQuotaBase = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaFlags: fn(
             self: *const IFsrmQuotaBase,
-            quotaFlags: *i32,
+            quotaFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuotaFlags: fn(
@@ -1601,7 +1601,7 @@ pub const IFsrmQuotaBase = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Thresholds: fn(
             self: *const IFsrmQuotaBase,
-            thresholds: **SAFEARRAY,
+            thresholds: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddThreshold: fn(
             self: *const IFsrmQuotaBase,
@@ -1620,19 +1620,19 @@ pub const IFsrmQuotaBase = extern struct {
             self: *const IFsrmQuotaBase,
             threshold: i32,
             actionType: FsrmActionType,
-            action: **IFsrmAction,
+            action: ?*?*IFsrmAction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumThresholdActions: fn(
             self: *const IFsrmQuotaBase,
             threshold: i32,
-            actions: **IFsrmCollection,
+            actions: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaBase_get_QuotaLimit(self: *const T, quotaLimit: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaBase_get_QuotaLimit(self: *const T, quotaLimit: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).get_QuotaLimit(@ptrCast(*const IFsrmQuotaBase, self), quotaLimit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1640,7 +1640,7 @@ pub const IFsrmQuotaBase = extern struct {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).put_QuotaLimit(@ptrCast(*const IFsrmQuotaBase, self), quotaLimit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaBase_get_QuotaFlags(self: *const T, quotaFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaBase_get_QuotaFlags(self: *const T, quotaFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).get_QuotaFlags(@ptrCast(*const IFsrmQuotaBase, self), quotaFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1648,7 +1648,7 @@ pub const IFsrmQuotaBase = extern struct {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).put_QuotaFlags(@ptrCast(*const IFsrmQuotaBase, self), quotaFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaBase_get_Thresholds(self: *const T, thresholds: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaBase_get_Thresholds(self: *const T, thresholds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).get_Thresholds(@ptrCast(*const IFsrmQuotaBase, self), thresholds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1664,11 +1664,11 @@ pub const IFsrmQuotaBase = extern struct {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).ModifyThreshold(@ptrCast(*const IFsrmQuotaBase, self), threshold, newThreshold);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaBase_CreateThresholdAction(self: *const T, threshold: i32, actionType: FsrmActionType, action: **IFsrmAction) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaBase_CreateThresholdAction(self: *const T, threshold: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).CreateThresholdAction(@ptrCast(*const IFsrmQuotaBase, self), threshold, actionType, action);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaBase_EnumThresholdActions(self: *const T, threshold: i32, actions: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaBase_EnumThresholdActions(self: *const T, threshold: i32, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaBase.VTable, self.vtable).EnumThresholdActions(@ptrCast(*const IFsrmQuotaBase, self), threshold, actions);
         }
     };}
@@ -1684,58 +1684,58 @@ pub const IFsrmQuotaObject = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IFsrmQuotaObject,
-            path: *BSTR,
+            path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSid: fn(
             self: *const IFsrmQuotaObject,
-            userSid: *BSTR,
+            userSid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserAccount: fn(
             self: *const IFsrmQuotaObject,
-            userAccount: *BSTR,
+            userAccount: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceTemplateName: fn(
             self: *const IFsrmQuotaObject,
-            quotaTemplateName: *BSTR,
+            quotaTemplateName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MatchesSourceTemplate: fn(
             self: *const IFsrmQuotaObject,
-            matches: *i16,
+            matches: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ApplyTemplate: fn(
             self: *const IFsrmQuotaObject,
-            quotaTemplateName: BSTR,
+            quotaTemplateName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmQuotaBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaObject_get_Path(self: *const T, path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaObject_get_Path(self: *const T, path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaObject.VTable, self.vtable).get_Path(@ptrCast(*const IFsrmQuotaObject, self), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaObject_get_UserSid(self: *const T, userSid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaObject_get_UserSid(self: *const T, userSid: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaObject.VTable, self.vtable).get_UserSid(@ptrCast(*const IFsrmQuotaObject, self), userSid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaObject_get_UserAccount(self: *const T, userAccount: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaObject_get_UserAccount(self: *const T, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaObject.VTable, self.vtable).get_UserAccount(@ptrCast(*const IFsrmQuotaObject, self), userAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaObject_get_SourceTemplateName(self: *const T, quotaTemplateName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaObject_get_SourceTemplateName(self: *const T, quotaTemplateName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaObject.VTable, self.vtable).get_SourceTemplateName(@ptrCast(*const IFsrmQuotaObject, self), quotaTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaObject_get_MatchesSourceTemplate(self: *const T, matches: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaObject_get_MatchesSourceTemplate(self: *const T, matches: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaObject.VTable, self.vtable).get_MatchesSourceTemplate(@ptrCast(*const IFsrmQuotaObject, self), matches);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaObject_ApplyTemplate(self: *const T, quotaTemplateName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaObject_ApplyTemplate(self: *const T, quotaTemplateName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaObject.VTable, self.vtable).ApplyTemplate(@ptrCast(*const IFsrmQuotaObject, self), quotaTemplateName);
         }
     };}
@@ -1751,17 +1751,17 @@ pub const IFsrmQuota = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaUsed: fn(
             self: *const IFsrmQuota,
-            used: *VARIANT,
+            used: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaPeakUsage: fn(
             self: *const IFsrmQuota,
-            peakUsage: *VARIANT,
+            peakUsage: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuotaPeakUsageTime: fn(
             self: *const IFsrmQuota,
-            peakUsageDateTime: *f64,
+            peakUsageDateTime: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetPeakUsage: fn(
             self: *const IFsrmQuota,
@@ -1774,15 +1774,15 @@ pub const IFsrmQuota = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmQuotaObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuota_get_QuotaUsed(self: *const T, used: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuota_get_QuotaUsed(self: *const T, used: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuota.VTable, self.vtable).get_QuotaUsed(@ptrCast(*const IFsrmQuota, self), used);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuota_get_QuotaPeakUsage(self: *const T, peakUsage: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuota_get_QuotaPeakUsage(self: *const T, peakUsage: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuota.VTable, self.vtable).get_QuotaPeakUsage(@ptrCast(*const IFsrmQuota, self), peakUsage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuota_get_QuotaPeakUsageTime(self: *const T, peakUsageDateTime: *f64) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuota_get_QuotaPeakUsageTime(self: *const T, peakUsageDateTime: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuota.VTable, self.vtable).get_QuotaPeakUsageTime(@ptrCast(*const IFsrmQuota, self), peakUsageDateTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1806,33 +1806,33 @@ pub const IFsrmAutoApplyQuota = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExcludeFolders: fn(
             self: *const IFsrmAutoApplyQuota,
-            folders: **SAFEARRAY,
+            folders: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExcludeFolders: fn(
             self: *const IFsrmAutoApplyQuota,
-            folders: *SAFEARRAY,
+            folders: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CommitAndUpdateDerived: fn(
             self: *const IFsrmAutoApplyQuota,
             commitOptions: FsrmCommitOptions,
             applyOptions: FsrmTemplateApplyOptions,
-            derivedObjectsResult: **IFsrmDerivedObjectsResult,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmQuotaObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAutoApplyQuota_get_ExcludeFolders(self: *const T, folders: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmAutoApplyQuota_get_ExcludeFolders(self: *const T, folders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAutoApplyQuota.VTable, self.vtable).get_ExcludeFolders(@ptrCast(*const IFsrmAutoApplyQuota, self), folders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAutoApplyQuota_put_ExcludeFolders(self: *const T, folders: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmAutoApplyQuota_put_ExcludeFolders(self: *const T, folders: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAutoApplyQuota.VTable, self.vtable).put_ExcludeFolders(@ptrCast(*const IFsrmAutoApplyQuota, self), folders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmAutoApplyQuota_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: **IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+        pub fn IFsrmAutoApplyQuota_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmAutoApplyQuota.VTable, self.vtable).CommitAndUpdateDerived(@ptrCast(*const IFsrmAutoApplyQuota, self), commitOptions, applyOptions, derivedObjectsResult);
         }
     };}
@@ -1848,115 +1848,115 @@ pub const IFsrmQuotaManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariables: fn(
             self: *const IFsrmQuotaManager,
-            variables: **SAFEARRAY,
+            variables: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariableDescriptions: fn(
             self: *const IFsrmQuotaManager,
-            descriptions: **SAFEARRAY,
+            descriptions: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateQuota: fn(
             self: *const IFsrmQuotaManager,
-            path: BSTR,
-            quota: **IFsrmQuota,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAutoApplyQuota: fn(
             self: *const IFsrmQuotaManager,
-            quotaTemplateName: BSTR,
-            path: BSTR,
-            quota: **IFsrmAutoApplyQuota,
+            quotaTemplateName: ?BSTR,
+            path: ?BSTR,
+            quota: ?*?*IFsrmAutoApplyQuota,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuota: fn(
             self: *const IFsrmQuotaManager,
-            path: BSTR,
-            quota: **IFsrmQuota,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAutoApplyQuota: fn(
             self: *const IFsrmQuotaManager,
-            path: BSTR,
-            quota: **IFsrmAutoApplyQuota,
+            path: ?BSTR,
+            quota: ?*?*IFsrmAutoApplyQuota,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRestrictiveQuota: fn(
             self: *const IFsrmQuotaManager,
-            path: BSTR,
-            quota: **IFsrmQuota,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumQuotas: fn(
             self: *const IFsrmQuotaManager,
-            path: BSTR,
+            path: ?BSTR,
             options: FsrmEnumOptions,
-            quotas: **IFsrmCommittableCollection,
+            quotas: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumAutoApplyQuotas: fn(
             self: *const IFsrmQuotaManager,
-            path: BSTR,
+            path: ?BSTR,
             options: FsrmEnumOptions,
-            quotas: **IFsrmCommittableCollection,
+            quotas: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumEffectiveQuotas: fn(
             self: *const IFsrmQuotaManager,
-            path: BSTR,
+            path: ?BSTR,
             options: FsrmEnumOptions,
-            quotas: **IFsrmCommittableCollection,
+            quotas: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Scan: fn(
             self: *const IFsrmQuotaManager,
-            strPath: BSTR,
+            strPath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateQuotaCollection: fn(
             self: *const IFsrmQuotaManager,
-            collection: **IFsrmCommittableCollection,
+            collection: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_get_ActionVariables(self: *const T, variables: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_get_ActionVariables(self: *const T, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).get_ActionVariables(@ptrCast(*const IFsrmQuotaManager, self), variables);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_get_ActionVariableDescriptions(self: *const T, descriptions: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_get_ActionVariableDescriptions(self: *const T, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).get_ActionVariableDescriptions(@ptrCast(*const IFsrmQuotaManager, self), descriptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_CreateQuota(self: *const T, path: BSTR, quota: **IFsrmQuota) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_CreateQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).CreateQuota(@ptrCast(*const IFsrmQuotaManager, self), path, quota);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_CreateAutoApplyQuota(self: *const T, quotaTemplateName: BSTR, path: BSTR, quota: **IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_CreateAutoApplyQuota(self: *const T, quotaTemplateName: ?BSTR, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).CreateAutoApplyQuota(@ptrCast(*const IFsrmQuotaManager, self), quotaTemplateName, path, quota);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_GetQuota(self: *const T, path: BSTR, quota: **IFsrmQuota) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_GetQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).GetQuota(@ptrCast(*const IFsrmQuotaManager, self), path, quota);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_GetAutoApplyQuota(self: *const T, path: BSTR, quota: **IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_GetAutoApplyQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).GetAutoApplyQuota(@ptrCast(*const IFsrmQuotaManager, self), path, quota);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_GetRestrictiveQuota(self: *const T, path: BSTR, quota: **IFsrmQuota) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_GetRestrictiveQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).GetRestrictiveQuota(@ptrCast(*const IFsrmQuotaManager, self), path, quota);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_EnumQuotas(self: *const T, path: BSTR, options: FsrmEnumOptions, quotas: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_EnumQuotas(self: *const T, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).EnumQuotas(@ptrCast(*const IFsrmQuotaManager, self), path, options, quotas);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_EnumAutoApplyQuotas(self: *const T, path: BSTR, options: FsrmEnumOptions, quotas: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_EnumAutoApplyQuotas(self: *const T, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).EnumAutoApplyQuotas(@ptrCast(*const IFsrmQuotaManager, self), path, options, quotas);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_EnumEffectiveQuotas(self: *const T, path: BSTR, options: FsrmEnumOptions, quotas: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_EnumEffectiveQuotas(self: *const T, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).EnumEffectiveQuotas(@ptrCast(*const IFsrmQuotaManager, self), path, options, quotas);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_Scan(self: *const T, strPath: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_Scan(self: *const T, strPath: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).Scan(@ptrCast(*const IFsrmQuotaManager, self), strPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManager_CreateQuotaCollection(self: *const T, collection: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManager_CreateQuotaCollection(self: *const T, collection: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManager.VTable, self.vtable).CreateQuotaCollection(@ptrCast(*const IFsrmQuotaManager, self), collection);
         }
     };}
@@ -1971,16 +1971,16 @@ pub const IFsrmQuotaManagerEx = extern struct {
         base: IFsrmQuotaManager.VTable,
         IsAffectedByQuota: fn(
             self: *const IFsrmQuotaManagerEx,
-            path: BSTR,
+            path: ?BSTR,
             options: FsrmEnumOptions,
-            affected: *i16,
+            affected: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmQuotaManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaManagerEx_IsAffectedByQuota(self: *const T, path: BSTR, options: FsrmEnumOptions, affected: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaManagerEx_IsAffectedByQuota(self: *const T, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaManagerEx.VTable, self.vtable).IsAffectedByQuota(@ptrCast(*const IFsrmQuotaManagerEx, self), path, options, affected);
         }
     };}
@@ -1996,41 +1996,41 @@ pub const IFsrmQuotaTemplate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmQuotaTemplate,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmQuotaTemplate,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyTemplate: fn(
             self: *const IFsrmQuotaTemplate,
-            quotaTemplateName: BSTR,
+            quotaTemplateName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CommitAndUpdateDerived: fn(
             self: *const IFsrmQuotaTemplate,
             commitOptions: FsrmCommitOptions,
             applyOptions: FsrmTemplateApplyOptions,
-            derivedObjectsResult: **IFsrmDerivedObjectsResult,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmQuotaBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplate_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplate_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplate.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmQuotaTemplate, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplate_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplate_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplate.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmQuotaTemplate, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplate_CopyTemplate(self: *const T, quotaTemplateName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplate_CopyTemplate(self: *const T, quotaTemplateName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplate.VTable, self.vtable).CopyTemplate(@ptrCast(*const IFsrmQuotaTemplate, self), quotaTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplate_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: **IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplate_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplate.VTable, self.vtable).CommitAndUpdateDerived(@ptrCast(*const IFsrmQuotaTemplate, self), commitOptions, applyOptions, derivedObjectsResult);
         }
     };}
@@ -2046,7 +2046,7 @@ pub const IFsrmQuotaTemplateImported = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OverwriteOnCommit: fn(
             self: *const IFsrmQuotaTemplateImported,
-            overwrite: *i16,
+            overwrite: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: fn(
@@ -2058,7 +2058,7 @@ pub const IFsrmQuotaTemplateImported = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmQuotaTemplate.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplateImported_get_OverwriteOnCommit(self: *const T, overwrite: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplateImported_get_OverwriteOnCommit(self: *const T, overwrite: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplateImported.VTable, self.vtable).get_OverwriteOnCommit(@ptrCast(*const IFsrmQuotaTemplateImported, self), overwrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2077,51 +2077,51 @@ pub const IFsrmQuotaTemplateManager = extern struct {
         base: IDispatch.VTable,
         CreateTemplate: fn(
             self: *const IFsrmQuotaTemplateManager,
-            quotaTemplate: **IFsrmQuotaTemplate,
+            quotaTemplate: ?*?*IFsrmQuotaTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTemplate: fn(
             self: *const IFsrmQuotaTemplateManager,
-            name: BSTR,
-            quotaTemplate: **IFsrmQuotaTemplate,
+            name: ?BSTR,
+            quotaTemplate: ?*?*IFsrmQuotaTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumTemplates: fn(
             self: *const IFsrmQuotaTemplateManager,
             options: FsrmEnumOptions,
-            quotaTemplates: **IFsrmCommittableCollection,
+            quotaTemplates: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExportTemplates: fn(
             self: *const IFsrmQuotaTemplateManager,
-            quotaTemplateNamesArray: *VARIANT,
-            serializedQuotaTemplates: *BSTR,
+            quotaTemplateNamesArray: ?*VARIANT,
+            serializedQuotaTemplates: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportTemplates: fn(
             self: *const IFsrmQuotaTemplateManager,
-            serializedQuotaTemplates: BSTR,
-            quotaTemplateNamesArray: *VARIANT,
-            quotaTemplates: **IFsrmCommittableCollection,
+            serializedQuotaTemplates: ?BSTR,
+            quotaTemplateNamesArray: ?*VARIANT,
+            quotaTemplates: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplateManager_CreateTemplate(self: *const T, quotaTemplate: **IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplateManager_CreateTemplate(self: *const T, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplateManager.VTable, self.vtable).CreateTemplate(@ptrCast(*const IFsrmQuotaTemplateManager, self), quotaTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplateManager_GetTemplate(self: *const T, name: BSTR, quotaTemplate: **IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplateManager_GetTemplate(self: *const T, name: ?BSTR, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplateManager.VTable, self.vtable).GetTemplate(@ptrCast(*const IFsrmQuotaTemplateManager, self), name, quotaTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplateManager_EnumTemplates(self: *const T, options: FsrmEnumOptions, quotaTemplates: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplateManager_EnumTemplates(self: *const T, options: FsrmEnumOptions, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplateManager.VTable, self.vtable).EnumTemplates(@ptrCast(*const IFsrmQuotaTemplateManager, self), options, quotaTemplates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplateManager_ExportTemplates(self: *const T, quotaTemplateNamesArray: *VARIANT, serializedQuotaTemplates: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplateManager_ExportTemplates(self: *const T, quotaTemplateNamesArray: ?*VARIANT, serializedQuotaTemplates: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplateManager.VTable, self.vtable).ExportTemplates(@ptrCast(*const IFsrmQuotaTemplateManager, self), quotaTemplateNamesArray, serializedQuotaTemplates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmQuotaTemplateManager_ImportTemplates(self: *const T, serializedQuotaTemplates: BSTR, quotaTemplateNamesArray: *VARIANT, quotaTemplates: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmQuotaTemplateManager_ImportTemplates(self: *const T, serializedQuotaTemplates: ?BSTR, quotaTemplateNamesArray: ?*VARIANT, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmQuotaTemplateManager.VTable, self.vtable).ImportTemplates(@ptrCast(*const IFsrmQuotaTemplateManager, self), serializedQuotaTemplates, quotaTemplateNamesArray, quotaTemplates);
         }
     };}
@@ -2137,59 +2137,59 @@ pub const IFsrmFileGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmFileGroup,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmFileGroup,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: fn(
             self: *const IFsrmFileGroup,
-            members: **IFsrmMutableCollection,
+            members: ?*?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Members: fn(
             self: *const IFsrmFileGroup,
-            members: *IFsrmMutableCollection,
+            members: ?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembers: fn(
             self: *const IFsrmFileGroup,
-            nonMembers: **IFsrmMutableCollection,
+            nonMembers: ?*?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NonMembers: fn(
             self: *const IFsrmFileGroup,
-            nonMembers: *IFsrmMutableCollection,
+            nonMembers: ?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroup_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroup_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroup.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmFileGroup, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroup_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroup_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroup.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmFileGroup, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroup_get_Members(self: *const T, members: **IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroup_get_Members(self: *const T, members: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroup.VTable, self.vtable).get_Members(@ptrCast(*const IFsrmFileGroup, self), members);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroup_put_Members(self: *const T, members: *IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroup_put_Members(self: *const T, members: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroup.VTable, self.vtable).put_Members(@ptrCast(*const IFsrmFileGroup, self), members);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroup_get_NonMembers(self: *const T, nonMembers: **IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroup_get_NonMembers(self: *const T, nonMembers: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroup.VTable, self.vtable).get_NonMembers(@ptrCast(*const IFsrmFileGroup, self), nonMembers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroup_put_NonMembers(self: *const T, nonMembers: *IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroup_put_NonMembers(self: *const T, nonMembers: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroup.VTable, self.vtable).put_NonMembers(@ptrCast(*const IFsrmFileGroup, self), nonMembers);
         }
     };}
@@ -2205,7 +2205,7 @@ pub const IFsrmFileGroupImported = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OverwriteOnCommit: fn(
             self: *const IFsrmFileGroupImported,
-            overwrite: *i16,
+            overwrite: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: fn(
@@ -2217,7 +2217,7 @@ pub const IFsrmFileGroupImported = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmFileGroup.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroupImported_get_OverwriteOnCommit(self: *const T, overwrite: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroupImported_get_OverwriteOnCommit(self: *const T, overwrite: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroupImported.VTable, self.vtable).get_OverwriteOnCommit(@ptrCast(*const IFsrmFileGroupImported, self), overwrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2236,51 +2236,51 @@ pub const IFsrmFileGroupManager = extern struct {
         base: IDispatch.VTable,
         CreateFileGroup: fn(
             self: *const IFsrmFileGroupManager,
-            fileGroup: **IFsrmFileGroup,
+            fileGroup: ?*?*IFsrmFileGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileGroup: fn(
             self: *const IFsrmFileGroupManager,
-            name: BSTR,
-            fileGroup: **IFsrmFileGroup,
+            name: ?BSTR,
+            fileGroup: ?*?*IFsrmFileGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFileGroups: fn(
             self: *const IFsrmFileGroupManager,
             options: FsrmEnumOptions,
-            fileGroups: **IFsrmCommittableCollection,
+            fileGroups: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExportFileGroups: fn(
             self: *const IFsrmFileGroupManager,
-            fileGroupNamesArray: *VARIANT,
-            serializedFileGroups: *BSTR,
+            fileGroupNamesArray: ?*VARIANT,
+            serializedFileGroups: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportFileGroups: fn(
             self: *const IFsrmFileGroupManager,
-            serializedFileGroups: BSTR,
-            fileGroupNamesArray: *VARIANT,
-            fileGroups: **IFsrmCommittableCollection,
+            serializedFileGroups: ?BSTR,
+            fileGroupNamesArray: ?*VARIANT,
+            fileGroups: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroupManager_CreateFileGroup(self: *const T, fileGroup: **IFsrmFileGroup) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroupManager_CreateFileGroup(self: *const T, fileGroup: ?*?*IFsrmFileGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroupManager.VTable, self.vtable).CreateFileGroup(@ptrCast(*const IFsrmFileGroupManager, self), fileGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroupManager_GetFileGroup(self: *const T, name: BSTR, fileGroup: **IFsrmFileGroup) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroupManager_GetFileGroup(self: *const T, name: ?BSTR, fileGroup: ?*?*IFsrmFileGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroupManager.VTable, self.vtable).GetFileGroup(@ptrCast(*const IFsrmFileGroupManager, self), name, fileGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroupManager_EnumFileGroups(self: *const T, options: FsrmEnumOptions, fileGroups: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroupManager_EnumFileGroups(self: *const T, options: FsrmEnumOptions, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroupManager.VTable, self.vtable).EnumFileGroups(@ptrCast(*const IFsrmFileGroupManager, self), options, fileGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroupManager_ExportFileGroups(self: *const T, fileGroupNamesArray: *VARIANT, serializedFileGroups: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroupManager_ExportFileGroups(self: *const T, fileGroupNamesArray: ?*VARIANT, serializedFileGroups: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroupManager.VTable, self.vtable).ExportFileGroups(@ptrCast(*const IFsrmFileGroupManager, self), fileGroupNamesArray, serializedFileGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileGroupManager_ImportFileGroups(self: *const T, serializedFileGroups: BSTR, fileGroupNamesArray: *VARIANT, fileGroups: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileGroupManager_ImportFileGroups(self: *const T, serializedFileGroups: ?BSTR, fileGroupNamesArray: ?*VARIANT, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileGroupManager.VTable, self.vtable).ImportFileGroups(@ptrCast(*const IFsrmFileGroupManager, self), serializedFileGroups, fileGroupNamesArray, fileGroups);
         }
     };}
@@ -2296,17 +2296,17 @@ pub const IFsrmFileScreenBase = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BlockedFileGroups: fn(
             self: *const IFsrmFileScreenBase,
-            blockList: **IFsrmMutableCollection,
+            blockList: ?*?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BlockedFileGroups: fn(
             self: *const IFsrmFileScreenBase,
-            blockList: *IFsrmMutableCollection,
+            blockList: ?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileScreenFlags: fn(
             self: *const IFsrmFileScreenBase,
-            fileScreenFlags: *i32,
+            fileScreenFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileScreenFlags: fn(
@@ -2316,26 +2316,26 @@ pub const IFsrmFileScreenBase = extern struct {
         CreateAction: fn(
             self: *const IFsrmFileScreenBase,
             actionType: FsrmActionType,
-            action: **IFsrmAction,
+            action: ?*?*IFsrmAction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumActions: fn(
             self: *const IFsrmFileScreenBase,
-            actions: **IFsrmCollection,
+            actions: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenBase_get_BlockedFileGroups(self: *const T, blockList: **IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenBase_get_BlockedFileGroups(self: *const T, blockList: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenBase.VTable, self.vtable).get_BlockedFileGroups(@ptrCast(*const IFsrmFileScreenBase, self), blockList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenBase_put_BlockedFileGroups(self: *const T, blockList: *IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenBase_put_BlockedFileGroups(self: *const T, blockList: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenBase.VTable, self.vtable).put_BlockedFileGroups(@ptrCast(*const IFsrmFileScreenBase, self), blockList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenBase_get_FileScreenFlags(self: *const T, fileScreenFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenBase_get_FileScreenFlags(self: *const T, fileScreenFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenBase.VTable, self.vtable).get_FileScreenFlags(@ptrCast(*const IFsrmFileScreenBase, self), fileScreenFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2343,11 +2343,11 @@ pub const IFsrmFileScreenBase = extern struct {
             return @ptrCast(*const IFsrmFileScreenBase.VTable, self.vtable).put_FileScreenFlags(@ptrCast(*const IFsrmFileScreenBase, self), fileScreenFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenBase_CreateAction(self: *const T, actionType: FsrmActionType, action: **IFsrmAction) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenBase_CreateAction(self: *const T, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenBase.VTable, self.vtable).CreateAction(@ptrCast(*const IFsrmFileScreenBase, self), actionType, action);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenBase_EnumActions(self: *const T, actions: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenBase_EnumActions(self: *const T, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenBase.VTable, self.vtable).EnumActions(@ptrCast(*const IFsrmFileScreenBase, self), actions);
         }
     };}
@@ -2363,58 +2363,58 @@ pub const IFsrmFileScreen = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IFsrmFileScreen,
-            path: *BSTR,
+            path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceTemplateName: fn(
             self: *const IFsrmFileScreen,
-            fileScreenTemplateName: *BSTR,
+            fileScreenTemplateName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MatchesSourceTemplate: fn(
             self: *const IFsrmFileScreen,
-            matches: *i16,
+            matches: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSid: fn(
             self: *const IFsrmFileScreen,
-            userSid: *BSTR,
+            userSid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserAccount: fn(
             self: *const IFsrmFileScreen,
-            userAccount: *BSTR,
+            userAccount: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ApplyTemplate: fn(
             self: *const IFsrmFileScreen,
-            fileScreenTemplateName: BSTR,
+            fileScreenTemplateName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmFileScreenBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreen_get_Path(self: *const T, path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreen_get_Path(self: *const T, path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreen.VTable, self.vtable).get_Path(@ptrCast(*const IFsrmFileScreen, self), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreen_get_SourceTemplateName(self: *const T, fileScreenTemplateName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreen_get_SourceTemplateName(self: *const T, fileScreenTemplateName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreen.VTable, self.vtable).get_SourceTemplateName(@ptrCast(*const IFsrmFileScreen, self), fileScreenTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreen_get_MatchesSourceTemplate(self: *const T, matches: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreen_get_MatchesSourceTemplate(self: *const T, matches: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreen.VTable, self.vtable).get_MatchesSourceTemplate(@ptrCast(*const IFsrmFileScreen, self), matches);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreen_get_UserSid(self: *const T, userSid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreen_get_UserSid(self: *const T, userSid: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreen.VTable, self.vtable).get_UserSid(@ptrCast(*const IFsrmFileScreen, self), userSid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreen_get_UserAccount(self: *const T, userAccount: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreen_get_UserAccount(self: *const T, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreen.VTable, self.vtable).get_UserAccount(@ptrCast(*const IFsrmFileScreen, self), userAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreen_ApplyTemplate(self: *const T, fileScreenTemplateName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreen_ApplyTemplate(self: *const T, fileScreenTemplateName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreen.VTable, self.vtable).ApplyTemplate(@ptrCast(*const IFsrmFileScreen, self), fileScreenTemplateName);
         }
     };}
@@ -2430,32 +2430,32 @@ pub const IFsrmFileScreenException = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IFsrmFileScreenException,
-            path: *BSTR,
+            path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowedFileGroups: fn(
             self: *const IFsrmFileScreenException,
-            allowList: **IFsrmMutableCollection,
+            allowList: ?*?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowedFileGroups: fn(
             self: *const IFsrmFileScreenException,
-            allowList: *IFsrmMutableCollection,
+            allowList: ?*IFsrmMutableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenException_get_Path(self: *const T, path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenException_get_Path(self: *const T, path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenException.VTable, self.vtable).get_Path(@ptrCast(*const IFsrmFileScreenException, self), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenException_get_AllowedFileGroups(self: *const T, allowList: **IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenException_get_AllowedFileGroups(self: *const T, allowList: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenException.VTable, self.vtable).get_AllowedFileGroups(@ptrCast(*const IFsrmFileScreenException, self), allowList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenException_put_AllowedFileGroups(self: *const T, allowList: *IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenException_put_AllowedFileGroups(self: *const T, allowList: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenException.VTable, self.vtable).put_AllowedFileGroups(@ptrCast(*const IFsrmFileScreenException, self), allowList);
         }
     };}
@@ -2471,87 +2471,87 @@ pub const IFsrmFileScreenManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariables: fn(
             self: *const IFsrmFileScreenManager,
-            variables: **SAFEARRAY,
+            variables: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariableDescriptions: fn(
             self: *const IFsrmFileScreenManager,
-            descriptions: **SAFEARRAY,
+            descriptions: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFileScreen: fn(
             self: *const IFsrmFileScreenManager,
-            path: BSTR,
-            fileScreen: **IFsrmFileScreen,
+            path: ?BSTR,
+            fileScreen: ?*?*IFsrmFileScreen,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileScreen: fn(
             self: *const IFsrmFileScreenManager,
-            path: BSTR,
-            fileScreen: **IFsrmFileScreen,
+            path: ?BSTR,
+            fileScreen: ?*?*IFsrmFileScreen,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFileScreens: fn(
             self: *const IFsrmFileScreenManager,
-            path: BSTR,
+            path: ?BSTR,
             options: FsrmEnumOptions,
-            fileScreens: **IFsrmCommittableCollection,
+            fileScreens: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFileScreenException: fn(
             self: *const IFsrmFileScreenManager,
-            path: BSTR,
-            fileScreenException: **IFsrmFileScreenException,
+            path: ?BSTR,
+            fileScreenException: ?*?*IFsrmFileScreenException,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileScreenException: fn(
             self: *const IFsrmFileScreenManager,
-            path: BSTR,
-            fileScreenException: **IFsrmFileScreenException,
+            path: ?BSTR,
+            fileScreenException: ?*?*IFsrmFileScreenException,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFileScreenExceptions: fn(
             self: *const IFsrmFileScreenManager,
-            path: BSTR,
+            path: ?BSTR,
             options: FsrmEnumOptions,
-            fileScreenExceptions: **IFsrmCommittableCollection,
+            fileScreenExceptions: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFileScreenCollection: fn(
             self: *const IFsrmFileScreenManager,
-            collection: **IFsrmCommittableCollection,
+            collection: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_get_ActionVariables(self: *const T, variables: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_get_ActionVariables(self: *const T, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).get_ActionVariables(@ptrCast(*const IFsrmFileScreenManager, self), variables);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_get_ActionVariableDescriptions(self: *const T, descriptions: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_get_ActionVariableDescriptions(self: *const T, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).get_ActionVariableDescriptions(@ptrCast(*const IFsrmFileScreenManager, self), descriptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_CreateFileScreen(self: *const T, path: BSTR, fileScreen: **IFsrmFileScreen) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_CreateFileScreen(self: *const T, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).CreateFileScreen(@ptrCast(*const IFsrmFileScreenManager, self), path, fileScreen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_GetFileScreen(self: *const T, path: BSTR, fileScreen: **IFsrmFileScreen) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_GetFileScreen(self: *const T, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).GetFileScreen(@ptrCast(*const IFsrmFileScreenManager, self), path, fileScreen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_EnumFileScreens(self: *const T, path: BSTR, options: FsrmEnumOptions, fileScreens: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_EnumFileScreens(self: *const T, path: ?BSTR, options: FsrmEnumOptions, fileScreens: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).EnumFileScreens(@ptrCast(*const IFsrmFileScreenManager, self), path, options, fileScreens);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_CreateFileScreenException(self: *const T, path: BSTR, fileScreenException: **IFsrmFileScreenException) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_CreateFileScreenException(self: *const T, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).CreateFileScreenException(@ptrCast(*const IFsrmFileScreenManager, self), path, fileScreenException);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_GetFileScreenException(self: *const T, path: BSTR, fileScreenException: **IFsrmFileScreenException) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_GetFileScreenException(self: *const T, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).GetFileScreenException(@ptrCast(*const IFsrmFileScreenManager, self), path, fileScreenException);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_EnumFileScreenExceptions(self: *const T, path: BSTR, options: FsrmEnumOptions, fileScreenExceptions: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_EnumFileScreenExceptions(self: *const T, path: ?BSTR, options: FsrmEnumOptions, fileScreenExceptions: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).EnumFileScreenExceptions(@ptrCast(*const IFsrmFileScreenManager, self), path, options, fileScreenExceptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenManager_CreateFileScreenCollection(self: *const T, collection: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenManager_CreateFileScreenCollection(self: *const T, collection: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenManager.VTable, self.vtable).CreateFileScreenCollection(@ptrCast(*const IFsrmFileScreenManager, self), collection);
         }
     };}
@@ -2567,41 +2567,41 @@ pub const IFsrmFileScreenTemplate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmFileScreenTemplate,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmFileScreenTemplate,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyTemplate: fn(
             self: *const IFsrmFileScreenTemplate,
-            fileScreenTemplateName: BSTR,
+            fileScreenTemplateName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CommitAndUpdateDerived: fn(
             self: *const IFsrmFileScreenTemplate,
             commitOptions: FsrmCommitOptions,
             applyOptions: FsrmTemplateApplyOptions,
-            derivedObjectsResult: **IFsrmDerivedObjectsResult,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmFileScreenBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplate_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplate_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplate.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmFileScreenTemplate, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplate_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplate_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplate.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmFileScreenTemplate, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplate_CopyTemplate(self: *const T, fileScreenTemplateName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplate_CopyTemplate(self: *const T, fileScreenTemplateName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplate.VTable, self.vtable).CopyTemplate(@ptrCast(*const IFsrmFileScreenTemplate, self), fileScreenTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplate_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: **IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplate_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplate.VTable, self.vtable).CommitAndUpdateDerived(@ptrCast(*const IFsrmFileScreenTemplate, self), commitOptions, applyOptions, derivedObjectsResult);
         }
     };}
@@ -2617,7 +2617,7 @@ pub const IFsrmFileScreenTemplateImported = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OverwriteOnCommit: fn(
             self: *const IFsrmFileScreenTemplateImported,
-            overwrite: *i16,
+            overwrite: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: fn(
@@ -2629,7 +2629,7 @@ pub const IFsrmFileScreenTemplateImported = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmFileScreenTemplate.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplateImported_get_OverwriteOnCommit(self: *const T, overwrite: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplateImported_get_OverwriteOnCommit(self: *const T, overwrite: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplateImported.VTable, self.vtable).get_OverwriteOnCommit(@ptrCast(*const IFsrmFileScreenTemplateImported, self), overwrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2648,51 +2648,51 @@ pub const IFsrmFileScreenTemplateManager = extern struct {
         base: IDispatch.VTable,
         CreateTemplate: fn(
             self: *const IFsrmFileScreenTemplateManager,
-            fileScreenTemplate: **IFsrmFileScreenTemplate,
+            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTemplate: fn(
             self: *const IFsrmFileScreenTemplateManager,
-            name: BSTR,
-            fileScreenTemplate: **IFsrmFileScreenTemplate,
+            name: ?BSTR,
+            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumTemplates: fn(
             self: *const IFsrmFileScreenTemplateManager,
             options: FsrmEnumOptions,
-            fileScreenTemplates: **IFsrmCommittableCollection,
+            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExportTemplates: fn(
             self: *const IFsrmFileScreenTemplateManager,
-            fileScreenTemplateNamesArray: *VARIANT,
-            serializedFileScreenTemplates: *BSTR,
+            fileScreenTemplateNamesArray: ?*VARIANT,
+            serializedFileScreenTemplates: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportTemplates: fn(
             self: *const IFsrmFileScreenTemplateManager,
-            serializedFileScreenTemplates: BSTR,
-            fileScreenTemplateNamesArray: *VARIANT,
-            fileScreenTemplates: **IFsrmCommittableCollection,
+            serializedFileScreenTemplates: ?BSTR,
+            fileScreenTemplateNamesArray: ?*VARIANT,
+            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplateManager_CreateTemplate(self: *const T, fileScreenTemplate: **IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplateManager_CreateTemplate(self: *const T, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplateManager.VTable, self.vtable).CreateTemplate(@ptrCast(*const IFsrmFileScreenTemplateManager, self), fileScreenTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplateManager_GetTemplate(self: *const T, name: BSTR, fileScreenTemplate: **IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplateManager_GetTemplate(self: *const T, name: ?BSTR, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplateManager.VTable, self.vtable).GetTemplate(@ptrCast(*const IFsrmFileScreenTemplateManager, self), name, fileScreenTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplateManager_EnumTemplates(self: *const T, options: FsrmEnumOptions, fileScreenTemplates: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplateManager_EnumTemplates(self: *const T, options: FsrmEnumOptions, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplateManager.VTable, self.vtable).EnumTemplates(@ptrCast(*const IFsrmFileScreenTemplateManager, self), options, fileScreenTemplates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplateManager_ExportTemplates(self: *const T, fileScreenTemplateNamesArray: *VARIANT, serializedFileScreenTemplates: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplateManager_ExportTemplates(self: *const T, fileScreenTemplateNamesArray: ?*VARIANT, serializedFileScreenTemplates: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplateManager.VTable, self.vtable).ExportTemplates(@ptrCast(*const IFsrmFileScreenTemplateManager, self), fileScreenTemplateNamesArray, serializedFileScreenTemplates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileScreenTemplateManager_ImportTemplates(self: *const T, serializedFileScreenTemplates: BSTR, fileScreenTemplateNamesArray: *VARIANT, fileScreenTemplates: **IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileScreenTemplateManager_ImportTemplates(self: *const T, serializedFileScreenTemplates: ?BSTR, fileScreenTemplateNamesArray: ?*VARIANT, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileScreenTemplateManager.VTable, self.vtable).ImportTemplates(@ptrCast(*const IFsrmFileScreenTemplateManager, self), serializedFileScreenTemplates, fileScreenTemplateNamesArray, fileScreenTemplates);
         }
     };}
@@ -2708,38 +2708,38 @@ pub const IFsrmReportManager = extern struct {
         EnumReportJobs: fn(
             self: *const IFsrmReportManager,
             options: FsrmEnumOptions,
-            reportJobs: **IFsrmCollection,
+            reportJobs: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateReportJob: fn(
             self: *const IFsrmReportManager,
-            reportJob: **IFsrmReportJob,
+            reportJob: ?*?*IFsrmReportJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReportJob: fn(
             self: *const IFsrmReportManager,
-            taskName: BSTR,
-            reportJob: **IFsrmReportJob,
+            taskName: ?BSTR,
+            reportJob: ?*?*IFsrmReportJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputDirectory: fn(
             self: *const IFsrmReportManager,
             context: FsrmReportGenerationContext,
-            path: *BSTR,
+            path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputDirectory: fn(
             self: *const IFsrmReportManager,
             context: FsrmReportGenerationContext,
-            path: BSTR,
+            path: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsFilterValidForReportType: fn(
             self: *const IFsrmReportManager,
             reportType: FsrmReportType,
             filter: FsrmReportFilter,
-            valid: *i16,
+            valid: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultFilter: fn(
             self: *const IFsrmReportManager,
             reportType: FsrmReportType,
             filter: FsrmReportFilter,
-            filterValue: *VARIANT,
+            filterValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultFilter: fn(
             self: *const IFsrmReportManager,
@@ -2750,7 +2750,7 @@ pub const IFsrmReportManager = extern struct {
         GetReportSizeLimit: fn(
             self: *const IFsrmReportManager,
             limit: FsrmReportLimit,
-            limitValue: *VARIANT,
+            limitValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReportSizeLimit: fn(
             self: *const IFsrmReportManager,
@@ -2762,31 +2762,31 @@ pub const IFsrmReportManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_EnumReportJobs(self: *const T, options: FsrmEnumOptions, reportJobs: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_EnumReportJobs(self: *const T, options: FsrmEnumOptions, reportJobs: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).EnumReportJobs(@ptrCast(*const IFsrmReportManager, self), options, reportJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_CreateReportJob(self: *const T, reportJob: **IFsrmReportJob) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_CreateReportJob(self: *const T, reportJob: ?*?*IFsrmReportJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).CreateReportJob(@ptrCast(*const IFsrmReportManager, self), reportJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_GetReportJob(self: *const T, taskName: BSTR, reportJob: **IFsrmReportJob) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_GetReportJob(self: *const T, taskName: ?BSTR, reportJob: ?*?*IFsrmReportJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).GetReportJob(@ptrCast(*const IFsrmReportManager, self), taskName, reportJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_GetOutputDirectory(self: *const T, context: FsrmReportGenerationContext, path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_GetOutputDirectory(self: *const T, context: FsrmReportGenerationContext, path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).GetOutputDirectory(@ptrCast(*const IFsrmReportManager, self), context, path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_SetOutputDirectory(self: *const T, context: FsrmReportGenerationContext, path: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_SetOutputDirectory(self: *const T, context: FsrmReportGenerationContext, path: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).SetOutputDirectory(@ptrCast(*const IFsrmReportManager, self), context, path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_IsFilterValidForReportType(self: *const T, reportType: FsrmReportType, filter: FsrmReportFilter, valid: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_IsFilterValidForReportType(self: *const T, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).IsFilterValidForReportType(@ptrCast(*const IFsrmReportManager, self), reportType, filter, valid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_GetDefaultFilter(self: *const T, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_GetDefaultFilter(self: *const T, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).GetDefaultFilter(@ptrCast(*const IFsrmReportManager, self), reportType, filter, filterValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2794,7 +2794,7 @@ pub const IFsrmReportManager = extern struct {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).SetDefaultFilter(@ptrCast(*const IFsrmReportManager, self), reportType, filter, filterValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportManager_GetReportSizeLimit(self: *const T, limit: FsrmReportLimit, limitValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportManager_GetReportSizeLimit(self: *const T, limit: FsrmReportLimit, limitValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportManager.VTable, self.vtable).GetReportSizeLimit(@ptrCast(*const IFsrmReportManager, self), limit, limitValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2814,71 +2814,71 @@ pub const IFsrmReportJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Task: fn(
             self: *const IFsrmReportJob,
-            taskName: *BSTR,
+            taskName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Task: fn(
             self: *const IFsrmReportJob,
-            taskName: BSTR,
+            taskName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceRoots: fn(
             self: *const IFsrmReportJob,
-            namespaceRoots: **SAFEARRAY,
+            namespaceRoots: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NamespaceRoots: fn(
             self: *const IFsrmReportJob,
-            namespaceRoots: *SAFEARRAY,
+            namespaceRoots: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Formats: fn(
             self: *const IFsrmReportJob,
-            formats: **SAFEARRAY,
+            formats: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Formats: fn(
             self: *const IFsrmReportJob,
-            formats: *SAFEARRAY,
+            formats: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: fn(
             self: *const IFsrmReportJob,
-            mailTo: *BSTR,
+            mailTo: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: fn(
             self: *const IFsrmReportJob,
-            mailTo: BSTR,
+            mailTo: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunningStatus: fn(
             self: *const IFsrmReportJob,
-            runningStatus: *FsrmReportRunningStatus,
+            runningStatus: ?*FsrmReportRunningStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastRun: fn(
             self: *const IFsrmReportJob,
-            lastRun: *f64,
+            lastRun: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastError: fn(
             self: *const IFsrmReportJob,
-            lastError: *BSTR,
+            lastError: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastGeneratedInDirectory: fn(
             self: *const IFsrmReportJob,
-            path: *BSTR,
+            path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumReports: fn(
             self: *const IFsrmReportJob,
-            reports: **IFsrmCollection,
+            reports: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateReport: fn(
             self: *const IFsrmReportJob,
             reportType: FsrmReportType,
-            report: **IFsrmReport,
+            report: ?*?*IFsrmReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Run: fn(
             self: *const IFsrmReportJob,
@@ -2887,7 +2887,7 @@ pub const IFsrmReportJob = extern struct {
         WaitForCompletion: fn(
             self: *const IFsrmReportJob,
             waitSeconds: i32,
-            completed: *i16,
+            completed: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IFsrmReportJob,
@@ -2897,59 +2897,59 @@ pub const IFsrmReportJob = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_Task(self: *const T, taskName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_Task(self: *const T, taskName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_Task(@ptrCast(*const IFsrmReportJob, self), taskName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_put_Task(self: *const T, taskName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_put_Task(self: *const T, taskName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).put_Task(@ptrCast(*const IFsrmReportJob, self), taskName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_NamespaceRoots(self: *const T, namespaceRoots: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_NamespaceRoots(self: *const T, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_NamespaceRoots(@ptrCast(*const IFsrmReportJob, self), namespaceRoots);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_put_NamespaceRoots(self: *const T, namespaceRoots: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_put_NamespaceRoots(self: *const T, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).put_NamespaceRoots(@ptrCast(*const IFsrmReportJob, self), namespaceRoots);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_Formats(self: *const T, formats: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_Formats(self: *const T, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_Formats(@ptrCast(*const IFsrmReportJob, self), formats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_put_Formats(self: *const T, formats: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_put_Formats(self: *const T, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).put_Formats(@ptrCast(*const IFsrmReportJob, self), formats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_MailTo(self: *const T, mailTo: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_MailTo(self: *const T, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_MailTo(@ptrCast(*const IFsrmReportJob, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_put_MailTo(self: *const T, mailTo: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_put_MailTo(self: *const T, mailTo: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).put_MailTo(@ptrCast(*const IFsrmReportJob, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_RunningStatus(self: *const T, runningStatus: *FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_RunningStatus(self: *const T, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_RunningStatus(@ptrCast(*const IFsrmReportJob, self), runningStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_LastRun(self: *const T, lastRun: *f64) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_LastRun(self: *const T, lastRun: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_LastRun(@ptrCast(*const IFsrmReportJob, self), lastRun);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_LastError(self: *const T, lastError: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_LastError(self: *const T, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_LastError(@ptrCast(*const IFsrmReportJob, self), lastError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_get_LastGeneratedInDirectory(self: *const T, path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_get_LastGeneratedInDirectory(self: *const T, path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).get_LastGeneratedInDirectory(@ptrCast(*const IFsrmReportJob, self), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_EnumReports(self: *const T, reports: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_EnumReports(self: *const T, reports: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).EnumReports(@ptrCast(*const IFsrmReportJob, self), reports);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_CreateReport(self: *const T, reportType: FsrmReportType, report: **IFsrmReport) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_CreateReport(self: *const T, reportType: FsrmReportType, report: ?*?*IFsrmReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).CreateReport(@ptrCast(*const IFsrmReportJob, self), reportType, report);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2957,7 +2957,7 @@ pub const IFsrmReportJob = extern struct {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).Run(@ptrCast(*const IFsrmReportJob, self), context);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportJob_WaitForCompletion(self: *const T, waitSeconds: i32, completed: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportJob_WaitForCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportJob.VTable, self.vtable).WaitForCompletion(@ptrCast(*const IFsrmReportJob, self), waitSeconds, completed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2977,37 +2977,37 @@ pub const IFsrmReport = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IFsrmReport,
-            reportType: *FsrmReportType,
+            reportType: ?*FsrmReportType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmReport,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmReport,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IFsrmReport,
-            description: *BSTR,
+            description: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IFsrmReport,
-            description: BSTR,
+            description: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastGeneratedFileNamePrefix: fn(
             self: *const IFsrmReport,
-            prefix: *BSTR,
+            prefix: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilter: fn(
             self: *const IFsrmReport,
             filter: FsrmReportFilter,
-            filterValue: *VARIANT,
+            filterValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFilter: fn(
             self: *const IFsrmReport,
@@ -3022,31 +3022,31 @@ pub const IFsrmReport = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReport_get_Type(self: *const T, reportType: *FsrmReportType) callconv(.Inline) HRESULT {
+        pub fn IFsrmReport_get_Type(self: *const T, reportType: ?*FsrmReportType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReport.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmReport, self), reportType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReport_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReport_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReport.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmReport, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReport_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReport_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReport.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmReport, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReport_get_Description(self: *const T, description: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReport_get_Description(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReport.VTable, self.vtable).get_Description(@ptrCast(*const IFsrmReport, self), description);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReport_put_Description(self: *const T, description: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReport_put_Description(self: *const T, description: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReport.VTable, self.vtable).put_Description(@ptrCast(*const IFsrmReport, self), description);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReport_get_LastGeneratedFileNamePrefix(self: *const T, prefix: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReport_get_LastGeneratedFileNamePrefix(self: *const T, prefix: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReport.VTable, self.vtable).get_LastGeneratedFileNamePrefix(@ptrCast(*const IFsrmReport, self), prefix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReport_GetFilter(self: *const T, filter: FsrmReportFilter, filterValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmReport_GetFilter(self: *const T, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReport.VTable, self.vtable).GetFilter(@ptrCast(*const IFsrmReport, self), filter, filterValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3069,42 +3069,42 @@ pub const IFsrmReportScheduler = extern struct {
         base: IDispatch.VTable,
         VerifyNamespaces: fn(
             self: *const IFsrmReportScheduler,
-            namespacesSafeArray: *VARIANT,
+            namespacesSafeArray: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateScheduleTask: fn(
             self: *const IFsrmReportScheduler,
-            taskName: BSTR,
-            namespacesSafeArray: *VARIANT,
-            serializedTask: BSTR,
+            taskName: ?BSTR,
+            namespacesSafeArray: ?*VARIANT,
+            serializedTask: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ModifyScheduleTask: fn(
             self: *const IFsrmReportScheduler,
-            taskName: BSTR,
-            namespacesSafeArray: *VARIANT,
-            serializedTask: BSTR,
+            taskName: ?BSTR,
+            namespacesSafeArray: ?*VARIANT,
+            serializedTask: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteScheduleTask: fn(
             self: *const IFsrmReportScheduler,
-            taskName: BSTR,
+            taskName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportScheduler_VerifyNamespaces(self: *const T, namespacesSafeArray: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportScheduler_VerifyNamespaces(self: *const T, namespacesSafeArray: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportScheduler.VTable, self.vtable).VerifyNamespaces(@ptrCast(*const IFsrmReportScheduler, self), namespacesSafeArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportScheduler_CreateScheduleTask(self: *const T, taskName: BSTR, namespacesSafeArray: *VARIANT, serializedTask: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportScheduler_CreateScheduleTask(self: *const T, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportScheduler.VTable, self.vtable).CreateScheduleTask(@ptrCast(*const IFsrmReportScheduler, self), taskName, namespacesSafeArray, serializedTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportScheduler_ModifyScheduleTask(self: *const T, taskName: BSTR, namespacesSafeArray: *VARIANT, serializedTask: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportScheduler_ModifyScheduleTask(self: *const T, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportScheduler.VTable, self.vtable).ModifyScheduleTask(@ptrCast(*const IFsrmReportScheduler, self), taskName, namespacesSafeArray, serializedTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmReportScheduler_DeleteScheduleTask(self: *const T, taskName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmReportScheduler_DeleteScheduleTask(self: *const T, taskName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmReportScheduler.VTable, self.vtable).DeleteScheduleTask(@ptrCast(*const IFsrmReportScheduler, self), taskName);
         }
     };}
@@ -3120,49 +3120,49 @@ pub const IFsrmFileManagementJobManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariables: fn(
             self: *const IFsrmFileManagementJobManager,
-            variables: **SAFEARRAY,
+            variables: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActionVariableDescriptions: fn(
             self: *const IFsrmFileManagementJobManager,
-            descriptions: **SAFEARRAY,
+            descriptions: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFileManagementJobs: fn(
             self: *const IFsrmFileManagementJobManager,
             options: FsrmEnumOptions,
-            fileManagementJobs: **IFsrmCollection,
+            fileManagementJobs: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFileManagementJob: fn(
             self: *const IFsrmFileManagementJobManager,
-            fileManagementJob: **IFsrmFileManagementJob,
+            fileManagementJob: ?*?*IFsrmFileManagementJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileManagementJob: fn(
             self: *const IFsrmFileManagementJobManager,
-            name: BSTR,
-            fileManagementJob: **IFsrmFileManagementJob,
+            name: ?BSTR,
+            fileManagementJob: ?*?*IFsrmFileManagementJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJobManager_get_ActionVariables(self: *const T, variables: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJobManager_get_ActionVariables(self: *const T, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJobManager.VTable, self.vtable).get_ActionVariables(@ptrCast(*const IFsrmFileManagementJobManager, self), variables);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJobManager_get_ActionVariableDescriptions(self: *const T, descriptions: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJobManager_get_ActionVariableDescriptions(self: *const T, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJobManager.VTable, self.vtable).get_ActionVariableDescriptions(@ptrCast(*const IFsrmFileManagementJobManager, self), descriptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJobManager_EnumFileManagementJobs(self: *const T, options: FsrmEnumOptions, fileManagementJobs: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJobManager_EnumFileManagementJobs(self: *const T, options: FsrmEnumOptions, fileManagementJobs: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJobManager.VTable, self.vtable).EnumFileManagementJobs(@ptrCast(*const IFsrmFileManagementJobManager, self), options, fileManagementJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJobManager_CreateFileManagementJob(self: *const T, fileManagementJob: **IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJobManager_CreateFileManagementJob(self: *const T, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJobManager.VTable, self.vtable).CreateFileManagementJob(@ptrCast(*const IFsrmFileManagementJobManager, self), fileManagementJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJobManager_GetFileManagementJob(self: *const T, name: BSTR, fileManagementJob: **IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJobManager_GetFileManagementJob(self: *const T, name: ?BSTR, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJobManager.VTable, self.vtable).GetFileManagementJob(@ptrCast(*const IFsrmFileManagementJobManager, self), name, fileManagementJob);
         }
     };}
@@ -3178,27 +3178,27 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmFileManagementJob,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmFileManagementJob,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceRoots: fn(
             self: *const IFsrmFileManagementJob,
-            namespaceRoots: **SAFEARRAY,
+            namespaceRoots: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NamespaceRoots: fn(
             self: *const IFsrmFileManagementJob,
-            namespaceRoots: *SAFEARRAY,
+            namespaceRoots: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: fn(
             self: *const IFsrmFileManagementJob,
-            enabled: *i16,
+            enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: fn(
@@ -3208,7 +3208,7 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OperationType: fn(
             self: *const IFsrmFileManagementJob,
-            operationType: *FsrmFileManagementType,
+            operationType: ?*FsrmFileManagementType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OperationType: fn(
@@ -3218,27 +3218,27 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpirationDirectory: fn(
             self: *const IFsrmFileManagementJob,
-            expirationDirectory: *BSTR,
+            expirationDirectory: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExpirationDirectory: fn(
             self: *const IFsrmFileManagementJob,
-            expirationDirectory: BSTR,
+            expirationDirectory: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CustomAction: fn(
             self: *const IFsrmFileManagementJob,
-            action: **IFsrmActionCommand,
+            action: ?*?*IFsrmActionCommand,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Notifications: fn(
             self: *const IFsrmFileManagementJob,
-            notifications: **SAFEARRAY,
+            notifications: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Logging: fn(
             self: *const IFsrmFileManagementJob,
-            loggingFlags: *i32,
+            loggingFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Logging: fn(
@@ -3248,7 +3248,7 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportEnabled: fn(
             self: *const IFsrmFileManagementJob,
-            reportEnabled: *i16,
+            reportEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportEnabled: fn(
@@ -3258,27 +3258,27 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Formats: fn(
             self: *const IFsrmFileManagementJob,
-            formats: **SAFEARRAY,
+            formats: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Formats: fn(
             self: *const IFsrmFileManagementJob,
-            formats: *SAFEARRAY,
+            formats: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MailTo: fn(
             self: *const IFsrmFileManagementJob,
-            mailTo: *BSTR,
+            mailTo: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MailTo: fn(
             self: *const IFsrmFileManagementJob,
-            mailTo: BSTR,
+            mailTo: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaysSinceFileCreated: fn(
             self: *const IFsrmFileManagementJob,
-            daysSinceCreation: *i32,
+            daysSinceCreation: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysSinceFileCreated: fn(
@@ -3288,7 +3288,7 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaysSinceFileLastAccessed: fn(
             self: *const IFsrmFileManagementJob,
-            daysSinceAccess: *i32,
+            daysSinceAccess: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysSinceFileLastAccessed: fn(
@@ -3298,7 +3298,7 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaysSinceFileLastModified: fn(
             self: *const IFsrmFileManagementJob,
-            daysSinceModify: *i32,
+            daysSinceModify: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysSinceFileLastModified: fn(
@@ -3308,12 +3308,12 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyConditions: fn(
             self: *const IFsrmFileManagementJob,
-            propertyConditions: **IFsrmCollection,
+            propertyConditions: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FromDate: fn(
             self: *const IFsrmFileManagementJob,
-            fromDate: *f64,
+            fromDate: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FromDate: fn(
@@ -3323,52 +3323,52 @@ pub const IFsrmFileManagementJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Task: fn(
             self: *const IFsrmFileManagementJob,
-            taskName: *BSTR,
+            taskName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Task: fn(
             self: *const IFsrmFileManagementJob,
-            taskName: BSTR,
+            taskName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: fn(
             self: *const IFsrmFileManagementJob,
-            parameters: **SAFEARRAY,
+            parameters: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: fn(
             self: *const IFsrmFileManagementJob,
-            parameters: *SAFEARRAY,
+            parameters: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunningStatus: fn(
             self: *const IFsrmFileManagementJob,
-            runningStatus: *FsrmReportRunningStatus,
+            runningStatus: ?*FsrmReportRunningStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastError: fn(
             self: *const IFsrmFileManagementJob,
-            lastError: *BSTR,
+            lastError: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastReportPathWithoutExtension: fn(
             self: *const IFsrmFileManagementJob,
-            path: *BSTR,
+            path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastRun: fn(
             self: *const IFsrmFileManagementJob,
-            lastRun: *f64,
+            lastRun: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileNamePattern: fn(
             self: *const IFsrmFileManagementJob,
-            fileNamePattern: *BSTR,
+            fileNamePattern: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FileNamePattern: fn(
             self: *const IFsrmFileManagementJob,
-            fileNamePattern: BSTR,
+            fileNamePattern: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Run: fn(
             self: *const IFsrmFileManagementJob,
@@ -3377,7 +3377,7 @@ pub const IFsrmFileManagementJob = extern struct {
         WaitForCompletion: fn(
             self: *const IFsrmFileManagementJob,
             waitSeconds: i32,
-            completed: *i16,
+            completed: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IFsrmFileManagementJob,
@@ -3399,44 +3399,44 @@ pub const IFsrmFileManagementJob = extern struct {
             self: *const IFsrmFileManagementJob,
             days: i32,
             actionType: FsrmActionType,
-            action: **IFsrmAction,
+            action: ?*?*IFsrmAction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumNotificationActions: fn(
             self: *const IFsrmFileManagementJob,
             days: i32,
-            actions: **IFsrmCollection,
+            actions: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePropertyCondition: fn(
             self: *const IFsrmFileManagementJob,
-            name: BSTR,
-            propertyCondition: **IFsrmPropertyCondition,
+            name: ?BSTR,
+            propertyCondition: ?*?*IFsrmPropertyCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCustomAction: fn(
             self: *const IFsrmFileManagementJob,
-            customAction: **IFsrmActionCommand,
+            customAction: ?*?*IFsrmActionCommand,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmFileManagementJob, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmFileManagementJob, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_NamespaceRoots(self: *const T, namespaceRoots: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_NamespaceRoots(self: *const T, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_NamespaceRoots(@ptrCast(*const IFsrmFileManagementJob, self), namespaceRoots);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_NamespaceRoots(self: *const T, namespaceRoots: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_NamespaceRoots(self: *const T, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_NamespaceRoots(@ptrCast(*const IFsrmFileManagementJob, self), namespaceRoots);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_Enabled(self: *const T, enabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_Enabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_Enabled(@ptrCast(*const IFsrmFileManagementJob, self), enabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3444,7 +3444,7 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_Enabled(@ptrCast(*const IFsrmFileManagementJob, self), enabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_OperationType(self: *const T, operationType: *FsrmFileManagementType) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_OperationType(self: *const T, operationType: ?*FsrmFileManagementType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_OperationType(@ptrCast(*const IFsrmFileManagementJob, self), operationType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3452,23 +3452,23 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_OperationType(@ptrCast(*const IFsrmFileManagementJob, self), operationType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_ExpirationDirectory(self: *const T, expirationDirectory: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_ExpirationDirectory(self: *const T, expirationDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_ExpirationDirectory(@ptrCast(*const IFsrmFileManagementJob, self), expirationDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_ExpirationDirectory(self: *const T, expirationDirectory: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_ExpirationDirectory(self: *const T, expirationDirectory: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_ExpirationDirectory(@ptrCast(*const IFsrmFileManagementJob, self), expirationDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_CustomAction(self: *const T, action: **IFsrmActionCommand) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_CustomAction(self: *const T, action: ?*?*IFsrmActionCommand) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_CustomAction(@ptrCast(*const IFsrmFileManagementJob, self), action);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_Notifications(self: *const T, notifications: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_Notifications(self: *const T, notifications: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_Notifications(@ptrCast(*const IFsrmFileManagementJob, self), notifications);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_Logging(self: *const T, loggingFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_Logging(self: *const T, loggingFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_Logging(@ptrCast(*const IFsrmFileManagementJob, self), loggingFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3476,7 +3476,7 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_Logging(@ptrCast(*const IFsrmFileManagementJob, self), loggingFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_ReportEnabled(self: *const T, reportEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_ReportEnabled(self: *const T, reportEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_ReportEnabled(@ptrCast(*const IFsrmFileManagementJob, self), reportEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3484,23 +3484,23 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_ReportEnabled(@ptrCast(*const IFsrmFileManagementJob, self), reportEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_Formats(self: *const T, formats: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_Formats(self: *const T, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_Formats(@ptrCast(*const IFsrmFileManagementJob, self), formats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_Formats(self: *const T, formats: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_Formats(self: *const T, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_Formats(@ptrCast(*const IFsrmFileManagementJob, self), formats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_MailTo(self: *const T, mailTo: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_MailTo(self: *const T, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_MailTo(@ptrCast(*const IFsrmFileManagementJob, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_MailTo(self: *const T, mailTo: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_MailTo(self: *const T, mailTo: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_MailTo(@ptrCast(*const IFsrmFileManagementJob, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_DaysSinceFileCreated(self: *const T, daysSinceCreation: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_DaysSinceFileCreated(self: *const T, daysSinceCreation: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_DaysSinceFileCreated(@ptrCast(*const IFsrmFileManagementJob, self), daysSinceCreation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3508,7 +3508,7 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_DaysSinceFileCreated(@ptrCast(*const IFsrmFileManagementJob, self), daysSinceCreation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_DaysSinceFileLastAccessed(self: *const T, daysSinceAccess: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_DaysSinceFileLastAccessed(self: *const T, daysSinceAccess: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_DaysSinceFileLastAccessed(@ptrCast(*const IFsrmFileManagementJob, self), daysSinceAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3516,7 +3516,7 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_DaysSinceFileLastAccessed(@ptrCast(*const IFsrmFileManagementJob, self), daysSinceAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_DaysSinceFileLastModified(self: *const T, daysSinceModify: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_DaysSinceFileLastModified(self: *const T, daysSinceModify: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_DaysSinceFileLastModified(@ptrCast(*const IFsrmFileManagementJob, self), daysSinceModify);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3524,11 +3524,11 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_DaysSinceFileLastModified(@ptrCast(*const IFsrmFileManagementJob, self), daysSinceModify);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_PropertyConditions(self: *const T, propertyConditions: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_PropertyConditions(self: *const T, propertyConditions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_PropertyConditions(@ptrCast(*const IFsrmFileManagementJob, self), propertyConditions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_FromDate(self: *const T, fromDate: *f64) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_FromDate(self: *const T, fromDate: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_FromDate(@ptrCast(*const IFsrmFileManagementJob, self), fromDate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3536,43 +3536,43 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_FromDate(@ptrCast(*const IFsrmFileManagementJob, self), fromDate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_Task(self: *const T, taskName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_Task(self: *const T, taskName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_Task(@ptrCast(*const IFsrmFileManagementJob, self), taskName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_Task(self: *const T, taskName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_Task(self: *const T, taskName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_Task(@ptrCast(*const IFsrmFileManagementJob, self), taskName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_Parameters(self: *const T, parameters: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_Parameters(@ptrCast(*const IFsrmFileManagementJob, self), parameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_Parameters(self: *const T, parameters: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_Parameters(@ptrCast(*const IFsrmFileManagementJob, self), parameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_RunningStatus(self: *const T, runningStatus: *FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_RunningStatus(self: *const T, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_RunningStatus(@ptrCast(*const IFsrmFileManagementJob, self), runningStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_LastError(self: *const T, lastError: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_LastError(self: *const T, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_LastError(@ptrCast(*const IFsrmFileManagementJob, self), lastError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_LastReportPathWithoutExtension(self: *const T, path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_LastReportPathWithoutExtension(self: *const T, path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_LastReportPathWithoutExtension(@ptrCast(*const IFsrmFileManagementJob, self), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_LastRun(self: *const T, lastRun: *f64) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_LastRun(self: *const T, lastRun: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_LastRun(@ptrCast(*const IFsrmFileManagementJob, self), lastRun);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_get_FileNamePattern(self: *const T, fileNamePattern: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_get_FileNamePattern(self: *const T, fileNamePattern: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).get_FileNamePattern(@ptrCast(*const IFsrmFileManagementJob, self), fileNamePattern);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_put_FileNamePattern(self: *const T, fileNamePattern: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_put_FileNamePattern(self: *const T, fileNamePattern: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).put_FileNamePattern(@ptrCast(*const IFsrmFileManagementJob, self), fileNamePattern);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3580,7 +3580,7 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).Run(@ptrCast(*const IFsrmFileManagementJob, self), context);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_WaitForCompletion(self: *const T, waitSeconds: i32, completed: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_WaitForCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).WaitForCompletion(@ptrCast(*const IFsrmFileManagementJob, self), waitSeconds, completed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3600,19 +3600,19 @@ pub const IFsrmFileManagementJob = extern struct {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).ModifyNotification(@ptrCast(*const IFsrmFileManagementJob, self), days, newDays);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_CreateNotificationAction(self: *const T, days: i32, actionType: FsrmActionType, action: **IFsrmAction) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_CreateNotificationAction(self: *const T, days: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).CreateNotificationAction(@ptrCast(*const IFsrmFileManagementJob, self), days, actionType, action);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_EnumNotificationActions(self: *const T, days: i32, actions: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_EnumNotificationActions(self: *const T, days: i32, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).EnumNotificationActions(@ptrCast(*const IFsrmFileManagementJob, self), days, actions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_CreatePropertyCondition(self: *const T, name: BSTR, propertyCondition: **IFsrmPropertyCondition) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_CreatePropertyCondition(self: *const T, name: ?BSTR, propertyCondition: ?*?*IFsrmPropertyCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).CreatePropertyCondition(@ptrCast(*const IFsrmFileManagementJob, self), name, propertyCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileManagementJob_CreateCustomAction(self: *const T, customAction: **IFsrmActionCommand) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileManagementJob_CreateCustomAction(self: *const T, customAction: ?*?*IFsrmActionCommand) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileManagementJob.VTable, self.vtable).CreateCustomAction(@ptrCast(*const IFsrmFileManagementJob, self), customAction);
         }
     };}
@@ -3628,17 +3628,17 @@ pub const IFsrmPropertyCondition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmPropertyCondition,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmPropertyCondition,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IFsrmPropertyCondition,
-            type: *FsrmPropertyConditionType,
+            type: ?*FsrmPropertyConditionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: fn(
@@ -3648,12 +3648,12 @@ pub const IFsrmPropertyCondition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IFsrmPropertyCondition,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: fn(
             self: *const IFsrmPropertyCondition,
-            value: BSTR,
+            value: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IFsrmPropertyCondition,
@@ -3663,15 +3663,15 @@ pub const IFsrmPropertyCondition = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyCondition_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmPropertyCondition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyCondition_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmPropertyCondition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_get_Type(self: *const T, type_: *FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyCondition_get_Type(self: *const T, type_: ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmPropertyCondition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3679,11 +3679,11 @@ pub const IFsrmPropertyCondition = extern struct {
             return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).put_Type(@ptrCast(*const IFsrmPropertyCondition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_get_Value(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyCondition_get_Value(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).get_Value(@ptrCast(*const IFsrmPropertyCondition, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyCondition_put_Value(self: *const T, value: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyCondition_put_Value(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyCondition.VTable, self.vtable).put_Value(@ptrCast(*const IFsrmPropertyCondition, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3702,7 +3702,7 @@ pub const IFsrmFileCondition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IFsrmFileCondition,
-            pVal: *FsrmFileConditionType,
+            pVal: ?*FsrmFileConditionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IFsrmFileCondition,
@@ -3712,7 +3712,7 @@ pub const IFsrmFileCondition = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileCondition_get_Type(self: *const T, pVal: *FsrmFileConditionType) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileCondition_get_Type(self: *const T, pVal: ?*FsrmFileConditionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileCondition.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmFileCondition, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3732,17 +3732,17 @@ pub const IFsrmFileConditionProperty = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyName: fn(
             self: *const IFsrmFileConditionProperty,
-            pVal: *BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertyName: fn(
             self: *const IFsrmFileConditionProperty,
-            newVal: BSTR,
+            newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: fn(
             self: *const IFsrmFileConditionProperty,
-            pVal: *FsrmFileSystemPropertyId,
+            pVal: ?*FsrmFileSystemPropertyId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertyId: fn(
@@ -3752,7 +3752,7 @@ pub const IFsrmFileConditionProperty = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operator: fn(
             self: *const IFsrmFileConditionProperty,
-            pVal: *FsrmPropertyConditionType,
+            pVal: ?*FsrmPropertyConditionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Operator: fn(
@@ -3762,7 +3762,7 @@ pub const IFsrmFileConditionProperty = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueType: fn(
             self: *const IFsrmFileConditionProperty,
-            pVal: *FsrmPropertyValueType,
+            pVal: ?*FsrmPropertyValueType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ValueType: fn(
@@ -3772,7 +3772,7 @@ pub const IFsrmFileConditionProperty = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IFsrmFileConditionProperty,
-            pVal: *VARIANT,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: fn(
@@ -3784,15 +3784,15 @@ pub const IFsrmFileConditionProperty = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmFileCondition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileConditionProperty_get_PropertyName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileConditionProperty_get_PropertyName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).get_PropertyName(@ptrCast(*const IFsrmFileConditionProperty, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileConditionProperty_put_PropertyName(self: *const T, newVal: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileConditionProperty_put_PropertyName(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).put_PropertyName(@ptrCast(*const IFsrmFileConditionProperty, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileConditionProperty_get_PropertyId(self: *const T, pVal: *FsrmFileSystemPropertyId) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileConditionProperty_get_PropertyId(self: *const T, pVal: ?*FsrmFileSystemPropertyId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).get_PropertyId(@ptrCast(*const IFsrmFileConditionProperty, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3800,7 +3800,7 @@ pub const IFsrmFileConditionProperty = extern struct {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).put_PropertyId(@ptrCast(*const IFsrmFileConditionProperty, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileConditionProperty_get_Operator(self: *const T, pVal: *FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileConditionProperty_get_Operator(self: *const T, pVal: ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).get_Operator(@ptrCast(*const IFsrmFileConditionProperty, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3808,7 +3808,7 @@ pub const IFsrmFileConditionProperty = extern struct {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).put_Operator(@ptrCast(*const IFsrmFileConditionProperty, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileConditionProperty_get_ValueType(self: *const T, pVal: *FsrmPropertyValueType) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileConditionProperty_get_ValueType(self: *const T, pVal: ?*FsrmPropertyValueType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).get_ValueType(@ptrCast(*const IFsrmFileConditionProperty, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3816,7 +3816,7 @@ pub const IFsrmFileConditionProperty = extern struct {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).put_ValueType(@ptrCast(*const IFsrmFileConditionProperty, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmFileConditionProperty_get_Value(self: *const T, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmFileConditionProperty_get_Value(self: *const T, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmFileConditionProperty.VTable, self.vtable).get_Value(@ptrCast(*const IFsrmFileConditionProperty, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3836,17 +3836,17 @@ pub const IFsrmPropertyDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmPropertyDefinition,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmPropertyDefinition,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IFsrmPropertyDefinition,
-            type: *FsrmPropertyDefinitionType,
+            type: ?*FsrmPropertyDefinitionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: fn(
@@ -3856,47 +3856,47 @@ pub const IFsrmPropertyDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PossibleValues: fn(
             self: *const IFsrmPropertyDefinition,
-            possibleValues: **SAFEARRAY,
+            possibleValues: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PossibleValues: fn(
             self: *const IFsrmPropertyDefinition,
-            possibleValues: *SAFEARRAY,
+            possibleValues: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueDescriptions: fn(
             self: *const IFsrmPropertyDefinition,
-            valueDescriptions: **SAFEARRAY,
+            valueDescriptions: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ValueDescriptions: fn(
             self: *const IFsrmPropertyDefinition,
-            valueDescriptions: *SAFEARRAY,
+            valueDescriptions: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: fn(
             self: *const IFsrmPropertyDefinition,
-            parameters: **SAFEARRAY,
+            parameters: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: fn(
             self: *const IFsrmPropertyDefinition,
-            parameters: *SAFEARRAY,
+            parameters: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmPropertyDefinition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmPropertyDefinition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_get_Type(self: *const T, type_: *FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_get_Type(self: *const T, type_: ?*FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).get_Type(@ptrCast(*const IFsrmPropertyDefinition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3904,27 +3904,27 @@ pub const IFsrmPropertyDefinition = extern struct {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_Type(@ptrCast(*const IFsrmPropertyDefinition, self), type_);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_get_PossibleValues(self: *const T, possibleValues: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_get_PossibleValues(self: *const T, possibleValues: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).get_PossibleValues(@ptrCast(*const IFsrmPropertyDefinition, self), possibleValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_put_PossibleValues(self: *const T, possibleValues: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_put_PossibleValues(self: *const T, possibleValues: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_PossibleValues(@ptrCast(*const IFsrmPropertyDefinition, self), possibleValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_get_ValueDescriptions(self: *const T, valueDescriptions: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_get_ValueDescriptions(self: *const T, valueDescriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).get_ValueDescriptions(@ptrCast(*const IFsrmPropertyDefinition, self), valueDescriptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_put_ValueDescriptions(self: *const T, valueDescriptions: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_put_ValueDescriptions(self: *const T, valueDescriptions: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_ValueDescriptions(@ptrCast(*const IFsrmPropertyDefinition, self), valueDescriptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_get_Parameters(self: *const T, parameters: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).get_Parameters(@ptrCast(*const IFsrmPropertyDefinition, self), parameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition_put_Parameters(self: *const T, parameters: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition.VTable, self.vtable).put_Parameters(@ptrCast(*const IFsrmPropertyDefinition, self), parameters);
         }
     };}
@@ -3940,50 +3940,50 @@ pub const IFsrmPropertyDefinition2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyDefinitionFlags: fn(
             self: *const IFsrmPropertyDefinition2,
-            propertyDefinitionFlags: *i32,
+            propertyDefinitionFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: fn(
             self: *const IFsrmPropertyDefinition2,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: fn(
             self: *const IFsrmPropertyDefinition2,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppliesTo: fn(
             self: *const IFsrmPropertyDefinition2,
-            appliesTo: *i32,
+            appliesTo: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueDefinitions: fn(
             self: *const IFsrmPropertyDefinition2,
-            valueDefinitions: **IFsrmCollection,
+            valueDefinitions: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmPropertyDefinition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition2_get_PropertyDefinitionFlags(self: *const T, propertyDefinitionFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition2_get_PropertyDefinitionFlags(self: *const T, propertyDefinitionFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition2.VTable, self.vtable).get_PropertyDefinitionFlags(@ptrCast(*const IFsrmPropertyDefinition2, self), propertyDefinitionFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition2_get_DisplayName(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition2_get_DisplayName(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition2.VTable, self.vtable).get_DisplayName(@ptrCast(*const IFsrmPropertyDefinition2, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition2_put_DisplayName(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition2_put_DisplayName(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition2.VTable, self.vtable).put_DisplayName(@ptrCast(*const IFsrmPropertyDefinition2, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition2_get_AppliesTo(self: *const T, appliesTo: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition2_get_AppliesTo(self: *const T, appliesTo: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition2.VTable, self.vtable).get_AppliesTo(@ptrCast(*const IFsrmPropertyDefinition2, self), appliesTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinition2_get_ValueDefinitions(self: *const T, valueDefinitions: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinition2_get_ValueDefinitions(self: *const T, valueDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinition2.VTable, self.vtable).get_ValueDefinitions(@ptrCast(*const IFsrmPropertyDefinition2, self), valueDefinitions);
         }
     };}
@@ -3999,41 +3999,41 @@ pub const IFsrmPropertyDefinitionValue = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmPropertyDefinitionValue,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: fn(
             self: *const IFsrmPropertyDefinitionValue,
-            displayName: *BSTR,
+            displayName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IFsrmPropertyDefinitionValue,
-            description: *BSTR,
+            description: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UniqueID: fn(
             self: *const IFsrmPropertyDefinitionValue,
-            uniqueID: *BSTR,
+            uniqueID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinitionValue_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinitionValue_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinitionValue.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmPropertyDefinitionValue, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinitionValue_get_DisplayName(self: *const T, displayName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinitionValue_get_DisplayName(self: *const T, displayName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinitionValue.VTable, self.vtable).get_DisplayName(@ptrCast(*const IFsrmPropertyDefinitionValue, self), displayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinitionValue_get_Description(self: *const T, description: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinitionValue_get_Description(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinitionValue.VTable, self.vtable).get_Description(@ptrCast(*const IFsrmPropertyDefinitionValue, self), description);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyDefinitionValue_get_UniqueID(self: *const T, uniqueID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyDefinitionValue_get_UniqueID(self: *const T, uniqueID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyDefinitionValue.VTable, self.vtable).get_UniqueID(@ptrCast(*const IFsrmPropertyDefinitionValue, self), uniqueID);
         }
     };}
@@ -4049,41 +4049,41 @@ pub const IFsrmProperty = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmProperty,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IFsrmProperty,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Sources: fn(
             self: *const IFsrmProperty,
-            sources: **SAFEARRAY,
+            sources: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyFlags: fn(
             self: *const IFsrmProperty,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmProperty_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmProperty_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmProperty.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmProperty, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmProperty_get_Value(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmProperty_get_Value(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmProperty.VTable, self.vtable).get_Value(@ptrCast(*const IFsrmProperty, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmProperty_get_Sources(self: *const T, sources: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmProperty_get_Sources(self: *const T, sources: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmProperty.VTable, self.vtable).get_Sources(@ptrCast(*const IFsrmProperty, self), sources);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmProperty_get_PropertyFlags(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmProperty_get_PropertyFlags(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmProperty.VTable, self.vtable).get_PropertyFlags(@ptrCast(*const IFsrmProperty, self), flags);
         }
     };}
@@ -4099,42 +4099,42 @@ pub const IFsrmRule = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmRule,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmRule,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RuleType: fn(
             self: *const IFsrmRule,
-            ruleType: *FsrmRuleType,
+            ruleType: ?*FsrmRuleType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleDefinitionName: fn(
             self: *const IFsrmRule,
-            moduleDefinitionName: *BSTR,
+            moduleDefinitionName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ModuleDefinitionName: fn(
             self: *const IFsrmRule,
-            moduleDefinitionName: BSTR,
+            moduleDefinitionName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceRoots: fn(
             self: *const IFsrmRule,
-            namespaceRoots: **SAFEARRAY,
+            namespaceRoots: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NamespaceRoots: fn(
             self: *const IFsrmRule,
-            namespaceRoots: *SAFEARRAY,
+            namespaceRoots: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RuleFlags: fn(
             self: *const IFsrmRule,
-            ruleFlags: *i32,
+            ruleFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RuleFlags: fn(
@@ -4144,52 +4144,52 @@ pub const IFsrmRule = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: fn(
             self: *const IFsrmRule,
-            parameters: **SAFEARRAY,
+            parameters: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: fn(
             self: *const IFsrmRule,
-            parameters: *SAFEARRAY,
+            parameters: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastModified: fn(
             self: *const IFsrmRule,
-            lastModified: *VARIANT,
+            lastModified: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmRule, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmRule, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_get_RuleType(self: *const T, ruleType: *FsrmRuleType) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_get_RuleType(self: *const T, ruleType: ?*FsrmRuleType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).get_RuleType(@ptrCast(*const IFsrmRule, self), ruleType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_get_ModuleDefinitionName(self: *const T, moduleDefinitionName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_get_ModuleDefinitionName(self: *const T, moduleDefinitionName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).get_ModuleDefinitionName(@ptrCast(*const IFsrmRule, self), moduleDefinitionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_put_ModuleDefinitionName(self: *const T, moduleDefinitionName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_put_ModuleDefinitionName(self: *const T, moduleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).put_ModuleDefinitionName(@ptrCast(*const IFsrmRule, self), moduleDefinitionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_get_NamespaceRoots(self: *const T, namespaceRoots: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_get_NamespaceRoots(self: *const T, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).get_NamespaceRoots(@ptrCast(*const IFsrmRule, self), namespaceRoots);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_put_NamespaceRoots(self: *const T, namespaceRoots: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_put_NamespaceRoots(self: *const T, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).put_NamespaceRoots(@ptrCast(*const IFsrmRule, self), namespaceRoots);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_get_RuleFlags(self: *const T, ruleFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_get_RuleFlags(self: *const T, ruleFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).get_RuleFlags(@ptrCast(*const IFsrmRule, self), ruleFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4197,15 +4197,15 @@ pub const IFsrmRule = extern struct {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).put_RuleFlags(@ptrCast(*const IFsrmRule, self), ruleFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_get_Parameters(self: *const T, parameters: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).get_Parameters(@ptrCast(*const IFsrmRule, self), parameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_put_Parameters(self: *const T, parameters: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).put_Parameters(@ptrCast(*const IFsrmRule, self), parameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmRule_get_LastModified(self: *const T, lastModified: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmRule_get_LastModified(self: *const T, lastModified: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmRule.VTable, self.vtable).get_LastModified(@ptrCast(*const IFsrmRule, self), lastModified);
         }
     };}
@@ -4221,7 +4221,7 @@ pub const IFsrmClassificationRule = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExecutionOption: fn(
             self: *const IFsrmClassificationRule,
-            executionOption: *FsrmExecutionOption,
+            executionOption: ?*FsrmExecutionOption,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExecutionOption: fn(
@@ -4231,29 +4231,29 @@ pub const IFsrmClassificationRule = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyAffected: fn(
             self: *const IFsrmClassificationRule,
-            property: *BSTR,
+            property: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertyAffected: fn(
             self: *const IFsrmClassificationRule,
-            property: BSTR,
+            property: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IFsrmClassificationRule,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: fn(
             self: *const IFsrmClassificationRule,
-            value: BSTR,
+            value: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmRule.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationRule_get_ExecutionOption(self: *const T, executionOption: *FsrmExecutionOption) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationRule_get_ExecutionOption(self: *const T, executionOption: ?*FsrmExecutionOption) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationRule.VTable, self.vtable).get_ExecutionOption(@ptrCast(*const IFsrmClassificationRule, self), executionOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4261,19 +4261,19 @@ pub const IFsrmClassificationRule = extern struct {
             return @ptrCast(*const IFsrmClassificationRule.VTable, self.vtable).put_ExecutionOption(@ptrCast(*const IFsrmClassificationRule, self), executionOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationRule_get_PropertyAffected(self: *const T, property: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationRule_get_PropertyAffected(self: *const T, property: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationRule.VTable, self.vtable).get_PropertyAffected(@ptrCast(*const IFsrmClassificationRule, self), property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationRule_put_PropertyAffected(self: *const T, property: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationRule_put_PropertyAffected(self: *const T, property: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationRule.VTable, self.vtable).put_PropertyAffected(@ptrCast(*const IFsrmClassificationRule, self), property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationRule_get_Value(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationRule_get_Value(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationRule.VTable, self.vtable).get_Value(@ptrCast(*const IFsrmClassificationRule, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationRule_put_Value(self: *const T, value: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationRule_put_Value(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationRule.VTable, self.vtable).put_Value(@ptrCast(*const IFsrmClassificationRule, self), value);
         }
     };}
@@ -4289,52 +4289,52 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleClsid: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            moduleClsid: *BSTR,
+            moduleClsid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ModuleClsid: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            moduleClsid: BSTR,
+            moduleClsid: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Company: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            company: *BSTR,
+            company: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Company: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            company: BSTR,
+            company: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            version: *BSTR,
+            version: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Version: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            version: BSTR,
+            version: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleType: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            moduleType: *FsrmPipelineModuleType,
+            moduleType: ?*FsrmPipelineModuleType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            enabled: *i16,
+            enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: fn(
@@ -4344,7 +4344,7 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsFileContent: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            needsFileContent: *i16,
+            needsFileContent: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NeedsFileContent: fn(
@@ -4354,7 +4354,7 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Account: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            retrievalAccount: *FsrmAccountType,
+            retrievalAccount: ?*FsrmAccountType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Account: fn(
@@ -4364,65 +4364,65 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedExtensions: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            supportedExtensions: **SAFEARRAY,
+            supportedExtensions: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportedExtensions: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            supportedExtensions: *SAFEARRAY,
+            supportedExtensions: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parameters: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            parameters: **SAFEARRAY,
+            parameters: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Parameters: fn(
             self: *const IFsrmPipelineModuleDefinition,
-            parameters: *SAFEARRAY,
+            parameters: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_ModuleClsid(self: *const T, moduleClsid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_ModuleClsid(self: *const T, moduleClsid: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_ModuleClsid(@ptrCast(*const IFsrmPipelineModuleDefinition, self), moduleClsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_put_ModuleClsid(self: *const T, moduleClsid: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_put_ModuleClsid(self: *const T, moduleClsid: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_ModuleClsid(@ptrCast(*const IFsrmPipelineModuleDefinition, self), moduleClsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmPipelineModuleDefinition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_put_Name(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_Name(@ptrCast(*const IFsrmPipelineModuleDefinition, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_Company(self: *const T, company: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_Company(self: *const T, company: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_Company(@ptrCast(*const IFsrmPipelineModuleDefinition, self), company);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_put_Company(self: *const T, company: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_put_Company(self: *const T, company: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_Company(@ptrCast(*const IFsrmPipelineModuleDefinition, self), company);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_Version(self: *const T, version: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_Version(self: *const T, version: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_Version(@ptrCast(*const IFsrmPipelineModuleDefinition, self), version);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_put_Version(self: *const T, version: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_put_Version(self: *const T, version: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_Version(@ptrCast(*const IFsrmPipelineModuleDefinition, self), version);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_ModuleType(self: *const T, moduleType: *FsrmPipelineModuleType) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_ModuleType(self: *const T, moduleType: ?*FsrmPipelineModuleType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_ModuleType(@ptrCast(*const IFsrmPipelineModuleDefinition, self), moduleType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_Enabled(self: *const T, enabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_Enabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_Enabled(@ptrCast(*const IFsrmPipelineModuleDefinition, self), enabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4430,7 +4430,7 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_Enabled(@ptrCast(*const IFsrmPipelineModuleDefinition, self), enabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_NeedsFileContent(self: *const T, needsFileContent: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_NeedsFileContent(self: *const T, needsFileContent: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_NeedsFileContent(@ptrCast(*const IFsrmPipelineModuleDefinition, self), needsFileContent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4438,7 +4438,7 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_NeedsFileContent(@ptrCast(*const IFsrmPipelineModuleDefinition, self), needsFileContent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_Account(self: *const T, retrievalAccount: *FsrmAccountType) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_Account(self: *const T, retrievalAccount: ?*FsrmAccountType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_Account(@ptrCast(*const IFsrmPipelineModuleDefinition, self), retrievalAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4446,19 +4446,19 @@ pub const IFsrmPipelineModuleDefinition = extern struct {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_Account(@ptrCast(*const IFsrmPipelineModuleDefinition, self), retrievalAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_SupportedExtensions(self: *const T, supportedExtensions: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_SupportedExtensions(self: *const T, supportedExtensions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_SupportedExtensions(@ptrCast(*const IFsrmPipelineModuleDefinition, self), supportedExtensions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_put_SupportedExtensions(self: *const T, supportedExtensions: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_put_SupportedExtensions(self: *const T, supportedExtensions: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_SupportedExtensions(@ptrCast(*const IFsrmPipelineModuleDefinition, self), supportedExtensions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_get_Parameters(self: *const T, parameters: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).get_Parameters(@ptrCast(*const IFsrmPipelineModuleDefinition, self), parameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleDefinition_put_Parameters(self: *const T, parameters: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleDefinition_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleDefinition.VTable, self.vtable).put_Parameters(@ptrCast(*const IFsrmPipelineModuleDefinition, self), parameters);
         }
     };}
@@ -4474,27 +4474,27 @@ pub const IFsrmClassifierModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertiesAffected: fn(
             self: *const IFsrmClassifierModuleDefinition,
-            propertiesAffected: **SAFEARRAY,
+            propertiesAffected: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertiesAffected: fn(
             self: *const IFsrmClassifierModuleDefinition,
-            propertiesAffected: *SAFEARRAY,
+            propertiesAffected: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertiesUsed: fn(
             self: *const IFsrmClassifierModuleDefinition,
-            propertiesUsed: **SAFEARRAY,
+            propertiesUsed: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropertiesUsed: fn(
             self: *const IFsrmClassifierModuleDefinition,
-            propertiesUsed: *SAFEARRAY,
+            propertiesUsed: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsExplicitValue: fn(
             self: *const IFsrmClassifierModuleDefinition,
-            needsExplicitValue: *i16,
+            needsExplicitValue: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NeedsExplicitValue: fn(
@@ -4506,23 +4506,23 @@ pub const IFsrmClassifierModuleDefinition = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmPipelineModuleDefinition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleDefinition_get_PropertiesAffected(self: *const T, propertiesAffected: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleDefinition_get_PropertiesAffected(self: *const T, propertiesAffected: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleDefinition.VTable, self.vtable).get_PropertiesAffected(@ptrCast(*const IFsrmClassifierModuleDefinition, self), propertiesAffected);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleDefinition_put_PropertiesAffected(self: *const T, propertiesAffected: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleDefinition_put_PropertiesAffected(self: *const T, propertiesAffected: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleDefinition.VTable, self.vtable).put_PropertiesAffected(@ptrCast(*const IFsrmClassifierModuleDefinition, self), propertiesAffected);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleDefinition_get_PropertiesUsed(self: *const T, propertiesUsed: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleDefinition_get_PropertiesUsed(self: *const T, propertiesUsed: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleDefinition.VTable, self.vtable).get_PropertiesUsed(@ptrCast(*const IFsrmClassifierModuleDefinition, self), propertiesUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleDefinition_put_PropertiesUsed(self: *const T, propertiesUsed: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleDefinition_put_PropertiesUsed(self: *const T, propertiesUsed: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleDefinition.VTable, self.vtable).put_PropertiesUsed(@ptrCast(*const IFsrmClassifierModuleDefinition, self), propertiesUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleDefinition_get_NeedsExplicitValue(self: *const T, needsExplicitValue: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleDefinition_get_NeedsExplicitValue(self: *const T, needsExplicitValue: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleDefinition.VTable, self.vtable).get_NeedsExplicitValue(@ptrCast(*const IFsrmClassifierModuleDefinition, self), needsExplicitValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4542,7 +4542,7 @@ pub const IFsrmStorageModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Capabilities: fn(
             self: *const IFsrmStorageModuleDefinition,
-            capabilities: *FsrmStorageModuleCaps,
+            capabilities: ?*FsrmStorageModuleCaps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Capabilities: fn(
@@ -4552,7 +4552,7 @@ pub const IFsrmStorageModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StorageType: fn(
             self: *const IFsrmStorageModuleDefinition,
-            storageType: *FsrmStorageModuleType,
+            storageType: ?*FsrmStorageModuleType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StorageType: fn(
@@ -4562,7 +4562,7 @@ pub const IFsrmStorageModuleDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdatesFileContent: fn(
             self: *const IFsrmStorageModuleDefinition,
-            updatesFileContent: *i16,
+            updatesFileContent: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UpdatesFileContent: fn(
@@ -4574,7 +4574,7 @@ pub const IFsrmStorageModuleDefinition = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmPipelineModuleDefinition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmStorageModuleDefinition_get_Capabilities(self: *const T, capabilities: *FsrmStorageModuleCaps) callconv(.Inline) HRESULT {
+        pub fn IFsrmStorageModuleDefinition_get_Capabilities(self: *const T, capabilities: ?*FsrmStorageModuleCaps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmStorageModuleDefinition.VTable, self.vtable).get_Capabilities(@ptrCast(*const IFsrmStorageModuleDefinition, self), capabilities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4582,7 +4582,7 @@ pub const IFsrmStorageModuleDefinition = extern struct {
             return @ptrCast(*const IFsrmStorageModuleDefinition.VTable, self.vtable).put_Capabilities(@ptrCast(*const IFsrmStorageModuleDefinition, self), capabilities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmStorageModuleDefinition_get_StorageType(self: *const T, storageType: *FsrmStorageModuleType) callconv(.Inline) HRESULT {
+        pub fn IFsrmStorageModuleDefinition_get_StorageType(self: *const T, storageType: ?*FsrmStorageModuleType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmStorageModuleDefinition.VTable, self.vtable).get_StorageType(@ptrCast(*const IFsrmStorageModuleDefinition, self), storageType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4590,7 +4590,7 @@ pub const IFsrmStorageModuleDefinition = extern struct {
             return @ptrCast(*const IFsrmStorageModuleDefinition.VTable, self.vtable).put_StorageType(@ptrCast(*const IFsrmStorageModuleDefinition, self), storageType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmStorageModuleDefinition_get_UpdatesFileContent(self: *const T, updatesFileContent: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmStorageModuleDefinition_get_UpdatesFileContent(self: *const T, updatesFileContent: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmStorageModuleDefinition.VTable, self.vtable).get_UpdatesFileContent(@ptrCast(*const IFsrmStorageModuleDefinition, self), updatesFileContent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4610,17 +4610,17 @@ pub const IFsrmClassificationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationReportFormats: fn(
             self: *const IFsrmClassificationManager,
-            formats: **SAFEARRAY,
+            formats: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassificationReportFormats: fn(
             self: *const IFsrmClassificationManager,
-            formats: *SAFEARRAY,
+            formats: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Logging: fn(
             self: *const IFsrmClassificationManager,
-            logging: *i32,
+            logging: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Logging: fn(
@@ -4630,17 +4630,17 @@ pub const IFsrmClassificationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationReportMailTo: fn(
             self: *const IFsrmClassificationManager,
-            mailTo: *BSTR,
+            mailTo: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassificationReportMailTo: fn(
             self: *const IFsrmClassificationManager,
-            mailTo: BSTR,
+            mailTo: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationReportEnabled: fn(
             self: *const IFsrmClassificationManager,
-            reportEnabled: *i16,
+            reportEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassificationReportEnabled: fn(
@@ -4650,117 +4650,117 @@ pub const IFsrmClassificationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationLastReportPathWithoutExtension: fn(
             self: *const IFsrmClassificationManager,
-            lastReportPath: *BSTR,
+            lastReportPath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationLastError: fn(
             self: *const IFsrmClassificationManager,
-            lastError: *BSTR,
+            lastError: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationRunningStatus: fn(
             self: *const IFsrmClassificationManager,
-            runningStatus: *FsrmReportRunningStatus,
+            runningStatus: ?*FsrmReportRunningStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumPropertyDefinitions: fn(
             self: *const IFsrmClassificationManager,
             options: FsrmEnumOptions,
-            propertyDefinitions: **IFsrmCollection,
+            propertyDefinitions: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePropertyDefinition: fn(
             self: *const IFsrmClassificationManager,
-            propertyDefinition: **IFsrmPropertyDefinition,
+            propertyDefinition: ?*?*IFsrmPropertyDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDefinition: fn(
             self: *const IFsrmClassificationManager,
-            propertyName: BSTR,
-            propertyDefinition: **IFsrmPropertyDefinition,
+            propertyName: ?BSTR,
+            propertyDefinition: ?*?*IFsrmPropertyDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumRules: fn(
             self: *const IFsrmClassificationManager,
             ruleType: FsrmRuleType,
             options: FsrmEnumOptions,
-            Rules: **IFsrmCollection,
+            Rules: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRule: fn(
             self: *const IFsrmClassificationManager,
             ruleType: FsrmRuleType,
-            Rule: **IFsrmRule,
+            Rule: ?*?*IFsrmRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRule: fn(
             self: *const IFsrmClassificationManager,
-            ruleName: BSTR,
+            ruleName: ?BSTR,
             ruleType: FsrmRuleType,
-            Rule: **IFsrmRule,
+            Rule: ?*?*IFsrmRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumModuleDefinitions: fn(
             self: *const IFsrmClassificationManager,
             moduleType: FsrmPipelineModuleType,
             options: FsrmEnumOptions,
-            moduleDefinitions: **IFsrmCollection,
+            moduleDefinitions: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateModuleDefinition: fn(
             self: *const IFsrmClassificationManager,
             moduleType: FsrmPipelineModuleType,
-            moduleDefinition: **IFsrmPipelineModuleDefinition,
+            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetModuleDefinition: fn(
             self: *const IFsrmClassificationManager,
-            moduleName: BSTR,
+            moduleName: ?BSTR,
             moduleType: FsrmPipelineModuleType,
-            moduleDefinition: **IFsrmPipelineModuleDefinition,
+            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RunClassification: fn(
             self: *const IFsrmClassificationManager,
             context: FsrmReportGenerationContext,
-            reserved: BSTR,
+            reserved: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WaitForClassificationCompletion: fn(
             self: *const IFsrmClassificationManager,
             waitSeconds: i32,
-            completed: *i16,
+            completed: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelClassification: fn(
             self: *const IFsrmClassificationManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumFileProperties: fn(
             self: *const IFsrmClassificationManager,
-            filePath: BSTR,
+            filePath: ?BSTR,
             options: FsrmGetFilePropertyOptions,
-            fileProperties: **IFsrmCollection,
+            fileProperties: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileProperty: fn(
             self: *const IFsrmClassificationManager,
-            filePath: BSTR,
-            propertyName: BSTR,
+            filePath: ?BSTR,
+            propertyName: ?BSTR,
             options: FsrmGetFilePropertyOptions,
-            property: **IFsrmProperty,
+            property: ?*?*IFsrmProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFileProperty: fn(
             self: *const IFsrmClassificationManager,
-            filePath: BSTR,
-            propertyName: BSTR,
-            propertyValue: BSTR,
+            filePath: ?BSTR,
+            propertyName: ?BSTR,
+            propertyValue: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearFileProperty: fn(
             self: *const IFsrmClassificationManager,
-            filePath: BSTR,
-            property: BSTR,
+            filePath: ?BSTR,
+            property: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_get_ClassificationReportFormats(self: *const T, formats: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_get_ClassificationReportFormats(self: *const T, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).get_ClassificationReportFormats(@ptrCast(*const IFsrmClassificationManager, self), formats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_put_ClassificationReportFormats(self: *const T, formats: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_put_ClassificationReportFormats(self: *const T, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).put_ClassificationReportFormats(@ptrCast(*const IFsrmClassificationManager, self), formats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_get_Logging(self: *const T, logging: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_get_Logging(self: *const T, logging: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).get_Logging(@ptrCast(*const IFsrmClassificationManager, self), logging);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4768,15 +4768,15 @@ pub const IFsrmClassificationManager = extern struct {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).put_Logging(@ptrCast(*const IFsrmClassificationManager, self), logging);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_get_ClassificationReportMailTo(self: *const T, mailTo: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_get_ClassificationReportMailTo(self: *const T, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).get_ClassificationReportMailTo(@ptrCast(*const IFsrmClassificationManager, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_put_ClassificationReportMailTo(self: *const T, mailTo: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_put_ClassificationReportMailTo(self: *const T, mailTo: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).put_ClassificationReportMailTo(@ptrCast(*const IFsrmClassificationManager, self), mailTo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_get_ClassificationReportEnabled(self: *const T, reportEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_get_ClassificationReportEnabled(self: *const T, reportEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).get_ClassificationReportEnabled(@ptrCast(*const IFsrmClassificationManager, self), reportEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4784,59 +4784,59 @@ pub const IFsrmClassificationManager = extern struct {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).put_ClassificationReportEnabled(@ptrCast(*const IFsrmClassificationManager, self), reportEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_get_ClassificationLastReportPathWithoutExtension(self: *const T, lastReportPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_get_ClassificationLastReportPathWithoutExtension(self: *const T, lastReportPath: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).get_ClassificationLastReportPathWithoutExtension(@ptrCast(*const IFsrmClassificationManager, self), lastReportPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_get_ClassificationLastError(self: *const T, lastError: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_get_ClassificationLastError(self: *const T, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).get_ClassificationLastError(@ptrCast(*const IFsrmClassificationManager, self), lastError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_get_ClassificationRunningStatus(self: *const T, runningStatus: *FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_get_ClassificationRunningStatus(self: *const T, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).get_ClassificationRunningStatus(@ptrCast(*const IFsrmClassificationManager, self), runningStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_EnumPropertyDefinitions(self: *const T, options: FsrmEnumOptions, propertyDefinitions: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_EnumPropertyDefinitions(self: *const T, options: FsrmEnumOptions, propertyDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).EnumPropertyDefinitions(@ptrCast(*const IFsrmClassificationManager, self), options, propertyDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_CreatePropertyDefinition(self: *const T, propertyDefinition: **IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_CreatePropertyDefinition(self: *const T, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).CreatePropertyDefinition(@ptrCast(*const IFsrmClassificationManager, self), propertyDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_GetPropertyDefinition(self: *const T, propertyName: BSTR, propertyDefinition: **IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_GetPropertyDefinition(self: *const T, propertyName: ?BSTR, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).GetPropertyDefinition(@ptrCast(*const IFsrmClassificationManager, self), propertyName, propertyDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_EnumRules(self: *const T, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_EnumRules(self: *const T, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).EnumRules(@ptrCast(*const IFsrmClassificationManager, self), ruleType, options, Rules);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_CreateRule(self: *const T, ruleType: FsrmRuleType, Rule: **IFsrmRule) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_CreateRule(self: *const T, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).CreateRule(@ptrCast(*const IFsrmClassificationManager, self), ruleType, Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_GetRule(self: *const T, ruleName: BSTR, ruleType: FsrmRuleType, Rule: **IFsrmRule) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_GetRule(self: *const T, ruleName: ?BSTR, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).GetRule(@ptrCast(*const IFsrmClassificationManager, self), ruleName, ruleType, Rule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_EnumModuleDefinitions(self: *const T, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_EnumModuleDefinitions(self: *const T, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).EnumModuleDefinitions(@ptrCast(*const IFsrmClassificationManager, self), moduleType, options, moduleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_CreateModuleDefinition(self: *const T, moduleType: FsrmPipelineModuleType, moduleDefinition: **IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_CreateModuleDefinition(self: *const T, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).CreateModuleDefinition(@ptrCast(*const IFsrmClassificationManager, self), moduleType, moduleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_GetModuleDefinition(self: *const T, moduleName: BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: **IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_GetModuleDefinition(self: *const T, moduleName: ?BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).GetModuleDefinition(@ptrCast(*const IFsrmClassificationManager, self), moduleName, moduleType, moduleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_RunClassification(self: *const T, context: FsrmReportGenerationContext, reserved: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_RunClassification(self: *const T, context: FsrmReportGenerationContext, reserved: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).RunClassification(@ptrCast(*const IFsrmClassificationManager, self), context, reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_WaitForClassificationCompletion(self: *const T, waitSeconds: i32, completed: *i16) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_WaitForClassificationCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).WaitForClassificationCompletion(@ptrCast(*const IFsrmClassificationManager, self), waitSeconds, completed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4844,19 +4844,19 @@ pub const IFsrmClassificationManager = extern struct {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).CancelClassification(@ptrCast(*const IFsrmClassificationManager, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_EnumFileProperties(self: *const T, filePath: BSTR, options: FsrmGetFilePropertyOptions, fileProperties: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_EnumFileProperties(self: *const T, filePath: ?BSTR, options: FsrmGetFilePropertyOptions, fileProperties: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).EnumFileProperties(@ptrCast(*const IFsrmClassificationManager, self), filePath, options, fileProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_GetFileProperty(self: *const T, filePath: BSTR, propertyName: BSTR, options: FsrmGetFilePropertyOptions, property: **IFsrmProperty) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_GetFileProperty(self: *const T, filePath: ?BSTR, propertyName: ?BSTR, options: FsrmGetFilePropertyOptions, property: ?*?*IFsrmProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).GetFileProperty(@ptrCast(*const IFsrmClassificationManager, self), filePath, propertyName, options, property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_SetFileProperty(self: *const T, filePath: BSTR, propertyName: BSTR, propertyValue: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_SetFileProperty(self: *const T, filePath: ?BSTR, propertyName: ?BSTR, propertyValue: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).SetFileProperty(@ptrCast(*const IFsrmClassificationManager, self), filePath, propertyName, propertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager_ClearFileProperty(self: *const T, filePath: BSTR, property: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager_ClearFileProperty(self: *const T, filePath: ?BSTR, property: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager.VTable, self.vtable).ClearFileProperty(@ptrCast(*const IFsrmClassificationManager, self), filePath, property);
         }
     };}
@@ -4871,9 +4871,9 @@ pub const IFsrmClassificationManager2 = extern struct {
         base: IFsrmClassificationManager.VTable,
         ClassifyFiles: fn(
             self: *const IFsrmClassificationManager2,
-            filePaths: *SAFEARRAY,
-            propertyNames: *SAFEARRAY,
-            propertyValues: *SAFEARRAY,
+            filePaths: ?*SAFEARRAY,
+            propertyNames: ?*SAFEARRAY,
+            propertyValues: ?*SAFEARRAY,
             options: FsrmGetFilePropertyOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4881,7 +4881,7 @@ pub const IFsrmClassificationManager2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmClassificationManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassificationManager2_ClassifyFiles(self: *const T, filePaths: *SAFEARRAY, propertyNames: *SAFEARRAY, propertyValues: *SAFEARRAY, options: FsrmGetFilePropertyOptions) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassificationManager2_ClassifyFiles(self: *const T, filePaths: ?*SAFEARRAY, propertyNames: ?*SAFEARRAY, propertyValues: ?*SAFEARRAY, options: FsrmGetFilePropertyOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassificationManager2.VTable, self.vtable).ClassifyFiles(@ptrCast(*const IFsrmClassificationManager2, self), filePaths, propertyNames, propertyValues, options);
         }
     };}
@@ -4897,194 +4897,194 @@ pub const IFsrmPropertyBag = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IFsrmPropertyBag,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RelativePath: fn(
             self: *const IFsrmPropertyBag,
-            path: *BSTR,
+            path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumeName: fn(
             self: *const IFsrmPropertyBag,
-            volumeName: *BSTR,
+            volumeName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RelativeNamespaceRoot: fn(
             self: *const IFsrmPropertyBag,
-            relativeNamespaceRoot: *BSTR,
+            relativeNamespaceRoot: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumeIndex: fn(
             self: *const IFsrmPropertyBag,
-            volumeId: *u32,
+            volumeId: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileId: fn(
             self: *const IFsrmPropertyBag,
-            fileId: *VARIANT,
+            fileId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentDirectoryId: fn(
             self: *const IFsrmPropertyBag,
-            parentDirectoryId: *VARIANT,
+            parentDirectoryId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Size: fn(
             self: *const IFsrmPropertyBag,
-            size: *VARIANT,
+            size: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeAllocated: fn(
             self: *const IFsrmPropertyBag,
-            sizeAllocated: *VARIANT,
+            sizeAllocated: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreationTime: fn(
             self: *const IFsrmPropertyBag,
-            creationTime: *VARIANT,
+            creationTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastAccessTime: fn(
             self: *const IFsrmPropertyBag,
-            lastAccessTime: *VARIANT,
+            lastAccessTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastModificationTime: fn(
             self: *const IFsrmPropertyBag,
-            lastModificationTime: *VARIANT,
+            lastModificationTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Attributes: fn(
             self: *const IFsrmPropertyBag,
-            attributes: *u32,
+            attributes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerSid: fn(
             self: *const IFsrmPropertyBag,
-            ownerSid: *BSTR,
+            ownerSid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilePropertyNames: fn(
             self: *const IFsrmPropertyBag,
-            filePropertyNames: **SAFEARRAY,
+            filePropertyNames: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Messages: fn(
             self: *const IFsrmPropertyBag,
-            messages: **SAFEARRAY,
+            messages: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyBagFlags: fn(
             self: *const IFsrmPropertyBag,
-            flags: *u32,
+            flags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileProperty: fn(
             self: *const IFsrmPropertyBag,
-            name: BSTR,
-            fileProperty: **IFsrmProperty,
+            name: ?BSTR,
+            fileProperty: ?*?*IFsrmProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFileProperty: fn(
             self: *const IFsrmPropertyBag,
-            name: BSTR,
-            value: BSTR,
+            name: ?BSTR,
+            value: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMessage: fn(
             self: *const IFsrmPropertyBag,
-            message: BSTR,
+            message: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileStreamInterface: fn(
             self: *const IFsrmPropertyBag,
             accessMode: FsrmFileStreamingMode,
             interfaceType: FsrmFileStreamingInterfaceType,
-            pStreamInterface: *VARIANT,
+            pStreamInterface: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_Name(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_Name(@ptrCast(*const IFsrmPropertyBag, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_RelativePath(self: *const T, path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_RelativePath(self: *const T, path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_RelativePath(@ptrCast(*const IFsrmPropertyBag, self), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_VolumeName(self: *const T, volumeName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_VolumeName(self: *const T, volumeName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_VolumeName(@ptrCast(*const IFsrmPropertyBag, self), volumeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_RelativeNamespaceRoot(self: *const T, relativeNamespaceRoot: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_RelativeNamespaceRoot(self: *const T, relativeNamespaceRoot: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_RelativeNamespaceRoot(@ptrCast(*const IFsrmPropertyBag, self), relativeNamespaceRoot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_VolumeIndex(self: *const T, volumeId: *u32) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_VolumeIndex(self: *const T, volumeId: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_VolumeIndex(@ptrCast(*const IFsrmPropertyBag, self), volumeId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_FileId(self: *const T, fileId: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_FileId(self: *const T, fileId: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_FileId(@ptrCast(*const IFsrmPropertyBag, self), fileId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_ParentDirectoryId(self: *const T, parentDirectoryId: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_ParentDirectoryId(self: *const T, parentDirectoryId: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_ParentDirectoryId(@ptrCast(*const IFsrmPropertyBag, self), parentDirectoryId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_Size(self: *const T, size: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_Size(self: *const T, size: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_Size(@ptrCast(*const IFsrmPropertyBag, self), size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_SizeAllocated(self: *const T, sizeAllocated: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_SizeAllocated(self: *const T, sizeAllocated: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_SizeAllocated(@ptrCast(*const IFsrmPropertyBag, self), sizeAllocated);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_CreationTime(self: *const T, creationTime: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_CreationTime(self: *const T, creationTime: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_CreationTime(@ptrCast(*const IFsrmPropertyBag, self), creationTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_LastAccessTime(self: *const T, lastAccessTime: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_LastAccessTime(self: *const T, lastAccessTime: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_LastAccessTime(@ptrCast(*const IFsrmPropertyBag, self), lastAccessTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_LastModificationTime(self: *const T, lastModificationTime: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_LastModificationTime(self: *const T, lastModificationTime: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_LastModificationTime(@ptrCast(*const IFsrmPropertyBag, self), lastModificationTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_Attributes(self: *const T, attributes: *u32) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_Attributes(self: *const T, attributes: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_Attributes(@ptrCast(*const IFsrmPropertyBag, self), attributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_OwnerSid(self: *const T, ownerSid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_OwnerSid(self: *const T, ownerSid: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_OwnerSid(@ptrCast(*const IFsrmPropertyBag, self), ownerSid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_FilePropertyNames(self: *const T, filePropertyNames: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_FilePropertyNames(self: *const T, filePropertyNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_FilePropertyNames(@ptrCast(*const IFsrmPropertyBag, self), filePropertyNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_Messages(self: *const T, messages: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_Messages(self: *const T, messages: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_Messages(@ptrCast(*const IFsrmPropertyBag, self), messages);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_get_PropertyBagFlags(self: *const T, flags: *u32) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_get_PropertyBagFlags(self: *const T, flags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).get_PropertyBagFlags(@ptrCast(*const IFsrmPropertyBag, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_GetFileProperty(self: *const T, name: BSTR, fileProperty: **IFsrmProperty) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_GetFileProperty(self: *const T, name: ?BSTR, fileProperty: ?*?*IFsrmProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).GetFileProperty(@ptrCast(*const IFsrmPropertyBag, self), name, fileProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_SetFileProperty(self: *const T, name: BSTR, value: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_SetFileProperty(self: *const T, name: ?BSTR, value: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).SetFileProperty(@ptrCast(*const IFsrmPropertyBag, self), name, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_AddMessage(self: *const T, message: BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_AddMessage(self: *const T, message: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).AddMessage(@ptrCast(*const IFsrmPropertyBag, self), message);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag_GetFileStreamInterface(self: *const T, accessMode: FsrmFileStreamingMode, interfaceType: FsrmFileStreamingInterfaceType, pStreamInterface: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag_GetFileStreamInterface(self: *const T, accessMode: FsrmFileStreamingMode, interfaceType: FsrmFileStreamingInterfaceType, pStreamInterface: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag.VTable, self.vtable).GetFileStreamInterface(@ptrCast(*const IFsrmPropertyBag, self), accessMode, interfaceType, pStreamInterface);
         }
     };}
@@ -5100,22 +5100,22 @@ pub const IFsrmPropertyBag2 = extern struct {
         GetFieldValue: fn(
             self: *const IFsrmPropertyBag2,
             field: FsrmPropertyBagField,
-            value: *VARIANT,
+            value: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUntrustedInFileProperties: fn(
             self: *const IFsrmPropertyBag2,
-            props: **IFsrmCollection,
+            props: ?*?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmPropertyBag.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag2_GetFieldValue(self: *const T, field: FsrmPropertyBagField, value: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag2_GetFieldValue(self: *const T, field: FsrmPropertyBagField, value: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag2.VTable, self.vtable).GetFieldValue(@ptrCast(*const IFsrmPropertyBag2, self), field, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPropertyBag2_GetUntrustedInFileProperties(self: *const T, props: **IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmPropertyBag2_GetUntrustedInFileProperties(self: *const T, props: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPropertyBag2.VTable, self.vtable).GetUntrustedInFileProperties(@ptrCast(*const IFsrmPropertyBag2, self), props);
         }
     };}
@@ -5130,8 +5130,8 @@ pub const IFsrmPipelineModuleImplementation = extern struct {
         base: IDispatch.VTable,
         OnLoad: fn(
             self: *const IFsrmPipelineModuleImplementation,
-            moduleDefinition: *IFsrmPipelineModuleDefinition,
-            moduleConnector: **IFsrmPipelineModuleConnector,
+            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
+            moduleConnector: ?*?*IFsrmPipelineModuleConnector,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnUnload: fn(
             self: *const IFsrmPipelineModuleImplementation,
@@ -5141,7 +5141,7 @@ pub const IFsrmPipelineModuleImplementation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleImplementation_OnLoad(self: *const T, moduleDefinition: *IFsrmPipelineModuleDefinition, moduleConnector: **IFsrmPipelineModuleConnector) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleImplementation_OnLoad(self: *const T, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleConnector: ?*?*IFsrmPipelineModuleConnector) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleImplementation.VTable, self.vtable).OnLoad(@ptrCast(*const IFsrmPipelineModuleImplementation, self), moduleDefinition, moduleConnector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5161,30 +5161,30 @@ pub const IFsrmClassifierModuleImplementation = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastModified: fn(
             self: *const IFsrmClassifierModuleImplementation,
-            lastModified: *VARIANT,
+            lastModified: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UseRulesAndDefinitions: fn(
             self: *const IFsrmClassifierModuleImplementation,
-            rules: *IFsrmCollection,
-            propertyDefinitions: *IFsrmCollection,
+            rules: ?*IFsrmCollection,
+            propertyDefinitions: ?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnBeginFile: fn(
             self: *const IFsrmClassifierModuleImplementation,
-            propertyBag: *IFsrmPropertyBag,
-            arrayRuleIds: *SAFEARRAY,
+            propertyBag: ?*IFsrmPropertyBag,
+            arrayRuleIds: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DoesPropertyValueApply: fn(
             self: *const IFsrmClassifierModuleImplementation,
-            property: BSTR,
-            value: BSTR,
-            applyValue: *i16,
+            property: ?BSTR,
+            value: ?BSTR,
+            applyValue: ?*i16,
             idRule: Guid,
             idPropDef: Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyValueToApply: fn(
             self: *const IFsrmClassifierModuleImplementation,
-            property: BSTR,
-            value: *BSTR,
+            property: ?BSTR,
+            value: ?*?BSTR,
             idRule: Guid,
             idPropDef: Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5196,23 +5196,23 @@ pub const IFsrmClassifierModuleImplementation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmPipelineModuleImplementation.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleImplementation_get_LastModified(self: *const T, lastModified: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleImplementation_get_LastModified(self: *const T, lastModified: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleImplementation.VTable, self.vtable).get_LastModified(@ptrCast(*const IFsrmClassifierModuleImplementation, self), lastModified);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleImplementation_UseRulesAndDefinitions(self: *const T, rules: *IFsrmCollection, propertyDefinitions: *IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleImplementation_UseRulesAndDefinitions(self: *const T, rules: ?*IFsrmCollection, propertyDefinitions: ?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleImplementation.VTable, self.vtable).UseRulesAndDefinitions(@ptrCast(*const IFsrmClassifierModuleImplementation, self), rules, propertyDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleImplementation_OnBeginFile(self: *const T, propertyBag: *IFsrmPropertyBag, arrayRuleIds: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleImplementation_OnBeginFile(self: *const T, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleImplementation.VTable, self.vtable).OnBeginFile(@ptrCast(*const IFsrmClassifierModuleImplementation, self), propertyBag, arrayRuleIds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleImplementation_DoesPropertyValueApply(self: *const T, property: BSTR, value: BSTR, applyValue: *i16, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleImplementation_DoesPropertyValueApply(self: *const T, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleImplementation.VTable, self.vtable).DoesPropertyValueApply(@ptrCast(*const IFsrmClassifierModuleImplementation, self), property, value, applyValue, idRule, idPropDef);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmClassifierModuleImplementation_GetPropertyValueToApply(self: *const T, property: BSTR, value: *BSTR, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
+        pub fn IFsrmClassifierModuleImplementation_GetPropertyValueToApply(self: *const T, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmClassifierModuleImplementation.VTable, self.vtable).GetPropertyValueToApply(@ptrCast(*const IFsrmClassifierModuleImplementation, self), property, value, idRule, idPropDef);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5231,30 +5231,30 @@ pub const IFsrmStorageModuleImplementation = extern struct {
         base: IFsrmPipelineModuleImplementation.VTable,
         UseDefinitions: fn(
             self: *const IFsrmStorageModuleImplementation,
-            propertyDefinitions: *IFsrmCollection,
+            propertyDefinitions: ?*IFsrmCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadProperties: fn(
             self: *const IFsrmStorageModuleImplementation,
-            propertyBag: *IFsrmPropertyBag,
+            propertyBag: ?*IFsrmPropertyBag,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveProperties: fn(
             self: *const IFsrmStorageModuleImplementation,
-            propertyBag: *IFsrmPropertyBag,
+            propertyBag: ?*IFsrmPropertyBag,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsrmPipelineModuleImplementation.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmStorageModuleImplementation_UseDefinitions(self: *const T, propertyDefinitions: *IFsrmCollection) callconv(.Inline) HRESULT {
+        pub fn IFsrmStorageModuleImplementation_UseDefinitions(self: *const T, propertyDefinitions: ?*IFsrmCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmStorageModuleImplementation.VTable, self.vtable).UseDefinitions(@ptrCast(*const IFsrmStorageModuleImplementation, self), propertyDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmStorageModuleImplementation_LoadProperties(self: *const T, propertyBag: *IFsrmPropertyBag) callconv(.Inline) HRESULT {
+        pub fn IFsrmStorageModuleImplementation_LoadProperties(self: *const T, propertyBag: ?*IFsrmPropertyBag) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmStorageModuleImplementation.VTable, self.vtable).LoadProperties(@ptrCast(*const IFsrmStorageModuleImplementation, self), propertyBag);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmStorageModuleImplementation_SaveProperties(self: *const T, propertyBag: *IFsrmPropertyBag) callconv(.Inline) HRESULT {
+        pub fn IFsrmStorageModuleImplementation_SaveProperties(self: *const T, propertyBag: ?*IFsrmPropertyBag) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmStorageModuleImplementation.VTable, self.vtable).SaveProperties(@ptrCast(*const IFsrmStorageModuleImplementation, self), propertyBag);
         }
     };}
@@ -5270,50 +5270,50 @@ pub const IFsrmPipelineModuleConnector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleImplementation: fn(
             self: *const IFsrmPipelineModuleConnector,
-            pipelineModuleImplementation: **IFsrmPipelineModuleImplementation,
+            pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleName: fn(
             self: *const IFsrmPipelineModuleConnector,
-            userName: *BSTR,
+            userName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostingUserAccount: fn(
             self: *const IFsrmPipelineModuleConnector,
-            userAccount: *BSTR,
+            userAccount: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostingProcessPid: fn(
             self: *const IFsrmPipelineModuleConnector,
-            pid: *i32,
+            pid: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Bind: fn(
             self: *const IFsrmPipelineModuleConnector,
-            moduleDefinition: *IFsrmPipelineModuleDefinition,
-            moduleImplementation: *IFsrmPipelineModuleImplementation,
+            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
+            moduleImplementation: ?*IFsrmPipelineModuleImplementation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleConnector_get_ModuleImplementation(self: *const T, pipelineModuleImplementation: **IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleConnector_get_ModuleImplementation(self: *const T, pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleConnector.VTable, self.vtable).get_ModuleImplementation(@ptrCast(*const IFsrmPipelineModuleConnector, self), pipelineModuleImplementation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleConnector_get_ModuleName(self: *const T, userName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleConnector_get_ModuleName(self: *const T, userName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleConnector.VTable, self.vtable).get_ModuleName(@ptrCast(*const IFsrmPipelineModuleConnector, self), userName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleConnector_get_HostingUserAccount(self: *const T, userAccount: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleConnector_get_HostingUserAccount(self: *const T, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleConnector.VTable, self.vtable).get_HostingUserAccount(@ptrCast(*const IFsrmPipelineModuleConnector, self), userAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleConnector_get_HostingProcessPid(self: *const T, pid: *i32) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleConnector_get_HostingProcessPid(self: *const T, pid: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleConnector.VTable, self.vtable).get_HostingProcessPid(@ptrCast(*const IFsrmPipelineModuleConnector, self), pid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsrmPipelineModuleConnector_Bind(self: *const T, moduleDefinition: *IFsrmPipelineModuleDefinition, moduleImplementation: *IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+        pub fn IFsrmPipelineModuleConnector_Bind(self: *const T, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleImplementation: ?*IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsrmPipelineModuleConnector.VTable, self.vtable).Bind(@ptrCast(*const IFsrmPipelineModuleConnector, self), moduleDefinition, moduleImplementation);
         }
     };}

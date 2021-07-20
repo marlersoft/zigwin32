@@ -355,7 +355,7 @@ pub const INSSBuffer = extern struct {
         base: IUnknown.VTable,
         GetLength: fn(
             self: *const INSSBuffer,
-            pdwLength: *u32,
+            pdwLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetLength: fn(
             self: *const INSSBuffer,
@@ -363,23 +363,23 @@ pub const INSSBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxLength: fn(
             self: *const INSSBuffer,
-            pdwLength: *u32,
+            pdwLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBuffer: fn(
             self: *const INSSBuffer,
-            ppdwBuffer: **u8,
+            ppdwBuffer: ?*?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBufferAndLength: fn(
             self: *const INSSBuffer,
-            ppdwBuffer: **u8,
-            pdwLength: *u32,
+            ppdwBuffer: ?*?*u8,
+            pdwLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer_GetLength(self: *const T, pdwLength: *u32) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer_GetLength(self: *const T, pdwLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer.VTable, self.vtable).GetLength(@ptrCast(*const INSSBuffer, self), pdwLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -387,15 +387,15 @@ pub const INSSBuffer = extern struct {
             return @ptrCast(*const INSSBuffer.VTable, self.vtable).SetLength(@ptrCast(*const INSSBuffer, self), dwLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer_GetMaxLength(self: *const T, pdwLength: *u32) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer_GetMaxLength(self: *const T, pdwLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const INSSBuffer, self), pdwLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer_GetBuffer(self: *const T, ppdwBuffer: **u8) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer_GetBuffer(self: *const T, ppdwBuffer: ?*?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer.VTable, self.vtable).GetBuffer(@ptrCast(*const INSSBuffer, self), ppdwBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer_GetBufferAndLength(self: *const T, ppdwBuffer: **u8, pdwLength: *u32) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer_GetBufferAndLength(self: *const T, ppdwBuffer: ?*?*u8, pdwLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer.VTable, self.vtable).GetBufferAndLength(@ptrCast(*const INSSBuffer, self), ppdwBuffer, pdwLength);
         }
     };}
@@ -410,23 +410,23 @@ pub const INSSBuffer2 = extern struct {
         GetSampleProperties: fn(
             self: *const INSSBuffer2,
             cbProperties: u32,
-            pbProperties: *u8,
+            pbProperties: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSampleProperties: fn(
             self: *const INSSBuffer2,
             cbProperties: u32,
-            pbProperties: *u8,
+            pbProperties: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace INSSBuffer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer2_GetSampleProperties(self: *const T, cbProperties: u32, pbProperties: *u8) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer2_GetSampleProperties(self: *const T, cbProperties: u32, pbProperties: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer2.VTable, self.vtable).GetSampleProperties(@ptrCast(*const INSSBuffer2, self), cbProperties, pbProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer2_SetSampleProperties(self: *const T, cbProperties: u32, pbProperties: *u8) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer2_SetSampleProperties(self: *const T, cbProperties: u32, pbProperties: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer2.VTable, self.vtable).SetSampleProperties(@ptrCast(*const INSSBuffer2, self), cbProperties, pbProperties);
         }
     };}
@@ -441,25 +441,25 @@ pub const INSSBuffer3 = extern struct {
         SetProperty: fn(
             self: *const INSSBuffer3,
             guidBufferProperty: Guid,
-            pvBufferProperty: *c_void,
+            pvBufferProperty: ?*c_void,
             dwBufferPropertySize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const INSSBuffer3,
             guidBufferProperty: Guid,
-            pvBufferProperty: *c_void,
-            pdwBufferPropertySize: *u32,
+            pvBufferProperty: ?*c_void,
+            pdwBufferPropertySize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace INSSBuffer2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer3_SetProperty(self: *const T, guidBufferProperty: Guid, pvBufferProperty: *c_void, dwBufferPropertySize: u32) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer3_SetProperty(self: *const T, guidBufferProperty: Guid, pvBufferProperty: ?*c_void, dwBufferPropertySize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer3.VTable, self.vtable).SetProperty(@ptrCast(*const INSSBuffer3, self), guidBufferProperty, pvBufferProperty, dwBufferPropertySize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer3_GetProperty(self: *const T, guidBufferProperty: Guid, pvBufferProperty: *c_void, pdwBufferPropertySize: *u32) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer3_GetProperty(self: *const T, guidBufferProperty: Guid, pvBufferProperty: ?*c_void, pdwBufferPropertySize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer3.VTable, self.vtable).GetProperty(@ptrCast(*const INSSBuffer3, self), guidBufferProperty, pvBufferProperty, pdwBufferPropertySize);
         }
     };}
@@ -473,25 +473,25 @@ pub const INSSBuffer4 = extern struct {
         base: INSSBuffer3.VTable,
         GetPropertyCount: fn(
             self: *const INSSBuffer4,
-            pcBufferProperties: *u32,
+            pcBufferProperties: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyByIndex: fn(
             self: *const INSSBuffer4,
             dwBufferPropertyIndex: u32,
-            pguidBufferProperty: *Guid,
-            pvBufferProperty: *c_void,
-            pdwBufferPropertySize: *u32,
+            pguidBufferProperty: ?*Guid,
+            pvBufferProperty: ?*c_void,
+            pdwBufferPropertySize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace INSSBuffer3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer4_GetPropertyCount(self: *const T, pcBufferProperties: *u32) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer4_GetPropertyCount(self: *const T, pcBufferProperties: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer4.VTable, self.vtable).GetPropertyCount(@ptrCast(*const INSSBuffer4, self), pcBufferProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSSBuffer4_GetPropertyByIndex(self: *const T, dwBufferPropertyIndex: u32, pguidBufferProperty: *Guid, pvBufferProperty: *c_void, pdwBufferPropertySize: *u32) callconv(.Inline) HRESULT {
+        pub fn INSSBuffer4_GetPropertyByIndex(self: *const T, dwBufferPropertyIndex: u32, pguidBufferProperty: ?*Guid, pvBufferProperty: ?*c_void, pdwBufferPropertySize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSSBuffer4.VTable, self.vtable).GetPropertyByIndex(@ptrCast(*const INSSBuffer4, self), dwBufferPropertyIndex, pguidBufferProperty, pvBufferProperty, pdwBufferPropertySize);
         }
     };}
@@ -506,23 +506,23 @@ pub const IWMSBufferAllocator = extern struct {
         AllocateBuffer: fn(
             self: *const IWMSBufferAllocator,
             dwMaxBufferSize: u32,
-            ppBuffer: **INSSBuffer,
+            ppBuffer: ?*?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocatePageSizeBuffer: fn(
             self: *const IWMSBufferAllocator,
             dwMaxBufferSize: u32,
-            ppBuffer: **INSSBuffer,
+            ppBuffer: ?*?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSBufferAllocator_AllocateBuffer(self: *const T, dwMaxBufferSize: u32, ppBuffer: **INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMSBufferAllocator_AllocateBuffer(self: *const T, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSBufferAllocator.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IWMSBufferAllocator, self), dwMaxBufferSize, ppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSBufferAllocator_AllocatePageSizeBuffer(self: *const T, dwMaxBufferSize: u32, ppBuffer: **INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMSBufferAllocator_AllocatePageSizeBuffer(self: *const T, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSBufferAllocator.VTable, self.vtable).AllocatePageSizeBuffer(@ptrCast(*const IWMSBufferAllocator, self), dwMaxBufferSize, ppBuffer);
         }
     };}
@@ -978,14 +978,14 @@ pub const WM_READER_STATISTICS = extern struct {
 
 pub const WM_READER_CLIENTINFO = extern struct {
     cbSize: u32,
-    wszLang: PWSTR,
-    wszBrowserUserAgent: PWSTR,
-    wszBrowserWebPage: PWSTR,
+    wszLang: ?PWSTR,
+    wszBrowserUserAgent: ?PWSTR,
+    wszBrowserWebPage: ?PWSTR,
     qwReserved: u64,
-    pReserved: *LPARAM,
-    wszHostExe: PWSTR,
+    pReserved: ?*LPARAM,
+    wszHostExe: ?PWSTR,
     qwHostVersion: u64,
-    wszPlayerUserAgent: PWSTR,
+    wszPlayerUserAgent: ?PWSTR,
 };
 
 pub const WM_CLIENT_PROPERTIES = extern struct {
@@ -995,9 +995,9 @@ pub const WM_CLIENT_PROPERTIES = extern struct {
 
 pub const WM_CLIENT_PROPERTIES_EX = extern struct {
     cbSize: u32,
-    pwszIPAddress: [*:0]const u16,
-    pwszPort: [*:0]const u16,
-    pwszDNSName: [*:0]const u16,
+    pwszIPAddress: ?[*:0]const u16,
+    pwszPort: ?[*:0]const u16,
+    pwszDNSName: ?[*:0]const u16,
 };
 
 pub const WM_PORT_NUMBER_RANGE = extern struct {
@@ -1006,7 +1006,7 @@ pub const WM_PORT_NUMBER_RANGE = extern struct {
 };
 
 pub const WMT_BUFFER_SEGMENT = extern struct {
-    pBuffer: *INSSBuffer,
+    pBuffer: ?*INSSBuffer,
     cbOffset: u32,
     cbLength: u32,
 };
@@ -1019,9 +1019,9 @@ pub const WMT_PAYLOAD_FRAGMENT = extern struct {
 pub const WMT_FILESINK_DATA_UNIT = extern struct {
     packetHeaderBuffer: WMT_BUFFER_SEGMENT,
     cPayloads: u32,
-    pPayloadHeaderBuffers: *WMT_BUFFER_SEGMENT,
+    pPayloadHeaderBuffers: ?*WMT_BUFFER_SEGMENT,
     cPayloadDataFragments: u32,
-    pPayloadDataFragments: *WMT_PAYLOAD_FRAGMENT,
+    pPayloadDataFragments: ?*WMT_PAYLOAD_FRAGMENT,
 };
 
 pub const WMT_WEBSTREAM_FORMAT = extern struct {
@@ -1045,29 +1045,29 @@ pub const WM_ADDRESS_ACCESSENTRY = extern struct {
 };
 
 pub const WM_PICTURE = packed struct {
-    pwszMIMEType: PWSTR,
+    pwszMIMEType: ?PWSTR,
     bPictureType: u8,
-    pwszDescription: PWSTR,
+    pwszDescription: ?PWSTR,
     dwDataLen: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const WM_SYNCHRONISED_LYRICS = packed struct {
     bTimeStampFormat: u8,
     bContentType: u8,
-    pwszContentDescriptor: PWSTR,
+    pwszContentDescriptor: ?PWSTR,
     dwLyricsLen: u32,
-    pbLyrics: *u8,
+    pbLyrics: ?*u8,
 };
 
 pub const WM_USER_WEB_URL = packed struct {
-    pwszDescription: PWSTR,
-    pwszURL: PWSTR,
+    pwszDescription: ?PWSTR,
+    pwszURL: ?PWSTR,
 };
 
 pub const WM_USER_TEXT = packed struct {
-    pwszDescription: PWSTR,
-    pwszText: PWSTR,
+    pwszDescription: ?PWSTR,
+    pwszText: ?PWSTR,
 };
 
 pub const WM_LEAKY_BUCKET_PAIR = packed struct {
@@ -1084,7 +1084,7 @@ pub const WMT_WATERMARK_ENTRY = extern struct {
     wmetType: WMT_WATERMARK_ENTRY_TYPE,
     clsid: Guid,
     cbDisplayName: u32,
-    pwszDisplayName: PWSTR,
+    pwszDisplayName: ?PWSTR,
 };
 
 pub const WMT_VIDEOIMAGE_SAMPLE = extern struct {
@@ -1148,9 +1148,9 @@ pub const WM_MEDIA_TYPE = extern struct {
     bTemporalCompression: BOOL,
     lSampleSize: u32,
     formattype: Guid,
-    pUnk: *IUnknown,
+    pUnk: ?*IUnknown,
     cbFormat: u32,
-    pbFormat: *u8,
+    pbFormat: ?*u8,
 };
 
 pub const WMVIDEOINFOHEADER = extern struct {
@@ -1216,31 +1216,31 @@ pub const IWMMediaProps = extern struct {
         base: IUnknown.VTable,
         GetType: fn(
             self: *const IWMMediaProps,
-            pguidType: *Guid,
+            pguidType: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMediaType: fn(
             self: *const IWMMediaProps,
-            pType: *WM_MEDIA_TYPE,
-            pcbType: *u32,
+            pType: ?*WM_MEDIA_TYPE,
+            pcbType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMediaType: fn(
             self: *const IWMMediaProps,
-            pType: *WM_MEDIA_TYPE,
+            pType: ?*WM_MEDIA_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMediaProps_GetType(self: *const T, pguidType: *Guid) callconv(.Inline) HRESULT {
+        pub fn IWMMediaProps_GetType(self: *const T, pguidType: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMediaProps.VTable, self.vtable).GetType(@ptrCast(*const IWMMediaProps, self), pguidType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMediaProps_GetMediaType(self: *const T, pType: *WM_MEDIA_TYPE, pcbType: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMMediaProps_GetMediaType(self: *const T, pType: ?*WM_MEDIA_TYPE, pcbType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMediaProps.VTable, self.vtable).GetMediaType(@ptrCast(*const IWMMediaProps, self), pType, pcbType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMediaProps_SetMediaType(self: *const T, pType: *WM_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        pub fn IWMMediaProps_SetMediaType(self: *const T, pType: ?*WM_MEDIA_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMediaProps.VTable, self.vtable).SetMediaType(@ptrCast(*const IWMMediaProps, self), pType);
         }
     };}
@@ -1254,7 +1254,7 @@ pub const IWMVideoMediaProps = extern struct {
         base: IWMMediaProps.VTable,
         GetMaxKeyFrameSpacing: fn(
             self: *const IWMVideoMediaProps,
-            pllTime: *i64,
+            pllTime: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMaxKeyFrameSpacing: fn(
             self: *const IWMVideoMediaProps,
@@ -1262,7 +1262,7 @@ pub const IWMVideoMediaProps = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQuality: fn(
             self: *const IWMVideoMediaProps,
-            pdwQuality: *u32,
+            pdwQuality: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetQuality: fn(
             self: *const IWMVideoMediaProps,
@@ -1273,7 +1273,7 @@ pub const IWMVideoMediaProps = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMediaProps.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMVideoMediaProps_GetMaxKeyFrameSpacing(self: *const T, pllTime: *i64) callconv(.Inline) HRESULT {
+        pub fn IWMVideoMediaProps_GetMaxKeyFrameSpacing(self: *const T, pllTime: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMVideoMediaProps.VTable, self.vtable).GetMaxKeyFrameSpacing(@ptrCast(*const IWMVideoMediaProps, self), pllTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1281,7 +1281,7 @@ pub const IWMVideoMediaProps = extern struct {
             return @ptrCast(*const IWMVideoMediaProps.VTable, self.vtable).SetMaxKeyFrameSpacing(@ptrCast(*const IWMVideoMediaProps, self), llTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMVideoMediaProps_GetQuality(self: *const T, pdwQuality: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMVideoMediaProps_GetQuality(self: *const T, pdwQuality: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMVideoMediaProps.VTable, self.vtable).GetQuality(@ptrCast(*const IWMVideoMediaProps, self), pdwQuality);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1299,40 +1299,40 @@ pub const IWMWriter = extern struct {
         base: IUnknown.VTable,
         SetProfileByID: fn(
             self: *const IWMWriter,
-            guidProfile: *const Guid,
+            guidProfile: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProfile: fn(
             self: *const IWMWriter,
-            pProfile: *IWMProfile,
+            pProfile: ?*IWMProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputFilename: fn(
             self: *const IWMWriter,
-            pwszFilename: [*:0]const u16,
+            pwszFilename: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInputCount: fn(
             self: *const IWMWriter,
-            pcInputs: *u32,
+            pcInputs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInputProps: fn(
             self: *const IWMWriter,
             dwInputNum: u32,
-            ppInput: **IWMInputMediaProps,
+            ppInput: ?*?*IWMInputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetInputProps: fn(
             self: *const IWMWriter,
             dwInputNum: u32,
-            pInput: *IWMInputMediaProps,
+            pInput: ?*IWMInputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInputFormatCount: fn(
             self: *const IWMWriter,
             dwInputNumber: u32,
-            pcFormats: *u32,
+            pcFormats: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInputFormat: fn(
             self: *const IWMWriter,
             dwInputNumber: u32,
             dwFormatNumber: u32,
-            pProps: **IWMInputMediaProps,
+            pProps: ?*?*IWMInputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BeginWriting: fn(
             self: *const IWMWriter,
@@ -1343,14 +1343,14 @@ pub const IWMWriter = extern struct {
         AllocateSample: fn(
             self: *const IWMWriter,
             dwSampleSize: u32,
-            ppSample: **INSSBuffer,
+            ppSample: ?*?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteSample: fn(
             self: *const IWMWriter,
             dwInputNum: u32,
             cnsSampleTime: u64,
             dwFlags: u32,
-            pSample: *INSSBuffer,
+            pSample: ?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Flush: fn(
             self: *const IWMWriter,
@@ -1360,35 +1360,35 @@ pub const IWMWriter = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_SetProfileByID(self: *const T, guidProfile: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_SetProfileByID(self: *const T, guidProfile: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).SetProfileByID(@ptrCast(*const IWMWriter, self), guidProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_SetProfile(self: *const T, pProfile: *IWMProfile) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_SetProfile(self: *const T, pProfile: ?*IWMProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).SetProfile(@ptrCast(*const IWMWriter, self), pProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_SetOutputFilename(self: *const T, pwszFilename: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_SetOutputFilename(self: *const T, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).SetOutputFilename(@ptrCast(*const IWMWriter, self), pwszFilename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_GetInputCount(self: *const T, pcInputs: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_GetInputCount(self: *const T, pcInputs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).GetInputCount(@ptrCast(*const IWMWriter, self), pcInputs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_GetInputProps(self: *const T, dwInputNum: u32, ppInput: **IWMInputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_GetInputProps(self: *const T, dwInputNum: u32, ppInput: ?*?*IWMInputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).GetInputProps(@ptrCast(*const IWMWriter, self), dwInputNum, ppInput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_SetInputProps(self: *const T, dwInputNum: u32, pInput: *IWMInputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_SetInputProps(self: *const T, dwInputNum: u32, pInput: ?*IWMInputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).SetInputProps(@ptrCast(*const IWMWriter, self), dwInputNum, pInput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_GetInputFormatCount(self: *const T, dwInputNumber: u32, pcFormats: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_GetInputFormatCount(self: *const T, dwInputNumber: u32, pcFormats: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).GetInputFormatCount(@ptrCast(*const IWMWriter, self), dwInputNumber, pcFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_GetInputFormat(self: *const T, dwInputNumber: u32, dwFormatNumber: u32, pProps: **IWMInputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_GetInputFormat(self: *const T, dwInputNumber: u32, dwFormatNumber: u32, pProps: ?*?*IWMInputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).GetInputFormat(@ptrCast(*const IWMWriter, self), dwInputNumber, dwFormatNumber, pProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1400,11 +1400,11 @@ pub const IWMWriter = extern struct {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).EndWriting(@ptrCast(*const IWMWriter, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_AllocateSample(self: *const T, dwSampleSize: u32, ppSample: **INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_AllocateSample(self: *const T, dwSampleSize: u32, ppSample: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).AllocateSample(@ptrCast(*const IWMWriter, self), dwSampleSize, ppSample);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriter_WriteSample(self: *const T, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: *INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMWriter_WriteSample(self: *const T, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriter.VTable, self.vtable).WriteSample(@ptrCast(*const IWMWriter, self), dwInputNum, cnsSampleTime, dwFlags, pSample);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1424,24 +1424,24 @@ pub const IWMDRMWriter = extern struct {
         GenerateKeySeed: fn(
             self: *const IWMDRMWriter,
             pwszKeySeed: [*:0]u16,
-            pcwchLength: *u32,
+            pcwchLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateKeyID: fn(
             self: *const IWMDRMWriter,
             pwszKeyID: [*:0]u16,
-            pcwchLength: *u32,
+            pcwchLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GenerateSigningKeyPair: fn(
             self: *const IWMDRMWriter,
             pwszPrivKey: [*:0]u16,
-            pcwchPrivKeyLength: *u32,
+            pcwchPrivKeyLength: ?*u32,
             pwszPubKey: [*:0]u16,
-            pcwchPubKeyLength: *u32,
+            pcwchPubKeyLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDRMAttribute: fn(
             self: *const IWMDRMWriter,
             wStreamNum: u16,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
@@ -1451,19 +1451,19 @@ pub const IWMDRMWriter = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMWriter_GenerateKeySeed(self: *const T, pwszKeySeed: [*:0]u16, pcwchLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMWriter_GenerateKeySeed(self: *const T, pwszKeySeed: [*:0]u16, pcwchLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMWriter.VTable, self.vtable).GenerateKeySeed(@ptrCast(*const IWMDRMWriter, self), pwszKeySeed, pcwchLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMWriter_GenerateKeyID(self: *const T, pwszKeyID: [*:0]u16, pcwchLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMWriter_GenerateKeyID(self: *const T, pwszKeyID: [*:0]u16, pcwchLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMWriter.VTable, self.vtable).GenerateKeyID(@ptrCast(*const IWMDRMWriter, self), pwszKeyID, pcwchLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMWriter_GenerateSigningKeyPair(self: *const T, pwszPrivKey: [*:0]u16, pcwchPrivKeyLength: *u32, pwszPubKey: [*:0]u16, pcwchPubKeyLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMWriter_GenerateSigningKeyPair(self: *const T, pwszPrivKey: [*:0]u16, pcwchPrivKeyLength: ?*u32, pwszPubKey: [*:0]u16, pcwchPubKeyLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMWriter.VTable, self.vtable).GenerateSigningKeyPair(@ptrCast(*const IWMDRMWriter, self), pwszPrivKey, pcwchPrivKeyLength, pwszPubKey, pcwchPubKeyLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMWriter_SetDRMAttribute(self: *const T, wStreamNum: u16, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+        pub fn IWMDRMWriter_SetDRMAttribute(self: *const T, wStreamNum: u16, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMWriter.VTable, self.vtable).SetDRMAttribute(@ptrCast(*const IWMDRMWriter, self), wStreamNum, pszName, Type, pValue, cbLength);
         }
     };}
@@ -1473,9 +1473,9 @@ pub const IWMDRMWriter = extern struct {
 pub const WMDRM_IMPORT_INIT_STRUCT = extern struct {
     dwVersion: u32,
     cbEncryptedSessionKeyMessage: u32,
-    pbEncryptedSessionKeyMessage: *u8,
+    pbEncryptedSessionKeyMessage: ?*u8,
     cbEncryptedKeyMessage: u32,
-    pbEncryptedKeyMessage: *u8,
+    pbEncryptedKeyMessage: ?*u8,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1487,7 +1487,7 @@ pub const IWMDRMWriter2 = extern struct {
         SetWMDRMNetEncryption: fn(
             self: *const IWMDRMWriter2,
             fSamplesEncrypted: BOOL,
-            pbKeyID: *u8,
+            pbKeyID: ?*u8,
             cbKeyID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1495,7 +1495,7 @@ pub const IWMDRMWriter2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMWriter.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMWriter2_SetWMDRMNetEncryption(self: *const T, fSamplesEncrypted: BOOL, pbKeyID: *u8, cbKeyID: u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMWriter2_SetWMDRMNetEncryption(self: *const T, fSamplesEncrypted: BOOL, pbKeyID: ?*u8, cbKeyID: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMWriter2.VTable, self.vtable).SetWMDRMNetEncryption(@ptrCast(*const IWMDRMWriter2, self), fSamplesEncrypted, pbKeyID, cbKeyID);
         }
     };}
@@ -1510,14 +1510,14 @@ pub const IWMDRMWriter3 = extern struct {
         base: IWMDRMWriter2.VTable,
         SetProtectStreamSamples: fn(
             self: *const IWMDRMWriter3,
-            pImportInitStruct: *WMDRM_IMPORT_INIT_STRUCT,
+            pImportInitStruct: ?*WMDRM_IMPORT_INIT_STRUCT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMWriter2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMWriter3_SetProtectStreamSamples(self: *const T, pImportInitStruct: *WMDRM_IMPORT_INIT_STRUCT) callconv(.Inline) HRESULT {
+        pub fn IWMDRMWriter3_SetProtectStreamSamples(self: *const T, pImportInitStruct: ?*WMDRM_IMPORT_INIT_STRUCT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMWriter3.VTable, self.vtable).SetProtectStreamSamples(@ptrCast(*const IWMDRMWriter3, self), pImportInitStruct);
         }
     };}
@@ -1532,23 +1532,23 @@ pub const IWMInputMediaProps = extern struct {
         GetConnectionName: fn(
             self: *const IWMInputMediaProps,
             pwszName: [*:0]u16,
-            pcchName: *u16,
+            pcchName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroupName: fn(
             self: *const IWMInputMediaProps,
             pwszName: [*:0]u16,
-            pcchName: *u16,
+            pcchName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMediaProps.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMInputMediaProps_GetConnectionName(self: *const T, pwszName: [*:0]u16, pcchName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMInputMediaProps_GetConnectionName(self: *const T, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMInputMediaProps.VTable, self.vtable).GetConnectionName(@ptrCast(*const IWMInputMediaProps, self), pwszName, pcchName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMInputMediaProps_GetGroupName(self: *const T, pwszName: [*:0]u16, pcchName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMInputMediaProps_GetGroupName(self: *const T, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMInputMediaProps.VTable, self.vtable).GetGroupName(@ptrCast(*const IWMInputMediaProps, self), pwszName, pcchName);
         }
     };}
@@ -1562,34 +1562,34 @@ pub const IWMPropertyVault = extern struct {
         base: IUnknown.VTable,
         GetPropertyCount: fn(
             self: *const IWMPropertyVault,
-            pdwCount: *u32,
+            pdwCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyByName: fn(
             self: *const IWMPropertyVault,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pdwSize: *u32,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IWMPropertyVault,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             pType: WMT_ATTR_DATATYPE,
-            pValue: *u8,
+            pValue: ?*u8,
             dwSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyByIndex: fn(
             self: *const IWMPropertyVault,
             dwIndex: u32,
             pszName: [*:0]u16,
-            pdwNameLen: *u32,
-            pType: *WMT_ATTR_DATATYPE,
+            pdwNameLen: ?*u32,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pdwSize: *u32,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyPropertiesFrom: fn(
             self: *const IWMPropertyVault,
-            pIWMPropertyVault: *IWMPropertyVault,
+            pIWMPropertyVault: ?*IWMPropertyVault,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const IWMPropertyVault,
@@ -1599,23 +1599,23 @@ pub const IWMPropertyVault = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPropertyVault_GetPropertyCount(self: *const T, pdwCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMPropertyVault_GetPropertyCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPropertyVault.VTable, self.vtable).GetPropertyCount(@ptrCast(*const IWMPropertyVault, self), pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPropertyVault_GetPropertyByName(self: *const T, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMPropertyVault_GetPropertyByName(self: *const T, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPropertyVault.VTable, self.vtable).GetPropertyByName(@ptrCast(*const IWMPropertyVault, self), pszName, pType, pValue, pdwSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPropertyVault_SetProperty(self: *const T, pszName: [*:0]const u16, pType: WMT_ATTR_DATATYPE, pValue: *u8, dwSize: u32) callconv(.Inline) HRESULT {
+        pub fn IWMPropertyVault_SetProperty(self: *const T, pszName: ?[*:0]const u16, pType: WMT_ATTR_DATATYPE, pValue: ?*u8, dwSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPropertyVault.VTable, self.vtable).SetProperty(@ptrCast(*const IWMPropertyVault, self), pszName, pType, pValue, dwSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPropertyVault_GetPropertyByIndex(self: *const T, dwIndex: u32, pszName: [*:0]u16, pdwNameLen: *u32, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMPropertyVault_GetPropertyByIndex(self: *const T, dwIndex: u32, pszName: [*:0]u16, pdwNameLen: ?*u32, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPropertyVault.VTable, self.vtable).GetPropertyByIndex(@ptrCast(*const IWMPropertyVault, self), dwIndex, pszName, pdwNameLen, pType, pValue, pdwSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPropertyVault_CopyPropertiesFrom(self: *const T, pIWMPropertyVault: *IWMPropertyVault) callconv(.Inline) HRESULT {
+        pub fn IWMPropertyVault_CopyPropertiesFrom(self: *const T, pIWMPropertyVault: ?*IWMPropertyVault) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPropertyVault.VTable, self.vtable).CopyPropertiesFrom(@ptrCast(*const IWMPropertyVault, self), pIWMPropertyVault);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1633,17 +1633,17 @@ pub const IWMIStreamProps = extern struct {
         base: IUnknown.VTable,
         GetProperty: fn(
             self: *const IWMIStreamProps,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pdwSize: *u32,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMIStreamProps_GetProperty(self: *const T, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMIStreamProps_GetProperty(self: *const T, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMIStreamProps.VTable, self.vtable).GetProperty(@ptrCast(*const IWMIStreamProps, self), pszName, pType, pValue, pdwSize);
         }
     };}
@@ -1657,44 +1657,44 @@ pub const IWMReader = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IWMReader,
-            pwszURL: [*:0]const u16,
-            pCallback: *IWMReaderCallback,
-            pvContext: *c_void,
+            pwszURL: ?[*:0]const u16,
+            pCallback: ?*IWMReaderCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IWMReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputCount: fn(
             self: *const IWMReader,
-            pcOutputs: *u32,
+            pcOutputs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputProps: fn(
             self: *const IWMReader,
             dwOutputNum: u32,
-            ppOutput: **IWMOutputMediaProps,
+            ppOutput: ?*?*IWMOutputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputProps: fn(
             self: *const IWMReader,
             dwOutputNum: u32,
-            pOutput: *IWMOutputMediaProps,
+            pOutput: ?*IWMOutputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputFormatCount: fn(
             self: *const IWMReader,
             dwOutputNumber: u32,
-            pcFormats: *u32,
+            pcFormats: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputFormat: fn(
             self: *const IWMReader,
             dwOutputNumber: u32,
             dwFormatNumber: u32,
-            ppProps: **IWMOutputMediaProps,
+            ppProps: ?*?*IWMOutputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Start: fn(
             self: *const IWMReader,
             cnsStart: u64,
             cnsDuration: u64,
             fRate: f32,
-            pvContext: *c_void,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Stop: fn(
             self: *const IWMReader,
@@ -1710,7 +1710,7 @@ pub const IWMReader = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReader_Open(self: *const T, pwszURL: [*:0]const u16, pCallback: *IWMReaderCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReader_Open(self: *const T, pwszURL: ?[*:0]const u16, pCallback: ?*IWMReaderCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReader.VTable, self.vtable).Open(@ptrCast(*const IWMReader, self), pwszURL, pCallback, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1718,27 +1718,27 @@ pub const IWMReader = extern struct {
             return @ptrCast(*const IWMReader.VTable, self.vtable).Close(@ptrCast(*const IWMReader, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReader_GetOutputCount(self: *const T, pcOutputs: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReader_GetOutputCount(self: *const T, pcOutputs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReader.VTable, self.vtable).GetOutputCount(@ptrCast(*const IWMReader, self), pcOutputs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReader_GetOutputProps(self: *const T, dwOutputNum: u32, ppOutput: **IWMOutputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMReader_GetOutputProps(self: *const T, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReader.VTable, self.vtable).GetOutputProps(@ptrCast(*const IWMReader, self), dwOutputNum, ppOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReader_SetOutputProps(self: *const T, dwOutputNum: u32, pOutput: *IWMOutputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMReader_SetOutputProps(self: *const T, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReader.VTable, self.vtable).SetOutputProps(@ptrCast(*const IWMReader, self), dwOutputNum, pOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReader_GetOutputFormatCount(self: *const T, dwOutputNumber: u32, pcFormats: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReader_GetOutputFormatCount(self: *const T, dwOutputNumber: u32, pcFormats: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReader.VTable, self.vtable).GetOutputFormatCount(@ptrCast(*const IWMReader, self), dwOutputNumber, pcFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReader_GetOutputFormat(self: *const T, dwOutputNumber: u32, dwFormatNumber: u32, ppProps: **IWMOutputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMReader_GetOutputFormat(self: *const T, dwOutputNumber: u32, dwFormatNumber: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReader.VTable, self.vtable).GetOutputFormat(@ptrCast(*const IWMReader, self), dwOutputNumber, dwFormatNumber, ppProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReader_Start(self: *const T, cnsStart: u64, cnsDuration: u64, fRate: f32, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReader_Start(self: *const T, cnsStart: u64, cnsDuration: u64, fRate: f32, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReader.VTable, self.vtable).Start(@ptrCast(*const IWMReader, self), cnsStart, cnsDuration, fRate, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1764,7 +1764,7 @@ pub const IWMSyncReader = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IWMSyncReader,
-            pwszFilename: [*:0]const u16,
+            pwszFilename: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IWMSyncReader,
@@ -1783,23 +1783,23 @@ pub const IWMSyncReader = extern struct {
         GetNextSample: fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
-            ppSample: **INSSBuffer,
-            pcnsSampleTime: *u64,
-            pcnsDuration: *u64,
-            pdwFlags: *u32,
-            pdwOutputNum: *u32,
-            pwStreamNum: *u16,
+            ppSample: ?*?*INSSBuffer,
+            pcnsSampleTime: ?*u64,
+            pcnsDuration: ?*u64,
+            pdwFlags: ?*u32,
+            pdwOutputNum: ?*u32,
+            pwStreamNum: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStreamsSelected: fn(
             self: *const IWMSyncReader,
             cStreamCount: u16,
-            pwStreamNumbers: *u16,
-            pSelections: *WMT_STREAM_SELECTION,
+            pwStreamNumbers: ?*u16,
+            pSelections: ?*WMT_STREAM_SELECTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamSelected: fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
-            pSelection: *WMT_STREAM_SELECTION,
+            pSelection: ?*WMT_STREAM_SELECTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReadStreamSamples: fn(
             self: *const IWMSyncReader,
@@ -1809,79 +1809,79 @@ pub const IWMSyncReader = extern struct {
         GetReadStreamSamples: fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
-            pfCompressed: *BOOL,
+            pfCompressed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputSetting: fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputSetting: fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputCount: fn(
             self: *const IWMSyncReader,
-            pcOutputs: *u32,
+            pcOutputs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputProps: fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
-            ppOutput: **IWMOutputMediaProps,
+            ppOutput: ?*?*IWMOutputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputProps: fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
-            pOutput: *IWMOutputMediaProps,
+            pOutput: ?*IWMOutputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputFormatCount: fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
-            pcFormats: *u32,
+            pcFormats: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputFormat: fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
             dwFormatNum: u32,
-            ppProps: **IWMOutputMediaProps,
+            ppProps: ?*?*IWMOutputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputNumberForStream: fn(
             self: *const IWMSyncReader,
             wStreamNum: u16,
-            pdwOutputNum: *u32,
+            pdwOutputNum: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamNumberForOutput: fn(
             self: *const IWMSyncReader,
             dwOutputNum: u32,
-            pwStreamNum: *u16,
+            pwStreamNum: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxOutputSampleSize: fn(
             self: *const IWMSyncReader,
             dwOutput: u32,
-            pcbMax: *u32,
+            pcbMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxStreamSampleSize: fn(
             self: *const IWMSyncReader,
             wStream: u16,
-            pcbMax: *u32,
+            pcbMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenStream: fn(
             self: *const IWMSyncReader,
-            pStream: *IStream,
+            pStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_Open(self: *const T, pwszFilename: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_Open(self: *const T, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).Open(@ptrCast(*const IWMSyncReader, self), pwszFilename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1897,15 +1897,15 @@ pub const IWMSyncReader = extern struct {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).SetRangeByFrame(@ptrCast(*const IWMSyncReader, self), wStreamNum, qwFrameNumber, cFramesToRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetNextSample(self: *const T, wStreamNum: u16, ppSample: **INSSBuffer, pcnsSampleTime: *u64, pcnsDuration: *u64, pdwFlags: *u32, pdwOutputNum: *u32, pwStreamNum: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetNextSample(self: *const T, wStreamNum: u16, ppSample: ?*?*INSSBuffer, pcnsSampleTime: ?*u64, pcnsDuration: ?*u64, pdwFlags: ?*u32, pdwOutputNum: ?*u32, pwStreamNum: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetNextSample(@ptrCast(*const IWMSyncReader, self), wStreamNum, ppSample, pcnsSampleTime, pcnsDuration, pdwFlags, pdwOutputNum, pwStreamNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_SetStreamsSelected(self: *const T, cStreamCount: u16, pwStreamNumbers: *u16, pSelections: *WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_SetStreamsSelected(self: *const T, cStreamCount: u16, pwStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).SetStreamsSelected(@ptrCast(*const IWMSyncReader, self), cStreamCount, pwStreamNumbers, pSelections);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetStreamSelected(self: *const T, wStreamNum: u16, pSelection: *WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetStreamSelected(self: *const T, wStreamNum: u16, pSelection: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetStreamSelected(@ptrCast(*const IWMSyncReader, self), wStreamNum, pSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1913,55 +1913,55 @@ pub const IWMSyncReader = extern struct {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).SetReadStreamSamples(@ptrCast(*const IWMSyncReader, self), wStreamNum, fCompressed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetReadStreamSamples(self: *const T, wStreamNum: u16, pfCompressed: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetReadStreamSamples(self: *const T, wStreamNum: u16, pfCompressed: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetReadStreamSamples(@ptrCast(*const IWMSyncReader, self), wStreamNum, pfCompressed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetOutputSetting(self: *const T, dwOutputNum: u32, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetOutputSetting(self: *const T, dwOutputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetOutputSetting(@ptrCast(*const IWMSyncReader, self), dwOutputNum, pszName, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_SetOutputSetting(self: *const T, dwOutputNum: u32, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_SetOutputSetting(self: *const T, dwOutputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).SetOutputSetting(@ptrCast(*const IWMSyncReader, self), dwOutputNum, pszName, Type, pValue, cbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetOutputCount(self: *const T, pcOutputs: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetOutputCount(self: *const T, pcOutputs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetOutputCount(@ptrCast(*const IWMSyncReader, self), pcOutputs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetOutputProps(self: *const T, dwOutputNum: u32, ppOutput: **IWMOutputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetOutputProps(self: *const T, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetOutputProps(@ptrCast(*const IWMSyncReader, self), dwOutputNum, ppOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_SetOutputProps(self: *const T, dwOutputNum: u32, pOutput: *IWMOutputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_SetOutputProps(self: *const T, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).SetOutputProps(@ptrCast(*const IWMSyncReader, self), dwOutputNum, pOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetOutputFormatCount(self: *const T, dwOutputNum: u32, pcFormats: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetOutputFormatCount(self: *const T, dwOutputNum: u32, pcFormats: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetOutputFormatCount(@ptrCast(*const IWMSyncReader, self), dwOutputNum, pcFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetOutputFormat(self: *const T, dwOutputNum: u32, dwFormatNum: u32, ppProps: **IWMOutputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetOutputFormat(self: *const T, dwOutputNum: u32, dwFormatNum: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetOutputFormat(@ptrCast(*const IWMSyncReader, self), dwOutputNum, dwFormatNum, ppProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetOutputNumberForStream(self: *const T, wStreamNum: u16, pdwOutputNum: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetOutputNumberForStream(self: *const T, wStreamNum: u16, pdwOutputNum: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetOutputNumberForStream(@ptrCast(*const IWMSyncReader, self), wStreamNum, pdwOutputNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetStreamNumberForOutput(self: *const T, dwOutputNum: u32, pwStreamNum: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetStreamNumberForOutput(self: *const T, dwOutputNum: u32, pwStreamNum: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetStreamNumberForOutput(@ptrCast(*const IWMSyncReader, self), dwOutputNum, pwStreamNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetMaxOutputSampleSize(self: *const T, dwOutput: u32, pcbMax: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetMaxOutputSampleSize(self: *const T, dwOutput: u32, pcbMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetMaxOutputSampleSize(@ptrCast(*const IWMSyncReader, self), dwOutput, pcbMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_GetMaxStreamSampleSize(self: *const T, wStream: u16, pcbMax: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_GetMaxStreamSampleSize(self: *const T, wStream: u16, pcbMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).GetMaxStreamSampleSize(@ptrCast(*const IWMSyncReader, self), wStream, pcbMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader_OpenStream(self: *const T, pStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader_OpenStream(self: *const T, pStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader.VTable, self.vtable).OpenStream(@ptrCast(*const IWMSyncReader, self), pStream);
         }
     };}
@@ -1976,62 +1976,62 @@ pub const IWMSyncReader2 = extern struct {
         SetRangeByTimecode: fn(
             self: *const IWMSyncReader2,
             wStreamNum: u16,
-            pStart: *WMT_TIMECODE_EXTENSION_DATA,
-            pEnd: *WMT_TIMECODE_EXTENSION_DATA,
+            pStart: ?*WMT_TIMECODE_EXTENSION_DATA,
+            pEnd: ?*WMT_TIMECODE_EXTENSION_DATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRangeByFrameEx: fn(
             self: *const IWMSyncReader2,
             wStreamNum: u16,
             qwFrameNumber: u64,
             cFramesToRead: i64,
-            pcnsStartTime: *u64,
+            pcnsStartTime: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllocateForOutput: fn(
             self: *const IWMSyncReader2,
             dwOutputNum: u32,
-            pAllocator: *IWMReaderAllocatorEx,
+            pAllocator: ?*IWMReaderAllocatorEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllocateForOutput: fn(
             self: *const IWMSyncReader2,
             dwOutputNum: u32,
-            ppAllocator: **IWMReaderAllocatorEx,
+            ppAllocator: ?*?*IWMReaderAllocatorEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllocateForStream: fn(
             self: *const IWMSyncReader2,
             wStreamNum: u16,
-            pAllocator: *IWMReaderAllocatorEx,
+            pAllocator: ?*IWMReaderAllocatorEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllocateForStream: fn(
             self: *const IWMSyncReader2,
             dwSreamNum: u16,
-            ppAllocator: **IWMReaderAllocatorEx,
+            ppAllocator: ?*?*IWMReaderAllocatorEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMSyncReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader2_SetRangeByTimecode(self: *const T, wStreamNum: u16, pStart: *WMT_TIMECODE_EXTENSION_DATA, pEnd: *WMT_TIMECODE_EXTENSION_DATA) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader2_SetRangeByTimecode(self: *const T, wStreamNum: u16, pStart: ?*WMT_TIMECODE_EXTENSION_DATA, pEnd: ?*WMT_TIMECODE_EXTENSION_DATA) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader2.VTable, self.vtable).SetRangeByTimecode(@ptrCast(*const IWMSyncReader2, self), wStreamNum, pStart, pEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader2_SetRangeByFrameEx(self: *const T, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64, pcnsStartTime: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader2_SetRangeByFrameEx(self: *const T, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64, pcnsStartTime: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader2.VTable, self.vtable).SetRangeByFrameEx(@ptrCast(*const IWMSyncReader2, self), wStreamNum, qwFrameNumber, cFramesToRead, pcnsStartTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader2_SetAllocateForOutput(self: *const T, dwOutputNum: u32, pAllocator: *IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader2_SetAllocateForOutput(self: *const T, dwOutputNum: u32, pAllocator: ?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader2.VTable, self.vtable).SetAllocateForOutput(@ptrCast(*const IWMSyncReader2, self), dwOutputNum, pAllocator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader2_GetAllocateForOutput(self: *const T, dwOutputNum: u32, ppAllocator: **IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader2_GetAllocateForOutput(self: *const T, dwOutputNum: u32, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader2.VTable, self.vtable).GetAllocateForOutput(@ptrCast(*const IWMSyncReader2, self), dwOutputNum, ppAllocator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader2_SetAllocateForStream(self: *const T, wStreamNum: u16, pAllocator: *IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader2_SetAllocateForStream(self: *const T, wStreamNum: u16, pAllocator: ?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader2.VTable, self.vtable).SetAllocateForStream(@ptrCast(*const IWMSyncReader2, self), wStreamNum, pAllocator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSyncReader2_GetAllocateForStream(self: *const T, dwSreamNum: u16, ppAllocator: **IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
+        pub fn IWMSyncReader2_GetAllocateForStream(self: *const T, dwSreamNum: u16, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSyncReader2.VTable, self.vtable).GetAllocateForStream(@ptrCast(*const IWMSyncReader2, self), dwSreamNum, ppAllocator);
         }
     };}
@@ -2046,23 +2046,23 @@ pub const IWMOutputMediaProps = extern struct {
         GetStreamGroupName: fn(
             self: *const IWMOutputMediaProps,
             pwszName: [*:0]u16,
-            pcchName: *u16,
+            pcchName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectionName: fn(
             self: *const IWMOutputMediaProps,
             pwszName: [*:0]u16,
-            pcchName: *u16,
+            pcchName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMediaProps.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMOutputMediaProps_GetStreamGroupName(self: *const T, pwszName: [*:0]u16, pcchName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMOutputMediaProps_GetStreamGroupName(self: *const T, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMOutputMediaProps.VTable, self.vtable).GetStreamGroupName(@ptrCast(*const IWMOutputMediaProps, self), pwszName, pcchName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMOutputMediaProps_GetConnectionName(self: *const T, pwszName: [*:0]u16, pcchName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMOutputMediaProps_GetConnectionName(self: *const T, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMOutputMediaProps.VTable, self.vtable).GetConnectionName(@ptrCast(*const IWMOutputMediaProps, self), pwszName, pcchName);
         }
     };}
@@ -2079,15 +2079,15 @@ pub const IWMStatusCallback = extern struct {
             Status: WMT_STATUS,
             hr: HRESULT,
             dwType: WMT_ATTR_DATATYPE,
-            pValue: *u8,
-            pvContext: *c_void,
+            pValue: ?*u8,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStatusCallback_OnStatus(self: *const T, Status: WMT_STATUS, hr: HRESULT, dwType: WMT_ATTR_DATATYPE, pValue: *u8, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMStatusCallback_OnStatus(self: *const T, Status: WMT_STATUS, hr: HRESULT, dwType: WMT_ATTR_DATATYPE, pValue: ?*u8, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStatusCallback.VTable, self.vtable).OnStatus(@ptrCast(*const IWMStatusCallback, self), Status, hr, dwType, pValue, pvContext);
         }
     };}
@@ -2105,15 +2105,15 @@ pub const IWMReaderCallback = extern struct {
             cnsSampleTime: u64,
             cnsSampleDuration: u64,
             dwFlags: u32,
-            pSample: *INSSBuffer,
-            pvContext: *c_void,
+            pSample: ?*INSSBuffer,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStatusCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderCallback_OnSample(self: *const T, dwOutputNum: u32, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: *INSSBuffer, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderCallback_OnSample(self: *const T, dwOutputNum: u32, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderCallback.VTable, self.vtable).OnSample(@ptrCast(*const IWMReaderCallback, self), dwOutputNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
         }
     };}
@@ -2127,21 +2127,21 @@ pub const IWMCredentialCallback = extern struct {
         base: IUnknown.VTable,
         AcquireCredentials: fn(
             self: *const IWMCredentialCallback,
-            pwszRealm: PWSTR,
-            pwszSite: PWSTR,
+            pwszRealm: ?PWSTR,
+            pwszSite: ?PWSTR,
             pwszUser: [*:0]u16,
             cchUser: u32,
             pwszPassword: [*:0]u16,
             cchPassword: u32,
             hrStatus: HRESULT,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCredentialCallback_AcquireCredentials(self: *const T, pwszRealm: PWSTR, pwszSite: PWSTR, pwszUser: [*:0]u16, cchUser: u32, pwszPassword: [*:0]u16, cchPassword: u32, hrStatus: HRESULT, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCredentialCallback_AcquireCredentials(self: *const T, pwszRealm: ?PWSTR, pwszSite: ?PWSTR, pwszUser: [*:0]u16, cchUser: u32, pwszPassword: [*:0]u16, cchPassword: u32, hrStatus: HRESULT, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCredentialCallback.VTable, self.vtable).AcquireCredentials(@ptrCast(*const IWMCredentialCallback, self), pwszRealm, pwszSite, pwszUser, cchUser, pwszPassword, cchPassword, hrStatus, pdwFlags);
         }
     };}
@@ -2155,7 +2155,7 @@ pub const IWMMetadataEditor = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IWMMetadataEditor,
-            pwszFilename: [*:0]const u16,
+            pwszFilename: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IWMMetadataEditor,
@@ -2168,7 +2168,7 @@ pub const IWMMetadataEditor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMetadataEditor_Open(self: *const T, pwszFilename: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMMetadataEditor_Open(self: *const T, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMetadataEditor.VTable, self.vtable).Open(@ptrCast(*const IWMMetadataEditor, self), pwszFilename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2190,7 +2190,7 @@ pub const IWMMetadataEditor2 = extern struct {
         base: IWMMetadataEditor.VTable,
         OpenEx: fn(
             self: *const IWMMetadataEditor2,
-            pwszFilename: [*:0]const u16,
+            pwszFilename: ?[*:0]const u16,
             dwDesiredAccess: u32,
             dwShareMode: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2199,7 +2199,7 @@ pub const IWMMetadataEditor2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMetadataEditor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMetadataEditor2_OpenEx(self: *const T, pwszFilename: [*:0]const u16, dwDesiredAccess: u32, dwShareMode: u32) callconv(.Inline) HRESULT {
+        pub fn IWMMetadataEditor2_OpenEx(self: *const T, pwszFilename: ?[*:0]const u16, dwDesiredAccess: u32, dwShareMode: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMetadataEditor2.VTable, self.vtable).OpenEx(@ptrCast(*const IWMMetadataEditor2, self), pwszFilename, dwDesiredAccess, dwShareMode);
         }
     };}
@@ -2214,17 +2214,17 @@ pub const IWMDRMEditor = extern struct {
         base: IUnknown.VTable,
         GetDRMProperty: fn(
             self: *const IWMDRMEditor,
-            pwstrName: [*:0]const u16,
-            pdwType: *WMT_ATTR_DATATYPE,
+            pwstrName: ?[*:0]const u16,
+            pdwType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMEditor_GetDRMProperty(self: *const T, pwstrName: [*:0]const u16, pdwType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMDRMEditor_GetDRMProperty(self: *const T, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMEditor.VTable, self.vtable).GetDRMProperty(@ptrCast(*const IWMDRMEditor, self), pwstrName, pdwType, pValue, pcbLength);
         }
     };}
@@ -2239,48 +2239,48 @@ pub const IWMHeaderInfo = extern struct {
         GetAttributeCount: fn(
             self: *const IWMHeaderInfo,
             wStreamNum: u16,
-            pcAttributes: *u16,
+            pcAttributes: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeByIndex: fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
-            pwStreamNum: *u16,
+            pwStreamNum: ?*u16,
             pwszName: [*:0]u16,
-            pcchNameLen: *u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pcchNameLen: ?*u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeByName: fn(
             self: *const IWMHeaderInfo,
-            pwStreamNum: *u16,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pwStreamNum: ?*u16,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttribute: fn(
             self: *const IWMHeaderInfo,
             wStreamNum: u16,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMarkerCount: fn(
             self: *const IWMHeaderInfo,
-            pcMarkers: *u16,
+            pcMarkers: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMarker: fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
             pwszMarkerName: [*:0]u16,
-            pcchMarkerNameLen: *u16,
-            pcnsMarkerTime: *u64,
+            pcchMarkerNameLen: ?*u16,
+            pcnsMarkerTime: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMarker: fn(
             self: *const IWMHeaderInfo,
-            pwszMarkerName: PWSTR,
+            pwszMarkerName: ?PWSTR,
             cnsMarkerTime: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveMarker: fn(
@@ -2289,21 +2289,21 @@ pub const IWMHeaderInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScriptCount: fn(
             self: *const IWMHeaderInfo,
-            pcScripts: *u16,
+            pcScripts: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScript: fn(
             self: *const IWMHeaderInfo,
             wIndex: u16,
             pwszType: [*:0]u16,
-            pcchTypeLen: *u16,
+            pcchTypeLen: ?*u16,
             pwszCommand: [*:0]u16,
-            pcchCommandLen: *u16,
-            pcnsScriptTime: *u64,
+            pcchCommandLen: ?*u16,
+            pcnsScriptTime: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddScript: fn(
             self: *const IWMHeaderInfo,
-            pwszType: PWSTR,
-            pwszCommand: PWSTR,
+            pwszType: ?PWSTR,
+            pwszCommand: ?PWSTR,
             cnsScriptTime: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveScript: fn(
@@ -2315,31 +2315,31 @@ pub const IWMHeaderInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_GetAttributeCount(self: *const T, wStreamNum: u16, pcAttributes: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_GetAttributeCount(self: *const T, wStreamNum: u16, pcAttributes: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).GetAttributeCount(@ptrCast(*const IWMHeaderInfo, self), wStreamNum, pcAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_GetAttributeByIndex(self: *const T, wIndex: u16, pwStreamNum: *u16, pwszName: [*:0]u16, pcchNameLen: *u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_GetAttributeByIndex(self: *const T, wIndex: u16, pwStreamNum: ?*u16, pwszName: [*:0]u16, pcchNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).GetAttributeByIndex(@ptrCast(*const IWMHeaderInfo, self), wIndex, pwStreamNum, pwszName, pcchNameLen, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_GetAttributeByName(self: *const T, pwStreamNum: *u16, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_GetAttributeByName(self: *const T, pwStreamNum: ?*u16, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).GetAttributeByName(@ptrCast(*const IWMHeaderInfo, self), pwStreamNum, pszName, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_SetAttribute(self: *const T, wStreamNum: u16, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_SetAttribute(self: *const T, wStreamNum: u16, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).SetAttribute(@ptrCast(*const IWMHeaderInfo, self), wStreamNum, pszName, Type, pValue, cbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_GetMarkerCount(self: *const T, pcMarkers: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_GetMarkerCount(self: *const T, pcMarkers: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).GetMarkerCount(@ptrCast(*const IWMHeaderInfo, self), pcMarkers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_GetMarker(self: *const T, wIndex: u16, pwszMarkerName: [*:0]u16, pcchMarkerNameLen: *u16, pcnsMarkerTime: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_GetMarker(self: *const T, wIndex: u16, pwszMarkerName: [*:0]u16, pcchMarkerNameLen: ?*u16, pcnsMarkerTime: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).GetMarker(@ptrCast(*const IWMHeaderInfo, self), wIndex, pwszMarkerName, pcchMarkerNameLen, pcnsMarkerTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_AddMarker(self: *const T, pwszMarkerName: PWSTR, cnsMarkerTime: u64) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_AddMarker(self: *const T, pwszMarkerName: ?PWSTR, cnsMarkerTime: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).AddMarker(@ptrCast(*const IWMHeaderInfo, self), pwszMarkerName, cnsMarkerTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2347,15 +2347,15 @@ pub const IWMHeaderInfo = extern struct {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).RemoveMarker(@ptrCast(*const IWMHeaderInfo, self), wIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_GetScriptCount(self: *const T, pcScripts: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_GetScriptCount(self: *const T, pcScripts: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).GetScriptCount(@ptrCast(*const IWMHeaderInfo, self), pcScripts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_GetScript(self: *const T, wIndex: u16, pwszType: [*:0]u16, pcchTypeLen: *u16, pwszCommand: [*:0]u16, pcchCommandLen: *u16, pcnsScriptTime: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_GetScript(self: *const T, wIndex: u16, pwszType: [*:0]u16, pcchTypeLen: ?*u16, pwszCommand: [*:0]u16, pcchCommandLen: ?*u16, pcnsScriptTime: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).GetScript(@ptrCast(*const IWMHeaderInfo, self), wIndex, pwszType, pcchTypeLen, pwszCommand, pcchCommandLen, pcnsScriptTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo_AddScript(self: *const T, pwszType: PWSTR, pwszCommand: PWSTR, cnsScriptTime: u64) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo_AddScript(self: *const T, pwszType: ?PWSTR, pwszCommand: ?PWSTR, cnsScriptTime: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo.VTable, self.vtable).AddScript(@ptrCast(*const IWMHeaderInfo, self), pwszType, pwszCommand, cnsScriptTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2373,17 +2373,17 @@ pub const IWMHeaderInfo2 = extern struct {
         base: IWMHeaderInfo.VTable,
         GetCodecInfoCount: fn(
             self: *const IWMHeaderInfo2,
-            pcCodecInfos: *u32,
+            pcCodecInfos: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCodecInfo: fn(
             self: *const IWMHeaderInfo2,
             wIndex: u32,
-            pcchName: *u16,
+            pcchName: ?*u16,
             pwszName: [*:0]u16,
-            pcchDescription: *u16,
+            pcchDescription: ?*u16,
             pwszDescription: [*:0]u16,
-            pCodecType: *WMT_CODEC_INFO_TYPE,
-            pcbCodecInfo: *u16,
+            pCodecType: ?*WMT_CODEC_INFO_TYPE,
+            pcbCodecInfo: ?*u16,
             pbCodecInfo: [*:0]u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2391,11 +2391,11 @@ pub const IWMHeaderInfo2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMHeaderInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo2_GetCodecInfoCount(self: *const T, pcCodecInfos: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo2_GetCodecInfoCount(self: *const T, pcCodecInfos: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo2.VTable, self.vtable).GetCodecInfoCount(@ptrCast(*const IWMHeaderInfo2, self), pcCodecInfos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo2_GetCodecInfo(self: *const T, wIndex: u32, pcchName: *u16, pwszName: [*:0]u16, pcchDescription: *u16, pwszDescription: [*:0]u16, pCodecType: *WMT_CODEC_INFO_TYPE, pcbCodecInfo: *u16, pbCodecInfo: [*:0]u8) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo2_GetCodecInfo(self: *const T, wIndex: u32, pcchName: ?*u16, pwszName: [*:0]u16, pcchDescription: ?*u16, pwszDescription: [*:0]u16, pCodecType: ?*WMT_CODEC_INFO_TYPE, pcbCodecInfo: ?*u16, pbCodecInfo: [*:0]u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo2.VTable, self.vtable).GetCodecInfo(@ptrCast(*const IWMHeaderInfo2, self), wIndex, pcchName, pwszName, pcchDescription, pwszDescription, pCodecType, pcbCodecInfo, pbCodecInfo);
         }
     };}
@@ -2410,26 +2410,26 @@ pub const IWMHeaderInfo3 = extern struct {
         GetAttributeCountEx: fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
-            pcAttributes: *u16,
+            pcAttributes: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeIndices: fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
-            pwszName: [*:0]const u16,
-            pwLangIndex: *u16,
+            pwszName: ?[*:0]const u16,
+            pwLangIndex: ?*u16,
             pwIndices: [*:0]u16,
-            pwCount: *u16,
+            pwCount: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeByIndexEx: fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
             wIndex: u16,
             pwszName: [*:0]u16,
-            pwNameLen: *u16,
-            pType: *WMT_ATTR_DATATYPE,
-            pwLangIndex: *u16,
+            pwNameLen: ?*u16,
+            pType: ?*WMT_ATTR_DATATYPE,
+            pwLangIndex: ?*u16,
             pValue: [*:0]u8,
-            pdwDataLength: *u32,
+            pdwDataLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ModifyAttribute: fn(
             self: *const IWMHeaderInfo3,
@@ -2443,8 +2443,8 @@ pub const IWMHeaderInfo3 = extern struct {
         AddAttribute: fn(
             self: *const IWMHeaderInfo3,
             wStreamNum: u16,
-            pszName: [*:0]const u16,
-            pwIndex: *u16,
+            pszName: ?[*:0]const u16,
+            pwIndex: ?*u16,
             Type: WMT_ATTR_DATATYPE,
             wLangIndex: u16,
             pValue: [*:0]const u8,
@@ -2457,8 +2457,8 @@ pub const IWMHeaderInfo3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddCodecInfo: fn(
             self: *const IWMHeaderInfo3,
-            pwszName: PWSTR,
-            pwszDescription: PWSTR,
+            pwszName: ?PWSTR,
+            pwszDescription: ?PWSTR,
             codecType: WMT_CODEC_INFO_TYPE,
             cbCodecInfo: u16,
             pbCodecInfo: [*:0]u8,
@@ -2468,15 +2468,15 @@ pub const IWMHeaderInfo3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMHeaderInfo2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo3_GetAttributeCountEx(self: *const T, wStreamNum: u16, pcAttributes: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo3_GetAttributeCountEx(self: *const T, wStreamNum: u16, pcAttributes: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo3.VTable, self.vtable).GetAttributeCountEx(@ptrCast(*const IWMHeaderInfo3, self), wStreamNum, pcAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo3_GetAttributeIndices(self: *const T, wStreamNum: u16, pwszName: [*:0]const u16, pwLangIndex: *u16, pwIndices: [*:0]u16, pwCount: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo3_GetAttributeIndices(self: *const T, wStreamNum: u16, pwszName: ?[*:0]const u16, pwLangIndex: ?*u16, pwIndices: [*:0]u16, pwCount: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo3.VTable, self.vtable).GetAttributeIndices(@ptrCast(*const IWMHeaderInfo3, self), wStreamNum, pwszName, pwLangIndex, pwIndices, pwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo3_GetAttributeByIndexEx(self: *const T, wStreamNum: u16, wIndex: u16, pwszName: [*:0]u16, pwNameLen: *u16, pType: *WMT_ATTR_DATATYPE, pwLangIndex: *u16, pValue: [*:0]u8, pdwDataLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo3_GetAttributeByIndexEx(self: *const T, wStreamNum: u16, wIndex: u16, pwszName: [*:0]u16, pwNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pwLangIndex: ?*u16, pValue: [*:0]u8, pdwDataLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo3.VTable, self.vtable).GetAttributeByIndexEx(@ptrCast(*const IWMHeaderInfo3, self), wStreamNum, wIndex, pwszName, pwNameLen, pType, pwLangIndex, pValue, pdwDataLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2484,7 +2484,7 @@ pub const IWMHeaderInfo3 = extern struct {
             return @ptrCast(*const IWMHeaderInfo3.VTable, self.vtable).ModifyAttribute(@ptrCast(*const IWMHeaderInfo3, self), wStreamNum, wIndex, Type, wLangIndex, pValue, dwLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo3_AddAttribute(self: *const T, wStreamNum: u16, pszName: [*:0]const u16, pwIndex: *u16, Type: WMT_ATTR_DATATYPE, wLangIndex: u16, pValue: [*:0]const u8, dwLength: u32) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo3_AddAttribute(self: *const T, wStreamNum: u16, pszName: ?[*:0]const u16, pwIndex: ?*u16, Type: WMT_ATTR_DATATYPE, wLangIndex: u16, pValue: [*:0]const u8, dwLength: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo3.VTable, self.vtable).AddAttribute(@ptrCast(*const IWMHeaderInfo3, self), wStreamNum, pszName, pwIndex, Type, wLangIndex, pValue, dwLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2492,7 +2492,7 @@ pub const IWMHeaderInfo3 = extern struct {
             return @ptrCast(*const IWMHeaderInfo3.VTable, self.vtable).DeleteAttribute(@ptrCast(*const IWMHeaderInfo3, self), wStreamNum, wIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMHeaderInfo3_AddCodecInfo(self: *const T, pwszName: PWSTR, pwszDescription: PWSTR, codecType: WMT_CODEC_INFO_TYPE, cbCodecInfo: u16, pbCodecInfo: [*:0]u8) callconv(.Inline) HRESULT {
+        pub fn IWMHeaderInfo3_AddCodecInfo(self: *const T, pwszName: ?PWSTR, pwszDescription: ?PWSTR, codecType: WMT_CODEC_INFO_TYPE, cbCodecInfo: u16, pbCodecInfo: [*:0]u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMHeaderInfo3.VTable, self.vtable).AddCodecInfo(@ptrCast(*const IWMHeaderInfo3, self), pwszName, pwszDescription, codecType, cbCodecInfo, pbCodecInfo);
         }
     };}
@@ -2507,59 +2507,59 @@ pub const IWMProfileManager = extern struct {
         CreateEmptyProfile: fn(
             self: *const IWMProfileManager,
             dwVersion: WMT_VERSION,
-            ppProfile: **IWMProfile,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadProfileByID: fn(
             self: *const IWMProfileManager,
-            guidProfile: *const Guid,
-            ppProfile: **IWMProfile,
+            guidProfile: ?*const Guid,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadProfileByData: fn(
             self: *const IWMProfileManager,
-            pwszProfile: [*:0]const u16,
-            ppProfile: **IWMProfile,
+            pwszProfile: ?[*:0]const u16,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveProfile: fn(
             self: *const IWMProfileManager,
-            pIWMProfile: *IWMProfile,
-            pwszProfile: PWSTR,
-            pdwLength: *u32,
+            pIWMProfile: ?*IWMProfile,
+            pwszProfile: ?PWSTR,
+            pdwLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSystemProfileCount: fn(
             self: *const IWMProfileManager,
-            pcProfiles: *u32,
+            pcProfiles: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadSystemProfile: fn(
             self: *const IWMProfileManager,
             dwProfileIndex: u32,
-            ppProfile: **IWMProfile,
+            ppProfile: ?*?*IWMProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManager_CreateEmptyProfile(self: *const T, dwVersion: WMT_VERSION, ppProfile: **IWMProfile) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManager_CreateEmptyProfile(self: *const T, dwVersion: WMT_VERSION, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManager.VTable, self.vtable).CreateEmptyProfile(@ptrCast(*const IWMProfileManager, self), dwVersion, ppProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManager_LoadProfileByID(self: *const T, guidProfile: *const Guid, ppProfile: **IWMProfile) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManager_LoadProfileByID(self: *const T, guidProfile: ?*const Guid, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManager.VTable, self.vtable).LoadProfileByID(@ptrCast(*const IWMProfileManager, self), guidProfile, ppProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManager_LoadProfileByData(self: *const T, pwszProfile: [*:0]const u16, ppProfile: **IWMProfile) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManager_LoadProfileByData(self: *const T, pwszProfile: ?[*:0]const u16, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManager.VTable, self.vtable).LoadProfileByData(@ptrCast(*const IWMProfileManager, self), pwszProfile, ppProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManager_SaveProfile(self: *const T, pIWMProfile: *IWMProfile, pwszProfile: PWSTR, pdwLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManager_SaveProfile(self: *const T, pIWMProfile: ?*IWMProfile, pwszProfile: ?PWSTR, pdwLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManager.VTable, self.vtable).SaveProfile(@ptrCast(*const IWMProfileManager, self), pIWMProfile, pwszProfile, pdwLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManager_GetSystemProfileCount(self: *const T, pcProfiles: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManager_GetSystemProfileCount(self: *const T, pcProfiles: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManager.VTable, self.vtable).GetSystemProfileCount(@ptrCast(*const IWMProfileManager, self), pcProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManager_LoadSystemProfile(self: *const T, dwProfileIndex: u32, ppProfile: **IWMProfile) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManager_LoadSystemProfile(self: *const T, dwProfileIndex: u32, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManager.VTable, self.vtable).LoadSystemProfile(@ptrCast(*const IWMProfileManager, self), dwProfileIndex, ppProfile);
         }
     };}
@@ -2573,7 +2573,7 @@ pub const IWMProfileManager2 = extern struct {
         base: IWMProfileManager.VTable,
         GetSystemProfileVersion: fn(
             self: *const IWMProfileManager2,
-            pdwVersion: *WMT_VERSION,
+            pdwVersion: ?*WMT_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSystemProfileVersion: fn(
             self: *const IWMProfileManager2,
@@ -2584,7 +2584,7 @@ pub const IWMProfileManager2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMProfileManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManager2_GetSystemProfileVersion(self: *const T, pdwVersion: *WMT_VERSION) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManager2_GetSystemProfileVersion(self: *const T, pdwVersion: ?*WMT_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManager2.VTable, self.vtable).GetSystemProfileVersion(@ptrCast(*const IWMProfileManager2, self), pdwVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2602,7 +2602,7 @@ pub const IWMProfileManagerLanguage = extern struct {
         base: IUnknown.VTable,
         GetUserLanguageID: fn(
             self: *const IWMProfileManagerLanguage,
-            wLangID: *u16,
+            wLangID: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUserLanguageID: fn(
             self: *const IWMProfileManagerLanguage,
@@ -2613,7 +2613,7 @@ pub const IWMProfileManagerLanguage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfileManagerLanguage_GetUserLanguageID(self: *const T, wLangID: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMProfileManagerLanguage_GetUserLanguageID(self: *const T, wLangID: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfileManagerLanguage.VTable, self.vtable).GetUserLanguageID(@ptrCast(*const IWMProfileManagerLanguage, self), wLangID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2631,43 +2631,43 @@ pub const IWMProfile = extern struct {
         base: IUnknown.VTable,
         GetVersion: fn(
             self: *const IWMProfile,
-            pdwVersion: *WMT_VERSION,
+            pdwVersion: ?*WMT_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: fn(
             self: *const IWMProfile,
             pwszName: [*:0]u16,
-            pcchName: *u32,
+            pcchName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetName: fn(
             self: *const IWMProfile,
-            pwszName: [*:0]const u16,
+            pwszName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const IWMProfile,
             pwszDescription: [*:0]u16,
-            pcchDescription: *u32,
+            pcchDescription: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDescription: fn(
             self: *const IWMProfile,
-            pwszDescription: [*:0]const u16,
+            pwszDescription: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamCount: fn(
             self: *const IWMProfile,
-            pcStreams: *u32,
+            pcStreams: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IWMProfile,
             dwStreamIndex: u32,
-            ppConfig: **IWMStreamConfig,
+            ppConfig: ?*?*IWMStreamConfig,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamByNumber: fn(
             self: *const IWMProfile,
             wStreamNum: u16,
-            ppConfig: **IWMStreamConfig,
+            ppConfig: ?*?*IWMStreamConfig,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveStream: fn(
             self: *const IWMProfile,
-            pConfig: *IWMStreamConfig,
+            pConfig: ?*IWMStreamConfig,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveStreamByNumber: fn(
             self: *const IWMProfile,
@@ -2675,76 +2675,76 @@ pub const IWMProfile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStream: fn(
             self: *const IWMProfile,
-            pConfig: *IWMStreamConfig,
+            pConfig: ?*IWMStreamConfig,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReconfigStream: fn(
             self: *const IWMProfile,
-            pConfig: *IWMStreamConfig,
+            pConfig: ?*IWMStreamConfig,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNewStream: fn(
             self: *const IWMProfile,
-            guidStreamType: *const Guid,
-            ppConfig: **IWMStreamConfig,
+            guidStreamType: ?*const Guid,
+            ppConfig: ?*?*IWMStreamConfig,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMutualExclusionCount: fn(
             self: *const IWMProfile,
-            pcME: *u32,
+            pcME: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMutualExclusion: fn(
             self: *const IWMProfile,
             dwMEIndex: u32,
-            ppME: **IWMMutualExclusion,
+            ppME: ?*?*IWMMutualExclusion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveMutualExclusion: fn(
             self: *const IWMProfile,
-            pME: *IWMMutualExclusion,
+            pME: ?*IWMMutualExclusion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMutualExclusion: fn(
             self: *const IWMProfile,
-            pME: *IWMMutualExclusion,
+            pME: ?*IWMMutualExclusion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNewMutualExclusion: fn(
             self: *const IWMProfile,
-            ppME: **IWMMutualExclusion,
+            ppME: ?*?*IWMMutualExclusion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetVersion(self: *const T, pdwVersion: *WMT_VERSION) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetVersion(self: *const T, pdwVersion: ?*WMT_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetVersion(@ptrCast(*const IWMProfile, self), pdwVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetName(self: *const T, pwszName: [*:0]u16, pcchName: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetName(self: *const T, pwszName: [*:0]u16, pcchName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetName(@ptrCast(*const IWMProfile, self), pwszName, pcchName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_SetName(self: *const T, pwszName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_SetName(self: *const T, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).SetName(@ptrCast(*const IWMProfile, self), pwszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetDescription(self: *const T, pwszDescription: [*:0]u16, pcchDescription: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetDescription(self: *const T, pwszDescription: [*:0]u16, pcchDescription: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetDescription(@ptrCast(*const IWMProfile, self), pwszDescription, pcchDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_SetDescription(self: *const T, pwszDescription: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_SetDescription(self: *const T, pwszDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).SetDescription(@ptrCast(*const IWMProfile, self), pwszDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetStreamCount(self: *const T, pcStreams: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetStreamCount(self: *const T, pcStreams: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetStreamCount(@ptrCast(*const IWMProfile, self), pcStreams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetStream(self: *const T, dwStreamIndex: u32, ppConfig: **IWMStreamConfig) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetStream(self: *const T, dwStreamIndex: u32, ppConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetStream(@ptrCast(*const IWMProfile, self), dwStreamIndex, ppConfig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetStreamByNumber(self: *const T, wStreamNum: u16, ppConfig: **IWMStreamConfig) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetStreamByNumber(self: *const T, wStreamNum: u16, ppConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetStreamByNumber(@ptrCast(*const IWMProfile, self), wStreamNum, ppConfig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_RemoveStream(self: *const T, pConfig: *IWMStreamConfig) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_RemoveStream(self: *const T, pConfig: ?*IWMStreamConfig) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).RemoveStream(@ptrCast(*const IWMProfile, self), pConfig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2752,35 +2752,35 @@ pub const IWMProfile = extern struct {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).RemoveStreamByNumber(@ptrCast(*const IWMProfile, self), wStreamNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_AddStream(self: *const T, pConfig: *IWMStreamConfig) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_AddStream(self: *const T, pConfig: ?*IWMStreamConfig) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).AddStream(@ptrCast(*const IWMProfile, self), pConfig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_ReconfigStream(self: *const T, pConfig: *IWMStreamConfig) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_ReconfigStream(self: *const T, pConfig: ?*IWMStreamConfig) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).ReconfigStream(@ptrCast(*const IWMProfile, self), pConfig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_CreateNewStream(self: *const T, guidStreamType: *const Guid, ppConfig: **IWMStreamConfig) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_CreateNewStream(self: *const T, guidStreamType: ?*const Guid, ppConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).CreateNewStream(@ptrCast(*const IWMProfile, self), guidStreamType, ppConfig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetMutualExclusionCount(self: *const T, pcME: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetMutualExclusionCount(self: *const T, pcME: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetMutualExclusionCount(@ptrCast(*const IWMProfile, self), pcME);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_GetMutualExclusion(self: *const T, dwMEIndex: u32, ppME: **IWMMutualExclusion) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_GetMutualExclusion(self: *const T, dwMEIndex: u32, ppME: ?*?*IWMMutualExclusion) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).GetMutualExclusion(@ptrCast(*const IWMProfile, self), dwMEIndex, ppME);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_RemoveMutualExclusion(self: *const T, pME: *IWMMutualExclusion) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_RemoveMutualExclusion(self: *const T, pME: ?*IWMMutualExclusion) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).RemoveMutualExclusion(@ptrCast(*const IWMProfile, self), pME);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_AddMutualExclusion(self: *const T, pME: *IWMMutualExclusion) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_AddMutualExclusion(self: *const T, pME: ?*IWMMutualExclusion) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).AddMutualExclusion(@ptrCast(*const IWMProfile, self), pME);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile_CreateNewMutualExclusion(self: *const T, ppME: **IWMMutualExclusion) callconv(.Inline) HRESULT {
+        pub fn IWMProfile_CreateNewMutualExclusion(self: *const T, ppME: ?*?*IWMMutualExclusion) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile.VTable, self.vtable).CreateNewMutualExclusion(@ptrCast(*const IWMProfile, self), ppME);
         }
     };}
@@ -2794,14 +2794,14 @@ pub const IWMProfile2 = extern struct {
         base: IWMProfile.VTable,
         GetProfileID: fn(
             self: *const IWMProfile2,
-            pguidID: *Guid,
+            pguidID: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMProfile.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile2_GetProfileID(self: *const T, pguidID: *Guid) callconv(.Inline) HRESULT {
+        pub fn IWMProfile2_GetProfileID(self: *const T, pguidID: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile2.VTable, self.vtable).GetProfileID(@ptrCast(*const IWMProfile2, self), pguidID);
         }
     };}
@@ -2815,7 +2815,7 @@ pub const IWMProfile3 = extern struct {
         base: IWMProfile2.VTable,
         GetStorageFormat: fn(
             self: *const IWMProfile3,
-            pnStorageFormat: *WMT_STORAGE_FORMAT,
+            pnStorageFormat: ?*WMT_STORAGE_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStorageFormat: fn(
             self: *const IWMProfile3,
@@ -2823,51 +2823,51 @@ pub const IWMProfile3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBandwidthSharingCount: fn(
             self: *const IWMProfile3,
-            pcBS: *u32,
+            pcBS: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBandwidthSharing: fn(
             self: *const IWMProfile3,
             dwBSIndex: u32,
-            ppBS: **IWMBandwidthSharing,
+            ppBS: ?*?*IWMBandwidthSharing,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveBandwidthSharing: fn(
             self: *const IWMProfile3,
-            pBS: *IWMBandwidthSharing,
+            pBS: ?*IWMBandwidthSharing,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddBandwidthSharing: fn(
             self: *const IWMProfile3,
-            pBS: *IWMBandwidthSharing,
+            pBS: ?*IWMBandwidthSharing,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNewBandwidthSharing: fn(
             self: *const IWMProfile3,
-            ppBS: **IWMBandwidthSharing,
+            ppBS: ?*?*IWMBandwidthSharing,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamPrioritization: fn(
             self: *const IWMProfile3,
-            ppSP: **IWMStreamPrioritization,
+            ppSP: ?*?*IWMStreamPrioritization,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStreamPrioritization: fn(
             self: *const IWMProfile3,
-            pSP: *IWMStreamPrioritization,
+            pSP: ?*IWMStreamPrioritization,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveStreamPrioritization: fn(
             self: *const IWMProfile3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNewStreamPrioritization: fn(
             self: *const IWMProfile3,
-            ppSP: **IWMStreamPrioritization,
+            ppSP: ?*?*IWMStreamPrioritization,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExpectedPacketCount: fn(
             self: *const IWMProfile3,
             msDuration: u64,
-            pcPackets: *u64,
+            pcPackets: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMProfile2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_GetStorageFormat(self: *const T, pnStorageFormat: *WMT_STORAGE_FORMAT) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_GetStorageFormat(self: *const T, pnStorageFormat: ?*WMT_STORAGE_FORMAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).GetStorageFormat(@ptrCast(*const IWMProfile3, self), pnStorageFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2875,31 +2875,31 @@ pub const IWMProfile3 = extern struct {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).SetStorageFormat(@ptrCast(*const IWMProfile3, self), nStorageFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_GetBandwidthSharingCount(self: *const T, pcBS: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_GetBandwidthSharingCount(self: *const T, pcBS: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).GetBandwidthSharingCount(@ptrCast(*const IWMProfile3, self), pcBS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_GetBandwidthSharing(self: *const T, dwBSIndex: u32, ppBS: **IWMBandwidthSharing) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_GetBandwidthSharing(self: *const T, dwBSIndex: u32, ppBS: ?*?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).GetBandwidthSharing(@ptrCast(*const IWMProfile3, self), dwBSIndex, ppBS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_RemoveBandwidthSharing(self: *const T, pBS: *IWMBandwidthSharing) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_RemoveBandwidthSharing(self: *const T, pBS: ?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).RemoveBandwidthSharing(@ptrCast(*const IWMProfile3, self), pBS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_AddBandwidthSharing(self: *const T, pBS: *IWMBandwidthSharing) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_AddBandwidthSharing(self: *const T, pBS: ?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).AddBandwidthSharing(@ptrCast(*const IWMProfile3, self), pBS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_CreateNewBandwidthSharing(self: *const T, ppBS: **IWMBandwidthSharing) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_CreateNewBandwidthSharing(self: *const T, ppBS: ?*?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).CreateNewBandwidthSharing(@ptrCast(*const IWMProfile3, self), ppBS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_GetStreamPrioritization(self: *const T, ppSP: **IWMStreamPrioritization) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_GetStreamPrioritization(self: *const T, ppSP: ?*?*IWMStreamPrioritization) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).GetStreamPrioritization(@ptrCast(*const IWMProfile3, self), ppSP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_SetStreamPrioritization(self: *const T, pSP: *IWMStreamPrioritization) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_SetStreamPrioritization(self: *const T, pSP: ?*IWMStreamPrioritization) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).SetStreamPrioritization(@ptrCast(*const IWMProfile3, self), pSP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2907,11 +2907,11 @@ pub const IWMProfile3 = extern struct {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).RemoveStreamPrioritization(@ptrCast(*const IWMProfile3, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_CreateNewStreamPrioritization(self: *const T, ppSP: **IWMStreamPrioritization) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_CreateNewStreamPrioritization(self: *const T, ppSP: ?*?*IWMStreamPrioritization) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).CreateNewStreamPrioritization(@ptrCast(*const IWMProfile3, self), ppSP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProfile3_GetExpectedPacketCount(self: *const T, msDuration: u64, pcPackets: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMProfile3_GetExpectedPacketCount(self: *const T, msDuration: u64, pcPackets: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProfile3.VTable, self.vtable).GetExpectedPacketCount(@ptrCast(*const IWMProfile3, self), msDuration, pcPackets);
         }
     };}
@@ -2925,11 +2925,11 @@ pub const IWMStreamConfig = extern struct {
         base: IUnknown.VTable,
         GetStreamType: fn(
             self: *const IWMStreamConfig,
-            pguidStreamType: *Guid,
+            pguidStreamType: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamNumber: fn(
             self: *const IWMStreamConfig,
-            pwStreamNum: *u16,
+            pwStreamNum: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStreamNumber: fn(
             self: *const IWMStreamConfig,
@@ -2938,24 +2938,24 @@ pub const IWMStreamConfig = extern struct {
         GetStreamName: fn(
             self: *const IWMStreamConfig,
             pwszStreamName: [*:0]u16,
-            pcchStreamName: *u16,
+            pcchStreamName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStreamName: fn(
             self: *const IWMStreamConfig,
-            pwszStreamName: PWSTR,
+            pwszStreamName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectionName: fn(
             self: *const IWMStreamConfig,
             pwszInputName: [*:0]u16,
-            pcchInputName: *u16,
+            pcchInputName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConnectionName: fn(
             self: *const IWMStreamConfig,
-            pwszInputName: PWSTR,
+            pwszInputName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBitrate: fn(
             self: *const IWMStreamConfig,
-            pdwBitrate: *u32,
+            pdwBitrate: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBitrate: fn(
             self: *const IWMStreamConfig,
@@ -2963,7 +2963,7 @@ pub const IWMStreamConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBufferWindow: fn(
             self: *const IWMStreamConfig,
-            pmsBufferWindow: *u32,
+            pmsBufferWindow: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBufferWindow: fn(
             self: *const IWMStreamConfig,
@@ -2974,11 +2974,11 @@ pub const IWMStreamConfig = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_GetStreamType(self: *const T, pguidStreamType: *Guid) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_GetStreamType(self: *const T, pguidStreamType: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).GetStreamType(@ptrCast(*const IWMStreamConfig, self), pguidStreamType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_GetStreamNumber(self: *const T, pwStreamNum: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_GetStreamNumber(self: *const T, pwStreamNum: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).GetStreamNumber(@ptrCast(*const IWMStreamConfig, self), pwStreamNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2986,23 +2986,23 @@ pub const IWMStreamConfig = extern struct {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).SetStreamNumber(@ptrCast(*const IWMStreamConfig, self), wStreamNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_GetStreamName(self: *const T, pwszStreamName: [*:0]u16, pcchStreamName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_GetStreamName(self: *const T, pwszStreamName: [*:0]u16, pcchStreamName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).GetStreamName(@ptrCast(*const IWMStreamConfig, self), pwszStreamName, pcchStreamName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_SetStreamName(self: *const T, pwszStreamName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_SetStreamName(self: *const T, pwszStreamName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).SetStreamName(@ptrCast(*const IWMStreamConfig, self), pwszStreamName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_GetConnectionName(self: *const T, pwszInputName: [*:0]u16, pcchInputName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_GetConnectionName(self: *const T, pwszInputName: [*:0]u16, pcchInputName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).GetConnectionName(@ptrCast(*const IWMStreamConfig, self), pwszInputName, pcchInputName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_SetConnectionName(self: *const T, pwszInputName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_SetConnectionName(self: *const T, pwszInputName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).SetConnectionName(@ptrCast(*const IWMStreamConfig, self), pwszInputName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_GetBitrate(self: *const T, pdwBitrate: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_GetBitrate(self: *const T, pdwBitrate: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).GetBitrate(@ptrCast(*const IWMStreamConfig, self), pdwBitrate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3010,7 +3010,7 @@ pub const IWMStreamConfig = extern struct {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).SetBitrate(@ptrCast(*const IWMStreamConfig, self), pdwBitrate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig_GetBufferWindow(self: *const T, pmsBufferWindow: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig_GetBufferWindow(self: *const T, pmsBufferWindow: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig.VTable, self.vtable).GetBufferWindow(@ptrCast(*const IWMStreamConfig, self), pmsBufferWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3028,7 +3028,7 @@ pub const IWMStreamConfig2 = extern struct {
         base: IWMStreamConfig.VTable,
         GetTransportType: fn(
             self: *const IWMStreamConfig2,
-            pnTransportType: *WMT_TRANSPORT_TYPE,
+            pnTransportType: ?*WMT_TRANSPORT_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTransportType: fn(
             self: *const IWMStreamConfig2,
@@ -3043,15 +3043,15 @@ pub const IWMStreamConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDataUnitExtensionCount: fn(
             self: *const IWMStreamConfig2,
-            pcDataUnitExtensions: *u16,
+            pcDataUnitExtensions: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDataUnitExtension: fn(
             self: *const IWMStreamConfig2,
             wDataUnitExtensionNumber: u16,
-            pguidExtensionSystemID: *Guid,
-            pcbExtensionDataSize: *u16,
+            pguidExtensionSystemID: ?*Guid,
+            pcbExtensionDataSize: ?*u16,
             pbExtensionSystemInfo: [*:0]u8,
-            pcbExtensionSystemInfo: *u32,
+            pcbExtensionSystemInfo: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAllDataUnitExtensions: fn(
             self: *const IWMStreamConfig2,
@@ -3061,7 +3061,7 @@ pub const IWMStreamConfig2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamConfig.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig2_GetTransportType(self: *const T, pnTransportType: *WMT_TRANSPORT_TYPE) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig2_GetTransportType(self: *const T, pnTransportType: ?*WMT_TRANSPORT_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig2.VTable, self.vtable).GetTransportType(@ptrCast(*const IWMStreamConfig2, self), pnTransportType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3073,11 +3073,11 @@ pub const IWMStreamConfig2 = extern struct {
             return @ptrCast(*const IWMStreamConfig2.VTable, self.vtable).AddDataUnitExtension(@ptrCast(*const IWMStreamConfig2, self), guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig2_GetDataUnitExtensionCount(self: *const T, pcDataUnitExtensions: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig2_GetDataUnitExtensionCount(self: *const T, pcDataUnitExtensions: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig2.VTable, self.vtable).GetDataUnitExtensionCount(@ptrCast(*const IWMStreamConfig2, self), pcDataUnitExtensions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig2_GetDataUnitExtension(self: *const T, wDataUnitExtensionNumber: u16, pguidExtensionSystemID: *Guid, pcbExtensionDataSize: *u16, pbExtensionSystemInfo: [*:0]u8, pcbExtensionSystemInfo: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig2_GetDataUnitExtension(self: *const T, wDataUnitExtensionNumber: u16, pguidExtensionSystemID: ?*Guid, pcbExtensionDataSize: ?*u16, pbExtensionSystemInfo: [*:0]u8, pcbExtensionSystemInfo: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig2.VTable, self.vtable).GetDataUnitExtension(@ptrCast(*const IWMStreamConfig2, self), wDataUnitExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3096,22 +3096,22 @@ pub const IWMStreamConfig3 = extern struct {
         GetLanguage: fn(
             self: *const IWMStreamConfig3,
             pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: *u16,
+            pcchLanguageStringLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetLanguage: fn(
             self: *const IWMStreamConfig3,
-            pwszLanguageString: PWSTR,
+            pwszLanguageString: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamConfig2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig3_GetLanguage(self: *const T, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig3_GetLanguage(self: *const T, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig3.VTable, self.vtable).GetLanguage(@ptrCast(*const IWMStreamConfig3, self), pwszLanguageString, pcchLanguageStringLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamConfig3_SetLanguage(self: *const T, pwszLanguageString: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWMStreamConfig3_SetLanguage(self: *const T, pwszLanguageString: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamConfig3.VTable, self.vtable).SetLanguage(@ptrCast(*const IWMStreamConfig3, self), pwszLanguageString);
         }
     };}
@@ -3125,7 +3125,7 @@ pub const IWMPacketSize = extern struct {
         base: IUnknown.VTable,
         GetMaxPacketSize: fn(
             self: *const IWMPacketSize,
-            pdwMaxPacketSize: *u32,
+            pdwMaxPacketSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMaxPacketSize: fn(
             self: *const IWMPacketSize,
@@ -3136,7 +3136,7 @@ pub const IWMPacketSize = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPacketSize_GetMaxPacketSize(self: *const T, pdwMaxPacketSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMPacketSize_GetMaxPacketSize(self: *const T, pdwMaxPacketSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPacketSize.VTable, self.vtable).GetMaxPacketSize(@ptrCast(*const IWMPacketSize, self), pdwMaxPacketSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3154,7 +3154,7 @@ pub const IWMPacketSize2 = extern struct {
         base: IWMPacketSize.VTable,
         GetMinPacketSize: fn(
             self: *const IWMPacketSize2,
-            pdwMinPacketSize: *u32,
+            pdwMinPacketSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMinPacketSize: fn(
             self: *const IWMPacketSize2,
@@ -3165,7 +3165,7 @@ pub const IWMPacketSize2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMPacketSize.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPacketSize2_GetMinPacketSize(self: *const T, pdwMinPacketSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMPacketSize2_GetMinPacketSize(self: *const T, pdwMinPacketSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPacketSize2.VTable, self.vtable).GetMinPacketSize(@ptrCast(*const IWMPacketSize2, self), pdwMinPacketSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3184,7 +3184,7 @@ pub const IWMStreamList = extern struct {
         GetStreams: fn(
             self: *const IWMStreamList,
             pwStreamNumArray: [*:0]u16,
-            pcStreams: *u16,
+            pcStreams: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStream: fn(
             self: *const IWMStreamList,
@@ -3199,7 +3199,7 @@ pub const IWMStreamList = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamList_GetStreams(self: *const T, pwStreamNumArray: [*:0]u16, pcStreams: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamList_GetStreams(self: *const T, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamList.VTable, self.vtable).GetStreams(@ptrCast(*const IWMStreamList, self), pwStreamNumArray, pcStreams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3221,22 +3221,22 @@ pub const IWMMutualExclusion = extern struct {
         base: IWMStreamList.VTable,
         GetType: fn(
             self: *const IWMMutualExclusion,
-            pguidType: *Guid,
+            pguidType: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetType: fn(
             self: *const IWMMutualExclusion,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion_GetType(self: *const T, pguidType: *Guid) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion_GetType(self: *const T, pguidType: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion.VTable, self.vtable).GetType(@ptrCast(*const IWMMutualExclusion, self), pguidType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion_SetType(self: *const T, guidType: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion_SetType(self: *const T, guidType: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion.VTable, self.vtable).SetType(@ptrCast(*const IWMMutualExclusion, self), guidType);
         }
     };}
@@ -3251,15 +3251,15 @@ pub const IWMMutualExclusion2 = extern struct {
         GetName: fn(
             self: *const IWMMutualExclusion2,
             pwszName: [*:0]u16,
-            pcchName: *u16,
+            pcchName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetName: fn(
             self: *const IWMMutualExclusion2,
-            pwszName: PWSTR,
+            pwszName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecordCount: fn(
             self: *const IWMMutualExclusion2,
-            pwRecordCount: *u16,
+            pwRecordCount: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRecord: fn(
             self: *const IWMMutualExclusion2,
@@ -3272,18 +3272,18 @@ pub const IWMMutualExclusion2 = extern struct {
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
             pwszRecordName: [*:0]u16,
-            pcchRecordName: *u16,
+            pcchRecordName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRecordName: fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
-            pwszRecordName: PWSTR,
+            pwszRecordName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamsForRecord: fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
             pwStreamNumArray: [*:0]u16,
-            pcStreams: *u16,
+            pcStreams: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStreamForRecord: fn(
             self: *const IWMMutualExclusion2,
@@ -3300,15 +3300,15 @@ pub const IWMMutualExclusion2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMutualExclusion.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion2_GetName(self: *const T, pwszName: [*:0]u16, pcchName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion2_GetName(self: *const T, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion2.VTable, self.vtable).GetName(@ptrCast(*const IWMMutualExclusion2, self), pwszName, pcchName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion2_SetName(self: *const T, pwszName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion2_SetName(self: *const T, pwszName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion2.VTable, self.vtable).SetName(@ptrCast(*const IWMMutualExclusion2, self), pwszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion2_GetRecordCount(self: *const T, pwRecordCount: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion2_GetRecordCount(self: *const T, pwRecordCount: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion2.VTable, self.vtable).GetRecordCount(@ptrCast(*const IWMMutualExclusion2, self), pwRecordCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3320,15 +3320,15 @@ pub const IWMMutualExclusion2 = extern struct {
             return @ptrCast(*const IWMMutualExclusion2.VTable, self.vtable).RemoveRecord(@ptrCast(*const IWMMutualExclusion2, self), wRecordNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion2_GetRecordName(self: *const T, wRecordNumber: u16, pwszRecordName: [*:0]u16, pcchRecordName: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion2_GetRecordName(self: *const T, wRecordNumber: u16, pwszRecordName: [*:0]u16, pcchRecordName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion2.VTable, self.vtable).GetRecordName(@ptrCast(*const IWMMutualExclusion2, self), wRecordNumber, pwszRecordName, pcchRecordName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion2_SetRecordName(self: *const T, wRecordNumber: u16, pwszRecordName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion2_SetRecordName(self: *const T, wRecordNumber: u16, pwszRecordName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion2.VTable, self.vtable).SetRecordName(@ptrCast(*const IWMMutualExclusion2, self), wRecordNumber, pwszRecordName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMMutualExclusion2_GetStreamsForRecord(self: *const T, wRecordNumber: u16, pwStreamNumArray: [*:0]u16, pcStreams: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMMutualExclusion2_GetStreamsForRecord(self: *const T, wRecordNumber: u16, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMMutualExclusion2.VTable, self.vtable).GetStreamsForRecord(@ptrCast(*const IWMMutualExclusion2, self), wRecordNumber, pwStreamNumArray, pcStreams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3350,16 +3350,16 @@ pub const IWMBandwidthSharing = extern struct {
         base: IWMStreamList.VTable,
         GetType: fn(
             self: *const IWMBandwidthSharing,
-            pguidType: *Guid,
+            pguidType: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetType: fn(
             self: *const IWMBandwidthSharing,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBandwidth: fn(
             self: *const IWMBandwidthSharing,
-            pdwBitrate: *u32,
-            pmsBufferWindow: *u32,
+            pdwBitrate: ?*u32,
+            pmsBufferWindow: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBandwidth: fn(
             self: *const IWMBandwidthSharing,
@@ -3371,15 +3371,15 @@ pub const IWMBandwidthSharing = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBandwidthSharing_GetType(self: *const T, pguidType: *Guid) callconv(.Inline) HRESULT {
+        pub fn IWMBandwidthSharing_GetType(self: *const T, pguidType: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBandwidthSharing.VTable, self.vtable).GetType(@ptrCast(*const IWMBandwidthSharing, self), pguidType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBandwidthSharing_SetType(self: *const T, guidType: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IWMBandwidthSharing_SetType(self: *const T, guidType: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBandwidthSharing.VTable, self.vtable).SetType(@ptrCast(*const IWMBandwidthSharing, self), guidType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBandwidthSharing_GetBandwidth(self: *const T, pdwBitrate: *u32, pmsBufferWindow: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMBandwidthSharing_GetBandwidth(self: *const T, pdwBitrate: ?*u32, pmsBufferWindow: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBandwidthSharing.VTable, self.vtable).GetBandwidth(@ptrCast(*const IWMBandwidthSharing, self), pdwBitrate, pmsBufferWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3398,11 +3398,11 @@ pub const IWMStreamPrioritization = extern struct {
         GetPriorityRecords: fn(
             self: *const IWMStreamPrioritization,
             pRecordArray: [*]WM_STREAM_PRIORITY_RECORD,
-            pcRecords: *u16,
+            pcRecords: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPriorityRecords: fn(
             self: *const IWMStreamPrioritization,
-            pRecordArray: *WM_STREAM_PRIORITY_RECORD,
+            pRecordArray: ?*WM_STREAM_PRIORITY_RECORD,
             cRecords: u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3410,11 +3410,11 @@ pub const IWMStreamPrioritization = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamPrioritization_GetPriorityRecords(self: *const T, pRecordArray: [*]WM_STREAM_PRIORITY_RECORD, pcRecords: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamPrioritization_GetPriorityRecords(self: *const T, pRecordArray: [*]WM_STREAM_PRIORITY_RECORD, pcRecords: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamPrioritization.VTable, self.vtable).GetPriorityRecords(@ptrCast(*const IWMStreamPrioritization, self), pRecordArray, pcRecords);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMStreamPrioritization_SetPriorityRecords(self: *const T, pRecordArray: *WM_STREAM_PRIORITY_RECORD, cRecords: u16) callconv(.Inline) HRESULT {
+        pub fn IWMStreamPrioritization_SetPriorityRecords(self: *const T, pRecordArray: ?*WM_STREAM_PRIORITY_RECORD, cRecords: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMStreamPrioritization.VTable, self.vtable).SetPriorityRecords(@ptrCast(*const IWMStreamPrioritization, self), pRecordArray, cRecords);
         }
     };}
@@ -3428,20 +3428,20 @@ pub const IWMWriterAdvanced = extern struct {
         base: IUnknown.VTable,
         GetSinkCount: fn(
             self: *const IWMWriterAdvanced,
-            pcSinks: *u32,
+            pcSinks: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSink: fn(
             self: *const IWMWriterAdvanced,
             dwSinkNum: u32,
-            ppSink: **IWMWriterSink,
+            ppSink: ?*?*IWMWriterSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddSink: fn(
             self: *const IWMWriterAdvanced,
-            pSink: *IWMWriterSink,
+            pSink: ?*IWMWriterSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveSink: fn(
             self: *const IWMWriterAdvanced,
-            pSink: *IWMWriterSink,
+            pSink: ?*IWMWriterSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteStreamSample: fn(
             self: *const IWMWriterAdvanced,
@@ -3450,7 +3450,7 @@ pub const IWMWriterAdvanced = extern struct {
             msSampleSendTime: u32,
             cnsSampleDuration: u64,
             dwFlags: u32,
-            pSample: *INSSBuffer,
+            pSample: ?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetLiveSource: fn(
             self: *const IWMWriterAdvanced,
@@ -3458,16 +3458,16 @@ pub const IWMWriterAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRealTime: fn(
             self: *const IWMWriterAdvanced,
-            pfRealTime: *BOOL,
+            pfRealTime: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWriterTime: fn(
             self: *const IWMWriterAdvanced,
-            pcnsCurrentTime: *u64,
+            pcnsCurrentTime: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatistics: fn(
             self: *const IWMWriterAdvanced,
             wStreamNum: u16,
-            pStats: *WM_WRITER_STATISTICS,
+            pStats: ?*WM_WRITER_STATISTICS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSyncTolerance: fn(
             self: *const IWMWriterAdvanced,
@@ -3475,30 +3475,30 @@ pub const IWMWriterAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncTolerance: fn(
             self: *const IWMWriterAdvanced,
-            pmsWindow: *u32,
+            pmsWindow: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_GetSinkCount(self: *const T, pcSinks: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_GetSinkCount(self: *const T, pcSinks: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).GetSinkCount(@ptrCast(*const IWMWriterAdvanced, self), pcSinks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_GetSink(self: *const T, dwSinkNum: u32, ppSink: **IWMWriterSink) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_GetSink(self: *const T, dwSinkNum: u32, ppSink: ?*?*IWMWriterSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).GetSink(@ptrCast(*const IWMWriterAdvanced, self), dwSinkNum, ppSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_AddSink(self: *const T, pSink: *IWMWriterSink) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_AddSink(self: *const T, pSink: ?*IWMWriterSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).AddSink(@ptrCast(*const IWMWriterAdvanced, self), pSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_RemoveSink(self: *const T, pSink: *IWMWriterSink) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_RemoveSink(self: *const T, pSink: ?*IWMWriterSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).RemoveSink(@ptrCast(*const IWMWriterAdvanced, self), pSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_WriteStreamSample(self: *const T, wStreamNum: u16, cnsSampleTime: u64, msSampleSendTime: u32, cnsSampleDuration: u64, dwFlags: u32, pSample: *INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_WriteStreamSample(self: *const T, wStreamNum: u16, cnsSampleTime: u64, msSampleSendTime: u32, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).WriteStreamSample(@ptrCast(*const IWMWriterAdvanced, self), wStreamNum, cnsSampleTime, msSampleSendTime, cnsSampleDuration, dwFlags, pSample);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3506,15 +3506,15 @@ pub const IWMWriterAdvanced = extern struct {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).SetLiveSource(@ptrCast(*const IWMWriterAdvanced, self), fIsLiveSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_IsRealTime(self: *const T, pfRealTime: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_IsRealTime(self: *const T, pfRealTime: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).IsRealTime(@ptrCast(*const IWMWriterAdvanced, self), pfRealTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_GetWriterTime(self: *const T, pcnsCurrentTime: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_GetWriterTime(self: *const T, pcnsCurrentTime: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).GetWriterTime(@ptrCast(*const IWMWriterAdvanced, self), pcnsCurrentTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_GetStatistics(self: *const T, wStreamNum: u16, pStats: *WM_WRITER_STATISTICS) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_GetStatistics(self: *const T, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).GetStatistics(@ptrCast(*const IWMWriterAdvanced, self), wStreamNum, pStats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3522,7 +3522,7 @@ pub const IWMWriterAdvanced = extern struct {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).SetSyncTolerance(@ptrCast(*const IWMWriterAdvanced, self), msWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced_GetSyncTolerance(self: *const T, pmsWindow: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced_GetSyncTolerance(self: *const T, pmsWindow: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced.VTable, self.vtable).GetSyncTolerance(@ptrCast(*const IWMWriterAdvanced, self), pmsWindow);
         }
     };}
@@ -3537,15 +3537,15 @@ pub const IWMWriterAdvanced2 = extern struct {
         GetInputSetting: fn(
             self: *const IWMWriterAdvanced2,
             dwInputNum: u32,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetInputSetting: fn(
             self: *const IWMWriterAdvanced2,
             dwInputNum: u32,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
@@ -3555,11 +3555,11 @@ pub const IWMWriterAdvanced2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterAdvanced.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced2_GetInputSetting(self: *const T, dwInputNum: u32, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced2_GetInputSetting(self: *const T, dwInputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced2.VTable, self.vtable).GetInputSetting(@ptrCast(*const IWMWriterAdvanced2, self), dwInputNum, pszName, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced2_SetInputSetting(self: *const T, dwInputNum: u32, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced2_SetInputSetting(self: *const T, dwInputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced2.VTable, self.vtable).SetInputSetting(@ptrCast(*const IWMWriterAdvanced2, self), dwInputNum, pszName, Type, pValue, cbLength);
         }
     };}
@@ -3574,7 +3574,7 @@ pub const IWMWriterAdvanced3 = extern struct {
         GetStatisticsEx: fn(
             self: *const IWMWriterAdvanced3,
             wStreamNum: u16,
-            pStats: *WM_WRITER_STATISTICS_EX,
+            pStats: ?*WM_WRITER_STATISTICS_EX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNonBlocking: fn(
             self: *const IWMWriterAdvanced3,
@@ -3584,7 +3584,7 @@ pub const IWMWriterAdvanced3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterAdvanced2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterAdvanced3_GetStatisticsEx(self: *const T, wStreamNum: u16, pStats: *WM_WRITER_STATISTICS_EX) callconv(.Inline) HRESULT {
+        pub fn IWMWriterAdvanced3_GetStatisticsEx(self: *const T, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS_EX) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterAdvanced3.VTable, self.vtable).GetStatisticsEx(@ptrCast(*const IWMWriterAdvanced3, self), wStreamNum, pStats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3604,7 +3604,7 @@ pub const IWMWriterPreprocess = extern struct {
             self: *const IWMWriterPreprocess,
             dwInputNum: u32,
             dwFlags: u32,
-            pdwMaxNumPasses: *u32,
+            pdwMaxNumPasses: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNumPreprocessingPasses: fn(
             self: *const IWMWriterPreprocess,
@@ -3622,7 +3622,7 @@ pub const IWMWriterPreprocess = extern struct {
             dwInputNum: u32,
             cnsSampleTime: u64,
             dwFlags: u32,
-            pSample: *INSSBuffer,
+            pSample: ?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndPreprocessingPass: fn(
             self: *const IWMWriterPreprocess,
@@ -3634,7 +3634,7 @@ pub const IWMWriterPreprocess = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPreprocess_GetMaxPreprocessingPasses(self: *const T, dwInputNum: u32, dwFlags: u32, pdwMaxNumPasses: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPreprocess_GetMaxPreprocessingPasses(self: *const T, dwInputNum: u32, dwFlags: u32, pdwMaxNumPasses: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPreprocess.VTable, self.vtable).GetMaxPreprocessingPasses(@ptrCast(*const IWMWriterPreprocess, self), dwInputNum, dwFlags, pdwMaxNumPasses);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3646,7 +3646,7 @@ pub const IWMWriterPreprocess = extern struct {
             return @ptrCast(*const IWMWriterPreprocess.VTable, self.vtable).BeginPreprocessingPass(@ptrCast(*const IWMWriterPreprocess, self), dwInputNum, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPreprocess_PreprocessSample(self: *const T, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: *INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPreprocess_PreprocessSample(self: *const T, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPreprocess.VTable, self.vtable).PreprocessSample(@ptrCast(*const IWMWriterPreprocess, self), dwInputNum, cnsSampleTime, dwFlags, pSample);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3668,26 +3668,26 @@ pub const IWMWriterPostViewCallback = extern struct {
             cnsSampleTime: u64,
             cnsSampleDuration: u64,
             dwFlags: u32,
-            pSample: *INSSBuffer,
-            pvContext: *c_void,
+            pSample: ?*INSSBuffer,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateForPostView: fn(
             self: *const IWMWriterPostViewCallback,
             wStreamNum: u16,
             cbBuffer: u32,
-            ppBuffer: **INSSBuffer,
-            pvContext: *c_void,
+            ppBuffer: ?*?*INSSBuffer,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStatusCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostViewCallback_OnPostViewSample(self: *const T, wStreamNumber: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: *INSSBuffer, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostViewCallback_OnPostViewSample(self: *const T, wStreamNumber: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostViewCallback.VTable, self.vtable).OnPostViewSample(@ptrCast(*const IWMWriterPostViewCallback, self), wStreamNumber, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostViewCallback_AllocateForPostView(self: *const T, wStreamNum: u16, cbBuffer: u32, ppBuffer: **INSSBuffer, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostViewCallback_AllocateForPostView(self: *const T, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostViewCallback.VTable, self.vtable).AllocateForPostView(@ptrCast(*const IWMWriterPostViewCallback, self), wStreamNum, cbBuffer, ppBuffer, pvContext);
         }
     };}
@@ -3701,8 +3701,8 @@ pub const IWMWriterPostView = extern struct {
         base: IUnknown.VTable,
         SetPostViewCallback: fn(
             self: *const IWMWriterPostView,
-            pCallback: *IWMWriterPostViewCallback,
-            pvContext: *c_void,
+            pCallback: ?*IWMWriterPostViewCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReceivePostViewSamples: fn(
             self: *const IWMWriterPostView,
@@ -3712,28 +3712,28 @@ pub const IWMWriterPostView = extern struct {
         GetReceivePostViewSamples: fn(
             self: *const IWMWriterPostView,
             wStreamNum: u16,
-            pfReceivePostViewSamples: *BOOL,
+            pfReceivePostViewSamples: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPostViewProps: fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
-            ppOutput: **IWMMediaProps,
+            ppOutput: ?*?*IWMMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPostViewProps: fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
-            pOutput: *IWMMediaProps,
+            pOutput: ?*IWMMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPostViewFormatCount: fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
-            pcFormats: *u32,
+            pcFormats: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPostViewFormat: fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
             dwFormatNumber: u32,
-            ppProps: **IWMMediaProps,
+            ppProps: ?*?*IWMMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllocateForPostView: fn(
             self: *const IWMWriterPostView,
@@ -3743,14 +3743,14 @@ pub const IWMWriterPostView = extern struct {
         GetAllocateForPostView: fn(
             self: *const IWMWriterPostView,
             wStreamNumber: u16,
-            pfAllocate: *BOOL,
+            pfAllocate: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostView_SetPostViewCallback(self: *const T, pCallback: *IWMWriterPostViewCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostView_SetPostViewCallback(self: *const T, pCallback: ?*IWMWriterPostViewCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).SetPostViewCallback(@ptrCast(*const IWMWriterPostView, self), pCallback, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3758,23 +3758,23 @@ pub const IWMWriterPostView = extern struct {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).SetReceivePostViewSamples(@ptrCast(*const IWMWriterPostView, self), wStreamNum, fReceivePostViewSamples);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostView_GetReceivePostViewSamples(self: *const T, wStreamNum: u16, pfReceivePostViewSamples: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostView_GetReceivePostViewSamples(self: *const T, wStreamNum: u16, pfReceivePostViewSamples: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).GetReceivePostViewSamples(@ptrCast(*const IWMWriterPostView, self), wStreamNum, pfReceivePostViewSamples);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostView_GetPostViewProps(self: *const T, wStreamNumber: u16, ppOutput: **IWMMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostView_GetPostViewProps(self: *const T, wStreamNumber: u16, ppOutput: ?*?*IWMMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).GetPostViewProps(@ptrCast(*const IWMWriterPostView, self), wStreamNumber, ppOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostView_SetPostViewProps(self: *const T, wStreamNumber: u16, pOutput: *IWMMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostView_SetPostViewProps(self: *const T, wStreamNumber: u16, pOutput: ?*IWMMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).SetPostViewProps(@ptrCast(*const IWMWriterPostView, self), wStreamNumber, pOutput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostView_GetPostViewFormatCount(self: *const T, wStreamNumber: u16, pcFormats: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostView_GetPostViewFormatCount(self: *const T, wStreamNumber: u16, pcFormats: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).GetPostViewFormatCount(@ptrCast(*const IWMWriterPostView, self), wStreamNumber, pcFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostView_GetPostViewFormat(self: *const T, wStreamNumber: u16, dwFormatNumber: u32, ppProps: **IWMMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostView_GetPostViewFormat(self: *const T, wStreamNumber: u16, dwFormatNumber: u32, ppProps: ?*?*IWMMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).GetPostViewFormat(@ptrCast(*const IWMWriterPostView, self), wStreamNumber, dwFormatNumber, ppProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3782,7 +3782,7 @@ pub const IWMWriterPostView = extern struct {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).SetAllocateForPostView(@ptrCast(*const IWMWriterPostView, self), wStreamNumber, fAllocate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPostView_GetAllocateForPostView(self: *const T, wStreamNumber: u16, pfAllocate: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPostView_GetAllocateForPostView(self: *const T, wStreamNumber: u16, pfAllocate: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPostView.VTable, self.vtable).GetAllocateForPostView(@ptrCast(*const IWMWriterPostView, self), wStreamNumber, pfAllocate);
         }
     };}
@@ -3796,20 +3796,20 @@ pub const IWMWriterSink = extern struct {
         base: IUnknown.VTable,
         OnHeader: fn(
             self: *const IWMWriterSink,
-            pHeader: *INSSBuffer,
+            pHeader: ?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRealTime: fn(
             self: *const IWMWriterSink,
-            pfRealTime: *BOOL,
+            pfRealTime: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateDataUnit: fn(
             self: *const IWMWriterSink,
             cbDataUnit: u32,
-            ppDataUnit: **INSSBuffer,
+            ppDataUnit: ?*?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDataUnit: fn(
             self: *const IWMWriterSink,
-            pDataUnit: *INSSBuffer,
+            pDataUnit: ?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEndWriting: fn(
             self: *const IWMWriterSink,
@@ -3819,19 +3819,19 @@ pub const IWMWriterSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterSink_OnHeader(self: *const T, pHeader: *INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMWriterSink_OnHeader(self: *const T, pHeader: ?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterSink.VTable, self.vtable).OnHeader(@ptrCast(*const IWMWriterSink, self), pHeader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterSink_IsRealTime(self: *const T, pfRealTime: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterSink_IsRealTime(self: *const T, pfRealTime: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterSink.VTable, self.vtable).IsRealTime(@ptrCast(*const IWMWriterSink, self), pfRealTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterSink_AllocateDataUnit(self: *const T, cbDataUnit: u32, ppDataUnit: **INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMWriterSink_AllocateDataUnit(self: *const T, cbDataUnit: u32, ppDataUnit: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterSink.VTable, self.vtable).AllocateDataUnit(@ptrCast(*const IWMWriterSink, self), cbDataUnit, ppDataUnit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterSink_OnDataUnit(self: *const T, pDataUnit: *INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMWriterSink_OnDataUnit(self: *const T, pDataUnit: ?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterSink.VTable, self.vtable).OnDataUnit(@ptrCast(*const IWMWriterSink, self), pDataUnit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3849,24 +3849,24 @@ pub const IWMRegisterCallback = extern struct {
         base: IUnknown.VTable,
         Advise: fn(
             self: *const IWMRegisterCallback,
-            pCallback: *IWMStatusCallback,
-            pvContext: *c_void,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unadvise: fn(
             self: *const IWMRegisterCallback,
-            pCallback: *IWMStatusCallback,
-            pvContext: *c_void,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisterCallback_Advise(self: *const T, pCallback: *IWMStatusCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMRegisterCallback_Advise(self: *const T, pCallback: ?*IWMStatusCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisterCallback.VTable, self.vtable).Advise(@ptrCast(*const IWMRegisterCallback, self), pCallback, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisterCallback_Unadvise(self: *const T, pCallback: *IWMStatusCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMRegisterCallback_Unadvise(self: *const T, pCallback: ?*IWMStatusCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisterCallback.VTable, self.vtable).Unadvise(@ptrCast(*const IWMRegisterCallback, self), pCallback, pvContext);
         }
     };}
@@ -3880,14 +3880,14 @@ pub const IWMWriterFileSink = extern struct {
         base: IWMWriterSink.VTable,
         Open: fn(
             self: *const IWMWriterFileSink,
-            pwszFilename: [*:0]const u16,
+            pwszFilename: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink_Open(self: *const T, pwszFilename: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink_Open(self: *const T, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink.VTable, self.vtable).Open(@ptrCast(*const IWMWriterFileSink, self), pwszFilename);
         }
     };}
@@ -3909,22 +3909,22 @@ pub const IWMWriterFileSink2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsStopped: fn(
             self: *const IWMWriterFileSink2,
-            pfStopped: *BOOL,
+            pfStopped: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileDuration: fn(
             self: *const IWMWriterFileSink2,
-            pcnsDuration: *u64,
+            pcnsDuration: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFileSize: fn(
             self: *const IWMWriterFileSink2,
-            pcbFile: *u64,
+            pcbFile: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IWMWriterFileSink2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsClosed: fn(
             self: *const IWMWriterFileSink2,
-            pfClosed: *BOOL,
+            pfClosed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3939,15 +3939,15 @@ pub const IWMWriterFileSink2 = extern struct {
             return @ptrCast(*const IWMWriterFileSink2.VTable, self.vtable).Stop(@ptrCast(*const IWMWriterFileSink2, self), cnsStopTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink2_IsStopped(self: *const T, pfStopped: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink2_IsStopped(self: *const T, pfStopped: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink2.VTable, self.vtable).IsStopped(@ptrCast(*const IWMWriterFileSink2, self), pfStopped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink2_GetFileDuration(self: *const T, pcnsDuration: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink2_GetFileDuration(self: *const T, pcnsDuration: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink2.VTable, self.vtable).GetFileDuration(@ptrCast(*const IWMWriterFileSink2, self), pcnsDuration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink2_GetFileSize(self: *const T, pcbFile: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink2_GetFileSize(self: *const T, pcbFile: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink2.VTable, self.vtable).GetFileSize(@ptrCast(*const IWMWriterFileSink2, self), pcbFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3955,7 +3955,7 @@ pub const IWMWriterFileSink2 = extern struct {
             return @ptrCast(*const IWMWriterFileSink2.VTable, self.vtable).Close(@ptrCast(*const IWMWriterFileSink2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink2_IsClosed(self: *const T, pfClosed: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink2_IsClosed(self: *const T, pfClosed: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink2.VTable, self.vtable).IsClosed(@ptrCast(*const IWMWriterFileSink2, self), pfClosed);
         }
     };}
@@ -3973,7 +3973,7 @@ pub const IWMWriterFileSink3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAutoIndexing: fn(
             self: *const IWMWriterFileSink3,
-            pfAutoIndexing: *BOOL,
+            pfAutoIndexing: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetControlStream: fn(
             self: *const IWMWriterFileSink3,
@@ -3982,11 +3982,11 @@ pub const IWMWriterFileSink3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMode: fn(
             self: *const IWMWriterFileSink3,
-            pdwFileSinkMode: *u32,
+            pdwFileSinkMode: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDataUnitEx: fn(
             self: *const IWMWriterFileSink3,
-            pFileSinkDataUnit: *WMT_FILESINK_DATA_UNIT,
+            pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUnbufferedIO: fn(
             self: *const IWMWriterFileSink3,
@@ -3995,7 +3995,7 @@ pub const IWMWriterFileSink3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUnbufferedIO: fn(
             self: *const IWMWriterFileSink3,
-            pfUnbufferedIO: *BOOL,
+            pfUnbufferedIO: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompleteOperations: fn(
             self: *const IWMWriterFileSink3,
@@ -4009,7 +4009,7 @@ pub const IWMWriterFileSink3 = extern struct {
             return @ptrCast(*const IWMWriterFileSink3.VTable, self.vtable).SetAutoIndexing(@ptrCast(*const IWMWriterFileSink3, self), fDoAutoIndexing);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink3_GetAutoIndexing(self: *const T, pfAutoIndexing: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink3_GetAutoIndexing(self: *const T, pfAutoIndexing: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink3.VTable, self.vtable).GetAutoIndexing(@ptrCast(*const IWMWriterFileSink3, self), pfAutoIndexing);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4017,11 +4017,11 @@ pub const IWMWriterFileSink3 = extern struct {
             return @ptrCast(*const IWMWriterFileSink3.VTable, self.vtable).SetControlStream(@ptrCast(*const IWMWriterFileSink3, self), wStreamNumber, fShouldControlStartAndStop);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink3_GetMode(self: *const T, pdwFileSinkMode: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink3_GetMode(self: *const T, pdwFileSinkMode: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink3.VTable, self.vtable).GetMode(@ptrCast(*const IWMWriterFileSink3, self), pdwFileSinkMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink3_OnDataUnitEx(self: *const T, pFileSinkDataUnit: *WMT_FILESINK_DATA_UNIT) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink3_OnDataUnitEx(self: *const T, pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink3.VTable, self.vtable).OnDataUnitEx(@ptrCast(*const IWMWriterFileSink3, self), pFileSinkDataUnit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4029,7 +4029,7 @@ pub const IWMWriterFileSink3 = extern struct {
             return @ptrCast(*const IWMWriterFileSink3.VTable, self.vtable).SetUnbufferedIO(@ptrCast(*const IWMWriterFileSink3, self), fUnbufferedIO, fRestrictMemUsage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterFileSink3_GetUnbufferedIO(self: *const T, pfUnbufferedIO: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterFileSink3_GetUnbufferedIO(self: *const T, pfUnbufferedIO: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterFileSink3.VTable, self.vtable).GetUnbufferedIO(@ptrCast(*const IWMWriterFileSink3, self), pfUnbufferedIO);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4051,7 +4051,7 @@ pub const IWMWriterNetworkSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaximumClients: fn(
             self: *const IWMWriterNetworkSink,
-            pdwMaxClients: *u32,
+            pdwMaxClients: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNetworkProtocol: fn(
             self: *const IWMWriterNetworkSink,
@@ -4059,16 +4059,16 @@ pub const IWMWriterNetworkSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNetworkProtocol: fn(
             self: *const IWMWriterNetworkSink,
-            pProtocol: *WMT_NET_PROTOCOL,
+            pProtocol: ?*WMT_NET_PROTOCOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHostURL: fn(
             self: *const IWMWriterNetworkSink,
-            pwszURL: PWSTR,
-            pcchURL: *u32,
+            pwszURL: ?PWSTR,
+            pcchURL: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Open: fn(
             self: *const IWMWriterNetworkSink,
-            pdwPortNum: *u32,
+            pdwPortNum: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disconnect: fn(
             self: *const IWMWriterNetworkSink,
@@ -4085,7 +4085,7 @@ pub const IWMWriterNetworkSink = extern struct {
             return @ptrCast(*const IWMWriterNetworkSink.VTable, self.vtable).SetMaximumClients(@ptrCast(*const IWMWriterNetworkSink, self), dwMaxClients);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterNetworkSink_GetMaximumClients(self: *const T, pdwMaxClients: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterNetworkSink_GetMaximumClients(self: *const T, pdwMaxClients: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterNetworkSink.VTable, self.vtable).GetMaximumClients(@ptrCast(*const IWMWriterNetworkSink, self), pdwMaxClients);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4093,15 +4093,15 @@ pub const IWMWriterNetworkSink = extern struct {
             return @ptrCast(*const IWMWriterNetworkSink.VTable, self.vtable).SetNetworkProtocol(@ptrCast(*const IWMWriterNetworkSink, self), protocol);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterNetworkSink_GetNetworkProtocol(self: *const T, pProtocol: *WMT_NET_PROTOCOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterNetworkSink_GetNetworkProtocol(self: *const T, pProtocol: ?*WMT_NET_PROTOCOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterNetworkSink.VTable, self.vtable).GetNetworkProtocol(@ptrCast(*const IWMWriterNetworkSink, self), pProtocol);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterNetworkSink_GetHostURL(self: *const T, pwszURL: PWSTR, pcchURL: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterNetworkSink_GetHostURL(self: *const T, pwszURL: ?PWSTR, pcchURL: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterNetworkSink.VTable, self.vtable).GetHostURL(@ptrCast(*const IWMWriterNetworkSink, self), pwszURL, pcchURL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterNetworkSink_Open(self: *const T, pdwPortNum: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWriterNetworkSink_Open(self: *const T, pdwPortNum: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterNetworkSink.VTable, self.vtable).Open(@ptrCast(*const IWMWriterNetworkSink, self), pdwPortNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4123,23 +4123,23 @@ pub const IWMClientConnections = extern struct {
         base: IUnknown.VTable,
         GetClientCount: fn(
             self: *const IWMClientConnections,
-            pcClients: *u32,
+            pcClients: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClientProperties: fn(
             self: *const IWMClientConnections,
             dwClientNum: u32,
-            pClientProperties: *WM_CLIENT_PROPERTIES,
+            pClientProperties: ?*WM_CLIENT_PROPERTIES,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMClientConnections_GetClientCount(self: *const T, pcClients: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMClientConnections_GetClientCount(self: *const T, pcClients: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMClientConnections.VTable, self.vtable).GetClientCount(@ptrCast(*const IWMClientConnections, self), pcClients);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMClientConnections_GetClientProperties(self: *const T, dwClientNum: u32, pClientProperties: *WM_CLIENT_PROPERTIES) callconv(.Inline) HRESULT {
+        pub fn IWMClientConnections_GetClientProperties(self: *const T, dwClientNum: u32, pClientProperties: ?*WM_CLIENT_PROPERTIES) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMClientConnections.VTable, self.vtable).GetClientProperties(@ptrCast(*const IWMClientConnections, self), dwClientNum, pClientProperties);
         }
     };}
@@ -4155,18 +4155,18 @@ pub const IWMClientConnections2 = extern struct {
             self: *const IWMClientConnections2,
             dwClientNum: u32,
             pwszNetworkAddress: [*:0]u16,
-            pcchNetworkAddress: *u32,
+            pcchNetworkAddress: ?*u32,
             pwszPort: [*:0]u16,
-            pcchPort: *u32,
+            pcchPort: ?*u32,
             pwszDNSName: [*:0]u16,
-            pcchDNSName: *u32,
+            pcchDNSName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMClientConnections.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMClientConnections2_GetClientInfo(self: *const T, dwClientNum: u32, pwszNetworkAddress: [*:0]u16, pcchNetworkAddress: *u32, pwszPort: [*:0]u16, pcchPort: *u32, pwszDNSName: [*:0]u16, pcchDNSName: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMClientConnections2_GetClientInfo(self: *const T, dwClientNum: u32, pwszNetworkAddress: [*:0]u16, pcchNetworkAddress: ?*u32, pwszPort: [*:0]u16, pcchPort: ?*u32, pwszDNSName: [*:0]u16, pcchDNSName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMClientConnections2.VTable, self.vtable).GetClientInfo(@ptrCast(*const IWMClientConnections2, self), dwClientNum, pwszNetworkAddress, pcchNetworkAddress, pwszPort, pcchPort, pwszDNSName, pcchDNSName);
         }
     };}
@@ -4184,7 +4184,7 @@ pub const IWMReaderAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUserProvidedClock: fn(
             self: *const IWMReaderAdvanced,
-            pfUserClock: *BOOL,
+            pfUserClock: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeliverTime: fn(
             self: *const IWMReaderAdvanced,
@@ -4196,18 +4196,18 @@ pub const IWMReaderAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetManualStreamSelection: fn(
             self: *const IWMReaderAdvanced,
-            pfSelection: *BOOL,
+            pfSelection: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStreamsSelected: fn(
             self: *const IWMReaderAdvanced,
             cStreamCount: u16,
-            pwStreamNumbers: *u16,
-            pSelections: *WMT_STREAM_SELECTION,
+            pwStreamNumbers: ?*u16,
+            pSelections: ?*WMT_STREAM_SELECTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamSelected: fn(
             self: *const IWMReaderAdvanced,
             wStreamNum: u16,
-            pSelection: *WMT_STREAM_SELECTION,
+            pSelection: ?*WMT_STREAM_SELECTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReceiveSelectionCallbacks: fn(
             self: *const IWMReaderAdvanced,
@@ -4215,7 +4215,7 @@ pub const IWMReaderAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReceiveSelectionCallbacks: fn(
             self: *const IWMReaderAdvanced,
-            pfGetCallbacks: *BOOL,
+            pfGetCallbacks: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReceiveStreamSamples: fn(
             self: *const IWMReaderAdvanced,
@@ -4225,7 +4225,7 @@ pub const IWMReaderAdvanced = extern struct {
         GetReceiveStreamSamples: fn(
             self: *const IWMReaderAdvanced,
             wStreamNum: u16,
-            pfReceiveStreamSamples: *BOOL,
+            pfReceiveStreamSamples: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllocateForOutput: fn(
             self: *const IWMReaderAdvanced,
@@ -4235,7 +4235,7 @@ pub const IWMReaderAdvanced = extern struct {
         GetAllocateForOutput: fn(
             self: *const IWMReaderAdvanced,
             dwOutputNum: u32,
-            pfAllocate: *BOOL,
+            pfAllocate: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllocateForStream: fn(
             self: *const IWMReaderAdvanced,
@@ -4245,25 +4245,25 @@ pub const IWMReaderAdvanced = extern struct {
         GetAllocateForStream: fn(
             self: *const IWMReaderAdvanced,
             dwSreamNum: u16,
-            pfAllocate: *BOOL,
+            pfAllocate: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatistics: fn(
             self: *const IWMReaderAdvanced,
-            pStatistics: *WM_READER_STATISTICS,
+            pStatistics: ?*WM_READER_STATISTICS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetClientInfo: fn(
             self: *const IWMReaderAdvanced,
-            pClientInfo: *WM_READER_CLIENTINFO,
+            pClientInfo: ?*WM_READER_CLIENTINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxOutputSampleSize: fn(
             self: *const IWMReaderAdvanced,
             dwOutput: u32,
-            pcbMax: *u32,
+            pcbMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxStreamSampleSize: fn(
             self: *const IWMReaderAdvanced,
             wStream: u16,
-            pcbMax: *u32,
+            pcbMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NotifyLateDelivery: fn(
             self: *const IWMReaderAdvanced,
@@ -4278,7 +4278,7 @@ pub const IWMReaderAdvanced = extern struct {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetUserProvidedClock(@ptrCast(*const IWMReaderAdvanced, self), fUserClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetUserProvidedClock(self: *const T, pfUserClock: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetUserProvidedClock(self: *const T, pfUserClock: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetUserProvidedClock(@ptrCast(*const IWMReaderAdvanced, self), pfUserClock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4290,15 +4290,15 @@ pub const IWMReaderAdvanced = extern struct {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetManualStreamSelection(@ptrCast(*const IWMReaderAdvanced, self), fSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetManualStreamSelection(self: *const T, pfSelection: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetManualStreamSelection(self: *const T, pfSelection: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetManualStreamSelection(@ptrCast(*const IWMReaderAdvanced, self), pfSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_SetStreamsSelected(self: *const T, cStreamCount: u16, pwStreamNumbers: *u16, pSelections: *WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_SetStreamsSelected(self: *const T, cStreamCount: u16, pwStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetStreamsSelected(@ptrCast(*const IWMReaderAdvanced, self), cStreamCount, pwStreamNumbers, pSelections);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetStreamSelected(self: *const T, wStreamNum: u16, pSelection: *WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetStreamSelected(self: *const T, wStreamNum: u16, pSelection: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetStreamSelected(@ptrCast(*const IWMReaderAdvanced, self), wStreamNum, pSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4306,7 +4306,7 @@ pub const IWMReaderAdvanced = extern struct {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetReceiveSelectionCallbacks(@ptrCast(*const IWMReaderAdvanced, self), fGetCallbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetReceiveSelectionCallbacks(self: *const T, pfGetCallbacks: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetReceiveSelectionCallbacks(self: *const T, pfGetCallbacks: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetReceiveSelectionCallbacks(@ptrCast(*const IWMReaderAdvanced, self), pfGetCallbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4314,7 +4314,7 @@ pub const IWMReaderAdvanced = extern struct {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetReceiveStreamSamples(@ptrCast(*const IWMReaderAdvanced, self), wStreamNum, fReceiveStreamSamples);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetReceiveStreamSamples(self: *const T, wStreamNum: u16, pfReceiveStreamSamples: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetReceiveStreamSamples(self: *const T, wStreamNum: u16, pfReceiveStreamSamples: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetReceiveStreamSamples(@ptrCast(*const IWMReaderAdvanced, self), wStreamNum, pfReceiveStreamSamples);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4322,7 +4322,7 @@ pub const IWMReaderAdvanced = extern struct {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetAllocateForOutput(@ptrCast(*const IWMReaderAdvanced, self), dwOutputNum, fAllocate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetAllocateForOutput(self: *const T, dwOutputNum: u32, pfAllocate: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetAllocateForOutput(self: *const T, dwOutputNum: u32, pfAllocate: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetAllocateForOutput(@ptrCast(*const IWMReaderAdvanced, self), dwOutputNum, pfAllocate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4330,23 +4330,23 @@ pub const IWMReaderAdvanced = extern struct {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetAllocateForStream(@ptrCast(*const IWMReaderAdvanced, self), wStreamNum, fAllocate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetAllocateForStream(self: *const T, dwSreamNum: u16, pfAllocate: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetAllocateForStream(self: *const T, dwSreamNum: u16, pfAllocate: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetAllocateForStream(@ptrCast(*const IWMReaderAdvanced, self), dwSreamNum, pfAllocate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetStatistics(self: *const T, pStatistics: *WM_READER_STATISTICS) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetStatistics(self: *const T, pStatistics: ?*WM_READER_STATISTICS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetStatistics(@ptrCast(*const IWMReaderAdvanced, self), pStatistics);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_SetClientInfo(self: *const T, pClientInfo: *WM_READER_CLIENTINFO) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_SetClientInfo(self: *const T, pClientInfo: ?*WM_READER_CLIENTINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).SetClientInfo(@ptrCast(*const IWMReaderAdvanced, self), pClientInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetMaxOutputSampleSize(self: *const T, dwOutput: u32, pcbMax: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetMaxOutputSampleSize(self: *const T, dwOutput: u32, pcbMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetMaxOutputSampleSize(@ptrCast(*const IWMReaderAdvanced, self), dwOutput, pcbMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced_GetMaxStreamSampleSize(self: *const T, wStream: u16, pcbMax: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced_GetMaxStreamSampleSize(self: *const T, wStream: u16, pcbMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced.VTable, self.vtable).GetMaxStreamSampleSize(@ptrCast(*const IWMReaderAdvanced, self), wStream, pcbMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4368,51 +4368,51 @@ pub const IWMReaderAdvanced2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPlayMode: fn(
             self: *const IWMReaderAdvanced2,
-            pMode: *WMT_PLAY_MODE,
+            pMode: ?*WMT_PLAY_MODE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBufferProgress: fn(
             self: *const IWMReaderAdvanced2,
-            pdwPercent: *u32,
-            pcnsBuffering: *u64,
+            pdwPercent: ?*u32,
+            pcnsBuffering: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDownloadProgress: fn(
             self: *const IWMReaderAdvanced2,
-            pdwPercent: *u32,
-            pqwBytesDownloaded: *u64,
-            pcnsDownload: *u64,
+            pdwPercent: ?*u32,
+            pqwBytesDownloaded: ?*u64,
+            pcnsDownload: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSaveAsProgress: fn(
             self: *const IWMReaderAdvanced2,
-            pdwPercent: *u32,
+            pdwPercent: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveFileAs: fn(
             self: *const IWMReaderAdvanced2,
-            pwszFilename: [*:0]const u16,
+            pwszFilename: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProtocolName: fn(
             self: *const IWMReaderAdvanced2,
             pwszProtocol: [*:0]u16,
-            pcchProtocol: *u32,
+            pcchProtocol: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StartAtMarker: fn(
             self: *const IWMReaderAdvanced2,
             wMarkerIndex: u16,
             cnsDuration: u64,
             fRate: f32,
-            pvContext: *c_void,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputSetting: fn(
             self: *const IWMReaderAdvanced2,
             dwOutputNum: u32,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutputSetting: fn(
             self: *const IWMReaderAdvanced2,
             dwOutputNum: u32,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
@@ -4429,16 +4429,16 @@ pub const IWMReaderAdvanced2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLogClientID: fn(
             self: *const IWMReaderAdvanced2,
-            pfLogClientID: *BOOL,
+            pfLogClientID: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StopBuffering: fn(
             self: *const IWMReaderAdvanced2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenStream: fn(
             self: *const IWMReaderAdvanced2,
-            pStream: *IStream,
-            pCallback: *IWMReaderCallback,
-            pvContext: *c_void,
+            pStream: ?*IStream,
+            pCallback: ?*IWMReaderCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4449,39 +4449,39 @@ pub const IWMReaderAdvanced2 = extern struct {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).SetPlayMode(@ptrCast(*const IWMReaderAdvanced2, self), Mode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_GetPlayMode(self: *const T, pMode: *WMT_PLAY_MODE) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_GetPlayMode(self: *const T, pMode: ?*WMT_PLAY_MODE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).GetPlayMode(@ptrCast(*const IWMReaderAdvanced2, self), pMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_GetBufferProgress(self: *const T, pdwPercent: *u32, pcnsBuffering: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_GetBufferProgress(self: *const T, pdwPercent: ?*u32, pcnsBuffering: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).GetBufferProgress(@ptrCast(*const IWMReaderAdvanced2, self), pdwPercent, pcnsBuffering);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_GetDownloadProgress(self: *const T, pdwPercent: *u32, pqwBytesDownloaded: *u64, pcnsDownload: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_GetDownloadProgress(self: *const T, pdwPercent: ?*u32, pqwBytesDownloaded: ?*u64, pcnsDownload: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).GetDownloadProgress(@ptrCast(*const IWMReaderAdvanced2, self), pdwPercent, pqwBytesDownloaded, pcnsDownload);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_GetSaveAsProgress(self: *const T, pdwPercent: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_GetSaveAsProgress(self: *const T, pdwPercent: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).GetSaveAsProgress(@ptrCast(*const IWMReaderAdvanced2, self), pdwPercent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_SaveFileAs(self: *const T, pwszFilename: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_SaveFileAs(self: *const T, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).SaveFileAs(@ptrCast(*const IWMReaderAdvanced2, self), pwszFilename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_GetProtocolName(self: *const T, pwszProtocol: [*:0]u16, pcchProtocol: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_GetProtocolName(self: *const T, pwszProtocol: [*:0]u16, pcchProtocol: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).GetProtocolName(@ptrCast(*const IWMReaderAdvanced2, self), pwszProtocol, pcchProtocol);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_StartAtMarker(self: *const T, wMarkerIndex: u16, cnsDuration: u64, fRate: f32, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_StartAtMarker(self: *const T, wMarkerIndex: u16, cnsDuration: u64, fRate: f32, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).StartAtMarker(@ptrCast(*const IWMReaderAdvanced2, self), wMarkerIndex, cnsDuration, fRate, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_GetOutputSetting(self: *const T, dwOutputNum: u32, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_GetOutputSetting(self: *const T, dwOutputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).GetOutputSetting(@ptrCast(*const IWMReaderAdvanced2, self), dwOutputNum, pszName, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_SetOutputSetting(self: *const T, dwOutputNum: u32, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_SetOutputSetting(self: *const T, dwOutputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).SetOutputSetting(@ptrCast(*const IWMReaderAdvanced2, self), dwOutputNum, pszName, Type, pValue, cbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4493,7 +4493,7 @@ pub const IWMReaderAdvanced2 = extern struct {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).SetLogClientID(@ptrCast(*const IWMReaderAdvanced2, self), fLogClientID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_GetLogClientID(self: *const T, pfLogClientID: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_GetLogClientID(self: *const T, pfLogClientID: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).GetLogClientID(@ptrCast(*const IWMReaderAdvanced2, self), pfLogClientID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4501,7 +4501,7 @@ pub const IWMReaderAdvanced2 = extern struct {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).StopBuffering(@ptrCast(*const IWMReaderAdvanced2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced2_OpenStream(self: *const T, pStream: *IStream, pCallback: *IWMReaderCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced2_OpenStream(self: *const T, pStream: ?*IStream, pCallback: ?*IWMReaderCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced2.VTable, self.vtable).OpenStream(@ptrCast(*const IWMReaderAdvanced2, self), pStream, pCallback, pvContext);
         }
     };}
@@ -4519,11 +4519,11 @@ pub const IWMReaderAdvanced3 = extern struct {
         StartAtPosition: fn(
             self: *const IWMReaderAdvanced3,
             wStreamNum: u16,
-            pvOffsetStart: *c_void,
-            pvDuration: *c_void,
+            pvOffsetStart: ?*c_void,
+            pvDuration: ?*c_void,
             dwOffsetFormat: WMT_OFFSET_FORMAT,
             fRate: f32,
-            pvContext: *c_void,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4534,7 +4534,7 @@ pub const IWMReaderAdvanced3 = extern struct {
             return @ptrCast(*const IWMReaderAdvanced3.VTable, self.vtable).StopNetStreaming(@ptrCast(*const IWMReaderAdvanced3, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced3_StartAtPosition(self: *const T, wStreamNum: u16, pvOffsetStart: *c_void, pvDuration: *c_void, dwOffsetFormat: WMT_OFFSET_FORMAT, fRate: f32, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced3_StartAtPosition(self: *const T, wStreamNum: u16, pvOffsetStart: ?*c_void, pvDuration: ?*c_void, dwOffsetFormat: WMT_OFFSET_FORMAT, fRate: f32, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced3.VTable, self.vtable).StartAtPosition(@ptrCast(*const IWMReaderAdvanced3, self), wStreamNum, pvOffsetStart, pvDuration, dwOffsetFormat, fRate, pvContext);
         }
     };}
@@ -4549,35 +4549,35 @@ pub const IWMReaderAdvanced4 = extern struct {
         GetLanguageCount: fn(
             self: *const IWMReaderAdvanced4,
             dwOutputNum: u32,
-            pwLanguageCount: *u16,
+            pwLanguageCount: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLanguage: fn(
             self: *const IWMReaderAdvanced4,
             dwOutputNum: u32,
             wLanguage: u16,
             pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: *u16,
+            pcchLanguageStringLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxSpeedFactor: fn(
             self: *const IWMReaderAdvanced4,
-            pdblFactor: *f64,
+            pdblFactor: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsUsingFastCache: fn(
             self: *const IWMReaderAdvanced4,
-            pfUsingFastCache: *BOOL,
+            pfUsingFastCache: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddLogParam: fn(
             self: *const IWMReaderAdvanced4,
-            wszNameSpace: [*:0]const u16,
-            wszName: [*:0]const u16,
-            wszValue: [*:0]const u16,
+            wszNameSpace: ?[*:0]const u16,
+            wszName: ?[*:0]const u16,
+            wszValue: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendLogParams: fn(
             self: *const IWMReaderAdvanced4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CanSaveFileAs: fn(
             self: *const IWMReaderAdvanced4,
-            pfCanSave: *BOOL,
+            pfCanSave: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelSaveFileAs: fn(
             self: *const IWMReaderAdvanced4,
@@ -4585,30 +4585,30 @@ pub const IWMReaderAdvanced4 = extern struct {
         GetURL: fn(
             self: *const IWMReaderAdvanced4,
             pwszURL: [*:0]u16,
-            pcchURL: *u32,
+            pcchURL: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced4_GetLanguageCount(self: *const T, dwOutputNum: u32, pwLanguageCount: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced4_GetLanguageCount(self: *const T, dwOutputNum: u32, pwLanguageCount: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).GetLanguageCount(@ptrCast(*const IWMReaderAdvanced4, self), dwOutputNum, pwLanguageCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced4_GetLanguage(self: *const T, dwOutputNum: u32, wLanguage: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced4_GetLanguage(self: *const T, dwOutputNum: u32, wLanguage: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).GetLanguage(@ptrCast(*const IWMReaderAdvanced4, self), dwOutputNum, wLanguage, pwszLanguageString, pcchLanguageStringLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced4_GetMaxSpeedFactor(self: *const T, pdblFactor: *f64) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced4_GetMaxSpeedFactor(self: *const T, pdblFactor: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).GetMaxSpeedFactor(@ptrCast(*const IWMReaderAdvanced4, self), pdblFactor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced4_IsUsingFastCache(self: *const T, pfUsingFastCache: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced4_IsUsingFastCache(self: *const T, pfUsingFastCache: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).IsUsingFastCache(@ptrCast(*const IWMReaderAdvanced4, self), pfUsingFastCache);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced4_AddLogParam(self: *const T, wszNameSpace: [*:0]const u16, wszName: [*:0]const u16, wszValue: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced4_AddLogParam(self: *const T, wszNameSpace: ?[*:0]const u16, wszName: ?[*:0]const u16, wszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).AddLogParam(@ptrCast(*const IWMReaderAdvanced4, self), wszNameSpace, wszName, wszValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4616,7 +4616,7 @@ pub const IWMReaderAdvanced4 = extern struct {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).SendLogParams(@ptrCast(*const IWMReaderAdvanced4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced4_CanSaveFileAs(self: *const T, pfCanSave: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced4_CanSaveFileAs(self: *const T, pfCanSave: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).CanSaveFileAs(@ptrCast(*const IWMReaderAdvanced4, self), pfCanSave);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4624,7 +4624,7 @@ pub const IWMReaderAdvanced4 = extern struct {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).CancelSaveFileAs(@ptrCast(*const IWMReaderAdvanced4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced4_GetURL(self: *const T, pwszURL: [*:0]u16, pcchURL: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced4_GetURL(self: *const T, pwszURL: [*:0]u16, pcchURL: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced4.VTable, self.vtable).GetURL(@ptrCast(*const IWMReaderAdvanced4, self), pwszURL, pcchURL);
         }
     };}
@@ -4639,14 +4639,14 @@ pub const IWMReaderAdvanced5 = extern struct {
         SetPlayerHook: fn(
             self: *const IWMReaderAdvanced5,
             dwOutputNum: u32,
-            pHook: *IWMPlayerHook,
+            pHook: ?*IWMPlayerHook,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced5_SetPlayerHook(self: *const T, dwOutputNum: u32, pHook: *IWMPlayerHook) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced5_SetPlayerHook(self: *const T, dwOutputNum: u32, pHook: ?*IWMPlayerHook) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced5.VTable, self.vtable).SetPlayerHook(@ptrCast(*const IWMReaderAdvanced5, self), dwOutputNum, pHook);
         }
     };}
@@ -4665,14 +4665,14 @@ pub const IWMReaderAdvanced6 = extern struct {
             dwCertificateType: u32,
             dwFlags: u32,
             pbInitializationVector: [*:0]u8,
-            pcbInitializationVector: *u32,
+            pcbInitializationVector: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAdvanced6_SetProtectStreamSamples(self: *const T, pbCertificate: [*:0]u8, cbCertificate: u32, dwCertificateType: u32, dwFlags: u32, pbInitializationVector: [*:0]u8, pcbInitializationVector: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAdvanced6_SetProtectStreamSamples(self: *const T, pbCertificate: [*:0]u8, cbCertificate: u32, dwCertificateType: u32, dwFlags: u32, pbInitializationVector: [*:0]u8, pcbInitializationVector: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAdvanced6.VTable, self.vtable).SetProtectStreamSamples(@ptrCast(*const IWMReaderAdvanced6, self), pbCertificate, cbCertificate, dwCertificateType, dwFlags, pbInitializationVector, pcbInitializationVector);
         }
     };}
@@ -4708,32 +4708,32 @@ pub const IWMReaderAllocatorEx = extern struct {
             self: *const IWMReaderAllocatorEx,
             wStreamNum: u16,
             cbBuffer: u32,
-            ppBuffer: **INSSBuffer,
+            ppBuffer: ?*?*INSSBuffer,
             dwFlags: u32,
             cnsSampleTime: u64,
             cnsSampleDuration: u64,
-            pvContext: *c_void,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateForOutputEx: fn(
             self: *const IWMReaderAllocatorEx,
             dwOutputNum: u32,
             cbBuffer: u32,
-            ppBuffer: **INSSBuffer,
+            ppBuffer: ?*?*INSSBuffer,
             dwFlags: u32,
             cnsSampleTime: u64,
             cnsSampleDuration: u64,
-            pvContext: *c_void,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAllocatorEx_AllocateForStreamEx(self: *const T, wStreamNum: u16, cbBuffer: u32, ppBuffer: **INSSBuffer, dwFlags: u32, cnsSampleTime: u64, cnsSampleDuration: u64, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAllocatorEx_AllocateForStreamEx(self: *const T, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, dwFlags: u32, cnsSampleTime: u64, cnsSampleDuration: u64, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAllocatorEx.VTable, self.vtable).AllocateForStreamEx(@ptrCast(*const IWMReaderAllocatorEx, self), wStreamNum, cbBuffer, ppBuffer, dwFlags, cnsSampleTime, cnsSampleDuration, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAllocatorEx_AllocateForOutputEx(self: *const T, dwOutputNum: u32, cbBuffer: u32, ppBuffer: **INSSBuffer, dwFlags: u32, cnsSampleTime: u64, cnsSampleDuration: u64, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAllocatorEx_AllocateForOutputEx(self: *const T, dwOutputNum: u32, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, dwFlags: u32, cnsSampleTime: u64, cnsSampleDuration: u64, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAllocatorEx.VTable, self.vtable).AllocateForOutputEx(@ptrCast(*const IWMReaderAllocatorEx, self), dwOutputNum, cbBuffer, ppBuffer, dwFlags, cnsSampleTime, cnsSampleDuration, pvContext);
         }
     };}
@@ -4748,14 +4748,14 @@ pub const IWMReaderTypeNegotiation = extern struct {
         TryOutputProps: fn(
             self: *const IWMReaderTypeNegotiation,
             dwOutputNum: u32,
-            pOutput: *IWMOutputMediaProps,
+            pOutput: ?*IWMOutputMediaProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderTypeNegotiation_TryOutputProps(self: *const T, dwOutputNum: u32, pOutput: *IWMOutputMediaProps) callconv(.Inline) HRESULT {
+        pub fn IWMReaderTypeNegotiation_TryOutputProps(self: *const T, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderTypeNegotiation.VTable, self.vtable).TryOutputProps(@ptrCast(*const IWMReaderTypeNegotiation, self), dwOutputNum, pOutput);
         }
     };}
@@ -4773,67 +4773,67 @@ pub const IWMReaderCallbackAdvanced = extern struct {
             cnsSampleTime: u64,
             cnsSampleDuration: u64,
             dwFlags: u32,
-            pSample: *INSSBuffer,
-            pvContext: *c_void,
+            pSample: ?*INSSBuffer,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnTime: fn(
             self: *const IWMReaderCallbackAdvanced,
             cnsCurrentTime: u64,
-            pvContext: *c_void,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnStreamSelection: fn(
             self: *const IWMReaderCallbackAdvanced,
             wStreamCount: u16,
-            pStreamNumbers: *u16,
-            pSelections: *WMT_STREAM_SELECTION,
-            pvContext: *c_void,
+            pStreamNumbers: ?*u16,
+            pSelections: ?*WMT_STREAM_SELECTION,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnOutputPropsChanged: fn(
             self: *const IWMReaderCallbackAdvanced,
             dwOutputNum: u32,
-            pMediaType: *WM_MEDIA_TYPE,
-            pvContext: *c_void,
+            pMediaType: ?*WM_MEDIA_TYPE,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateForStream: fn(
             self: *const IWMReaderCallbackAdvanced,
             wStreamNum: u16,
             cbBuffer: u32,
-            ppBuffer: **INSSBuffer,
-            pvContext: *c_void,
+            ppBuffer: ?*?*INSSBuffer,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateForOutput: fn(
             self: *const IWMReaderCallbackAdvanced,
             dwOutputNum: u32,
             cbBuffer: u32,
-            ppBuffer: **INSSBuffer,
-            pvContext: *c_void,
+            ppBuffer: ?*?*INSSBuffer,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderCallbackAdvanced_OnStreamSample(self: *const T, wStreamNum: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: *INSSBuffer, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderCallbackAdvanced_OnStreamSample(self: *const T, wStreamNum: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderCallbackAdvanced.VTable, self.vtable).OnStreamSample(@ptrCast(*const IWMReaderCallbackAdvanced, self), wStreamNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderCallbackAdvanced_OnTime(self: *const T, cnsCurrentTime: u64, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderCallbackAdvanced_OnTime(self: *const T, cnsCurrentTime: u64, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderCallbackAdvanced.VTable, self.vtable).OnTime(@ptrCast(*const IWMReaderCallbackAdvanced, self), cnsCurrentTime, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderCallbackAdvanced_OnStreamSelection(self: *const T, wStreamCount: u16, pStreamNumbers: *u16, pSelections: *WMT_STREAM_SELECTION, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderCallbackAdvanced_OnStreamSelection(self: *const T, wStreamCount: u16, pStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderCallbackAdvanced.VTable, self.vtable).OnStreamSelection(@ptrCast(*const IWMReaderCallbackAdvanced, self), wStreamCount, pStreamNumbers, pSelections, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderCallbackAdvanced_OnOutputPropsChanged(self: *const T, dwOutputNum: u32, pMediaType: *WM_MEDIA_TYPE, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderCallbackAdvanced_OnOutputPropsChanged(self: *const T, dwOutputNum: u32, pMediaType: ?*WM_MEDIA_TYPE, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderCallbackAdvanced.VTable, self.vtable).OnOutputPropsChanged(@ptrCast(*const IWMReaderCallbackAdvanced, self), dwOutputNum, pMediaType, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderCallbackAdvanced_AllocateForStream(self: *const T, wStreamNum: u16, cbBuffer: u32, ppBuffer: **INSSBuffer, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderCallbackAdvanced_AllocateForStream(self: *const T, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderCallbackAdvanced.VTable, self.vtable).AllocateForStream(@ptrCast(*const IWMReaderCallbackAdvanced, self), wStreamNum, cbBuffer, ppBuffer, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderCallbackAdvanced_AllocateForOutput(self: *const T, dwOutputNum: u32, cbBuffer: u32, ppBuffer: **INSSBuffer, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderCallbackAdvanced_AllocateForOutput(self: *const T, dwOutputNum: u32, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderCallbackAdvanced.VTable, self.vtable).AllocateForOutput(@ptrCast(*const IWMReaderCallbackAdvanced, self), dwOutputNum, cbBuffer, ppBuffer, pvContext);
         }
     };}
@@ -4868,17 +4868,17 @@ pub const IWMDRMReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDRMProperty: fn(
             self: *const IWMDRMReader,
-            pwstrName: [*:0]const u16,
+            pwstrName: ?[*:0]const u16,
             dwType: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDRMProperty: fn(
             self: *const IWMDRMReader,
-            pwstrName: [*:0]const u16,
-            pdwType: *WMT_ATTR_DATATYPE,
+            pwstrName: ?[*:0]const u16,
+            pdwType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4909,11 +4909,11 @@ pub const IWMDRMReader = extern struct {
             return @ptrCast(*const IWMDRMReader.VTable, self.vtable).CancelMonitorLicenseAcquisition(@ptrCast(*const IWMDRMReader, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMReader_SetDRMProperty(self: *const T, pwstrName: [*:0]const u16, dwType: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+        pub fn IWMDRMReader_SetDRMProperty(self: *const T, pwstrName: ?[*:0]const u16, dwType: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMReader.VTable, self.vtable).SetDRMProperty(@ptrCast(*const IWMDRMReader, self), pwstrName, dwType, pValue, cbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMReader_GetDRMProperty(self: *const T, pwstrName: [*:0]const u16, pdwType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMDRMReader_GetDRMProperty(self: *const T, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMReader.VTable, self.vtable).GetDRMProperty(@ptrCast(*const IWMDRMReader, self), pwstrName, pdwType, pValue, pcbLength);
         }
     };}
@@ -4930,7 +4930,7 @@ pub const DRM_MINIMUM_OUTPUT_PROTECTION_LEVELS = extern struct {
 
 pub const DRM_OPL_OUTPUT_IDS = extern struct {
     cIds: u16,
-    rgIds: *Guid,
+    rgIds: ?*Guid,
 };
 
 pub const DRM_OUTPUT_PROTECTION = extern struct {
@@ -4940,7 +4940,7 @@ pub const DRM_OUTPUT_PROTECTION = extern struct {
 
 pub const DRM_VIDEO_OUTPUT_PROTECTION_IDS = extern struct {
     cEntries: u16,
-    rgVop: *DRM_OUTPUT_PROTECTION,
+    rgVop: ?*DRM_OUTPUT_PROTECTION,
 };
 
 pub const DRM_PLAY_OPL = extern struct {
@@ -4968,14 +4968,14 @@ pub const IWMDRMReader2 = extern struct {
         GetPlayOutputLevels: fn(
             self: *const IWMDRMReader2,
             pPlayOPL: [*]DRM_PLAY_OPL,
-            pcbLength: *u32,
-            pdwMinAppComplianceLevel: *u32,
+            pcbLength: ?*u32,
+            pdwMinAppComplianceLevel: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCopyOutputLevels: fn(
             self: *const IWMDRMReader2,
             pCopyOPL: [*]DRM_COPY_OPL,
-            pcbLength: *u32,
-            pdwMinAppComplianceLevel: *u32,
+            pcbLength: ?*u32,
+            pdwMinAppComplianceLevel: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TryNextLicense: fn(
             self: *const IWMDRMReader2,
@@ -4989,11 +4989,11 @@ pub const IWMDRMReader2 = extern struct {
             return @ptrCast(*const IWMDRMReader2.VTable, self.vtable).SetEvaluateOutputLevelLicenses(@ptrCast(*const IWMDRMReader2, self), fEvaluate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMReader2_GetPlayOutputLevels(self: *const T, pPlayOPL: [*]DRM_PLAY_OPL, pcbLength: *u32, pdwMinAppComplianceLevel: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMReader2_GetPlayOutputLevels(self: *const T, pPlayOPL: [*]DRM_PLAY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMReader2.VTable, self.vtable).GetPlayOutputLevels(@ptrCast(*const IWMDRMReader2, self), pPlayOPL, pcbLength, pdwMinAppComplianceLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMReader2_GetCopyOutputLevels(self: *const T, pCopyOPL: [*]DRM_COPY_OPL, pcbLength: *u32, pdwMinAppComplianceLevel: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMReader2_GetCopyOutputLevels(self: *const T, pCopyOPL: [*]DRM_COPY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMReader2.VTable, self.vtable).GetCopyOutputLevels(@ptrCast(*const IWMDRMReader2, self), pCopyOPL, pcbLength, pdwMinAppComplianceLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5012,15 +5012,15 @@ pub const IWMDRMReader3 = extern struct {
         base: IWMDRMReader2.VTable,
         GetInclusionList: fn(
             self: *const IWMDRMReader3,
-            ppGuids: **Guid,
-            pcGuids: *u32,
+            ppGuids: ?*?*Guid,
+            pcGuids: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMReader2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMReader3_GetInclusionList(self: *const T, ppGuids: **Guid, pcGuids: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMReader3_GetInclusionList(self: *const T, ppGuids: ?*?*Guid, pcGuids: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMReader3.VTable, self.vtable).GetInclusionList(@ptrCast(*const IWMDRMReader3, self), ppGuids, pcGuids);
         }
     };}
@@ -5035,14 +5035,14 @@ pub const IWMReaderPlaylistBurn = extern struct {
         InitPlaylistBurn: fn(
             self: *const IWMReaderPlaylistBurn,
             cFiles: u32,
-            ppwszFilenames: *PWSTR,
-            pCallback: *IWMStatusCallback,
-            pvContext: *c_void,
+            ppwszFilenames: ?*?PWSTR,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInitResults: fn(
             self: *const IWMReaderPlaylistBurn,
             cFiles: u32,
-            phrStati: *HRESULT,
+            phrStati: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IWMReaderPlaylistBurn,
@@ -5056,11 +5056,11 @@ pub const IWMReaderPlaylistBurn = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderPlaylistBurn_InitPlaylistBurn(self: *const T, cFiles: u32, ppwszFilenames: *PWSTR, pCallback: *IWMStatusCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderPlaylistBurn_InitPlaylistBurn(self: *const T, cFiles: u32, ppwszFilenames: ?*?PWSTR, pCallback: ?*IWMStatusCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderPlaylistBurn.VTable, self.vtable).InitPlaylistBurn(@ptrCast(*const IWMReaderPlaylistBurn, self), cFiles, ppwszFilenames, pCallback, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderPlaylistBurn_GetInitResults(self: *const T, cFiles: u32, phrStati: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn IWMReaderPlaylistBurn_GetInitResults(self: *const T, cFiles: u32, phrStati: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderPlaylistBurn.VTable, self.vtable).GetInitResults(@ptrCast(*const IWMReaderPlaylistBurn, self), cFiles, phrStati);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5082,7 +5082,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         base: IUnknown.VTable,
         GetBufferingTime: fn(
             self: *const IWMReaderNetworkConfig,
-            pcnsBufferingTime: *u64,
+            pcnsBufferingTime: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBufferingTime: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5091,7 +5091,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         GetUDPPortRanges: fn(
             self: *const IWMReaderNetworkConfig,
             pRangeArray: [*]WM_PORT_NUMBER_RANGE,
-            pcRanges: *u32,
+            pcRanges: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUDPPortRanges: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5100,59 +5100,59 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProxySettings: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
-            pProxySetting: *WMT_PROXY_SETTINGS,
+            pwszProtocol: ?[*:0]const u16,
+            pProxySetting: ?*WMT_PROXY_SETTINGS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProxySettings: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
+            pwszProtocol: ?[*:0]const u16,
             ProxySetting: WMT_PROXY_SETTINGS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProxyHostName: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
+            pwszProtocol: ?[*:0]const u16,
             pwszHostName: [*:0]u16,
-            pcchHostName: *u32,
+            pcchHostName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProxyHostName: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
-            pwszHostName: [*:0]const u16,
+            pwszProtocol: ?[*:0]const u16,
+            pwszHostName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProxyPort: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
-            pdwPort: *u32,
+            pwszProtocol: ?[*:0]const u16,
+            pdwPort: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProxyPort: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
+            pwszProtocol: ?[*:0]const u16,
             dwPort: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProxyExceptionList: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
+            pwszProtocol: ?[*:0]const u16,
             pwszExceptionList: [*:0]u16,
-            pcchExceptionList: *u32,
+            pcchExceptionList: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProxyExceptionList: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
-            pwszExceptionList: [*:0]const u16,
+            pwszProtocol: ?[*:0]const u16,
+            pwszExceptionList: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProxyBypassForLocal: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
-            pfBypassForLocal: *BOOL,
+            pwszProtocol: ?[*:0]const u16,
+            pfBypassForLocal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProxyBypassForLocal: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszProtocol: [*:0]const u16,
+            pwszProtocol: ?[*:0]const u16,
             fBypassForLocal: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetForceRerunAutoProxyDetection: fn(
             self: *const IWMReaderNetworkConfig,
-            pfForceRerunDetection: *BOOL,
+            pfForceRerunDetection: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetForceRerunAutoProxyDetection: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5160,7 +5160,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnableMulticast: fn(
             self: *const IWMReaderNetworkConfig,
-            pfEnableMulticast: *BOOL,
+            pfEnableMulticast: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableMulticast: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5168,7 +5168,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnableHTTP: fn(
             self: *const IWMReaderNetworkConfig,
-            pfEnableHTTP: *BOOL,
+            pfEnableHTTP: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableHTTP: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5176,7 +5176,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnableUDP: fn(
             self: *const IWMReaderNetworkConfig,
-            pfEnableUDP: *BOOL,
+            pfEnableUDP: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableUDP: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5184,7 +5184,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnableTCP: fn(
             self: *const IWMReaderNetworkConfig,
-            pfEnableTCP: *BOOL,
+            pfEnableTCP: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableTCP: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5195,7 +5195,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectionBandwidth: fn(
             self: *const IWMReaderNetworkConfig,
-            pdwConnectionBandwidth: *u32,
+            pdwConnectionBandwidth: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConnectionBandwidth: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5203,27 +5203,27 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumProtocolsSupported: fn(
             self: *const IWMReaderNetworkConfig,
-            pcProtocols: *u32,
+            pcProtocols: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedProtocolName: fn(
             self: *const IWMReaderNetworkConfig,
             dwProtocolNum: u32,
             pwszProtocolName: [*:0]u16,
-            pcchProtocolName: *u32,
+            pcchProtocolName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddLoggingUrl: fn(
             self: *const IWMReaderNetworkConfig,
-            pwszUrl: [*:0]const u16,
+            pwszUrl: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLoggingUrl: fn(
             self: *const IWMReaderNetworkConfig,
             dwIndex: u32,
             pwszUrl: [*:0]u16,
-            pcchUrl: *u32,
+            pcchUrl: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLoggingUrlCount: fn(
             self: *const IWMReaderNetworkConfig,
-            pdwUrlCount: *u32,
+            pdwUrlCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetLoggingUrlList: fn(
             self: *const IWMReaderNetworkConfig,
@@ -5233,7 +5233,7 @@ pub const IWMReaderNetworkConfig = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetBufferingTime(self: *const T, pcnsBufferingTime: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetBufferingTime(self: *const T, pcnsBufferingTime: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetBufferingTime(@ptrCast(*const IWMReaderNetworkConfig, self), pcnsBufferingTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5241,7 +5241,7 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetBufferingTime(@ptrCast(*const IWMReaderNetworkConfig, self), cnsBufferingTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetUDPPortRanges(self: *const T, pRangeArray: [*]WM_PORT_NUMBER_RANGE, pcRanges: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetUDPPortRanges(self: *const T, pRangeArray: [*]WM_PORT_NUMBER_RANGE, pcRanges: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetUDPPortRanges(@ptrCast(*const IWMReaderNetworkConfig, self), pRangeArray, pcRanges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5249,47 +5249,47 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetUDPPortRanges(@ptrCast(*const IWMReaderNetworkConfig, self), pRangeArray, cRanges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetProxySettings(self: *const T, pwszProtocol: [*:0]const u16, pProxySetting: *WMT_PROXY_SETTINGS) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetProxySettings(self: *const T, pwszProtocol: ?[*:0]const u16, pProxySetting: ?*WMT_PROXY_SETTINGS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetProxySettings(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, pProxySetting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_SetProxySettings(self: *const T, pwszProtocol: [*:0]const u16, ProxySetting: WMT_PROXY_SETTINGS) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_SetProxySettings(self: *const T, pwszProtocol: ?[*:0]const u16, ProxySetting: WMT_PROXY_SETTINGS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetProxySettings(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, ProxySetting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetProxyHostName(self: *const T, pwszProtocol: [*:0]const u16, pwszHostName: [*:0]u16, pcchHostName: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetProxyHostName(self: *const T, pwszProtocol: ?[*:0]const u16, pwszHostName: [*:0]u16, pcchHostName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetProxyHostName(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, pwszHostName, pcchHostName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_SetProxyHostName(self: *const T, pwszProtocol: [*:0]const u16, pwszHostName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_SetProxyHostName(self: *const T, pwszProtocol: ?[*:0]const u16, pwszHostName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetProxyHostName(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, pwszHostName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetProxyPort(self: *const T, pwszProtocol: [*:0]const u16, pdwPort: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetProxyPort(self: *const T, pwszProtocol: ?[*:0]const u16, pdwPort: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetProxyPort(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, pdwPort);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_SetProxyPort(self: *const T, pwszProtocol: [*:0]const u16, dwPort: u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_SetProxyPort(self: *const T, pwszProtocol: ?[*:0]const u16, dwPort: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetProxyPort(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, dwPort);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetProxyExceptionList(self: *const T, pwszProtocol: [*:0]const u16, pwszExceptionList: [*:0]u16, pcchExceptionList: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetProxyExceptionList(self: *const T, pwszProtocol: ?[*:0]const u16, pwszExceptionList: [*:0]u16, pcchExceptionList: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetProxyExceptionList(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, pwszExceptionList, pcchExceptionList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_SetProxyExceptionList(self: *const T, pwszProtocol: [*:0]const u16, pwszExceptionList: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_SetProxyExceptionList(self: *const T, pwszProtocol: ?[*:0]const u16, pwszExceptionList: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetProxyExceptionList(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, pwszExceptionList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetProxyBypassForLocal(self: *const T, pwszProtocol: [*:0]const u16, pfBypassForLocal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetProxyBypassForLocal(self: *const T, pwszProtocol: ?[*:0]const u16, pfBypassForLocal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetProxyBypassForLocal(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, pfBypassForLocal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_SetProxyBypassForLocal(self: *const T, pwszProtocol: [*:0]const u16, fBypassForLocal: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_SetProxyBypassForLocal(self: *const T, pwszProtocol: ?[*:0]const u16, fBypassForLocal: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetProxyBypassForLocal(@ptrCast(*const IWMReaderNetworkConfig, self), pwszProtocol, fBypassForLocal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetForceRerunAutoProxyDetection(self: *const T, pfForceRerunDetection: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetForceRerunAutoProxyDetection(self: *const T, pfForceRerunDetection: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetForceRerunAutoProxyDetection(@ptrCast(*const IWMReaderNetworkConfig, self), pfForceRerunDetection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5297,7 +5297,7 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetForceRerunAutoProxyDetection(@ptrCast(*const IWMReaderNetworkConfig, self), fForceRerunDetection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetEnableMulticast(self: *const T, pfEnableMulticast: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetEnableMulticast(self: *const T, pfEnableMulticast: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetEnableMulticast(@ptrCast(*const IWMReaderNetworkConfig, self), pfEnableMulticast);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5305,7 +5305,7 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetEnableMulticast(@ptrCast(*const IWMReaderNetworkConfig, self), fEnableMulticast);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetEnableHTTP(self: *const T, pfEnableHTTP: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetEnableHTTP(self: *const T, pfEnableHTTP: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetEnableHTTP(@ptrCast(*const IWMReaderNetworkConfig, self), pfEnableHTTP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5313,7 +5313,7 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetEnableHTTP(@ptrCast(*const IWMReaderNetworkConfig, self), fEnableHTTP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetEnableUDP(self: *const T, pfEnableUDP: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetEnableUDP(self: *const T, pfEnableUDP: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetEnableUDP(@ptrCast(*const IWMReaderNetworkConfig, self), pfEnableUDP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5321,7 +5321,7 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetEnableUDP(@ptrCast(*const IWMReaderNetworkConfig, self), fEnableUDP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetEnableTCP(self: *const T, pfEnableTCP: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetEnableTCP(self: *const T, pfEnableTCP: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetEnableTCP(@ptrCast(*const IWMReaderNetworkConfig, self), pfEnableTCP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5333,7 +5333,7 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).ResetProtocolRollover(@ptrCast(*const IWMReaderNetworkConfig, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetConnectionBandwidth(self: *const T, pdwConnectionBandwidth: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetConnectionBandwidth(self: *const T, pdwConnectionBandwidth: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetConnectionBandwidth(@ptrCast(*const IWMReaderNetworkConfig, self), pdwConnectionBandwidth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5341,23 +5341,23 @@ pub const IWMReaderNetworkConfig = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).SetConnectionBandwidth(@ptrCast(*const IWMReaderNetworkConfig, self), dwConnectionBandwidth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetNumProtocolsSupported(self: *const T, pcProtocols: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetNumProtocolsSupported(self: *const T, pcProtocols: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetNumProtocolsSupported(@ptrCast(*const IWMReaderNetworkConfig, self), pcProtocols);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetSupportedProtocolName(self: *const T, dwProtocolNum: u32, pwszProtocolName: [*:0]u16, pcchProtocolName: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetSupportedProtocolName(self: *const T, dwProtocolNum: u32, pwszProtocolName: [*:0]u16, pcchProtocolName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetSupportedProtocolName(@ptrCast(*const IWMReaderNetworkConfig, self), dwProtocolNum, pwszProtocolName, pcchProtocolName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_AddLoggingUrl(self: *const T, pwszUrl: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_AddLoggingUrl(self: *const T, pwszUrl: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).AddLoggingUrl(@ptrCast(*const IWMReaderNetworkConfig, self), pwszUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetLoggingUrl(self: *const T, dwIndex: u32, pwszUrl: [*:0]u16, pcchUrl: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetLoggingUrl(self: *const T, dwIndex: u32, pwszUrl: [*:0]u16, pcchUrl: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetLoggingUrl(@ptrCast(*const IWMReaderNetworkConfig, self), dwIndex, pwszUrl, pcchUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig_GetLoggingUrlCount(self: *const T, pdwUrlCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig_GetLoggingUrlCount(self: *const T, pdwUrlCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig.VTable, self.vtable).GetLoggingUrlCount(@ptrCast(*const IWMReaderNetworkConfig, self), pdwUrlCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5375,7 +5375,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         base: IWMReaderNetworkConfig.VTable,
         GetEnableContentCaching: fn(
             self: *const IWMReaderNetworkConfig2,
-            pfEnableContentCaching: *BOOL,
+            pfEnableContentCaching: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableContentCaching: fn(
             self: *const IWMReaderNetworkConfig2,
@@ -5383,7 +5383,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnableFastCache: fn(
             self: *const IWMReaderNetworkConfig2,
-            pfEnableFastCache: *BOOL,
+            pfEnableFastCache: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableFastCache: fn(
             self: *const IWMReaderNetworkConfig2,
@@ -5391,7 +5391,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAcceleratedStreamingDuration: fn(
             self: *const IWMReaderNetworkConfig2,
-            pcnsAccelDuration: *u64,
+            pcnsAccelDuration: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAcceleratedStreamingDuration: fn(
             self: *const IWMReaderNetworkConfig2,
@@ -5399,7 +5399,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAutoReconnectLimit: fn(
             self: *const IWMReaderNetworkConfig2,
-            pdwAutoReconnectLimit: *u32,
+            pdwAutoReconnectLimit: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAutoReconnectLimit: fn(
             self: *const IWMReaderNetworkConfig2,
@@ -5407,7 +5407,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnableResends: fn(
             self: *const IWMReaderNetworkConfig2,
-            pfEnableResends: *BOOL,
+            pfEnableResends: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableResends: fn(
             self: *const IWMReaderNetworkConfig2,
@@ -5415,7 +5415,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnableThinning: fn(
             self: *const IWMReaderNetworkConfig2,
-            pfEnableThinning: *BOOL,
+            pfEnableThinning: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnableThinning: fn(
             self: *const IWMReaderNetworkConfig2,
@@ -5423,14 +5423,14 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxNetPacketSize: fn(
             self: *const IWMReaderNetworkConfig2,
-            pdwMaxNetPacketSize: *u32,
+            pdwMaxNetPacketSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderNetworkConfig.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig2_GetEnableContentCaching(self: *const T, pfEnableContentCaching: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig2_GetEnableContentCaching(self: *const T, pfEnableContentCaching: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).GetEnableContentCaching(@ptrCast(*const IWMReaderNetworkConfig2, self), pfEnableContentCaching);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5438,7 +5438,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).SetEnableContentCaching(@ptrCast(*const IWMReaderNetworkConfig2, self), fEnableContentCaching);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig2_GetEnableFastCache(self: *const T, pfEnableFastCache: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig2_GetEnableFastCache(self: *const T, pfEnableFastCache: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).GetEnableFastCache(@ptrCast(*const IWMReaderNetworkConfig2, self), pfEnableFastCache);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5446,7 +5446,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).SetEnableFastCache(@ptrCast(*const IWMReaderNetworkConfig2, self), fEnableFastCache);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig2_GetAcceleratedStreamingDuration(self: *const T, pcnsAccelDuration: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig2_GetAcceleratedStreamingDuration(self: *const T, pcnsAccelDuration: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).GetAcceleratedStreamingDuration(@ptrCast(*const IWMReaderNetworkConfig2, self), pcnsAccelDuration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5454,7 +5454,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).SetAcceleratedStreamingDuration(@ptrCast(*const IWMReaderNetworkConfig2, self), cnsAccelDuration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig2_GetAutoReconnectLimit(self: *const T, pdwAutoReconnectLimit: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig2_GetAutoReconnectLimit(self: *const T, pdwAutoReconnectLimit: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).GetAutoReconnectLimit(@ptrCast(*const IWMReaderNetworkConfig2, self), pdwAutoReconnectLimit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5462,7 +5462,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).SetAutoReconnectLimit(@ptrCast(*const IWMReaderNetworkConfig2, self), dwAutoReconnectLimit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig2_GetEnableResends(self: *const T, pfEnableResends: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig2_GetEnableResends(self: *const T, pfEnableResends: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).GetEnableResends(@ptrCast(*const IWMReaderNetworkConfig2, self), pfEnableResends);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5470,7 +5470,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).SetEnableResends(@ptrCast(*const IWMReaderNetworkConfig2, self), fEnableResends);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig2_GetEnableThinning(self: *const T, pfEnableThinning: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig2_GetEnableThinning(self: *const T, pfEnableThinning: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).GetEnableThinning(@ptrCast(*const IWMReaderNetworkConfig2, self), pfEnableThinning);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5478,7 +5478,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).SetEnableThinning(@ptrCast(*const IWMReaderNetworkConfig2, self), fEnableThinning);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderNetworkConfig2_GetMaxNetPacketSize(self: *const T, pdwMaxNetPacketSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderNetworkConfig2_GetMaxNetPacketSize(self: *const T, pdwMaxNetPacketSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderNetworkConfig2.VTable, self.vtable).GetMaxNetPacketSize(@ptrCast(*const IWMReaderNetworkConfig2, self), pdwMaxNetPacketSize);
         }
     };}
@@ -5492,13 +5492,13 @@ pub const IWMReaderStreamClock = extern struct {
         base: IUnknown.VTable,
         GetTime: fn(
             self: *const IWMReaderStreamClock,
-            pcnsNow: *u64,
+            pcnsNow: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTimer: fn(
             self: *const IWMReaderStreamClock,
             cnsWhen: u64,
-            pvParam: *c_void,
-            pdwTimerId: *u32,
+            pvParam: ?*c_void,
+            pdwTimerId: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         KillTimer: fn(
             self: *const IWMReaderStreamClock,
@@ -5509,11 +5509,11 @@ pub const IWMReaderStreamClock = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderStreamClock_GetTime(self: *const T, pcnsNow: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMReaderStreamClock_GetTime(self: *const T, pcnsNow: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderStreamClock.VTable, self.vtable).GetTime(@ptrCast(*const IWMReaderStreamClock, self), pcnsNow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderStreamClock_SetTimer(self: *const T, cnsWhen: u64, pvParam: *c_void, pdwTimerId: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderStreamClock_SetTimer(self: *const T, cnsWhen: u64, pvParam: ?*c_void, pdwTimerId: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderStreamClock.VTable, self.vtable).SetTimer(@ptrCast(*const IWMReaderStreamClock, self), cnsWhen, pvParam, pdwTimerId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5531,9 +5531,9 @@ pub const IWMIndexer = extern struct {
         base: IUnknown.VTable,
         StartIndexing: fn(
             self: *const IWMIndexer,
-            pwszURL: [*:0]const u16,
-            pCallback: *IWMStatusCallback,
-            pvContext: *c_void,
+            pwszURL: ?[*:0]const u16,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IWMIndexer,
@@ -5543,7 +5543,7 @@ pub const IWMIndexer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMIndexer_StartIndexing(self: *const T, pwszURL: [*:0]const u16, pCallback: *IWMStatusCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMIndexer_StartIndexing(self: *const T, pwszURL: ?[*:0]const u16, pCallback: ?*IWMStatusCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMIndexer.VTable, self.vtable).StartIndexing(@ptrCast(*const IWMIndexer, self), pwszURL, pCallback, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5563,15 +5563,15 @@ pub const IWMIndexer2 = extern struct {
             self: *const IWMIndexer2,
             wStreamNum: u16,
             nIndexerType: WMT_INDEXER_TYPE,
-            pvInterval: *c_void,
-            pvIndexType: *c_void,
+            pvInterval: ?*c_void,
+            pvIndexType: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMIndexer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMIndexer2_Configure(self: *const T, wStreamNum: u16, nIndexerType: WMT_INDEXER_TYPE, pvInterval: *c_void, pvIndexType: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMIndexer2_Configure(self: *const T, wStreamNum: u16, nIndexerType: WMT_INDEXER_TYPE, pvInterval: ?*c_void, pvIndexType: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMIndexer2.VTable, self.vtable).Configure(@ptrCast(*const IWMIndexer2, self), wStreamNum, nIndexerType, pvInterval, pvIndexType);
         }
     };}
@@ -5587,7 +5587,7 @@ pub const IWMLicenseBackup = extern struct {
         BackupLicenses: fn(
             self: *const IWMLicenseBackup,
             dwFlags: u32,
-            pCallback: *IWMStatusCallback,
+            pCallback: ?*IWMStatusCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelLicenseBackup: fn(
             self: *const IWMLicenseBackup,
@@ -5597,7 +5597,7 @@ pub const IWMLicenseBackup = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMLicenseBackup_BackupLicenses(self: *const T, dwFlags: u32, pCallback: *IWMStatusCallback) callconv(.Inline) HRESULT {
+        pub fn IWMLicenseBackup_BackupLicenses(self: *const T, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMLicenseBackup.VTable, self.vtable).BackupLicenses(@ptrCast(*const IWMLicenseBackup, self), dwFlags, pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5617,7 +5617,7 @@ pub const IWMLicenseRestore = extern struct {
         RestoreLicenses: fn(
             self: *const IWMLicenseRestore,
             dwFlags: u32,
-            pCallback: *IWMStatusCallback,
+            pCallback: ?*IWMStatusCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelLicenseRestore: fn(
             self: *const IWMLicenseRestore,
@@ -5627,7 +5627,7 @@ pub const IWMLicenseRestore = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMLicenseRestore_RestoreLicenses(self: *const T, dwFlags: u32, pCallback: *IWMStatusCallback) callconv(.Inline) HRESULT {
+        pub fn IWMLicenseRestore_RestoreLicenses(self: *const T, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMLicenseRestore.VTable, self.vtable).RestoreLicenses(@ptrCast(*const IWMLicenseRestore, self), dwFlags, pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5646,34 +5646,34 @@ pub const IWMBackupRestoreProps = extern struct {
         base: IUnknown.VTable,
         GetPropCount: fn(
             self: *const IWMBackupRestoreProps,
-            pcProps: *u16,
+            pcProps: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropByIndex: fn(
             self: *const IWMBackupRestoreProps,
             wIndex: u16,
             pwszName: [*:0]u16,
-            pcchNameLen: *u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pcchNameLen: ?*u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropByName: fn(
             self: *const IWMBackupRestoreProps,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pcbLength: *u16,
+            pcbLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProp: fn(
             self: *const IWMBackupRestoreProps,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveProp: fn(
             self: *const IWMBackupRestoreProps,
-            pcwszName: [*:0]const u16,
+            pcwszName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAllProps: fn(
             self: *const IWMBackupRestoreProps,
@@ -5683,23 +5683,23 @@ pub const IWMBackupRestoreProps = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBackupRestoreProps_GetPropCount(self: *const T, pcProps: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMBackupRestoreProps_GetPropCount(self: *const T, pcProps: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).GetPropCount(@ptrCast(*const IWMBackupRestoreProps, self), pcProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBackupRestoreProps_GetPropByIndex(self: *const T, wIndex: u16, pwszName: [*:0]u16, pcchNameLen: *u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMBackupRestoreProps_GetPropByIndex(self: *const T, wIndex: u16, pwszName: [*:0]u16, pcchNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).GetPropByIndex(@ptrCast(*const IWMBackupRestoreProps, self), wIndex, pwszName, pcchNameLen, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBackupRestoreProps_GetPropByName(self: *const T, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMBackupRestoreProps_GetPropByName(self: *const T, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).GetPropByName(@ptrCast(*const IWMBackupRestoreProps, self), pszName, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBackupRestoreProps_SetProp(self: *const T, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+        pub fn IWMBackupRestoreProps_SetProp(self: *const T, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).SetProp(@ptrCast(*const IWMBackupRestoreProps, self), pszName, Type, pValue, cbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBackupRestoreProps_RemoveProp(self: *const T, pcwszName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWMBackupRestoreProps_RemoveProp(self: *const T, pcwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).RemoveProp(@ptrCast(*const IWMBackupRestoreProps, self), pcwszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5717,36 +5717,36 @@ pub const IWMCodecInfo = extern struct {
         base: IUnknown.VTable,
         GetCodecInfoCount: fn(
             self: *const IWMCodecInfo,
-            guidType: *const Guid,
-            pcCodecs: *u32,
+            guidType: ?*const Guid,
+            pcCodecs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCodecFormatCount: fn(
             self: *const IWMCodecInfo,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
-            pcFormat: *u32,
+            pcFormat: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCodecFormat: fn(
             self: *const IWMCodecInfo,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
             dwFormatIndex: u32,
-            ppIStreamConfig: **IWMStreamConfig,
+            ppIStreamConfig: ?*?*IWMStreamConfig,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo_GetCodecInfoCount(self: *const T, guidType: *const Guid, pcCodecs: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo_GetCodecInfoCount(self: *const T, guidType: ?*const Guid, pcCodecs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo.VTable, self.vtable).GetCodecInfoCount(@ptrCast(*const IWMCodecInfo, self), guidType, pcCodecs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo_GetCodecFormatCount(self: *const T, guidType: *const Guid, dwCodecIndex: u32, pcFormat: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo_GetCodecFormatCount(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, pcFormat: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo.VTable, self.vtable).GetCodecFormatCount(@ptrCast(*const IWMCodecInfo, self), guidType, dwCodecIndex, pcFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo_GetCodecFormat(self: *const T, guidType: *const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: **IWMStreamConfig) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo_GetCodecFormat(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo.VTable, self.vtable).GetCodecFormat(@ptrCast(*const IWMCodecInfo, self), guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig);
         }
     };}
@@ -5760,30 +5760,30 @@ pub const IWMCodecInfo2 = extern struct {
         base: IWMCodecInfo.VTable,
         GetCodecName: fn(
             self: *const IWMCodecInfo2,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
             wszName: [*:0]u16,
-            pcchName: *u32,
+            pcchName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCodecFormatDesc: fn(
             self: *const IWMCodecInfo2,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
             dwFormatIndex: u32,
-            ppIStreamConfig: **IWMStreamConfig,
+            ppIStreamConfig: ?*?*IWMStreamConfig,
             wszDesc: [*:0]u16,
-            pcchDesc: *u32,
+            pcchDesc: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMCodecInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo2_GetCodecName(self: *const T, guidType: *const Guid, dwCodecIndex: u32, wszName: [*:0]u16, pcchName: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo2_GetCodecName(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, wszName: [*:0]u16, pcchName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo2.VTable, self.vtable).GetCodecName(@ptrCast(*const IWMCodecInfo2, self), guidType, dwCodecIndex, wszName, pcchName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo2_GetCodecFormatDesc(self: *const T, guidType: *const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: **IWMStreamConfig, wszDesc: [*:0]u16, pcchDesc: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo2_GetCodecFormatDesc(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig, wszDesc: [*:0]u16, pcchDesc: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo2.VTable, self.vtable).GetCodecFormatDesc(@ptrCast(*const IWMCodecInfo2, self), guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig, wszDesc, pcchDesc);
         }
     };}
@@ -5797,59 +5797,59 @@ pub const IWMCodecInfo3 = extern struct {
         base: IWMCodecInfo2.VTable,
         GetCodecFormatProp: fn(
             self: *const IWMCodecInfo3,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
             dwFormatIndex: u32,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pdwSize: *u32,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCodecProp: fn(
             self: *const IWMCodecInfo3,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pdwSize: *u32,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCodecEnumerationSetting: fn(
             self: *const IWMCodecInfo3,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
-            pszName: [*:0]const u16,
+            pszName: ?[*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             dwSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCodecEnumerationSetting: fn(
             self: *const IWMCodecInfo3,
-            guidType: *const Guid,
+            guidType: ?*const Guid,
             dwCodecIndex: u32,
-            pszName: [*:0]const u16,
-            pType: *WMT_ATTR_DATATYPE,
+            pszName: ?[*:0]const u16,
+            pType: ?*WMT_ATTR_DATATYPE,
             pValue: [*:0]u8,
-            pdwSize: *u32,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMCodecInfo2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo3_GetCodecFormatProp(self: *const T, guidType: *const Guid, dwCodecIndex: u32, dwFormatIndex: u32, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo3_GetCodecFormatProp(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo3.VTable, self.vtable).GetCodecFormatProp(@ptrCast(*const IWMCodecInfo3, self), guidType, dwCodecIndex, dwFormatIndex, pszName, pType, pValue, pdwSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo3_GetCodecProp(self: *const T, guidType: *const Guid, dwCodecIndex: u32, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo3_GetCodecProp(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo3.VTable, self.vtable).GetCodecProp(@ptrCast(*const IWMCodecInfo3, self), guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo3_SetCodecEnumerationSetting(self: *const T, guidType: *const Guid, dwCodecIndex: u32, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, dwSize: u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo3_SetCodecEnumerationSetting(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, dwSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo3.VTable, self.vtable).SetCodecEnumerationSetting(@ptrCast(*const IWMCodecInfo3, self), guidType, dwCodecIndex, pszName, Type, pValue, dwSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecInfo3_GetCodecEnumerationSetting(self: *const T, guidType: *const Guid, dwCodecIndex: u32, pszName: [*:0]const u16, pType: *WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMCodecInfo3_GetCodecEnumerationSetting(self: *const T, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecInfo3.VTable, self.vtable).GetCodecEnumerationSetting(@ptrCast(*const IWMCodecInfo3, self), guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
         }
     };}
@@ -5863,33 +5863,33 @@ pub const IWMLanguageList = extern struct {
         base: IUnknown.VTable,
         GetLanguageCount: fn(
             self: *const IWMLanguageList,
-            pwCount: *u16,
+            pwCount: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLanguageDetails: fn(
             self: *const IWMLanguageList,
             wIndex: u16,
             pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: *u16,
+            pcchLanguageStringLength: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddLanguageByRFC1766String: fn(
             self: *const IWMLanguageList,
-            pwszLanguageString: PWSTR,
-            pwIndex: *u16,
+            pwszLanguageString: ?PWSTR,
+            pwIndex: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMLanguageList_GetLanguageCount(self: *const T, pwCount: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMLanguageList_GetLanguageCount(self: *const T, pwCount: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMLanguageList.VTable, self.vtable).GetLanguageCount(@ptrCast(*const IWMLanguageList, self), pwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMLanguageList_GetLanguageDetails(self: *const T, wIndex: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMLanguageList_GetLanguageDetails(self: *const T, wIndex: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMLanguageList.VTable, self.vtable).GetLanguageDetails(@ptrCast(*const IWMLanguageList, self), wIndex, pwszLanguageString, pcchLanguageStringLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMLanguageList_AddLanguageByRFC1766String(self: *const T, pwszLanguageString: PWSTR, pwIndex: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMLanguageList_AddLanguageByRFC1766String(self: *const T, pwszLanguageString: ?PWSTR, pwIndex: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMLanguageList.VTable, self.vtable).AddLanguageByRFC1766String(@ptrCast(*const IWMLanguageList, self), pwszLanguageString, pwIndex);
         }
     };}
@@ -5903,8 +5903,8 @@ pub const IWMWriterPushSink = extern struct {
         base: IWMWriterSink.VTable,
         Connect: fn(
             self: *const IWMWriterPushSink,
-            pwszURL: [*:0]const u16,
-            pwszTemplateURL: [*:0]const u16,
+            pwszURL: ?[*:0]const u16,
+            pwszTemplateURL: ?[*:0]const u16,
             fAutoDestroy: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disconnect: fn(
@@ -5918,7 +5918,7 @@ pub const IWMWriterPushSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWriterPushSink_Connect(self: *const T, pwszURL: [*:0]const u16, pwszTemplateURL: [*:0]const u16, fAutoDestroy: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMWriterPushSink_Connect(self: *const T, pwszURL: ?[*:0]const u16, pwszTemplateURL: ?[*:0]const u16, fAutoDestroy: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWriterPushSink.VTable, self.vtable).Connect(@ptrCast(*const IWMWriterPushSink, self), pwszURL, pwszTemplateURL, fAutoDestroy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5945,7 +5945,7 @@ pub const IWMDeviceRegistration = extern struct {
             pbCertificate: [*:0]u8,
             cbCertificate: u32,
             SerialNumber: DRM_VAL16,
-            ppDevice: **IWMRegisteredDevice,
+            ppDevice: ?*?*IWMRegisteredDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterDevice: fn(
             self: *const IWMDeviceRegistration,
@@ -5957,16 +5957,16 @@ pub const IWMDeviceRegistration = extern struct {
         GetRegistrationStats: fn(
             self: *const IWMDeviceRegistration,
             dwRegisterType: u32,
-            pcRegisteredDevices: *u32,
+            pcRegisteredDevices: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFirstRegisteredDevice: fn(
             self: *const IWMDeviceRegistration,
             dwRegisterType: u32,
-            ppDevice: **IWMRegisteredDevice,
+            ppDevice: ?*?*IWMRegisteredDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextRegisteredDevice: fn(
             self: *const IWMDeviceRegistration,
-            ppDevice: **IWMRegisteredDevice,
+            ppDevice: ?*?*IWMRegisteredDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegisteredDeviceByID: fn(
             self: *const IWMDeviceRegistration,
@@ -5974,14 +5974,14 @@ pub const IWMDeviceRegistration = extern struct {
             pbCertificate: [*:0]u8,
             cbCertificate: u32,
             SerialNumber: DRM_VAL16,
-            ppDevice: **IWMRegisteredDevice,
+            ppDevice: ?*?*IWMRegisteredDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceRegistration_RegisterDevice(self: *const T, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: **IWMRegisteredDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceRegistration_RegisterDevice(self: *const T, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceRegistration.VTable, self.vtable).RegisterDevice(@ptrCast(*const IWMDeviceRegistration, self), dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5989,19 +5989,19 @@ pub const IWMDeviceRegistration = extern struct {
             return @ptrCast(*const IWMDeviceRegistration.VTable, self.vtable).UnregisterDevice(@ptrCast(*const IWMDeviceRegistration, self), dwRegisterType, pbCertificate, cbCertificate, SerialNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceRegistration_GetRegistrationStats(self: *const T, dwRegisterType: u32, pcRegisteredDevices: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceRegistration_GetRegistrationStats(self: *const T, dwRegisterType: u32, pcRegisteredDevices: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceRegistration.VTable, self.vtable).GetRegistrationStats(@ptrCast(*const IWMDeviceRegistration, self), dwRegisterType, pcRegisteredDevices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceRegistration_GetFirstRegisteredDevice(self: *const T, dwRegisterType: u32, ppDevice: **IWMRegisteredDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceRegistration_GetFirstRegisteredDevice(self: *const T, dwRegisterType: u32, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceRegistration.VTable, self.vtable).GetFirstRegisteredDevice(@ptrCast(*const IWMDeviceRegistration, self), dwRegisterType, ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceRegistration_GetNextRegisteredDevice(self: *const T, ppDevice: **IWMRegisteredDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceRegistration_GetNextRegisteredDevice(self: *const T, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceRegistration.VTable, self.vtable).GetNextRegisteredDevice(@ptrCast(*const IWMDeviceRegistration, self), ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceRegistration_GetRegisteredDeviceByID(self: *const T, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: **IWMRegisteredDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceRegistration_GetRegisteredDeviceByID(self: *const T, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceRegistration.VTable, self.vtable).GetRegisteredDeviceByID(@ptrCast(*const IWMDeviceRegistration, self), dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
         }
     };}
@@ -6015,35 +6015,35 @@ pub const IWMRegisteredDevice = extern struct {
         base: IUnknown.VTable,
         GetDeviceSerialNumber: fn(
             self: *const IWMRegisteredDevice,
-            pSerialNumber: *DRM_VAL16,
+            pSerialNumber: ?*DRM_VAL16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceCertificate: fn(
             self: *const IWMRegisteredDevice,
-            ppCertificate: **INSSBuffer,
+            ppCertificate: ?*?*INSSBuffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceType: fn(
             self: *const IWMRegisteredDevice,
-            pdwType: *u32,
+            pdwType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeCount: fn(
             self: *const IWMRegisteredDevice,
-            pcAttributes: *u32,
+            pcAttributes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeByIndex: fn(
             self: *const IWMRegisteredDevice,
             dwIndex: u32,
-            pbstrName: *BSTR,
-            pbstrValue: *BSTR,
+            pbstrName: ?*?BSTR,
+            pbstrValue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeByName: fn(
             self: *const IWMRegisteredDevice,
-            bstrName: BSTR,
-            pbstrValue: *BSTR,
+            bstrName: ?BSTR,
+            pbstrValue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributeByName: fn(
             self: *const IWMRegisteredDevice,
-            bstrName: BSTR,
-            bstrValue: BSTR,
+            bstrName: ?BSTR,
+            bstrValue: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Approve: fn(
             self: *const IWMRegisteredDevice,
@@ -6051,19 +6051,19 @@ pub const IWMRegisteredDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsValid: fn(
             self: *const IWMRegisteredDevice,
-            pfValid: *BOOL,
+            pfValid: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsApproved: fn(
             self: *const IWMRegisteredDevice,
-            pfApproved: *BOOL,
+            pfApproved: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsWmdrmCompliant: fn(
             self: *const IWMRegisteredDevice,
-            pfCompliant: *BOOL,
+            pfCompliant: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsOpened: fn(
             self: *const IWMRegisteredDevice,
-            pfOpened: *BOOL,
+            pfOpened: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Open: fn(
             self: *const IWMRegisteredDevice,
@@ -6076,31 +6076,31 @@ pub const IWMRegisteredDevice = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_GetDeviceSerialNumber(self: *const T, pSerialNumber: *DRM_VAL16) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_GetDeviceSerialNumber(self: *const T, pSerialNumber: ?*DRM_VAL16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).GetDeviceSerialNumber(@ptrCast(*const IWMRegisteredDevice, self), pSerialNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_GetDeviceCertificate(self: *const T, ppCertificate: **INSSBuffer) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_GetDeviceCertificate(self: *const T, ppCertificate: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).GetDeviceCertificate(@ptrCast(*const IWMRegisteredDevice, self), ppCertificate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_GetDeviceType(self: *const T, pdwType: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_GetDeviceType(self: *const T, pdwType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).GetDeviceType(@ptrCast(*const IWMRegisteredDevice, self), pdwType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_GetAttributeCount(self: *const T, pcAttributes: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_GetAttributeCount(self: *const T, pcAttributes: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).GetAttributeCount(@ptrCast(*const IWMRegisteredDevice, self), pcAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_GetAttributeByIndex(self: *const T, dwIndex: u32, pbstrName: *BSTR, pbstrValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_GetAttributeByIndex(self: *const T, dwIndex: u32, pbstrName: ?*?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).GetAttributeByIndex(@ptrCast(*const IWMRegisteredDevice, self), dwIndex, pbstrName, pbstrValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_GetAttributeByName(self: *const T, bstrName: BSTR, pbstrValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_GetAttributeByName(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).GetAttributeByName(@ptrCast(*const IWMRegisteredDevice, self), bstrName, pbstrValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_SetAttributeByName(self: *const T, bstrName: BSTR, bstrValue: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_SetAttributeByName(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).SetAttributeByName(@ptrCast(*const IWMRegisteredDevice, self), bstrName, bstrValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6108,19 +6108,19 @@ pub const IWMRegisteredDevice = extern struct {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).Approve(@ptrCast(*const IWMRegisteredDevice, self), fApprove);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_IsValid(self: *const T, pfValid: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_IsValid(self: *const T, pfValid: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).IsValid(@ptrCast(*const IWMRegisteredDevice, self), pfValid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_IsApproved(self: *const T, pfApproved: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_IsApproved(self: *const T, pfApproved: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).IsApproved(@ptrCast(*const IWMRegisteredDevice, self), pfApproved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_IsWmdrmCompliant(self: *const T, pfCompliant: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_IsWmdrmCompliant(self: *const T, pfCompliant: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).IsWmdrmCompliant(@ptrCast(*const IWMRegisteredDevice, self), pfCompliant);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMRegisteredDevice_IsOpened(self: *const T, pfOpened: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMRegisteredDevice_IsOpened(self: *const T, pfOpened: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMRegisteredDevice.VTable, self.vtable).IsOpened(@ptrCast(*const IWMRegisteredDevice, self), pfOpened);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6148,16 +6148,16 @@ pub const IWMProximityDetection = extern struct {
             pbLocalAddress: [*:0]u8,
             cbLocalAddress: u32,
             dwExtraPortsAllowed: u32,
-            ppRegistrationResponseMsg: **INSSBuffer,
-            pCallback: *IWMStatusCallback,
-            pvContext: *c_void,
+            ppRegistrationResponseMsg: ?*?*INSSBuffer,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMProximityDetection_StartDetection(self: *const T, pbRegistrationMsg: [*:0]u8, cbRegistrationMsg: u32, pbLocalAddress: [*:0]u8, cbLocalAddress: u32, dwExtraPortsAllowed: u32, ppRegistrationResponseMsg: **INSSBuffer, pCallback: *IWMStatusCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMProximityDetection_StartDetection(self: *const T, pbRegistrationMsg: [*:0]u8, cbRegistrationMsg: u32, pbLocalAddress: [*:0]u8, cbLocalAddress: u32, dwExtraPortsAllowed: u32, ppRegistrationResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMProximityDetection.VTable, self.vtable).StartDetection(@ptrCast(*const IWMProximityDetection, self), pbRegistrationMsg, cbRegistrationMsg, pbLocalAddress, cbLocalAddress, dwExtraPortsAllowed, ppRegistrationResponseMsg, pCallback, pvContext);
         }
     };}
@@ -6174,27 +6174,27 @@ pub const IWMDRMMessageParser = extern struct {
             self: *const IWMDRMMessageParser,
             pbRegistrationReqMsg: [*:0]u8,
             cbRegistrationReqMsg: u32,
-            ppDeviceCert: **INSSBuffer,
-            pDeviceSerialNumber: *DRM_VAL16,
+            ppDeviceCert: ?*?*INSSBuffer,
+            pDeviceSerialNumber: ?*DRM_VAL16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ParseLicenseRequestMsg: fn(
             self: *const IWMDRMMessageParser,
             pbLicenseRequestMsg: [*:0]u8,
             cbLicenseRequestMsg: u32,
-            ppDeviceCert: **INSSBuffer,
-            pDeviceSerialNumber: *DRM_VAL16,
-            pbstrAction: *BSTR,
+            ppDeviceCert: ?*?*INSSBuffer,
+            pDeviceSerialNumber: ?*DRM_VAL16,
+            pbstrAction: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMMessageParser_ParseRegistrationReqMsg(self: *const T, pbRegistrationReqMsg: [*:0]u8, cbRegistrationReqMsg: u32, ppDeviceCert: **INSSBuffer, pDeviceSerialNumber: *DRM_VAL16) callconv(.Inline) HRESULT {
+        pub fn IWMDRMMessageParser_ParseRegistrationReqMsg(self: *const T, pbRegistrationReqMsg: [*:0]u8, cbRegistrationReqMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMMessageParser.VTable, self.vtable).ParseRegistrationReqMsg(@ptrCast(*const IWMDRMMessageParser, self), pbRegistrationReqMsg, cbRegistrationReqMsg, ppDeviceCert, pDeviceSerialNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMMessageParser_ParseLicenseRequestMsg(self: *const T, pbLicenseRequestMsg: [*:0]u8, cbLicenseRequestMsg: u32, ppDeviceCert: **INSSBuffer, pDeviceSerialNumber: *DRM_VAL16, pbstrAction: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWMDRMMessageParser_ParseLicenseRequestMsg(self: *const T, pbLicenseRequestMsg: [*:0]u8, cbLicenseRequestMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16, pbstrAction: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMMessageParser.VTable, self.vtable).ParseLicenseRequestMsg(@ptrCast(*const IWMDRMMessageParser, self), pbLicenseRequestMsg, cbLicenseRequestMsg, ppDeviceCert, pDeviceSerialNumber, pbstrAction);
         }
     };}
@@ -6209,12 +6209,12 @@ pub const IWMDRMTranscryptor = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IWMDRMTranscryptor,
-            bstrFileName: BSTR,
-            pbLicenseRequestMsg: *u8,
+            bstrFileName: ?BSTR,
+            pbLicenseRequestMsg: ?*u8,
             cbLicenseRequestMsg: u32,
-            ppLicenseResponseMsg: **INSSBuffer,
-            pCallback: *IWMStatusCallback,
-            pvContext: *c_void,
+            ppLicenseResponseMsg: ?*?*INSSBuffer,
+            pCallback: ?*IWMStatusCallback,
+            pvContext: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Seek: fn(
             self: *const IWMDRMTranscryptor,
@@ -6222,8 +6222,8 @@ pub const IWMDRMTranscryptor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Read: fn(
             self: *const IWMDRMTranscryptor,
-            pbData: *u8,
-            pcbData: *u32,
+            pbData: ?*u8,
+            pcbData: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IWMDRMTranscryptor,
@@ -6233,7 +6233,7 @@ pub const IWMDRMTranscryptor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMTranscryptor_Initialize(self: *const T, bstrFileName: BSTR, pbLicenseRequestMsg: *u8, cbLicenseRequestMsg: u32, ppLicenseResponseMsg: **INSSBuffer, pCallback: *IWMStatusCallback, pvContext: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWMDRMTranscryptor_Initialize(self: *const T, bstrFileName: ?BSTR, pbLicenseRequestMsg: ?*u8, cbLicenseRequestMsg: u32, ppLicenseResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMTranscryptor.VTable, self.vtable).Initialize(@ptrCast(*const IWMDRMTranscryptor, self), bstrFileName, pbLicenseRequestMsg, cbLicenseRequestMsg, ppLicenseResponseMsg, pCallback, pvContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6241,7 +6241,7 @@ pub const IWMDRMTranscryptor = extern struct {
             return @ptrCast(*const IWMDRMTranscryptor.VTable, self.vtable).Seek(@ptrCast(*const IWMDRMTranscryptor, self), hnsTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMTranscryptor_Read(self: *const T, pbData: *u8, pcbData: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDRMTranscryptor_Read(self: *const T, pbData: ?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMTranscryptor.VTable, self.vtable).Read(@ptrCast(*const IWMDRMTranscryptor, self), pbData, pcbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6270,11 +6270,11 @@ pub const IWMDRMTranscryptor2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSeekStartTime: fn(
             self: *const IWMDRMTranscryptor2,
-            pcnsTime: *u64,
+            pcnsTime: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDuration: fn(
             self: *const IWMDRMTranscryptor2,
-            pcnsDuration: *u64,
+            pcnsDuration: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6289,11 +6289,11 @@ pub const IWMDRMTranscryptor2 = extern struct {
             return @ptrCast(*const IWMDRMTranscryptor2.VTable, self.vtable).ZeroAdjustTimestamps(@ptrCast(*const IWMDRMTranscryptor2, self), fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMTranscryptor2_GetSeekStartTime(self: *const T, pcnsTime: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMDRMTranscryptor2_GetSeekStartTime(self: *const T, pcnsTime: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMTranscryptor2.VTable, self.vtable).GetSeekStartTime(@ptrCast(*const IWMDRMTranscryptor2, self), pcnsTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMTranscryptor2_GetDuration(self: *const T, pcnsDuration: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMDRMTranscryptor2_GetDuration(self: *const T, pcnsDuration: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMTranscryptor2.VTable, self.vtable).GetDuration(@ptrCast(*const IWMDRMTranscryptor2, self), pcnsDuration);
         }
     };}
@@ -6307,14 +6307,14 @@ pub const IWMDRMTranscryptionManager = extern struct {
         base: IUnknown.VTable,
         CreateTranscryptor: fn(
             self: *const IWMDRMTranscryptionManager,
-            ppTranscryptor: **IWMDRMTranscryptor,
+            ppTranscryptor: ?*?*IWMDRMTranscryptor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDRMTranscryptionManager_CreateTranscryptor(self: *const T, ppTranscryptor: **IWMDRMTranscryptor) callconv(.Inline) HRESULT {
+        pub fn IWMDRMTranscryptionManager_CreateTranscryptor(self: *const T, ppTranscryptor: ?*?*IWMDRMTranscryptor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDRMTranscryptionManager.VTable, self.vtable).CreateTranscryptor(@ptrCast(*const IWMDRMTranscryptionManager, self), ppTranscryptor);
         }
     };}
@@ -6329,24 +6329,24 @@ pub const IWMWatermarkInfo = extern struct {
         GetWatermarkEntryCount: fn(
             self: *const IWMWatermarkInfo,
             wmetType: WMT_WATERMARK_ENTRY_TYPE,
-            pdwCount: *u32,
+            pdwCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWatermarkEntry: fn(
             self: *const IWMWatermarkInfo,
             wmetType: WMT_WATERMARK_ENTRY_TYPE,
             dwEntryNum: u32,
-            pEntry: *WMT_WATERMARK_ENTRY,
+            pEntry: ?*WMT_WATERMARK_ENTRY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWatermarkInfo_GetWatermarkEntryCount(self: *const T, wmetType: WMT_WATERMARK_ENTRY_TYPE, pdwCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMWatermarkInfo_GetWatermarkEntryCount(self: *const T, wmetType: WMT_WATERMARK_ENTRY_TYPE, pdwCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWatermarkInfo.VTable, self.vtable).GetWatermarkEntryCount(@ptrCast(*const IWMWatermarkInfo, self), wmetType, pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMWatermarkInfo_GetWatermarkEntry(self: *const T, wmetType: WMT_WATERMARK_ENTRY_TYPE, dwEntryNum: u32, pEntry: *WMT_WATERMARK_ENTRY) callconv(.Inline) HRESULT {
+        pub fn IWMWatermarkInfo_GetWatermarkEntry(self: *const T, wmetType: WMT_WATERMARK_ENTRY_TYPE, dwEntryNum: u32, pEntry: ?*WMT_WATERMARK_ENTRY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMWatermarkInfo.VTable, self.vtable).GetWatermarkEntry(@ptrCast(*const IWMWatermarkInfo, self), wmetType, dwEntryNum, pEntry);
         }
     };}
@@ -6361,24 +6361,24 @@ pub const IWMReaderAccelerator = extern struct {
         GetCodecInterface: fn(
             self: *const IWMReaderAccelerator,
             dwOutputNum: u32,
-            riid: *const Guid,
-            ppvCodecInterface: **c_void,
+            riid: ?*const Guid,
+            ppvCodecInterface: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Notify: fn(
             self: *const IWMReaderAccelerator,
             dwOutputNum: u32,
-            pSubtype: *WM_MEDIA_TYPE,
+            pSubtype: ?*WM_MEDIA_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAccelerator_GetCodecInterface(self: *const T, dwOutputNum: u32, riid: *const Guid, ppvCodecInterface: **c_void) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAccelerator_GetCodecInterface(self: *const T, dwOutputNum: u32, riid: ?*const Guid, ppvCodecInterface: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAccelerator.VTable, self.vtable).GetCodecInterface(@ptrCast(*const IWMReaderAccelerator, self), dwOutputNum, riid, ppvCodecInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderAccelerator_Notify(self: *const T, dwOutputNum: u32, pSubtype: *WM_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        pub fn IWMReaderAccelerator_Notify(self: *const T, dwOutputNum: u32, pSubtype: ?*WM_MEDIA_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderAccelerator.VTable, self.vtable).Notify(@ptrCast(*const IWMReaderAccelerator, self), dwOutputNum, pSubtype);
         }
     };}
@@ -6393,25 +6393,25 @@ pub const IWMReaderTimecode = extern struct {
         GetTimecodeRangeCount: fn(
             self: *const IWMReaderTimecode,
             wStreamNum: u16,
-            pwRangeCount: *u16,
+            pwRangeCount: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTimecodeRangeBounds: fn(
             self: *const IWMReaderTimecode,
             wStreamNum: u16,
             wRangeNum: u16,
-            pStartTimecode: *u32,
-            pEndTimecode: *u32,
+            pStartTimecode: ?*u32,
+            pEndTimecode: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderTimecode_GetTimecodeRangeCount(self: *const T, wStreamNum: u16, pwRangeCount: *u16) callconv(.Inline) HRESULT {
+        pub fn IWMReaderTimecode_GetTimecodeRangeCount(self: *const T, wStreamNum: u16, pwRangeCount: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderTimecode.VTable, self.vtable).GetTimecodeRangeCount(@ptrCast(*const IWMReaderTimecode, self), wStreamNum, pwRangeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMReaderTimecode_GetTimecodeRangeBounds(self: *const T, wStreamNum: u16, wRangeNum: u16, pStartTimecode: *u32, pEndTimecode: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMReaderTimecode_GetTimecodeRangeBounds(self: *const T, wStreamNum: u16, wRangeNum: u16, pStartTimecode: ?*u32, pEndTimecode: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMReaderTimecode.VTable, self.vtable).GetTimecodeRangeBounds(@ptrCast(*const IWMReaderTimecode, self), wStreamNum, wRangeNum, pStartTimecode, pEndTimecode);
         }
     };}
@@ -6426,18 +6426,18 @@ pub const IWMAddressAccess = extern struct {
         GetAccessEntryCount: fn(
             self: *const IWMAddressAccess,
             aeType: WM_AETYPE,
-            pcEntries: *u32,
+            pcEntries: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAccessEntry: fn(
             self: *const IWMAddressAccess,
             aeType: WM_AETYPE,
             dwEntryNum: u32,
-            pAddrAccessEntry: *WM_ADDRESS_ACCESSENTRY,
+            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAccessEntry: fn(
             self: *const IWMAddressAccess,
             aeType: WM_AETYPE,
-            pAddrAccessEntry: *WM_ADDRESS_ACCESSENTRY,
+            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAccessEntry: fn(
             self: *const IWMAddressAccess,
@@ -6449,15 +6449,15 @@ pub const IWMAddressAccess = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAddressAccess_GetAccessEntryCount(self: *const T, aeType: WM_AETYPE, pcEntries: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMAddressAccess_GetAccessEntryCount(self: *const T, aeType: WM_AETYPE, pcEntries: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAddressAccess.VTable, self.vtable).GetAccessEntryCount(@ptrCast(*const IWMAddressAccess, self), aeType, pcEntries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAddressAccess_GetAccessEntry(self: *const T, aeType: WM_AETYPE, dwEntryNum: u32, pAddrAccessEntry: *WM_ADDRESS_ACCESSENTRY) callconv(.Inline) HRESULT {
+        pub fn IWMAddressAccess_GetAccessEntry(self: *const T, aeType: WM_AETYPE, dwEntryNum: u32, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAddressAccess.VTable, self.vtable).GetAccessEntry(@ptrCast(*const IWMAddressAccess, self), aeType, dwEntryNum, pAddrAccessEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAddressAccess_AddAccessEntry(self: *const T, aeType: WM_AETYPE, pAddrAccessEntry: *WM_ADDRESS_ACCESSENTRY) callconv(.Inline) HRESULT {
+        pub fn IWMAddressAccess_AddAccessEntry(self: *const T, aeType: WM_AETYPE, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAddressAccess.VTable, self.vtable).AddAccessEntry(@ptrCast(*const IWMAddressAccess, self), aeType, pAddrAccessEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6477,25 +6477,25 @@ pub const IWMAddressAccess2 = extern struct {
             self: *const IWMAddressAccess2,
             aeType: WM_AETYPE,
             dwEntryNum: u32,
-            pbstrAddress: *BSTR,
-            pbstrMask: *BSTR,
+            pbstrAddress: ?*?BSTR,
+            pbstrMask: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAccessEntryEx: fn(
             self: *const IWMAddressAccess2,
             aeType: WM_AETYPE,
-            bstrAddress: BSTR,
-            bstrMask: BSTR,
+            bstrAddress: ?BSTR,
+            bstrMask: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMAddressAccess.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAddressAccess2_GetAccessEntryEx(self: *const T, aeType: WM_AETYPE, dwEntryNum: u32, pbstrAddress: *BSTR, pbstrMask: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWMAddressAccess2_GetAccessEntryEx(self: *const T, aeType: WM_AETYPE, dwEntryNum: u32, pbstrAddress: ?*?BSTR, pbstrMask: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAddressAccess2.VTable, self.vtable).GetAccessEntryEx(@ptrCast(*const IWMAddressAccess2, self), aeType, dwEntryNum, pbstrAddress, pbstrMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAddressAccess2_AddAccessEntryEx(self: *const T, aeType: WM_AETYPE, bstrAddress: BSTR, bstrMask: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWMAddressAccess2_AddAccessEntryEx(self: *const T, aeType: WM_AETYPE, bstrAddress: ?BSTR, bstrMask: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAddressAccess2.VTable, self.vtable).AddAccessEntryEx(@ptrCast(*const IWMAddressAccess2, self), aeType, bstrAddress, bstrMask);
         }
     };}
@@ -6509,17 +6509,17 @@ pub const IWMImageInfo = extern struct {
         base: IUnknown.VTable,
         GetImageCount: fn(
             self: *const IWMImageInfo,
-            pcImages: *u32,
+            pcImages: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImage: fn(
             self: *const IWMImageInfo,
             wIndex: u32,
-            pcchMIMEType: *u16,
+            pcchMIMEType: ?*u16,
             pwszMIMEType: [*:0]u16,
-            pcchDescription: *u16,
+            pcchDescription: ?*u16,
             pwszDescription: [*:0]u16,
-            pImageType: *u16,
-            pcbImageData: *u32,
+            pImageType: ?*u16,
+            pcbImageData: ?*u32,
             pbImageData: [*:0]u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -6527,11 +6527,11 @@ pub const IWMImageInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMImageInfo_GetImageCount(self: *const T, pcImages: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMImageInfo_GetImageCount(self: *const T, pcImages: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMImageInfo.VTable, self.vtable).GetImageCount(@ptrCast(*const IWMImageInfo, self), pcImages);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMImageInfo_GetImage(self: *const T, wIndex: u32, pcchMIMEType: *u16, pwszMIMEType: [*:0]u16, pcchDescription: *u16, pwszDescription: [*:0]u16, pImageType: *u16, pcbImageData: *u32, pbImageData: [*:0]u8) callconv(.Inline) HRESULT {
+        pub fn IWMImageInfo_GetImage(self: *const T, wIndex: u32, pcchMIMEType: ?*u16, pwszMIMEType: [*:0]u16, pcchDescription: ?*u16, pwszDescription: [*:0]u16, pImageType: ?*u16, pcbImageData: ?*u32, pbImageData: [*:0]u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMImageInfo.VTable, self.vtable).GetImage(@ptrCast(*const IWMImageInfo, self), wIndex, pcchMIMEType, pwszMIMEType, pcchDescription, pwszDescription, pImageType, pcbImageData, pbImageData);
         }
     };}
@@ -6545,30 +6545,30 @@ pub const IWMLicenseRevocationAgent = extern struct {
         base: IUnknown.VTable,
         GetLRBChallenge: fn(
             self: *const IWMLicenseRevocationAgent,
-            pMachineID: *u8,
+            pMachineID: ?*u8,
             dwMachineIDLength: u32,
-            pChallenge: *u8,
+            pChallenge: ?*u8,
             dwChallengeLength: u32,
-            pChallengeOutput: *u8,
-            pdwChallengeOutputLength: *u32,
+            pChallengeOutput: ?*u8,
+            pdwChallengeOutputLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessLRB: fn(
             self: *const IWMLicenseRevocationAgent,
-            pSignedLRB: *u8,
+            pSignedLRB: ?*u8,
             dwSignedLRBLength: u32,
-            pSignedACK: *u8,
-            pdwSignedACKLength: *u32,
+            pSignedACK: ?*u8,
+            pdwSignedACKLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMLicenseRevocationAgent_GetLRBChallenge(self: *const T, pMachineID: *u8, dwMachineIDLength: u32, pChallenge: *u8, dwChallengeLength: u32, pChallengeOutput: *u8, pdwChallengeOutputLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMLicenseRevocationAgent_GetLRBChallenge(self: *const T, pMachineID: ?*u8, dwMachineIDLength: u32, pChallenge: ?*u8, dwChallengeLength: u32, pChallengeOutput: ?*u8, pdwChallengeOutputLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMLicenseRevocationAgent.VTable, self.vtable).GetLRBChallenge(@ptrCast(*const IWMLicenseRevocationAgent, self), pMachineID, dwMachineIDLength, pChallenge, dwChallengeLength, pChallengeOutput, pdwChallengeOutputLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMLicenseRevocationAgent_ProcessLRB(self: *const T, pSignedLRB: *u8, dwSignedLRBLength: u32, pSignedACK: *u8, pdwSignedACKLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMLicenseRevocationAgent_ProcessLRB(self: *const T, pSignedLRB: ?*u8, dwSignedLRBLength: u32, pSignedACK: ?*u8, pdwSignedACKLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMLicenseRevocationAgent.VTable, self.vtable).ProcessLRB(@ptrCast(*const IWMLicenseRevocationAgent, self), pSignedLRB, dwSignedLRBLength, pSignedACK, pdwSignedACKLength);
         }
     };}
@@ -6583,34 +6583,34 @@ pub const IWMAuthorizer = extern struct {
         base: IUnknown.VTable,
         GetCertCount: fn(
             self: *const IWMAuthorizer,
-            pcCerts: *u32,
+            pcCerts: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCert: fn(
             self: *const IWMAuthorizer,
             dwIndex: u32,
-            ppbCertData: **u8,
+            ppbCertData: ?*?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSharedData: fn(
             self: *const IWMAuthorizer,
             dwCertIndex: u32,
-            pbSharedData: *const u8,
-            pbCert: *u8,
-            ppbSharedData: **u8,
+            pbSharedData: ?*const u8,
+            pbCert: ?*u8,
+            ppbSharedData: ?*?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAuthorizer_GetCertCount(self: *const T, pcCerts: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMAuthorizer_GetCertCount(self: *const T, pcCerts: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAuthorizer.VTable, self.vtable).GetCertCount(@ptrCast(*const IWMAuthorizer, self), pcCerts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAuthorizer_GetCert(self: *const T, dwIndex: u32, ppbCertData: **u8) callconv(.Inline) HRESULT {
+        pub fn IWMAuthorizer_GetCert(self: *const T, dwIndex: u32, ppbCertData: ?*?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAuthorizer.VTable, self.vtable).GetCert(@ptrCast(*const IWMAuthorizer, self), dwIndex, ppbCertData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMAuthorizer_GetSharedData(self: *const T, dwCertIndex: u32, pbSharedData: *const u8, pbCert: *u8, ppbSharedData: **u8) callconv(.Inline) HRESULT {
+        pub fn IWMAuthorizer_GetSharedData(self: *const T, dwCertIndex: u32, pbSharedData: ?*const u8, pbCert: ?*u8, ppbSharedData: ?*?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMAuthorizer.VTable, self.vtable).GetSharedData(@ptrCast(*const IWMAuthorizer, self), dwCertIndex, pbSharedData, pbCert, ppbSharedData);
         }
     };}
@@ -6625,37 +6625,37 @@ pub const IWMSecureChannel = extern struct {
         base: IWMAuthorizer.VTable,
         WMSC_AddCertificate: fn(
             self: *const IWMSecureChannel,
-            pCert: *IWMAuthorizer,
+            pCert: ?*IWMAuthorizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_AddSignature: fn(
             self: *const IWMSecureChannel,
-            pbCertSig: *u8,
+            pbCertSig: ?*u8,
             cbCertSig: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_Connect: fn(
             self: *const IWMSecureChannel,
-            pOtherSide: *IWMSecureChannel,
+            pOtherSide: ?*IWMSecureChannel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_IsConnected: fn(
             self: *const IWMSecureChannel,
-            pfIsConnected: *BOOL,
+            pfIsConnected: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_Disconnect: fn(
             self: *const IWMSecureChannel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_GetValidCertificate: fn(
             self: *const IWMSecureChannel,
-            ppbCertificate: **u8,
-            pdwSignature: *u32,
+            ppbCertificate: ?*?*u8,
+            pdwSignature: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_Encrypt: fn(
             self: *const IWMSecureChannel,
-            pbData: *u8,
+            pbData: ?*u8,
             cbData: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_Decrypt: fn(
             self: *const IWMSecureChannel,
-            pbData: *u8,
+            pbData: ?*u8,
             cbData: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMSC_Lock: fn(
@@ -6667,26 +6667,26 @@ pub const IWMSecureChannel = extern struct {
         WMSC_SetSharedData: fn(
             self: *const IWMSecureChannel,
             dwCertIndex: u32,
-            pbSharedData: *const u8,
+            pbSharedData: ?*const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMAuthorizer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_AddCertificate(self: *const T, pCert: *IWMAuthorizer) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_AddCertificate(self: *const T, pCert: ?*IWMAuthorizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_AddCertificate(@ptrCast(*const IWMSecureChannel, self), pCert);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_AddSignature(self: *const T, pbCertSig: *u8, cbCertSig: u32) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_AddSignature(self: *const T, pbCertSig: ?*u8, cbCertSig: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_AddSignature(@ptrCast(*const IWMSecureChannel, self), pbCertSig, cbCertSig);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_Connect(self: *const T, pOtherSide: *IWMSecureChannel) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_Connect(self: *const T, pOtherSide: ?*IWMSecureChannel) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_Connect(@ptrCast(*const IWMSecureChannel, self), pOtherSide);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_IsConnected(self: *const T, pfIsConnected: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_IsConnected(self: *const T, pfIsConnected: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_IsConnected(@ptrCast(*const IWMSecureChannel, self), pfIsConnected);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6694,15 +6694,15 @@ pub const IWMSecureChannel = extern struct {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_Disconnect(@ptrCast(*const IWMSecureChannel, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_GetValidCertificate(self: *const T, ppbCertificate: **u8, pdwSignature: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_GetValidCertificate(self: *const T, ppbCertificate: ?*?*u8, pdwSignature: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_GetValidCertificate(@ptrCast(*const IWMSecureChannel, self), ppbCertificate, pdwSignature);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_Encrypt(self: *const T, pbData: *u8, cbData: u32) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_Encrypt(self: *const T, pbData: ?*u8, cbData: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_Encrypt(@ptrCast(*const IWMSecureChannel, self), pbData, cbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_Decrypt(self: *const T, pbData: *u8, cbData: u32) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_Decrypt(self: *const T, pbData: ?*u8, cbData: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_Decrypt(@ptrCast(*const IWMSecureChannel, self), pbData, cbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6714,7 +6714,7 @@ pub const IWMSecureChannel = extern struct {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_Unlock(@ptrCast(*const IWMSecureChannel, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSecureChannel_WMSC_SetSharedData(self: *const T, dwCertIndex: u32, pbSharedData: *const u8) callconv(.Inline) HRESULT {
+        pub fn IWMSecureChannel_WMSC_SetSharedData(self: *const T, dwCertIndex: u32, pbSharedData: ?*const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSecureChannel.VTable, self.vtable).WMSC_SetSharedData(@ptrCast(*const IWMSecureChannel, self), dwCertIndex, pbSharedData);
         }
     };}
@@ -6729,14 +6729,14 @@ pub const IWMGetSecureChannel = extern struct {
         base: IUnknown.VTable,
         GetPeerSecureChannelInterface: fn(
             self: *const IWMGetSecureChannel,
-            ppPeer: **IWMSecureChannel,
+            ppPeer: ?*?*IWMSecureChannel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMGetSecureChannel_GetPeerSecureChannelInterface(self: *const T, ppPeer: **IWMSecureChannel) callconv(.Inline) HRESULT {
+        pub fn IWMGetSecureChannel_GetPeerSecureChannelInterface(self: *const T, ppPeer: ?*?*IWMSecureChannel) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMGetSecureChannel.VTable, self.vtable).GetPeerSecureChannelInterface(@ptrCast(*const IWMGetSecureChannel, self), ppPeer);
         }
     };}
@@ -6753,36 +6753,36 @@ pub const INSNetSourceCreator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNetSource: fn(
             self: *const INSNetSourceCreator,
-            pszStreamName: [*:0]const u16,
-            pMonitor: *IUnknown,
-            pData: *u8,
-            pUserContext: *IUnknown,
-            pCallback: *IUnknown,
+            pszStreamName: ?[*:0]const u16,
+            pMonitor: ?*IUnknown,
+            pData: ?*u8,
+            pUserContext: ?*IUnknown,
+            pCallback: ?*IUnknown,
             qwContext: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNetSourceProperties: fn(
             self: *const INSNetSourceCreator,
-            pszStreamName: [*:0]const u16,
-            ppPropertiesNode: **IUnknown,
+            pszStreamName: ?[*:0]const u16,
+            ppPropertiesNode: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNetSourceSharedNamespace: fn(
             self: *const INSNetSourceCreator,
-            ppSharedNamespace: **IUnknown,
+            ppSharedNamespace: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNetSourceAdminInterface: fn(
             self: *const INSNetSourceCreator,
-            pszStreamName: [*:0]const u16,
-            pVal: *VARIANT,
+            pszStreamName: ?[*:0]const u16,
+            pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumProtocolsSupported: fn(
             self: *const INSNetSourceCreator,
-            pcProtocols: *u32,
+            pcProtocols: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProtocolName: fn(
             self: *const INSNetSourceCreator,
             dwProtocolNum: u32,
-            pwszProtocolName: PWSTR,
-            pcchProtocolName: *u16,
+            pwszProtocolName: ?PWSTR,
+            pcchProtocolName: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Shutdown: fn(
             self: *const INSNetSourceCreator,
@@ -6796,27 +6796,27 @@ pub const INSNetSourceCreator = extern struct {
             return @ptrCast(*const INSNetSourceCreator.VTable, self.vtable).Initialize(@ptrCast(*const INSNetSourceCreator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSNetSourceCreator_CreateNetSource(self: *const T, pszStreamName: [*:0]const u16, pMonitor: *IUnknown, pData: *u8, pUserContext: *IUnknown, pCallback: *IUnknown, qwContext: u64) callconv(.Inline) HRESULT {
+        pub fn INSNetSourceCreator_CreateNetSource(self: *const T, pszStreamName: ?[*:0]const u16, pMonitor: ?*IUnknown, pData: ?*u8, pUserContext: ?*IUnknown, pCallback: ?*IUnknown, qwContext: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSNetSourceCreator.VTable, self.vtable).CreateNetSource(@ptrCast(*const INSNetSourceCreator, self), pszStreamName, pMonitor, pData, pUserContext, pCallback, qwContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSNetSourceCreator_GetNetSourceProperties(self: *const T, pszStreamName: [*:0]const u16, ppPropertiesNode: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn INSNetSourceCreator_GetNetSourceProperties(self: *const T, pszStreamName: ?[*:0]const u16, ppPropertiesNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSNetSourceCreator.VTable, self.vtable).GetNetSourceProperties(@ptrCast(*const INSNetSourceCreator, self), pszStreamName, ppPropertiesNode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSNetSourceCreator_GetNetSourceSharedNamespace(self: *const T, ppSharedNamespace: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn INSNetSourceCreator_GetNetSourceSharedNamespace(self: *const T, ppSharedNamespace: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSNetSourceCreator.VTable, self.vtable).GetNetSourceSharedNamespace(@ptrCast(*const INSNetSourceCreator, self), ppSharedNamespace);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSNetSourceCreator_GetNetSourceAdminInterface(self: *const T, pszStreamName: [*:0]const u16, pVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn INSNetSourceCreator_GetNetSourceAdminInterface(self: *const T, pszStreamName: ?[*:0]const u16, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSNetSourceCreator.VTable, self.vtable).GetNetSourceAdminInterface(@ptrCast(*const INSNetSourceCreator, self), pszStreamName, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSNetSourceCreator_GetNumProtocolsSupported(self: *const T, pcProtocols: *u32) callconv(.Inline) HRESULT {
+        pub fn INSNetSourceCreator_GetNumProtocolsSupported(self: *const T, pcProtocols: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSNetSourceCreator.VTable, self.vtable).GetNumProtocolsSupported(@ptrCast(*const INSNetSourceCreator, self), pcProtocols);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INSNetSourceCreator_GetProtocolName(self: *const T, dwProtocolNum: u32, pwszProtocolName: PWSTR, pcchProtocolName: *u16) callconv(.Inline) HRESULT {
+        pub fn INSNetSourceCreator_GetProtocolName(self: *const T, dwProtocolNum: u32, pwszProtocolName: ?PWSTR, pcchProtocolName: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const INSNetSourceCreator.VTable, self.vtable).GetProtocolName(@ptrCast(*const INSNetSourceCreator, self), dwProtocolNum, pwszProtocolName, pcchProtocolName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6835,14 +6835,14 @@ pub const IWMPlayerTimestampHook = extern struct {
         MapTimestamp: fn(
             self: *const IWMPlayerTimestampHook,
             rtIn: i64,
-            prtOut: *i64,
+            prtOut: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPlayerTimestampHook_MapTimestamp(self: *const T, rtIn: i64, prtOut: *i64) callconv(.Inline) HRESULT {
+        pub fn IWMPlayerTimestampHook_MapTimestamp(self: *const T, rtIn: i64, prtOut: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPlayerTimestampHook.VTable, self.vtable).MapTimestamp(@ptrCast(*const IWMPlayerTimestampHook, self), rtIn, prtOut);
         }
     };}
@@ -6856,30 +6856,30 @@ pub const IWMCodecAMVideoAccelerator = extern struct {
         base: IUnknown.VTable,
         SetAcceleratorInterface: fn(
             self: *const IWMCodecAMVideoAccelerator,
-            pIAMVA: *IAMVideoAccelerator,
+            pIAMVA: ?*IAMVideoAccelerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NegotiateConnection: fn(
             self: *const IWMCodecAMVideoAccelerator,
-            pMediaType: *AM_MEDIA_TYPE,
+            pMediaType: ?*AM_MEDIA_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPlayerNotify: fn(
             self: *const IWMCodecAMVideoAccelerator,
-            pHook: *IWMPlayerTimestampHook,
+            pHook: ?*IWMPlayerTimestampHook,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecAMVideoAccelerator_SetAcceleratorInterface(self: *const T, pIAMVA: *IAMVideoAccelerator) callconv(.Inline) HRESULT {
+        pub fn IWMCodecAMVideoAccelerator_SetAcceleratorInterface(self: *const T, pIAMVA: ?*IAMVideoAccelerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecAMVideoAccelerator.VTable, self.vtable).SetAcceleratorInterface(@ptrCast(*const IWMCodecAMVideoAccelerator, self), pIAMVA);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecAMVideoAccelerator_NegotiateConnection(self: *const T, pMediaType: *AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        pub fn IWMCodecAMVideoAccelerator_NegotiateConnection(self: *const T, pMediaType: ?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecAMVideoAccelerator.VTable, self.vtable).NegotiateConnection(@ptrCast(*const IWMCodecAMVideoAccelerator, self), pMediaType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecAMVideoAccelerator_SetPlayerNotify(self: *const T, pHook: *IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
+        pub fn IWMCodecAMVideoAccelerator_SetPlayerNotify(self: *const T, pHook: ?*IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecAMVideoAccelerator.VTable, self.vtable).SetPlayerNotify(@ptrCast(*const IWMCodecAMVideoAccelerator, self), pHook);
         }
     };}
@@ -6893,23 +6893,23 @@ pub const IWMCodecVideoAccelerator = extern struct {
         base: IUnknown.VTable,
         NegotiateConnection: fn(
             self: *const IWMCodecVideoAccelerator,
-            pIAMVA: *IAMVideoAccelerator,
-            pMediaType: *AM_MEDIA_TYPE,
+            pIAMVA: ?*IAMVideoAccelerator,
+            pMediaType: ?*AM_MEDIA_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPlayerNotify: fn(
             self: *const IWMCodecVideoAccelerator,
-            pHook: *IWMPlayerTimestampHook,
+            pHook: ?*IWMPlayerTimestampHook,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecVideoAccelerator_NegotiateConnection(self: *const T, pIAMVA: *IAMVideoAccelerator, pMediaType: *AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
+        pub fn IWMCodecVideoAccelerator_NegotiateConnection(self: *const T, pIAMVA: ?*IAMVideoAccelerator, pMediaType: ?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecVideoAccelerator.VTable, self.vtable).NegotiateConnection(@ptrCast(*const IWMCodecVideoAccelerator, self), pIAMVA, pMediaType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecVideoAccelerator_SetPlayerNotify(self: *const T, pHook: *IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
+        pub fn IWMCodecVideoAccelerator_SetPlayerNotify(self: *const T, pHook: ?*IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMCodecVideoAccelerator.VTable, self.vtable).SetPlayerNotify(@ptrCast(*const IWMCodecVideoAccelerator, self), pHook);
         }
     };}
@@ -6932,37 +6932,37 @@ pub const IWMSInternalAdminNetSource = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IWMSInternalAdminNetSource,
-            pSharedNamespace: *IUnknown,
-            pNamespaceNode: *IUnknown,
-            pNetSourceCreator: *INSNetSourceCreator,
+            pSharedNamespace: ?*IUnknown,
+            pNamespaceNode: ?*IUnknown,
+            pNetSourceCreator: ?*INSNetSourceCreator,
             fEmbeddedInServer: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNetSourceCreator: fn(
             self: *const IWMSInternalAdminNetSource,
-            ppNetSourceCreator: **INSNetSourceCreator,
+            ppNetSourceCreator: ?*?*INSNetSourceCreator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCredentials: fn(
             self: *const IWMSInternalAdminNetSource,
-            bstrRealm: BSTR,
-            bstrName: BSTR,
-            bstrPassword: BSTR,
+            bstrRealm: ?BSTR,
+            bstrName: ?BSTR,
+            bstrPassword: ?BSTR,
             fPersist: BOOL,
             fConfirmedGood: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCredentials: fn(
             self: *const IWMSInternalAdminNetSource,
-            bstrRealm: BSTR,
-            pbstrName: *BSTR,
-            pbstrPassword: *BSTR,
-            pfConfirmedGood: *BOOL,
+            bstrRealm: ?BSTR,
+            pbstrName: ?*?BSTR,
+            pbstrPassword: ?*?BSTR,
+            pfConfirmedGood: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteCredentials: fn(
             self: *const IWMSInternalAdminNetSource,
-            bstrRealm: BSTR,
+            bstrRealm: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCredentialFlags: fn(
             self: *const IWMSInternalAdminNetSource,
-            lpdwFlags: *u32,
+            lpdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCredentialFlags: fn(
             self: *const IWMSInternalAdminNetSource,
@@ -6970,12 +6970,12 @@ pub const IWMSInternalAdminNetSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindProxyForURL: fn(
             self: *const IWMSInternalAdminNetSource,
-            bstrProtocol: BSTR,
-            bstrHost: BSTR,
-            pfProxyEnabled: *BOOL,
-            pbstrProxyServer: *BSTR,
-            pdwProxyPort: *u32,
-            pdwProxyContext: *u32,
+            bstrProtocol: ?BSTR,
+            bstrHost: ?BSTR,
+            pfProxyEnabled: ?*BOOL,
+            pbstrProxyServer: ?*?BSTR,
+            pdwProxyPort: ?*u32,
+            pdwProxyContext: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterProxyFailure: fn(
             self: *const IWMSInternalAdminNetSource,
@@ -6989,34 +6989,34 @@ pub const IWMSInternalAdminNetSource = extern struct {
         IsUsingIE: fn(
             self: *const IWMSInternalAdminNetSource,
             dwProxyContext: u32,
-            pfIsUsingIE: *BOOL,
+            pfIsUsingIE: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_Initialize(self: *const T, pSharedNamespace: *IUnknown, pNamespaceNode: *IUnknown, pNetSourceCreator: *INSNetSourceCreator, fEmbeddedInServer: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_Initialize(self: *const T, pSharedNamespace: ?*IUnknown, pNamespaceNode: ?*IUnknown, pNetSourceCreator: ?*INSNetSourceCreator, fEmbeddedInServer: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).Initialize(@ptrCast(*const IWMSInternalAdminNetSource, self), pSharedNamespace, pNamespaceNode, pNetSourceCreator, fEmbeddedInServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_GetNetSourceCreator(self: *const T, ppNetSourceCreator: **INSNetSourceCreator) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_GetNetSourceCreator(self: *const T, ppNetSourceCreator: ?*?*INSNetSourceCreator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).GetNetSourceCreator(@ptrCast(*const IWMSInternalAdminNetSource, self), ppNetSourceCreator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_SetCredentials(self: *const T, bstrRealm: BSTR, bstrName: BSTR, bstrPassword: BSTR, fPersist: BOOL, fConfirmedGood: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_SetCredentials(self: *const T, bstrRealm: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR, fPersist: BOOL, fConfirmedGood: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).SetCredentials(@ptrCast(*const IWMSInternalAdminNetSource, self), bstrRealm, bstrName, bstrPassword, fPersist, fConfirmedGood);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_GetCredentials(self: *const T, bstrRealm: BSTR, pbstrName: *BSTR, pbstrPassword: *BSTR, pfConfirmedGood: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_GetCredentials(self: *const T, bstrRealm: ?BSTR, pbstrName: ?*?BSTR, pbstrPassword: ?*?BSTR, pfConfirmedGood: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).GetCredentials(@ptrCast(*const IWMSInternalAdminNetSource, self), bstrRealm, pbstrName, pbstrPassword, pfConfirmedGood);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_DeleteCredentials(self: *const T, bstrRealm: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_DeleteCredentials(self: *const T, bstrRealm: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).DeleteCredentials(@ptrCast(*const IWMSInternalAdminNetSource, self), bstrRealm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_GetCredentialFlags(self: *const T, lpdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_GetCredentialFlags(self: *const T, lpdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).GetCredentialFlags(@ptrCast(*const IWMSInternalAdminNetSource, self), lpdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7024,7 +7024,7 @@ pub const IWMSInternalAdminNetSource = extern struct {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).SetCredentialFlags(@ptrCast(*const IWMSInternalAdminNetSource, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_FindProxyForURL(self: *const T, bstrProtocol: BSTR, bstrHost: BSTR, pfProxyEnabled: *BOOL, pbstrProxyServer: *BSTR, pdwProxyPort: *u32, pdwProxyContext: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_FindProxyForURL(self: *const T, bstrProtocol: ?BSTR, bstrHost: ?BSTR, pfProxyEnabled: ?*BOOL, pbstrProxyServer: ?*?BSTR, pdwProxyPort: ?*u32, pdwProxyContext: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).FindProxyForURL(@ptrCast(*const IWMSInternalAdminNetSource, self), bstrProtocol, bstrHost, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pdwProxyContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7036,7 +7036,7 @@ pub const IWMSInternalAdminNetSource = extern struct {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).ShutdownProxyContext(@ptrCast(*const IWMSInternalAdminNetSource, self), dwProxyContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource_IsUsingIE(self: *const T, dwProxyContext: u32, pfIsUsingIE: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource_IsUsingIE(self: *const T, dwProxyContext: u32, pfIsUsingIE: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource.VTable, self.vtable).IsUsingIE(@ptrCast(*const IWMSInternalAdminNetSource, self), dwProxyContext, pfIsUsingIE);
         }
     };}
@@ -7050,58 +7050,58 @@ pub const IWMSInternalAdminNetSource2 = extern struct {
         base: IUnknown.VTable,
         SetCredentialsEx: fn(
             self: *const IWMSInternalAdminNetSource2,
-            bstrRealm: BSTR,
-            bstrUrl: BSTR,
+            bstrRealm: ?BSTR,
+            bstrUrl: ?BSTR,
             fProxy: BOOL,
-            bstrName: BSTR,
-            bstrPassword: BSTR,
+            bstrName: ?BSTR,
+            bstrPassword: ?BSTR,
             fPersist: BOOL,
             fConfirmedGood: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCredentialsEx: fn(
             self: *const IWMSInternalAdminNetSource2,
-            bstrRealm: BSTR,
-            bstrUrl: BSTR,
+            bstrRealm: ?BSTR,
+            bstrUrl: ?BSTR,
             fProxy: BOOL,
-            pdwUrlPolicy: *NETSOURCE_URLCREDPOLICY_SETTINGS,
-            pbstrName: *BSTR,
-            pbstrPassword: *BSTR,
-            pfConfirmedGood: *BOOL,
+            pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
+            pbstrName: ?*?BSTR,
+            pbstrPassword: ?*?BSTR,
+            pfConfirmedGood: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteCredentialsEx: fn(
             self: *const IWMSInternalAdminNetSource2,
-            bstrRealm: BSTR,
-            bstrUrl: BSTR,
+            bstrRealm: ?BSTR,
+            bstrUrl: ?BSTR,
             fProxy: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindProxyForURLEx: fn(
             self: *const IWMSInternalAdminNetSource2,
-            bstrProtocol: BSTR,
-            bstrHost: BSTR,
-            bstrUrl: BSTR,
-            pfProxyEnabled: *BOOL,
-            pbstrProxyServer: *BSTR,
-            pdwProxyPort: *u32,
-            pdwProxyContext: *u32,
+            bstrProtocol: ?BSTR,
+            bstrHost: ?BSTR,
+            bstrUrl: ?BSTR,
+            pfProxyEnabled: ?*BOOL,
+            pbstrProxyServer: ?*?BSTR,
+            pdwProxyPort: ?*u32,
+            pdwProxyContext: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource2_SetCredentialsEx(self: *const T, bstrRealm: BSTR, bstrUrl: BSTR, fProxy: BOOL, bstrName: BSTR, bstrPassword: BSTR, fPersist: BOOL, fConfirmedGood: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource2_SetCredentialsEx(self: *const T, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, bstrName: ?BSTR, bstrPassword: ?BSTR, fPersist: BOOL, fConfirmedGood: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource2.VTable, self.vtable).SetCredentialsEx(@ptrCast(*const IWMSInternalAdminNetSource2, self), bstrRealm, bstrUrl, fProxy, bstrName, bstrPassword, fPersist, fConfirmedGood);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource2_GetCredentialsEx(self: *const T, bstrRealm: BSTR, bstrUrl: BSTR, fProxy: BOOL, pdwUrlPolicy: *NETSOURCE_URLCREDPOLICY_SETTINGS, pbstrName: *BSTR, pbstrPassword: *BSTR, pfConfirmedGood: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource2_GetCredentialsEx(self: *const T, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS, pbstrName: ?*?BSTR, pbstrPassword: ?*?BSTR, pfConfirmedGood: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource2.VTable, self.vtable).GetCredentialsEx(@ptrCast(*const IWMSInternalAdminNetSource2, self), bstrRealm, bstrUrl, fProxy, pdwUrlPolicy, pbstrName, pbstrPassword, pfConfirmedGood);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource2_DeleteCredentialsEx(self: *const T, bstrRealm: BSTR, bstrUrl: BSTR, fProxy: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource2_DeleteCredentialsEx(self: *const T, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource2.VTable, self.vtable).DeleteCredentialsEx(@ptrCast(*const IWMSInternalAdminNetSource2, self), bstrRealm, bstrUrl, fProxy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource2_FindProxyForURLEx(self: *const T, bstrProtocol: BSTR, bstrHost: BSTR, bstrUrl: BSTR, pfProxyEnabled: *BOOL, pbstrProxyServer: *BSTR, pdwProxyPort: *u32, pdwProxyContext: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource2_FindProxyForURLEx(self: *const T, bstrProtocol: ?BSTR, bstrHost: ?BSTR, bstrUrl: ?BSTR, pfProxyEnabled: ?*BOOL, pbstrProxyServer: ?*?BSTR, pdwProxyPort: ?*u32, pdwProxyContext: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource2.VTable, self.vtable).FindProxyForURLEx(@ptrCast(*const IWMSInternalAdminNetSource2, self), bstrProtocol, bstrHost, bstrUrl, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pdwProxyContext);
         }
     };}
@@ -7115,17 +7115,17 @@ pub const IWMSInternalAdminNetSource3 = extern struct {
         base: IWMSInternalAdminNetSource2.VTable,
         GetNetSourceCreator2: fn(
             self: *const IWMSInternalAdminNetSource3,
-            ppNetSourceCreator: **IUnknown,
+            ppNetSourceCreator: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindProxyForURLEx2: fn(
             self: *const IWMSInternalAdminNetSource3,
-            bstrProtocol: BSTR,
-            bstrHost: BSTR,
-            bstrUrl: BSTR,
-            pfProxyEnabled: *BOOL,
-            pbstrProxyServer: *BSTR,
-            pdwProxyPort: *u32,
-            pqwProxyContext: *u64,
+            bstrProtocol: ?BSTR,
+            bstrHost: ?BSTR,
+            bstrUrl: ?BSTR,
+            pfProxyEnabled: ?*BOOL,
+            pbstrProxyServer: ?*?BSTR,
+            pdwProxyPort: ?*u32,
+            pqwProxyContext: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterProxyFailure2: fn(
             self: *const IWMSInternalAdminNetSource3,
@@ -7139,40 +7139,40 @@ pub const IWMSInternalAdminNetSource3 = extern struct {
         IsUsingIE2: fn(
             self: *const IWMSInternalAdminNetSource3,
             qwProxyContext: u64,
-            pfIsUsingIE: *BOOL,
+            pfIsUsingIE: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCredentialsEx2: fn(
             self: *const IWMSInternalAdminNetSource3,
-            bstrRealm: BSTR,
-            bstrUrl: BSTR,
+            bstrRealm: ?BSTR,
+            bstrUrl: ?BSTR,
             fProxy: BOOL,
-            bstrName: BSTR,
-            bstrPassword: BSTR,
+            bstrName: ?BSTR,
+            bstrPassword: ?BSTR,
             fPersist: BOOL,
             fConfirmedGood: BOOL,
             fClearTextAuthentication: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCredentialsEx2: fn(
             self: *const IWMSInternalAdminNetSource3,
-            bstrRealm: BSTR,
-            bstrUrl: BSTR,
+            bstrRealm: ?BSTR,
+            bstrUrl: ?BSTR,
             fProxy: BOOL,
             fClearTextAuthentication: BOOL,
-            pdwUrlPolicy: *NETSOURCE_URLCREDPOLICY_SETTINGS,
-            pbstrName: *BSTR,
-            pbstrPassword: *BSTR,
-            pfConfirmedGood: *BOOL,
+            pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
+            pbstrName: ?*?BSTR,
+            pbstrPassword: ?*?BSTR,
+            pfConfirmedGood: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMSInternalAdminNetSource2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource3_GetNetSourceCreator2(self: *const T, ppNetSourceCreator: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource3_GetNetSourceCreator2(self: *const T, ppNetSourceCreator: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource3.VTable, self.vtable).GetNetSourceCreator2(@ptrCast(*const IWMSInternalAdminNetSource3, self), ppNetSourceCreator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource3_FindProxyForURLEx2(self: *const T, bstrProtocol: BSTR, bstrHost: BSTR, bstrUrl: BSTR, pfProxyEnabled: *BOOL, pbstrProxyServer: *BSTR, pdwProxyPort: *u32, pqwProxyContext: *u64) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource3_FindProxyForURLEx2(self: *const T, bstrProtocol: ?BSTR, bstrHost: ?BSTR, bstrUrl: ?BSTR, pfProxyEnabled: ?*BOOL, pbstrProxyServer: ?*?BSTR, pdwProxyPort: ?*u32, pqwProxyContext: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource3.VTable, self.vtable).FindProxyForURLEx2(@ptrCast(*const IWMSInternalAdminNetSource3, self), bstrProtocol, bstrHost, bstrUrl, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pqwProxyContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7184,15 +7184,15 @@ pub const IWMSInternalAdminNetSource3 = extern struct {
             return @ptrCast(*const IWMSInternalAdminNetSource3.VTable, self.vtable).ShutdownProxyContext2(@ptrCast(*const IWMSInternalAdminNetSource3, self), qwProxyContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource3_IsUsingIE2(self: *const T, qwProxyContext: u64, pfIsUsingIE: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource3_IsUsingIE2(self: *const T, qwProxyContext: u64, pfIsUsingIE: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource3.VTable, self.vtable).IsUsingIE2(@ptrCast(*const IWMSInternalAdminNetSource3, self), qwProxyContext, pfIsUsingIE);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource3_SetCredentialsEx2(self: *const T, bstrRealm: BSTR, bstrUrl: BSTR, fProxy: BOOL, bstrName: BSTR, bstrPassword: BSTR, fPersist: BOOL, fConfirmedGood: BOOL, fClearTextAuthentication: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource3_SetCredentialsEx2(self: *const T, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, bstrName: ?BSTR, bstrPassword: ?BSTR, fPersist: BOOL, fConfirmedGood: BOOL, fClearTextAuthentication: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource3.VTable, self.vtable).SetCredentialsEx2(@ptrCast(*const IWMSInternalAdminNetSource3, self), bstrRealm, bstrUrl, fProxy, bstrName, bstrPassword, fPersist, fConfirmedGood, fClearTextAuthentication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMSInternalAdminNetSource3_GetCredentialsEx2(self: *const T, bstrRealm: BSTR, bstrUrl: BSTR, fProxy: BOOL, fClearTextAuthentication: BOOL, pdwUrlPolicy: *NETSOURCE_URLCREDPOLICY_SETTINGS, pbstrName: *BSTR, pbstrPassword: *BSTR, pfConfirmedGood: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWMSInternalAdminNetSource3_GetCredentialsEx2(self: *const T, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, fClearTextAuthentication: BOOL, pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS, pbstrName: ?*?BSTR, pbstrPassword: ?*?BSTR, pfConfirmedGood: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMSInternalAdminNetSource3.VTable, self.vtable).GetCredentialsEx2(@ptrCast(*const IWMSInternalAdminNetSource3, self), bstrRealm, bstrUrl, fProxy, fClearTextAuthentication, pdwUrlPolicy, pbstrName, pbstrPassword, pfConfirmedGood);
         }
     };}
@@ -7206,14 +7206,14 @@ pub const IAMWMBufferPass = extern struct {
         base: IUnknown.VTable,
         SetNotify: fn(
             self: *const IAMWMBufferPass,
-            pCallback: *IAMWMBufferPassCallback,
+            pCallback: ?*IAMWMBufferPassCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMWMBufferPass_SetNotify(self: *const T, pCallback: *IAMWMBufferPassCallback) callconv(.Inline) HRESULT {
+        pub fn IAMWMBufferPass_SetNotify(self: *const T, pCallback: ?*IAMWMBufferPassCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMWMBufferPass.VTable, self.vtable).SetNotify(@ptrCast(*const IAMWMBufferPass, self), pCallback);
         }
     };}
@@ -7227,17 +7227,17 @@ pub const IAMWMBufferPassCallback = extern struct {
         base: IUnknown.VTable,
         Notify: fn(
             self: *const IAMWMBufferPassCallback,
-            pNSSBuffer3: *INSSBuffer3,
-            pPin: *IPin,
-            prtStart: *i64,
-            prtEnd: *i64,
+            pNSSBuffer3: ?*INSSBuffer3,
+            pPin: ?*IPin,
+            prtStart: ?*i64,
+            prtEnd: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMWMBufferPassCallback_Notify(self: *const T, pNSSBuffer3: *INSSBuffer3, pPin: *IPin, prtStart: *i64, prtEnd: *i64) callconv(.Inline) HRESULT {
+        pub fn IAMWMBufferPassCallback_Notify(self: *const T, pNSSBuffer3: ?*INSSBuffer3, pPin: ?*IPin, prtStart: ?*i64, prtEnd: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMWMBufferPassCallback.VTable, self.vtable).Notify(@ptrCast(*const IAMWMBufferPassCallback, self), pNSSBuffer3, pPin, prtStart, prtEnd);
         }
     };}
@@ -7255,7 +7255,7 @@ pub const AM_CONFIGASFWRITER_PARAM_DONTCOMPRESS = _AM_ASFWRITERCONFIG_PARAM.DONT
 
 pub const AM_WMT_EVENT_DATA = extern struct {
     hrStatus: HRESULT,
-    pData: *c_void,
+    pData: ?*c_void,
 };
 
 
@@ -7264,64 +7264,64 @@ pub const AM_WMT_EVENT_DATA = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMIsContentProtected(
-    pwszFileName: [*:0]const u16,
-    pfIsProtected: *BOOL,
+    pwszFileName: ?[*:0]const u16,
+    pfIsProtected: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriter(
-    pUnkCert: *IUnknown,
-    ppWriter: **IWMWriter,
+    pUnkCert: ?*IUnknown,
+    ppWriter: ?*?*IWMWriter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateReader(
-    pUnkCert: *IUnknown,
+    pUnkCert: ?*IUnknown,
     dwRights: u32,
-    ppReader: **IWMReader,
+    ppReader: ?*?*IWMReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateSyncReader(
-    pUnkCert: *IUnknown,
+    pUnkCert: ?*IUnknown,
     dwRights: u32,
-    ppSyncReader: **IWMSyncReader,
+    ppSyncReader: ?*?*IWMSyncReader,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateEditor(
-    ppEditor: **IWMMetadataEditor,
+    ppEditor: ?*?*IWMMetadataEditor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateIndexer(
-    ppIndexer: **IWMIndexer,
+    ppIndexer: ?*?*IWMIndexer,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateBackupRestorer(
-    pCallback: *IUnknown,
-    ppBackup: **IWMLicenseBackup,
+    pCallback: ?*IUnknown,
+    ppBackup: ?*?*IWMLicenseBackup,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateProfileManager(
-    ppProfileManager: **IWMProfileManager,
+    ppProfileManager: ?*?*IWMProfileManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriterFileSink(
-    ppSink: **IWMWriterFileSink,
+    ppSink: ?*?*IWMWriterFileSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriterNetworkSink(
-    ppSink: **IWMWriterNetworkSink,
+    ppSink: ?*?*IWMWriterNetworkSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WMVCore" fn WMCreateWriterPushSink(
-    ppSink: **IWMWriterPushSink,
+    ppSink: ?*?*IWMWriterPushSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

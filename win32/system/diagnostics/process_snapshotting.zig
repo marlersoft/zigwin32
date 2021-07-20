@@ -236,7 +236,7 @@ pub const PSS_PROCESS_FLAGS_FROZEN = PSS_PROCESS_FLAGS.FROZEN;
 
 pub const PSS_PROCESS_INFORMATION = extern struct {
     ExitStatus: u32,
-    PebBaseAddress: *c_void,
+    PebBaseAddress: ?*c_void,
     AffinityMask: usize,
     BasePriority: i32,
     ProcessId: u32,
@@ -264,7 +264,7 @@ pub const PSS_PROCESS_INFORMATION = extern struct {
 };
 
 pub const PSS_VA_CLONE_INFORMATION = extern struct {
-    VaCloneHandle: HANDLE,
+    VaCloneHandle: ?HANDLE,
 };
 
 pub const PSS_AUXILIARY_PAGES_INFORMATION = extern struct {
@@ -285,7 +285,7 @@ pub const PSS_THREAD_INFORMATION = extern struct {
 };
 
 pub const PSS_HANDLE_TRACE_INFORMATION = extern struct {
-    SectionHandle: HANDLE,
+    SectionHandle: ?HANDLE,
     Size: u32,
 };
 
@@ -305,16 +305,16 @@ pub const PSS_PERFORMANCE_COUNTERS = extern struct {
 };
 
 pub const PSS_AUXILIARY_PAGE_ENTRY = extern struct {
-    Address: *c_void,
+    Address: ?*c_void,
     BasicInformation: MEMORY_BASIC_INFORMATION,
     CaptureTime: FILETIME,
-    PageContents: *c_void,
+    PageContents: ?*c_void,
     PageSize: u32,
 };
 
 pub const PSS_VA_SPACE_ENTRY = extern struct {
-    BaseAddress: *c_void,
-    AllocationBase: *c_void,
+    BaseAddress: ?*c_void,
+    AllocationBase: ?*c_void,
     AllocationProtect: u32,
     RegionSize: usize,
     State: u32,
@@ -322,14 +322,14 @@ pub const PSS_VA_SPACE_ENTRY = extern struct {
     Type: u32,
     TimeDateStamp: u32,
     SizeOfImage: u32,
-    ImageBase: *c_void,
+    ImageBase: ?*c_void,
     CheckSum: u32,
     MappedFileNameLength: u16,
-    MappedFileName: [*:0]const u16,
+    MappedFileName: ?[*:0]const u16,
 };
 
 pub const PSS_HANDLE_ENTRY = extern struct {
-    Handle: HANDLE,
+    Handle: ?HANDLE,
     Flags: PSS_HANDLE_FLAGS,
     ObjectType: PSS_OBJECT_TYPE,
     CaptureTime: FILETIME,
@@ -341,13 +341,13 @@ pub const PSS_HANDLE_ENTRY = extern struct {
     NonPagedPoolCharge: u32,
     CreationTime: FILETIME,
     TypeNameLength: u16,
-    TypeName: [*:0]const u16,
+    TypeName: ?[*:0]const u16,
     ObjectNameLength: u16,
-    ObjectName: [*:0]const u16,
+    ObjectName: ?[*:0]const u16,
     TypeSpecificInformation: extern union {
         Process: extern struct {
             ExitStatus: u32,
-            PebBaseAddress: *c_void,
+            PebBaseAddress: ?*c_void,
             AffinityMask: usize,
             BasePriority: i32,
             ProcessId: u32,
@@ -356,13 +356,13 @@ pub const PSS_HANDLE_ENTRY = extern struct {
         },
         Thread: extern struct {
             ExitStatus: u32,
-            TebBaseAddress: *c_void,
+            TebBaseAddress: ?*c_void,
             ProcessId: u32,
             ThreadId: u32,
             AffinityMask: usize,
             Priority: i32,
             BasePriority: i32,
-            Win32StartAddress: *c_void,
+            Win32StartAddress: ?*c_void,
         },
         Mutant: extern struct {
             CurrentCount: i32,
@@ -375,7 +375,7 @@ pub const PSS_HANDLE_ENTRY = extern struct {
             Signaled: BOOL,
         },
         Section: extern struct {
-            BaseAddress: *c_void,
+            BaseAddress: ?*c_void,
             AllocationAttributes: u32,
             MaximumSize: LARGE_INTEGER,
         },
@@ -405,28 +405,28 @@ pub const PSS_THREAD_FLAGS_TERMINATED = PSS_THREAD_FLAGS.TERMINATED;
 
 pub const PSS_THREAD_ENTRY = extern struct {
     ExitStatus: u32,
-    TebBaseAddress: *c_void,
+    TebBaseAddress: ?*c_void,
     ProcessId: u32,
     ThreadId: u32,
     AffinityMask: usize,
     Priority: i32,
     BasePriority: i32,
-    LastSyscallFirstArgument: *c_void,
+    LastSyscallFirstArgument: ?*c_void,
     LastSyscallNumber: u16,
     CreateTime: FILETIME,
     ExitTime: FILETIME,
     KernelTime: FILETIME,
     UserTime: FILETIME,
-    Win32StartAddress: *c_void,
+    Win32StartAddress: ?*c_void,
     CaptureTime: FILETIME,
     Flags: PSS_THREAD_FLAGS,
     SuspendCount: u16,
     SizeOfContextRecord: u16,
-    ContextRecord: *CONTEXT,
+    ContextRecord: ?*CONTEXT,
 };
 
 pub const PSS_ALLOCATOR = extern struct {
-    Context: *c_void,
+    Context: ?*c_void,
     AllocRoutine: isize,
     FreeRoutine: isize,
 };
@@ -437,32 +437,32 @@ pub const PSS_ALLOCATOR = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssCaptureSnapshot(
-    ProcessHandle: HANDLE,
+    ProcessHandle: ?HANDLE,
     CaptureFlags: PSS_CAPTURE_FLAGS,
     ThreadContextFlags: u32,
-    SnapshotHandle: *HPSS,
+    SnapshotHandle: ?*?HPSS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssFreeSnapshot(
-    ProcessHandle: HANDLE,
-    SnapshotHandle: HPSS,
+    ProcessHandle: ?HANDLE,
+    SnapshotHandle: ?HPSS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssQuerySnapshot(
-    SnapshotHandle: HPSS,
+    SnapshotHandle: ?HPSS,
     InformationClass: PSS_QUERY_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssWalkSnapshot(
-    SnapshotHandle: HPSS,
+    SnapshotHandle: ?HPSS,
     InformationClass: PSS_WALK_INFORMATION_CLASS,
-    WalkMarkerHandle: HPSSWALK,
+    WalkMarkerHandle: ?HPSSWALK,
     Buffer: ?[*]u8,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -474,29 +474,29 @@ pub fn PssDuplicateSnapshot() void { @panic("this function is not working"); }
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssWalkMarkerCreate(
     Allocator: ?*const PSS_ALLOCATOR,
-    WalkMarkerHandle: *HPSSWALK,
+    WalkMarkerHandle: ?*?HPSSWALK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssWalkMarkerFree(
-    WalkMarkerHandle: HPSSWALK,
+    WalkMarkerHandle: ?HPSSWALK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssWalkMarkerGetPosition(
-    WalkMarkerHandle: HPSSWALK,
-    Position: *usize,
+    WalkMarkerHandle: ?HPSSWALK,
+    Position: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssWalkMarkerSetPosition(
-    WalkMarkerHandle: HPSSWALK,
+    WalkMarkerHandle: ?HPSSWALK,
     Position: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssWalkMarkerSeekToBeginning(
-    WalkMarkerHandle: HPSSWALK,
+    WalkMarkerHandle: ?HPSSWALK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

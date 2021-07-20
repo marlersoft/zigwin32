@@ -91,66 +91,66 @@ pub const TBS_COMMAND_LOCALITY_FOUR = TBS_COMMAND_LOCALITY.FOUR;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Context_Create(
-    pContextParams: *TBS_CONTEXT_PARAMS,
-    phContext: **c_void,
+    pContextParams: ?*TBS_CONTEXT_PARAMS,
+    phContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Context_Close(
-    hContext: *c_void,
+    hContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Submit_Command(
-    hContext: *c_void,
+    hContext: ?*c_void,
     Locality: TBS_COMMAND_LOCALITY,
     Priority: TBS_COMMAND_PRIORITY,
     // TODO: what to do with BytesParamIndex 4?
-    pabCommand: *u8,
+    pabCommand: ?*u8,
     cbCommand: u32,
     // TODO: what to do with BytesParamIndex 6?
-    pabResult: *u8,
-    pcbResult: *u32,
+    pabResult: ?*u8,
+    pcbResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Cancel_Commands(
-    hContext: *c_void,
+    hContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Physical_Presence_Command(
-    hContext: *c_void,
+    hContext: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pabInput: *u8,
+    pabInput: ?*u8,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pabOutput: *u8,
-    pcbOutput: *u32,
+    pabOutput: ?*u8,
+    pcbOutput: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Get_TCG_Log(
-    hContext: *c_void,
+    hContext: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     pOutputBuf: ?*u8,
-    pOutputBufLen: *u32,
+    pOutputBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_GetDeviceInfo(
     Size: u32,
     // TODO: what to do with BytesParamIndex 0?
-    Info: *c_void,
+    Info: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_Get_OwnerAuth(
-    hContext: *c_void,
+    hContext: ?*c_void,
     ownerauthType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pOutputBuf: ?*u8,
-    pOutputBufLen: *u32,
+    pOutputBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -161,14 +161,14 @@ pub extern "tbs" fn GetDeviceID(
     // TODO: what to do with BytesParamIndex 1?
     pbWindowsAIK: ?*u8,
     cbWindowsAIK: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     pfProtectedByTPM: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "tbs" fn GetDeviceIDString(
     pszWindowsAIK: ?[*:0]u16,
     cchWindowsAIK: u32,
-    pcchResult: *u32,
+    pcchResult: ?*u32,
     pfProtectedByTPM: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -181,7 +181,7 @@ pub extern "tbs" fn Tbsi_Get_TCG_Log_Ex(
     logType: u32,
     // TODO: what to do with BytesParamIndex 2?
     pbOutput: ?*u8,
-    pcbOutput: *u32,
+    pcbOutput: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

@@ -47,7 +47,7 @@ pub const AVRF_HEAP_ALLOCATION = extern struct {
     UserAllocationState: u32,
     HeapState: u32,
     HeapContext: u64,
-    BackTraceInformation: *AVRF_BACKTRACE_INFORMATION,
+    BackTraceInformation: ?*AVRF_BACKTRACE_INFORMATION,
 };
 
 pub const eHANDLE_TRACE_OPERATIONS = enum(i32) {
@@ -80,21 +80,21 @@ pub const AvrfResourceHandleTrace = eAvrfResourceTypes.HandleTrace;
 pub const AvrfResourceMax = eAvrfResourceTypes.Max;
 
 pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = fn(
-    ResourceDescription: *c_void,
-    EnumerationContext: *c_void,
-    EnumerationLevel: *u32,
+    ResourceDescription: ?*c_void,
+    EnumerationContext: ?*c_void,
+    EnumerationLevel: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = fn(
-    HeapAllocation: *AVRF_HEAP_ALLOCATION,
-    EnumerationContext: *c_void,
-    EnumerationLevel: *u32,
+    HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
+    EnumerationContext: ?*c_void,
+    EnumerationLevel: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = fn(
-    HandleOperation: *AVRF_HANDLE_OPERATION,
-    EnumerationContext: *c_void,
-    EnumerationLevel: *u32,
+    HandleOperation: ?*AVRF_HANDLE_OPERATION,
+    EnumerationContext: ?*c_void,
+    EnumerationLevel: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const VERIFIER_ENUM_RESOURCE_FLAGS = enum(u32) {
@@ -119,11 +119,11 @@ pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS.SUSPE
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
 pub extern "verifier" fn VerifierEnumerateResource(
-    Process: HANDLE,
+    Process: ?HANDLE,
     Flags: VERIFIER_ENUM_RESOURCE_FLAGS,
     ResourceType: eAvrfResourceTypes,
-    ResourceCallback: AVRF_RESOURCE_ENUMERATE_CALLBACK,
-    EnumerationContext: *c_void,
+    ResourceCallback: ?AVRF_RESOURCE_ENUMERATE_CALLBACK,
+    EnumerationContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

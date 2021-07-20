@@ -25,73 +25,73 @@ pub const HRSRC = *opaque{};
 pub const ENUMUILANG = extern struct {
     NumOfEnumUILang: u32,
     SizeOfEnumUIBuffer: u32,
-    pEnumUIBuffer: *u16,
+    pEnumUIBuffer: ?*u16,
 };
 
 pub const ENUMRESLANGPROCA = fn(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u8,
-    lpName: [*:0]const u8,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
     wLanguage: u16,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const ENUMRESLANGPROCW = fn(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u16,
-    lpName: [*:0]const u16,
+    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
     wLanguage: u16,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const ENUMRESNAMEPROCA = fn(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u8,
-    lpName: PSTR,
+    lpType: ?[*:0]const u8,
+    lpName: ?PSTR,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const ENUMRESNAMEPROCW = fn(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u16,
-    lpName: PWSTR,
+    lpType: ?[*:0]const u16,
+    lpName: ?PWSTR,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const ENUMRESTYPEPROCA = fn(
     hModule: ?HINSTANCE,
-    lpType: PSTR,
+    lpType: ?PSTR,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const ENUMRESTYPEPROCW = fn(
     hModule: ?HINSTANCE,
-    lpType: PWSTR,
+    lpType: ?PWSTR,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PGET_MODULE_HANDLE_EXA = fn(
     dwFlags: u32,
     lpModuleName: ?[*:0]const u8,
-    phModule: *HINSTANCE,
+    phModule: ?*?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PGET_MODULE_HANDLE_EXW = fn(
     dwFlags: u32,
     lpModuleName: ?[*:0]const u16,
-    phModule: *HINSTANCE,
+    phModule: ?*?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const REDIRECTION_FUNCTION_DESCRIPTOR = extern struct {
-    DllName: [*:0]const u8,
-    FunctionName: [*:0]const u8,
-    RedirectionTarget: *c_void,
+    DllName: ?[*:0]const u8,
+    FunctionName: ?[*:0]const u8,
+    RedirectionTarget: ?*c_void,
 };
 
 pub const REDIRECTION_DESCRIPTOR = extern struct {
     Version: u32,
     FunctionCount: u32,
-    Redirections: *REDIRECTION_FUNCTION_DESCRIPTOR,
+    Redirections: ?*REDIRECTION_FUNCTION_DESCRIPTOR,
 };
 
 pub const LOAD_LIBRARY_FLAGS = enum(u32) {
@@ -165,88 +165,88 @@ pub const LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = LOAD_LIBRARY_FLAGS.LOAD_LI
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LoadModule(
-    lpModuleName: [*:0]const u8,
-    lpParameterBlock: *c_void,
+    lpModuleName: ?[*:0]const u8,
+    lpParameterBlock: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn LoadPackagedLibrary(
-    lpwLibFileName: [*:0]const u16,
+    lpwLibFileName: ?[*:0]const u16,
     Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn FindResourceA(
     hModule: ?HINSTANCE,
-    lpName: [*:0]const u8,
-    lpType: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HRSRC;
+    lpName: ?[*:0]const u8,
+    lpType: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn FindResourceExA(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u8,
-    lpName: [*:0]const u8,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
     wLanguage: u16,
-) callconv(@import("std").os.windows.WINAPI) HRSRC;
+) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumResourceTypesA(
     hModule: ?HINSTANCE,
-    lpEnumFunc: ENUMRESTYPEPROCA,
+    lpEnumFunc: ?ENUMRESTYPEPROCA,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumResourceTypesW(
     hModule: ?HINSTANCE,
-    lpEnumFunc: ENUMRESTYPEPROCW,
+    lpEnumFunc: ?ENUMRESTYPEPROCW,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumResourceNamesA(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u8,
-    lpEnumFunc: ENUMRESNAMEPROCA,
+    lpType: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESNAMEPROCA,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumResourceLanguagesA(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u8,
-    lpName: [*:0]const u8,
-    lpEnumFunc: ENUMRESLANGPROCA,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESLANGPROCA,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EnumResourceLanguagesW(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u16,
-    lpName: [*:0]const u16,
-    lpEnumFunc: ENUMRESLANGPROCW,
+    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpEnumFunc: ?ENUMRESLANGPROCW,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn BeginUpdateResourceA(
-    pFileName: [*:0]const u8,
+    pFileName: ?[*:0]const u8,
     bDeleteExistingResources: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn BeginUpdateResourceW(
-    pFileName: [*:0]const u16,
+    pFileName: ?[*:0]const u16,
     bDeleteExistingResources: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn UpdateResourceA(
-    hUpdate: HANDLE,
-    lpType: [*:0]const u8,
-    lpName: [*:0]const u8,
+    hUpdate: ?HANDLE,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
     wLanguage: u16,
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*c_void,
@@ -255,9 +255,9 @@ pub extern "KERNEL32" fn UpdateResourceA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn UpdateResourceW(
-    hUpdate: HANDLE,
-    lpType: [*:0]const u16,
-    lpName: [*:0]const u16,
+    hUpdate: ?HANDLE,
+    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
     wLanguage: u16,
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*c_void,
@@ -266,13 +266,13 @@ pub extern "KERNEL32" fn UpdateResourceW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EndUpdateResourceA(
-    hUpdate: HANDLE,
+    hUpdate: ?HANDLE,
     fDiscard: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn EndUpdateResourceW(
-    hUpdate: HANDLE,
+    hUpdate: ?HANDLE,
     fDiscard: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -300,24 +300,24 @@ pub extern "KERNEL32" fn GetDllDirectoryW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DisableThreadLibraryCalls(
-    hLibModule: HINSTANCE,
+    hLibModule: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn FindResourceExW(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u16,
-    lpName: [*:0]const u16,
+    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
     wLanguage: u16,
-) callconv(@import("std").os.windows.WINAPI) HRSRC;
+) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FreeLibrary(
-    hLibModule: HINSTANCE,
+    hLibModule: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FreeLibraryAndExitThread(
-    hLibModule: HINSTANCE,
+    hLibModule: ?HINSTANCE,
     dwExitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -343,72 +343,72 @@ pub extern "KERNEL32" fn GetModuleFileNameW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetModuleHandleA(
     lpModuleName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetModuleHandleW(
     lpModuleName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetModuleHandleExA(
     dwFlags: u32,
     lpModuleName: ?[*:0]const u8,
-    phModule: *HINSTANCE,
+    phModule: ?*?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetModuleHandleExW(
     dwFlags: u32,
     lpModuleName: ?[*:0]const u16,
-    phModule: *HINSTANCE,
+    phModule: ?*?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetProcAddress(
-    hModule: HINSTANCE,
-    lpProcName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) FARPROC;
+    hModule: ?HINSTANCE,
+    lpProcName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?FARPROC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LoadLibraryExA(
-    lpLibFileName: [*:0]const u8,
-    hFile: HANDLE,
+    lpLibFileName: ?[*:0]const u8,
+    hFile: ?HANDLE,
     dwFlags: LOAD_LIBRARY_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LoadLibraryExW(
-    lpLibFileName: [*:0]const u16,
-    hFile: HANDLE,
+    lpLibFileName: ?[*:0]const u16,
+    hFile: ?HANDLE,
     dwFlags: LOAD_LIBRARY_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn LoadResource(
     hModule: ?HINSTANCE,
-    hResInfo: HRSRC,
+    hResInfo: ?HRSRC,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn LockResource(
     hResData: isize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn SizeofResource(
     hModule: ?HINSTANCE,
-    hResInfo: HRSRC,
+    hResInfo: ?HRSRC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn AddDllDirectory(
-    NewDirectory: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    NewDirectory: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn RemoveDllDirectory(
-    Cookie: *c_void,
+    Cookie: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -419,9 +419,9 @@ pub extern "KERNEL32" fn SetDefaultDllDirectories(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn EnumResourceLanguagesExA(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u8,
-    lpName: [*:0]const u8,
-    lpEnumFunc: ENUMRESLANGPROCA,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESLANGPROCA,
     lParam: isize,
     dwFlags: u32,
     LangId: u16,
@@ -430,9 +430,9 @@ pub extern "KERNEL32" fn EnumResourceLanguagesExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn EnumResourceLanguagesExW(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u16,
-    lpName: [*:0]const u16,
-    lpEnumFunc: ENUMRESLANGPROCW,
+    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpEnumFunc: ?ENUMRESLANGPROCW,
     lParam: isize,
     dwFlags: u32,
     LangId: u16,
@@ -441,8 +441,8 @@ pub extern "KERNEL32" fn EnumResourceLanguagesExW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn EnumResourceNamesExA(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u8,
-    lpEnumFunc: ENUMRESNAMEPROCA,
+    lpType: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESNAMEPROCA,
     lParam: isize,
     dwFlags: u32,
     LangId: u16,
@@ -451,8 +451,8 @@ pub extern "KERNEL32" fn EnumResourceNamesExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn EnumResourceNamesExW(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u16,
-    lpEnumFunc: ENUMRESNAMEPROCW,
+    lpType: ?[*:0]const u16,
+    lpEnumFunc: ?ENUMRESNAMEPROCW,
     lParam: isize,
     dwFlags: u32,
     LangId: u16,
@@ -461,7 +461,7 @@ pub extern "KERNEL32" fn EnumResourceNamesExW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn EnumResourceTypesExA(
     hModule: ?HINSTANCE,
-    lpEnumFunc: ENUMRESTYPEPROCA,
+    lpEnumFunc: ?ENUMRESTYPEPROCA,
     lParam: isize,
     dwFlags: u32,
     LangId: u16,
@@ -470,7 +470,7 @@ pub extern "KERNEL32" fn EnumResourceTypesExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn EnumResourceTypesExW(
     hModule: ?HINSTANCE,
-    lpEnumFunc: ENUMRESTYPEPROCW,
+    lpEnumFunc: ?ENUMRESTYPEPROCW,
     lParam: isize,
     dwFlags: u32,
     LangId: u16,
@@ -478,24 +478,24 @@ pub extern "KERNEL32" fn EnumResourceTypesExW(
 
 pub extern "KERNEL32" fn FindResourceW(
     hModule: ?HINSTANCE,
-    lpName: [*:0]const u16,
-    lpType: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRSRC;
+    lpName: ?[*:0]const u16,
+    lpType: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LoadLibraryA(
-    lpLibFileName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
+    lpLibFileName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LoadLibraryW(
-    lpLibFileName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HINSTANCE;
+    lpLibFileName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 pub extern "KERNEL32" fn EnumResourceNamesW(
     hModule: ?HINSTANCE,
-    lpType: [*:0]const u16,
-    lpEnumFunc: ENUMRESNAMEPROCW,
+    lpType: ?[*:0]const u16,
+    lpEnumFunc: ?ENUMRESNAMEPROCW,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

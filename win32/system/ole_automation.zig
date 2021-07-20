@@ -90,7 +90,7 @@ pub const DISPID_THIS = @as(i32, -613);
 // Section: Types (78)
 //--------------------------------------------------------------------------------
 pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
-    pExcepInfo: *EXCEPINFO,
+    pExcepInfo: ?*EXCEPINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const SAFEARRAYBOUND = extern struct {
@@ -100,32 +100,32 @@ pub const SAFEARRAYBOUND = extern struct {
 
 pub const _wireSAFEARR_BSTR = extern struct {
     Size: u32,
-    aBstr: **FLAGGED_WORD_BLOB,
+    aBstr: ?*?*FLAGGED_WORD_BLOB,
 };
 
 pub const _wireSAFEARR_UNKNOWN = extern struct {
     Size: u32,
-    apUnknown: **IUnknown,
+    apUnknown: ?*?*IUnknown,
 };
 
 pub const _wireSAFEARR_DISPATCH = extern struct {
     Size: u32,
-    apDispatch: **IDispatch,
+    apDispatch: ?*?*IDispatch,
 };
 
 pub const _wireSAFEARR_VARIANT = extern struct {
     Size: u32,
-    aVariant: **_wireVARIANT,
+    aVariant: ?*?*_wireVARIANT,
 };
 
 pub const _wireSAFEARR_BRECORD = extern struct {
     Size: u32,
-    aRecord: **_wireBRECORD,
+    aRecord: ?*?*_wireBRECORD,
 };
 
 pub const _wireSAFEARR_HAVEIID = extern struct {
     Size: u32,
-    apUnknown: **IUnknown,
+    apUnknown: ?*?*IUnknown,
     iid: Guid,
 };
 
@@ -184,7 +184,7 @@ pub const SAFEARRAY = extern struct {
     fFeatures: u16,
     cbElements: u32,
     cLocks: u32,
-    pvData: *c_void,
+    pvData: ?*c_void,
     rgsabound: [1]SAFEARRAYBOUND,
 };
 
@@ -207,43 +207,43 @@ pub const VARIANT = extern struct {
                 scode: i32,
                 cyVal: CY,
                 date: f64,
-                bstrVal: BSTR,
-                punkVal: *IUnknown,
-                pdispVal: *IDispatch,
-                parray: *SAFEARRAY,
-                pbVal: *u8,
-                piVal: *i16,
-                plVal: *i32,
-                pllVal: *i64,
-                pfltVal: *f32,
-                pdblVal: *f64,
-                pboolVal: *i16,
-                __OBSOLETE__VARIANT_PBOOL: *i16,
-                pscode: *i32,
-                pcyVal: *CY,
-                pdate: *f64,
-                pbstrVal: *BSTR,
-                ppunkVal: **IUnknown,
-                ppdispVal: **IDispatch,
-                pparray: **SAFEARRAY,
-                pvarVal: *VARIANT,
-                byref: *c_void,
+                bstrVal: ?BSTR,
+                punkVal: ?*IUnknown,
+                pdispVal: ?*IDispatch,
+                parray: ?*SAFEARRAY,
+                pbVal: ?*u8,
+                piVal: ?*i16,
+                plVal: ?*i32,
+                pllVal: ?*i64,
+                pfltVal: ?*f32,
+                pdblVal: ?*f64,
+                pboolVal: ?*i16,
+                __OBSOLETE__VARIANT_PBOOL: ?*i16,
+                pscode: ?*i32,
+                pcyVal: ?*CY,
+                pdate: ?*f64,
+                pbstrVal: ?*?BSTR,
+                ppunkVal: ?*?*IUnknown,
+                ppdispVal: ?*?*IDispatch,
+                pparray: ?*?*SAFEARRAY,
+                pvarVal: ?*VARIANT,
+                byref: ?*c_void,
                 cVal: CHAR,
                 uiVal: u16,
                 ulVal: u32,
                 ullVal: u64,
                 intVal: i32,
                 uintVal: u32,
-                pdecVal: *DECIMAL,
-                pcVal: PSTR,
-                puiVal: *u16,
-                pulVal: *u32,
-                pullVal: *u64,
-                pintVal: *i32,
-                puintVal: *u32,
+                pdecVal: ?*DECIMAL,
+                pcVal: ?PSTR,
+                puiVal: ?*u16,
+                pulVal: ?*u32,
+                pullVal: ?*u64,
+                pintVal: ?*i32,
+                puintVal: ?*u32,
                 Anonymous: extern struct {
-                    pvRecord: *c_void,
-                    pRecInfo: *IRecordInfo,
+                    pvRecord: ?*c_void,
+                    pRecInfo: ?*IRecordInfo,
                 },
             },
         },
@@ -254,8 +254,8 @@ pub const VARIANT = extern struct {
 pub const _wireBRECORD = extern struct {
     fFlags: u32,
     clSize: u32,
-    pRecInfo: *IRecordInfo,
-    pRecord: *u8,
+    pRecInfo: ?*IRecordInfo,
+    pRecord: ?*u8,
 };
 
 pub const _wireVARIANT = extern struct {
@@ -276,26 +276,26 @@ pub const _wireVARIANT = extern struct {
         scode: i32,
         cyVal: CY,
         date: f64,
-        bstrVal: *FLAGGED_WORD_BLOB,
-        punkVal: *IUnknown,
-        pdispVal: *IDispatch,
-        parray: **_wireSAFEARRAY,
-        brecVal: *_wireBRECORD,
-        pbVal: *u8,
-        piVal: *i16,
-        plVal: *i32,
-        pllVal: *i64,
-        pfltVal: *f32,
-        pdblVal: *f64,
-        pboolVal: *i16,
-        pscode: *i32,
-        pcyVal: *CY,
-        pdate: *f64,
-        pbstrVal: **FLAGGED_WORD_BLOB,
-        ppunkVal: **IUnknown,
-        ppdispVal: **IDispatch,
-        pparray: ***_wireSAFEARRAY,
-        pvarVal: **_wireVARIANT,
+        bstrVal: ?*FLAGGED_WORD_BLOB,
+        punkVal: ?*IUnknown,
+        pdispVal: ?*IDispatch,
+        parray: ?*?*_wireSAFEARRAY,
+        brecVal: ?*_wireBRECORD,
+        pbVal: ?*u8,
+        piVal: ?*i16,
+        plVal: ?*i32,
+        pllVal: ?*i64,
+        pfltVal: ?*f32,
+        pdblVal: ?*f64,
+        pboolVal: ?*i16,
+        pscode: ?*i32,
+        pcyVal: ?*CY,
+        pdate: ?*f64,
+        pbstrVal: ?*?*FLAGGED_WORD_BLOB,
+        ppunkVal: ?*?*IUnknown,
+        ppdispVal: ?*?*IDispatch,
+        pparray: ?*?*?*_wireSAFEARRAY,
+        pvarVal: ?*?*_wireVARIANT,
         cVal: CHAR,
         uiVal: u16,
         ulVal: u32,
@@ -303,13 +303,13 @@ pub const _wireVARIANT = extern struct {
         intVal: i32,
         uintVal: u32,
         decVal: DECIMAL,
-        pdecVal: *DECIMAL,
-        pcVal: PSTR,
-        puiVal: *u16,
-        pulVal: *u32,
-        pullVal: *u64,
-        pintVal: *i32,
-        puintVal: *u32,
+        pdecVal: ?*DECIMAL,
+        pcVal: ?PSTR,
+        puiVal: ?*u16,
+        pulVal: ?*u32,
+        pullVal: ?*u64,
+        pintVal: ?*i32,
+        puintVal: ?*u32,
     },
 };
 
@@ -336,8 +336,8 @@ pub const TKIND_MAX = TYPEKIND.MAX;
 
 pub const TYPEDESC = extern struct {
     Anonymous: extern union {
-        lptdesc: *TYPEDESC,
-        lpadesc: *ARRAYDESC,
+        lptdesc: ?*TYPEDESC,
+        lpadesc: ?*ARRAYDESC,
         hreftype: u32,
     },
     vt: u16,
@@ -355,7 +355,7 @@ pub const PARAMDESCEX = extern struct {
 };
 
 pub const PARAMDESC = extern struct {
-    pparamdescex: *PARAMDESCEX,
+    pparamdescex: ?*PARAMDESCEX,
     wParamFlags: u16,
 };
 
@@ -378,7 +378,7 @@ pub const TYPEATTR = extern struct {
     dwReserved: u32,
     memidConstructor: i32,
     memidDestructor: i32,
-    lpstrSchema: PWSTR,
+    lpstrSchema: ?PWSTR,
     cbSizeInstance: u32,
     typekind: TYPEKIND,
     cFuncs: u16,
@@ -394,8 +394,8 @@ pub const TYPEATTR = extern struct {
 };
 
 pub const DISPPARAMS = extern struct {
-    rgvarg: *VARIANT,
-    rgdispidNamedArgs: *i32,
+    rgvarg: ?*VARIANT,
+    rgdispidNamedArgs: ?*i32,
     cArgs: u32,
     cNamedArgs: u32,
 };
@@ -403,12 +403,12 @@ pub const DISPPARAMS = extern struct {
 pub const EXCEPINFO = extern struct {
     wCode: u16,
     wReserved: u16,
-    bstrSource: BSTR,
-    bstrDescription: BSTR,
-    bstrHelpFile: BSTR,
+    bstrSource: ?BSTR,
+    bstrDescription: ?BSTR,
+    bstrHelpFile: ?BSTR,
     dwHelpContext: u32,
-    pvReserved: *c_void,
-    pfnDeferredFillIn: LPEXCEPFINO_DEFERRED_FILLIN,
+    pvReserved: ?*c_void,
+    pfnDeferredFillIn: ?LPEXCEPFINO_DEFERRED_FILLIN,
     scode: i32,
 };
 
@@ -463,8 +463,8 @@ pub const INVOKE_PROPERTYPUTREF = INVOKEKIND.PROPERTYPUTREF;
 
 pub const FUNCDESC = extern struct {
     memid: i32,
-    lprgscode: *i32,
-    lprgelemdescParam: *ELEMDESC,
+    lprgscode: ?*i32,
+    lprgelemdescParam: ?*ELEMDESC,
     funckind: FUNCKIND,
     invkind: INVOKEKIND,
     @"callconv": CALLCONV,
@@ -489,10 +489,10 @@ pub const VAR_DISPATCH = VARKIND.DISPATCH;
 
 pub const VARDESC = extern struct {
     memid: i32,
-    lpstrSchema: PWSTR,
+    lpstrSchema: ?PWSTR,
     Anonymous: extern union {
         oInst: u32,
-        lpvarValue: *VARIANT,
+        lpvarValue: ?*VARIANT,
     },
     elemdescVar: ELEMDESC,
     wVarFlags: u16,
@@ -591,8 +591,8 @@ pub const VARFLAG_FREPLACEABLE = VARFLAGS.REPLACEABLE;
 pub const VARFLAG_FIMMEDIATEBIND = VARFLAGS.IMMEDIATEBIND;
 
 pub const CLEANLOCALSTORAGE = extern struct {
-    pInterface: *IUnknown,
-    pStorage: *c_void,
+    pInterface: ?*IUnknown,
+    pStorage: ?*c_void,
     flags: u32,
 };
 
@@ -603,7 +603,7 @@ pub const CUSTDATAITEM = extern struct {
 
 pub const CUSTDATA = extern struct {
     cCustData: u32,
-    prgCustData: *CUSTDATAITEM,
+    prgCustData: ?*CUSTDATAITEM,
 };
 
 const IID_ICreateTypeInfo_Value = @import("../zig.zig").Guid.initString("00020405-0000-0000-c000-000000000046");
@@ -613,7 +613,7 @@ pub const ICreateTypeInfo = extern struct {
         base: IUnknown.VTable,
         SetGuid: fn(
             self: *const ICreateTypeInfo,
-            guid: *const Guid,
+            guid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTypeFlags: fn(
             self: *const ICreateTypeInfo,
@@ -621,7 +621,7 @@ pub const ICreateTypeInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDocString: fn(
             self: *const ICreateTypeInfo,
-            pStrDoc: PWSTR,
+            pStrDoc: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpContext: fn(
             self: *const ICreateTypeInfo,
@@ -634,13 +634,13 @@ pub const ICreateTypeInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRefTypeInfo: fn(
             self: *const ICreateTypeInfo,
-            pTInfo: *ITypeInfo,
-            phRefType: *u32,
+            pTInfo: ?*ITypeInfo,
+            phRefType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddFuncDesc: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            pFuncDesc: *FUNCDESC,
+            pFuncDesc: ?*FUNCDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddImplType: fn(
             self: *const ICreateTypeInfo,
@@ -658,43 +658,43 @@ pub const ICreateTypeInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSchema: fn(
             self: *const ICreateTypeInfo,
-            pStrSchema: PWSTR,
+            pStrSchema: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddVarDesc: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            pVarDesc: *VARDESC,
+            pVarDesc: ?*VARDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFuncAndParamNames: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            rgszNames: [*]PWSTR,
+            rgszNames: [*]?PWSTR,
             cNames: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVarName: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szName: PWSTR,
+            szName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTypeDescAlias: fn(
             self: *const ICreateTypeInfo,
-            pTDescAlias: *TYPEDESC,
+            pTDescAlias: ?*TYPEDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DefineFuncAsDllEntry: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szDllName: PWSTR,
-            szProcName: PWSTR,
+            szDllName: ?PWSTR,
+            szProcName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFuncDocString: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szDocString: PWSTR,
+            szDocString: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVarDocString: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szDocString: PWSTR,
+            szDocString: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFuncHelpContext: fn(
             self: *const ICreateTypeInfo,
@@ -709,11 +709,11 @@ pub const ICreateTypeInfo = extern struct {
         SetMops: fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            bstrMops: BSTR,
+            bstrMops: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTypeIdldesc: fn(
             self: *const ICreateTypeInfo,
-            pIdlDesc: *IDLDESC,
+            pIdlDesc: ?*IDLDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LayOut: fn(
             self: *const ICreateTypeInfo,
@@ -723,7 +723,7 @@ pub const ICreateTypeInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetGuid(self: *const T, guid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetGuid(self: *const T, guid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetGuid(@ptrCast(*const ICreateTypeInfo, self), guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -731,7 +731,7 @@ pub const ICreateTypeInfo = extern struct {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetTypeFlags(@ptrCast(*const ICreateTypeInfo, self), uTypeFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetDocString(self: *const T, pStrDoc: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetDocString(self: *const T, pStrDoc: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetDocString(@ptrCast(*const ICreateTypeInfo, self), pStrDoc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -743,11 +743,11 @@ pub const ICreateTypeInfo = extern struct {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetVersion(@ptrCast(*const ICreateTypeInfo, self), wMajorVerNum, wMinorVerNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_AddRefTypeInfo(self: *const T, pTInfo: *ITypeInfo, phRefType: *u32) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_AddRefTypeInfo(self: *const T, pTInfo: ?*ITypeInfo, phRefType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).AddRefTypeInfo(@ptrCast(*const ICreateTypeInfo, self), pTInfo, phRefType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_AddFuncDesc(self: *const T, index: u32, pFuncDesc: *FUNCDESC) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_AddFuncDesc(self: *const T, index: u32, pFuncDesc: ?*FUNCDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).AddFuncDesc(@ptrCast(*const ICreateTypeInfo, self), index, pFuncDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -763,35 +763,35 @@ pub const ICreateTypeInfo = extern struct {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetAlignment(@ptrCast(*const ICreateTypeInfo, self), cbAlignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetSchema(self: *const T, pStrSchema: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetSchema(self: *const T, pStrSchema: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetSchema(@ptrCast(*const ICreateTypeInfo, self), pStrSchema);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_AddVarDesc(self: *const T, index: u32, pVarDesc: *VARDESC) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_AddVarDesc(self: *const T, index: u32, pVarDesc: ?*VARDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).AddVarDesc(@ptrCast(*const ICreateTypeInfo, self), index, pVarDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetFuncAndParamNames(self: *const T, index: u32, rgszNames: [*]PWSTR, cNames: u32) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetFuncAndParamNames(self: *const T, index: u32, rgszNames: [*]?PWSTR, cNames: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetFuncAndParamNames(@ptrCast(*const ICreateTypeInfo, self), index, rgszNames, cNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetVarName(self: *const T, index: u32, szName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetVarName(self: *const T, index: u32, szName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetVarName(@ptrCast(*const ICreateTypeInfo, self), index, szName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetTypeDescAlias(self: *const T, pTDescAlias: *TYPEDESC) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetTypeDescAlias(self: *const T, pTDescAlias: ?*TYPEDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetTypeDescAlias(@ptrCast(*const ICreateTypeInfo, self), pTDescAlias);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_DefineFuncAsDllEntry(self: *const T, index: u32, szDllName: PWSTR, szProcName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_DefineFuncAsDllEntry(self: *const T, index: u32, szDllName: ?PWSTR, szProcName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).DefineFuncAsDllEntry(@ptrCast(*const ICreateTypeInfo, self), index, szDllName, szProcName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetFuncDocString(self: *const T, index: u32, szDocString: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetFuncDocString(self: *const T, index: u32, szDocString: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetFuncDocString(@ptrCast(*const ICreateTypeInfo, self), index, szDocString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetVarDocString(self: *const T, index: u32, szDocString: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetVarDocString(self: *const T, index: u32, szDocString: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetVarDocString(@ptrCast(*const ICreateTypeInfo, self), index, szDocString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -803,11 +803,11 @@ pub const ICreateTypeInfo = extern struct {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetVarHelpContext(@ptrCast(*const ICreateTypeInfo, self), index, dwHelpContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetMops(self: *const T, index: u32, bstrMops: BSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetMops(self: *const T, index: u32, bstrMops: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetMops(@ptrCast(*const ICreateTypeInfo, self), index, bstrMops);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo_SetTypeIdldesc(self: *const T, pIdlDesc: *IDLDESC) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo_SetTypeIdldesc(self: *const T, pIdlDesc: ?*IDLDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo.VTable, self.vtable).SetTypeIdldesc(@ptrCast(*const ICreateTypeInfo, self), pIdlDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -846,33 +846,33 @@ pub const ICreateTypeInfo2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCustData: fn(
             self: *const ICreateTypeInfo2,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFuncCustData: fn(
             self: *const ICreateTypeInfo2,
             index: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetParamCustData: fn(
             self: *const ICreateTypeInfo2,
             indexFunc: u32,
             indexParam: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVarCustData: fn(
             self: *const ICreateTypeInfo2,
             index: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetImplTypeCustData: fn(
             self: *const ICreateTypeInfo2,
             index: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpStringContext: fn(
             self: *const ICreateTypeInfo2,
@@ -893,7 +893,7 @@ pub const ICreateTypeInfo2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetName: fn(
             self: *const ICreateTypeInfo2,
-            szName: PWSTR,
+            szName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -920,23 +920,23 @@ pub const ICreateTypeInfo2 = extern struct {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).DeleteImplType(@ptrCast(*const ICreateTypeInfo2, self), index);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetCustData(self: *const T, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo2_SetCustData(self: *const T, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).SetCustData(@ptrCast(*const ICreateTypeInfo2, self), guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetFuncCustData(self: *const T, index: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo2_SetFuncCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).SetFuncCustData(@ptrCast(*const ICreateTypeInfo2, self), index, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetParamCustData(self: *const T, indexFunc: u32, indexParam: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo2_SetParamCustData(self: *const T, indexFunc: u32, indexParam: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).SetParamCustData(@ptrCast(*const ICreateTypeInfo2, self), indexFunc, indexParam, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetVarCustData(self: *const T, index: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo2_SetVarCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).SetVarCustData(@ptrCast(*const ICreateTypeInfo2, self), index, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetImplTypeCustData(self: *const T, index: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo2_SetImplTypeCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).SetImplTypeCustData(@ptrCast(*const ICreateTypeInfo2, self), index, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -956,7 +956,7 @@ pub const ICreateTypeInfo2 = extern struct {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).Invalidate(@ptrCast(*const ICreateTypeInfo2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeInfo2_SetName(self: *const T, szName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeInfo2_SetName(self: *const T, szName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeInfo2.VTable, self.vtable).SetName(@ptrCast(*const ICreateTypeInfo2, self), szName);
         }
     };}
@@ -970,13 +970,13 @@ pub const ICreateTypeLib = extern struct {
         base: IUnknown.VTable,
         CreateTypeInfo: fn(
             self: *const ICreateTypeLib,
-            szName: PWSTR,
+            szName: ?PWSTR,
             tkind: TYPEKIND,
-            ppCTInfo: **ICreateTypeInfo,
+            ppCTInfo: ?*?*ICreateTypeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetName: fn(
             self: *const ICreateTypeLib,
-            szName: PWSTR,
+            szName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVersion: fn(
             self: *const ICreateTypeLib,
@@ -985,15 +985,15 @@ pub const ICreateTypeLib = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetGuid: fn(
             self: *const ICreateTypeLib,
-            guid: *const Guid,
+            guid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDocString: fn(
             self: *const ICreateTypeLib,
-            szDoc: PWSTR,
+            szDoc: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpFileName: fn(
             self: *const ICreateTypeLib,
-            szHelpFileName: PWSTR,
+            szHelpFileName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpContext: fn(
             self: *const ICreateTypeLib,
@@ -1015,11 +1015,11 @@ pub const ICreateTypeLib = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_CreateTypeInfo(self: *const T, szName: PWSTR, tkind: TYPEKIND, ppCTInfo: **ICreateTypeInfo) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib_CreateTypeInfo(self: *const T, szName: ?PWSTR, tkind: TYPEKIND, ppCTInfo: ?*?*ICreateTypeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib.VTable, self.vtable).CreateTypeInfo(@ptrCast(*const ICreateTypeLib, self), szName, tkind, ppCTInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetName(self: *const T, szName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib_SetName(self: *const T, szName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib.VTable, self.vtable).SetName(@ptrCast(*const ICreateTypeLib, self), szName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1027,15 +1027,15 @@ pub const ICreateTypeLib = extern struct {
             return @ptrCast(*const ICreateTypeLib.VTable, self.vtable).SetVersion(@ptrCast(*const ICreateTypeLib, self), wMajorVerNum, wMinorVerNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetGuid(self: *const T, guid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib_SetGuid(self: *const T, guid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib.VTable, self.vtable).SetGuid(@ptrCast(*const ICreateTypeLib, self), guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetDocString(self: *const T, szDoc: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib_SetDocString(self: *const T, szDoc: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib.VTable, self.vtable).SetDocString(@ptrCast(*const ICreateTypeLib, self), szDoc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib_SetHelpFileName(self: *const T, szHelpFileName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib_SetHelpFileName(self: *const T, szHelpFileName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib.VTable, self.vtable).SetHelpFileName(@ptrCast(*const ICreateTypeLib, self), szHelpFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1065,12 +1065,12 @@ pub const ICreateTypeLib2 = extern struct {
         base: ICreateTypeLib.VTable,
         DeleteTypeInfo: fn(
             self: *const ICreateTypeLib2,
-            szName: PWSTR,
+            szName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCustData: fn(
             self: *const ICreateTypeLib2,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpStringContext: fn(
             self: *const ICreateTypeLib2,
@@ -1078,18 +1078,18 @@ pub const ICreateTypeLib2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpStringDll: fn(
             self: *const ICreateTypeLib2,
-            szFileName: PWSTR,
+            szFileName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ICreateTypeLib.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib2_DeleteTypeInfo(self: *const T, szName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib2_DeleteTypeInfo(self: *const T, szName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib2.VTable, self.vtable).DeleteTypeInfo(@ptrCast(*const ICreateTypeLib2, self), szName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib2_SetCustData(self: *const T, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib2_SetCustData(self: *const T, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib2.VTable, self.vtable).SetCustData(@ptrCast(*const ICreateTypeLib2, self), guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1097,7 +1097,7 @@ pub const ICreateTypeLib2 = extern struct {
             return @ptrCast(*const ICreateTypeLib2.VTable, self.vtable).SetHelpStringContext(@ptrCast(*const ICreateTypeLib2, self), dwHelpStringContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateTypeLib2_SetHelpStringDll(self: *const T, szFileName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateTypeLib2_SetHelpStringDll(self: *const T, szFileName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateTypeLib2.VTable, self.vtable).SetHelpStringDll(@ptrCast(*const ICreateTypeLib2, self), szFileName);
         }
     };}
@@ -1111,18 +1111,18 @@ pub const IDispatch = extern struct {
         base: IUnknown.VTable,
         GetTypeInfoCount: fn(
             self: *const IDispatch,
-            pctinfo: *u32,
+            pctinfo: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeInfo: fn(
             self: *const IDispatch,
             iTInfo: u32,
             lcid: u32,
-            ppTInfo: **ITypeInfo,
+            ppTInfo: ?*?*ITypeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIDsOfNames: fn(
             self: *const IDispatch,
-            riid: *const Guid,
-            rgszNames: [*]PWSTR,
+            riid: ?*const Guid,
+            rgszNames: [*]?PWSTR,
             cNames: u32,
             lcid: u32,
             rgDispId: [*]i32,
@@ -1130,10 +1130,10 @@ pub const IDispatch = extern struct {
         Invoke: fn(
             self: *const IDispatch,
             dispIdMember: i32,
-            riid: *const Guid,
+            riid: ?*const Guid,
             lcid: u32,
             wFlags: u16,
-            pDispParams: *DISPPARAMS,
+            pDispParams: ?*DISPPARAMS,
             pVarResult: ?*VARIANT,
             pExcepInfo: ?*EXCEPINFO,
             puArgErr: ?*u32,
@@ -1143,19 +1143,19 @@ pub const IDispatch = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatch_GetTypeInfoCount(self: *const T, pctinfo: *u32) callconv(.Inline) HRESULT {
+        pub fn IDispatch_GetTypeInfoCount(self: *const T, pctinfo: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatch.VTable, self.vtable).GetTypeInfoCount(@ptrCast(*const IDispatch, self), pctinfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatch_GetTypeInfo(self: *const T, iTInfo: u32, lcid: u32, ppTInfo: **ITypeInfo) callconv(.Inline) HRESULT {
+        pub fn IDispatch_GetTypeInfo(self: *const T, iTInfo: u32, lcid: u32, ppTInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatch.VTable, self.vtable).GetTypeInfo(@ptrCast(*const IDispatch, self), iTInfo, lcid, ppTInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatch_GetIDsOfNames(self: *const T, riid: *const Guid, rgszNames: [*]PWSTR, cNames: u32, lcid: u32, rgDispId: [*]i32) callconv(.Inline) HRESULT {
+        pub fn IDispatch_GetIDsOfNames(self: *const T, riid: ?*const Guid, rgszNames: [*]?PWSTR, cNames: u32, lcid: u32, rgDispId: [*]i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatch.VTable, self.vtable).GetIDsOfNames(@ptrCast(*const IDispatch, self), riid, rgszNames, cNames, lcid, rgDispId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatch_Invoke(self: *const T, dispIdMember: i32, riid: *const Guid, lcid: u32, wFlags: u16, pDispParams: *DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDispatch_Invoke(self: *const T, dispIdMember: i32, riid: ?*const Guid, lcid: u32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatch.VTable, self.vtable).Invoke(@ptrCast(*const IDispatch, self), dispIdMember, riid, lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
         }
     };}
@@ -1171,7 +1171,7 @@ pub const IEnumVARIANT = extern struct {
             self: *const IEnumVARIANT,
             celt: u32,
             rgVar: [*]VARIANT,
-            pCeltFetched: *u32,
+            pCeltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumVARIANT,
@@ -1182,14 +1182,14 @@ pub const IEnumVARIANT = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumVARIANT,
-            ppEnum: **IEnumVARIANT,
+            ppEnum: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumVARIANT_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pCeltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumVARIANT_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumVARIANT.VTable, self.vtable).Next(@ptrCast(*const IEnumVARIANT, self), celt, rgVar, pCeltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1201,7 +1201,7 @@ pub const IEnumVARIANT = extern struct {
             return @ptrCast(*const IEnumVARIANT.VTable, self.vtable).Reset(@ptrCast(*const IEnumVARIANT, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumVARIANT_Clone(self: *const T, ppEnum: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IEnumVARIANT_Clone(self: *const T, ppEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumVARIANT.VTable, self.vtable).Clone(@ptrCast(*const IEnumVARIANT, self), ppEnum);
         }
     };}
@@ -1224,9 +1224,9 @@ pub const DESCKIND_IMPLICITAPPOBJ = DESCKIND.IMPLICITAPPOBJ;
 pub const DESCKIND_MAX = DESCKIND.MAX;
 
 pub const BINDPTR = extern union {
-    lpfuncdesc: *FUNCDESC,
-    lpvardesc: *VARDESC,
-    lptcomp: *ITypeComp,
+    lpfuncdesc: ?*FUNCDESC,
+    lpvardesc: ?*VARDESC,
+    lptcomp: ?*ITypeComp,
 };
 
 const IID_ITypeComp_Value = @import("../zig.zig").Guid.initString("00020403-0000-0000-c000-000000000046");
@@ -1236,30 +1236,30 @@ pub const ITypeComp = extern struct {
         base: IUnknown.VTable,
         Bind: fn(
             self: *const ITypeComp,
-            szName: PWSTR,
+            szName: ?PWSTR,
             lHashVal: u32,
             wFlags: u16,
-            ppTInfo: **ITypeInfo,
-            pDescKind: *DESCKIND,
-            pBindPtr: *BINDPTR,
+            ppTInfo: ?*?*ITypeInfo,
+            pDescKind: ?*DESCKIND,
+            pBindPtr: ?*BINDPTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BindType: fn(
             self: *const ITypeComp,
-            szName: PWSTR,
+            szName: ?PWSTR,
             lHashVal: u32,
-            ppTInfo: **ITypeInfo,
-            ppTComp: **ITypeComp,
+            ppTInfo: ?*?*ITypeInfo,
+            ppTComp: ?*?*ITypeComp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeComp_Bind(self: *const T, szName: PWSTR, lHashVal: u32, wFlags: u16, ppTInfo: **ITypeInfo, pDescKind: *DESCKIND, pBindPtr: *BINDPTR) callconv(.Inline) HRESULT {
+        pub fn ITypeComp_Bind(self: *const T, szName: ?PWSTR, lHashVal: u32, wFlags: u16, ppTInfo: ?*?*ITypeInfo, pDescKind: ?*DESCKIND, pBindPtr: ?*BINDPTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeComp.VTable, self.vtable).Bind(@ptrCast(*const ITypeComp, self), szName, lHashVal, wFlags, ppTInfo, pDescKind, pBindPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeComp_BindType(self: *const T, szName: PWSTR, lHashVal: u32, ppTInfo: **ITypeInfo, ppTComp: **ITypeComp) callconv(.Inline) HRESULT {
+        pub fn ITypeComp_BindType(self: *const T, szName: ?PWSTR, lHashVal: u32, ppTInfo: ?*?*ITypeInfo, ppTComp: ?*?*ITypeComp) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeComp.VTable, self.vtable).BindType(@ptrCast(*const ITypeComp, self), szName, lHashVal, ppTInfo, ppTComp);
         }
     };}
@@ -1273,188 +1273,188 @@ pub const ITypeInfo = extern struct {
         base: IUnknown.VTable,
         GetTypeAttr: fn(
             self: *const ITypeInfo,
-            ppTypeAttr: **TYPEATTR,
+            ppTypeAttr: ?*?*TYPEATTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeComp: fn(
             self: *const ITypeInfo,
-            ppTComp: **ITypeComp,
+            ppTComp: ?*?*ITypeComp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFuncDesc: fn(
             self: *const ITypeInfo,
             index: u32,
-            ppFuncDesc: **FUNCDESC,
+            ppFuncDesc: ?*?*FUNCDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVarDesc: fn(
             self: *const ITypeInfo,
             index: u32,
-            ppVarDesc: **VARDESC,
+            ppVarDesc: ?*?*VARDESC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNames: fn(
             self: *const ITypeInfo,
             memid: i32,
-            rgBstrNames: [*]BSTR,
+            rgBstrNames: [*]?BSTR,
             cMaxNames: u32,
-            pcNames: *u32,
+            pcNames: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRefTypeOfImplType: fn(
             self: *const ITypeInfo,
             index: u32,
-            pRefType: *u32,
+            pRefType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImplTypeFlags: fn(
             self: *const ITypeInfo,
             index: u32,
-            pImplTypeFlags: *i32,
+            pImplTypeFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIDsOfNames: fn(
             self: *const ITypeInfo,
-            rgszNames: [*]PWSTR,
+            rgszNames: [*]?PWSTR,
             cNames: u32,
             pMemId: [*]i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Invoke: fn(
             self: *const ITypeInfo,
-            pvInstance: *c_void,
+            pvInstance: ?*c_void,
             memid: i32,
             wFlags: u16,
-            pDispParams: *DISPPARAMS,
-            pVarResult: *VARIANT,
-            pExcepInfo: *EXCEPINFO,
-            puArgErr: *u32,
+            pDispParams: ?*DISPPARAMS,
+            pVarResult: ?*VARIANT,
+            pExcepInfo: ?*EXCEPINFO,
+            puArgErr: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDocumentation: fn(
             self: *const ITypeInfo,
             memid: i32,
-            pBstrName: ?*BSTR,
-            pBstrDocString: ?*BSTR,
-            pdwHelpContext: *u32,
-            pBstrHelpFile: ?*BSTR,
+            pBstrName: ?*?BSTR,
+            pBstrDocString: ?*?BSTR,
+            pdwHelpContext: ?*u32,
+            pBstrHelpFile: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDllEntry: fn(
             self: *const ITypeInfo,
             memid: i32,
             invKind: INVOKEKIND,
-            pBstrDllName: ?*BSTR,
-            pBstrName: ?*BSTR,
-            pwOrdinal: *u16,
+            pBstrDllName: ?*?BSTR,
+            pBstrName: ?*?BSTR,
+            pwOrdinal: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRefTypeInfo: fn(
             self: *const ITypeInfo,
             hRefType: u32,
-            ppTInfo: **ITypeInfo,
+            ppTInfo: ?*?*ITypeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddressOfMember: fn(
             self: *const ITypeInfo,
             memid: i32,
             invKind: INVOKEKIND,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInstance: fn(
             self: *const ITypeInfo,
-            pUnkOuter: *IUnknown,
-            riid: *const Guid,
-            ppvObj: **c_void,
+            pUnkOuter: ?*IUnknown,
+            riid: ?*const Guid,
+            ppvObj: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMops: fn(
             self: *const ITypeInfo,
             memid: i32,
-            pBstrMops: *BSTR,
+            pBstrMops: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContainingTypeLib: fn(
             self: *const ITypeInfo,
-            ppTLib: **ITypeLib,
-            pIndex: *u32,
+            ppTLib: ?*?*ITypeLib,
+            pIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseTypeAttr: fn(
             self: *const ITypeInfo,
-            pTypeAttr: *TYPEATTR,
+            pTypeAttr: ?*TYPEATTR,
         ) callconv(@import("std").os.windows.WINAPI) void,
         ReleaseFuncDesc: fn(
             self: *const ITypeInfo,
-            pFuncDesc: *FUNCDESC,
+            pFuncDesc: ?*FUNCDESC,
         ) callconv(@import("std").os.windows.WINAPI) void,
         ReleaseVarDesc: fn(
             self: *const ITypeInfo,
-            pVarDesc: *VARDESC,
+            pVarDesc: ?*VARDESC,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetTypeAttr(self: *const T, ppTypeAttr: **TYPEATTR) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetTypeAttr(self: *const T, ppTypeAttr: ?*?*TYPEATTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetTypeAttr(@ptrCast(*const ITypeInfo, self), ppTypeAttr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetTypeComp(self: *const T, ppTComp: **ITypeComp) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetTypeComp(self: *const T, ppTComp: ?*?*ITypeComp) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetTypeComp(@ptrCast(*const ITypeInfo, self), ppTComp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetFuncDesc(self: *const T, index: u32, ppFuncDesc: **FUNCDESC) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetFuncDesc(self: *const T, index: u32, ppFuncDesc: ?*?*FUNCDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetFuncDesc(@ptrCast(*const ITypeInfo, self), index, ppFuncDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetVarDesc(self: *const T, index: u32, ppVarDesc: **VARDESC) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetVarDesc(self: *const T, index: u32, ppVarDesc: ?*?*VARDESC) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetVarDesc(@ptrCast(*const ITypeInfo, self), index, ppVarDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetNames(self: *const T, memid: i32, rgBstrNames: [*]BSTR, cMaxNames: u32, pcNames: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetNames(self: *const T, memid: i32, rgBstrNames: [*]?BSTR, cMaxNames: u32, pcNames: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetNames(@ptrCast(*const ITypeInfo, self), memid, rgBstrNames, cMaxNames, pcNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetRefTypeOfImplType(self: *const T, index: u32, pRefType: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetRefTypeOfImplType(self: *const T, index: u32, pRefType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetRefTypeOfImplType(@ptrCast(*const ITypeInfo, self), index, pRefType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetImplTypeFlags(self: *const T, index: u32, pImplTypeFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetImplTypeFlags(self: *const T, index: u32, pImplTypeFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetImplTypeFlags(@ptrCast(*const ITypeInfo, self), index, pImplTypeFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetIDsOfNames(self: *const T, rgszNames: [*]PWSTR, cNames: u32, pMemId: [*]i32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetIDsOfNames(self: *const T, rgszNames: [*]?PWSTR, cNames: u32, pMemId: [*]i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetIDsOfNames(@ptrCast(*const ITypeInfo, self), rgszNames, cNames, pMemId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_Invoke(self: *const T, pvInstance: *c_void, memid: i32, wFlags: u16, pDispParams: *DISPPARAMS, pVarResult: *VARIANT, pExcepInfo: *EXCEPINFO, puArgErr: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_Invoke(self: *const T, pvInstance: ?*c_void, memid: i32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).Invoke(@ptrCast(*const ITypeInfo, self), pvInstance, memid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetDocumentation(self: *const T, memid: i32, pBstrName: ?*BSTR, pBstrDocString: ?*BSTR, pdwHelpContext: *u32, pBstrHelpFile: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetDocumentation(self: *const T, memid: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetDocumentation(@ptrCast(*const ITypeInfo, self), memid, pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetDllEntry(self: *const T, memid: i32, invKind: INVOKEKIND, pBstrDllName: ?*BSTR, pBstrName: ?*BSTR, pwOrdinal: *u16) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetDllEntry(self: *const T, memid: i32, invKind: INVOKEKIND, pBstrDllName: ?*?BSTR, pBstrName: ?*?BSTR, pwOrdinal: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetDllEntry(@ptrCast(*const ITypeInfo, self), memid, invKind, pBstrDllName, pBstrName, pwOrdinal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetRefTypeInfo(self: *const T, hRefType: u32, ppTInfo: **ITypeInfo) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetRefTypeInfo(self: *const T, hRefType: u32, ppTInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetRefTypeInfo(@ptrCast(*const ITypeInfo, self), hRefType, ppTInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_AddressOfMember(self: *const T, memid: i32, invKind: INVOKEKIND, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_AddressOfMember(self: *const T, memid: i32, invKind: INVOKEKIND, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).AddressOfMember(@ptrCast(*const ITypeInfo, self), memid, invKind, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_CreateInstance(self: *const T, pUnkOuter: *IUnknown, riid: *const Guid, ppvObj: **c_void) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_CreateInstance(self: *const T, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObj: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const ITypeInfo, self), pUnkOuter, riid, ppvObj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetMops(self: *const T, memid: i32, pBstrMops: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetMops(self: *const T, memid: i32, pBstrMops: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetMops(@ptrCast(*const ITypeInfo, self), memid, pBstrMops);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_GetContainingTypeLib(self: *const T, ppTLib: **ITypeLib, pIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo_GetContainingTypeLib(self: *const T, ppTLib: ?*?*ITypeLib, pIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).GetContainingTypeLib(@ptrCast(*const ITypeInfo, self), ppTLib, pIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_ReleaseTypeAttr(self: *const T, pTypeAttr: *TYPEATTR) callconv(.Inline) void {
+        pub fn ITypeInfo_ReleaseTypeAttr(self: *const T, pTypeAttr: ?*TYPEATTR) callconv(.Inline) void {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).ReleaseTypeAttr(@ptrCast(*const ITypeInfo, self), pTypeAttr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_ReleaseFuncDesc(self: *const T, pFuncDesc: *FUNCDESC) callconv(.Inline) void {
+        pub fn ITypeInfo_ReleaseFuncDesc(self: *const T, pFuncDesc: ?*FUNCDESC) callconv(.Inline) void {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).ReleaseFuncDesc(@ptrCast(*const ITypeInfo, self), pFuncDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo_ReleaseVarDesc(self: *const T, pVarDesc: *VARDESC) callconv(.Inline) void {
+        pub fn ITypeInfo_ReleaseVarDesc(self: *const T, pVarDesc: ?*VARDESC) callconv(.Inline) void {
             return @ptrCast(*const ITypeInfo.VTable, self.vtable).ReleaseVarDesc(@ptrCast(*const ITypeInfo, self), pVarDesc);
         }
     };}
@@ -1468,148 +1468,148 @@ pub const ITypeInfo2 = extern struct {
         base: ITypeInfo.VTable,
         GetTypeKind: fn(
             self: *const ITypeInfo2,
-            pTypeKind: *TYPEKIND,
+            pTypeKind: ?*TYPEKIND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeFlags: fn(
             self: *const ITypeInfo2,
-            pTypeFlags: *u32,
+            pTypeFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFuncIndexOfMemId: fn(
             self: *const ITypeInfo2,
             memid: i32,
             invKind: INVOKEKIND,
-            pFuncIndex: *u32,
+            pFuncIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVarIndexOfMemId: fn(
             self: *const ITypeInfo2,
             memid: i32,
-            pVarIndex: *u32,
+            pVarIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCustData: fn(
             self: *const ITypeInfo2,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFuncCustData: fn(
             self: *const ITypeInfo2,
             index: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParamCustData: fn(
             self: *const ITypeInfo2,
             indexFunc: u32,
             indexParam: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVarCustData: fn(
             self: *const ITypeInfo2,
             index: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImplTypeCustData: fn(
             self: *const ITypeInfo2,
             index: u32,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDocumentation2: fn(
             self: *const ITypeInfo2,
             memid: i32,
             lcid: u32,
-            pbstrHelpString: ?*BSTR,
-            pdwHelpStringContext: *u32,
-            pbstrHelpStringDll: ?*BSTR,
+            pbstrHelpString: ?*?BSTR,
+            pdwHelpStringContext: ?*u32,
+            pbstrHelpStringDll: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllCustData: fn(
             self: *const ITypeInfo2,
-            pCustData: *CUSTDATA,
+            pCustData: ?*CUSTDATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllFuncCustData: fn(
             self: *const ITypeInfo2,
             index: u32,
-            pCustData: *CUSTDATA,
+            pCustData: ?*CUSTDATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllParamCustData: fn(
             self: *const ITypeInfo2,
             indexFunc: u32,
             indexParam: u32,
-            pCustData: *CUSTDATA,
+            pCustData: ?*CUSTDATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllVarCustData: fn(
             self: *const ITypeInfo2,
             index: u32,
-            pCustData: *CUSTDATA,
+            pCustData: ?*CUSTDATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllImplTypeCustData: fn(
             self: *const ITypeInfo2,
             index: u32,
-            pCustData: *CUSTDATA,
+            pCustData: ?*CUSTDATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITypeInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetTypeKind(self: *const T, pTypeKind: *TYPEKIND) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetTypeKind(self: *const T, pTypeKind: ?*TYPEKIND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetTypeKind(@ptrCast(*const ITypeInfo2, self), pTypeKind);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetTypeFlags(self: *const T, pTypeFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetTypeFlags(self: *const T, pTypeFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetTypeFlags(@ptrCast(*const ITypeInfo2, self), pTypeFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetFuncIndexOfMemId(self: *const T, memid: i32, invKind: INVOKEKIND, pFuncIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetFuncIndexOfMemId(self: *const T, memid: i32, invKind: INVOKEKIND, pFuncIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetFuncIndexOfMemId(@ptrCast(*const ITypeInfo2, self), memid, invKind, pFuncIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetVarIndexOfMemId(self: *const T, memid: i32, pVarIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetVarIndexOfMemId(self: *const T, memid: i32, pVarIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetVarIndexOfMemId(@ptrCast(*const ITypeInfo2, self), memid, pVarIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetCustData(self: *const T, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetCustData(self: *const T, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetCustData(@ptrCast(*const ITypeInfo2, self), guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetFuncCustData(self: *const T, index: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetFuncCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetFuncCustData(@ptrCast(*const ITypeInfo2, self), index, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetParamCustData(self: *const T, indexFunc: u32, indexParam: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetParamCustData(self: *const T, indexFunc: u32, indexParam: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetParamCustData(@ptrCast(*const ITypeInfo2, self), indexFunc, indexParam, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetVarCustData(self: *const T, index: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetVarCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetVarCustData(@ptrCast(*const ITypeInfo2, self), index, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetImplTypeCustData(self: *const T, index: u32, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetImplTypeCustData(self: *const T, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetImplTypeCustData(@ptrCast(*const ITypeInfo2, self), index, guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetDocumentation2(self: *const T, memid: i32, lcid: u32, pbstrHelpString: ?*BSTR, pdwHelpStringContext: *u32, pbstrHelpStringDll: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetDocumentation2(self: *const T, memid: i32, lcid: u32, pbstrHelpString: ?*?BSTR, pdwHelpStringContext: ?*u32, pbstrHelpStringDll: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetDocumentation2(@ptrCast(*const ITypeInfo2, self), memid, lcid, pbstrHelpString, pdwHelpStringContext, pbstrHelpStringDll);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetAllCustData(self: *const T, pCustData: *CUSTDATA) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetAllCustData(self: *const T, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetAllCustData(@ptrCast(*const ITypeInfo2, self), pCustData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetAllFuncCustData(self: *const T, index: u32, pCustData: *CUSTDATA) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetAllFuncCustData(self: *const T, index: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetAllFuncCustData(@ptrCast(*const ITypeInfo2, self), index, pCustData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetAllParamCustData(self: *const T, indexFunc: u32, indexParam: u32, pCustData: *CUSTDATA) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetAllParamCustData(self: *const T, indexFunc: u32, indexParam: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetAllParamCustData(@ptrCast(*const ITypeInfo2, self), indexFunc, indexParam, pCustData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetAllVarCustData(self: *const T, index: u32, pCustData: *CUSTDATA) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetAllVarCustData(self: *const T, index: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetAllVarCustData(@ptrCast(*const ITypeInfo2, self), index, pCustData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeInfo2_GetAllImplTypeCustData(self: *const T, index: u32, pCustData: *CUSTDATA) callconv(.Inline) HRESULT {
+        pub fn ITypeInfo2_GetAllImplTypeCustData(self: *const T, index: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeInfo2.VTable, self.vtable).GetAllImplTypeCustData(@ptrCast(*const ITypeInfo2, self), index, pCustData);
         }
     };}
@@ -1658,51 +1658,51 @@ pub const ITypeLib = extern struct {
         GetTypeInfo: fn(
             self: *const ITypeLib,
             index: u32,
-            ppTInfo: **ITypeInfo,
+            ppTInfo: ?*?*ITypeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeInfoType: fn(
             self: *const ITypeLib,
             index: u32,
-            pTKind: *TYPEKIND,
+            pTKind: ?*TYPEKIND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeInfoOfGuid: fn(
             self: *const ITypeLib,
-            guid: *const Guid,
-            ppTinfo: **ITypeInfo,
+            guid: ?*const Guid,
+            ppTinfo: ?*?*ITypeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLibAttr: fn(
             self: *const ITypeLib,
-            ppTLibAttr: **TLIBATTR,
+            ppTLibAttr: ?*?*TLIBATTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeComp: fn(
             self: *const ITypeLib,
-            ppTComp: **ITypeComp,
+            ppTComp: ?*?*ITypeComp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDocumentation: fn(
             self: *const ITypeLib,
             index: i32,
-            pBstrName: ?*BSTR,
-            pBstrDocString: ?*BSTR,
-            pdwHelpContext: *u32,
-            pBstrHelpFile: ?*BSTR,
+            pBstrName: ?*?BSTR,
+            pBstrDocString: ?*?BSTR,
+            pdwHelpContext: ?*u32,
+            pBstrHelpFile: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsName: fn(
             self: *const ITypeLib,
-            szNameBuf: PWSTR,
+            szNameBuf: ?PWSTR,
             lHashVal: u32,
-            pfName: *BOOL,
+            pfName: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindName: fn(
             self: *const ITypeLib,
-            szNameBuf: PWSTR,
+            szNameBuf: ?PWSTR,
             lHashVal: u32,
-            ppTInfo: [*]*ITypeInfo,
+            ppTInfo: [*]?*ITypeInfo,
             rgMemId: [*]i32,
-            pcFound: *u16,
+            pcFound: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseTLibAttr: fn(
             self: *const ITypeLib,
-            pTLibAttr: *TLIBATTR,
+            pTLibAttr: ?*TLIBATTR,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -1713,39 +1713,39 @@ pub const ITypeLib = extern struct {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).GetTypeInfoCount(@ptrCast(*const ITypeLib, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_GetTypeInfo(self: *const T, index: u32, ppTInfo: **ITypeInfo) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_GetTypeInfo(self: *const T, index: u32, ppTInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).GetTypeInfo(@ptrCast(*const ITypeLib, self), index, ppTInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_GetTypeInfoType(self: *const T, index: u32, pTKind: *TYPEKIND) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_GetTypeInfoType(self: *const T, index: u32, pTKind: ?*TYPEKIND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).GetTypeInfoType(@ptrCast(*const ITypeLib, self), index, pTKind);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_GetTypeInfoOfGuid(self: *const T, guid: *const Guid, ppTinfo: **ITypeInfo) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_GetTypeInfoOfGuid(self: *const T, guid: ?*const Guid, ppTinfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).GetTypeInfoOfGuid(@ptrCast(*const ITypeLib, self), guid, ppTinfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_GetLibAttr(self: *const T, ppTLibAttr: **TLIBATTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_GetLibAttr(self: *const T, ppTLibAttr: ?*?*TLIBATTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).GetLibAttr(@ptrCast(*const ITypeLib, self), ppTLibAttr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_GetTypeComp(self: *const T, ppTComp: **ITypeComp) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_GetTypeComp(self: *const T, ppTComp: ?*?*ITypeComp) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).GetTypeComp(@ptrCast(*const ITypeLib, self), ppTComp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_GetDocumentation(self: *const T, index: i32, pBstrName: ?*BSTR, pBstrDocString: ?*BSTR, pdwHelpContext: *u32, pBstrHelpFile: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_GetDocumentation(self: *const T, index: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).GetDocumentation(@ptrCast(*const ITypeLib, self), index, pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_IsName(self: *const T, szNameBuf: PWSTR, lHashVal: u32, pfName: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_IsName(self: *const T, szNameBuf: ?PWSTR, lHashVal: u32, pfName: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).IsName(@ptrCast(*const ITypeLib, self), szNameBuf, lHashVal, pfName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_FindName(self: *const T, szNameBuf: PWSTR, lHashVal: u32, ppTInfo: [*]*ITypeInfo, rgMemId: [*]i32, pcFound: *u16) callconv(.Inline) HRESULT {
+        pub fn ITypeLib_FindName(self: *const T, szNameBuf: ?PWSTR, lHashVal: u32, ppTInfo: [*]?*ITypeInfo, rgMemId: [*]i32, pcFound: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).FindName(@ptrCast(*const ITypeLib, self), szNameBuf, lHashVal, ppTInfo, rgMemId, pcFound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib_ReleaseTLibAttr(self: *const T, pTLibAttr: *TLIBATTR) callconv(.Inline) void {
+        pub fn ITypeLib_ReleaseTLibAttr(self: *const T, pTLibAttr: ?*TLIBATTR) callconv(.Inline) void {
             return @ptrCast(*const ITypeLib.VTable, self.vtable).ReleaseTLibAttr(@ptrCast(*const ITypeLib, self), pTLibAttr);
         }
     };}
@@ -1759,44 +1759,44 @@ pub const ITypeLib2 = extern struct {
         base: ITypeLib.VTable,
         GetCustData: fn(
             self: *const ITypeLib2,
-            guid: *const Guid,
-            pVarVal: *VARIANT,
+            guid: ?*const Guid,
+            pVarVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLibStatistics: fn(
             self: *const ITypeLib2,
-            pcUniqueNames: *u32,
-            pcchUniqueNames: *u32,
+            pcUniqueNames: ?*u32,
+            pcchUniqueNames: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDocumentation2: fn(
             self: *const ITypeLib2,
             index: i32,
             lcid: u32,
-            pbstrHelpString: ?*BSTR,
-            pdwHelpStringContext: *u32,
-            pbstrHelpStringDll: ?*BSTR,
+            pbstrHelpString: ?*?BSTR,
+            pdwHelpStringContext: ?*u32,
+            pbstrHelpStringDll: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllCustData: fn(
             self: *const ITypeLib2,
-            pCustData: *CUSTDATA,
+            pCustData: ?*CUSTDATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITypeLib.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib2_GetCustData(self: *const T, guid: *const Guid, pVarVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITypeLib2_GetCustData(self: *const T, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib2.VTable, self.vtable).GetCustData(@ptrCast(*const ITypeLib2, self), guid, pVarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib2_GetLibStatistics(self: *const T, pcUniqueNames: *u32, pcchUniqueNames: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeLib2_GetLibStatistics(self: *const T, pcUniqueNames: ?*u32, pcchUniqueNames: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib2.VTable, self.vtable).GetLibStatistics(@ptrCast(*const ITypeLib2, self), pcUniqueNames, pcchUniqueNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib2_GetDocumentation2(self: *const T, index: i32, lcid: u32, pbstrHelpString: ?*BSTR, pdwHelpStringContext: *u32, pbstrHelpStringDll: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLib2_GetDocumentation2(self: *const T, index: i32, lcid: u32, pbstrHelpString: ?*?BSTR, pdwHelpStringContext: ?*u32, pbstrHelpStringDll: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib2.VTable, self.vtable).GetDocumentation2(@ptrCast(*const ITypeLib2, self), index, lcid, pbstrHelpString, pdwHelpStringContext, pbstrHelpStringDll);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLib2_GetAllCustData(self: *const T, pCustData: *CUSTDATA) callconv(.Inline) HRESULT {
+        pub fn ITypeLib2_GetAllCustData(self: *const T, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLib2.VTable, self.vtable).GetAllCustData(@ptrCast(*const ITypeLib2, self), pCustData);
         }
     };}
@@ -1830,26 +1830,26 @@ pub const ITypeChangeEvents = extern struct {
         RequestTypeChange: fn(
             self: *const ITypeChangeEvents,
             changeKind: CHANGEKIND,
-            pTInfoBefore: *ITypeInfo,
-            pStrName: PWSTR,
-            pfCancel: *i32,
+            pTInfoBefore: ?*ITypeInfo,
+            pStrName: ?PWSTR,
+            pfCancel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AfterTypeChange: fn(
             self: *const ITypeChangeEvents,
             changeKind: CHANGEKIND,
-            pTInfoAfter: *ITypeInfo,
-            pStrName: PWSTR,
+            pTInfoAfter: ?*ITypeInfo,
+            pStrName: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeChangeEvents_RequestTypeChange(self: *const T, changeKind: CHANGEKIND, pTInfoBefore: *ITypeInfo, pStrName: PWSTR, pfCancel: *i32) callconv(.Inline) HRESULT {
+        pub fn ITypeChangeEvents_RequestTypeChange(self: *const T, changeKind: CHANGEKIND, pTInfoBefore: ?*ITypeInfo, pStrName: ?PWSTR, pfCancel: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeChangeEvents.VTable, self.vtable).RequestTypeChange(@ptrCast(*const ITypeChangeEvents, self), changeKind, pTInfoBefore, pStrName, pfCancel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeChangeEvents_AfterTypeChange(self: *const T, changeKind: CHANGEKIND, pTInfoAfter: *ITypeInfo, pStrName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeChangeEvents_AfterTypeChange(self: *const T, changeKind: CHANGEKIND, pTInfoAfter: ?*ITypeInfo, pStrName: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeChangeEvents.VTable, self.vtable).AfterTypeChange(@ptrCast(*const ITypeChangeEvents, self), changeKind, pTInfoAfter, pStrName);
         }
     };}
@@ -1863,46 +1863,46 @@ pub const IErrorInfo = extern struct {
         base: IUnknown.VTable,
         GetGUID: fn(
             self: *const IErrorInfo,
-            pGUID: *Guid,
+            pGUID: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSource: fn(
             self: *const IErrorInfo,
-            pBstrSource: *BSTR,
+            pBstrSource: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const IErrorInfo,
-            pBstrDescription: *BSTR,
+            pBstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHelpFile: fn(
             self: *const IErrorInfo,
-            pBstrHelpFile: *BSTR,
+            pBstrHelpFile: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHelpContext: fn(
             self: *const IErrorInfo,
-            pdwHelpContext: *u32,
+            pdwHelpContext: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IErrorInfo_GetGUID(self: *const T, pGUID: *Guid) callconv(.Inline) HRESULT {
+        pub fn IErrorInfo_GetGUID(self: *const T, pGUID: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IErrorInfo.VTable, self.vtable).GetGUID(@ptrCast(*const IErrorInfo, self), pGUID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IErrorInfo_GetSource(self: *const T, pBstrSource: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IErrorInfo_GetSource(self: *const T, pBstrSource: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IErrorInfo.VTable, self.vtable).GetSource(@ptrCast(*const IErrorInfo, self), pBstrSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IErrorInfo_GetDescription(self: *const T, pBstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IErrorInfo_GetDescription(self: *const T, pBstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IErrorInfo.VTable, self.vtable).GetDescription(@ptrCast(*const IErrorInfo, self), pBstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IErrorInfo_GetHelpFile(self: *const T, pBstrHelpFile: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IErrorInfo_GetHelpFile(self: *const T, pBstrHelpFile: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IErrorInfo.VTable, self.vtable).GetHelpFile(@ptrCast(*const IErrorInfo, self), pBstrHelpFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IErrorInfo_GetHelpContext(self: *const T, pdwHelpContext: *u32) callconv(.Inline) HRESULT {
+        pub fn IErrorInfo_GetHelpContext(self: *const T, pdwHelpContext: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IErrorInfo.VTable, self.vtable).GetHelpContext(@ptrCast(*const IErrorInfo, self), pdwHelpContext);
         }
     };}
@@ -1916,19 +1916,19 @@ pub const ICreateErrorInfo = extern struct {
         base: IUnknown.VTable,
         SetGUID: fn(
             self: *const ICreateErrorInfo,
-            rguid: *const Guid,
+            rguid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSource: fn(
             self: *const ICreateErrorInfo,
-            szSource: PWSTR,
+            szSource: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDescription: fn(
             self: *const ICreateErrorInfo,
-            szDescription: PWSTR,
+            szDescription: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpFile: fn(
             self: *const ICreateErrorInfo,
-            szHelpFile: PWSTR,
+            szHelpFile: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHelpContext: fn(
             self: *const ICreateErrorInfo,
@@ -1939,19 +1939,19 @@ pub const ICreateErrorInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetGUID(self: *const T, rguid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ICreateErrorInfo_SetGUID(self: *const T, rguid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateErrorInfo.VTable, self.vtable).SetGUID(@ptrCast(*const ICreateErrorInfo, self), rguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetSource(self: *const T, szSource: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateErrorInfo_SetSource(self: *const T, szSource: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateErrorInfo.VTable, self.vtable).SetSource(@ptrCast(*const ICreateErrorInfo, self), szSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetDescription(self: *const T, szDescription: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateErrorInfo_SetDescription(self: *const T, szDescription: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateErrorInfo.VTable, self.vtable).SetDescription(@ptrCast(*const ICreateErrorInfo, self), szDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateErrorInfo_SetHelpFile(self: *const T, szHelpFile: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ICreateErrorInfo_SetHelpFile(self: *const T, szHelpFile: ?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateErrorInfo.VTable, self.vtable).SetHelpFile(@ptrCast(*const ICreateErrorInfo, self), szHelpFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1969,14 +1969,14 @@ pub const ISupportErrorInfo = extern struct {
         base: IUnknown.VTable,
         InterfaceSupportsErrorInfo: fn(
             self: *const ISupportErrorInfo,
-            riid: *const Guid,
+            riid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISupportErrorInfo_InterfaceSupportsErrorInfo(self: *const T, riid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ISupportErrorInfo_InterfaceSupportsErrorInfo(self: *const T, riid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISupportErrorInfo.VTable, self.vtable).InterfaceSupportsErrorInfo(@ptrCast(*const ISupportErrorInfo, self), riid);
         }
     };}
@@ -1990,16 +1990,16 @@ pub const ITypeFactory = extern struct {
         base: IUnknown.VTable,
         CreateFromTypeInfo: fn(
             self: *const ITypeFactory,
-            pTypeInfo: *ITypeInfo,
-            riid: *const Guid,
-            ppv: **IUnknown,
+            pTypeInfo: ?*ITypeInfo,
+            riid: ?*const Guid,
+            ppv: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeFactory_CreateFromTypeInfo(self: *const T, pTypeInfo: *ITypeInfo, riid: *const Guid, ppv: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITypeFactory_CreateFromTypeInfo(self: *const T, pTypeInfo: ?*ITypeInfo, riid: ?*const Guid, ppv: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeFactory.VTable, self.vtable).CreateFromTypeInfo(@ptrCast(*const ITypeFactory, self), pTypeInfo, riid, ppv);
         }
     };}
@@ -2013,51 +2013,51 @@ pub const ITypeMarshal = extern struct {
         base: IUnknown.VTable,
         Size: fn(
             self: *const ITypeMarshal,
-            pvType: *c_void,
+            pvType: ?*c_void,
             dwDestContext: u32,
-            pvDestContext: *c_void,
-            pSize: *u32,
+            pvDestContext: ?*c_void,
+            pSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Marshal: fn(
             self: *const ITypeMarshal,
-            pvType: *c_void,
+            pvType: ?*c_void,
             dwDestContext: u32,
-            pvDestContext: *c_void,
+            pvDestContext: ?*c_void,
             cbBufferLength: u32,
             // TODO: what to do with BytesParamIndex 3?
-            pBuffer: *u8,
-            pcbWritten: *u32,
+            pBuffer: ?*u8,
+            pcbWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unmarshal: fn(
             self: *const ITypeMarshal,
-            pvType: *c_void,
+            pvType: ?*c_void,
             dwFlags: u32,
             cbBufferLength: u32,
             pBuffer: [*:0]u8,
-            pcbRead: *u32,
+            pcbRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Free: fn(
             self: *const ITypeMarshal,
-            pvType: *c_void,
+            pvType: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Size(self: *const T, pvType: *c_void, dwDestContext: u32, pvDestContext: *c_void, pSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Size(self: *const T, pvType: ?*c_void, dwDestContext: u32, pvDestContext: ?*c_void, pSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Size(@ptrCast(*const ITypeMarshal, self), pvType, dwDestContext, pvDestContext, pSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Marshal(self: *const T, pvType: *c_void, dwDestContext: u32, pvDestContext: *c_void, cbBufferLength: u32, pBuffer: *u8, pcbWritten: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Marshal(self: *const T, pvType: ?*c_void, dwDestContext: u32, pvDestContext: ?*c_void, cbBufferLength: u32, pBuffer: ?*u8, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Marshal(@ptrCast(*const ITypeMarshal, self), pvType, dwDestContext, pvDestContext, cbBufferLength, pBuffer, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Unmarshal(self: *const T, pvType: *c_void, dwFlags: u32, cbBufferLength: u32, pBuffer: [*:0]u8, pcbRead: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Unmarshal(self: *const T, pvType: ?*c_void, dwFlags: u32, cbBufferLength: u32, pBuffer: [*:0]u8, pcbRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Unmarshal(@ptrCast(*const ITypeMarshal, self), pvType, dwFlags, cbBufferLength, pBuffer, pcbRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Free(self: *const T, pvType: *c_void) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Free(self: *const T, pvType: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Free(@ptrCast(*const ITypeMarshal, self), pvType);
         }
     };}
@@ -2071,147 +2071,147 @@ pub const IRecordInfo = extern struct {
         base: IUnknown.VTable,
         RecordInit: fn(
             self: *const IRecordInfo,
-            pvNew: *c_void,
+            pvNew: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RecordClear: fn(
             self: *const IRecordInfo,
-            pvExisting: *c_void,
+            pvExisting: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RecordCopy: fn(
             self: *const IRecordInfo,
-            pvExisting: *c_void,
-            pvNew: *c_void,
+            pvExisting: ?*c_void,
+            pvNew: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGuid: fn(
             self: *const IRecordInfo,
-            pguid: *Guid,
+            pguid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: fn(
             self: *const IRecordInfo,
-            pbstrName: ?*BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSize: fn(
             self: *const IRecordInfo,
-            pcbSize: *u32,
+            pcbSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeInfo: fn(
             self: *const IRecordInfo,
-            ppTypeInfo: **ITypeInfo,
+            ppTypeInfo: ?*?*ITypeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetField: fn(
             self: *const IRecordInfo,
-            pvData: *c_void,
-            szFieldName: [*:0]const u16,
-            pvarField: *VARIANT,
+            pvData: ?*c_void,
+            szFieldName: ?[*:0]const u16,
+            pvarField: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFieldNoCopy: fn(
             self: *const IRecordInfo,
-            pvData: *c_void,
-            szFieldName: [*:0]const u16,
-            pvarField: *VARIANT,
-            ppvDataCArray: **c_void,
+            pvData: ?*c_void,
+            szFieldName: ?[*:0]const u16,
+            pvarField: ?*VARIANT,
+            ppvDataCArray: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutField: fn(
             self: *const IRecordInfo,
             wFlags: u32,
-            pvData: *c_void,
-            szFieldName: [*:0]const u16,
-            pvarField: *VARIANT,
+            pvData: ?*c_void,
+            szFieldName: ?[*:0]const u16,
+            pvarField: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutFieldNoCopy: fn(
             self: *const IRecordInfo,
             wFlags: u32,
-            pvData: *c_void,
-            szFieldName: [*:0]const u16,
-            pvarField: *VARIANT,
+            pvData: ?*c_void,
+            szFieldName: ?[*:0]const u16,
+            pvarField: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFieldNames: fn(
             self: *const IRecordInfo,
-            pcNames: *u32,
-            rgBstrNames: [*]BSTR,
+            pcNames: ?*u32,
+            rgBstrNames: [*]?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsMatchingType: fn(
             self: *const IRecordInfo,
-            pRecordInfo: *IRecordInfo,
+            pRecordInfo: ?*IRecordInfo,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         RecordCreate: fn(
             self: *const IRecordInfo,
-        ) callconv(@import("std").os.windows.WINAPI) *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
         RecordCreateCopy: fn(
             self: *const IRecordInfo,
-            pvSource: *c_void,
-            ppvDest: **c_void,
+            pvSource: ?*c_void,
+            ppvDest: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RecordDestroy: fn(
             self: *const IRecordInfo,
-            pvRecord: *c_void,
+            pvRecord: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordInit(self: *const T, pvNew: *c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordInit(self: *const T, pvNew: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordInit(@ptrCast(*const IRecordInfo, self), pvNew);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordClear(self: *const T, pvExisting: *c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordClear(self: *const T, pvExisting: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordClear(@ptrCast(*const IRecordInfo, self), pvExisting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCopy(self: *const T, pvExisting: *c_void, pvNew: *c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordCopy(self: *const T, pvExisting: ?*c_void, pvNew: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordCopy(@ptrCast(*const IRecordInfo, self), pvExisting, pvNew);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetGuid(self: *const T, pguid: *Guid) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetGuid(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetGuid(@ptrCast(*const IRecordInfo, self), pguid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetName(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetName(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetName(@ptrCast(*const IRecordInfo, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetSize(self: *const T, pcbSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetSize(self: *const T, pcbSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetSize(@ptrCast(*const IRecordInfo, self), pcbSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetTypeInfo(self: *const T, ppTypeInfo: **ITypeInfo) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetTypeInfo(self: *const T, ppTypeInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetTypeInfo(@ptrCast(*const IRecordInfo, self), ppTypeInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetField(self: *const T, pvData: *c_void, szFieldName: [*:0]const u16, pvarField: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetField(self: *const T, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetField(@ptrCast(*const IRecordInfo, self), pvData, szFieldName, pvarField);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetFieldNoCopy(self: *const T, pvData: *c_void, szFieldName: [*:0]const u16, pvarField: *VARIANT, ppvDataCArray: **c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetFieldNoCopy(self: *const T, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT, ppvDataCArray: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetFieldNoCopy(@ptrCast(*const IRecordInfo, self), pvData, szFieldName, pvarField, ppvDataCArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_PutField(self: *const T, wFlags: u32, pvData: *c_void, szFieldName: [*:0]const u16, pvarField: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_PutField(self: *const T, wFlags: u32, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).PutField(@ptrCast(*const IRecordInfo, self), wFlags, pvData, szFieldName, pvarField);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_PutFieldNoCopy(self: *const T, wFlags: u32, pvData: *c_void, szFieldName: [*:0]const u16, pvarField: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_PutFieldNoCopy(self: *const T, wFlags: u32, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).PutFieldNoCopy(@ptrCast(*const IRecordInfo, self), wFlags, pvData, szFieldName, pvarField);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetFieldNames(self: *const T, pcNames: *u32, rgBstrNames: [*]BSTR) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetFieldNames(self: *const T, pcNames: ?*u32, rgBstrNames: [*]?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetFieldNames(@ptrCast(*const IRecordInfo, self), pcNames, rgBstrNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_IsMatchingType(self: *const T, pRecordInfo: *IRecordInfo) callconv(.Inline) BOOL {
+        pub fn IRecordInfo_IsMatchingType(self: *const T, pRecordInfo: ?*IRecordInfo) callconv(.Inline) BOOL {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).IsMatchingType(@ptrCast(*const IRecordInfo, self), pRecordInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCreate(self: *const T) callconv(.Inline) *c_void {
+        pub fn IRecordInfo_RecordCreate(self: *const T) callconv(.Inline) ?*c_void {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordCreate(@ptrCast(*const IRecordInfo, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCreateCopy(self: *const T, pvSource: *c_void, ppvDest: **c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordCreateCopy(self: *const T, pvSource: ?*c_void, ppvDest: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordCreateCopy(@ptrCast(*const IRecordInfo, self), pvSource, ppvDest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordDestroy(self: *const T, pvRecord: *c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordDestroy(self: *const T, pvRecord: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordDestroy(@ptrCast(*const IRecordInfo, self), pvRecord);
         }
     };}
@@ -2225,15 +2225,15 @@ pub const IErrorLog = extern struct {
         base: IUnknown.VTable,
         AddError: fn(
             self: *const IErrorLog,
-            pszPropName: [*:0]const u16,
-            pExcepInfo: *EXCEPINFO,
+            pszPropName: ?[*:0]const u16,
+            pExcepInfo: ?*EXCEPINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IErrorLog_AddError(self: *const T, pszPropName: [*:0]const u16, pExcepInfo: *EXCEPINFO) callconv(.Inline) HRESULT {
+        pub fn IErrorLog_AddError(self: *const T, pszPropName: ?[*:0]const u16, pExcepInfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IErrorLog.VTable, self.vtable).AddError(@ptrCast(*const IErrorLog, self), pszPropName, pExcepInfo);
         }
     };}
@@ -2247,25 +2247,25 @@ pub const IPropertyBag = extern struct {
         base: IUnknown.VTable,
         Read: fn(
             self: *const IPropertyBag,
-            pszPropName: [*:0]const u16,
-            pVar: *VARIANT,
-            pErrorLog: *IErrorLog,
+            pszPropName: ?[*:0]const u16,
+            pVar: ?*VARIANT,
+            pErrorLog: ?*IErrorLog,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Write: fn(
             self: *const IPropertyBag,
-            pszPropName: [*:0]const u16,
-            pVar: *VARIANT,
+            pszPropName: ?[*:0]const u16,
+            pVar: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag_Read(self: *const T, pszPropName: [*:0]const u16, pVar: *VARIANT, pErrorLog: *IErrorLog) callconv(.Inline) HRESULT {
+        pub fn IPropertyBag_Read(self: *const T, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT, pErrorLog: ?*IErrorLog) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyBag.VTable, self.vtable).Read(@ptrCast(*const IPropertyBag, self), pszPropName, pVar, pErrorLog);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag_Write(self: *const T, pszPropName: [*:0]const u16, pVar: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IPropertyBag_Write(self: *const T, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyBag.VTable, self.vtable).Write(@ptrCast(*const IPropertyBag, self), pszPropName, pVar);
         }
     };}
@@ -2279,14 +2279,14 @@ pub const ITypeLibRegistrationReader = extern struct {
         base: IUnknown.VTable,
         EnumTypeLibRegistrations: fn(
             self: *const ITypeLibRegistrationReader,
-            ppEnumUnknown: **IEnumUnknown,
+            ppEnumUnknown: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistrationReader_EnumTypeLibRegistrations(self: *const T, ppEnumUnknown: **IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistrationReader_EnumTypeLibRegistrations(self: *const T, ppEnumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistrationReader.VTable, self.vtable).EnumTypeLibRegistrations(@ptrCast(*const ITypeLibRegistrationReader, self), ppEnumUnknown);
         }
     };}
@@ -2300,70 +2300,70 @@ pub const ITypeLibRegistration = extern struct {
         base: IUnknown.VTable,
         GetGuid: fn(
             self: *const ITypeLibRegistration,
-            pGuid: *Guid,
+            pGuid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersion: fn(
             self: *const ITypeLibRegistration,
-            pVersion: *BSTR,
+            pVersion: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLcid: fn(
             self: *const ITypeLibRegistration,
-            pLcid: *u32,
+            pLcid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWin32Path: fn(
             self: *const ITypeLibRegistration,
-            pWin32Path: *BSTR,
+            pWin32Path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWin64Path: fn(
             self: *const ITypeLibRegistration,
-            pWin64Path: *BSTR,
+            pWin64Path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDisplayName: fn(
             self: *const ITypeLibRegistration,
-            pDisplayName: *BSTR,
+            pDisplayName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFlags: fn(
             self: *const ITypeLibRegistration,
-            pFlags: *u32,
+            pFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHelpDir: fn(
             self: *const ITypeLibRegistration,
-            pHelpDir: *BSTR,
+            pHelpDir: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetGuid(self: *const T, pGuid: *Guid) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetGuid(self: *const T, pGuid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetGuid(@ptrCast(*const ITypeLibRegistration, self), pGuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetVersion(self: *const T, pVersion: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetVersion(self: *const T, pVersion: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetVersion(@ptrCast(*const ITypeLibRegistration, self), pVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetLcid(self: *const T, pLcid: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetLcid(self: *const T, pLcid: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetLcid(@ptrCast(*const ITypeLibRegistration, self), pLcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetWin32Path(self: *const T, pWin32Path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetWin32Path(self: *const T, pWin32Path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetWin32Path(@ptrCast(*const ITypeLibRegistration, self), pWin32Path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetWin64Path(self: *const T, pWin64Path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetWin64Path(self: *const T, pWin64Path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetWin64Path(@ptrCast(*const ITypeLibRegistration, self), pWin64Path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetDisplayName(self: *const T, pDisplayName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetDisplayName(self: *const T, pDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetDisplayName(@ptrCast(*const ITypeLibRegistration, self), pDisplayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetFlags(self: *const T, pFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetFlags(self: *const T, pFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetFlags(@ptrCast(*const ITypeLibRegistration, self), pFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeLibRegistration_GetHelpDir(self: *const T, pHelpDir: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITypeLibRegistration_GetHelpDir(self: *const T, pHelpDir: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeLibRegistration.VTable, self.vtable).GetHelpDir(@ptrCast(*const ITypeLibRegistration, self), pHelpDir);
         }
     };}
@@ -2394,13 +2394,13 @@ pub const REGKIND_REGISTER = REGKIND.REGISTER;
 pub const REGKIND_NONE = REGKIND.NONE;
 
 pub const PARAMDATA = extern struct {
-    szName: PWSTR,
+    szName: ?PWSTR,
     vt: u16,
 };
 
 pub const METHODDATA = extern struct {
-    szName: PWSTR,
-    ppdata: *PARAMDATA,
+    szName: ?PWSTR,
+    ppdata: ?*PARAMDATA,
     dispid: i32,
     iMeth: u32,
     cc: CALLCONV,
@@ -2410,7 +2410,7 @@ pub const METHODDATA = extern struct {
 };
 
 pub const INTERFACEDATA = extern struct {
-    pmethdata: *METHODDATA,
+    pmethdata: ?*METHODDATA,
     cMembers: u32,
 };
 
@@ -2421,23 +2421,23 @@ pub const IDispatchEx = extern struct {
         base: IDispatch.VTable,
         GetDispID: fn(
             self: *const IDispatchEx,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
             grfdex: u32,
-            pid: *i32,
+            pid: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InvokeEx: fn(
             self: *const IDispatchEx,
             id: i32,
             lcid: u32,
             wFlags: u16,
-            pdp: *DISPPARAMS,
+            pdp: ?*DISPPARAMS,
             pvarRes: ?*VARIANT,
             pei: ?*EXCEPINFO,
             pspCaller: ?*IServiceProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMemberByName: fn(
             self: *const IDispatchEx,
-            bstrName: BSTR,
+            bstrName: ?BSTR,
             grfdex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMemberByDispID: fn(
@@ -2448,37 +2448,37 @@ pub const IDispatchEx = extern struct {
             self: *const IDispatchEx,
             id: i32,
             grfdexFetch: u32,
-            pgrfdex: *u32,
+            pgrfdex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMemberName: fn(
             self: *const IDispatchEx,
             id: i32,
-            pbstrName: *BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextDispID: fn(
             self: *const IDispatchEx,
             grfdex: u32,
             id: i32,
-            pid: *i32,
+            pid: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNameSpaceParent: fn(
             self: *const IDispatchEx,
-            ppunk: **IUnknown,
+            ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetDispID(self: *const T, bstrName: BSTR, grfdex: u32, pid: *i32) callconv(.Inline) HRESULT {
+        pub fn IDispatchEx_GetDispID(self: *const T, bstrName: ?BSTR, grfdex: u32, pid: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).GetDispID(@ptrCast(*const IDispatchEx, self), bstrName, grfdex, pid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_InvokeEx(self: *const T, id: i32, lcid: u32, wFlags: u16, pdp: *DISPPARAMS, pvarRes: ?*VARIANT, pei: ?*EXCEPINFO, pspCaller: ?*IServiceProvider) callconv(.Inline) HRESULT {
+        pub fn IDispatchEx_InvokeEx(self: *const T, id: i32, lcid: u32, wFlags: u16, pdp: ?*DISPPARAMS, pvarRes: ?*VARIANT, pei: ?*EXCEPINFO, pspCaller: ?*IServiceProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).InvokeEx(@ptrCast(*const IDispatchEx, self), id, lcid, wFlags, pdp, pvarRes, pei, pspCaller);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_DeleteMemberByName(self: *const T, bstrName: BSTR, grfdex: u32) callconv(.Inline) HRESULT {
+        pub fn IDispatchEx_DeleteMemberByName(self: *const T, bstrName: ?BSTR, grfdex: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).DeleteMemberByName(@ptrCast(*const IDispatchEx, self), bstrName, grfdex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2486,19 +2486,19 @@ pub const IDispatchEx = extern struct {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).DeleteMemberByDispID(@ptrCast(*const IDispatchEx, self), id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetMemberProperties(self: *const T, id: i32, grfdexFetch: u32, pgrfdex: *u32) callconv(.Inline) HRESULT {
+        pub fn IDispatchEx_GetMemberProperties(self: *const T, id: i32, grfdexFetch: u32, pgrfdex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).GetMemberProperties(@ptrCast(*const IDispatchEx, self), id, grfdexFetch, pgrfdex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetMemberName(self: *const T, id: i32, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispatchEx_GetMemberName(self: *const T, id: i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).GetMemberName(@ptrCast(*const IDispatchEx, self), id, pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetNextDispID(self: *const T, grfdex: u32, id: i32, pid: *i32) callconv(.Inline) HRESULT {
+        pub fn IDispatchEx_GetNextDispID(self: *const T, grfdex: u32, id: i32, pid: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).GetNextDispID(@ptrCast(*const IDispatchEx, self), grfdex, id, pid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispatchEx_GetNameSpaceParent(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDispatchEx_GetNameSpaceParent(self: *const T, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispatchEx.VTable, self.vtable).GetNameSpaceParent(@ptrCast(*const IDispatchEx, self), ppunk);
         }
     };}
@@ -2513,55 +2513,55 @@ pub const IDispError = extern struct {
         QueryErrorInfo: fn(
             self: *const IDispError,
             guidErrorType: Guid,
-            ppde: **IDispError,
+            ppde: ?*?*IDispError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNext: fn(
             self: *const IDispError,
-            ppde: **IDispError,
+            ppde: ?*?*IDispError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHresult: fn(
             self: *const IDispError,
-            phr: *HRESULT,
+            phr: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSource: fn(
             self: *const IDispError,
-            pbstrSource: *BSTR,
+            pbstrSource: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHelpInfo: fn(
             self: *const IDispError,
-            pbstrFileName: *BSTR,
-            pdwContext: *u32,
+            pbstrFileName: ?*?BSTR,
+            pdwContext: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const IDispError,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_QueryErrorInfo(self: *const T, guidErrorType: Guid, ppde: **IDispError) callconv(.Inline) HRESULT {
+        pub fn IDispError_QueryErrorInfo(self: *const T, guidErrorType: Guid, ppde: ?*?*IDispError) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispError.VTable, self.vtable).QueryErrorInfo(@ptrCast(*const IDispError, self), guidErrorType, ppde);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetNext(self: *const T, ppde: **IDispError) callconv(.Inline) HRESULT {
+        pub fn IDispError_GetNext(self: *const T, ppde: ?*?*IDispError) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispError.VTable, self.vtable).GetNext(@ptrCast(*const IDispError, self), ppde);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetHresult(self: *const T, phr: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn IDispError_GetHresult(self: *const T, phr: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispError.VTable, self.vtable).GetHresult(@ptrCast(*const IDispError, self), phr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetSource(self: *const T, pbstrSource: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispError_GetSource(self: *const T, pbstrSource: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispError.VTable, self.vtable).GetSource(@ptrCast(*const IDispError, self), pbstrSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetHelpInfo(self: *const T, pbstrFileName: *BSTR, pdwContext: *u32) callconv(.Inline) HRESULT {
+        pub fn IDispError_GetHelpInfo(self: *const T, pbstrFileName: ?*?BSTR, pdwContext: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispError.VTable, self.vtable).GetHelpInfo(@ptrCast(*const IDispError, self), pbstrFileName, pdwContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispError_GetDescription(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispError_GetDescription(self: *const T, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispError.VTable, self.vtable).GetDescription(@ptrCast(*const IDispError, self), pbstrDescription);
         }
     };}
@@ -2575,8 +2575,8 @@ pub const IVariantChangeType = extern struct {
         base: IUnknown.VTable,
         ChangeType: fn(
             self: *const IVariantChangeType,
-            pvarDst: *VARIANT,
-            pvarSrc: *VARIANT,
+            pvarDst: ?*VARIANT,
+            pvarSrc: ?*VARIANT,
             lcid: u32,
             vtNew: u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2585,7 +2585,7 @@ pub const IVariantChangeType = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVariantChangeType_ChangeType(self: *const T, pvarDst: *VARIANT, pvarSrc: *VARIANT, lcid: u32, vtNew: u16) callconv(.Inline) HRESULT {
+        pub fn IVariantChangeType_ChangeType(self: *const T, pvarDst: ?*VARIANT, pvarSrc: ?*VARIANT, lcid: u32, vtNew: u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVariantChangeType.VTable, self.vtable).ChangeType(@ptrCast(*const IVariantChangeType, self), pvarDst, pvarSrc, lcid, vtNew);
         }
     };}
@@ -2599,14 +2599,14 @@ pub const IObjectIdentity = extern struct {
         base: IUnknown.VTable,
         IsEqualObject: fn(
             self: *const IObjectIdentity,
-            punk: *IUnknown,
+            punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectIdentity_IsEqualObject(self: *const T, punk: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IObjectIdentity_IsEqualObject(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectIdentity.VTable, self.vtable).IsEqualObject(@ptrCast(*const IObjectIdentity, self), punk);
         }
     };}
@@ -2620,15 +2620,15 @@ pub const ICanHandleException = extern struct {
         base: IUnknown.VTable,
         CanHandleException: fn(
             self: *const ICanHandleException,
-            pExcepInfo: *EXCEPINFO,
-            pvar: *VARIANT,
+            pExcepInfo: ?*EXCEPINFO,
+            pvar: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICanHandleException_CanHandleException(self: *const T, pExcepInfo: *EXCEPINFO, pvar: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICanHandleException_CanHandleException(self: *const T, pExcepInfo: ?*EXCEPINFO, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICanHandleException.VTable, self.vtable).CanHandleException(@ptrCast(*const ICanHandleException, self), pExcepInfo, pvar);
         }
     };}
@@ -2642,15 +2642,15 @@ pub const IProvideRuntimeContext = extern struct {
         base: IUnknown.VTable,
         GetCurrentSourceContext: fn(
             self: *const IProvideRuntimeContext,
-            pdwContext: *usize,
-            pfExecutingGlobalCode: *i16,
+            pdwContext: ?*usize,
+            pfExecutingGlobalCode: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideRuntimeContext_GetCurrentSourceContext(self: *const T, pdwContext: *usize, pfExecutingGlobalCode: *i16) callconv(.Inline) HRESULT {
+        pub fn IProvideRuntimeContext_GetCurrentSourceContext(self: *const T, pdwContext: ?*usize, pfExecutingGlobalCode: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProvideRuntimeContext.VTable, self.vtable).GetCurrentSourceContext(@ptrCast(*const IProvideRuntimeContext, self), pdwContext, pfExecutingGlobalCode);
         }
     };}
@@ -2769,1862 +2769,1862 @@ pub const VT_TYPEMASK = VARENUM.BSTR_BLOB;
 // Section: Functions (402)
 //--------------------------------------------------------------------------------
 pub extern "OLEAUT32" fn BSTR_UserSize(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *BSTR,
+    param2: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn BSTR_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?BSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLEAUT32" fn BSTR_UserUnmarshal(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*?BSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLEAUT32" fn BSTR_UserFree(
-    param0: *u32,
-    param1: *BSTR,
+    param0: ?*u32,
+    param1: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn BSTR_UserSize64(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *BSTR,
+    param2: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn BSTR_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?BSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn BSTR_UserUnmarshal64(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*?BSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn BSTR_UserFree64(
-    param0: *u32,
-    param1: *BSTR,
+    param0: ?*u32,
+    param1: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HWND_UserSize(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *HWND,
+    param2: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLE32" fn HWND_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?HWND,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn HWND_UserUnmarshal(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*?HWND,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn HWND_UserFree(
-    param0: *u32,
-    param1: *HWND,
+    param0: ?*u32,
+    param1: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HWND_UserSize64(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *HWND,
+    param2: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLE32" fn HWND_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?HWND,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn HWND_UserUnmarshal64(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*?HWND,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn HWND_UserFree64(
-    param0: *u32,
-    param1: *HWND,
+    param0: ?*u32,
+    param1: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: **SAFEARRAY,
+    param2: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?*SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*?*SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
-    param0: *u32,
-    param1: **SAFEARRAY,
+    param0: ?*u32,
+    param1: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn VARIANT_UserSize(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *VARIANT,
+    param2: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn VARIANT_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*VARIANT,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLEAUT32" fn VARIANT_UserUnmarshal(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*VARIANT,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLEAUT32" fn VARIANT_UserFree(
-    param0: *u32,
-    param1: *VARIANT,
+    param0: ?*u32,
+    param1: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: **SAFEARRAY,
+    param2: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?*SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal64(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*?*SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
-    param0: *u32,
-    param1: **SAFEARRAY,
+    param0: ?*u32,
+    param1: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn VARIANT_UserSize64(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *VARIANT,
+    param2: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn VARIANT_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*VARIANT,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn VARIANT_UserUnmarshal64(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*VARIANT,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn VARIANT_UserFree64(
-    param0: *u32,
-    param1: *VARIANT,
+    param0: ?*u32,
+    param1: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn DosDateTimeToVariantTime(
     wDosDate: u16,
     wDosTime: u16,
-    pvtime: *f64,
+    pvtime: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "OLEAUT32" fn VariantTimeToDosDateTime(
     vtime: f64,
-    pwDosDate: *u16,
-    pwDosTime: *u16,
+    pwDosDate: ?*u16,
+    pwDosTime: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "OLEAUT32" fn SystemTimeToVariantTime(
-    lpSystemTime: *SYSTEMTIME,
-    pvtime: *f64,
+    lpSystemTime: ?*SYSTEMTIME,
+    pvtime: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "OLEAUT32" fn VariantTimeToSystemTime(
     vtime: f64,
-    lpSystemTime: *SYSTEMTIME,
+    lpSystemTime: ?*SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "OLEAUT32" fn SafeArrayAllocDescriptor(
     cDims: u32,
-    ppsaOut: **SAFEARRAY,
+    ppsaOut: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayAllocDescriptorEx(
     vt: u16,
     cDims: u32,
-    ppsaOut: **SAFEARRAY,
+    ppsaOut: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayAllocData(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayCreate(
     vt: u16,
     cDims: u32,
-    rgsabound: *SAFEARRAYBOUND,
-) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
+    rgsabound: ?*SAFEARRAYBOUND,
+) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
 pub extern "OLEAUT32" fn SafeArrayCreateEx(
     vt: u16,
     cDims: u32,
-    rgsabound: *SAFEARRAYBOUND,
-    pvExtra: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
+    rgsabound: ?*SAFEARRAYBOUND,
+    pvExtra: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
 pub extern "OLEAUT32" fn SafeArrayCopyData(
-    psaSource: *SAFEARRAY,
-    psaTarget: *SAFEARRAY,
+    psaSource: ?*SAFEARRAY,
+    psaTarget: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn SafeArrayReleaseDescriptor(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SafeArrayDestroyDescriptor(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn SafeArrayReleaseData(
-    pData: *c_void,
+    pData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SafeArrayDestroyData(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn SafeArrayAddRef(
-    psa: *SAFEARRAY,
-    ppDataToRelease: **c_void,
+    psa: ?*SAFEARRAY,
+    ppDataToRelease: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayDestroy(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayRedim(
-    psa: *SAFEARRAY,
-    psaboundNew: *SAFEARRAYBOUND,
+    psa: ?*SAFEARRAY,
+    psaboundNew: ?*SAFEARRAYBOUND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayGetDim(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn SafeArrayGetElemsize(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn SafeArrayGetUBound(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
     nDim: u32,
-    plUbound: *i32,
+    plUbound: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayGetLBound(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
     nDim: u32,
-    plLbound: *i32,
+    plLbound: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayLock(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayUnlock(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayAccessData(
-    psa: *SAFEARRAY,
-    ppvData: **c_void,
+    psa: ?*SAFEARRAY,
+    ppvData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayUnaccessData(
-    psa: *SAFEARRAY,
+    psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayGetElement(
-    psa: *SAFEARRAY,
-    rgIndices: *i32,
-    pv: *c_void,
+    psa: ?*SAFEARRAY,
+    rgIndices: ?*i32,
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayPutElement(
-    psa: *SAFEARRAY,
-    rgIndices: *i32,
-    pv: *c_void,
+    psa: ?*SAFEARRAY,
+    rgIndices: ?*i32,
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayCopy(
-    psa: *SAFEARRAY,
-    ppsaOut: **SAFEARRAY,
+    psa: ?*SAFEARRAY,
+    ppsaOut: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayPtrOfIndex(
-    psa: *SAFEARRAY,
-    rgIndices: *i32,
-    ppvData: **c_void,
+    psa: ?*SAFEARRAY,
+    rgIndices: ?*i32,
+    ppvData: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArraySetRecordInfo(
-    psa: *SAFEARRAY,
-    prinfo: *IRecordInfo,
+    psa: ?*SAFEARRAY,
+    prinfo: ?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayGetRecordInfo(
-    psa: *SAFEARRAY,
-    prinfo: **IRecordInfo,
+    psa: ?*SAFEARRAY,
+    prinfo: ?*?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArraySetIID(
-    psa: *SAFEARRAY,
-    guid: *const Guid,
+    psa: ?*SAFEARRAY,
+    guid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayGetIID(
-    psa: *SAFEARRAY,
-    pguid: *Guid,
+    psa: ?*SAFEARRAY,
+    pguid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayGetVartype(
-    psa: *SAFEARRAY,
-    pvt: *u16,
+    psa: ?*SAFEARRAY,
+    pvt: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayCreateVector(
     vt: u16,
     lLbound: i32,
     cElements: u32,
-) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
+) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
 pub extern "OLEAUT32" fn SafeArrayCreateVectorEx(
     vt: u16,
     lLbound: i32,
     cElements: u32,
-    pvExtra: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
+    pvExtra: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
 pub extern "OLEAUT32" fn VariantInit(
-    pvarg: *VARIANT,
+    pvarg: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn VariantClear(
-    pvarg: *VARIANT,
+    pvarg: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VariantCopy(
-    pvargDest: *VARIANT,
-    pvargSrc: *const VARIANT,
+    pvargDest: ?*VARIANT,
+    pvargSrc: ?*const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VariantCopyInd(
-    pvarDest: *VARIANT,
-    pvargSrc: *const VARIANT,
+    pvarDest: ?*VARIANT,
+    pvargSrc: ?*const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VariantChangeType(
-    pvargDest: *VARIANT,
-    pvarSrc: *const VARIANT,
+    pvargDest: ?*VARIANT,
+    pvarSrc: ?*const VARIANT,
     wFlags: u16,
     vt: u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VariantChangeTypeEx(
-    pvargDest: *VARIANT,
-    pvarSrc: *const VARIANT,
+    pvargDest: ?*VARIANT,
+    pvarSrc: ?*const VARIANT,
     lcid: u32,
     wFlags: u16,
     vt: u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VectorFromBstr(
-    bstr: BSTR,
-    ppsa: **SAFEARRAY,
+    bstr: ?BSTR,
+    ppsa: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn BstrFromVector(
-    psa: *SAFEARRAY,
-    pbstr: *BSTR,
+    psa: ?*SAFEARRAY,
+    pbstr: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromI2(
     sIn: i16,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromI4(
     lIn: i32,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromI8(
     i64In: i64,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromR4(
     fltIn: f32,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromR8(
     dblIn: f64,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromCy(
     cyIn: CY,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromDate(
     dateIn: f64,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromBool(
     boolIn: i16,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromI1(
     cIn: CHAR,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromUI2(
     uiIn: u16,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromUI4(
     ulIn: u32,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromUI8(
     ui64In: u64,
-    pbOut: *u8,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromDec(
-    pdecIn: *const DECIMAL,
-    pbOut: *u8,
+    pdecIn: ?*const DECIMAL,
+    pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromUI1(
     bIn: u8,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromI4(
     lIn: i32,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromI8(
     i64In: i64,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromR4(
     fltIn: f32,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromR8(
     dblIn: f64,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromCy(
     cyIn: CY,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromDate(
     dateIn: f64,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromBool(
     boolIn: i16,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromI1(
     cIn: CHAR,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromUI2(
     uiIn: u16,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromUI4(
     ulIn: u32,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromUI8(
     ui64In: u64,
-    psOut: *i16,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromDec(
-    pdecIn: *const DECIMAL,
-    psOut: *i16,
+    pdecIn: ?*const DECIMAL,
+    psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromUI1(
     bIn: u8,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromI2(
     sIn: i16,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromI8(
     i64In: i64,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromR4(
     fltIn: f32,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromR8(
     dblIn: f64,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromCy(
     cyIn: CY,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromDate(
     dateIn: f64,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromBool(
     boolIn: i16,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromI1(
     cIn: CHAR,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromUI2(
     uiIn: u16,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromUI4(
     ulIn: u32,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromUI8(
     ui64In: u64,
-    plOut: *i32,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromDec(
-    pdecIn: *const DECIMAL,
-    plOut: *i32,
+    pdecIn: ?*const DECIMAL,
+    plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromUI1(
     bIn: u8,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromI2(
     sIn: i16,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromR4(
     fltIn: f32,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromR8(
     dblIn: f64,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromCy(
     cyIn: CY,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromDate(
     dateIn: f64,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromBool(
     boolIn: i16,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromI1(
     cIn: CHAR,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromUI2(
     uiIn: u16,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromUI4(
     ulIn: u32,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromUI8(
     ui64In: u64,
-    pi64Out: *i64,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromDec(
-    pdecIn: *const DECIMAL,
-    pi64Out: *i64,
+    pdecIn: ?*const DECIMAL,
+    pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromUI1(
     bIn: u8,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromI2(
     sIn: i16,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromI4(
     lIn: i32,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromI8(
     i64In: i64,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromR8(
     dblIn: f64,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromCy(
     cyIn: CY,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromDate(
     dateIn: f64,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromBool(
     boolIn: i16,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromI1(
     cIn: CHAR,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromUI2(
     uiIn: u16,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromUI4(
     ulIn: u32,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromUI8(
     ui64In: u64,
-    pfltOut: *f32,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromDec(
-    pdecIn: *const DECIMAL,
-    pfltOut: *f32,
+    pdecIn: ?*const DECIMAL,
+    pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromUI1(
     bIn: u8,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromI2(
     sIn: i16,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromI4(
     lIn: i32,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromI8(
     i64In: i64,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromR4(
     fltIn: f32,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromCy(
     cyIn: CY,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromDate(
     dateIn: f64,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromBool(
     boolIn: i16,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromI1(
     cIn: CHAR,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromUI2(
     uiIn: u16,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromUI4(
     ulIn: u32,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromUI8(
     ui64In: u64,
-    pdblOut: *f64,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromDec(
-    pdecIn: *const DECIMAL,
-    pdblOut: *f64,
+    pdecIn: ?*const DECIMAL,
+    pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromUI1(
     bIn: u8,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromI2(
     sIn: i16,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromI4(
     lIn: i32,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromI8(
     i64In: i64,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromR4(
     fltIn: f32,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromR8(
     dblIn: f64,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromCy(
     cyIn: CY,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromBool(
     boolIn: i16,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromI1(
     cIn: CHAR,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromUI2(
     uiIn: u16,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromUI4(
     ulIn: u32,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromUI8(
     ui64In: u64,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromDec(
-    pdecIn: *const DECIMAL,
-    pdateOut: *f64,
+    pdecIn: ?*const DECIMAL,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromUI1(
     bIn: u8,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromI2(
     sIn: i16,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromI4(
     lIn: i32,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromI8(
     i64In: i64,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromR4(
     fltIn: f32,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromR8(
     dblIn: f64,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromDate(
     dateIn: f64,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromBool(
     boolIn: i16,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromI1(
     cIn: CHAR,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromUI2(
     uiIn: u16,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromUI4(
     ulIn: u32,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromUI8(
     ui64In: u64,
-    pcyOut: *CY,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromDec(
-    pdecIn: *const DECIMAL,
-    pcyOut: *CY,
+    pdecIn: ?*const DECIMAL,
+    pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromUI1(
     bVal: u8,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromI2(
     iVal: i16,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromI4(
     lIn: i32,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromI8(
     i64In: i64,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromR4(
     fltIn: f32,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromR8(
     dblIn: f64,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromCy(
     cyIn: CY,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromDate(
     dateIn: f64,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromBool(
     boolIn: i16,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromI1(
     cIn: CHAR,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromUI2(
     uiIn: u16,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromUI4(
     ulIn: u32,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromUI8(
     ui64In: u64,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromDec(
-    pdecIn: *const DECIMAL,
+    pdecIn: ?*const DECIMAL,
     lcid: u32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromUI1(
     bIn: u8,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromI2(
     sIn: i16,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromI4(
     lIn: i32,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromI8(
     i64In: i64,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromR4(
     fltIn: f32,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromR8(
     dblIn: f64,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromDate(
     dateIn: f64,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromCy(
     cyIn: CY,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromI1(
     cIn: CHAR,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromUI2(
     uiIn: u16,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromUI4(
     ulIn: u32,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromUI8(
     i64In: u64,
-    pboolOut: *i16,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromDec(
-    pdecIn: *const DECIMAL,
-    pboolOut: *i16,
+    pdecIn: ?*const DECIMAL,
+    pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromUI1(
     bIn: u8,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromI2(
     uiIn: i16,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromI4(
     lIn: i32,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromI8(
     i64In: i64,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromR4(
     fltIn: f32,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromR8(
     dblIn: f64,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromDate(
     dateIn: f64,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromCy(
     cyIn: CY,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromBool(
     boolIn: i16,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromUI2(
     uiIn: u16,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromUI4(
     ulIn: u32,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromUI8(
     i64In: u64,
-    pcOut: PSTR,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromDec(
-    pdecIn: *const DECIMAL,
-    pcOut: PSTR,
+    pdecIn: ?*const DECIMAL,
+    pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromUI1(
     bIn: u8,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromI2(
     uiIn: i16,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromI4(
     lIn: i32,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromI8(
     i64In: i64,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromR4(
     fltIn: f32,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromR8(
     dblIn: f64,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromDate(
     dateIn: f64,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromCy(
     cyIn: CY,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromBool(
     boolIn: i16,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromI1(
     cIn: CHAR,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromUI4(
     ulIn: u32,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromUI8(
     i64In: u64,
-    puiOut: *u16,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromDec(
-    pdecIn: *const DECIMAL,
-    puiOut: *u16,
+    pdecIn: ?*const DECIMAL,
+    puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromUI1(
     bIn: u8,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromI2(
     uiIn: i16,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromI4(
     lIn: i32,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromI8(
     i64In: i64,
-    plOut: *u32,
+    plOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromR4(
     fltIn: f32,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromR8(
     dblIn: f64,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromDate(
     dateIn: f64,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromCy(
     cyIn: CY,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromBool(
     boolIn: i16,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromI1(
     cIn: CHAR,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromUI2(
     uiIn: u16,
-    pulOut: *u32,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromUI8(
     ui64In: u64,
-    plOut: *u32,
+    plOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromDec(
-    pdecIn: *const DECIMAL,
-    pulOut: *u32,
+    pdecIn: ?*const DECIMAL,
+    pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromUI1(
     bIn: u8,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromI2(
     sIn: i16,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromI8(
     ui64In: i64,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromR4(
     fltIn: f32,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromR8(
     dblIn: f64,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromCy(
     cyIn: CY,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromDate(
     dateIn: f64,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromBool(
     boolIn: i16,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromI1(
     cIn: CHAR,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromUI2(
     uiIn: u16,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromUI4(
     ulIn: u32,
-    pi64Out: *u64,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromDec(
-    pdecIn: *const DECIMAL,
-    pi64Out: *u64,
+    pdecIn: ?*const DECIMAL,
+    pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromUI1(
     bIn: u8,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromI2(
     uiIn: i16,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromI4(
     lIn: i32,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromI8(
     i64In: i64,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromR4(
     fltIn: f32,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromR8(
     dblIn: f64,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromDate(
     dateIn: f64,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromCy(
     cyIn: CY,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromDisp(
-    pdispIn: *IDispatch,
+    pdispIn: ?*IDispatch,
     lcid: u32,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromBool(
     boolIn: i16,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromI1(
     cIn: CHAR,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromUI2(
     uiIn: u16,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromUI4(
     ulIn: u32,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromUI8(
     ui64In: u64,
-    pdecOut: *DECIMAL,
+    pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarParseNumFromStr(
-    strIn: [*:0]const u16,
+    strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pnumprs: *NUMPARSE,
-    rgbDig: *u8,
+    pnumprs: ?*NUMPARSE,
+    rgbDig: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarNumFromParseNum(
-    pnumprs: *NUMPARSE,
-    rgbDig: *u8,
+    pnumprs: ?*NUMPARSE,
+    rgbDig: ?*u8,
     dwVtBits: u32,
-    pvar: *VARIANT,
+    pvar: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarAdd(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarAnd(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCat(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDiv(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarEqv(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarIdiv(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarImp(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarMod(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarMul(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarOr(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarPow(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarSub(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarXor(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarAbs(
-    pvarIn: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarIn: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFix(
-    pvarIn: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarIn: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarInt(
-    pvarIn: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarIn: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarNeg(
-    pvarIn: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarIn: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarNot(
-    pvarIn: *VARIANT,
-    pvarResult: *VARIANT,
+    pvarIn: ?*VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarRound(
-    pvarIn: *VARIANT,
+    pvarIn: ?*VARIANT,
     cDecimals: i32,
-    pvarResult: *VARIANT,
+    pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCmp(
-    pvarLeft: *VARIANT,
-    pvarRight: *VARIANT,
+    pvarLeft: ?*VARIANT,
+    pvarRight: ?*VARIANT,
     lcid: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecAdd(
-    pdecLeft: *DECIMAL,
-    pdecRight: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecLeft: ?*DECIMAL,
+    pdecRight: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecDiv(
-    pdecLeft: *DECIMAL,
-    pdecRight: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecLeft: ?*DECIMAL,
+    pdecRight: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecMul(
-    pdecLeft: *DECIMAL,
-    pdecRight: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecLeft: ?*DECIMAL,
+    pdecRight: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecSub(
-    pdecLeft: *DECIMAL,
-    pdecRight: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecLeft: ?*DECIMAL,
+    pdecRight: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecAbs(
-    pdecIn: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecIn: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFix(
-    pdecIn: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecIn: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecInt(
-    pdecIn: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecIn: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecNeg(
-    pdecIn: *DECIMAL,
-    pdecResult: *DECIMAL,
+    pdecIn: ?*DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecRound(
-    pdecIn: *DECIMAL,
+    pdecIn: ?*DECIMAL,
     cDecimals: i32,
-    pdecResult: *DECIMAL,
+    pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecCmp(
-    pdecLeft: *DECIMAL,
-    pdecRight: *DECIMAL,
+    pdecLeft: ?*DECIMAL,
+    pdecRight: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecCmpR8(
-    pdecLeft: *DECIMAL,
+    pdecLeft: ?*DECIMAL,
     dblRight: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyAdd(
     cyLeft: CY,
     cyRight: CY,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyMul(
     cyLeft: CY,
     cyRight: CY,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyMulI4(
     cyLeft: CY,
     lRight: i32,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyMulI8(
     cyLeft: CY,
     lRight: i64,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCySub(
     cyLeft: CY,
     cyRight: CY,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyAbs(
     cyIn: CY,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFix(
     cyIn: CY,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyInt(
     cyIn: CY,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyNeg(
     cyIn: CY,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyRound(
     cyIn: CY,
     cDecimals: i32,
-    pcyResult: *CY,
+    pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyCmp(
@@ -4638,14 +4638,14 @@ pub extern "OLEAUT32" fn VarCyCmpR8(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrCat(
-    bstrLeft: BSTR,
-    bstrRight: BSTR,
-    pbstrResult: **u16,
+    bstrLeft: ?BSTR,
+    bstrRight: ?BSTR,
+    pbstrResult: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrCmp(
-    bstrLeft: BSTR,
-    bstrRight: BSTR,
+    bstrLeft: ?BSTR,
+    bstrRight: ?BSTR,
     lcid: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4653,7 +4653,7 @@ pub extern "OLEAUT32" fn VarBstrCmp(
 pub extern "OLEAUT32" fn VarR8Pow(
     dblLeft: f64,
     dblRight: f64,
-    pdblResult: *f64,
+    pdblResult: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4CmpR8(
@@ -4664,77 +4664,77 @@ pub extern "OLEAUT32" fn VarR4CmpR8(
 pub extern "OLEAUT32" fn VarR8Round(
     dblIn: f64,
     cDecimals: i32,
-    pdblResult: *f64,
+    pdblResult: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromUdate(
-    pudateIn: *UDATE,
+    pudateIn: ?*UDATE,
     dwFlags: u32,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromUdateEx(
-    pudateIn: *UDATE,
+    pudateIn: ?*UDATE,
     lcid: u32,
     dwFlags: u32,
-    pdateOut: *f64,
+    pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUdateFromDate(
     dateIn: f64,
     dwFlags: u32,
-    pudateOut: *UDATE,
+    pudateOut: ?*UDATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn GetAltMonthNames(
     lcid: u32,
-    prgp: ?**PWSTR,
+    prgp: ?*?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFormat(
-    pvarIn: *VARIANT,
+    pvarIn: ?*VARIANT,
     pstrFormat: ?PWSTR,
     iFirstDay: i32,
     iFirstWeek: i32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFormatDateTime(
-    pvarIn: *VARIANT,
+    pvarIn: ?*VARIANT,
     iNamedFormat: i32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFormatNumber(
-    pvarIn: *VARIANT,
+    pvarIn: ?*VARIANT,
     iNumDig: i32,
     iIncLead: i32,
     iUseParens: i32,
     iGroup: i32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFormatPercent(
-    pvarIn: *VARIANT,
+    pvarIn: ?*VARIANT,
     iNumDig: i32,
     iIncLead: i32,
     iUseParens: i32,
     iGroup: i32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFormatCurrency(
-    pvarIn: *VARIANT,
+    pvarIn: ?*VARIANT,
     iNumDig: i32,
     iIncLead: i32,
     iUseParens: i32,
     iGroup: i32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarWeekdayName(
@@ -4742,22 +4742,22 @@ pub extern "OLEAUT32" fn VarWeekdayName(
     fAbbrev: i32,
     iFirstDay: i32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarMonthName(
     iMonth: i32,
     fAbbrev: i32,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFormatFromTokens(
-    pvarIn: *VARIANT,
+    pvarIn: ?*VARIANT,
     pstrFormat: ?PWSTR,
-    pbTokCur: *u8,
+    pbTokCur: ?*u8,
     dwFlags: u32,
-    pbstrOut: *BSTR,
+    pbstrOut: ?*?BSTR,
     lcid: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4774,50 +4774,50 @@ pub extern "OLEAUT32" fn VarTokenizeFormatString(
 pub extern "OLEAUT32" fn LHashValOfNameSysA(
     syskind: SYSKIND,
     lcid: u32,
-    szName: [*:0]const u8,
+    szName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn LHashValOfNameSys(
     syskind: SYSKIND,
     lcid: u32,
-    szName: [*:0]const u16,
+    szName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn LoadTypeLib(
-    szFile: [*:0]const u16,
-    pptlib: **ITypeLib,
+    szFile: ?[*:0]const u16,
+    pptlib: ?*?*ITypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn LoadTypeLibEx(
-    szFile: [*:0]const u16,
+    szFile: ?[*:0]const u16,
     regkind: REGKIND,
-    pptlib: **ITypeLib,
+    pptlib: ?*?*ITypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn LoadRegTypeLib(
-    rguid: *const Guid,
+    rguid: ?*const Guid,
     wVerMajor: u16,
     wVerMinor: u16,
     lcid: u32,
-    pptlib: **ITypeLib,
+    pptlib: ?*?*ITypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn QueryPathOfRegTypeLib(
-    guid: *const Guid,
+    guid: ?*const Guid,
     wMaj: u16,
     wMin: u16,
     lcid: u32,
-    lpbstrPathName: **u16,
+    lpbstrPathName: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn RegisterTypeLib(
-    ptlib: *ITypeLib,
-    szFullPath: [*:0]const u16,
+    ptlib: ?*ITypeLib,
+    szFullPath: ?[*:0]const u16,
     szHelpDir: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn UnRegisterTypeLib(
-    libID: *const Guid,
+    libID: ?*const Guid,
     wVerMajor: u16,
     wVerMinor: u16,
     lcid: u32,
@@ -4825,13 +4825,13 @@ pub extern "OLEAUT32" fn UnRegisterTypeLib(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn RegisterTypeLibForUser(
-    ptlib: *ITypeLib,
-    szFullPath: PWSTR,
+    ptlib: ?*ITypeLib,
+    szFullPath: ?PWSTR,
     szHelpDir: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn UnRegisterTypeLibForUser(
-    libID: *const Guid,
+    libID: ?*const Guid,
     wMajorVerNum: u16,
     wMinorVerNum: u16,
     lcid: u32,
@@ -4840,53 +4840,53 @@ pub extern "OLEAUT32" fn UnRegisterTypeLibForUser(
 
 pub extern "OLEAUT32" fn CreateTypeLib(
     syskind: SYSKIND,
-    szFile: [*:0]const u16,
-    ppctlib: **ICreateTypeLib,
+    szFile: ?[*:0]const u16,
+    ppctlib: ?*?*ICreateTypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn CreateTypeLib2(
     syskind: SYSKIND,
-    szFile: [*:0]const u16,
-    ppctlib: **ICreateTypeLib2,
+    szFile: ?[*:0]const u16,
+    ppctlib: ?*?*ICreateTypeLib2,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn DispGetParam(
-    pdispparams: *DISPPARAMS,
+    pdispparams: ?*DISPPARAMS,
     position: u32,
     vtTarg: u16,
-    pvarResult: *VARIANT,
+    pvarResult: ?*VARIANT,
     puArgErr: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn DispGetIDsOfNames(
-    ptinfo: *ITypeInfo,
-    rgszNames: [*]PWSTR,
+    ptinfo: ?*ITypeInfo,
+    rgszNames: [*]?PWSTR,
     cNames: u32,
     rgdispid: [*]i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn DispInvoke(
-    _this: *c_void,
-    ptinfo: *ITypeInfo,
+    _this: ?*c_void,
+    ptinfo: ?*ITypeInfo,
     dispidMember: i32,
     wFlags: u16,
-    pparams: *DISPPARAMS,
-    pvarResult: *VARIANT,
-    pexcepinfo: *EXCEPINFO,
-    puArgErr: *u32,
+    pparams: ?*DISPPARAMS,
+    pvarResult: ?*VARIANT,
+    pexcepinfo: ?*EXCEPINFO,
+    puArgErr: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn CreateDispTypeInfo(
-    pidata: *INTERFACEDATA,
+    pidata: ?*INTERFACEDATA,
     lcid: u32,
-    pptinfo: **ITypeInfo,
+    pptinfo: ?*?*ITypeInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn CreateStdDispatch(
-    punkOuter: *IUnknown,
-    pvThis: *c_void,
-    ptinfo: *ITypeInfo,
-    ppunkStdDisp: **IUnknown,
+    punkOuter: ?*IUnknown,
+    pvThis: ?*c_void,
+    ptinfo: ?*ITypeInfo,
+    ppunkStdDisp: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn DispCallFunc(
@@ -4896,26 +4896,26 @@ pub extern "OLEAUT32" fn DispCallFunc(
     vtReturn: u16,
     cActuals: u32,
     prgvt: [*:0]u16,
-    prgpvarg: [*]*VARIANT,
-    pvargResult: *VARIANT,
+    prgpvarg: [*]?*VARIANT,
+    pvargResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn RegisterActiveObject(
-    punk: *IUnknown,
-    rclsid: *const Guid,
+    punk: ?*IUnknown,
+    rclsid: ?*const Guid,
     dwFlags: u32,
-    pdwRegister: *u32,
+    pdwRegister: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn RevokeActiveObject(
     dwRegister: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn GetActiveObject(
-    rclsid: *const Guid,
-    pvReserved: *c_void,
-    ppunk: **IUnknown,
+    rclsid: ?*const Guid,
+    pvReserved: ?*c_void,
+    ppunk: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SetErrorInfo(
@@ -4925,86 +4925,86 @@ pub extern "OLEAUT32" fn SetErrorInfo(
 
 pub extern "OLEAUT32" fn GetErrorInfo(
     dwReserved: u32,
-    pperrinfo: **IErrorInfo,
+    pperrinfo: ?*?*IErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn CreateErrorInfo(
-    pperrinfo: **ICreateErrorInfo,
+    pperrinfo: ?*?*ICreateErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn GetRecordInfoFromTypeInfo(
-    pTypeInfo: *ITypeInfo,
-    ppRecInfo: **IRecordInfo,
+    pTypeInfo: ?*ITypeInfo,
+    ppRecInfo: ?*?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn GetRecordInfoFromGuids(
-    rGuidTypeLib: *const Guid,
+    rGuidTypeLib: ?*const Guid,
     uVerMajor: u32,
     uVerMinor: u32,
     lcid: u32,
-    rGuidTypeInfo: *const Guid,
-    ppRecInfo: **IRecordInfo,
+    rGuidTypeInfo: ?*const Guid,
+    ppRecInfo: ?*?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn OaBuildVersion(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn ClearCustData(
-    pCustData: *CUSTDATA,
+    pCustData: ?*CUSTDATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn OaEnablePerUserTLibRegistration(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn STGMEDIUM_UserSize(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *STGMEDIUM,
+    param2: ?*STGMEDIUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLE32" fn STGMEDIUM_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn STGMEDIUM_UserUnmarshal(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn STGMEDIUM_UserFree(
-    param0: *u32,
-    param1: *STGMEDIUM,
+    param0: ?*u32,
+    param1: ?*STGMEDIUM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn STGMEDIUM_UserSize64(
-    param0: *u32,
+    param0: ?*u32,
     param1: u32,
-    param2: *STGMEDIUM,
+    param2: ?*STGMEDIUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLE32" fn STGMEDIUM_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn STGMEDIUM_UserUnmarshal64(
-    param0: *u32,
+    param0: ?*u32,
     param1: [*:0]u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+    param2: ?*STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 pub extern "OLE32" fn STGMEDIUM_UserFree64(
-    param0: *u32,
-    param1: *STGMEDIUM,
+    param0: ?*u32,
+    param1: ?*STGMEDIUM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn OleLoadPictureFile(
     varFileName: VARIANT,
-    lplpdispPicture: **IDispatch,
+    lplpdispPicture: ?*?*IDispatch,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn OleLoadPictureFileEx(
@@ -5012,12 +5012,12 @@ pub extern "OLEAUT32" fn OleLoadPictureFileEx(
     xSizeDesired: u32,
     ySizeDesired: u32,
     dwFlags: u32,
-    lplpdispPicture: **IDispatch,
+    lplpdispPicture: ?*?*IDispatch,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn OleSavePictureFile(
-    lpdispPicture: *IDispatch,
-    bstrFileName: BSTR,
+    lpdispPicture: ?*IDispatch,
+    bstrFileName: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

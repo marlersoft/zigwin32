@@ -68,67 +68,67 @@ pub const SPropTagArray = extern struct {
 
 pub const SBinary = extern struct {
     cb: u32,
-    lpb: *u8,
+    lpb: ?*u8,
 };
 
 pub const SShortArray = extern struct {
     cValues: u32,
-    lpi: *i16,
+    lpi: ?*i16,
 };
 
 pub const SGuidArray = extern struct {
     cValues: u32,
-    lpguid: *Guid,
+    lpguid: ?*Guid,
 };
 
 pub const SRealArray = extern struct {
     cValues: u32,
-    lpflt: *f32,
+    lpflt: ?*f32,
 };
 
 pub const SLongArray = extern struct {
     cValues: u32,
-    lpl: *i32,
+    lpl: ?*i32,
 };
 
 pub const SLargeIntegerArray = extern struct {
     cValues: u32,
-    lpli: *LARGE_INTEGER,
+    lpli: ?*LARGE_INTEGER,
 };
 
 pub const SDateTimeArray = extern struct {
     cValues: u32,
-    lpft: *FILETIME,
+    lpft: ?*FILETIME,
 };
 
 pub const SAppTimeArray = extern struct {
     cValues: u32,
-    lpat: *f64,
+    lpat: ?*f64,
 };
 
 pub const SCurrencyArray = extern struct {
     cValues: u32,
-    lpcur: *CY,
+    lpcur: ?*CY,
 };
 
 pub const SBinaryArray = extern struct {
     cValues: u32,
-    lpbin: *SBinary,
+    lpbin: ?*SBinary,
 };
 
 pub const SDoubleArray = extern struct {
     cValues: u32,
-    lpdbl: *f64,
+    lpdbl: ?*f64,
 };
 
 pub const SWStringArray = extern struct {
     cValues: u32,
-    lppszW: *PWSTR,
+    lppszW: ?*?PWSTR,
 };
 
 pub const SLPSTRArray = extern struct {
     cValues: u32,
-    lppszA: *PSTR,
+    lppszA: ?*?PSTR,
 };
 
 pub const _PV = extern union {
@@ -141,10 +141,10 @@ pub const _PV = extern union {
     cur: CY,
     at: f64,
     ft: FILETIME,
-    lpszA: PSTR,
+    lpszA: ?PSTR,
     bin: SBinary,
-    lpszW: PWSTR,
-    lpguid: *Guid,
+    lpszW: ?PWSTR,
+    lpguid: ?*Guid,
     li: LARGE_INTEGER,
     MVi: SShortArray,
     MVl: SLongArray,
@@ -204,7 +204,7 @@ pub const FLATMTSIDLIST = extern struct {
 pub const ADRENTRY = extern struct {
     ulReserved1: u32,
     cValues: u32,
-    rgPropVals: *SPropValue,
+    rgPropVals: ?*SPropValue,
 };
 
 pub const ADRLIST = extern struct {
@@ -215,7 +215,7 @@ pub const ADRLIST = extern struct {
 pub const SRow = extern struct {
     ulAdrEntryPad: u32,
     cValues: u32,
-    lpProps: *SPropValue,
+    lpProps: ?*SPropValue,
 };
 
 pub const SRowSet = extern struct {
@@ -225,56 +225,56 @@ pub const SRowSet = extern struct {
 
 pub const LPALLOCATEBUFFER = fn(
     cbSize: u32,
-    lppBuffer: **c_void,
+    lppBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPALLOCATEMORE = fn(
     cbSize: u32,
-    lpObject: *c_void,
-    lppBuffer: **c_void,
+    lpObject: ?*c_void,
+    lppBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPFREEBUFFER = fn(
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const MAPIERROR = extern struct {
     ulVersion: u32,
-    lpszError: *i8,
-    lpszComponent: *i8,
+    lpszError: ?*i8,
+    lpszComponent: ?*i8,
     ulLowLevelError: u32,
     ulContext: u32,
 };
 
 pub const ERROR_NOTIFICATION = extern struct {
     cbEntryID: u32,
-    lpEntryID: *ENTRYID,
+    lpEntryID: ?*ENTRYID,
     scode: i32,
     ulFlags: u32,
-    lpMAPIError: *MAPIERROR,
+    lpMAPIError: ?*MAPIERROR,
 };
 
 pub const NEWMAIL_NOTIFICATION = extern struct {
     cbEntryID: u32,
-    lpEntryID: *ENTRYID,
+    lpEntryID: ?*ENTRYID,
     cbParentID: u32,
-    lpParentID: *ENTRYID,
+    lpParentID: ?*ENTRYID,
     ulFlags: u32,
-    lpszMessageClass: *i8,
+    lpszMessageClass: ?*i8,
     ulMessageFlags: u32,
 };
 
 pub const OBJECT_NOTIFICATION = extern struct {
     cbEntryID: u32,
-    lpEntryID: *ENTRYID,
+    lpEntryID: ?*ENTRYID,
     ulObjType: u32,
     cbParentID: u32,
-    lpParentID: *ENTRYID,
+    lpParentID: ?*ENTRYID,
     cbOldID: u32,
-    lpOldID: *ENTRYID,
+    lpOldID: ?*ENTRYID,
     cbOldParentID: u32,
-    lpOldParentID: *ENTRYID,
-    lpPropTagArray: *SPropTagArray,
+    lpOldParentID: ?*ENTRYID,
+    lpPropTagArray: ?*SPropTagArray,
 };
 
 pub const TABLE_NOTIFICATION = extern struct {
@@ -289,14 +289,14 @@ pub const TABLE_NOTIFICATION = extern struct {
 pub const EXTENDED_NOTIFICATION = extern struct {
     ulEvent: u32,
     cb: u32,
-    pbEventParameters: *u8,
+    pbEventParameters: ?*u8,
 };
 
 pub const STATUS_OBJECT_NOTIFICATION = extern struct {
     cbEntryID: u32,
-    lpEntryID: *ENTRYID,
+    lpEntryID: ?*ENTRYID,
     cValues: u32,
-    lpPropVals: *SPropValue,
+    lpPropVals: ?*SPropValue,
 };
 
 pub const NOTIFICATION = extern struct {
@@ -318,14 +318,14 @@ pub const IMAPIAdviseSink = extern struct {
         OnNotify: fn(
             self: *const IMAPIAdviseSink,
             cNotif: u32,
-            lpNotifications: *NOTIFICATION,
+            lpNotifications: ?*NOTIFICATION,
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIAdviseSink_OnNotify(self: *const T, cNotif: u32, lpNotifications: *NOTIFICATION) callconv(.Inline) u32 {
+        pub fn IMAPIAdviseSink_OnNotify(self: *const T, cNotif: u32, lpNotifications: ?*NOTIFICATION) callconv(.Inline) u32 {
             return @ptrCast(*const IMAPIAdviseSink.VTable, self.vtable).OnNotify(@ptrCast(*const IMAPIAdviseSink, self), cNotif, lpNotifications);
         }
     };}
@@ -333,9 +333,9 @@ pub const IMAPIAdviseSink = extern struct {
 };
 
 pub const LPNOTIFCALLBACK = fn(
-    lpvContext: *c_void,
+    lpvContext: ?*c_void,
     cNotification: u32,
-    lpNotifications: *NOTIFICATION,
+    lpNotifications: ?*NOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const IMAPIProgress = extern struct {
@@ -349,21 +349,21 @@ pub const IMAPIProgress = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFlags: fn(
             self: *const IMAPIProgress,
-            lpulFlags: *u32,
+            lpulFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMax: fn(
             self: *const IMAPIProgress,
-            lpulMax: *u32,
+            lpulMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMin: fn(
             self: *const IMAPIProgress,
-            lpulMin: *u32,
+            lpulMin: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetLimits: fn(
             self: *const IMAPIProgress,
-            lpulMin: *u32,
-            lpulMax: *u32,
-            lpulFlags: *u32,
+            lpulMin: ?*u32,
+            lpulMax: ?*u32,
+            lpulFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -374,19 +374,19 @@ pub const IMAPIProgress = extern struct {
             return @ptrCast(*const IMAPIProgress.VTable, self.vtable).Progress(@ptrCast(*const IMAPIProgress, self), ulValue, ulCount, ulTotal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProgress_GetFlags(self: *const T, lpulFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIProgress_GetFlags(self: *const T, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProgress.VTable, self.vtable).GetFlags(@ptrCast(*const IMAPIProgress, self), lpulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProgress_GetMax(self: *const T, lpulMax: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIProgress_GetMax(self: *const T, lpulMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProgress.VTable, self.vtable).GetMax(@ptrCast(*const IMAPIProgress, self), lpulMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProgress_GetMin(self: *const T, lpulMin: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIProgress_GetMin(self: *const T, lpulMin: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProgress.VTable, self.vtable).GetMin(@ptrCast(*const IMAPIProgress, self), lpulMin);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProgress_SetLimits(self: *const T, lpulMin: *u32, lpulMax: *u32, lpulFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIProgress_SetLimits(self: *const T, lpulMin: ?*u32, lpulMax: ?*u32, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProgress.VTable, self.vtable).SetLimits(@ptrCast(*const IMAPIProgress, self), lpulMin, lpulMax, lpulFlags);
         }
     };}
@@ -394,11 +394,11 @@ pub const IMAPIProgress = extern struct {
 };
 
 pub const MAPINAMEID = extern struct {
-    lpguid: *Guid,
+    lpguid: ?*Guid,
     ulKind: u32,
     Kind: extern union {
         lID: i32,
-        lpwstrName: PWSTR,
+        lpwstrName: ?PWSTR,
     },
 };
 
@@ -409,7 +409,7 @@ pub const IMAPIProp = extern struct {
             self: *const IMAPIProp,
             hResult: HRESULT,
             ulFlags: u32,
-            lppMAPIError: **MAPIERROR,
+            lppMAPIError: ?*?*MAPIERROR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveChanges: fn(
             self: *const IMAPIProp,
@@ -417,78 +417,78 @@ pub const IMAPIProp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProps: fn(
             self: *const IMAPIProp,
-            lpPropTagArray: *SPropTagArray,
+            lpPropTagArray: ?*SPropTagArray,
             ulFlags: u32,
-            lpcValues: *u32,
-            lppPropArray: **SPropValue,
+            lpcValues: ?*u32,
+            lppPropArray: ?*?*SPropValue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropList: fn(
             self: *const IMAPIProp,
             ulFlags: u32,
-            lppPropTagArray: **SPropTagArray,
+            lppPropTagArray: ?*?*SPropTagArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenProperty: fn(
             self: *const IMAPIProp,
             ulPropTag: u32,
-            lpiid: *Guid,
+            lpiid: ?*Guid,
             ulInterfaceOptions: u32,
             ulFlags: u32,
-            lppUnk: **IUnknown,
+            lppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProps: fn(
             self: *const IMAPIProp,
             cValues: u32,
-            lpPropArray: *SPropValue,
-            lppProblems: **SPropProblemArray,
+            lpPropArray: ?*SPropValue,
+            lppProblems: ?*?*SPropProblemArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteProps: fn(
             self: *const IMAPIProp,
-            lpPropTagArray: *SPropTagArray,
-            lppProblems: **SPropProblemArray,
+            lpPropTagArray: ?*SPropTagArray,
+            lppProblems: ?*?*SPropProblemArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyTo: fn(
             self: *const IMAPIProp,
             ciidExclude: u32,
-            rgiidExclude: *Guid,
-            lpExcludeProps: *SPropTagArray,
+            rgiidExclude: ?*Guid,
+            lpExcludeProps: ?*SPropTagArray,
             ulUIParam: usize,
-            lpProgress: *IMAPIProgress,
-            lpInterface: *Guid,
-            lpDestObj: *c_void,
+            lpProgress: ?*IMAPIProgress,
+            lpInterface: ?*Guid,
+            lpDestObj: ?*c_void,
             ulFlags: u32,
-            lppProblems: **SPropProblemArray,
+            lppProblems: ?*?*SPropProblemArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyProps: fn(
             self: *const IMAPIProp,
-            lpIncludeProps: *SPropTagArray,
+            lpIncludeProps: ?*SPropTagArray,
             ulUIParam: usize,
-            lpProgress: *IMAPIProgress,
-            lpInterface: *Guid,
-            lpDestObj: *c_void,
+            lpProgress: ?*IMAPIProgress,
+            lpInterface: ?*Guid,
+            lpDestObj: ?*c_void,
             ulFlags: u32,
-            lppProblems: **SPropProblemArray,
+            lppProblems: ?*?*SPropProblemArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamesFromIDs: fn(
             self: *const IMAPIProp,
-            lppPropTags: **SPropTagArray,
-            lpPropSetGuid: *Guid,
+            lppPropTags: ?*?*SPropTagArray,
+            lpPropSetGuid: ?*Guid,
             ulFlags: u32,
-            lpcPropNames: *u32,
-            lpppPropNames: ***MAPINAMEID,
+            lpcPropNames: ?*u32,
+            lpppPropNames: ?*?*?*MAPINAMEID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIDsFromNames: fn(
             self: *const IMAPIProp,
             cPropNames: u32,
-            lppPropNames: **MAPINAMEID,
+            lppPropNames: ?*?*MAPINAMEID,
             ulFlags: u32,
-            lppPropTags: **SPropTagArray,
+            lppPropTags: ?*?*SPropTagArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: **MAPIERROR) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).GetLastError(@ptrCast(*const IMAPIProp, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -496,39 +496,39 @@ pub const IMAPIProp = extern struct {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).SaveChanges(@ptrCast(*const IMAPIProp, self), ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_GetProps(self: *const T, lpPropTagArray: *SPropTagArray, ulFlags: u32, lpcValues: *u32, lppPropArray: **SPropValue) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_GetProps(self: *const T, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpcValues: ?*u32, lppPropArray: ?*?*SPropValue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).GetProps(@ptrCast(*const IMAPIProp, self), lpPropTagArray, ulFlags, lpcValues, lppPropArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_GetPropList(self: *const T, ulFlags: u32, lppPropTagArray: **SPropTagArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_GetPropList(self: *const T, ulFlags: u32, lppPropTagArray: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).GetPropList(@ptrCast(*const IMAPIProp, self), ulFlags, lppPropTagArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_OpenProperty(self: *const T, ulPropTag: u32, lpiid: *Guid, ulInterfaceOptions: u32, ulFlags: u32, lppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_OpenProperty(self: *const T, ulPropTag: u32, lpiid: ?*Guid, ulInterfaceOptions: u32, ulFlags: u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).OpenProperty(@ptrCast(*const IMAPIProp, self), ulPropTag, lpiid, ulInterfaceOptions, ulFlags, lppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_SetProps(self: *const T, cValues: u32, lpPropArray: *SPropValue, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_SetProps(self: *const T, cValues: u32, lpPropArray: ?*SPropValue, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).SetProps(@ptrCast(*const IMAPIProp, self), cValues, lpPropArray, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_DeleteProps(self: *const T, lpPropTagArray: *SPropTagArray, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_DeleteProps(self: *const T, lpPropTagArray: ?*SPropTagArray, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).DeleteProps(@ptrCast(*const IMAPIProp, self), lpPropTagArray, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: *Guid, lpExcludeProps: *SPropTagArray, ulUIParam: usize, lpProgress: *IMAPIProgress, lpInterface: *Guid, lpDestObj: *c_void, ulFlags: u32, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: ?*Guid, lpExcludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*c_void, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).CopyTo(@ptrCast(*const IMAPIProp, self), ciidExclude, rgiidExclude, lpExcludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_CopyProps(self: *const T, lpIncludeProps: *SPropTagArray, ulUIParam: usize, lpProgress: *IMAPIProgress, lpInterface: *Guid, lpDestObj: *c_void, ulFlags: u32, lppProblems: **SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_CopyProps(self: *const T, lpIncludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*c_void, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).CopyProps(@ptrCast(*const IMAPIProp, self), lpIncludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_GetNamesFromIDs(self: *const T, lppPropTags: **SPropTagArray, lpPropSetGuid: *Guid, ulFlags: u32, lpcPropNames: *u32, lpppPropNames: ***MAPINAMEID) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_GetNamesFromIDs(self: *const T, lppPropTags: ?*?*SPropTagArray, lpPropSetGuid: ?*Guid, ulFlags: u32, lpcPropNames: ?*u32, lpppPropNames: ?*?*?*MAPINAMEID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).GetNamesFromIDs(@ptrCast(*const IMAPIProp, self), lppPropTags, lpPropSetGuid, ulFlags, lpcPropNames, lpppPropNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_GetIDsFromNames(self: *const T, cPropNames: u32, lppPropNames: **MAPINAMEID, ulFlags: u32, lppPropTags: **SPropTagArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_GetIDsFromNames(self: *const T, cPropNames: u32, lppPropNames: ?*?*MAPINAMEID, ulFlags: u32, lppPropTags: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).GetIDsFromNames(@ptrCast(*const IMAPIProp, self), cPropNames, lppPropNames, ulFlags, lppPropTags);
         }
     };}
@@ -549,23 +549,23 @@ pub const SSortOrderSet = extern struct {
 
 pub const SAndRestriction = extern struct {
     cRes: u32,
-    lpRes: *SRestriction,
+    lpRes: ?*SRestriction,
 };
 
 pub const SOrRestriction = extern struct {
     cRes: u32,
-    lpRes: *SRestriction,
+    lpRes: ?*SRestriction,
 };
 
 pub const SNotRestriction = extern struct {
     ulReserved: u32,
-    lpRes: *SRestriction,
+    lpRes: ?*SRestriction,
 };
 
 pub const SContentRestriction = extern struct {
     ulFuzzyLevel: u32,
     ulPropTag: u32,
-    lpProp: *SPropValue,
+    lpProp: ?*SPropValue,
 };
 
 pub const SBitMaskRestriction = extern struct {
@@ -577,7 +577,7 @@ pub const SBitMaskRestriction = extern struct {
 pub const SPropertyRestriction = extern struct {
     relop: u32,
     ulPropTag: u32,
-    lpProp: *SPropValue,
+    lpProp: ?*SPropValue,
 };
 
 pub const SComparePropsRestriction = extern struct {
@@ -600,13 +600,13 @@ pub const SExistRestriction = extern struct {
 
 pub const SSubRestriction = extern struct {
     ulSubObject: u32,
-    lpRes: *SRestriction,
+    lpRes: ?*SRestriction,
 };
 
 pub const SCommentRestriction = extern struct {
     cValues: u32,
-    lpRes: *SRestriction,
-    lpProp: *SPropValue,
+    lpRes: ?*SRestriction,
+    lpProp: ?*SPropValue,
 };
 
 pub const SRestriction = extern struct {
@@ -634,13 +634,13 @@ pub const IMAPITable = extern struct {
             self: *const IMAPITable,
             hResult: HRESULT,
             ulFlags: u32,
-            lppMAPIError: **MAPIERROR,
+            lppMAPIError: ?*?*MAPIERROR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Advise: fn(
             self: *const IMAPITable,
             ulEventMask: u32,
-            lpAdviseSink: *IMAPIAdviseSink,
-            lpulConnection: *u32,
+            lpAdviseSink: ?*IMAPIAdviseSink,
+            lpulConnection: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unadvise: fn(
             self: *const IMAPITable,
@@ -648,29 +648,29 @@ pub const IMAPITable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const IMAPITable,
-            lpulTableStatus: *u32,
-            lpulTableType: *u32,
+            lpulTableStatus: ?*u32,
+            lpulTableType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetColumns: fn(
             self: *const IMAPITable,
-            lpPropTagArray: *SPropTagArray,
+            lpPropTagArray: ?*SPropTagArray,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryColumns: fn(
             self: *const IMAPITable,
             ulFlags: u32,
-            lpPropTagArray: **SPropTagArray,
+            lpPropTagArray: ?*?*SPropTagArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRowCount: fn(
             self: *const IMAPITable,
             ulFlags: u32,
-            lpulCount: *u32,
+            lpulCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SeekRow: fn(
             self: *const IMAPITable,
             bkOrigin: u32,
             lRowCount: i32,
-            lplRowsSought: *i32,
+            lplRowsSought: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SeekRowApprox: fn(
             self: *const IMAPITable,
@@ -679,24 +679,24 @@ pub const IMAPITable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryPosition: fn(
             self: *const IMAPITable,
-            lpulRow: *u32,
-            lpulNumerator: *u32,
-            lpulDenominator: *u32,
+            lpulRow: ?*u32,
+            lpulNumerator: ?*u32,
+            lpulDenominator: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindRow: fn(
             self: *const IMAPITable,
-            lpRestriction: *SRestriction,
+            lpRestriction: ?*SRestriction,
             bkOrigin: u32,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Restrict: fn(
             self: *const IMAPITable,
-            lpRestriction: *SRestriction,
+            lpRestriction: ?*SRestriction,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBookmark: fn(
             self: *const IMAPITable,
-            lpbkPosition: *u32,
+            lpbkPosition: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBookmark: fn(
             self: *const IMAPITable,
@@ -704,18 +704,18 @@ pub const IMAPITable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SortTable: fn(
             self: *const IMAPITable,
-            lpSortCriteria: *SSortOrderSet,
+            lpSortCriteria: ?*SSortOrderSet,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QuerySortOrder: fn(
             self: *const IMAPITable,
-            lppSortCriteria: **SSortOrderSet,
+            lppSortCriteria: ?*?*SSortOrderSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryRows: fn(
             self: *const IMAPITable,
             lRowCount: i32,
             ulFlags: u32,
-            lppRows: **SRowSet,
+            lppRows: ?*?*SRowSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Abort: fn(
             self: *const IMAPITable,
@@ -723,50 +723,50 @@ pub const IMAPITable = extern struct {
         ExpandRow: fn(
             self: *const IMAPITable,
             cbInstanceKey: u32,
-            pbInstanceKey: *u8,
+            pbInstanceKey: ?*u8,
             ulRowCount: u32,
             ulFlags: u32,
-            lppRows: **SRowSet,
-            lpulMoreRows: *u32,
+            lppRows: ?*?*SRowSet,
+            lpulMoreRows: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CollapseRow: fn(
             self: *const IMAPITable,
             cbInstanceKey: u32,
-            pbInstanceKey: *u8,
+            pbInstanceKey: ?*u8,
             ulFlags: u32,
-            lpulRowCount: *u32,
+            lpulRowCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WaitForCompletion: fn(
             self: *const IMAPITable,
             ulFlags: u32,
             ulTimeout: u32,
-            lpulTableStatus: *u32,
+            lpulTableStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCollapseState: fn(
             self: *const IMAPITable,
             ulFlags: u32,
             cbInstanceKey: u32,
-            lpbInstanceKey: *u8,
-            lpcbCollapseState: *u32,
-            lppbCollapseState: **u8,
+            lpbInstanceKey: ?*u8,
+            lpcbCollapseState: ?*u32,
+            lppbCollapseState: ?*?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCollapseState: fn(
             self: *const IMAPITable,
             ulFlags: u32,
             cbCollapseState: u32,
-            pbCollapseState: *u8,
-            lpbkLocation: *u32,
+            pbCollapseState: ?*u8,
+            lpbkLocation: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: **MAPIERROR) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).GetLastError(@ptrCast(*const IMAPITable, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_Advise(self: *const T, ulEventMask: u32, lpAdviseSink: *IMAPIAdviseSink, lpulConnection: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_Advise(self: *const T, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).Advise(@ptrCast(*const IMAPITable, self), ulEventMask, lpAdviseSink, lpulConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -774,23 +774,23 @@ pub const IMAPITable = extern struct {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).Unadvise(@ptrCast(*const IMAPITable, self), ulConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_GetStatus(self: *const T, lpulTableStatus: *u32, lpulTableType: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_GetStatus(self: *const T, lpulTableStatus: ?*u32, lpulTableType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).GetStatus(@ptrCast(*const IMAPITable, self), lpulTableStatus, lpulTableType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_SetColumns(self: *const T, lpPropTagArray: *SPropTagArray, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_SetColumns(self: *const T, lpPropTagArray: ?*SPropTagArray, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).SetColumns(@ptrCast(*const IMAPITable, self), lpPropTagArray, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_QueryColumns(self: *const T, ulFlags: u32, lpPropTagArray: **SPropTagArray) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_QueryColumns(self: *const T, ulFlags: u32, lpPropTagArray: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).QueryColumns(@ptrCast(*const IMAPITable, self), ulFlags, lpPropTagArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_GetRowCount(self: *const T, ulFlags: u32, lpulCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_GetRowCount(self: *const T, ulFlags: u32, lpulCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).GetRowCount(@ptrCast(*const IMAPITable, self), ulFlags, lpulCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_SeekRow(self: *const T, bkOrigin: u32, lRowCount: i32, lplRowsSought: *i32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_SeekRow(self: *const T, bkOrigin: u32, lRowCount: i32, lplRowsSought: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).SeekRow(@ptrCast(*const IMAPITable, self), bkOrigin, lRowCount, lplRowsSought);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -798,19 +798,19 @@ pub const IMAPITable = extern struct {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).SeekRowApprox(@ptrCast(*const IMAPITable, self), ulNumerator, ulDenominator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_QueryPosition(self: *const T, lpulRow: *u32, lpulNumerator: *u32, lpulDenominator: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_QueryPosition(self: *const T, lpulRow: ?*u32, lpulNumerator: ?*u32, lpulDenominator: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).QueryPosition(@ptrCast(*const IMAPITable, self), lpulRow, lpulNumerator, lpulDenominator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_FindRow(self: *const T, lpRestriction: *SRestriction, bkOrigin: u32, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_FindRow(self: *const T, lpRestriction: ?*SRestriction, bkOrigin: u32, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).FindRow(@ptrCast(*const IMAPITable, self), lpRestriction, bkOrigin, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_Restrict(self: *const T, lpRestriction: *SRestriction, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_Restrict(self: *const T, lpRestriction: ?*SRestriction, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).Restrict(@ptrCast(*const IMAPITable, self), lpRestriction, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_CreateBookmark(self: *const T, lpbkPosition: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_CreateBookmark(self: *const T, lpbkPosition: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).CreateBookmark(@ptrCast(*const IMAPITable, self), lpbkPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -818,15 +818,15 @@ pub const IMAPITable = extern struct {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).FreeBookmark(@ptrCast(*const IMAPITable, self), bkPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_SortTable(self: *const T, lpSortCriteria: *SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_SortTable(self: *const T, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).SortTable(@ptrCast(*const IMAPITable, self), lpSortCriteria, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_QuerySortOrder(self: *const T, lppSortCriteria: **SSortOrderSet) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_QuerySortOrder(self: *const T, lppSortCriteria: ?*?*SSortOrderSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).QuerySortOrder(@ptrCast(*const IMAPITable, self), lppSortCriteria);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_QueryRows(self: *const T, lRowCount: i32, ulFlags: u32, lppRows: **SRowSet) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_QueryRows(self: *const T, lRowCount: i32, ulFlags: u32, lppRows: ?*?*SRowSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).QueryRows(@ptrCast(*const IMAPITable, self), lRowCount, ulFlags, lppRows);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -834,23 +834,23 @@ pub const IMAPITable = extern struct {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).Abort(@ptrCast(*const IMAPITable, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_ExpandRow(self: *const T, cbInstanceKey: u32, pbInstanceKey: *u8, ulRowCount: u32, ulFlags: u32, lppRows: **SRowSet, lpulMoreRows: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_ExpandRow(self: *const T, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulRowCount: u32, ulFlags: u32, lppRows: ?*?*SRowSet, lpulMoreRows: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).ExpandRow(@ptrCast(*const IMAPITable, self), cbInstanceKey, pbInstanceKey, ulRowCount, ulFlags, lppRows, lpulMoreRows);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_CollapseRow(self: *const T, cbInstanceKey: u32, pbInstanceKey: *u8, ulFlags: u32, lpulRowCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_CollapseRow(self: *const T, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulFlags: u32, lpulRowCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).CollapseRow(@ptrCast(*const IMAPITable, self), cbInstanceKey, pbInstanceKey, ulFlags, lpulRowCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_WaitForCompletion(self: *const T, ulFlags: u32, ulTimeout: u32, lpulTableStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_WaitForCompletion(self: *const T, ulFlags: u32, ulTimeout: u32, lpulTableStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).WaitForCompletion(@ptrCast(*const IMAPITable, self), ulFlags, ulTimeout, lpulTableStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_GetCollapseState(self: *const T, ulFlags: u32, cbInstanceKey: u32, lpbInstanceKey: *u8, lpcbCollapseState: *u32, lppbCollapseState: **u8) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_GetCollapseState(self: *const T, ulFlags: u32, cbInstanceKey: u32, lpbInstanceKey: ?*u8, lpcbCollapseState: ?*u32, lppbCollapseState: ?*?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).GetCollapseState(@ptrCast(*const IMAPITable, self), ulFlags, cbInstanceKey, lpbInstanceKey, lpcbCollapseState, lppbCollapseState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPITable_SetCollapseState(self: *const T, ulFlags: u32, cbCollapseState: u32, pbCollapseState: *u8, lpbkLocation: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPITable_SetCollapseState(self: *const T, ulFlags: u32, cbCollapseState: u32, pbCollapseState: ?*u8, lpbkLocation: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPITable.VTable, self.vtable).SetCollapseState(@ptrCast(*const IMAPITable, self), ulFlags, cbCollapseState, pbCollapseState, lpbkLocation);
         }
     };}
@@ -883,8 +883,8 @@ pub const IMAPIStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChangePassword: fn(
             self: *const IMAPIStatus,
-            lpOldPass: *i8,
-            lpNewPass: *i8,
+            lpOldPass: ?*i8,
+            lpNewPass: ?*i8,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FlushQueues: fn(
@@ -907,7 +907,7 @@ pub const IMAPIStatus = extern struct {
             return @ptrCast(*const IMAPIStatus.VTable, self.vtable).SettingsDialog(@ptrCast(*const IMAPIStatus, self), ulUIParam, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIStatus_ChangePassword(self: *const T, lpOldPass: *i8, lpNewPass: *i8, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIStatus_ChangePassword(self: *const T, lpOldPass: ?*i8, lpNewPass: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIStatus.VTable, self.vtable).ChangePassword(@ptrCast(*const IMAPIStatus, self), lpOldPass, lpNewPass, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -924,22 +924,22 @@ pub const IMAPIContainer = extern struct {
         GetContentsTable: fn(
             self: *const IMAPIContainer,
             ulFlags: u32,
-            lppTable: **IMAPITable,
+            lppTable: ?*?*IMAPITable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHierarchyTable: fn(
             self: *const IMAPIContainer,
             ulFlags: u32,
-            lppTable: **IMAPITable,
+            lppTable: ?*?*IMAPITable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenEntry: fn(
             self: *const IMAPIContainer,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
-            lpInterface: *Guid,
+            lpEntryID: ?*ENTRYID,
+            lpInterface: ?*Guid,
             ulFlags: u32,
-            lpulObjType: *u32,
-            lppUnk: **IUnknown,
+            lpulObjType: ?*u32,
+            lppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSearchCriteria: fn(
             self: *const IMAPIContainer,
@@ -950,8 +950,8 @@ pub const IMAPIContainer = extern struct {
         GetSearchCriteria: fn(
             self: *const IMAPIContainer,
             ulFlags: u32,
-            lppRestriction: ?**SRestriction,
-            lppContainerList: ?**SBinaryArray,
+            lppRestriction: ?*?*SRestriction,
+            lppContainerList: ?*?*SBinaryArray,
             lpulSearchState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -959,15 +959,15 @@ pub const IMAPIContainer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIContainer_GetContentsTable(self: *const T, ulFlags: u32, lppTable: **IMAPITable) callconv(.Inline) HRESULT {
+        pub fn IMAPIContainer_GetContentsTable(self: *const T, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIContainer.VTable, self.vtable).GetContentsTable(@ptrCast(*const IMAPIContainer, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIContainer_GetHierarchyTable(self: *const T, ulFlags: u32, lppTable: **IMAPITable) callconv(.Inline) HRESULT {
+        pub fn IMAPIContainer_GetHierarchyTable(self: *const T, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIContainer.VTable, self.vtable).GetHierarchyTable(@ptrCast(*const IMAPIContainer, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIContainer_OpenEntry(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, lpInterface: *Guid, ulFlags: u32, lpulObjType: *u32, lppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMAPIContainer_OpenEntry(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIContainer.VTable, self.vtable).OpenEntry(@ptrCast(*const IMAPIContainer, self), cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -975,7 +975,7 @@ pub const IMAPIContainer = extern struct {
             return @ptrCast(*const IMAPIContainer.VTable, self.vtable).SetSearchCriteria(@ptrCast(*const IMAPIContainer, self), lpRestriction, lpContainerList, ulSearchFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIContainer_GetSearchCriteria(self: *const T, ulFlags: u32, lppRestriction: ?**SRestriction, lppContainerList: ?**SBinaryArray, lpulSearchState: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIContainer_GetSearchCriteria(self: *const T, ulFlags: u32, lppRestriction: ?*?*SRestriction, lppContainerList: ?*?*SBinaryArray, lpulSearchState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIContainer.VTable, self.vtable).GetSearchCriteria(@ptrCast(*const IMAPIContainer, self), ulFlags, lppRestriction, lppContainerList, lpulSearchState);
         }
     };}
@@ -995,47 +995,47 @@ pub const IABContainer = extern struct {
             self: *const IABContainer,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             ulCreateFlags: u32,
-            lppMAPIPropEntry: **IMAPIProp,
+            lppMAPIPropEntry: ?*?*IMAPIProp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyEntries: fn(
             self: *const IABContainer,
-            lpEntries: *SBinaryArray,
+            lpEntries: ?*SBinaryArray,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteEntries: fn(
             self: *const IABContainer,
-            lpEntries: *SBinaryArray,
+            lpEntries: ?*SBinaryArray,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveNames: fn(
             self: *const IABContainer,
             lpPropTagArray: ?*SPropTagArray,
             ulFlags: u32,
-            lpAdrList: *ADRLIST,
-            lpFlagList: *_flaglist,
+            lpAdrList: ?*ADRLIST,
+            lpFlagList: ?*_flaglist,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IABContainer_CreateEntry(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: **IMAPIProp) callconv(.Inline) HRESULT {
+        pub fn IABContainer_CreateEntry(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IABContainer.VTable, self.vtable).CreateEntry(@ptrCast(*const IABContainer, self), cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IABContainer_CopyEntries(self: *const T, lpEntries: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IABContainer_CopyEntries(self: *const T, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IABContainer.VTable, self.vtable).CopyEntries(@ptrCast(*const IABContainer, self), lpEntries, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IABContainer_DeleteEntries(self: *const T, lpEntries: *SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IABContainer_DeleteEntries(self: *const T, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IABContainer.VTable, self.vtable).DeleteEntries(@ptrCast(*const IABContainer, self), lpEntries, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IABContainer_ResolveNames(self: *const T, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: *ADRLIST, lpFlagList: *_flaglist) callconv(.Inline) HRESULT {
+        pub fn IABContainer_ResolveNames(self: *const T, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.Inline) HRESULT {
             return @ptrCast(*const IABContainer.VTable, self.vtable).ResolveNames(@ptrCast(*const IABContainer, self), lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
         }
     };}
@@ -1062,47 +1062,47 @@ pub const IDistList = extern struct {
             self: *const IDistList,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             ulCreateFlags: u32,
-            lppMAPIPropEntry: **IMAPIProp,
+            lppMAPIPropEntry: ?*?*IMAPIProp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyEntries: fn(
             self: *const IDistList,
-            lpEntries: *SBinaryArray,
+            lpEntries: ?*SBinaryArray,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteEntries: fn(
             self: *const IDistList,
-            lpEntries: *SBinaryArray,
+            lpEntries: ?*SBinaryArray,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveNames: fn(
             self: *const IDistList,
             lpPropTagArray: ?*SPropTagArray,
             ulFlags: u32,
-            lpAdrList: *ADRLIST,
-            lpFlagList: *_flaglist,
+            lpAdrList: ?*ADRLIST,
+            lpFlagList: ?*_flaglist,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDistList_CreateEntry(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: **IMAPIProp) callconv(.Inline) HRESULT {
+        pub fn IDistList_CreateEntry(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDistList.VTable, self.vtable).CreateEntry(@ptrCast(*const IDistList, self), cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDistList_CopyEntries(self: *const T, lpEntries: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDistList_CopyEntries(self: *const T, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDistList.VTable, self.vtable).CopyEntries(@ptrCast(*const IDistList, self), lpEntries, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDistList_DeleteEntries(self: *const T, lpEntries: *SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDistList_DeleteEntries(self: *const T, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDistList.VTable, self.vtable).DeleteEntries(@ptrCast(*const IDistList, self), lpEntries, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDistList_ResolveNames(self: *const T, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: *ADRLIST, lpFlagList: *_flaglist) callconv(.Inline) HRESULT {
+        pub fn IDistList_ResolveNames(self: *const T, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDistList.VTable, self.vtable).ResolveNames(@ptrCast(*const IDistList, self), lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
         }
     };}
@@ -1114,22 +1114,22 @@ pub const IMAPIFolder = extern struct {
         base: IMAPIContainer.VTable,
         CreateMessage: fn(
             self: *const IMAPIFolder,
-            lpInterface: *Guid,
+            lpInterface: ?*Guid,
             ulFlags: u32,
-            lppMessage: **IMessage,
+            lppMessage: ?*?*IMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyMessages: fn(
             self: *const IMAPIFolder,
-            lpMsgList: *SBinaryArray,
+            lpMsgList: ?*SBinaryArray,
             lpInterface: ?*Guid,
-            lpDestFolder: *c_void,
+            lpDestFolder: ?*c_void,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMessages: fn(
             self: *const IMAPIFolder,
-            lpMsgList: *SBinaryArray,
+            lpMsgList: ?*SBinaryArray,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
@@ -1137,20 +1137,20 @@ pub const IMAPIFolder = extern struct {
         CreateFolder: fn(
             self: *const IMAPIFolder,
             ulFolderType: u32,
-            lpszFolderName: *i8,
+            lpszFolderName: ?*i8,
             lpszFolderComment: ?*i8,
             lpInterface: ?*Guid,
             ulFlags: u32,
-            lppFolder: **IMAPIFolder,
+            lppFolder: ?*?*IMAPIFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyFolder: fn(
             self: *const IMAPIFolder,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             lpInterface: ?*Guid,
-            lpDestFolder: *c_void,
-            lpszNewFolderName: *i8,
+            lpDestFolder: ?*c_void,
+            lpszNewFolderName: ?*i8,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
@@ -1159,14 +1159,14 @@ pub const IMAPIFolder = extern struct {
             self: *const IMAPIFolder,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReadFlags: fn(
             self: *const IMAPIFolder,
-            lpMsgList: *SBinaryArray,
+            lpMsgList: ?*SBinaryArray,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
@@ -1175,22 +1175,22 @@ pub const IMAPIFolder = extern struct {
             self: *const IMAPIFolder,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             ulFlags: u32,
-            lpulMessageStatus: *u32,
+            lpulMessageStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMessageStatus: fn(
             self: *const IMAPIFolder,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             ulNewStatus: u32,
             ulNewStatusMask: u32,
-            lpulOldStatus: *u32,
+            lpulOldStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SaveContentsSort: fn(
             self: *const IMAPIFolder,
-            lpSortCriteria: *SSortOrderSet,
+            lpSortCriteria: ?*SSortOrderSet,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EmptyFolder: fn(
@@ -1204,43 +1204,43 @@ pub const IMAPIFolder = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CreateMessage(self: *const T, lpInterface: *Guid, ulFlags: u32, lppMessage: **IMessage) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CreateMessage(self: *const T, lpInterface: ?*Guid, ulFlags: u32, lppMessage: ?*?*IMessage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CreateMessage(@ptrCast(*const IMAPIFolder, self), lpInterface, ulFlags, lppMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CopyMessages(self: *const T, lpMsgList: *SBinaryArray, lpInterface: ?*Guid, lpDestFolder: *c_void, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CopyMessages(self: *const T, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*c_void, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CopyMessages(@ptrCast(*const IMAPIFolder, self), lpMsgList, lpInterface, lpDestFolder, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_DeleteMessages(self: *const T, lpMsgList: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_DeleteMessages(self: *const T, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).DeleteMessages(@ptrCast(*const IMAPIFolder, self), lpMsgList, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CreateFolder(self: *const T, ulFolderType: u32, lpszFolderName: *i8, lpszFolderComment: ?*i8, lpInterface: ?*Guid, ulFlags: u32, lppFolder: **IMAPIFolder) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CreateFolder(self: *const T, ulFolderType: u32, lpszFolderName: ?*i8, lpszFolderComment: ?*i8, lpInterface: ?*Guid, ulFlags: u32, lppFolder: ?*?*IMAPIFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CreateFolder(@ptrCast(*const IMAPIFolder, self), ulFolderType, lpszFolderName, lpszFolderComment, lpInterface, ulFlags, lppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CopyFolder(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, lpInterface: ?*Guid, lpDestFolder: *c_void, lpszNewFolderName: *i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CopyFolder(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*c_void, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CopyFolder(@ptrCast(*const IMAPIFolder, self), cbEntryID, lpEntryID, lpInterface, lpDestFolder, lpszNewFolderName, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_DeleteFolder(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_DeleteFolder(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).DeleteFolder(@ptrCast(*const IMAPIFolder, self), cbEntryID, lpEntryID, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_SetReadFlags(self: *const T, lpMsgList: *SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_SetReadFlags(self: *const T, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).SetReadFlags(@ptrCast(*const IMAPIFolder, self), lpMsgList, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_GetMessageStatus(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, ulFlags: u32, lpulMessageStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_GetMessageStatus(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32, lpulMessageStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).GetMessageStatus(@ptrCast(*const IMAPIFolder, self), cbEntryID, lpEntryID, ulFlags, lpulMessageStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_SetMessageStatus(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, ulNewStatus: u32, ulNewStatusMask: u32, lpulOldStatus: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_SetMessageStatus(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulNewStatus: u32, ulNewStatusMask: u32, lpulOldStatus: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).SetMessageStatus(@ptrCast(*const IMAPIFolder, self), cbEntryID, lpEntryID, ulNewStatus, ulNewStatusMask, lpulOldStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_SaveContentsSort(self: *const T, lpSortCriteria: *SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_SaveContentsSort(self: *const T, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).SaveContentsSort(@ptrCast(*const IMAPIFolder, self), lpSortCriteria, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1260,8 +1260,8 @@ pub const IMsgStore = extern struct {
             // TODO: what to do with BytesParamIndex 0?
             lpEntryID: ?*ENTRYID,
             ulEventMask: u32,
-            lpAdviseSink: *IMAPIAdviseSink,
-            lpulConnection: *u32,
+            lpAdviseSink: ?*IMAPIAdviseSink,
+            lpulConnection: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unadvise: fn(
             self: *const IMsgStore,
@@ -1271,22 +1271,22 @@ pub const IMsgStore = extern struct {
             self: *const IMsgStore,
             cbEntryID1: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID1: *ENTRYID,
+            lpEntryID1: ?*ENTRYID,
             cbEntryID2: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lpEntryID2: *ENTRYID,
+            lpEntryID2: ?*ENTRYID,
             ulFlags: u32,
-            lpulResult: *u32,
+            lpulResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenEntry: fn(
             self: *const IMsgStore,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             lpInterface: ?*Guid,
             ulFlags: u32,
-            lpulObjType: *u32,
-            ppUnk: **IUnknown,
+            lpulObjType: ?*u32,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetReceiveFolder: fn(
             self: *const IMsgStore,
@@ -1294,40 +1294,40 @@ pub const IMsgStore = extern struct {
             ulFlags: u32,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReceiveFolder: fn(
             self: *const IMsgStore,
             lpszMessageClass: ?*i8,
             ulFlags: u32,
-            lpcbEntryID: *u32,
-            lppEntryID: **ENTRYID,
-            lppszExplicitClass: ?**i8,
+            lpcbEntryID: ?*u32,
+            lppEntryID: ?*?*ENTRYID,
+            lppszExplicitClass: ?*?*i8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReceiveFolderTable: fn(
             self: *const IMsgStore,
             ulFlags: u32,
-            lppTable: **IMAPITable,
+            lppTable: ?*?*IMAPITable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StoreLogoff: fn(
             self: *const IMsgStore,
-            lpulFlags: *u32,
+            lpulFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AbortSubmit: fn(
             self: *const IMsgStore,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 0?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutgoingQueue: fn(
             self: *const IMsgStore,
             ulFlags: u32,
-            lppTable: **IMAPITable,
+            lppTable: ?*?*IMAPITable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetLockState: fn(
             self: *const IMsgStore,
-            lpMessage: *IMessage,
+            lpMessage: ?*IMessage,
             ulLockState: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FinishedMsg: fn(
@@ -1335,18 +1335,18 @@ pub const IMsgStore = extern struct {
             ulFlags: u32,
             cbEntryID: u32,
             // TODO: what to do with BytesParamIndex 1?
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NotifyNewMail: fn(
             self: *const IMsgStore,
-            lpNotification: *NOTIFICATION,
+            lpNotification: ?*NOTIFICATION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_Advise(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: *IMAPIAdviseSink, lpulConnection: *u32) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_Advise(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).Advise(@ptrCast(*const IMsgStore, self), cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1354,47 +1354,47 @@ pub const IMsgStore = extern struct {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).Unadvise(@ptrCast(*const IMsgStore, self), ulConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_CompareEntryIDs(self: *const T, cbEntryID1: u32, lpEntryID1: *ENTRYID, cbEntryID2: u32, lpEntryID2: *ENTRYID, ulFlags: u32, lpulResult: *u32) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_CompareEntryIDs(self: *const T, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).CompareEntryIDs(@ptrCast(*const IMsgStore, self), cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_OpenEntry(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: *u32, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_OpenEntry(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).OpenEntry(@ptrCast(*const IMsgStore, self), cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_SetReceiveFolder(self: *const T, lpszMessageClass: ?*i8, ulFlags: u32, cbEntryID: u32, lpEntryID: *ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_SetReceiveFolder(self: *const T, lpszMessageClass: ?*i8, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).SetReceiveFolder(@ptrCast(*const IMsgStore, self), lpszMessageClass, ulFlags, cbEntryID, lpEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_GetReceiveFolder(self: *const T, lpszMessageClass: ?*i8, ulFlags: u32, lpcbEntryID: *u32, lppEntryID: **ENTRYID, lppszExplicitClass: ?**i8) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_GetReceiveFolder(self: *const T, lpszMessageClass: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID, lppszExplicitClass: ?*?*i8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).GetReceiveFolder(@ptrCast(*const IMsgStore, self), lpszMessageClass, ulFlags, lpcbEntryID, lppEntryID, lppszExplicitClass);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_GetReceiveFolderTable(self: *const T, ulFlags: u32, lppTable: **IMAPITable) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_GetReceiveFolderTable(self: *const T, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).GetReceiveFolderTable(@ptrCast(*const IMsgStore, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_StoreLogoff(self: *const T, lpulFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_StoreLogoff(self: *const T, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).StoreLogoff(@ptrCast(*const IMsgStore, self), lpulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_AbortSubmit(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_AbortSubmit(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).AbortSubmit(@ptrCast(*const IMsgStore, self), cbEntryID, lpEntryID, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_GetOutgoingQueue(self: *const T, ulFlags: u32, lppTable: **IMAPITable) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_GetOutgoingQueue(self: *const T, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).GetOutgoingQueue(@ptrCast(*const IMsgStore, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_SetLockState(self: *const T, lpMessage: *IMessage, ulLockState: u32) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_SetLockState(self: *const T, lpMessage: ?*IMessage, ulLockState: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).SetLockState(@ptrCast(*const IMsgStore, self), lpMessage, ulLockState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_FinishedMsg(self: *const T, ulFlags: u32, cbEntryID: u32, lpEntryID: *ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_FinishedMsg(self: *const T, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).FinishedMsg(@ptrCast(*const IMsgStore, self), ulFlags, cbEntryID, lpEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMsgStore_NotifyNewMail(self: *const T, lpNotification: *NOTIFICATION) callconv(.Inline) HRESULT {
+        pub fn IMsgStore_NotifyNewMail(self: *const T, lpNotification: ?*NOTIFICATION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMsgStore.VTable, self.vtable).NotifyNewMail(@ptrCast(*const IMsgStore, self), lpNotification);
         }
     };}
@@ -1407,21 +1407,21 @@ pub const IMessage = extern struct {
         GetAttachmentTable: fn(
             self: *const IMessage,
             ulFlags: u32,
-            lppTable: **IMAPITable,
+            lppTable: ?*?*IMAPITable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenAttach: fn(
             self: *const IMessage,
             ulAttachmentNum: u32,
             lpInterface: ?*Guid,
             ulFlags: u32,
-            lppAttach: **IAttach,
+            lppAttach: ?*?*IAttach,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAttach: fn(
             self: *const IMessage,
             lpInterface: ?*Guid,
             ulFlags: u32,
-            lpulAttachmentNum: *u32,
-            lppAttach: **IAttach,
+            lpulAttachmentNum: ?*u32,
+            lppAttach: ?*?*IAttach,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteAttach: fn(
             self: *const IMessage,
@@ -1433,12 +1433,12 @@ pub const IMessage = extern struct {
         GetRecipientTable: fn(
             self: *const IMessage,
             ulFlags: u32,
-            lppTable: **IMAPITable,
+            lppTable: ?*?*IMAPITable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ModifyRecipients: fn(
             self: *const IMessage,
             ulFlags: u32,
-            lpMods: *ADRLIST,
+            lpMods: ?*ADRLIST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SubmitMessage: fn(
             self: *const IMessage,
@@ -1453,15 +1453,15 @@ pub const IMessage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessage_GetAttachmentTable(self: *const T, ulFlags: u32, lppTable: **IMAPITable) callconv(.Inline) HRESULT {
+        pub fn IMessage_GetAttachmentTable(self: *const T, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMessage.VTable, self.vtable).GetAttachmentTable(@ptrCast(*const IMessage, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessage_OpenAttach(self: *const T, ulAttachmentNum: u32, lpInterface: ?*Guid, ulFlags: u32, lppAttach: **IAttach) callconv(.Inline) HRESULT {
+        pub fn IMessage_OpenAttach(self: *const T, ulAttachmentNum: u32, lpInterface: ?*Guid, ulFlags: u32, lppAttach: ?*?*IAttach) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMessage.VTable, self.vtable).OpenAttach(@ptrCast(*const IMessage, self), ulAttachmentNum, lpInterface, ulFlags, lppAttach);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessage_CreateAttach(self: *const T, lpInterface: ?*Guid, ulFlags: u32, lpulAttachmentNum: *u32, lppAttach: **IAttach) callconv(.Inline) HRESULT {
+        pub fn IMessage_CreateAttach(self: *const T, lpInterface: ?*Guid, ulFlags: u32, lpulAttachmentNum: ?*u32, lppAttach: ?*?*IAttach) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMessage.VTable, self.vtable).CreateAttach(@ptrCast(*const IMessage, self), lpInterface, ulFlags, lpulAttachmentNum, lppAttach);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1469,11 +1469,11 @@ pub const IMessage = extern struct {
             return @ptrCast(*const IMessage.VTable, self.vtable).DeleteAttach(@ptrCast(*const IMessage, self), ulAttachmentNum, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessage_GetRecipientTable(self: *const T, ulFlags: u32, lppTable: **IMAPITable) callconv(.Inline) HRESULT {
+        pub fn IMessage_GetRecipientTable(self: *const T, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMessage.VTable, self.vtable).GetRecipientTable(@ptrCast(*const IMessage, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessage_ModifyRecipients(self: *const T, ulFlags: u32, lpMods: *ADRLIST) callconv(.Inline) HRESULT {
+        pub fn IMessage_ModifyRecipients(self: *const T, ulFlags: u32, lpMods: ?*ADRLIST) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMessage.VTable, self.vtable).ModifyRecipients(@ptrCast(*const IMessage, self), ulFlags, lpMods);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1501,41 +1501,41 @@ pub const IAttach = extern struct {
 
 pub const LPFNABSDI = fn(
     ulUIParam: usize,
-    lpvmsg: *c_void,
+    lpvmsg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFNDISMISS = fn(
     ulUIParam: usize,
-    lpvContext: *c_void,
+    lpvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LPFNBUTTON = fn(
     ulUIParam: usize,
-    lpvContext: *c_void,
+    lpvContext: ?*c_void,
     cbEntryID: u32,
-    lpSelection: *ENTRYID,
+    lpSelection: ?*ENTRYID,
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ADRPARM = extern struct {
     cbABContEntryID: u32,
-    lpABContEntryID: *ENTRYID,
+    lpABContEntryID: ?*ENTRYID,
     ulFlags: u32,
-    lpReserved: *c_void,
+    lpReserved: ?*c_void,
     ulHelpContext: u32,
-    lpszHelpFileName: *i8,
-    lpfnABSDI: LPFNABSDI,
-    lpfnDismiss: LPFNDISMISS,
-    lpvDismissContext: *c_void,
-    lpszCaption: *i8,
-    lpszNewEntryTitle: *i8,
-    lpszDestWellsTitle: *i8,
+    lpszHelpFileName: ?*i8,
+    lpfnABSDI: ?LPFNABSDI,
+    lpfnDismiss: ?LPFNDISMISS,
+    lpvDismissContext: ?*c_void,
+    lpszCaption: ?*i8,
+    lpszNewEntryTitle: ?*i8,
+    lpszDestWellsTitle: ?*i8,
     cDestFields: u32,
     nDestFieldFocus: u32,
-    lppszDestTitles: **i8,
-    lpulDestComps: *u32,
-    lpContRestriction: *SRestriction,
-    lpHierRestriction: *SRestriction,
+    lppszDestTitles: ?*?*i8,
+    lpulDestComps: ?*u32,
+    lpContRestriction: ?*SRestriction,
+    lpHierRestriction: ?*SRestriction,
 };
 
 pub const IMAPIControl = extern struct {
@@ -1545,7 +1545,7 @@ pub const IMAPIControl = extern struct {
             self: *const IMAPIControl,
             hResult: HRESULT,
             ulFlags: u32,
-            lppMAPIError: **MAPIERROR,
+            lppMAPIError: ?*?*MAPIERROR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Activate: fn(
             self: *const IMAPIControl,
@@ -1555,14 +1555,14 @@ pub const IMAPIControl = extern struct {
         GetState: fn(
             self: *const IMAPIControl,
             ulFlags: u32,
-            lpulState: *u32,
+            lpulState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIControl_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: **MAPIERROR) callconv(.Inline) HRESULT {
+        pub fn IMAPIControl_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIControl.VTable, self.vtable).GetLastError(@ptrCast(*const IMAPIControl, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1570,7 +1570,7 @@ pub const IMAPIControl = extern struct {
             return @ptrCast(*const IMAPIControl.VTable, self.vtable).Activate(@ptrCast(*const IMAPIControl, self), ulFlags, ulUIParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIControl_GetState(self: *const T, ulFlags: u32, lpulState: *u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIControl_GetState(self: *const T, ulFlags: u32, lpulState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIControl.VTable, self.vtable).GetState(@ptrCast(*const IMAPIControl, self), ulFlags, lpulState);
         }
     };}
@@ -1659,55 +1659,55 @@ pub const IProviderAdmin = extern struct {
             self: *const IProviderAdmin,
             hResult: HRESULT,
             ulFlags: u32,
-            lppMAPIError: **MAPIERROR,
+            lppMAPIError: ?*?*MAPIERROR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderTable: fn(
             self: *const IProviderAdmin,
             ulFlags: u32,
-            lppTable: **IMAPITable,
+            lppTable: ?*?*IMAPITable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateProvider: fn(
             self: *const IProviderAdmin,
-            lpszProvider: *i8,
+            lpszProvider: ?*i8,
             cValues: u32,
             lpProps: [*]SPropValue,
             ulUIParam: usize,
             ulFlags: u32,
-            lpUID: *MAPIUID,
+            lpUID: ?*MAPIUID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteProvider: fn(
             self: *const IProviderAdmin,
-            lpUID: *MAPIUID,
+            lpUID: ?*MAPIUID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenProfileSection: fn(
             self: *const IProviderAdmin,
             lpUID: ?*MAPIUID,
             lpInterface: ?*Guid,
             ulFlags: u32,
-            lppProfSect: **IProfSect,
+            lppProfSect: ?*?*IProfSect,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderAdmin_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: **MAPIERROR) callconv(.Inline) HRESULT {
+        pub fn IProviderAdmin_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderAdmin.VTable, self.vtable).GetLastError(@ptrCast(*const IProviderAdmin, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderAdmin_GetProviderTable(self: *const T, ulFlags: u32, lppTable: **IMAPITable) callconv(.Inline) HRESULT {
+        pub fn IProviderAdmin_GetProviderTable(self: *const T, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderAdmin.VTable, self.vtable).GetProviderTable(@ptrCast(*const IProviderAdmin, self), ulFlags, lppTable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderAdmin_CreateProvider(self: *const T, lpszProvider: *i8, cValues: u32, lpProps: [*]SPropValue, ulUIParam: usize, ulFlags: u32, lpUID: *MAPIUID) callconv(.Inline) HRESULT {
+        pub fn IProviderAdmin_CreateProvider(self: *const T, lpszProvider: ?*i8, cValues: u32, lpProps: [*]SPropValue, ulUIParam: usize, ulFlags: u32, lpUID: ?*MAPIUID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderAdmin.VTable, self.vtable).CreateProvider(@ptrCast(*const IProviderAdmin, self), lpszProvider, cValues, lpProps, ulUIParam, ulFlags, lpUID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderAdmin_DeleteProvider(self: *const T, lpUID: *MAPIUID) callconv(.Inline) HRESULT {
+        pub fn IProviderAdmin_DeleteProvider(self: *const T, lpUID: ?*MAPIUID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderAdmin.VTable, self.vtable).DeleteProvider(@ptrCast(*const IProviderAdmin, self), lpUID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderAdmin_OpenProfileSection(self: *const T, lpUID: ?*MAPIUID, lpInterface: ?*Guid, ulFlags: u32, lppProfSect: **IProfSect) callconv(.Inline) HRESULT {
+        pub fn IProviderAdmin_OpenProfileSection(self: *const T, lpUID: ?*MAPIUID, lpInterface: ?*Guid, ulFlags: u32, lppProfSect: ?*?*IProfSect) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderAdmin.VTable, self.vtable).OpenProfileSection(@ptrCast(*const IProviderAdmin, self), lpUID, lpInterface, ulFlags, lppProfSect);
         }
     };}
@@ -1721,28 +1721,28 @@ pub const IAddrBook = extern struct {
         OpenEntry: fn(
             self: *const IAddrBook,
             cbEntryID: u32,
-            lpEntryID: *ENTRYID,
-            lpInterface: *Guid,
+            lpEntryID: ?*ENTRYID,
+            lpInterface: ?*Guid,
             ulFlags: u32,
-            lpulObjType: *u32,
-            lppUnk: **IUnknown,
+            lpulObjType: ?*u32,
+            lppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareEntryIDs: fn(
             self: *const IAddrBook,
             cbEntryID1: u32,
-            lpEntryID1: *ENTRYID,
+            lpEntryID1: ?*ENTRYID,
             cbEntryID2: u32,
-            lpEntryID2: *ENTRYID,
+            lpEntryID2: ?*ENTRYID,
             ulFlags: u32,
-            lpulResult: *u32,
+            lpulResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Advise: fn(
             self: *const IAddrBook,
             cbEntryID: u32,
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
             ulEventMask: u32,
-            lpAdviseSink: *IMAPIAdviseSink,
-            lpulConnection: *u32,
+            lpAdviseSink: ?*IMAPIAdviseSink,
+            lpulConnection: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unadvise: fn(
             self: *const IAddrBook,
@@ -1750,112 +1750,112 @@ pub const IAddrBook = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOneOff: fn(
             self: *const IAddrBook,
-            lpszName: *i8,
-            lpszAdrType: *i8,
-            lpszAddress: *i8,
+            lpszName: ?*i8,
+            lpszAdrType: ?*i8,
+            lpszAddress: ?*i8,
             ulFlags: u32,
-            lpcbEntryID: *u32,
-            lppEntryID: **ENTRYID,
+            lpcbEntryID: ?*u32,
+            lppEntryID: ?*?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NewEntry: fn(
             self: *const IAddrBook,
             ulUIParam: u32,
             ulFlags: u32,
             cbEIDContainer: u32,
-            lpEIDContainer: *ENTRYID,
+            lpEIDContainer: ?*ENTRYID,
             cbEIDNewEntryTpl: u32,
-            lpEIDNewEntryTpl: *ENTRYID,
-            lpcbEIDNewEntry: *u32,
-            lppEIDNewEntry: **ENTRYID,
+            lpEIDNewEntryTpl: ?*ENTRYID,
+            lpcbEIDNewEntry: ?*u32,
+            lppEIDNewEntry: ?*?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveName: fn(
             self: *const IAddrBook,
             ulUIParam: usize,
             ulFlags: u32,
-            lpszNewEntryTitle: *i8,
-            lpAdrList: *ADRLIST,
+            lpszNewEntryTitle: ?*i8,
+            lpAdrList: ?*ADRLIST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Address: fn(
             self: *const IAddrBook,
-            lpulUIParam: *u32,
-            lpAdrParms: *ADRPARM,
-            lppAdrList: **ADRLIST,
+            lpulUIParam: ?*u32,
+            lpAdrParms: ?*ADRPARM,
+            lppAdrList: ?*?*ADRLIST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Details: fn(
             self: *const IAddrBook,
-            lpulUIParam: *usize,
-            lpfnDismiss: LPFNDISMISS,
-            lpvDismissContext: *c_void,
+            lpulUIParam: ?*usize,
+            lpfnDismiss: ?LPFNDISMISS,
+            lpvDismissContext: ?*c_void,
             cbEntryID: u32,
-            lpEntryID: *ENTRYID,
-            lpfButtonCallback: LPFNBUTTON,
-            lpvButtonContext: *c_void,
-            lpszButtonText: *i8,
+            lpEntryID: ?*ENTRYID,
+            lpfButtonCallback: ?LPFNBUTTON,
+            lpvButtonContext: ?*c_void,
+            lpszButtonText: ?*i8,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RecipOptions: fn(
             self: *const IAddrBook,
             ulUIParam: u32,
             ulFlags: u32,
-            lpRecip: *ADRENTRY,
+            lpRecip: ?*ADRENTRY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryDefaultRecipOpt: fn(
             self: *const IAddrBook,
-            lpszAdrType: *i8,
+            lpszAdrType: ?*i8,
             ulFlags: u32,
-            lpcValues: *u32,
-            lppOptions: **SPropValue,
+            lpcValues: ?*u32,
+            lppOptions: ?*?*SPropValue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPAB: fn(
             self: *const IAddrBook,
-            lpcbEntryID: *u32,
-            lppEntryID: **ENTRYID,
+            lpcbEntryID: ?*u32,
+            lppEntryID: ?*?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPAB: fn(
             self: *const IAddrBook,
             cbEntryID: u32,
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultDir: fn(
             self: *const IAddrBook,
-            lpcbEntryID: *u32,
-            lppEntryID: **ENTRYID,
+            lpcbEntryID: ?*u32,
+            lppEntryID: ?*?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultDir: fn(
             self: *const IAddrBook,
             cbEntryID: u32,
-            lpEntryID: *ENTRYID,
+            lpEntryID: ?*ENTRYID,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSearchPath: fn(
             self: *const IAddrBook,
             ulFlags: u32,
-            lppSearchPath: **SRowSet,
+            lppSearchPath: ?*?*SRowSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSearchPath: fn(
             self: *const IAddrBook,
             ulFlags: u32,
-            lpSearchPath: *SRowSet,
+            lpSearchPath: ?*SRowSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PrepareRecips: fn(
             self: *const IAddrBook,
             ulFlags: u32,
-            lpPropTagArray: *SPropTagArray,
-            lpRecipList: *ADRLIST,
+            lpPropTagArray: ?*SPropTagArray,
+            lpRecipList: ?*ADRLIST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMAPIProp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_OpenEntry(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, lpInterface: *Guid, ulFlags: u32, lpulObjType: *u32, lppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_OpenEntry(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).OpenEntry(@ptrCast(*const IAddrBook, self), cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_CompareEntryIDs(self: *const T, cbEntryID1: u32, lpEntryID1: *ENTRYID, cbEntryID2: u32, lpEntryID2: *ENTRYID, ulFlags: u32, lpulResult: *u32) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_CompareEntryIDs(self: *const T, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).CompareEntryIDs(@ptrCast(*const IAddrBook, self), cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_Advise(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID, ulEventMask: u32, lpAdviseSink: *IMAPIAdviseSink, lpulConnection: *u32) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_Advise(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Advise(@ptrCast(*const IAddrBook, self), cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1863,59 +1863,59 @@ pub const IAddrBook = extern struct {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Unadvise(@ptrCast(*const IAddrBook, self), ulConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_CreateOneOff(self: *const T, lpszName: *i8, lpszAdrType: *i8, lpszAddress: *i8, ulFlags: u32, lpcbEntryID: *u32, lppEntryID: **ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_CreateOneOff(self: *const T, lpszName: ?*i8, lpszAdrType: ?*i8, lpszAddress: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).CreateOneOff(@ptrCast(*const IAddrBook, self), lpszName, lpszAdrType, lpszAddress, ulFlags, lpcbEntryID, lppEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_NewEntry(self: *const T, ulUIParam: u32, ulFlags: u32, cbEIDContainer: u32, lpEIDContainer: *ENTRYID, cbEIDNewEntryTpl: u32, lpEIDNewEntryTpl: *ENTRYID, lpcbEIDNewEntry: *u32, lppEIDNewEntry: **ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_NewEntry(self: *const T, ulUIParam: u32, ulFlags: u32, cbEIDContainer: u32, lpEIDContainer: ?*ENTRYID, cbEIDNewEntryTpl: u32, lpEIDNewEntryTpl: ?*ENTRYID, lpcbEIDNewEntry: ?*u32, lppEIDNewEntry: ?*?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).NewEntry(@ptrCast(*const IAddrBook, self), ulUIParam, ulFlags, cbEIDContainer, lpEIDContainer, cbEIDNewEntryTpl, lpEIDNewEntryTpl, lpcbEIDNewEntry, lppEIDNewEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_ResolveName(self: *const T, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: *i8, lpAdrList: *ADRLIST) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_ResolveName(self: *const T, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: ?*i8, lpAdrList: ?*ADRLIST) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).ResolveName(@ptrCast(*const IAddrBook, self), ulUIParam, ulFlags, lpszNewEntryTitle, lpAdrList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_Address(self: *const T, lpulUIParam: *u32, lpAdrParms: *ADRPARM, lppAdrList: **ADRLIST) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_Address(self: *const T, lpulUIParam: ?*u32, lpAdrParms: ?*ADRPARM, lppAdrList: ?*?*ADRLIST) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Address(@ptrCast(*const IAddrBook, self), lpulUIParam, lpAdrParms, lppAdrList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_Details(self: *const T, lpulUIParam: *usize, lpfnDismiss: LPFNDISMISS, lpvDismissContext: *c_void, cbEntryID: u32, lpEntryID: *ENTRYID, lpfButtonCallback: LPFNBUTTON, lpvButtonContext: *c_void, lpszButtonText: *i8, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_Details(self: *const T, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*c_void, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*c_void, lpszButtonText: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Details(@ptrCast(*const IAddrBook, self), lpulUIParam, lpfnDismiss, lpvDismissContext, cbEntryID, lpEntryID, lpfButtonCallback, lpvButtonContext, lpszButtonText, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_RecipOptions(self: *const T, ulUIParam: u32, ulFlags: u32, lpRecip: *ADRENTRY) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_RecipOptions(self: *const T, ulUIParam: u32, ulFlags: u32, lpRecip: ?*ADRENTRY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).RecipOptions(@ptrCast(*const IAddrBook, self), ulUIParam, ulFlags, lpRecip);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_QueryDefaultRecipOpt(self: *const T, lpszAdrType: *i8, ulFlags: u32, lpcValues: *u32, lppOptions: **SPropValue) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_QueryDefaultRecipOpt(self: *const T, lpszAdrType: ?*i8, ulFlags: u32, lpcValues: ?*u32, lppOptions: ?*?*SPropValue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).QueryDefaultRecipOpt(@ptrCast(*const IAddrBook, self), lpszAdrType, ulFlags, lpcValues, lppOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_GetPAB(self: *const T, lpcbEntryID: *u32, lppEntryID: **ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_GetPAB(self: *const T, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).GetPAB(@ptrCast(*const IAddrBook, self), lpcbEntryID, lppEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_SetPAB(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_SetPAB(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).SetPAB(@ptrCast(*const IAddrBook, self), cbEntryID, lpEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_GetDefaultDir(self: *const T, lpcbEntryID: *u32, lppEntryID: **ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_GetDefaultDir(self: *const T, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).GetDefaultDir(@ptrCast(*const IAddrBook, self), lpcbEntryID, lppEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_SetDefaultDir(self: *const T, cbEntryID: u32, lpEntryID: *ENTRYID) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_SetDefaultDir(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).SetDefaultDir(@ptrCast(*const IAddrBook, self), cbEntryID, lpEntryID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_GetSearchPath(self: *const T, ulFlags: u32, lppSearchPath: **SRowSet) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_GetSearchPath(self: *const T, ulFlags: u32, lppSearchPath: ?*?*SRowSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).GetSearchPath(@ptrCast(*const IAddrBook, self), ulFlags, lppSearchPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_SetSearchPath(self: *const T, ulFlags: u32, lpSearchPath: *SRowSet) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_SetSearchPath(self: *const T, ulFlags: u32, lpSearchPath: ?*SRowSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).SetSearchPath(@ptrCast(*const IAddrBook, self), ulFlags, lpSearchPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_PrepareRecips(self: *const T, ulFlags: u32, lpPropTagArray: *SPropTagArray, lpRecipList: *ADRLIST) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_PrepareRecips(self: *const T, ulFlags: u32, lpPropTagArray: ?*SPropTagArray, lpRecipList: ?*ADRLIST) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).PrepareRecips(@ptrCast(*const IAddrBook, self), ulFlags, lpPropTagArray, lpRecipList);
         }
     };}
@@ -1934,75 +1934,75 @@ pub const IWABObject = extern struct {
             self: *const IWABObject,
             hResult: HRESULT,
             ulFlags: u32,
-            lppMAPIError: **MAPIERROR,
+            lppMAPIError: ?*?*MAPIERROR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateBuffer: fn(
             self: *const IWABObject,
             cbSize: u32,
-            lppBuffer: **c_void,
+            lppBuffer: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateMore: fn(
             self: *const IWABObject,
             cbSize: u32,
-            lpObject: *c_void,
-            lppBuffer: **c_void,
+            lpObject: ?*c_void,
+            lppBuffer: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const IWABObject,
-            lpBuffer: *c_void,
+            lpBuffer: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Backup: fn(
             self: *const IWABObject,
-            lpFileName: PSTR,
+            lpFileName: ?PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Import: fn(
             self: *const IWABObject,
-            lpWIP: PSTR,
+            lpWIP: ?PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Find: fn(
             self: *const IWABObject,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardDisplay: fn(
             self: *const IWABObject,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
-            lpszFileName: PSTR,
+            lpszFileName: ?PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LDAPUrl: fn(
             self: *const IWABObject,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
             ulFlags: u32,
-            lpszURL: PSTR,
-            lppMailUser: ?**IMailUser,
+            lpszURL: ?PSTR,
+            lppMailUser: ?*?*IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardCreate: fn(
             self: *const IWABObject,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpszVCard: PSTR,
-            lpMailUser: *IMailUser,
+            lpszVCard: ?PSTR,
+            lpMailUser: ?*IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardRetrieve: fn(
             self: *const IWABObject,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpszVCard: PSTR,
-            lppMailUser: **IMailUser,
+            lpszVCard: ?PSTR,
+            lppMailUser: ?*?*IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMe: fn(
             self: *const IWABObject,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpdwAction: *u32,
-            lpsbEID: *SBinary,
+            lpdwAction: ?*u32,
+            lpsbEID: ?*SBinary,
             hwnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMe: fn(
             self: *const IWABObject,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
             sbEID: SBinary,
             hwnd: ?HWND,
@@ -2012,55 +2012,55 @@ pub const IWABObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: **MAPIERROR) callconv(.Inline) HRESULT {
+        pub fn IWABObject_GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).GetLastError(@ptrCast(*const IWABObject, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: **c_void) callconv(.Inline) HRESULT {
+        pub fn IWABObject_AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IWABObject, self), cbSize, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_AllocateMore(self: *const T, cbSize: u32, lpObject: *c_void, lppBuffer: **c_void) callconv(.Inline) HRESULT {
+        pub fn IWABObject_AllocateMore(self: *const T, cbSize: u32, lpObject: ?*c_void, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).AllocateMore(@ptrCast(*const IWABObject, self), cbSize, lpObject, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_FreeBuffer(self: *const T, lpBuffer: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWABObject_FreeBuffer(self: *const T, lpBuffer: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).FreeBuffer(@ptrCast(*const IWABObject, self), lpBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_Backup(self: *const T, lpFileName: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABObject_Backup(self: *const T, lpFileName: ?PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).Backup(@ptrCast(*const IWABObject, self), lpFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_Import(self: *const T, lpWIP: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABObject_Import(self: *const T, lpWIP: ?PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).Import(@ptrCast(*const IWABObject, self), lpWIP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_Find(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IWABObject_Find(self: *const T, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).Find(@ptrCast(*const IWABObject, self), lpIAB, hWnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_VCardDisplay(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, lpszFileName: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABObject_VCardDisplay(self: *const T, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).VCardDisplay(@ptrCast(*const IWABObject, self), lpIAB, hWnd, lpszFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_LDAPUrl(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: PSTR, lppMailUser: ?**IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABObject_LDAPUrl(self: *const T, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).LDAPUrl(@ptrCast(*const IWABObject, self), lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_VCardCreate(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpszVCard: PSTR, lpMailUser: *IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABObject_VCardCreate(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).VCardCreate(@ptrCast(*const IWABObject, self), lpIAB, ulFlags, lpszVCard, lpMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_VCardRetrieve(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpszVCard: PSTR, lppMailUser: **IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABObject_VCardRetrieve(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).VCardRetrieve(@ptrCast(*const IWABObject, self), lpIAB, ulFlags, lpszVCard, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_GetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpdwAction: *u32, lpsbEID: *SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IWABObject_GetMe(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).GetMe(@ptrCast(*const IWABObject, self), lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_SetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IWABObject_SetMe(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).SetMe(@ptrCast(*const IWABObject, self), lpIAB, ulFlags, sbEID, hwnd);
         }
     };}
@@ -2068,8 +2068,8 @@ pub const IWABObject = extern struct {
 };
 
 pub const IWABOBJECT_QueryInterface_METHOD = fn(
-    riid: *const Guid,
-    ppvObj: **c_void,
+    riid: ?*const Guid,
+    ppvObj: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_AddRef_METHOD = fn(
@@ -2081,75 +2081,75 @@ pub const IWABOBJECT_Release_METHOD = fn(
 pub const IWABOBJECT_GetLastError_METHOD = fn(
     hResult: HRESULT,
     ulFlags: u32,
-    lppMAPIError: **MAPIERROR,
+    lppMAPIError: ?*?*MAPIERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_AllocateBuffer_METHOD = fn(
     cbSize: u32,
-    lppBuffer: **c_void,
+    lppBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_AllocateMore_METHOD = fn(
     cbSize: u32,
-    lpObject: *c_void,
-    lppBuffer: **c_void,
+    lpObject: ?*c_void,
+    lppBuffer: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_FreeBuffer_METHOD = fn(
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_Backup_METHOD = fn(
-    lpFileName: PSTR,
+    lpFileName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_Import_METHOD = fn(
-    lpWIP: PSTR,
+    lpWIP: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_Find_METHOD = fn(
-    lpIAB: *IAddrBook,
+    lpIAB: ?*IAddrBook,
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_VCardDisplay_METHOD = fn(
-    lpIAB: *IAddrBook,
+    lpIAB: ?*IAddrBook,
     hWnd: ?HWND,
-    lpszFileName: PSTR,
+    lpszFileName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_LDAPUrl_METHOD = fn(
-    lpIAB: *IAddrBook,
+    lpIAB: ?*IAddrBook,
     hWnd: ?HWND,
     ulFlags: u32,
-    lpszURL: PSTR,
-    lppMailUser: ?**IMailUser,
+    lpszURL: ?PSTR,
+    lppMailUser: ?*?*IMailUser,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_VCardCreate_METHOD = fn(
-    lpIAB: *IAddrBook,
+    lpIAB: ?*IAddrBook,
     ulFlags: u32,
-    lpszVCard: PSTR,
-    lpMailUser: *IMailUser,
+    lpszVCard: ?PSTR,
+    lpMailUser: ?*IMailUser,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_VCardRetrieve_METHOD = fn(
-    lpIAB: *IAddrBook,
+    lpIAB: ?*IAddrBook,
     ulFlags: u32,
-    lpszVCard: PSTR,
-    lppMailUser: **IMailUser,
+    lpszVCard: ?PSTR,
+    lppMailUser: ?*?*IMailUser,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_GetMe_METHOD = fn(
-    lpIAB: *IAddrBook,
+    lpIAB: ?*IAddrBook,
     ulFlags: u32,
-    lpdwAction: *u32,
-    lpsbEID: *SBinary,
+    lpdwAction: ?*u32,
+    lpsbEID: ?*SBinary,
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_SetMe_METHOD = fn(
-    lpIAB: *IAddrBook,
+    lpIAB: ?*IAddrBook,
     ulFlags: u32,
     sbEID: SBinary,
     hwnd: ?HWND,
@@ -2159,8 +2159,8 @@ pub const IWABOBJECT_ = extern struct {
     pub const VTable = extern struct {
         QueryInterface: fn(
             self: *const IWABOBJECT_,
-            riid: *const Guid,
-            ppvObj: **c_void,
+            riid: ?*const Guid,
+            ppvObj: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRef: fn(
             self: *const IWABOBJECT_,
@@ -2172,75 +2172,75 @@ pub const IWABOBJECT_ = extern struct {
             self: *const IWABOBJECT_,
             hResult: HRESULT,
             ulFlags: u32,
-            lppMAPIError: **MAPIERROR,
+            lppMAPIError: ?*?*MAPIERROR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateBuffer: fn(
             self: *const IWABOBJECT_,
             cbSize: u32,
-            lppBuffer: **c_void,
+            lppBuffer: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateMore: fn(
             self: *const IWABOBJECT_,
             cbSize: u32,
-            lpObject: *c_void,
-            lppBuffer: **c_void,
+            lpObject: ?*c_void,
+            lppBuffer: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const IWABOBJECT_,
-            lpBuffer: *c_void,
+            lpBuffer: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Backup: fn(
             self: *const IWABOBJECT_,
-            lpFileName: PSTR,
+            lpFileName: ?PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Import: fn(
             self: *const IWABOBJECT_,
-            lpWIP: PSTR,
+            lpWIP: ?PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Find: fn(
             self: *const IWABOBJECT_,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardDisplay: fn(
             self: *const IWABOBJECT_,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
-            lpszFileName: PSTR,
+            lpszFileName: ?PSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LDAPUrl: fn(
             self: *const IWABOBJECT_,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
             ulFlags: u32,
-            lpszURL: PSTR,
-            lppMailUser: ?**IMailUser,
+            lpszURL: ?PSTR,
+            lppMailUser: ?*?*IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardCreate: fn(
             self: *const IWABOBJECT_,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpszVCard: PSTR,
-            lpMailUser: *IMailUser,
+            lpszVCard: ?PSTR,
+            lpMailUser: ?*IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VCardRetrieve: fn(
             self: *const IWABOBJECT_,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpszVCard: PSTR,
-            lppMailUser: **IMailUser,
+            lpszVCard: ?PSTR,
+            lppMailUser: ?*?*IMailUser,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMe: fn(
             self: *const IWABOBJECT_,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpdwAction: *u32,
-            lpsbEID: *SBinary,
+            lpdwAction: ?*u32,
+            lpsbEID: ?*SBinary,
             hwnd: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMe: fn(
             self: *const IWABOBJECT_,
-            lpIAB: *IAddrBook,
+            lpIAB: ?*IAddrBook,
             ulFlags: u32,
             sbEID: SBinary,
             hwnd: ?HWND,
@@ -2249,7 +2249,7 @@ pub const IWABOBJECT_ = extern struct {
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__QueryInterface(self: *const T, riid: *const Guid, ppvObj: **c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__QueryInterface(self: *const T, riid: ?*const Guid, ppvObj: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).QueryInterface(@ptrCast(*const IWABOBJECT_, self), riid, ppvObj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2261,55 +2261,55 @@ pub const IWABOBJECT_ = extern struct {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).Release(@ptrCast(*const IWABOBJECT_, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: **MAPIERROR) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__GetLastError(self: *const T, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).GetLastError(@ptrCast(*const IWABOBJECT_, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: **c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IWABOBJECT_, self), cbSize, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__AllocateMore(self: *const T, cbSize: u32, lpObject: *c_void, lppBuffer: **c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__AllocateMore(self: *const T, cbSize: u32, lpObject: ?*c_void, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).AllocateMore(@ptrCast(*const IWABOBJECT_, self), cbSize, lpObject, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__FreeBuffer(self: *const T, lpBuffer: *c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__FreeBuffer(self: *const T, lpBuffer: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).FreeBuffer(@ptrCast(*const IWABOBJECT_, self), lpBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__Backup(self: *const T, lpFileName: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__Backup(self: *const T, lpFileName: ?PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).Backup(@ptrCast(*const IWABOBJECT_, self), lpFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__Import(self: *const T, lpWIP: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__Import(self: *const T, lpWIP: ?PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).Import(@ptrCast(*const IWABOBJECT_, self), lpWIP);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__Find(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__Find(self: *const T, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).Find(@ptrCast(*const IWABOBJECT_, self), lpIAB, hWnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__VCardDisplay(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, lpszFileName: PSTR) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__VCardDisplay(self: *const T, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).VCardDisplay(@ptrCast(*const IWABOBJECT_, self), lpIAB, hWnd, lpszFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__LDAPUrl(self: *const T, lpIAB: *IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: PSTR, lppMailUser: ?**IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__LDAPUrl(self: *const T, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).LDAPUrl(@ptrCast(*const IWABOBJECT_, self), lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__VCardCreate(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpszVCard: PSTR, lpMailUser: *IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__VCardCreate(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).VCardCreate(@ptrCast(*const IWABOBJECT_, self), lpIAB, ulFlags, lpszVCard, lpMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__VCardRetrieve(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpszVCard: PSTR, lppMailUser: **IMailUser) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__VCardRetrieve(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).VCardRetrieve(@ptrCast(*const IWABOBJECT_, self), lpIAB, ulFlags, lpszVCard, lppMailUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__GetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, lpdwAction: *u32, lpsbEID: *SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__GetMe(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).GetMe(@ptrCast(*const IWABOBJECT_, self), lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__SetMe(self: *const T, lpIAB: *IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__SetMe(self: *const T, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).SetMe(@ptrCast(*const IWABOBJECT_, self), lpIAB, ulFlags, sbEID, hwnd);
         }
     };}
@@ -2318,47 +2318,47 @@ pub const IWABOBJECT_ = extern struct {
 
 pub const WAB_PARAM = extern struct {
     cbSize: u32,
-    hwnd: HWND,
-    szFileName: PSTR,
+    hwnd: ?HWND,
+    szFileName: ?PSTR,
     ulFlags: u32,
     guidPSExt: Guid,
 };
 
 pub const LPWABOPEN = fn(
-    lppAdrBook: **IAddrBook,
-    lppWABObject: **IWABObject,
-    lpWP: *WAB_PARAM,
+    lppAdrBook: ?*?*IAddrBook,
+    lppWABObject: ?*?*IWABObject,
+    lpWP: ?*WAB_PARAM,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPWABOPENEX = fn(
-    lppAdrBook: **IAddrBook,
-    lppWABObject: **IWABObject,
-    lpWP: *WAB_PARAM,
+    lppAdrBook: ?*?*IAddrBook,
+    lppWABObject: ?*?*IWABObject,
+    lpWP: ?*WAB_PARAM,
     Reserved: u32,
-    fnAllocateBuffer: LPALLOCATEBUFFER,
-    fnAllocateMore: LPALLOCATEMORE,
-    fnFreeBuffer: LPFREEBUFFER,
+    fnAllocateBuffer: ?LPALLOCATEBUFFER,
+    fnAllocateMore: ?LPALLOCATEMORE,
+    fnFreeBuffer: ?LPFREEBUFFER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WABIMPORTPARAM = extern struct {
     cbSize: u32,
-    lpAdrBook: *IAddrBook,
-    hWnd: HWND,
+    lpAdrBook: ?*IAddrBook,
+    hWnd: ?HWND,
     ulFlags: u32,
-    lpszFileName: PSTR,
+    lpszFileName: ?PSTR,
 };
 
 pub const WABEXTDISPLAY = extern struct {
     cbSize: u32,
-    lpWABObject: *IWABObject,
-    lpAdrBook: *IAddrBook,
-    lpPropObj: *IMAPIProp,
+    lpWABObject: ?*IWABObject,
+    lpAdrBook: ?*IAddrBook,
+    lpPropObj: ?*IMAPIProp,
     fReadOnly: BOOL,
     fDataChanged: BOOL,
     ulFlags: u32,
-    lpv: *c_void,
-    lpsz: *i8,
+    lpv: ?*c_void,
+    lpsz: ?*i8,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2369,14 +2369,14 @@ pub const IWABExtInit = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IWABExtInit,
-            lpWABExtDisplay: *WABEXTDISPLAY,
+            lpWABExtDisplay: ?*WABEXTDISPLAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABExtInit_Initialize(self: *const T, lpWABExtDisplay: *WABEXTDISPLAY) callconv(.Inline) HRESULT {
+        pub fn IWABExtInit_Initialize(self: *const T, lpWABExtDisplay: ?*WABEXTDISPLAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABExtInit.VTable, self.vtable).Initialize(@ptrCast(*const IWABExtInit, self), lpWABExtDisplay);
         }
     };}

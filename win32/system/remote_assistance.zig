@@ -56,49 +56,49 @@ pub const IRendezvousSession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const IRendezvousSession,
-            pSessionState: *RENDEZVOUS_SESSION_STATE,
+            pSessionState: ?*RENDEZVOUS_SESSION_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteUser: fn(
             self: *const IRendezvousSession,
-            bstrUserName: ?*BSTR,
+            bstrUserName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IRendezvousSession,
-            pFlags: *i32,
+            pFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendContextData: fn(
             self: *const IRendezvousSession,
-            bstrData: BSTR,
+            bstrData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Terminate: fn(
             self: *const IRendezvousSession,
             hr: HRESULT,
-            bstrAppData: BSTR,
+            bstrAppData: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_get_State(self: *const T, pSessionState: *RENDEZVOUS_SESSION_STATE) callconv(.Inline) HRESULT {
+        pub fn IRendezvousSession_get_State(self: *const T, pSessionState: ?*RENDEZVOUS_SESSION_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_State(@ptrCast(*const IRendezvousSession, self), pSessionState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_get_RemoteUser(self: *const T, bstrUserName: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IRendezvousSession_get_RemoteUser(self: *const T, bstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_RemoteUser(@ptrCast(*const IRendezvousSession, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_get_Flags(self: *const T, pFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn IRendezvousSession_get_Flags(self: *const T, pFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_Flags(@ptrCast(*const IRendezvousSession, self), pFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_SendContextData(self: *const T, bstrData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IRendezvousSession_SendContextData(self: *const T, bstrData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRendezvousSession.VTable, self.vtable).SendContextData(@ptrCast(*const IRendezvousSession, self), bstrData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_Terminate(self: *const T, hr: HRESULT, bstrAppData: BSTR) callconv(.Inline) HRESULT {
+        pub fn IRendezvousSession_Terminate(self: *const T, hr: HRESULT, bstrAppData: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRendezvousSession.VTable, self.vtable).Terminate(@ptrCast(*const IRendezvousSession, self), hr, bstrAppData);
         }
     };}

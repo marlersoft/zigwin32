@@ -42,31 +42,31 @@ pub const ISensNetwork = extern struct {
         base: IDispatch.VTable,
         ConnectionMade: fn(
             self: *const ISensNetwork,
-            bstrConnection: BSTR,
+            bstrConnection: ?BSTR,
             ulType: u32,
-            lpQOCInfo: *SENS_QOCINFO,
+            lpQOCInfo: ?*SENS_QOCINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectionMadeNoQOCInfo: fn(
             self: *const ISensNetwork,
-            bstrConnection: BSTR,
+            bstrConnection: ?BSTR,
             ulType: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectionLost: fn(
             self: *const ISensNetwork,
-            bstrConnection: BSTR,
+            bstrConnection: ?BSTR,
             ulType: SENS_CONNECTION_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DestinationReachable: fn(
             self: *const ISensNetwork,
-            bstrDestination: BSTR,
-            bstrConnection: BSTR,
+            bstrDestination: ?BSTR,
+            bstrConnection: ?BSTR,
             ulType: u32,
-            lpQOCInfo: *SENS_QOCINFO,
+            lpQOCInfo: ?*SENS_QOCINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DestinationReachableNoQOCInfo: fn(
             self: *const ISensNetwork,
-            bstrDestination: BSTR,
-            bstrConnection: BSTR,
+            bstrDestination: ?BSTR,
+            bstrConnection: ?BSTR,
             ulType: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -74,23 +74,23 @@ pub const ISensNetwork = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensNetwork_ConnectionMade(self: *const T, bstrConnection: BSTR, ulType: u32, lpQOCInfo: *SENS_QOCINFO) callconv(.Inline) HRESULT {
+        pub fn ISensNetwork_ConnectionMade(self: *const T, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionMade(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType, lpQOCInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensNetwork_ConnectionMadeNoQOCInfo(self: *const T, bstrConnection: BSTR, ulType: u32) callconv(.Inline) HRESULT {
+        pub fn ISensNetwork_ConnectionMadeNoQOCInfo(self: *const T, bstrConnection: ?BSTR, ulType: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionMadeNoQOCInfo(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensNetwork_ConnectionLost(self: *const T, bstrConnection: BSTR, ulType: SENS_CONNECTION_TYPE) callconv(.Inline) HRESULT {
+        pub fn ISensNetwork_ConnectionLost(self: *const T, bstrConnection: ?BSTR, ulType: SENS_CONNECTION_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionLost(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensNetwork_DestinationReachable(self: *const T, bstrDestination: BSTR, bstrConnection: BSTR, ulType: u32, lpQOCInfo: *SENS_QOCINFO) callconv(.Inline) HRESULT {
+        pub fn ISensNetwork_DestinationReachable(self: *const T, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensNetwork.VTable, self.vtable).DestinationReachable(@ptrCast(*const ISensNetwork, self), bstrDestination, bstrConnection, ulType, lpQOCInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensNetwork_DestinationReachableNoQOCInfo(self: *const T, bstrDestination: BSTR, bstrConnection: BSTR, ulType: u32) callconv(.Inline) HRESULT {
+        pub fn ISensNetwork_DestinationReachableNoQOCInfo(self: *const T, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensNetwork.VTable, self.vtable).DestinationReachableNoQOCInfo(@ptrCast(*const ISensNetwork, self), bstrDestination, bstrConnection, ulType);
         }
     };}
@@ -142,62 +142,62 @@ pub const ISensLogon = extern struct {
         base: IDispatch.VTable,
         Logon: fn(
             self: *const ISensLogon,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Logoff: fn(
             self: *const ISensLogon,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StartShell: fn(
             self: *const ISensLogon,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DisplayLock: fn(
             self: *const ISensLogon,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DisplayUnlock: fn(
             self: *const ISensLogon,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StartScreenSaver: fn(
             self: *const ISensLogon,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StopScreenSaver: fn(
             self: *const ISensLogon,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon_Logon(self: *const T, bstrUserName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ISensLogon_Logon(self: *const T, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon.VTable, self.vtable).Logon(@ptrCast(*const ISensLogon, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon_Logoff(self: *const T, bstrUserName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ISensLogon_Logoff(self: *const T, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon.VTable, self.vtable).Logoff(@ptrCast(*const ISensLogon, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon_StartShell(self: *const T, bstrUserName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ISensLogon_StartShell(self: *const T, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon.VTable, self.vtable).StartShell(@ptrCast(*const ISensLogon, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon_DisplayLock(self: *const T, bstrUserName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ISensLogon_DisplayLock(self: *const T, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon.VTable, self.vtable).DisplayLock(@ptrCast(*const ISensLogon, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon_DisplayUnlock(self: *const T, bstrUserName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ISensLogon_DisplayUnlock(self: *const T, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon.VTable, self.vtable).DisplayUnlock(@ptrCast(*const ISensLogon, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon_StartScreenSaver(self: *const T, bstrUserName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ISensLogon_StartScreenSaver(self: *const T, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon.VTable, self.vtable).StartScreenSaver(@ptrCast(*const ISensLogon, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon_StopScreenSaver(self: *const T, bstrUserName: BSTR) callconv(.Inline) HRESULT {
+        pub fn ISensLogon_StopScreenSaver(self: *const T, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon.VTable, self.vtable).StopScreenSaver(@ptrCast(*const ISensLogon, self), bstrUserName);
         }
     };}
@@ -212,27 +212,27 @@ pub const ISensLogon2 = extern struct {
         base: IDispatch.VTable,
         Logon: fn(
             self: *const ISensLogon2,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
             dwSessionId: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Logoff: fn(
             self: *const ISensLogon2,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
             dwSessionId: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionDisconnect: fn(
             self: *const ISensLogon2,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
             dwSessionId: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionReconnect: fn(
             self: *const ISensLogon2,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
             dwSessionId: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PostShell: fn(
             self: *const ISensLogon2,
-            bstrUserName: BSTR,
+            bstrUserName: ?BSTR,
             dwSessionId: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -240,23 +240,23 @@ pub const ISensLogon2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon2_Logon(self: *const T, bstrUserName: BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+        pub fn ISensLogon2_Logon(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon2.VTable, self.vtable).Logon(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon2_Logoff(self: *const T, bstrUserName: BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+        pub fn ISensLogon2_Logoff(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon2.VTable, self.vtable).Logoff(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon2_SessionDisconnect(self: *const T, bstrUserName: BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+        pub fn ISensLogon2_SessionDisconnect(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon2.VTable, self.vtable).SessionDisconnect(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon2_SessionReconnect(self: *const T, bstrUserName: BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+        pub fn ISensLogon2_SessionReconnect(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon2.VTable, self.vtable).SessionReconnect(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensLogon2_PostShell(self: *const T, bstrUserName: BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+        pub fn ISensLogon2_PostShell(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensLogon2.VTable, self.vtable).PostShell(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
         }
     };}
@@ -269,19 +269,19 @@ pub const ISensLogon2 = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SensApi" fn IsDestinationReachableA(
-    lpszDestination: [*:0]const u8,
-    lpQOCInfo: *QOCINFO,
+    lpszDestination: ?[*:0]const u8,
+    lpQOCInfo: ?*QOCINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SensApi" fn IsDestinationReachableW(
-    lpszDestination: [*:0]const u16,
-    lpQOCInfo: *QOCINFO,
+    lpszDestination: ?[*:0]const u16,
+    lpQOCInfo: ?*QOCINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SensApi" fn IsNetworkAlive(
-    lpdwFlags: *u32,
+    lpdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

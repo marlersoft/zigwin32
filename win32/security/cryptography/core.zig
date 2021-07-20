@@ -1447,15 +1447,15 @@ pub const HCERTCHAINENGINE = *opaque{};
 pub const CMS_KEY_INFO = extern struct {
     dwVersion: u32,
     Algid: u32,
-    pbOID: *u8,
+    pbOID: ?*u8,
     cbOID: u32,
 };
 
 pub const HMAC_Info = extern struct {
     HashAlgid: u32,
-    pbInnerString: *u8,
+    pbInnerString: ?*u8,
     cbInnerString: u32,
-    pbOuterString: *u8,
+    pbOuterString: ?*u8,
     cbOuterString: u32,
 };
 
@@ -1575,15 +1575,15 @@ pub const CRYPT_AES_256_KEY_STATE = extern struct {
 
 pub const CRYPTOAPI_BLOB = extern struct {
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const CMS_DH_KEY_INFO = extern struct {
     dwVersion: u32,
     Algid: u32,
-    pszContentEncObjId: PSTR,
+    pszContentEncObjId: ?PSTR,
     PubInfo: CRYPTOAPI_BLOB,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 };
 
 pub const BCRYPT_KEY_LENGTHS_STRUCT = extern struct {
@@ -1594,39 +1594,39 @@ pub const BCRYPT_KEY_LENGTHS_STRUCT = extern struct {
 
 pub const BCRYPT_OID = extern struct {
     cbOID: u32,
-    pbOID: *u8,
+    pbOID: ?*u8,
 };
 
 pub const BCRYPT_OID_LIST = extern struct {
     dwOIDCount: u32,
-    pOIDs: *BCRYPT_OID,
+    pOIDs: ?*BCRYPT_OID,
 };
 
 pub const BCRYPT_PKCS1_PADDING_INFO = extern struct {
-    pszAlgId: [*:0]const u16,
+    pszAlgId: ?[*:0]const u16,
 };
 
 pub const BCRYPT_PSS_PADDING_INFO = extern struct {
-    pszAlgId: [*:0]const u16,
+    pszAlgId: ?[*:0]const u16,
     cbSalt: u32,
 };
 
 pub const BCRYPT_OAEP_PADDING_INFO = extern struct {
-    pszAlgId: [*:0]const u16,
-    pbLabel: *u8,
+    pszAlgId: ?[*:0]const u16,
+    pbLabel: ?*u8,
     cbLabel: u32,
 };
 
 pub const BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO = extern struct {
     cbSize: u32,
     dwInfoVersion: u32,
-    pbNonce: *u8,
+    pbNonce: ?*u8,
     cbNonce: u32,
-    pbAuthData: *u8,
+    pbAuthData: ?*u8,
     cbAuthData: u32,
-    pbTag: *u8,
+    pbTag: ?*u8,
     cbTag: u32,
-    pbMacContext: *u8,
+    pbMacContext: ?*u8,
     cbMacContext: u32,
     cbAAD: u32,
     cbData: u64,
@@ -1636,13 +1636,13 @@ pub const BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO = extern struct {
 pub const BCryptBuffer = extern struct {
     cbBuffer: u32,
     BufferType: u32,
-    pvBuffer: *c_void,
+    pvBuffer: ?*c_void,
 };
 
 pub const BCryptBufferDesc = extern struct {
     ulVersion: u32,
     cBuffers: u32,
-    pBuffers: *BCryptBuffer,
+    pBuffers: ?*BCryptBuffer,
 };
 
 pub const BCRYPT_KEY_BLOB = extern struct {
@@ -1766,7 +1766,7 @@ pub const BCRYPT_DSA_PARAMETER_HEADER_V2 = extern struct {
 
 pub const BCRYPT_ECC_CURVE_NAMES = extern struct {
     dwEccCurveNames: u32,
-    pEccCurveNames: *PWSTR,
+    pEccCurveNames: ?*?PWSTR,
 };
 
 pub const BCRYPT_HASH_OPERATION_TYPE = enum(i32) {
@@ -1779,7 +1779,7 @@ pub const BCRYPT_HASH_OPERATION_FINISH_HASH = BCRYPT_HASH_OPERATION_TYPE.FINISH_
 pub const BCRYPT_MULTI_HASH_OPERATION = extern struct {
     iHash: u32,
     hashOperation: BCRYPT_HASH_OPERATION_TYPE,
-    pbBuffer: *u8,
+    pbBuffer: ?*u8,
     cbBuffer: u32,
 };
 
@@ -1794,13 +1794,13 @@ pub const BCRYPT_MULTI_OBJECT_LENGTH_STRUCT = extern struct {
 };
 
 pub const BCRYPT_ALGORITHM_IDENTIFIER = extern struct {
-    pszName: PWSTR,
+    pszName: ?PWSTR,
     dwClass: u32,
     dwFlags: u32,
 };
 
 pub const BCRYPT_PROVIDER_NAME = extern struct {
-    pszProviderName: PWSTR,
+    pszProviderName: ?PWSTR,
 };
 
 pub const BCRYPT_INTERFACE_VERSION = extern struct {
@@ -1812,25 +1812,25 @@ pub const CRYPT_INTERFACE_REG = extern struct {
     dwInterface: BCRYPT_INTERFACE,
     dwFlags: BCRYPT_TABLE,
     cFunctions: u32,
-    rgpszFunctions: *PWSTR,
+    rgpszFunctions: ?*?PWSTR,
 };
 
 pub const CRYPT_IMAGE_REG = extern struct {
-    pszImage: PWSTR,
+    pszImage: ?PWSTR,
     cInterfaces: u32,
-    rgpInterfaces: **CRYPT_INTERFACE_REG,
+    rgpInterfaces: ?*?*CRYPT_INTERFACE_REG,
 };
 
 pub const CRYPT_PROVIDER_REG = extern struct {
     cAliases: u32,
-    rgpszAliases: *PWSTR,
-    pUM: *CRYPT_IMAGE_REG,
-    pKM: *CRYPT_IMAGE_REG,
+    rgpszAliases: ?*?PWSTR,
+    pUM: ?*CRYPT_IMAGE_REG,
+    pKM: ?*CRYPT_IMAGE_REG,
 };
 
 pub const CRYPT_PROVIDERS = extern struct {
     cProviders: u32,
-    rgpszProviders: *PWSTR,
+    rgpszProviders: ?*?PWSTR,
 };
 
 pub const CRYPT_CONTEXT_CONFIG = extern struct {
@@ -1845,65 +1845,65 @@ pub const CRYPT_CONTEXT_FUNCTION_CONFIG = extern struct {
 
 pub const CRYPT_CONTEXTS = extern struct {
     cContexts: u32,
-    rgpszContexts: *PWSTR,
+    rgpszContexts: ?*?PWSTR,
 };
 
 pub const CRYPT_CONTEXT_FUNCTIONS = extern struct {
     cFunctions: u32,
-    rgpszFunctions: *PWSTR,
+    rgpszFunctions: ?*?PWSTR,
 };
 
 pub const CRYPT_CONTEXT_FUNCTION_PROVIDERS = extern struct {
     cProviders: u32,
-    rgpszProviders: *PWSTR,
+    rgpszProviders: ?*?PWSTR,
 };
 
 pub const CRYPT_PROPERTY_REF = extern struct {
-    pszProperty: PWSTR,
+    pszProperty: ?PWSTR,
     cbValue: u32,
-    pbValue: *u8,
+    pbValue: ?*u8,
 };
 
 pub const CRYPT_IMAGE_REF = extern struct {
-    pszImage: PWSTR,
+    pszImage: ?PWSTR,
     dwFlags: CRYPT_IMAGE_REF_FLAGS,
 };
 
 pub const CRYPT_PROVIDER_REF = extern struct {
     dwInterface: u32,
-    pszFunction: PWSTR,
-    pszProvider: PWSTR,
+    pszFunction: ?PWSTR,
+    pszProvider: ?PWSTR,
     cProperties: u32,
-    rgpProperties: **CRYPT_PROPERTY_REF,
-    pUM: *CRYPT_IMAGE_REF,
-    pKM: *CRYPT_IMAGE_REF,
+    rgpProperties: ?*?*CRYPT_PROPERTY_REF,
+    pUM: ?*CRYPT_IMAGE_REF,
+    pKM: ?*CRYPT_IMAGE_REF,
 };
 
 pub const CRYPT_PROVIDER_REFS = extern struct {
     cProviders: u32,
-    rgpProviders: **CRYPT_PROVIDER_REF,
+    rgpProviders: ?*?*CRYPT_PROVIDER_REF,
 };
 
 pub const PFN_NCRYPT_ALLOC = fn(
     cbSize: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PFN_NCRYPT_FREE = fn(
-    pv: *c_void,
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const NCRYPT_ALLOC_PARA = extern struct {
     cbSize: u32,
-    pfnAlloc: PFN_NCRYPT_ALLOC,
-    pfnFree: PFN_NCRYPT_FREE,
+    pfnAlloc: ?PFN_NCRYPT_ALLOC,
+    pfnFree: ?PFN_NCRYPT_FREE,
 };
 
 pub const NCRYPT_CIPHER_PADDING_INFO = extern struct {
     cbSize: u32,
     dwFlags: u32,
-    pbIV: *u8,
+    pbIV: ?*u8,
     cbIV: u32,
-    pbOtherInfo: *u8,
+    pbOtherInfo: ?*u8,
     cbOtherInfo: u32,
 };
 
@@ -1914,9 +1914,9 @@ pub const NCRYPT_PLATFORM_ATTEST_PADDING_INFO = extern struct {
 
 pub const NCRYPT_KEY_ATTEST_PADDING_INFO = extern struct {
     magic: u32,
-    pbKeyBlob: *u8,
+    pbKeyBlob: ?*u8,
     cbKeyBlob: u32,
-    pbKeyAuth: *u8,
+    pbKeyAuth: ?*u8,
     cbKeyAuth: u32,
 };
 
@@ -1977,30 +1977,30 @@ pub const NCRYPT_TPM_PLATFORM_ATTESTATION_STATEMENT = extern struct {
 };
 
 pub const NCryptAlgorithmName = extern struct {
-    pszName: PWSTR,
+    pszName: ?PWSTR,
     dwClass: NCRYPT_ALGORITHM_NAME_CLASS,
     dwAlgOperations: NCRYPT_OPERATION,
     dwFlags: u32,
 };
 
 pub const NCryptKeyName = extern struct {
-    pszName: PWSTR,
-    pszAlgid: PWSTR,
+    pszName: ?PWSTR,
+    pszAlgid: ?PWSTR,
     dwLegacyKeySpec: CERT_KEY_SPEC,
     dwFlags: u32,
 };
 
 pub const NCryptProviderName = extern struct {
-    pszName: PWSTR,
-    pszComment: PWSTR,
+    pszName: ?PWSTR,
+    pszComment: ?PWSTR,
 };
 
 pub const NCRYPT_UI_POLICY = extern struct {
     dwVersion: u32,
     dwFlags: u32,
-    pszCreationTitle: [*:0]const u16,
-    pszFriendlyName: [*:0]const u16,
-    pszDescription: [*:0]const u16,
+    pszCreationTitle: ?[*:0]const u16,
+    pszFriendlyName: ?[*:0]const u16,
+    pszDescription: ?[*:0]const u16,
 };
 
 pub const NCRYPT_KEY_ACCESS_POLICY_BLOB = extern struct {
@@ -2054,18 +2054,18 @@ pub const NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER = extern struct {
 
 pub const CRYPT_BIT_BLOB = extern struct {
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
     cUnusedBits: u32,
 };
 
 pub const CRYPT_ALGORITHM_IDENTIFIER = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     Parameters: CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_OBJID_TABLE = extern struct {
     dwAlgId: u32,
-    pszObjId: [*:0]const u8,
+    pszObjId: ?[*:0]const u8,
 };
 
 pub const CRYPT_HASH_INFO = extern struct {
@@ -2074,41 +2074,41 @@ pub const CRYPT_HASH_INFO = extern struct {
 };
 
 pub const CERT_EXTENSION = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     fCritical: BOOL,
     Value: CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_ATTRIBUTE_TYPE_VALUE = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     Value: CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_ATTRIBUTE = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     cValue: u32,
-    rgValue: *CRYPTOAPI_BLOB,
+    rgValue: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_ATTRIBUTES = extern struct {
     cAttr: u32,
-    rgAttr: *CRYPT_ATTRIBUTE,
+    rgAttr: ?*CRYPT_ATTRIBUTE,
 };
 
 pub const CERT_RDN_ATTR = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     dwValueType: CERT_RDN_ATTR_VALUE_TYPE,
     Value: CRYPTOAPI_BLOB,
 };
 
 pub const CERT_RDN = extern struct {
     cRDNAttr: u32,
-    rgRDNAttr: *CERT_RDN_ATTR,
+    rgRDNAttr: ?*CERT_RDN_ATTR,
 };
 
 pub const CERT_NAME_INFO = extern struct {
     cRDN: u32,
-    rgRDN: *CERT_RDN,
+    rgRDN: ?*CERT_RDN,
 };
 
 pub const CERT_NAME_VALUE = extern struct {
@@ -2124,7 +2124,7 @@ pub const CERT_PUBLIC_KEY_INFO = extern struct {
 pub const CRYPT_ECC_PRIVATE_KEY_INFO = extern struct {
     dwVersion: u32,
     PrivateKey: CRYPTOAPI_BLOB,
-    szCurveOid: PSTR,
+    szCurveOid: ?PSTR,
     PublicKey: CRYPT_BIT_BLOB,
 };
 
@@ -2132,7 +2132,7 @@ pub const CRYPT_PRIVATE_KEY_INFO = extern struct {
     Version: u32,
     Algorithm: CRYPT_ALGORITHM_IDENTIFIER,
     PrivateKey: CRYPTOAPI_BLOB,
-    pAttributes: *CRYPT_ATTRIBUTES,
+    pAttributes: ?*CRYPT_ATTRIBUTES,
 };
 
 pub const CRYPT_ENCRYPTED_PRIVATE_KEY_INFO = extern struct {
@@ -2145,39 +2145,39 @@ pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = fn(
     EncryptedPrivateKey: CRYPTOAPI_BLOB,
     // TODO: what to do with BytesParamIndex 3?
     pbClearTextKey: ?*u8,
-    pcbClearTextKey: *u32,
-    pVoidDecryptFunc: *c_void,
+    pcbClearTextKey: ?*u32,
+    pVoidDecryptFunc: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC = fn(
-    pAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
-    pClearTextPrivateKey: *CRYPTOAPI_BLOB,
+    pAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
+    pClearTextPrivateKey: ?*CRYPTOAPI_BLOB,
     // TODO: what to do with BytesParamIndex 3?
     pbEncryptedKey: ?*u8,
-    pcbEncryptedKey: *u32,
-    pVoidEncryptFunc: *c_void,
+    pcbEncryptedKey: ?*u32,
+    pVoidEncryptFunc: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PCRYPT_RESOLVE_HCRYPTPROV_FUNC = fn(
-    pPrivateKeyInfo: *CRYPT_PRIVATE_KEY_INFO,
-    phCryptProv: *usize,
-    pVoidResolveFunc: *c_void,
+    pPrivateKeyInfo: ?*CRYPT_PRIVATE_KEY_INFO,
+    phCryptProv: ?*usize,
+    pVoidResolveFunc: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRYPT_PKCS8_IMPORT_PARAMS = extern struct {
     PrivateKey: CRYPTOAPI_BLOB,
-    pResolvehCryptProvFunc: PCRYPT_RESOLVE_HCRYPTPROV_FUNC,
-    pVoidResolveFunc: *c_void,
-    pDecryptPrivateKeyFunc: PCRYPT_DECRYPT_PRIVATE_KEY_FUNC,
-    pVoidDecryptFunc: *c_void,
+    pResolvehCryptProvFunc: ?PCRYPT_RESOLVE_HCRYPTPROV_FUNC,
+    pVoidResolveFunc: ?*c_void,
+    pDecryptPrivateKeyFunc: ?PCRYPT_DECRYPT_PRIVATE_KEY_FUNC,
+    pVoidDecryptFunc: ?*c_void,
 };
 
 pub const CRYPT_PKCS8_EXPORT_PARAMS = extern struct {
     hCryptProv: usize,
     dwKeySpec: u32,
-    pszPrivateKeyObjId: PSTR,
-    pEncryptPrivateKeyFunc: PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC,
-    pVoidEncryptFunc: *c_void,
+    pszPrivateKeyObjId: ?PSTR,
+    pEncryptPrivateKeyFunc: ?PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC,
+    pVoidEncryptFunc: ?*c_void,
 };
 
 pub const CERT_INFO = extern struct {
@@ -2192,14 +2192,14 @@ pub const CERT_INFO = extern struct {
     IssuerUniqueId: CRYPT_BIT_BLOB,
     SubjectUniqueId: CRYPT_BIT_BLOB,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CRL_ENTRY = extern struct {
     SerialNumber: CRYPTOAPI_BLOB,
     RevocationDate: FILETIME,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CRL_INFO = extern struct {
@@ -2209,20 +2209,20 @@ pub const CRL_INFO = extern struct {
     ThisUpdate: FILETIME,
     NextUpdate: FILETIME,
     cCRLEntry: u32,
-    rgCRLEntry: *CRL_ENTRY,
+    rgCRLEntry: ?*CRL_ENTRY,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CERT_OR_CRL_BLOB = extern struct {
     dwChoice: u32,
     cbEncoded: u32,
-    pbEncoded: *u8,
+    pbEncoded: ?*u8,
 };
 
 pub const CERT_OR_CRL_BUNDLE = extern struct {
     cItem: u32,
-    rgItem: *CERT_OR_CRL_BLOB,
+    rgItem: ?*CERT_OR_CRL_BLOB,
 };
 
 pub const CERT_REQUEST_INFO = extern struct {
@@ -2230,13 +2230,13 @@ pub const CERT_REQUEST_INFO = extern struct {
     Subject: CRYPTOAPI_BLOB,
     SubjectPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
     cAttribute: u32,
-    rgAttribute: *CRYPT_ATTRIBUTE,
+    rgAttribute: ?*CRYPT_ATTRIBUTE,
 };
 
 pub const CERT_KEYGEN_REQUEST_INFO = extern struct {
     dwVersion: u32,
     SubjectPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
-    pwszChallengeString: PWSTR,
+    pwszChallengeString: ?PWSTR,
 };
 
 pub const CERT_SIGNED_CONTENT_INFO = extern struct {
@@ -2247,13 +2247,13 @@ pub const CERT_SIGNED_CONTENT_INFO = extern struct {
 
 pub const CTL_USAGE = extern struct {
     cUsageIdentifier: u32,
-    rgpszUsageIdentifier: *PSTR,
+    rgpszUsageIdentifier: ?*?PSTR,
 };
 
 pub const CTL_ENTRY = extern struct {
     SubjectIdentifier: CRYPTOAPI_BLOB,
     cAttribute: u32,
-    rgAttribute: *CRYPT_ATTRIBUTE,
+    rgAttribute: ?*CRYPT_ATTRIBUTE,
 };
 
 pub const CTL_INFO = extern struct {
@@ -2265,53 +2265,53 @@ pub const CTL_INFO = extern struct {
     NextUpdate: FILETIME,
     SubjectAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     cCTLEntry: u32,
-    rgCTLEntry: *CTL_ENTRY,
+    rgCTLEntry: ?*CTL_ENTRY,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CRYPT_TIME_STAMP_REQUEST_INFO = extern struct {
-    pszTimeStampAlgorithm: PSTR,
-    pszContentType: PSTR,
+    pszTimeStampAlgorithm: ?PSTR,
+    pszContentType: ?PSTR,
     Content: CRYPTOAPI_BLOB,
     cAttribute: u32,
-    rgAttribute: *CRYPT_ATTRIBUTE,
+    rgAttribute: ?*CRYPT_ATTRIBUTE,
 };
 
 pub const CRYPT_ENROLLMENT_NAME_VALUE_PAIR = extern struct {
-    pwszName: PWSTR,
-    pwszValue: PWSTR,
+    pwszName: ?PWSTR,
+    pwszValue: ?PWSTR,
 };
 
 pub const CRYPT_CSP_PROVIDER = extern struct {
     dwKeySpec: u32,
-    pwszProviderName: PWSTR,
+    pwszProviderName: ?PWSTR,
     Signature: CRYPT_BIT_BLOB,
 };
 
 pub const PFN_CRYPT_ALLOC = fn(
     cbSize: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PFN_CRYPT_FREE = fn(
-    pv: *c_void,
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CRYPT_ENCODE_PARA = extern struct {
     cbSize: u32,
-    pfnAlloc: PFN_CRYPT_ALLOC,
-    pfnFree: PFN_CRYPT_FREE,
+    pfnAlloc: ?PFN_CRYPT_ALLOC,
+    pfnFree: ?PFN_CRYPT_FREE,
 };
 
 pub const CRYPT_DECODE_PARA = extern struct {
     cbSize: u32,
-    pfnAlloc: PFN_CRYPT_ALLOC,
-    pfnFree: PFN_CRYPT_FREE,
+    pfnAlloc: ?PFN_CRYPT_ALLOC,
+    pfnFree: ?PFN_CRYPT_FREE,
 };
 
 pub const CERT_EXTENSIONS = extern struct {
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CERT_AUTHORITY_KEY_ID_INFO = extern struct {
@@ -2328,41 +2328,41 @@ pub const CERT_PRIVATE_KEY_VALIDITY = extern struct {
 pub const CERT_KEY_ATTRIBUTES_INFO = extern struct {
     KeyId: CRYPTOAPI_BLOB,
     IntendedKeyUsage: CRYPT_BIT_BLOB,
-    pPrivateKeyUsagePeriod: *CERT_PRIVATE_KEY_VALIDITY,
+    pPrivateKeyUsagePeriod: ?*CERT_PRIVATE_KEY_VALIDITY,
 };
 
 pub const CERT_POLICY_ID = extern struct {
     cCertPolicyElementId: u32,
-    rgpszCertPolicyElementId: *PSTR,
+    rgpszCertPolicyElementId: ?*?PSTR,
 };
 
 pub const CERT_KEY_USAGE_RESTRICTION_INFO = extern struct {
     cCertPolicyId: u32,
-    rgCertPolicyId: *CERT_POLICY_ID,
+    rgCertPolicyId: ?*CERT_POLICY_ID,
     RestrictedKeyUsage: CRYPT_BIT_BLOB,
 };
 
 pub const CERT_OTHER_NAME = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     Value: CRYPTOAPI_BLOB,
 };
 
 pub const CERT_ALT_NAME_ENTRY = extern struct {
     dwAltNameChoice: u32,
     Anonymous: extern union {
-        pOtherName: *CERT_OTHER_NAME,
-        pwszRfc822Name: PWSTR,
-        pwszDNSName: PWSTR,
+        pOtherName: ?*CERT_OTHER_NAME,
+        pwszRfc822Name: ?PWSTR,
+        pwszDNSName: ?PWSTR,
         DirectoryName: CRYPTOAPI_BLOB,
-        pwszURL: PWSTR,
+        pwszURL: ?PWSTR,
         IPAddress: CRYPTOAPI_BLOB,
-        pszRegisteredID: PSTR,
+        pszRegisteredID: ?PSTR,
     },
 };
 
 pub const CERT_ALT_NAME_INFO = extern struct {
     cAltEntry: u32,
-    rgAltEntry: *CERT_ALT_NAME_ENTRY,
+    rgAltEntry: ?*CERT_ALT_NAME_ENTRY,
 };
 
 pub const CERT_BASIC_CONSTRAINTS_INFO = extern struct {
@@ -2370,7 +2370,7 @@ pub const CERT_BASIC_CONSTRAINTS_INFO = extern struct {
     fPathLenConstraint: BOOL,
     dwPathLenConstraint: u32,
     cSubtreesConstraint: u32,
-    rgSubtreesConstraint: *CRYPTOAPI_BLOB,
+    rgSubtreesConstraint: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CERT_BASIC_CONSTRAINTS2_INFO = extern struct {
@@ -2380,54 +2380,54 @@ pub const CERT_BASIC_CONSTRAINTS2_INFO = extern struct {
 };
 
 pub const CERT_POLICY_QUALIFIER_INFO = extern struct {
-    pszPolicyQualifierId: PSTR,
+    pszPolicyQualifierId: ?PSTR,
     Qualifier: CRYPTOAPI_BLOB,
 };
 
 pub const CERT_POLICY_INFO = extern struct {
-    pszPolicyIdentifier: PSTR,
+    pszPolicyIdentifier: ?PSTR,
     cPolicyQualifier: u32,
-    rgPolicyQualifier: *CERT_POLICY_QUALIFIER_INFO,
+    rgPolicyQualifier: ?*CERT_POLICY_QUALIFIER_INFO,
 };
 
 pub const CERT_POLICIES_INFO = extern struct {
     cPolicyInfo: u32,
-    rgPolicyInfo: *CERT_POLICY_INFO,
+    rgPolicyInfo: ?*CERT_POLICY_INFO,
 };
 
 pub const CERT_POLICY_QUALIFIER_NOTICE_REFERENCE = extern struct {
-    pszOrganization: PSTR,
+    pszOrganization: ?PSTR,
     cNoticeNumbers: u32,
-    rgNoticeNumbers: *i32,
+    rgNoticeNumbers: ?*i32,
 };
 
 pub const CERT_POLICY_QUALIFIER_USER_NOTICE = extern struct {
-    pNoticeReference: *CERT_POLICY_QUALIFIER_NOTICE_REFERENCE,
-    pszDisplayText: PWSTR,
+    pNoticeReference: ?*CERT_POLICY_QUALIFIER_NOTICE_REFERENCE,
+    pszDisplayText: ?PWSTR,
 };
 
 pub const CPS_URLS = extern struct {
-    pszURL: PWSTR,
-    pAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
-    pDigest: *CRYPTOAPI_BLOB,
+    pszURL: ?PWSTR,
+    pAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
+    pDigest: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CERT_POLICY95_QUALIFIER1 = extern struct {
-    pszPracticesReference: PWSTR,
-    pszNoticeIdentifier: PSTR,
-    pszNSINoticeIdentifier: PSTR,
+    pszPracticesReference: ?PWSTR,
+    pszNoticeIdentifier: ?PSTR,
+    pszNSINoticeIdentifier: ?PSTR,
     cCPSURLs: u32,
-    rgCPSURLs: *CPS_URLS,
+    rgCPSURLs: ?*CPS_URLS,
 };
 
 pub const CERT_POLICY_MAPPING = extern struct {
-    pszIssuerDomainPolicy: PSTR,
-    pszSubjectDomainPolicy: PSTR,
+    pszIssuerDomainPolicy: ?PSTR,
+    pszSubjectDomainPolicy: ?PSTR,
 };
 
 pub const CERT_POLICY_MAPPINGS_INFO = extern struct {
     cPolicyMapping: u32,
-    rgPolicyMapping: *CERT_POLICY_MAPPING,
+    rgPolicyMapping: ?*CERT_POLICY_MAPPING,
 };
 
 pub const CERT_POLICY_CONSTRAINTS_INFO = extern struct {
@@ -2438,19 +2438,19 @@ pub const CERT_POLICY_CONSTRAINTS_INFO = extern struct {
 };
 
 pub const CRYPT_CONTENT_INFO_SEQUENCE_OF_ANY = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     cValue: u32,
-    rgValue: *CRYPTOAPI_BLOB,
+    rgValue: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_CONTENT_INFO = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     Content: CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_SEQUENCE_OF_ANY = extern struct {
     cValue: u32,
-    rgValue: *CRYPTOAPI_BLOB,
+    rgValue: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CERT_AUTHORITY_KEY_ID2_INFO = extern struct {
@@ -2460,13 +2460,13 @@ pub const CERT_AUTHORITY_KEY_ID2_INFO = extern struct {
 };
 
 pub const CERT_ACCESS_DESCRIPTION = extern struct {
-    pszAccessMethod: PSTR,
+    pszAccessMethod: ?PSTR,
     AccessLocation: CERT_ALT_NAME_ENTRY,
 };
 
 pub const CERT_AUTHORITY_INFO_ACCESS = extern struct {
     cAccDescr: u32,
-    rgAccDescr: *CERT_ACCESS_DESCRIPTION,
+    rgAccDescr: ?*CERT_ACCESS_DESCRIPTION,
 };
 
 pub const CRL_DIST_POINT_NAME = extern struct {
@@ -2484,13 +2484,13 @@ pub const CRL_DIST_POINT = extern struct {
 
 pub const CRL_DIST_POINTS_INFO = extern struct {
     cDistPoint: u32,
-    rgDistPoint: *CRL_DIST_POINT,
+    rgDistPoint: ?*CRL_DIST_POINT,
 };
 
 pub const CROSS_CERT_DIST_POINTS_INFO = extern struct {
     dwSyncDeltaTime: u32,
     cDistPoint: u32,
-    rgDistPoint: *CERT_ALT_NAME_INFO,
+    rgDistPoint: ?*CERT_ALT_NAME_INFO,
 };
 
 pub const CERT_PAIR = extern struct {
@@ -2515,9 +2515,9 @@ pub const CERT_GENERAL_SUBTREE = extern struct {
 
 pub const CERT_NAME_CONSTRAINTS_INFO = extern struct {
     cPermittedSubtree: u32,
-    rgPermittedSubtree: *CERT_GENERAL_SUBTREE,
+    rgPermittedSubtree: ?*CERT_GENERAL_SUBTREE,
     cExcludedSubtree: u32,
-    rgExcludedSubtree: *CERT_GENERAL_SUBTREE,
+    rgExcludedSubtree: ?*CERT_GENERAL_SUBTREE,
 };
 
 pub const CERT_DSS_PARAMETERS = extern struct {
@@ -2546,11 +2546,11 @@ pub const CERT_X942_DH_PARAMETERS = extern struct {
     g: CRYPTOAPI_BLOB,
     q: CRYPTOAPI_BLOB,
     j: CRYPTOAPI_BLOB,
-    pValidationParams: *CERT_X942_DH_VALIDATION_PARAMS,
+    pValidationParams: ?*CERT_X942_DH_VALIDATION_PARAMS,
 };
 
 pub const CRYPT_X942_OTHER_INFO = extern struct {
-    pszContentEncryptionObjId: PSTR,
+    pszContentEncryptionObjId: ?PSTR,
     rgbCounter: [4]u8,
     rgbKeyLength: [4]u8,
     PubInfo: CRYPTOAPI_BLOB,
@@ -2569,27 +2569,27 @@ pub const CRYPT_RC2_CBC_PARAMETERS = extern struct {
 };
 
 pub const CRYPT_SMIME_CAPABILITY = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     Parameters: CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_SMIME_CAPABILITIES = extern struct {
     cCapability: u32,
-    rgCapability: *CRYPT_SMIME_CAPABILITY,
+    rgCapability: ?*CRYPT_SMIME_CAPABILITY,
 };
 
 pub const CERT_QC_STATEMENT = extern struct {
-    pszStatementId: PSTR,
+    pszStatementId: ?PSTR,
     StatementInfo: CRYPTOAPI_BLOB,
 };
 
 pub const CERT_QC_STATEMENTS_EXT_INFO = extern struct {
     cStatement: u32,
-    rgStatement: *CERT_QC_STATEMENT,
+    rgStatement: ?*CERT_QC_STATEMENT,
 };
 
 pub const CRYPT_MASK_GEN_ALGORITHM = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
 };
 
@@ -2601,7 +2601,7 @@ pub const CRYPT_RSA_SSA_PSS_PARAMETERS = extern struct {
 };
 
 pub const CRYPT_PSOURCE_ALGORITHM = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     EncodingParameters: CRYPTOAPI_BLOB,
 };
 
@@ -2624,7 +2624,7 @@ pub const CMC_TAGGED_CERT_REQUEST = extern struct {
 pub const CMC_TAGGED_REQUEST = extern struct {
     dwTaggedRequestChoice: u32,
     Anonymous: extern union {
-        pTaggedCertRequest: *CMC_TAGGED_CERT_REQUEST,
+        pTaggedCertRequest: ?*CMC_TAGGED_CERT_REQUEST,
     },
 };
 
@@ -2635,28 +2635,28 @@ pub const CMC_TAGGED_CONTENT_INFO = extern struct {
 
 pub const CMC_TAGGED_OTHER_MSG = extern struct {
     dwBodyPartID: u32,
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     Value: CRYPTOAPI_BLOB,
 };
 
 pub const CMC_DATA_INFO = extern struct {
     cTaggedAttribute: u32,
-    rgTaggedAttribute: *CMC_TAGGED_ATTRIBUTE,
+    rgTaggedAttribute: ?*CMC_TAGGED_ATTRIBUTE,
     cTaggedRequest: u32,
-    rgTaggedRequest: *CMC_TAGGED_REQUEST,
+    rgTaggedRequest: ?*CMC_TAGGED_REQUEST,
     cTaggedContentInfo: u32,
-    rgTaggedContentInfo: *CMC_TAGGED_CONTENT_INFO,
+    rgTaggedContentInfo: ?*CMC_TAGGED_CONTENT_INFO,
     cTaggedOtherMsg: u32,
-    rgTaggedOtherMsg: *CMC_TAGGED_OTHER_MSG,
+    rgTaggedOtherMsg: ?*CMC_TAGGED_OTHER_MSG,
 };
 
 pub const CMC_RESPONSE_INFO = extern struct {
     cTaggedAttribute: u32,
-    rgTaggedAttribute: *CMC_TAGGED_ATTRIBUTE,
+    rgTaggedAttribute: ?*CMC_TAGGED_ATTRIBUTE,
     cTaggedContentInfo: u32,
-    rgTaggedContentInfo: *CMC_TAGGED_CONTENT_INFO,
+    rgTaggedContentInfo: ?*CMC_TAGGED_CONTENT_INFO,
     cTaggedOtherMsg: u32,
-    rgTaggedOtherMsg: *CMC_TAGGED_OTHER_MSG,
+    rgTaggedOtherMsg: ?*CMC_TAGGED_OTHER_MSG,
 };
 
 pub const CMC_PEND_INFO = extern struct {
@@ -2667,33 +2667,33 @@ pub const CMC_PEND_INFO = extern struct {
 pub const CMC_STATUS_INFO = extern struct {
     dwStatus: u32,
     cBodyList: u32,
-    rgdwBodyList: *u32,
-    pwszStatusString: PWSTR,
+    rgdwBodyList: ?*u32,
+    pwszStatusString: ?PWSTR,
     dwOtherInfoChoice: u32,
     Anonymous: extern union {
         dwFailInfo: u32,
-        pPendInfo: *CMC_PEND_INFO,
+        pPendInfo: ?*CMC_PEND_INFO,
     },
 };
 
 pub const CMC_ADD_EXTENSIONS_INFO = extern struct {
     dwCmcDataReference: u32,
     cCertReference: u32,
-    rgdwCertReference: *u32,
+    rgdwCertReference: ?*u32,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CMC_ADD_ATTRIBUTES_INFO = extern struct {
     dwCmcDataReference: u32,
     cCertReference: u32,
-    rgdwCertReference: *u32,
+    rgdwCertReference: ?*u32,
     cAttribute: u32,
-    rgAttribute: *CRYPT_ATTRIBUTE,
+    rgAttribute: ?*CRYPT_ATTRIBUTE,
 };
 
 pub const CERT_TEMPLATE_EXT = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     dwMajorVersion: u32,
     fMinorVersion: BOOL,
     dwMinorVersion: u32,
@@ -2702,18 +2702,18 @@ pub const CERT_TEMPLATE_EXT = extern struct {
 pub const CERT_HASHED_URL = extern struct {
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     Hash: CRYPTOAPI_BLOB,
-    pwszUrl: PWSTR,
+    pwszUrl: ?PWSTR,
 };
 
 pub const CERT_LOGOTYPE_DETAILS = extern struct {
-    pwszMimeType: PWSTR,
+    pwszMimeType: ?PWSTR,
     cHashedUrl: u32,
-    rgHashedUrl: *CERT_HASHED_URL,
+    rgHashedUrl: ?*CERT_HASHED_URL,
 };
 
 pub const CERT_LOGOTYPE_REFERENCE = extern struct {
     cHashedUrl: u32,
-    rgHashedUrl: *CERT_HASHED_URL,
+    rgHashedUrl: ?*CERT_HASHED_URL,
 };
 
 pub const CERT_LOGOTYPE_IMAGE_INFO = extern struct {
@@ -2726,12 +2726,12 @@ pub const CERT_LOGOTYPE_IMAGE_INFO = extern struct {
         dwNumBits: u32,
         dwTableSize: u32,
     },
-    pwszLanguage: PWSTR,
+    pwszLanguage: ?PWSTR,
 };
 
 pub const CERT_LOGOTYPE_IMAGE = extern struct {
     LogotypeDetails: CERT_LOGOTYPE_DETAILS,
-    pLogotypeImageInfo: *CERT_LOGOTYPE_IMAGE_INFO,
+    pLogotypeImageInfo: ?*CERT_LOGOTYPE_IMAGE_INFO,
 };
 
 pub const CERT_LOGOTYPE_AUDIO_INFO = extern struct {
@@ -2739,67 +2739,67 @@ pub const CERT_LOGOTYPE_AUDIO_INFO = extern struct {
     dwPlayTime: u32,
     dwChannels: u32,
     dwSampleRate: u32,
-    pwszLanguage: PWSTR,
+    pwszLanguage: ?PWSTR,
 };
 
 pub const CERT_LOGOTYPE_AUDIO = extern struct {
     LogotypeDetails: CERT_LOGOTYPE_DETAILS,
-    pLogotypeAudioInfo: *CERT_LOGOTYPE_AUDIO_INFO,
+    pLogotypeAudioInfo: ?*CERT_LOGOTYPE_AUDIO_INFO,
 };
 
 pub const CERT_LOGOTYPE_DATA = extern struct {
     cLogotypeImage: u32,
-    rgLogotypeImage: *CERT_LOGOTYPE_IMAGE,
+    rgLogotypeImage: ?*CERT_LOGOTYPE_IMAGE,
     cLogotypeAudio: u32,
-    rgLogotypeAudio: *CERT_LOGOTYPE_AUDIO,
+    rgLogotypeAudio: ?*CERT_LOGOTYPE_AUDIO,
 };
 
 pub const CERT_LOGOTYPE_INFO = extern struct {
     dwLogotypeInfoChoice: CERT_LOGOTYPE_OPTION,
     Anonymous: extern union {
-        pLogotypeDirectInfo: *CERT_LOGOTYPE_DATA,
-        pLogotypeIndirectInfo: *CERT_LOGOTYPE_REFERENCE,
+        pLogotypeDirectInfo: ?*CERT_LOGOTYPE_DATA,
+        pLogotypeIndirectInfo: ?*CERT_LOGOTYPE_REFERENCE,
     },
 };
 
 pub const CERT_OTHER_LOGOTYPE_INFO = extern struct {
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     LogotypeInfo: CERT_LOGOTYPE_INFO,
 };
 
 pub const CERT_LOGOTYPE_EXT_INFO = extern struct {
     cCommunityLogo: u32,
-    rgCommunityLogo: *CERT_LOGOTYPE_INFO,
-    pIssuerLogo: *CERT_LOGOTYPE_INFO,
-    pSubjectLogo: *CERT_LOGOTYPE_INFO,
+    rgCommunityLogo: ?*CERT_LOGOTYPE_INFO,
+    pIssuerLogo: ?*CERT_LOGOTYPE_INFO,
+    pSubjectLogo: ?*CERT_LOGOTYPE_INFO,
     cOtherLogo: u32,
-    rgOtherLogo: *CERT_OTHER_LOGOTYPE_INFO,
+    rgOtherLogo: ?*CERT_OTHER_LOGOTYPE_INFO,
 };
 
 pub const CERT_BIOMETRIC_DATA = extern struct {
     dwTypeOfBiometricDataChoice: CERT_BIOMETRIC_DATA_TYPE,
     Anonymous: extern union {
         dwPredefined: u32,
-        pszObjId: PSTR,
+        pszObjId: ?PSTR,
     },
     HashedUrl: CERT_HASHED_URL,
 };
 
 pub const CERT_BIOMETRIC_EXT_INFO = extern struct {
     cBiometricData: u32,
-    rgBiometricData: *CERT_BIOMETRIC_DATA,
+    rgBiometricData: ?*CERT_BIOMETRIC_DATA,
 };
 
 pub const OCSP_SIGNATURE_INFO = extern struct {
     SignatureAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     Signature: CRYPT_BIT_BLOB,
     cCertEncoded: u32,
-    rgCertEncoded: *CRYPTOAPI_BLOB,
+    rgCertEncoded: ?*CRYPTOAPI_BLOB,
 };
 
 pub const OCSP_SIGNED_REQUEST_INFO = extern struct {
     ToBeSigned: CRYPTOAPI_BLOB,
-    pOptionalSignatureInfo: *OCSP_SIGNATURE_INFO,
+    pOptionalSignatureInfo: ?*OCSP_SIGNATURE_INFO,
 };
 
 pub const OCSP_CERT_ID = extern struct {
@@ -2812,21 +2812,21 @@ pub const OCSP_CERT_ID = extern struct {
 pub const OCSP_REQUEST_ENTRY = extern struct {
     CertId: OCSP_CERT_ID,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const OCSP_REQUEST_INFO = extern struct {
     dwVersion: u32,
-    pRequestorName: *CERT_ALT_NAME_ENTRY,
+    pRequestorName: ?*CERT_ALT_NAME_ENTRY,
     cRequestEntry: u32,
-    rgRequestEntry: *OCSP_REQUEST_ENTRY,
+    rgRequestEntry: ?*OCSP_REQUEST_ENTRY,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const OCSP_RESPONSE_INFO = extern struct {
     dwStatus: u32,
-    pszObjId: PSTR,
+    pszObjId: ?PSTR,
     Value: CRYPTOAPI_BLOB,
 };
 
@@ -2844,12 +2844,12 @@ pub const OCSP_BASIC_RESPONSE_ENTRY = extern struct {
     CertId: OCSP_CERT_ID,
     dwCertStatus: u32,
     Anonymous: extern union {
-        pRevokedInfo: *OCSP_BASIC_REVOKED_INFO,
+        pRevokedInfo: ?*OCSP_BASIC_REVOKED_INFO,
     },
     ThisUpdate: FILETIME,
     NextUpdate: FILETIME,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const OCSP_BASIC_RESPONSE_INFO = extern struct {
@@ -2861,9 +2861,9 @@ pub const OCSP_BASIC_RESPONSE_INFO = extern struct {
     },
     ProducedAt: FILETIME,
     cResponseEntry: u32,
-    rgResponseEntry: *OCSP_BASIC_RESPONSE_ENTRY,
+    rgResponseEntry: ?*OCSP_BASIC_RESPONSE_ENTRY,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CERT_SUPPORTED_ALGORITHM_INFO = extern struct {
@@ -2873,32 +2873,32 @@ pub const CERT_SUPPORTED_ALGORITHM_INFO = extern struct {
 };
 
 pub const CERT_TPM_SPECIFICATION_INFO = extern struct {
-    pwszFamily: PWSTR,
+    pwszFamily: ?PWSTR,
     dwLevel: u32,
     dwRevision: u32,
 };
 
 pub const CRYPT_OID_FUNC_ENTRY = extern struct {
-    pszOID: [*:0]const u8,
-    pvFuncAddr: *c_void,
+    pszOID: ?[*:0]const u8,
+    pvFuncAddr: ?*c_void,
 };
 
 pub const PFN_CRYPT_ENUM_OID_FUNC = fn(
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
-    pszOID: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
+    pszOID: ?[*:0]const u8,
     cValue: u32,
     rgdwValueType: [*]const u32,
-    rgpwszValueName: [*]const [*:0]const u16,
-    rgpbValueData: [*]const *const u8,
+    rgpwszValueName: [*]const ?[*:0]const u16,
+    rgpbValueData: [*]const ?*const u8,
     rgcbValueData: [*]const u32,
     pvArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRYPT_OID_INFO = extern struct {
     cbSize: u32,
-    pszOID: [*:0]const u8,
-    pwszName: [*:0]const u16,
+    pszOID: ?[*:0]const u8,
+    pwszName: ?[*:0]const u16,
     dwGroupId: u32,
     Anonymous: extern union {
         dwValue: u32,
@@ -2909,23 +2909,23 @@ pub const CRYPT_OID_INFO = extern struct {
 };
 
 pub const PFN_CRYPT_ENUM_OID_INFO = fn(
-    pInfo: *CRYPT_OID_INFO,
+    pInfo: ?*CRYPT_OID_INFO,
     pvArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CERT_STRONG_SIGN_SERIALIZED_INFO = extern struct {
     dwFlags: CERT_STRONG_SIGN_FLAGS,
-    pwszCNGSignHashAlgids: PWSTR,
-    pwszCNGPubKeyMinBitLengths: PWSTR,
+    pwszCNGSignHashAlgids: ?PWSTR,
+    pwszCNGPubKeyMinBitLengths: ?PWSTR,
 };
 
 pub const CERT_STRONG_SIGN_PARA = extern struct {
     cbSize: u32,
     dwInfoChoice: u32,
     Anonymous: extern union {
-        pvInfo: *c_void,
-        pSerializedInfo: *CERT_STRONG_SIGN_SERIALIZED_INFO,
-        pszOID: PSTR,
+        pvInfo: ?*c_void,
+        pSerializedInfo: ?*CERT_STRONG_SIGN_SERIALIZED_INFO,
+        pszOID: ?PSTR,
     },
 };
 
@@ -2945,43 +2945,43 @@ pub const CERT_ID = extern struct {
 
 pub const CMSG_SIGNER_ENCODE_INFO = extern struct {
     cbSize: u32,
-    pCertInfo: *CERT_INFO,
+    pCertInfo: ?*CERT_INFO,
     Anonymous: extern union {
         hCryptProv: usize,
         hNCryptKey: usize,
     },
     dwKeySpec: u32,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvHashAuxInfo: *c_void,
+    pvHashAuxInfo: ?*c_void,
     cAuthAttr: u32,
-    rgAuthAttr: *CRYPT_ATTRIBUTE,
+    rgAuthAttr: ?*CRYPT_ATTRIBUTE,
     cUnauthAttr: u32,
-    rgUnauthAttr: *CRYPT_ATTRIBUTE,
+    rgUnauthAttr: ?*CRYPT_ATTRIBUTE,
 };
 
 pub const CMSG_SIGNED_ENCODE_INFO = extern struct {
     cbSize: u32,
     cSigners: u32,
-    rgSigners: *CMSG_SIGNER_ENCODE_INFO,
+    rgSigners: ?*CMSG_SIGNER_ENCODE_INFO,
     cCertEncoded: u32,
-    rgCertEncoded: *CRYPTOAPI_BLOB,
+    rgCertEncoded: ?*CRYPTOAPI_BLOB,
     cCrlEncoded: u32,
-    rgCrlEncoded: *CRYPTOAPI_BLOB,
+    rgCrlEncoded: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CMSG_ENVELOPED_ENCODE_INFO = extern struct {
     cbSize: u32,
     hCryptProv: usize,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvEncryptionAuxInfo: *c_void,
+    pvEncryptionAuxInfo: ?*c_void,
     cRecipients: u32,
-    rgpRecipients: **CERT_INFO,
+    rgpRecipients: ?*?*CERT_INFO,
 };
 
 pub const CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO = extern struct {
     cbSize: u32,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvKeyEncryptionAuxInfo: *c_void,
+    pvKeyEncryptionAuxInfo: ?*c_void,
     hCryptProv: usize,
     RecipientPublicKey: CRYPT_BIT_BLOB,
     RecipientId: CERT_ID,
@@ -2992,48 +2992,48 @@ pub const CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO = extern struct {
     RecipientPublicKey: CRYPT_BIT_BLOB,
     RecipientId: CERT_ID,
     Date: FILETIME,
-    pOtherAttr: *CRYPT_ATTRIBUTE_TYPE_VALUE,
+    pOtherAttr: ?*CRYPT_ATTRIBUTE_TYPE_VALUE,
 };
 
 pub const CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO = extern struct {
     cbSize: u32,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvKeyEncryptionAuxInfo: *c_void,
+    pvKeyEncryptionAuxInfo: ?*c_void,
     KeyWrapAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvKeyWrapAuxInfo: *c_void,
+    pvKeyWrapAuxInfo: ?*c_void,
     hCryptProv: usize,
     dwKeySpec: u32,
     dwKeyChoice: CMSG_KEY_AGREE_OPTION,
     Anonymous: extern union {
-        pEphemeralAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
-        pSenderId: *CERT_ID,
+        pEphemeralAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
+        pSenderId: ?*CERT_ID,
     },
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     cRecipientEncryptedKeys: u32,
-    rgpRecipientEncryptedKeys: **CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO,
+    rgpRecipientEncryptedKeys: ?*?*CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO,
 };
 
 pub const CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO = extern struct {
     cbSize: u32,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvKeyEncryptionAuxInfo: *c_void,
+    pvKeyEncryptionAuxInfo: ?*c_void,
     hCryptProv: usize,
     dwKeyChoice: u32,
     Anonymous: extern union {
         hKeyEncryptionKey: usize,
-        pvKeyEncryptionKey: *c_void,
+        pvKeyEncryptionKey: ?*c_void,
     },
     KeyId: CRYPTOAPI_BLOB,
     Date: FILETIME,
-    pOtherAttr: *CRYPT_ATTRIBUTE_TYPE_VALUE,
+    pOtherAttr: ?*CRYPT_ATTRIBUTE_TYPE_VALUE,
 };
 
 pub const CMSG_RECIPIENT_ENCODE_INFO = extern struct {
     dwRecipientChoice: u32,
     Anonymous: extern union {
-        pKeyTrans: *CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO,
-        pKeyAgree: *CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO,
-        pMailList: *CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO,
+        pKeyTrans: ?*CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO,
+        pKeyAgree: ?*CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO,
+        pMailList: ?*CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO,
     },
 };
 
@@ -3062,13 +3062,13 @@ pub const CMSG_HASHED_ENCODE_INFO = extern struct {
     cbSize: u32,
     hCryptProv: usize,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvHashAuxInfo: *c_void,
+    pvHashAuxInfo: ?*c_void,
 };
 
 pub const CMSG_ENCRYPTED_ENCODE_INFO = extern struct {
     cbSize: u32,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvEncryptionAuxInfo: *c_void,
+    pvEncryptionAuxInfo: ?*c_void,
 };
 
 pub const PFN_CMSG_STREAM_OUTPUT = fn(
@@ -3081,8 +3081,8 @@ pub const PFN_CMSG_STREAM_OUTPUT = fn(
 
 pub const CMSG_STREAM_INFO = extern struct {
     cbContent: u32,
-    pfnStreamOutput: PFN_CMSG_STREAM_OUTPUT,
-    pvArg: *c_void,
+    pfnStreamOutput: ?PFN_CMSG_STREAM_OUTPUT,
+    pvArg: ?*c_void,
 };
 
 pub const CMSG_SIGNER_INFO = extern struct {
@@ -3117,7 +3117,7 @@ pub const CMSG_RECIPIENT_ENCRYPTED_KEY_INFO = extern struct {
     RecipientId: CERT_ID,
     EncryptedKey: CRYPTOAPI_BLOB,
     Date: FILETIME,
-    pOtherAttr: *CRYPT_ATTRIBUTE_TYPE_VALUE,
+    pOtherAttr: ?*CRYPT_ATTRIBUTE_TYPE_VALUE,
 };
 
 pub const CMSG_KEY_AGREE_RECIPIENT_INFO = extern struct {
@@ -3130,7 +3130,7 @@ pub const CMSG_KEY_AGREE_RECIPIENT_INFO = extern struct {
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     cRecipientEncryptedKeys: u32,
-    rgpRecipientEncryptedKeys: **CMSG_RECIPIENT_ENCRYPTED_KEY_INFO,
+    rgpRecipientEncryptedKeys: ?*?*CMSG_RECIPIENT_ENCRYPTED_KEY_INFO,
 };
 
 pub const CMSG_MAIL_LIST_RECIPIENT_INFO = extern struct {
@@ -3139,15 +3139,15 @@ pub const CMSG_MAIL_LIST_RECIPIENT_INFO = extern struct {
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     EncryptedKey: CRYPTOAPI_BLOB,
     Date: FILETIME,
-    pOtherAttr: *CRYPT_ATTRIBUTE_TYPE_VALUE,
+    pOtherAttr: ?*CRYPT_ATTRIBUTE_TYPE_VALUE,
 };
 
 pub const CMSG_CMS_RECIPIENT_INFO = extern struct {
     dwRecipientChoice: u32,
     Anonymous: extern union {
-        pKeyTrans: *CMSG_KEY_TRANS_RECIPIENT_INFO,
-        pKeyAgree: *CMSG_KEY_AGREE_RECIPIENT_INFO,
-        pMailList: *CMSG_MAIL_LIST_RECIPIENT_INFO,
+        pKeyTrans: ?*CMSG_KEY_TRANS_RECIPIENT_INFO,
+        pKeyAgree: ?*CMSG_KEY_AGREE_RECIPIENT_INFO,
+        pMailList: ?*CMSG_MAIL_LIST_RECIPIENT_INFO,
     },
 };
 
@@ -3156,7 +3156,7 @@ pub const CMSG_CTRL_VERIFY_SIGNATURE_EX_PARA = extern struct {
     hCryptProv: usize,
     dwSignerIndex: u32,
     dwSignerType: u32,
-    pvSigner: *c_void,
+    pvSigner: ?*c_void,
 };
 
 pub const CMSG_CTRL_DECRYPT_PARA = extern struct {
@@ -3176,7 +3176,7 @@ pub const CMSG_CTRL_KEY_TRANS_DECRYPT_PARA = extern struct {
         hNCryptKey: usize,
     },
     dwKeySpec: u32,
-    pKeyTrans: *CMSG_KEY_TRANS_RECIPIENT_INFO,
+    pKeyTrans: ?*CMSG_KEY_TRANS_RECIPIENT_INFO,
     dwRecipientIndex: u32,
 };
 
@@ -3187,7 +3187,7 @@ pub const CMSG_CTRL_KEY_AGREE_DECRYPT_PARA = extern struct {
         hNCryptKey: usize,
     },
     dwKeySpec: u32,
-    pKeyAgree: *CMSG_KEY_AGREE_RECIPIENT_INFO,
+    pKeyAgree: ?*CMSG_KEY_AGREE_RECIPIENT_INFO,
     dwRecipientIndex: u32,
     dwRecipientEncryptedKeyIndex: u32,
     OriginatorPublicKey: CRYPT_BIT_BLOB,
@@ -3196,12 +3196,12 @@ pub const CMSG_CTRL_KEY_AGREE_DECRYPT_PARA = extern struct {
 pub const CMSG_CTRL_MAIL_LIST_DECRYPT_PARA = extern struct {
     cbSize: u32,
     hCryptProv: usize,
-    pMailList: *CMSG_MAIL_LIST_RECIPIENT_INFO,
+    pMailList: ?*CMSG_MAIL_LIST_RECIPIENT_INFO,
     dwRecipientIndex: u32,
     dwKeyChoice: u32,
     Anonymous: extern union {
         hKeyEncryptionKey: usize,
-        pvKeyEncryptionKey: *c_void,
+        pvKeyEncryptionKey: ?*c_void,
     },
 };
 
@@ -3219,68 +3219,68 @@ pub const CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA = extern struct {
 
 pub const PFN_CMSG_ALLOC = fn(
     cb: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PFN_CMSG_FREE = fn(
-    pv: *c_void,
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_CMSG_GEN_ENCRYPT_KEY = fn(
-    phCryptProv: *usize,
-    paiEncrypt: *CRYPT_ALGORITHM_IDENTIFIER,
+    phCryptProv: ?*usize,
+    paiEncrypt: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvEncryptAuxInfo: ?*c_void,
-    pPublicKeyInfo: *CERT_PUBLIC_KEY_INFO,
-    pfnAlloc: PFN_CMSG_ALLOC,
-    phEncryptKey: *usize,
-    ppbEncryptParameters: **u8,
-    pcbEncryptParameters: *u32,
+    pPublicKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
+    pfnAlloc: ?PFN_CMSG_ALLOC,
+    phEncryptKey: ?*usize,
+    ppbEncryptParameters: ?*?*u8,
+    pcbEncryptParameters: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CMSG_EXPORT_ENCRYPT_KEY = fn(
     hCryptProv: usize,
     hEncryptKey: usize,
-    pPublicKeyInfo: *CERT_PUBLIC_KEY_INFO,
+    pPublicKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
     // TODO: what to do with BytesParamIndex 4?
     pbData: ?*u8,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CMSG_IMPORT_ENCRYPT_KEY = fn(
     hCryptProv: usize,
     dwKeySpec: u32,
-    paiEncrypt: *CRYPT_ALGORITHM_IDENTIFIER,
-    paiPubKey: *CRYPT_ALGORITHM_IDENTIFIER,
+    paiEncrypt: ?*CRYPT_ALGORITHM_IDENTIFIER,
+    paiPubKey: ?*CRYPT_ALGORITHM_IDENTIFIER,
     // TODO: what to do with BytesParamIndex 5?
-    pbEncodedKey: *u8,
+    pbEncodedKey: ?*u8,
     cbEncodedKey: u32,
-    phEncryptKey: *usize,
+    phEncryptKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CMSG_CONTENT_ENCRYPT_INFO = extern struct {
     cbSize: u32,
     hCryptProv: usize,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvEncryptionAuxInfo: *c_void,
+    pvEncryptionAuxInfo: ?*c_void,
     cRecipients: u32,
-    rgCmsRecipients: *CMSG_RECIPIENT_ENCODE_INFO,
-    pfnAlloc: PFN_CMSG_ALLOC,
-    pfnFree: PFN_CMSG_FREE,
+    rgCmsRecipients: ?*CMSG_RECIPIENT_ENCODE_INFO,
+    pfnAlloc: ?PFN_CMSG_ALLOC,
+    pfnFree: ?PFN_CMSG_FREE,
     dwEncryptFlags: u32,
     Anonymous: extern union {
         hContentEncryptKey: usize,
-        hCNGContentEncryptKey: *c_void,
+        hCNGContentEncryptKey: ?*c_void,
     },
     dwFlags: u32,
     fCNG: BOOL,
-    pbCNGContentEncryptKeyObject: *u8,
-    pbContentEncryptKey: *u8,
+    pbCNGContentEncryptKeyObject: ?*u8,
+    pbContentEncryptKey: ?*u8,
     cbContentEncryptKey: u32,
 };
 
 pub const PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY = fn(
-    pContentEncryptInfo: *CMSG_CONTENT_ENCRYPT_INFO,
+    pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CMSG_KEY_TRANS_ENCRYPT_INFO = extern struct {
@@ -3292,11 +3292,11 @@ pub const CMSG_KEY_TRANS_ENCRYPT_INFO = extern struct {
 };
 
 pub const PFN_CMSG_EXPORT_KEY_TRANS = fn(
-    pContentEncryptInfo: *CMSG_CONTENT_ENCRYPT_INFO,
-    pKeyTransEncodeInfo: *CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO,
-    pKeyTransEncryptInfo: *CMSG_KEY_TRANS_ENCRYPT_INFO,
+    pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
+    pKeyTransEncodeInfo: ?*CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO,
+    pKeyTransEncryptInfo: ?*CMSG_KEY_TRANS_ENCRYPT_INFO,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CMSG_KEY_AGREE_KEY_ENCRYPT_INFO = extern struct {
@@ -3315,16 +3315,16 @@ pub const CMSG_KEY_AGREE_ENCRYPT_INFO = extern struct {
         OriginatorPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
     },
     cKeyAgreeKeyEncryptInfo: u32,
-    rgpKeyAgreeKeyEncryptInfo: **CMSG_KEY_AGREE_KEY_ENCRYPT_INFO,
+    rgpKeyAgreeKeyEncryptInfo: ?*?*CMSG_KEY_AGREE_KEY_ENCRYPT_INFO,
     dwFlags: u32,
 };
 
 pub const PFN_CMSG_EXPORT_KEY_AGREE = fn(
-    pContentEncryptInfo: *CMSG_CONTENT_ENCRYPT_INFO,
-    pKeyAgreeEncodeInfo: *CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO,
-    pKeyAgreeEncryptInfo: *CMSG_KEY_AGREE_ENCRYPT_INFO,
+    pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
+    pKeyAgreeEncodeInfo: ?*CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO,
+    pKeyAgreeEncryptInfo: ?*CMSG_KEY_AGREE_ENCRYPT_INFO,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CMSG_MAIL_LIST_ENCRYPT_INFO = extern struct {
@@ -3336,93 +3336,93 @@ pub const CMSG_MAIL_LIST_ENCRYPT_INFO = extern struct {
 };
 
 pub const PFN_CMSG_EXPORT_MAIL_LIST = fn(
-    pContentEncryptInfo: *CMSG_CONTENT_ENCRYPT_INFO,
-    pMailListEncodeInfo: *CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO,
-    pMailListEncryptInfo: *CMSG_MAIL_LIST_ENCRYPT_INFO,
+    pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
+    pMailListEncodeInfo: ?*CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO,
+    pMailListEncryptInfo: ?*CMSG_MAIL_LIST_ENCRYPT_INFO,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CMSG_IMPORT_KEY_TRANS = fn(
-    pContentEncryptionAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
-    pKeyTransDecryptPara: *CMSG_CTRL_KEY_TRANS_DECRYPT_PARA,
+    pContentEncryptionAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
+    pKeyTransDecryptPara: ?*CMSG_CTRL_KEY_TRANS_DECRYPT_PARA,
     dwFlags: u32,
-    pvReserved: *c_void,
-    phContentEncryptKey: *usize,
+    pvReserved: ?*c_void,
+    phContentEncryptKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CMSG_IMPORT_KEY_AGREE = fn(
-    pContentEncryptionAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
-    pKeyAgreeDecryptPara: *CMSG_CTRL_KEY_AGREE_DECRYPT_PARA,
+    pContentEncryptionAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
+    pKeyAgreeDecryptPara: ?*CMSG_CTRL_KEY_AGREE_DECRYPT_PARA,
     dwFlags: u32,
-    pvReserved: *c_void,
-    phContentEncryptKey: *usize,
+    pvReserved: ?*c_void,
+    phContentEncryptKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CMSG_IMPORT_MAIL_LIST = fn(
-    pContentEncryptionAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
-    pMailListDecryptPara: *CMSG_CTRL_MAIL_LIST_DECRYPT_PARA,
+    pContentEncryptionAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
+    pMailListDecryptPara: ?*CMSG_CTRL_MAIL_LIST_DECRYPT_PARA,
     dwFlags: u32,
-    pvReserved: *c_void,
-    phContentEncryptKey: *usize,
+    pvReserved: ?*c_void,
+    phContentEncryptKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CMSG_CNG_CONTENT_DECRYPT_INFO = extern struct {
     cbSize: u32,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pfnAlloc: PFN_CMSG_ALLOC,
-    pfnFree: PFN_CMSG_FREE,
+    pfnAlloc: ?PFN_CMSG_ALLOC,
+    pfnFree: ?PFN_CMSG_FREE,
     hNCryptKey: usize,
-    pbContentEncryptKey: *u8,
+    pbContentEncryptKey: ?*u8,
     cbContentEncryptKey: u32,
-    hCNGContentEncryptKey: *c_void,
-    pbCNGContentEncryptKeyObject: *u8,
+    hCNGContentEncryptKey: ?*c_void,
+    pbCNGContentEncryptKeyObject: ?*u8,
 };
 
 pub const PFN_CMSG_CNG_IMPORT_KEY_TRANS = fn(
-    pCNGContentDecryptInfo: *CMSG_CNG_CONTENT_DECRYPT_INFO,
-    pKeyTransDecryptPara: *CMSG_CTRL_KEY_TRANS_DECRYPT_PARA,
+    pCNGContentDecryptInfo: ?*CMSG_CNG_CONTENT_DECRYPT_INFO,
+    pKeyTransDecryptPara: ?*CMSG_CTRL_KEY_TRANS_DECRYPT_PARA,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CMSG_CNG_IMPORT_KEY_AGREE = fn(
-    pCNGContentDecryptInfo: *CMSG_CNG_CONTENT_DECRYPT_INFO,
-    pKeyAgreeDecryptPara: *CMSG_CTRL_KEY_AGREE_DECRYPT_PARA,
+    pCNGContentDecryptInfo: ?*CMSG_CNG_CONTENT_DECRYPT_INFO,
+    pKeyAgreeDecryptPara: ?*CMSG_CTRL_KEY_AGREE_DECRYPT_PARA,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY = fn(
-    pCNGContentDecryptInfo: *CMSG_CNG_CONTENT_DECRYPT_INFO,
+    pCNGContentDecryptInfo: ?*CMSG_CNG_CONTENT_DECRYPT_INFO,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CERT_CONTEXT = extern struct {
     dwCertEncodingType: u32,
-    pbCertEncoded: *u8,
+    pbCertEncoded: ?*u8,
     cbCertEncoded: u32,
-    pCertInfo: *CERT_INFO,
-    hCertStore: *c_void,
+    pCertInfo: ?*CERT_INFO,
+    hCertStore: ?*c_void,
 };
 
 pub const CRL_CONTEXT = extern struct {
     dwCertEncodingType: u32,
-    pbCrlEncoded: *u8,
+    pbCrlEncoded: ?*u8,
     cbCrlEncoded: u32,
-    pCrlInfo: *CRL_INFO,
-    hCertStore: *c_void,
+    pCrlInfo: ?*CRL_INFO,
+    hCertStore: ?*c_void,
 };
 
 pub const CTL_CONTEXT = extern struct {
     dwMsgAndCertEncodingType: u32,
-    pbCtlEncoded: *u8,
+    pbCtlEncoded: ?*u8,
     cbCtlEncoded: u32,
-    pCtlInfo: *CTL_INFO,
-    hCertStore: *c_void,
-    hCryptMsg: *c_void,
-    pbCtlContent: *u8,
+    pCtlInfo: ?*CTL_INFO,
+    hCertStore: ?*c_void,
+    hCryptMsg: ?*c_void,
+    pbCtlContent: ?*u8,
     cbCtlContent: u32,
 };
 
@@ -3449,18 +3449,18 @@ pub const KeyTypeSelfSigned = CertKeyType.SelfSigned;
 
 pub const CRYPT_KEY_PROV_PARAM = extern struct {
     dwParam: u32,
-    pbData: *u8,
+    pbData: ?*u8,
     cbData: u32,
     dwFlags: u32,
 };
 
 pub const CRYPT_KEY_PROV_INFO = extern struct {
-    pwszContainerName: PWSTR,
-    pwszProvName: PWSTR,
+    pwszContainerName: ?PWSTR,
+    pwszProvName: ?PWSTR,
     dwProvType: u32,
     dwFlags: CRYPT_KEY_FLAGS,
     cProvParam: u32,
-    rgProvParam: *CRYPT_KEY_PROV_PARAM,
+    rgProvParam: ?*CRYPT_KEY_PROV_PARAM,
     dwKeySpec: u32,
 };
 
@@ -3485,48 +3485,48 @@ pub const CRYPT_SMART_CARD_ROOT_INFO = extern struct {
 
 pub const CERT_SYSTEM_STORE_RELOCATE_PARA = extern struct {
     Anonymous1: extern union {
-        hKeyBase: HKEY,
-        pvBase: *c_void,
+        hKeyBase: ?HKEY,
+        pvBase: ?*c_void,
     },
     Anonymous2: extern union {
-        pvSystemStore: *c_void,
-        pszSystemStore: [*:0]const u8,
-        pwszSystemStore: [*:0]const u16,
+        pvSystemStore: ?*c_void,
+        pszSystemStore: ?[*:0]const u8,
+        pwszSystemStore: ?[*:0]const u16,
     },
 };
 
 pub const CERT_REGISTRY_STORE_CLIENT_GPT_PARA = extern struct {
-    hKeyBase: HKEY,
-    pwszRegPath: PWSTR,
+    hKeyBase: ?HKEY,
+    pwszRegPath: ?PWSTR,
 };
 
 pub const CERT_REGISTRY_STORE_ROAMING_PARA = extern struct {
-    hKey: HKEY,
-    pwszStoreDirectory: PWSTR,
+    hKey: ?HKEY,
+    pwszStoreDirectory: ?PWSTR,
 };
 
 pub const CERT_LDAP_STORE_OPENED_PARA = extern struct {
-    pvLdapSessionHandle: *c_void,
-    pwszLdapUrl: [*:0]const u16,
+    pvLdapSessionHandle: ?*c_void,
+    pwszLdapUrl: ?[*:0]const u16,
 };
 
 pub const CERT_STORE_PROV_INFO = extern struct {
     cbSize: u32,
     cStoreProvFunc: u32,
-    rgpvStoreProvFunc: **c_void,
-    hStoreProv: *c_void,
+    rgpvStoreProvFunc: ?*?*c_void,
+    hStoreProv: ?*c_void,
     dwStoreProvFlags: CERT_STORE_PROV_FLAGS,
-    hStoreProvFuncAddr2: *c_void,
+    hStoreProvFuncAddr2: ?*c_void,
 };
 
 pub const PFN_CERT_DLL_OPEN_STORE_PROV_FUNC = fn(
-    lpszStoreProvider: [*:0]const u8,
+    lpszStoreProvider: ?[*:0]const u8,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
     hCryptProv: usize,
     dwFlags: CERT_OPEN_STORE_FLAGS,
     pvPara: ?*const c_void,
-    hCertStore: *c_void,
-    pStoreProvInfo: *CERT_STORE_PROV_INFO,
+    hCertStore: ?*c_void,
+    pStoreProvInfo: ?*CERT_STORE_PROV_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_CLOSE = fn(
@@ -3535,88 +3535,88 @@ pub const PFN_CERT_STORE_PROV_CLOSE = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_CERT_STORE_PROV_READ_CERT = fn(
-    hStoreProv: *c_void,
-    pStoreCertContext: *const CERT_CONTEXT,
+    hStoreProv: ?*c_void,
+    pStoreCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
-    ppProvCertContext: **CERT_CONTEXT,
+    ppProvCertContext: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_WRITE_CERT = fn(
-    hStoreProv: *c_void,
-    pCertContext: *const CERT_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_DELETE_CERT = fn(
-    hStoreProv: *c_void,
-    pCertContext: *const CERT_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_SET_CERT_PROPERTY = fn(
-    hStoreProv: *c_void,
-    pCertContext: *const CERT_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_READ_CRL = fn(
-    hStoreProv: *c_void,
-    pStoreCrlContext: *CRL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pStoreCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
-    ppProvCrlContext: **CRL_CONTEXT,
+    ppProvCrlContext: ?*?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_WRITE_CRL = fn(
-    hStoreProv: *c_void,
-    pCrlContext: *CRL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_DELETE_CRL = fn(
-    hStoreProv: *c_void,
-    pCrlContext: *CRL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_SET_CRL_PROPERTY = fn(
-    hStoreProv: *c_void,
-    pCrlContext: *CRL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_READ_CTL = fn(
-    hStoreProv: *c_void,
-    pStoreCtlContext: *CTL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pStoreCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
-    ppProvCtlContext: **CTL_CONTEXT,
+    ppProvCtlContext: ?*?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_WRITE_CTL = fn(
-    hStoreProv: *c_void,
-    pCtlContext: *CTL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_DELETE_CTL = fn(
-    hStoreProv: *c_void,
-    pCtlContext: *CTL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_SET_CTL_PROPERTY = fn(
-    hStoreProv: *c_void,
-    pCtlContext: *CTL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_CONTROL = fn(
-    hStoreProv: *c_void,
+    hStoreProv: ?*c_void,
     dwFlags: u32,
     dwCtrlType: u32,
     pvCtrlPara: ?*const c_void,
@@ -3627,90 +3627,90 @@ pub const CERT_STORE_PROV_FIND_INFO = extern struct {
     dwMsgAndCertEncodingType: u32,
     dwFindFlags: u32,
     dwFindType: u32,
-    pvFindPara: *const c_void,
+    pvFindPara: ?*const c_void,
 };
 
 pub const PFN_CERT_STORE_PROV_FIND_CERT = fn(
-    hStoreProv: *c_void,
-    pFindInfo: *CERT_STORE_PROV_FIND_INFO,
-    pPrevCertContext: *const CERT_CONTEXT,
+    hStoreProv: ?*c_void,
+    pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
+    pPrevCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
-    ppvStoreProvFindInfo: **c_void,
-    ppProvCertContext: **CERT_CONTEXT,
+    ppvStoreProvFindInfo: ?*?*c_void,
+    ppProvCertContext: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_FREE_FIND_CERT = fn(
-    hStoreProv: *c_void,
-    pCertContext: *const CERT_CONTEXT,
-    pvStoreProvFindInfo: *c_void,
+    hStoreProv: ?*c_void,
+    pCertContext: ?*const CERT_CONTEXT,
+    pvStoreProvFindInfo: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = fn(
-    hStoreProv: *c_void,
-    pCertContext: *const CERT_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 5?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_FIND_CRL = fn(
-    hStoreProv: *c_void,
-    pFindInfo: *CERT_STORE_PROV_FIND_INFO,
-    pPrevCrlContext: *CRL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
+    pPrevCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
-    ppvStoreProvFindInfo: **c_void,
-    ppProvCrlContext: **CRL_CONTEXT,
+    ppvStoreProvFindInfo: ?*?*c_void,
+    ppProvCrlContext: ?*?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_FREE_FIND_CRL = fn(
-    hStoreProv: *c_void,
-    pCrlContext: *CRL_CONTEXT,
-    pvStoreProvFindInfo: *c_void,
+    hStoreProv: ?*c_void,
+    pCrlContext: ?*CRL_CONTEXT,
+    pvStoreProvFindInfo: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = fn(
-    hStoreProv: *c_void,
-    pCrlContext: *CRL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 5?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_FIND_CTL = fn(
-    hStoreProv: *c_void,
-    pFindInfo: *CERT_STORE_PROV_FIND_INFO,
-    pPrevCtlContext: *CTL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
+    pPrevCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
-    ppvStoreProvFindInfo: **c_void,
-    ppProvCtlContext: **CTL_CONTEXT,
+    ppvStoreProvFindInfo: ?*?*c_void,
+    ppProvCtlContext: ?*?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_FREE_FIND_CTL = fn(
-    hStoreProv: *c_void,
-    pCtlContext: *CTL_CONTEXT,
-    pvStoreProvFindInfo: *c_void,
+    hStoreProv: ?*c_void,
+    pCtlContext: ?*CTL_CONTEXT,
+    pvStoreProvFindInfo: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_STORE_PROV_GET_CTL_PROPERTY = fn(
-    hStoreProv: *c_void,
-    pCtlContext: *CTL_CONTEXT,
+    hStoreProv: ?*c_void,
+    pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 5?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRL_FIND_ISSUED_FOR_PARA = extern struct {
-    pSubjectCert: *const CERT_CONTEXT,
-    pIssuerCert: *const CERT_CONTEXT,
+    pSubjectCert: ?*const CERT_CONTEXT,
+    pIssuerCert: ?*const CERT_CONTEXT,
 };
 
 pub const CTL_ANY_SUBJECT_INFO = extern struct {
@@ -3722,14 +3722,14 @@ pub const CTL_FIND_USAGE_PARA = extern struct {
     cbSize: u32,
     SubjectUsage: CTL_USAGE,
     ListIdentifier: CRYPTOAPI_BLOB,
-    pSigner: *CERT_INFO,
+    pSigner: ?*CERT_INFO,
 };
 
 pub const CTL_FIND_SUBJECT_PARA = extern struct {
     cbSize: u32,
-    pUsagePara: *CTL_FIND_USAGE_PARA,
+    pUsagePara: ?*CTL_FIND_USAGE_PARA,
     dwSubjectType: u32,
-    pvSubject: *c_void,
+    pvSubject: ?*c_void,
 };
 
 pub const PFN_CERT_CREATE_CONTEXT_SORT_FUNC = fn(
@@ -3741,10 +3741,10 @@ pub const PFN_CERT_CREATE_CONTEXT_SORT_FUNC = fn(
 
 pub const CERT_CREATE_CONTEXT_PARA = extern struct {
     cbSize: u32,
-    pfnFree: PFN_CRYPT_FREE,
-    pvFree: *c_void,
-    pfnSort: PFN_CERT_CREATE_CONTEXT_SORT_FUNC,
-    pvSort: *c_void,
+    pfnFree: ?PFN_CRYPT_FREE,
+    pvFree: ?*c_void,
+    pfnSort: ?PFN_CERT_CREATE_CONTEXT_SORT_FUNC,
+    pvSort: ?*c_void,
 };
 
 pub const CERT_SYSTEM_STORE_INFO = extern struct {
@@ -3753,7 +3753,7 @@ pub const CERT_SYSTEM_STORE_INFO = extern struct {
 
 pub const CERT_PHYSICAL_STORE_INFO = extern struct {
     cbSize: u32,
-    pszOpenStoreProvider: PSTR,
+    pszOpenStoreProvider: ?PSTR,
     dwOpenEncodingType: u32,
     dwOpenFlags: u32,
     OpenParameters: CRYPTOAPI_BLOB,
@@ -3762,26 +3762,26 @@ pub const CERT_PHYSICAL_STORE_INFO = extern struct {
 };
 
 pub const PFN_CERT_ENUM_SYSTEM_STORE_LOCATION = fn(
-    pwszStoreLocation: [*:0]const u16,
+    pwszStoreLocation: ?[*:0]const u16,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     pvArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_ENUM_SYSTEM_STORE = fn(
-    pvSystemStore: *const c_void,
+    pvSystemStore: ?*const c_void,
     dwFlags: CERT_SYSTEM_STORE_FLAGS,
-    pStoreInfo: *CERT_SYSTEM_STORE_INFO,
-    pvReserved: *c_void,
+    pStoreInfo: ?*CERT_SYSTEM_STORE_INFO,
+    pvReserved: ?*c_void,
     pvArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_ENUM_PHYSICAL_STORE = fn(
-    pvSystemStore: *const c_void,
+    pvSystemStore: ?*const c_void,
     dwFlags: u32,
-    pwszStoreName: [*:0]const u16,
-    pStoreInfo: *CERT_PHYSICAL_STORE_INFO,
-    pvReserved: *c_void,
+    pwszStoreName: ?[*:0]const u16,
+    pStoreInfo: ?*CERT_PHYSICAL_STORE_INFO,
+    pvReserved: ?*c_void,
     pvArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -3789,36 +3789,36 @@ pub const CTL_VERIFY_USAGE_PARA = extern struct {
     cbSize: u32,
     ListIdentifier: CRYPTOAPI_BLOB,
     cCtlStore: u32,
-    rghCtlStore: **c_void,
+    rghCtlStore: ?*?*c_void,
     cSignerStore: u32,
-    rghSignerStore: **c_void,
+    rghSignerStore: ?*?*c_void,
 };
 
 pub const CTL_VERIFY_USAGE_STATUS = extern struct {
     cbSize: u32,
     dwError: u32,
     dwFlags: u32,
-    ppCtl: **CTL_CONTEXT,
+    ppCtl: ?*?*CTL_CONTEXT,
     dwCtlEntryIndex: u32,
-    ppSigner: **CERT_CONTEXT,
+    ppSigner: ?*?*CERT_CONTEXT,
     dwSignerIndex: u32,
 };
 
 pub const CERT_REVOCATION_CRL_INFO = extern struct {
     cbSize: u32,
-    pBaseCrlContext: *CRL_CONTEXT,
-    pDeltaCrlContext: *CRL_CONTEXT,
-    pCrlEntry: *CRL_ENTRY,
+    pBaseCrlContext: ?*CRL_CONTEXT,
+    pDeltaCrlContext: ?*CRL_CONTEXT,
+    pCrlEntry: ?*CRL_ENTRY,
     fDeltaCrlEntry: BOOL,
 };
 
 pub const CERT_REVOCATION_PARA = extern struct {
     cbSize: u32,
-    pIssuerCert: *const CERT_CONTEXT,
+    pIssuerCert: ?*const CERT_CONTEXT,
     cCertStore: u32,
-    rgCertStore: **c_void,
-    hCrlStore: *c_void,
-    pftTimeToUse: *FILETIME,
+    rgCertStore: ?*?*c_void,
+    hCrlStore: ?*c_void,
+    pftTimeToUse: ?*FILETIME,
 };
 
 pub const CERT_REVOCATION_STATUS = extern struct {
@@ -3837,85 +3837,85 @@ pub const CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO = extern struct {
 
 pub const CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO = extern struct {
     cCNGHashAlgid: u32,
-    rgpwszCNGHashAlgid: *PWSTR,
+    rgpwszCNGHashAlgid: ?*?PWSTR,
     dwWeakIndex: u32,
 };
 
 pub const PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC = fn(
     dwCertEncodingType: u32,
-    pSignatureAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
-    ppvDecodedSignPara: ?**c_void,
-    ppwszCNGHashAlgid: *PWSTR,
+    pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
+    ppvDecodedSignPara: ?*?*c_void,
+    ppwszCNGHashAlgid: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = fn(
     hKey: usize,
     dwCertEncodingType: u32,
-    pSignatureAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
+    pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvDecodedSignPara: ?*c_void,
-    pwszCNGPubKeyAlgid: [*:0]const u16,
-    pwszCNGHashAlgid: [*:0]const u16,
+    pwszCNGPubKeyAlgid: ?[*:0]const u16,
+    pwszCNGHashAlgid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 7?
-    pbComputedHash: *u8,
+    pbComputedHash: ?*u8,
     cbComputedHash: u32,
     // TODO: what to do with BytesParamIndex 9?
     pbSignature: ?*u8,
-    pcbSignature: *u32,
+    pcbSignature: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC = fn(
     dwCertEncodingType: u32,
-    pPubKeyInfo: *CERT_PUBLIC_KEY_INFO,
-    pSignatureAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
+    pPubKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
+    pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvDecodedSignPara: ?*c_void,
-    pwszCNGPubKeyAlgid: [*:0]const u16,
-    pwszCNGHashAlgid: [*:0]const u16,
+    pwszCNGPubKeyAlgid: ?[*:0]const u16,
+    pwszCNGHashAlgid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 7?
-    pbComputedHash: *u8,
+    pbComputedHash: ?*u8,
     cbComputedHash: u32,
     // TODO: what to do with BytesParamIndex 9?
-    pbSignature: *u8,
+    pbSignature: ?*u8,
     cbSignature: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA = extern struct {
     cOID: u32,
-    rgpszOID: *PSTR,
+    rgpszOID: ?*?PSTR,
 };
 
 pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn(
     hNCryptKey: usize,
     dwCertEncodingType: u32,
-    pszPublicKeyObjId: PSTR,
+    pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 6?
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
-    pcbInfo: *u32,
+    pcbInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = fn(
-    hBCryptKey: *c_void,
+    hBCryptKey: ?*c_void,
     dwCertEncodingType: u32,
-    pszPublicKeyObjId: PSTR,
+    pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 6?
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
-    pcbInfo: *u32,
+    pcbInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn(
     dwCertEncodingType: u32,
-    pInfo: *CERT_PUBLIC_KEY_INFO,
+    pInfo: ?*CERT_PUBLIC_KEY_INFO,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
-    phKey: **c_void,
+    phKey: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_IMPORT_PRIV_KEY_FUNC = fn(
     hCryptProv: usize,
-    pPrivateKeyInfo: *CRYPT_PRIVATE_KEY_INFO,
+    pPrivateKeyInfo: ?*CRYPT_PRIVATE_KEY_INFO,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3923,35 +3923,35 @@ pub const PFN_IMPORT_PRIV_KEY_FUNC = fn(
 pub const PFN_EXPORT_PRIV_KEY_FUNC = fn(
     hCryptProv: usize,
     dwKeySpec: u32,
-    pszPrivateKeyObjId: PSTR,
+    pszPrivateKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 6?
     pPrivateKeyInfo: ?*CRYPT_PRIVATE_KEY_INFO,
-    pcbPrivateKeyInfo: *u32,
+    pcbPrivateKeyInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CRYPT_GET_SIGNER_CERTIFICATE = fn(
     pvGetArg: ?*c_void,
     dwCertEncodingType: u32,
-    pSignerId: *CERT_INFO,
-    hMsgCertStore: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+    pSignerId: ?*CERT_INFO,
+    hMsgCertStore: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 pub const CRYPT_SIGN_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgEncodingType: u32,
-    pSigningCert: *const CERT_CONTEXT,
+    pSigningCert: ?*const CERT_CONTEXT,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvHashAuxInfo: *c_void,
+    pvHashAuxInfo: ?*c_void,
     cMsgCert: u32,
-    rgpMsgCert: **CERT_CONTEXT,
+    rgpMsgCert: ?*?*CERT_CONTEXT,
     cMsgCrl: u32,
-    rgpMsgCrl: **CRL_CONTEXT,
+    rgpMsgCrl: ?*?*CRL_CONTEXT,
     cAuthAttr: u32,
-    rgAuthAttr: *CRYPT_ATTRIBUTE,
+    rgAuthAttr: ?*CRYPT_ATTRIBUTE,
     cUnauthAttr: u32,
-    rgUnauthAttr: *CRYPT_ATTRIBUTE,
+    rgUnauthAttr: ?*CRYPT_ATTRIBUTE,
     dwFlags: u32,
     dwInnerContentType: u32,
 };
@@ -3960,8 +3960,8 @@ pub const CRYPT_VERIFY_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgAndCertEncodingType: u32,
     hCryptProv: usize,
-    pfnGetSignerCertificate: PFN_CRYPT_GET_SIGNER_CERTIFICATE,
-    pvGetArg: *c_void,
+    pfnGetSignerCertificate: ?PFN_CRYPT_GET_SIGNER_CERTIFICATE,
+    pvGetArg: ?*c_void,
 };
 
 pub const CRYPT_ENCRYPT_MESSAGE_PARA = extern struct {
@@ -3969,7 +3969,7 @@ pub const CRYPT_ENCRYPT_MESSAGE_PARA = extern struct {
     dwMsgEncodingType: u32,
     hCryptProv: usize,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvEncryptionAuxInfo: *c_void,
+    pvEncryptionAuxInfo: ?*c_void,
     dwFlags: u32,
     dwInnerContentType: u32,
 };
@@ -3978,7 +3978,7 @@ pub const CRYPT_DECRYPT_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgAndCertEncodingType: u32,
     cCertStore: u32,
-    rghCertStore: **c_void,
+    rghCertStore: ?*?*c_void,
 };
 
 pub const CRYPT_HASH_MESSAGE_PARA = extern struct {
@@ -3986,7 +3986,7 @@ pub const CRYPT_HASH_MESSAGE_PARA = extern struct {
     dwMsgEncodingType: u32,
     hCryptProv: usize,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvHashAuxInfo: *c_void,
+    pvHashAuxInfo: ?*c_void,
 };
 
 pub const CRYPT_KEY_SIGN_MESSAGE_PARA = extern struct {
@@ -3998,7 +3998,7 @@ pub const CRYPT_KEY_SIGN_MESSAGE_PARA = extern struct {
     },
     dwKeySpec: CERT_KEY_SPEC,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    pvHashAuxInfo: *c_void,
+    pvHashAuxInfo: ?*c_void,
     PubKeyAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
 };
 
@@ -4010,41 +4010,41 @@ pub const CRYPT_KEY_VERIFY_MESSAGE_PARA = extern struct {
 
 pub const CERT_CHAIN = extern struct {
     cCerts: u32,
-    certs: *CRYPTOAPI_BLOB,
+    certs: ?*CRYPTOAPI_BLOB,
     keyLocatorInfo: CRYPT_KEY_PROV_INFO,
 };
 
 pub const PFN_CRYPT_ASYNC_PARAM_FREE_FUNC = fn(
-    pszParamOid: PSTR,
-    pvParam: *c_void,
+    pszParamOid: ?PSTR,
+    pvParam: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CRYPT_BLOB_ARRAY = extern struct {
     cBlob: u32,
-    rgBlob: *CRYPTOAPI_BLOB,
+    rgBlob: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_CREDENTIALS = extern struct {
     cbSize: u32,
-    pszCredentialsOid: [*:0]const u8,
-    pvCredentials: *c_void,
+    pszCredentialsOid: ?[*:0]const u8,
+    pvCredentials: ?*c_void,
 };
 
 pub const CRYPT_PASSWORD_CREDENTIALSA = extern struct {
     cbSize: u32,
-    pszUsername: PSTR,
-    pszPassword: PSTR,
+    pszUsername: ?PSTR,
+    pszPassword: ?PSTR,
 };
 
 pub const CRYPT_PASSWORD_CREDENTIALSW = extern struct {
     cbSize: u32,
-    pszUsername: PWSTR,
-    pszPassword: PWSTR,
+    pszUsername: ?PWSTR,
+    pszPassword: ?PWSTR,
 };
 
 pub const PFN_FREE_ENCODED_OBJECT_FUNC = fn(
     pszObjectOid: ?[*:0]const u8,
-    pObject: *CRYPT_BLOB_ARRAY,
+    pObject: ?*CRYPT_BLOB_ARRAY,
     pvFreeContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -4070,23 +4070,23 @@ pub const CRYPTNET_URL_CACHE_RESPONSE_INFO = extern struct {
     wResponseFlags: u16,
     LastModifiedTime: FILETIME,
     dwMaxAge: u32,
-    pwszETag: [*:0]const u16,
+    pwszETag: ?[*:0]const u16,
     dwProxyId: u32,
 };
 
 pub const CRYPT_RETRIEVE_AUX_INFO = extern struct {
     cbSize: u32,
-    pLastSyncTime: *FILETIME,
+    pLastSyncTime: ?*FILETIME,
     dwMaxUrlRetrievalByteCount: u32,
-    pPreFetchInfo: *CRYPTNET_URL_CACHE_PRE_FETCH_INFO,
-    pFlushInfo: *CRYPTNET_URL_CACHE_FLUSH_INFO,
-    ppResponseInfo: **CRYPTNET_URL_CACHE_RESPONSE_INFO,
-    pwszCacheFileNamePrefix: PWSTR,
-    pftCacheResync: *FILETIME,
+    pPreFetchInfo: ?*CRYPTNET_URL_CACHE_PRE_FETCH_INFO,
+    pFlushInfo: ?*CRYPTNET_URL_CACHE_FLUSH_INFO,
+    ppResponseInfo: ?*?*CRYPTNET_URL_CACHE_RESPONSE_INFO,
+    pwszCacheFileNamePrefix: ?PWSTR,
+    pftCacheResync: ?*FILETIME,
     fProxyCacheRetrieval: BOOL,
     dwHttpStatusCode: u32,
-    ppwszErrorResponseHeaders: *PWSTR,
-    ppErrorContentBlob: **CRYPTOAPI_BLOB,
+    ppwszErrorResponseHeaders: ?*?PWSTR,
+    ppErrorContentBlob: ?*?*CRYPTOAPI_BLOB,
 };
 
 pub const PFN_CRYPT_CANCEL_RETRIEVAL = fn(
@@ -4097,14 +4097,14 @@ pub const PFN_CRYPT_CANCEL_RETRIEVAL = fn(
 pub const PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC = fn(
     pvCompletion: ?*c_void,
     dwCompletionCode: u32,
-    pszUrl: [*:0]const u8,
+    pszUrl: ?[*:0]const u8,
     pszObjectOid: ?PSTR,
-    pvObject: *c_void,
+    pvObject: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CRYPT_ASYNC_RETRIEVAL_COMPLETION = extern struct {
-    pfnCompletion: PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC,
-    pvCompletion: *c_void,
+    pfnCompletion: ?PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC,
+    pvCompletion: ?*c_void,
 };
 
 pub const PFN_CANCEL_ASYNC_RETRIEVAL_FUNC = fn(
@@ -4113,55 +4113,55 @@ pub const PFN_CANCEL_ASYNC_RETRIEVAL_FUNC = fn(
 
 pub const CRYPT_URL_ARRAY = extern struct {
     cUrl: u32,
-    rgwszUrl: *PWSTR,
+    rgwszUrl: ?*?PWSTR,
 };
 
 pub const CRYPT_URL_INFO = extern struct {
     cbSize: u32,
     dwSyncDeltaTime: u32,
     cGroup: u32,
-    rgcGroupEntry: *u32,
+    rgcGroupEntry: ?*u32,
 };
 
 pub const CERT_CRL_CONTEXT_PAIR = extern struct {
-    pCertContext: *const CERT_CONTEXT,
-    pCrlContext: *CRL_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
 };
 
 pub const CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO = extern struct {
     cbSize: u32,
     iDeltaCrlIndicator: i32,
-    pftCacheResync: *FILETIME,
-    pLastSyncTime: *FILETIME,
-    pMaxAgeTime: *FILETIME,
-    pChainPara: *CERT_REVOCATION_CHAIN_PARA,
-    pDeltaCrlIndicator: *CRYPTOAPI_BLOB,
+    pftCacheResync: ?*FILETIME,
+    pLastSyncTime: ?*FILETIME,
+    pMaxAgeTime: ?*FILETIME,
+    pChainPara: ?*CERT_REVOCATION_CHAIN_PARA,
+    pDeltaCrlIndicator: ?*CRYPTOAPI_BLOB,
 };
 
 pub const PFN_CRYPT_ENUM_KEYID_PROP = fn(
-    pKeyIdentifier: *const CRYPTOAPI_BLOB,
+    pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     pvArg: ?*c_void,
     cProp: u32,
     rgdwPropId: [*]u32,
-    rgpvData: [*]*c_void,
+    rgpvData: [*]?*c_void,
     rgcbData: [*]u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CERT_CHAIN_ENGINE_CONFIG = extern struct {
     cbSize: u32,
-    hRestrictedRoot: *c_void,
-    hRestrictedTrust: *c_void,
-    hRestrictedOther: *c_void,
+    hRestrictedRoot: ?*c_void,
+    hRestrictedTrust: ?*c_void,
+    hRestrictedOther: ?*c_void,
     cAdditionalStore: u32,
-    rghAdditionalStore: **c_void,
+    rghAdditionalStore: ?*?*c_void,
     dwFlags: u32,
     dwUrlRetrievalTimeout: u32,
     MaximumCachedCertificates: u32,
     CycleDetectionModulus: u32,
-    hExclusiveRoot: *c_void,
-    hExclusiveTrustedPeople: *c_void,
+    hExclusiveRoot: ?*c_void,
+    hExclusiveTrustedPeople: ?*c_void,
     dwExclusiveFlags: u32,
 };
 
@@ -4173,35 +4173,35 @@ pub const CERT_TRUST_STATUS = extern struct {
 pub const CERT_REVOCATION_INFO = extern struct {
     cbSize: u32,
     dwRevocationResult: u32,
-    pszRevocationOid: [*:0]const u8,
-    pvOidSpecificInfo: *c_void,
+    pszRevocationOid: ?[*:0]const u8,
+    pvOidSpecificInfo: ?*c_void,
     fHasFreshnessTime: BOOL,
     dwFreshnessTime: u32,
-    pCrlInfo: *CERT_REVOCATION_CRL_INFO,
+    pCrlInfo: ?*CERT_REVOCATION_CRL_INFO,
 };
 
 pub const CERT_TRUST_LIST_INFO = extern struct {
     cbSize: u32,
-    pCtlEntry: *CTL_ENTRY,
-    pCtlContext: *CTL_CONTEXT,
+    pCtlEntry: ?*CTL_ENTRY,
+    pCtlContext: ?*CTL_CONTEXT,
 };
 
 pub const CERT_CHAIN_ELEMENT = extern struct {
     cbSize: u32,
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     TrustStatus: CERT_TRUST_STATUS,
-    pRevocationInfo: *CERT_REVOCATION_INFO,
-    pIssuanceUsage: *CTL_USAGE,
-    pApplicationUsage: *CTL_USAGE,
-    pwszExtendedErrorInfo: [*:0]const u16,
+    pRevocationInfo: ?*CERT_REVOCATION_INFO,
+    pIssuanceUsage: ?*CTL_USAGE,
+    pApplicationUsage: ?*CTL_USAGE,
+    pwszExtendedErrorInfo: ?[*:0]const u16,
 };
 
 pub const CERT_SIMPLE_CHAIN = extern struct {
     cbSize: u32,
     TrustStatus: CERT_TRUST_STATUS,
     cElement: u32,
-    rgpElement: **CERT_CHAIN_ELEMENT,
-    pTrustListInfo: *CERT_TRUST_LIST_INFO,
+    rgpElement: ?*?*CERT_CHAIN_ELEMENT,
+    pTrustListInfo: ?*CERT_TRUST_LIST_INFO,
     fHasRevocationFreshnessTime: BOOL,
     dwRevocationFreshnessTime: u32,
 };
@@ -4210,9 +4210,9 @@ pub const CERT_CHAIN_CONTEXT = extern struct {
     cbSize: u32,
     TrustStatus: CERT_TRUST_STATUS,
     cChain: u32,
-    rgpChain: **CERT_SIMPLE_CHAIN,
+    rgpChain: ?*?*CERT_SIMPLE_CHAIN,
     cLowerQualityChainContext: u32,
-    rgpLowerQualityChainContext: **CERT_CHAIN_CONTEXT,
+    rgpLowerQualityChainContext: ?*?*CERT_CHAIN_CONTEXT,
     fHasRevocationFreshnessTime: BOOL,
     dwRevocationFreshnessTime: u32,
     dwCreateFlags: u32,
@@ -4236,41 +4236,41 @@ pub const CERT_CHAIN_PARA = extern struct {
 
 pub const CERT_REVOCATION_CHAIN_PARA = extern struct {
     cbSize: u32,
-    hChainEngine: HCERTCHAINENGINE,
-    hAdditionalStore: *c_void,
+    hChainEngine: ?HCERTCHAINENGINE,
+    hAdditionalStore: ?*c_void,
     dwChainFlags: u32,
     dwUrlRetrievalTimeout: u32,
-    pftCurrentTime: *FILETIME,
-    pftCacheResync: *FILETIME,
+    pftCurrentTime: ?*FILETIME,
+    pftCacheResync: ?*FILETIME,
     cbMaxUrlRetrievalByteCount: u32,
 };
 
 pub const CRL_REVOCATION_INFO = extern struct {
-    pCrlEntry: *CRL_ENTRY,
-    pCrlContext: *CRL_CONTEXT,
-    pCrlIssuerChain: *CERT_CHAIN_CONTEXT,
+    pCrlEntry: ?*CRL_ENTRY,
+    pCrlContext: ?*CRL_CONTEXT,
+    pCrlIssuerChain: ?*CERT_CHAIN_CONTEXT,
 };
 
 pub const PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK = fn(
-    pCert: *const CERT_CONTEXT,
+    pCert: ?*const CERT_CONTEXT,
     pvFindArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CERT_CHAIN_FIND_BY_ISSUER_PARA = extern struct {
     cbSize: u32,
-    pszUsageIdentifier: [*:0]const u8,
+    pszUsageIdentifier: ?[*:0]const u8,
     dwKeySpec: u32,
     dwAcquirePrivateKeyFlags: u32,
     cIssuer: u32,
-    rgIssuer: *CRYPTOAPI_BLOB,
-    pfnFindCallback: PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK,
-    pvFindArg: *c_void,
+    rgIssuer: ?*CRYPTOAPI_BLOB,
+    pfnFindCallback: ?PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK,
+    pvFindArg: ?*c_void,
 };
 
 pub const CERT_CHAIN_POLICY_PARA = extern struct {
     cbSize: u32,
     dwFlags: CERT_CHAIN_POLICY_FLAGS,
-    pvExtraPolicyPara: *c_void,
+    pvExtraPolicyPara: ?*c_void,
 };
 
 pub const CERT_CHAIN_POLICY_STATUS = extern struct {
@@ -4278,13 +4278,13 @@ pub const CERT_CHAIN_POLICY_STATUS = extern struct {
     dwError: u32,
     lChainIndex: i32,
     lElementIndex: i32,
-    pvExtraPolicyStatus: *c_void,
+    pvExtraPolicyStatus: ?*c_void,
 };
 
 pub const AUTHENTICODE_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
     cbSize: u32,
     dwRegPolicySettings: u32,
-    pSignerInfo: *CMSG_SIGNER_INFO,
+    pSignerInfo: ?*CMSG_SIGNER_INFO,
 };
 
 pub const AUTHENTICODE_EXTRA_CERT_CHAIN_POLICY_STATUS = extern struct {
@@ -4305,7 +4305,7 @@ pub const HTTPSPolicyCallbackData = extern struct {
     },
     dwAuthType: HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE,
     fdwChecks: u32,
-    pwszServerName: PWSTR,
+    pwszServerName: ?PWSTR,
 };
 
 pub const EV_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
@@ -4330,14 +4330,14 @@ pub const SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS = extern struct {
 pub const SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
     cbSize: u32,
     dwReserved: u32,
-    pwszServerName: PWSTR,
-    rgpszHpkpValue: [2]PSTR,
+    pwszServerName: ?PWSTR,
+    rgpszHpkpValue: [2]?PSTR,
 };
 
 pub const SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
     cbSize: u32,
     dwReserved: u32,
-    pwszServerName: [*:0]const u16,
+    pwszServerName: ?[*:0]const u16,
 };
 
 pub const SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS = extern struct {
@@ -4353,20 +4353,20 @@ pub const CRYPT_PKCS12_PBE_PARAMS = extern struct {
 
 pub const PKCS12_PBES2_EXPORT_PARAMS = extern struct {
     dwSize: u32,
-    hNcryptDescriptor: *c_void,
-    pwszPbes2Alg: PWSTR,
+    hNcryptDescriptor: ?*c_void,
+    pwszPbes2Alg: ?PWSTR,
 };
 
 pub const CERT_SERVER_OCSP_RESPONSE_CONTEXT = extern struct {
     cbSize: u32,
-    pbEncodedOcspResponse: *u8,
+    pbEncodedOcspResponse: ?*u8,
     cbEncodedOcspResponse: u32,
 };
 
 pub const PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK = fn(
-    pChainContext: *CERT_CHAIN_CONTEXT,
-    pServerOcspResponseContext: *CERT_SERVER_OCSP_RESPONSE_CONTEXT,
-    pNewCrlContext: *CRL_CONTEXT,
+    pChainContext: ?*CERT_CHAIN_CONTEXT,
+    pServerOcspResponseContext: ?*CERT_SERVER_OCSP_RESPONSE_CONTEXT,
+    pNewCrlContext: ?*CRL_CONTEXT,
     pPrevCrlContext: ?*CRL_CONTEXT,
     pvArg: ?*c_void,
     dwWriteOcspFileError: u32,
@@ -4375,41 +4375,41 @@ pub const PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK = fn(
 pub const CERT_SERVER_OCSP_RESPONSE_OPEN_PARA = extern struct {
     cbSize: u32,
     dwFlags: u32,
-    pcbUsedSize: *u32,
-    pwszOcspDirectory: PWSTR,
-    pfnUpdateCallback: PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK,
-    pvUpdateCallbackArg: *c_void,
+    pcbUsedSize: ?*u32,
+    pwszOcspDirectory: ?PWSTR,
+    pfnUpdateCallback: ?PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK,
+    pvUpdateCallbackArg: ?*c_void,
 };
 
 pub const CERT_SELECT_CHAIN_PARA = extern struct {
-    hChainEngine: HCERTCHAINENGINE,
-    pTime: *FILETIME,
-    hAdditionalStore: *c_void,
-    pChainPara: *CERT_CHAIN_PARA,
+    hChainEngine: ?HCERTCHAINENGINE,
+    pTime: ?*FILETIME,
+    hAdditionalStore: ?*c_void,
+    pChainPara: ?*CERT_CHAIN_PARA,
     dwFlags: u32,
 };
 
 pub const CERT_SELECT_CRITERIA = extern struct {
     dwType: CERT_SELECT_CRITERIA_TYPE,
     cPara: u32,
-    ppPara: **c_void,
+    ppPara: ?*?*c_void,
 };
 
 pub const CRYPT_TIMESTAMP_REQUEST = extern struct {
     dwVersion: CRYPT_TIMESTAMP_VERSION,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     HashedMessage: CRYPTOAPI_BLOB,
-    pszTSAPolicyId: PSTR,
+    pszTSAPolicyId: ?PSTR,
     Nonce: CRYPTOAPI_BLOB,
     fCertReq: BOOL,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CRYPT_TIMESTAMP_RESPONSE = extern struct {
     dwStatus: CRYPT_TIMESTAMP_RESPONSE_STATUS,
     cFreeText: u32,
-    rgFreeText: *PWSTR,
+    rgFreeText: ?*?PWSTR,
     FailureInfo: CRYPT_BIT_BLOB,
     ContentInfo: CRYPTOAPI_BLOB,
 };
@@ -4422,36 +4422,36 @@ pub const CRYPT_TIMESTAMP_ACCURACY = extern struct {
 
 pub const CRYPT_TIMESTAMP_INFO = extern struct {
     dwVersion: u32,
-    pszTSAPolicyId: PSTR,
+    pszTSAPolicyId: ?PSTR,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     HashedMessage: CRYPTOAPI_BLOB,
     SerialNumber: CRYPTOAPI_BLOB,
     ftTime: FILETIME,
-    pvAccuracy: *CRYPT_TIMESTAMP_ACCURACY,
+    pvAccuracy: ?*CRYPT_TIMESTAMP_ACCURACY,
     fOrdering: BOOL,
     Nonce: CRYPTOAPI_BLOB,
     Tsa: CRYPTOAPI_BLOB,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const CRYPT_TIMESTAMP_CONTEXT = extern struct {
     cbEncoded: u32,
-    pbEncoded: *u8,
-    pTimeStamp: *CRYPT_TIMESTAMP_INFO,
+    pbEncoded: ?*u8,
+    pTimeStamp: ?*CRYPT_TIMESTAMP_INFO,
 };
 
 pub const CRYPT_TIMESTAMP_PARA = extern struct {
-    pszTSAPolicyId: [*:0]const u8,
+    pszTSAPolicyId: ?[*:0]const u8,
     fRequestCerts: BOOL,
     Nonce: CRYPTOAPI_BLOB,
     cExtension: u32,
-    rgExtension: *CERT_EXTENSION,
+    rgExtension: ?*CERT_EXTENSION,
 };
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH = fn(
-    pContext: *c_void,
-    rgIdentifierOrNameList: [*]*CRYPTOAPI_BLOB,
+    pContext: ?*c_void,
+    rgIdentifierOrNameList: [*]?*CRYPTOAPI_BLOB,
     dwIdentifierOrNameListCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4459,11 +4459,11 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET = fn(
     pPluginContext: ?*c_void,
     pIdentifier: ?*CRYPTOAPI_BLOB,
     dwNameType: u32,
-    pNameBlob: *CRYPTOAPI_BLOB,
-    ppbContent: **u8,
-    pcbContent: *u32,
-    ppwszPassword: ?*PWSTR,
-    ppIdentifier: ?**CRYPTOAPI_BLOB,
+    pNameBlob: ?*CRYPTOAPI_BLOB,
+    ppbContent: ?*?*u8,
+    pcbContent: ?*u32,
+    ppwszPassword: ?*?PWSTR,
+    ppIdentifier: ?*?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE = fn(
@@ -4473,39 +4473,39 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE = fn(
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD = fn(
     pPluginContext: ?*c_void,
-    pwszPassword: [*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE = fn(
     pPluginContext: ?*c_void,
-    pbData: *u8,
+    pbData: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER = fn(
     pPluginContext: ?*c_void,
-    pIdentifier: *CRYPTOAPI_BLOB,
+    pIdentifier: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE = extern struct {
     cbSize: u32,
-    pfnGet: PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET,
-    pfnRelease: PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE,
-    pfnFreePassword: PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD,
-    pfnFree: PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE,
-    pfnFreeIdentifier: PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER,
+    pfnGet: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET,
+    pfnRelease: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE,
+    pfnFreePassword: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD,
+    pfnFree: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE,
+    pfnFreeIdentifier: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER,
 };
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE = fn(
-    pfnFlush: PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH,
-    pContext: *c_void,
-    pdwExpectedObjectCount: *u32,
-    ppFuncTable: **CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE,
-    ppPluginContext: ?**c_void,
+    pfnFlush: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH,
+    pContext: ?*c_void,
+    pdwExpectedObjectCount: ?*u32,
+    ppFuncTable: ?*?*CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE,
+    ppPluginContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CERT_IS_WEAK_HASH = fn(
     dwHashUseType: u32,
-    pwszCNGHashAlgid: [*:0]const u16,
+    pwszCNGHashAlgid: ?[*:0]const u16,
     dwChainFlags: u32,
     pSignerChainContext: ?*CERT_CHAIN_CONTEXT,
     pTimeStamp: ?*FILETIME,
@@ -4513,20 +4513,20 @@ pub const PFN_CERT_IS_WEAK_HASH = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFNCryptStreamOutputCallback = fn(
-    pvCallbackCtxt: *c_void,
+    pvCallbackCtxt: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *const u8,
+    pbData: ?*const u8,
     cbData: usize,
     fFinal: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const NCRYPT_PROTECT_STREAM_INFO = extern struct {
-    pfnStreamOutput: PFNCryptStreamOutputCallback,
-    pvCallbackCtxt: *c_void,
+    pfnStreamOutput: ?PFNCryptStreamOutputCallback,
+    pvCallbackCtxt: ?*c_void,
 };
 
 pub const PFNCryptStreamOutputCallbackEx = fn(
-    pvCallbackCtxt: *c_void,
+    pvCallbackCtxt: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*const u8,
     cbData: usize,
@@ -4535,8 +4535,8 @@ pub const PFNCryptStreamOutputCallbackEx = fn(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const NCRYPT_PROTECT_STREAM_INFO_EX = extern struct {
-    pfnStreamOutput: PFNCryptStreamOutputCallbackEx,
-    pvCallbackCtxt: *c_void,
+    pfnStreamOutput: ?PFNCryptStreamOutputCallbackEx,
+    pvCallbackCtxt: ?*c_void,
 };
 
 pub const CRYPT_XML_CHARSET = enum(i32) {
@@ -4553,12 +4553,12 @@ pub const CRYPT_XML_CHARSET_UTF16BE = CRYPT_XML_CHARSET.UTF16BE;
 pub const CRYPT_XML_BLOB = extern struct {
     dwCharset: CRYPT_XML_CHARSET,
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const CRYPT_XML_DATA_BLOB = extern struct {
     cbData: u32,
-    pbData: *u8,
+    pbData: ?*u8,
 };
 
 pub const CRYPT_XML_PROPERTY_ID = enum(i32) {
@@ -4576,40 +4576,40 @@ pub const CRYPT_XML_PROPERTY_XML_OUTPUT_CHARSET = CRYPT_XML_PROPERTY_ID.XML_OUTP
 
 pub const CRYPT_XML_PROPERTY = extern struct {
     dwPropId: CRYPT_XML_PROPERTY_ID,
-    pvValue: *const c_void,
+    pvValue: ?*const c_void,
     cbValue: u32,
 };
 
 pub const PFN_CRYPT_XML_WRITE_CALLBACK = fn(
-    pvCallbackState: *c_void,
+    pvCallbackState: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *const u8,
+    pbData: ?*const u8,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_CRYPT_XML_DATA_PROVIDER_READ = fn(
-    pvCallbackState: *c_void,
+    pvCallbackState: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *u8,
+    pbData: ?*u8,
     cbData: u32,
-    pcbRead: *u32,
+    pcbRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_CRYPT_XML_DATA_PROVIDER_CLOSE = fn(
-    pvCallbackState: *c_void,
+    pvCallbackState: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CRYPT_XML_DATA_PROVIDER = extern struct {
-    pvCallbackState: *c_void,
+    pvCallbackState: ?*c_void,
     cbBufferSize: u32,
-    pfnRead: PFN_CRYPT_XML_DATA_PROVIDER_READ,
-    pfnClose: PFN_CRYPT_XML_DATA_PROVIDER_CLOSE,
+    pfnRead: ?PFN_CRYPT_XML_DATA_PROVIDER_READ,
+    pfnClose: ?PFN_CRYPT_XML_DATA_PROVIDER_CLOSE,
 };
 
 pub const PFN_CRYPT_XML_CREATE_TRANSFORM = fn(
-    pTransform: *const CRYPT_XML_ALGORITHM,
-    pProviderIn: *CRYPT_XML_DATA_PROVIDER,
-    pProviderOut: *CRYPT_XML_DATA_PROVIDER,
+    pTransform: ?*const CRYPT_XML_ALGORITHM,
+    pProviderIn: ?*CRYPT_XML_DATA_PROVIDER,
+    pProviderOut: ?*CRYPT_XML_DATA_PROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CRYPT_XML_STATUS = extern struct {
@@ -4620,22 +4620,22 @@ pub const CRYPT_XML_STATUS = extern struct {
 
 pub const CRYPT_XML_ALGORITHM = extern struct {
     cbSize: u32,
-    wszAlgorithm: [*:0]const u16,
+    wszAlgorithm: ?[*:0]const u16,
     Encoded: CRYPT_XML_BLOB,
 };
 
 pub const CRYPT_XML_TRANSFORM_INFO = extern struct {
     cbSize: u32,
-    wszAlgorithm: [*:0]const u16,
+    wszAlgorithm: ?[*:0]const u16,
     cbBufferSize: u32,
     dwFlags: CRYPT_XML_TRANSFORM_FLAGS,
-    pfnCreateTransform: PFN_CRYPT_XML_CREATE_TRANSFORM,
+    pfnCreateTransform: ?PFN_CRYPT_XML_CREATE_TRANSFORM,
 };
 
 pub const CRYPT_XML_TRANSFORM_CHAIN_CONFIG = extern struct {
     cbSize: u32,
     cTransformInfo: u32,
-    rgpTransformInfo: **CRYPT_XML_TRANSFORM_INFO,
+    rgpTransformInfo: ?*?*CRYPT_XML_TRANSFORM_INFO,
 };
 
 pub const CRYPT_XML_KEY_DSA_KEY_VALUE = extern struct {
@@ -4649,7 +4649,7 @@ pub const CRYPT_XML_KEY_DSA_KEY_VALUE = extern struct {
 };
 
 pub const CRYPT_XML_KEY_ECDSA_KEY_VALUE = extern struct {
-    wszNamedCurve: [*:0]const u16,
+    wszNamedCurve: ?[*:0]const u16,
     X: CRYPT_XML_DATA_BLOB,
     Y: CRYPT_XML_DATA_BLOB,
     ExplicitPara: CRYPT_XML_BLOB,
@@ -4671,8 +4671,8 @@ pub const CRYPT_XML_KEY_VALUE = extern struct {
 };
 
 pub const CRYPT_XML_ISSUER_SERIAL = extern struct {
-    wszIssuer: [*:0]const u16,
-    wszSerial: [*:0]const u16,
+    wszIssuer: ?[*:0]const u16,
+    wszSerial: ?[*:0]const u16,
 };
 
 pub const CRYPT_XML_X509DATA_ITEM = extern struct {
@@ -4680,7 +4680,7 @@ pub const CRYPT_XML_X509DATA_ITEM = extern struct {
     Anonymous: extern union {
         IssuerSerial: CRYPT_XML_ISSUER_SERIAL,
         SKI: CRYPT_XML_DATA_BLOB,
-        wszSubjectName: [*:0]const u16,
+        wszSubjectName: ?[*:0]const u16,
         Certificate: CRYPT_XML_DATA_BLOB,
         CRL: CRYPT_XML_DATA_BLOB,
         Custom: CRYPT_XML_BLOB,
@@ -4689,13 +4689,13 @@ pub const CRYPT_XML_X509DATA_ITEM = extern struct {
 
 pub const CRYPT_XML_X509DATA = extern struct {
     cX509Data: u32,
-    rgX509Data: *CRYPT_XML_X509DATA_ITEM,
+    rgX509Data: ?*CRYPT_XML_X509DATA_ITEM,
 };
 
 pub const CRYPT_XML_KEY_INFO_ITEM = extern struct {
     dwType: CRYPT_XML_KEYINFO_TYPE,
     Anonymous: extern union {
-        wszKeyName: [*:0]const u16,
+        wszKeyName: ?[*:0]const u16,
         KeyValue: CRYPT_XML_KEY_VALUE,
         RetrievalMethod: CRYPT_XML_BLOB,
         X509Data: CRYPT_XML_X509DATA,
@@ -4705,77 +4705,77 @@ pub const CRYPT_XML_KEY_INFO_ITEM = extern struct {
 
 pub const CRYPT_XML_KEY_INFO = extern struct {
     cbSize: u32,
-    wszId: [*:0]const u16,
+    wszId: ?[*:0]const u16,
     cKeyInfo: u32,
-    rgKeyInfo: *CRYPT_XML_KEY_INFO_ITEM,
-    hVerifyKey: *c_void,
+    rgKeyInfo: ?*CRYPT_XML_KEY_INFO_ITEM,
+    hVerifyKey: ?*c_void,
 };
 
 pub const CRYPT_XML_REFERENCE = extern struct {
     cbSize: u32,
-    hReference: *c_void,
-    wszId: [*:0]const u16,
-    wszUri: [*:0]const u16,
-    wszType: [*:0]const u16,
+    hReference: ?*c_void,
+    wszId: ?[*:0]const u16,
+    wszUri: ?[*:0]const u16,
+    wszType: ?[*:0]const u16,
     DigestMethod: CRYPT_XML_ALGORITHM,
     DigestValue: CRYPTOAPI_BLOB,
     cTransform: u32,
-    rgTransform: *CRYPT_XML_ALGORITHM,
+    rgTransform: ?*CRYPT_XML_ALGORITHM,
 };
 
 pub const CRYPT_XML_REFERENCES = extern struct {
     cReference: u32,
-    rgpReference: **CRYPT_XML_REFERENCE,
+    rgpReference: ?*?*CRYPT_XML_REFERENCE,
 };
 
 pub const CRYPT_XML_SIGNED_INFO = extern struct {
     cbSize: u32,
-    wszId: [*:0]const u16,
+    wszId: ?[*:0]const u16,
     Canonicalization: CRYPT_XML_ALGORITHM,
     SignatureMethod: CRYPT_XML_ALGORITHM,
     cReference: u32,
-    rgpReference: **CRYPT_XML_REFERENCE,
+    rgpReference: ?*?*CRYPT_XML_REFERENCE,
     Encoded: CRYPT_XML_BLOB,
 };
 
 pub const CRYPT_XML_OBJECT = extern struct {
     cbSize: u32,
-    hObject: *c_void,
-    wszId: [*:0]const u16,
-    wszMimeType: [*:0]const u16,
-    wszEncoding: [*:0]const u16,
+    hObject: ?*c_void,
+    wszId: ?[*:0]const u16,
+    wszMimeType: ?[*:0]const u16,
+    wszEncoding: ?[*:0]const u16,
     Manifest: CRYPT_XML_REFERENCES,
     Encoded: CRYPT_XML_BLOB,
 };
 
 pub const CRYPT_XML_SIGNATURE = extern struct {
     cbSize: u32,
-    hSignature: *c_void,
-    wszId: [*:0]const u16,
+    hSignature: ?*c_void,
+    wszId: ?[*:0]const u16,
     SignedInfo: CRYPT_XML_SIGNED_INFO,
     SignatureValue: CRYPTOAPI_BLOB,
-    pKeyInfo: *CRYPT_XML_KEY_INFO,
+    pKeyInfo: ?*CRYPT_XML_KEY_INFO,
     cObject: u32,
-    rgpObject: **CRYPT_XML_OBJECT,
+    rgpObject: ?*?*CRYPT_XML_OBJECT,
 };
 
 pub const CRYPT_XML_DOC_CTXT = extern struct {
     cbSize: u32,
-    hDocCtxt: *c_void,
-    pTransformsConfig: *CRYPT_XML_TRANSFORM_CHAIN_CONFIG,
+    hDocCtxt: ?*c_void,
+    pTransformsConfig: ?*CRYPT_XML_TRANSFORM_CHAIN_CONFIG,
     cSignature: u32,
-    rgpSignature: **CRYPT_XML_SIGNATURE,
+    rgpSignature: ?*?*CRYPT_XML_SIGNATURE,
 };
 
 pub const CRYPT_XML_KEYINFO_PARAM = extern struct {
-    wszId: [*:0]const u16,
-    wszKeyName: [*:0]const u16,
+    wszId: ?[*:0]const u16,
+    wszKeyName: ?[*:0]const u16,
     SKI: CRYPTOAPI_BLOB,
-    wszSubjectName: [*:0]const u16,
+    wszSubjectName: ?[*:0]const u16,
     cCertificate: u32,
-    rgCertificate: *CRYPTOAPI_BLOB,
+    rgCertificate: ?*CRYPTOAPI_BLOB,
     cCRL: u32,
-    rgCRL: *CRYPTOAPI_BLOB,
+    rgCRL: ?*CRYPTOAPI_BLOB,
 };
 
 pub const CRYPT_XML_KEYINFO_SPEC = enum(i32) {
@@ -4789,121 +4789,121 @@ pub const CRYPT_XML_KEYINFO_SPEC_PARAM = CRYPT_XML_KEYINFO_SPEC.PARAM;
 
 pub const CRYPT_XML_ALGORITHM_INFO = extern struct {
     cbSize: u32,
-    wszAlgorithmURI: PWSTR,
-    wszName: PWSTR,
+    wszAlgorithmURI: ?PWSTR,
+    wszName: ?PWSTR,
     dwGroupId: CRYPT_XML_GROUP_ID,
-    wszCNGAlgid: PWSTR,
-    wszCNGExtraAlgid: PWSTR,
+    wszCNGAlgid: ?PWSTR,
+    wszCNGExtraAlgid: ?PWSTR,
     dwSignFlags: u32,
     dwVerifyFlags: u32,
-    pvPaddingInfo: *c_void,
-    pvExtraInfo: *c_void,
+    pvPaddingInfo: ?*c_void,
+    pvExtraInfo: ?*c_void,
 };
 
 pub const PFN_CRYPT_XML_ENUM_ALG_INFO = fn(
-    pInfo: *const CRYPT_XML_ALGORITHM_INFO,
+    pInfo: ?*const CRYPT_XML_ALGORITHM_INFO,
     pvArg: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CryptXmlDllGetInterface = fn(
     dwFlags: u32,
-    pMethod: *const CRYPT_XML_ALGORITHM_INFO,
-    pInterface: *CRYPT_XML_CRYPTOGRAPHIC_INTERFACE,
+    pMethod: ?*const CRYPT_XML_ALGORITHM_INFO,
+    pInterface: ?*CRYPT_XML_CRYPTOGRAPHIC_INTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllEncodeAlgorithm = fn(
-    pAlgInfo: *const CRYPT_XML_ALGORITHM_INFO,
+    pAlgInfo: ?*const CRYPT_XML_ALGORITHM_INFO,
     dwCharset: CRYPT_XML_CHARSET,
-    pvCallbackState: *c_void,
-    pfnWrite: PFN_CRYPT_XML_WRITE_CALLBACK,
+    pvCallbackState: ?*c_void,
+    pfnWrite: ?PFN_CRYPT_XML_WRITE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllCreateDigest = fn(
-    pDigestMethod: *const CRYPT_XML_ALGORITHM,
-    pcbSize: *u32,
-    phDigest: **c_void,
+    pDigestMethod: ?*const CRYPT_XML_ALGORITHM,
+    pcbSize: ?*u32,
+    phDigest: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllDigestData = fn(
-    hDigest: *c_void,
+    hDigest: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *const u8,
+    pbData: ?*const u8,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllFinalizeDigest = fn(
-    hDigest: *c_void,
+    hDigest: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbDigest: *u8,
+    pbDigest: ?*u8,
     cbDigest: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllCloseDigest = fn(
-    hDigest: *c_void,
+    hDigest: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllSignData = fn(
-    pSignatureMethod: *const CRYPT_XML_ALGORITHM,
+    pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
     hCryptProvOrNCryptKey: usize,
     dwKeySpec: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pbInput: *const u8,
+    pbInput: ?*const u8,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 6?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllVerifySignature = fn(
-    pSignatureMethod: *const CRYPT_XML_ALGORITHM,
-    hKey: *c_void,
+    pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
+    hKey: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    pbInput: *const u8,
+    pbInput: ?*const u8,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbSignature: *const u8,
+    pbSignature: ?*const u8,
     cbSignature: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllGetAlgorithmInfo = fn(
-    pXmlAlgorithm: *const CRYPT_XML_ALGORITHM,
-    ppAlgInfo: **CRYPT_XML_ALGORITHM_INFO,
+    pXmlAlgorithm: ?*const CRYPT_XML_ALGORITHM,
+    ppAlgInfo: ?*?*CRYPT_XML_ALGORITHM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CRYPT_XML_CRYPTOGRAPHIC_INTERFACE = extern struct {
     cbSize: u32,
-    fpCryptXmlEncodeAlgorithm: CryptXmlDllEncodeAlgorithm,
-    fpCryptXmlCreateDigest: CryptXmlDllCreateDigest,
-    fpCryptXmlDigestData: CryptXmlDllDigestData,
-    fpCryptXmlFinalizeDigest: CryptXmlDllFinalizeDigest,
-    fpCryptXmlCloseDigest: CryptXmlDllCloseDigest,
-    fpCryptXmlSignData: CryptXmlDllSignData,
-    fpCryptXmlVerifySignature: CryptXmlDllVerifySignature,
-    fpCryptXmlGetAlgorithmInfo: CryptXmlDllGetAlgorithmInfo,
+    fpCryptXmlEncodeAlgorithm: ?CryptXmlDllEncodeAlgorithm,
+    fpCryptXmlCreateDigest: ?CryptXmlDllCreateDigest,
+    fpCryptXmlDigestData: ?CryptXmlDllDigestData,
+    fpCryptXmlFinalizeDigest: ?CryptXmlDllFinalizeDigest,
+    fpCryptXmlCloseDigest: ?CryptXmlDllCloseDigest,
+    fpCryptXmlSignData: ?CryptXmlDllSignData,
+    fpCryptXmlVerifySignature: ?CryptXmlDllVerifySignature,
+    fpCryptXmlGetAlgorithmInfo: ?CryptXmlDllGetAlgorithmInfo,
 };
 
 pub const CryptXmlDllEncodeKeyValue = fn(
     hKey: usize,
     dwCharset: CRYPT_XML_CHARSET,
-    pvCallbackState: *c_void,
-    pfnWrite: PFN_CRYPT_XML_WRITE_CALLBACK,
+    pvCallbackState: ?*c_void,
+    pfnWrite: ?PFN_CRYPT_XML_WRITE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CryptXmlDllCreateKey = fn(
-    pEncoded: *const CRYPT_XML_BLOB,
-    phKey: **c_void,
+    pEncoded: ?*const CRYPT_XML_BLOB,
+    phKey: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNCMFILTERPROC = fn(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     param1: LPARAM,
     param2: u32,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFNCMHOOKPROC = fn(
-    hwndDialog: HWND,
+    hwndDialog: ?HWND,
     message: u32,
     wParam: WPARAM,
     lParam: LPARAM,
@@ -4911,248 +4911,248 @@ pub const PFNCMHOOKPROC = fn(
 
 pub const CERT_SELECT_STRUCT_A = extern struct {
     dwSize: u32,
-    hwndParent: HWND,
-    hInstance: HINSTANCE,
-    pTemplateName: [*:0]const u8,
+    hwndParent: ?HWND,
+    hInstance: ?HINSTANCE,
+    pTemplateName: ?[*:0]const u8,
     dwFlags: CERT_SELECT_STRUCT_FLAGS,
-    szTitle: [*:0]const u8,
+    szTitle: ?[*:0]const u8,
     cCertStore: u32,
-    arrayCertStore: **c_void,
-    szPurposeOid: [*:0]const u8,
+    arrayCertStore: ?*?*c_void,
+    szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
-    arrayCertContext: **CERT_CONTEXT,
+    arrayCertContext: ?*?*CERT_CONTEXT,
     lCustData: LPARAM,
-    pfnHook: PFNCMHOOKPROC,
-    pfnFilter: PFNCMFILTERPROC,
-    szHelpFileName: [*:0]const u8,
+    pfnHook: ?PFNCMHOOKPROC,
+    pfnFilter: ?PFNCMFILTERPROC,
+    szHelpFileName: ?[*:0]const u8,
     dwHelpId: u32,
     hprov: usize,
 };
 
 pub const CERT_SELECT_STRUCT_W = extern struct {
     dwSize: u32,
-    hwndParent: HWND,
-    hInstance: HINSTANCE,
-    pTemplateName: [*:0]const u16,
+    hwndParent: ?HWND,
+    hInstance: ?HINSTANCE,
+    pTemplateName: ?[*:0]const u16,
     dwFlags: CERT_SELECT_STRUCT_FLAGS,
-    szTitle: [*:0]const u16,
+    szTitle: ?[*:0]const u16,
     cCertStore: u32,
-    arrayCertStore: **c_void,
-    szPurposeOid: [*:0]const u8,
+    arrayCertStore: ?*?*c_void,
+    szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
-    arrayCertContext: **CERT_CONTEXT,
+    arrayCertContext: ?*?*CERT_CONTEXT,
     lCustData: LPARAM,
-    pfnHook: PFNCMHOOKPROC,
-    pfnFilter: PFNCMFILTERPROC,
-    szHelpFileName: [*:0]const u16,
+    pfnHook: ?PFNCMHOOKPROC,
+    pfnFilter: ?PFNCMFILTERPROC,
+    szHelpFileName: ?[*:0]const u16,
     dwHelpId: u32,
     hprov: usize,
 };
 
 pub const CERT_VIEWPROPERTIES_STRUCT_A = extern struct {
     dwSize: u32,
-    hwndParent: HWND,
-    hInstance: HINSTANCE,
+    hwndParent: ?HWND,
+    hInstance: ?HINSTANCE,
     dwFlags: CERT_VIEWPROPERTIES_STRUCT_FLAGS,
-    szTitle: [*:0]const u8,
-    pCertContext: *const CERT_CONTEXT,
-    arrayPurposes: *PSTR,
+    szTitle: ?[*:0]const u8,
+    pCertContext: ?*const CERT_CONTEXT,
+    arrayPurposes: ?*?PSTR,
     cArrayPurposes: u32,
     cRootStores: u32,
-    rghstoreRoots: **c_void,
+    rghstoreRoots: ?*?*c_void,
     cStores: u32,
-    rghstoreCAs: **c_void,
+    rghstoreCAs: ?*?*c_void,
     cTrustStores: u32,
-    rghstoreTrust: **c_void,
+    rghstoreTrust: ?*?*c_void,
     hprov: usize,
     lCustData: LPARAM,
     dwPad: u32,
-    szHelpFileName: [*:0]const u8,
+    szHelpFileName: ?[*:0]const u8,
     dwHelpId: u32,
     nStartPage: u32,
     cArrayPropSheetPages: u32,
-    arrayPropSheetPages: *PROPSHEETPAGEA,
+    arrayPropSheetPages: ?*PROPSHEETPAGEA,
 };
 
 pub const CERT_VIEWPROPERTIES_STRUCT_W = extern struct {
     dwSize: u32,
-    hwndParent: HWND,
-    hInstance: HINSTANCE,
+    hwndParent: ?HWND,
+    hInstance: ?HINSTANCE,
     dwFlags: CERT_VIEWPROPERTIES_STRUCT_FLAGS,
-    szTitle: [*:0]const u16,
-    pCertContext: *const CERT_CONTEXT,
-    arrayPurposes: *PSTR,
+    szTitle: ?[*:0]const u16,
+    pCertContext: ?*const CERT_CONTEXT,
+    arrayPurposes: ?*?PSTR,
     cArrayPurposes: u32,
     cRootStores: u32,
-    rghstoreRoots: **c_void,
+    rghstoreRoots: ?*?*c_void,
     cStores: u32,
-    rghstoreCAs: **c_void,
+    rghstoreCAs: ?*?*c_void,
     cTrustStores: u32,
-    rghstoreTrust: **c_void,
+    rghstoreTrust: ?*?*c_void,
     hprov: usize,
     lCustData: LPARAM,
     dwPad: u32,
-    szHelpFileName: [*:0]const u16,
+    szHelpFileName: ?[*:0]const u16,
     dwHelpId: u32,
     nStartPage: u32,
     cArrayPropSheetPages: u32,
-    arrayPropSheetPages: *PROPSHEETPAGEA,
+    arrayPropSheetPages: ?*PROPSHEETPAGEA,
 };
 
 pub const CMOID = extern struct {
-    szExtensionOID: [*:0]const u8,
+    szExtensionOID: ?[*:0]const u8,
     dwTestOperation: u32,
-    pbTestData: *u8,
+    pbTestData: ?*u8,
     cbTestData: u32,
 };
 
 pub const CMFLTR = extern struct {
     dwSize: u32,
     cExtensionChecks: u32,
-    arrayExtensionChecks: *CMOID,
+    arrayExtensionChecks: ?*CMOID,
     dwCheckingFlags: u32,
 };
 
 pub const PFNTRUSTHELPER = fn(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     lCustData: LPARAM,
     fLeafCertificate: BOOL,
-    pbTrustBlob: *u8,
+    pbTrustBlob: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     cbSize: u32,
-    pccert: *const CERT_CONTEXT,
+    pccert: ?*const CERT_CONTEXT,
     dwFlags: u32,
     dwIgnoreErr: u32,
-    pdwErrors: *u32,
-    pszUsageOid: PSTR,
+    pdwErrors: ?*u32,
+    pszUsageOid: ?PSTR,
     hprov: usize,
     cRootStores: u32,
-    rghstoreRoots: **c_void,
+    rghstoreRoots: ?*?*c_void,
     cStores: u32,
-    rghstoreCAs: **c_void,
+    rghstoreCAs: ?*?*c_void,
     cTrustStores: u32,
-    rghstoreTrust: **c_void,
+    rghstoreTrust: ?*?*c_void,
     lCustData: LPARAM,
-    pfnTrustHelper: PFNTRUSTHELPER,
-    pcChain: *u32,
-    prgChain: ***CERT_CONTEXT,
-    prgdwErrors: **u32,
-    prgpbTrustInfo: **CRYPTOAPI_BLOB,
+    pfnTrustHelper: ?PFNTRUSTHELPER,
+    pcChain: ?*u32,
+    prgChain: ?*?*?*CERT_CONTEXT,
+    prgdwErrors: ?*?*u32,
+    prgpbTrustInfo: ?*?*CRYPTOAPI_BLOB,
 };
 
 pub const CTL_MODIFY_REQUEST = extern struct {
-    pccert: *const CERT_CONTEXT,
+    pccert: ?*const CERT_CONTEXT,
     dwOperation: CTL_MODIFY_REQUEST_OPERATION,
     dwError: u32,
 };
 
 pub const PFNCFILTERPROC = fn(
-    pCertContext: *const CERT_CONTEXT,
-    pfInitialSelectedCert: *BOOL,
-    pvCallbackData: *c_void,
+    pCertContext: ?*const CERT_CONTEXT,
+    pfInitialSelectedCert: ?*BOOL,
+    pvCallbackData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CERT_SELECTUI_INPUT = extern struct {
-    hStore: *c_void,
-    prgpChain: **CERT_CHAIN_CONTEXT,
+    hStore: ?*c_void,
+    prgpChain: ?*?*CERT_CHAIN_CONTEXT,
     cChain: u32,
 };
 
 pub const CRYPTUI_CERT_MGR_STRUCT = extern struct {
     dwSize: u32,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: u32,
-    pwszTitle: [*:0]const u16,
-    pszInitUsageOID: [*:0]const u8,
+    pwszTitle: ?[*:0]const u16,
+    pszInitUsageOID: ?[*:0]const u8,
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_BLOB_INFO = extern struct {
     dwSize: u32,
-    pGuidSubject: *Guid,
+    pGuidSubject: ?*Guid,
     cbBlob: u32,
-    pbBlob: *u8,
-    pwszDisplayName: [*:0]const u16,
+    pbBlob: ?*u8,
+    pwszDisplayName: ?[*:0]const u16,
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_STORE_INFO = extern struct {
     dwSize: u32,
     cCertStore: u32,
-    rghCertStore: **c_void,
-    pFilterCallback: PFNCFILTERPROC,
-    pvCallbackData: *c_void,
+    rghCertStore: ?*?*c_void,
+    pFilterCallback: ?PFNCFILTERPROC,
+    pvCallbackData: ?*c_void,
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE_INFO = extern struct {
     dwSize: u32,
-    pwszPvkFileName: PWSTR,
-    pwszProvName: PWSTR,
+    pwszPvkFileName: ?PWSTR,
+    pwszProvName: ?PWSTR,
     dwProvType: u32,
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO = extern struct {
     dwSize: u32,
-    pwszSigningCertFileName: PWSTR,
+    pwszSigningCertFileName: ?PWSTR,
     dwPvkChoice: CRYPTUI_WIZ_DIGITAL_SIGN_PVK_OPTION,
     Anonymous: extern union {
-        pPvkFileInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE_INFO,
-        pPvkProvInfo: *CRYPT_KEY_PROV_INFO,
+        pPvkFileInfo: ?*CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE_INFO,
+        pPvkProvInfo: ?*CRYPT_KEY_PROV_INFO,
     },
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO = extern struct {
     dwSize: u32,
     dwAttrFlags: CRYPTUI_WIZ_DIGITAL_SIGN_SIG_TYPE,
-    pwszDescription: [*:0]const u16,
-    pwszMoreInfoLocation: [*:0]const u16,
-    pszHashAlg: [*:0]const u8,
-    pwszSigningCertDisplayString: [*:0]const u16,
-    hAdditionalCertStore: *c_void,
-    psAuthenticated: *CRYPT_ATTRIBUTES,
-    psUnauthenticated: *CRYPT_ATTRIBUTES,
+    pwszDescription: ?[*:0]const u16,
+    pwszMoreInfoLocation: ?[*:0]const u16,
+    pszHashAlg: ?[*:0]const u8,
+    pwszSigningCertDisplayString: ?[*:0]const u16,
+    hAdditionalCertStore: ?*c_void,
+    psAuthenticated: ?*CRYPT_ATTRIBUTES,
+    psUnauthenticated: ?*CRYPT_ATTRIBUTES,
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_INFO = extern struct {
     dwSize: u32,
     dwSubjectChoice: CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT,
     Anonymous1: extern union {
-        pwszFileName: [*:0]const u16,
-        pSignBlobInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_BLOB_INFO,
+        pwszFileName: ?[*:0]const u16,
+        pSignBlobInfo: ?*CRYPTUI_WIZ_DIGITAL_SIGN_BLOB_INFO,
     },
     dwSigningCertChoice: CRYPTUI_WIZ_DIGITAL_SIGN,
     Anonymous2: extern union {
-        pSigningCertContext: *const CERT_CONTEXT,
-        pSigningCertStore: *CRYPTUI_WIZ_DIGITAL_SIGN_STORE_INFO,
-        pSigningCertPvkInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO,
+        pSigningCertContext: ?*const CERT_CONTEXT,
+        pSigningCertStore: ?*CRYPTUI_WIZ_DIGITAL_SIGN_STORE_INFO,
+        pSigningCertPvkInfo: ?*CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO,
     },
-    pwszTimestampURL: [*:0]const u16,
+    pwszTimestampURL: ?[*:0]const u16,
     dwAdditionalCertChoice: CRYPTUI_WIZ_DIGITAL_ADDITIONAL_CERT_CHOICE,
-    pSignExtInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO,
+    pSignExtInfo: ?*CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO,
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT = extern struct {
     dwSize: u32,
     cbBlob: u32,
-    pbBlob: *u8,
+    pbBlob: ?*u8,
 };
 
 pub const CRYPTUI_INITDIALOG_STRUCT = extern struct {
     lParam: LPARAM,
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
 };
 
 pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     dwSize: u32,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: CRYPTUI_VIEWCERTIFICATE_FLAGS,
-    szTitle: [*:0]const u16,
-    pCertContext: *const CERT_CONTEXT,
-    rgszPurposes: *PSTR,
+    szTitle: ?[*:0]const u16,
+    pCertContext: ?*const CERT_CONTEXT,
+    rgszPurposes: ?*?PSTR,
     cPurposes: u32,
     Anonymous: extern union {
-        pCryptProviderData: *const CRYPT_PROVIDER_DATA,
-        hWVTStateData: HANDLE,
+        pCryptProviderData: ?*const CRYPT_PROVIDER_DATA,
+        hWVTStateData: ?HANDLE,
     },
     fpCryptProviderDataTrustedUsage: BOOL,
     idxSigner: u32,
@@ -5160,23 +5160,23 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
     cStores: u32,
-    rghStores: **c_void,
+    rghStores: ?*?*c_void,
     cPropSheetPages: u32,
-    rgPropSheetPages: *PROPSHEETPAGEW,
+    rgPropSheetPages: ?*PROPSHEETPAGEW,
     nStartPage: u32,
 };
 
 pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     dwSize: u32,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     dwFlags: CRYPTUI_VIEWCERTIFICATE_FLAGS,
-    szTitle: [*:0]const u8,
-    pCertContext: *const CERT_CONTEXT,
-    rgszPurposes: *PSTR,
+    szTitle: ?[*:0]const u8,
+    pCertContext: ?*const CERT_CONTEXT,
+    rgszPurposes: ?*?PSTR,
     cPurposes: u32,
     Anonymous: extern union {
-        pCryptProviderData: *const CRYPT_PROVIDER_DATA,
-        hWVTStateData: HANDLE,
+        pCryptProviderData: ?*const CRYPT_PROVIDER_DATA,
+        hWVTStateData: ?HANDLE,
     },
     fpCryptProviderDataTrustedUsage: BOOL,
     idxSigner: u32,
@@ -5184,24 +5184,24 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
     cStores: u32,
-    rghStores: **c_void,
+    rghStores: ?*?*c_void,
     cPropSheetPages: u32,
-    rgPropSheetPages: *PROPSHEETPAGEA,
+    rgPropSheetPages: ?*PROPSHEETPAGEA,
     nStartPage: u32,
 };
 
 pub const CRYPTUI_WIZ_EXPORT_INFO = extern struct {
     dwSize: u32,
-    pwszExportFileName: [*:0]const u16,
+    pwszExportFileName: ?[*:0]const u16,
     dwSubjectChoice: CRYPTUI_WIZ_EXPORT_SUBJECT,
     Anonymous: extern union {
-        pCertContext: *const CERT_CONTEXT,
-        pCTLContext: *CTL_CONTEXT,
-        pCRLContext: *CRL_CONTEXT,
-        hCertStore: *c_void,
+        pCertContext: ?*const CERT_CONTEXT,
+        pCTLContext: ?*CTL_CONTEXT,
+        pCRLContext: ?*CRL_CONTEXT,
+        hCertStore: ?*c_void,
     },
     cStores: u32,
-    rghStores: **c_void,
+    rghStores: ?*?*c_void,
 };
 
 pub const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO = extern struct {
@@ -5209,7 +5209,7 @@ pub const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO = extern struct {
     dwExportFormat: CRYPTUI_WIZ_EXPORT_FORMAT,
     fExportChain: BOOL,
     fExportPrivateKeys: BOOL,
-    pwszPassword: [*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
     fStrongEncryption: BOOL,
 };
 
@@ -5217,14 +5217,14 @@ pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
     dwSize: u32,
     dwSubjectChoice: CRYPTUI_WIZ_IMPORT_SUBJECT_OPTION,
     Anonymous: extern union {
-        pwszFileName: [*:0]const u16,
-        pCertContext: *const CERT_CONTEXT,
-        pCTLContext: *CTL_CONTEXT,
-        pCRLContext: *CRL_CONTEXT,
-        hCertStore: *c_void,
+        pwszFileName: ?[*:0]const u16,
+        pCertContext: ?*const CERT_CONTEXT,
+        pCTLContext: ?*CTL_CONTEXT,
+        pCRLContext: ?*CRL_CONTEXT,
+        hCertStore: ?*c_void,
     },
     dwFlags: CRYPT_KEY_FLAGS,
-    pwszPassword: [*:0]const u16,
+    pwszPassword: ?[*:0]const u16,
 };
 
 pub const BCRYPT_OPERATION = enum(u32) {
@@ -6875,7 +6875,7 @@ pub const CTL_MODIFY_REQUEST_REMOVE = CTL_MODIFY_REQUEST_OPERATION.REMOVE;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptAcquireContextA(
-    phProv: *usize,
+    phProv: ?*usize,
     szContainer: ?[*:0]const u8,
     szProvider: ?[*:0]const u8,
     dwProvType: u32,
@@ -6884,7 +6884,7 @@ pub extern "ADVAPI32" fn CryptAcquireContextA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptAcquireContextW(
-    phProv: *usize,
+    phProv: ?*usize,
     szContainer: ?[*:0]const u16,
     szProvider: ?[*:0]const u16,
     dwProvType: u32,
@@ -6902,7 +6902,7 @@ pub extern "ADVAPI32" fn CryptGenKey(
     hProv: usize,
     Algid: u32,
     dwFlags: CRYPT_KEY_FLAGS,
-    phKey: *usize,
+    phKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6911,7 +6911,7 @@ pub extern "ADVAPI32" fn CryptDeriveKey(
     Algid: u32,
     hBaseData: usize,
     dwFlags: u32,
-    phKey: *usize,
+    phKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6923,7 +6923,7 @@ pub extern "ADVAPI32" fn CryptDestroyKey(
 pub extern "ADVAPI32" fn CryptSetKeyParam(
     hKey: usize,
     dwParam: CRYPT_KEY_PARAM_ID,
-    pbData: *const u8,
+    pbData: ?*const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6933,7 +6933,7 @@ pub extern "ADVAPI32" fn CryptGetKeyParam(
     dwParam: CRYPT_KEY_PARAM_ID,
     // TODO: what to do with BytesParamIndex 3?
     pbData: ?*u8,
-    pdwDataLen: *u32,
+    pdwDataLen: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6941,7 +6941,7 @@ pub extern "ADVAPI32" fn CryptGetKeyParam(
 pub extern "ADVAPI32" fn CryptSetHashParam(
     hHash: usize,
     dwParam: CRYPT_SET_HASH_PARAM,
-    pbData: *const u8,
+    pbData: ?*const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6951,7 +6951,7 @@ pub extern "ADVAPI32" fn CryptGetHashParam(
     dwParam: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbData: ?*u8,
-    pdwDataLen: *u32,
+    pdwDataLen: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6959,7 +6959,7 @@ pub extern "ADVAPI32" fn CryptGetHashParam(
 pub extern "ADVAPI32" fn CryptSetProvParam(
     hProv: usize,
     dwParam: CRYPT_SET_PROV_PARAM_ID,
-    pbData: *const u8,
+    pbData: ?*const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6969,7 +6969,7 @@ pub extern "ADVAPI32" fn CryptGetProvParam(
     dwParam: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbData: ?*u8,
-    pdwDataLen: *u32,
+    pdwDataLen: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6978,14 +6978,14 @@ pub extern "ADVAPI32" fn CryptGenRandom(
     hProv: usize,
     dwLen: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pbBuffer: *u8,
+    pbBuffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptGetUserKey(
     hProv: usize,
     dwKeySpec: u32,
-    phUserKey: *usize,
+    phUserKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6996,18 +6996,18 @@ pub extern "ADVAPI32" fn CryptExportKey(
     dwFlags: CRYPT_KEY_FLAGS,
     // TODO: what to do with BytesParamIndex 5?
     pbData: ?*u8,
-    pdwDataLen: *u32,
+    pdwDataLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptImportKey(
     hProv: usize,
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *const u8,
+    pbData: ?*const u8,
     dwDataLen: u32,
     hPubKey: usize,
     dwFlags: CRYPT_KEY_FLAGS,
-    phKey: *usize,
+    phKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7018,7 +7018,7 @@ pub extern "ADVAPI32" fn CryptEncrypt(
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
     pbData: ?*u8,
-    pdwDataLen: *u32,
+    pdwDataLen: ?*u32,
     dwBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7029,8 +7029,8 @@ pub extern "ADVAPI32" fn CryptDecrypt(
     Final: BOOL,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbData: *u8,
-    pdwDataLen: *u32,
+    pbData: ?*u8,
+    pdwDataLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7039,14 +7039,14 @@ pub extern "ADVAPI32" fn CryptCreateHash(
     Algid: u32,
     hKey: usize,
     dwFlags: u32,
-    phHash: *usize,
+    phHash: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptHashData(
     hHash: usize,
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *const u8,
+    pbData: ?*const u8,
     dwDataLen: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -7071,7 +7071,7 @@ pub extern "ADVAPI32" fn CryptSignHashA(
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbSignature: ?*u8,
-    pdwSigLen: *u32,
+    pdwSigLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7082,14 +7082,14 @@ pub extern "ADVAPI32" fn CryptSignHashW(
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbSignature: ?*u8,
-    pdwSigLen: *u32,
+    pdwSigLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptVerifySignatureA(
     hHash: usize,
     // TODO: what to do with BytesParamIndex 2?
-    pbSignature: *const u8,
+    pbSignature: ?*const u8,
     dwSigLen: u32,
     hPubKey: usize,
     szDescription: ?[*:0]const u8,
@@ -7100,7 +7100,7 @@ pub extern "ADVAPI32" fn CryptVerifySignatureA(
 pub extern "ADVAPI32" fn CryptVerifySignatureW(
     hHash: usize,
     // TODO: what to do with BytesParamIndex 2?
-    pbSignature: *const u8,
+    pbSignature: ?*const u8,
     dwSigLen: u32,
     hPubKey: usize,
     szDescription: ?[*:0]const u16,
@@ -7109,123 +7109,123 @@ pub extern "ADVAPI32" fn CryptVerifySignatureW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptSetProviderA(
-    pszProvName: [*:0]const u8,
+    pszProvName: ?[*:0]const u8,
     dwProvType: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptSetProviderW(
-    pszProvName: [*:0]const u16,
+    pszProvName: ?[*:0]const u16,
     dwProvType: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptSetProviderExA(
-    pszProvName: [*:0]const u8,
+    pszProvName: ?[*:0]const u8,
     dwProvType: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptSetProviderExW(
-    pszProvName: [*:0]const u16,
+    pszProvName: ?[*:0]const u16,
     dwProvType: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptGetDefaultProviderA(
     dwProvType: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 4?
     pszProvName: ?PSTR,
-    pcbProvName: *u32,
+    pcbProvName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptGetDefaultProviderW(
     dwProvType: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 4?
     pszProvName: ?PWSTR,
-    pcbProvName: *u32,
+    pcbProvName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptEnumProviderTypesA(
     dwIndex: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
-    pdwProvType: *u32,
+    pdwProvType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
     szTypeName: ?PSTR,
-    pcbTypeName: *u32,
+    pcbTypeName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptEnumProviderTypesW(
     dwIndex: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
-    pdwProvType: *u32,
+    pdwProvType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
     szTypeName: ?PWSTR,
-    pcbTypeName: *u32,
+    pcbTypeName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptEnumProvidersA(
     dwIndex: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
-    pdwProvType: *u32,
+    pdwProvType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
     szProvName: ?PSTR,
-    pcbProvName: *u32,
+    pcbProvName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptEnumProvidersW(
     dwIndex: u32,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
-    pdwProvType: *u32,
+    pdwProvType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
     szProvName: ?PWSTR,
-    pcbProvName: *u32,
+    pcbProvName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptContextAddRef(
     hProv: usize,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptDuplicateKey(
     hKey: usize,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
-    phKey: *usize,
+    phKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CryptDuplicateHash(
     hHash: usize,
-    pdwReserved: *u32,
+    pdwReserved: ?*u32,
     dwFlags: u32,
-    phHash: *usize,
+    phHash: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptOpenAlgorithmProvider(
-    phAlgorithm: **c_void,
-    pszAlgId: [*:0]const u16,
+    phAlgorithm: ?*?*c_void,
+    pszAlgId: ?[*:0]const u16,
     pszImplementation: ?[*:0]const u16,
     dwFlags: BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -7233,74 +7233,74 @@ pub extern "bcrypt" fn BCryptOpenAlgorithmProvider(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEnumAlgorithms(
     dwAlgOperations: BCRYPT_OPERATION,
-    pAlgCount: *u32,
-    ppAlgList: **BCRYPT_ALGORITHM_IDENTIFIER,
+    pAlgCount: ?*u32,
+    ppAlgList: ?*?*BCRYPT_ALGORITHM_IDENTIFIER,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEnumProviders(
-    pszAlgId: [*:0]const u16,
-    pImplCount: *u32,
-    ppImplList: **BCRYPT_PROVIDER_NAME,
+    pszAlgId: ?[*:0]const u16,
+    pImplCount: ?*u32,
+    ppImplList: ?*?*BCRYPT_PROVIDER_NAME,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptGetProperty(
-    hObject: *c_void,
-    pszProperty: [*:0]const u16,
+    hObject: ?*c_void,
+    pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptSetProperty(
-    hObject: *c_void,
-    pszProperty: [*:0]const u16,
+    hObject: ?*c_void,
+    pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pbInput: *u8,
+    pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptCloseAlgorithmProvider(
-    hAlgorithm: *c_void,
+    hAlgorithm: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptFreeBuffer(
-    pvBuffer: *c_void,
+    pvBuffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptGenerateSymmetricKey(
-    hAlgorithm: *c_void,
-    phKey: **c_void,
+    hAlgorithm: ?*c_void,
+    phKey: ?*?*c_void,
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbSecret: *u8,
+    pbSecret: ?*u8,
     cbSecret: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptGenerateKeyPair(
-    hAlgorithm: *c_void,
-    phKey: **c_void,
+    hAlgorithm: ?*c_void,
+    phKey: ?*?*c_void,
     dwLength: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEncrypt(
-    hKey: *c_void,
+    hKey: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     pbInput: ?*u8,
     cbInput: u32,
@@ -7311,13 +7311,13 @@ pub extern "bcrypt" fn BCryptEncrypt(
     // TODO: what to do with BytesParamIndex 7?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDecrypt(
-    hKey: *c_void,
+    hKey: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     pbInput: ?*u8,
     cbInput: u32,
@@ -7328,52 +7328,52 @@ pub extern "bcrypt" fn BCryptDecrypt(
     // TODO: what to do with BytesParamIndex 7?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptExportKey(
-    hKey: *c_void,
+    hKey: ?*c_void,
     hExportKey: ?*c_void,
-    pszBlobType: [*:0]const u16,
+    pszBlobType: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 4?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptImportKey(
-    hAlgorithm: *c_void,
+    hAlgorithm: ?*c_void,
     hImportKey: ?*c_void,
-    pszBlobType: [*:0]const u16,
-    phKey: **c_void,
+    pszBlobType: ?[*:0]const u16,
+    phKey: ?*?*c_void,
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
     // TODO: what to do with BytesParamIndex 7?
-    pbInput: *u8,
+    pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptImportKeyPair(
-    hAlgorithm: *c_void,
+    hAlgorithm: ?*c_void,
     hImportKey: ?*c_void,
-    pszBlobType: [*:0]const u16,
-    phKey: **c_void,
+    pszBlobType: ?[*:0]const u16,
+    phKey: ?*?*c_void,
     // TODO: what to do with BytesParamIndex 5?
-    pbInput: *u8,
+    pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDuplicateKey(
-    hKey: *c_void,
-    phNewKey: **c_void,
+    hKey: ?*c_void,
+    phNewKey: ?*?*c_void,
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
     dwFlags: u32,
@@ -7381,82 +7381,82 @@ pub extern "bcrypt" fn BCryptDuplicateKey(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptFinalizeKeyPair(
-    hKey: *c_void,
+    hKey: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDestroyKey(
-    hKey: *c_void,
+    hKey: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDestroySecret(
-    hSecret: *c_void,
+    hSecret: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptSignHash(
-    hKey: *c_void,
+    hKey: ?*c_void,
     pPaddingInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    pbInput: *u8,
+    pbInput: ?*u8,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptVerifySignature(
-    hKey: *c_void,
+    hKey: ?*c_void,
     pPaddingInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    pbHash: *u8,
+    pbHash: ?*u8,
     cbHash: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbSignature: *u8,
+    pbSignature: ?*u8,
     cbSignature: u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptSecretAgreement(
-    hPrivKey: *c_void,
-    hPubKey: *c_void,
-    phAgreedSecret: **c_void,
+    hPrivKey: ?*c_void,
+    hPubKey: ?*c_void,
+    phAgreedSecret: ?*?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDeriveKey(
-    hSharedSecret: *c_void,
-    pwszKDF: [*:0]const u16,
+    hSharedSecret: ?*c_void,
+    pwszKDF: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 4?
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "bcrypt" fn BCryptKeyDerivation(
-    hKey: *c_void,
+    hKey: ?*c_void,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 3?
-    pbDerivedKey: *u8,
+    pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptCreateHash(
-    hAlgorithm: *c_void,
-    phHash: **c_void,
+    hAlgorithm: ?*c_void,
+    phHash: ?*?*c_void,
     pbHashObject: ?*u8,
     cbHashObject: u32,
     // TODO: what to do with BytesParamIndex 5?
@@ -7467,25 +7467,25 @@ pub extern "bcrypt" fn BCryptCreateHash(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptHashData(
-    hHash: *c_void,
+    hHash: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbInput: *u8,
+    pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptFinishHash(
-    hHash: *c_void,
-    pbOutput: *u8,
+    hHash: ?*c_void,
+    pbOutput: ?*u8,
     cbOutput: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "bcrypt" fn BCryptCreateMultiHash(
-    hAlgorithm: *c_void,
-    phHash: **c_void,
+    hAlgorithm: ?*c_void,
+    phHash: ?*?*c_void,
     nHashes: u32,
     pbHashObject: ?*u8,
     cbHashObject: u32,
@@ -7497,18 +7497,18 @@ pub extern "bcrypt" fn BCryptCreateMultiHash(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "bcrypt" fn BCryptProcessMultiOperations(
-    hObject: *c_void,
+    hObject: ?*c_void,
     operationType: BCRYPT_MULTI_OPERATION_TYPE,
     // TODO: what to do with BytesParamIndex 3?
-    pOperations: *c_void,
+    pOperations: ?*c_void,
     cbOperations: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDuplicateHash(
-    hHash: *c_void,
-    phNewHash: **c_void,
+    hHash: ?*c_void,
+    phNewHash: ?*?*c_void,
     pbHashObject: ?*u8,
     cbHashObject: u32,
     dwFlags: u32,
@@ -7516,19 +7516,19 @@ pub extern "bcrypt" fn BCryptDuplicateHash(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDestroyHash(
-    hHash: *c_void,
+    hHash: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "bcrypt" fn BCryptHash(
-    hAlgorithm: *c_void,
+    hAlgorithm: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     pbSecret: ?*u8,
     cbSecret: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pbInput: *u8,
+    pbInput: ?*u8,
     cbInput: u32,
-    pbOutput: *u8,
+    pbOutput: ?*u8,
     cbOutput: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -7536,24 +7536,24 @@ pub extern "bcrypt" fn BCryptHash(
 pub extern "bcrypt" fn BCryptGenRandom(
     hAlgorithm: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbBuffer: *u8,
+    pbBuffer: ?*u8,
     cbBuffer: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "bcrypt" fn BCryptDeriveKeyCapi(
-    hHash: *c_void,
+    hHash: ?*c_void,
     hTargetAlg: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    pbDerivedKey: *u8,
+    pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "bcrypt" fn BCryptDeriveKeyPBKDF2(
-    hPrf: *c_void,
+    hPrf: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     pbPassword: ?*u8,
     cbPassword: u32,
@@ -7562,130 +7562,130 @@ pub extern "bcrypt" fn BCryptDeriveKeyPBKDF2(
     cbSalt: u32,
     cIterations: u64,
     // TODO: what to do with BytesParamIndex 7?
-    pbDerivedKey: *u8,
+    pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptQueryProviderRegistration(
-    pszProvider: [*:0]const u16,
+    pszProvider: ?[*:0]const u16,
     dwMode: BCRYPT_QUERY_PROVIDER_MODE,
     dwInterface: BCRYPT_INTERFACE,
-    pcbBuffer: *u32,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    ppBuffer: **CRYPT_PROVIDER_REG,
+    ppBuffer: ?*?*CRYPT_PROVIDER_REG,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEnumRegisteredProviders(
-    pcbBuffer: *u32,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
-    ppBuffer: **CRYPT_PROVIDERS,
+    ppBuffer: ?*?*CRYPT_PROVIDERS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptCreateContext(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     pConfig: ?*CRYPT_CONTEXT_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDeleteContext(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEnumContexts(
     dwTable: BCRYPT_TABLE,
-    pcbBuffer: *u32,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
-    ppBuffer: **CRYPT_CONTEXTS,
+    ppBuffer: ?*?*CRYPT_CONTEXTS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptConfigureContext(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
-    pConfig: *CRYPT_CONTEXT_CONFIG,
+    pszContext: ?[*:0]const u16,
+    pConfig: ?*CRYPT_CONTEXT_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptQueryContextConfiguration(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
-    pcbBuffer: *u32,
+    pszContext: ?[*:0]const u16,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    ppBuffer: **CRYPT_CONTEXT_CONFIG,
+    ppBuffer: ?*?*CRYPT_CONTEXT_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptAddContextFunction(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pszFunction: [*:0]const u16,
+    pszFunction: ?[*:0]const u16,
     dwPosition: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptRemoveContextFunction(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pszFunction: [*:0]const u16,
+    pszFunction: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEnumContextFunctions(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pcbBuffer: *u32,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    ppBuffer: **CRYPT_CONTEXT_FUNCTIONS,
+    ppBuffer: ?*?*CRYPT_CONTEXT_FUNCTIONS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptConfigureContextFunction(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pszFunction: [*:0]const u16,
-    pConfig: *CRYPT_CONTEXT_FUNCTION_CONFIG,
+    pszFunction: ?[*:0]const u16,
+    pConfig: ?*CRYPT_CONTEXT_FUNCTION_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptQueryContextFunctionConfiguration(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pszFunction: [*:0]const u16,
-    pcbBuffer: *u32,
+    pszFunction: ?[*:0]const u16,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    ppBuffer: **CRYPT_CONTEXT_FUNCTION_CONFIG,
+    ppBuffer: ?*?*CRYPT_CONTEXT_FUNCTION_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEnumContextFunctionProviders(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pszFunction: [*:0]const u16,
-    pcbBuffer: *u32,
+    pszFunction: ?[*:0]const u16,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    ppBuffer: **CRYPT_CONTEXT_FUNCTION_PROVIDERS,
+    ppBuffer: ?*?*CRYPT_CONTEXT_FUNCTION_PROVIDERS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptSetContextFunctionProperty(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pszFunction: [*:0]const u16,
-    pszProperty: [*:0]const u16,
+    pszFunction: ?[*:0]const u16,
+    pszProperty: ?[*:0]const u16,
     cbValue: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbValue: ?*u8,
@@ -7694,23 +7694,23 @@ pub extern "bcrypt" fn BCryptSetContextFunctionProperty(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptQueryContextFunctionProperty(
     dwTable: BCRYPT_TABLE,
-    pszContext: [*:0]const u16,
+    pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
-    pszFunction: [*:0]const u16,
-    pszProperty: [*:0]const u16,
-    pcbValue: *u32,
+    pszFunction: ?[*:0]const u16,
+    pszProperty: ?[*:0]const u16,
+    pcbValue: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
-    ppbValue: **u8,
+    ppbValue: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptRegisterConfigChangeNotify(
-    phEvent: *HANDLE,
+    phEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptUnregisterConfigChangeNotify(
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7721,19 +7721,19 @@ pub extern "bcrypt" fn BCryptResolveProviders(
     pszProvider: ?[*:0]const u16,
     dwMode: BCRYPT_QUERY_PROVIDER_MODE,
     dwFlags: BCRYPT_RESOLVE_PROVIDERS_FLAGS,
-    pcbBuffer: *u32,
+    pcbBuffer: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    ppBuffer: **CRYPT_PROVIDER_REFS,
+    ppBuffer: ?*?*CRYPT_PROVIDER_REFS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptGetFipsAlgorithmMode(
-    pfEnabled: *u8,
+    pfEnabled: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptOpenStorageProvider(
-    phProvider: *usize,
+    phProvider: ?*usize,
     pszProviderName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -7742,15 +7742,15 @@ pub extern "ncrypt" fn NCryptOpenStorageProvider(
 pub extern "ncrypt" fn NCryptEnumAlgorithms(
     hProvider: usize,
     dwAlgOperations: NCRYPT_OPERATION,
-    pdwAlgCount: *u32,
-    ppAlgList: **NCryptAlgorithmName,
+    pdwAlgCount: ?*u32,
+    ppAlgList: ?*?*NCryptAlgorithmName,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptIsAlgSupported(
     hProvider: usize,
-    pszAlgId: [*:0]const u16,
+    pszAlgId: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7758,21 +7758,21 @@ pub extern "ncrypt" fn NCryptIsAlgSupported(
 pub extern "ncrypt" fn NCryptEnumKeys(
     hProvider: usize,
     pszScope: ?[*:0]const u16,
-    ppKeyName: **NCryptKeyName,
-    ppEnumState: **c_void,
+    ppKeyName: ?*?*NCryptKeyName,
+    ppEnumState: ?*?*c_void,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEnumStorageProviders(
-    pdwProviderCount: *u32,
-    ppProviderList: **NCryptProviderName,
+    pdwProviderCount: ?*u32,
+    ppProviderList: ?*?*NCryptProviderName,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptFreeBuffer(
-    pvInput: *c_void,
+    pvInput: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7782,8 +7782,8 @@ pub fn NCryptOpenKey() void { @panic("this function is not working"); }
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptCreatePersistedKey(
     hProvider: usize,
-    phKey: *usize,
-    pszAlgId: [*:0]const u16,
+    phKey: ?*usize,
+    pszAlgId: ?[*:0]const u16,
     pszKeyName: ?[*:0]const u16,
     dwLegacyKeySpec: CERT_KEY_SPEC,
     dwFlags: NCRYPT_FLAGS,
@@ -7792,20 +7792,20 @@ pub extern "ncrypt" fn NCryptCreatePersistedKey(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptGetProperty(
     hObject: usize,
-    pszProperty: [*:0]const u16,
+    pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: OBJECT_SECURITY_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptSetProperty(
     hObject: usize,
-    pszProperty: [*:0]const u16,
+    pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pbInput: *u8,
+    pbInput: ?*u8,
     cbInput: u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -7826,7 +7826,7 @@ pub extern "ncrypt" fn NCryptEncrypt(
     // TODO: what to do with BytesParamIndex 5?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7840,7 +7840,7 @@ pub extern "ncrypt" fn NCryptDecrypt(
     // TODO: what to do with BytesParamIndex 5?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7848,11 +7848,11 @@ pub extern "ncrypt" fn NCryptDecrypt(
 pub extern "ncrypt" fn NCryptImportKey(
     hProvider: usize,
     hImportKey: usize,
-    pszBlobType: [*:0]const u16,
+    pszBlobType: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
-    phKey: *usize,
+    phKey: ?*usize,
     // TODO: what to do with BytesParamIndex 6?
-    pbData: *u8,
+    pbData: ?*u8,
     cbData: u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -7861,12 +7861,12 @@ pub extern "ncrypt" fn NCryptImportKey(
 pub extern "ncrypt" fn NCryptExportKey(
     hKey: usize,
     hExportKey: usize,
-    pszBlobType: [*:0]const u16,
+    pszBlobType: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 5?
     pbOutput: ?*u8,
     cbOutput: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7875,12 +7875,12 @@ pub extern "ncrypt" fn NCryptSignHash(
     hKey: usize,
     pPaddingInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    pbHashValue: *u8,
+    pbHashValue: ?*u8,
     cbHashValue: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbSignature: ?*u8,
     cbSignature: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7889,10 +7889,10 @@ pub extern "ncrypt" fn NCryptVerifySignature(
     hKey: usize,
     pPaddingInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    pbHashValue: *u8,
+    pbHashValue: ?*u8,
     cbHashValue: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbSignature: *u8,
+    pbSignature: ?*u8,
     cbSignature: u32,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -7920,7 +7920,7 @@ pub fn NCryptTranslateHandle() void { @panic("this function is not working"); }
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptNotifyChangeKey(
     hProvider: usize,
-    phEvent: *HANDLE,
+    phEvent: ?*?HANDLE,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7928,19 +7928,19 @@ pub extern "ncrypt" fn NCryptNotifyChangeKey(
 pub extern "ncrypt" fn NCryptSecretAgreement(
     hPrivKey: usize,
     hPubKey: usize,
-    phAgreedSecret: *usize,
+    phAgreedSecret: ?*usize,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDeriveKey(
     hSharedSecret: usize,
-    pwszKDF: [*:0]const u16,
+    pwszKDF: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 4?
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7949,9 +7949,9 @@ pub extern "ncrypt" fn NCryptKeyDerivation(
     hKey: usize,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 3?
-    pbDerivedKey: *u8,
+    pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7964,7 +7964,7 @@ pub extern "ncrypt" fn NCryptCreateClaim(
     // TODO: what to do with BytesParamIndex 5?
     pbClaimBlob: ?*u8,
     cbClaimBlob: u32,
-    pcbResult: *u32,
+    pcbResult: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7975,9 +7975,9 @@ pub extern "ncrypt" fn NCryptVerifyClaim(
     dwClaimType: u32,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 5?
-    pbClaimBlob: *u8,
+    pbClaimBlob: ?*u8,
     cbClaimBlob: u32,
-    pOutput: *BCryptBufferDesc,
+    pOutput: ?*BCryptBufferDesc,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7989,65 +7989,65 @@ pub extern "CRYPT32" fn CryptFormatObject(
     pFormatStruct: ?*c_void,
     lpszStructType: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 6?
-    pbEncoded: *const u8,
+    pbEncoded: ?*const u8,
     cbEncoded: u32,
     // TODO: what to do with BytesParamIndex 8?
     pbFormat: ?*c_void,
-    pcbFormat: *u32,
+    pcbFormat: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptEncodeObjectEx(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    lpszStructType: [*:0]const u8,
-    pvStructInfo: *const c_void,
+    lpszStructType: ?[*:0]const u8,
+    pvStructInfo: ?*const c_void,
     dwFlags: CRYPT_ENCODE_OBJECT_FLAGS,
     pEncodePara: ?*CRYPT_ENCODE_PARA,
     pvEncoded: ?*c_void,
-    pcbEncoded: *u32,
+    pcbEncoded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptEncodeObject(
     dwCertEncodingType: u32,
-    lpszStructType: [*:0]const u8,
-    pvStructInfo: *const c_void,
+    lpszStructType: ?[*:0]const u8,
+    pvStructInfo: ?*const c_void,
     // TODO: what to do with BytesParamIndex 4?
     pbEncoded: ?*u8,
-    pcbEncoded: *u32,
+    pcbEncoded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptDecodeObjectEx(
     dwCertEncodingType: u32,
-    lpszStructType: [*:0]const u8,
+    lpszStructType: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pbEncoded: *const u8,
+    pbEncoded: ?*const u8,
     cbEncoded: u32,
     dwFlags: u32,
     pDecodePara: ?*CRYPT_DECODE_PARA,
     pvStructInfo: ?*c_void,
-    pcbStructInfo: *u32,
+    pcbStructInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptDecodeObject(
     dwCertEncodingType: u32,
-    lpszStructType: [*:0]const u8,
+    lpszStructType: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pbEncoded: *const u8,
+    pbEncoded: ?*const u8,
     cbEncoded: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
     pvStructInfo: ?*c_void,
-    pcbStructInfo: *u32,
+    pcbStructInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptInstallOIDFunctionAddress(
     hModule: ?HINSTANCE,
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
     cFuncEntry: u32,
     rgFuncEntry: [*]const CRYPT_OID_FUNC_ENTRY,
     dwFlags: u32,
@@ -8055,49 +8055,49 @@ pub extern "CRYPT32" fn CryptInstallOIDFunctionAddress(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptInitOIDFunctionSet(
-    pszFuncName: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptGetOIDFunctionAddress(
-    hFuncSet: *c_void,
+    hFuncSet: ?*c_void,
     dwEncodingType: u32,
-    pszOID: [*:0]const u8,
+    pszOID: ?[*:0]const u8,
     dwFlags: u32,
-    ppvFuncAddr: **c_void,
-    phFuncAddr: **c_void,
+    ppvFuncAddr: ?*?*c_void,
+    phFuncAddr: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptGetDefaultOIDDllList(
-    hFuncSet: *c_void,
+    hFuncSet: ?*c_void,
     dwEncodingType: u32,
     pwszDllList: ?[*:0]u16,
-    pcchDllList: *u32,
+    pcchDllList: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptGetDefaultOIDFunctionAddress(
-    hFuncSet: *c_void,
+    hFuncSet: ?*c_void,
     dwEncodingType: u32,
     pwszDll: ?[*:0]const u16,
     dwFlags: u32,
-    ppvFuncAddr: **c_void,
-    phFuncAddr: **c_void,
+    ppvFuncAddr: ?*?*c_void,
+    phFuncAddr: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptFreeOIDFunctionAddress(
-    hFuncAddr: *c_void,
+    hFuncAddr: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptRegisterOIDFunction(
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
-    pszOID: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
+    pszOID: ?[*:0]const u8,
     pwszDll: ?[*:0]const u16,
     pszOverrideFuncName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -8105,30 +8105,30 @@ pub extern "CRYPT32" fn CryptRegisterOIDFunction(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptUnregisterOIDFunction(
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
-    pszOID: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
+    pszOID: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptRegisterDefaultOIDFunction(
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
     dwIndex: u32,
-    pwszDll: [*:0]const u16,
+    pwszDll: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptUnregisterDefaultOIDFunction(
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
-    pwszDll: [*:0]const u16,
+    pszFuncName: ?[*:0]const u8,
+    pwszDll: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSetOIDFunctionValue(
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
-    pszOID: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
+    pszOID: ?[*:0]const u8,
     pwszValueName: ?[*:0]const u16,
     dwValueType: REG_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 6?
@@ -8139,8 +8139,8 @@ pub extern "CRYPT32" fn CryptSetOIDFunctionValue(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptGetOIDFunctionValue(
     dwEncodingType: u32,
-    pszFuncName: [*:0]const u8,
-    pszOID: [*:0]const u8,
+    pszFuncName: ?[*:0]const u8,
+    pszOID: ?[*:0]const u8,
     pwszValueName: ?[*:0]const u16,
     pdwValueType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -8155,25 +8155,25 @@ pub extern "CRYPT32" fn CryptEnumOIDFunction(
     pszOID: ?[*:0]const u8,
     dwFlags: u32,
     pvArg: ?*c_void,
-    pfnEnumOIDFunc: PFN_CRYPT_ENUM_OID_FUNC,
+    pfnEnumOIDFunc: ?PFN_CRYPT_ENUM_OID_FUNC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptFindOIDInfo(
     dwKeyType: u32,
-    pvKey: *c_void,
+    pvKey: ?*c_void,
     dwGroupId: u32,
-) callconv(@import("std").os.windows.WINAPI) *CRYPT_OID_INFO;
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_OID_INFO;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptRegisterOIDInfo(
-    pInfo: *CRYPT_OID_INFO,
+    pInfo: ?*CRYPT_OID_INFO,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptUnregisterOIDInfo(
-    pInfo: *CRYPT_OID_INFO,
+    pInfo: ?*CRYPT_OID_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8181,30 +8181,30 @@ pub extern "CRYPT32" fn CryptEnumOIDInfo(
     dwGroupId: u32,
     dwFlags: u32,
     pvArg: ?*c_void,
-    pfnEnumOIDInfo: PFN_CRYPT_ENUM_OID_INFO,
+    pfnEnumOIDInfo: ?PFN_CRYPT_ENUM_OID_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptFindLocalizedName(
-    pwszCryptName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) PWSTR;
+    pwszCryptName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgOpenToEncode(
     dwMsgEncodingType: u32,
     dwFlags: u32,
     dwMsgType: CRYPT_MSG_TYPE,
-    pvMsgEncodeInfo: *const c_void,
+    pvMsgEncodeInfo: ?*const c_void,
     pszInnerContentObjID: ?PSTR,
     pStreamInfo: ?*CMSG_STREAM_INFO,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgCalculateEncodedLength(
     dwMsgEncodingType: u32,
     dwFlags: u32,
     dwMsgType: u32,
-    pvMsgEncodeInfo: *const c_void,
+    pvMsgEncodeInfo: ?*const c_void,
     pszInnerContentObjID: ?PSTR,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -8215,14 +8215,14 @@ pub extern "CRYPT32" fn CryptMsgOpenToDecode(
     dwFlags: u32,
     dwMsgType: u32,
     hCryptProv: usize,
-    pRecipientInfo: *CERT_INFO,
+    pRecipientInfo: ?*CERT_INFO,
     pStreamInfo: ?*CMSG_STREAM_INFO,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgDuplicate(
     hCryptMsg: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgClose(
@@ -8231,7 +8231,7 @@ pub extern "CRYPT32" fn CryptMsgClose(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgUpdate(
-    hCryptMsg: *c_void,
+    hCryptMsg: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*const u8,
     cbData: u32,
@@ -8240,17 +8240,17 @@ pub extern "CRYPT32" fn CryptMsgUpdate(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgGetParam(
-    hCryptMsg: *c_void,
+    hCryptMsg: ?*c_void,
     dwParamType: u32,
     dwIndex: u32,
     // TODO: what to do with BytesParamIndex 4?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgControl(
-    hCryptMsg: *c_void,
+    hCryptMsg: ?*c_void,
     dwFlags: u32,
     dwCtrlType: u32,
     pvCtrlPara: ?*const c_void,
@@ -8261,12 +8261,12 @@ pub extern "CRYPT32" fn CryptMsgVerifyCountersignatureEncoded(
     hCryptProv: usize,
     dwEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbSignerInfo: *u8,
+    pbSignerInfo: ?*u8,
     cbSignerInfo: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbSignerInfoCountersignature: *u8,
+    pbSignerInfoCountersignature: ?*u8,
     cbSignerInfoCountersignature: u32,
-    pciCountersigner: *CERT_INFO,
+    pciCountersigner: ?*CERT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8274,20 +8274,20 @@ pub extern "CRYPT32" fn CryptMsgVerifyCountersignatureEncodedEx(
     hCryptProv: usize,
     dwEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbSignerInfo: *u8,
+    pbSignerInfo: ?*u8,
     cbSignerInfo: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbSignerInfoCountersignature: *u8,
+    pbSignerInfoCountersignature: ?*u8,
     cbSignerInfoCountersignature: u32,
     dwSignerType: u32,
-    pvSigner: *c_void,
+    pvSigner: ?*c_void,
     dwFlags: u32,
     pvExtra: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgCountersign(
-    hCryptMsg: *c_void,
+    hCryptMsg: ?*c_void,
     dwIndex: u32,
     cCountersigners: u32,
     rgCountersigners: [*]CMSG_SIGNER_ENCODE_INFO,
@@ -8297,36 +8297,36 @@ pub extern "CRYPT32" fn CryptMsgCountersign(
 pub extern "CRYPT32" fn CryptMsgCountersignEncoded(
     dwEncodingType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pbSignerInfo: *u8,
+    pbSignerInfo: ?*u8,
     cbSignerInfo: u32,
     cCountersigners: u32,
     rgCountersigners: [*]CMSG_SIGNER_ENCODE_INFO,
     // TODO: what to do with BytesParamIndex 6?
     pbCountersignature: ?*u8,
-    pcbCountersignature: *u32,
+    pcbCountersignature: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertOpenStore(
-    lpszStoreProvider: [*:0]const u8,
+    lpszStoreProvider: ?[*:0]const u8,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
     hCryptProv: usize,
     dwFlags: CERT_OPEN_STORE_FLAGS,
     pvPara: ?*const c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDuplicateStore(
-    hCertStore: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    hCertStore: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSaveStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwSaveAs: CERT_STORE_SAVE_AS,
     dwSaveTo: CERT_STORE_SAVE_TO,
-    pvSaveToPara: *c_void,
+    pvSaveToPara: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -8338,54 +8338,54 @@ pub extern "CRYPT32" fn CertCloseStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetSubjectCertificateFromStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwCertEncodingType: u32,
-    pCertId: *CERT_INFO,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+    pCertId: ?*CERT_INFO,
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumCertificatesInStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     pPrevCertContext: ?*const CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindCertificateInStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwCertEncodingType: u32,
     dwFindFlags: u32,
     dwFindType: CERT_FIND_FLAGS,
     pvFindPara: ?*const c_void,
     pPrevCertContext: ?*const CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetIssuerCertificateFromStore(
-    hCertStore: *c_void,
-    pSubjectContext: *const CERT_CONTEXT,
+    hCertStore: ?*c_void,
+    pSubjectContext: ?*const CERT_CONTEXT,
     pPrevIssuerContext: ?*const CERT_CONTEXT,
-    pdwFlags: *u32,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+    pdwFlags: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertVerifySubjectCertificateContext(
-    pSubject: *const CERT_CONTEXT,
+    pSubject: ?*const CERT_CONTEXT,
     pIssuer: ?*const CERT_CONTEXT,
-    pdwFlags: *u32,
+    pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDuplicateCertificateContext(
     pCertContext: ?*const CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCreateCertificateContext(
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pbCertEncoded: *const u8,
+    pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFreeCertificateContext(
@@ -8394,7 +8394,7 @@ pub extern "CRYPT32" fn CertFreeCertificateContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSetCertificateContextProperty(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const c_void,
@@ -8402,74 +8402,74 @@ pub extern "CRYPT32" fn CertSetCertificateContextProperty(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetCertificateContextProperty(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
     // TODO: what to do with BytesParamIndex 3?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumCertificateContextProperties(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCreateCTLEntryFromCertificateContextProperties(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     cOptAttr: u32,
     rgOptAttr: ?[*]CRYPT_ATTRIBUTE,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 6?
     pCtlEntry: ?*CTL_ENTRY,
-    pcbCtlEntry: *u32,
+    pcbCtlEntry: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSetCertificateContextPropertiesFromCTLEntry(
-    pCertContext: *const CERT_CONTEXT,
-    pCtlEntry: *CTL_ENTRY,
+    pCertContext: ?*const CERT_CONTEXT,
+    pCtlEntry: ?*CTL_ENTRY,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetCRLFromStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     pIssuerContext: ?*const CERT_CONTEXT,
     pPrevCrlContext: ?*CRL_CONTEXT,
-    pdwFlags: *u32,
-) callconv(@import("std").os.windows.WINAPI) *CRL_CONTEXT;
+    pdwFlags: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*CRL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumCRLsInStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     pPrevCrlContext: ?*CRL_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CRL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CRL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindCRLInStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwCertEncodingType: u32,
     dwFindFlags: u32,
     dwFindType: u32,
     pvFindPara: ?*const c_void,
     pPrevCrlContext: ?*CRL_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CRL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CRL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDuplicateCRLContext(
     pCrlContext: ?*CRL_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CRL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CRL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCreateCRLContext(
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pbCrlEncoded: *const u8,
+    pbCrlEncoded: ?*const u8,
     cbCrlEncoded: u32,
-) callconv(@import("std").os.windows.WINAPI) *CRL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CRL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFreeCRLContext(
@@ -8478,7 +8478,7 @@ pub extern "CRYPT32" fn CertFreeCRLContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSetCRLContextProperty(
-    pCrlContext: *CRL_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const c_void,
@@ -8486,34 +8486,34 @@ pub extern "CRYPT32" fn CertSetCRLContextProperty(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetCRLContextProperty(
-    pCrlContext: *CRL_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
     // TODO: what to do with BytesParamIndex 3?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumCRLContextProperties(
-    pCrlContext: *CRL_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindCertificateInCRL(
-    pCert: *const CERT_CONTEXT,
-    pCrlContext: *CRL_CONTEXT,
+    pCert: ?*const CERT_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
-    pvReserved: *c_void,
-    ppCrlEntry: ?**CRL_ENTRY,
+    pvReserved: ?*c_void,
+    ppCrlEntry: ?*?*CRL_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertIsValidCRLForCertificate(
-    pCert: *const CERT_CONTEXT,
-    pCrl: *CRL_CONTEXT,
+    pCert: ?*const CERT_CONTEXT,
+    pCrl: ?*CRL_CONTEXT,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8521,36 +8521,36 @@ pub extern "CRYPT32" fn CertAddEncodedCertificateToStore(
     hCertStore: ?*c_void,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbCertEncoded: *const u8,
+    pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
     dwAddDisposition: u32,
-    ppCertContext: ?**CERT_CONTEXT,
+    ppCertContext: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddCertificateContextToStore(
     hCertStore: ?*c_void,
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwAddDisposition: u32,
-    ppStoreContext: ?**CERT_CONTEXT,
+    ppStoreContext: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddSerializedElementToStore(
     hCertStore: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbElement: *const u8,
+    pbElement: ?*const u8,
     cbElement: u32,
     dwAddDisposition: u32,
     dwFlags: u32,
     dwContextTypeFlags: u32,
     pdwContextType: ?*u32,
-    ppvContext: ?*const *c_void,
+    ppvContext: ?*const ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDeleteCertificateFromStore(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8558,55 +8558,55 @@ pub extern "CRYPT32" fn CertAddEncodedCRLToStore(
     hCertStore: ?*c_void,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbCrlEncoded: *const u8,
+    pbCrlEncoded: ?*const u8,
     cbCrlEncoded: u32,
     dwAddDisposition: u32,
-    ppCrlContext: ?**CRL_CONTEXT,
+    ppCrlContext: ?*?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddCRLContextToStore(
     hCertStore: ?*c_void,
-    pCrlContext: *CRL_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
     dwAddDisposition: u32,
-    ppStoreContext: ?**CRL_CONTEXT,
+    ppStoreContext: ?*?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDeleteCRLFromStore(
-    pCrlContext: *CRL_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSerializeCertificateStoreElement(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbElement: ?*u8,
-    pcbElement: *u32,
+    pcbElement: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSerializeCRLStoreElement(
-    pCrlContext: *CRL_CONTEXT,
+    pCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbElement: ?*u8,
-    pcbElement: *u32,
+    pcbElement: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDuplicateCTLContext(
     pCtlContext: ?*CTL_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CTL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CTL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCreateCTLContext(
     dwMsgAndCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pbCtlEncoded: *const u8,
+    pbCtlEncoded: ?*const u8,
     cbCtlEncoded: u32,
-) callconv(@import("std").os.windows.WINAPI) *CTL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CTL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFreeCTLContext(
@@ -8615,7 +8615,7 @@ pub extern "CRYPT32" fn CertFreeCTLContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSetCTLContextProperty(
-    pCtlContext: *CTL_CONTEXT,
+    pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const c_void,
@@ -8623,104 +8623,104 @@ pub extern "CRYPT32" fn CertSetCTLContextProperty(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetCTLContextProperty(
-    pCtlContext: *CTL_CONTEXT,
+    pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
     // TODO: what to do with BytesParamIndex 3?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumCTLContextProperties(
-    pCtlContext: *CTL_CONTEXT,
+    pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumCTLsInStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     pPrevCtlContext: ?*CTL_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CTL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CTL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindSubjectInCTL(
     dwEncodingType: u32,
     dwSubjectType: u32,
-    pvSubject: *c_void,
-    pCtlContext: *CTL_CONTEXT,
+    pvSubject: ?*c_void,
+    pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) *CTL_ENTRY;
+) callconv(@import("std").os.windows.WINAPI) ?*CTL_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindCTLInStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwMsgAndCertEncodingType: u32,
     dwFindFlags: u32,
     dwFindType: CERT_FIND_TYPE,
     pvFindPara: ?*const c_void,
     pPrevCtlContext: ?*CTL_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CTL_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CTL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddEncodedCTLToStore(
     hCertStore: ?*c_void,
     dwMsgAndCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbCtlEncoded: *const u8,
+    pbCtlEncoded: ?*const u8,
     cbCtlEncoded: u32,
     dwAddDisposition: u32,
-    ppCtlContext: ?**CTL_CONTEXT,
+    ppCtlContext: ?*?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddCTLContextToStore(
     hCertStore: ?*c_void,
-    pCtlContext: *CTL_CONTEXT,
+    pCtlContext: ?*CTL_CONTEXT,
     dwAddDisposition: u32,
-    ppStoreContext: ?**CTL_CONTEXT,
+    ppStoreContext: ?*?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSerializeCTLStoreElement(
-    pCtlContext: *CTL_CONTEXT,
+    pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbElement: ?*u8,
-    pcbElement: *u32,
+    pcbElement: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDeleteCTLFromStore(
-    pCtlContext: *CTL_CONTEXT,
+    pCtlContext: ?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddCertificateLinkToStore(
-    hCertStore: *c_void,
-    pCertContext: *const CERT_CONTEXT,
+    hCertStore: ?*c_void,
+    pCertContext: ?*const CERT_CONTEXT,
     dwAddDisposition: u32,
-    ppStoreContext: ?**CERT_CONTEXT,
+    ppStoreContext: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddCRLLinkToStore(
-    hCertStore: *c_void,
-    pCrlContext: *CRL_CONTEXT,
+    hCertStore: ?*c_void,
+    pCrlContext: ?*CRL_CONTEXT,
     dwAddDisposition: u32,
-    ppStoreContext: ?**CRL_CONTEXT,
+    ppStoreContext: ?*?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddCTLLinkToStore(
-    hCertStore: *c_void,
-    pCtlContext: *CTL_CONTEXT,
+    hCertStore: ?*c_void,
+    pCtlContext: ?*CTL_CONTEXT,
     dwAddDisposition: u32,
-    ppStoreContext: ?**CTL_CONTEXT,
+    ppStoreContext: ?*?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddStoreToCollection(
-    hCollectionStore: *c_void,
+    hCollectionStore: ?*c_void,
     hSiblingStore: ?*c_void,
     dwUpdateFlags: u32,
     dwPriority: u32,
@@ -8728,13 +8728,13 @@ pub extern "CRYPT32" fn CertAddStoreToCollection(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertRemoveStoreFromCollection(
-    hCollectionStore: *c_void,
-    hSiblingStore: *c_void,
+    hCollectionStore: ?*c_void,
+    hSiblingStore: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertControlStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwFlags: CERT_CONTROL_STORE_FLAGS,
     dwCtrlType: u32,
     pvCtrlPara: ?*const c_void,
@@ -8742,7 +8742,7 @@ pub extern "CRYPT32" fn CertControlStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSetStoreProperty(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const c_void,
@@ -8750,11 +8750,11 @@ pub extern "CRYPT32" fn CertSetStoreProperty(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetStoreProperty(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwPropId: u32,
     // TODO: what to do with BytesParamIndex 3?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8762,47 +8762,47 @@ pub extern "CRYPT32" fn CertCreateContext(
     dwContextType: u32,
     dwEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbEncoded: *const u8,
+    pbEncoded: ?*const u8,
     cbEncoded: u32,
     dwFlags: u32,
     pCreatePara: ?*CERT_CREATE_CONTEXT_PARA,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertRegisterSystemStore(
-    pvSystemStore: *const c_void,
+    pvSystemStore: ?*const c_void,
     dwFlags: u32,
     pStoreInfo: ?*CERT_SYSTEM_STORE_INFO,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertRegisterPhysicalStore(
-    pvSystemStore: *const c_void,
+    pvSystemStore: ?*const c_void,
     dwFlags: u32,
-    pwszStoreName: [*:0]const u16,
-    pStoreInfo: *CERT_PHYSICAL_STORE_INFO,
-    pvReserved: *c_void,
+    pwszStoreName: ?[*:0]const u16,
+    pStoreInfo: ?*CERT_PHYSICAL_STORE_INFO,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertUnregisterSystemStore(
-    pvSystemStore: *const c_void,
+    pvSystemStore: ?*const c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertUnregisterPhysicalStore(
-    pvSystemStore: *const c_void,
+    pvSystemStore: ?*const c_void,
     dwFlags: u32,
-    pwszStoreName: [*:0]const u16,
+    pwszStoreName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumSystemStoreLocation(
     dwFlags: u32,
     pvArg: ?*c_void,
-    pfnEnum: PFN_CERT_ENUM_SYSTEM_STORE_LOCATION,
+    pfnEnum: ?PFN_CERT_ENUM_SYSTEM_STORE_LOCATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8810,61 +8810,61 @@ pub extern "CRYPT32" fn CertEnumSystemStore(
     dwFlags: u32,
     pvSystemStoreLocationPara: ?*c_void,
     pvArg: ?*c_void,
-    pfnEnum: PFN_CERT_ENUM_SYSTEM_STORE,
+    pfnEnum: ?PFN_CERT_ENUM_SYSTEM_STORE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumPhysicalStore(
-    pvSystemStore: *const c_void,
+    pvSystemStore: ?*const c_void,
     dwFlags: u32,
     pvArg: ?*c_void,
-    pfnEnum: PFN_CERT_ENUM_PHYSICAL_STORE,
+    pfnEnum: ?PFN_CERT_ENUM_PHYSICAL_STORE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetEnhancedKeyUsage(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 3?
     pUsage: ?*CTL_USAGE,
-    pcbUsage: *u32,
+    pcbUsage: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertSetEnhancedKeyUsage(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     pUsage: ?*CTL_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddEnhancedKeyUsageIdentifier(
-    pCertContext: *const CERT_CONTEXT,
-    pszUsageIdentifier: [*:0]const u8,
+    pCertContext: ?*const CERT_CONTEXT,
+    pszUsageIdentifier: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertRemoveEnhancedKeyUsageIdentifier(
-    pCertContext: *const CERT_CONTEXT,
-    pszUsageIdentifier: [*:0]const u8,
+    pCertContext: ?*const CERT_CONTEXT,
+    pszUsageIdentifier: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetValidUsages(
     cCerts: u32,
-    rghCerts: [*]*CERT_CONTEXT,
-    cNumOIDs: *i32,
+    rghCerts: [*]?*CERT_CONTEXT,
+    cNumOIDs: ?*i32,
     // TODO: what to do with BytesParamIndex 4?
-    rghOIDs: ?*PSTR,
-    pcbOIDs: *u32,
+    rghOIDs: ?*?PSTR,
+    pcbOIDs: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgGetAndVerifySigner(
-    hCryptMsg: *c_void,
+    hCryptMsg: ?*c_void,
     cSignerStore: u32,
-    rghSignerStore: ?[*]*c_void,
+    rghSignerStore: ?[*]?*c_void,
     dwFlags: u32,
-    ppSigner: ?**CERT_CONTEXT,
+    ppSigner: ?*?*CERT_CONTEXT,
     pdwSignerIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -8872,39 +8872,39 @@ pub extern "CRYPT32" fn CryptMsgGetAndVerifySigner(
 pub extern "CRYPT32" fn CryptMsgSignCTL(
     dwMsgEncodingType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pbCtlContent: *u8,
+    pbCtlContent: ?*u8,
     cbCtlContent: u32,
-    pSignInfo: *CMSG_SIGNED_ENCODE_INFO,
+    pSignInfo: ?*CMSG_SIGNED_ENCODE_INFO,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
     pbEncoded: ?*u8,
-    pcbEncoded: *u32,
+    pcbEncoded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMsgEncodeAndSignCTL(
     dwMsgEncodingType: u32,
-    pCtlInfo: *CTL_INFO,
-    pSignInfo: *CMSG_SIGNED_ENCODE_INFO,
+    pCtlInfo: ?*CTL_INFO,
+    pSignInfo: ?*CMSG_SIGNED_ENCODE_INFO,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbEncoded: ?*u8,
-    pcbEncoded: *u32,
+    pcbEncoded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindSubjectInSortedCTL(
-    pSubjectIdentifier: *CRYPTOAPI_BLOB,
-    pCtlContext: *CTL_CONTEXT,
+    pSubjectIdentifier: ?*CRYPTOAPI_BLOB,
+    pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     pEncodedAttributes: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertEnumSubjectInSortedCTL(
-    pCtlContext: *CTL_CONTEXT,
-    ppvNextSubject: **c_void,
+    pCtlContext: ?*CTL_CONTEXT,
+    ppvNextSubject: ?*?*c_void,
     pSubjectIdentifier: ?*CRYPTOAPI_BLOB,
     pEncodedAttributes: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -8913,11 +8913,11 @@ pub extern "CRYPT32" fn CertEnumSubjectInSortedCTL(
 pub extern "CRYPT32" fn CertVerifyCTLUsage(
     dwEncodingType: u32,
     dwSubjectType: u32,
-    pvSubject: *c_void,
-    pSubjectUsage: *CTL_USAGE,
+    pvSubject: ?*c_void,
+    pSubjectUsage: ?*CTL_USAGE,
     dwFlags: u32,
     pVerifyUsagePara: ?*CTL_VERIFY_USAGE_PARA,
-    pVerifyUsageStatus: *CTL_VERIFY_USAGE_STATUS,
+    pVerifyUsageStatus: ?*CTL_VERIFY_USAGE_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8925,51 +8925,51 @@ pub extern "CRYPT32" fn CertVerifyRevocation(
     dwEncodingType: u32,
     dwRevType: u32,
     cContext: u32,
-    rgpvContext: [*]*c_void,
+    rgpvContext: [*]?*c_void,
     dwFlags: u32,
     pRevPara: ?*CERT_REVOCATION_PARA,
-    pRevStatus: *CERT_REVOCATION_STATUS,
+    pRevStatus: ?*CERT_REVOCATION_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCompareIntegerBlob(
-    pInt1: *CRYPTOAPI_BLOB,
-    pInt2: *CRYPTOAPI_BLOB,
+    pInt1: ?*CRYPTOAPI_BLOB,
+    pInt2: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCompareCertificate(
     dwCertEncodingType: u32,
-    pCertId1: *CERT_INFO,
-    pCertId2: *CERT_INFO,
+    pCertId1: ?*CERT_INFO,
+    pCertId2: ?*CERT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCompareCertificateName(
     dwCertEncodingType: u32,
-    pCertName1: *CRYPTOAPI_BLOB,
-    pCertName2: *CRYPTOAPI_BLOB,
+    pCertName1: ?*CRYPTOAPI_BLOB,
+    pCertName2: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertIsRDNAttrsInCertificateName(
     dwCertEncodingType: u32,
     dwFlags: u32,
-    pCertName: *CRYPTOAPI_BLOB,
-    pRDN: *CERT_RDN,
+    pCertName: ?*CRYPTOAPI_BLOB,
+    pRDN: ?*CERT_RDN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertComparePublicKeyInfo(
     dwCertEncodingType: u32,
-    pPublicKey1: *CERT_PUBLIC_KEY_INFO,
-    pPublicKey2: *CERT_PUBLIC_KEY_INFO,
+    pPublicKey1: ?*CERT_PUBLIC_KEY_INFO,
+    pPublicKey2: ?*CERT_PUBLIC_KEY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetPublicKeyLength(
     dwCertEncodingType: u32,
-    pPublicKey: *CERT_PUBLIC_KEY_INFO,
+    pPublicKey: ?*CERT_PUBLIC_KEY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8977,9 +8977,9 @@ pub extern "CRYPT32" fn CryptVerifyCertificateSignature(
     hCryptProv: usize,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbEncoded: *const u8,
+    pbEncoded: ?*const u8,
     cbEncoded: u32,
-    pPublicKey: *CERT_PUBLIC_KEY_INFO,
+    pPublicKey: ?*CERT_PUBLIC_KEY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8987,7 +8987,7 @@ pub extern "CRYPT32" fn CryptVerifyCertificateSignatureEx(
     hCryptProv: usize,
     dwCertEncodingType: u32,
     dwSubjectType: u32,
-    pvSubject: *c_void,
+    pvSubject: ?*c_void,
     dwIssuerType: u32,
     pvIssuer: ?*c_void,
     dwFlags: CRYPT_VERIFY_CERT_FLAGS,
@@ -8996,8 +8996,8 @@ pub extern "CRYPT32" fn CryptVerifyCertificateSignatureEx(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "CRYPT32" fn CertIsStrongHashToSign(
-    pStrongSignPara: *CERT_STRONG_SIGN_PARA,
-    pwszCNGHashAlgid: [*:0]const u16,
+    pStrongSignPara: ?*CERT_STRONG_SIGN_PARA,
+    pwszCNGHashAlgid: ?[*:0]const u16,
     pSigningCert: ?*const CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -9006,11 +9006,11 @@ pub extern "CRYPT32" fn CryptHashToBeSigned(
     hCryptProv: usize,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbEncoded: *const u8,
+    pbEncoded: ?*const u8,
     cbEncoded: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbComputedHash: ?*u8,
-    pcbComputedHash: *u32,
+    pcbComputedHash: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9019,24 +9019,24 @@ pub extern "CRYPT32" fn CryptHashCertificate(
     Algid: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pbEncoded: *const u8,
+    pbEncoded: ?*const u8,
     cbEncoded: u32,
     // TODO: what to do with BytesParamIndex 6?
     pbComputedHash: ?*u8,
-    pcbComputedHash: *u32,
+    pcbComputedHash: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CryptHashCertificate2(
-    pwszCNGHashAlgid: [*:0]const u16,
+    pwszCNGHashAlgid: ?[*:0]const u16,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 4?
     pbEncoded: ?*const u8,
     cbEncoded: u32,
     // TODO: what to do with BytesParamIndex 6?
     pbComputedHash: ?*u8,
-    pcbComputedHash: *u32,
+    pcbComputedHash: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9045,13 +9045,13 @@ pub extern "CRYPT32" fn CryptSignCertificate(
     dwKeySpec: u32,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pbEncodedToBeSigned: *const u8,
+    pbEncodedToBeSigned: ?*const u8,
     cbEncodedToBeSigned: u32,
-    pSignatureAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
+    pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: ?*const c_void,
     // TODO: what to do with BytesParamIndex 8?
     pbSignature: ?*u8,
-    pcbSignature: *u32,
+    pcbSignature: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9061,64 +9061,64 @@ pub fn CryptSignAndEncodeCertificate() void { @panic("this function is not worki
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertVerifyTimeValidity(
     pTimeToVerify: ?*FILETIME,
-    pCertInfo: *CERT_INFO,
+    pCertInfo: ?*CERT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertVerifyCRLTimeValidity(
     pTimeToVerify: ?*FILETIME,
-    pCrlInfo: *CRL_INFO,
+    pCrlInfo: ?*CRL_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertVerifyValidityNesting(
-    pSubjectInfo: *CERT_INFO,
-    pIssuerInfo: *CERT_INFO,
+    pSubjectInfo: ?*CERT_INFO,
+    pIssuerInfo: ?*CERT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertVerifyCRLRevocation(
     dwCertEncodingType: u32,
-    pCertId: *CERT_INFO,
+    pCertId: ?*CERT_INFO,
     cCrlInfo: u32,
-    rgpCrlInfo: [*]*CRL_INFO,
+    rgpCrlInfo: [*]?*CRL_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAlgIdToOID(
     dwAlgId: u32,
-) callconv(@import("std").os.windows.WINAPI) PSTR;
+) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertOIDToAlgId(
-    pszObjId: [*:0]const u8,
+    pszObjId: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindExtension(
-    pszObjId: [*:0]const u8,
+    pszObjId: ?[*:0]const u8,
     cExtensions: u32,
     rgExtensions: [*]CERT_EXTENSION,
-) callconv(@import("std").os.windows.WINAPI) *CERT_EXTENSION;
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_EXTENSION;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindAttribute(
-    pszObjId: [*:0]const u8,
+    pszObjId: ?[*:0]const u8,
     cAttr: u32,
     rgAttr: [*]CRYPT_ATTRIBUTE,
-) callconv(@import("std").os.windows.WINAPI) *CRYPT_ATTRIBUTE;
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_ATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindRDNAttr(
-    pszObjId: [*:0]const u8,
-    pName: *CERT_NAME_INFO,
-) callconv(@import("std").os.windows.WINAPI) *CERT_RDN_ATTR;
+    pszObjId: ?[*:0]const u8,
+    pName: ?*CERT_NAME_INFO,
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_RDN_ATTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetIntendedKeyUsage(
     dwCertEncodingType: u32,
-    pCertInfo: *CERT_INFO,
-    pbKeyUsage: *u8,
+    pCertInfo: ?*CERT_INFO,
+    pbKeyUsage: ?*u8,
     cbKeyUsage: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -9128,15 +9128,15 @@ pub extern "CRYPT32" fn CryptInstallDefaultContext(
     dwDefaultType: CRYPT_DEFAULT_CONTEXT_TYPE,
     pvDefaultPara: ?*const c_void,
     dwFlags: CRYPT_DEFAULT_CONTEXT_FLAGS,
-    pvReserved: *c_void,
-    phDefaultContext: **c_void,
+    pvReserved: ?*c_void,
+    phDefaultContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptUninstallDefaultContext(
     hDefaultContext: ?*c_void,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9146,7 +9146,7 @@ pub extern "CRYPT32" fn CryptExportPublicKeyInfo(
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 4?
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
-    pcbInfo: *u32,
+    pcbInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9159,64 +9159,64 @@ pub extern "CRYPT32" fn CryptExportPublicKeyInfoEx(
     pvAuxInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 7?
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
-    pcbInfo: *u32,
+    pcbInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPT32" fn CryptExportPublicKeyInfoFromBCryptKeyHandle(
-    hBCryptKey: *c_void,
+    hBCryptKey: ?*c_void,
     dwCertEncodingType: u32,
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 6?
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
-    pcbInfo: *u32,
+    pcbInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptImportPublicKeyInfo(
     hCryptProv: usize,
     dwCertEncodingType: u32,
-    pInfo: *CERT_PUBLIC_KEY_INFO,
-    phKey: *usize,
+    pInfo: ?*CERT_PUBLIC_KEY_INFO,
+    phKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptImportPublicKeyInfoEx(
     hCryptProv: usize,
     dwCertEncodingType: u32,
-    pInfo: *CERT_PUBLIC_KEY_INFO,
+    pInfo: ?*CERT_PUBLIC_KEY_INFO,
     aiKeyAlg: u32,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
-    phKey: *usize,
+    phKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CryptImportPublicKeyInfoEx2(
     dwCertEncodingType: u32,
-    pInfo: *CERT_PUBLIC_KEY_INFO,
+    pInfo: ?*CERT_PUBLIC_KEY_INFO,
     dwFlags: CRYPT_IMPORT_PUBLIC_KEY_FLAGS,
     pvAuxInfo: ?*c_void,
-    phKey: **c_void,
+    phKey: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptAcquireCertificatePrivateKey(
-    pCert: *const CERT_CONTEXT,
+    pCert: ?*const CERT_CONTEXT,
     dwFlags: CRYPT_ACQUIRE_FLAGS,
     pvParameters: ?*c_void,
-    phCryptProvOrNCryptKey: *usize,
+    phCryptProvOrNCryptKey: ?*usize,
     pdwKeySpec: ?*CERT_KEY_SPEC,
     pfCallerFreeProvOrNCryptKey: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptFindCertificateKeyProvInfo(
-    pCert: *const CERT_CONTEXT,
+    pCert: ?*const CERT_CONTEXT,
     dwFlags: CRYPT_FIND_FLAGS,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9231,12 +9231,12 @@ pub extern "CRYPT32" fn CryptImportPKCS8(
 pub extern "CRYPT32" fn CryptExportPKCS8(
     hCryptProv: usize,
     dwKeySpec: u32,
-    pszPrivateKeyObjId: PSTR,
+    pszPrivateKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*c_void,
     // TODO: what to do with BytesParamIndex 6?
     pbPrivateKeyBlob: ?*u8,
-    pcbPrivateKeyBlob: *u32,
+    pcbPrivateKeyBlob: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9245,16 +9245,16 @@ pub extern "CRYPT32" fn CryptHashPublicKeyInfo(
     Algid: u32,
     dwFlags: u32,
     dwCertEncodingType: u32,
-    pInfo: *CERT_PUBLIC_KEY_INFO,
+    pInfo: ?*CERT_PUBLIC_KEY_INFO,
     // TODO: what to do with BytesParamIndex 6?
     pbComputedHash: ?*u8,
-    pcbComputedHash: *u32,
+    pcbComputedHash: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertRDNValueToStrA(
     dwValueType: u32,
-    pValue: *CRYPTOAPI_BLOB,
+    pValue: ?*CRYPTOAPI_BLOB,
     psz: ?[*:0]u8,
     csz: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -9262,7 +9262,7 @@ pub extern "CRYPT32" fn CertRDNValueToStrA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertRDNValueToStrW(
     dwValueType: u32,
-    pValue: *CRYPTOAPI_BLOB,
+    pValue: ?*CRYPTOAPI_BLOB,
     psz: ?[*:0]u16,
     csz: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -9270,7 +9270,7 @@ pub extern "CRYPT32" fn CertRDNValueToStrW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertNameToStrA(
     dwCertEncodingType: u32,
-    pName: *CRYPTOAPI_BLOB,
+    pName: ?*CRYPTOAPI_BLOB,
     dwStrType: CERT_STRING_TYPE,
     psz: ?[*:0]u8,
     csz: u32,
@@ -9279,7 +9279,7 @@ pub extern "CRYPT32" fn CertNameToStrA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertNameToStrW(
     dwCertEncodingType: u32,
-    pName: *CRYPTOAPI_BLOB,
+    pName: ?*CRYPTOAPI_BLOB,
     dwStrType: CERT_STRING_TYPE,
     psz: ?[*:0]u16,
     csz: u32,
@@ -9288,30 +9288,30 @@ pub extern "CRYPT32" fn CertNameToStrW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertStrToNameA(
     dwCertEncodingType: u32,
-    pszX500: [*:0]const u8,
+    pszX500: ?[*:0]const u8,
     dwStrType: CERT_STRING_TYPE,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 5?
     pbEncoded: ?*u8,
-    pcbEncoded: *u32,
-    ppszError: ?*PSTR,
+    pcbEncoded: ?*u32,
+    ppszError: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertStrToNameW(
     dwCertEncodingType: u32,
-    pszX500: [*:0]const u16,
+    pszX500: ?[*:0]const u16,
     dwStrType: CERT_STRING_TYPE,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 5?
     pbEncoded: ?*u8,
-    pcbEncoded: *u32,
-    ppszError: ?*PWSTR,
+    pcbEncoded: ?*u32,
+    ppszError: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetNameStringA(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwType: u32,
     dwFlags: u32,
     pvTypePara: ?*c_void,
@@ -9321,7 +9321,7 @@ pub extern "CRYPT32" fn CertGetNameStringA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetNameStringW(
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     dwType: u32,
     dwFlags: u32,
     pvTypePara: ?*c_void,
@@ -9331,34 +9331,34 @@ pub extern "CRYPT32" fn CertGetNameStringW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSignMessage(
-    pSignPara: *CRYPT_SIGN_MESSAGE_PARA,
+    pSignPara: ?*CRYPT_SIGN_MESSAGE_PARA,
     fDetachedSignature: BOOL,
     cToBeSigned: u32,
-    rgpbToBeSigned: ?[*]const *const u8,
+    rgpbToBeSigned: ?[*]const ?*const u8,
     rgcbToBeSigned: [*]u32,
     // TODO: what to do with BytesParamIndex 6?
     pbSignedBlob: ?*u8,
-    pcbSignedBlob: *u32,
+    pcbSignedBlob: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptVerifyMessageSignature(
-    pVerifyPara: *CRYPT_VERIFY_MESSAGE_PARA,
+    pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbSignedBlob: *const u8,
+    pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbDecoded: ?*u8,
     pcbDecoded: ?*u32,
-    ppSignerCert: ?**CERT_CONTEXT,
+    ppSignerCert: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptGetMessageSignerCount(
     dwMsgEncodingType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pbSignedBlob: *const u8,
+    pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -9368,75 +9368,75 @@ pub extern "CRYPT32" fn CryptGetMessageCertificates(
     hCryptProv: usize,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pbSignedBlob: *const u8,
+    pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptVerifyDetachedMessageSignature(
-    pVerifyPara: *CRYPT_VERIFY_MESSAGE_PARA,
+    pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbDetachedSignBlob: *const u8,
+    pbDetachedSignBlob: ?*const u8,
     cbDetachedSignBlob: u32,
     cToBeSigned: u32,
-    rgpbToBeSigned: [*]const *const u8,
+    rgpbToBeSigned: [*]const ?*const u8,
     rgcbToBeSigned: [*]u32,
-    ppSignerCert: ?**CERT_CONTEXT,
+    ppSignerCert: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptEncryptMessage(
-    pEncryptPara: *CRYPT_ENCRYPT_MESSAGE_PARA,
+    pEncryptPara: ?*CRYPT_ENCRYPT_MESSAGE_PARA,
     cRecipientCert: u32,
-    rgpRecipientCert: [*]*CERT_CONTEXT,
+    rgpRecipientCert: [*]?*CERT_CONTEXT,
     // TODO: what to do with BytesParamIndex 4?
     pbToBeEncrypted: ?*const u8,
     cbToBeEncrypted: u32,
     // TODO: what to do with BytesParamIndex 6?
     pbEncryptedBlob: ?*u8,
-    pcbEncryptedBlob: *u32,
+    pcbEncryptedBlob: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptDecryptMessage(
-    pDecryptPara: *CRYPT_DECRYPT_MESSAGE_PARA,
+    pDecryptPara: ?*CRYPT_DECRYPT_MESSAGE_PARA,
     // TODO: what to do with BytesParamIndex 2?
-    pbEncryptedBlob: *const u8,
+    pbEncryptedBlob: ?*const u8,
     cbEncryptedBlob: u32,
     // TODO: what to do with BytesParamIndex 4?
     pbDecrypted: ?*u8,
     pcbDecrypted: ?*u32,
-    ppXchgCert: ?**CERT_CONTEXT,
+    ppXchgCert: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSignAndEncryptMessage(
-    pSignPara: *CRYPT_SIGN_MESSAGE_PARA,
-    pEncryptPara: *CRYPT_ENCRYPT_MESSAGE_PARA,
+    pSignPara: ?*CRYPT_SIGN_MESSAGE_PARA,
+    pEncryptPara: ?*CRYPT_ENCRYPT_MESSAGE_PARA,
     cRecipientCert: u32,
-    rgpRecipientCert: [*]*CERT_CONTEXT,
+    rgpRecipientCert: [*]?*CERT_CONTEXT,
     // TODO: what to do with BytesParamIndex 5?
-    pbToBeSignedAndEncrypted: *const u8,
+    pbToBeSignedAndEncrypted: ?*const u8,
     cbToBeSignedAndEncrypted: u32,
     // TODO: what to do with BytesParamIndex 7?
     pbSignedAndEncryptedBlob: ?*u8,
-    pcbSignedAndEncryptedBlob: *u32,
+    pcbSignedAndEncryptedBlob: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptDecryptAndVerifyMessageSignature(
-    pDecryptPara: *CRYPT_DECRYPT_MESSAGE_PARA,
-    pVerifyPara: *CRYPT_VERIFY_MESSAGE_PARA,
+    pDecryptPara: ?*CRYPT_DECRYPT_MESSAGE_PARA,
+    pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pbEncryptedBlob: *const u8,
+    pbEncryptedBlob: ?*const u8,
     cbEncryptedBlob: u32,
     // TODO: what to do with BytesParamIndex 6?
     pbDecrypted: ?*u8,
     pcbDecrypted: ?*u32,
-    ppXchgCert: ?**CERT_CONTEXT,
-    ppSignerCert: ?**CERT_CONTEXT,
+    ppXchgCert: ?*?*CERT_CONTEXT,
+    ppSignerCert: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9446,7 +9446,7 @@ pub extern "CRYPT32" fn CryptDecodeMessage(
     pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pbEncodedBlob: *const u8,
+    pbEncodedBlob: ?*const u8,
     cbEncodedBlob: u32,
     dwPrevInnerContentType: u32,
     pdwMsgType: ?*u32,
@@ -9454,16 +9454,16 @@ pub extern "CRYPT32" fn CryptDecodeMessage(
     // TODO: what to do with BytesParamIndex 10?
     pbDecoded: ?*u8,
     pcbDecoded: ?*u32,
-    ppXchgCert: ?**CERT_CONTEXT,
-    ppSignerCert: ?**CERT_CONTEXT,
+    ppXchgCert: ?*?*CERT_CONTEXT,
+    ppSignerCert: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptHashMessage(
-    pHashPara: *CRYPT_HASH_MESSAGE_PARA,
+    pHashPara: ?*CRYPT_HASH_MESSAGE_PARA,
     fDetachedHash: BOOL,
     cToBeHashed: u32,
-    rgpbToBeHashed: [*]const *const u8,
+    rgpbToBeHashed: [*]const ?*const u8,
     rgcbToBeHashed: [*]u32,
     // TODO: what to do with BytesParamIndex 6?
     pbHashedBlob: ?*u8,
@@ -9475,9 +9475,9 @@ pub extern "CRYPT32" fn CryptHashMessage(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptVerifyMessageHash(
-    pHashPara: *CRYPT_HASH_MESSAGE_PARA,
+    pHashPara: ?*CRYPT_HASH_MESSAGE_PARA,
     // TODO: what to do with BytesParamIndex 2?
-    pbHashedBlob: *u8,
+    pbHashedBlob: ?*u8,
     cbHashedBlob: u32,
     // TODO: what to do with BytesParamIndex 4?
     pbToBeHashed: ?*u8,
@@ -9489,12 +9489,12 @@ pub extern "CRYPT32" fn CryptVerifyMessageHash(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptVerifyDetachedMessageHash(
-    pHashPara: *CRYPT_HASH_MESSAGE_PARA,
+    pHashPara: ?*CRYPT_HASH_MESSAGE_PARA,
     // TODO: what to do with BytesParamIndex 2?
-    pbDetachedHashBlob: *u8,
+    pbDetachedHashBlob: ?*u8,
     cbDetachedHashBlob: u32,
     cToBeHashed: u32,
-    rgpbToBeHashed: [*]const *const u8,
+    rgpbToBeHashed: [*]const ?*const u8,
     rgcbToBeHashed: [*]u32,
     // TODO: what to do with BytesParamIndex 7?
     pbComputedHash: ?*u8,
@@ -9503,21 +9503,21 @@ pub extern "CRYPT32" fn CryptVerifyDetachedMessageHash(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSignMessageWithKey(
-    pSignPara: *CRYPT_KEY_SIGN_MESSAGE_PARA,
+    pSignPara: ?*CRYPT_KEY_SIGN_MESSAGE_PARA,
     // TODO: what to do with BytesParamIndex 2?
-    pbToBeSigned: *const u8,
+    pbToBeSigned: ?*const u8,
     cbToBeSigned: u32,
     // TODO: what to do with BytesParamIndex 4?
     pbSignedBlob: ?*u8,
-    pcbSignedBlob: *u32,
+    pcbSignedBlob: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptVerifyMessageSignatureWithKey(
-    pVerifyPara: *CRYPT_KEY_VERIFY_MESSAGE_PARA,
+    pVerifyPara: ?*CRYPT_KEY_VERIFY_MESSAGE_PARA,
     pPublicKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
     // TODO: what to do with BytesParamIndex 3?
-    pbSignedBlob: *const u8,
+    pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbDecoded: ?*u8,
@@ -9527,36 +9527,36 @@ pub extern "CRYPT32" fn CryptVerifyMessageSignatureWithKey(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertOpenSystemStoreA(
     hProv: usize,
-    szSubsystemProtocol: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    szSubsystemProtocol: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertOpenSystemStoreW(
     hProv: usize,
-    szSubsystemProtocol: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    szSubsystemProtocol: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddEncodedCertificateToSystemStoreA(
-    szCertStoreName: [*:0]const u8,
+    szCertStoreName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
-    pbCertEncoded: *const u8,
+    pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertAddEncodedCertificateToSystemStoreW(
-    szCertStoreName: [*:0]const u16,
+    szCertStoreName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
-    pbCertEncoded: *const u8,
+    pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINTRUST" fn FindCertsByIssuer(
     // TODO: what to do with BytesParamIndex 1?
     pCertChains: ?*CERT_CHAIN,
-    pcbCertChains: *u32,
-    pcCertChains: *u32,
+    pcbCertChains: ?*u32,
+    pcCertChains: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
     pbEncodedIssuerName: ?*u8,
     cbEncodedIssuerName: u32,
@@ -9567,28 +9567,28 @@ pub extern "WINTRUST" fn FindCertsByIssuer(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptQueryObject(
     dwObjectType: CERT_QUERY_OBJECT_TYPE,
-    pvObject: *const c_void,
+    pvObject: ?*const c_void,
     dwExpectedContentTypeFlags: CERT_QUERY_CONTENT_TYPE_FLAGS,
     dwExpectedFormatTypeFlags: CERT_QUERY_FORMAT_TYPE_FLAGS,
     dwFlags: u32,
     pdwMsgAndCertEncodingType: ?*CERT_QUERY_ENCODING_TYPE,
     pdwContentType: ?*CERT_QUERY_CONTENT_TYPE,
     pdwFormatType: ?*CERT_QUERY_FORMAT_TYPE,
-    phCertStore: ?**c_void,
-    phMsg: ?**c_void,
-    ppvContext: ?*const *c_void,
+    phCertStore: ?*?*c_void,
+    phMsg: ?*?*c_void,
+    ppvContext: ?*const ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMemAlloc(
     cbSize: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMemRealloc(
     pv: ?*c_void,
     cbSize: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptMemFree(
@@ -9597,21 +9597,21 @@ pub extern "CRYPT32" fn CryptMemFree(
 
 pub extern "CRYPT32" fn CryptCreateAsyncHandle(
     dwFlags: u32,
-    phAsync: *HCRYPTASYNC,
+    phAsync: ?*?HCRYPTASYNC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "CRYPT32" fn CryptSetAsyncParam(
-    hAsync: HCRYPTASYNC,
-    pszParamOid: PSTR,
+    hAsync: ?HCRYPTASYNC,
+    pszParamOid: ?PSTR,
     pvParam: ?*c_void,
-    pfnFree: PFN_CRYPT_ASYNC_PARAM_FREE_FUNC,
+    pfnFree: ?PFN_CRYPT_ASYNC_PARAM_FREE_FUNC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "CRYPT32" fn CryptGetAsyncParam(
-    hAsync: HCRYPTASYNC,
-    pszParamOid: PSTR,
-    ppvParam: ?**c_void,
-    ppfnFree: ?*PFN_CRYPT_ASYNC_PARAM_FREE_FUNC,
+    hAsync: ?HCRYPTASYNC,
+    pszParamOid: ?PSTR,
+    ppvParam: ?*?*c_void,
+    ppfnFree: ?*?PFN_CRYPT_ASYNC_PARAM_FREE_FUNC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "CRYPT32" fn CryptCloseAsyncHandle(
@@ -9620,11 +9620,11 @@ pub extern "CRYPT32" fn CryptCloseAsyncHandle(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTNET" fn CryptRetrieveObjectByUrlA(
-    pszUrl: [*:0]const u8,
+    pszUrl: ?[*:0]const u8,
     pszObjectOid: ?[*:0]const u8,
     dwRetrievalFlags: u32,
     dwTimeout: u32,
-    ppvObject: **c_void,
+    ppvObject: ?*?*c_void,
     hAsyncRetrieve: ?HCRYPTASYNC,
     pCredentials: ?*CRYPT_CREDENTIALS,
     pvVerify: ?*c_void,
@@ -9633,11 +9633,11 @@ pub extern "CRYPTNET" fn CryptRetrieveObjectByUrlA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTNET" fn CryptRetrieveObjectByUrlW(
-    pszUrl: [*:0]const u16,
+    pszUrl: ?[*:0]const u16,
     pszObjectOid: ?[*:0]const u8,
     dwRetrievalFlags: u32,
     dwTimeout: u32,
-    ppvObject: **c_void,
+    ppvObject: ?*?*c_void,
     hAsyncRetrieve: ?HCRYPTASYNC,
     pCredentials: ?*CRYPT_CREDENTIALS,
     pvVerify: ?*c_void,
@@ -9645,62 +9645,62 @@ pub extern "CRYPTNET" fn CryptRetrieveObjectByUrlW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "CRYPTNET" fn CryptInstallCancelRetrieval(
-    pfnCancel: PFN_CRYPT_CANCEL_RETRIEVAL,
+    pfnCancel: ?PFN_CRYPT_CANCEL_RETRIEVAL,
     pvArg: ?*const c_void,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "CRYPTNET" fn CryptUninstallCancelRetrieval(
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTNET" fn CryptGetObjectUrl(
-    pszUrlOid: [*:0]const u8,
-    pvPara: *c_void,
+    pszUrlOid: ?[*:0]const u8,
+    pvPara: ?*c_void,
     dwFlags: CRYPT_GET_URL_FLAGS,
     // TODO: what to do with BytesParamIndex 4?
     pUrlArray: ?*CRYPT_URL_ARRAY,
-    pcbUrlArray: *u32,
+    pcbUrlArray: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
     pUrlInfo: ?*CRYPT_URL_INFO,
     pcbUrlInfo: ?*u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCreateSelfSignCertificate(
     hCryptProvOrNCryptKey: usize,
-    pSubjectIssuerBlob: *CRYPTOAPI_BLOB,
+    pSubjectIssuerBlob: ?*CRYPTOAPI_BLOB,
     dwFlags: CERT_CREATE_SELFSIGN_FLAGS,
     pKeyProvInfo: ?*CRYPT_KEY_PROV_INFO,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pStartTime: ?*SYSTEMTIME,
     pEndTime: ?*SYSTEMTIME,
     pExtensions: ?*CERT_EXTENSIONS,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptGetKeyIdentifierProperty(
-    pKeyIdentifier: *const CRYPTOAPI_BLOB,
+    pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
     dwPropId: u32,
     dwFlags: u32,
     pwszComputerName: ?[*:0]const u16,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 6?
     pvData: ?*c_void,
-    pcbData: *u32,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptSetKeyIdentifierProperty(
-    pKeyIdentifier: *const CRYPTOAPI_BLOB,
+    pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
     dwPropId: u32,
     dwFlags: u32,
     pwszComputerName: ?[*:0]const u16,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     pvData: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -9710,9 +9710,9 @@ pub extern "CRYPT32" fn CryptEnumKeyIdentifierProperties(
     dwPropId: u32,
     dwFlags: u32,
     pwszComputerName: ?[*:0]const u16,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     pvArg: ?*c_void,
-    pfnEnum: PFN_CRYPT_ENUM_KEYID_PROP,
+    pfnEnum: ?PFN_CRYPT_ENUM_KEYID_PROP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9720,19 +9720,19 @@ pub extern "CRYPT32" fn CryptCreateKeyIdentifierFromCSP(
     dwCertEncodingType: u32,
     pszPubKeyOID: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pPubKeyStruc: *const PUBLICKEYSTRUC,
+    pPubKeyStruc: ?*const PUBLICKEYSTRUC,
     cbPubKeyStruc: u32,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 7?
     pbHash: ?*u8,
-    pcbHash: *u32,
+    pcbHash: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertCreateCertificateChainEngine(
-    pConfig: *CERT_CHAIN_ENGINE_CONFIG,
-    phChainEngine: *HCERTCHAINENGINE,
+    pConfig: ?*CERT_CHAIN_ENGINE_CONFIG,
+    phChainEngine: ?*?HCERTCHAINENGINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9748,41 +9748,41 @@ pub extern "CRYPT32" fn CertResyncCertificateChainEngine(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertGetCertificateChain(
     hChainEngine: ?HCERTCHAINENGINE,
-    pCertContext: *const CERT_CONTEXT,
+    pCertContext: ?*const CERT_CONTEXT,
     pTime: ?*FILETIME,
     hAdditionalStore: ?*c_void,
-    pChainPara: *CERT_CHAIN_PARA,
+    pChainPara: ?*CERT_CHAIN_PARA,
     dwFlags: u32,
-    pvReserved: *c_void,
-    ppChainContext: **CERT_CHAIN_CONTEXT,
+    pvReserved: ?*c_void,
+    ppChainContext: ?*?*CERT_CHAIN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFreeCertificateChain(
-    pChainContext: *CERT_CHAIN_CONTEXT,
+    pChainContext: ?*CERT_CHAIN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertDuplicateCertificateChain(
-    pChainContext: *CERT_CHAIN_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CHAIN_CONTEXT;
+    pChainContext: ?*CERT_CHAIN_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CHAIN_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertFindChainInStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     dwCertEncodingType: u32,
     dwFindFlags: CERT_FIND_CHAIN_IN_STORE_FLAGS,
     dwFindType: u32,
     pvFindPara: ?*const c_void,
     pPrevChainContext: ?*CERT_CHAIN_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CHAIN_CONTEXT;
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CHAIN_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CertVerifyCertificateChainPolicy(
-    pszPolicyOID: [*:0]const u8,
-    pChainContext: *CERT_CHAIN_CONTEXT,
-    pPolicyPara: *CERT_CHAIN_POLICY_PARA,
-    pPolicyStatus: *CERT_CHAIN_POLICY_STATUS,
+    pszPolicyOID: ?[*:0]const u8,
+    pChainContext: ?*CERT_CHAIN_CONTEXT,
+    pPolicyPara: ?*CERT_CHAIN_POLICY_PARA,
+    pPolicyStatus: ?*CERT_CHAIN_POLICY_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9792,7 +9792,7 @@ pub extern "CRYPT32" fn CryptStringToBinaryA(
     dwFlags: CRYPT_STRING,
     // TODO: what to do with BytesParamIndex 4?
     pbBinary: ?*u8,
-    pcbBinary: *u32,
+    pcbBinary: ?*u32,
     pdwSkip: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -9804,7 +9804,7 @@ pub extern "CRYPT32" fn CryptStringToBinaryW(
     dwFlags: CRYPT_STRING,
     // TODO: what to do with BytesParamIndex 4?
     pbBinary: ?*u8,
-    pcbBinary: *u32,
+    pcbBinary: ?*u32,
     pdwSkip: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -9812,65 +9812,65 @@ pub extern "CRYPT32" fn CryptStringToBinaryW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptBinaryToStringA(
     // TODO: what to do with BytesParamIndex 1?
-    pbBinary: *const u8,
+    pbBinary: ?*const u8,
     cbBinary: u32,
     dwFlags: CRYPT_STRING,
     pszString: ?[*:0]u8,
-    pcchString: *u32,
+    pcchString: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn CryptBinaryToStringW(
     // TODO: what to do with BytesParamIndex 1?
-    pbBinary: *const u8,
+    pbBinary: ?*const u8,
     cbBinary: u32,
     dwFlags: CRYPT_STRING,
     pszString: ?[*:0]u16,
-    pcchString: *u32,
+    pcchString: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn PFXImportCertStore(
-    pPFX: *CRYPTOAPI_BLOB,
-    szPassword: [*:0]const u16,
+    pPFX: ?*CRYPTOAPI_BLOB,
+    szPassword: ?[*:0]const u16,
     dwFlags: CRYPT_KEY_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn PFXIsPFXBlob(
-    pPFX: *CRYPTOAPI_BLOB,
+    pPFX: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn PFXVerifyPassword(
-    pPFX: *CRYPTOAPI_BLOB,
-    szPassword: [*:0]const u16,
+    pPFX: ?*CRYPTOAPI_BLOB,
+    szPassword: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn PFXExportCertStoreEx(
-    hStore: *c_void,
-    pPFX: *CRYPTOAPI_BLOB,
-    szPassword: [*:0]const u16,
-    pvPara: *c_void,
+    hStore: ?*c_void,
+    pPFX: ?*CRYPTOAPI_BLOB,
+    szPassword: ?[*:0]const u16,
+    pvPara: ?*c_void,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPT32" fn PFXExportCertStore(
-    hStore: *c_void,
-    pPFX: *CRYPTOAPI_BLOB,
-    szPassword: [*:0]const u16,
+    hStore: ?*c_void,
+    pPFX: ?*CRYPTOAPI_BLOB,
+    szPassword: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CertOpenServerOcspResponse(
-    pChainContext: *CERT_CHAIN_CONTEXT,
+    pChainContext: ?*CERT_CHAIN_CONTEXT,
     dwFlags: u32,
     pOpenPara: ?*CERT_SERVER_OCSP_RESPONSE_OPEN_PARA,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CertAddRefServerOcspResponse(
@@ -9885,10 +9885,10 @@ pub extern "CRYPT32" fn CertCloseServerOcspResponse(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CertGetServerOcspResponseContext(
-    hServerOcspResponse: *c_void,
+    hServerOcspResponse: ?*c_void,
     dwFlags: u32,
-    pvReserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *CERT_SERVER_OCSP_RESPONSE_CONTEXT;
+    pvReserved: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_SERVER_OCSP_RESPONSE_CONTEXT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CertAddRefServerOcspResponseContext(
@@ -9902,15 +9902,15 @@ pub extern "CRYPT32" fn CertFreeServerOcspResponseContext(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "CRYPT32" fn CertRetrieveLogoOrBiometricInfo(
-    pCertContext: *const CERT_CONTEXT,
-    lpszLogoOrBiometricType: [*:0]const u8,
+    pCertContext: ?*const CERT_CONTEXT,
+    lpszLogoOrBiometricType: ?[*:0]const u8,
     dwRetrievalFlags: u32,
     dwTimeout: u32,
     dwFlags: u32,
-    pvReserved: *c_void,
-    ppbData: **u8,
-    pcbData: *u32,
-    ppwszMimeType: ?*PWSTR,
+    pvReserved: ?*c_void,
+    ppbData: ?*?*u8,
+    pcbData: ?*u32,
+    ppwszMimeType: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9920,48 +9920,48 @@ pub extern "CRYPT32" fn CertSelectCertificateChains(
     pChainParameters: ?*CERT_SELECT_CHAIN_PARA,
     cCriteria: u32,
     rgpCriteria: ?[*]CERT_SELECT_CRITERIA,
-    hStore: *c_void,
-    pcSelection: *u32,
-    pprgpSelection: ***CERT_CHAIN_CONTEXT,
+    hStore: ?*c_void,
+    pcSelection: ?*u32,
+    pprgpSelection: ?*?*?*CERT_CHAIN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPT32" fn CertFreeCertificateChainList(
-    prgpSelection: **CERT_CHAIN_CONTEXT,
+    prgpSelection: ?*?*CERT_CHAIN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPT32" fn CryptRetrieveTimeStamp(
-    wszUrl: [*:0]const u16,
+    wszUrl: ?[*:0]const u16,
     dwRetrievalFlags: u32,
     dwTimeout: u32,
-    pszHashId: [*:0]const u8,
+    pszHashId: ?[*:0]const u8,
     pPara: ?*const CRYPT_TIMESTAMP_PARA,
     // TODO: what to do with BytesParamIndex 6?
-    pbData: *const u8,
+    pbData: ?*const u8,
     cbData: u32,
-    ppTsContext: **CRYPT_TIMESTAMP_CONTEXT,
-    ppTsSigner: ?**CERT_CONTEXT,
-    phStore: ?**c_void,
+    ppTsContext: ?*?*CRYPT_TIMESTAMP_CONTEXT,
+    ppTsSigner: ?*?*CERT_CONTEXT,
+    phStore: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPT32" fn CryptVerifyTimeStampSignature(
     // TODO: what to do with BytesParamIndex 1?
-    pbTSContentInfo: *const u8,
+    pbTSContentInfo: ?*const u8,
     cbTSContentInfo: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbData: ?*const u8,
     cbData: u32,
     hAdditionalStore: ?*c_void,
-    ppTsContext: **CRYPT_TIMESTAMP_CONTEXT,
-    ppTsSigner: ?**CERT_CONTEXT,
-    phStore: ?**c_void,
+    ppTsContext: ?*?*CRYPT_TIMESTAMP_CONTEXT,
+    ppTsSigner: ?*?*CERT_CONTEXT,
+    phStore: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "CRYPT32" fn CertIsWeakHash(
     dwHashUseType: u32,
-    pwszCNGHashAlgid: [*:0]const u16,
+    pwszCNGHashAlgid: ?[*:0]const u16,
     dwChainFlags: u32,
     pSignerChainContext: ?*CERT_CHAIN_CONTEXT,
     pTimeStamp: ?*FILETIME,
@@ -9970,24 +9970,24 @@ pub extern "CRYPT32" fn CertIsWeakHash(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptRegisterProtectionDescriptorName(
-    pwszName: [*:0]const u16,
+    pwszName: ?[*:0]const u16,
     pwszDescriptorString: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptQueryProtectionDescriptorName(
-    pwszName: [*:0]const u16,
+    pwszName: ?[*:0]const u16,
     pwszDescriptorString: ?[*:0]u16,
-    pcDescriptorString: *usize,
+    pcDescriptorString: ?*usize,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptCreateProtectionDescriptor(
-    pwszDescriptorString: [*:0]const u16,
+    pwszDescriptorString: ?[*:0]const u16,
     dwFlags: u32,
-    phDescriptor: *NCRYPT_DESCRIPTOR_HANDLE,
+    phDescriptor: ?*NCRYPT_DESCRIPTOR_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10000,7 +10000,7 @@ pub extern "ncrypt" fn NCryptGetProtectionDescriptorInfo(
     hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
     pMemPara: ?*const NCRYPT_ALLOC_PARA,
     dwInfoType: u32,
-    ppvInfo: **c_void,
+    ppvInfo: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10008,12 +10008,12 @@ pub extern "ncrypt" fn NCryptProtectSecret(
     hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pbData: *const u8,
+    pbData: ?*const u8,
     cbData: u32,
     pMemPara: ?*const NCRYPT_ALLOC_PARA,
     hWnd: ?HWND,
-    ppbProtectedBlob: **u8,
-    pcbProtectedBlob: *u32,
+    ppbProtectedBlob: ?*?*u8,
+    pcbProtectedBlob: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10021,12 +10021,12 @@ pub extern "ncrypt" fn NCryptUnprotectSecret(
     phDescriptor: ?*NCRYPT_DESCRIPTOR_HANDLE,
     dwFlags: NCRYPT_FLAGS,
     // TODO: what to do with BytesParamIndex 3?
-    pbProtectedBlob: *const u8,
+    pbProtectedBlob: ?*const u8,
     cbProtectedBlob: u32,
     pMemPara: ?*const NCRYPT_ALLOC_PARA,
     hWnd: ?HWND,
-    ppbData: **u8,
-    pcbData: *u32,
+    ppbData: ?*?*u8,
+    pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -10034,30 +10034,30 @@ pub extern "ncrypt" fn NCryptStreamOpenToProtect(
     hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
     dwFlags: u32,
     hWnd: ?HWND,
-    pStreamInfo: *NCRYPT_PROTECT_STREAM_INFO,
-    phStream: *NCRYPT_STREAM_HANDLE,
+    pStreamInfo: ?*NCRYPT_PROTECT_STREAM_INFO,
+    phStream: ?*NCRYPT_STREAM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptStreamOpenToUnprotect(
-    pStreamInfo: *NCRYPT_PROTECT_STREAM_INFO,
+    pStreamInfo: ?*NCRYPT_PROTECT_STREAM_INFO,
     dwFlags: u32,
     hWnd: ?HWND,
-    phStream: *NCRYPT_STREAM_HANDLE,
+    phStream: ?*NCRYPT_STREAM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ncrypt" fn NCryptStreamOpenToUnprotectEx(
-    pStreamInfo: *NCRYPT_PROTECT_STREAM_INFO_EX,
+    pStreamInfo: ?*NCRYPT_PROTECT_STREAM_INFO_EX,
     dwFlags: u32,
     hWnd: ?HWND,
-    phStream: *NCRYPT_STREAM_HANDLE,
+    phStream: ?*NCRYPT_STREAM_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptStreamUpdate(
     hStream: NCRYPT_STREAM_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    pbData: *const u8,
+    pbData: ?*const u8,
     cbData: usize,
     fFinal: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -10069,12 +10069,12 @@ pub extern "ncrypt" fn NCryptStreamClose(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlClose(
-    hCryptXml: *c_void,
+    hCryptXml: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlGetTransforms(
-    ppConfig: *const *CRYPT_XML_TRANSFORM_CHAIN_CONFIG,
+    ppConfig: ?*const ?*CRYPT_XML_TRANSFORM_CHAIN_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -10085,7 +10085,7 @@ pub extern "CRYPTXML" fn CryptXmlOpenToEncode(
     rgProperty: ?[*]const CRYPT_XML_PROPERTY,
     cProperty: u32,
     pEncoded: ?*const CRYPT_XML_BLOB,
-    phSignature: **c_void,
+    phSignature: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -10094,160 +10094,160 @@ pub extern "CRYPTXML" fn CryptXmlOpenToDecode(
     dwFlags: CRYPT_XML_FLAGS,
     rgProperty: ?[*]const CRYPT_XML_PROPERTY,
     cProperty: u32,
-    pEncoded: *const CRYPT_XML_BLOB,
-    phCryptXml: **c_void,
+    pEncoded: ?*const CRYPT_XML_BLOB,
+    phCryptXml: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlAddObject(
-    hSignatureOrObject: *c_void,
+    hSignatureOrObject: ?*c_void,
     dwFlags: u32,
     rgProperty: ?[*]const CRYPT_XML_PROPERTY,
     cProperty: u32,
-    pEncoded: *const CRYPT_XML_BLOB,
-    ppObject: ?*const *CRYPT_XML_OBJECT,
+    pEncoded: ?*const CRYPT_XML_BLOB,
+    ppObject: ?*const ?*CRYPT_XML_OBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlCreateReference(
-    hCryptXml: *c_void,
+    hCryptXml: ?*c_void,
     dwFlags: u32,
     wszId: ?[*:0]const u16,
     wszURI: ?[*:0]const u16,
     wszType: ?[*:0]const u16,
-    pDigestMethod: *const CRYPT_XML_ALGORITHM,
+    pDigestMethod: ?*const CRYPT_XML_ALGORITHM,
     cTransform: u32,
     rgTransform: ?[*]const CRYPT_XML_ALGORITHM,
-    phReference: **c_void,
+    phReference: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlDigestReference(
-    hReference: *c_void,
+    hReference: ?*c_void,
     dwFlags: u32,
-    pDataProviderIn: *CRYPT_XML_DATA_PROVIDER,
+    pDataProviderIn: ?*CRYPT_XML_DATA_PROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlSetHMACSecret(
-    hSignature: *c_void,
+    hSignature: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    pbSecret: *const u8,
+    pbSecret: ?*const u8,
     cbSecret: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlSign(
-    hSignature: *c_void,
+    hSignature: ?*c_void,
     hKey: usize,
     dwKeySpec: CERT_KEY_SPEC,
     dwFlags: CRYPT_XML_FLAGS,
     dwKeyInfoSpec: CRYPT_XML_KEYINFO_SPEC,
     pvKeyInfoSpec: ?*const c_void,
-    pSignatureMethod: *const CRYPT_XML_ALGORITHM,
-    pCanonicalization: *const CRYPT_XML_ALGORITHM,
+    pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
+    pCanonicalization: ?*const CRYPT_XML_ALGORITHM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlImportPublicKey(
     dwFlags: CRYPT_XML_FLAGS,
-    pKeyValue: *const CRYPT_XML_KEY_VALUE,
-    phKey: **c_void,
+    pKeyValue: ?*const CRYPT_XML_KEY_VALUE,
+    phKey: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlVerifySignature(
-    hSignature: *c_void,
+    hSignature: ?*c_void,
     hKey: ?*c_void,
     dwFlags: CRYPT_XML_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlGetDocContext(
-    hCryptXml: *c_void,
-    ppStruct: *const *CRYPT_XML_DOC_CTXT,
+    hCryptXml: ?*c_void,
+    ppStruct: ?*const ?*CRYPT_XML_DOC_CTXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlGetSignature(
-    hCryptXml: *c_void,
-    ppStruct: *const *CRYPT_XML_SIGNATURE,
+    hCryptXml: ?*c_void,
+    ppStruct: ?*const ?*CRYPT_XML_SIGNATURE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlGetReference(
-    hCryptXml: *c_void,
-    ppStruct: *const *CRYPT_XML_REFERENCE,
+    hCryptXml: ?*c_void,
+    ppStruct: ?*const ?*CRYPT_XML_REFERENCE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlGetStatus(
-    hCryptXml: *c_void,
-    pStatus: *CRYPT_XML_STATUS,
+    hCryptXml: ?*c_void,
+    pStatus: ?*CRYPT_XML_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlEncode(
-    hCryptXml: *c_void,
+    hCryptXml: ?*c_void,
     dwCharset: CRYPT_XML_CHARSET,
     rgProperty: ?[*]const CRYPT_XML_PROPERTY,
     cProperty: u32,
-    pvCallbackState: *c_void,
-    pfnWrite: PFN_CRYPT_XML_WRITE_CALLBACK,
+    pvCallbackState: ?*c_void,
+    pfnWrite: ?PFN_CRYPT_XML_WRITE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTXML" fn CryptXmlGetAlgorithmInfo(
-    pXmlAlgorithm: *const CRYPT_XML_ALGORITHM,
+    pXmlAlgorithm: ?*const CRYPT_XML_ALGORITHM,
     dwFlags: CRYPT_XML_FLAGS,
-    ppAlgInfo: **CRYPT_XML_ALGORITHM_INFO,
+    ppAlgInfo: ?*?*CRYPT_XML_ALGORITHM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "CRYPTXML" fn CryptXmlFindAlgorithmInfo(
     dwFindByType: u32,
-    pvFindBy: *const c_void,
+    pvFindBy: ?*const c_void,
     dwGroupId: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) *CRYPT_XML_ALGORITHM_INFO;
+) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_XML_ALGORITHM_INFO;
 
 pub extern "CRYPTXML" fn CryptXmlEnumAlgorithmInfo(
     dwGroupId: u32,
     dwFlags: u32,
     pvArg: ?*c_void,
-    pfnEnumAlgInfo: PFN_CRYPT_XML_ENUM_ALG_INFO,
+    pfnEnumAlgInfo: ?PFN_CRYPT_XML_ENUM_ALG_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIDlgViewContext(
     dwContextType: u32,
-    pvContext: *const c_void,
+    pvContext: ?*const c_void,
     hwnd: ?HWND,
     pwszTitle: ?[*:0]const u16,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIDlgSelectCertificateFromStore(
-    hCertStore: *c_void,
+    hCertStore: ?*c_void,
     hwnd: ?HWND,
     pwszTitle: ?[*:0]const u16,
     pwszDisplayString: ?[*:0]const u16,
     dwDontUseColumn: u32,
     dwFlags: u32,
-    pvReserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *CERT_CONTEXT;
+    pvReserved: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTUI" fn CertSelectionGetSerializedBlob(
-    pcsi: *CERT_SELECTUI_INPUT,
-    ppOutBuffer: ?**c_void,
-    pulOutBufferSize: *u32,
+    pcsi: ?*CERT_SELECTUI_INPUT,
+    ppOutBuffer: ?*?*c_void,
+    pulOutBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIDlgCertMgr(
-    pCryptUICertMgr: *CRYPTUI_CERT_MGR_STRUCT,
+    pCryptUICertMgr: ?*CRYPTUI_CERT_MGR_STRUCT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10255,25 +10255,25 @@ pub extern "CRYPTUI" fn CryptUIWizDigitalSign(
     dwFlags: u32,
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,
-    pDigitalSignInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_INFO,
-    ppSignContext: ?**CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT,
+    pDigitalSignInfo: ?*CRYPTUI_WIZ_DIGITAL_SIGN_INFO,
+    ppSignContext: ?*?*CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIWizFreeDigitalSignContext(
-    pSignContext: *CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT,
+    pSignContext: ?*CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIDlgViewCertificateW(
-    pCertViewInfo: *CRYPTUI_VIEWCERTIFICATE_STRUCTW,
-    pfPropertiesChanged: *BOOL,
+    pCertViewInfo: ?*CRYPTUI_VIEWCERTIFICATE_STRUCTW,
+    pfPropertiesChanged: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIDlgViewCertificateA(
-    pCertViewInfo: *CRYPTUI_VIEWCERTIFICATE_STRUCTA,
-    pfPropertiesChanged: *BOOL,
+    pCertViewInfo: ?*CRYPTUI_VIEWCERTIFICATE_STRUCTA,
+    pfPropertiesChanged: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10281,7 +10281,7 @@ pub extern "CRYPTUI" fn CryptUIWizExport(
     dwFlags: CRYPTUI_WIZ_FLAGS,
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,
-    pExportInfo: *CRYPTUI_WIZ_EXPORT_INFO,
+    pExportInfo: ?*CRYPTUI_WIZ_EXPORT_INFO,
     pvoid: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

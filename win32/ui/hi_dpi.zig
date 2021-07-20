@@ -109,39 +109,39 @@ pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
     hprocess: ?HANDLE,
-    value: *PROCESS_DPI_AWARENESS,
+    value: ?*PROCESS_DPI_AWARENESS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
-    hmonitor: HMONITOR,
+    hmonitor: ?HMONITOR,
     dpiType: MONITOR_DPI_TYPE,
-    dpiX: *u32,
-    dpiY: *u32,
+    dpiX: ?*u32,
+    dpiY: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "USER32" fn SetDialogControlDpiChangeBehavior(
-    hWnd: HWND,
+    hWnd: ?HWND,
     mask: DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS,
     values: DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "USER32" fn GetDialogControlDpiChangeBehavior(
-    hWnd: HWND,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "USER32" fn SetDialogDpiChangeBehavior(
-    hDlg: HWND,
+    hDlg: ?HWND,
     mask: DIALOG_DPI_CHANGE_BEHAVIORS,
     values: DIALOG_DPI_CHANGE_BEHAVIORS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "USER32" fn GetDialogDpiChangeBehavior(
-    hDlg: HWND,
+    hDlg: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) DIALOG_DPI_CHANGE_BEHAVIORS;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -152,7 +152,7 @@ pub extern "USER32" fn GetSystemMetricsForDpi(
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "USER32" fn AdjustWindowRectExForDpi(
-    lpRect: *RECT,
+    lpRect: ?*RECT,
     dwStyle: u32,
     bMenu: BOOL,
     dwExStyle: u32,
@@ -162,13 +162,13 @@ pub extern "USER32" fn AdjustWindowRectExForDpi(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "USER32" fn LogicalToPhysicalPointForPerMonitorDPI(
     hWnd: ?HWND,
-    lpPoint: *POINT,
+    lpPoint: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "USER32" fn PhysicalToLogicalPointForPerMonitorDPI(
     hWnd: ?HWND,
-    lpPoint: *POINT,
+    lpPoint: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -191,7 +191,7 @@ pub extern "USER32" fn GetThreadDpiAwarenessContext(
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "USER32" fn GetWindowDpiAwarenessContext(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -217,7 +217,7 @@ pub extern "USER32" fn IsValidDpiAwarenessContext(
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "USER32" fn GetDpiForWindow(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -226,12 +226,12 @@ pub extern "USER32" fn GetDpiForSystem(
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "USER32" fn GetSystemDpiForProcess(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "USER32" fn EnableNonClientDpiScaling(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -250,13 +250,13 @@ pub extern "USER32" fn GetThreadDpiHostingBehavior(
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "USER32" fn GetWindowDpiHostingBehavior(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "UxTheme" fn OpenThemeDataForDpi(
     hwnd: ?HWND,
-    pszClassList: [*:0]const u16,
+    pszClassList: ?[*:0]const u16,
     dpi: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 

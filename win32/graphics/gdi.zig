@@ -1499,7 +1499,7 @@ pub const BITMAP = extern struct {
     bmWidthBytes: i32,
     bmPlanes: u16,
     bmBitsPixel: u16,
-    bmBits: *c_void,
+    bmBits: ?*c_void,
 };
 
 pub const RGBTRIPLE = extern struct {
@@ -1607,7 +1607,7 @@ pub const BITMAPFILEHEADER = extern struct {
 };
 
 pub const HANDLETABLE = extern struct {
-    objectHandle: [1]HGDIOBJ,
+    objectHandle: [1]?HGDIOBJ,
 };
 
 pub const METARECORD = extern struct {
@@ -2037,10 +2037,10 @@ pub const OUTLINETEXTMETRICA = extern struct {
     otmsStrikeoutPosition: i32,
     otmsUnderscoreSize: i32,
     otmsUnderscorePosition: i32,
-    otmpFamilyName: PSTR,
-    otmpFaceName: PSTR,
-    otmpStyleName: PSTR,
-    otmpFullName: PSTR,
+    otmpFamilyName: ?PSTR,
+    otmpFaceName: ?PSTR,
+    otmpStyleName: ?PSTR,
+    otmpFullName: ?PSTR,
 };
 
 pub const OUTLINETEXTMETRICW = extern struct {
@@ -2072,30 +2072,30 @@ pub const OUTLINETEXTMETRICW = extern struct {
     otmsStrikeoutPosition: i32,
     otmsUnderscoreSize: i32,
     otmsUnderscorePosition: i32,
-    otmpFamilyName: PSTR,
-    otmpFaceName: PSTR,
-    otmpStyleName: PSTR,
-    otmpFullName: PSTR,
+    otmpFamilyName: ?PSTR,
+    otmpFaceName: ?PSTR,
+    otmpStyleName: ?PSTR,
+    otmpFullName: ?PSTR,
 };
 
 pub const POLYTEXTA = extern struct {
     x: i32,
     y: i32,
     n: u32,
-    lpstr: [*:0]const u8,
+    lpstr: ?[*:0]const u8,
     uiFlags: u32,
     rcl: RECT,
-    pdx: *i32,
+    pdx: ?*i32,
 };
 
 pub const POLYTEXTW = extern struct {
     x: i32,
     y: i32,
     n: u32,
-    lpstr: [*:0]const u16,
+    lpstr: ?[*:0]const u16,
     uiFlags: u32,
     rcl: RECT,
-    pdx: *i32,
+    pdx: ?*i32,
 };
 
 pub const FIXED = extern struct {
@@ -2137,24 +2137,24 @@ pub const TTPOLYGONHEADER = extern struct {
 
 pub const GCP_RESULTSA = extern struct {
     lStructSize: u32,
-    lpOutString: PSTR,
-    lpOrder: *u32,
-    lpDx: *i32,
-    lpCaretPos: *i32,
-    lpClass: PSTR,
-    lpGlyphs: PWSTR,
+    lpOutString: ?PSTR,
+    lpOrder: ?*u32,
+    lpDx: ?*i32,
+    lpCaretPos: ?*i32,
+    lpClass: ?PSTR,
+    lpGlyphs: ?PWSTR,
     nGlyphs: u32,
     nMaxFit: i32,
 };
 
 pub const GCP_RESULTSW = extern struct {
     lStructSize: u32,
-    lpOutString: PWSTR,
-    lpOrder: *u32,
-    lpDx: *i32,
-    lpCaretPos: *i32,
-    lpClass: PSTR,
-    lpGlyphs: PWSTR,
+    lpOutString: ?PWSTR,
+    lpOrder: ?*u32,
+    lpDx: ?*i32,
+    lpCaretPos: ?*i32,
+    lpClass: ?PSTR,
+    lpGlyphs: ?PWSTR,
     nGlyphs: u32,
     nMaxFit: i32,
 };
@@ -2166,21 +2166,21 @@ pub const RASTERIZER_STATUS = extern struct {
 };
 
 pub const FONTENUMPROCA = fn(
-    param0: *const LOGFONTA,
-    param1: *const TEXTMETRICA,
+    param0: ?*const LOGFONTA,
+    param1: ?*const TEXTMETRICA,
     param2: u32,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const FONTENUMPROCW = fn(
-    param0: *const LOGFONTW,
-    param1: *const TEXTMETRICW,
+    param0: ?*const LOGFONTW,
+    param1: ?*const TEXTMETRICW,
     param2: u32,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const GOBJENUMPROC = fn(
-    param0: *c_void,
+    param0: ?*c_void,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2191,22 +2191,22 @@ pub const LINEDDAPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LPFNDEVMODE = fn(
-    param0: HWND,
-    param1: HINSTANCE,
-    param2: *DEVMODEA,
-    param3: PSTR,
-    param4: PSTR,
-    param5: *DEVMODEA,
-    param6: PSTR,
+    param0: ?HWND,
+    param1: ?HINSTANCE,
+    param2: ?*DEVMODEA,
+    param3: ?PSTR,
+    param4: ?PSTR,
+    param5: ?*DEVMODEA,
+    param6: ?PSTR,
     param7: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPFNDEVCAPS = fn(
-    param0: PSTR,
-    param1: PSTR,
+    param0: ?PSTR,
+    param1: ?PSTR,
     param2: u32,
-    param3: PSTR,
-    param4: *DEVMODEA,
+    param3: ?PSTR,
+    param4: ?*DEVMODEA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WCRANGE = extern struct {
@@ -2300,17 +2300,17 @@ pub const BLENDFUNCTION = extern struct {
 };
 
 pub const MFENUMPROC = fn(
-    hdc: HDC,
+    hdc: ?HDC,
     lpht: [*]HANDLETABLE,
-    lpMR: *METARECORD,
+    lpMR: ?*METARECORD,
     nObj: i32,
     param4: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ENHMFENUMPROC = fn(
-    hdc: HDC,
+    hdc: ?HDC,
     lpht: [*]HANDLETABLE,
-    lpmr: *const ENHMETARECORD,
+    lpmr: ?*const ENHMETARECORD,
     nHandles: i32,
     data: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2319,7 +2319,7 @@ pub const DIBSECTION = extern struct {
     dsBm: BITMAP,
     dsBmih: BITMAPINFOHEADER,
     dsBitfields: [3]u32,
-    dshSection: HANDLE,
+    dshSection: ?HANDLE,
     dsOffset: u32,
 };
 
@@ -2938,45 +2938,45 @@ pub const EMRTRANSPARENTBLT = extern struct {
 };
 
 pub const WGLSWAP = extern struct {
-    hdc: HDC,
+    hdc: ?HDC,
     uiFlags: u32,
 };
 
 pub const CFP_ALLOCPROC = fn(
     param0: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const CFP_REALLOCPROC = fn(
-    param0: *c_void,
+    param0: ?*c_void,
     param1: usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const CFP_FREEPROC = fn(
-    param0: *c_void,
+    param0: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const READEMBEDPROC = fn(
-    param0: *c_void,
-    param1: *c_void,
+    param0: ?*c_void,
+    param1: ?*c_void,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WRITEEMBEDPROC = fn(
-    param0: *c_void,
-    param1: *const c_void,
+    param0: ?*c_void,
+    param1: ?*const c_void,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const TTLOADINFO = extern struct {
     usStructSize: u16,
     usRefStrSize: u16,
-    pusRefStr: *u16,
+    pusRefStr: ?*u16,
 };
 
 pub const TTEMBEDINFO = extern struct {
     usStructSize: u16,
     usRootStrSize: u16,
-    pusRootStr: *u16,
+    pusRootStr: ?*u16,
 };
 
 pub const TTVALIDATIONTESTSPARAMS = extern struct {
@@ -2986,7 +2986,7 @@ pub const TTVALIDATIONTESTSPARAMS = extern struct {
     ulCharSet: u32,
     usReserved1: u16,
     usCharCodeCount: u16,
-    pusCharCodeSet: *u16,
+    pusCharCodeSet: ?*u16,
 };
 
 pub const TTVALIDATIONTESTSPARAMSEX = extern struct {
@@ -2996,7 +2996,7 @@ pub const TTVALIDATIONTESTSPARAMSEX = extern struct {
     ulCharSet: u32,
     usReserved1: u16,
     usCharCodeCount: u16,
-    pulCharCodeSet: *u32,
+    pulCharCodeSet: ?*u32,
 };
 
 pub const DRAWEDGE_FLAGS = enum(u32) {
@@ -4203,13 +4203,13 @@ pub const MM_TEXT = HDC_MAP_MODE.TEXT;
 pub const MM_TWIPS = HDC_MAP_MODE.TWIPS;
 
 pub const GRAYSTRINGPROC = fn(
-    param0: HDC,
+    param0: ?HDC,
     param1: LPARAM,
     param2: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DRAWSTATEPROC = fn(
-    hdc: HDC,
+    hdc: ?HDC,
     lData: LPARAM,
     wData: WPARAM,
     cx: i32,
@@ -4217,7 +4217,7 @@ pub const DRAWSTATEPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PAINTSTRUCT = extern struct {
-    hdc: HDC,
+    hdc: ?HDC,
     fErase: BOOL,
     rcPaint: RECT,
     fRestore: BOOL,
@@ -4251,9 +4251,9 @@ pub const MONITORINFOEXW = extern struct {
 };
 
 pub const MONITORENUMPROC = fn(
-    param0: HMONITOR,
-    param1: HDC,
-    param2: *RECT,
+    param0: ?HMONITOR,
+    param1: ?HDC,
+    param2: ?*RECT,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4262,7 +4262,7 @@ pub const MONITORENUMPROC = fn(
 // Section: Functions (395)
 //--------------------------------------------------------------------------------
 pub extern "GDI32" fn GetObjectA(
-    h: HGDIOBJ,
+    h: ?HGDIOBJ,
     c: i32,
     // TODO: what to do with BytesParamIndex 1?
     pv: ?*c_void,
@@ -4270,17 +4270,17 @@ pub extern "GDI32" fn GetObjectA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontResourceA(
-    param0: [*:0]const u8,
+    param0: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontResourceW(
-    param0: [*:0]const u16,
+    param0: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AnimatePalette(
-    hPal: HPALETTE,
+    hPal: ?HPALETTE,
     iStartIndex: u32,
     cEntries: u32,
     ppe: [*]const PALETTEENTRY,
@@ -4288,7 +4288,7 @@ pub extern "GDI32" fn AnimatePalette(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn Arc(
-    hdc: HDC,
+    hdc: ?HDC,
     x1: i32,
     y1: i32,
     x2: i32,
@@ -4301,7 +4301,7 @@ pub extern "GDI32" fn Arc(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BitBlt(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     cx: i32,
@@ -4314,12 +4314,12 @@ pub extern "GDI32" fn BitBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CancelDC(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn Chord(
-    hdc: HDC,
+    hdc: ?HDC,
     x1: i32,
     y1: i32,
     x2: i32,
@@ -4332,8 +4332,8 @@ pub extern "GDI32" fn Chord(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CloseMetaFile(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) HMETAFILE;
+    hdc: ?HDC,
+) callconv(@import("std").os.windows.WINAPI) ?HMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CombineRgn(
@@ -4345,15 +4345,15 @@ pub extern "GDI32" fn CombineRgn(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CopyMetaFileA(
-    param0: HMETAFILE,
+    param0: ?HMETAFILE,
     param1: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HMETAFILE;
+) callconv(@import("std").os.windows.WINAPI) ?HMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CopyMetaFileW(
-    param0: HMETAFILE,
+    param0: ?HMETAFILE,
     param1: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HMETAFILE;
+) callconv(@import("std").os.windows.WINAPI) ?HMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateBitmap(
@@ -4362,31 +4362,31 @@ pub extern "GDI32" fn CreateBitmap(
     nPlanes: u32,
     nBitCount: u32,
     lpBits: ?*const c_void,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateBitmapIndirect(
-    pbm: *const BITMAP,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+    pbm: ?*const BITMAP,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateBrushIndirect(
-    plbrush: *const LOGBRUSH,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+    plbrush: ?*const LOGBRUSH,
+) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateCompatibleBitmap(
-    hdc: HDC,
+    hdc: ?HDC,
     cx: i32,
     cy: i32,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDiscardableBitmap(
-    hdc: HDC,
+    hdc: ?HDC,
     cx: i32,
     cy: i32,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateCompatibleDC(
@@ -4411,25 +4411,25 @@ pub extern "GDI32" fn CreateDCW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDIBitmap(
-    hdc: HDC,
+    hdc: ?HDC,
     pbmih: ?*const BITMAPINFOHEADER,
     flInit: u32,
     pjBits: ?*const c_void,
     pbmi: ?*const BITMAPINFO,
     iUsage: DIB_USAGE,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDIBPatternBrush(
     h: isize,
     iUsage: DIB_USAGE,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDIBPatternBrushPt(
-    lpPackedDIB: *const c_void,
+    lpPackedDIB: ?*const c_void,
     iUsage: DIB_USAGE,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateEllipticRgn(
@@ -4437,22 +4437,22 @@ pub extern "GDI32" fn CreateEllipticRgn(
     y1: i32,
     x2: i32,
     y2: i32,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateEllipticRgnIndirect(
-    lprect: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+    lprect: ?*const RECT,
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateFontIndirectA(
-    lplf: *const LOGFONTA,
-) callconv(@import("std").os.windows.WINAPI) HFONT;
+    lplf: ?*const LOGFONTA,
+) callconv(@import("std").os.windows.WINAPI) ?HFONT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateFontIndirectW(
-    lplf: *const LOGFONTW,
-) callconv(@import("std").os.windows.WINAPI) HFONT;
+    lplf: ?*const LOGFONTW,
+) callconv(@import("std").os.windows.WINAPI) ?HFONT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateFontA(
@@ -4494,7 +4494,7 @@ pub extern "GDI32" fn CreateFontW(
 pub extern "GDI32" fn CreateHatchBrush(
     iHatch: HATCH_BRUSH_STYLE,
     color: u32,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateICA(
@@ -4524,33 +4524,33 @@ pub extern "GDI32" fn CreateMetaFileW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreatePalette(
-    plpal: *const LOGPALETTE,
-) callconv(@import("std").os.windows.WINAPI) HPALETTE;
+    plpal: ?*const LOGPALETTE,
+) callconv(@import("std").os.windows.WINAPI) ?HPALETTE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreatePen(
     iStyle: PEN_STYLE,
     cWidth: i32,
     color: u32,
-) callconv(@import("std").os.windows.WINAPI) HPEN;
+) callconv(@import("std").os.windows.WINAPI) ?HPEN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreatePenIndirect(
-    plpen: *const LOGPEN,
-) callconv(@import("std").os.windows.WINAPI) HPEN;
+    plpen: ?*const LOGPEN,
+) callconv(@import("std").os.windows.WINAPI) ?HPEN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreatePolyPolygonRgn(
-    pptl: *const POINT,
+    pptl: ?*const POINT,
     pc: [*]const i32,
     cPoly: i32,
     iMode: CREATE_POLYGON_RGN_MODE,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreatePatternBrush(
-    hbm: HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+    hbm: ?HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateRectRgn(
@@ -4558,12 +4558,12 @@ pub extern "GDI32" fn CreateRectRgn(
     y1: i32,
     x2: i32,
     y2: i32,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateRectRgnIndirect(
-    lprect: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+    lprect: ?*const RECT,
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateRoundRectRgn(
@@ -4573,28 +4573,28 @@ pub extern "GDI32" fn CreateRoundRectRgn(
     y2: i32,
     w: i32,
     h: i32,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateScalableFontResourceA(
     fdwHidden: u32,
-    lpszFont: [*:0]const u8,
-    lpszFile: [*:0]const u8,
+    lpszFont: ?[*:0]const u8,
+    lpszFile: ?[*:0]const u8,
     lpszPath: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateScalableFontResourceW(
     fdwHidden: u32,
-    lpszFont: [*:0]const u16,
-    lpszFile: [*:0]const u16,
+    lpszFont: ?[*:0]const u16,
+    lpszFile: ?[*:0]const u16,
     lpszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateSolidBrush(
     color: u32,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteDC(
@@ -4603,17 +4603,17 @@ pub extern "GDI32" fn DeleteDC(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteMetaFile(
-    hmf: HMETAFILE,
+    hmf: ?HMETAFILE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteObject(
-    ho: HGDIOBJ,
+    ho: ?HGDIOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DrawEscape(
-    hdc: HDC,
+    hdc: ?HDC,
     iEscape: i32,
     cjIn: i32,
     // TODO: what to do with BytesParamIndex 2?
@@ -4622,7 +4622,7 @@ pub extern "GDI32" fn DrawEscape(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "GDI32" fn Ellipse(
-    hdc: HDC,
+    hdc: ?HDC,
     left: i32,
     top: i32,
     right: i32,
@@ -4631,71 +4631,71 @@ pub extern "GDI32" fn Ellipse(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumFontFamiliesExA(
-    hdc: HDC,
-    lpLogfont: *LOGFONTA,
-    lpProc: FONTENUMPROCA,
+    hdc: ?HDC,
+    lpLogfont: ?*LOGFONTA,
+    lpProc: ?FONTENUMPROCA,
     lParam: LPARAM,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumFontFamiliesExW(
-    hdc: HDC,
-    lpLogfont: *LOGFONTW,
-    lpProc: FONTENUMPROCW,
+    hdc: ?HDC,
+    lpLogfont: ?*LOGFONTW,
+    lpProc: ?FONTENUMPROCW,
     lParam: LPARAM,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumFontFamiliesA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpLogfont: ?[*:0]const u8,
-    lpProc: FONTENUMPROCA,
+    lpProc: ?FONTENUMPROCA,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumFontFamiliesW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpLogfont: ?[*:0]const u16,
-    lpProc: FONTENUMPROCW,
+    lpProc: ?FONTENUMPROCW,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumFontsA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpLogfont: ?[*:0]const u8,
-    lpProc: FONTENUMPROCA,
+    lpProc: ?FONTENUMPROCA,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumFontsW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpLogfont: ?[*:0]const u16,
-    lpProc: FONTENUMPROCW,
+    lpProc: ?FONTENUMPROCW,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumObjects(
-    hdc: HDC,
+    hdc: ?HDC,
     nType: OBJ_TYPE,
-    lpFunc: GOBJENUMPROC,
+    lpFunc: ?GOBJENUMPROC,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EqualRgn(
-    hrgn1: HRGN,
-    hrgn2: HRGN,
+    hrgn1: ?HRGN,
+    hrgn2: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExcludeClipRect(
-    hdc: HDC,
+    hdc: ?HDC,
     left: i32,
     top: i32,
     right: i32,
@@ -4707,12 +4707,12 @@ pub extern "GDI32" fn ExtCreateRegion(
     lpx: ?*const XFORM,
     nCount: u32,
     // TODO: what to do with BytesParamIndex 1?
-    lpData: *const RGNDATA,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+    lpData: ?*const RGNDATA,
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExtFloodFill(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     color: u32,
@@ -4721,14 +4721,14 @@ pub extern "GDI32" fn ExtFloodFill(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FillRgn(
-    hdc: HDC,
-    hrgn: HRGN,
-    hbr: HBRUSH,
+    hdc: ?HDC,
+    hrgn: ?HRGN,
+    hbr: ?HBRUSH,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FloodFill(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     color: u32,
@@ -4736,179 +4736,179 @@ pub extern "GDI32" fn FloodFill(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FrameRgn(
-    hdc: HDC,
-    hrgn: HRGN,
-    hbr: HBRUSH,
+    hdc: ?HDC,
+    hrgn: ?HRGN,
+    hbr: ?HBRUSH,
     w: i32,
     h: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetROP2(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetAspectRatioFilterEx(
-    hdc: HDC,
-    lpsize: *SIZE,
+    hdc: ?HDC,
+    lpsize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetBkColor(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDCBrushColor(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDCPenColor(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetBkMode(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetBitmapBits(
-    hbit: HBITMAP,
+    hbit: ?HBITMAP,
     cb: i32,
     // TODO: what to do with BytesParamIndex 1?
-    lpvBits: *c_void,
+    lpvBits: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetBitmapDimensionEx(
-    hbit: HBITMAP,
-    lpsize: *SIZE,
+    hbit: ?HBITMAP,
+    lpsize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetBoundsRect(
-    hdc: HDC,
-    lprect: *RECT,
+    hdc: ?HDC,
+    lprect: ?*RECT,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetBrushOrgEx(
-    hdc: HDC,
-    lppt: *POINT,
+    hdc: ?HDC,
+    lppt: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharWidthA(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpBuffer: *i32,
+    lpBuffer: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharWidthW(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpBuffer: *i32,
+    lpBuffer: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharWidth32A(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpBuffer: *i32,
+    lpBuffer: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharWidth32W(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpBuffer: *i32,
+    lpBuffer: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharWidthFloatA(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpBuffer: *f32,
+    lpBuffer: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharWidthFloatW(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpBuffer: *f32,
+    lpBuffer: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharABCWidthsA(
-    hdc: HDC,
+    hdc: ?HDC,
     wFirst: u32,
     wLast: u32,
-    lpABC: *ABC,
+    lpABC: ?*ABC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharABCWidthsW(
-    hdc: HDC,
+    hdc: ?HDC,
     wFirst: u32,
     wLast: u32,
-    lpABC: *ABC,
+    lpABC: ?*ABC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharABCWidthsFloatA(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpABC: *ABCFLOAT,
+    lpABC: ?*ABCFLOAT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharABCWidthsFloatW(
-    hdc: HDC,
+    hdc: ?HDC,
     iFirst: u32,
     iLast: u32,
-    lpABC: *ABCFLOAT,
+    lpABC: ?*ABCFLOAT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetClipBox(
-    hdc: HDC,
-    lprect: *RECT,
+    hdc: ?HDC,
+    lprect: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetClipRgn(
-    hdc: HDC,
-    hrgn: HRGN,
+    hdc: ?HDC,
+    hrgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetMetaRgn(
-    hdc: HDC,
-    hrgn: HRGN,
+    hdc: ?HDC,
+    hrgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCurrentObject(
-    hdc: HDC,
+    hdc: ?HDC,
     type: OBJ_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HGDIOBJ;
+) callconv(@import("std").os.windows.WINAPI) ?HGDIOBJ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCurrentPositionEx(
-    hdc: HDC,
-    lppt: *POINT,
+    hdc: ?HDC,
+    lppt: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4919,18 +4919,18 @@ pub extern "GDI32" fn GetDeviceCaps(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDIBits(
-    hdc: HDC,
-    hbm: HBITMAP,
+    hdc: ?HDC,
+    hbm: ?HBITMAP,
     start: u32,
     cLines: u32,
     lpvBits: ?*c_void,
-    lpbmi: *BITMAPINFO,
+    lpbmi: ?*BITMAPINFO,
     usage: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetFontData(
-    hdc: HDC,
+    hdc: ?HDC,
     dwTable: u32,
     dwOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -4940,74 +4940,74 @@ pub extern "GDI32" fn GetFontData(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetGlyphOutlineA(
-    hdc: HDC,
+    hdc: ?HDC,
     uChar: u32,
     fuFormat: GET_GLYPH_OUTLINE_FORMAT,
-    lpgm: *GLYPHMETRICS,
+    lpgm: ?*GLYPHMETRICS,
     cjBuffer: u32,
     // TODO: what to do with BytesParamIndex 4?
     pvBuffer: ?*c_void,
-    lpmat2: *const MAT2,
+    lpmat2: ?*const MAT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetGlyphOutlineW(
-    hdc: HDC,
+    hdc: ?HDC,
     uChar: u32,
     fuFormat: GET_GLYPH_OUTLINE_FORMAT,
-    lpgm: *GLYPHMETRICS,
+    lpgm: ?*GLYPHMETRICS,
     cjBuffer: u32,
     // TODO: what to do with BytesParamIndex 4?
     pvBuffer: ?*c_void,
-    lpmat2: *const MAT2,
+    lpmat2: ?*const MAT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetGraphicsMode(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetMapMode(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetMetaFileBitsEx(
-    hMF: HMETAFILE,
+    hMF: ?HMETAFILE,
     cbBuffer: u32,
     // TODO: what to do with BytesParamIndex 1?
     lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "GDI32" fn GetMetaFileA(
-    lpName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HMETAFILE;
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HMETAFILE;
 
 pub extern "GDI32" fn GetMetaFileW(
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HMETAFILE;
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetNearestColor(
-    hdc: HDC,
+    hdc: ?HDC,
     color: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetNearestPaletteIndex(
-    h: HPALETTE,
+    h: ?HPALETTE,
     color: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetObjectType(
-    h: HGDIOBJ,
+    h: ?HGDIOBJ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetOutlineTextMetricsA(
-    hdc: HDC,
+    hdc: ?HDC,
     cjCopy: u32,
     // TODO: what to do with BytesParamIndex 1?
     potm: ?*OUTLINETEXTMETRICA,
@@ -5015,7 +5015,7 @@ pub extern "GDI32" fn GetOutlineTextMetricsA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetOutlineTextMetricsW(
-    hdc: HDC,
+    hdc: ?HDC,
     cjCopy: u32,
     // TODO: what to do with BytesParamIndex 1?
     potm: ?*OUTLINETEXTMETRICW,
@@ -5023,7 +5023,7 @@ pub extern "GDI32" fn GetOutlineTextMetricsW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetPaletteEntries(
-    hpal: HPALETTE,
+    hpal: ?HPALETTE,
     iStart: u32,
     cEntries: u32,
     pPalEntries: ?[*]PALETTEENTRY,
@@ -5031,33 +5031,33 @@ pub extern "GDI32" fn GetPaletteEntries(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetPixel(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetPolyFillMode(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetRasterizerCaps(
     // TODO: what to do with BytesParamIndex 1?
-    lpraststat: *RASTERIZER_STATUS,
+    lpraststat: ?*RASTERIZER_STATUS,
     cjBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetRandomRgn(
-    hdc: HDC,
-    hrgn: HRGN,
+    hdc: ?HDC,
+    hrgn: ?HRGN,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetRegionData(
-    hrgn: HRGN,
+    hrgn: ?HRGN,
     nCount: u32,
     // TODO: what to do with BytesParamIndex 1?
     lpRgnData: ?*RGNDATA,
@@ -5065,23 +5065,23 @@ pub extern "GDI32" fn GetRegionData(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetRgnBox(
-    hrgn: HRGN,
-    lprc: *RECT,
+    hrgn: ?HRGN,
+    lprc: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetStockObject(
     i: GET_STOCK_OBJECT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HGDIOBJ;
+) callconv(@import("std").os.windows.WINAPI) ?HGDIOBJ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetStretchBltMode(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetSystemPaletteEntries(
-    hdc: HDC,
+    hdc: ?HDC,
     iStart: u32,
     cEntries: u32,
     pPalEntries: ?[*]PALETTEENTRY,
@@ -5089,112 +5089,112 @@ pub extern "GDI32" fn GetSystemPaletteEntries(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetSystemPaletteUse(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextCharacterExtra(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextAlign(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextColor(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentPointA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u8,
     c: i32,
-    lpsz: *SIZE,
+    lpsz: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentPointW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u16,
     c: i32,
-    lpsz: *SIZE,
+    lpsz: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentPoint32A(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u8,
     c: i32,
-    psizl: *SIZE,
+    psizl: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentPoint32W(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u16,
     c: i32,
-    psizl: *SIZE,
+    psizl: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentExPointA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpszString: [*:0]const u8,
     cchString: i32,
     nMaxExtent: i32,
     lpnFit: ?*i32,
     lpnDx: ?[*]i32,
-    lpSize: *SIZE,
+    lpSize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentExPointW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpszString: [*:0]const u16,
     cchString: i32,
     nMaxExtent: i32,
     lpnFit: ?*i32,
     lpnDx: ?[*]i32,
-    lpSize: *SIZE,
+    lpSize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetFontLanguageInfo(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharacterPlacementA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u8,
     nCount: i32,
     nMexExtent: i32,
-    lpResults: *GCP_RESULTSA,
+    lpResults: ?*GCP_RESULTSA,
     dwFlags: GET_CHARACTER_PLACEMENT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharacterPlacementW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u16,
     nCount: i32,
     nMexExtent: i32,
-    lpResults: *GCP_RESULTSW,
+    lpResults: ?*GCP_RESULTSW,
     dwFlags: GET_CHARACTER_PLACEMENT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetFontUnicodeRanges(
-    hdc: HDC,
+    hdc: ?HDC,
     lpgs: ?*GLYPHSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetGlyphIndicesA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpstr: [*:0]const u8,
     c: i32,
     pgi: [*:0]u16,
@@ -5203,7 +5203,7 @@ pub extern "GDI32" fn GetGlyphIndicesA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetGlyphIndicesW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpstr: [*:0]const u16,
     c: i32,
     pgi: [*:0]u16,
@@ -5212,26 +5212,26 @@ pub extern "GDI32" fn GetGlyphIndicesW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentPointI(
-    hdc: HDC,
+    hdc: ?HDC,
     pgiIn: [*:0]u16,
     cgi: i32,
-    psize: *SIZE,
+    psize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextExtentExPointI(
-    hdc: HDC,
+    hdc: ?HDC,
     lpwszString: [*:0]u16,
     cwchString: i32,
     nMaxExtent: i32,
     lpnFit: ?*i32,
     lpnDx: ?[*]i32,
-    lpSize: *SIZE,
+    lpSize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharWidthI(
-    hdc: HDC,
+    hdc: ?HDC,
     giFirst: u32,
     cgi: u32,
     pgi: ?[*:0]u16,
@@ -5240,7 +5240,7 @@ pub extern "GDI32" fn GetCharWidthI(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetCharABCWidthsI(
-    hdc: HDC,
+    hdc: ?HDC,
     giFirst: u32,
     cgi: u32,
     pgi: ?[*:0]u16,
@@ -5249,83 +5249,83 @@ pub extern "GDI32" fn GetCharABCWidthsI(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontResourceExA(
-    name: [*:0]const u8,
+    name: ?[*:0]const u8,
     fl: FONT_RESOURCE_CHARACTERISTICS,
-    res: *c_void,
+    res: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontResourceExW(
-    name: [*:0]const u16,
+    name: ?[*:0]const u16,
     fl: FONT_RESOURCE_CHARACTERISTICS,
-    res: *c_void,
+    res: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RemoveFontResourceExA(
-    name: [*:0]const u8,
+    name: ?[*:0]const u8,
     fl: u32,
-    pdv: *c_void,
+    pdv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RemoveFontResourceExW(
-    name: [*:0]const u16,
+    name: ?[*:0]const u16,
     fl: u32,
-    pdv: *c_void,
+    pdv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontMemResourceEx(
     // TODO: what to do with BytesParamIndex 1?
-    pFileView: *c_void,
+    pFileView: ?*c_void,
     cjSize: u32,
-    pvResrved: *c_void,
-    pNumFonts: *u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    pvResrved: ?*c_void,
+    pNumFonts: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RemoveFontMemResourceEx(
-    h: HANDLE,
+    h: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateFontIndirectExA(
-    param0: *const ENUMLOGFONTEXDVA,
-) callconv(@import("std").os.windows.WINAPI) HFONT;
+    param0: ?*const ENUMLOGFONTEXDVA,
+) callconv(@import("std").os.windows.WINAPI) ?HFONT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateFontIndirectExW(
-    param0: *const ENUMLOGFONTEXDVW,
-) callconv(@import("std").os.windows.WINAPI) HFONT;
+    param0: ?*const ENUMLOGFONTEXDVW,
+) callconv(@import("std").os.windows.WINAPI) ?HFONT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetViewportExtEx(
-    hdc: HDC,
-    lpsize: *SIZE,
+    hdc: ?HDC,
+    lpsize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetViewportOrgEx(
-    hdc: HDC,
-    lppoint: *POINT,
+    hdc: ?HDC,
+    lppoint: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetWindowExtEx(
-    hdc: HDC,
-    lpsize: *SIZE,
+    hdc: ?HDC,
+    lpsize: ?*SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetWindowOrgEx(
-    hdc: HDC,
-    lppoint: *POINT,
+    hdc: ?HDC,
+    lppoint: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn IntersectClipRect(
-    hdc: HDC,
+    hdc: ?HDC,
     left: i32,
     top: i32,
     right: i32,
@@ -5334,8 +5334,8 @@ pub extern "GDI32" fn IntersectClipRect(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn InvertRgn(
-    hdc: HDC,
-    hrgn: HRGN,
+    hdc: ?HDC,
+    hrgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5344,28 +5344,28 @@ pub extern "GDI32" fn LineDDA(
     yStart: i32,
     xEnd: i32,
     yEnd: i32,
-    lpProc: LINEDDAPROC,
+    lpProc: ?LINEDDAPROC,
     data: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn LineTo(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn MaskBlt(
-    hdcDest: HDC,
+    hdcDest: ?HDC,
     xDest: i32,
     yDest: i32,
     width: i32,
     height: i32,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     xSrc: i32,
     ySrc: i32,
-    hbmMask: HBITMAP,
+    hbmMask: ?HBITMAP,
     xMask: i32,
     yMask: i32,
     rop: u32,
@@ -5373,9 +5373,9 @@ pub extern "GDI32" fn MaskBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PlgBlt(
-    hdcDest: HDC,
+    hdcDest: ?HDC,
     lpPoint: *[3]POINT,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     xSrc: i32,
     ySrc: i32,
     width: i32,
@@ -5387,21 +5387,21 @@ pub extern "GDI32" fn PlgBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn OffsetClipRgn(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn OffsetRgn(
-    hrgn: HRGN,
+    hrgn: ?HRGN,
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PatBlt(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     w: i32,
@@ -5411,7 +5411,7 @@ pub extern "GDI32" fn PatBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn Pie(
-    hdc: HDC,
+    hdc: ?HDC,
     left: i32,
     top: i32,
     right: i32,
@@ -5424,53 +5424,53 @@ pub extern "GDI32" fn Pie(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PlayMetaFile(
-    hdc: HDC,
-    hmf: HMETAFILE,
+    hdc: ?HDC,
+    hmf: ?HMETAFILE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PaintRgn(
-    hdc: HDC,
-    hrgn: HRGN,
+    hdc: ?HDC,
+    hrgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolyPolygon(
-    hdc: HDC,
-    apt: *const POINT,
+    hdc: ?HDC,
+    apt: ?*const POINT,
     asz: [*]const i32,
     csz: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PtInRegion(
-    hrgn: HRGN,
+    hrgn: ?HRGN,
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PtVisible(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RectInRegion(
-    hrgn: HRGN,
-    lprect: *const RECT,
+    hrgn: ?HRGN,
+    lprect: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RectVisible(
-    hdc: HDC,
-    lprect: *const RECT,
+    hdc: ?HDC,
+    lprect: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn Rectangle(
-    hdc: HDC,
+    hdc: ?HDC,
     left: i32,
     top: i32,
     right: i32,
@@ -5479,40 +5479,40 @@ pub extern "GDI32" fn Rectangle(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RestoreDC(
-    hdc: HDC,
+    hdc: ?HDC,
     nSavedDC: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ResetDCA(
-    hdc: HDC,
-    lpdm: *const DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+    hdc: ?HDC,
+    lpdm: ?*const DEVMODEA,
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ResetDCW(
-    hdc: HDC,
-    lpdm: *const DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+    hdc: ?HDC,
+    lpdm: ?*const DEVMODEW,
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RealizePalette(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RemoveFontResourceA(
-    lpFileName: [*:0]const u8,
+    lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RemoveFontResourceW(
-    lpFileName: [*:0]const u16,
+    lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RoundRect(
-    hdc: HDC,
+    hdc: ?HDC,
     left: i32,
     top: i32,
     right: i32,
@@ -5523,81 +5523,81 @@ pub extern "GDI32" fn RoundRect(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ResizePalette(
-    hpal: HPALETTE,
+    hpal: ?HPALETTE,
     n: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SaveDC(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SelectClipRgn(
-    hdc: HDC,
+    hdc: ?HDC,
     hrgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExtSelectClipRgn(
-    hdc: HDC,
+    hdc: ?HDC,
     hrgn: ?HRGN,
     mode: RGN_COMBINE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetMetaRgn(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SelectObject(
-    hdc: HDC,
-    h: HGDIOBJ,
-) callconv(@import("std").os.windows.WINAPI) HGDIOBJ;
+    hdc: ?HDC,
+    h: ?HGDIOBJ,
+) callconv(@import("std").os.windows.WINAPI) ?HGDIOBJ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SelectPalette(
-    hdc: HDC,
-    hPal: HPALETTE,
+    hdc: ?HDC,
+    hPal: ?HPALETTE,
     bForceBkgd: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HPALETTE;
+) callconv(@import("std").os.windows.WINAPI) ?HPALETTE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetBkColor(
-    hdc: HDC,
+    hdc: ?HDC,
     color: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDCBrushColor(
-    hdc: HDC,
+    hdc: ?HDC,
     color: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDCPenColor(
-    hdc: HDC,
+    hdc: ?HDC,
     color: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetBkMode(
-    hdc: HDC,
+    hdc: ?HDC,
     mode: BACKGROUND_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetBitmapBits(
-    hbm: HBITMAP,
+    hbm: ?HBITMAP,
     cb: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pvBits: *const c_void,
+    pvBits: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetBoundsRect(
-    hdc: HDC,
+    hdc: ?HDC,
     lprect: ?*const RECT,
     flags: SET_BOUNDS_RECT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -5605,17 +5605,17 @@ pub extern "GDI32" fn SetBoundsRect(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDIBits(
     hdc: ?HDC,
-    hbm: HBITMAP,
+    hbm: ?HBITMAP,
     start: u32,
     cLines: u32,
-    lpBits: *const c_void,
-    lpbmi: *const BITMAPINFO,
+    lpBits: ?*const c_void,
+    lpbmi: ?*const BITMAPINFO,
     ColorUse: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDIBitsToDevice(
-    hdc: HDC,
+    hdc: ?HDC,
     xDest: i32,
     yDest: i32,
     w: u32,
@@ -5624,50 +5624,50 @@ pub extern "GDI32" fn SetDIBitsToDevice(
     ySrc: i32,
     StartScan: u32,
     cLines: u32,
-    lpvBits: *const c_void,
-    lpbmi: *const BITMAPINFO,
+    lpvBits: ?*const c_void,
+    lpbmi: ?*const BITMAPINFO,
     ColorUse: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetMapperFlags(
-    hdc: HDC,
+    hdc: ?HDC,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetGraphicsMode(
-    hdc: HDC,
+    hdc: ?HDC,
     iMode: GRAPHICS_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetMapMode(
-    hdc: HDC,
+    hdc: ?HDC,
     iMode: HDC_MAP_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetLayout(
-    hdc: HDC,
+    hdc: ?HDC,
     l: DC_LAYOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetLayout(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetMetaFileBitsEx(
     cbBuffer: u32,
     // TODO: what to do with BytesParamIndex 0?
-    lpData: *const u8,
-) callconv(@import("std").os.windows.WINAPI) HMETAFILE;
+    lpData: ?*const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetPaletteEntries(
-    hpal: HPALETTE,
+    hpal: ?HPALETTE,
     iStart: u32,
     cEntries: u32,
     pPalEntries: [*]const PALETTEENTRY,
@@ -5675,7 +5675,7 @@ pub extern "GDI32" fn SetPaletteEntries(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetPixel(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     color: u32,
@@ -5683,7 +5683,7 @@ pub extern "GDI32" fn SetPixel(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetPixelV(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     color: u32,
@@ -5691,13 +5691,13 @@ pub extern "GDI32" fn SetPixelV(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetPolyFillMode(
-    hdc: HDC,
+    hdc: ?HDC,
     mode: CREATE_POLYGON_RGN_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn StretchBlt(
-    hdcDest: HDC,
+    hdcDest: ?HDC,
     xDest: i32,
     yDest: i32,
     wDest: i32,
@@ -5712,7 +5712,7 @@ pub extern "GDI32" fn StretchBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetRectRgn(
-    hrgn: HRGN,
+    hrgn: ?HRGN,
     left: i32,
     top: i32,
     right: i32,
@@ -5721,7 +5721,7 @@ pub extern "GDI32" fn SetRectRgn(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn StretchDIBits(
-    hdc: HDC,
+    hdc: ?HDC,
     xDest: i32,
     yDest: i32,
     DestWidth: i32,
@@ -5731,67 +5731,67 @@ pub extern "GDI32" fn StretchDIBits(
     SrcWidth: i32,
     SrcHeight: i32,
     lpBits: ?*const c_void,
-    lpbmi: *const BITMAPINFO,
+    lpbmi: ?*const BITMAPINFO,
     iUsage: DIB_USAGE,
     rop: ROP_CODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetROP2(
-    hdc: HDC,
+    hdc: ?HDC,
     rop2: R2_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetStretchBltMode(
-    hdc: HDC,
+    hdc: ?HDC,
     mode: STRETCH_BLT_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetSystemPaletteUse(
-    hdc: HDC,
+    hdc: ?HDC,
     use: SYSTEM_PALETTE_USE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetTextCharacterExtra(
-    hdc: HDC,
+    hdc: ?HDC,
     extra: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetTextColor(
-    hdc: HDC,
+    hdc: ?HDC,
     color: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetTextAlign(
-    hdc: HDC,
+    hdc: ?HDC,
     @"align": TEXT_ALIGN_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetTextJustification(
-    hdc: HDC,
+    hdc: ?HDC,
     extra: i32,
     count: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn UpdateColors(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSIMG32" fn AlphaBlend(
-    hdcDest: HDC,
+    hdcDest: ?HDC,
     xoriginDest: i32,
     yoriginDest: i32,
     wDest: i32,
     hDest: i32,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     xoriginSrc: i32,
     yoriginSrc: i32,
     wSrc: i32,
@@ -5801,12 +5801,12 @@ pub extern "MSIMG32" fn AlphaBlend(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSIMG32" fn TransparentBlt(
-    hdcDest: HDC,
+    hdcDest: ?HDC,
     xoriginDest: i32,
     yoriginDest: i32,
     wDest: i32,
     hDest: i32,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     xoriginSrc: i32,
     yoriginSrc: i32,
     wSrc: i32,
@@ -5816,22 +5816,22 @@ pub extern "MSIMG32" fn TransparentBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSIMG32" fn GradientFill(
-    hdc: HDC,
+    hdc: ?HDC,
     pVertex: [*]TRIVERTEX,
     nVertex: u32,
-    pMesh: *c_void,
+    pMesh: ?*c_void,
     nMesh: u32,
     ulMode: GRADIENT_FILL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GdiAlphaBlend(
-    hdcDest: HDC,
+    hdcDest: ?HDC,
     xoriginDest: i32,
     yoriginDest: i32,
     wDest: i32,
     hDest: i32,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     xoriginSrc: i32,
     yoriginSrc: i32,
     wSrc: i32,
@@ -5841,12 +5841,12 @@ pub extern "GDI32" fn GdiAlphaBlend(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GdiTransparentBlt(
-    hdcDest: HDC,
+    hdcDest: ?HDC,
     xoriginDest: i32,
     yoriginDest: i32,
     wDest: i32,
     hDest: i32,
-    hdcSrc: HDC,
+    hdcSrc: ?HDC,
     xoriginSrc: i32,
     yoriginSrc: i32,
     wSrc: i32,
@@ -5856,46 +5856,46 @@ pub extern "GDI32" fn GdiTransparentBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GdiGradientFill(
-    hdc: HDC,
+    hdc: ?HDC,
     pVertex: [*]TRIVERTEX,
     nVertex: u32,
-    pMesh: *c_void,
+    pMesh: ?*c_void,
     nCount: u32,
     ulMode: GRADIENT_FILL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PlayMetaFileRecord(
-    hdc: HDC,
+    hdc: ?HDC,
     lpHandleTable: [*]HANDLETABLE,
-    lpMR: *METARECORD,
+    lpMR: ?*METARECORD,
     noObjs: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumMetaFile(
-    hdc: HDC,
-    hmf: HMETAFILE,
-    proc: MFENUMPROC,
+    hdc: ?HDC,
+    hmf: ?HMETAFILE,
+    proc: ?MFENUMPROC,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CloseEnhMetaFile(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
+    hdc: ?HDC,
+) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CopyEnhMetaFileA(
-    hEnh: HENHMETAFILE,
+    hEnh: ?HENHMETAFILE,
     lpFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
+) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CopyEnhMetaFileW(
-    hEnh: HENHMETAFILE,
+    hEnh: ?HENHMETAFILE,
     lpFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
+) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateEnhMetaFileA(
@@ -5921,25 +5921,25 @@ pub extern "GDI32" fn DeleteEnhMetaFile(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EnumEnhMetaFile(
     hdc: ?HDC,
-    hmf: HENHMETAFILE,
-    proc: ENHMFENUMPROC,
+    hmf: ?HENHMETAFILE,
+    proc: ?ENHMFENUMPROC,
     param3: ?*c_void,
     lpRect: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFileA(
-    lpName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFileW(
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFileBits(
-    hEMF: HENHMETAFILE,
+    hEMF: ?HENHMETAFILE,
     nSize: u32,
     // TODO: what to do with BytesParamIndex 1?
     lpData: ?*u8,
@@ -5947,21 +5947,21 @@ pub extern "GDI32" fn GetEnhMetaFileBits(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFileDescriptionA(
-    hemf: HENHMETAFILE,
+    hemf: ?HENHMETAFILE,
     cchBuffer: u32,
     lpDescription: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFileDescriptionW(
-    hemf: HENHMETAFILE,
+    hemf: ?HENHMETAFILE,
     cchBuffer: u32,
     lpDescription: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFileHeader(
-    hemf: HENHMETAFILE,
+    hemf: ?HENHMETAFILE,
     nSize: u32,
     // TODO: what to do with BytesParamIndex 1?
     lpEnhMetaHeader: ?*ENHMETAHEADER,
@@ -5969,33 +5969,33 @@ pub extern "GDI32" fn GetEnhMetaFileHeader(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetEnhMetaFilePaletteEntries(
-    hemf: HENHMETAFILE,
+    hemf: ?HENHMETAFILE,
     nNumEntries: u32,
     lpPaletteEntries: ?[*]PALETTEENTRY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetWinMetaFileBits(
-    hemf: HENHMETAFILE,
+    hemf: ?HENHMETAFILE,
     cbData16: u32,
     // TODO: what to do with BytesParamIndex 1?
     pData16: ?*u8,
     iMapMode: i32,
-    hdcRef: HDC,
+    hdcRef: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PlayEnhMetaFile(
-    hdc: HDC,
-    hmf: HENHMETAFILE,
-    lprect: *const RECT,
+    hdc: ?HDC,
+    hmf: ?HENHMETAFILE,
+    lprect: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PlayEnhMetaFileRecord(
-    hdc: HDC,
+    hdc: ?HDC,
     pht: [*]HANDLETABLE,
-    pmr: *const ENHMETARECORD,
+    pmr: ?*const ENHMETARECORD,
     cht: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6003,41 +6003,41 @@ pub extern "GDI32" fn PlayEnhMetaFileRecord(
 pub extern "GDI32" fn SetEnhMetaFileBits(
     nSize: u32,
     // TODO: what to do with BytesParamIndex 0?
-    pb: *const u8,
-) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
+    pb: ?*const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetWinMetaFileBits(
     nSize: u32,
     // TODO: what to do with BytesParamIndex 0?
-    lpMeta16Data: *const u8,
+    lpMeta16Data: ?*const u8,
     hdcRef: ?HDC,
     lpMFP: ?*const METAFILEPICT,
-) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
+) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GdiComment(
-    hdc: HDC,
+    hdc: ?HDC,
     nSize: u32,
     // TODO: what to do with BytesParamIndex 1?
-    lpData: *const u8,
+    lpData: ?*const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextMetricsA(
-    hdc: HDC,
-    lptm: *TEXTMETRICA,
+    hdc: ?HDC,
+    lptm: ?*TEXTMETRICA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextMetricsW(
-    hdc: HDC,
-    lptm: *TEXTMETRICW,
+    hdc: ?HDC,
+    lptm: ?*TEXTMETRICW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AngleArc(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     r: u32,
@@ -6047,51 +6047,51 @@ pub extern "GDI32" fn AngleArc(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolyPolyline(
-    hdc: HDC,
-    apt: *const POINT,
+    hdc: ?HDC,
+    apt: ?*const POINT,
     asz: [*]const u32,
     csz: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetWorldTransform(
-    hdc: HDC,
-    lpxf: *XFORM,
+    hdc: ?HDC,
+    lpxf: ?*XFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetWorldTransform(
-    hdc: HDC,
-    lpxf: *const XFORM,
+    hdc: ?HDC,
+    lpxf: ?*const XFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ModifyWorldTransform(
-    hdc: HDC,
+    hdc: ?HDC,
     lpxf: ?*const XFORM,
     mode: MODIFY_WORLD_TRANSFORM_MODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CombineTransform(
-    lpxfOut: *XFORM,
-    lpxf1: *const XFORM,
-    lpxf2: *const XFORM,
+    lpxfOut: ?*XFORM,
+    lpxf1: ?*const XFORM,
+    lpxf2: ?*const XFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDIBSection(
     hdc: ?HDC,
-    pbmi: *const BITMAPINFO,
+    pbmi: ?*const BITMAPINFO,
     usage: DIB_USAGE,
-    ppvBits: **c_void,
+    ppvBits: ?*?*c_void,
     hSection: ?HANDLE,
     offset: u32,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDIBColorTable(
-    hdc: HDC,
+    hdc: ?HDC,
     iStart: u32,
     cEntries: u32,
     prgbq: [*]RGBQUAD,
@@ -6099,7 +6099,7 @@ pub extern "GDI32" fn GetDIBColorTable(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDIBColorTable(
-    hdc: HDC,
+    hdc: ?HDC,
     iStart: u32,
     cEntries: u32,
     prgbq: [*]const RGBQUAD,
@@ -6107,29 +6107,29 @@ pub extern "GDI32" fn SetDIBColorTable(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetColorAdjustment(
-    hdc: HDC,
-    lpca: *const COLORADJUSTMENT,
+    hdc: ?HDC,
+    lpca: ?*const COLORADJUSTMENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetColorAdjustment(
-    hdc: HDC,
-    lpca: *COLORADJUSTMENT,
+    hdc: ?HDC,
+    lpca: ?*COLORADJUSTMENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateHalftonePalette(
     hdc: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) HPALETTE;
+) callconv(@import("std").os.windows.WINAPI) ?HPALETTE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AbortPath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ArcTo(
-    hdc: HDC,
+    hdc: ?HDC,
     left: i32,
     top: i32,
     right: i32,
@@ -6142,32 +6142,32 @@ pub extern "GDI32" fn ArcTo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BeginPath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CloseFigure(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EndPath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FillPath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FlattenPath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetPath(
-    hdc: HDC,
+    hdc: ?HDC,
     apt: ?[*]POINT,
     aj: ?[*:0]u8,
     cpt: i32,
@@ -6175,12 +6175,12 @@ pub extern "GDI32" fn GetPath(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PathToRegion(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+    hdc: ?HDC,
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolyDraw(
-    hdc: HDC,
+    hdc: ?HDC,
     apt: [*]const POINT,
     aj: [*:0]const u8,
     cpt: i32,
@@ -6188,61 +6188,61 @@ pub extern "GDI32" fn PolyDraw(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SelectClipPath(
-    hdc: HDC,
+    hdc: ?HDC,
     mode: RGN_COMBINE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetArcDirection(
-    hdc: HDC,
+    hdc: ?HDC,
     dir: ARC_DIRECTION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetMiterLimit(
-    hdc: HDC,
+    hdc: ?HDC,
     limit: f32,
     old: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn StrokeAndFillPath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn StrokePath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn WidenPath(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExtCreatePen(
     iPenStyle: PEN_STYLE,
     cWidth: u32,
-    plbrush: *const LOGBRUSH,
+    plbrush: ?*const LOGBRUSH,
     cStyle: u32,
     pstyle: ?[*]const u32,
-) callconv(@import("std").os.windows.WINAPI) HPEN;
+) callconv(@import("std").os.windows.WINAPI) ?HPEN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetMiterLimit(
-    hdc: HDC,
-    plimit: *f32,
+    hdc: ?HDC,
+    plimit: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetArcDirection(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetObjectW(
-    h: HGDIOBJ,
+    h: ?HGDIOBJ,
     c: i32,
     // TODO: what to do with BytesParamIndex 1?
     pv: ?*c_void,
@@ -6250,7 +6250,7 @@ pub extern "GDI32" fn GetObjectW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn MoveToEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lppt: ?*POINT,
@@ -6258,7 +6258,7 @@ pub extern "GDI32" fn MoveToEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn TextOutA(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lpString: [*:0]const u8,
@@ -6267,7 +6267,7 @@ pub extern "GDI32" fn TextOutA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn TextOutW(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lpString: [*:0]const u16,
@@ -6276,7 +6276,7 @@ pub extern "GDI32" fn TextOutW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExtTextOutA(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     options: ETO_OPTIONS,
@@ -6288,7 +6288,7 @@ pub extern "GDI32" fn ExtTextOutA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ExtTextOutW(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     options: ETO_OPTIONS,
@@ -6300,14 +6300,14 @@ pub extern "GDI32" fn ExtTextOutW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolyTextOutA(
-    hdc: HDC,
+    hdc: ?HDC,
     ppt: [*]const POLYTEXTA,
     nstrings: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolyTextOutW(
-    hdc: HDC,
+    hdc: ?HDC,
     ppt: [*]const POLYTEXTW,
     nstrings: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -6317,60 +6317,60 @@ pub extern "GDI32" fn CreatePolygonRgn(
     pptl: [*]const POINT,
     cPoint: i32,
     iMode: CREATE_POLYGON_RGN_MODE,
-) callconv(@import("std").os.windows.WINAPI) HRGN;
+) callconv(@import("std").os.windows.WINAPI) ?HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DPtoLP(
-    hdc: HDC,
+    hdc: ?HDC,
     lppt: [*]POINT,
     c: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn LPtoDP(
-    hdc: HDC,
+    hdc: ?HDC,
     lppt: [*]POINT,
     c: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn Polygon(
-    hdc: HDC,
+    hdc: ?HDC,
     apt: [*]const POINT,
     cpt: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn Polyline(
-    hdc: HDC,
+    hdc: ?HDC,
     apt: [*]const POINT,
     cpt: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolyBezier(
-    hdc: HDC,
+    hdc: ?HDC,
     apt: [*]const POINT,
     cpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolyBezierTo(
-    hdc: HDC,
+    hdc: ?HDC,
     apt: [*]const POINT,
     cpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn PolylineTo(
-    hdc: HDC,
+    hdc: ?HDC,
     apt: [*]const POINT,
     cpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetViewportExtEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lpsz: ?*SIZE,
@@ -6378,7 +6378,7 @@ pub extern "GDI32" fn SetViewportExtEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetViewportOrgEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lppt: ?*POINT,
@@ -6386,7 +6386,7 @@ pub extern "GDI32" fn SetViewportOrgEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetWindowExtEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lpsz: ?*SIZE,
@@ -6394,7 +6394,7 @@ pub extern "GDI32" fn SetWindowExtEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetWindowOrgEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lppt: ?*POINT,
@@ -6402,7 +6402,7 @@ pub extern "GDI32" fn SetWindowOrgEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn OffsetViewportOrgEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lppt: ?*POINT,
@@ -6410,7 +6410,7 @@ pub extern "GDI32" fn OffsetViewportOrgEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn OffsetWindowOrgEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lppt: ?*POINT,
@@ -6418,7 +6418,7 @@ pub extern "GDI32" fn OffsetWindowOrgEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ScaleViewportExtEx(
-    hdc: HDC,
+    hdc: ?HDC,
     xn: i32,
     dx: i32,
     yn: i32,
@@ -6428,7 +6428,7 @@ pub extern "GDI32" fn ScaleViewportExtEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn ScaleWindowExtEx(
-    hdc: HDC,
+    hdc: ?HDC,
     xn: i32,
     xd: i32,
     yn: i32,
@@ -6438,7 +6438,7 @@ pub extern "GDI32" fn ScaleWindowExtEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetBitmapDimensionEx(
-    hbm: HBITMAP,
+    hbm: ?HBITMAP,
     w: i32,
     h: i32,
     lpsz: ?*SIZE,
@@ -6446,7 +6446,7 @@ pub extern "GDI32" fn SetBitmapDimensionEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetBrushOrgEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lppt: ?*POINT,
@@ -6454,40 +6454,40 @@ pub extern "GDI32" fn SetBrushOrgEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextFaceA(
-    hdc: HDC,
+    hdc: ?HDC,
     c: i32,
     lpName: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextFaceW(
-    hdc: HDC,
+    hdc: ?HDC,
     c: i32,
     lpName: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetKerningPairsA(
-    hdc: HDC,
+    hdc: ?HDC,
     nPairs: u32,
     lpKernPair: ?[*]KERNINGPAIR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetKerningPairsW(
-    hdc: HDC,
+    hdc: ?HDC,
     nPairs: u32,
     lpKernPair: ?[*]KERNINGPAIR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDCOrgEx(
-    hdc: HDC,
-    lppt: *POINT,
+    hdc: ?HDC,
+    lppt: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "GDI32" fn FixBrushOrgEx(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     ptl: ?*POINT,
@@ -6495,7 +6495,7 @@ pub extern "GDI32" fn FixBrushOrgEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn UnrealizeObject(
-    h: HGDIOBJ,
+    h: ?HGDIOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6513,55 +6513,55 @@ pub extern "GDI32" fn GdiGetBatchLimit(
 
 pub extern "OPENGL32" fn wglSwapMultipleBuffers(
     param0: u32,
-    param1: *const WGLSWAP,
+    param1: ?*const WGLSWAP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "FONTSUB" fn CreateFontPackage(
-    puchSrcBuffer: *const u8,
+    puchSrcBuffer: ?*const u8,
     ulSrcBufferSize: u32,
-    ppuchFontPackageBuffer: **u8,
-    pulFontPackageBufferSize: *u32,
-    pulBytesWritten: *u32,
+    ppuchFontPackageBuffer: ?*?*u8,
+    pulFontPackageBufferSize: ?*u32,
+    pulBytesWritten: ?*u32,
     usFlag: u16,
     usTTCIndex: u16,
     usSubsetFormat: u16,
     usSubsetLanguage: u16,
     usSubsetPlatform: CREATE_FONT_PACKAGE_SUBSET_PLATFORM,
     usSubsetEncoding: CREATE_FONT_PACKAGE_SUBSET_ENCODING,
-    pusSubsetKeepList: *const u16,
+    pusSubsetKeepList: ?*const u16,
     usSubsetListCount: u16,
-    lpfnAllocate: CFP_ALLOCPROC,
-    lpfnReAllocate: CFP_REALLOCPROC,
-    lpfnFree: CFP_FREEPROC,
-    lpvReserved: *c_void,
+    lpfnAllocate: ?CFP_ALLOCPROC,
+    lpfnReAllocate: ?CFP_REALLOCPROC,
+    lpfnFree: ?CFP_FREEPROC,
+    lpvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "FONTSUB" fn MergeFontPackage(
-    puchMergeFontBuffer: *const u8,
+    puchMergeFontBuffer: ?*const u8,
     ulMergeFontBufferSize: u32,
-    puchFontPackageBuffer: *const u8,
+    puchFontPackageBuffer: ?*const u8,
     ulFontPackageBufferSize: u32,
-    ppuchDestBuffer: **u8,
-    pulDestBufferSize: *u32,
-    pulBytesWritten: *u32,
+    ppuchDestBuffer: ?*?*u8,
+    pulDestBufferSize: ?*u32,
+    pulBytesWritten: ?*u32,
     usMode: u16,
-    lpfnAllocate: CFP_ALLOCPROC,
-    lpfnReAllocate: CFP_REALLOCPROC,
-    lpfnFree: CFP_FREEPROC,
-    lpvReserved: *c_void,
+    lpfnAllocate: ?CFP_ALLOCPROC,
+    lpfnReAllocate: ?CFP_REALLOCPROC,
+    lpfnFree: ?CFP_FREEPROC,
+    lpvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTEmbedFont(
-    hDC: HDC,
+    hDC: ?HDC,
     ulFlags: TTEMBED_FLAGS,
     ulCharSet: EMBED_FONT_CHARSET,
-    pulPrivStatus: *EMBEDDED_FONT_PRIV_STATUS,
-    pulStatus: *u32,
-    lpfnWriteToStream: WRITEEMBEDPROC,
-    lpvWriteStream: *c_void,
+    pulPrivStatus: ?*EMBEDDED_FONT_PRIV_STATUS,
+    pulStatus: ?*u32,
+    lpfnWriteToStream: ?WRITEEMBEDPROC,
+    lpvWriteStream: ?*c_void,
     pusCharCodeSet: [*:0]u16,
     usCharCodeCount: u16,
     usLanguage: u16,
@@ -6570,15 +6570,15 @@ pub extern "t2embed" fn TTEmbedFont(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTEmbedFontFromFileA(
-    hDC: HDC,
-    szFontFileName: [*:0]const u8,
+    hDC: ?HDC,
+    szFontFileName: ?[*:0]const u8,
     usTTCIndex: u16,
     ulFlags: TTEMBED_FLAGS,
     ulCharSet: EMBED_FONT_CHARSET,
-    pulPrivStatus: *EMBEDDED_FONT_PRIV_STATUS,
-    pulStatus: *u32,
-    lpfnWriteToStream: WRITEEMBEDPROC,
-    lpvWriteStream: *c_void,
+    pulPrivStatus: ?*EMBEDDED_FONT_PRIV_STATUS,
+    pulStatus: ?*u32,
+    lpfnWriteToStream: ?WRITEEMBEDPROC,
+    lpvWriteStream: ?*c_void,
     pusCharCodeSet: [*:0]u16,
     usCharCodeCount: u16,
     usLanguage: u16,
@@ -6587,13 +6587,13 @@ pub extern "t2embed" fn TTEmbedFontFromFileA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTLoadEmbeddedFont(
-    phFontReference: *HANDLE,
+    phFontReference: ?*?HANDLE,
     ulFlags: u32,
-    pulPrivStatus: *EMBEDDED_FONT_PRIV_STATUS,
+    pulPrivStatus: ?*EMBEDDED_FONT_PRIV_STATUS,
     ulPrivs: FONT_LICENSE_PRIVS,
-    pulStatus: *TTLOAD_EMBEDDED_FONT_STATUS,
-    lpfnReadFromStream: READEMBEDPROC,
-    lpvReadStream: *c_void,
+    pulStatus: ?*TTLOAD_EMBEDDED_FONT_STATUS,
+    lpfnReadFromStream: ?READEMBEDPROC,
+    lpvReadStream: ?*c_void,
     szWinFamilyName: ?PWSTR,
     szMacFamilyName: ?PSTR,
     pTTLoadInfo: ?*TTLOADINFO,
@@ -6602,30 +6602,30 @@ pub extern "t2embed" fn TTLoadEmbeddedFont(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTGetEmbeddedFontInfo(
     ulFlags: TTEMBED_FLAGS,
-    pulPrivStatus: *u32,
+    pulPrivStatus: ?*u32,
     ulPrivs: FONT_LICENSE_PRIVS,
-    pulStatus: *u32,
-    lpfnReadFromStream: READEMBEDPROC,
-    lpvReadStream: *c_void,
+    pulStatus: ?*u32,
+    lpfnReadFromStream: ?READEMBEDPROC,
+    lpvReadStream: ?*c_void,
     pTTLoadInfo: ?*TTLOADINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTDeleteEmbeddedFont(
-    hFontReference: HANDLE,
+    hFontReference: ?HANDLE,
     ulFlags: u32,
-    pulStatus: *u32,
+    pulStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTGetEmbeddingType(
-    hDC: HDC,
-    pulEmbedType: *EMBEDDED_FONT_PRIV_STATUS,
+    hDC: ?HDC,
+    pulEmbedType: ?*EMBEDDED_FONT_PRIV_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTCharToUnicode(
-    hDC: HDC,
+    hDC: ?HDC,
     pucCharCodes: [*:0]u8,
     ulCharCodeSize: u32,
     pusShortCodes: [*:0]u16,
@@ -6635,37 +6635,37 @@ pub extern "t2embed" fn TTCharToUnicode(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTRunValidationTests(
-    hDC: HDC,
-    pTestParam: *TTVALIDATIONTESTSPARAMS,
+    hDC: ?HDC,
+    pTestParam: ?*TTVALIDATIONTESTSPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTIsEmbeddingEnabled(
-    hDC: HDC,
-    pbEnabled: *BOOL,
+    hDC: ?HDC,
+    pbEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTIsEmbeddingEnabledForFacename(
-    lpszFacename: [*:0]const u8,
-    pbEnabled: *BOOL,
+    lpszFacename: ?[*:0]const u8,
+    pbEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTEnableEmbeddingForFacename(
-    lpszFacename: [*:0]const u8,
+    lpszFacename: ?[*:0]const u8,
     bEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTEmbedFontEx(
-    hDC: HDC,
+    hDC: ?HDC,
     ulFlags: TTEMBED_FLAGS,
     ulCharSet: EMBED_FONT_CHARSET,
-    pulPrivStatus: *EMBEDDED_FONT_PRIV_STATUS,
-    pulStatus: *u32,
-    lpfnWriteToStream: WRITEEMBEDPROC,
-    lpvWriteStream: *c_void,
+    pulPrivStatus: ?*EMBEDDED_FONT_PRIV_STATUS,
+    pulStatus: ?*u32,
+    lpfnWriteToStream: ?WRITEEMBEDPROC,
+    lpvWriteStream: ?*c_void,
     pulCharCodeSet: [*]u32,
     usCharCodeCount: u16,
     usLanguage: u16,
@@ -6674,13 +6674,13 @@ pub extern "t2embed" fn TTEmbedFontEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTRunValidationTestsEx(
-    hDC: HDC,
-    pTestParam: *TTVALIDATIONTESTSPARAMSEX,
+    hDC: ?HDC,
+    pTestParam: ?*TTVALIDATIONTESTSPARAMSEX,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "t2embed" fn TTGetNewFontName(
-    phFontReference: *HANDLE,
+    phFontReference: ?*?HANDLE,
     wzWinFamilyName: [*:0]u16,
     cchMaxWinName: i32,
     szMacFamilyName: [*:0]u8,
@@ -6689,25 +6689,25 @@ pub extern "t2embed" fn TTGetNewFontName(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawEdge(
-    hdc: HDC,
-    qrc: *RECT,
+    hdc: ?HDC,
+    qrc: ?*RECT,
     edge: DRAWEDGE_FLAGS,
     grfFlags: DRAW_EDGE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawFrameControl(
-    param0: HDC,
-    param1: *RECT,
+    param0: ?HDC,
+    param1: ?*RECT,
     param2: DFC_TYPE,
     param3: DFCS_STATE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawCaption(
-    hwnd: HWND,
-    hdc: HDC,
-    lprect: *const RECT,
+    hwnd: ?HWND,
+    hdc: ?HDC,
+    lprect: ?*const RECT,
     flags: DRAW_CAPTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6715,51 +6715,51 @@ pub extern "USER32" fn DrawCaption(
 pub extern "USER32" fn DrawAnimatedRects(
     hwnd: ?HWND,
     idAni: i32,
-    lprcFrom: *const RECT,
-    lprcTo: *const RECT,
+    lprcFrom: ?*const RECT,
+    lprcTo: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawTextA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpchText: [*:0]const u8,
     cchText: i32,
-    lprc: *RECT,
+    lprc: ?*RECT,
     format: DRAW_TEXT_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawTextW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpchText: [*:0]const u16,
     cchText: i32,
-    lprc: *RECT,
+    lprc: ?*RECT,
     format: DRAW_TEXT_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawTextExA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpchText: [*:0]u8,
     cchText: i32,
-    lprc: *RECT,
+    lprc: ?*RECT,
     format: DRAW_TEXT_FORMAT,
     lpdtp: ?*DRAWTEXTPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawTextExW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpchText: [*:0]u16,
     cchText: i32,
-    lprc: *RECT,
+    lprc: ?*RECT,
     format: DRAW_TEXT_FORMAT,
     lpdtp: ?*DRAWTEXTPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GrayStringA(
-    hDC: HDC,
+    hDC: ?HDC,
     hBrush: ?HBRUSH,
     lpOutputFunc: ?GRAYSTRINGPROC,
     lpData: LPARAM,
@@ -6772,7 +6772,7 @@ pub extern "USER32" fn GrayStringA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GrayStringW(
-    hDC: HDC,
+    hDC: ?HDC,
     hBrush: ?HBRUSH,
     lpOutputFunc: ?GRAYSTRINGPROC,
     lpData: LPARAM,
@@ -6785,7 +6785,7 @@ pub extern "USER32" fn GrayStringW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawStateA(
-    hdc: HDC,
+    hdc: ?HDC,
     hbrFore: ?HBRUSH,
     qfnCallBack: ?DRAWSTATEPROC,
     lData: LPARAM,
@@ -6799,7 +6799,7 @@ pub extern "USER32" fn DrawStateA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawStateW(
-    hdc: HDC,
+    hdc: ?HDC,
     hbrFore: ?HBRUSH,
     qfnCallBack: ?DRAWSTATEPROC,
     lData: LPARAM,
@@ -6813,7 +6813,7 @@ pub extern "USER32" fn DrawStateW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn TabbedTextOutA(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lpString: [*:0]const u8,
@@ -6825,7 +6825,7 @@ pub extern "USER32" fn TabbedTextOutA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn TabbedTextOutW(
-    hdc: HDC,
+    hdc: ?HDC,
     x: i32,
     y: i32,
     lpString: [*:0]const u16,
@@ -6837,7 +6837,7 @@ pub extern "USER32" fn TabbedTextOutW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetTabbedTextExtentA(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u8,
     chCount: i32,
     nTabPositions: i32,
@@ -6846,7 +6846,7 @@ pub extern "USER32" fn GetTabbedTextExtentA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetTabbedTextExtentW(
-    hdc: HDC,
+    hdc: ?HDC,
     lpString: [*:0]const u16,
     chCount: i32,
     nTabPositions: i32,
@@ -6855,91 +6855,91 @@ pub extern "USER32" fn GetTabbedTextExtentW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn UpdateWindow(
-    hWnd: HWND,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn PaintDesktop(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn WindowFromDC(
-    hDC: HDC,
-) callconv(@import("std").os.windows.WINAPI) HWND;
+    hDC: ?HDC,
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetDC(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetDCEx(
     hWnd: ?HWND,
     hrgnClip: ?HRGN,
     flags: GET_DCX_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetWindowDC(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ReleaseDC(
     hWnd: ?HWND,
-    hDC: HDC,
+    hDC: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn BeginPaint(
-    hWnd: HWND,
-    lpPaint: *PAINTSTRUCT,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+    hWnd: ?HWND,
+    lpPaint: ?*PAINTSTRUCT,
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EndPaint(
-    hWnd: HWND,
-    lpPaint: *const PAINTSTRUCT,
+    hWnd: ?HWND,
+    lpPaint: ?*const PAINTSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetUpdateRect(
-    hWnd: HWND,
+    hWnd: ?HWND,
     lpRect: ?*RECT,
     bErase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetUpdateRgn(
-    hWnd: HWND,
-    hRgn: HRGN,
+    hWnd: ?HWND,
+    hRgn: ?HRGN,
     bErase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetWindowRgn(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hRgn: ?HRGN,
     bRedraw: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetWindowRgn(
-    hWnd: HWND,
-    hRgn: HRGN,
+    hWnd: ?HWND,
+    hRgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetWindowRgnBox(
-    hWnd: HWND,
-    lprc: *RECT,
+    hWnd: ?HWND,
+    lprc: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ExcludeUpdateRgn(
-    hDC: HDC,
-    hWnd: HWND,
+    hDC: ?HDC,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6957,14 +6957,14 @@ pub extern "USER32" fn ValidateRect(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InvalidateRgn(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hRgn: ?HRGN,
     bErase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ValidateRgn(
-    hWnd: HWND,
+    hWnd: ?HWND,
     hRgn: ?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6983,14 +6983,14 @@ pub extern "USER32" fn LockWindowUpdate(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ClientToScreen(
-    hWnd: HWND,
-    lpPoint: *POINT,
+    hWnd: ?HWND,
+    lpPoint: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ScreenToClient(
-    hWnd: HWND,
-    lpPoint: *POINT,
+    hWnd: ?HWND,
+    lpPoint: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7004,37 +7004,37 @@ pub extern "USER32" fn MapWindowPoints(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetSysColorBrush(
     nIndex: i32,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DrawFocusRect(
-    hDC: HDC,
-    lprc: *const RECT,
+    hDC: ?HDC,
+    lprc: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn FillRect(
-    hDC: HDC,
-    lprc: *const RECT,
-    hbr: HBRUSH,
+    hDC: ?HDC,
+    lprc: ?*const RECT,
+    hbr: ?HBRUSH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn FrameRect(
-    hDC: HDC,
-    lprc: *const RECT,
-    hbr: HBRUSH,
+    hDC: ?HDC,
+    lprc: ?*const RECT,
+    hbr: ?HBRUSH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InvertRect(
-    hDC: HDC,
-    lprc: *const RECT,
+    hDC: ?HDC,
+    lprc: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetRect(
-    lprc: *RECT,
+    lprc: ?*RECT,
     xLeft: i32,
     yTop: i32,
     xRight: i32,
@@ -7043,78 +7043,78 @@ pub extern "USER32" fn SetRect(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetRectEmpty(
-    lprc: *RECT,
+    lprc: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn CopyRect(
-    lprcDst: *RECT,
-    lprcSrc: *const RECT,
+    lprcDst: ?*RECT,
+    lprcSrc: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InflateRect(
-    lprc: *RECT,
+    lprc: ?*RECT,
     dx: i32,
     dy: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn IntersectRect(
-    lprcDst: *RECT,
-    lprcSrc1: *const RECT,
-    lprcSrc2: *const RECT,
+    lprcDst: ?*RECT,
+    lprcSrc1: ?*const RECT,
+    lprcSrc2: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn UnionRect(
-    lprcDst: *RECT,
-    lprcSrc1: *const RECT,
-    lprcSrc2: *const RECT,
+    lprcDst: ?*RECT,
+    lprcSrc1: ?*const RECT,
+    lprcSrc2: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SubtractRect(
-    lprcDst: *RECT,
-    lprcSrc1: *const RECT,
-    lprcSrc2: *const RECT,
+    lprcDst: ?*RECT,
+    lprcSrc1: ?*const RECT,
+    lprcSrc2: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn OffsetRect(
-    lprc: *RECT,
+    lprc: ?*RECT,
     dx: i32,
     dy: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn IsRectEmpty(
-    lprc: *const RECT,
+    lprc: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EqualRect(
-    lprc1: *const RECT,
-    lprc2: *const RECT,
+    lprc1: ?*const RECT,
+    lprc2: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn PtInRect(
-    lprc: *const RECT,
+    lprc: ?*const RECT,
     pt: POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadBitmapA(
     hInstance: ?HINSTANCE,
-    lpBitmapName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+    lpBitmapName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadBitmapW(
     hInstance: ?HINSTANCE,
-    lpBitmapName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+    lpBitmapName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ChangeDisplaySettingsA(
@@ -7132,7 +7132,7 @@ pub extern "USER32" fn ChangeDisplaySettingsW(
 pub extern "USER32" fn ChangeDisplaySettingsExA(
     lpszDeviceName: ?[*:0]const u8,
     lpDevMode: ?*DEVMODEA,
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwflags: CDS_TYPE,
     lParam: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) DISP_CHANGE;
@@ -7141,7 +7141,7 @@ pub extern "USER32" fn ChangeDisplaySettingsExA(
 pub extern "USER32" fn ChangeDisplaySettingsExW(
     lpszDeviceName: ?[*:0]const u16,
     lpDevMode: ?*DEVMODEW,
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwflags: CDS_TYPE,
     lParam: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) DISP_CHANGE;
@@ -7150,21 +7150,21 @@ pub extern "USER32" fn ChangeDisplaySettingsExW(
 pub extern "USER32" fn EnumDisplaySettingsA(
     lpszDeviceName: ?[*:0]const u8,
     iModeNum: ENUM_DISPLAY_SETTINGS_MODE,
-    lpDevMode: *DEVMODEA,
+    lpDevMode: ?*DEVMODEA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnumDisplaySettingsW(
     lpszDeviceName: ?[*:0]const u16,
     iModeNum: ENUM_DISPLAY_SETTINGS_MODE,
-    lpDevMode: *DEVMODEW,
+    lpDevMode: ?*DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnumDisplaySettingsExA(
     lpszDeviceName: ?[*:0]const u8,
     iModeNum: ENUM_DISPLAY_SETTINGS_MODE,
-    lpDevMode: *DEVMODEA,
+    lpDevMode: ?*DEVMODEA,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7172,7 +7172,7 @@ pub extern "USER32" fn EnumDisplaySettingsExA(
 pub extern "USER32" fn EnumDisplaySettingsExW(
     lpszDeviceName: ?[*:0]const u16,
     iModeNum: ENUM_DISPLAY_SETTINGS_MODE,
-    lpDevMode: *DEVMODEW,
+    lpDevMode: ?*DEVMODEW,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7180,7 +7180,7 @@ pub extern "USER32" fn EnumDisplaySettingsExW(
 pub extern "USER32" fn EnumDisplayDevicesA(
     lpDevice: ?[*:0]const u8,
     iDevNum: u32,
-    lpDisplayDevice: *DISPLAY_DEVICEA,
+    lpDisplayDevice: ?*DISPLAY_DEVICEA,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7188,7 +7188,7 @@ pub extern "USER32" fn EnumDisplayDevicesA(
 pub extern "USER32" fn EnumDisplayDevicesW(
     lpDevice: ?[*:0]const u16,
     iDevNum: u32,
-    lpDisplayDevice: *DISPLAY_DEVICEW,
+    lpDisplayDevice: ?*DISPLAY_DEVICEW,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7196,37 +7196,37 @@ pub extern "USER32" fn EnumDisplayDevicesW(
 pub extern "USER32" fn MonitorFromPoint(
     pt: POINT,
     dwFlags: MONITOR_FROM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HMONITOR;
+) callconv(@import("std").os.windows.WINAPI) ?HMONITOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MonitorFromRect(
-    lprc: *RECT,
+    lprc: ?*RECT,
     dwFlags: MONITOR_FROM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HMONITOR;
+) callconv(@import("std").os.windows.WINAPI) ?HMONITOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MonitorFromWindow(
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwFlags: MONITOR_FROM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HMONITOR;
+) callconv(@import("std").os.windows.WINAPI) ?HMONITOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetMonitorInfoA(
-    hMonitor: HMONITOR,
-    lpmi: *MONITORINFO,
+    hMonitor: ?HMONITOR,
+    lpmi: ?*MONITORINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetMonitorInfoW(
-    hMonitor: HMONITOR,
-    lpmi: *MONITORINFO,
+    hMonitor: ?HMONITOR,
+    lpmi: ?*MONITORINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnumDisplayMonitors(
     hdc: ?HDC,
     lprcClip: ?*RECT,
-    lpfnEnum: MONITORENUMPROC,
+    lpfnEnum: ?MONITORENUMPROC,
     dwData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

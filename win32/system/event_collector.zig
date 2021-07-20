@@ -141,11 +141,11 @@ pub const EC_VARIANT = extern struct {
         BooleanVal: BOOL,
         UInt32Val: u32,
         DateTimeVal: u64,
-        StringVal: [*:0]const u16,
-        BinaryVal: *u8,
-        BooleanArr: *BOOL,
-        Int32Arr: *i32,
-        StringArr: *PWSTR,
+        StringVal: ?[*:0]const u16,
+        BinaryVal: ?*u8,
+        BooleanArr: ?*BOOL,
+        Int32Arr: ?*i32,
+        StringArr: ?*?PWSTR,
         PropertyHandleVal: isize,
     },
     Count: u32,
@@ -202,12 +202,12 @@ pub extern "WecApi" fn EcEnumNextSubscription(
     SubscriptionEnum: isize,
     SubscriptionNameBufferSize: u32,
     SubscriptionNameBuffer: ?[*:0]u16,
-    SubscriptionNameBufferUsed: *u32,
+    SubscriptionNameBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WecApi" fn EcOpenSubscription(
-    SubscriptionName: [*:0]const u16,
+    SubscriptionName: ?[*:0]const u16,
     AccessMask: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
@@ -217,7 +217,7 @@ pub extern "WecApi" fn EcSetSubscriptionProperty(
     Subscription: isize,
     PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
     Flags: u32,
-    PropertyValue: *EC_VARIANT,
+    PropertyValue: ?*EC_VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -226,8 +226,8 @@ pub extern "WecApi" fn EcGetSubscriptionProperty(
     PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
     Flags: u32,
     PropertyValueBufferSize: u32,
-    PropertyValueBuffer: *EC_VARIANT,
-    PropertyValueBufferUsed: *u32,
+    PropertyValueBuffer: ?*EC_VARIANT,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -238,14 +238,14 @@ pub extern "WecApi" fn EcSaveSubscription(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WecApi" fn EcDeleteSubscription(
-    SubscriptionName: [*:0]const u16,
+    SubscriptionName: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WecApi" fn EcGetObjectArraySize(
     ObjectArray: isize,
-    ObjectArraySize: *u32,
+    ObjectArraySize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -254,7 +254,7 @@ pub extern "WecApi" fn EcSetObjectArrayProperty(
     PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
     ArrayIndex: u32,
     Flags: u32,
-    PropertyValue: *EC_VARIANT,
+    PropertyValue: ?*EC_VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -264,8 +264,8 @@ pub extern "WecApi" fn EcGetObjectArrayProperty(
     ArrayIndex: u32,
     Flags: u32,
     PropertyValueBufferSize: u32,
-    PropertyValueBuffer: *EC_VARIANT,
-    PropertyValueBufferUsed: *u32,
+    PropertyValueBuffer: ?*EC_VARIANT,
+    PropertyValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -282,19 +282,19 @@ pub extern "WecApi" fn EcRemoveObjectArrayElement(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WecApi" fn EcGetSubscriptionRunTimeStatus(
-    SubscriptionName: [*:0]const u16,
+    SubscriptionName: ?[*:0]const u16,
     StatusInfoId: EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID,
-    EventSourceName: [*:0]const u16,
+    EventSourceName: ?[*:0]const u16,
     Flags: u32,
     StatusValueBufferSize: u32,
-    StatusValueBuffer: *EC_VARIANT,
-    StatusValueBufferUsed: *u32,
+    StatusValueBuffer: ?*EC_VARIANT,
+    StatusValueBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WecApi" fn EcRetrySubscription(
-    SubscriptionName: [*:0]const u16,
-    EventSourceName: [*:0]const u16,
+    SubscriptionName: ?[*:0]const u16,
+    EventSourceName: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

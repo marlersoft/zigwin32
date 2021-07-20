@@ -839,8 +839,8 @@ pub const DOT11_IV48_COUNTER = extern struct {
 
 pub const DOT11_WEP_OFFLOAD = extern struct {
     uReserved: u32,
-    hOffloadContext: HANDLE,
-    hOffload: HANDLE,
+    hOffloadContext: ?HANDLE,
+    hOffload: ?HANDLE,
     dot11OffloadType: DOT11_OFFLOAD_TYPE,
     dwAlgorithm: u32,
     bRowIsOutbound: u8,
@@ -858,7 +858,7 @@ pub const DOT11_WEP_OFFLOAD = extern struct {
 pub const DOT11_WEP_UPLOAD = extern struct {
     uReserved: u32,
     dot11OffloadType: DOT11_OFFLOAD_TYPE,
-    hOffload: HANDLE,
+    hOffload: ?HANDLE,
     uNumOfRWsUsed: u32,
     dot11IV48Counters: [16]DOT11_IV48_COUNTER,
     usDot11RWBitMaps: [16]u16,
@@ -875,8 +875,8 @@ pub const dot11_key_direction_outbound = DOT11_KEY_DIRECTION.outbound;
 
 pub const DOT11_DEFAULT_WEP_OFFLOAD = extern struct {
     uReserved: u32,
-    hOffloadContext: HANDLE,
-    hOffload: HANDLE,
+    hOffloadContext: ?HANDLE,
+    hOffload: ?HANDLE,
     dwIndex: u32,
     dot11OffloadType: DOT11_OFFLOAD_TYPE,
     dwAlgorithm: u32,
@@ -893,7 +893,7 @@ pub const DOT11_DEFAULT_WEP_OFFLOAD = extern struct {
 pub const DOT11_DEFAULT_WEP_UPLOAD = extern struct {
     uReserved: u32,
     dot11OffloadType: DOT11_OFFLOAD_TYPE,
-    hOffload: HANDLE,
+    hOffload: ?HANDLE,
     uNumOfRWsUsed: u32,
     dot11IV48Counters: [16]DOT11_IV48_COUNTER,
     usDot11RWBitMaps: [16]u16,
@@ -1195,7 +1195,7 @@ pub const DOT11_HOPPING_PATTERN_ENTRY_LIST = extern struct {
 pub const DOT11_WPA_TSC = extern struct {
     uReserved: u32,
     dot11OffloadType: DOT11_OFFLOAD_TYPE,
-    hOffload: HANDLE,
+    hOffload: ?HANDLE,
     dot11IV48Counter: DOT11_IV48_COUNTER,
 };
 
@@ -1677,20 +1677,20 @@ pub const DOT11_EXTSTA_ATTRIBUTES = extern struct {
     ucSupportedQoSProtocolFlags: u8,
     bSafeModeImplemented: u8,
     uNumSupportedCountryOrRegionStrings: u32,
-    pSupportedCountryOrRegionStrings: *u8,
+    pSupportedCountryOrRegionStrings: ?*u8,
     uInfraNumSupportedUcastAlgoPairs: u32,
-    pInfraSupportedUcastAlgoPairs: *DOT11_AUTH_CIPHER_PAIR,
+    pInfraSupportedUcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
     uInfraNumSupportedMcastAlgoPairs: u32,
-    pInfraSupportedMcastAlgoPairs: *DOT11_AUTH_CIPHER_PAIR,
+    pInfraSupportedMcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
     uAdhocNumSupportedUcastAlgoPairs: u32,
-    pAdhocSupportedUcastAlgoPairs: *DOT11_AUTH_CIPHER_PAIR,
+    pAdhocSupportedUcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
     uAdhocNumSupportedMcastAlgoPairs: u32,
-    pAdhocSupportedMcastAlgoPairs: *DOT11_AUTH_CIPHER_PAIR,
+    pAdhocSupportedMcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
     bAutoPowerSaveMode: u8,
     uMaxNetworkOffloadListSize: u32,
     bMFPCapable: u8,
     uInfraNumSupportedMcastMgmtAlgoPairs: u32,
-    pInfraSupportedMcastMgmtAlgoPairs: *DOT11_AUTH_CIPHER_PAIR,
+    pInfraSupportedMcastMgmtAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
     bNeighborReportSupported: u8,
     bAPChannelReportSupported: u8,
     bActionFramesSupported: u8,
@@ -1700,7 +1700,7 @@ pub const DOT11_EXTSTA_ATTRIBUTES = extern struct {
 
 pub const DOT11_RECV_EXTENSION_INFO = extern struct {
     uVersion: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     dot11PhyType: DOT11_PHY_TYPE,
     uChCenterFrequency: u32,
     lRSSI: i32,
@@ -1711,8 +1711,8 @@ pub const DOT11_RECV_EXTENSION_INFO = extern struct {
     ucDataRate: u8,
     ucPeerMacAddress: [6]u8,
     dwExtendedStatus: u32,
-    hWEPOffloadContext: HANDLE,
-    hAuthOffloadContext: HANDLE,
+    hWEPOffloadContext: ?HANDLE,
+    hAuthOffloadContext: ?HANDLE,
     usWEPAppliedMask: u16,
     usWPAMSDUPriority: u16,
     dot11LowestIV48Counter: DOT11_IV48_COUNTER,
@@ -1721,12 +1721,12 @@ pub const DOT11_RECV_EXTENSION_INFO = extern struct {
     usDot11RightRWBitMap: u16,
     usNumberOfMPDUsReceived: u16,
     usNumberOfFragments: u16,
-    pNdisPackets: [1]*c_void,
+    pNdisPackets: [1]?*c_void,
 };
 
 pub const DOT11_RECV_EXTENSION_INFO_V2 = extern struct {
     uVersion: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
     dot11PhyType: DOT11_PHY_TYPE,
     uChCenterFrequency: u32,
     lRSSI: i32,
@@ -1735,8 +1735,8 @@ pub const DOT11_RECV_EXTENSION_INFO_V2 = extern struct {
     ucDataRate: u8,
     ucPeerMacAddress: [6]u8,
     dwExtendedStatus: u32,
-    hWEPOffloadContext: HANDLE,
-    hAuthOffloadContext: HANDLE,
+    hWEPOffloadContext: ?HANDLE,
+    hAuthOffloadContext: ?HANDLE,
     usWEPAppliedMask: u16,
     usWPAMSDUPriority: u16,
     dot11LowestIV48Counter: DOT11_IV48_COUNTER,
@@ -1745,7 +1745,7 @@ pub const DOT11_RECV_EXTENSION_INFO_V2 = extern struct {
     usDot11RightRWBitMap: u16,
     usNumberOfMPDUsReceived: u16,
     usNumberOfFragments: u16,
-    pNdisPackets: [1]*c_void,
+    pNdisPackets: [1]?*c_void,
 };
 
 pub const DOT11_STATUS_INDICATION = extern struct {
@@ -1883,7 +1883,7 @@ pub const DOT11_EXTSTA_SEND_CONTEXT = extern struct {
     usExemptionActionType: u16,
     uPhyId: u32,
     uDelayedSleepValue: u32,
-    pvMediaSpecificInfo: *c_void,
+    pvMediaSpecificInfo: ?*c_void,
     uSendFlags: u32,
 };
 
@@ -1896,7 +1896,7 @@ pub const DOT11_EXTSTA_RECV_CONTEXT = extern struct {
     lRSSI: i32,
     ucDataRate: u8,
     uSizeMediaSpecificInfo: u32,
-    pvMediaSpecificInfo: *c_void,
+    pvMediaSpecificInfo: ?*c_void,
     ullTimestamp: u64,
 };
 
@@ -1910,11 +1910,11 @@ pub const DOT11_EXTAP_ATTRIBUTES = extern struct {
     uWEPKeyValueMaxLength: u32,
     bStrictlyOrderedServiceClassImplemented: u8,
     uNumSupportedCountryOrRegionStrings: u32,
-    pSupportedCountryOrRegionStrings: *u8,
+    pSupportedCountryOrRegionStrings: ?*u8,
     uInfraNumSupportedUcastAlgoPairs: u32,
-    pInfraSupportedUcastAlgoPairs: *DOT11_AUTH_CIPHER_PAIR,
+    pInfraSupportedUcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
     uInfraNumSupportedMcastAlgoPairs: u32,
-    pInfraSupportedMcastAlgoPairs: *DOT11_AUTH_CIPHER_PAIR,
+    pInfraSupportedMcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
 };
 
 pub const DOT11_INCOMING_ASSOC_STARTED_PARAMETERS = extern struct {
@@ -2100,9 +2100,9 @@ pub const DOT11_WFD_ATTRIBUTES = extern struct {
     uMaxSecondaryDeviceTypeListSize: u32,
     DeviceAddress: [6]u8,
     uInterfaceAddressListCount: u32,
-    pInterfaceAddressList: *u8,
+    pInterfaceAddressList: ?*u8,
     uNumSupportedCountryOrRegionStrings: u32,
-    pSupportedCountryOrRegionStrings: *u8,
+    pSupportedCountryOrRegionStrings: ?*u8,
     uDiscoveryFilterListSize: u32,
     uGORoleClientTableSize: u32,
 };
@@ -2233,7 +2233,7 @@ pub const DOT11_RECEIVED_GO_NEGOTIATION_REQUEST_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerDeviceAddress: [6]u8,
     DialogToken: u8,
-    RequestContext: *c_void,
+    RequestContext: ?*c_void,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2251,7 +2251,7 @@ pub const DOT11_RECEIVED_GO_NEGOTIATION_RESPONSE_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerDeviceAddress: [6]u8,
     DialogToken: u8,
-    ResponseContext: *c_void,
+    ResponseContext: ?*c_void,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2288,7 +2288,7 @@ pub const DOT11_RECEIVED_INVITATION_REQUEST_PARAMETERS = extern struct {
     TransmitterDeviceAddress: [6]u8,
     BSSID: [6]u8,
     DialogToken: u8,
-    RequestContext: *c_void,
+    RequestContext: ?*c_void,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2326,7 +2326,7 @@ pub const DOT11_RECEIVED_PROVISION_DISCOVERY_REQUEST_PARAMETERS = extern struct 
     TransmitterDeviceAddress: [6]u8,
     BSSID: [6]u8,
     DialogToken: u8,
-    RequestContext: *c_void,
+    RequestContext: ?*c_void,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2371,7 +2371,7 @@ pub const dot11_ANQP_query_result_access_issues = DOT11_ANQP_QUERY_RESULT.access
 pub const DOT11_ANQP_QUERY_COMPLETE_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     Status: DOT11_ANQP_QUERY_RESULT,
-    hContext: HANDLE,
+    hContext: ?HANDLE,
     uResponseLength: u32,
 };
 
@@ -2508,7 +2508,7 @@ pub const DOT11_SEND_GO_NEGOTIATION_RESPONSE_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerDeviceAddress: [6]u8,
     DialogToken: u8,
-    RequestContext: *c_void,
+    RequestContext: ?*c_void,
     uSendTimeout: u32,
     Status: u8,
     GroupOwnerIntent: DOT11_WFD_GO_INTENT,
@@ -2525,7 +2525,7 @@ pub const DOT11_SEND_GO_NEGOTIATION_CONFIRMATION_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerDeviceAddress: [6]u8,
     DialogToken: u8,
-    ResponseContext: *c_void,
+    ResponseContext: ?*c_void,
     uSendTimeout: u32,
     Status: u8,
     GroupCapability: u8,
@@ -2560,7 +2560,7 @@ pub const DOT11_SEND_INVITATION_RESPONSE_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     ReceiverDeviceAddress: [6]u8,
     DialogToken: u8,
-    RequestContext: *c_void,
+    RequestContext: ?*c_void,
     uSendTimeout: u32,
     Status: u8,
     MinimumConfigTimeout: DOT11_WFD_CONFIGURATION_TIMEOUT,
@@ -2588,7 +2588,7 @@ pub const DOT11_SEND_PROVISION_DISCOVERY_RESPONSE_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     ReceiverDeviceAddress: [6]u8,
     DialogToken: u8,
-    RequestContext: *c_void,
+    RequestContext: ?*c_void,
     uSendTimeout: u32,
     uIEsOffset: u32,
     uIEsLength: u32,
@@ -2712,7 +2712,7 @@ pub const DOT11_MANUFACTURING_SELF_TEST_SET_PARAMS = extern struct {
     SelfTestType: DOT11_MANUFACTURING_SELF_TEST_TYPE,
     uTestID: u32,
     uPinBitMask: u32,
-    pvContext: *c_void,
+    pvContext: ?*c_void,
     uBufferLength: u32,
     ucBufferIn: [1]u8,
 };
@@ -2722,7 +2722,7 @@ pub const DOT11_MANUFACTURING_SELF_TEST_QUERY_RESULTS = extern struct {
     uTestID: u32,
     bResult: u8,
     uPinFailedBitMask: u32,
-    pvContext: *c_void,
+    pvContext: ?*c_void,
     uBytesWrittenOut: u32,
     ucBufferOut: [1]u8,
 };
@@ -2775,7 +2775,7 @@ pub const DOT11_MANUFACTURING_TEST_QUERY_DATA = extern struct {
 
 pub const DOT11_MANUFACTURING_TEST_SLEEP = extern struct {
     uSleepTime: u32,
-    pvContext: *c_void,
+    pvContext: ?*c_void,
 };
 
 pub const DOT11_MANUFACTURING_CALLBACK_TYPE = enum(i32) {
@@ -2795,7 +2795,7 @@ pub const DOT11_MANUFACTURING_CALLBACK_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     dot11ManufacturingCallbackType: DOT11_MANUFACTURING_CALLBACK_TYPE,
     uStatus: u32,
-    pvContext: *c_void,
+    pvContext: ?*c_void,
 };
 
 pub const L2_NOTIFICATION_DATA = extern struct {
@@ -2803,7 +2803,7 @@ pub const L2_NOTIFICATION_DATA = extern struct {
     NotificationCode: u32,
     InterfaceGuid: Guid,
     dwDataSize: u32,
-    pData: *c_void,
+    pData: ?*c_void,
 };
 
 pub const WLAN_PROFILE_INFO = extern struct {
@@ -3078,22 +3078,22 @@ pub const wlan_power_setting_invalid = WLAN_POWER_SETTING.invalid;
 
 pub const WLAN_CONNECTION_PARAMETERS = extern struct {
     wlanConnectionMode: WLAN_CONNECTION_MODE,
-    strProfile: [*:0]const u16,
-    pDot11Ssid: *DOT11_SSID,
-    pDesiredBssidList: *DOT11_BSSID_LIST,
+    strProfile: ?[*:0]const u16,
+    pDot11Ssid: ?*DOT11_SSID,
+    pDesiredBssidList: ?*DOT11_BSSID_LIST,
     dot11BssType: DOT11_BSS_TYPE,
     dwFlags: u32,
 };
 
 pub const WLAN_CONNECTION_PARAMETERS_V2 = extern struct {
     wlanConnectionMode: WLAN_CONNECTION_MODE,
-    strProfile: [*:0]const u16,
-    pDot11Ssid: *DOT11_SSID,
-    pDot11Hessid: *u8,
-    pDesiredBssidList: *DOT11_BSSID_LIST,
+    strProfile: ?[*:0]const u16,
+    pDot11Ssid: ?*DOT11_SSID,
+    pDot11Hessid: ?*u8,
+    pDesiredBssidList: ?*DOT11_BSSID_LIST,
     dot11BssType: DOT11_BSS_TYPE,
     dwFlags: u32,
-    pDot11AccessNetworkOptions: *DOT11_ACCESSNETWORKOPTIONS,
+    pDot11AccessNetworkOptions: ?*DOT11_ACCESSNETWORKOPTIONS,
 };
 
 pub const WLAN_MSM_NOTIFICATION_DATA = extern struct {
@@ -3234,8 +3234,8 @@ pub const wlan_notification_security_start = WLAN_NOTIFICATION_SECURITY.start;
 pub const wlan_notification_security_end = WLAN_NOTIFICATION_SECURITY.end;
 
 pub const WLAN_NOTIFICATION_CALLBACK = fn(
-    param0: *L2_NOTIFICATION_DATA,
-    param1: *c_void,
+    param0: ?*L2_NOTIFICATION_DATA,
+    param1: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WLAN_OPCODE_VALUE_TYPE = enum(i32) {
@@ -3599,8 +3599,8 @@ pub const WLAN_HOSTED_NETWORK_STATUS = extern struct {
 };
 
 pub const WFD_OPEN_SESSION_COMPLETE_CALLBACK = fn(
-    hSessionHandle: HANDLE,
-    pvContext: *c_void,
+    hSessionHandle: ?HANDLE,
+    pvContext: ?*c_void,
     guidSessionInterface: Guid,
     dwError: u32,
     dwReasonCode: u32,
@@ -3729,7 +3729,7 @@ pub const ONEX_AUTH_PARAMS = extern struct {
     dwQuarantineState: u32,
     _bitfield: u32,
     dwSessionId: u32,
-    hUserToken: HANDLE,
+    hUserToken: ?HANDLE,
     OneXUserProfile: ONEX_VARIABLE_BLOB,
     Identity: ONEX_VARIABLE_BLOB,
     UserName: ONEX_VARIABLE_BLOB,
@@ -3832,56 +3832,56 @@ pub const IDot11AdHocManager = extern struct {
         base: IUnknown.VTable,
         CreateNetwork: fn(
             self: *const IDot11AdHocManager,
-            Name: [*:0]const u16,
-            Password: [*:0]const u16,
+            Name: ?[*:0]const u16,
+            Password: ?[*:0]const u16,
             GeographicalId: i32,
-            pInterface: *IDot11AdHocInterface,
-            pSecurity: *IDot11AdHocSecuritySettings,
-            pContextGuid: *Guid,
-            pIAdHoc: **IDot11AdHocNetwork,
+            pInterface: ?*IDot11AdHocInterface,
+            pSecurity: ?*IDot11AdHocSecuritySettings,
+            pContextGuid: ?*Guid,
+            pIAdHoc: ?*?*IDot11AdHocNetwork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CommitCreatedNetwork: fn(
             self: *const IDot11AdHocManager,
-            pIAdHoc: *IDot11AdHocNetwork,
+            pIAdHoc: ?*IDot11AdHocNetwork,
             fSaveProfile: u8,
             fMakeSavedProfileUserSpecific: u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIEnumDot11AdHocNetworks: fn(
             self: *const IDot11AdHocManager,
-            pContextGuid: *Guid,
-            ppEnum: **IEnumDot11AdHocNetworks,
+            pContextGuid: ?*Guid,
+            ppEnum: ?*?*IEnumDot11AdHocNetworks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIEnumDot11AdHocInterfaces: fn(
             self: *const IDot11AdHocManager,
-            ppEnum: **IEnumDot11AdHocInterfaces,
+            ppEnum: ?*?*IEnumDot11AdHocInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNetwork: fn(
             self: *const IDot11AdHocManager,
-            NetworkSignature: *Guid,
-            pNetwork: **IDot11AdHocNetwork,
+            NetworkSignature: ?*Guid,
+            pNetwork: ?*?*IDot11AdHocNetwork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_CreateNetwork(self: *const T, Name: [*:0]const u16, Password: [*:0]const u16, GeographicalId: i32, pInterface: *IDot11AdHocInterface, pSecurity: *IDot11AdHocSecuritySettings, pContextGuid: *Guid, pIAdHoc: **IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManager_CreateNetwork(self: *const T, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CreateNetwork(@ptrCast(*const IDot11AdHocManager, self), Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_CommitCreatedNetwork(self: *const T, pIAdHoc: *IDot11AdHocNetwork, fSaveProfile: u8, fMakeSavedProfileUserSpecific: u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManager_CommitCreatedNetwork(self: *const T, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: u8, fMakeSavedProfileUserSpecific: u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CommitCreatedNetwork(@ptrCast(*const IDot11AdHocManager, self), pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetIEnumDot11AdHocNetworks(self: *const T, pContextGuid: *Guid, ppEnum: **IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManager_GetIEnumDot11AdHocNetworks(self: *const T, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetIEnumDot11AdHocNetworks(@ptrCast(*const IDot11AdHocManager, self), pContextGuid, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetIEnumDot11AdHocInterfaces(self: *const T, ppEnum: **IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManager_GetIEnumDot11AdHocInterfaces(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetIEnumDot11AdHocInterfaces(@ptrCast(*const IDot11AdHocManager, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetNetwork(self: *const T, NetworkSignature: *Guid, pNetwork: **IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManager_GetNetwork(self: *const T, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetNetwork(@ptrCast(*const IDot11AdHocManager, self), NetworkSignature, pNetwork);
         }
     };}
@@ -3896,38 +3896,38 @@ pub const IDot11AdHocManagerNotificationSink = extern struct {
         base: IUnknown.VTable,
         OnNetworkAdd: fn(
             self: *const IDot11AdHocManagerNotificationSink,
-            pIAdHocNetwork: *IDot11AdHocNetwork,
+            pIAdHocNetwork: ?*IDot11AdHocNetwork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnNetworkRemove: fn(
             self: *const IDot11AdHocManagerNotificationSink,
-            Signature: *Guid,
+            Signature: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnInterfaceAdd: fn(
             self: *const IDot11AdHocManagerNotificationSink,
-            pIAdHocInterface: *IDot11AdHocInterface,
+            pIAdHocInterface: ?*IDot11AdHocInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnInterfaceRemove: fn(
             self: *const IDot11AdHocManagerNotificationSink,
-            Signature: *Guid,
+            Signature: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnNetworkAdd(self: *const T, pIAdHocNetwork: *IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManagerNotificationSink_OnNetworkAdd(self: *const T, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnNetworkAdd(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), pIAdHocNetwork);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnNetworkRemove(self: *const T, Signature: *Guid) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManagerNotificationSink_OnNetworkRemove(self: *const T, Signature: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnNetworkRemove(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), Signature);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceAdd(self: *const T, pIAdHocInterface: *IDot11AdHocInterface) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceAdd(self: *const T, pIAdHocInterface: ?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnInterfaceAdd(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), pIAdHocInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceRemove(self: *const T, Signature: *Guid) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceRemove(self: *const T, Signature: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnInterfaceRemove(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), Signature);
         }
     };}
@@ -3943,8 +3943,8 @@ pub const IEnumDot11AdHocNetworks = extern struct {
         Next: fn(
             self: *const IEnumDot11AdHocNetworks,
             cElt: u32,
-            rgElt: [*]*IDot11AdHocNetwork,
-            pcEltFetched: *u32,
+            rgElt: [*]?*IDot11AdHocNetwork,
+            pcEltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumDot11AdHocNetworks,
@@ -3955,14 +3955,14 @@ pub const IEnumDot11AdHocNetworks = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDot11AdHocNetworks,
-            ppEnum: **IEnumDot11AdHocNetworks,
+            ppEnum: ?*?*IEnumDot11AdHocNetworks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Next(self: *const T, cElt: u32, rgElt: [*]*IDot11AdHocNetwork, pcEltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumDot11AdHocNetworks_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocNetworks, self), cElt, rgElt, pcEltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3974,7 +3974,7 @@ pub const IEnumDot11AdHocNetworks = extern struct {
             return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocNetworks, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Clone(self: *const T, ppEnum: **IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+        pub fn IEnumDot11AdHocNetworks_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocNetworks, self), ppEnum);
         }
     };}
@@ -3989,47 +3989,47 @@ pub const IDot11AdHocNetwork = extern struct {
         base: IUnknown.VTable,
         GetStatus: fn(
             self: *const IDot11AdHocNetwork,
-            eStatus: *DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSSID: fn(
             self: *const IDot11AdHocNetwork,
-            ppszwSSID: *PWSTR,
+            ppszwSSID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HasProfile: fn(
             self: *const IDot11AdHocNetwork,
-            pf11d: *u8,
+            pf11d: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProfileName: fn(
             self: *const IDot11AdHocNetwork,
-            ppszwProfileName: *PWSTR,
+            ppszwProfileName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteProfile: fn(
             self: *const IDot11AdHocNetwork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSignalQuality: fn(
             self: *const IDot11AdHocNetwork,
-            puStrengthValue: *u32,
-            puStrengthMax: *u32,
+            puStrengthValue: ?*u32,
+            puStrengthMax: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecuritySetting: fn(
             self: *const IDot11AdHocNetwork,
-            pAdHocSecuritySetting: **IDot11AdHocSecuritySettings,
+            pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContextGuid: fn(
             self: *const IDot11AdHocNetwork,
-            pContextGuid: *Guid,
+            pContextGuid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSignature: fn(
             self: *const IDot11AdHocNetwork,
-            pSignature: *Guid,
+            pSignature: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInterface: fn(
             self: *const IDot11AdHocNetwork,
-            pAdHocInterface: **IDot11AdHocInterface,
+            pAdHocInterface: ?*?*IDot11AdHocInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Connect: fn(
             self: *const IDot11AdHocNetwork,
-            Passphrase: [*:0]const u16,
+            Passphrase: ?[*:0]const u16,
             GeographicalId: i32,
             fSaveProfile: u8,
             fMakeSavedProfileUserSpecific: u8,
@@ -4042,19 +4042,19 @@ pub const IDot11AdHocNetwork = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetStatus(self: *const T, eStatus: *DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetStatus(self: *const T, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetStatus(@ptrCast(*const IDot11AdHocNetwork, self), eStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSSID(self: *const T, ppszwSSID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetSSID(self: *const T, ppszwSSID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSSID(@ptrCast(*const IDot11AdHocNetwork, self), ppszwSSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_HasProfile(self: *const T, pf11d: *u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_HasProfile(self: *const T, pf11d: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).HasProfile(@ptrCast(*const IDot11AdHocNetwork, self), pf11d);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetProfileName(self: *const T, ppszwProfileName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetProfileName(self: *const T, ppszwProfileName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetProfileName(@ptrCast(*const IDot11AdHocNetwork, self), ppszwProfileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4062,27 +4062,27 @@ pub const IDot11AdHocNetwork = extern struct {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).DeleteProfile(@ptrCast(*const IDot11AdHocNetwork, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSignalQuality(self: *const T, puStrengthValue: *u32, puStrengthMax: *u32) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetSignalQuality(self: *const T, puStrengthValue: ?*u32, puStrengthMax: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSignalQuality(@ptrCast(*const IDot11AdHocNetwork, self), puStrengthValue, puStrengthMax);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSecuritySetting(self: *const T, pAdHocSecuritySetting: **IDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetSecuritySetting(self: *const T, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSecuritySetting(@ptrCast(*const IDot11AdHocNetwork, self), pAdHocSecuritySetting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetContextGuid(self: *const T, pContextGuid: *Guid) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetContextGuid(self: *const T, pContextGuid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetContextGuid(@ptrCast(*const IDot11AdHocNetwork, self), pContextGuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSignature(self: *const T, pSignature: *Guid) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetSignature(self: *const T, pSignature: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSignature(@ptrCast(*const IDot11AdHocNetwork, self), pSignature);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetInterface(self: *const T, pAdHocInterface: **IDot11AdHocInterface) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_GetInterface(self: *const T, pAdHocInterface: ?*?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetInterface(@ptrCast(*const IDot11AdHocNetwork, self), pAdHocInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_Connect(self: *const T, Passphrase: [*:0]const u16, GeographicalId: i32, fSaveProfile: u8, fMakeSavedProfileUserSpecific: u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_Connect(self: *const T, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: u8, fMakeSavedProfileUserSpecific: u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).Connect(@ptrCast(*const IDot11AdHocNetwork, self), Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4131,79 +4131,79 @@ pub const IDot11AdHocInterface = extern struct {
         base: IUnknown.VTable,
         GetDeviceSignature: fn(
             self: *const IDot11AdHocInterface,
-            pSignature: *Guid,
+            pSignature: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFriendlyName: fn(
             self: *const IDot11AdHocInterface,
-            ppszName: *PWSTR,
+            ppszName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsDot11d: fn(
             self: *const IDot11AdHocInterface,
-            pf11d: *u8,
+            pf11d: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsAdHocCapable: fn(
             self: *const IDot11AdHocInterface,
-            pfAdHocCapable: *u8,
+            pfAdHocCapable: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRadioOn: fn(
             self: *const IDot11AdHocInterface,
-            pfIsRadioOn: *u8,
+            pfIsRadioOn: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveNetwork: fn(
             self: *const IDot11AdHocInterface,
-            ppNetwork: **IDot11AdHocNetwork,
+            ppNetwork: ?*?*IDot11AdHocNetwork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIEnumSecuritySettings: fn(
             self: *const IDot11AdHocInterface,
-            ppEnum: **IEnumDot11AdHocSecuritySettings,
+            ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIEnumDot11AdHocNetworks: fn(
             self: *const IDot11AdHocInterface,
-            pFilterGuid: *Guid,
-            ppEnum: **IEnumDot11AdHocNetworks,
+            pFilterGuid: ?*Guid,
+            ppEnum: ?*?*IEnumDot11AdHocNetworks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatus: fn(
             self: *const IDot11AdHocInterface,
-            pState: *DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetDeviceSignature(self: *const T, pSignature: *Guid) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_GetDeviceSignature(self: *const T, pSignature: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetDeviceSignature(@ptrCast(*const IDot11AdHocInterface, self), pSignature);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetFriendlyName(self: *const T, ppszName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_GetFriendlyName(self: *const T, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IDot11AdHocInterface, self), ppszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsDot11d(self: *const T, pf11d: *u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_IsDot11d(self: *const T, pf11d: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsDot11d(@ptrCast(*const IDot11AdHocInterface, self), pf11d);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsAdHocCapable(self: *const T, pfAdHocCapable: *u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_IsAdHocCapable(self: *const T, pfAdHocCapable: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsAdHocCapable(@ptrCast(*const IDot11AdHocInterface, self), pfAdHocCapable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsRadioOn(self: *const T, pfIsRadioOn: *u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_IsRadioOn(self: *const T, pfIsRadioOn: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsRadioOn(@ptrCast(*const IDot11AdHocInterface, self), pfIsRadioOn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetActiveNetwork(self: *const T, ppNetwork: **IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_GetActiveNetwork(self: *const T, ppNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetActiveNetwork(@ptrCast(*const IDot11AdHocInterface, self), ppNetwork);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetIEnumSecuritySettings(self: *const T, ppEnum: **IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_GetIEnumSecuritySettings(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetIEnumSecuritySettings(@ptrCast(*const IDot11AdHocInterface, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetIEnumDot11AdHocNetworks(self: *const T, pFilterGuid: *Guid, ppEnum: **IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_GetIEnumDot11AdHocNetworks(self: *const T, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetIEnumDot11AdHocNetworks(@ptrCast(*const IDot11AdHocInterface, self), pFilterGuid, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetStatus(self: *const T, pState: *DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocInterface_GetStatus(self: *const T, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetStatus(@ptrCast(*const IDot11AdHocInterface, self), pState);
         }
     };}
@@ -4219,8 +4219,8 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
         Next: fn(
             self: *const IEnumDot11AdHocInterfaces,
             cElt: u32,
-            rgElt: [*]*IDot11AdHocInterface,
-            pcEltFetched: *u32,
+            rgElt: [*]?*IDot11AdHocInterface,
+            pcEltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumDot11AdHocInterfaces,
@@ -4231,14 +4231,14 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDot11AdHocInterfaces,
-            ppEnum: **IEnumDot11AdHocInterfaces,
+            ppEnum: ?*?*IEnumDot11AdHocInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Next(self: *const T, cElt: u32, rgElt: [*]*IDot11AdHocInterface, pcEltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumDot11AdHocInterfaces_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocInterfaces, self), cElt, rgElt, pcEltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4250,7 +4250,7 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
             return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocInterfaces, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Clone(self: *const T, ppEnum: **IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+        pub fn IEnumDot11AdHocInterfaces_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocInterfaces, self), ppEnum);
         }
     };}
@@ -4266,8 +4266,8 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
         Next: fn(
             self: *const IEnumDot11AdHocSecuritySettings,
             cElt: u32,
-            rgElt: [*]*IDot11AdHocSecuritySettings,
-            pcEltFetched: *u32,
+            rgElt: [*]?*IDot11AdHocSecuritySettings,
+            pcEltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumDot11AdHocSecuritySettings,
@@ -4278,14 +4278,14 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDot11AdHocSecuritySettings,
-            ppEnum: **IEnumDot11AdHocSecuritySettings,
+            ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Next(self: *const T, cElt: u32, rgElt: [*]*IDot11AdHocSecuritySettings, pcEltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumDot11AdHocSecuritySettings_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), cElt, rgElt, pcEltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4297,7 +4297,7 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
             return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Clone(self: *const T, ppEnum: **IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+        pub fn IEnumDot11AdHocSecuritySettings_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), ppEnum);
         }
     };}
@@ -4312,22 +4312,22 @@ pub const IDot11AdHocSecuritySettings = extern struct {
         base: IUnknown.VTable,
         GetDot11AuthAlgorithm: fn(
             self: *const IDot11AdHocSecuritySettings,
-            pAuth: *DOT11_ADHOC_AUTH_ALGORITHM,
+            pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDot11CipherAlgorithm: fn(
             self: *const IDot11AdHocSecuritySettings,
-            pCipher: *DOT11_ADHOC_CIPHER_ALGORITHM,
+            pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocSecuritySettings_GetDot11AuthAlgorithm(self: *const T, pAuth: *DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocSecuritySettings_GetDot11AuthAlgorithm(self: *const T, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocSecuritySettings.VTable, self.vtable).GetDot11AuthAlgorithm(@ptrCast(*const IDot11AdHocSecuritySettings, self), pAuth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocSecuritySettings_GetDot11CipherAlgorithm(self: *const T, pCipher: *DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocSecuritySettings_GetDot11CipherAlgorithm(self: *const T, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocSecuritySettings.VTable, self.vtable).GetDot11CipherAlgorithm(@ptrCast(*const IDot11AdHocSecuritySettings, self), pCipher);
         }
     };}
@@ -4363,307 +4363,307 @@ pub const IDot11AdHocInterfaceNotificationSink = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanOpenHandle(
     dwClientVersion: u32,
-    pReserved: *c_void,
-    pdwNegotiatedVersion: *u32,
-    phClientHandle: *HANDLE,
+    pReserved: ?*c_void,
+    pdwNegotiatedVersion: ?*u32,
+    phClientHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanCloseHandle(
-    hClientHandle: HANDLE,
-    pReserved: *c_void,
+    hClientHandle: ?HANDLE,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanEnumInterfaces(
-    hClientHandle: HANDLE,
-    pReserved: *c_void,
-    ppInterfaceList: **WLAN_INTERFACE_INFO_LIST,
+    hClientHandle: ?HANDLE,
+    pReserved: ?*c_void,
+    ppInterfaceList: ?*?*WLAN_INTERFACE_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetAutoConfigParameter(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     OpCode: WLAN_AUTOCONF_OPCODE,
     dwDataSize: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pData: *const c_void,
-    pReserved: *c_void,
+    pData: ?*const c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanQueryAutoConfigParameter(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     OpCode: WLAN_AUTOCONF_OPCODE,
-    pReserved: *c_void,
-    pdwDataSize: *u32,
-    ppData: **c_void,
+    pReserved: ?*c_void,
+    pdwDataSize: ?*u32,
+    ppData: ?*?*c_void,
     pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetInterfaceCapability(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    pReserved: *c_void,
-    ppCapability: **WLAN_INTERFACE_CAPABILITY,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    pReserved: ?*c_void,
+    ppCapability: ?*?*WLAN_INTERFACE_CAPABILITY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetInterface(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     OpCode: WLAN_INTF_OPCODE,
     dwDataSize: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pData: *const c_void,
-    pReserved: *c_void,
+    pData: ?*const c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanQueryInterface(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     OpCode: WLAN_INTF_OPCODE,
-    pReserved: *c_void,
-    pdwDataSize: *u32,
-    ppData: **c_void,
+    pReserved: ?*c_void,
+    pdwDataSize: ?*u32,
+    ppData: ?*?*c_void,
     pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanIhvControl(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     Type: WLAN_IHV_CONTROL_TYPE,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pInBuffer: *c_void,
+    pInBuffer: ?*c_void,
     dwOutBufferSize: u32,
     // TODO: what to do with BytesParamIndex 5?
     pOutBuffer: ?*c_void,
-    pdwBytesReturned: *u32,
+    pdwBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanScan(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     pDot11Ssid: ?*const DOT11_SSID,
     pIeData: ?*const WLAN_RAW_DATA,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetAvailableNetworkList(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     dwFlags: u32,
-    pReserved: *c_void,
-    ppAvailableNetworkList: **WLAN_AVAILABLE_NETWORK_LIST,
+    pReserved: ?*c_void,
+    ppAvailableNetworkList: ?*?*WLAN_AVAILABLE_NETWORK_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wlanapi" fn WlanGetAvailableNetworkList2(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     dwFlags: u32,
-    pReserved: *c_void,
-    ppAvailableNetworkList: **WLAN_AVAILABLE_NETWORK_LIST_V2,
+    pReserved: ?*c_void,
+    ppAvailableNetworkList: ?*?*WLAN_AVAILABLE_NETWORK_LIST_V2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetNetworkBssList(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     pDot11Ssid: ?*const DOT11_SSID,
     dot11BssType: DOT11_BSS_TYPE,
     bSecurityEnabled: BOOL,
-    pReserved: *c_void,
-    ppWlanBssList: **WLAN_BSS_LIST,
+    pReserved: ?*c_void,
+    ppWlanBssList: ?*?*WLAN_BSS_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanConnect(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    pConnectionParameters: *const WLAN_CONNECTION_PARAMETERS,
-    pReserved: *c_void,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    pConnectionParameters: ?*const WLAN_CONNECTION_PARAMETERS,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wlanapi" fn WlanConnect2(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    pConnectionParameters: *const WLAN_CONNECTION_PARAMETERS_V2,
-    pReserved: *c_void,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    pConnectionParameters: ?*const WLAN_CONNECTION_PARAMETERS_V2,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanDisconnect(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    pReserved: *c_void,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanRegisterNotification(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     dwNotifSource: u32,
     bIgnoreDuplicate: BOOL,
     funcCallback: ?WLAN_NOTIFICATION_CALLBACK,
     pCallbackContext: ?*c_void,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
     pdwPrevNotifSource: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfile(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
-    pReserved: *c_void,
-    pstrProfileXml: *PWSTR,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
+    pReserved: ?*c_void,
+    pstrProfileXml: ?*?PWSTR,
     pdwFlags: ?*u32,
     pdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileEapUserData(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
     eapType: EAP_METHOD_TYPE,
     dwFlags: WLAN_SET_EAPHOST_FLAGS,
     dwEapUserDataSize: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbEapUserData: ?*const u8,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileEapXmlUserData(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
     dwFlags: WLAN_SET_EAPHOST_FLAGS,
-    strEapXmlUserData: [*:0]const u16,
-    pReserved: *c_void,
+    strEapXmlUserData: ?[*:0]const u16,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfile(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     dwFlags: u32,
-    strProfileXml: [*:0]const u16,
+    strProfileXml: ?[*:0]const u16,
     strAllUserProfileSecurity: ?[*:0]const u16,
     bOverwrite: BOOL,
-    pReserved: *c_void,
-    pdwReasonCode: *u32,
+    pReserved: ?*c_void,
+    pdwReasonCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanDeleteProfile(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
-    pReserved: *c_void,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanRenameProfile(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strOldProfileName: [*:0]const u16,
-    strNewProfileName: [*:0]const u16,
-    pReserved: *c_void,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strOldProfileName: ?[*:0]const u16,
+    strNewProfileName: ?[*:0]const u16,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfileList(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    pReserved: *c_void,
-    ppProfileList: **WLAN_PROFILE_INFO_LIST,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    pReserved: ?*c_void,
+    ppProfileList: ?*?*WLAN_PROFILE_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileList(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
     dwItems: u32,
-    strProfileNames: [*]PWSTR,
-    pReserved: *c_void,
+    strProfileNames: [*]?PWSTR,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfilePosition(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
     dwPosition: u32,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileCustomUserData(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
     dwDataSize: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pData: *const u8,
-    pReserved: *c_void,
+    pData: ?*const u8,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfileCustomUserData(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
-    pReserved: *c_void,
-    pdwDataSize: *u32,
-    ppData: **u8,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
+    pReserved: ?*c_void,
+    pdwDataSize: ?*u32,
+    ppData: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetFilterList(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     wlanFilterListType: WLAN_FILTER_LIST_TYPE,
     pNetworkList: ?*const DOT11_NETWORK_LIST,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetFilterList(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     wlanFilterListType: WLAN_FILTER_LIST_TYPE,
-    pReserved: *c_void,
-    ppNetworkList: **DOT11_NETWORK_LIST,
+    pReserved: ?*c_void,
+    ppNetworkList: ?*?*DOT11_NETWORK_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetPsdIEDataList(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     strFormat: ?[*:0]const u16,
     pPsdIEDataList: ?*const WLAN_RAW_DATA_LIST,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSaveTemporaryProfile(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    strProfileName: [*:0]const u16,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    strProfileName: ?[*:0]const u16,
     strAllUserProfileSecurity: ?[*:0]const u16,
     dwFlags: u32,
     bOverWrite: BOOL,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wlanapi" fn WlanDeviceServiceCommand(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    pDeviceServiceGuid: *Guid,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    pDeviceServiceGuid: ?*Guid,
     dwOpCode: u32,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -4671,29 +4671,29 @@ pub extern "wlanapi" fn WlanDeviceServiceCommand(
     dwOutBufferSize: u32,
     // TODO: what to do with BytesParamIndex 6?
     pOutBuffer: ?*c_void,
-    pdwBytesReturned: *u32,
+    pdwBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wlanapi" fn WlanGetSupportedDeviceServices(
-    hClientHandle: HANDLE,
-    pInterfaceGuid: *const Guid,
-    ppDevSvcGuidList: **WLAN_DEVICE_SERVICE_GUID_LIST,
+    hClientHandle: ?HANDLE,
+    pInterfaceGuid: ?*const Guid,
+    ppDevSvcGuidList: ?*?*WLAN_DEVICE_SERVICE_GUID_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wlanapi" fn WlanRegisterDeviceServiceNotification(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     pDevSvcGuidList: ?*const WLAN_DEVICE_SERVICE_GUID_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanExtractPsdIEDataList(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     dwIeDataSize: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pRawIeData: *const u8,
-    strFormat: [*:0]const u16,
-    pReserved: *c_void,
-    ppPsdIEDataList: **WLAN_RAW_DATA_LIST,
+    pRawIeData: ?*const u8,
+    strFormat: ?[*:0]const u16,
+    pReserved: ?*c_void,
+    ppPsdIEDataList: ?*?*WLAN_RAW_DATA_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4701,188 +4701,188 @@ pub extern "wlanapi" fn WlanReasonCodeToString(
     dwReasonCode: u32,
     dwBufferSize: u32,
     pStringBuffer: [*]u16,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanAllocateMemory(
     dwMemorySize: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanFreeMemory(
-    pMemory: *c_void,
+    pMemory: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetSecuritySettings(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     SecurableObject: WLAN_SECURABLE_OBJECT,
-    strModifiedSDDL: [*:0]const u16,
+    strModifiedSDDL: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetSecuritySettings(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     SecurableObject: WLAN_SECURABLE_OBJECT,
     pValueType: ?*WLAN_OPCODE_VALUE_TYPE,
-    pstrCurrentSDDL: *PWSTR,
-    pdwGrantedAccess: *u32,
+    pstrCurrentSDDL: ?*?PWSTR,
+    pdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanui" fn WlanUIEditProfile(
     dwClientVersion: u32,
-    wstrProfileName: [*:0]const u16,
-    pInterfaceGuid: *Guid,
-    hWnd: HWND,
+    wstrProfileName: ?[*:0]const u16,
+    pInterfaceGuid: ?*Guid,
+    hWnd: ?HWND,
     wlStartPage: WL_DISPLAY_PAGES,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
     pWlanReasonCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkStartUsing(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkStopUsing(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkForceStart(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkForceStop(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQueryProperty(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     OpCode: WLAN_HOSTED_NETWORK_OPCODE,
-    pdwDataSize: *u32,
-    ppvData: **c_void,
-    pWlanOpcodeValueType: *WLAN_OPCODE_VALUE_TYPE,
-    pvReserved: *c_void,
+    pdwDataSize: ?*u32,
+    ppvData: ?*?*c_void,
+    pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkSetProperty(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     OpCode: WLAN_HOSTED_NETWORK_OPCODE,
     dwDataSize: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pvData: *c_void,
+    pvData: ?*c_void,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkInitSettings(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkRefreshSecuritySettings(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQueryStatus(
-    hClientHandle: HANDLE,
-    ppWlanHostedNetworkStatus: **WLAN_HOSTED_NETWORK_STATUS,
-    pvReserved: *c_void,
+    hClientHandle: ?HANDLE,
+    ppWlanHostedNetworkStatus: ?*?*WLAN_HOSTED_NETWORK_STATUS,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkSetSecondaryKey(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     dwKeyLength: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pucKeyData: *u8,
+    pucKeyData: ?*u8,
     bIsPassPhrase: BOOL,
     bPersistent: BOOL,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQuerySecondaryKey(
-    hClientHandle: HANDLE,
-    pdwKeyLength: *u32,
-    ppucKeyData: **u8,
-    pbIsPassPhrase: *BOOL,
-    pbPersistent: *BOOL,
+    hClientHandle: ?HANDLE,
+    pdwKeyLength: ?*u32,
+    ppucKeyData: ?*?*u8,
+    pbIsPassPhrase: ?*BOOL,
+    pbPersistent: ?*BOOL,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanRegisterVirtualStationNotification(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
     bRegister: BOOL,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDOpenHandle(
     dwClientVersion: u32,
-    pdwNegotiatedVersion: *u32,
-    phClientHandle: *HANDLE,
+    pdwNegotiatedVersion: ?*u32,
+    phClientHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCloseHandle(
-    hClientHandle: HANDLE,
+    hClientHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDStartOpenSession(
-    hClientHandle: HANDLE,
-    pDeviceAddress: **u8,
+    hClientHandle: ?HANDLE,
+    pDeviceAddress: ?*?*u8,
     pvContext: ?*c_void,
-    pfnCallback: WFD_OPEN_SESSION_COMPLETE_CALLBACK,
-    phSessionHandle: *HANDLE,
+    pfnCallback: ?WFD_OPEN_SESSION_COMPLETE_CALLBACK,
+    phSessionHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCancelOpenSession(
-    hSessionHandle: HANDLE,
+    hSessionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDOpenLegacySession(
-    hClientHandle: HANDLE,
-    pLegacyMacAddress: **u8,
-    phSessionHandle: *HANDLE,
-    pGuidSessionInterface: *Guid,
+    hClientHandle: ?HANDLE,
+    pLegacyMacAddress: ?*?*u8,
+    phSessionHandle: ?*?HANDLE,
+    pGuidSessionInterface: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCloseSession(
-    hSessionHandle: HANDLE,
+    hSessionHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDUpdateDeviceVisibility(
-    pDeviceAddress: **u8,
+    pDeviceAddress: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

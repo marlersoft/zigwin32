@@ -21,16 +21,16 @@ pub const IIsolatedAppLauncher = extern struct {
         base: IUnknown.VTable,
         Launch: fn(
             self: *const IIsolatedAppLauncher,
-            appUserModelId: [*:0]const u16,
-            arguments: [*:0]const u16,
-            telemetryParameters: *const IsolatedAppLauncherTelemetryParameters,
+            appUserModelId: ?[*:0]const u16,
+            arguments: ?[*:0]const u16,
+            telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIsolatedAppLauncher_Launch(self: *const T, appUserModelId: [*:0]const u16, arguments: [*:0]const u16, telemetryParameters: *const IsolatedAppLauncherTelemetryParameters) callconv(.Inline) HRESULT {
+        pub fn IIsolatedAppLauncher_Launch(self: *const T, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIsolatedAppLauncher.VTable, self.vtable).Launch(@ptrCast(*const IIsolatedAppLauncher, self), appUserModelId, arguments, telemetryParameters);
         }
     };}
@@ -47,56 +47,56 @@ pub extern "KERNEL32" fn GetAppContainerNamedObjectPath(
     AppContainerSid: ?PSID,
     ObjectPathLength: u32,
     ObjectPath: ?[*:0]u16,
-    ReturnLength: *u32,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-security-isolatedcontainer-l1-1-1" fn IsProcessInWDAGContainer(
-    Reserved: *c_void,
-    isProcessInWDAGContainer: *BOOL,
+    Reserved: ?*c_void,
+    isProcessInWDAGContainer: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-security-isolatedcontainer-l1-1-0" fn IsProcessInIsolatedContainer(
-    isProcessInIsolatedContainer: *BOOL,
+    isProcessInIsolatedContainer: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn CreateAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
-    pszDisplayName: [*:0]const u16,
-    pszDescription: [*:0]const u16,
+    pszAppContainerName: ?[*:0]const u16,
+    pszDisplayName: ?[*:0]const u16,
+    pszDescription: ?[*:0]const u16,
     pCapabilities: ?[*]SID_AND_ATTRIBUTES,
     dwCapabilityCount: u32,
-    ppSidAppContainerSid: *PSID,
+    ppSidAppContainerSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn DeleteAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
+    pszAppContainerName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn GetAppContainerRegistryLocation(
     desiredAccess: u32,
-    phAppContainerKey: *HKEY,
+    phAppContainerKey: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn GetAppContainerFolderPath(
-    pszAppContainerSid: [*:0]const u16,
-    ppszPath: *PWSTR,
+    pszAppContainerSid: ?[*:0]const u16,
+    ppszPath: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
-    pszAppContainerName: [*:0]const u16,
-    ppsidAppContainerSid: *PSID,
+    pszAppContainerName: ?[*:0]const u16,
+    ppsidAppContainerSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
-    psidAppContainerSid: PSID,
-    pszRestrictedAppContainerName: [*:0]const u16,
-    ppsidRestrictedAppContainerSid: *PSID,
+    psidAppContainerSid: ?PSID,
+    pszRestrictedAppContainerName: ?[*:0]const u16,
+    ppsidRestrictedAppContainerSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

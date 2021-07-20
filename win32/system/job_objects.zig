@@ -197,7 +197,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
     ReservationIops: i64,
-    VolumeName: [*:0]const u16,
+    VolumeName: ?[*:0]const u16,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
 };
@@ -210,72 +210,72 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
 pub extern "KERNEL32" fn CreateJobObjectA(
     lpJobAttributes: ?*SECURITY_ATTRIBUTES,
     lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn OpenJobObjectA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
-    lpName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn UserHandleGrantAccess(
-    hUserHandle: HANDLE,
-    hJob: HANDLE,
+    hUserHandle: ?HANDLE,
+    hJob: ?HANDLE,
     bGrant: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsProcessInJob(
-    ProcessHandle: HANDLE,
+    ProcessHandle: ?HANDLE,
     JobHandle: ?HANDLE,
-    Result: *BOOL,
+    Result: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateJobObjectW(
     lpJobAttributes: ?*SECURITY_ATTRIBUTES,
     lpName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "KERNEL32" fn FreeMemoryJobObject(
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn OpenJobObjectW(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn AssignProcessToJobObject(
-    hJob: HANDLE,
-    hProcess: HANDLE,
+    hJob: ?HANDLE,
+    hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn TerminateJobObject(
-    hJob: HANDLE,
+    hJob: ?HANDLE,
     uExitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetInformationJobObject(
-    hJob: HANDLE,
+    hJob: ?HANDLE,
     JobObjectInformationClass: JOBOBJECTINFOCLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpJobObjectInformation: *c_void,
+    lpJobObjectInformation: ?*c_void,
     cbJobObjectInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "KERNEL32" fn SetIoRateControlInformationJobObject(
-    hJob: HANDLE,
-    IoRateControlInfo: *JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
+    hJob: ?HANDLE,
+    IoRateControlInfo: ?*JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -283,7 +283,7 @@ pub extern "KERNEL32" fn QueryInformationJobObject(
     hJob: ?HANDLE,
     JobObjectInformationClass: JOBOBJECTINFOCLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpJobObjectInformation: *c_void,
+    lpJobObjectInformation: ?*c_void,
     cbJobObjectInformationLength: u32,
     lpReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -292,8 +292,8 @@ pub extern "KERNEL32" fn QueryInformationJobObject(
 pub extern "KERNEL32" fn QueryIoRateControlInformationJobObject(
     hJob: ?HANDLE,
     VolumeName: ?[*:0]const u16,
-    InfoBlocks: **JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
-    InfoBlockCount: *u32,
+    InfoBlocks: ?*?*JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
+    InfoBlockCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

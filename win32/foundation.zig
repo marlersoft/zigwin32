@@ -6389,32 +6389,32 @@ pub extern "ntdll" fn RtlNtStatusToDosError(
 
 pub extern "OLEAUT32" fn SysAllocString(
     psz: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BSTR;
+) callconv(@import("std").os.windows.WINAPI) ?BSTR;
 
 pub extern "OLEAUT32" fn SysReAllocString(
-    pbstr: *BSTR,
+    pbstr: ?*?BSTR,
     psz: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "OLEAUT32" fn SysAllocStringLen(
     strIn: ?[*:0]const u16,
     ui: u32,
-) callconv(@import("std").os.windows.WINAPI) BSTR;
+) callconv(@import("std").os.windows.WINAPI) ?BSTR;
 
 pub extern "OLEAUT32" fn SysReAllocStringLen(
-    pbstr: *BSTR,
+    pbstr: ?*?BSTR,
     psz: ?[*:0]const u16,
     len: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn SysAddRefString(
-    bstrString: BSTR,
+    bstrString: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn SysReleaseString(
-    bstrString: BSTR,
+    bstrString: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SysFreeString(
@@ -6432,19 +6432,19 @@ pub extern "OLEAUT32" fn SysStringByteLen(
 pub extern "OLEAUT32" fn SysAllocStringByteLen(
     psz: ?[*:0]const u8,
     len: u32,
-) callconv(@import("std").os.windows.WINAPI) BSTR;
+) callconv(@import("std").os.windows.WINAPI) ?BSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn CloseHandle(
-    hObject: HANDLE,
+    hObject: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn DuplicateHandle(
-    hSourceProcessHandle: HANDLE,
-    hSourceHandle: HANDLE,
-    hTargetProcessHandle: HANDLE,
-    lpTargetHandle: *HANDLE,
+    hSourceProcessHandle: ?HANDLE,
+    hSourceHandle: ?HANDLE,
+    hTargetProcessHandle: ?HANDLE,
+    lpTargetHandle: ?*?HANDLE,
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     dwOptions: DUPLICATE_HANDLE_OPTIONS,
@@ -6452,19 +6452,19 @@ pub extern "KERNEL32" fn DuplicateHandle(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-handle-l1-1-0" fn CompareObjectHandles(
-    hFirstObjectHandle: HANDLE,
-    hSecondObjectHandle: HANDLE,
+    hFirstObjectHandle: ?HANDLE,
+    hSecondObjectHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetHandleInformation(
-    hObject: HANDLE,
-    lpdwFlags: *u32,
+    hObject: ?HANDLE,
+    lpdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn SetHandleInformation(
-    hObject: HANDLE,
+    hObject: ?HANDLE,
     dwMask: u32,
     dwFlags: HANDLE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

@@ -901,16 +901,16 @@ pub const CLSID_WiaLog = &CLSID_WiaLog_Value;
 
 pub const WIA_DITHER_PATTERN_DATA = extern struct {
     lSize: i32,
-    bstrPatternName: BSTR,
+    bstrPatternName: ?BSTR,
     lPatternWidth: i32,
     lPatternLength: i32,
     cbPattern: i32,
-    pbPattern: *u8,
+    pbPattern: ?*u8,
 };
 
 pub const WIA_PROPID_TO_NAME = extern struct {
     propid: u32,
-    pszName: PWSTR,
+    pszName: ?PWSTR,
 };
 
 pub const WIA_FORMAT_INFO = extern struct {
@@ -998,69 +998,69 @@ pub const IWiaDevMgr = extern struct {
         EnumDeviceInfo: fn(
             self: *const IWiaDevMgr,
             lFlag: i32,
-            ppIEnum: ?**IEnumWIA_DEV_INFO,
+            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDevice: fn(
             self: *const IWiaDevMgr,
-            bstrDeviceID: BSTR,
-            ppWiaItemRoot: **IWiaItem,
+            bstrDeviceID: ?BSTR,
+            ppWiaItemRoot: ?*?*IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SelectDeviceDlg: fn(
             self: *const IWiaDevMgr,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             lDeviceType: i32,
             lFlags: i32,
-            pbstrDeviceID: *BSTR,
-            ppItemRoot: **IWiaItem,
+            pbstrDeviceID: ?*?BSTR,
+            ppItemRoot: ?*?*IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SelectDeviceDlgID: fn(
             self: *const IWiaDevMgr,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             lDeviceType: i32,
             lFlags: i32,
-            pbstrDeviceID: *BSTR,
+            pbstrDeviceID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImageDlg: fn(
             self: *const IWiaDevMgr,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             lDeviceType: i32,
             lFlags: i32,
             lIntent: i32,
-            pItemRoot: *IWiaItem,
-            bstrFilename: BSTR,
-            pguidFormat: *Guid,
+            pItemRoot: ?*IWiaItem,
+            bstrFilename: ?BSTR,
+            pguidFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterEventCallbackProgram: fn(
             self: *const IWiaDevMgr,
             lFlags: i32,
-            bstrDeviceID: BSTR,
-            pEventGUID: *const Guid,
-            bstrCommandline: BSTR,
-            bstrName: BSTR,
-            bstrDescription: BSTR,
-            bstrIcon: BSTR,
+            bstrDeviceID: ?BSTR,
+            pEventGUID: ?*const Guid,
+            bstrCommandline: ?BSTR,
+            bstrName: ?BSTR,
+            bstrDescription: ?BSTR,
+            bstrIcon: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterEventCallbackInterface: fn(
             self: *const IWiaDevMgr,
             lFlags: i32,
-            bstrDeviceID: BSTR,
-            pEventGUID: *const Guid,
-            pIWiaEventCallback: *IWiaEventCallback,
-            pEventObject: **IUnknown,
+            bstrDeviceID: ?BSTR,
+            pEventGUID: ?*const Guid,
+            pIWiaEventCallback: ?*IWiaEventCallback,
+            pEventObject: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterEventCallbackCLSID: fn(
             self: *const IWiaDevMgr,
             lFlags: i32,
-            bstrDeviceID: BSTR,
-            pEventGUID: *const Guid,
-            pClsID: *const Guid,
-            bstrName: BSTR,
-            bstrDescription: BSTR,
-            bstrIcon: BSTR,
+            bstrDeviceID: ?BSTR,
+            pEventGUID: ?*const Guid,
+            pClsID: ?*const Guid,
+            bstrName: ?BSTR,
+            bstrDescription: ?BSTR,
+            bstrIcon: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDeviceDlg: fn(
             self: *const IWiaDevMgr,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             lFlags: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1068,39 +1068,39 @@ pub const IWiaDevMgr = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_EnumDeviceInfo(self: *const T, lFlag: i32, ppIEnum: ?**IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_EnumDeviceInfo(self: *const T, lFlag: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr, self), lFlag, ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_CreateDevice(self: *const T, bstrDeviceID: BSTR, ppWiaItemRoot: **IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_CreateDevice(self: *const T, bstrDeviceID: ?BSTR, ppWiaItemRoot: ?*?*IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).CreateDevice(@ptrCast(*const IWiaDevMgr, self), bstrDeviceID, ppWiaItemRoot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_SelectDeviceDlg(self: *const T, hwndParent: HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: *BSTR, ppItemRoot: **IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_SelectDeviceDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_SelectDeviceDlgID(self: *const T, hwndParent: HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_SelectDeviceDlgID(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlgID(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_GetImageDlg(self: *const T, hwndParent: HWND, lDeviceType: i32, lFlags: i32, lIntent: i32, pItemRoot: *IWiaItem, bstrFilename: BSTR, pguidFormat: *Guid) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_GetImageDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, lIntent: i32, pItemRoot: ?*IWiaItem, bstrFilename: ?BSTR, pguidFormat: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).GetImageDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, lIntent, pItemRoot, bstrFilename, pguidFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: BSTR, pEventGUID: *const Guid, bstrCommandline: BSTR, bstrName: BSTR, bstrDescription: BSTR, bstrIcon: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrCommandline: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackProgram(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, bstrCommandline, bstrName, bstrDescription, bstrIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: BSTR, pEventGUID: *const Guid, pIWiaEventCallback: *IWiaEventCallback, pEventObject: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackInterface(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: BSTR, pEventGUID: *const Guid, pClsID: *const Guid, bstrName: BSTR, bstrDescription: BSTR, bstrIcon: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackCLSID(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_AddDeviceDlg(self: *const T, hwndParent: HWND, lFlags: i32) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_AddDeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).AddDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lFlags);
         }
     };}
@@ -1116,8 +1116,8 @@ pub const IEnumWIA_DEV_INFO = extern struct {
         Next: fn(
             self: *const IEnumWIA_DEV_INFO,
             celt: u32,
-            rgelt: **IWiaPropertyStorage,
-            pceltFetched: *u32,
+            rgelt: ?*?*IWiaPropertyStorage,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumWIA_DEV_INFO,
@@ -1128,18 +1128,18 @@ pub const IEnumWIA_DEV_INFO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWIA_DEV_INFO,
-            ppIEnum: ?**IEnumWIA_DEV_INFO,
+            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWIA_DEV_INFO,
-            celt: *u32,
+            celt: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_Next(self: *const T, celt: u32, rgelt: **IWiaPropertyStorage, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_INFO_Next(self: *const T, celt: u32, rgelt: ?*?*IWiaPropertyStorage, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1151,11 +1151,11 @@ pub const IEnumWIA_DEV_INFO = extern struct {
             return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_INFO, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_Clone(self: *const T, ppIEnum: ?**IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_INFO, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_GetCount(self: *const T, celt: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_INFO_GetCount(self: *const T, celt: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt);
         }
     };}
@@ -1170,13 +1170,13 @@ pub const IWiaEventCallback = extern struct {
         base: IUnknown.VTable,
         ImageEventCallback: fn(
             self: *const IWiaEventCallback,
-            pEventGUID: *const Guid,
-            bstrEventDescription: BSTR,
-            bstrDeviceID: BSTR,
-            bstrDeviceDescription: BSTR,
+            pEventGUID: ?*const Guid,
+            bstrEventDescription: ?BSTR,
+            bstrDeviceID: ?BSTR,
+            bstrDeviceDescription: ?BSTR,
             dwDeviceType: u32,
-            bstrFullItemName: BSTR,
-            pulEventType: *u32,
+            bstrFullItemName: ?BSTR,
+            pulEventType: ?*u32,
             ulReserved: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1184,7 +1184,7 @@ pub const IWiaEventCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaEventCallback_ImageEventCallback(self: *const T, pEventGUID: *const Guid, bstrEventDescription: BSTR, bstrDeviceID: BSTR, bstrDeviceDescription: BSTR, dwDeviceType: u32, bstrFullItemName: BSTR, pulEventType: *u32, ulReserved: u32) callconv(.Inline) HRESULT {
+        pub fn IWiaEventCallback_ImageEventCallback(self: *const T, pEventGUID: ?*const Guid, bstrEventDescription: ?BSTR, bstrDeviceID: ?BSTR, bstrDeviceDescription: ?BSTR, dwDeviceType: u32, bstrFullItemName: ?BSTR, pulEventType: ?*u32, ulReserved: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaEventCallback.VTable, self.vtable).ImageEventCallback(@ptrCast(*const IWiaEventCallback, self), pEventGUID, bstrEventDescription, bstrDeviceID, bstrDeviceDescription, dwDeviceType, bstrFullItemName, pulEventType, ulReserved);
         }
     };}
@@ -1213,14 +1213,14 @@ pub const IWiaDataCallback = extern struct {
             lLength: i32,
             lReserved: i32,
             lResLength: i32,
-            pbBuffer: *u8,
+            pbBuffer: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataCallback_BandedDataCallback(self: *const T, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: *u8) callconv(.Inline) HRESULT {
+        pub fn IWiaDataCallback_BandedDataCallback(self: *const T, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDataCallback.VTable, self.vtable).BandedDataCallback(@ptrCast(*const IWiaDataCallback, self), lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
         }
     };}
@@ -1253,13 +1253,13 @@ pub const IWiaDataTransfer = extern struct {
         base: IUnknown.VTable,
         idtGetData: fn(
             self: *const IWiaDataTransfer,
-            pMedium: *STGMEDIUM,
-            pIWiaDataCallback: *IWiaDataCallback,
+            pMedium: ?*STGMEDIUM,
+            pIWiaDataCallback: ?*IWiaDataCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         idtGetBandedData: fn(
             self: *const IWiaDataTransfer,
-            pWiaDataTransInfo: *WIA_DATA_TRANSFER_INFO,
-            pIWiaDataCallback: *IWiaDataCallback,
+            pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
+            pIWiaDataCallback: ?*IWiaDataCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         idtQueryGetData: fn(
             self: *const IWiaDataTransfer,
@@ -1267,22 +1267,22 @@ pub const IWiaDataTransfer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         idtEnumWIA_FORMAT_INFO: fn(
             self: *const IWiaDataTransfer,
-            ppEnum: ?**IEnumWIA_FORMAT_INFO,
+            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         idtGetExtendedTransferInfo: fn(
             self: *const IWiaDataTransfer,
-            pExtendedTransferInfo: *WIA_EXTENDED_TRANSFER_INFO,
+            pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtGetData(self: *const T, pMedium: *STGMEDIUM, pIWiaDataCallback: *IWiaDataCallback) callconv(.Inline) HRESULT {
+        pub fn IWiaDataTransfer_idtGetData(self: *const T, pMedium: ?*STGMEDIUM, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetData(@ptrCast(*const IWiaDataTransfer, self), pMedium, pIWiaDataCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtGetBandedData(self: *const T, pWiaDataTransInfo: *WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: *IWiaDataCallback) callconv(.Inline) HRESULT {
+        pub fn IWiaDataTransfer_idtGetBandedData(self: *const T, pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetBandedData(@ptrCast(*const IWiaDataTransfer, self), pWiaDataTransInfo, pIWiaDataCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1290,11 +1290,11 @@ pub const IWiaDataTransfer = extern struct {
             return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtQueryGetData(@ptrCast(*const IWiaDataTransfer, self), pfe);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtEnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?**IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
+        pub fn IWiaDataTransfer_idtEnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtEnumWIA_FORMAT_INFO(@ptrCast(*const IWiaDataTransfer, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtGetExtendedTransferInfo(self: *const T, pExtendedTransferInfo: *WIA_EXTENDED_TRANSFER_INFO) callconv(.Inline) HRESULT {
+        pub fn IWiaDataTransfer_idtGetExtendedTransferInfo(self: *const T, pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetExtendedTransferInfo(@ptrCast(*const IWiaDataTransfer, self), pExtendedTransferInfo);
         }
     };}
@@ -1309,7 +1309,7 @@ pub const IWiaItem = extern struct {
         base: IUnknown.VTable,
         GetItemType: fn(
             self: *const IWiaItem,
-            pItemType: *i32,
+            pItemType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AnalyzeItem: fn(
             self: *const IWiaItem,
@@ -1317,7 +1317,7 @@ pub const IWiaItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumChildItems: fn(
             self: *const IWiaItem,
-            ppIEnumWiaItem: ?**IEnumWiaItem,
+            ppIEnumWiaItem: ?*?*IEnumWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteItem: fn(
             self: *const IWiaItem,
@@ -1326,56 +1326,56 @@ pub const IWiaItem = extern struct {
         CreateChildItem: fn(
             self: *const IWiaItem,
             lFlags: i32,
-            bstrItemName: BSTR,
-            bstrFullItemName: BSTR,
-            ppIWiaItem: ?**IWiaItem,
+            bstrItemName: ?BSTR,
+            bstrFullItemName: ?BSTR,
+            ppIWiaItem: ?*?*IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumRegisterEventInfo: fn(
             self: *const IWiaItem,
             lFlags: i32,
-            pEventGUID: *const Guid,
-            ppIEnum: ?**IEnumWIA_DEV_CAPS,
+            pEventGUID: ?*const Guid,
+            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindItemByName: fn(
             self: *const IWiaItem,
             lFlags: i32,
-            bstrFullItemName: BSTR,
-            ppIWiaItem: ?**IWiaItem,
+            bstrFullItemName: ?BSTR,
+            ppIWiaItem: ?*?*IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeviceDlg: fn(
             self: *const IWiaItem,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             lFlags: i32,
             lIntent: i32,
-            plItemCount: *i32,
-            ppIWiaItem: ***IWiaItem,
+            plItemCount: ?*i32,
+            ppIWiaItem: ?*?*?*IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeviceCommand: fn(
             self: *const IWiaItem,
             lFlags: i32,
-            pCmdGUID: *const Guid,
-            pIWiaItem: ?**IWiaItem,
+            pCmdGUID: ?*const Guid,
+            pIWiaItem: ?*?*IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRootItem: fn(
             self: *const IWiaItem,
-            ppIWiaItem: ?**IWiaItem,
+            ppIWiaItem: ?*?*IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDeviceCapabilities: fn(
             self: *const IWiaItem,
             lFlags: i32,
-            ppIEnumWIA_DEV_CAPS: ?**IEnumWIA_DEV_CAPS,
+            ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DumpItemData: fn(
             self: *const IWiaItem,
-            bstrData: ?*BSTR,
+            bstrData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DumpDrvItemData: fn(
             self: *const IWiaItem,
-            bstrData: ?*BSTR,
+            bstrData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DumpTreeItemData: fn(
             self: *const IWiaItem,
-            bstrData: ?*BSTR,
+            bstrData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Diagnostic: fn(
             self: *const IWiaItem,
@@ -1387,7 +1387,7 @@ pub const IWiaItem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_GetItemType(self: *const T, pItemType: *i32) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_GetItemType(self: *const T, pItemType: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).GetItemType(@ptrCast(*const IWiaItem, self), pItemType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1395,7 +1395,7 @@ pub const IWiaItem = extern struct {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).AnalyzeItem(@ptrCast(*const IWiaItem, self), lFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumChildItems(self: *const T, ppIEnumWiaItem: ?**IEnumWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_EnumChildItems(self: *const T, ppIEnumWiaItem: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem, self), ppIEnumWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1403,43 +1403,43 @@ pub const IWiaItem = extern struct {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem, self), lFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_CreateChildItem(self: *const T, lFlags: i32, bstrItemName: BSTR, bstrFullItemName: BSTR, ppIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_CreateChildItem(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem, self), lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: *const Guid, ppIEnum: ?**IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem, self), lFlags, pEventGUID, ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: BSTR, ppIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem, self), lFlags, bstrFullItemName, ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DeviceDlg(self: *const T, hwndParent: HWND, lFlags: i32, lIntent: i32, plItemCount: *i32, ppIWiaItem: ***IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_DeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32, lIntent: i32, plItemCount: ?*i32, ppIWiaItem: ?*?*?*IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem, self), hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: *const Guid, pIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: ?*const Guid, pIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem, self), lFlags, pCmdGUID, pIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_GetRootItem(self: *const T, ppIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_GetRootItem(self: *const T, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem, self), ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?**IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem, self), lFlags, ppIEnumWIA_DEV_CAPS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DumpItemData(self: *const T, bstrData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_DumpItemData(self: *const T, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpItemData(@ptrCast(*const IWiaItem, self), bstrData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DumpDrvItemData(self: *const T, bstrData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_DumpDrvItemData(self: *const T, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpDrvItemData(@ptrCast(*const IWiaItem, self), bstrData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DumpTreeItemData(self: *const T, bstrData: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_DumpTreeItemData(self: *const T, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpTreeItemData(@ptrCast(*const IWiaItem, self), bstrData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1465,8 +1465,8 @@ pub const IWiaPropertyStorage = extern struct {
         WriteMultiple: fn(
             self: *const IWiaPropertyStorage,
             cpspec: u32,
-            rgpspec: *const PROPSPEC,
-            rgpropvar: *const PROPVARIANT,
+            rgpspec: ?*const PROPSPEC,
+            rgpropvar: ?*const PROPVARIANT,
             propidNameFirst: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteMultiple: fn(
@@ -1478,13 +1478,13 @@ pub const IWiaPropertyStorage = extern struct {
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-            rglpwstrName: [*]PWSTR,
+            rglpwstrName: [*]?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WritePropertyNames: fn(
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-            rglpwstrName: [*]const [*:0]const u16,
+            rglpwstrName: [*]const ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePropertyNames: fn(
             self: *const IWiaPropertyStorage,
@@ -1500,21 +1500,21 @@ pub const IWiaPropertyStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Enum: fn(
             self: *const IWiaPropertyStorage,
-            ppenum: ?**IEnumSTATPROPSTG,
+            ppenum: ?*?*IEnumSTATPROPSTG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTimes: fn(
             self: *const IWiaPropertyStorage,
-            pctime: *const FILETIME,
-            patime: *const FILETIME,
-            pmtime: *const FILETIME,
+            pctime: ?*const FILETIME,
+            patime: ?*const FILETIME,
+            pmtime: ?*const FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetClass: fn(
             self: *const IWiaPropertyStorage,
-            clsid: *const Guid,
+            clsid: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Stat: fn(
             self: *const IWiaPropertyStorage,
-            pstatpsstg: *STATPROPSETSTG,
+            pstatpsstg: ?*STATPROPSETSTG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyAttributes: fn(
             self: *const IWiaPropertyStorage,
@@ -1525,17 +1525,17 @@ pub const IWiaPropertyStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IWiaPropertyStorage,
-            pulNumProps: *u32,
+            pulNumProps: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStream: fn(
             self: *const IWiaPropertyStorage,
-            pCompatibilityId: *Guid,
-            ppIStream: ?**IStream,
+            pCompatibilityId: ?*Guid,
+            ppIStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPropertyStream: fn(
             self: *const IWiaPropertyStorage,
-            pCompatibilityId: *Guid,
-            pIStream: *IStream,
+            pCompatibilityId: ?*Guid,
+            pIStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1546,7 +1546,7 @@ pub const IWiaPropertyStorage = extern struct {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: *const PROPSPEC, rgpropvar: *const PROPVARIANT, propidNameFirst: u32) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: ?*const PROPSPEC, rgpropvar: ?*const PROPVARIANT, propidNameFirst: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1554,11 +1554,11 @@ pub const IWiaPropertyStorage = extern struct {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1574,19 +1574,19 @@ pub const IWiaPropertyStorage = extern struct {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IWiaPropertyStorage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_Enum(self: *const T, ppenum: ?**IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IWiaPropertyStorage, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_SetTimes(self: *const T, pctime: *const FILETIME, patime: *const FILETIME, pmtime: *const FILETIME) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_SetTimes(self: *const T, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IWiaPropertyStorage, self), pctime, patime, pmtime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_SetClass(self: *const T, clsid: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_SetClass(self: *const T, clsid: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IWiaPropertyStorage, self), clsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_Stat(self: *const T, pstatpsstg: *STATPROPSETSTG) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_Stat(self: *const T, pstatpsstg: ?*STATPROPSETSTG) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IWiaPropertyStorage, self), pstatpsstg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1594,15 +1594,15 @@ pub const IWiaPropertyStorage = extern struct {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyAttributes(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgflags, rgpropvar);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_GetCount(self: *const T, pulNumProps: *u32) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_GetCount(self: *const T, pulNumProps: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetCount(@ptrCast(*const IWiaPropertyStorage, self), pulNumProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_GetPropertyStream(self: *const T, pCompatibilityId: *Guid, ppIStream: ?**IStream) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_GetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, ppIStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_SetPropertyStream(self: *const T, pCompatibilityId: *Guid, pIStream: *IStream) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_SetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, pIStream: ?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, pIStream);
         }
     };}
@@ -1618,8 +1618,8 @@ pub const IEnumWiaItem = extern struct {
         Next: fn(
             self: *const IEnumWiaItem,
             celt: u32,
-            ppIWiaItem: **IWiaItem,
-            pceltFetched: *u32,
+            ppIWiaItem: ?*?*IWiaItem,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumWiaItem,
@@ -1630,18 +1630,18 @@ pub const IEnumWiaItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWiaItem,
-            ppIEnum: ?**IEnumWiaItem,
+            ppIEnum: ?*?*IEnumWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWiaItem,
-            celt: *u32,
+            celt: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_Next(self: *const T, celt: u32, ppIWiaItem: **IWiaItem, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWiaItem_Next(self: *const T, celt: u32, ppIWiaItem: ?*?*IWiaItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Next(@ptrCast(*const IEnumWiaItem, self), celt, ppIWiaItem, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1653,11 +1653,11 @@ pub const IEnumWiaItem = extern struct {
             return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_Clone(self: *const T, ppIEnum: ?**IEnumWiaItem) callconv(.Inline) HRESULT {
+        pub fn IEnumWiaItem_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_GetCount(self: *const T, celt: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWiaItem_GetCount(self: *const T, celt: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWiaItem, self), celt);
         }
     };}
@@ -1667,10 +1667,10 @@ pub const IEnumWiaItem = extern struct {
 pub const WIA_DEV_CAP = extern struct {
     guid: Guid,
     ulFlags: u32,
-    bstrName: BSTR,
-    bstrDescription: BSTR,
-    bstrIcon: BSTR,
-    bstrCommandline: BSTR,
+    bstrName: ?BSTR,
+    bstrDescription: ?BSTR,
+    bstrIcon: ?BSTR,
+    bstrCommandline: ?BSTR,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1682,8 +1682,8 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
         Next: fn(
             self: *const IEnumWIA_DEV_CAPS,
             celt: u32,
-            rgelt: *WIA_DEV_CAP,
-            pceltFetched: *u32,
+            rgelt: ?*WIA_DEV_CAP,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumWIA_DEV_CAPS,
@@ -1694,18 +1694,18 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWIA_DEV_CAPS,
-            ppIEnum: ?**IEnumWIA_DEV_CAPS,
+            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWIA_DEV_CAPS,
-            pcelt: *u32,
+            pcelt: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_Next(self: *const T, celt: u32, rgelt: *WIA_DEV_CAP, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_CAPS_Next(self: *const T, celt: u32, rgelt: ?*WIA_DEV_CAP, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_CAPS, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1717,11 +1717,11 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
             return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_CAPS, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_Clone(self: *const T, ppIEnum: ?**IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_CAPS_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_CAPS, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_GetCount(self: *const T, pcelt: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_CAPS_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_CAPS, self), pcelt);
         }
     };}
@@ -1737,8 +1737,8 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
         Next: fn(
             self: *const IEnumWIA_FORMAT_INFO,
             celt: u32,
-            rgelt: *WIA_FORMAT_INFO,
-            pceltFetched: *u32,
+            rgelt: ?*WIA_FORMAT_INFO,
+            pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumWIA_FORMAT_INFO,
@@ -1749,18 +1749,18 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWIA_FORMAT_INFO,
-            ppIEnum: ?**IEnumWIA_FORMAT_INFO,
+            ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWIA_FORMAT_INFO,
-            pcelt: *u32,
+            pcelt: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_Next(self: *const T, celt: u32, rgelt: *WIA_FORMAT_INFO, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_FORMAT_INFO_Next(self: *const T, celt: u32, rgelt: ?*WIA_FORMAT_INFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1772,11 +1772,11 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
             return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_FORMAT_INFO, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_Clone(self: *const T, ppIEnum: ?**IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_FORMAT_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_GetCount(self: *const T, pcelt: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_FORMAT_INFO_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), pcelt);
         }
     };}
@@ -1802,7 +1802,7 @@ pub const IWiaLog = extern struct {
             lFlags: i32,
             lResID: i32,
             lDetail: i32,
-            bstrText: BSTR,
+            bstrText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1817,7 +1817,7 @@ pub const IWiaLog = extern struct {
             return @ptrCast(*const IWiaLog.VTable, self.vtable).hResult(@ptrCast(*const IWiaLog, self), hResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLog_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaLog_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaLog.VTable, self.vtable).Log(@ptrCast(*const IWiaLog, self), lFlags, lResID, lDetail, bstrText);
         }
     };}
@@ -1832,7 +1832,7 @@ pub const IWiaLogEx = extern struct {
         base: IUnknown.VTable,
         InitializeLogEx: fn(
             self: *const IWiaLogEx,
-            hInstance: *u8,
+            hInstance: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         hResult: fn(
             self: *const IWiaLogEx,
@@ -1843,7 +1843,7 @@ pub const IWiaLogEx = extern struct {
             lFlags: i32,
             lResID: i32,
             lDetail: i32,
-            bstrText: BSTR,
+            bstrText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         hResultEx: fn(
             self: *const IWiaLogEx,
@@ -1856,14 +1856,14 @@ pub const IWiaLogEx = extern struct {
             lFlags: i32,
             lResID: i32,
             lDetail: i32,
-            bstrText: BSTR,
+            bstrText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_InitializeLogEx(self: *const T, hInstance: *u8) callconv(.Inline) HRESULT {
+        pub fn IWiaLogEx_InitializeLogEx(self: *const T, hInstance: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaLogEx.VTable, self.vtable).InitializeLogEx(@ptrCast(*const IWiaLogEx, self), hInstance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1871,7 +1871,7 @@ pub const IWiaLogEx = extern struct {
             return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResult(@ptrCast(*const IWiaLogEx, self), hResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaLogEx_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaLogEx.VTable, self.vtable).Log(@ptrCast(*const IWiaLogEx, self), lFlags, lResID, lDetail, bstrText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1879,7 +1879,7 @@ pub const IWiaLogEx = extern struct {
             return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResultEx(@ptrCast(*const IWiaLogEx, self), lMethodId, hResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_LogEx(self: *const T, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaLogEx_LogEx(self: *const T, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaLogEx.VTable, self.vtable).LogEx(@ptrCast(*const IWiaLogEx, self), lMethodId, lFlags, lResID, lDetail, bstrText);
         }
     };}
@@ -1915,16 +1915,16 @@ pub const IWiaItemExtras = extern struct {
         base: IUnknown.VTable,
         GetExtendedErrorInfo: fn(
             self: *const IWiaItemExtras,
-            bstrErrorText: ?*BSTR,
+            bstrErrorText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Escape: fn(
             self: *const IWiaItemExtras,
             dwEscapeCode: u32,
             lpInData: [*:0]u8,
             cbInDataSize: u32,
-            pOutData: *u8,
+            pOutData: ?*u8,
             dwOutDataSize: u32,
-            pdwActualDataSize: *u32,
+            pdwActualDataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelPendingIO: fn(
             self: *const IWiaItemExtras,
@@ -1934,11 +1934,11 @@ pub const IWiaItemExtras = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItemExtras_GetExtendedErrorInfo(self: *const T, bstrErrorText: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaItemExtras_GetExtendedErrorInfo(self: *const T, bstrErrorText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).GetExtendedErrorInfo(@ptrCast(*const IWiaItemExtras, self), bstrErrorText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItemExtras_Escape(self: *const T, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: *u8, dwOutDataSize: u32, pdwActualDataSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWiaItemExtras_Escape(self: *const T, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: ?*u8, dwOutDataSize: u32, pdwActualDataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).Escape(@ptrCast(*const IWiaItemExtras, self), dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1976,7 +1976,7 @@ pub const IWiaVideo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreviewVisible: fn(
             self: *const IWiaVideo,
-            pbPreviewVisible: *BOOL,
+            pbPreviewVisible: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreviewVisible: fn(
@@ -1986,31 +1986,31 @@ pub const IWiaVideo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImagesDirectory: fn(
             self: *const IWiaVideo,
-            pbstrImageDirectory: ?*BSTR,
+            pbstrImageDirectory: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ImagesDirectory: fn(
             self: *const IWiaVideo,
-            bstrImageDirectory: BSTR,
+            bstrImageDirectory: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoByWiaDevID: fn(
             self: *const IWiaVideo,
-            bstrWiaDeviceID: BSTR,
-            hwndParent: HWND,
+            bstrWiaDeviceID: ?BSTR,
+            hwndParent: ?HWND,
             bStretchToFitParent: BOOL,
             bAutoBeginPlayback: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoByDevNum: fn(
             self: *const IWiaVideo,
             uiDeviceNumber: u32,
-            hwndParent: HWND,
+            hwndParent: ?HWND,
             bStretchToFitParent: BOOL,
             bAutoBeginPlayback: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoByName: fn(
             self: *const IWiaVideo,
-            bstrFriendlyName: BSTR,
-            hwndParent: HWND,
+            bstrFriendlyName: ?BSTR,
+            hwndParent: ?HWND,
             bStretchToFitParent: BOOL,
             bAutoBeginPlayback: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2025,7 +2025,7 @@ pub const IWiaVideo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TakePicture: fn(
             self: *const IWiaVideo,
-            pbstrNewImageFilename: ?*BSTR,
+            pbstrNewImageFilename: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResizeVideo: fn(
             self: *const IWiaVideo,
@@ -2033,14 +2033,14 @@ pub const IWiaVideo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentState: fn(
             self: *const IWiaVideo,
-            pState: *WIAVIDEO_STATE,
+            pState: ?*WIAVIDEO_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_get_PreviewVisible(self: *const T, pbPreviewVisible: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_get_PreviewVisible(self: *const T, pbPreviewVisible: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_PreviewVisible(@ptrCast(*const IWiaVideo, self), pbPreviewVisible);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2048,23 +2048,23 @@ pub const IWiaVideo = extern struct {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_PreviewVisible(@ptrCast(*const IWiaVideo, self), bPreviewVisible);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_get_ImagesDirectory(self: *const T, pbstrImageDirectory: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_get_ImagesDirectory(self: *const T, pbstrImageDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_ImagesDirectory(@ptrCast(*const IWiaVideo, self), pbstrImageDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_put_ImagesDirectory(self: *const T, bstrImageDirectory: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_put_ImagesDirectory(self: *const T, bstrImageDirectory: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_ImagesDirectory(@ptrCast(*const IWiaVideo, self), bstrImageDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByWiaDevID(self: *const T, bstrWiaDeviceID: BSTR, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_CreateVideoByWiaDevID(self: *const T, bstrWiaDeviceID: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByWiaDevID(@ptrCast(*const IWiaVideo, self), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByDevNum(self: *const T, uiDeviceNumber: u32, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_CreateVideoByDevNum(self: *const T, uiDeviceNumber: u32, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByDevNum(@ptrCast(*const IWiaVideo, self), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByName(self: *const T, bstrFriendlyName: BSTR, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_CreateVideoByName(self: *const T, bstrFriendlyName: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByName(@ptrCast(*const IWiaVideo, self), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2080,7 +2080,7 @@ pub const IWiaVideo = extern struct {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).Pause(@ptrCast(*const IWiaVideo, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_TakePicture(self: *const T, pbstrNewImageFilename: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_TakePicture(self: *const T, pbstrNewImageFilename: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).TakePicture(@ptrCast(*const IWiaVideo, self), pbstrNewImageFilename);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2088,7 +2088,7 @@ pub const IWiaVideo = extern struct {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).ResizeVideo(@ptrCast(*const IWiaVideo, self), bStretchToFitParent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_GetCurrentState(self: *const T, pState: *WIAVIDEO_STATE) callconv(.Inline) HRESULT {
+        pub fn IWiaVideo_GetCurrentState(self: *const T, pState: ?*WIAVIDEO_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaVideo.VTable, self.vtable).GetCurrentState(@ptrCast(*const IWiaVideo, self), pState);
         }
     };}

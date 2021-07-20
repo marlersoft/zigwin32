@@ -17,13 +17,13 @@ pub const ONDEMAND_NOTIFICATION_CALLBACK = fn(
 
 pub const NET_INTERFACE_CONTEXT = extern struct {
     InterfaceIndex: u32,
-    ConfigurationName: PWSTR,
+    ConfigurationName: ?PWSTR,
 };
 
 pub const NET_INTERFACE_CONTEXT_TABLE = extern struct {
-    InterfaceContextHandle: HANDLE,
+    InterfaceContextHandle: ?HANDLE,
     NumberOfEntries: u32,
-    InterfaceContextArray: *NET_INTERFACE_CONTEXT,
+    InterfaceContextArray: ?*NET_INTERFACE_CONTEXT,
 };
 
 pub const WCM_PROPERTY = enum(i32) {
@@ -146,20 +146,20 @@ pub const WCM_DATAPLAN_STATUS = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "OnDemandConnRouteHelper" fn OnDemandGetRoutingHint(
-    destinationHostName: [*:0]const u16,
-    interfaceIndex: *u32,
+    destinationHostName: ?[*:0]const u16,
+    interfaceIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "OnDemandConnRouteHelper" fn OnDemandRegisterNotification(
-    callback: ONDEMAND_NOTIFICATION_CALLBACK,
+    callback: ?ONDEMAND_NOTIFICATION_CALLBACK,
     callbackContext: ?*c_void,
-    registrationHandle: *HANDLE,
+    registrationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "OnDemandConnRouteHelper" fn OnDemandUnRegisterNotification(
-    registrationHandle: HANDLE,
+    registrationHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -170,12 +170,12 @@ pub extern "OnDemandConnRouteHelper" fn GetInterfaceContextTableForHostName(
     // TODO: what to do with BytesParamIndex 4?
     ConnectionProfileFilterRawData: ?*u8,
     ConnectionProfileFilterRawDataSize: u32,
-    InterfaceContextTable: **NET_INTERFACE_CONTEXT_TABLE,
+    InterfaceContextTable: ?*?*NET_INTERFACE_CONTEXT_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "OnDemandConnRouteHelper" fn FreeInterfaceContextTable(
-    InterfaceContextTable: *NET_INTERFACE_CONTEXT_TABLE,
+    InterfaceContextTable: ?*NET_INTERFACE_CONTEXT_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -183,9 +183,9 @@ pub extern "wcmapi" fn WcmQueryProperty(
     pInterface: ?*const Guid,
     strProfileName: ?[*:0]const u16,
     Property: WCM_PROPERTY,
-    pReserved: *c_void,
-    pdwDataSize: *u32,
-    ppData: ?**u8,
+    pReserved: ?*c_void,
+    pdwDataSize: ?*u32,
+    ppData: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -193,28 +193,28 @@ pub extern "wcmapi" fn WcmSetProperty(
     pInterface: ?*const Guid,
     strProfileName: ?[*:0]const u16,
     Property: WCM_PROPERTY,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
     dwDataSize: u32,
     pbData: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmGetProfileList(
-    pReserved: *c_void,
-    ppProfileList: **WCM_PROFILE_INFO_LIST,
+    pReserved: ?*c_void,
+    ppProfileList: ?*?*WCM_PROFILE_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmSetProfileList(
-    pProfileList: *WCM_PROFILE_INFO_LIST,
+    pProfileList: ?*WCM_PROFILE_INFO_LIST,
     dwPosition: u32,
     fIgnoreUnknownProfiles: BOOL,
-    pReserved: *c_void,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmFreeMemory(
-    pMemory: *c_void,
+    pMemory: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 

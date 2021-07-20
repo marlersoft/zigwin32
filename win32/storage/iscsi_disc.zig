@@ -203,7 +203,7 @@ pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
     DataIn: u8,
     DataTransferLength: u32,
     TimeOutValue: u32,
-    DataBuffer: *c_void,
+    DataBuffer: ?*c_void,
     SenseInfoOffset: u32,
     Cdb: [16]u8,
 };
@@ -243,7 +243,7 @@ pub const SCSI_PASS_THROUGH_DIRECT32 = extern struct {
     DataIn: u8,
     DataTransferLength: u32,
     TimeOutValue: u32,
-    DataBuffer: *c_void,
+    DataBuffer: ?*c_void,
     SenseInfoOffset: u32,
     Cdb: [16]u8,
 };
@@ -283,8 +283,8 @@ pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
     SenseInfoOffset: u32,
     DataOutTransferLength: u32,
     DataInTransferLength: u32,
-    DataOutBuffer: *c_void,
-    DataInBuffer: *c_void,
+    DataOutBuffer: ?*c_void,
+    DataInBuffer: ?*c_void,
     Cdb: [1]u8,
 };
 
@@ -329,8 +329,8 @@ pub const SCSI_PASS_THROUGH_DIRECT32_EX = extern struct {
     SenseInfoOffset: u32,
     DataOutTransferLength: u32,
     DataInTransferLength: u32,
-    DataOutBuffer: *c_void,
-    DataInBuffer: *c_void,
+    DataOutBuffer: ?*c_void,
+    DataInBuffer: ?*c_void,
     Cdb: [1]u8,
 };
 
@@ -361,7 +361,7 @@ pub const ATA_PASS_THROUGH_DIRECT = extern struct {
     DataTransferLength: u32,
     TimeOutValue: u32,
     ReservedAsUlong: u32,
-    DataBuffer: *c_void,
+    DataBuffer: ?*c_void,
     PreviousTaskFile: [8]u8,
     CurrentTaskFile: [8]u8,
 };
@@ -399,7 +399,7 @@ pub const ATA_PASS_THROUGH_DIRECT32 = extern struct {
     DataTransferLength: u32,
     TimeOutValue: u32,
     ReservedAsUlong: u32,
-    DataBuffer: *c_void,
+    DataBuffer: ?*c_void,
     PreviousTaskFile: [8]u8,
     CurrentTaskFile: [8]u8,
 };
@@ -831,7 +831,7 @@ pub const SCSI_ADDRESS = extern struct {
 };
 
 pub const DUMP_DEVICE_POWERON_ROUTINE = fn(
-    Context: *c_void,
+    Context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PDUMP_DEVICE_POWERON_ROUTINE = fn(
@@ -843,39 +843,39 @@ pub const DUMP_POINTERS_VERSION = extern struct {
 };
 
 pub const DUMP_POINTERS = extern struct {
-    AdapterObject: *_ADAPTER_OBJECT,
-    MappedRegisterBase: *c_void,
-    DumpData: *c_void,
-    CommonBufferVa: *c_void,
+    AdapterObject: ?*_ADAPTER_OBJECT,
+    MappedRegisterBase: ?*c_void,
+    DumpData: ?*c_void,
+    CommonBufferVa: ?*c_void,
     CommonBufferPa: LARGE_INTEGER,
     CommonBufferSize: u32,
     AllocateCommonBuffers: u8,
     UseDiskDump: u8,
     Spare1: [2]u8,
-    DeviceObject: *c_void,
+    DeviceObject: ?*c_void,
 };
 
 pub const DUMP_POINTERS_EX = extern struct {
     Header: DUMP_POINTERS_VERSION,
-    DumpData: *c_void,
-    CommonBufferVa: *c_void,
+    DumpData: ?*c_void,
+    CommonBufferVa: ?*c_void,
     CommonBufferSize: u32,
     AllocateCommonBuffers: u8,
-    DeviceObject: *c_void,
-    DriverList: *c_void,
+    DeviceObject: ?*c_void,
+    DriverList: ?*c_void,
     dwPortFlags: u32,
     MaxDeviceDumpSectionSize: u32,
     MaxDeviceDumpLevel: u32,
     MaxTransferSize: u32,
-    AdapterObject: *c_void,
-    MappedRegisterBase: *c_void,
-    DeviceReady: *u8,
-    DumpDevicePowerOn: PDUMP_DEVICE_POWERON_ROUTINE,
-    DumpDevicePowerOnContext: *c_void,
+    AdapterObject: ?*c_void,
+    MappedRegisterBase: ?*c_void,
+    DeviceReady: ?*u8,
+    DumpDevicePowerOn: ?PDUMP_DEVICE_POWERON_ROUTINE,
+    DumpDevicePowerOnContext: ?*c_void,
 };
 
 pub const DUMP_DRIVER = extern struct {
-    DumpDriverList: *c_void,
+    DumpDriverList: ?*c_void,
     DriverName: [15]u16,
     BaseName: [15]u16,
 };
@@ -883,11 +883,11 @@ pub const DUMP_DRIVER = extern struct {
 pub const NTSCSI_UNICODE_STRING = extern struct {
     Length: u16,
     MaximumLength: u16,
-    Buffer: [*]u16,
+    Buffer: ?[*]u16,
 };
 
 pub const DUMP_DRIVER_EX = extern struct {
-    DumpDriverList: *c_void,
+    DumpDriverList: ?*c_void,
     DriverName: [15]u16,
     BaseName: [15]u16,
     DriverFullPath: NTSCSI_UNICODE_STRING,
@@ -938,8 +938,8 @@ pub const ISCSI_LOGIN_OPTIONS = extern struct {
     DefaultTime2Retain: u32,
     UsernameLength: u32,
     PasswordLength: u32,
-    Username: *u8,
-    Password: *u8,
+    Username: ?*u8,
+    Password: ?*u8,
 };
 
 pub const IKE_AUTHENTICATION_METHOD = enum(i32) {
@@ -951,9 +951,9 @@ pub const IKE_AUTHENTICATION_PRESHARED_KEY = extern struct {
     SecurityFlags: u64,
     IdType: u8,
     IdLengthInBytes: u32,
-    Id: *u8,
+    Id: ?*u8,
     KeyLengthInBytes: u32,
-    Key: *u8,
+    Key: ?*u8,
 };
 
 pub const IKE_AUTHENTICATION_INFORMATION = extern struct {
@@ -981,7 +981,7 @@ pub const ISCSI_TARGET_MAPPINGW = extern struct {
     OSBusNumber: u32,
     OSTargetNumber: u32,
     LUNCount: u32,
-    LUNList: *SCSI_LUN_LIST,
+    LUNList: ?*SCSI_LUN_LIST,
 };
 
 pub const ISCSI_TARGET_MAPPINGA = extern struct {
@@ -992,7 +992,7 @@ pub const ISCSI_TARGET_MAPPINGA = extern struct {
     OSBusNumber: u32,
     OSTargetNumber: u32,
     LUNCount: u32,
-    LUNList: *SCSI_LUN_LIST,
+    LUNList: ?*SCSI_LUN_LIST,
 };
 
 pub const ISCSI_TARGET_PORTALW = extern struct {
@@ -1055,8 +1055,8 @@ pub const ISCSI_TARGET_PORTAL_GROUPA = extern struct {
 
 pub const ISCSI_CONNECTION_INFOW = extern struct {
     ConnectionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorAddress: [*]u16,
-    TargetAddress: [*]u16,
+    InitiatorAddress: ?[*]u16,
+    TargetAddress: ?[*]u16,
     InitiatorSocket: u16,
     TargetSocket: u16,
     CID: [2]u8,
@@ -1064,19 +1064,19 @@ pub const ISCSI_CONNECTION_INFOW = extern struct {
 
 pub const ISCSI_SESSION_INFOW = extern struct {
     SessionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorName: [*]u16,
-    TargetNodeName: [*]u16,
-    TargetName: [*]u16,
+    InitiatorName: ?[*]u16,
+    TargetNodeName: ?[*]u16,
+    TargetName: ?[*]u16,
     ISID: [6]u8,
     TSID: [2]u8,
     ConnectionCount: u32,
-    Connections: *ISCSI_CONNECTION_INFOW,
+    Connections: ?*ISCSI_CONNECTION_INFOW,
 };
 
 pub const ISCSI_CONNECTION_INFOA = extern struct {
     ConnectionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorAddress: [*]u8,
-    TargetAddress: [*]u8,
+    InitiatorAddress: ?[*]u8,
+    TargetAddress: ?[*]u8,
     InitiatorSocket: u16,
     TargetSocket: u16,
     CID: [2]u8,
@@ -1084,13 +1084,13 @@ pub const ISCSI_CONNECTION_INFOA = extern struct {
 
 pub const ISCSI_SESSION_INFOA = extern struct {
     SessionId: ISCSI_UNIQUE_SESSION_ID,
-    InitiatorName: [*]u8,
-    TargetNodeName: [*]u8,
-    TargetName: [*]u8,
+    InitiatorName: ?[*]u8,
+    TargetNodeName: ?[*]u8,
+    TargetName: ?[*]u8,
     ISID: [6]u8,
     TSID: [2]u8,
     ConnectionCount: u32,
-    Connections: *ISCSI_CONNECTION_INFOA,
+    Connections: ?*ISCSI_CONNECTION_INFOA,
 };
 
 pub const ISCSI_CONNECTION_INFO_EX = extern struct {
@@ -1118,7 +1118,7 @@ pub const ISCSI_SESSION_INFO_EX = extern struct {
     MaxBurstLength: u32,
     MaximumConnections: u32,
     ConnectionCount: u32,
-    Connections: *ISCSI_CONNECTION_INFO_EX,
+    Connections: ?*ISCSI_CONNECTION_INFO_EX,
 };
 
 pub const ISCSI_DEVICE_ON_SESSIONW = extern struct {
@@ -1150,7 +1150,7 @@ pub const PERSISTENT_ISCSI_LOGIN_INFOW = extern struct {
     InitiatorPortNumber: u32,
     TargetPortal: ISCSI_TARGET_PORTALW,
     SecurityFlags: u64,
-    Mappings: *ISCSI_TARGET_MAPPINGW,
+    Mappings: ?*ISCSI_TARGET_MAPPINGW,
     LoginOptions: ISCSI_LOGIN_OPTIONS,
 };
 
@@ -1161,7 +1161,7 @@ pub const PERSISTENT_ISCSI_LOGIN_INFOA = extern struct {
     InitiatorPortNumber: u32,
     TargetPortal: ISCSI_TARGET_PORTALA,
     SecurityFlags: u64,
-    Mappings: *ISCSI_TARGET_MAPPINGA,
+    Mappings: ?*ISCSI_TARGET_MAPPINGA,
     LoginOptions: ISCSI_LOGIN_OPTIONS,
 };
 
@@ -1201,304 +1201,304 @@ pub const ISCSI_VERSION_INFO = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiVersionInformation(
-    VersionInfo: *ISCSI_VERSION_INFO,
+    VersionInfo: ?*ISCSI_VERSION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiTargetInformationW(
-    TargetName: PWSTR,
+    TargetName: ?PWSTR,
     DiscoveryMechanism: ?PWSTR,
     InfoClass: TARGET_INFORMATION_CLASS,
-    BufferSize: *u32,
-    Buffer: *c_void,
+    BufferSize: ?*u32,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiTargetInformationA(
-    TargetName: PSTR,
+    TargetName: ?PSTR,
     DiscoveryMechanism: ?PSTR,
     InfoClass: TARGET_INFORMATION_CLASS,
-    BufferSize: *u32,
-    Buffer: *c_void,
+    BufferSize: ?*u32,
+    Buffer: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiConnectionW(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    Reserved: *c_void,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    Reserved: ?*c_void,
     InitiatorPortNumber: u32,
-    TargetPortal: *ISCSI_TARGET_PORTALW,
+    TargetPortal: ?*ISCSI_TARGET_PORTALW,
     SecurityFlags: u64,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     KeySize: u32,
     Key: ?[*]u8,
-    ConnectionId: *ISCSI_UNIQUE_SESSION_ID,
+    ConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiConnectionA(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    Reserved: *c_void,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    Reserved: ?*c_void,
     InitiatorPortNumber: u32,
-    TargetPortal: *ISCSI_TARGET_PORTALA,
+    TargetPortal: ?*ISCSI_TARGET_PORTALA,
     SecurityFlags: u64,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     KeySize: u32,
     Key: ?[*]u8,
-    ConnectionId: *ISCSI_UNIQUE_SESSION_ID,
+    ConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveIScsiConnection(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    ConnectionId: *ISCSI_UNIQUE_SESSION_ID,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    ConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiTargetsW(
     ForceUpdate: u8,
-    BufferSize: *u32,
+    BufferSize: ?*u32,
     Buffer: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiTargetsA(
     ForceUpdate: u8,
-    BufferSize: *u32,
+    BufferSize: ?*u32,
     Buffer: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiStaticTargetW(
-    TargetName: PWSTR,
+    TargetName: ?PWSTR,
     TargetAlias: ?PWSTR,
     TargetFlags: u32,
     Persist: u8,
-    Mappings: *ISCSI_TARGET_MAPPINGW,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
-    PortalGroup: *ISCSI_TARGET_PORTAL_GROUPW,
+    Mappings: ?*ISCSI_TARGET_MAPPINGW,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
+    PortalGroup: ?*ISCSI_TARGET_PORTAL_GROUPW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiStaticTargetA(
-    TargetName: PSTR,
+    TargetName: ?PSTR,
     TargetAlias: ?PSTR,
     TargetFlags: u32,
     Persist: u8,
-    Mappings: *ISCSI_TARGET_MAPPINGA,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
-    PortalGroup: *ISCSI_TARGET_PORTAL_GROUPA,
+    Mappings: ?*ISCSI_TARGET_MAPPINGA,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
+    PortalGroup: ?*ISCSI_TARGET_PORTAL_GROUPA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveIScsiStaticTargetW(
-    TargetName: PWSTR,
+    TargetName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveIScsiStaticTargetA(
-    TargetName: PSTR,
+    TargetName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiSendTargetPortalW(
     InitiatorInstance: ?PWSTR,
     InitiatorPortNumber: u32,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     SecurityFlags: u64,
-    Portal: *ISCSI_TARGET_PORTALW,
+    Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiSendTargetPortalA(
     InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     SecurityFlags: u64,
-    Portal: *ISCSI_TARGET_PORTALA,
+    Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveIScsiSendTargetPortalW(
     InitiatorInstance: ?PWSTR,
     InitiatorPortNumber: u32,
-    Portal: *ISCSI_TARGET_PORTALW,
+    Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveIScsiSendTargetPortalA(
     InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
-    Portal: *ISCSI_TARGET_PORTALA,
+    Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RefreshIScsiSendTargetPortalW(
     InitiatorInstance: ?PWSTR,
     InitiatorPortNumber: u32,
-    Portal: *ISCSI_TARGET_PORTALW,
+    Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RefreshIScsiSendTargetPortalA(
     InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
-    Portal: *ISCSI_TARGET_PORTALA,
+    Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiSendTargetPortalsW(
-    PortalCount: *u32,
-    PortalInfo: *ISCSI_TARGET_PORTAL_INFOW,
+    PortalCount: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiSendTargetPortalsA(
-    PortalCount: *u32,
-    PortalInfo: *ISCSI_TARGET_PORTAL_INFOA,
+    PortalCount: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiSendTargetPortalsExW(
-    PortalCount: *u32,
-    PortalInfoSize: *u32,
-    PortalInfo: *ISCSI_TARGET_PORTAL_INFO_EXW,
+    PortalCount: ?*u32,
+    PortalInfoSize: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFO_EXW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiSendTargetPortalsExA(
-    PortalCount: *u32,
-    PortalInfoSize: *u32,
-    PortalInfo: *ISCSI_TARGET_PORTAL_INFO_EXA,
+    PortalCount: ?*u32,
+    PortalInfoSize: ?*u32,
+    PortalInfo: ?*ISCSI_TARGET_PORTAL_INFO_EXA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn LoginIScsiTargetW(
-    TargetName: PWSTR,
+    TargetName: ?PWSTR,
     IsInformationalSession: u8,
     InitiatorInstance: ?PWSTR,
     InitiatorPortNumber: u32,
-    TargetPortal: *ISCSI_TARGET_PORTALW,
+    TargetPortal: ?*ISCSI_TARGET_PORTALW,
     SecurityFlags: u64,
-    Mappings: *ISCSI_TARGET_MAPPINGW,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
+    Mappings: ?*ISCSI_TARGET_MAPPINGW,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     KeySize: u32,
     Key: ?[*]u8,
     IsPersistent: u8,
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    UniqueConnectionId: *ISCSI_UNIQUE_SESSION_ID,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    UniqueConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn LoginIScsiTargetA(
-    TargetName: PSTR,
+    TargetName: ?PSTR,
     IsInformationalSession: u8,
     InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
-    TargetPortal: *ISCSI_TARGET_PORTALA,
+    TargetPortal: ?*ISCSI_TARGET_PORTALA,
     SecurityFlags: u64,
-    Mappings: *ISCSI_TARGET_MAPPINGA,
-    LoginOptions: *ISCSI_LOGIN_OPTIONS,
+    Mappings: ?*ISCSI_TARGET_MAPPINGA,
+    LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     KeySize: u32,
     Key: ?[*]u8,
     IsPersistent: u8,
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    UniqueConnectionId: *ISCSI_UNIQUE_SESSION_ID,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    UniqueConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiPersistentLoginsW(
-    Count: *u32,
-    PersistentLoginInfo: *PERSISTENT_ISCSI_LOGIN_INFOW,
-    BufferSizeInBytes: *u32,
+    Count: ?*u32,
+    PersistentLoginInfo: ?*PERSISTENT_ISCSI_LOGIN_INFOW,
+    BufferSizeInBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiPersistentLoginsA(
-    Count: *u32,
-    PersistentLoginInfo: *PERSISTENT_ISCSI_LOGIN_INFOA,
-    BufferSizeInBytes: *u32,
+    Count: ?*u32,
+    PersistentLoginInfo: ?*PERSISTENT_ISCSI_LOGIN_INFOA,
+    BufferSizeInBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn LogoutIScsiTarget(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveIScsiPersistentTargetW(
-    InitiatorInstance: PWSTR,
+    InitiatorInstance: ?PWSTR,
     InitiatorPortNumber: u32,
-    TargetName: PWSTR,
-    Portal: *ISCSI_TARGET_PORTALW,
+    TargetName: ?PWSTR,
+    Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveIScsiPersistentTargetA(
-    InitiatorInstance: PSTR,
+    InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
-    TargetName: PSTR,
-    Portal: *ISCSI_TARGET_PORTALA,
+    TargetName: ?PSTR,
+    Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn SendScsiInquiry(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
     Lun: u64,
     EvpdCmddt: u8,
     PageCode: u8,
-    ScsiStatus: *u8,
-    ResponseSize: *u32,
-    ResponseBuffer: *u8,
-    SenseSize: *u32,
-    SenseBuffer: *u8,
+    ScsiStatus: ?*u8,
+    ResponseSize: ?*u32,
+    ResponseBuffer: ?*u8,
+    SenseSize: ?*u32,
+    SenseBuffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn SendScsiReadCapacity(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
     Lun: u64,
-    ScsiStatus: *u8,
-    ResponseSize: *u32,
-    ResponseBuffer: *u8,
-    SenseSize: *u32,
-    SenseBuffer: *u8,
+    ScsiStatus: ?*u8,
+    ResponseSize: ?*u32,
+    ResponseBuffer: ?*u8,
+    SenseSize: ?*u32,
+    SenseBuffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn SendScsiReportLuns(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    ScsiStatus: *u8,
-    ResponseSize: *u32,
-    ResponseBuffer: *u8,
-    SenseSize: *u32,
-    SenseBuffer: *u8,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    ScsiStatus: ?*u8,
+    ResponseSize: ?*u32,
+    ResponseBuffer: ?*u8,
+    SenseSize: ?*u32,
+    SenseBuffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiInitiatorListW(
-    BufferSize: *u32,
+    BufferSize: ?*u32,
     Buffer: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiInitiatorListA(
-    BufferSize: *u32,
+    BufferSize: ?*u32,
     Buffer: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportActiveIScsiTargetMappingsW(
-    BufferSize: *u32,
-    MappingCount: *u32,
-    Mappings: *ISCSI_TARGET_MAPPINGW,
+    BufferSize: ?*u32,
+    MappingCount: ?*u32,
+    Mappings: ?*ISCSI_TARGET_MAPPINGW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportActiveIScsiTargetMappingsA(
-    BufferSize: *u32,
-    MappingCount: *u32,
-    Mappings: *ISCSI_TARGET_MAPPINGA,
+    BufferSize: ?*u32,
+    MappingCount: ?*u32,
+    Mappings: ?*ISCSI_TARGET_MAPPINGA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1523,7 +1523,7 @@ pub extern "ISCSIDSC" fn SetIScsiTunnelModeOuterAddressA(
 pub extern "ISCSIDSC" fn SetIScsiIKEInfoW(
     InitiatorName: ?PWSTR,
     InitiatorPortNumber: u32,
-    AuthInfo: *IKE_AUTHENTICATION_INFORMATION,
+    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
     Persist: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1531,7 +1531,7 @@ pub extern "ISCSIDSC" fn SetIScsiIKEInfoW(
 pub extern "ISCSIDSC" fn SetIScsiIKEInfoA(
     InitiatorName: ?PSTR,
     InitiatorPortNumber: u32,
-    AuthInfo: *IKE_AUTHENTICATION_INFORMATION,
+    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
     Persist: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1539,35 +1539,35 @@ pub extern "ISCSIDSC" fn SetIScsiIKEInfoA(
 pub extern "ISCSIDSC" fn GetIScsiIKEInfoW(
     InitiatorName: ?PWSTR,
     InitiatorPortNumber: u32,
-    Reserved: *u32,
-    AuthInfo: *IKE_AUTHENTICATION_INFORMATION,
+    Reserved: ?*u32,
+    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiIKEInfoA(
     InitiatorName: ?PSTR,
     InitiatorPortNumber: u32,
-    Reserved: *u32,
-    AuthInfo: *IKE_AUTHENTICATION_INFORMATION,
+    Reserved: ?*u32,
+    AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn SetIScsiGroupPresharedKey(
     KeyLength: u32,
-    Key: *u8,
+    Key: ?*u8,
     Persist: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn SetIScsiInitiatorCHAPSharedSecret(
     SharedSecretLength: u32,
-    SharedSecret: *u8,
+    SharedSecret: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn SetIScsiInitiatorRADIUSSharedSecret(
     SharedSecretLength: u32,
-    SharedSecret: *u8,
+    SharedSecret: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1582,88 +1582,88 @@ pub extern "ISCSIDSC" fn SetIScsiInitiatorNodeNameA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiInitiatorNodeNameW(
-    InitiatorNodeName: [*]u16,
+    InitiatorNodeName: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiInitiatorNodeNameA(
-    InitiatorNodeName: [*]u8,
+    InitiatorNodeName: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddISNSServerW(
-    Address: PWSTR,
+    Address: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddISNSServerA(
-    Address: PSTR,
+    Address: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveISNSServerW(
-    Address: PWSTR,
+    Address: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveISNSServerA(
-    Address: PSTR,
+    Address: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RefreshISNSServerW(
-    Address: PWSTR,
+    Address: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RefreshISNSServerA(
-    Address: PSTR,
+    Address: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportISNSServerListW(
-    BufferSizeInChar: *u32,
+    BufferSizeInChar: ?*u32,
     Buffer: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportISNSServerListA(
-    BufferSizeInChar: *u32,
+    BufferSizeInChar: ?*u32,
     Buffer: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiSessionListW(
-    BufferSize: *u32,
-    SessionCount: *u32,
-    SessionInfo: *ISCSI_SESSION_INFOW,
+    BufferSize: ?*u32,
+    SessionCount: ?*u32,
+    SessionInfo: ?*ISCSI_SESSION_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetIScsiSessionListA(
-    BufferSize: *u32,
-    SessionCount: *u32,
-    SessionInfo: *ISCSI_SESSION_INFOA,
+    BufferSize: ?*u32,
+    SessionCount: ?*u32,
+    SessionInfo: ?*ISCSI_SESSION_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ISCSIDSC" fn GetIScsiSessionListEx(
-    BufferSize: *u32,
-    SessionCountPtr: *u32,
-    SessionInfo: *ISCSI_SESSION_INFO_EX,
+    BufferSize: ?*u32,
+    SessionCountPtr: ?*u32,
+    SessionInfo: ?*ISCSI_SESSION_INFO_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetDevicesForIScsiSessionW(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    DeviceCount: *u32,
-    Devices: *ISCSI_DEVICE_ON_SESSIONW,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    DeviceCount: ?*u32,
+    Devices: ?*ISCSI_DEVICE_ON_SESSIONW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn GetDevicesForIScsiSessionA(
-    UniqueSessionId: *ISCSI_UNIQUE_SESSION_ID,
-    DeviceCount: *u32,
-    Devices: *ISCSI_DEVICE_ON_SESSIONA,
+    UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
+    DeviceCount: ?*u32,
+    Devices: ?*ISCSI_DEVICE_ON_SESSIONA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ISCSIDSC" fn SetupPersistentIScsiVolumes(
@@ -1675,22 +1675,22 @@ pub extern "ISCSIDSC" fn SetupPersistentIScsiDevices(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddPersistentIScsiDeviceW(
-    DevicePath: PWSTR,
+    DevicePath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddPersistentIScsiDeviceA(
-    DevicePath: PSTR,
+    DevicePath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemovePersistentIScsiDeviceW(
-    DevicePath: PWSTR,
+    DevicePath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemovePersistentIScsiDeviceA(
-    DevicePath: PSTR,
+    DevicePath: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1699,63 +1699,63 @@ pub extern "ISCSIDSC" fn ClearPersistentIScsiDevices(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportPersistentIScsiDevicesW(
-    BufferSizeInChar: *u32,
+    BufferSizeInChar: ?*u32,
     Buffer: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportPersistentIScsiDevicesA(
-    BufferSizeInChar: *u32,
+    BufferSizeInChar: ?*u32,
     Buffer: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiTargetPortalsW(
     InitiatorName: ?PWSTR,
-    TargetName: PWSTR,
-    TargetPortalTag: *u16,
-    ElementCount: *u32,
-    Portals: *ISCSI_TARGET_PORTALW,
+    TargetName: ?PWSTR,
+    TargetPortalTag: ?*u16,
+    ElementCount: ?*u32,
+    Portals: ?*ISCSI_TARGET_PORTALW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiTargetPortalsA(
     InitiatorName: ?PSTR,
-    TargetName: PSTR,
-    TargetPortalTag: *u16,
-    ElementCount: *u32,
-    Portals: *ISCSI_TARGET_PORTALA,
+    TargetName: ?PSTR,
+    TargetPortalTag: ?*u16,
+    ElementCount: ?*u32,
+    Portals: ?*ISCSI_TARGET_PORTALA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddRadiusServerW(
-    Address: PWSTR,
+    Address: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddRadiusServerA(
-    Address: PSTR,
+    Address: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveRadiusServerW(
-    Address: PWSTR,
+    Address: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn RemoveRadiusServerA(
-    Address: PSTR,
+    Address: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportRadiusServerListW(
-    BufferSizeInChar: *u32,
+    BufferSizeInChar: ?*u32,
     Buffer: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportRadiusServerListA(
-    BufferSizeInChar: *u32,
+    BufferSizeInChar: ?*u32,
     Buffer: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

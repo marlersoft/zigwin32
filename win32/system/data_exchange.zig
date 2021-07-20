@@ -82,13 +82,13 @@ pub const METAFILEPICT = extern struct {
     mm: i32,
     xExt: i32,
     yExt: i32,
-    hMF: HMETAFILE,
+    hMF: ?HMETAFILE,
 };
 
 pub const COPYDATASTRUCT = extern struct {
     dwData: usize,
     cbData: u32,
-    lpData: *c_void,
+    lpData: ?*c_void,
 };
 
 pub const DDEACK = extern struct {
@@ -124,8 +124,8 @@ pub const DDEUP = extern struct {
 };
 
 pub const HSZPAIR = extern struct {
-    hszSvc: HSZ,
-    hszTopic: HSZ,
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
 };
 
 pub const CONVCONTEXT = extern struct {
@@ -141,32 +141,32 @@ pub const CONVCONTEXT = extern struct {
 pub const CONVINFO = extern struct {
     cb: u32,
     hUser: usize,
-    hConvPartner: HCONV,
-    hszSvcPartner: HSZ,
-    hszServiceReq: HSZ,
-    hszTopic: HSZ,
-    hszItem: HSZ,
+    hConvPartner: ?HCONV,
+    hszSvcPartner: ?HSZ,
+    hszServiceReq: ?HSZ,
+    hszTopic: ?HSZ,
+    hszItem: ?HSZ,
     wFmt: u32,
     wType: DDE_CLIENT_TRANSACTION_TYPE,
     wStatus: CONVINFO_STATUS,
     wConvst: CONVINFO_CONVERSATION_STATE,
     wLastError: u32,
-    hConvList: HCONVLIST,
+    hConvList: ?HCONVLIST,
     ConvCtxt: CONVCONTEXT,
-    hwnd: HWND,
-    hwndPartner: HWND,
+    hwnd: ?HWND,
+    hwndPartner: ?HWND,
 };
 
 pub const PFNCALLBACK = fn(
     wType: u32,
     wFmt: u32,
-    hConv: HCONV,
-    hsz1: HSZ,
-    hsz2: HSZ,
-    hData: HDDEDATA,
+    hConv: ?HCONV,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
+    hData: ?HDDEDATA,
     dwData1: usize,
     dwData2: usize,
-) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
+) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 pub const DDEML_MSG_HOOK_DATA = extern struct {
     uiLo: usize,
@@ -177,9 +177,9 @@ pub const DDEML_MSG_HOOK_DATA = extern struct {
 
 pub const MONMSGSTRUCT = extern struct {
     cb: u32,
-    hwndTo: HWND,
+    hwndTo: ?HWND,
     dwTime: u32,
-    hTask: HANDLE,
+    hTask: ?HANDLE,
     wMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
@@ -189,14 +189,14 @@ pub const MONMSGSTRUCT = extern struct {
 pub const MONCBSTRUCT = extern struct {
     cb: u32,
     dwTime: u32,
-    hTask: HANDLE,
+    hTask: ?HANDLE,
     dwRet: u32,
     wType: u32,
     wFmt: u32,
-    hConv: HCONV,
-    hsz1: HSZ,
-    hsz2: HSZ,
-    hData: HDDEDATA,
+    hConv: ?HCONV,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
+    hData: ?HDDEDATA,
     dwData1: usize,
     dwData2: usize,
     cc: CONVCONTEXT,
@@ -208,8 +208,8 @@ pub const MONHSZSTRUCTA = extern struct {
     cb: u32,
     fsAction: BOOL,
     dwTime: u32,
-    hsz: HSZ,
-    hTask: HANDLE,
+    hsz: ?HSZ,
+    hTask: ?HANDLE,
     str: [1]CHAR,
 };
 
@@ -217,8 +217,8 @@ pub const MONHSZSTRUCTW = extern struct {
     cb: u32,
     fsAction: BOOL,
     dwTime: u32,
-    hsz: HSZ,
-    hTask: HANDLE,
+    hsz: ?HSZ,
+    hTask: ?HANDLE,
     str: [1]u16,
 };
 
@@ -226,33 +226,33 @@ pub const MONERRSTRUCT = extern struct {
     cb: u32,
     wLastError: u32,
     dwTime: u32,
-    hTask: HANDLE,
+    hTask: ?HANDLE,
 };
 
 pub const MONLINKSTRUCT = extern struct {
     cb: u32,
     dwTime: u32,
-    hTask: HANDLE,
+    hTask: ?HANDLE,
     fEstablished: BOOL,
     fNoData: BOOL,
-    hszSvc: HSZ,
-    hszTopic: HSZ,
-    hszItem: HSZ,
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
+    hszItem: ?HSZ,
     wFmt: u32,
     fServer: BOOL,
-    hConvServer: HCONV,
-    hConvClient: HCONV,
+    hConvServer: ?HCONV,
+    hConvClient: ?HCONV,
 };
 
 pub const MONCONVSTRUCT = extern struct {
     cb: u32,
     fConnect: BOOL,
     dwTime: u32,
-    hTask: HANDLE,
-    hszSvc: HSZ,
-    hszTopic: HSZ,
-    hConvClient: HCONV,
-    hConvServer: HCONV,
+    hTask: ?HANDLE,
+    hszSvc: ?HSZ,
+    hszTopic: ?HSZ,
+    hConvClient: ?HCONV,
+    hConvServer: ?HCONV,
 };
 
 pub const DDE_ENABLE_CALLBACK_CMD = enum(u32) {
@@ -605,42 +605,42 @@ pub extern "USER32" fn GetClipboardSequenceNumber(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetClipboardOwner(
-) callconv(@import("std").os.windows.WINAPI) HWND;
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetClipboardViewer(
-    hWndNewViewer: HWND,
-) callconv(@import("std").os.windows.WINAPI) HWND;
+    hWndNewViewer: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetClipboardViewer(
-) callconv(@import("std").os.windows.WINAPI) HWND;
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ChangeClipboardChain(
-    hWndRemove: HWND,
-    hWndNewNext: HWND,
+    hWndRemove: ?HWND,
+    hWndNewNext: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetClipboardData(
     uFormat: u32,
     hMem: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetClipboardData(
     uFormat: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn RegisterClipboardFormatA(
-    lpszFormat: [*:0]const u8,
+    lpszFormat: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn RegisterClipboardFormatW(
-    lpszFormat: [*:0]const u16,
+    lpszFormat: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -683,36 +683,36 @@ pub extern "USER32" fn GetPriorityClipboardFormat(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetOpenClipboardWindow(
-) callconv(@import("std").os.windows.WINAPI) HWND;
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn AddClipboardFormatListener(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn RemoveClipboardFormatListener(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn GetUpdatedClipboardFormats(
     lpuiFormats: [*]u32,
     cFormats: u32,
-    pcFormatsOut: *u32,
+    pcFormatsOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeSetQualityOfService(
-    hwndClient: HWND,
-    pqosNew: *const SECURITY_QUALITY_OF_SERVICE,
-    pqosPrev: *SECURITY_QUALITY_OF_SERVICE,
+    hwndClient: ?HWND,
+    pqosNew: ?*const SECURITY_QUALITY_OF_SERVICE,
+    pqosPrev: ?*SECURITY_QUALITY_OF_SERVICE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn ImpersonateDdeClientWindow(
-    hWndClient: HWND,
-    hWndServer: HWND,
+    hWndClient: ?HWND,
+    hWndServer: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -726,8 +726,8 @@ pub extern "USER32" fn PackDDElParam(
 pub extern "USER32" fn UnpackDDElParam(
     msg: u32,
     lParam: LPARAM,
-    puiLo: *usize,
-    puiHi: *usize,
+    puiLo: ?*usize,
+    puiHi: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -747,16 +747,16 @@ pub extern "USER32" fn ReuseDDElParam(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeInitializeA(
-    pidInst: *u32,
-    pfnCallback: PFNCALLBACK,
+    pidInst: ?*u32,
+    pfnCallback: ?PFNCALLBACK,
     afCmd: DDE_INITIALIZE_COMMAND,
     ulRes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeInitializeW(
-    pidInst: *u32,
-    pfnCallback: PFNCALLBACK,
+    pidInst: ?*u32,
+    pfnCallback: ?PFNCALLBACK,
     afCmd: DDE_INITIALIZE_COMMAND,
     ulRes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -769,51 +769,51 @@ pub extern "USER32" fn DdeUninitialize(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeConnectList(
     idInst: u32,
-    hszService: HSZ,
-    hszTopic: HSZ,
-    hConvList: HCONVLIST,
+    hszService: ?HSZ,
+    hszTopic: ?HSZ,
+    hConvList: ?HCONVLIST,
     pCC: ?*CONVCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HCONVLIST;
+) callconv(@import("std").os.windows.WINAPI) ?HCONVLIST;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeQueryNextServer(
-    hConvList: HCONVLIST,
-    hConvPrev: HCONV,
-) callconv(@import("std").os.windows.WINAPI) HCONV;
+    hConvList: ?HCONVLIST,
+    hConvPrev: ?HCONV,
+) callconv(@import("std").os.windows.WINAPI) ?HCONV;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeDisconnectList(
-    hConvList: HCONVLIST,
+    hConvList: ?HCONVLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeConnect(
     idInst: u32,
-    hszService: HSZ,
-    hszTopic: HSZ,
+    hszService: ?HSZ,
+    hszTopic: ?HSZ,
     pCC: ?*CONVCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HCONV;
+) callconv(@import("std").os.windows.WINAPI) ?HCONV;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeDisconnect(
-    hConv: HCONV,
+    hConv: ?HCONV,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeReconnect(
-    hConv: HCONV,
-) callconv(@import("std").os.windows.WINAPI) HCONV;
+    hConv: ?HCONV,
+) callconv(@import("std").os.windows.WINAPI) ?HCONV;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeQueryConvInfo(
-    hConv: HCONV,
+    hConv: ?HCONV,
     idTransaction: u32,
-    pConvInfo: *CONVINFO,
+    pConvInfo: ?*CONVINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeSetUserHandle(
-    hConv: HCONV,
+    hConv: ?HCONV,
     id: u32,
     hUser: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -821,27 +821,27 @@ pub extern "USER32" fn DdeSetUserHandle(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeAbandonTransaction(
     idInst: u32,
-    hConv: HCONV,
+    hConv: ?HCONV,
     idTransaction: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdePostAdvise(
     idInst: u32,
-    hszTopic: HSZ,
-    hszItem: HSZ,
+    hszTopic: ?HSZ,
+    hszItem: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeEnableCallback(
     idInst: u32,
-    hConv: HCONV,
+    hConv: ?HCONV,
     wCmd: DDE_ENABLE_CALLBACK_CMD,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeImpersonateClient(
-    hConv: HCONV,
+    hConv: ?HCONV,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -850,19 +850,19 @@ pub extern "USER32" fn DdeNameService(
     hsz1: ?HSZ,
     hsz2: ?HSZ,
     afCmd: DDE_NAME_SERVICE_CMD,
-) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
+) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeClientTransaction(
     pData: ?*u8,
     cbData: u32,
-    hConv: HCONV,
+    hConv: ?HCONV,
     hszItem: ?HSZ,
     wFmt: u32,
     wType: DDE_CLIENT_TRANSACTION_TYPE,
     dwTimeout: u32,
     pdwResult: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
+) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeCreateDataHandle(
@@ -874,20 +874,20 @@ pub extern "USER32" fn DdeCreateDataHandle(
     hszItem: ?HSZ,
     wFmt: u32,
     afCmd: u32,
-) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
+) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeAddData(
-    hData: HDDEDATA,
+    hData: ?HDDEDATA,
     // TODO: what to do with BytesParamIndex 2?
-    pSrc: *u8,
+    pSrc: ?*u8,
     cb: u32,
     cbOff: u32,
-) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
+) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeGetData(
-    hData: HDDEDATA,
+    hData: ?HDDEDATA,
     // TODO: what to do with BytesParamIndex 2?
     pDst: ?*u8,
     cbMax: u32,
@@ -896,18 +896,18 @@ pub extern "USER32" fn DdeGetData(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeAccessData(
-    hData: HDDEDATA,
+    hData: ?HDDEDATA,
     pcbDataSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) *u8;
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeUnaccessData(
-    hData: HDDEDATA,
+    hData: ?HDDEDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeFreeDataHandle(
-    hData: HDDEDATA,
+    hData: ?HDDEDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -918,21 +918,21 @@ pub extern "USER32" fn DdeGetLastError(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeCreateStringHandleA(
     idInst: u32,
-    psz: [*:0]const u8,
+    psz: ?[*:0]const u8,
     iCodePage: i32,
-) callconv(@import("std").os.windows.WINAPI) HSZ;
+) callconv(@import("std").os.windows.WINAPI) ?HSZ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeCreateStringHandleW(
     idInst: u32,
-    psz: [*:0]const u16,
+    psz: ?[*:0]const u16,
     iCodePage: i32,
-) callconv(@import("std").os.windows.WINAPI) HSZ;
+) callconv(@import("std").os.windows.WINAPI) ?HSZ;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeQueryStringA(
     idInst: u32,
-    hsz: HSZ,
+    hsz: ?HSZ,
     psz: ?[*:0]u8,
     cchMax: u32,
     iCodePage: i32,
@@ -941,7 +941,7 @@ pub extern "USER32" fn DdeQueryStringA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeQueryStringW(
     idInst: u32,
-    hsz: HSZ,
+    hsz: ?HSZ,
     psz: ?[*:0]u16,
     cchMax: u32,
     iCodePage: i32,
@@ -950,19 +950,19 @@ pub extern "USER32" fn DdeQueryStringW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeFreeStringHandle(
     idInst: u32,
-    hsz: HSZ,
+    hsz: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeKeepStringHandle(
     idInst: u32,
-    hsz: HSZ,
+    hsz: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeCmpStringHandles(
-    hsz1: HSZ,
-    hsz2: HSZ,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 

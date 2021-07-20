@@ -600,12 +600,12 @@ pub const tcp_request_query_information_ex32_xp = extern struct {
 }, else => struct { } };
 
 pub const LPFIBER_START_ROUTINE = fn(
-    lpFiberParameter: *c_void,
+    lpFiberParameter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFIBER_CALLOUT_ROUTINE = fn(
-    lpParameter: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    lpParameter: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const JIT_DEBUG_INFO = extern struct {
     dwSize: u32,
@@ -667,32 +667,32 @@ pub const HW_PROFILE_INFOW = extern struct {
 pub const ACTCTX_SECTION_KEYED_DATA_2600 = extern struct {
     cbSize: u32,
     ulDataFormatVersion: u32,
-    lpData: *c_void,
+    lpData: ?*c_void,
     ulLength: u32,
-    lpSectionGlobalData: *c_void,
+    lpSectionGlobalData: ?*c_void,
     ulSectionGlobalDataLength: u32,
-    lpSectionBase: *c_void,
+    lpSectionBase: ?*c_void,
     ulSectionTotalLength: u32,
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
     ulAssemblyRosterIndex: u32,
 };
 
 pub const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = extern struct {
-    lpInformation: *c_void,
-    lpSectionBase: *c_void,
+    lpInformation: ?*c_void,
+    lpSectionBase: ?*c_void,
     ulSectionLength: u32,
-    lpSectionGlobalDataBase: *c_void,
+    lpSectionGlobalDataBase: ?*c_void,
     ulSectionGlobalDataLength: u32,
 };
 
 pub const ACTIVATION_CONTEXT_BASIC_INFORMATION = extern struct {
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
     dwFlags: u32,
 };
 
 pub const PQUERYACTCTXW_FUNC = fn(
     dwFlags: u32,
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
     pvSubInstance: ?*c_void,
     ulInfoClass: u32,
     // TODO: what to do with BytesParamIndex 5?
@@ -702,7 +702,7 @@ pub const PQUERYACTCTXW_FUNC = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const APPLICATION_RECOVERY_CALLBACK = fn(
-    pvParameter: *c_void,
+    pvParameter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const FILE_CASE_SENSITIVE_INFO = extern struct {
@@ -714,22 +714,22 @@ pub const FILE_DISPOSITION_INFO_EX = extern struct {
 };
 
 pub const CLIENT_ID = extern struct {
-    UniqueProcess: HANDLE,
-    UniqueThread: HANDLE,
+    UniqueProcess: ?HANDLE,
+    UniqueThread: ?HANDLE,
 };
 
 pub const LDR_DATA_TABLE_ENTRY = extern struct {
-    Reserved1: [2]*c_void,
+    Reserved1: [2]?*c_void,
     InMemoryOrderLinks: LIST_ENTRY,
-    Reserved2: [2]*c_void,
-    DllBase: *c_void,
-    Reserved3: [2]*c_void,
+    Reserved2: [2]?*c_void,
+    DllBase: ?*c_void,
+    Reserved3: [2]?*c_void,
     FullDllName: UNICODE_STRING,
     Reserved4: [8]u8,
-    Reserved5: [3]*c_void,
+    Reserved5: [3]?*c_void,
     Anonymous: extern union {
         CheckSum: u32,
-        Reserved6: *c_void,
+        Reserved6: ?*c_void,
     },
     TimeDateStamp: u32,
 };
@@ -739,24 +739,24 @@ pub const PPS_POST_PROCESS_INIT_ROUTINE = fn(
 
 pub const OBJECT_ATTRIBUTES = extern struct {
     Length: u32,
-    RootDirectory: HANDLE,
-    ObjectName: *UNICODE_STRING,
+    RootDirectory: ?HANDLE,
+    ObjectName: ?*UNICODE_STRING,
     Attributes: u32,
-    SecurityDescriptor: *c_void,
-    SecurityQualityOfService: *c_void,
+    SecurityDescriptor: ?*c_void,
+    SecurityQualityOfService: ?*c_void,
 };
 
 pub const IO_STATUS_BLOCK = extern struct {
     Anonymous: extern union {
         Status: NTSTATUS,
-        Pointer: *c_void,
+        Pointer: ?*c_void,
     },
     Information: usize,
 };
 
 pub const PIO_APC_ROUTINE = fn(
-    ApcContext: *c_void,
-    IoStatusBlock: *IO_STATUS_BLOCK,
+    ApcContext: ?*c_void,
+    IoStatusBlock: ?*IO_STATUS_BLOCK,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -774,19 +774,19 @@ pub const SYSTEM_PROCESS_INFORMATION = extern struct {
     Reserved1: [48]u8,
     ImageName: UNICODE_STRING,
     BasePriority: i32,
-    UniqueProcessId: HANDLE,
-    Reserved2: *c_void,
+    UniqueProcessId: ?HANDLE,
+    Reserved2: ?*c_void,
     HandleCount: u32,
     SessionId: u32,
-    Reserved3: *c_void,
+    Reserved3: ?*c_void,
     PeakVirtualSize: usize,
     VirtualSize: usize,
     Reserved4: u32,
     PeakWorkingSetSize: usize,
     WorkingSetSize: usize,
-    Reserved5: *c_void,
+    Reserved5: ?*c_void,
     QuotaPagedPoolUsage: usize,
-    Reserved6: *c_void,
+    Reserved6: ?*c_void,
     QuotaNonPagedPoolUsage: usize,
     PagefileUsage: usize,
     PeakPagefileUsage: usize,
@@ -797,7 +797,7 @@ pub const SYSTEM_PROCESS_INFORMATION = extern struct {
 pub const SYSTEM_THREAD_INFORMATION = extern struct {
     Reserved1: [3]LARGE_INTEGER,
     Reserved2: u32,
-    StartAddress: *c_void,
+    StartAddress: ?*c_void,
     ClientId: CLIENT_ID,
     Priority: i32,
     BasePriority: i32,
@@ -809,12 +809,12 @@ pub const SYSTEM_THREAD_INFORMATION = extern struct {
 pub const SYSTEM_REGISTRY_QUOTA_INFORMATION = extern struct {
     RegistryQuotaAllowed: u32,
     RegistryQuotaUsed: u32,
-    Reserved1: *c_void,
+    Reserved1: ?*c_void,
 };
 
 pub const SYSTEM_BASIC_INFORMATION = extern struct {
     Reserved1: [24]u8,
-    Reserved2: [4]*c_void,
+    Reserved2: [4]?*c_void,
     NumberOfProcessors: i8,
 };
 
@@ -839,7 +839,7 @@ pub const SYSTEM_INTERRUPT_INFORMATION = extern struct {
 };
 
 pub const SYSTEM_POLICY_INFORMATION = extern struct {
-    Reserved1: [2]*c_void,
+    Reserved1: [2]?*c_void,
     Reserved2: [3]u32,
 };
 
@@ -899,7 +899,7 @@ pub const PUBLIC_OBJECT_TYPE_INFORMATION = extern struct {
 };
 
 pub const KEY_VALUE_ENTRY = extern struct {
-    ValueName: *UNICODE_STRING,
+    ValueName: ?*UNICODE_STRING,
     DataLength: u32,
     DataOffset: u32,
     Type: u32,
@@ -934,12 +934,12 @@ pub const WINSTATIONINFORMATIONW = extern struct {
 };
 
 pub const PWINSTATIONQUERYINFORMATIONW = fn(
-    param0: HANDLE,
+    param0: ?HANDLE,
     param1: u32,
     param2: WINSTATIONINFOCLASS,
-    param3: *c_void,
+    param3: ?*c_void,
     param4: u32,
-    param5: *u32,
+    param5: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 const CLSID_CameraUIControl_Value = @import("../zig.zig").Guid.initString("16d5a2be-b1c5-47b3-8eae-ccbcf452c7e8");
@@ -997,11 +997,11 @@ pub const ICameraUIControlEventCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         OnItemCaptured: fn(
             self: *const ICameraUIControlEventCallback,
-            pszPath: [*:0]const u16,
+            pszPath: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OnItemDeleted: fn(
             self: *const ICameraUIControlEventCallback,
-            pszPath: [*:0]const u16,
+            pszPath: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OnClosed: fn(
             self: *const ICameraUIControlEventCallback,
@@ -1019,11 +1019,11 @@ pub const ICameraUIControlEventCallback = extern struct {
             return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnSuspendComplete(@ptrCast(*const ICameraUIControlEventCallback, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnItemCaptured(self: *const T, pszPath: [*:0]const u16) callconv(.Inline) void {
+        pub fn ICameraUIControlEventCallback_OnItemCaptured(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) void {
             return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnItemCaptured(@ptrCast(*const ICameraUIControlEventCallback, self), pszPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnItemDeleted(self: *const T, pszPath: [*:0]const u16) callconv(.Inline) void {
+        pub fn ICameraUIControlEventCallback_OnItemDeleted(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) void {
             return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnItemDeleted(@ptrCast(*const ICameraUIControlEventCallback, self), pszPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1042,7 +1042,7 @@ pub const ICameraUIControl = extern struct {
         base: IUnknown.VTable,
         Show: fn(
             self: *const ICameraUIControl,
-            pWindow: *IUnknown,
+            pWindow: ?*IUnknown,
             mode: CameraUIControlMode,
             selectionMode: CameraUIControlLinearSelectionMode,
             captureMode: CameraUIControlCaptureMode,
@@ -1056,33 +1056,33 @@ pub const ICameraUIControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Suspend: fn(
             self: *const ICameraUIControl,
-            pbDeferralRequired: *BOOL,
+            pbDeferralRequired: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Resume: fn(
             self: *const ICameraUIControl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentViewType: fn(
             self: *const ICameraUIControl,
-            pViewType: *CameraUIControlViewType,
+            pViewType: ?*CameraUIControlViewType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveItem: fn(
             self: *const ICameraUIControl,
-            pbstrActiveItemPath: ?*BSTR,
+            pbstrActiveItemPath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelectedItems: fn(
             self: *const ICameraUIControl,
-            ppSelectedItemPaths: **SAFEARRAY,
+            ppSelectedItemPaths: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveCapturedItem: fn(
             self: *const ICameraUIControl,
-            pszPath: [*:0]const u16,
+            pszPath: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Show(self: *const T, pWindow: *IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.Inline) HRESULT {
+        pub fn ICameraUIControl_Show(self: *const T, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Show(@ptrCast(*const ICameraUIControl, self), pWindow, mode, selectionMode, captureMode, photoFormat, videoFormat, bHasCloseButton, pEventCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1090,7 +1090,7 @@ pub const ICameraUIControl = extern struct {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Close(@ptrCast(*const ICameraUIControl, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Suspend(self: *const T, pbDeferralRequired: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ICameraUIControl_Suspend(self: *const T, pbDeferralRequired: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Suspend(@ptrCast(*const ICameraUIControl, self), pbDeferralRequired);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1098,19 +1098,19 @@ pub const ICameraUIControl = extern struct {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Resume(@ptrCast(*const ICameraUIControl, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetCurrentViewType(self: *const T, pViewType: *CameraUIControlViewType) callconv(.Inline) HRESULT {
+        pub fn ICameraUIControl_GetCurrentViewType(self: *const T, pViewType: ?*CameraUIControlViewType) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetCurrentViewType(@ptrCast(*const ICameraUIControl, self), pViewType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetActiveItem(self: *const T, pbstrActiveItemPath: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn ICameraUIControl_GetActiveItem(self: *const T, pbstrActiveItemPath: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetActiveItem(@ptrCast(*const ICameraUIControl, self), pbstrActiveItemPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetSelectedItems(self: *const T, ppSelectedItemPaths: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ICameraUIControl_GetSelectedItems(self: *const T, ppSelectedItemPaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetSelectedItems(@ptrCast(*const ICameraUIControl, self), ppSelectedItemPaths);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_RemoveCapturedItem(self: *const T, pszPath: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn ICameraUIControl_RemoveCapturedItem(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICameraUIControl.VTable, self.vtable).RemoveCapturedItem(@ptrCast(*const ICameraUIControl, self), pszPath);
         }
     };}
@@ -1131,33 +1131,33 @@ pub const IEditionUpgradeHelper = extern struct {
         base: IUnknown.VTable,
         CanUpgrade: fn(
             self: *const IEditionUpgradeHelper,
-            isAllowed: *BOOL,
+            isAllowed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateOperatingSystem: fn(
             self: *const IEditionUpgradeHelper,
-            contentId: [*:0]const u16,
+            contentId: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowProductKeyUI: fn(
             self: *const IEditionUpgradeHelper,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOsProductContentId: fn(
             self: *const IEditionUpgradeHelper,
-            contentId: *PWSTR,
+            contentId: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGenuineLocalStatus: fn(
             self: *const IEditionUpgradeHelper,
-            isGenuine: *BOOL,
+            isGenuine: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_CanUpgrade(self: *const T, isAllowed: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IEditionUpgradeHelper_CanUpgrade(self: *const T, isAllowed: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).CanUpgrade(@ptrCast(*const IEditionUpgradeHelper, self), isAllowed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_UpdateOperatingSystem(self: *const T, contentId: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IEditionUpgradeHelper_UpdateOperatingSystem(self: *const T, contentId: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).UpdateOperatingSystem(@ptrCast(*const IEditionUpgradeHelper, self), contentId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1165,11 +1165,11 @@ pub const IEditionUpgradeHelper = extern struct {
             return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).ShowProductKeyUI(@ptrCast(*const IEditionUpgradeHelper, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_GetOsProductContentId(self: *const T, contentId: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IEditionUpgradeHelper_GetOsProductContentId(self: *const T, contentId: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).GetOsProductContentId(@ptrCast(*const IEditionUpgradeHelper, self), contentId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_GetGenuineLocalStatus(self: *const T, isGenuine: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IEditionUpgradeHelper_GetGenuineLocalStatus(self: *const T, isGenuine: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).GetGenuineLocalStatus(@ptrCast(*const IEditionUpgradeHelper, self), isGenuine);
         }
     };}
@@ -1183,14 +1183,14 @@ pub const IWindowsLockModeHelper = extern struct {
         base: IUnknown.VTable,
         GetSMode: fn(
             self: *const IWindowsLockModeHelper,
-            isSmode: *BOOL,
+            isSmode: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsLockModeHelper_GetSMode(self: *const T, isSmode: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWindowsLockModeHelper_GetSMode(self: *const T, isSmode: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsLockModeHelper.VTable, self.vtable).GetSMode(@ptrCast(*const IWindowsLockModeHelper, self), isSmode);
         }
     };}
@@ -1208,7 +1208,7 @@ pub const IEditionUpgradeBroker = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateOperatingSystem: fn(
             self: *const IEditionUpgradeBroker,
-            parameter: BSTR,
+            parameter: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowProductKeyUI: fn(
             self: *const IEditionUpgradeBroker,
@@ -1225,7 +1225,7 @@ pub const IEditionUpgradeBroker = extern struct {
             return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).InitializeParentWindow(@ptrCast(*const IEditionUpgradeBroker, self), parentHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_UpdateOperatingSystem(self: *const T, parameter: BSTR) callconv(.Inline) HRESULT {
+        pub fn IEditionUpgradeBroker_UpdateOperatingSystem(self: *const T, parameter: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).UpdateOperatingSystem(@ptrCast(*const IEditionUpgradeBroker, self), parameter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1247,14 +1247,14 @@ pub const IContainerActivationHelper = extern struct {
         base: IUnknown.VTable,
         CanActivateClientVM: fn(
             self: *const IContainerActivationHelper,
-            isAllowed: *i16,
+            isAllowed: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContainerActivationHelper_CanActivateClientVM(self: *const T, isAllowed: *i16) callconv(.Inline) HRESULT {
+        pub fn IContainerActivationHelper_CanActivateClientVM(self: *const T, isAllowed: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IContainerActivationHelper.VTable, self.vtable).CanActivateClientVM(@ptrCast(*const IContainerActivationHelper, self), isAllowed);
         }
     };}
@@ -1268,18 +1268,18 @@ pub const IClipServiceNotificationHelper = extern struct {
         base: IUnknown.VTable,
         ShowToast: fn(
             self: *const IClipServiceNotificationHelper,
-            titleText: BSTR,
-            bodyText: BSTR,
-            packageName: BSTR,
-            appId: BSTR,
-            launchCommand: BSTR,
+            titleText: ?BSTR,
+            bodyText: ?BSTR,
+            packageName: ?BSTR,
+            appId: ?BSTR,
+            launchCommand: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClipServiceNotificationHelper_ShowToast(self: *const T, titleText: BSTR, bodyText: BSTR, packageName: BSTR, appId: BSTR, launchCommand: BSTR) callconv(.Inline) HRESULT {
+        pub fn IClipServiceNotificationHelper_ShowToast(self: *const T, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClipServiceNotificationHelper.VTable, self.vtable).ShowToast(@ptrCast(*const IClipServiceNotificationHelper, self), titleText, bodyText, packageName, appId, launchCommand);
         }
     };}
@@ -1309,18 +1309,18 @@ pub const FEATURE_ENABLED_STATE_ENABLED = FEATURE_ENABLED_STATE.ENABLED;
 pub const FEATURE_ERROR = extern struct {
     hr: HRESULT,
     lineNumber: u16,
-    file: [*:0]const u8,
-    process: [*:0]const u8,
-    module: [*:0]const u8,
+    file: ?[*:0]const u8,
+    process: ?[*:0]const u8,
+    module: ?[*:0]const u8,
     callerReturnAddressOffset: u32,
-    callerModule: [*:0]const u8,
-    message: [*:0]const u8,
+    callerModule: ?[*:0]const u8,
+    message: ?[*:0]const u8,
     originLineNumber: u16,
-    originFile: [*:0]const u8,
-    originModule: [*:0]const u8,
+    originFile: ?[*:0]const u8,
+    originModule: ?[*:0]const u8,
     originCallerReturnAddressOffset: u32,
-    originCallerModule: [*:0]const u8,
-    originName: [*:0]const u8,
+    originCallerModule: ?[*:0]const u8,
+    originName: ?[*:0]const u8,
 };
 
 pub const PFEATURE_STATE_CHANGE_CALLBACK = fn(
@@ -1343,7 +1343,7 @@ pub const DCICREATEINPUT = extern struct {
     dwHeight: u32,
     dwDCICaps: u32,
     dwBitCount: u32,
-    lpSurface: *c_void,
+    lpSurface: ?*c_void,
 };
 
 pub const DCISURFACEINFO = extern struct {
@@ -1367,8 +1367,8 @@ pub const DCISURFACEINFO = extern struct {
 };
 
 pub const ENUM_CALLBACK = fn(
-    lpSurfaceInfo: *DCISURFACEINFO,
-    lpContext: *c_void,
+    lpSurfaceInfo: ?*DCISURFACEINFO,
+    lpContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DCIENUMINPUT = extern struct {
@@ -1376,7 +1376,7 @@ pub const DCIENUMINPUT = extern struct {
     rSrc: RECT,
     rDst: RECT,
     EnumCallback: isize,
-    lpContext: *c_void,
+    lpContext: ?*c_void,
 };
 
 pub const DCIOFFSCREEN = extern struct {
@@ -1393,50 +1393,50 @@ pub const DCIOVERLAY = extern struct {
 };
 
 pub const WINWATCHNOTIFYPROC = fn(
-    hww: HWINWATCH,
-    hwnd: HWND,
+    hww: ?HWINWATCH,
+    hwnd: ?HWND,
     code: u32,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const STRENTRYA = extern struct {
-    pszName: PSTR,
-    pszValue: PSTR,
+    pszName: ?PSTR,
+    pszValue: ?PSTR,
 };
 
 pub const STRENTRYW = extern struct {
-    pszName: PWSTR,
-    pszValue: PWSTR,
+    pszName: ?PWSTR,
+    pszValue: ?PWSTR,
 };
 
 pub const STRTABLEA = extern struct {
     cEntries: u32,
-    pse: *STRENTRYA,
+    pse: ?*STRENTRYA,
 };
 
 pub const STRTABLEW = extern struct {
     cEntries: u32,
-    pse: *STRENTRYW,
+    pse: ?*STRENTRYW,
 };
 
 pub const REGINSTALLA = fn(
-    hm: HINSTANCE,
-    pszSection: [*:0]const u8,
-    pstTable: *STRTABLEA,
+    hm: ?HINSTANCE,
+    pszSection: ?[*:0]const u8,
+    pstTable: ?*STRTABLEA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CABINFOA = extern struct {
-    pszCab: PSTR,
-    pszInf: PSTR,
-    pszSection: PSTR,
+    pszCab: ?PSTR,
+    pszInf: ?PSTR,
+    pszSection: ?PSTR,
     szSrcPath: [260]CHAR,
     dwFlags: u32,
 };
 
 pub const CABINFOW = extern struct {
-    pszCab: PWSTR,
-    pszInf: PWSTR,
-    pszSection: PWSTR,
+    pszCab: ?PWSTR,
+    pszInf: ?PWSTR,
+    pszSection: ?PWSTR,
     szSrcPath: [260]u16,
     dwFlags: u32,
 };
@@ -1509,7 +1509,7 @@ pub const DATETIME = extern struct {
 };
 
 pub const IMEPROA = extern struct {
-    hWnd: HWND,
+    hWnd: ?HWND,
     InstDate: DATETIME,
     wVersion: u32,
     szDescription: [50]u8,
@@ -1518,7 +1518,7 @@ pub const IMEPROA = extern struct {
 };
 
 pub const IMEPROW = extern struct {
-    hWnd: HWND,
+    hWnd: ?HWND,
     InstDate: DATETIME,
     wVersion: u32,
     szDescription: [50]u16,
@@ -1679,7 +1679,7 @@ pub const IWebBrowser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Navigate: fn(
             self: *const IWebBrowser,
-            URL: BSTR,
+            URL: ?BSTR,
             Flags: ?*VARIANT,
             TargetFrameName: ?*VARIANT,
             PostData: ?*VARIANT,
@@ -1698,37 +1698,37 @@ pub const IWebBrowser = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const IWebBrowser,
-            ppDisp: **IDispatch,
+            ppDisp: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const IWebBrowser,
-            ppDisp: **IDispatch,
+            ppDisp: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Container: fn(
             self: *const IWebBrowser,
-            ppDisp: **IDispatch,
+            ppDisp: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Document: fn(
             self: *const IWebBrowser,
-            ppDisp: **IDispatch,
+            ppDisp: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TopLevelContainer: fn(
             self: *const IWebBrowser,
-            pBool: *i16,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IWebBrowser,
-            Type: *BSTR,
+            Type: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Left: fn(
             self: *const IWebBrowser,
-            pl: *i32,
+            pl: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Left: fn(
@@ -1738,7 +1738,7 @@ pub const IWebBrowser = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Top: fn(
             self: *const IWebBrowser,
-            pl: *i32,
+            pl: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Top: fn(
@@ -1748,7 +1748,7 @@ pub const IWebBrowser = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: fn(
             self: *const IWebBrowser,
-            pl: *i32,
+            pl: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Width: fn(
@@ -1758,7 +1758,7 @@ pub const IWebBrowser = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Height: fn(
             self: *const IWebBrowser,
-            pl: *i32,
+            pl: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Height: fn(
@@ -1768,17 +1768,17 @@ pub const IWebBrowser = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocationName: fn(
             self: *const IWebBrowser,
-            LocationName: *BSTR,
+            LocationName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocationURL: fn(
             self: *const IWebBrowser,
-            LocationURL: *BSTR,
+            LocationURL: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Busy: fn(
             self: *const IWebBrowser,
-            pBool: *i16,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1801,7 +1801,7 @@ pub const IWebBrowser = extern struct {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).GoSearch(@ptrCast(*const IWebBrowser, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_Navigate(self: *const T, URL: BSTR, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_Navigate(self: *const T, URL: ?BSTR, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).Navigate(@ptrCast(*const IWebBrowser, self), URL, Flags, TargetFrameName, PostData, Headers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1817,31 +1817,31 @@ pub const IWebBrowser = extern struct {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).Stop(@ptrCast(*const IWebBrowser, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Application(self: *const T, ppDisp: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Application(self: *const T, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Application(@ptrCast(*const IWebBrowser, self), ppDisp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Parent(self: *const T, ppDisp: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Parent(self: *const T, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Parent(@ptrCast(*const IWebBrowser, self), ppDisp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Container(self: *const T, ppDisp: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Container(self: *const T, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Container(@ptrCast(*const IWebBrowser, self), ppDisp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Document(self: *const T, ppDisp: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Document(self: *const T, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Document(@ptrCast(*const IWebBrowser, self), ppDisp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_TopLevelContainer(self: *const T, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_TopLevelContainer(self: *const T, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_TopLevelContainer(@ptrCast(*const IWebBrowser, self), pBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Type(self: *const T, Type: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Type(self: *const T, Type: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Type(@ptrCast(*const IWebBrowser, self), Type);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Left(self: *const T, pl: *i32) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Left(self: *const T, pl: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Left(@ptrCast(*const IWebBrowser, self), pl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1849,7 +1849,7 @@ pub const IWebBrowser = extern struct {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).put_Left(@ptrCast(*const IWebBrowser, self), Left);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Top(self: *const T, pl: *i32) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Top(self: *const T, pl: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Top(@ptrCast(*const IWebBrowser, self), pl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1857,7 +1857,7 @@ pub const IWebBrowser = extern struct {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).put_Top(@ptrCast(*const IWebBrowser, self), Top);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Width(self: *const T, pl: *i32) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Width(self: *const T, pl: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Width(@ptrCast(*const IWebBrowser, self), pl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1865,7 +1865,7 @@ pub const IWebBrowser = extern struct {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).put_Width(@ptrCast(*const IWebBrowser, self), Width);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Height(self: *const T, pl: *i32) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Height(self: *const T, pl: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Height(@ptrCast(*const IWebBrowser, self), pl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1873,15 +1873,15 @@ pub const IWebBrowser = extern struct {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).put_Height(@ptrCast(*const IWebBrowser, self), Height);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_LocationName(self: *const T, LocationName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_LocationName(self: *const T, LocationName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_LocationName(@ptrCast(*const IWebBrowser, self), LocationName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_LocationURL(self: *const T, LocationURL: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_LocationURL(self: *const T, LocationURL: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_LocationURL(@ptrCast(*const IWebBrowser, self), LocationURL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser_get_Busy(self: *const T, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser_get_Busy(self: *const T, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser.VTable, self.vtable).get_Busy(@ptrCast(*const IWebBrowser, self), pBool);
         }
     };}
@@ -1911,43 +1911,43 @@ pub const IWebBrowserApp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClientToWindow: fn(
             self: *const IWebBrowserApp,
-            pcx: *i32,
-            pcy: *i32,
+            pcx: ?*i32,
+            pcy: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutProperty: fn(
             self: *const IWebBrowserApp,
-            Property: BSTR,
+            Property: ?BSTR,
             vtValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IWebBrowserApp,
-            Property: BSTR,
-            pvtValue: *VARIANT,
+            Property: ?BSTR,
+            pvtValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IWebBrowserApp,
-            Name: *BSTR,
+            Name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HWND: fn(
             self: *const IWebBrowserApp,
-            pHWND: *SHANDLE_PTR,
+            pHWND: ?*SHANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FullName: fn(
             self: *const IWebBrowserApp,
-            FullName: *BSTR,
+            FullName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IWebBrowserApp,
-            Path: *BSTR,
+            Path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Visible: fn(
             self: *const IWebBrowserApp,
-            pBool: *i16,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Visible: fn(
@@ -1957,7 +1957,7 @@ pub const IWebBrowserApp = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StatusBar: fn(
             self: *const IWebBrowserApp,
-            pBool: *i16,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StatusBar: fn(
@@ -1967,17 +1967,17 @@ pub const IWebBrowserApp = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StatusText: fn(
             self: *const IWebBrowserApp,
-            StatusText: *BSTR,
+            StatusText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StatusText: fn(
             self: *const IWebBrowserApp,
-            StatusText: BSTR,
+            StatusText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ToolBar: fn(
             self: *const IWebBrowserApp,
-            Value: *i32,
+            Value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ToolBar: fn(
@@ -1987,7 +1987,7 @@ pub const IWebBrowserApp = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MenuBar: fn(
             self: *const IWebBrowserApp,
-            Value: *i16,
+            Value: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MenuBar: fn(
@@ -1997,7 +1997,7 @@ pub const IWebBrowserApp = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FullScreen: fn(
             self: *const IWebBrowserApp,
-            pbFullScreen: *i16,
+            pbFullScreen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FullScreen: fn(
@@ -2013,35 +2013,35 @@ pub const IWebBrowserApp = extern struct {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).Quit(@ptrCast(*const IWebBrowserApp, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_ClientToWindow(self: *const T, pcx: *i32, pcy: *i32) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_ClientToWindow(self: *const T, pcx: ?*i32, pcy: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).ClientToWindow(@ptrCast(*const IWebBrowserApp, self), pcx, pcy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_PutProperty(self: *const T, Property: BSTR, vtValue: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_PutProperty(self: *const T, Property: ?BSTR, vtValue: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).PutProperty(@ptrCast(*const IWebBrowserApp, self), Property, vtValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_GetProperty(self: *const T, Property: BSTR, pvtValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_GetProperty(self: *const T, Property: ?BSTR, pvtValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).GetProperty(@ptrCast(*const IWebBrowserApp, self), Property, pvtValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_Name(self: *const T, Name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_Name(self: *const T, Name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_Name(@ptrCast(*const IWebBrowserApp, self), Name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_HWND(self: *const T, pHWND: *SHANDLE_PTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_HWND(self: *const T, pHWND: ?*SHANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_HWND(@ptrCast(*const IWebBrowserApp, self), pHWND);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_FullName(self: *const T, FullName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_FullName(self: *const T, FullName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_FullName(@ptrCast(*const IWebBrowserApp, self), FullName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_Path(self: *const T, Path: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_Path(self: *const T, Path: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_Path(@ptrCast(*const IWebBrowserApp, self), Path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_Visible(self: *const T, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_Visible(self: *const T, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_Visible(@ptrCast(*const IWebBrowserApp, self), pBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2049,7 +2049,7 @@ pub const IWebBrowserApp = extern struct {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).put_Visible(@ptrCast(*const IWebBrowserApp, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_StatusBar(self: *const T, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_StatusBar(self: *const T, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_StatusBar(@ptrCast(*const IWebBrowserApp, self), pBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2057,15 +2057,15 @@ pub const IWebBrowserApp = extern struct {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).put_StatusBar(@ptrCast(*const IWebBrowserApp, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_StatusText(self: *const T, StatusText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_StatusText(self: *const T, StatusText: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_StatusText(@ptrCast(*const IWebBrowserApp, self), StatusText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_put_StatusText(self: *const T, StatusText: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_put_StatusText(self: *const T, StatusText: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).put_StatusText(@ptrCast(*const IWebBrowserApp, self), StatusText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_ToolBar(self: *const T, Value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_ToolBar(self: *const T, Value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_ToolBar(@ptrCast(*const IWebBrowserApp, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2073,7 +2073,7 @@ pub const IWebBrowserApp = extern struct {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).put_ToolBar(@ptrCast(*const IWebBrowserApp, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_MenuBar(self: *const T, Value: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_MenuBar(self: *const T, Value: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_MenuBar(@ptrCast(*const IWebBrowserApp, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2081,7 +2081,7 @@ pub const IWebBrowserApp = extern struct {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).put_MenuBar(@ptrCast(*const IWebBrowserApp, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_FullScreen(self: *const T, pbFullScreen: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_FullScreen(self: *const T, pbFullScreen: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_FullScreen(@ptrCast(*const IWebBrowserApp, self), pbFullScreen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2100,7 +2100,7 @@ pub const IWebBrowser2 = extern struct {
         base: IWebBrowserApp.VTable,
         Navigate2: fn(
             self: *const IWebBrowser2,
-            URL: *VARIANT,
+            URL: ?*VARIANT,
             Flags: ?*VARIANT,
             TargetFrameName: ?*VARIANT,
             PostData: ?*VARIANT,
@@ -2109,7 +2109,7 @@ pub const IWebBrowser2 = extern struct {
         QueryStatusWB: fn(
             self: *const IWebBrowser2,
             cmdID: OLECMDID,
-            pcmdf: *OLECMDF,
+            pcmdf: ?*OLECMDF,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExecWB: fn(
             self: *const IWebBrowser2,
@@ -2120,19 +2120,19 @@ pub const IWebBrowser2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowBrowserBar: fn(
             self: *const IWebBrowser2,
-            pvaClsid: *VARIANT,
+            pvaClsid: ?*VARIANT,
             pvarShow: ?*VARIANT,
             pvarSize: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadyState: fn(
             self: *const IWebBrowser2,
-            plReadyState: *READYSTATE,
+            plReadyState: ?*READYSTATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Offline: fn(
             self: *const IWebBrowser2,
-            pbOffline: *i16,
+            pbOffline: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Offline: fn(
@@ -2142,7 +2142,7 @@ pub const IWebBrowser2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: fn(
             self: *const IWebBrowser2,
-            pbSilent: *i16,
+            pbSilent: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: fn(
@@ -2152,7 +2152,7 @@ pub const IWebBrowser2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegisterAsBrowser: fn(
             self: *const IWebBrowser2,
-            pbRegister: *i16,
+            pbRegister: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegisterAsBrowser: fn(
@@ -2162,7 +2162,7 @@ pub const IWebBrowser2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegisterAsDropTarget: fn(
             self: *const IWebBrowser2,
-            pbRegister: *i16,
+            pbRegister: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegisterAsDropTarget: fn(
@@ -2172,7 +2172,7 @@ pub const IWebBrowser2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TheaterMode: fn(
             self: *const IWebBrowser2,
-            pbRegister: *i16,
+            pbRegister: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TheaterMode: fn(
@@ -2182,7 +2182,7 @@ pub const IWebBrowser2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressBar: fn(
             self: *const IWebBrowser2,
-            Value: *i16,
+            Value: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AddressBar: fn(
@@ -2192,7 +2192,7 @@ pub const IWebBrowser2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Resizable: fn(
             self: *const IWebBrowser2,
-            Value: *i16,
+            Value: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Resizable: fn(
@@ -2204,11 +2204,11 @@ pub const IWebBrowser2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWebBrowserApp.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_Navigate2(self: *const T, URL: *VARIANT, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_Navigate2(self: *const T, URL: ?*VARIANT, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).Navigate2(@ptrCast(*const IWebBrowser2, self), URL, Flags, TargetFrameName, PostData, Headers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_QueryStatusWB(self: *const T, cmdID: OLECMDID, pcmdf: *OLECMDF) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_QueryStatusWB(self: *const T, cmdID: OLECMDID, pcmdf: ?*OLECMDF) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).QueryStatusWB(@ptrCast(*const IWebBrowser2, self), cmdID, pcmdf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2216,15 +2216,15 @@ pub const IWebBrowser2 = extern struct {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).ExecWB(@ptrCast(*const IWebBrowser2, self), cmdID, cmdexecopt, pvaIn, pvaOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_ShowBrowserBar(self: *const T, pvaClsid: *VARIANT, pvarShow: ?*VARIANT, pvarSize: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_ShowBrowserBar(self: *const T, pvaClsid: ?*VARIANT, pvarShow: ?*VARIANT, pvarSize: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).ShowBrowserBar(@ptrCast(*const IWebBrowser2, self), pvaClsid, pvarShow, pvarSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_ReadyState(self: *const T, plReadyState: *READYSTATE) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_ReadyState(self: *const T, plReadyState: ?*READYSTATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_ReadyState(@ptrCast(*const IWebBrowser2, self), plReadyState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_Offline(self: *const T, pbOffline: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_Offline(self: *const T, pbOffline: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_Offline(@ptrCast(*const IWebBrowser2, self), pbOffline);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2232,7 +2232,7 @@ pub const IWebBrowser2 = extern struct {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).put_Offline(@ptrCast(*const IWebBrowser2, self), bOffline);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_Silent(self: *const T, pbSilent: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_Silent(self: *const T, pbSilent: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_Silent(@ptrCast(*const IWebBrowser2, self), pbSilent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2240,7 +2240,7 @@ pub const IWebBrowser2 = extern struct {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).put_Silent(@ptrCast(*const IWebBrowser2, self), bSilent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_RegisterAsBrowser(self: *const T, pbRegister: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_RegisterAsBrowser(self: *const T, pbRegister: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_RegisterAsBrowser(@ptrCast(*const IWebBrowser2, self), pbRegister);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2248,7 +2248,7 @@ pub const IWebBrowser2 = extern struct {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).put_RegisterAsBrowser(@ptrCast(*const IWebBrowser2, self), bRegister);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_RegisterAsDropTarget(self: *const T, pbRegister: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_RegisterAsDropTarget(self: *const T, pbRegister: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_RegisterAsDropTarget(@ptrCast(*const IWebBrowser2, self), pbRegister);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2256,7 +2256,7 @@ pub const IWebBrowser2 = extern struct {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).put_RegisterAsDropTarget(@ptrCast(*const IWebBrowser2, self), bRegister);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_TheaterMode(self: *const T, pbRegister: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_TheaterMode(self: *const T, pbRegister: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_TheaterMode(@ptrCast(*const IWebBrowser2, self), pbRegister);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2264,7 +2264,7 @@ pub const IWebBrowser2 = extern struct {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).put_TheaterMode(@ptrCast(*const IWebBrowser2, self), bRegister);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_AddressBar(self: *const T, Value: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_AddressBar(self: *const T, Value: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_AddressBar(@ptrCast(*const IWebBrowser2, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2272,7 +2272,7 @@ pub const IWebBrowser2 = extern struct {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).put_AddressBar(@ptrCast(*const IWebBrowser2, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowser2_get_Resizable(self: *const T, Value: *i16) callconv(.Inline) HRESULT {
+        pub fn IWebBrowser2_get_Resizable(self: *const T, Value: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowser2.VTable, self.vtable).get_Resizable(@ptrCast(*const IWebBrowser2, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2325,17 +2325,17 @@ pub const IShellUIHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddFavorite: fn(
             self: *const IShellUIHelper,
-            URL: BSTR,
+            URL: ?BSTR,
             Title: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddChannel: fn(
             self: *const IShellUIHelper,
-            URL: BSTR,
+            URL: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDesktopComponent: fn(
             self: *const IShellUIHelper,
-            URL: BSTR,
-            Type: BSTR,
+            URL: ?BSTR,
+            Type: ?BSTR,
             Left: ?*VARIANT,
             Top: ?*VARIANT,
             Width: ?*VARIANT,
@@ -2343,19 +2343,19 @@ pub const IShellUIHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsSubscribed: fn(
             self: *const IShellUIHelper,
-            URL: BSTR,
-            pBool: *i16,
+            URL: ?BSTR,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NavigateAndFind: fn(
             self: *const IShellUIHelper,
-            URL: BSTR,
-            strQuery: BSTR,
-            varTargetFrame: *VARIANT,
+            URL: ?BSTR,
+            strQuery: ?BSTR,
+            varTargetFrame: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportExportFavorites: fn(
             self: *const IShellUIHelper,
             fImport: i16,
-            strImpExpPath: BSTR,
+            strImpExpPath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AutoCompleteSaveForm: fn(
             self: *const IShellUIHelper,
@@ -2363,8 +2363,8 @@ pub const IShellUIHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AutoScan: fn(
             self: *const IShellUIHelper,
-            strSearch: BSTR,
-            strFailureUrl: BSTR,
+            strSearch: ?BSTR,
+            strFailureUrl: ?BSTR,
             pvarTargetFrame: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AutoCompleteAttach: fn(
@@ -2373,9 +2373,9 @@ pub const IShellUIHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowBrowserUI: fn(
             self: *const IShellUIHelper,
-            bstrName: BSTR,
-            pvarIn: *VARIANT,
-            pvarOut: *VARIANT,
+            bstrName: ?BSTR,
+            pvarIn: ?*VARIANT,
+            pvarOut: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2394,27 +2394,27 @@ pub const IShellUIHelper = extern struct {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).RefreshOfflineDesktop(@ptrCast(*const IShellUIHelper, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_AddFavorite(self: *const T, URL: BSTR, Title: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_AddFavorite(self: *const T, URL: ?BSTR, Title: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).AddFavorite(@ptrCast(*const IShellUIHelper, self), URL, Title);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_AddChannel(self: *const T, URL: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_AddChannel(self: *const T, URL: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).AddChannel(@ptrCast(*const IShellUIHelper, self), URL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_AddDesktopComponent(self: *const T, URL: BSTR, Type: BSTR, Left: ?*VARIANT, Top: ?*VARIANT, Width: ?*VARIANT, Height: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_AddDesktopComponent(self: *const T, URL: ?BSTR, Type: ?BSTR, Left: ?*VARIANT, Top: ?*VARIANT, Width: ?*VARIANT, Height: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).AddDesktopComponent(@ptrCast(*const IShellUIHelper, self), URL, Type, Left, Top, Width, Height);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_IsSubscribed(self: *const T, URL: BSTR, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_IsSubscribed(self: *const T, URL: ?BSTR, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).IsSubscribed(@ptrCast(*const IShellUIHelper, self), URL, pBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_NavigateAndFind(self: *const T, URL: BSTR, strQuery: BSTR, varTargetFrame: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_NavigateAndFind(self: *const T, URL: ?BSTR, strQuery: ?BSTR, varTargetFrame: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).NavigateAndFind(@ptrCast(*const IShellUIHelper, self), URL, strQuery, varTargetFrame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_ImportExportFavorites(self: *const T, fImport: i16, strImpExpPath: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_ImportExportFavorites(self: *const T, fImport: i16, strImpExpPath: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).ImportExportFavorites(@ptrCast(*const IShellUIHelper, self), fImport, strImpExpPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2422,7 +2422,7 @@ pub const IShellUIHelper = extern struct {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).AutoCompleteSaveForm(@ptrCast(*const IShellUIHelper, self), Form);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_AutoScan(self: *const T, strSearch: BSTR, strFailureUrl: BSTR, pvarTargetFrame: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_AutoScan(self: *const T, strSearch: ?BSTR, strFailureUrl: ?BSTR, pvarTargetFrame: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).AutoScan(@ptrCast(*const IShellUIHelper, self), strSearch, strFailureUrl, pvarTargetFrame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2430,7 +2430,7 @@ pub const IShellUIHelper = extern struct {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).AutoCompleteAttach(@ptrCast(*const IShellUIHelper, self), Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper_ShowBrowserUI(self: *const T, bstrName: BSTR, pvarIn: *VARIANT, pvarOut: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper_ShowBrowserUI(self: *const T, bstrName: ?BSTR, pvarIn: ?*VARIANT, pvarOut: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper.VTable, self.vtable).ShowBrowserUI(@ptrCast(*const IShellUIHelper, self), bstrName, pvarIn, pvarOut);
         }
     };}
@@ -2444,7 +2444,7 @@ pub const IShellUIHelper2 = extern struct {
         base: IShellUIHelper.VTable,
         AddSearchProvider: fn(
             self: *const IShellUIHelper2,
-            URL: BSTR,
+            URL: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RunOnceShown: fn(
             self: *const IShellUIHelper2,
@@ -2456,19 +2456,19 @@ pub const IShellUIHelper2 = extern struct {
             self: *const IShellUIHelper2,
             fSQM: i16,
             fPhishing: i16,
-            bstrLocale: BSTR,
+            bstrLocale: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SqmEnabled: fn(
             self: *const IShellUIHelper2,
-            pfEnabled: *i16,
+            pfEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PhishingEnabled: fn(
             self: *const IShellUIHelper2,
-            pfEnabled: *i16,
+            pfEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BrandImageUri: fn(
             self: *const IShellUIHelper2,
-            pbstrUri: *BSTR,
+            pbstrUri: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SkipTabsWelcome: fn(
             self: *const IShellUIHelper2,
@@ -2482,16 +2482,16 @@ pub const IShellUIHelper2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsSearchProviderInstalled: fn(
             self: *const IShellUIHelper2,
-            URL: BSTR,
-            pdwResult: *u32,
+            URL: ?BSTR,
+            pdwResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsSearchMigrated: fn(
             self: *const IShellUIHelper2,
-            pfMigrated: *i16,
+            pfMigrated: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DefaultSearchProvider: fn(
             self: *const IShellUIHelper2,
-            pbstrName: *BSTR,
+            pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RunOnceRequiredSettingsComplete: fn(
             self: *const IShellUIHelper2,
@@ -2499,18 +2499,18 @@ pub const IShellUIHelper2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RunOnceHasShown: fn(
             self: *const IShellUIHelper2,
-            pfShown: *i16,
+            pfShown: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SearchGuideUrl: fn(
             self: *const IShellUIHelper2,
-            pbstrUrl: *BSTR,
+            pbstrUrl: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellUIHelper.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_AddSearchProvider(self: *const T, URL: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_AddSearchProvider(self: *const T, URL: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).AddSearchProvider(@ptrCast(*const IShellUIHelper2, self), URL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2522,19 +2522,19 @@ pub const IShellUIHelper2 = extern struct {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).SkipRunOnce(@ptrCast(*const IShellUIHelper2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_CustomizeSettings(self: *const T, fSQM: i16, fPhishing: i16, bstrLocale: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_CustomizeSettings(self: *const T, fSQM: i16, fPhishing: i16, bstrLocale: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).CustomizeSettings(@ptrCast(*const IShellUIHelper2, self), fSQM, fPhishing, bstrLocale);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_SqmEnabled(self: *const T, pfEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_SqmEnabled(self: *const T, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).SqmEnabled(@ptrCast(*const IShellUIHelper2, self), pfEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_PhishingEnabled(self: *const T, pfEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_PhishingEnabled(self: *const T, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).PhishingEnabled(@ptrCast(*const IShellUIHelper2, self), pfEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_BrandImageUri(self: *const T, pbstrUri: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_BrandImageUri(self: *const T, pbstrUri: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).BrandImageUri(@ptrCast(*const IShellUIHelper2, self), pbstrUri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2550,15 +2550,15 @@ pub const IShellUIHelper2 = extern struct {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).CustomizeClearType(@ptrCast(*const IShellUIHelper2, self), fSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_IsSearchProviderInstalled(self: *const T, URL: BSTR, pdwResult: *u32) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_IsSearchProviderInstalled(self: *const T, URL: ?BSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).IsSearchProviderInstalled(@ptrCast(*const IShellUIHelper2, self), URL, pdwResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_IsSearchMigrated(self: *const T, pfMigrated: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_IsSearchMigrated(self: *const T, pfMigrated: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).IsSearchMigrated(@ptrCast(*const IShellUIHelper2, self), pfMigrated);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_DefaultSearchProvider(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_DefaultSearchProvider(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).DefaultSearchProvider(@ptrCast(*const IShellUIHelper2, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2566,11 +2566,11 @@ pub const IShellUIHelper2 = extern struct {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).RunOnceRequiredSettingsComplete(@ptrCast(*const IShellUIHelper2, self), fComplete);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_RunOnceHasShown(self: *const T, pfShown: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_RunOnceHasShown(self: *const T, pfShown: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).RunOnceHasShown(@ptrCast(*const IShellUIHelper2, self), pfShown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper2_SearchGuideUrl(self: *const T, pbstrUrl: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper2_SearchGuideUrl(self: *const T, pbstrUrl: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper2.VTable, self.vtable).SearchGuideUrl(@ptrCast(*const IShellUIHelper2, self), pbstrUrl);
         }
     };}
@@ -2584,23 +2584,23 @@ pub const IShellUIHelper3 = extern struct {
         base: IShellUIHelper2.VTable,
         AddService: fn(
             self: *const IShellUIHelper3,
-            URL: BSTR,
+            URL: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsServiceInstalled: fn(
             self: *const IShellUIHelper3,
-            URL: BSTR,
-            Verb: BSTR,
-            pdwResult: *u32,
+            URL: ?BSTR,
+            Verb: ?BSTR,
+            pdwResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InPrivateFilteringEnabled: fn(
             self: *const IShellUIHelper3,
-            pfEnabled: *i16,
+            pfEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddToFavoritesBar: fn(
             self: *const IShellUIHelper3,
-            URL: BSTR,
-            Title: BSTR,
-            Type: *VARIANT,
+            URL: ?BSTR,
+            Title: ?BSTR,
+            Type: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BuildNewTabPage: fn(
             self: *const IShellUIHelper3,
@@ -2618,7 +2618,7 @@ pub const IShellUIHelper3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsSuggestedSitesEnabled: fn(
             self: *const IShellUIHelper3,
-            pfEnabled: *i16,
+            pfEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnableSuggestedSites: fn(
             self: *const IShellUIHelper3,
@@ -2626,7 +2626,7 @@ pub const IShellUIHelper3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NavigateToSuggestedSites: fn(
             self: *const IShellUIHelper3,
-            bstrRelativeUrl: BSTR,
+            bstrRelativeUrl: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowTabsHelp: fn(
             self: *const IShellUIHelper3,
@@ -2639,19 +2639,19 @@ pub const IShellUIHelper3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellUIHelper2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper3_AddService(self: *const T, URL: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper3_AddService(self: *const T, URL: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).AddService(@ptrCast(*const IShellUIHelper3, self), URL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper3_IsServiceInstalled(self: *const T, URL: BSTR, Verb: BSTR, pdwResult: *u32) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper3_IsServiceInstalled(self: *const T, URL: ?BSTR, Verb: ?BSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).IsServiceInstalled(@ptrCast(*const IShellUIHelper3, self), URL, Verb, pdwResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper3_InPrivateFilteringEnabled(self: *const T, pfEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper3_InPrivateFilteringEnabled(self: *const T, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).InPrivateFilteringEnabled(@ptrCast(*const IShellUIHelper3, self), pfEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper3_AddToFavoritesBar(self: *const T, URL: BSTR, Title: BSTR, Type: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper3_AddToFavoritesBar(self: *const T, URL: ?BSTR, Title: ?BSTR, Type: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).AddToFavoritesBar(@ptrCast(*const IShellUIHelper3, self), URL, Title, Type);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2671,7 +2671,7 @@ pub const IShellUIHelper3 = extern struct {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).ContentDiscoveryReset(@ptrCast(*const IShellUIHelper3, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper3_IsSuggestedSitesEnabled(self: *const T, pfEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper3_IsSuggestedSitesEnabled(self: *const T, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).IsSuggestedSitesEnabled(@ptrCast(*const IShellUIHelper3, self), pfEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2679,7 +2679,7 @@ pub const IShellUIHelper3 = extern struct {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).EnableSuggestedSites(@ptrCast(*const IShellUIHelper3, self), fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper3_NavigateToSuggestedSites(self: *const T, bstrRelativeUrl: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper3_NavigateToSuggestedSites(self: *const T, bstrRelativeUrl: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper3.VTable, self.vtable).NavigateToSuggestedSites(@ptrCast(*const IShellUIHelper3, self), bstrRelativeUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2701,16 +2701,16 @@ pub const IShellUIHelper4 = extern struct {
         base: IShellUIHelper3.VTable,
         msIsSiteMode: fn(
             self: *const IShellUIHelper4,
-            pfSiteMode: *i16,
+            pfSiteMode: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeShowThumbBar: fn(
             self: *const IShellUIHelper4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeAddThumbBarButton: fn(
             self: *const IShellUIHelper4,
-            bstrIconURL: BSTR,
-            bstrTooltip: BSTR,
-            pvarButtonID: *VARIANT,
+            bstrIconURL: ?BSTR,
+            bstrTooltip: ?BSTR,
+            pvarButtonID: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeUpdateThumbBarButton: fn(
             self: *const IShellUIHelper4,
@@ -2720,8 +2720,8 @@ pub const IShellUIHelper4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeSetIconOverlay: fn(
             self: *const IShellUIHelper4,
-            IconUrl: BSTR,
-            pvarDescription: *VARIANT,
+            IconUrl: ?BSTR,
+            pvarDescription: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeClearIconOverlay: fn(
             self: *const IShellUIHelper4,
@@ -2731,14 +2731,14 @@ pub const IShellUIHelper4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeCreateJumpList: fn(
             self: *const IShellUIHelper4,
-            bstrHeader: BSTR,
+            bstrHeader: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeAddJumpListItem: fn(
             self: *const IShellUIHelper4,
-            bstrName: BSTR,
-            bstrActionUri: BSTR,
-            bstrIconUri: BSTR,
-            pvarWindowType: *VARIANT,
+            bstrName: ?BSTR,
+            bstrActionUri: ?BSTR,
+            bstrIconUri: ?BSTR,
+            pvarWindowType: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeClearJumpList: fn(
             self: *const IShellUIHelper4,
@@ -2749,9 +2749,9 @@ pub const IShellUIHelper4 = extern struct {
         msSiteModeAddButtonStyle: fn(
             self: *const IShellUIHelper4,
             uiButtonID: VARIANT,
-            bstrIconUrl: BSTR,
-            bstrTooltip: BSTR,
-            pvarStyleID: *VARIANT,
+            bstrIconUrl: ?BSTR,
+            bstrTooltip: ?BSTR,
+            pvarStyleID: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msSiteModeShowButtonStyle: fn(
             self: *const IShellUIHelper4,
@@ -2764,27 +2764,27 @@ pub const IShellUIHelper4 = extern struct {
         msIsSiteModeFirstRun: fn(
             self: *const IShellUIHelper4,
             fPreserveState: i16,
-            puiFirstRun: *VARIANT,
+            puiFirstRun: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msAddTrackingProtectionList: fn(
             self: *const IShellUIHelper4,
-            URL: BSTR,
-            bstrFilterName: BSTR,
+            URL: ?BSTR,
+            bstrFilterName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msTrackingProtectionEnabled: fn(
             self: *const IShellUIHelper4,
-            pfEnabled: *i16,
+            pfEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msActiveXFilteringEnabled: fn(
             self: *const IShellUIHelper4,
-            pfEnabled: *i16,
+            pfEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellUIHelper3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msIsSiteMode(self: *const T, pfSiteMode: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msIsSiteMode(self: *const T, pfSiteMode: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msIsSiteMode(@ptrCast(*const IShellUIHelper4, self), pfSiteMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2792,7 +2792,7 @@ pub const IShellUIHelper4 = extern struct {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeShowThumbBar(@ptrCast(*const IShellUIHelper4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msSiteModeAddThumbBarButton(self: *const T, bstrIconURL: BSTR, bstrTooltip: BSTR, pvarButtonID: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msSiteModeAddThumbBarButton(self: *const T, bstrIconURL: ?BSTR, bstrTooltip: ?BSTR, pvarButtonID: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeAddThumbBarButton(@ptrCast(*const IShellUIHelper4, self), bstrIconURL, bstrTooltip, pvarButtonID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2800,7 +2800,7 @@ pub const IShellUIHelper4 = extern struct {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeUpdateThumbBarButton(@ptrCast(*const IShellUIHelper4, self), ButtonID, fEnabled, fVisible);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msSiteModeSetIconOverlay(self: *const T, IconUrl: BSTR, pvarDescription: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msSiteModeSetIconOverlay(self: *const T, IconUrl: ?BSTR, pvarDescription: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeSetIconOverlay(@ptrCast(*const IShellUIHelper4, self), IconUrl, pvarDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2812,11 +2812,11 @@ pub const IShellUIHelper4 = extern struct {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msAddSiteMode(@ptrCast(*const IShellUIHelper4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msSiteModeCreateJumpList(self: *const T, bstrHeader: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msSiteModeCreateJumpList(self: *const T, bstrHeader: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeCreateJumpList(@ptrCast(*const IShellUIHelper4, self), bstrHeader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msSiteModeAddJumpListItem(self: *const T, bstrName: BSTR, bstrActionUri: BSTR, bstrIconUri: BSTR, pvarWindowType: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msSiteModeAddJumpListItem(self: *const T, bstrName: ?BSTR, bstrActionUri: ?BSTR, bstrIconUri: ?BSTR, pvarWindowType: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeAddJumpListItem(@ptrCast(*const IShellUIHelper4, self), bstrName, bstrActionUri, bstrIconUri, pvarWindowType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2828,7 +2828,7 @@ pub const IShellUIHelper4 = extern struct {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeShowJumpList(@ptrCast(*const IShellUIHelper4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msSiteModeAddButtonStyle(self: *const T, uiButtonID: VARIANT, bstrIconUrl: BSTR, bstrTooltip: BSTR, pvarStyleID: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msSiteModeAddButtonStyle(self: *const T, uiButtonID: VARIANT, bstrIconUrl: ?BSTR, bstrTooltip: ?BSTR, pvarStyleID: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeAddButtonStyle(@ptrCast(*const IShellUIHelper4, self), uiButtonID, bstrIconUrl, bstrTooltip, pvarStyleID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2840,19 +2840,19 @@ pub const IShellUIHelper4 = extern struct {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msSiteModeActivate(@ptrCast(*const IShellUIHelper4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msIsSiteModeFirstRun(self: *const T, fPreserveState: i16, puiFirstRun: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msIsSiteModeFirstRun(self: *const T, fPreserveState: i16, puiFirstRun: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msIsSiteModeFirstRun(@ptrCast(*const IShellUIHelper4, self), fPreserveState, puiFirstRun);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msAddTrackingProtectionList(self: *const T, URL: BSTR, bstrFilterName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msAddTrackingProtectionList(self: *const T, URL: ?BSTR, bstrFilterName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msAddTrackingProtectionList(@ptrCast(*const IShellUIHelper4, self), URL, bstrFilterName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msTrackingProtectionEnabled(self: *const T, pfEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msTrackingProtectionEnabled(self: *const T, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msTrackingProtectionEnabled(@ptrCast(*const IShellUIHelper4, self), pfEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper4_msActiveXFilteringEnabled(self: *const T, pfEnabled: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper4_msActiveXFilteringEnabled(self: *const T, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper4.VTable, self.vtable).msActiveXFilteringEnabled(@ptrCast(*const IShellUIHelper4, self), pfEnabled);
         }
     };}
@@ -2866,8 +2866,8 @@ pub const IShellUIHelper5 = extern struct {
         base: IShellUIHelper4.VTable,
         msProvisionNetworks: fn(
             self: *const IShellUIHelper5,
-            bstrProvisioningXml: BSTR,
-            puiResult: *VARIANT,
+            bstrProvisioningXml: ?BSTR,
+            puiResult: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msReportSafeUrl: fn(
             self: *const IShellUIHelper5,
@@ -2893,7 +2893,7 @@ pub const IShellUIHelper5 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellUIHelper4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper5_msProvisionNetworks(self: *const T, bstrProvisioningXml: BSTR, puiResult: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper5_msProvisionNetworks(self: *const T, bstrProvisioningXml: ?BSTR, puiResult: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper5.VTable, self.vtable).msProvisionNetworks(@ptrCast(*const IShellUIHelper5, self), bstrProvisioningXml, puiResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2953,7 +2953,7 @@ pub const IShellUIHelper6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msPinnedSiteState: fn(
             self: *const IShellUIHelper6,
-            pvarSiteState: *VARIANT,
+            pvarSiteState: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msEnableTileNotificationQueueForSquare150x150: fn(
             self: *const IShellUIHelper6,
@@ -2969,19 +2969,19 @@ pub const IShellUIHelper6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msScheduledTileNotification: fn(
             self: *const IShellUIHelper6,
-            bstrNotificationXml: BSTR,
-            bstrNotificationId: BSTR,
-            bstrNotificationTag: BSTR,
+            bstrNotificationXml: ?BSTR,
+            bstrNotificationId: ?BSTR,
+            bstrNotificationTag: ?BSTR,
             startTime: VARIANT,
             expirationTime: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msRemoveScheduledTileNotification: fn(
             self: *const IShellUIHelper6,
-            bstrNotificationId: BSTR,
+            bstrNotificationId: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         msStartPeriodicBadgeUpdate: fn(
             self: *const IShellUIHelper6,
-            pollingUri: BSTR,
+            pollingUri: ?BSTR,
             startTime: VARIANT,
             uiUpdateRecurrence: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3016,7 +3016,7 @@ pub const IShellUIHelper6 = extern struct {
             return @ptrCast(*const IShellUIHelper6.VTable, self.vtable).msEnableTileNotificationQueue(@ptrCast(*const IShellUIHelper6, self), fChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper6_msPinnedSiteState(self: *const T, pvarSiteState: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper6_msPinnedSiteState(self: *const T, pvarSiteState: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper6.VTable, self.vtable).msPinnedSiteState(@ptrCast(*const IShellUIHelper6, self), pvarSiteState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3032,15 +3032,15 @@ pub const IShellUIHelper6 = extern struct {
             return @ptrCast(*const IShellUIHelper6.VTable, self.vtable).msEnableTileNotificationQueueForSquare310x310(@ptrCast(*const IShellUIHelper6, self), fChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper6_msScheduledTileNotification(self: *const T, bstrNotificationXml: BSTR, bstrNotificationId: BSTR, bstrNotificationTag: BSTR, startTime: VARIANT, expirationTime: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper6_msScheduledTileNotification(self: *const T, bstrNotificationXml: ?BSTR, bstrNotificationId: ?BSTR, bstrNotificationTag: ?BSTR, startTime: VARIANT, expirationTime: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper6.VTable, self.vtable).msScheduledTileNotification(@ptrCast(*const IShellUIHelper6, self), bstrNotificationXml, bstrNotificationId, bstrNotificationTag, startTime, expirationTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper6_msRemoveScheduledTileNotification(self: *const T, bstrNotificationId: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper6_msRemoveScheduledTileNotification(self: *const T, bstrNotificationId: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper6.VTable, self.vtable).msRemoveScheduledTileNotification(@ptrCast(*const IShellUIHelper6, self), bstrNotificationId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper6_msStartPeriodicBadgeUpdate(self: *const T, pollingUri: BSTR, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper6_msStartPeriodicBadgeUpdate(self: *const T, pollingUri: ?BSTR, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper6.VTable, self.vtable).msStartPeriodicBadgeUpdate(@ptrCast(*const IShellUIHelper6, self), pollingUri, startTime, uiUpdateRecurrence);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3062,45 +3062,45 @@ pub const IShellUIHelper7 = extern struct {
         base: IShellUIHelper6.VTable,
         SetExperimentalFlag: fn(
             self: *const IShellUIHelper7,
-            bstrFlagString: BSTR,
+            bstrFlagString: ?BSTR,
             vfFlag: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExperimentalFlag: fn(
             self: *const IShellUIHelper7,
-            bstrFlagString: BSTR,
-            vfFlag: *i16,
+            bstrFlagString: ?BSTR,
+            vfFlag: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetExperimentalValue: fn(
             self: *const IShellUIHelper7,
-            bstrValueString: BSTR,
+            bstrValueString: ?BSTR,
             dwValue: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExperimentalValue: fn(
             self: *const IShellUIHelper7,
-            bstrValueString: BSTR,
-            pdwValue: *u32,
+            bstrValueString: ?BSTR,
+            pdwValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetAllExperimentalFlagsAndValues: fn(
             self: *const IShellUIHelper7,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNeedIEAutoLaunchFlag: fn(
             self: *const IShellUIHelper7,
-            bstrUrl: BSTR,
-            flag: *i16,
+            bstrUrl: ?BSTR,
+            flag: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNeedIEAutoLaunchFlag: fn(
             self: *const IShellUIHelper7,
-            bstrUrl: BSTR,
+            bstrUrl: ?BSTR,
             flag: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HasNeedIEAutoLaunchFlag: fn(
             self: *const IShellUIHelper7,
-            bstrUrl: BSTR,
-            exists: *i16,
+            bstrUrl: ?BSTR,
+            exists: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LaunchIE: fn(
             self: *const IShellUIHelper7,
-            bstrUrl: BSTR,
+            bstrUrl: ?BSTR,
             automated: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3108,19 +3108,19 @@ pub const IShellUIHelper7 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellUIHelper6.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_SetExperimentalFlag(self: *const T, bstrFlagString: BSTR, vfFlag: i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_SetExperimentalFlag(self: *const T, bstrFlagString: ?BSTR, vfFlag: i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).SetExperimentalFlag(@ptrCast(*const IShellUIHelper7, self), bstrFlagString, vfFlag);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_GetExperimentalFlag(self: *const T, bstrFlagString: BSTR, vfFlag: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_GetExperimentalFlag(self: *const T, bstrFlagString: ?BSTR, vfFlag: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).GetExperimentalFlag(@ptrCast(*const IShellUIHelper7, self), bstrFlagString, vfFlag);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_SetExperimentalValue(self: *const T, bstrValueString: BSTR, dwValue: u32) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_SetExperimentalValue(self: *const T, bstrValueString: ?BSTR, dwValue: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).SetExperimentalValue(@ptrCast(*const IShellUIHelper7, self), bstrValueString, dwValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_GetExperimentalValue(self: *const T, bstrValueString: BSTR, pdwValue: *u32) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_GetExperimentalValue(self: *const T, bstrValueString: ?BSTR, pdwValue: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).GetExperimentalValue(@ptrCast(*const IShellUIHelper7, self), bstrValueString, pdwValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3128,19 +3128,19 @@ pub const IShellUIHelper7 = extern struct {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).ResetAllExperimentalFlagsAndValues(@ptrCast(*const IShellUIHelper7, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_GetNeedIEAutoLaunchFlag(self: *const T, bstrUrl: BSTR, flag: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_GetNeedIEAutoLaunchFlag(self: *const T, bstrUrl: ?BSTR, flag: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).GetNeedIEAutoLaunchFlag(@ptrCast(*const IShellUIHelper7, self), bstrUrl, flag);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_SetNeedIEAutoLaunchFlag(self: *const T, bstrUrl: BSTR, flag: i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_SetNeedIEAutoLaunchFlag(self: *const T, bstrUrl: ?BSTR, flag: i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).SetNeedIEAutoLaunchFlag(@ptrCast(*const IShellUIHelper7, self), bstrUrl, flag);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_HasNeedIEAutoLaunchFlag(self: *const T, bstrUrl: BSTR, exists: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_HasNeedIEAutoLaunchFlag(self: *const T, bstrUrl: ?BSTR, exists: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).HasNeedIEAutoLaunchFlag(@ptrCast(*const IShellUIHelper7, self), bstrUrl, exists);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper7_LaunchIE(self: *const T, bstrUrl: BSTR, automated: i16) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper7_LaunchIE(self: *const T, bstrUrl: ?BSTR, automated: i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper7.VTable, self.vtable).LaunchIE(@ptrCast(*const IShellUIHelper7, self), bstrUrl, automated);
         }
     };}
@@ -3154,19 +3154,19 @@ pub const IShellUIHelper8 = extern struct {
         base: IShellUIHelper7.VTable,
         GetCVListData: fn(
             self: *const IShellUIHelper8,
-            pbstrResult: *BSTR,
+            pbstrResult: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCVListLocalData: fn(
             self: *const IShellUIHelper8,
-            pbstrResult: *BSTR,
+            pbstrResult: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEMIEListData: fn(
             self: *const IShellUIHelper8,
-            pbstrResult: *BSTR,
+            pbstrResult: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEMIEListLocalData: fn(
             self: *const IShellUIHelper8,
-            pbstrResult: *BSTR,
+            pbstrResult: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenFavoritesPane: fn(
             self: *const IShellUIHelper8,
@@ -3176,26 +3176,26 @@ pub const IShellUIHelper8 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LaunchInHVSI: fn(
             self: *const IShellUIHelper8,
-            bstrUrl: BSTR,
+            bstrUrl: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellUIHelper7.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper8_GetCVListData(self: *const T, pbstrResult: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper8_GetCVListData(self: *const T, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper8.VTable, self.vtable).GetCVListData(@ptrCast(*const IShellUIHelper8, self), pbstrResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper8_GetCVListLocalData(self: *const T, pbstrResult: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper8_GetCVListLocalData(self: *const T, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper8.VTable, self.vtable).GetCVListLocalData(@ptrCast(*const IShellUIHelper8, self), pbstrResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper8_GetEMIEListData(self: *const T, pbstrResult: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper8_GetEMIEListData(self: *const T, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper8.VTable, self.vtable).GetEMIEListData(@ptrCast(*const IShellUIHelper8, self), pbstrResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper8_GetEMIEListLocalData(self: *const T, pbstrResult: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper8_GetEMIEListLocalData(self: *const T, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper8.VTable, self.vtable).GetEMIEListLocalData(@ptrCast(*const IShellUIHelper8, self), pbstrResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3207,7 +3207,7 @@ pub const IShellUIHelper8 = extern struct {
             return @ptrCast(*const IShellUIHelper8.VTable, self.vtable).OpenFavoritesSettings(@ptrCast(*const IShellUIHelper8, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper8_LaunchInHVSI(self: *const T, bstrUrl: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper8_LaunchInHVSI(self: *const T, bstrUrl: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper8.VTable, self.vtable).LaunchInHVSI(@ptrCast(*const IShellUIHelper8, self), bstrUrl);
         }
     };}
@@ -3221,14 +3221,14 @@ pub const IShellUIHelper9 = extern struct {
         base: IShellUIHelper8.VTable,
         GetOSSku: fn(
             self: *const IShellUIHelper9,
-            pdwResult: *u32,
+            pdwResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellUIHelper8.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellUIHelper9_GetOSSku(self: *const T, pdwResult: *u32) callconv(.Inline) HRESULT {
+        pub fn IShellUIHelper9_GetOSSku(self: *const T, pdwResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellUIHelper9.VTable, self.vtable).GetOSSku(@ptrCast(*const IShellUIHelper9, self), pdwResult);
         }
     };}
@@ -3276,7 +3276,7 @@ pub const IShellFavoritesNameSpace = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InvokeContextMenuCommand: fn(
             self: *const IShellFavoritesNameSpace,
-            strCommand: BSTR,
+            strCommand: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveSelectionTo: fn(
             self: *const IShellFavoritesNameSpace,
@@ -3284,19 +3284,19 @@ pub const IShellFavoritesNameSpace = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubscriptionsEnabled: fn(
             self: *const IShellFavoritesNameSpace,
-            pBool: *i16,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSubscriptionForSelection: fn(
             self: *const IShellFavoritesNameSpace,
-            pBool: *i16,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteSubscriptionForSelection: fn(
             self: *const IShellFavoritesNameSpace,
-            pBool: *i16,
+            pBool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRoot: fn(
             self: *const IShellFavoritesNameSpace,
-            bstrFullPath: BSTR,
+            bstrFullPath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3331,7 +3331,7 @@ pub const IShellFavoritesNameSpace = extern struct {
             return @ptrCast(*const IShellFavoritesNameSpace.VTable, self.vtable).Export(@ptrCast(*const IShellFavoritesNameSpace, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFavoritesNameSpace_InvokeContextMenuCommand(self: *const T, strCommand: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellFavoritesNameSpace_InvokeContextMenuCommand(self: *const T, strCommand: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFavoritesNameSpace.VTable, self.vtable).InvokeContextMenuCommand(@ptrCast(*const IShellFavoritesNameSpace, self), strCommand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3339,19 +3339,19 @@ pub const IShellFavoritesNameSpace = extern struct {
             return @ptrCast(*const IShellFavoritesNameSpace.VTable, self.vtable).MoveSelectionTo(@ptrCast(*const IShellFavoritesNameSpace, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFavoritesNameSpace_get_SubscriptionsEnabled(self: *const T, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellFavoritesNameSpace_get_SubscriptionsEnabled(self: *const T, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFavoritesNameSpace.VTable, self.vtable).get_SubscriptionsEnabled(@ptrCast(*const IShellFavoritesNameSpace, self), pBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFavoritesNameSpace_CreateSubscriptionForSelection(self: *const T, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellFavoritesNameSpace_CreateSubscriptionForSelection(self: *const T, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFavoritesNameSpace.VTable, self.vtable).CreateSubscriptionForSelection(@ptrCast(*const IShellFavoritesNameSpace, self), pBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFavoritesNameSpace_DeleteSubscriptionForSelection(self: *const T, pBool: *i16) callconv(.Inline) HRESULT {
+        pub fn IShellFavoritesNameSpace_DeleteSubscriptionForSelection(self: *const T, pBool: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFavoritesNameSpace.VTable, self.vtable).DeleteSubscriptionForSelection(@ptrCast(*const IShellFavoritesNameSpace, self), pBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFavoritesNameSpace_SetRoot(self: *const T, bstrFullPath: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellFavoritesNameSpace_SetRoot(self: *const T, bstrFullPath: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFavoritesNameSpace.VTable, self.vtable).SetRoot(@ptrCast(*const IShellFavoritesNameSpace, self), bstrFullPath);
         }
     };}
@@ -3366,7 +3366,7 @@ pub const IShellNameSpace = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnumOptions: fn(
             self: *const IShellNameSpace,
-            pgrfEnumFlags: *i32,
+            pgrfEnumFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnumOptions: fn(
@@ -3376,17 +3376,17 @@ pub const IShellNameSpace = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectedItem: fn(
             self: *const IShellNameSpace,
-            pItem: **IDispatch,
+            pItem: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelectedItem: fn(
             self: *const IShellNameSpace,
-            pItem: *IDispatch,
+            pItem: ?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Root: fn(
             self: *const IShellNameSpace,
-            pvar: *VARIANT,
+            pvar: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Root: fn(
@@ -3396,7 +3396,7 @@ pub const IShellNameSpace = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Depth: fn(
             self: *const IShellNameSpace,
-            piDepth: *i32,
+            piDepth: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Depth: fn(
@@ -3406,7 +3406,7 @@ pub const IShellNameSpace = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Mode: fn(
             self: *const IShellNameSpace,
-            puMode: *u32,
+            puMode: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Mode: fn(
@@ -3416,7 +3416,7 @@ pub const IShellNameSpace = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IShellNameSpace,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Flags: fn(
@@ -3431,22 +3431,22 @@ pub const IShellNameSpace = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TVFlags: fn(
             self: *const IShellNameSpace,
-            dwFlags: *u32,
+            dwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Columns: fn(
             self: *const IShellNameSpace,
-            bstrColumns: *BSTR,
+            bstrColumns: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Columns: fn(
             self: *const IShellNameSpace,
-            bstrColumns: BSTR,
+            bstrColumns: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CountViewTypes: fn(
             self: *const IShellNameSpace,
-            piTypes: *i32,
+            piTypes: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetViewType: fn(
             self: *const IShellNameSpace,
@@ -3454,7 +3454,7 @@ pub const IShellNameSpace = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SelectedItems: fn(
             self: *const IShellNameSpace,
-            ppid: **IDispatch,
+            ppid: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Expand: fn(
             self: *const IShellNameSpace,
@@ -3469,7 +3469,7 @@ pub const IShellNameSpace = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellFavoritesNameSpace.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_EnumOptions(self: *const T, pgrfEnumFlags: *i32) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_EnumOptions(self: *const T, pgrfEnumFlags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_EnumOptions(@ptrCast(*const IShellNameSpace, self), pgrfEnumFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3477,15 +3477,15 @@ pub const IShellNameSpace = extern struct {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).put_EnumOptions(@ptrCast(*const IShellNameSpace, self), lVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_SelectedItem(self: *const T, pItem: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_SelectedItem(self: *const T, pItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_SelectedItem(@ptrCast(*const IShellNameSpace, self), pItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_put_SelectedItem(self: *const T, pItem: *IDispatch) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_put_SelectedItem(self: *const T, pItem: ?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).put_SelectedItem(@ptrCast(*const IShellNameSpace, self), pItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_Root(self: *const T, pvar: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_Root(self: *const T, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_Root(@ptrCast(*const IShellNameSpace, self), pvar);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3493,7 +3493,7 @@ pub const IShellNameSpace = extern struct {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).put_Root(@ptrCast(*const IShellNameSpace, self), @"var");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_Depth(self: *const T, piDepth: *i32) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_Depth(self: *const T, piDepth: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_Depth(@ptrCast(*const IShellNameSpace, self), piDepth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3501,7 +3501,7 @@ pub const IShellNameSpace = extern struct {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).put_Depth(@ptrCast(*const IShellNameSpace, self), iDepth);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_Mode(self: *const T, puMode: *u32) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_Mode(self: *const T, puMode: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_Mode(@ptrCast(*const IShellNameSpace, self), puMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3509,7 +3509,7 @@ pub const IShellNameSpace = extern struct {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).put_Mode(@ptrCast(*const IShellNameSpace, self), uMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_Flags(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_Flags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_Flags(@ptrCast(*const IShellNameSpace, self), pdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3521,19 +3521,19 @@ pub const IShellNameSpace = extern struct {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).put_TVFlags(@ptrCast(*const IShellNameSpace, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_TVFlags(self: *const T, dwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_TVFlags(self: *const T, dwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_TVFlags(@ptrCast(*const IShellNameSpace, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_Columns(self: *const T, bstrColumns: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_Columns(self: *const T, bstrColumns: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_Columns(@ptrCast(*const IShellNameSpace, self), bstrColumns);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_put_Columns(self: *const T, bstrColumns: BSTR) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_put_Columns(self: *const T, bstrColumns: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).put_Columns(@ptrCast(*const IShellNameSpace, self), bstrColumns);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_get_CountViewTypes(self: *const T, piTypes: *i32) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_get_CountViewTypes(self: *const T, piTypes: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).get_CountViewTypes(@ptrCast(*const IShellNameSpace, self), piTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3541,7 +3541,7 @@ pub const IShellNameSpace = extern struct {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).SetViewType(@ptrCast(*const IShellNameSpace, self), iType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellNameSpace_SelectedItems(self: *const T, ppid: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IShellNameSpace_SelectedItems(self: *const T, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellNameSpace.VTable, self.vtable).SelectedItems(@ptrCast(*const IShellNameSpace, self), ppid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3569,39 +3569,39 @@ pub const IScriptErrorList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         canAdvanceError: fn(
             self: *const IScriptErrorList,
-            pfCanAdvance: *BOOL,
+            pfCanAdvance: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         canRetreatError: fn(
             self: *const IScriptErrorList,
-            pfCanRetreat: *BOOL,
+            pfCanRetreat: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getErrorLine: fn(
             self: *const IScriptErrorList,
-            plLine: *i32,
+            plLine: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getErrorChar: fn(
             self: *const IScriptErrorList,
-            plChar: *i32,
+            plChar: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getErrorCode: fn(
             self: *const IScriptErrorList,
-            plCode: *i32,
+            plCode: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getErrorMsg: fn(
             self: *const IScriptErrorList,
-            pstr: *BSTR,
+            pstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getErrorUrl: fn(
             self: *const IScriptErrorList,
-            pstr: *BSTR,
+            pstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getAlwaysShowLockState: fn(
             self: *const IScriptErrorList,
-            pfAlwaysShowLocked: *BOOL,
+            pfAlwaysShowLocked: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getDetailsPaneOpen: fn(
             self: *const IScriptErrorList,
-            pfDetailsPaneOpen: *BOOL,
+            pfDetailsPaneOpen: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         setDetailsPaneOpen: fn(
             self: *const IScriptErrorList,
@@ -3609,7 +3609,7 @@ pub const IScriptErrorList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getPerErrorDisplay: fn(
             self: *const IScriptErrorList,
-            pfPerErrorDisplay: *BOOL,
+            pfPerErrorDisplay: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         setPerErrorDisplay: fn(
             self: *const IScriptErrorList,
@@ -3628,39 +3628,39 @@ pub const IScriptErrorList = extern struct {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).retreatError(@ptrCast(*const IScriptErrorList, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_canAdvanceError(self: *const T, pfCanAdvance: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_canAdvanceError(self: *const T, pfCanAdvance: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).canAdvanceError(@ptrCast(*const IScriptErrorList, self), pfCanAdvance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_canRetreatError(self: *const T, pfCanRetreat: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_canRetreatError(self: *const T, pfCanRetreat: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).canRetreatError(@ptrCast(*const IScriptErrorList, self), pfCanRetreat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getErrorLine(self: *const T, plLine: *i32) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getErrorLine(self: *const T, plLine: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getErrorLine(@ptrCast(*const IScriptErrorList, self), plLine);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getErrorChar(self: *const T, plChar: *i32) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getErrorChar(self: *const T, plChar: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getErrorChar(@ptrCast(*const IScriptErrorList, self), plChar);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getErrorCode(self: *const T, plCode: *i32) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getErrorCode(self: *const T, plCode: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getErrorCode(@ptrCast(*const IScriptErrorList, self), plCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getErrorMsg(self: *const T, pstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getErrorMsg(self: *const T, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getErrorMsg(@ptrCast(*const IScriptErrorList, self), pstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getErrorUrl(self: *const T, pstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getErrorUrl(self: *const T, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getErrorUrl(@ptrCast(*const IScriptErrorList, self), pstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getAlwaysShowLockState(self: *const T, pfAlwaysShowLocked: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getAlwaysShowLockState(self: *const T, pfAlwaysShowLocked: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getAlwaysShowLockState(@ptrCast(*const IScriptErrorList, self), pfAlwaysShowLocked);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getDetailsPaneOpen(self: *const T, pfDetailsPaneOpen: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getDetailsPaneOpen(self: *const T, pfDetailsPaneOpen: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getDetailsPaneOpen(@ptrCast(*const IScriptErrorList, self), pfDetailsPaneOpen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3668,7 +3668,7 @@ pub const IScriptErrorList = extern struct {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).setDetailsPaneOpen(@ptrCast(*const IScriptErrorList, self), fDetailsPaneOpen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScriptErrorList_getPerErrorDisplay(self: *const T, pfPerErrorDisplay: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IScriptErrorList_getPerErrorDisplay(self: *const T, pfPerErrorDisplay: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScriptErrorList.VTable, self.vtable).getPerErrorDisplay(@ptrCast(*const IScriptErrorList, self), pfPerErrorDisplay);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3685,18 +3685,18 @@ pub const JAVA_TRUST = extern struct {
     fAllActiveXPermissions: BOOL,
     fAllPermissions: BOOL,
     dwEncodingType: u32,
-    pbJavaPermissions: *u8,
+    pbJavaPermissions: ?*u8,
     cbJavaPermissions: u32,
-    pbSigner: *u8,
+    pbSigner: ?*u8,
     cbSigner: u32,
-    pwszZone: [*:0]const u16,
+    pwszZone: ?[*:0]const u16,
     guidZone: Guid,
     hVerify: HRESULT,
 };
 
 pub const PFN_IO_COMPLETION = fn(
-    pContext: *FIO_CONTEXT,
-    lpo: *FH_OVERLAPPED,
+    pContext: ?*FIO_CONTEXT,
+    lpo: ?*FH_OVERLAPPED,
     cb: u32,
     dwCompletionStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -3706,8 +3706,8 @@ pub const FH_OVERLAPPED = extern struct {
     InternalHigh: usize,
     Offset: u32,
     OffsetHigh: u32,
-    hEvent: HANDLE,
-    pfnCompletion: PFN_IO_COMPLETION,
+    hEvent: ?HANDLE,
+    pfnCompletion: ?PFN_IO_COMPLETION,
     Reserved1: usize,
     Reserved2: usize,
     Reserved3: usize,
@@ -3717,61 +3717,61 @@ pub const FH_OVERLAPPED = extern struct {
 pub const FIO_CONTEXT = extern struct {
     m_dwTempHack: u32,
     m_dwSignature: u32,
-    m_hFile: HANDLE,
+    m_hFile: ?HANDLE,
     m_dwLinesOffset: u32,
     m_dwHeaderLength: u32,
 };
 
 pub const FCACHE_CREATE_CALLBACK = fn(
-    lpstrName: PSTR,
-    lpvData: *c_void,
-    cbFileSize: *u32,
-    cbFileSizeHigh: *u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpstrName: ?PSTR,
+    lpvData: ?*c_void,
+    cbFileSize: ?*u32,
+    cbFileSizeHigh: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub const FCACHE_RICHCREATE_CALLBACK = fn(
-    lpstrName: PSTR,
-    lpvData: *c_void,
-    cbFileSize: *u32,
-    cbFileSizeHigh: *u32,
-    pfDidWeScanIt: *BOOL,
-    pfIsStuffed: *BOOL,
-    pfStoredWithDots: *BOOL,
-    pfStoredWithTerminatingDot: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpstrName: ?PSTR,
+    lpvData: ?*c_void,
+    cbFileSize: ?*u32,
+    cbFileSizeHigh: ?*u32,
+    pfDidWeScanIt: ?*BOOL,
+    pfIsStuffed: ?*BOOL,
+    pfStoredWithDots: ?*BOOL,
+    pfStoredWithTerminatingDot: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub const CACHE_KEY_COMPARE = fn(
     cbKey1: u32,
-    lpbKey1: *u8,
+    lpbKey1: ?*u8,
     cbKey2: u32,
-    lpbKey2: *u8,
+    lpbKey2: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const CACHE_KEY_HASH = fn(
-    lpbKey: *u8,
+    lpbKey: ?*u8,
     cbKey: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CACHE_READ_CALLBACK = fn(
     cb: u32,
-    lpb: *u8,
-    lpvContext: *c_void,
+    lpb: ?*u8,
+    lpvContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CACHE_DESTROY_CALLBACK = fn(
     cb: u32,
-    lpb: *u8,
+    lpb: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CACHE_ACCESS_CHECK = fn(
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
-    hClientToken: HANDLE,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    hClientToken: ?HANDLE,
     dwDesiredAccess: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    PrivilegeSet: *PRIVILEGE_SET,
-    PrivilegeSetLength: *u32,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    PrivilegeSet: ?*PRIVILEGE_SET,
+    PrivilegeSetLength: ?*u32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NAME_CACHE_CONTEXT = extern struct {
@@ -3824,9 +3824,9 @@ pub const TDI_TL_IO_CONTROL_ENDPOINT = extern struct {
         IoControlCode: u32,
         OptionName: u32,
     },
-    InputBuffer: *c_void,
+    InputBuffer: ?*c_void,
     InputBufferLength: u32,
-    OutputBuffer: *c_void,
+    OutputBuffer: ?*c_void,
     OutputBufferLength: u32,
 };
 
@@ -3926,31 +3926,31 @@ pub const WLDP_WINDOWS_LOCKDOWN_RESTRICTION_MAX = WLDP_WINDOWS_LOCKDOWN_RESTRICT
 pub const WLDP_HOST_INFORMATION = extern struct {
     dwRevision: u32,
     dwHostId: WLDP_HOST_ID,
-    szSource: [*:0]const u16,
-    hSource: HANDLE,
+    szSource: ?[*:0]const u16,
+    hSource: ?HANDLE,
 };
 
 pub const PWLDP_SETDYNAMICCODETRUST_API = fn(
-    hFileHandle: HANDLE,
+    hFileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PWLDP_ISDYNAMICCODEPOLICYENABLED_API = fn(
-    pbEnabled: *BOOL,
+    pbEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PWLDP_QUERYDYNAMICODETRUST_API = fn(
-    fileHandle: HANDLE,
+    fileHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     baseImage: ?*c_void,
     imageSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PWLDP_QUERYWINDOWSLOCKDOWNMODE_API = fn(
-    lockdownMode: *WLDP_WINDOWS_LOCKDOWN_MODE,
+    lockdownMode: ?*WLDP_WINDOWS_LOCKDOWN_MODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API = fn(
-    LockdownRestriction: *WLDP_WINDOWS_LOCKDOWN_RESTRICTION,
+    LockdownRestriction: ?*WLDP_WINDOWS_LOCKDOWN_RESTRICTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API = fn(
@@ -3958,7 +3958,7 @@ pub const PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PWLDP_WLDPISAPPAPPROVEDBYPOLICY_API = fn(
-    PackageFamilyName: [*:0]const u16,
+    PackageFamilyName: ?[*:0]const u16,
     PackageVersion: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4010,8 +4010,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_lstrcmpW(
-    String1: *u16,
-    String2: *u16,
+    String1: ?*u16,
+    String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 }, else => struct { } };
@@ -4020,8 +4020,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_lstrcmpiW(
-    String1: *u16,
-    String2: *u16,
+    String1: ?*u16,
+    String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 }, else => struct { } };
@@ -4030,7 +4030,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_lstrlenW(
-    String: *u16,
+    String: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 }, else => struct { } };
@@ -4039,9 +4039,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_wcschr(
-    String: *u16,
+    String: ?*u16,
     Character: u16,
-) callconv(@import("std").os.windows.WINAPI) *u16;
+) callconv(@import("std").os.windows.WINAPI) ?*u16;
 
 }, else => struct { } };
 
@@ -4049,9 +4049,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_wcscpy(
-    Destination: *u16,
-    Source: *u16,
-) callconv(@import("std").os.windows.WINAPI) *u16;
+    Destination: ?*u16,
+    Source: ?*u16,
+) callconv(@import("std").os.windows.WINAPI) ?*u16;
 
 }, else => struct { } };
 
@@ -4059,8 +4059,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_wcsicmp(
-    String1: *u16,
-    String2: *u16,
+    String1: ?*u16,
+    String2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 }, else => struct { } };
@@ -4069,7 +4069,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_wcslen(
-    String: *u16,
+    String: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 }, else => struct { } };
@@ -4078,31 +4078,31 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn uaw_wcsrchr(
-    String: *u16,
+    String: ?*u16,
     Character: u16,
-) callconv(@import("std").os.windows.WINAPI) *u16;
+) callconv(@import("std").os.windows.WINAPI) ?*u16;
 
 }, else => struct { } };
 
 pub extern "api-ms-win-core-apiquery-l2-1-0" fn IsApiSetImplemented(
-    Contract: [*:0]const u8,
+    Contract: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn QueryThreadCycleTime(
-    ThreadHandle: HANDLE,
-    CycleTime: *u64,
+    ThreadHandle: ?HANDLE,
+    CycleTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn QueryProcessCycleTime(
-    ProcessHandle: HANDLE,
-    CycleTime: *u64,
+    ProcessHandle: ?HANDLE,
+    CycleTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn QueryIdleProcessorCycleTime(
-    BufferLength: *u32,
+    BufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     ProcessorIdleCycleTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4110,47 +4110,47 @@ pub extern "KERNEL32" fn QueryIdleProcessorCycleTime(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn QueryIdleProcessorCycleTimeEx(
     Group: u16,
-    BufferLength: *u32,
+    BufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     ProcessorIdleCycleTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-realtime-l1-1-1" fn QueryInterruptTimePrecise(
-    lpInterruptTimePrecise: *u64,
+    lpInterruptTimePrecise: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-realtime-l1-1-1" fn QueryUnbiasedInterruptTimePrecise(
-    lpUnbiasedInterruptTimePrecise: *u64,
+    lpUnbiasedInterruptTimePrecise: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-realtime-l1-1-1" fn QueryInterruptTime(
-    lpInterruptTime: *u64,
+    lpInterruptTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn QueryUnbiasedInterruptTime(
-    UnbiasedTime: *u64,
+    UnbiasedTime: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "api-ms-win-core-realtime-l1-1-2" fn QueryAuxiliaryCounterFrequency(
-    lpAuxiliaryCounterFrequency: *u64,
+    lpAuxiliaryCounterFrequency: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "api-ms-win-core-realtime-l1-1-2" fn ConvertAuxiliaryCounterToPerformanceCounter(
     ullAuxiliaryCounterValue: u64,
-    lpPerformanceCounterValue: *u64,
+    lpPerformanceCounterValue: ?*u64,
     lpConversionError: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "api-ms-win-core-realtime-l1-1-2" fn ConvertPerformanceCounterToAuxiliaryCounter(
     ullPerformanceCounterValue: u64,
-    lpAuxiliaryCounterValue: *u64,
+    lpAuxiliaryCounterValue: ?*u64,
     lpConversionError: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4168,7 +4168,7 @@ pub extern "KERNEL32" fn GlobalUnfix(
 
 pub extern "KERNEL32" fn GlobalWire(
     hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub extern "KERNEL32" fn GlobalUnWire(
     hMem: isize,
@@ -4184,7 +4184,7 @@ pub extern "KERNEL32" fn LocalCompact(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub extern "KERNEL32" fn SetEnvironmentStringsA(
-    NewEnvironment: [*]u8,
+    NewEnvironment: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn SetHandleCount(
@@ -4192,15 +4192,15 @@ pub extern "KERNEL32" fn SetHandleCount(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn RequestDeviceWakeup(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn CancelDeviceWakeupRequest(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn SetMessageWaitingIndicator(
-    hMsgIndicator: HANDLE,
+    hMsgIndicator: ?HANDLE,
     ulMsgCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4219,53 +4219,53 @@ pub extern "KERNEL32" fn GetSystemRegistryQuota(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn FileTimeToDosDateTime(
-    lpFileTime: *const FILETIME,
-    lpFatDate: *u16,
-    lpFatTime: *u16,
+    lpFileTime: ?*const FILETIME,
+    lpFatDate: ?*u16,
+    lpFatTime: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn DosDateTimeToFileTime(
     wFatDate: u16,
     wFatTime: u16,
-    lpFileTime: *FILETIME,
+    lpFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn _lopen(
-    lpPathName: [*:0]const u8,
+    lpPathName: ?[*:0]const u8,
     iReadWrite: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn _lcreat(
-    lpPathName: [*:0]const u8,
+    lpPathName: ?[*:0]const u8,
     iAttribute: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn _lread(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     uBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn _lwrite(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: [*]const u8,
+    lpBuffer: ?[*]const u8,
     uBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn _hread(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: *c_void,
+    lpBuffer: ?*c_void,
     lBytes: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "KERNEL32" fn _hwrite(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: [*]const u8,
+    lpBuffer: ?[*]const u8,
     lBytes: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4281,8 +4281,8 @@ pub extern "KERNEL32" fn _llseek(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SignalObjectAndWait(
-    hObjectToSignal: HANDLE,
-    hObjectToWaitOn: HANDLE,
+    hObjectToSignal: ?HANDLE,
+    hObjectToWaitOn: ?HANDLE,
     dwMilliseconds: u32,
     bAlertable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4290,42 +4290,42 @@ pub extern "KERNEL32" fn SignalObjectAndWait(
 pub extern "KERNEL32" fn OpenMutexA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
-    lpName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "KERNEL32" fn OpenSemaphoreA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
-    lpName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "KERNEL32" fn CreateWaitableTimerA(
     lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
     bManualReset: BOOL,
     lpTimerName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "KERNEL32" fn OpenWaitableTimerA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
-    lpTimerName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+    lpTimerName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "KERNEL32" fn CreateWaitableTimerExA(
     lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
     lpTimerName: ?[*:0]const u8,
     dwFlags: u32,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "KERNEL32" fn GetStartupInfoA(
-    lpStartupInfo: *STARTUPINFOA,
+    lpStartupInfo: ?*STARTUPINFOA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableA(
-    lpName: [*:0]const u8,
-    lpGuid: [*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*c_void,
     nSize: u32,
@@ -4333,8 +4333,8 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableW(
-    lpName: [*:0]const u16,
-    lpGuid: [*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*c_void,
     nSize: u32,
@@ -4342,8 +4342,8 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableW(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExA(
-    lpName: [*:0]const u8,
-    lpGuid: [*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*c_void,
     nSize: u32,
@@ -4352,8 +4352,8 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExA(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExW(
-    lpName: [*:0]const u16,
-    lpGuid: [*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*c_void,
     nSize: u32,
@@ -4362,8 +4362,8 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableA(
-    lpName: [*:0]const u8,
-    lpGuid: [*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pValue: ?*c_void,
     nSize: u32,
@@ -4371,8 +4371,8 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableW(
-    lpName: [*:0]const u16,
-    lpGuid: [*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pValue: ?*c_void,
     nSize: u32,
@@ -4380,8 +4380,8 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableW(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExA(
-    lpName: [*:0]const u8,
-    lpGuid: [*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pValue: ?*c_void,
     nSize: u32,
@@ -4390,8 +4390,8 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExA(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExW(
-    lpName: [*:0]const u16,
-    lpGuid: [*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pValue: ?*c_void,
     nSize: u32,
@@ -4400,20 +4400,20 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExW(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn IsNativeVhdBoot(
-    NativeVhdBoot: *BOOL,
+    NativeVhdBoot: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetProfileIntA(
-    lpAppName: [*:0]const u8,
-    lpKeyName: [*:0]const u8,
+    lpAppName: ?[*:0]const u8,
+    lpKeyName: ?[*:0]const u8,
     nDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetProfileIntW(
-    lpAppName: [*:0]const u16,
-    lpKeyName: [*:0]const u16,
+    lpAppName: ?[*:0]const u16,
+    lpKeyName: ?[*:0]const u16,
     nDefault: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4451,42 +4451,42 @@ pub extern "KERNEL32" fn WriteProfileStringW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetProfileSectionA(
-    lpAppName: [*:0]const u8,
+    lpAppName: ?[*:0]const u8,
     lpReturnedString: ?[*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetProfileSectionW(
-    lpAppName: [*:0]const u16,
+    lpAppName: ?[*:0]const u16,
     lpReturnedString: ?[*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn WriteProfileSectionA(
-    lpAppName: [*:0]const u8,
-    lpString: [*:0]const u8,
+    lpAppName: ?[*:0]const u8,
+    lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn WriteProfileSectionW(
-    lpAppName: [*:0]const u16,
-    lpString: [*:0]const u16,
+    lpAppName: ?[*:0]const u16,
+    lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetPrivateProfileIntA(
-    lpAppName: [*:0]const u8,
-    lpKeyName: [*:0]const u8,
+    lpAppName: ?[*:0]const u8,
+    lpKeyName: ?[*:0]const u8,
     nDefault: i32,
     lpFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetPrivateProfileIntW(
-    lpAppName: [*:0]const u16,
-    lpKeyName: [*:0]const u16,
+    lpAppName: ?[*:0]const u16,
+    lpKeyName: ?[*:0]const u16,
     nDefault: i32,
     lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4529,7 +4529,7 @@ pub extern "KERNEL32" fn WritePrivateProfileStringW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetPrivateProfileSectionA(
-    lpAppName: [*:0]const u8,
+    lpAppName: ?[*:0]const u8,
     lpReturnedString: ?[*:0]u8,
     nSize: u32,
     lpFileName: ?[*:0]const u8,
@@ -4537,7 +4537,7 @@ pub extern "KERNEL32" fn GetPrivateProfileSectionA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetPrivateProfileSectionW(
-    lpAppName: [*:0]const u16,
+    lpAppName: ?[*:0]const u16,
     lpReturnedString: ?[*:0]u16,
     nSize: u32,
     lpFileName: ?[*:0]const u16,
@@ -4573,8 +4573,8 @@ pub extern "KERNEL32" fn GetPrivateProfileSectionNamesW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetPrivateProfileStructA(
-    lpszSection: [*:0]const u8,
-    lpszKey: [*:0]const u8,
+    lpszSection: ?[*:0]const u8,
+    lpszKey: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     lpStruct: ?*c_void,
     uSizeStruct: u32,
@@ -4583,8 +4583,8 @@ pub extern "KERNEL32" fn GetPrivateProfileStructA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetPrivateProfileStructW(
-    lpszSection: [*:0]const u16,
-    lpszKey: [*:0]const u16,
+    lpszSection: ?[*:0]const u16,
+    lpszKey: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     lpStruct: ?*c_void,
     uSizeStruct: u32,
@@ -4593,8 +4593,8 @@ pub extern "KERNEL32" fn GetPrivateProfileStructW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn WritePrivateProfileStructA(
-    lpszSection: [*:0]const u8,
-    lpszKey: [*:0]const u8,
+    lpszSection: ?[*:0]const u8,
+    lpszKey: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     lpStruct: ?*c_void,
     uSizeStruct: u32,
@@ -4603,8 +4603,8 @@ pub extern "KERNEL32" fn WritePrivateProfileStructA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn WritePrivateProfileStructW(
-    lpszSection: [*:0]const u16,
-    lpszKey: [*:0]const u16,
+    lpszSection: ?[*:0]const u16,
+    lpszKey: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     lpStruct: ?*c_void,
     uSizeStruct: u32,
@@ -4624,67 +4624,67 @@ pub extern "KERNEL32" fn IsBadHugeWritePtr(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetComputerNameA(
     lpBuffer: ?[*:0]u8,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetComputerNameW(
     lpBuffer: ?[*:0]u16,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn DnsHostnameToComputerNameA(
-    Hostname: [*:0]const u8,
+    Hostname: ?[*:0]const u8,
     ComputerName: ?[*:0]u8,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn DnsHostnameToComputerNameW(
-    Hostname: [*:0]const u16,
+    Hostname: ?[*:0]const u16,
     ComputerName: ?[*:0]u16,
-    nSize: *u32,
+    nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetUserNameA(
     lpBuffer: ?[*:0]u8,
-    pcbBuffer: *u32,
+    pcbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetUserNameW(
     lpBuffer: ?[*:0]u16,
-    pcbBuffer: *u32,
+    pcbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn IsTokenUntrusted(
-    TokenHandle: HANDLE,
+    TokenHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn SetTimerQueueTimer(
     TimerQueue: ?HANDLE,
-    Callback: WAITORTIMERCALLBACK,
+    Callback: ?WAITORTIMERCALLBACK,
     Parameter: ?*c_void,
     DueTime: u32,
     Period: u32,
     PreferIo: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "KERNEL32" fn CancelTimerQueueTimer(
     TimerQueue: ?HANDLE,
-    Timer: HANDLE,
+    Timer: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetCurrentHwProfileA(
-    lpHwProfileInfo: *HW_PROFILE_INFOA,
+    lpHwProfileInfo: ?*HW_PROFILE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn GetCurrentHwProfileW(
-    lpHwProfileInfo: *HW_PROFILE_INFOW,
+    lpHwProfileInfo: ?*HW_PROFILE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn CreateJobSet(
@@ -4694,8 +4694,8 @@ pub extern "KERNEL32" fn CreateJobSet(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn ReplacePartitionUnit(
-    TargetPartition: PWSTR,
-    SparePartition: PWSTR,
+    TargetPartition: ?PWSTR,
+    SparePartition: ?PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4703,56 +4703,56 @@ pub extern "KERNEL32" fn InitializeContext2(
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*c_void,
     ContextFlags: u32,
-    Context: **CONTEXT,
-    ContextLength: *u32,
+    Context: ?*?*CONTEXT,
+    ContextLength: ?*u32,
     XStateCompactionMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-backgroundtask-l1-1-0" fn RaiseCustomSystemEventTrigger(
-    CustomSystemEventTriggerConfig: *CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
+    CustomSystemEventTriggerConfig: ?*CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn NtClose(
-    Handle: HANDLE,
+    Handle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtCreateFile(
-    FileHandle: *HANDLE,
+    FileHandle: ?*?HANDLE,
     DesiredAccess: u32,
-    ObjectAttributes: *OBJECT_ATTRIBUTES,
-    IoStatusBlock: *IO_STATUS_BLOCK,
-    AllocationSize: *LARGE_INTEGER,
+    ObjectAttributes: ?*OBJECT_ATTRIBUTES,
+    IoStatusBlock: ?*IO_STATUS_BLOCK,
+    AllocationSize: ?*LARGE_INTEGER,
     FileAttributes: u32,
     ShareAccess: FILE_SHARE_MODE,
     CreateDisposition: NT_CREATE_FILE_DISPOSITION,
     CreateOptions: u32,
-    EaBuffer: *c_void,
+    EaBuffer: ?*c_void,
     EaLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtOpenFile(
-    FileHandle: *HANDLE,
+    FileHandle: ?*?HANDLE,
     DesiredAccess: u32,
-    ObjectAttributes: *OBJECT_ATTRIBUTES,
-    IoStatusBlock: *IO_STATUS_BLOCK,
+    ObjectAttributes: ?*OBJECT_ATTRIBUTES,
+    IoStatusBlock: ?*IO_STATUS_BLOCK,
     ShareAccess: u32,
     OpenOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtRenameKey(
-    KeyHandle: HANDLE,
-    NewName: *UNICODE_STRING,
+    KeyHandle: ?HANDLE,
+    NewName: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtNotifyChangeMultipleKeys(
-    MasterKeyHandle: HANDLE,
+    MasterKeyHandle: ?HANDLE,
     Count: u32,
     SubordinateObjects: ?[*]OBJECT_ATTRIBUTES,
     Event: ?HANDLE,
     ApcRoutine: ?PIO_APC_ROUTINE,
     ApcContext: ?*c_void,
-    IoStatusBlock: *IO_STATUS_BLOCK,
+    IoStatusBlock: ?*IO_STATUS_BLOCK,
     CompletionFilter: u32,
     WatchTree: u8,
     // TODO: what to do with BytesParamIndex 10?
@@ -4762,48 +4762,48 @@ pub extern "ntdll" fn NtNotifyChangeMultipleKeys(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtQueryMultipleValueKey(
-    KeyHandle: HANDLE,
+    KeyHandle: ?HANDLE,
     ValueEntries: [*]KEY_VALUE_ENTRY,
     EntryCount: u32,
     // TODO: what to do with BytesParamIndex 4?
-    ValueBuffer: *c_void,
-    BufferLength: *u32,
+    ValueBuffer: ?*c_void,
+    BufferLength: ?*u32,
     RequiredBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtSetInformationKey(
-    KeyHandle: HANDLE,
+    KeyHandle: ?HANDLE,
     KeySetInformationClass: KEY_SET_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    KeySetInformation: *c_void,
+    KeySetInformation: ?*c_void,
     KeySetInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn NtDeviceIoControlFile(
-    FileHandle: HANDLE,
-    Event: HANDLE,
-    ApcRoutine: PIO_APC_ROUTINE,
-    ApcContext: *c_void,
-    IoStatusBlock: *IO_STATUS_BLOCK,
+    FileHandle: ?HANDLE,
+    Event: ?HANDLE,
+    ApcRoutine: ?PIO_APC_ROUTINE,
+    ApcContext: ?*c_void,
+    IoStatusBlock: ?*IO_STATUS_BLOCK,
     IoControlCode: u32,
-    InputBuffer: *c_void,
+    InputBuffer: ?*c_void,
     InputBufferLength: u32,
-    OutputBuffer: *c_void,
+    OutputBuffer: ?*c_void,
     OutputBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn NtWaitForSingleObject(
-    Handle: HANDLE,
+    Handle: ?HANDLE,
     Alertable: u8,
-    Timeout: *LARGE_INTEGER,
+    Timeout: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn RtlIsNameLegalDOS8Dot3(
-    Name: *UNICODE_STRING,
-    OemName: *STRING,
-    NameContainsSpaces: *u8,
+    Name: ?*UNICODE_STRING,
+    OemName: ?*STRING,
+    NameContainsSpaces: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "ntdll" fn NtQueryObject(
@@ -4817,104 +4817,104 @@ pub extern "ntdll" fn NtQueryObject(
 
 pub extern "ntdll" fn NtQuerySystemInformation(
     SystemInformationClass: SYSTEM_INFORMATION_CLASS,
-    SystemInformation: *c_void,
+    SystemInformation: ?*c_void,
     SystemInformationLength: u32,
-    ReturnLength: *u32,
+    ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtQuerySystemTime(
-    SystemTime: *LARGE_INTEGER,
+    SystemTime: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn RtlLocalTimeToSystemTime(
-    LocalTime: *LARGE_INTEGER,
-    SystemTime: *LARGE_INTEGER,
+    LocalTime: ?*LARGE_INTEGER,
+    SystemTime: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn RtlTimeToSecondsSince1970(
-    Time: *LARGE_INTEGER,
-    ElapsedSeconds: *u32,
+    Time: ?*LARGE_INTEGER,
+    ElapsedSeconds: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlFreeAnsiString(
-    AnsiString: *STRING,
+    AnsiString: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlFreeUnicodeString(
-    UnicodeString: *UNICODE_STRING,
+    UnicodeString: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlFreeOemString(
-    OemString: *STRING,
+    OemString: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ntdll" fn RtlInitString(
-    DestinationString: *STRING,
-    SourceString: *i8,
+    DestinationString: ?*STRING,
+    SourceString: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ntdll" fn RtlInitStringEx(
-    DestinationString: *STRING,
-    SourceString: *i8,
+    DestinationString: ?*STRING,
+    SourceString: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn RtlInitAnsiString(
-    DestinationString: *STRING,
-    SourceString: *i8,
+    DestinationString: ?*STRING,
+    SourceString: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ntdll" fn RtlInitAnsiStringEx(
-    DestinationString: *STRING,
-    SourceString: *i8,
+    DestinationString: ?*STRING,
+    SourceString: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlInitUnicodeString(
-    DestinationString: *UNICODE_STRING,
-    SourceString: [*:0]const u16,
+    DestinationString: ?*UNICODE_STRING,
+    SourceString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlAnsiStringToUnicodeString(
-    DestinationString: *UNICODE_STRING,
-    SourceString: *STRING,
+    DestinationString: ?*UNICODE_STRING,
+    SourceString: ?*STRING,
     AllocateDestinationString: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlUnicodeStringToAnsiString(
-    DestinationString: *STRING,
-    SourceString: *UNICODE_STRING,
+    DestinationString: ?*STRING,
+    SourceString: ?*UNICODE_STRING,
     AllocateDestinationString: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlUnicodeStringToOemString(
-    DestinationString: *STRING,
-    SourceString: *UNICODE_STRING,
+    DestinationString: ?*STRING,
+    SourceString: ?*UNICODE_STRING,
     AllocateDestinationString: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlUnicodeToMultiByteSize(
-    BytesInMultiByteString: *u32,
+    BytesInMultiByteString: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    UnicodeString: [*]u16,
+    UnicodeString: ?[*]u16,
     BytesInUnicodeString: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlCharToInteger(
-    String: *i8,
+    String: ?*i8,
     Base: u32,
-    Value: *u32,
+    Value: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn RtlUniform(
-    Seed: *u32,
+    Seed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "api-ms-win-core-featurestaging-l1-1-0" fn GetFeatureEnabledState(
@@ -4926,17 +4926,17 @@ pub extern "api-ms-win-core-featurestaging-l1-1-0" fn RecordFeatureUsage(
     featureId: u32,
     kind: u32,
     addend: u32,
-    originName: [*:0]const u8,
+    originName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "api-ms-win-core-featurestaging-l1-1-0" fn RecordFeatureError(
     featureId: u32,
-    @"error": *const FEATURE_ERROR,
+    @"error": ?*const FEATURE_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "api-ms-win-core-featurestaging-l1-1-0" fn SubscribeFeatureStateChangeNotification(
-    subscription: *FEATURE_STATE_CHANGE_SUBSCRIPTION,
-    callback: PFEATURE_STATE_CHANGE_CALLBACK,
+    subscription: ?*FEATURE_STATE_CHANGE_SUBSCRIPTION,
+    callback: ?PFEATURE_STATE_CHANGE_CALLBACK,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -4947,27 +4947,27 @@ pub extern "api-ms-win-core-featurestaging-l1-1-0" fn UnsubscribeFeatureStateCha
 pub extern "api-ms-win-core-featurestaging-l1-1-1" fn GetFeatureVariant(
     featureId: u32,
     changeTime: FEATURE_CHANGE_TIME,
-    payloadId: *u32,
-    hasNotification: *BOOL,
+    payloadId: ?*u32,
+    hasNotification: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DCIMAN32" fn DCIOpenProvider(
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DCIMAN32" fn DCICloseProvider(
-    hdc: HDC,
+    hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DCIMAN32" fn DCICreatePrimary(
-    hdc: HDC,
-    lplpSurface: **DCISURFACEINFO,
+    hdc: ?HDC,
+    lplpSurface: ?*?*DCISURFACEINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn DCICreateOffscreen(
-    hdc: HDC,
+    hdc: ?HDC,
     dwCompression: u32,
     dwRedMask: u32,
     dwGreenMask: u32,
@@ -4976,75 +4976,75 @@ pub extern "DCIMAN32" fn DCICreateOffscreen(
     dwHeight: u32,
     dwDCICaps: u32,
     dwBitCount: u32,
-    lplpSurface: **DCIOFFSCREEN,
+    lplpSurface: ?*?*DCIOFFSCREEN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn DCICreateOverlay(
-    hdc: HDC,
-    lpOffscreenSurf: *c_void,
-    lplpSurface: **DCIOVERLAY,
+    hdc: ?HDC,
+    lpOffscreenSurf: ?*c_void,
+    lplpSurface: ?*?*DCIOVERLAY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn DCIEnum(
-    hdc: HDC,
-    lprDst: *RECT,
-    lprSrc: *RECT,
-    lpFnCallback: *c_void,
-    lpContext: *c_void,
+    hdc: ?HDC,
+    lprDst: ?*RECT,
+    lprSrc: ?*RECT,
+    lpFnCallback: ?*c_void,
+    lpContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn DCISetSrcDestClip(
-    pdci: *DCIOFFSCREEN,
-    srcrc: *RECT,
-    destrc: *RECT,
-    prd: *RGNDATA,
+    pdci: ?*DCIOFFSCREEN,
+    srcrc: ?*RECT,
+    destrc: ?*RECT,
+    prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn WinWatchOpen(
-    hwnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) HWINWATCH;
+    hwnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) ?HWINWATCH;
 
 pub extern "DCIMAN32" fn WinWatchClose(
-    hWW: HWINWATCH,
+    hWW: ?HWINWATCH,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "DCIMAN32" fn WinWatchGetClipList(
-    hWW: HWINWATCH,
-    prc: *RECT,
+    hWW: ?HWINWATCH,
+    prc: ?*RECT,
     size: u32,
-    prd: *RGNDATA,
+    prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DCIMAN32" fn WinWatchDidStatusChange(
-    hWW: HWINWATCH,
+    hWW: ?HWINWATCH,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "DCIMAN32" fn GetWindowRegionData(
-    hwnd: HWND,
+    hwnd: ?HWND,
     size: u32,
-    prd: *RGNDATA,
+    prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DCIMAN32" fn GetDCRegionData(
-    hdc: HDC,
+    hdc: ?HDC,
     size: u32,
-    prd: *RGNDATA,
+    prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DCIMAN32" fn WinWatchNotify(
-    hWW: HWINWATCH,
-    NotifyCallback: WINWATCHNOTIFYPROC,
+    hWW: ?HWINWATCH,
+    NotifyCallback: ?WINWATCHNOTIFYPROC,
     NotifyParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DCIMAN32" fn DCIEndAccess(
-    pdci: *DCISURFACEINFO,
+    pdci: ?*DCISURFACEINFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DCIMAN32" fn DCIBeginAccess(
-    pdci: *DCISURFACEINFO,
+    pdci: ?*DCISURFACEINFO,
     x: i32,
     y: i32,
     dx: i32,
@@ -5053,47 +5053,47 @@ pub extern "DCIMAN32" fn DCIBeginAccess(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DCIMAN32" fn DCIDestroy(
-    pdci: *DCISURFACEINFO,
+    pdci: ?*DCISURFACEINFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "DCIMAN32" fn DCIDraw(
-    pdci: *DCIOFFSCREEN,
+    pdci: ?*DCIOFFSCREEN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn DCISetClipList(
-    pdci: *DCIOFFSCREEN,
-    prd: *RGNDATA,
+    pdci: ?*DCIOFFSCREEN,
+    prd: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn DCISetDestination(
-    pdci: *DCIOFFSCREEN,
-    dst: *RECT,
-    src: *RECT,
+    pdci: ?*DCIOFFSCREEN,
+    dst: ?*RECT,
+    src: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "api-ms-win-dx-d3dkmt-l1-1-0" fn GdiEntry13(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVPACK" fn RunSetupCommandA(
-    hWnd: HWND,
-    szCmdName: [*:0]const u8,
-    szInfSection: [*:0]const u8,
-    szDir: [*:0]const u8,
-    lpszTitle: [*:0]const u8,
-    phEXE: *HANDLE,
+    hWnd: ?HWND,
+    szCmdName: ?[*:0]const u8,
+    szInfSection: ?[*:0]const u8,
+    szDir: ?[*:0]const u8,
+    lpszTitle: ?[*:0]const u8,
+    phEXE: ?*?HANDLE,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RunSetupCommandW(
-    hWnd: HWND,
-    szCmdName: [*:0]const u16,
-    szInfSection: [*:0]const u16,
-    szDir: [*:0]const u16,
-    lpszTitle: [*:0]const u16,
-    phEXE: *HANDLE,
+    hWnd: ?HWND,
+    szCmdName: ?[*:0]const u16,
+    szInfSection: ?[*:0]const u16,
+    szDir: ?[*:0]const u16,
+    lpszTitle: ?[*:0]const u16,
+    phEXE: ?*?HANDLE,
     dwFlags: u32,
-    pvReserved: *c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn NeedRebootInit(
@@ -5104,171 +5104,171 @@ pub extern "ADVPACK" fn NeedReboot(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVPACK" fn RebootCheckOnInstallA(
-    hwnd: HWND,
-    pszINF: [*:0]const u8,
-    pszSec: [*:0]const u8,
+    hwnd: ?HWND,
+    pszINF: ?[*:0]const u8,
+    pszSec: ?[*:0]const u8,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RebootCheckOnInstallW(
-    hwnd: HWND,
-    pszINF: [*:0]const u16,
-    pszSec: [*:0]const u16,
+    hwnd: ?HWND,
+    pszINF: ?[*:0]const u16,
+    pszSec: ?[*:0]const u16,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn TranslateInfStringA(
-    pszInfFilename: [*:0]const u8,
-    pszInstallSection: [*:0]const u8,
-    pszTranslateSection: [*:0]const u8,
-    pszTranslateKey: [*:0]const u8,
+    pszInfFilename: ?[*:0]const u8,
+    pszInstallSection: ?[*:0]const u8,
+    pszTranslateSection: ?[*:0]const u8,
+    pszTranslateKey: ?[*:0]const u8,
     pszBuffer: ?[*:0]u8,
     cchBuffer: u32,
-    pdwRequiredSize: *u32,
-    pvReserved: *c_void,
+    pdwRequiredSize: ?*u32,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn TranslateInfStringW(
-    pszInfFilename: [*:0]const u16,
-    pszInstallSection: [*:0]const u16,
-    pszTranslateSection: [*:0]const u16,
-    pszTranslateKey: [*:0]const u16,
+    pszInfFilename: ?[*:0]const u16,
+    pszInstallSection: ?[*:0]const u16,
+    pszTranslateSection: ?[*:0]const u16,
+    pszTranslateKey: ?[*:0]const u16,
     pszBuffer: ?[*:0]u16,
     cchBuffer: u32,
-    pdwRequiredSize: *u32,
-    pvReserved: *c_void,
+    pdwRequiredSize: ?*u32,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ADVPACK" fn RegInstallA(
-    hmod: HINSTANCE,
-    pszSection: [*:0]const u8,
-    pstTable: *const STRTABLEA,
+    hmod: ?HINSTANCE,
+    pszSection: ?[*:0]const u8,
+    pstTable: ?*const STRTABLEA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ADVPACK" fn RegInstallW(
-    hmod: HINSTANCE,
-    pszSection: [*:0]const u16,
-    pstTable: *const STRTABLEW,
+    hmod: ?HINSTANCE,
+    pszSection: ?[*:0]const u16,
+    pstTable: ?*const STRTABLEW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn LaunchINFSectionExW(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
-    pszParms: PWSTR,
+    pszParms: ?PWSTR,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn ExecuteCabA(
-    hwnd: HWND,
-    pCab: *CABINFOA,
-    pReserved: *c_void,
+    hwnd: ?HWND,
+    pCab: ?*CABINFOA,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn ExecuteCabW(
-    hwnd: HWND,
-    pCab: *CABINFOW,
-    pReserved: *c_void,
+    hwnd: ?HWND,
+    pCab: ?*CABINFOW,
+    pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn AdvInstallFileA(
-    hwnd: HWND,
-    lpszSourceDir: [*:0]const u8,
-    lpszSourceFile: [*:0]const u8,
-    lpszDestDir: [*:0]const u8,
-    lpszDestFile: [*:0]const u8,
+    hwnd: ?HWND,
+    lpszSourceDir: ?[*:0]const u8,
+    lpszSourceFile: ?[*:0]const u8,
+    lpszDestDir: ?[*:0]const u8,
+    lpszDestFile: ?[*:0]const u8,
     dwFlags: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn AdvInstallFileW(
-    hwnd: HWND,
-    lpszSourceDir: [*:0]const u16,
-    lpszSourceFile: [*:0]const u16,
-    lpszDestDir: [*:0]const u16,
-    lpszDestFile: [*:0]const u16,
+    hwnd: ?HWND,
+    lpszSourceDir: ?[*:0]const u16,
+    lpszSourceFile: ?[*:0]const u16,
+    lpszDestDir: ?[*:0]const u16,
+    lpszDestFile: ?[*:0]const u16,
     dwFlags: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegSaveRestoreA(
-    hWnd: HWND,
-    pszTitleString: [*:0]const u8,
-    hkBckupKey: HKEY,
-    pcszRootKey: [*:0]const u8,
-    pcszSubKey: [*:0]const u8,
-    pcszValueName: [*:0]const u8,
+    hWnd: ?HWND,
+    pszTitleString: ?[*:0]const u8,
+    hkBckupKey: ?HKEY,
+    pcszRootKey: ?[*:0]const u8,
+    pcszSubKey: ?[*:0]const u8,
+    pcszValueName: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegSaveRestoreW(
-    hWnd: HWND,
-    pszTitleString: [*:0]const u16,
-    hkBckupKey: HKEY,
-    pcszRootKey: [*:0]const u16,
-    pcszSubKey: [*:0]const u16,
-    pcszValueName: [*:0]const u16,
+    hWnd: ?HWND,
+    pszTitleString: ?[*:0]const u16,
+    hkBckupKey: ?HKEY,
+    pcszRootKey: ?[*:0]const u16,
+    pcszSubKey: ?[*:0]const u16,
+    pcszValueName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegSaveRestoreOnINFA(
-    hWnd: HWND,
-    pszTitle: [*:0]const u8,
-    pszINF: [*:0]const u8,
-    pszSection: [*:0]const u8,
-    hHKLMBackKey: HKEY,
-    hHKCUBackKey: HKEY,
+    hWnd: ?HWND,
+    pszTitle: ?[*:0]const u8,
+    pszINF: ?[*:0]const u8,
+    pszSection: ?[*:0]const u8,
+    hHKLMBackKey: ?HKEY,
+    hHKCUBackKey: ?HKEY,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegSaveRestoreOnINFW(
-    hWnd: HWND,
-    pszTitle: [*:0]const u16,
-    pszINF: [*:0]const u16,
-    pszSection: [*:0]const u16,
-    hHKLMBackKey: HKEY,
-    hHKCUBackKey: HKEY,
+    hWnd: ?HWND,
+    pszTitle: ?[*:0]const u16,
+    pszINF: ?[*:0]const u16,
+    pszSection: ?[*:0]const u16,
+    hHKLMBackKey: ?HKEY,
+    hHKCUBackKey: ?HKEY,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegRestoreAllA(
     hWnd: ?HWND,
     pszTitleString: ?[*:0]const u8,
-    hkBckupKey: HKEY,
+    hkBckupKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegRestoreAllW(
     hWnd: ?HWND,
     pszTitleString: ?[*:0]const u16,
-    hkBckupKey: HKEY,
+    hkBckupKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn FileSaveRestoreW(
-    hDlg: HWND,
+    hDlg: ?HWND,
     lpFileList: ?PWSTR,
-    lpDir: [*:0]const u16,
-    lpBaseName: [*:0]const u16,
+    lpDir: ?[*:0]const u16,
+    lpBaseName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn FileSaveRestoreOnINFA(
-    hWnd: HWND,
-    pszTitle: [*:0]const u8,
-    pszINF: [*:0]const u8,
-    pszSection: [*:0]const u8,
-    pszBackupDir: [*:0]const u8,
-    pszBaseBackupFile: [*:0]const u8,
+    hWnd: ?HWND,
+    pszTitle: ?[*:0]const u8,
+    pszINF: ?[*:0]const u8,
+    pszSection: ?[*:0]const u8,
+    pszBackupDir: ?[*:0]const u8,
+    pszBaseBackupFile: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn FileSaveRestoreOnINFW(
-    hWnd: HWND,
-    pszTitle: [*:0]const u16,
-    pszINF: [*:0]const u16,
-    pszSection: [*:0]const u16,
-    pszBackupDir: [*:0]const u16,
-    pszBaseBackupFile: [*:0]const u16,
+    hWnd: ?HWND,
+    pszTitle: ?[*:0]const u16,
+    pszINF: ?[*:0]const u16,
+    pszSection: ?[*:0]const u16,
+    pszBackupDir: ?[*:0]const u16,
+    pszBaseBackupFile: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5299,237 +5299,237 @@ pub extern "ADVPACK" fn FileSaveMarkNotExistW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn GetVersionFromFileA(
-    lpszFilename: [*:0]const u8,
-    pdwMSVer: *u32,
-    pdwLSVer: *u32,
+    lpszFilename: ?[*:0]const u8,
+    pdwMSVer: ?*u32,
+    pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn GetVersionFromFileW(
-    lpszFilename: [*:0]const u16,
-    pdwMSVer: *u32,
-    pdwLSVer: *u32,
+    lpszFilename: ?[*:0]const u16,
+    pdwMSVer: ?*u32,
+    pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn GetVersionFromFileExA(
-    lpszFilename: [*:0]const u8,
-    pdwMSVer: *u32,
-    pdwLSVer: *u32,
+    lpszFilename: ?[*:0]const u8,
+    pdwMSVer: ?*u32,
+    pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn GetVersionFromFileExW(
-    lpszFilename: [*:0]const u16,
-    pdwMSVer: *u32,
-    pdwLSVer: *u32,
+    lpszFilename: ?[*:0]const u16,
+    pdwMSVer: ?*u32,
+    pdwLSVer: ?*u32,
     bVersion: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn IsNTAdmin(
     dwReserved: u32,
-    lpdwReserved: *u32,
+    lpdwReserved: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVPACK" fn DelNodeA(
-    pszFileOrDirName: [*:0]const u8,
+    pszFileOrDirName: ?[*:0]const u8,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn DelNodeW(
-    pszFileOrDirName: [*:0]const u16,
+    pszFileOrDirName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn DelNodeRunDLL32W(
-    hwnd: HWND,
-    hInstance: HINSTANCE,
-    pszParms: PWSTR,
+    hwnd: ?HWND,
+    hInstance: ?HINSTANCE,
+    pszParms: ?PWSTR,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn OpenINFEngineA(
-    pszInfFilename: [*:0]const u8,
-    pszInstallSection: [*:0]const u8,
+    pszInfFilename: ?[*:0]const u8,
+    pszInstallSection: ?[*:0]const u8,
     dwFlags: u32,
-    phInf: **c_void,
-    pvReserved: *c_void,
+    phInf: ?*?*c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn OpenINFEngineW(
-    pszInfFilename: [*:0]const u16,
-    pszInstallSection: [*:0]const u16,
+    pszInfFilename: ?[*:0]const u16,
+    pszInstallSection: ?[*:0]const u16,
     dwFlags: u32,
-    phInf: **c_void,
-    pvReserved: *c_void,
+    phInf: ?*?*c_void,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn TranslateInfStringExA(
-    hInf: *c_void,
-    pszInfFilename: [*:0]const u8,
-    pszTranslateSection: [*:0]const u8,
-    pszTranslateKey: [*:0]const u8,
+    hInf: ?*c_void,
+    pszInfFilename: ?[*:0]const u8,
+    pszTranslateSection: ?[*:0]const u8,
+    pszTranslateKey: ?[*:0]const u8,
     pszBuffer: [*:0]u8,
     dwBufferSize: u32,
-    pdwRequiredSize: *u32,
-    pvReserved: *c_void,
+    pdwRequiredSize: ?*u32,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn TranslateInfStringExW(
-    hInf: *c_void,
-    pszInfFilename: [*:0]const u16,
-    pszTranslateSection: [*:0]const u16,
-    pszTranslateKey: [*:0]const u16,
+    hInf: ?*c_void,
+    pszInfFilename: ?[*:0]const u16,
+    pszTranslateSection: ?[*:0]const u16,
+    pszTranslateKey: ?[*:0]const u16,
     pszBuffer: [*:0]u16,
     dwBufferSize: u32,
-    pdwRequiredSize: *u32,
-    pvReserved: *c_void,
+    pdwRequiredSize: ?*u32,
+    pvReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn CloseINFEngine(
-    hInf: *c_void,
+    hInf: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn ExtractFilesA(
-    pszCabName: [*:0]const u8,
-    pszExpandDir: [*:0]const u8,
+    pszCabName: ?[*:0]const u8,
+    pszExpandDir: ?[*:0]const u8,
     dwFlags: u32,
-    pszFileList: [*:0]const u8,
-    lpReserved: *c_void,
+    pszFileList: ?[*:0]const u8,
+    lpReserved: ?*c_void,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn ExtractFilesW(
-    pszCabName: [*:0]const u16,
-    pszExpandDir: [*:0]const u16,
+    pszCabName: ?[*:0]const u16,
+    pszExpandDir: ?[*:0]const u16,
     dwFlags: u32,
-    pszFileList: [*:0]const u16,
-    lpReserved: *c_void,
+    pszFileList: ?[*:0]const u16,
+    lpReserved: ?*c_void,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn LaunchINFSectionW(
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    pszParams: PWSTR,
+    hwndOwner: ?HWND,
+    hInstance: ?HINSTANCE,
+    pszParams: ?PWSTR,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ADVPACK" fn UserInstStubWrapperA(
-    hwnd: HWND,
-    hInstance: HINSTANCE,
-    pszParms: [*:0]const u8,
+    hwnd: ?HWND,
+    hInstance: ?HINSTANCE,
+    pszParms: ?[*:0]const u8,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn UserInstStubWrapperW(
-    hwnd: HWND,
-    hInstance: HINSTANCE,
-    pszParms: [*:0]const u16,
+    hwnd: ?HWND,
+    hInstance: ?HINSTANCE,
+    pszParms: ?[*:0]const u16,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn UserUnInstStubWrapperA(
-    hwnd: HWND,
-    hInstance: HINSTANCE,
-    pszParms: [*:0]const u8,
+    hwnd: ?HWND,
+    hInstance: ?HINSTANCE,
+    pszParms: ?[*:0]const u8,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn UserUnInstStubWrapperW(
-    hwnd: HWND,
-    hInstance: HINSTANCE,
-    pszParms: [*:0]const u16,
+    hwnd: ?HWND,
+    hInstance: ?HINSTANCE,
+    pszParms: ?[*:0]const u16,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn SetPerUserSecValuesA(
-    pPerUser: *PERUSERSECTIONA,
+    pPerUser: ?*PERUSERSECTIONA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn SetPerUserSecValuesW(
-    pPerUser: *PERUSERSECTIONW,
+    pPerUser: ?*PERUSERSECTIONW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SendIMEMessageExA(
-    param0: HWND,
+    param0: ?HWND,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SendIMEMessageExW(
-    param0: HWND,
+    param0: ?HWND,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 pub extern "USER32" fn IMPGetIMEA(
-    param0: HWND,
-    param1: *IMEPROA,
+    param0: ?HWND,
+    param1: ?*IMEPROA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn IMPGetIMEW(
-    param0: HWND,
-    param1: *IMEPROW,
+    param0: ?HWND,
+    param1: ?*IMEPROW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn IMPQueryIMEA(
-    param0: *IMEPROA,
+    param0: ?*IMEPROA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn IMPQueryIMEW(
-    param0: *IMEPROW,
+    param0: ?*IMEPROW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn IMPSetIMEA(
-    param0: HWND,
-    param1: *IMEPROA,
+    param0: ?HWND,
+    param1: ?*IMEPROA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn IMPSetIMEW(
-    param0: HWND,
-    param1: *IMEPROW,
+    param0: ?HWND,
+    param1: ?*IMEPROW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn WINNLSGetIMEHotkey(
-    param0: HWND,
+    param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn WINNLSEnableIME(
-    param0: HWND,
+    param0: ?HWND,
     param1: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn WINNLSGetEnableStatus(
-    param0: HWND,
+    param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "APPHELP" fn ApphelpCheckShellObject(
-    ObjectCLSID: *const Guid,
+    ObjectCLSID: ?*const Guid,
     bShimIfNecessary: BOOL,
-    pullFlags: *u64,
+    pullFlags: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "Wldp" fn WldpGetLockdownPolicy(
     hostInformation: ?*WLDP_HOST_INFORMATION,
-    lockdownState: *u32,
+    lockdownState: ?*u32,
     lockdownFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Wldp" fn WldpIsClassInApprovedList(
-    classID: *const Guid,
-    hostInformation: *WLDP_HOST_INFORMATION,
-    isApproved: *BOOL,
+    classID: ?*const Guid,
+    hostInformation: ?*WLDP_HOST_INFORMATION,
+    isApproved: ?*BOOL,
     optionalFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Wldp" fn WldpSetDynamicCodeTrust(
-    fileHandle: HANDLE,
+    fileHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Wldp" fn WldpIsDynamicCodePolicyEnabled(
-    isEnabled: *BOOL,
+    isEnabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Wldp" fn WldpQueryDynamicCodeTrust(

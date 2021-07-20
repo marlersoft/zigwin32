@@ -203,7 +203,7 @@ pub const MODULEENTRY = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     szModule: [10]CHAR,
-    hModule: HANDLE,
+    hModule: ?HANDLE,
     wcUsage: u16,
     szExePath: [256]CHAR,
     wNext: u16,
@@ -234,12 +234,12 @@ pub const GLOBALENTRY = extern struct {
     dwSize: u32,
     dwAddress: u32,
     dwBlockSize: u32,
-    hBlock: HANDLE,
+    hBlock: ?HANDLE,
     wcLock: u16,
     wcPageLock: u16,
     wFlags: u16,
     wHeapPresent: BOOL,
-    hOwner: HANDLE,
+    hOwner: ?HANDLE,
     wType: u16,
     wData: u16,
     dwNext: u32,
@@ -249,8 +249,8 @@ pub const GLOBALENTRY = extern struct {
 }, else => struct { } };
 
 pub const DEBUGEVENTPROC = fn(
-    param0: *DEBUG_EVENT,
-    param1: *c_void,
+    param0: ?*DEBUG_EVENT,
+    param1: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PROCESSENUMPROC = fn(
@@ -270,13 +270,13 @@ pub const TASKENUMPROCEX = fn(
     dwThreadId: u32,
     hMod16: u16,
     hTask16: u16,
-    pszModName: *i8,
-    pszFileName: *i8,
+    pszModName: ?*i8,
+    pszFileName: ?*i8,
     lpUserDefined: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMPROCESSEXCEPTIONPROC = fn(
-    param0: *DEBUG_EVENT,
+    param0: ?*DEBUG_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -286,10 +286,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const VDMGETTHREADSELECTORENTRYPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
     param2: u32,
-    param3: *VDMLDT_ENTRY,
+    param3: ?*VDMLDT_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -297,8 +297,8 @@ pub const VDMGETTHREADSELECTORENTRYPROC = fn(
 }, else => struct { } };
 
 pub const VDMGETPOINTERPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
     param2: u16,
     param3: u32,
     param4: BOOL,
@@ -311,9 +311,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const VDMGETCONTEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *VDMCONTEXT,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*VDMCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -327,9 +327,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const VDMSETCONTEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *VDMCONTEXT,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*VDMCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -343,76 +343,76 @@ pub const VDMDETECTWOWPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMBREAKTHREADPROC = fn(
-    param0: HANDLE,
+    param0: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGETSELECTORMODULEPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
     param2: u16,
-    param3: *u32,
-    param4: PSTR,
+    param3: ?*u32,
+    param4: ?PSTR,
     param5: u32,
-    param6: PSTR,
+    param6: ?PSTR,
     param7: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGETMODULESELECTORPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
     param2: u32,
-    param3: PSTR,
-    param4: *u16,
+    param3: ?PSTR,
+    param4: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMMODULEFIRSTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *MODULEENTRY,
-    param3: DEBUGEVENTPROC,
-    param4: *c_void,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*MODULEENTRY,
+    param3: ?DEBUGEVENTPROC,
+    param4: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMMODULENEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *MODULEENTRY,
-    param3: DEBUGEVENTPROC,
-    param4: *c_void,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*MODULEENTRY,
+    param3: ?DEBUGEVENTPROC,
+    param4: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGLOBALFIRSTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *GLOBALENTRY,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*GLOBALENTRY,
     param3: u16,
-    param4: DEBUGEVENTPROC,
-    param5: *c_void,
+    param4: ?DEBUGEVENTPROC,
+    param5: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGLOBALNEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *GLOBALENTRY,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*GLOBALENTRY,
     param3: u16,
-    param4: DEBUGEVENTPROC,
-    param5: *c_void,
+    param4: ?DEBUGEVENTPROC,
+    param5: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMENUMPROCESSWOWPROC = fn(
-    param0: PROCESSENUMPROC,
+    param0: ?PROCESSENUMPROC,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const VDMENUMTASKWOWPROC = fn(
     param0: u32,
-    param1: TASKENUMPROC,
+    param1: ?TASKENUMPROC,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const VDMENUMTASKWOWEXPROC = fn(
     param0: u32,
-    param1: TASKENUMPROCEX,
+    param1: ?TASKENUMPROCEX,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -423,21 +423,21 @@ pub const VDMTERMINATETASKINWOWPROC = fn(
 
 pub const VDMSTARTTASKINWOWPROC = fn(
     param0: u32,
-    param1: PSTR,
+    param1: ?PSTR,
     param2: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGETDBGFLAGSPROC = fn(
-    param0: HANDLE,
+    param0: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const VDMSETDBGFLAGSPROC = fn(
-    param0: HANDLE,
+    param0: ?HANDLE,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMISMODULELOADEDPROC = fn(
-    param0: PSTR,
+    param0: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGETSEGMENTINFOPROC = fn(
@@ -448,21 +448,21 @@ pub const VDMGETSEGMENTINFOPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGETSYMBOLPROC = fn(
-    param0: PSTR,
+    param0: ?PSTR,
     param1: u16,
     param2: u32,
     param3: BOOL,
     param4: BOOL,
     param5: *[256]u8,
-    param6: *u32,
+    param6: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGETADDREXPRESSIONPROC = fn(
-    param0: PSTR,
-    param1: PSTR,
-    param2: *u16,
-    param3: *u32,
-    param4: *u16,
+    param0: ?PSTR,
+    param1: ?PSTR,
+    param2: ?*u16,
+    param3: ?*u32,
+    param4: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -471,7 +471,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const MODULEENTRY = extern struct {
     dwSize: u32,
     szModule: [10]CHAR,
-    hModule: HANDLE,
+    hModule: ?HANDLE,
     wcUsage: u16,
     szExePath: [256]CHAR,
     wNext: u16,
@@ -486,12 +486,12 @@ pub const GLOBALENTRY = extern struct {
     dwSize: u32,
     dwAddress: u32,
     dwBlockSize: u32,
-    hBlock: HANDLE,
+    hBlock: ?HANDLE,
     wcLock: u16,
     wcPageLock: u16,
     wFlags: u16,
     wHeapPresent: BOOL,
-    hOwner: HANDLE,
+    hOwner: ?HANDLE,
     wType: u16,
     wData: u16,
     dwNext: u32,
@@ -507,10 +507,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const VDMGETTHREADSELECTORENTRYPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
     param2: u32,
-    param3: *LDT_ENTRY,
+    param3: ?*LDT_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -524,9 +524,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const VDMGETCONTEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *CONTEXT,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -540,9 +540,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const VDMSETCONTEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *CONTEXT,
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };

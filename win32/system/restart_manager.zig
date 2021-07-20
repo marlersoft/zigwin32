@@ -111,9 +111,9 @@ pub const RM_FILTER_INFO = extern struct {
     FilterTrigger: RM_FILTER_TRIGGER,
     cbNextOffset: u32,
     Anonymous: extern union {
-        strFilename: PWSTR,
+        strFilename: ?PWSTR,
         Process: RM_UNIQUE_PROCESS,
-        strServiceShortName: PWSTR,
+        strServiceShortName: ?PWSTR,
     },
 };
 
@@ -127,15 +127,15 @@ pub const RM_WRITE_STATUS_CALLBACK = fn(
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmStartSession(
-    pSessionHandle: *u32,
+    pSessionHandle: ?*u32,
     dwSessionFlags: u32,
-    strSessionKey: PWSTR,
+    strSessionKey: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmJoinSession(
-    pSessionHandle: *u32,
-    strSessionKey: [*:0]const u16,
+    pSessionHandle: ?*u32,
+    strSessionKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -147,20 +147,20 @@ pub extern "rstrtmgr" fn RmEndSession(
 pub extern "rstrtmgr" fn RmRegisterResources(
     dwSessionHandle: u32,
     nFiles: u32,
-    rgsFileNames: ?[*]PWSTR,
+    rgsFileNames: ?[*]?PWSTR,
     nApplications: u32,
     rgApplications: ?[*]RM_UNIQUE_PROCESS,
     nServices: u32,
-    rgsServiceNames: ?[*]PWSTR,
+    rgsServiceNames: ?[*]?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmGetList(
     dwSessionHandle: u32,
-    pnProcInfoNeeded: *u32,
-    pnProcInfo: *u32,
+    pnProcInfoNeeded: ?*u32,
+    pnProcInfo: ?*u32,
     rgAffectedApps: ?[*]RM_PROCESS_INFO,
-    lpdwRebootReasons: *u32,
+    lpdwRebootReasons: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -205,7 +205,7 @@ pub extern "RstrtMgr" fn RmGetFilterList(
     // TODO: what to do with BytesParamIndex 2?
     pbFilterBuf: ?*u8,
     cbFilterBuf: u32,
-    cbFilterBufNeeded: *u32,
+    cbFilterBufNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

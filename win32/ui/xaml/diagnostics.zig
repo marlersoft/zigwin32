@@ -48,11 +48,11 @@ pub const Coercion = BaseValueSource.Coercion;
 pub const BaseValueSourceVisualState = BaseValueSource.BaseValueSourceVisualState;
 
 pub const SourceInfo = extern struct {
-    FileName: BSTR,
+    FileName: ?BSTR,
     LineNumber: u32,
     ColumnNumber: u32,
     CharPosition: u32,
-    Hash: BSTR,
+    Hash: ?BSTR,
 };
 
 pub const ParentChildRelation = extern struct {
@@ -64,15 +64,15 @@ pub const ParentChildRelation = extern struct {
 pub const VisualElement = extern struct {
     Handle: u64,
     SrcInfo: SourceInfo,
-    Type: BSTR,
-    Name: BSTR,
+    Type: ?BSTR,
+    Name: ?BSTR,
     NumChildren: u32,
 };
 
 pub const PropertyChainSource = extern struct {
     Handle: u64,
-    TargetType: BSTR,
-    Name: BSTR,
+    TargetType: ?BSTR,
+    Name: ?BSTR,
     Source: BaseValueSource,
     SrcInfo: SourceInfo,
 };
@@ -91,27 +91,27 @@ pub const MetadataBit = enum(i32) {
 
 pub const PropertyChainValue = extern struct {
     Index: u32,
-    Type: BSTR,
-    DeclaringType: BSTR,
-    ValueType: BSTR,
-    ItemType: BSTR,
-    Value: BSTR,
+    Type: ?BSTR,
+    DeclaringType: ?BSTR,
+    ValueType: ?BSTR,
+    ItemType: ?BSTR,
+    Value: ?BSTR,
     Overridden: BOOL,
     MetadataBits: i64,
-    PropertyName: BSTR,
+    PropertyName: ?BSTR,
     PropertyChainIndex: u32,
 };
 
 pub const EnumType = extern struct {
-    Name: BSTR,
-    ValueInts: *SAFEARRAY,
-    ValueStrings: *SAFEARRAY,
+    Name: ?BSTR,
+    ValueInts: ?*SAFEARRAY,
+    ValueStrings: ?*SAFEARRAY,
 };
 
 pub const CollectionElementValue = extern struct {
     Index: u32,
-    ValueType: BSTR,
-    Value: BSTR,
+    ValueType: ?BSTR,
+    Value: ?BSTR,
     MetadataBits: i64,
 };
 
@@ -179,14 +179,14 @@ pub const IVisualTreeServiceCallback2 = extern struct {
             self: *const IVisualTreeServiceCallback2,
             element: u64,
             elementState: VisualElementState,
-            context: [*:0]const u16,
+            context: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVisualTreeServiceCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeServiceCallback2_OnElementStateChanged(self: *const T, element: u64, elementState: VisualElementState, context: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeServiceCallback2_OnElementStateChanged(self: *const T, element: u64, elementState: VisualElementState, context: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeServiceCallback2.VTable, self.vtable).OnElementStateChanged(@ptrCast(*const IVisualTreeServiceCallback2, self), element, elementState, context);
         }
     };}
@@ -200,30 +200,30 @@ pub const IVisualTreeService = extern struct {
         base: IUnknown.VTable,
         AdviseVisualTreeChange: fn(
             self: *const IVisualTreeService,
-            pCallback: *IVisualTreeServiceCallback,
+            pCallback: ?*IVisualTreeServiceCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnadviseVisualTreeChange: fn(
             self: *const IVisualTreeService,
-            pCallback: *IVisualTreeServiceCallback,
+            pCallback: ?*IVisualTreeServiceCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnums: fn(
             self: *const IVisualTreeService,
-            pCount: *u32,
-            ppEnums: [*]*EnumType,
+            pCount: ?*u32,
+            ppEnums: [*]?*EnumType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInstance: fn(
             self: *const IVisualTreeService,
-            typeName: BSTR,
-            value: BSTR,
-            pInstanceHandle: *u64,
+            typeName: ?BSTR,
+            value: ?BSTR,
+            pInstanceHandle: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyValuesChain: fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
-            pSourceCount: *u32,
-            ppPropertySources: [*]*PropertyChainSource,
-            pPropertyCount: *u32,
-            ppPropertyValues: [*]*PropertyChainValue,
+            pSourceCount: ?*u32,
+            ppPropertySources: [*]?*PropertyChainSource,
+            pPropertyCount: ?*u32,
+            ppPropertyValues: [*]?*PropertyChainValue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IVisualTreeService,
@@ -239,14 +239,14 @@ pub const IVisualTreeService = extern struct {
         GetCollectionCount: fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
-            pCollectionSize: *u32,
+            pCollectionSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCollectionElements: fn(
             self: *const IVisualTreeService,
             instanceHandle: u64,
             startIndex: u32,
-            pElementCount: *u32,
-            ppElementValues: [*]*CollectionElementValue,
+            pElementCount: ?*u32,
+            ppElementValues: [*]?*CollectionElementValue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddChild: fn(
             self: *const IVisualTreeService,
@@ -268,23 +268,23 @@ pub const IVisualTreeService = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService_AdviseVisualTreeChange(self: *const T, pCallback: *IVisualTreeServiceCallback) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService_AdviseVisualTreeChange(self: *const T, pCallback: ?*IVisualTreeServiceCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).AdviseVisualTreeChange(@ptrCast(*const IVisualTreeService, self), pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService_UnadviseVisualTreeChange(self: *const T, pCallback: *IVisualTreeServiceCallback) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService_UnadviseVisualTreeChange(self: *const T, pCallback: ?*IVisualTreeServiceCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).UnadviseVisualTreeChange(@ptrCast(*const IVisualTreeService, self), pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService_GetEnums(self: *const T, pCount: *u32, ppEnums: [*]*EnumType) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService_GetEnums(self: *const T, pCount: ?*u32, ppEnums: [*]?*EnumType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).GetEnums(@ptrCast(*const IVisualTreeService, self), pCount, ppEnums);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService_CreateInstance(self: *const T, typeName: BSTR, value: BSTR, pInstanceHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService_CreateInstance(self: *const T, typeName: ?BSTR, value: ?BSTR, pInstanceHandle: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).CreateInstance(@ptrCast(*const IVisualTreeService, self), typeName, value, pInstanceHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService_GetPropertyValuesChain(self: *const T, instanceHandle: u64, pSourceCount: *u32, ppPropertySources: [*]*PropertyChainSource, pPropertyCount: *u32, ppPropertyValues: [*]*PropertyChainValue) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService_GetPropertyValuesChain(self: *const T, instanceHandle: u64, pSourceCount: ?*u32, ppPropertySources: [*]?*PropertyChainSource, pPropertyCount: ?*u32, ppPropertyValues: [*]?*PropertyChainValue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).GetPropertyValuesChain(@ptrCast(*const IVisualTreeService, self), instanceHandle, pSourceCount, ppPropertySources, pPropertyCount, ppPropertyValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -296,11 +296,11 @@ pub const IVisualTreeService = extern struct {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).ClearProperty(@ptrCast(*const IVisualTreeService, self), instanceHandle, propertyIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService_GetCollectionCount(self: *const T, instanceHandle: u64, pCollectionSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService_GetCollectionCount(self: *const T, instanceHandle: u64, pCollectionSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).GetCollectionCount(@ptrCast(*const IVisualTreeService, self), instanceHandle, pCollectionSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService_GetCollectionElements(self: *const T, instanceHandle: u64, startIndex: u32, pElementCount: *u32, ppElementValues: [*]*CollectionElementValue) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService_GetCollectionElements(self: *const T, instanceHandle: u64, startIndex: u32, pElementCount: ?*u32, ppElementValues: [*]?*CollectionElementValue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService.VTable, self.vtable).GetCollectionElements(@ptrCast(*const IVisualTreeService, self), instanceHandle, startIndex, pElementCount, ppElementValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -327,75 +327,75 @@ pub const IXamlDiagnostics = extern struct {
         base: IUnknown.VTable,
         GetDispatcher: fn(
             self: *const IXamlDiagnostics,
-            ppDispatcher: **IInspectable,
+            ppDispatcher: ?*?*IInspectable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUiLayer: fn(
             self: *const IXamlDiagnostics,
-            ppLayer: **IInspectable,
+            ppLayer: ?*?*IInspectable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetApplication: fn(
             self: *const IXamlDiagnostics,
-            ppApplication: **IInspectable,
+            ppApplication: ?*?*IInspectable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIInspectableFromHandle: fn(
             self: *const IXamlDiagnostics,
             instanceHandle: u64,
-            ppInstance: **IInspectable,
+            ppInstance: ?*?*IInspectable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHandleFromIInspectable: fn(
             self: *const IXamlDiagnostics,
-            pInstance: *IInspectable,
-            pHandle: *u64,
+            pInstance: ?*IInspectable,
+            pHandle: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HitTest: fn(
             self: *const IXamlDiagnostics,
             rect: RECT,
-            pCount: *u32,
-            ppInstanceHandles: [*]*u64,
+            pCount: ?*u32,
+            ppInstanceHandles: [*]?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterInstance: fn(
             self: *const IXamlDiagnostics,
-            pInstance: *IInspectable,
-            pInstanceHandle: *u64,
+            pInstance: ?*IInspectable,
+            pInstanceHandle: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInitializationData: fn(
             self: *const IXamlDiagnostics,
-            pInitializationData: *BSTR,
+            pInitializationData: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_GetDispatcher(self: *const T, ppDispatcher: **IInspectable) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_GetDispatcher(self: *const T, ppDispatcher: ?*?*IInspectable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).GetDispatcher(@ptrCast(*const IXamlDiagnostics, self), ppDispatcher);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_GetUiLayer(self: *const T, ppLayer: **IInspectable) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_GetUiLayer(self: *const T, ppLayer: ?*?*IInspectable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).GetUiLayer(@ptrCast(*const IXamlDiagnostics, self), ppLayer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_GetApplication(self: *const T, ppApplication: **IInspectable) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_GetApplication(self: *const T, ppApplication: ?*?*IInspectable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).GetApplication(@ptrCast(*const IXamlDiagnostics, self), ppApplication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_GetIInspectableFromHandle(self: *const T, instanceHandle: u64, ppInstance: **IInspectable) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_GetIInspectableFromHandle(self: *const T, instanceHandle: u64, ppInstance: ?*?*IInspectable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).GetIInspectableFromHandle(@ptrCast(*const IXamlDiagnostics, self), instanceHandle, ppInstance);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_GetHandleFromIInspectable(self: *const T, pInstance: *IInspectable, pHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_GetHandleFromIInspectable(self: *const T, pInstance: ?*IInspectable, pHandle: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).GetHandleFromIInspectable(@ptrCast(*const IXamlDiagnostics, self), pInstance, pHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_HitTest(self: *const T, rect: RECT, pCount: *u32, ppInstanceHandles: [*]*u64) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_HitTest(self: *const T, rect: RECT, pCount: ?*u32, ppInstanceHandles: [*]?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).HitTest(@ptrCast(*const IXamlDiagnostics, self), rect, pCount, ppInstanceHandles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_RegisterInstance(self: *const T, pInstance: *IInspectable, pInstanceHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_RegisterInstance(self: *const T, pInstance: ?*IInspectable, pInstanceHandle: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).RegisterInstance(@ptrCast(*const IXamlDiagnostics, self), pInstance, pInstanceHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXamlDiagnostics_GetInitializationData(self: *const T, pInitializationData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IXamlDiagnostics_GetInitializationData(self: *const T, pInitializationData: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXamlDiagnostics.VTable, self.vtable).GetInitializationData(@ptrCast(*const IXamlDiagnostics, self), pInitializationData);
         }
     };}
@@ -413,38 +413,38 @@ pub const IBitmapData = extern struct {
             sourceOffsetInBytes: u32,
             maxBytesToCopy: u32,
             pvBytes: [*:0]u8,
-            numberOfBytesCopied: *u32,
+            numberOfBytesCopied: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStride: fn(
             self: *const IBitmapData,
-            pStride: *u32,
+            pStride: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBitmapDescription: fn(
             self: *const IBitmapData,
-            pBitmapDescription: *BitmapDescription,
+            pBitmapDescription: ?*BitmapDescription,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceBitmapDescription: fn(
             self: *const IBitmapData,
-            pBitmapDescription: *BitmapDescription,
+            pBitmapDescription: ?*BitmapDescription,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitmapData_CopyBytesTo(self: *const T, sourceOffsetInBytes: u32, maxBytesToCopy: u32, pvBytes: [*:0]u8, numberOfBytesCopied: *u32) callconv(.Inline) HRESULT {
+        pub fn IBitmapData_CopyBytesTo(self: *const T, sourceOffsetInBytes: u32, maxBytesToCopy: u32, pvBytes: [*:0]u8, numberOfBytesCopied: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitmapData.VTable, self.vtable).CopyBytesTo(@ptrCast(*const IBitmapData, self), sourceOffsetInBytes, maxBytesToCopy, pvBytes, numberOfBytesCopied);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitmapData_GetStride(self: *const T, pStride: *u32) callconv(.Inline) HRESULT {
+        pub fn IBitmapData_GetStride(self: *const T, pStride: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitmapData.VTable, self.vtable).GetStride(@ptrCast(*const IBitmapData, self), pStride);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitmapData_GetBitmapDescription(self: *const T, pBitmapDescription: *BitmapDescription) callconv(.Inline) HRESULT {
+        pub fn IBitmapData_GetBitmapDescription(self: *const T, pBitmapDescription: ?*BitmapDescription) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitmapData.VTable, self.vtable).GetBitmapDescription(@ptrCast(*const IBitmapData, self), pBitmapDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitmapData_GetSourceBitmapDescription(self: *const T, pBitmapDescription: *BitmapDescription) callconv(.Inline) HRESULT {
+        pub fn IBitmapData_GetSourceBitmapDescription(self: *const T, pBitmapDescription: ?*BitmapDescription) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitmapData.VTable, self.vtable).GetSourceBitmapDescription(@ptrCast(*const IBitmapData, self), pBitmapDescription);
         }
     };}
@@ -460,14 +460,14 @@ pub const IVisualTreeService2 = extern struct {
         GetPropertyIndex: fn(
             self: *const IVisualTreeService2,
             object: u64,
-            propertyName: [*:0]const u16,
-            pPropertyIndex: *u32,
+            propertyName: ?[*:0]const u16,
+            pPropertyIndex: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IVisualTreeService2,
             object: u64,
             propertyIndex: u32,
-            pValue: *u64,
+            pValue: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReplaceResource: fn(
             self: *const IVisualTreeService2,
@@ -481,18 +481,18 @@ pub const IVisualTreeService2 = extern struct {
             options: RenderTargetBitmapOptions,
             maxPixelWidth: u32,
             maxPixelHeight: u32,
-            ppBitmapData: **IBitmapData,
+            ppBitmapData: ?*?*IBitmapData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVisualTreeService.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService2_GetPropertyIndex(self: *const T, object: u64, propertyName: [*:0]const u16, pPropertyIndex: *u32) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService2_GetPropertyIndex(self: *const T, object: u64, propertyName: ?[*:0]const u16, pPropertyIndex: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService2.VTable, self.vtable).GetPropertyIndex(@ptrCast(*const IVisualTreeService2, self), object, propertyName, pPropertyIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService2_GetProperty(self: *const T, object: u64, propertyIndex: u32, pValue: *u64) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService2_GetProperty(self: *const T, object: u64, propertyIndex: u32, pValue: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService2.VTable, self.vtable).GetProperty(@ptrCast(*const IVisualTreeService2, self), object, propertyIndex, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -500,7 +500,7 @@ pub const IVisualTreeService2 = extern struct {
             return @ptrCast(*const IVisualTreeService2.VTable, self.vtable).ReplaceResource(@ptrCast(*const IVisualTreeService2, self), resourceDictionary, key, newValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService2_RenderTargetBitmap(self: *const T, handle: u64, options: RenderTargetBitmapOptions, maxPixelWidth: u32, maxPixelHeight: u32, ppBitmapData: **IBitmapData) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService2_RenderTargetBitmap(self: *const T, handle: u64, options: RenderTargetBitmapOptions, maxPixelWidth: u32, maxPixelHeight: u32, ppBitmapData: ?*?*IBitmapData) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService2.VTable, self.vtable).RenderTargetBitmap(@ptrCast(*const IVisualTreeService2, self), handle, options, maxPixelWidth, maxPixelHeight, ppBitmapData);
         }
     };}
@@ -516,16 +516,16 @@ pub const IVisualTreeService3 = extern struct {
         ResolveResource: fn(
             self: *const IVisualTreeService3,
             resourceContext: u64,
-            resourceName: [*:0]const u16,
+            resourceName: ?[*:0]const u16,
             resourceType: ResourceType,
             propertyIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDictionaryItem: fn(
             self: *const IVisualTreeService3,
             dictionaryHandle: u64,
-            resourceName: [*:0]const u16,
+            resourceName: ?[*:0]const u16,
             resourceIsImplicitStyle: BOOL,
-            resourceHandle: *u64,
+            resourceHandle: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDictionaryItem: fn(
             self: *const IVisualTreeService3,
@@ -543,11 +543,11 @@ pub const IVisualTreeService3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVisualTreeService2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService3_ResolveResource(self: *const T, resourceContext: u64, resourceName: [*:0]const u16, resourceType: ResourceType, propertyIndex: u32) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService3_ResolveResource(self: *const T, resourceContext: u64, resourceName: ?[*:0]const u16, resourceType: ResourceType, propertyIndex: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService3.VTable, self.vtable).ResolveResource(@ptrCast(*const IVisualTreeService3, self), resourceContext, resourceName, resourceType, propertyIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualTreeService3_GetDictionaryItem(self: *const T, dictionaryHandle: u64, resourceName: [*:0]const u16, resourceIsImplicitStyle: BOOL, resourceHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn IVisualTreeService3_GetDictionaryItem(self: *const T, dictionaryHandle: u64, resourceName: ?[*:0]const u16, resourceIsImplicitStyle: BOOL, resourceHandle: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVisualTreeService3.VTable, self.vtable).GetDictionaryItem(@ptrCast(*const IVisualTreeService3, self), dictionaryHandle, resourceName, resourceIsImplicitStyle, resourceHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -567,21 +567,21 @@ pub const IVisualTreeService3 = extern struct {
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
 pub extern "Windows.UI.Xaml" fn InitializeXamlDiagnostic(
-    endPointName: [*:0]const u16,
+    endPointName: ?[*:0]const u16,
     pid: u32,
-    wszDllXamlDiagnostics: [*:0]const u16,
-    wszTAPDllName: [*:0]const u16,
+    wszDllXamlDiagnostics: ?[*:0]const u16,
+    wszTAPDllName: ?[*:0]const u16,
     tapClsid: Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "Windows.UI.Xaml" fn InitializeXamlDiagnosticsEx(
-    endPointName: [*:0]const u16,
+    endPointName: ?[*:0]const u16,
     pid: u32,
-    wszDllXamlDiagnostics: [*:0]const u16,
-    wszTAPDllName: [*:0]const u16,
+    wszDllXamlDiagnostics: ?[*:0]const u16,
+    wszTAPDllName: ?[*:0]const u16,
     tapClsid: Guid,
-    wszInitializationData: [*:0]const u16,
+    wszInitializationData: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -92,7 +92,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialOriginX: fn(
             self: *const IInertiaProcessor,
-            x: *f32,
+            x: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialOriginX: fn(
@@ -102,7 +102,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialOriginY: fn(
             self: *const IInertiaProcessor,
-            y: *f32,
+            y: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialOriginY: fn(
@@ -112,7 +112,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialVelocityX: fn(
             self: *const IInertiaProcessor,
-            x: *f32,
+            x: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialVelocityX: fn(
@@ -122,7 +122,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialVelocityY: fn(
             self: *const IInertiaProcessor,
-            y: *f32,
+            y: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialVelocityY: fn(
@@ -132,7 +132,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialAngularVelocity: fn(
             self: *const IInertiaProcessor,
-            velocity: *f32,
+            velocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialAngularVelocity: fn(
@@ -142,7 +142,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialExpansionVelocity: fn(
             self: *const IInertiaProcessor,
-            velocity: *f32,
+            velocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialExpansionVelocity: fn(
@@ -152,7 +152,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialRadius: fn(
             self: *const IInertiaProcessor,
-            radius: *f32,
+            radius: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialRadius: fn(
@@ -162,7 +162,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryLeft: fn(
             self: *const IInertiaProcessor,
-            left: *f32,
+            left: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryLeft: fn(
@@ -172,7 +172,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryTop: fn(
             self: *const IInertiaProcessor,
-            top: *f32,
+            top: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryTop: fn(
@@ -182,7 +182,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryRight: fn(
             self: *const IInertiaProcessor,
-            right: *f32,
+            right: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryRight: fn(
@@ -192,7 +192,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryBottom: fn(
             self: *const IInertiaProcessor,
-            bottom: *f32,
+            bottom: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryBottom: fn(
@@ -202,7 +202,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginLeft: fn(
             self: *const IInertiaProcessor,
-            left: *f32,
+            left: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginLeft: fn(
@@ -212,7 +212,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginTop: fn(
             self: *const IInertiaProcessor,
-            top: *f32,
+            top: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginTop: fn(
@@ -222,7 +222,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginRight: fn(
             self: *const IInertiaProcessor,
-            right: *f32,
+            right: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginRight: fn(
@@ -232,7 +232,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginBottom: fn(
             self: *const IInertiaProcessor,
-            bottom: *f32,
+            bottom: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginBottom: fn(
@@ -242,7 +242,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredDisplacement: fn(
             self: *const IInertiaProcessor,
-            displacement: *f32,
+            displacement: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredDisplacement: fn(
@@ -252,7 +252,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredRotation: fn(
             self: *const IInertiaProcessor,
-            rotation: *f32,
+            rotation: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredRotation: fn(
@@ -262,7 +262,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredExpansion: fn(
             self: *const IInertiaProcessor,
-            expansion: *f32,
+            expansion: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredExpansion: fn(
@@ -272,7 +272,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredDeceleration: fn(
             self: *const IInertiaProcessor,
-            deceleration: *f32,
+            deceleration: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredDeceleration: fn(
@@ -282,7 +282,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredAngularDeceleration: fn(
             self: *const IInertiaProcessor,
-            deceleration: *f32,
+            deceleration: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredAngularDeceleration: fn(
@@ -292,7 +292,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredExpansionDeceleration: fn(
             self: *const IInertiaProcessor,
-            deceleration: *f32,
+            deceleration: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredExpansionDeceleration: fn(
@@ -302,7 +302,7 @@ pub const IInertiaProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialTimestamp: fn(
             self: *const IInertiaProcessor,
-            timestamp: *u32,
+            timestamp: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialTimestamp: fn(
@@ -314,12 +314,12 @@ pub const IInertiaProcessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Process: fn(
             self: *const IInertiaProcessor,
-            completed: *BOOL,
+            completed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessTime: fn(
             self: *const IInertiaProcessor,
             timestamp: u32,
-            completed: *BOOL,
+            completed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Complete: fn(
             self: *const IInertiaProcessor,
@@ -333,7 +333,7 @@ pub const IInertiaProcessor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialOriginX(self: *const T, x: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialOriginX(self: *const T, x: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -341,7 +341,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialOriginY(self: *const T, y: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialOriginY(self: *const T, y: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -349,7 +349,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialVelocityX(self: *const T, x: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialVelocityX(self: *const T, x: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -357,7 +357,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialVelocityY(self: *const T, y: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialVelocityY(self: *const T, y: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -365,7 +365,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialAngularVelocity(self: *const T, velocity: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialAngularVelocity(self: *const T, velocity: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -373,7 +373,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialExpansionVelocity(self: *const T, velocity: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialExpansionVelocity(self: *const T, velocity: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -381,7 +381,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialRadius(self: *const T, radius: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialRadius(self: *const T, radius: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -389,7 +389,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryLeft(self: *const T, left: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_BoundaryLeft(self: *const T, left: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -397,7 +397,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryTop(self: *const T, top: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_BoundaryTop(self: *const T, top: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -405,7 +405,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryRight(self: *const T, right: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_BoundaryRight(self: *const T, right: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -413,7 +413,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryBottom(self: *const T, bottom: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_BoundaryBottom(self: *const T, bottom: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -421,7 +421,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginLeft(self: *const T, left: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_ElasticMarginLeft(self: *const T, left: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -429,7 +429,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginTop(self: *const T, top: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_ElasticMarginTop(self: *const T, top: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -437,7 +437,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginRight(self: *const T, right: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_ElasticMarginRight(self: *const T, right: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -445,7 +445,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginBottom(self: *const T, bottom: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_ElasticMarginBottom(self: *const T, bottom: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -453,7 +453,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredDisplacement(self: *const T, displacement: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_DesiredDisplacement(self: *const T, displacement: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -461,7 +461,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredRotation(self: *const T, rotation: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_DesiredRotation(self: *const T, rotation: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -469,7 +469,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredExpansion(self: *const T, expansion: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_DesiredExpansion(self: *const T, expansion: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -477,7 +477,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredDeceleration(self: *const T, deceleration: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_DesiredDeceleration(self: *const T, deceleration: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -485,7 +485,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredAngularDeceleration(self: *const T, deceleration: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_DesiredAngularDeceleration(self: *const T, deceleration: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -493,7 +493,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredExpansionDeceleration(self: *const T, deceleration: *f32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_DesiredExpansionDeceleration(self: *const T, deceleration: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -501,7 +501,7 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialTimestamp(self: *const T, timestamp: *u32) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_get_InitialTimestamp(self: *const T, timestamp: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialTimestamp(@ptrCast(*const IInertiaProcessor, self), timestamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -513,11 +513,11 @@ pub const IInertiaProcessor = extern struct {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Reset(@ptrCast(*const IInertiaProcessor, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_Process(self: *const T, completed: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_Process(self: *const T, completed: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Process(@ptrCast(*const IInertiaProcessor, self), completed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_ProcessTime(self: *const T, timestamp: u32, completed: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IInertiaProcessor_ProcessTime(self: *const T, timestamp: u32, completed: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).ProcessTime(@ptrCast(*const IInertiaProcessor, self), timestamp, completed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -541,7 +541,7 @@ pub const IManipulationProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedManipulations: fn(
             self: *const IManipulationProcessor,
-            manipulations: *MANIPULATION_PROCESSOR_MANIPULATIONS,
+            manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportedManipulations: fn(
@@ -551,7 +551,7 @@ pub const IManipulationProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PivotPointX: fn(
             self: *const IManipulationProcessor,
-            pivotPointX: *f32,
+            pivotPointX: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PivotPointX: fn(
@@ -561,7 +561,7 @@ pub const IManipulationProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PivotPointY: fn(
             self: *const IManipulationProcessor,
-            pivotPointY: *f32,
+            pivotPointY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PivotPointY: fn(
@@ -571,7 +571,7 @@ pub const IManipulationProcessor = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PivotRadius: fn(
             self: *const IManipulationProcessor,
-            pivotRadius: *f32,
+            pivotRadius: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PivotRadius: fn(
@@ -622,24 +622,24 @@ pub const IManipulationProcessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVelocityX: fn(
             self: *const IManipulationProcessor,
-            velocityX: *f32,
+            velocityX: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVelocityY: fn(
             self: *const IManipulationProcessor,
-            velocityY: *f32,
+            velocityY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExpansionVelocity: fn(
             self: *const IManipulationProcessor,
-            expansionVelocity: *f32,
+            expansionVelocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAngularVelocity: fn(
             self: *const IManipulationProcessor,
-            angularVelocity: *f32,
+            angularVelocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinimumScaleRotateRadius: fn(
             self: *const IManipulationProcessor,
-            minRadius: *f32,
+            minRadius: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinimumScaleRotateRadius: fn(
@@ -651,7 +651,7 @@ pub const IManipulationProcessor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_SupportedManipulations(self: *const T, manipulations: *MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_get_SupportedManipulations(self: *const T, manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -659,7 +659,7 @@ pub const IManipulationProcessor = extern struct {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_PivotPointX(self: *const T, pivotPointX: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_get_PivotPointX(self: *const T, pivotPointX: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -667,7 +667,7 @@ pub const IManipulationProcessor = extern struct {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_PivotPointY(self: *const T, pivotPointY: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_get_PivotPointY(self: *const T, pivotPointY: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -675,7 +675,7 @@ pub const IManipulationProcessor = extern struct {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_PivotRadius(self: *const T, pivotRadius: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_get_PivotRadius(self: *const T, pivotRadius: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotRadius(@ptrCast(*const IManipulationProcessor, self), pivotRadius);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -711,23 +711,23 @@ pub const IManipulationProcessor = extern struct {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessUpWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetVelocityX(self: *const T, velocityX: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_GetVelocityX(self: *const T, velocityX: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityX(@ptrCast(*const IManipulationProcessor, self), velocityX);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetVelocityY(self: *const T, velocityY: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_GetVelocityY(self: *const T, velocityY: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityY(@ptrCast(*const IManipulationProcessor, self), velocityY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetExpansionVelocity(self: *const T, expansionVelocity: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_GetExpansionVelocity(self: *const T, expansionVelocity: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetExpansionVelocity(@ptrCast(*const IManipulationProcessor, self), expansionVelocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetAngularVelocity(self: *const T, angularVelocity: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_GetAngularVelocity(self: *const T, angularVelocity: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetAngularVelocity(@ptrCast(*const IManipulationProcessor, self), angularVelocity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_MinimumScaleRotateRadius(self: *const T, minRadius: *f32) callconv(.Inline) HRESULT {
+        pub fn IManipulationProcessor_get_MinimumScaleRotateRadius(self: *const T, minRadius: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_MinimumScaleRotateRadius(@ptrCast(*const IManipulationProcessor, self), minRadius);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -853,7 +853,7 @@ pub const HTOUCHINPUT = *opaque{};
 pub const TOUCHINPUT = extern struct {
     x: i32,
     y: i32,
-    hSource: HANDLE,
+    hSource: ?HANDLE,
     dwID: u32,
     dwFlags: TOUCHEVENTF_FLAGS,
     dwMask: TOUCHINPUTMASKF_MASK,
@@ -867,7 +867,7 @@ pub const GESTUREINFO = extern struct {
     cbSize: u32,
     dwFlags: u32,
     dwID: u32,
-    hwndTarget: HWND,
+    hwndTarget: ?HWND,
     ptsLocation: POINTS,
     dwInstanceID: u32,
     dwSequenceID: u32,
@@ -878,7 +878,7 @@ pub const GESTUREINFO = extern struct {
 pub const GESTURENOTIFYSTRUCT = extern struct {
     cbSize: u32,
     dwFlags: u32,
-    hwndTarget: HWND,
+    hwndTarget: ?HWND,
     ptsLocation: POINTS,
     dwInstanceID: u32,
 };
@@ -895,7 +895,7 @@ pub const GESTURECONFIG = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetTouchInputInfo(
-    hTouchInput: HTOUCHINPUT,
+    hTouchInput: ?HTOUCHINPUT,
     cInputs: u32,
     pInputs: [*]TOUCHINPUT,
     cbSize: i32,
@@ -903,48 +903,48 @@ pub extern "USER32" fn GetTouchInputInfo(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn CloseTouchInputHandle(
-    hTouchInput: HTOUCHINPUT,
+    hTouchInput: ?HTOUCHINPUT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn RegisterTouchWindow(
-    hwnd: HWND,
+    hwnd: ?HWND,
     ulFlags: REGISTER_TOUCH_WINDOW_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn UnregisterTouchWindow(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn IsTouchWindow(
-    hwnd: HWND,
+    hwnd: ?HWND,
     pulFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetGestureInfo(
-    hGestureInfo: HGESTUREINFO,
-    pGestureInfo: *GESTUREINFO,
+    hGestureInfo: ?HGESTUREINFO,
+    pGestureInfo: ?*GESTUREINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetGestureExtraArgs(
-    hGestureInfo: HGESTUREINFO,
+    hGestureInfo: ?HGESTUREINFO,
     cbExtraArgs: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pExtraArgs: *u8,
+    pExtraArgs: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn CloseGestureInfoHandle(
-    hGestureInfo: HGESTUREINFO,
+    hGestureInfo: ?HGESTUREINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn SetGestureConfig(
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwReserved: u32,
     cIDs: u32,
     pGestureConfig: [*]GESTURECONFIG,
@@ -953,10 +953,10 @@ pub extern "USER32" fn SetGestureConfig(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "USER32" fn GetGestureConfig(
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwReserved: u32,
     dwFlags: u32,
-    pcIDs: *u32,
+    pcIDs: ?*u32,
     pGestureConfig: [*]GESTURECONFIG,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

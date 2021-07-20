@@ -28,24 +28,24 @@ pub const ENCRYPTED_LM_OWF_PASSWORD = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn MSChapSrvChangePassword(
-    ServerName: PWSTR,
-    UserName: PWSTR,
+    ServerName: ?PWSTR,
+    UserName: ?PWSTR,
     LmOldPresent: u8,
-    LmOldOwfPassword: *LM_OWF_PASSWORD,
-    LmNewOwfPassword: *LM_OWF_PASSWORD,
-    NtOldOwfPassword: *LM_OWF_PASSWORD,
-    NtNewOwfPassword: *LM_OWF_PASSWORD,
+    LmOldOwfPassword: ?*LM_OWF_PASSWORD,
+    LmNewOwfPassword: ?*LM_OWF_PASSWORD,
+    NtOldOwfPassword: ?*LM_OWF_PASSWORD,
+    NtNewOwfPassword: ?*LM_OWF_PASSWORD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn MSChapSrvChangePassword2(
-    ServerName: PWSTR,
-    UserName: PWSTR,
-    NewPasswordEncryptedWithOldNt: *SAMPR_ENCRYPTED_USER_PASSWORD,
-    OldNtOwfPasswordEncryptedWithNewNt: *ENCRYPTED_LM_OWF_PASSWORD,
+    ServerName: ?PWSTR,
+    UserName: ?PWSTR,
+    NewPasswordEncryptedWithOldNt: ?*SAMPR_ENCRYPTED_USER_PASSWORD,
+    OldNtOwfPasswordEncryptedWithNewNt: ?*ENCRYPTED_LM_OWF_PASSWORD,
     LmPresent: u8,
-    NewPasswordEncryptedWithOldLm: *SAMPR_ENCRYPTED_USER_PASSWORD,
-    OldLmOwfPasswordEncryptedWithNewLmOrNt: *ENCRYPTED_LM_OWF_PASSWORD,
+    NewPasswordEncryptedWithOldLm: ?*SAMPR_ENCRYPTED_USER_PASSWORD,
+    OldLmOwfPasswordEncryptedWithNewLmOrNt: ?*ENCRYPTED_LM_OWF_PASSWORD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

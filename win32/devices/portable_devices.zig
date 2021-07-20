@@ -613,44 +613,44 @@ pub const IWpdSerializer = extern struct {
             self: *const IWpdSerializer,
             pBuffer: [*:0]u8,
             dwInputBufferLength: u32,
-            ppParams: **IPortableDeviceValues,
+            ppParams: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteIPortableDeviceValuesToBuffer: fn(
             self: *const IWpdSerializer,
             dwOutputBufferLength: u32,
-            pResults: *IPortableDeviceValues,
+            pResults: ?*IPortableDeviceValues,
             pBuffer: [*:0]u8,
-            pdwBytesWritten: *u32,
+            pdwBytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBufferFromIPortableDeviceValues: fn(
             self: *const IWpdSerializer,
-            pSource: *IPortableDeviceValues,
-            ppBuffer: [*]*u8,
-            pdwBufferSize: *u32,
+            pSource: ?*IPortableDeviceValues,
+            ppBuffer: [*]?*u8,
+            pdwBufferSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSerializedSize: fn(
             self: *const IWpdSerializer,
-            pSource: *IPortableDeviceValues,
-            pdwSize: *u32,
+            pSource: ?*IPortableDeviceValues,
+            pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_GetIPortableDeviceValuesFromBuffer(self: *const T, pBuffer: [*:0]u8, dwInputBufferLength: u32, ppParams: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IWpdSerializer_GetIPortableDeviceValuesFromBuffer(self: *const T, pBuffer: [*:0]u8, dwInputBufferLength: u32, ppParams: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetIPortableDeviceValuesFromBuffer(@ptrCast(*const IWpdSerializer, self), pBuffer, dwInputBufferLength, ppParams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_WriteIPortableDeviceValuesToBuffer(self: *const T, dwOutputBufferLength: u32, pResults: *IPortableDeviceValues, pBuffer: [*:0]u8, pdwBytesWritten: *u32) callconv(.Inline) HRESULT {
+        pub fn IWpdSerializer_WriteIPortableDeviceValuesToBuffer(self: *const T, dwOutputBufferLength: u32, pResults: ?*IPortableDeviceValues, pBuffer: [*:0]u8, pdwBytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWpdSerializer.VTable, self.vtable).WriteIPortableDeviceValuesToBuffer(@ptrCast(*const IWpdSerializer, self), dwOutputBufferLength, pResults, pBuffer, pdwBytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_GetBufferFromIPortableDeviceValues(self: *const T, pSource: *IPortableDeviceValues, ppBuffer: [*]*u8, pdwBufferSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWpdSerializer_GetBufferFromIPortableDeviceValues(self: *const T, pSource: ?*IPortableDeviceValues, ppBuffer: [*]?*u8, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetBufferFromIPortableDeviceValues(@ptrCast(*const IWpdSerializer, self), pSource, ppBuffer, pdwBufferSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_GetSerializedSize(self: *const T, pSource: *IPortableDeviceValues, pdwSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IWpdSerializer_GetSerializedSize(self: *const T, pSource: ?*IPortableDeviceValues, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetSerializedSize(@ptrCast(*const IWpdSerializer, self), pSource, pdwSize);
         }
     };}
@@ -664,197 +664,197 @@ pub const IPortableDeviceValues = extern struct {
         base: IUnknown.VTable,
         GetCount: fn(
             self: *const IPortableDeviceValues,
-            pcelt: *u32,
+            pcelt: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAt: fn(
             self: *const IPortableDeviceValues,
             index: u32,
-            pKey: *PROPERTYKEY,
-            pValue: *PROPVARIANT,
+            pKey: ?*PROPERTYKEY,
+            pValue: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *const PROPVARIANT,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *PROPVARIANT,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStringValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            Value: [*:0]const u16,
+            key: ?*const PROPERTYKEY,
+            Value: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *PWSTR,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUnsignedIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             Value: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUnsignedIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *u32,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSignedIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSignedIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *i32,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUnsignedLargeIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             Value: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUnsignedLargeIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *u64,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSignedLargeIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             Value: i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSignedLargeIntegerValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *i64,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFloatValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFloatValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *f32,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetErrorValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             Value: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *HRESULT,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKeyValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            Value: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
+            Value: ?*const PROPERTYKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*PROPERTYKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBoolValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             Value: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBoolValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *BOOL,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetIUnknownValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *IUnknown,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIUnknownValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            ppValue: **IUnknown,
+            key: ?*const PROPERTYKEY,
+            ppValue: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetGuidValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            Value: *const Guid,
+            key: ?*const PROPERTYKEY,
+            Value: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGuidValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *Guid,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBufferValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
             pValue: [*:0]u8,
             cbValue: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBufferValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            ppValue: [*]*u8,
-            pcbValue: *u32,
+            key: ?*const PROPERTYKEY,
+            ppValue: [*]?*u8,
+            pcbValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetIPortableDeviceValuesValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *IPortableDeviceValues,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIPortableDeviceValuesValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            ppValue: **IPortableDeviceValues,
+            key: ?*const PROPERTYKEY,
+            ppValue: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetIPortableDevicePropVariantCollectionValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *IPortableDevicePropVariantCollection,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIPortableDevicePropVariantCollectionValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            ppValue: **IPortableDevicePropVariantCollection,
+            key: ?*const PROPERTYKEY,
+            ppValue: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetIPortableDeviceKeyCollectionValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *IPortableDeviceKeyCollection,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIPortableDeviceKeyCollectionValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            ppValue: **IPortableDeviceKeyCollection,
+            key: ?*const PROPERTYKEY,
+            ppValue: ?*?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetIPortableDeviceValuesCollectionValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            pValue: *IPortableDeviceValuesCollection,
+            key: ?*const PROPERTYKEY,
+            pValue: ?*IPortableDeviceValuesCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIPortableDeviceValuesCollectionValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
-            ppValue: **IPortableDeviceValuesCollection,
+            key: ?*const PROPERTYKEY,
+            ppValue: ?*?*IPortableDeviceValuesCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveValue: fn(
             self: *const IPortableDeviceValues,
-            key: *const PROPERTYKEY,
+            key: ?*const PROPERTYKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyValuesFromPropertyStore: fn(
             self: *const IPortableDeviceValues,
-            pStore: *IPropertyStore,
+            pStore: ?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyValuesToPropertyStore: fn(
             self: *const IPortableDeviceValues,
-            pStore: *IPropertyStore,
+            pStore: ?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const IPortableDeviceValues,
@@ -864,159 +864,159 @@ pub const IPortableDeviceValues = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetCount(self: *const T, pcelt: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceValues, self), pcelt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetAt(self: *const T, index: u32, pKey: *PROPERTYKEY, pValue: *PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetAt(self: *const T, index: u32, pKey: ?*PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceValues, self), index, pKey, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetValue(self: *const T, key: *const PROPERTYKEY, pValue: *const PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetValue(self: *const T, key: *const PROPERTYKEY, pValue: *PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetStringValue(self: *const T, key: *const PROPERTYKEY, Value: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetStringValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetStringValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetStringValue(self: *const T, key: *const PROPERTYKEY, pValue: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetStringValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetStringValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetUnsignedIntegerValue(self: *const T, key: *const PROPERTYKEY, Value: u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetUnsignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetUnsignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetUnsignedIntegerValue(self: *const T, key: *const PROPERTYKEY, pValue: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetUnsignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetUnsignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetSignedIntegerValue(self: *const T, key: *const PROPERTYKEY, Value: i32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetSignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetSignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetSignedIntegerValue(self: *const T, key: *const PROPERTYKEY, pValue: *i32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetSignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetSignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetUnsignedLargeIntegerValue(self: *const T, key: *const PROPERTYKEY, Value: u64) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetUnsignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetUnsignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetUnsignedLargeIntegerValue(self: *const T, key: *const PROPERTYKEY, pValue: *u64) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetUnsignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetUnsignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetSignedLargeIntegerValue(self: *const T, key: *const PROPERTYKEY, Value: i64) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetSignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetSignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetSignedLargeIntegerValue(self: *const T, key: *const PROPERTYKEY, pValue: *i64) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetSignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetSignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetFloatValue(self: *const T, key: *const PROPERTYKEY, Value: f32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetFloatValue(self: *const T, key: ?*const PROPERTYKEY, Value: f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetFloatValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetFloatValue(self: *const T, key: *const PROPERTYKEY, pValue: *f32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetFloatValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*f32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetFloatValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetErrorValue(self: *const T, key: *const PROPERTYKEY, Value: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetErrorValue(self: *const T, key: ?*const PROPERTYKEY, Value: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetErrorValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetErrorValue(self: *const T, key: *const PROPERTYKEY, pValue: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetErrorValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetErrorValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetKeyValue(self: *const T, key: *const PROPERTYKEY, Value: *const PROPERTYKEY) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetKeyValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetKeyValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetKeyValue(self: *const T, key: *const PROPERTYKEY, pValue: *PROPERTYKEY) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetKeyValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetKeyValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetBoolValue(self: *const T, key: *const PROPERTYKEY, Value: BOOL) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetBoolValue(self: *const T, key: ?*const PROPERTYKEY, Value: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetBoolValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetBoolValue(self: *const T, key: *const PROPERTYKEY, pValue: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetBoolValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetBoolValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIUnknownValue(self: *const T, key: *const PROPERTYKEY, pValue: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetIUnknownValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIUnknownValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIUnknownValue(self: *const T, key: *const PROPERTYKEY, ppValue: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetIUnknownValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIUnknownValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetGuidValue(self: *const T, key: *const PROPERTYKEY, Value: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetGuidValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetGuidValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetGuidValue(self: *const T, key: *const PROPERTYKEY, pValue: *Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetGuidValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetGuidValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetBufferValue(self: *const T, key: *const PROPERTYKEY, pValue: [*:0]u8, cbValue: u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetBufferValue(self: *const T, key: ?*const PROPERTYKEY, pValue: [*:0]u8, cbValue: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetBufferValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue, cbValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetBufferValue(self: *const T, key: *const PROPERTYKEY, ppValue: [*]*u8, pcbValue: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetBufferValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: [*]?*u8, pcbValue: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetBufferValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue, pcbValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDeviceValuesValue(self: *const T, key: *const PROPERTYKEY, pValue: *IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetIPortableDeviceValuesValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceValuesValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDeviceValuesValue(self: *const T, key: *const PROPERTYKEY, ppValue: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetIPortableDeviceValuesValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceValuesValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDevicePropVariantCollectionValue(self: *const T, key: *const PROPERTYKEY, pValue: *IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetIPortableDevicePropVariantCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDevicePropVariantCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDevicePropVariantCollectionValue(self: *const T, key: *const PROPERTYKEY, ppValue: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetIPortableDevicePropVariantCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDevicePropVariantCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDeviceKeyCollectionValue(self: *const T, key: *const PROPERTYKEY, pValue: *IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetIPortableDeviceKeyCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceKeyCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDeviceKeyCollectionValue(self: *const T, key: *const PROPERTYKEY, ppValue: **IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetIPortableDeviceKeyCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceKeyCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDeviceValuesCollectionValue(self: *const T, key: *const PROPERTYKEY, pValue: *IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_SetIPortableDeviceValuesCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceValuesCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDeviceValuesCollectionValue(self: *const T, key: *const PROPERTYKEY, ppValue: **IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_GetIPortableDeviceValuesCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceValuesCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_RemoveValue(self: *const T, key: *const PROPERTYKEY) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_RemoveValue(self: *const T, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).RemoveValue(@ptrCast(*const IPortableDeviceValues, self), key);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_CopyValuesFromPropertyStore(self: *const T, pStore: *IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_CopyValuesFromPropertyStore(self: *const T, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).CopyValuesFromPropertyStore(@ptrCast(*const IPortableDeviceValues, self), pStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_CopyValuesToPropertyStore(self: *const T, pStore: *IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValues_CopyValuesToPropertyStore(self: *const T, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).CopyValuesToPropertyStore(@ptrCast(*const IPortableDeviceValues, self), pStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1034,16 +1034,16 @@ pub const IPortableDeviceKeyCollection = extern struct {
         base: IUnknown.VTable,
         GetCount: fn(
             self: *const IPortableDeviceKeyCollection,
-            pcElems: *u32,
+            pcElems: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAt: fn(
             self: *const IPortableDeviceKeyCollection,
             dwIndex: u32,
-            pKey: *PROPERTYKEY,
+            pKey: ?*PROPERTYKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IPortableDeviceKeyCollection,
-            Key: *const PROPERTYKEY,
+            Key: ?*const PROPERTYKEY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const IPortableDeviceKeyCollection,
@@ -1057,15 +1057,15 @@ pub const IPortableDeviceKeyCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_GetCount(self: *const T, pcElems: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceKeyCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceKeyCollection, self), pcElems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_GetAt(self: *const T, dwIndex: u32, pKey: *PROPERTYKEY) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceKeyCollection_GetAt(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceKeyCollection, self), dwIndex, pKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_Add(self: *const T, Key: *const PROPERTYKEY) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceKeyCollection_Add(self: *const T, Key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDeviceKeyCollection, self), Key);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1087,20 +1087,20 @@ pub const IPortableDevicePropVariantCollection = extern struct {
         base: IUnknown.VTable,
         GetCount: fn(
             self: *const IPortableDevicePropVariantCollection,
-            pcElems: *u32,
+            pcElems: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAt: fn(
             self: *const IPortableDevicePropVariantCollection,
             dwIndex: u32,
-            pValue: *PROPVARIANT,
+            pValue: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IPortableDevicePropVariantCollection,
-            pValue: *const PROPVARIANT,
+            pValue: ?*const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetType: fn(
             self: *const IPortableDevicePropVariantCollection,
-            pvt: *u16,
+            pvt: ?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChangeType: fn(
             self: *const IPortableDevicePropVariantCollection,
@@ -1118,19 +1118,19 @@ pub const IPortableDevicePropVariantCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_GetCount(self: *const T, pcElems: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropVariantCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDevicePropVariantCollection, self), pcElems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_GetAt(self: *const T, dwIndex: u32, pValue: *PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropVariantCollection_GetAt(self: *const T, dwIndex: u32, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDevicePropVariantCollection, self), dwIndex, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_Add(self: *const T, pValue: *const PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropVariantCollection_Add(self: *const T, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDevicePropVariantCollection, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_GetType(self: *const T, pvt: *u16) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropVariantCollection_GetType(self: *const T, pvt: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetType(@ptrCast(*const IPortableDevicePropVariantCollection, self), pvt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1156,16 +1156,16 @@ pub const IPortableDeviceValuesCollection = extern struct {
         base: IUnknown.VTable,
         GetCount: fn(
             self: *const IPortableDeviceValuesCollection,
-            pcElems: *u32,
+            pcElems: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAt: fn(
             self: *const IPortableDeviceValuesCollection,
             dwIndex: u32,
-            ppValues: **IPortableDeviceValues,
+            ppValues: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IPortableDeviceValuesCollection,
-            pValues: *IPortableDeviceValues,
+            pValues: ?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const IPortableDeviceValuesCollection,
@@ -1179,15 +1179,15 @@ pub const IPortableDeviceValuesCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_GetCount(self: *const T, pcElems: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValuesCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceValuesCollection, self), pcElems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_GetAt(self: *const T, dwIndex: u32, ppValues: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValuesCollection_GetAt(self: *const T, dwIndex: u32, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceValuesCollection, self), dwIndex, ppValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_Add(self: *const T, pValues: *IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceValuesCollection_Add(self: *const T, pValues: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDeviceValuesCollection, self), pValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1230,49 +1230,49 @@ pub const IPortableDeviceManager = extern struct {
         base: IUnknown.VTable,
         GetDevices: fn(
             self: *const IPortableDeviceManager,
-            pPnPDeviceIDs: *PWSTR,
-            pcPnPDeviceIDs: *u32,
+            pPnPDeviceIDs: ?*?PWSTR,
+            pcPnPDeviceIDs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RefreshDeviceList: fn(
             self: *const IPortableDeviceManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceFriendlyName: fn(
             self: *const IPortableDeviceManager,
-            pszPnPDeviceID: [*:0]const u16,
-            pDeviceFriendlyName: PWSTR,
-            pcchDeviceFriendlyName: *u32,
+            pszPnPDeviceID: ?[*:0]const u16,
+            pDeviceFriendlyName: ?PWSTR,
+            pcchDeviceFriendlyName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceDescription: fn(
             self: *const IPortableDeviceManager,
-            pszPnPDeviceID: [*:0]const u16,
-            pDeviceDescription: PWSTR,
-            pcchDeviceDescription: *u32,
+            pszPnPDeviceID: ?[*:0]const u16,
+            pDeviceDescription: ?PWSTR,
+            pcchDeviceDescription: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceManufacturer: fn(
             self: *const IPortableDeviceManager,
-            pszPnPDeviceID: [*:0]const u16,
-            pDeviceManufacturer: PWSTR,
-            pcchDeviceManufacturer: *u32,
+            pszPnPDeviceID: ?[*:0]const u16,
+            pDeviceManufacturer: ?PWSTR,
+            pcchDeviceManufacturer: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceProperty: fn(
             self: *const IPortableDeviceManager,
-            pszPnPDeviceID: [*:0]const u16,
-            pszDevicePropertyName: [*:0]const u16,
-            pData: *u8,
-            pcbData: *u32,
-            pdwType: *u32,
+            pszPnPDeviceID: ?[*:0]const u16,
+            pszDevicePropertyName: ?[*:0]const u16,
+            pData: ?*u8,
+            pcbData: ?*u32,
+            pdwType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrivateDevices: fn(
             self: *const IPortableDeviceManager,
-            pPnPDeviceIDs: *PWSTR,
-            pcPnPDeviceIDs: *u32,
+            pPnPDeviceIDs: ?*?PWSTR,
+            pcPnPDeviceIDs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDevices(self: *const T, pPnPDeviceIDs: *PWSTR, pcPnPDeviceIDs: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceManager_GetDevices(self: *const T, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDevices(@ptrCast(*const IPortableDeviceManager, self), pPnPDeviceIDs, pcPnPDeviceIDs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1280,23 +1280,23 @@ pub const IPortableDeviceManager = extern struct {
             return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).RefreshDeviceList(@ptrCast(*const IPortableDeviceManager, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceFriendlyName(self: *const T, pszPnPDeviceID: [*:0]const u16, pDeviceFriendlyName: PWSTR, pcchDeviceFriendlyName: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceManager_GetDeviceFriendlyName(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceFriendlyName: ?PWSTR, pcchDeviceFriendlyName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceFriendlyName(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceFriendlyName, pcchDeviceFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceDescription(self: *const T, pszPnPDeviceID: [*:0]const u16, pDeviceDescription: PWSTR, pcchDeviceDescription: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceManager_GetDeviceDescription(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceDescription: ?PWSTR, pcchDeviceDescription: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceDescription(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceDescription, pcchDeviceDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceManufacturer(self: *const T, pszPnPDeviceID: [*:0]const u16, pDeviceManufacturer: PWSTR, pcchDeviceManufacturer: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceManager_GetDeviceManufacturer(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceManufacturer: ?PWSTR, pcchDeviceManufacturer: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceManufacturer(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceManufacturer, pcchDeviceManufacturer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceProperty(self: *const T, pszPnPDeviceID: [*:0]const u16, pszDevicePropertyName: [*:0]const u16, pData: *u8, pcbData: *u32, pdwType: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceManager_GetDeviceProperty(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pszDevicePropertyName: ?[*:0]const u16, pData: ?*u8, pcbData: ?*u32, pdwType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceProperty(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pszDevicePropertyName, pData, pcbData, pdwType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetPrivateDevices(self: *const T, pPnPDeviceIDs: *PWSTR, pcPnPDeviceIDs: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceManager_GetPrivateDevices(self: *const T, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetPrivateDevices(@ptrCast(*const IPortableDeviceManager, self), pPnPDeviceIDs, pcPnPDeviceIDs);
         }
     };}
@@ -1310,22 +1310,22 @@ pub const IPortableDevice = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IPortableDevice,
-            pszPnPDeviceID: [*:0]const u16,
-            pClientInfo: *IPortableDeviceValues,
+            pszPnPDeviceID: ?[*:0]const u16,
+            pClientInfo: ?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendCommand: fn(
             self: *const IPortableDevice,
             dwFlags: u32,
-            pParameters: *IPortableDeviceValues,
-            ppResults: **IPortableDeviceValues,
+            pParameters: ?*IPortableDeviceValues,
+            ppResults: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Content: fn(
             self: *const IPortableDevice,
-            ppContent: **IPortableDeviceContent,
+            ppContent: ?*?*IPortableDeviceContent,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Capabilities: fn(
             self: *const IPortableDevice,
-            ppCapabilities: **IPortableDeviceCapabilities,
+            ppCapabilities: ?*?*IPortableDeviceCapabilities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDevice,
@@ -1336,36 +1336,36 @@ pub const IPortableDevice = extern struct {
         Advise: fn(
             self: *const IPortableDevice,
             dwFlags: u32,
-            pCallback: *IPortableDeviceEventCallback,
-            pParameters: *IPortableDeviceValues,
-            ppszCookie: *PWSTR,
+            pCallback: ?*IPortableDeviceEventCallback,
+            pParameters: ?*IPortableDeviceValues,
+            ppszCookie: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unadvise: fn(
             self: *const IPortableDevice,
-            pszCookie: [*:0]const u16,
+            pszCookie: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPnPDeviceID: fn(
             self: *const IPortableDevice,
-            ppszPnPDeviceID: *PWSTR,
+            ppszPnPDeviceID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Open(self: *const T, pszPnPDeviceID: [*:0]const u16, pClientInfo: *IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDevice_Open(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).Open(@ptrCast(*const IPortableDevice, self), pszPnPDeviceID, pClientInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_SendCommand(self: *const T, dwFlags: u32, pParameters: *IPortableDeviceValues, ppResults: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDevice_SendCommand(self: *const T, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).SendCommand(@ptrCast(*const IPortableDevice, self), dwFlags, pParameters, ppResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Content(self: *const T, ppContent: **IPortableDeviceContent) callconv(.Inline) HRESULT {
+        pub fn IPortableDevice_Content(self: *const T, ppContent: ?*?*IPortableDeviceContent) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).Content(@ptrCast(*const IPortableDevice, self), ppContent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Capabilities(self: *const T, ppCapabilities: **IPortableDeviceCapabilities) callconv(.Inline) HRESULT {
+        pub fn IPortableDevice_Capabilities(self: *const T, ppCapabilities: ?*?*IPortableDeviceCapabilities) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).Capabilities(@ptrCast(*const IPortableDevice, self), ppCapabilities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1377,15 +1377,15 @@ pub const IPortableDevice = extern struct {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).Close(@ptrCast(*const IPortableDevice, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Advise(self: *const T, dwFlags: u32, pCallback: *IPortableDeviceEventCallback, pParameters: *IPortableDeviceValues, ppszCookie: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDevice_Advise(self: *const T, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).Advise(@ptrCast(*const IPortableDevice, self), dwFlags, pCallback, pParameters, ppszCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Unadvise(self: *const T, pszCookie: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IPortableDevice_Unadvise(self: *const T, pszCookie: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).Unadvise(@ptrCast(*const IPortableDevice, self), pszCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_GetPnPDeviceID(self: *const T, ppszPnPDeviceID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDevice_GetPnPDeviceID(self: *const T, ppszPnPDeviceID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevice.VTable, self.vtable).GetPnPDeviceID(@ptrCast(*const IPortableDevice, self), ppszPnPDeviceID);
         }
     };}
@@ -1400,86 +1400,86 @@ pub const IPortableDeviceContent = extern struct {
         EnumObjects: fn(
             self: *const IPortableDeviceContent,
             dwFlags: u32,
-            pszParentObjectID: [*:0]const u16,
-            pFilter: *IPortableDeviceValues,
-            ppEnum: **IEnumPortableDeviceObjectIDs,
+            pszParentObjectID: ?[*:0]const u16,
+            pFilter: ?*IPortableDeviceValues,
+            ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Properties: fn(
             self: *const IPortableDeviceContent,
-            ppProperties: **IPortableDeviceProperties,
+            ppProperties: ?*?*IPortableDeviceProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Transfer: fn(
             self: *const IPortableDeviceContent,
-            ppResources: **IPortableDeviceResources,
+            ppResources: ?*?*IPortableDeviceResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateObjectWithPropertiesOnly: fn(
             self: *const IPortableDeviceContent,
-            pValues: *IPortableDeviceValues,
-            ppszObjectID: *PWSTR,
+            pValues: ?*IPortableDeviceValues,
+            ppszObjectID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateObjectWithPropertiesAndData: fn(
             self: *const IPortableDeviceContent,
-            pValues: *IPortableDeviceValues,
-            ppData: **IStream,
-            pdwOptimalWriteBufferSize: *u32,
-            ppszCookie: *PWSTR,
+            pValues: ?*IPortableDeviceValues,
+            ppData: ?*?*IStream,
+            pdwOptimalWriteBufferSize: ?*u32,
+            ppszCookie: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IPortableDeviceContent,
             dwOptions: u32,
-            pObjectIDs: *IPortableDevicePropVariantCollection,
-            ppResults: **IPortableDevicePropVariantCollection,
+            pObjectIDs: ?*IPortableDevicePropVariantCollection,
+            ppResults: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectIDsFromPersistentUniqueIDs: fn(
             self: *const IPortableDeviceContent,
-            pPersistentUniqueIDs: *IPortableDevicePropVariantCollection,
-            ppObjectIDs: **IPortableDevicePropVariantCollection,
+            pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection,
+            ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceContent,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Move: fn(
             self: *const IPortableDeviceContent,
-            pObjectIDs: *IPortableDevicePropVariantCollection,
-            pszDestinationFolderObjectID: [*:0]const u16,
-            ppResults: **IPortableDevicePropVariantCollection,
+            pObjectIDs: ?*IPortableDevicePropVariantCollection,
+            pszDestinationFolderObjectID: ?[*:0]const u16,
+            ppResults: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Copy: fn(
             self: *const IPortableDeviceContent,
-            pObjectIDs: *IPortableDevicePropVariantCollection,
-            pszDestinationFolderObjectID: [*:0]const u16,
-            ppResults: **IPortableDevicePropVariantCollection,
+            pObjectIDs: ?*IPortableDevicePropVariantCollection,
+            pszDestinationFolderObjectID: ?[*:0]const u16,
+            ppResults: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_EnumObjects(self: *const T, dwFlags: u32, pszParentObjectID: [*:0]const u16, pFilter: *IPortableDeviceValues, ppEnum: **IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_EnumObjects(self: *const T, dwFlags: u32, pszParentObjectID: ?[*:0]const u16, pFilter: ?*IPortableDeviceValues, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).EnumObjects(@ptrCast(*const IPortableDeviceContent, self), dwFlags, pszParentObjectID, pFilter, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Properties(self: *const T, ppProperties: **IPortableDeviceProperties) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_Properties(self: *const T, ppProperties: ?*?*IPortableDeviceProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Properties(@ptrCast(*const IPortableDeviceContent, self), ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Transfer(self: *const T, ppResources: **IPortableDeviceResources) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_Transfer(self: *const T, ppResources: ?*?*IPortableDeviceResources) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Transfer(@ptrCast(*const IPortableDeviceContent, self), ppResources);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_CreateObjectWithPropertiesOnly(self: *const T, pValues: *IPortableDeviceValues, ppszObjectID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_CreateObjectWithPropertiesOnly(self: *const T, pValues: ?*IPortableDeviceValues, ppszObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).CreateObjectWithPropertiesOnly(@ptrCast(*const IPortableDeviceContent, self), pValues, ppszObjectID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_CreateObjectWithPropertiesAndData(self: *const T, pValues: *IPortableDeviceValues, ppData: **IStream, pdwOptimalWriteBufferSize: *u32, ppszCookie: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_CreateObjectWithPropertiesAndData(self: *const T, pValues: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).CreateObjectWithPropertiesAndData(@ptrCast(*const IPortableDeviceContent, self), pValues, ppData, pdwOptimalWriteBufferSize, ppszCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Delete(self: *const T, dwOptions: u32, pObjectIDs: *IPortableDevicePropVariantCollection, ppResults: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_Delete(self: *const T, dwOptions: u32, pObjectIDs: ?*IPortableDevicePropVariantCollection, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceContent, self), dwOptions, pObjectIDs, ppResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_GetObjectIDsFromPersistentUniqueIDs(self: *const T, pPersistentUniqueIDs: *IPortableDevicePropVariantCollection, ppObjectIDs: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_GetObjectIDsFromPersistentUniqueIDs(self: *const T, pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).GetObjectIDsFromPersistentUniqueIDs(@ptrCast(*const IPortableDeviceContent, self), pPersistentUniqueIDs, ppObjectIDs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1487,11 +1487,11 @@ pub const IPortableDeviceContent = extern struct {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceContent, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Move(self: *const T, pObjectIDs: *IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: [*:0]const u16, ppResults: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_Move(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Move(@ptrCast(*const IPortableDeviceContent, self), pObjectIDs, pszDestinationFolderObjectID, ppResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Copy(self: *const T, pObjectIDs: *IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: [*:0]const u16, ppResults: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent_Copy(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Copy(@ptrCast(*const IPortableDeviceContent, self), pObjectIDs, pszDestinationFolderObjectID, ppResults);
         }
     };}
@@ -1506,17 +1506,17 @@ pub const IPortableDeviceContent2 = extern struct {
         base: IPortableDeviceContent.VTable,
         UpdateObjectWithPropertiesAndData: fn(
             self: *const IPortableDeviceContent2,
-            pszObjectID: [*:0]const u16,
-            pProperties: *IPortableDeviceValues,
-            ppData: **IStream,
-            pdwOptimalWriteBufferSize: *u32,
+            pszObjectID: ?[*:0]const u16,
+            pProperties: ?*IPortableDeviceValues,
+            ppData: ?*?*IStream,
+            pdwOptimalWriteBufferSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPortableDeviceContent.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent2_UpdateObjectWithPropertiesAndData(self: *const T, pszObjectID: [*:0]const u16, pProperties: *IPortableDeviceValues, ppData: **IStream, pdwOptimalWriteBufferSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceContent2_UpdateObjectWithPropertiesAndData(self: *const T, pszObjectID: ?[*:0]const u16, pProperties: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceContent2.VTable, self.vtable).UpdateObjectWithPropertiesAndData(@ptrCast(*const IPortableDeviceContent2, self), pszObjectID, pProperties, ppData, pdwOptimalWriteBufferSize);
         }
     };}
@@ -1531,8 +1531,8 @@ pub const IEnumPortableDeviceObjectIDs = extern struct {
         Next: fn(
             self: *const IEnumPortableDeviceObjectIDs,
             cObjects: u32,
-            pObjIDs: [*]PWSTR,
-            pcFetched: *u32,
+            pObjIDs: [*]?PWSTR,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumPortableDeviceObjectIDs,
@@ -1543,7 +1543,7 @@ pub const IEnumPortableDeviceObjectIDs = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumPortableDeviceObjectIDs,
-            ppEnum: **IEnumPortableDeviceObjectIDs,
+            ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IEnumPortableDeviceObjectIDs,
@@ -1553,7 +1553,7 @@ pub const IEnumPortableDeviceObjectIDs = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceObjectIDs_Next(self: *const T, cObjects: u32, pObjIDs: [*]PWSTR, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumPortableDeviceObjectIDs_Next(self: *const T, cObjects: u32, pObjIDs: [*]?PWSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Next(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), cObjects, pObjIDs, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1565,7 +1565,7 @@ pub const IEnumPortableDeviceObjectIDs = extern struct {
             return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Reset(@ptrCast(*const IEnumPortableDeviceObjectIDs, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceObjectIDs_Clone(self: *const T, ppEnum: **IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
+        pub fn IEnumPortableDeviceObjectIDs_Clone(self: *const T, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Clone(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1583,31 +1583,31 @@ pub const IPortableDeviceProperties = extern struct {
         base: IUnknown.VTable,
         GetSupportedProperties: fn(
             self: *const IPortableDeviceProperties,
-            pszObjectID: [*:0]const u16,
-            ppKeys: **IPortableDeviceKeyCollection,
+            pszObjectID: ?[*:0]const u16,
+            ppKeys: ?*?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyAttributes: fn(
             self: *const IPortableDeviceProperties,
-            pszObjectID: [*:0]const u16,
-            Key: *const PROPERTYKEY,
-            ppAttributes: **IPortableDeviceValues,
+            pszObjectID: ?[*:0]const u16,
+            Key: ?*const PROPERTYKEY,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValues: fn(
             self: *const IPortableDeviceProperties,
-            pszObjectID: [*:0]const u16,
-            pKeys: *IPortableDeviceKeyCollection,
-            ppValues: **IPortableDeviceValues,
+            pszObjectID: ?[*:0]const u16,
+            pKeys: ?*IPortableDeviceKeyCollection,
+            ppValues: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValues: fn(
             self: *const IPortableDeviceProperties,
-            pszObjectID: [*:0]const u16,
-            pValues: *IPortableDeviceValues,
-            ppResults: **IPortableDeviceValues,
+            pszObjectID: ?[*:0]const u16,
+            pValues: ?*IPortableDeviceValues,
+            ppResults: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IPortableDeviceProperties,
-            pszObjectID: [*:0]const u16,
-            pKeys: *IPortableDeviceKeyCollection,
+            pszObjectID: ?[*:0]const u16,
+            pKeys: ?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceProperties,
@@ -1617,23 +1617,23 @@ pub const IPortableDeviceProperties = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_GetSupportedProperties(self: *const T, pszObjectID: [*:0]const u16, ppKeys: **IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceProperties_GetSupportedProperties(self: *const T, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetSupportedProperties(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, ppKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_GetPropertyAttributes(self: *const T, pszObjectID: [*:0]const u16, Key: *const PROPERTYKEY, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceProperties_GetPropertyAttributes(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetPropertyAttributes(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, Key, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_GetValues(self: *const T, pszObjectID: [*:0]const u16, pKeys: *IPortableDeviceKeyCollection, ppValues: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceProperties_GetValues(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetValues(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pKeys, ppValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_SetValues(self: *const T, pszObjectID: [*:0]const u16, pValues: *IPortableDeviceValues, ppResults: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceProperties_SetValues(self: *const T, pszObjectID: ?[*:0]const u16, pValues: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).SetValues(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pValues, ppResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_Delete(self: *const T, pszObjectID: [*:0]const u16, pKeys: *IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceProperties_Delete(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1651,56 +1651,56 @@ pub const IPortableDeviceResources = extern struct {
         base: IUnknown.VTable,
         GetSupportedResources: fn(
             self: *const IPortableDeviceResources,
-            pszObjectID: [*:0]const u16,
-            ppKeys: **IPortableDeviceKeyCollection,
+            pszObjectID: ?[*:0]const u16,
+            ppKeys: ?*?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResourceAttributes: fn(
             self: *const IPortableDeviceResources,
-            pszObjectID: [*:0]const u16,
-            Key: *const PROPERTYKEY,
-            ppResourceAttributes: **IPortableDeviceValues,
+            pszObjectID: ?[*:0]const u16,
+            Key: ?*const PROPERTYKEY,
+            ppResourceAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IPortableDeviceResources,
-            pszObjectID: [*:0]const u16,
-            Key: *const PROPERTYKEY,
+            pszObjectID: ?[*:0]const u16,
+            Key: ?*const PROPERTYKEY,
             dwMode: u32,
-            pdwOptimalBufferSize: *u32,
-            ppStream: **IStream,
+            pdwOptimalBufferSize: ?*u32,
+            ppStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IPortableDeviceResources,
-            pszObjectID: [*:0]const u16,
-            pKeys: *IPortableDeviceKeyCollection,
+            pszObjectID: ?[*:0]const u16,
+            pKeys: ?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateResource: fn(
             self: *const IPortableDeviceResources,
-            pResourceAttributes: *IPortableDeviceValues,
-            ppData: **IStream,
-            pdwOptimalWriteBufferSize: *u32,
-            ppszCookie: *PWSTR,
+            pResourceAttributes: ?*IPortableDeviceValues,
+            ppData: ?*?*IStream,
+            pdwOptimalWriteBufferSize: ?*u32,
+            ppszCookie: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_GetSupportedResources(self: *const T, pszObjectID: [*:0]const u16, ppKeys: **IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceResources_GetSupportedResources(self: *const T, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetSupportedResources(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, ppKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_GetResourceAttributes(self: *const T, pszObjectID: [*:0]const u16, Key: *const PROPERTYKEY, ppResourceAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceResources_GetResourceAttributes(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppResourceAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetResourceAttributes(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, Key, ppResourceAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_GetStream(self: *const T, pszObjectID: [*:0]const u16, Key: *const PROPERTYKEY, dwMode: u32, pdwOptimalBufferSize: *u32, ppStream: **IStream) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceResources_GetStream(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, dwMode: u32, pdwOptimalBufferSize: ?*u32, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetStream(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, Key, dwMode, pdwOptimalBufferSize, ppStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_Delete(self: *const T, pszObjectID: [*:0]const u16, pKeys: *IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceResources_Delete(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, pKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1708,7 +1708,7 @@ pub const IPortableDeviceResources = extern struct {
             return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceResources, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_CreateResource(self: *const T, pResourceAttributes: *IPortableDeviceValues, ppData: **IStream, pdwOptimalWriteBufferSize: *u32, ppszCookie: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceResources_CreateResource(self: *const T, pResourceAttributes: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).CreateResource(@ptrCast(*const IPortableDeviceResources, self), pResourceAttributes, ppData, pdwOptimalWriteBufferSize, ppszCookie);
         }
     };}
@@ -1722,89 +1722,89 @@ pub const IPortableDeviceCapabilities = extern struct {
         base: IUnknown.VTable,
         GetSupportedCommands: fn(
             self: *const IPortableDeviceCapabilities,
-            ppCommands: **IPortableDeviceKeyCollection,
+            ppCommands: ?*?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCommandOptions: fn(
             self: *const IPortableDeviceCapabilities,
-            Command: *const PROPERTYKEY,
-            ppOptions: **IPortableDeviceValues,
+            Command: ?*const PROPERTYKEY,
+            ppOptions: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunctionalCategories: fn(
             self: *const IPortableDeviceCapabilities,
-            ppCategories: **IPortableDevicePropVariantCollection,
+            ppCategories: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFunctionalObjects: fn(
             self: *const IPortableDeviceCapabilities,
-            Category: *const Guid,
-            ppObjectIDs: **IPortableDevicePropVariantCollection,
+            Category: ?*const Guid,
+            ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedContentTypes: fn(
             self: *const IPortableDeviceCapabilities,
-            Category: *const Guid,
-            ppContentTypes: **IPortableDevicePropVariantCollection,
+            Category: ?*const Guid,
+            ppContentTypes: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedFormats: fn(
             self: *const IPortableDeviceCapabilities,
-            ContentType: *const Guid,
-            ppFormats: **IPortableDevicePropVariantCollection,
+            ContentType: ?*const Guid,
+            ppFormats: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedFormatProperties: fn(
             self: *const IPortableDeviceCapabilities,
-            Format: *const Guid,
-            ppKeys: **IPortableDeviceKeyCollection,
+            Format: ?*const Guid,
+            ppKeys: ?*?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFixedPropertyAttributes: fn(
             self: *const IPortableDeviceCapabilities,
-            Format: *const Guid,
-            Key: *const PROPERTYKEY,
-            ppAttributes: **IPortableDeviceValues,
+            Format: ?*const Guid,
+            Key: ?*const PROPERTYKEY,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceCapabilities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedEvents: fn(
             self: *const IPortableDeviceCapabilities,
-            ppEvents: **IPortableDevicePropVariantCollection,
+            ppEvents: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEventOptions: fn(
             self: *const IPortableDeviceCapabilities,
-            Event: *const Guid,
-            ppOptions: **IPortableDeviceValues,
+            Event: ?*const Guid,
+            ppOptions: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedCommands(self: *const T, ppCommands: **IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetSupportedCommands(self: *const T, ppCommands: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedCommands(@ptrCast(*const IPortableDeviceCapabilities, self), ppCommands);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetCommandOptions(self: *const T, Command: *const PROPERTYKEY, ppOptions: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetCommandOptions(self: *const T, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetCommandOptions(@ptrCast(*const IPortableDeviceCapabilities, self), Command, ppOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetFunctionalCategories(self: *const T, ppCategories: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetFunctionalCategories(self: *const T, ppCategories: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFunctionalCategories(@ptrCast(*const IPortableDeviceCapabilities, self), ppCategories);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetFunctionalObjects(self: *const T, Category: *const Guid, ppObjectIDs: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetFunctionalObjects(self: *const T, Category: ?*const Guid, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFunctionalObjects(@ptrCast(*const IPortableDeviceCapabilities, self), Category, ppObjectIDs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedContentTypes(self: *const T, Category: *const Guid, ppContentTypes: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetSupportedContentTypes(self: *const T, Category: ?*const Guid, ppContentTypes: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedContentTypes(@ptrCast(*const IPortableDeviceCapabilities, self), Category, ppContentTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedFormats(self: *const T, ContentType: *const Guid, ppFormats: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetSupportedFormats(self: *const T, ContentType: ?*const Guid, ppFormats: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedFormats(@ptrCast(*const IPortableDeviceCapabilities, self), ContentType, ppFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedFormatProperties(self: *const T, Format: *const Guid, ppKeys: **IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetSupportedFormatProperties(self: *const T, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedFormatProperties(@ptrCast(*const IPortableDeviceCapabilities, self), Format, ppKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetFixedPropertyAttributes(self: *const T, Format: *const Guid, Key: *const PROPERTYKEY, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetFixedPropertyAttributes(self: *const T, Format: ?*const Guid, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFixedPropertyAttributes(@ptrCast(*const IPortableDeviceCapabilities, self), Format, Key, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1812,11 +1812,11 @@ pub const IPortableDeviceCapabilities = extern struct {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceCapabilities, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedEvents(self: *const T, ppEvents: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetSupportedEvents(self: *const T, ppEvents: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedEvents(@ptrCast(*const IPortableDeviceCapabilities, self), ppEvents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetEventOptions(self: *const T, Event: *const Guid, ppOptions: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceCapabilities_GetEventOptions(self: *const T, Event: ?*const Guid, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetEventOptions(@ptrCast(*const IPortableDeviceCapabilities, self), Event, ppOptions);
         }
     };}
@@ -1830,14 +1830,14 @@ pub const IPortableDeviceEventCallback = extern struct {
         base: IUnknown.VTable,
         OnEvent: fn(
             self: *const IPortableDeviceEventCallback,
-            pEventParameters: *IPortableDeviceValues,
+            pEventParameters: ?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceEventCallback_OnEvent(self: *const T, pEventParameters: *IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceEventCallback_OnEvent(self: *const T, pEventParameters: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const IPortableDeviceEventCallback, self), pEventParameters);
         }
     };}
@@ -1851,7 +1851,7 @@ pub const IPortableDeviceDataStream = extern struct {
         base: IStream.VTable,
         GetObjectID: fn(
             self: *const IPortableDeviceDataStream,
-            ppszObjectID: *PWSTR,
+            ppszObjectID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceDataStream,
@@ -1861,7 +1861,7 @@ pub const IPortableDeviceDataStream = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceDataStream_GetObjectID(self: *const T, ppszObjectID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceDataStream_GetObjectID(self: *const T, ppszObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceDataStream.VTable, self.vtable).GetObjectID(@ptrCast(*const IPortableDeviceDataStream, self), ppszObjectID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1911,56 +1911,56 @@ pub const IPortableDevicePropertiesBulk = extern struct {
         base: IUnknown.VTable,
         QueueGetValuesByObjectList: fn(
             self: *const IPortableDevicePropertiesBulk,
-            pObjectIDs: *IPortableDevicePropVariantCollection,
-            pKeys: *IPortableDeviceKeyCollection,
-            pCallback: *IPortableDevicePropertiesBulkCallback,
-            pContext: *Guid,
+            pObjectIDs: ?*IPortableDevicePropVariantCollection,
+            pKeys: ?*IPortableDeviceKeyCollection,
+            pCallback: ?*IPortableDevicePropertiesBulkCallback,
+            pContext: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueueGetValuesByObjectFormat: fn(
             self: *const IPortableDevicePropertiesBulk,
-            pguidObjectFormat: *const Guid,
-            pszParentObjectID: [*:0]const u16,
+            pguidObjectFormat: ?*const Guid,
+            pszParentObjectID: ?[*:0]const u16,
             dwDepth: u32,
-            pKeys: *IPortableDeviceKeyCollection,
-            pCallback: *IPortableDevicePropertiesBulkCallback,
-            pContext: *Guid,
+            pKeys: ?*IPortableDeviceKeyCollection,
+            pCallback: ?*IPortableDevicePropertiesBulkCallback,
+            pContext: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueueSetValuesByObjectList: fn(
             self: *const IPortableDevicePropertiesBulk,
-            pObjectValues: *IPortableDeviceValuesCollection,
-            pCallback: *IPortableDevicePropertiesBulkCallback,
-            pContext: *Guid,
+            pObjectValues: ?*IPortableDeviceValuesCollection,
+            pCallback: ?*IPortableDevicePropertiesBulkCallback,
+            pContext: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Start: fn(
             self: *const IPortableDevicePropertiesBulk,
-            pContext: *const Guid,
+            pContext: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDevicePropertiesBulk,
-            pContext: *const Guid,
+            pContext: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectList(self: *const T, pObjectIDs: *IPortableDevicePropVariantCollection, pKeys: *IPortableDeviceKeyCollection, pCallback: *IPortableDevicePropertiesBulkCallback, pContext: *Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectList(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueGetValuesByObjectList(@ptrCast(*const IPortableDevicePropertiesBulk, self), pObjectIDs, pKeys, pCallback, pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectFormat(self: *const T, pguidObjectFormat: *const Guid, pszParentObjectID: [*:0]const u16, dwDepth: u32, pKeys: *IPortableDeviceKeyCollection, pCallback: *IPortableDevicePropertiesBulkCallback, pContext: *Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectFormat(self: *const T, pguidObjectFormat: ?*const Guid, pszParentObjectID: ?[*:0]const u16, dwDepth: u32, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueGetValuesByObjectFormat(@ptrCast(*const IPortableDevicePropertiesBulk, self), pguidObjectFormat, pszParentObjectID, dwDepth, pKeys, pCallback, pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_QueueSetValuesByObjectList(self: *const T, pObjectValues: *IPortableDeviceValuesCollection, pCallback: *IPortableDevicePropertiesBulkCallback, pContext: *Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulk_QueueSetValuesByObjectList(self: *const T, pObjectValues: ?*IPortableDeviceValuesCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueSetValuesByObjectList(@ptrCast(*const IPortableDevicePropertiesBulk, self), pObjectValues, pCallback, pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_Start(self: *const T, pContext: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulk_Start(self: *const T, pContext: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).Start(@ptrCast(*const IPortableDevicePropertiesBulk, self), pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_Cancel(self: *const T, pContext: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulk_Cancel(self: *const T, pContext: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDevicePropertiesBulk, self), pContext);
         }
     };}
@@ -1974,16 +1974,16 @@ pub const IPortableDevicePropertiesBulkCallback = extern struct {
         base: IUnknown.VTable,
         OnStart: fn(
             self: *const IPortableDevicePropertiesBulkCallback,
-            pContext: *const Guid,
+            pContext: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnProgress: fn(
             self: *const IPortableDevicePropertiesBulkCallback,
-            pContext: *const Guid,
-            pResults: *IPortableDeviceValuesCollection,
+            pContext: ?*const Guid,
+            pResults: ?*IPortableDeviceValuesCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnEnd: fn(
             self: *const IPortableDevicePropertiesBulkCallback,
-            pContext: *const Guid,
+            pContext: ?*const Guid,
             hrStatus: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1991,15 +1991,15 @@ pub const IPortableDevicePropertiesBulkCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulkCallback_OnStart(self: *const T, pContext: *const Guid) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulkCallback_OnStart(self: *const T, pContext: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnStart(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulkCallback_OnProgress(self: *const T, pContext: *const Guid, pResults: *IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulkCallback_OnProgress(self: *const T, pContext: ?*const Guid, pResults: ?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnProgress(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext, pResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulkCallback_OnEnd(self: *const T, pContext: *const Guid, hrStatus: HRESULT) callconv(.Inline) HRESULT {
+        pub fn IPortableDevicePropertiesBulkCallback_OnEnd(self: *const T, pContext: ?*const Guid, hrStatus: HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnEnd(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext, hrStatus);
         }
     };}
@@ -2014,26 +2014,26 @@ pub const IPortableDeviceServiceManager = extern struct {
         base: IUnknown.VTable,
         GetDeviceServices: fn(
             self: *const IPortableDeviceServiceManager,
-            pszPnPDeviceID: [*:0]const u16,
-            guidServiceCategory: *const Guid,
-            pServices: *PWSTR,
-            pcServices: *u32,
+            pszPnPDeviceID: ?[*:0]const u16,
+            guidServiceCategory: ?*const Guid,
+            pServices: ?*?PWSTR,
+            pcServices: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceForService: fn(
             self: *const IPortableDeviceServiceManager,
-            pszPnPServiceID: [*:0]const u16,
-            ppszPnPDeviceID: *PWSTR,
+            pszPnPServiceID: ?[*:0]const u16,
+            ppszPnPDeviceID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceManager_GetDeviceServices(self: *const T, pszPnPDeviceID: [*:0]const u16, guidServiceCategory: *const Guid, pServices: *PWSTR, pcServices: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceManager_GetDeviceServices(self: *const T, pszPnPDeviceID: ?[*:0]const u16, guidServiceCategory: ?*const Guid, pServices: ?*?PWSTR, pcServices: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceManager.VTable, self.vtable).GetDeviceServices(@ptrCast(*const IPortableDeviceServiceManager, self), pszPnPDeviceID, guidServiceCategory, pServices, pcServices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceManager_GetDeviceForService(self: *const T, pszPnPServiceID: [*:0]const u16, ppszPnPDeviceID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceManager_GetDeviceForService(self: *const T, pszPnPServiceID: ?[*:0]const u16, ppszPnPDeviceID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceManager.VTable, self.vtable).GetDeviceForService(@ptrCast(*const IPortableDeviceServiceManager, self), pszPnPServiceID, ppszPnPDeviceID);
         }
     };}
@@ -2048,20 +2048,20 @@ pub const IPortableDeviceService = extern struct {
         base: IUnknown.VTable,
         Open: fn(
             self: *const IPortableDeviceService,
-            pszPnPServiceID: [*:0]const u16,
-            pClientInfo: *IPortableDeviceValues,
+            pszPnPServiceID: ?[*:0]const u16,
+            pClientInfo: ?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Capabilities: fn(
             self: *const IPortableDeviceService,
-            ppCapabilities: **IPortableDeviceServiceCapabilities,
+            ppCapabilities: ?*?*IPortableDeviceServiceCapabilities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Content: fn(
             self: *const IPortableDeviceService,
-            ppContent: **IPortableDeviceContent2,
+            ppContent: ?*?*IPortableDeviceContent2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Methods: fn(
             self: *const IPortableDeviceService,
-            ppMethods: **IPortableDeviceServiceMethods,
+            ppMethods: ?*?*IPortableDeviceServiceMethods,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceService,
@@ -2071,47 +2071,47 @@ pub const IPortableDeviceService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetServiceObjectID: fn(
             self: *const IPortableDeviceService,
-            ppszServiceObjectID: *PWSTR,
+            ppszServiceObjectID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPnPServiceID: fn(
             self: *const IPortableDeviceService,
-            ppszPnPServiceID: *PWSTR,
+            ppszPnPServiceID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Advise: fn(
             self: *const IPortableDeviceService,
             dwFlags: u32,
-            pCallback: *IPortableDeviceEventCallback,
-            pParameters: *IPortableDeviceValues,
-            ppszCookie: *PWSTR,
+            pCallback: ?*IPortableDeviceEventCallback,
+            pParameters: ?*IPortableDeviceValues,
+            ppszCookie: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unadvise: fn(
             self: *const IPortableDeviceService,
-            pszCookie: [*:0]const u16,
+            pszCookie: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendCommand: fn(
             self: *const IPortableDeviceService,
             dwFlags: u32,
-            pParameters: *IPortableDeviceValues,
-            ppResults: **IPortableDeviceValues,
+            pParameters: ?*IPortableDeviceValues,
+            ppResults: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Open(self: *const T, pszPnPServiceID: [*:0]const u16, pClientInfo: *IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_Open(self: *const T, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Open(@ptrCast(*const IPortableDeviceService, self), pszPnPServiceID, pClientInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Capabilities(self: *const T, ppCapabilities: **IPortableDeviceServiceCapabilities) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_Capabilities(self: *const T, ppCapabilities: ?*?*IPortableDeviceServiceCapabilities) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Capabilities(@ptrCast(*const IPortableDeviceService, self), ppCapabilities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Content(self: *const T, ppContent: **IPortableDeviceContent2) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_Content(self: *const T, ppContent: ?*?*IPortableDeviceContent2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Content(@ptrCast(*const IPortableDeviceService, self), ppContent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Methods(self: *const T, ppMethods: **IPortableDeviceServiceMethods) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_Methods(self: *const T, ppMethods: ?*?*IPortableDeviceServiceMethods) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Methods(@ptrCast(*const IPortableDeviceService, self), ppMethods);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2123,23 +2123,23 @@ pub const IPortableDeviceService = extern struct {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Close(@ptrCast(*const IPortableDeviceService, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_GetServiceObjectID(self: *const T, ppszServiceObjectID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_GetServiceObjectID(self: *const T, ppszServiceObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).GetServiceObjectID(@ptrCast(*const IPortableDeviceService, self), ppszServiceObjectID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_GetPnPServiceID(self: *const T, ppszPnPServiceID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_GetPnPServiceID(self: *const T, ppszPnPServiceID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).GetPnPServiceID(@ptrCast(*const IPortableDeviceService, self), ppszPnPServiceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Advise(self: *const T, dwFlags: u32, pCallback: *IPortableDeviceEventCallback, pParameters: *IPortableDeviceValues, ppszCookie: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_Advise(self: *const T, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Advise(@ptrCast(*const IPortableDeviceService, self), dwFlags, pCallback, pParameters, ppszCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Unadvise(self: *const T, pszCookie: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_Unadvise(self: *const T, pszCookie: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Unadvise(@ptrCast(*const IPortableDeviceService, self), pszCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_SendCommand(self: *const T, dwFlags: u32, pParameters: *IPortableDeviceValues, ppResults: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceService_SendCommand(self: *const T, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).SendCommand(@ptrCast(*const IPortableDeviceService, self), dwFlags, pParameters, ppResults);
         }
     };}
@@ -2154,77 +2154,77 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
         base: IUnknown.VTable,
         GetSupportedMethods: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            ppMethods: **IPortableDevicePropVariantCollection,
+            ppMethods: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedMethodsByFormat: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Format: *const Guid,
-            ppMethods: **IPortableDevicePropVariantCollection,
+            Format: ?*const Guid,
+            ppMethods: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMethodAttributes: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Method: *const Guid,
-            ppAttributes: **IPortableDeviceValues,
+            Method: ?*const Guid,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMethodParameterAttributes: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Method: *const Guid,
-            Parameter: *const PROPERTYKEY,
-            ppAttributes: **IPortableDeviceValues,
+            Method: ?*const Guid,
+            Parameter: ?*const PROPERTYKEY,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedFormats: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            ppFormats: **IPortableDevicePropVariantCollection,
+            ppFormats: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatAttributes: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Format: *const Guid,
-            ppAttributes: **IPortableDeviceValues,
+            Format: ?*const Guid,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedFormatProperties: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Format: *const Guid,
-            ppKeys: **IPortableDeviceKeyCollection,
+            Format: ?*const Guid,
+            ppKeys: ?*?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatPropertyAttributes: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Format: *const Guid,
-            Property: *const PROPERTYKEY,
-            ppAttributes: **IPortableDeviceValues,
+            Format: ?*const Guid,
+            Property: ?*const PROPERTYKEY,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedEvents: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            ppEvents: **IPortableDevicePropVariantCollection,
+            ppEvents: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEventAttributes: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Event: *const Guid,
-            ppAttributes: **IPortableDeviceValues,
+            Event: ?*const Guid,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEventParameterAttributes: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Event: *const Guid,
-            Parameter: *const PROPERTYKEY,
-            ppAttributes: **IPortableDeviceValues,
+            Event: ?*const Guid,
+            Parameter: ?*const PROPERTYKEY,
+            ppAttributes: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInheritedServices: fn(
             self: *const IPortableDeviceServiceCapabilities,
             dwInheritanceType: u32,
-            ppServices: **IPortableDevicePropVariantCollection,
+            ppServices: ?*?*IPortableDevicePropVariantCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatRenderingProfiles: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Format: *const Guid,
-            ppRenderingProfiles: **IPortableDeviceValuesCollection,
+            Format: ?*const Guid,
+            ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedCommands: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            ppCommands: **IPortableDeviceKeyCollection,
+            ppCommands: ?*?*IPortableDeviceKeyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCommandOptions: fn(
             self: *const IPortableDeviceServiceCapabilities,
-            Command: *const PROPERTYKEY,
-            ppOptions: **IPortableDeviceValues,
+            Command: ?*const PROPERTYKEY,
+            ppOptions: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceServiceCapabilities,
@@ -2234,63 +2234,63 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedMethods(self: *const T, ppMethods: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetSupportedMethods(self: *const T, ppMethods: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedMethods(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppMethods);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedMethodsByFormat(self: *const T, Format: *const Guid, ppMethods: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetSupportedMethodsByFormat(self: *const T, Format: ?*const Guid, ppMethods: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedMethodsByFormat(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppMethods);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetMethodAttributes(self: *const T, Method: *const Guid, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetMethodAttributes(self: *const T, Method: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetMethodAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Method, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetMethodParameterAttributes(self: *const T, Method: *const Guid, Parameter: *const PROPERTYKEY, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetMethodParameterAttributes(self: *const T, Method: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetMethodParameterAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Method, Parameter, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedFormats(self: *const T, ppFormats: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetSupportedFormats(self: *const T, ppFormats: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedFormats(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetFormatAttributes(self: *const T, Format: *const Guid, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetFormatAttributes(self: *const T, Format: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedFormatProperties(self: *const T, Format: *const Guid, ppKeys: **IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetSupportedFormatProperties(self: *const T, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedFormatProperties(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetFormatPropertyAttributes(self: *const T, Format: *const Guid, Property: *const PROPERTYKEY, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetFormatPropertyAttributes(self: *const T, Format: ?*const Guid, Property: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatPropertyAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, Property, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedEvents(self: *const T, ppEvents: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetSupportedEvents(self: *const T, ppEvents: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedEvents(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppEvents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetEventAttributes(self: *const T, Event: *const Guid, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetEventAttributes(self: *const T, Event: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetEventAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Event, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetEventParameterAttributes(self: *const T, Event: *const Guid, Parameter: *const PROPERTYKEY, ppAttributes: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetEventParameterAttributes(self: *const T, Event: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetEventParameterAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Event, Parameter, ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetInheritedServices(self: *const T, dwInheritanceType: u32, ppServices: **IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetInheritedServices(self: *const T, dwInheritanceType: u32, ppServices: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetInheritedServices(@ptrCast(*const IPortableDeviceServiceCapabilities, self), dwInheritanceType, ppServices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetFormatRenderingProfiles(self: *const T, Format: *const Guid, ppRenderingProfiles: **IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetFormatRenderingProfiles(self: *const T, Format: ?*const Guid, ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatRenderingProfiles(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppRenderingProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedCommands(self: *const T, ppCommands: **IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetSupportedCommands(self: *const T, ppCommands: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedCommands(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppCommands);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetCommandOptions(self: *const T, Command: *const PROPERTYKEY, ppOptions: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceCapabilities_GetCommandOptions(self: *const T, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetCommandOptions(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Command, ppOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2309,34 +2309,34 @@ pub const IPortableDeviceServiceMethods = extern struct {
         base: IUnknown.VTable,
         Invoke: fn(
             self: *const IPortableDeviceServiceMethods,
-            Method: *const Guid,
-            pParameters: *IPortableDeviceValues,
-            ppResults: **IPortableDeviceValues,
+            Method: ?*const Guid,
+            pParameters: ?*IPortableDeviceValues,
+            ppResults: ?*?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InvokeAsync: fn(
             self: *const IPortableDeviceServiceMethods,
-            Method: *const Guid,
-            pParameters: *IPortableDeviceValues,
-            pCallback: *IPortableDeviceServiceMethodCallback,
+            Method: ?*const Guid,
+            pParameters: ?*IPortableDeviceValues,
+            pCallback: ?*IPortableDeviceServiceMethodCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceServiceMethods,
-            pCallback: *IPortableDeviceServiceMethodCallback,
+            pCallback: ?*IPortableDeviceServiceMethodCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethods_Invoke(self: *const T, Method: *const Guid, pParameters: *IPortableDeviceValues, ppResults: **IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceMethods_Invoke(self: *const T, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).Invoke(@ptrCast(*const IPortableDeviceServiceMethods, self), Method, pParameters, ppResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethods_InvokeAsync(self: *const T, Method: *const Guid, pParameters: *IPortableDeviceValues, pCallback: *IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceMethods_InvokeAsync(self: *const T, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).InvokeAsync(@ptrCast(*const IPortableDeviceServiceMethods, self), Method, pParameters, pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethods_Cancel(self: *const T, pCallback: *IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceMethods_Cancel(self: *const T, pCallback: ?*IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceServiceMethods, self), pCallback);
         }
     };}
@@ -2352,14 +2352,14 @@ pub const IPortableDeviceServiceMethodCallback = extern struct {
         OnComplete: fn(
             self: *const IPortableDeviceServiceMethodCallback,
             hrStatus: HRESULT,
-            pResults: *IPortableDeviceValues,
+            pResults: ?*IPortableDeviceValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethodCallback_OnComplete(self: *const T, hrStatus: HRESULT, pResults: *IPortableDeviceValues) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceMethodCallback_OnComplete(self: *const T, hrStatus: HRESULT, pResults: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceMethodCallback.VTable, self.vtable).OnComplete(@ptrCast(*const IPortableDeviceServiceMethodCallback, self), hrStatus, pResults);
         }
     };}
@@ -2373,9 +2373,9 @@ pub const IPortableDeviceServiceActivation = extern struct {
         base: IUnknown.VTable,
         OpenAsync: fn(
             self: *const IPortableDeviceServiceActivation,
-            pszPnPServiceID: [*:0]const u16,
-            pClientInfo: *IPortableDeviceValues,
-            pCallback: *IPortableDeviceServiceOpenCallback,
+            pszPnPServiceID: ?[*:0]const u16,
+            pClientInfo: ?*IPortableDeviceValues,
+            pCallback: ?*IPortableDeviceServiceOpenCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelOpenAsync: fn(
             self: *const IPortableDeviceServiceActivation,
@@ -2385,7 +2385,7 @@ pub const IPortableDeviceServiceActivation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceActivation_OpenAsync(self: *const T, pszPnPServiceID: [*:0]const u16, pClientInfo: *IPortableDeviceValues, pCallback: *IPortableDeviceServiceOpenCallback) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceServiceActivation_OpenAsync(self: *const T, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceOpenCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceServiceActivation.VTable, self.vtable).OpenAsync(@ptrCast(*const IPortableDeviceServiceActivation, self), pszPnPServiceID, pClientInfo, pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2425,15 +2425,15 @@ pub const IPortableDeviceDispatchFactory = extern struct {
         base: IUnknown.VTable,
         GetDeviceDispatch: fn(
             self: *const IPortableDeviceDispatchFactory,
-            pszPnPDeviceID: [*:0]const u16,
-            ppDeviceDispatch: **IDispatch,
+            pszPnPDeviceID: ?[*:0]const u16,
+            ppDeviceDispatch: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceDispatchFactory_GetDeviceDispatch(self: *const T, pszPnPDeviceID: [*:0]const u16, ppDeviceDispatch: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceDispatchFactory_GetDeviceDispatch(self: *const T, pszPnPDeviceID: ?[*:0]const u16, ppDeviceDispatch: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceDispatchFactory.VTable, self.vtable).GetDeviceDispatch(@ptrCast(*const IPortableDeviceDispatchFactory, self), pszPnPDeviceID, ppDeviceDispatch);
         }
     };}
@@ -2448,13 +2448,13 @@ pub const IPortableDeviceWebControl = extern struct {
         base: IDispatch.VTable,
         GetDeviceFromId: fn(
             self: *const IPortableDeviceWebControl,
-            deviceId: BSTR,
-            ppDevice: **IDispatch,
+            deviceId: ?BSTR,
+            ppDevice: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceFromIdAsync: fn(
             self: *const IPortableDeviceWebControl,
-            deviceId: BSTR,
-            pCompletionHandler: *IDispatch,
+            deviceId: ?BSTR,
+            pCompletionHandler: ?*IDispatch,
             pErrorHandler: ?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2462,11 +2462,11 @@ pub const IPortableDeviceWebControl = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceWebControl_GetDeviceFromId(self: *const T, deviceId: BSTR, ppDevice: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceWebControl_GetDeviceFromId(self: *const T, deviceId: ?BSTR, ppDevice: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceWebControl.VTable, self.vtable).GetDeviceFromId(@ptrCast(*const IPortableDeviceWebControl, self), deviceId, ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceWebControl_GetDeviceFromIdAsync(self: *const T, deviceId: BSTR, pCompletionHandler: *IDispatch, pErrorHandler: ?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceWebControl_GetDeviceFromIdAsync(self: *const T, deviceId: ?BSTR, pCompletionHandler: ?*IDispatch, pErrorHandler: ?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceWebControl.VTable, self.vtable).GetDeviceFromIdAsync(@ptrCast(*const IPortableDeviceWebControl, self), deviceId, pCompletionHandler, pErrorHandler);
         }
     };}
@@ -2484,8 +2484,8 @@ pub const IEnumPortableDeviceConnectors = extern struct {
         Next: fn(
             self: *const IEnumPortableDeviceConnectors,
             cRequested: u32,
-            pConnectors: [*]*IPortableDeviceConnector,
-            pcFetched: *u32,
+            pConnectors: [*]?*IPortableDeviceConnector,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumPortableDeviceConnectors,
@@ -2496,14 +2496,14 @@ pub const IEnumPortableDeviceConnectors = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumPortableDeviceConnectors,
-            ppEnum: **IEnumPortableDeviceConnectors,
+            ppEnum: ?*?*IEnumPortableDeviceConnectors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceConnectors_Next(self: *const T, cRequested: u32, pConnectors: [*]*IPortableDeviceConnector, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumPortableDeviceConnectors_Next(self: *const T, cRequested: u32, pConnectors: [*]?*IPortableDeviceConnector, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Next(@ptrCast(*const IEnumPortableDeviceConnectors, self), cRequested, pConnectors, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2515,7 +2515,7 @@ pub const IEnumPortableDeviceConnectors = extern struct {
             return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Reset(@ptrCast(*const IEnumPortableDeviceConnectors, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceConnectors_Clone(self: *const T, ppEnum: **IEnumPortableDeviceConnectors) callconv(.Inline) HRESULT {
+        pub fn IEnumPortableDeviceConnectors_Clone(self: *const T, ppEnum: ?*?*IEnumPortableDeviceConnectors) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Clone(@ptrCast(*const IEnumPortableDeviceConnectors, self), ppEnum);
         }
     };}
@@ -2530,60 +2530,60 @@ pub const IPortableDeviceConnector = extern struct {
         base: IUnknown.VTable,
         Connect: fn(
             self: *const IPortableDeviceConnector,
-            pCallback: *IConnectionRequestCallback,
+            pCallback: ?*IConnectionRequestCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disconnect: fn(
             self: *const IPortableDeviceConnector,
-            pCallback: *IConnectionRequestCallback,
+            pCallback: ?*IConnectionRequestCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPortableDeviceConnector,
-            pCallback: *IConnectionRequestCallback,
+            pCallback: ?*IConnectionRequestCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IPortableDeviceConnector,
-            pPropertyKey: *const DEVPROPKEY,
-            pPropertyType: *u32,
-            ppData: [*]*u8,
-            pcbData: *u32,
+            pPropertyKey: ?*const DEVPROPKEY,
+            pPropertyType: ?*u32,
+            ppData: [*]?*u8,
+            pcbData: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProperty: fn(
             self: *const IPortableDeviceConnector,
-            pPropertyKey: *const DEVPROPKEY,
+            pPropertyKey: ?*const DEVPROPKEY,
             PropertyType: u32,
             pData: [*:0]const u8,
             cbData: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPnPID: fn(
             self: *const IPortableDeviceConnector,
-            ppwszPnPID: *PWSTR,
+            ppwszPnPID: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_Connect(self: *const T, pCallback: *IConnectionRequestCallback) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceConnector_Connect(self: *const T, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Connect(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_Disconnect(self: *const T, pCallback: *IConnectionRequestCallback) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceConnector_Disconnect(self: *const T, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Disconnect(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_Cancel(self: *const T, pCallback: *IConnectionRequestCallback) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceConnector_Cancel(self: *const T, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_GetProperty(self: *const T, pPropertyKey: *const DEVPROPKEY, pPropertyType: *u32, ppData: [*]*u8, pcbData: *u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceConnector_GetProperty(self: *const T, pPropertyKey: ?*const DEVPROPKEY, pPropertyType: ?*u32, ppData: [*]?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).GetProperty(@ptrCast(*const IPortableDeviceConnector, self), pPropertyKey, pPropertyType, ppData, pcbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_SetProperty(self: *const T, pPropertyKey: *const DEVPROPKEY, PropertyType: u32, pData: [*:0]const u8, cbData: u32) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceConnector_SetProperty(self: *const T, pPropertyKey: ?*const DEVPROPKEY, PropertyType: u32, pData: [*:0]const u8, cbData: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).SetProperty(@ptrCast(*const IPortableDeviceConnector, self), pPropertyKey, PropertyType, pData, cbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_GetPnPID(self: *const T, ppwszPnPID: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IPortableDeviceConnector_GetPnPID(self: *const T, ppwszPnPID: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).GetPnPID(@ptrCast(*const IPortableDeviceConnector, self), ppwszPnPID);
         }
     };}

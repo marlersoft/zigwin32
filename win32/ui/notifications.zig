@@ -7,8 +7,8 @@
 // Section: Types (2)
 //--------------------------------------------------------------------------------
 pub const NOTIFICATION_USER_INPUT_DATA = extern struct {
-    Key: [*:0]const u16,
-    Value: [*:0]const u16,
+    Key: ?[*:0]const u16,
+    Value: ?[*:0]const u16,
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -19,8 +19,8 @@ pub const INotificationActivationCallback = extern struct {
         base: IUnknown.VTable,
         Activate: fn(
             self: *const INotificationActivationCallback,
-            appUserModelId: [*:0]const u16,
-            invokedArgs: [*:0]const u16,
+            appUserModelId: ?[*:0]const u16,
+            invokedArgs: ?[*:0]const u16,
             data: [*]const NOTIFICATION_USER_INPUT_DATA,
             count: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -29,7 +29,7 @@ pub const INotificationActivationCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotificationActivationCallback_Activate(self: *const T, appUserModelId: [*:0]const u16, invokedArgs: [*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.Inline) HRESULT {
+        pub fn INotificationActivationCallback_Activate(self: *const T, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INotificationActivationCallback.VTable, self.vtable).Activate(@ptrCast(*const INotificationActivationCallback, self), appUserModelId, invokedArgs, data, count);
         }
     };}

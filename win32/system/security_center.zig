@@ -59,68 +59,68 @@ pub const IWscProduct = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductName: fn(
             self: *const IWscProduct,
-            pVal: ?*BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductState: fn(
             self: *const IWscProduct,
-            pVal: *WSC_SECURITY_PRODUCT_STATE,
+            pVal: ?*WSC_SECURITY_PRODUCT_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureStatus: fn(
             self: *const IWscProduct,
-            pVal: *WSC_SECURITY_SIGNATURE_STATUS,
+            pVal: ?*WSC_SECURITY_SIGNATURE_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemediationPath: fn(
             self: *const IWscProduct,
-            pVal: ?*BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductStateTimestamp: fn(
             self: *const IWscProduct,
-            pVal: ?*BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductGuid: fn(
             self: *const IWscProduct,
-            pVal: ?*BSTR,
+            pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProductIsDefault: fn(
             self: *const IWscProduct,
-            pVal: *BOOL,
+            pVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductName(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductName(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductState(self: *const T, pVal: *WSC_SECURITY_PRODUCT_STATE) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductState(self: *const T, pVal: ?*WSC_SECURITY_PRODUCT_STATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductState(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_SignatureStatus(self: *const T, pVal: *WSC_SECURITY_SIGNATURE_STATUS) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_SignatureStatus(self: *const T, pVal: ?*WSC_SECURITY_SIGNATURE_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_SignatureStatus(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_RemediationPath(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_RemediationPath(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_RemediationPath(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductStateTimestamp(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductStateTimestamp(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductStateTimestamp(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductGuid(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductGuid(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductGuid(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductIsDefault(self: *const T, pVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductIsDefault(self: *const T, pVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductIsDefault(@ptrCast(*const IWscProduct, self), pVal);
         }
     };}
@@ -135,59 +135,59 @@ pub const IWscProduct2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntivirusScanSubstatus: fn(
             self: *const IWscProduct2,
-            peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntivirusSettingsSubstatus: fn(
             self: *const IWscProduct2,
-            peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntivirusProtectionUpdateSubstatus: fn(
             self: *const IWscProduct2,
-            peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallDomainProfileSubstatus: fn(
             self: *const IWscProduct2,
-            peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallPrivateProfileSubstatus: fn(
             self: *const IWscProduct2,
-            peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallPublicProfileSubstatus: fn(
             self: *const IWscProduct2,
-            peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWscProduct.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_AntivirusScanSubstatus(self: *const T, peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+        pub fn IWscProduct2_get_AntivirusScanSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_AntivirusScanSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_AntivirusSettingsSubstatus(self: *const T, peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+        pub fn IWscProduct2_get_AntivirusSettingsSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_AntivirusSettingsSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_AntivirusProtectionUpdateSubstatus(self: *const T, peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+        pub fn IWscProduct2_get_AntivirusProtectionUpdateSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_AntivirusProtectionUpdateSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_FirewallDomainProfileSubstatus(self: *const T, peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+        pub fn IWscProduct2_get_FirewallDomainProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_FirewallDomainProfileSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_FirewallPrivateProfileSubstatus(self: *const T, peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+        pub fn IWscProduct2_get_FirewallPrivateProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_FirewallPrivateProfileSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct2_get_FirewallPublicProfileSubstatus(self: *const T, peStatus: *WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+        pub fn IWscProduct2_get_FirewallPublicProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_FirewallPublicProfileSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
         }
     };}
@@ -202,14 +202,14 @@ pub const IWscProduct3 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntivirusDaysUntilExpired: fn(
             self: *const IWscProduct3,
-            pdwDays: *u32,
+            pdwDays: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWscProduct2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct3_get_AntivirusDaysUntilExpired(self: *const T, pdwDays: *u32) callconv(.Inline) HRESULT {
+        pub fn IWscProduct3_get_AntivirusDaysUntilExpired(self: *const T, pdwDays: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct3.VTable, self.vtable).get_AntivirusDaysUntilExpired(@ptrCast(*const IWscProduct3, self), pdwDays);
         }
     };}
@@ -229,13 +229,13 @@ pub const IWSCProductList = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IWSCProductList,
-            pVal: *i32,
+            pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IWSCProductList,
             index: u32,
-            pVal: ?**IWscProduct,
+            pVal: ?*?*IWscProduct,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -246,11 +246,11 @@ pub const IWSCProductList = extern struct {
             return @ptrCast(*const IWSCProductList.VTable, self.vtable).Initialize(@ptrCast(*const IWSCProductList, self), provider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCProductList_get_Count(self: *const T, pVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSCProductList_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Count(@ptrCast(*const IWSCProductList, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: ?**IWscProduct) callconv(.Inline) HRESULT {
+        pub fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: ?*?*IWscProduct) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Item(@ptrCast(*const IWSCProductList, self), index, pVal);
         }
     };}
@@ -265,14 +265,14 @@ pub const IWSCDefaultProduct = extern struct {
         SetDefaultProduct: fn(
             self: *const IWSCDefaultProduct,
             eType: SECURITY_PRODUCT_TYPE,
-            pGuid: BSTR,
+            pGuid: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCDefaultProduct_SetDefaultProduct(self: *const T, eType: SECURITY_PRODUCT_TYPE, pGuid: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSCDefaultProduct_SetDefaultProduct(self: *const T, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSCDefaultProduct.VTable, self.vtable).SetDefaultProduct(@ptrCast(*const IWSCDefaultProduct, self), eType, pGuid);
         }
     };}
@@ -317,15 +317,15 @@ pub const WSC_SECURITY_PROVIDER_HEALTH_SNOOZE = WSC_SECURITY_PROVIDER_HEALTH.SNO
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WSCAPI" fn WscRegisterForChanges(
-    Reserved: *c_void,
-    phCallbackRegistration: *HANDLE,
-    lpCallbackAddress: LPTHREAD_START_ROUTINE,
-    pContext: *c_void,
+    Reserved: ?*c_void,
+    phCallbackRegistration: ?*?HANDLE,
+    lpCallbackAddress: ?LPTHREAD_START_ROUTINE,
+    pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WSCAPI" fn WscUnRegisterChanges(
-    hRegistrationHandle: HANDLE,
+    hRegistrationHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WSCAPI" fn WscRegisterForUserNotifications(
@@ -334,14 +334,14 @@ pub extern "WSCAPI" fn WscRegisterForUserNotifications(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WSCAPI" fn WscGetSecurityProviderHealth(
     Providers: u32,
-    pHealth: *WSC_SECURITY_PROVIDER_HEALTH,
+    pHealth: ?*WSC_SECURITY_PROVIDER_HEALTH,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WSCAPI" fn WscQueryAntiMalwareUri(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "WSCAPI" fn WscGetAntiMalwareUri(
-    ppszUri: *PWSTR,
+    ppszUri: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

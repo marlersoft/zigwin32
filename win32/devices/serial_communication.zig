@@ -17,15 +17,15 @@ pub const HCOMDB = *opaque{};
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
 pub extern "MSPORTS" fn ComDBOpen(
-    PHComDB: *isize,
+    PHComDB: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MSPORTS" fn ComDBClose(
-    HComDB: HCOMDB,
+    HComDB: ?HCOMDB,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MSPORTS" fn ComDBGetCurrentPortUsage(
-    HComDB: HCOMDB,
+    HComDB: ?HCOMDB,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*u8,
     BufferSize: u32,
@@ -34,24 +34,24 @@ pub extern "MSPORTS" fn ComDBGetCurrentPortUsage(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MSPORTS" fn ComDBClaimNextFreePort(
-    HComDB: HCOMDB,
-    ComNumber: *u32,
+    HComDB: ?HCOMDB,
+    ComNumber: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MSPORTS" fn ComDBClaimPort(
-    HComDB: HCOMDB,
+    HComDB: ?HCOMDB,
     ComNumber: u32,
     ForceClaim: BOOL,
     Forced: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MSPORTS" fn ComDBReleasePort(
-    HComDB: HCOMDB,
+    HComDB: ?HCOMDB,
     ComNumber: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MSPORTS" fn ComDBResizeDatabase(
-    HComDB: HCOMDB,
+    HComDB: ?HCOMDB,
     NewSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

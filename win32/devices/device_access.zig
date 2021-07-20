@@ -41,7 +41,7 @@ pub const IDeviceIoControl = extern struct {
             inputBufferSize: u32,
             outputBuffer: ?[*:0]u8,
             outputBufferSize: u32,
-            bytesReturned: *u32,
+            bytesReturned: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeviceIoControlAsync: fn(
             self: *const IDeviceIoControl,
@@ -50,7 +50,7 @@ pub const IDeviceIoControl = extern struct {
             inputBufferSize: u32,
             outputBuffer: ?[*:0]u8,
             outputBufferSize: u32,
-            requestCompletionCallback: *IDeviceRequestCompletionCallback,
+            requestCompletionCallback: ?*IDeviceRequestCompletionCallback,
             cancelContext: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelOperation: fn(
@@ -62,11 +62,11 @@ pub const IDeviceIoControl = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceIoControl_DeviceIoControlSync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, bytesReturned: *u32) callconv(.Inline) HRESULT {
+        pub fn IDeviceIoControl_DeviceIoControlSync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, bytesReturned: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceIoControl.VTable, self.vtable).DeviceIoControlSync(@ptrCast(*const IDeviceIoControl, self), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, bytesReturned);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceIoControl_DeviceIoControlAsync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, requestCompletionCallback: *IDeviceRequestCompletionCallback, cancelContext: ?*usize) callconv(.Inline) HRESULT {
+        pub fn IDeviceIoControl_DeviceIoControlAsync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, requestCompletionCallback: ?*IDeviceRequestCompletionCallback, cancelContext: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceIoControl.VTable, self.vtable).DeviceIoControlAsync(@ptrCast(*const IDeviceIoControl, self), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, requestCompletionCallback, cancelContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -94,8 +94,8 @@ pub const ICreateDeviceAccessAsync = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResult: fn(
             self: *const ICreateDeviceAccessAsync,
-            riid: *const Guid,
-            deviceAccess: **c_void,
+            riid: ?*const Guid,
+            deviceAccess: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -114,7 +114,7 @@ pub const ICreateDeviceAccessAsync = extern struct {
             return @ptrCast(*const ICreateDeviceAccessAsync.VTable, self.vtable).Close(@ptrCast(*const ICreateDeviceAccessAsync, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateDeviceAccessAsync_GetResult(self: *const T, riid: *const Guid, deviceAccess: **c_void) callconv(.Inline) HRESULT {
+        pub fn ICreateDeviceAccessAsync_GetResult(self: *const T, riid: ?*const Guid, deviceAccess: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateDeviceAccessAsync.VTable, self.vtable).GetResult(@ptrCast(*const ICreateDeviceAccessAsync, self), riid, deviceAccess);
         }
     };}
@@ -126,9 +126,9 @@ pub const ICreateDeviceAccessAsync = extern struct {
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
 pub extern "deviceaccess" fn CreateDeviceAccessInstance(
-    deviceInterfacePath: [*:0]const u16,
+    deviceInterfacePath: ?[*:0]const u16,
     desiredAccess: u32,
-    createAsync: **ICreateDeviceAccessAsync,
+    createAsync: ?*?*ICreateDeviceAccessAsync,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

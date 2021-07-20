@@ -37,28 +37,28 @@ pub const PERFORMANCE_DATA = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn EnableThreadProfiling(
-    ThreadHandle: HANDLE,
+    ThreadHandle: ?HANDLE,
     Flags: u32,
     HardwareCounters: u64,
-    PerformanceDataHandle: *HANDLE,
+    PerformanceDataHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn DisableThreadProfiling(
-    PerformanceDataHandle: HANDLE,
+    PerformanceDataHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn QueryThreadProfiling(
-    ThreadHandle: HANDLE,
-    Enabled: *u8,
+    ThreadHandle: ?HANDLE,
+    Enabled: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn ReadThreadProfilingData(
-    PerformanceDataHandle: HANDLE,
+    PerformanceDataHandle: ?HANDLE,
     Flags: u32,
-    PerformanceData: *PERFORMANCE_DATA,
+    PerformanceData: ?*PERFORMANCE_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

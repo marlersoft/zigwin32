@@ -153,51 +153,51 @@ pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_K
 
 pub const val_context = extern struct {
     valuelen: i32,
-    value_context: *c_void,
-    val_buff_ptr: *c_void,
+    value_context: ?*c_void,
+    val_buff_ptr: ?*c_void,
 };
 
 pub const pvalueA = extern struct {
-    pv_valuename: PSTR,
+    pv_valuename: ?PSTR,
     pv_valuelen: i32,
-    pv_value_context: *c_void,
+    pv_value_context: ?*c_void,
     pv_type: u32,
 };
 
 pub const pvalueW = extern struct {
-    pv_valuename: PWSTR,
+    pv_valuename: ?PWSTR,
     pv_valuelen: i32,
-    pv_value_context: *c_void,
+    pv_value_context: ?*c_void,
     pv_type: u32,
 };
 
 pub const PQUERYHANDLER = fn(
-    keycontext: *c_void,
-    val_list: *val_context,
+    keycontext: ?*c_void,
+    val_list: ?*val_context,
     num_vals: u32,
-    outputbuffer: *c_void,
-    total_outlen: *u32,
+    outputbuffer: ?*c_void,
+    total_outlen: ?*u32,
     input_blen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const provider_info = extern struct {
-    pi_R0_1val: PQUERYHANDLER,
-    pi_R0_allvals: PQUERYHANDLER,
-    pi_R3_1val: PQUERYHANDLER,
-    pi_R3_allvals: PQUERYHANDLER,
+    pi_R0_1val: ?PQUERYHANDLER,
+    pi_R0_allvals: ?PQUERYHANDLER,
+    pi_R3_1val: ?PQUERYHANDLER,
+    pi_R3_allvals: ?PQUERYHANDLER,
     pi_flags: u32,
-    pi_key_context: *c_void,
+    pi_key_context: ?*c_void,
 };
 
 pub const VALENTA = extern struct {
-    ve_valuename: PSTR,
+    ve_valuename: ?PSTR,
     ve_valuelen: u32,
     ve_valueptr: usize,
     ve_type: REG_VALUE_TYPE,
 };
 
 pub const VALENTW = extern struct {
-    ve_valuename: PWSTR,
+    ve_valuename: ?PWSTR,
     ve_valuelen: u32,
     ve_valueptr: usize,
     ve_type: REG_VALUE_TYPE,
@@ -306,27 +306,27 @@ pub const RRF_RT_REG_SZ = RRF_RT.REG_SZ;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegCloseKey(
-    hKey: HKEY,
+    hKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOverridePredefKey(
-    hKey: HKEY,
+    hKey: ?HKEY,
     hNewHKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOpenUserClassesRoot(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     dwOptions: u32,
     samDesired: u32,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOpenCurrentUser(
     samDesired: u32,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -340,180 +340,180 @@ pub extern "ADVAPI32" fn RegDisablePredefinedCacheEx(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegConnectRegistryA(
     lpMachineName: ?[*:0]const u8,
-    hKey: HKEY,
-    phkResult: *HKEY,
+    hKey: ?HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegConnectRegistryW(
     lpMachineName: ?[*:0]const u16,
-    hKey: HKEY,
-    phkResult: *HKEY,
+    hKey: ?HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 pub extern "ADVAPI32" fn RegConnectRegistryExA(
     lpMachineName: ?[*:0]const u8,
-    hKey: HKEY,
+    hKey: ?HKEY,
     Flags: u32,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 pub extern "ADVAPI32" fn RegConnectRegistryExW(
     lpMachineName: ?[*:0]const u16,
-    hKey: HKEY,
+    hKey: ?HKEY,
     Flags: u32,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegCreateKeyA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegCreateKeyW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegCreateKeyExA(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u8,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u8,
     Reserved: u32,
     lpClass: ?PSTR,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
     lpdwDisposition: ?*REG_CREATE_KEY_DISPOSITION,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegCreateKeyExW(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u16,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u16,
     Reserved: u32,
     lpClass: ?PWSTR,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
     lpdwDisposition: ?*REG_CREATE_KEY_DISPOSITION,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegCreateKeyTransactedA(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u8,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u8,
     Reserved: u32,
     lpClass: ?PSTR,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
     lpdwDisposition: ?*REG_CREATE_KEY_DISPOSITION,
-    hTransaction: HANDLE,
-    pExtendedParemeter: *c_void,
+    hTransaction: ?HANDLE,
+    pExtendedParemeter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegCreateKeyTransactedW(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u16,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u16,
     Reserved: u32,
     lpClass: ?PWSTR,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
     lpdwDisposition: ?*REG_CREATE_KEY_DISPOSITION,
-    hTransaction: HANDLE,
-    pExtendedParemeter: *c_void,
+    hTransaction: ?HANDLE,
+    pExtendedParemeter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegDeleteKeyA(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u8,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegDeleteKeyW(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u16,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteKeyExA(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u8,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u8,
     samDesired: u32,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteKeyExW(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u16,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u16,
     samDesired: u32,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteKeyTransactedA(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u8,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u8,
     samDesired: u32,
     Reserved: u32,
-    hTransaction: HANDLE,
-    pExtendedParameter: *c_void,
+    hTransaction: ?HANDLE,
+    pExtendedParameter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteKeyTransactedW(
-    hKey: HKEY,
-    lpSubKey: [*:0]const u16,
+    hKey: ?HKEY,
+    lpSubKey: ?[*:0]const u16,
     samDesired: u32,
     Reserved: u32,
-    hTransaction: HANDLE,
-    pExtendedParameter: *c_void,
+    hTransaction: ?HANDLE,
+    pExtendedParameter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDisableReflectionKey(
-    hBase: HKEY,
+    hBase: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegEnableReflectionKey(
-    hBase: HKEY,
+    hBase: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegQueryReflectionKey(
-    hBase: HKEY,
-    bIsReflectionDisabled: *BOOL,
+    hBase: ?HKEY,
+    bIsReflectionDisabled: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegDeleteValueA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpValueName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegDeleteValueW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpValueName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegEnumKeyA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     dwIndex: u32,
     lpName: ?[*:0]u8,
     cchName: u32,
@@ -521,7 +521,7 @@ pub extern "ADVAPI32" fn RegEnumKeyA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegEnumKeyW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     dwIndex: u32,
     lpName: ?[*:0]u16,
     cchName: u32,
@@ -529,11 +529,11 @@ pub extern "ADVAPI32" fn RegEnumKeyW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegEnumKeyExA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     dwIndex: u32,
     lpName: ?[*:0]u8,
-    lpcchName: *u32,
-    lpReserved: *u32,
+    lpcchName: ?*u32,
+    lpReserved: ?*u32,
     lpClass: ?[*:0]u8,
     lpcchClass: ?*u32,
     lpftLastWriteTime: ?*FILETIME,
@@ -541,11 +541,11 @@ pub extern "ADVAPI32" fn RegEnumKeyExA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegEnumKeyExW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     dwIndex: u32,
     lpName: ?[*:0]u16,
-    lpcchName: *u32,
-    lpReserved: *u32,
+    lpcchName: ?*u32,
+    lpReserved: ?*u32,
     lpClass: ?[*:0]u16,
     lpcchClass: ?*u32,
     lpftLastWriteTime: ?*FILETIME,
@@ -553,11 +553,11 @@ pub extern "ADVAPI32" fn RegEnumKeyExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegEnumValueA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     dwIndex: u32,
     lpValueName: ?[*:0]u8,
-    lpcchValueName: *u32,
-    lpReserved: *u32,
+    lpcchValueName: ?*u32,
+    lpReserved: ?*u32,
     lpType: ?*u32,
     // TODO: what to do with BytesParamIndex 7?
     lpData: ?*u8,
@@ -566,11 +566,11 @@ pub extern "ADVAPI32" fn RegEnumValueA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegEnumValueW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     dwIndex: u32,
     lpValueName: ?[*:0]u16,
-    lpcchValueName: *u32,
-    lpReserved: *u32,
+    lpcchValueName: ?*u32,
+    lpReserved: ?*u32,
     lpType: ?*u32,
     // TODO: what to do with BytesParamIndex 7?
     lpData: ?*u8,
@@ -579,35 +579,35 @@ pub extern "ADVAPI32" fn RegEnumValueW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegFlushKey(
-    hKey: HKEY,
+    hKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn RegGetKeySecurity(
-    hKey: HKEY,
+    hKey: ?HKEY,
     SecurityInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    lpcbSecurityDescriptor: *u32,
+    lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegLoadKeyA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
-    lpFile: [*:0]const u8,
+    lpFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegLoadKeyW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
-    lpFile: [*:0]const u16,
+    lpFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegNotifyChangeKeyValue(
-    hKey: HKEY,
+    hKey: ?HKEY,
     bWatchSubtree: BOOL,
     dwNotifyFilter: REG_NOTIFY_FILTER,
     hEvent: ?HANDLE,
@@ -616,64 +616,64 @@ pub extern "ADVAPI32" fn RegNotifyChangeKeyValue(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOpenKeyA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOpenKeyW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOpenKeyExA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     ulOptions: u32,
     samDesired: REG_SAM_FLAGS,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOpenKeyExW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     ulOptions: u32,
     samDesired: REG_SAM_FLAGS,
-    phkResult: *HKEY,
+    phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegOpenKeyTransactedA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     ulOptions: u32,
     samDesired: REG_SAM_FLAGS,
-    phkResult: *HKEY,
-    hTransaction: HANDLE,
-    pExtendedParemeter: *c_void,
+    phkResult: ?*?HKEY,
+    hTransaction: ?HANDLE,
+    pExtendedParemeter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegOpenKeyTransactedW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     ulOptions: u32,
     samDesired: REG_SAM_FLAGS,
-    phkResult: *HKEY,
-    hTransaction: HANDLE,
-    pExtendedParemeter: *c_void,
+    phkResult: ?*?HKEY,
+    hTransaction: ?HANDLE,
+    pExtendedParemeter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryInfoKeyA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpClass: ?[*:0]u8,
     lpcchClass: ?*u32,
-    lpReserved: *u32,
+    lpReserved: ?*u32,
     lpcSubKeys: ?*u32,
     lpcbMaxSubKeyLen: ?*u32,
     lpcbMaxClassLen: ?*u32,
@@ -686,10 +686,10 @@ pub extern "ADVAPI32" fn RegQueryInfoKeyA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryInfoKeyW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpClass: ?[*:0]u16,
     lpcchClass: ?*u32,
-    lpReserved: *u32,
+    lpReserved: ?*u32,
     lpcSubKeys: ?*u32,
     lpcbMaxSubKeyLen: ?*u32,
     lpcbMaxClassLen: ?*u32,
@@ -702,7 +702,7 @@ pub extern "ADVAPI32" fn RegQueryInfoKeyW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryValueA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     lpData: ?PSTR,
@@ -711,7 +711,7 @@ pub extern "ADVAPI32" fn RegQueryValueA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryValueW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     lpData: ?PWSTR,
@@ -720,7 +720,7 @@ pub extern "ADVAPI32" fn RegQueryValueW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryMultipleValuesA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     val_list: [*]VALENTA,
     num_vals: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -730,7 +730,7 @@ pub extern "ADVAPI32" fn RegQueryMultipleValuesA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryMultipleValuesW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     val_list: [*]VALENTW,
     num_vals: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -740,9 +740,9 @@ pub extern "ADVAPI32" fn RegQueryMultipleValuesW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryValueExA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpValueName: ?[*:0]const u8,
-    lpReserved: *u32,
+    lpReserved: ?*u32,
     lpType: ?*REG_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*u8,
@@ -751,9 +751,9 @@ pub extern "ADVAPI32" fn RegQueryValueExA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegQueryValueExW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpValueName: ?[*:0]const u16,
-    lpReserved: *u32,
+    lpReserved: ?*u32,
     lpType: ?*REG_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*u8,
@@ -762,64 +762,64 @@ pub extern "ADVAPI32" fn RegQueryValueExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegReplaceKeyA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
-    lpNewFile: [*:0]const u8,
-    lpOldFile: [*:0]const u8,
+    lpNewFile: ?[*:0]const u8,
+    lpOldFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegReplaceKeyW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
-    lpNewFile: [*:0]const u16,
-    lpOldFile: [*:0]const u16,
+    lpNewFile: ?[*:0]const u16,
+    lpOldFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegRestoreKeyA(
-    hKey: HKEY,
-    lpFile: [*:0]const u8,
+    hKey: ?HKEY,
+    lpFile: ?[*:0]const u8,
     dwFlags: REG_RESTORE_KEY_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegRestoreKeyW(
-    hKey: HKEY,
-    lpFile: [*:0]const u16,
+    hKey: ?HKEY,
+    lpFile: ?[*:0]const u16,
     dwFlags: REG_RESTORE_KEY_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 pub extern "ADVAPI32" fn RegRenameKey(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKeyName: ?[*:0]const u16,
-    lpNewKeyName: [*:0]const u16,
+    lpNewKeyName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegSaveKeyA(
-    hKey: HKEY,
-    lpFile: [*:0]const u8,
+    hKey: ?HKEY,
+    lpFile: ?[*:0]const u8,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegSaveKeyW(
-    hKey: HKEY,
-    lpFile: [*:0]const u16,
+    hKey: ?HKEY,
+    lpFile: ?[*:0]const u16,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn RegSetKeySecurity(
-    hKey: HKEY,
+    hKey: ?HKEY,
     SecurityInformation: u32,
-    pSecurityDescriptor: *SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegSetValueA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     dwType: REG_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -829,7 +829,7 @@ pub extern "ADVAPI32" fn RegSetValueA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegSetValueW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     dwType: REG_VALUE_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -839,7 +839,7 @@ pub extern "ADVAPI32" fn RegSetValueW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegSetValueExA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpValueName: ?[*:0]const u8,
     Reserved: u32,
     dwType: REG_VALUE_TYPE,
@@ -850,7 +850,7 @@ pub extern "ADVAPI32" fn RegSetValueExA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegSetValueExW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpValueName: ?[*:0]const u16,
     Reserved: u32,
     dwType: REG_VALUE_TYPE,
@@ -861,33 +861,33 @@ pub extern "ADVAPI32" fn RegSetValueExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegUnLoadKeyA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegUnLoadKeyW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteKeyValueA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     lpValueName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteKeyValueW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     lpValueName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegSetKeyValueA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     lpValueName: ?[*:0]const u8,
     dwType: u32,
@@ -898,7 +898,7 @@ pub extern "ADVAPI32" fn RegSetKeyValueA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegSetKeyValueW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     lpValueName: ?[*:0]const u16,
     dwType: u32,
@@ -909,26 +909,26 @@ pub extern "ADVAPI32" fn RegSetKeyValueW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteTreeA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegDeleteTreeW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegCopyTreeA(
-    hKeySrc: HKEY,
+    hKeySrc: ?HKEY,
     lpSubKey: ?[*:0]const u8,
-    hKeyDest: HKEY,
+    hKeyDest: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegGetValueA(
-    hkey: HKEY,
+    hkey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     lpValue: ?[*:0]const u8,
     dwFlags: RRF_RT,
@@ -940,7 +940,7 @@ pub extern "ADVAPI32" fn RegGetValueA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegGetValueW(
-    hkey: HKEY,
+    hkey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     lpValue: ?[*:0]const u16,
     dwFlags: RRF_RT,
@@ -952,14 +952,14 @@ pub extern "ADVAPI32" fn RegGetValueW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegCopyTreeW(
-    hKeySrc: HKEY,
+    hKeySrc: ?HKEY,
     lpSubKey: ?[*:0]const u16,
-    hKeyDest: HKEY,
+    hKeyDest: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegLoadMUIStringA(
-    hKey: HKEY,
+    hKey: ?HKEY,
     pszValue: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pszOutBuf: ?PSTR,
@@ -971,7 +971,7 @@ pub extern "ADVAPI32" fn RegLoadMUIStringA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegLoadMUIStringW(
-    hKey: HKEY,
+    hKey: ?HKEY,
     pszValue: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pszOutBuf: ?PWSTR,
@@ -983,8 +983,8 @@ pub extern "ADVAPI32" fn RegLoadMUIStringW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegLoadAppKeyA(
-    lpFile: [*:0]const u8,
-    phkResult: *HKEY,
+    lpFile: ?[*:0]const u8,
+    phkResult: ?*?HKEY,
     samDesired: u32,
     dwOptions: u32,
     Reserved: u32,
@@ -992,8 +992,8 @@ pub extern "ADVAPI32" fn RegLoadAppKeyA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn RegLoadAppKeyW(
-    lpFile: [*:0]const u16,
-    phkResult: *HKEY,
+    lpFile: ?[*:0]const u16,
+    phkResult: ?*?HKEY,
     samDesired: u32,
     dwOptions: u32,
     Reserved: u32,
@@ -1001,16 +1001,16 @@ pub extern "ADVAPI32" fn RegLoadAppKeyW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn RegSaveKeyExA(
-    hKey: HKEY,
-    lpFile: [*:0]const u8,
+    hKey: ?HKEY,
+    lpFile: ?[*:0]const u8,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
     Flags: REG_SAVE_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn RegSaveKeyExW(
-    hKey: HKEY,
-    lpFile: [*:0]const u16,
+    hKey: ?HKEY,
+    lpFile: ?[*:0]const u16,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
     Flags: REG_SAVE_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
@@ -1020,7 +1020,7 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pwszPrimarySubKey: ?[*:0]const u16,
     hkeyFallback: ?HKEY,
     pwszFallbackSubKey: ?[*:0]const u16,
-    pwszValue: [*:0]const u16,
+    pwszValue: ?[*:0]const u16,
     dwFlags: u32,
     pdwType: ?*u32,
     pvData: ?*c_void,

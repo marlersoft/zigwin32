@@ -59,15 +59,15 @@ pub const DML_BUFFER_TENSOR_DESC = extern struct {
     DataType: DML_TENSOR_DATA_TYPE,
     Flags: DML_TENSOR_FLAGS,
     DimensionCount: u32,
-    Sizes: *const u32,
-    Strides: *const u32,
+    Sizes: ?*const u32,
+    Strides: ?*const u32,
     TotalTensorSizeInBytes: u64,
     GuaranteedBaseOffsetAlignment: u32,
 };
 
 pub const DML_TENSOR_DESC = extern struct {
     Type: DML_TENSOR_TYPE,
-    Desc: *const c_void,
+    Desc: ?*const c_void,
 };
 
 pub const DML_OPERATOR_TYPE = enum(i32) {
@@ -352,533 +352,533 @@ pub const DML_RECURRENT_NETWORK_DIRECTION_BIDIRECTIONAL = DML_RECURRENT_NETWORK_
 
 pub const DML_OPERATOR_DESC = extern struct {
     Type: DML_OPERATOR_TYPE,
-    Desc: *const c_void,
+    Desc: ?*const c_void,
 };
 
 pub const DML_ELEMENT_WISE_IDENTITY_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_ABS_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_ACOS_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_ADD_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_ADD1_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    FusedActivation: *const DML_OPERATOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_ASIN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_ATAN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_CEIL_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_CLIP_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
     Min: f32,
     Max: f32,
 };
 
 pub const DML_ELEMENT_WISE_COS_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_DIVIDE_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_EXP_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_FLOOR_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_LOG_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_LOGICAL_AND_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_LOGICAL_EQUALS_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_LOGICAL_GREATER_THAN_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_LOGICAL_LESS_THAN_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_LOGICAL_NOT_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_LOGICAL_OR_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_LOGICAL_XOR_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_MAX_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_MEAN_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_MIN_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_MULTIPLY_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_POW_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    ExponentTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ExponentTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_CONSTANT_POW_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
     Exponent: f32,
 };
 
 pub const DML_ELEMENT_WISE_RECIP_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_SIN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_SQRT_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_SUBTRACT_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_TAN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_THRESHOLD_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
     Min: f32,
 };
 
 pub const DML_ELEMENT_WISE_QUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    ScaleTensor: *const DML_TENSOR_DESC,
-    ZeroPointTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    ZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_DEQUANTIZE_LINEAR_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    ScaleTensor: *const DML_TENSOR_DESC,
-    ZeroPointTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    ZeroPointTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_ELU_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
 };
 
 pub const DML_ACTIVATION_HARDMAX_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_HARD_SIGMOID_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
     Beta: f32,
 };
 
 pub const DML_ACTIVATION_IDENTITY_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_LEAKY_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
 };
 
 pub const DML_ACTIVATION_LINEAR_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
     Beta: f32,
 };
 
 pub const DML_ACTIVATION_LOG_SOFTMAX_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_PARAMETERIZED_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    SlopeTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    SlopeTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_PARAMETRIC_SOFTPLUS_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
     Beta: f32,
 };
 
 pub const DML_ACTIVATION_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_SCALED_ELU_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
     Gamma: f32,
 };
 
 pub const DML_ACTIVATION_SCALED_TANH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
     Beta: f32,
 };
 
 pub const DML_ACTIVATION_SIGMOID_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_SOFTMAX_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_SOFTPLUS_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Steepness: f32,
 };
 
 pub const DML_ACTIVATION_SOFTSIGN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_TANH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_THRESHOLDED_RELU_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Alpha: f32,
 };
 
 pub const DML_CONVOLUTION_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    FilterTensor: *const DML_TENSOR_DESC,
-    BiasTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    FilterTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Mode: DML_CONVOLUTION_MODE,
     Direction: DML_CONVOLUTION_DIRECTION,
     DimensionCount: u32,
-    Strides: *const u32,
-    Dilations: *const u32,
-    StartPadding: *const u32,
-    EndPadding: *const u32,
-    OutputPadding: *const u32,
+    Strides: ?*const u32,
+    Dilations: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
+    OutputPadding: ?*const u32,
     GroupCount: u32,
-    FusedActivation: *const DML_OPERATOR_DESC,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
 };
 
 pub const DML_GEMM_OPERATOR_DESC = extern struct {
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    CTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    CTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     TransA: DML_MATRIX_TRANSFORM,
     TransB: DML_MATRIX_TRANSFORM,
     Alpha: f32,
     Beta: f32,
-    FusedActivation: *const DML_OPERATOR_DESC,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
 };
 
 pub const DML_REDUCE_OPERATOR_DESC = extern struct {
     Function: DML_REDUCE_FUNCTION,
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     AxisCount: u32,
-    Axes: *const u32,
+    Axes: ?*const u32,
 };
 
 pub const DML_AVERAGE_POOLING_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     DimensionCount: u32,
-    Strides: *const u32,
-    WindowSize: *const u32,
-    StartPadding: *const u32,
-    EndPadding: *const u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
     IncludePadding: BOOL,
 };
 
 pub const DML_LP_POOLING_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     DimensionCount: u32,
-    Strides: *const u32,
-    WindowSize: *const u32,
-    StartPadding: *const u32,
-    EndPadding: *const u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
     P: u32,
 };
 
 pub const DML_MAX_POOLING_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     DimensionCount: u32,
-    Strides: *const u32,
-    WindowSize: *const u32,
-    StartPadding: *const u32,
-    EndPadding: *const u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
 };
 
 pub const DML_MAX_POOLING1_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    OutputIndicesTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    OutputIndicesTensor: ?*const DML_TENSOR_DESC,
     DimensionCount: u32,
-    Strides: *const u32,
-    WindowSize: *const u32,
-    StartPadding: *const u32,
-    EndPadding: *const u32,
+    Strides: ?*const u32,
+    WindowSize: ?*const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
 };
 
 pub const DML_ROI_POOLING_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    ROITensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ROITensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     SpatialScale: f32,
     PooledSize: DML_SIZE_2D,
 };
 
 pub const DML_SLICE_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     DimensionCount: u32,
-    Offsets: *const u32,
-    Sizes: *const u32,
-    Strides: *const u32,
+    Offsets: ?*const u32,
+    Sizes: ?*const u32,
+    Strides: ?*const u32,
 };
 
 pub const DML_CAST_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_SPLIT_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
     OutputCount: u32,
-    OutputTensors: *const DML_TENSOR_DESC,
+    OutputTensors: ?*const DML_TENSOR_DESC,
     Axis: u32,
 };
 
 pub const DML_JOIN_OPERATOR_DESC = extern struct {
     InputCount: u32,
-    InputTensors: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensors: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Axis: u32,
 };
 
 pub const DML_PADDING_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     PaddingMode: DML_PADDING_MODE,
     PaddingValue: f32,
     DimensionCount: u32,
-    StartPadding: *const u32,
-    EndPadding: *const u32,
+    StartPadding: ?*const u32,
+    EndPadding: ?*const u32,
 };
 
 pub const DML_VALUE_SCALE_2D_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Scale: f32,
     ChannelCount: u32,
-    Bias: *const f32,
+    Bias: ?*const f32,
 };
 
 pub const DML_UPSAMPLE_2D_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     ScaleSize: DML_SIZE_2D,
     InterpolationMode: DML_INTERPOLATION_MODE,
 };
 
 pub const DML_GATHER_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    IndicesTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Axis: u32,
     IndexDimensions: u32,
 };
 
 pub const DML_SPACE_TO_DEPTH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     BlockSize: u32,
 };
 
 pub const DML_DEPTH_TO_SPACE_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     BlockSize: u32,
 };
 
 pub const DML_TILE_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     RepeatsCount: u32,
-    Repeats: *const u32,
+    Repeats: ?*const u32,
 };
 
 pub const DML_TOP_K_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputValueTensor: *const DML_TENSOR_DESC,
-    OutputIndexTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputValueTensor: ?*const DML_TENSOR_DESC,
+    OutputIndexTensor: ?*const DML_TENSOR_DESC,
     Axis: u32,
     K: u32,
 };
 
 pub const DML_BATCH_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    MeanTensor: *const DML_TENSOR_DESC,
-    VarianceTensor: *const DML_TENSOR_DESC,
-    ScaleTensor: *const DML_TENSOR_DESC,
-    BiasTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    MeanTensor: ?*const DML_TENSOR_DESC,
+    VarianceTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Spatial: BOOL,
     Epsilon: f32,
-    FusedActivation: *const DML_OPERATOR_DESC,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
 };
 
 pub const DML_MEAN_VARIANCE_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    ScaleTensor: *const DML_TENSOR_DESC,
-    BiasTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    ScaleTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     CrossChannel: BOOL,
     NormalizeVariance: BOOL,
     Epsilon: f32,
-    FusedActivation: *const DML_OPERATOR_DESC,
+    FusedActivation: ?*const DML_OPERATOR_DESC,
 };
 
 pub const DML_LOCAL_RESPONSE_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     CrossChannel: BOOL,
     LocalSize: u32,
     Alpha: f32,
@@ -887,41 +887,41 @@ pub const DML_LOCAL_RESPONSE_NORMALIZATION_OPERATOR_DESC = extern struct {
 };
 
 pub const DML_LP_NORMALIZATION_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Axis: u32,
     Epsilon: f32,
     P: u32,
 };
 
 pub const DML_RNN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    WeightTensor: *const DML_TENSOR_DESC,
-    RecurrenceTensor: *const DML_TENSOR_DESC,
-    BiasTensor: *const DML_TENSOR_DESC,
-    HiddenInitTensor: *const DML_TENSOR_DESC,
-    SequenceLengthsTensor: *const DML_TENSOR_DESC,
-    OutputSequenceTensor: *const DML_TENSOR_DESC,
-    OutputSingleTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    WeightTensor: ?*const DML_TENSOR_DESC,
+    RecurrenceTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    HiddenInitTensor: ?*const DML_TENSOR_DESC,
+    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
+    OutputSequenceTensor: ?*const DML_TENSOR_DESC,
+    OutputSingleTensor: ?*const DML_TENSOR_DESC,
     ActivationDescCount: u32,
-    ActivationDescs: *const DML_OPERATOR_DESC,
+    ActivationDescs: ?*const DML_OPERATOR_DESC,
     Direction: DML_RECURRENT_NETWORK_DIRECTION,
 };
 
 pub const DML_LSTM_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    WeightTensor: *const DML_TENSOR_DESC,
-    RecurrenceTensor: *const DML_TENSOR_DESC,
-    BiasTensor: *const DML_TENSOR_DESC,
-    HiddenInitTensor: *const DML_TENSOR_DESC,
-    CellMemInitTensor: *const DML_TENSOR_DESC,
-    SequenceLengthsTensor: *const DML_TENSOR_DESC,
-    PeepholeTensor: *const DML_TENSOR_DESC,
-    OutputSequenceTensor: *const DML_TENSOR_DESC,
-    OutputSingleTensor: *const DML_TENSOR_DESC,
-    OutputCellSingleTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    WeightTensor: ?*const DML_TENSOR_DESC,
+    RecurrenceTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    HiddenInitTensor: ?*const DML_TENSOR_DESC,
+    CellMemInitTensor: ?*const DML_TENSOR_DESC,
+    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
+    PeepholeTensor: ?*const DML_TENSOR_DESC,
+    OutputSequenceTensor: ?*const DML_TENSOR_DESC,
+    OutputSingleTensor: ?*const DML_TENSOR_DESC,
+    OutputCellSingleTensor: ?*const DML_TENSOR_DESC,
     ActivationDescCount: u32,
-    ActivationDescs: *const DML_OPERATOR_DESC,
+    ActivationDescs: ?*const DML_OPERATOR_DESC,
     Direction: DML_RECURRENT_NETWORK_DIRECTION,
     ClipThreshold: f32,
     UseClipThreshold: BOOL,
@@ -929,119 +929,119 @@ pub const DML_LSTM_OPERATOR_DESC = extern struct {
 };
 
 pub const DML_GRU_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    WeightTensor: *const DML_TENSOR_DESC,
-    RecurrenceTensor: *const DML_TENSOR_DESC,
-    BiasTensor: *const DML_TENSOR_DESC,
-    HiddenInitTensor: *const DML_TENSOR_DESC,
-    SequenceLengthsTensor: *const DML_TENSOR_DESC,
-    OutputSequenceTensor: *const DML_TENSOR_DESC,
-    OutputSingleTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    WeightTensor: ?*const DML_TENSOR_DESC,
+    RecurrenceTensor: ?*const DML_TENSOR_DESC,
+    BiasTensor: ?*const DML_TENSOR_DESC,
+    HiddenInitTensor: ?*const DML_TENSOR_DESC,
+    SequenceLengthsTensor: ?*const DML_TENSOR_DESC,
+    OutputSequenceTensor: ?*const DML_TENSOR_DESC,
+    OutputSingleTensor: ?*const DML_TENSOR_DESC,
     ActivationDescCount: u32,
-    ActivationDescs: *const DML_OPERATOR_DESC,
+    ActivationDescs: ?*const DML_OPERATOR_DESC,
     Direction: DML_RECURRENT_NETWORK_DIRECTION,
     LinearBeforeReset: BOOL,
 };
 
 pub const DML_ELEMENT_WISE_SIGN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_IS_NAN_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ELEMENT_WISE_ERF_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_SINH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_COSH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_TANH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_ASINH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_ACOSH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_ATANH_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
-    ScaleBias: *const DML_SCALE_BIAS,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
+    ScaleBias: ?*const DML_SCALE_BIAS,
 };
 
 pub const DML_ELEMENT_WISE_IF_OPERATOR_DESC = extern struct {
-    ConditionTensor: *const DML_TENSOR_DESC,
-    ATensor: *const DML_TENSOR_DESC,
-    BTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    ConditionTensor: ?*const DML_TENSOR_DESC,
+    ATensor: ?*const DML_TENSOR_DESC,
+    BTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_ACTIVATION_SHRINK_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Bias: f32,
     Threshold: f32,
 };
 
 pub const DML_MAX_UNPOOLING_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    IndicesTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
 };
 
 pub const DML_DIAGONAL_MATRIX_OPERATOR_DESC = extern struct {
-    OutputTensor: *const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Offset: i32,
     Value: f32,
 };
 
 pub const DML_SCATTER_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    IndicesTensor: *const DML_TENSOR_DESC,
-    UpdatesTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    UpdatesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Axis: u32,
 };
 
 pub const DML_ONE_HOT_OPERATOR_DESC = extern struct {
-    IndicesTensor: *const DML_TENSOR_DESC,
-    ValuesTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    IndicesTensor: ?*const DML_TENSOR_DESC,
+    ValuesTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     Axis: u32,
 };
 
 pub const DML_RESAMPLE_OPERATOR_DESC = extern struct {
-    InputTensor: *const DML_TENSOR_DESC,
-    OutputTensor: *const DML_TENSOR_DESC,
+    InputTensor: ?*const DML_TENSOR_DESC,
+    OutputTensor: ?*const DML_TENSOR_DESC,
     InterpolationMode: DML_INTERPOLATION_MODE,
     ScaleCount: u32,
-    Scales: *const f32,
+    Scales: ?*const f32,
 };
 
 pub const DML_FEATURE_LEVEL = enum(i32) {
@@ -1068,7 +1068,7 @@ pub const DML_FEATURE_DATA_TENSOR_DATA_TYPE_SUPPORT = extern struct {
 
 pub const DML_FEATURE_QUERY_FEATURE_LEVELS = extern struct {
     RequestedFeatureLevelCount: u32,
-    RequestedFeatureLevels: *const DML_FEATURE_LEVEL,
+    RequestedFeatureLevels: ?*const DML_FEATURE_LEVEL,
 };
 
 pub const DML_FEATURE_DATA_FEATURE_LEVELS = extern struct {
@@ -1076,7 +1076,7 @@ pub const DML_FEATURE_DATA_FEATURE_LEVELS = extern struct {
 };
 
 pub const DML_BINDING_TABLE_DESC = extern struct {
-    Dispatchable: *IDMLDispatchable,
+    Dispatchable: ?*IDMLDispatchable,
     CPUDescriptorHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
     GPUDescriptorHandle: D3D12_GPU_DESCRIPTOR_HANDLE,
     SizeInDescriptors: u32,
@@ -1131,45 +1131,45 @@ pub const IDMLObject = extern struct {
         base: IUnknown.VTable,
         GetPrivateData: fn(
             self: *const IDMLObject,
-            guid: *const Guid,
-            dataSize: *u32,
+            guid: ?*const Guid,
+            dataSize: ?*u32,
             // TODO: what to do with BytesParamIndex 1?
             data: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateData: fn(
             self: *const IDMLObject,
-            guid: *const Guid,
+            guid: ?*const Guid,
             dataSize: u32,
             // TODO: what to do with BytesParamIndex 1?
             data: ?*const c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateDataInterface: fn(
             self: *const IDMLObject,
-            guid: *const Guid,
+            guid: ?*const Guid,
             data: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetName: fn(
             self: *const IDMLObject,
-            name: [*:0]const u16,
+            name: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLObject_GetPrivateData(self: *const T, guid: *const Guid, dataSize: *u32, data: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLObject_GetPrivateData(self: *const T, guid: ?*const Guid, dataSize: ?*u32, data: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLObject.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDMLObject, self), guid, dataSize, data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLObject_SetPrivateData(self: *const T, guid: *const Guid, dataSize: u32, data: ?*const c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLObject_SetPrivateData(self: *const T, guid: ?*const Guid, dataSize: u32, data: ?*const c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLObject.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDMLObject, self), guid, dataSize, data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLObject_SetPrivateDataInterface(self: *const T, guid: *const Guid, data: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDMLObject_SetPrivateDataInterface(self: *const T, guid: ?*const Guid, data: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLObject.VTable, self.vtable).SetPrivateDataInterface(@ptrCast(*const IDMLObject, self), guid, data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLObject_SetName(self: *const T, name: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IDMLObject_SetName(self: *const T, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLObject.VTable, self.vtable).SetName(@ptrCast(*const IDMLObject, self), name);
         }
     };}
@@ -1189,91 +1189,91 @@ pub const IDMLDevice = extern struct {
             featureQueryData: ?*const c_void,
             featureSupportDataSize: u32,
             // TODO: what to do with BytesParamIndex 3?
-            featureSupportData: *c_void,
+            featureSupportData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOperator: fn(
             self: *const IDMLDevice,
-            desc: *const DML_OPERATOR_DESC,
-            riid: *const Guid,
-            ppv: ?**c_void,
+            desc: ?*const DML_OPERATOR_DESC,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompileOperator: fn(
             self: *const IDMLDevice,
-            op: *IDMLOperator,
+            op: ?*IDMLOperator,
             flags: DML_EXECUTION_FLAGS,
-            riid: *const Guid,
-            ppv: ?**c_void,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOperatorInitializer: fn(
             self: *const IDMLDevice,
             operatorCount: u32,
-            operators: ?[*]*IDMLCompiledOperator,
-            riid: *const Guid,
-            ppv: **c_void,
+            operators: ?[*]?*IDMLCompiledOperator,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCommandRecorder: fn(
             self: *const IDMLDevice,
-            riid: *const Guid,
-            ppv: **c_void,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBindingTable: fn(
             self: *const IDMLDevice,
             desc: ?*const DML_BINDING_TABLE_DESC,
-            riid: *const Guid,
-            ppv: **c_void,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Evict: fn(
             self: *const IDMLDevice,
             count: u32,
-            ppObjects: [*]*IDMLPageable,
+            ppObjects: [*]?*IDMLPageable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MakeResident: fn(
             self: *const IDMLDevice,
             count: u32,
-            ppObjects: [*]*IDMLPageable,
+            ppObjects: [*]?*IDMLPageable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceRemovedReason: fn(
             self: *const IDMLDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParentDevice: fn(
             self: *const IDMLDevice,
-            riid: *const Guid,
-            ppv: **c_void,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CheckFeatureSupport(self: *const T, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?*const c_void, featureSupportDataSize: u32, featureSupportData: *c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CheckFeatureSupport(self: *const T, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?*const c_void, featureSupportDataSize: u32, featureSupportData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const IDMLDevice, self), feature, featureQueryDataSize, featureQueryData, featureSupportDataSize, featureSupportData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CreateOperator(self: *const T, desc: *const DML_OPERATOR_DESC, riid: *const Guid, ppv: ?**c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CreateOperator(self: *const T, desc: ?*const DML_OPERATOR_DESC, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateOperator(@ptrCast(*const IDMLDevice, self), desc, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CompileOperator(self: *const T, op: *IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: *const Guid, ppv: ?**c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CompileOperator(self: *const T, op: ?*IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CompileOperator(@ptrCast(*const IDMLDevice, self), op, flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CreateOperatorInitializer(self: *const T, operatorCount: u32, operators: ?[*]*IDMLCompiledOperator, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CreateOperatorInitializer(self: *const T, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateOperatorInitializer(@ptrCast(*const IDMLDevice, self), operatorCount, operators, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CreateCommandRecorder(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CreateCommandRecorder(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateCommandRecorder(@ptrCast(*const IDMLDevice, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CreateBindingTable(self: *const T, desc: ?*const DML_BINDING_TABLE_DESC, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CreateBindingTable(self: *const T, desc: ?*const DML_BINDING_TABLE_DESC, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateBindingTable(@ptrCast(*const IDMLDevice, self), desc, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_Evict(self: *const T, count: u32, ppObjects: [*]*IDMLPageable) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_Evict(self: *const T, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).Evict(@ptrCast(*const IDMLDevice, self), count, ppObjects);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_MakeResident(self: *const T, count: u32, ppObjects: [*]*IDMLPageable) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_MakeResident(self: *const T, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).MakeResident(@ptrCast(*const IDMLDevice, self), count, ppObjects);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1281,7 +1281,7 @@ pub const IDMLDevice = extern struct {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).GetDeviceRemovedReason(@ptrCast(*const IDMLDevice, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_GetParentDevice(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_GetParentDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).GetParentDevice(@ptrCast(*const IDMLDevice, self), riid, ppv);
         }
     };}
@@ -1295,15 +1295,15 @@ pub const IDMLDeviceChild = extern struct {
         base: IDMLObject.VTable,
         GetDevice: fn(
             self: *const IDMLDeviceChild,
-            riid: *const Guid,
-            ppv: **c_void,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDeviceChild_GetDevice(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDMLDeviceChild_GetDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDeviceChild.VTable, self.vtable).GetDevice(@ptrCast(*const IDMLDeviceChild, self), riid, ppv);
         }
     };}
@@ -1383,14 +1383,14 @@ pub const IDMLOperatorInitializer = extern struct {
         Reset: fn(
             self: *const IDMLOperatorInitializer,
             operatorCount: u32,
-            operators: ?[*]*IDMLCompiledOperator,
+            operators: ?[*]?*IDMLCompiledOperator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDispatchable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLOperatorInitializer_Reset(self: *const T, operatorCount: u32, operators: ?[*]*IDMLCompiledOperator) callconv(.Inline) HRESULT {
+        pub fn IDMLOperatorInitializer_Reset(self: *const T, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLOperatorInitializer.VTable, self.vtable).Reset(@ptrCast(*const IDMLOperatorInitializer, self), operatorCount, operators);
         }
     };}
@@ -1408,18 +1408,18 @@ pub const DML_BINDING_TYPE_BUFFER_ARRAY = DML_BINDING_TYPE.BUFFER_ARRAY;
 
 pub const DML_BINDING_DESC = extern struct {
     Type: DML_BINDING_TYPE,
-    Desc: *const c_void,
+    Desc: ?*const c_void,
 };
 
 pub const DML_BUFFER_BINDING = extern struct {
-    Buffer: *ID3D12Resource,
+    Buffer: ?*ID3D12Resource,
     Offset: u64,
     SizeInBytes: u64,
 };
 
 pub const DML_BUFFER_ARRAY_BINDING = extern struct {
     BindingCount: u32,
-    Bindings: *const DML_BUFFER_BINDING,
+    Bindings: ?*const DML_BUFFER_BINDING,
 };
 
 const IID_IDMLBindingTable_Value = @import("../../zig.zig").Guid.initString("29c687dc-de74-4e3b-ab00-1168f2fc3cfc");
@@ -1484,16 +1484,16 @@ pub const IDMLCommandRecorder = extern struct {
         base: IDMLDeviceChild.VTable,
         RecordDispatch: fn(
             self: *const IDMLCommandRecorder,
-            commandList: *ID3D12CommandList,
-            dispatchable: *IDMLDispatchable,
-            bindings: *IDMLBindingTable,
+            commandList: ?*ID3D12CommandList,
+            dispatchable: ?*IDMLDispatchable,
+            bindings: ?*IDMLBindingTable,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLCommandRecorder_RecordDispatch(self: *const T, commandList: *ID3D12CommandList, dispatchable: *IDMLDispatchable, bindings: *IDMLBindingTable) callconv(.Inline) void {
+        pub fn IDMLCommandRecorder_RecordDispatch(self: *const T, commandList: ?*ID3D12CommandList, dispatchable: ?*IDMLDispatchable, bindings: ?*IDMLBindingTable) callconv(.Inline) void {
             return @ptrCast(*const IDMLCommandRecorder.VTable, self.vtable).RecordDispatch(@ptrCast(*const IDMLCommandRecorder, self), commandList, dispatchable, bindings);
         }
     };}
@@ -1527,18 +1527,18 @@ pub const IDMLDebugDevice = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DirectML" fn DMLCreateDevice(
-    d3d12Device: *ID3D12Device,
+    d3d12Device: ?*ID3D12Device,
     flags: DML_CREATE_DEVICE_FLAGS,
-    riid: *const Guid,
-    ppv: ?**c_void,
+    riid: ?*const Guid,
+    ppv: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DirectML" fn DMLCreateDevice1(
-    d3d12Device: *ID3D12Device,
+    d3d12Device: ?*ID3D12Device,
     flags: DML_CREATE_DEVICE_FLAGS,
     minimumFeatureLevel: DML_FEATURE_LEVEL,
-    riid: *const Guid,
-    ppv: ?**c_void,
+    riid: ?*const Guid,
+    ppv: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

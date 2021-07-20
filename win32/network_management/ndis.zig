@@ -2121,13 +2121,13 @@ pub const OFFLOAD_IPSEC_ADD_SA = extern struct {
     Flags: u16,
     NumSAs: i16,
     SecAssoc: [3]OFFLOAD_SECURITY_ASSOCIATION,
-    OffloadHandle: HANDLE,
+    OffloadHandle: ?HANDLE,
     KeyLen: u32,
     KeyMat: [1]u8,
 };
 
 pub const OFFLOAD_IPSEC_DELETE_SA = extern struct {
-    OffloadHandle: HANDLE,
+    OffloadHandle: ?HANDLE,
 };
 
 pub const UDP_ENCAP_TYPE = enum(i32) {
@@ -2155,16 +2155,16 @@ pub const OFFLOAD_IPSEC_ADD_UDPESP_SA = extern struct {
     Flags: u16,
     NumSAs: i16,
     SecAssoc: [3]OFFLOAD_SECURITY_ASSOCIATION,
-    OffloadHandle: HANDLE,
+    OffloadHandle: ?HANDLE,
     EncapTypeEntry: OFFLOAD_IPSEC_UDPESP_ENCAPTYPE_ENTRY,
-    EncapTypeEntryOffldHandle: HANDLE,
+    EncapTypeEntryOffldHandle: ?HANDLE,
     KeyLen: u32,
     KeyMat: [1]u8,
 };
 
 pub const OFFLOAD_IPSEC_DELETE_UDPESP_SA = extern struct {
-    OffloadHandle: HANDLE,
-    EncapTypeEntryOffldHandle: HANDLE,
+    OffloadHandle: ?HANDLE,
+    EncapTypeEntryOffldHandle: ?HANDLE,
 };
 
 pub const NDIS_MEDIUM = enum(i32) {
@@ -2944,10 +2944,10 @@ pub const NDIS_PORT_CHARACTERISTICS = extern struct {
 };
 
 pub const NDIS_PORT = extern struct {
-    Next: *NDIS_PORT,
-    NdisReserved: *c_void,
-    MiniportReserved: *c_void,
-    ProtocolReserved: *c_void,
+    Next: ?*NDIS_PORT,
+    NdisReserved: ?*c_void,
+    MiniportReserved: ?*c_void,
+    ProtocolReserved: ?*c_void,
     PortCharacteristics: NDIS_PORT_CHARACTERISTICS,
 };
 

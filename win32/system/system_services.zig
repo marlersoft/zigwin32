@@ -4695,7 +4695,7 @@ pub const REDBOOK_DIGITAL_AUDIO_EXTRACTION_INFO_VERSION = @as(u32, 1);
 pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
     Reason: RTL_UMS_SCHEDULER_REASON,
     ActivationPayload: usize,
-    SchedulerParam: *c_void,
+    SchedulerParam: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -4771,8 +4771,8 @@ pub const XSTATE_CONTEXT = extern struct {
     Mask: u64,
     Length: u32,
     Reserved1: u32,
-    Area: *XSAVE_AREA,
-    Buffer: *c_void,
+    Area: ?*XSAVE_AREA,
+    Buffer: ?*c_void,
 };
 
 }, else => struct { } };
@@ -4798,7 +4798,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 
 pub const UNWIND_HISTORY_TABLE_ENTRY = extern struct {
     ImageBase: u64,
-    FunctionEntry: *IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    FunctionEntry: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
 };
 
 }, else => struct { } };
@@ -4825,16 +4825,16 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const DISPATCHER_CONTEXT = extern struct {
     ControlPc: usize,
     ImageBase: usize,
-    FunctionEntry: *IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    FunctionEntry: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     EstablisherFrame: usize,
     TargetPc: usize,
-    ContextRecord: *CONTEXT,
-    LanguageHandler: EXCEPTION_ROUTINE,
-    HandlerData: *c_void,
-    HistoryTable: *UNWIND_HISTORY_TABLE,
+    ContextRecord: ?*CONTEXT,
+    LanguageHandler: ?EXCEPTION_ROUTINE,
+    HandlerData: ?*c_void,
+    HistoryTable: ?*UNWIND_HISTORY_TABLE,
     ScopeIndex: u32,
     ControlPcIsUnwound: u8,
-    NonVolatileRegisters: *u8,
+    NonVolatileRegisters: ?*u8,
 };
 
 }, else => struct { } };
@@ -4846,8 +4846,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const PEXCEPTION_FILTER = fn(
-    ExceptionPointers: *EXCEPTION_POINTERS,
-    EstablisherFrame: *c_void,
+    ExceptionPointers: ?*EXCEPTION_POINTERS,
+    EstablisherFrame: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 }, else => struct { } };
@@ -4878,7 +4878,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const PGET_RUNTIME_FUNCTION_CALLBACK = fn(
     ControlPc: u64,
     Context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
 
 }, else => struct { } };
 
@@ -4891,10 +4891,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .Arm64 => struct {
 
 pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = fn(
-    Process: HANDLE,
-    TableAddress: *c_void,
-    Entries: *u32,
-    Functions: **IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    Process: ?HANDLE,
+    TableAddress: ?*c_void,
+    Entries: ?*u32,
+    Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -4905,26 +4905,26 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .Arm64 => struct {
 
 pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
-    X19: *u64,
-    X20: *u64,
-    X21: *u64,
-    X22: *u64,
-    X23: *u64,
-    X24: *u64,
-    X25: *u64,
-    X26: *u64,
-    X27: *u64,
-    X28: *u64,
-    Fp: *u64,
-    Lr: *u64,
-    D8: *u64,
-    D9: *u64,
-    D10: *u64,
-    D11: *u64,
-    D12: *u64,
-    D13: *u64,
-    D14: *u64,
-    D15: *u64,
+    X19: ?*u64,
+    X20: ?*u64,
+    X21: ?*u64,
+    X22: ?*u64,
+    X23: ?*u64,
+    X24: ?*u64,
+    X25: ?*u64,
+    X26: ?*u64,
+    X27: ?*u64,
+    X28: ?*u64,
+    Fp: ?*u64,
+    Lr: ?*u64,
+    D8: ?*u64,
+    D9: ?*u64,
+    D10: ?*u64,
+    D11: ?*u64,
+    D12: ?*u64,
+    D13: ?*u64,
+    D14: ?*u64,
+    D15: ?*u64,
 };
 
 }, else => struct { } };
@@ -5074,7 +5074,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 
 pub const UNWIND_HISTORY_TABLE_ENTRY = extern struct {
     ImageBase: u64,
-    FunctionEntry: *IMAGE_RUNTIME_FUNCTION_ENTRY,
+    FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
 };
 
 }, else => struct { } };
@@ -5088,7 +5088,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const PGET_RUNTIME_FUNCTION_CALLBACK = fn(
     ControlPc: u64,
     Context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *IMAGE_RUNTIME_FUNCTION_ENTRY;
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_RUNTIME_FUNCTION_ENTRY;
 
 }, else => struct { } };
 
@@ -5101,10 +5101,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64 => struct {
 
 pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = fn(
-    Process: HANDLE,
-    TableAddress: *c_void,
-    Entries: *u32,
-    Functions: **IMAGE_RUNTIME_FUNCTION_ENTRY,
+    Process: ?HANDLE,
+    TableAddress: ?*c_void,
+    Entries: ?*u32,
+    Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -5117,13 +5117,13 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const DISPATCHER_CONTEXT = extern struct {
     ControlPc: u64,
     ImageBase: u64,
-    FunctionEntry: *IMAGE_RUNTIME_FUNCTION_ENTRY,
+    FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
     EstablisherFrame: u64,
     TargetIp: u64,
-    ContextRecord: *CONTEXT,
-    LanguageHandler: EXCEPTION_ROUTINE,
-    HandlerData: *c_void,
-    HistoryTable: *UNWIND_HISTORY_TABLE,
+    ContextRecord: ?*CONTEXT,
+    LanguageHandler: ?EXCEPTION_ROUTINE,
+    HandlerData: ?*c_void,
+    HistoryTable: ?*UNWIND_HISTORY_TABLE,
     ScopeIndex: u32,
     Fill0: u32,
 };
@@ -5138,7 +5138,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 
 pub const PTERMINATION_HANDLER = fn(
     _abnormal_termination: u8,
-    EstablisherFrame: *c_void,
+    EstablisherFrame: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 }, else => struct { } };
@@ -5150,45 +5150,45 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 
 pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
     Anonymous1: extern union {
-        FloatingContext: [16]*M128A,
+        FloatingContext: [16]?*M128A,
         Anonymous: extern struct {
-            Xmm0: *M128A,
-            Xmm1: *M128A,
-            Xmm2: *M128A,
-            Xmm3: *M128A,
-            Xmm4: *M128A,
-            Xmm5: *M128A,
-            Xmm6: *M128A,
-            Xmm7: *M128A,
-            Xmm8: *M128A,
-            Xmm9: *M128A,
-            Xmm10: *M128A,
-            Xmm11: *M128A,
-            Xmm12: *M128A,
-            Xmm13: *M128A,
-            Xmm14: *M128A,
-            Xmm15: *M128A,
+            Xmm0: ?*M128A,
+            Xmm1: ?*M128A,
+            Xmm2: ?*M128A,
+            Xmm3: ?*M128A,
+            Xmm4: ?*M128A,
+            Xmm5: ?*M128A,
+            Xmm6: ?*M128A,
+            Xmm7: ?*M128A,
+            Xmm8: ?*M128A,
+            Xmm9: ?*M128A,
+            Xmm10: ?*M128A,
+            Xmm11: ?*M128A,
+            Xmm12: ?*M128A,
+            Xmm13: ?*M128A,
+            Xmm14: ?*M128A,
+            Xmm15: ?*M128A,
         },
     },
     Anonymous2: extern union {
-        IntegerContext: [16]*u64,
+        IntegerContext: [16]?*u64,
         Anonymous: extern struct {
-            Rax: *u64,
-            Rcx: *u64,
-            Rdx: *u64,
-            Rbx: *u64,
-            Rsp: *u64,
-            Rbp: *u64,
-            Rsi: *u64,
-            Rdi: *u64,
-            R8: *u64,
-            R9: *u64,
-            R10: *u64,
-            R11: *u64,
-            R12: *u64,
-            R13: *u64,
-            R14: *u64,
-            R15: *u64,
+            Rax: ?*u64,
+            Rcx: ?*u64,
+            Rdx: ?*u64,
+            Rbx: ?*u64,
+            Rsp: ?*u64,
+            Rbp: ?*u64,
+            Rsi: ?*u64,
+            Rdi: ?*u64,
+            R8: ?*u64,
+            R9: ?*u64,
+            R10: ?*u64,
+            R11: ?*u64,
+            R12: ?*u64,
+            R13: ?*u64,
+            R14: ?*u64,
+            R15: ?*u64,
         },
     },
 };
@@ -5302,27 +5302,27 @@ pub const ACCESS_REASONS = extern struct {
 pub const SE_SECURITY_DESCRIPTOR = extern struct {
     Size: u32,
     Flags: u32,
-    SecurityDescriptor: *SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 };
 
 pub const SE_ACCESS_REQUEST = extern struct {
     Size: u32,
-    SeSecurityDescriptor: *SE_SECURITY_DESCRIPTOR,
+    SeSecurityDescriptor: ?*SE_SECURITY_DESCRIPTOR,
     DesiredAccess: u32,
     PreviouslyGrantedAccess: u32,
-    PrincipalSelfSid: PSID,
-    GenericMapping: *GENERIC_MAPPING,
+    PrincipalSelfSid: ?PSID,
+    GenericMapping: ?*GENERIC_MAPPING,
     ObjectTypeListCount: u32,
-    ObjectTypeList: *OBJECT_TYPE_LIST,
+    ObjectTypeList: ?*OBJECT_TYPE_LIST,
 };
 
 pub const SE_ACCESS_REPLY = extern struct {
     Size: u32,
     ResultListCount: u32,
-    GrantedAccess: *u32,
-    AccessStatus: *u32,
-    AccessReason: *ACCESS_REASONS,
-    Privileges: **PRIVILEGE_SET,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*u32,
+    AccessReason: ?*ACCESS_REASONS,
+    Privileges: ?*?*PRIVILEGE_SET,
 };
 
 pub const SE_TOKEN_USER = extern struct {
@@ -5337,16 +5337,16 @@ pub const SE_TOKEN_USER = extern struct {
 };
 
 pub const TOKEN_SID_INFORMATION = extern struct {
-    Sid: PSID,
+    Sid: ?PSID,
 };
 
 pub const TOKEN_BNO_ISOLATION_INFORMATION = extern struct {
-    IsolationPrefix: PWSTR,
+    IsolationPrefix: ?PWSTR,
     IsolationEnabled: u8,
 };
 
 pub const SE_IMPERSONATION_STATE = extern struct {
-    Token: *c_void,
+    Token: ?*c_void,
     CopyOnOpen: u8,
     EffectiveOnly: u8,
     Level: SECURITY_IMPERSONATION_LEVEL,
@@ -5379,27 +5379,27 @@ pub const SeLearningModeSettings = SE_LEARNING_MODE_DATA_TYPE.Settings;
 pub const SeLearningModeMax = SE_LEARNING_MODE_DATA_TYPE.Max;
 
 pub const JOB_SET_ARRAY = extern struct {
-    JobHandle: HANDLE,
+    JobHandle: ?HANDLE,
     MemberLevel: u32,
     Flags: u32,
 };
 
 pub const EXCEPTION_REGISTRATION_RECORD = extern struct {
-    Next: *EXCEPTION_REGISTRATION_RECORD,
-    Handler: EXCEPTION_ROUTINE,
+    Next: ?*EXCEPTION_REGISTRATION_RECORD,
+    Handler: ?EXCEPTION_ROUTINE,
 };
 
 pub const NT_TIB = extern struct {
-    ExceptionList: *EXCEPTION_REGISTRATION_RECORD,
-    StackBase: *c_void,
-    StackLimit: *c_void,
-    SubSystemTib: *c_void,
+    ExceptionList: ?*EXCEPTION_REGISTRATION_RECORD,
+    StackBase: ?*c_void,
+    StackLimit: ?*c_void,
+    SubSystemTib: ?*c_void,
     Anonymous: extern union {
-        FiberData: *c_void,
+        FiberData: ?*c_void,
         Version: u32,
     },
-    ArbitraryUserPointer: *c_void,
-    Self: *NT_TIB,
+    ArbitraryUserPointer: ?*c_void,
+    Self: ?*NT_TIB,
 };
 
 pub const NT_TIB32 = extern struct {
@@ -5430,8 +5430,8 @@ pub const NT_TIB64 = extern struct {
 
 pub const UMS_CREATE_THREAD_ATTRIBUTES = extern struct {
     UmsVersion: u32,
-    UmsContext: *c_void,
-    UmsCompletionList: *c_void,
+    UmsContext: ?*c_void,
+    UmsCompletionList: ?*c_void,
 };
 
 pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGET = extern struct {
@@ -5443,7 +5443,7 @@ pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGETS_INFORMATION = extern struct {
     NumberOfTargets: u16,
     Reserved: u16,
     Reserved2: u32,
-    Targets: *PROCESS_DYNAMIC_EH_CONTINUATION_TARGET,
+    Targets: ?*PROCESS_DYNAMIC_EH_CONTINUATION_TARGET,
 };
 
 pub const RATE_QUOTA_LIMIT = extern union {
@@ -5694,10 +5694,10 @@ pub const JOBOBJECT_BASIC_UI_RESTRICTIONS = extern struct {
 
 pub const JOBOBJECT_SECURITY_LIMIT_INFORMATION = extern struct {
     SecurityLimitFlags: JOB_OBJECT_SECURITY,
-    JobToken: HANDLE,
-    SidsToDisable: *TOKEN_GROUPS,
-    PrivilegesToDelete: *TOKEN_PRIVILEGES,
-    RestrictedSids: *TOKEN_GROUPS,
+    JobToken: ?HANDLE,
+    SidsToDisable: ?*TOKEN_GROUPS,
+    PrivilegesToDelete: ?*TOKEN_PRIVILEGES,
+    RestrictedSids: ?*TOKEN_GROUPS,
 };
 
 pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
@@ -5705,8 +5705,8 @@ pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
 };
 
 pub const JOBOBJECT_ASSOCIATE_COMPLETION_PORT = extern struct {
-    CompletionKey: *c_void,
-    CompletionPort: HANDLE,
+    CompletionKey: ?*c_void,
+    CompletionPort: ?HANDLE,
 };
 
 pub const JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = extern struct {
@@ -5858,7 +5858,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
     ReservationIops: i64,
-    VolumeName: PWSTR,
+    VolumeName: ?PWSTR,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
     VolumeNameLength: u16,
@@ -5868,7 +5868,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V2 = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
     ReservationIops: i64,
-    VolumeName: PWSTR,
+    VolumeName: ?PWSTR,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
     VolumeNameLength: u16,
@@ -5884,7 +5884,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
     ReservationIops: i64,
-    VolumeName: PWSTR,
+    VolumeName: ?PWSTR,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
     VolumeNameLength: u16,
@@ -6049,8 +6049,8 @@ pub const SERVERSILO_BASIC_INFORMATION = extern struct {
     State: SERVERSILO_STATE,
     ExitStatus: u32,
     IsDownlevelContainer: u8,
-    ApiSetSchema: *c_void,
-    HostApiSetSchema: *c_void,
+    ApiSetSchema: ?*c_void,
+    HostApiSetSchema: ?*c_void,
 };
 
 pub const PROCESSOR_CACHE_TYPE = enum(i32) {
@@ -6182,8 +6182,8 @@ pub const CFG_CALL_TARGET_INFO = extern struct {
 };
 
 pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
-    LowestStartingAddress: *c_void,
-    HighestEndingAddress: *c_void,
+    LowestStartingAddress: ?*c_void,
+    HighestEndingAddress: ?*c_void,
     Alignment: usize,
 };
 
@@ -6210,9 +6210,9 @@ pub const MEM_EXTENDED_PARAMETER = extern struct {
     },
     Anonymous2: extern union {
         ULong64: u64,
-        Pointer: *c_void,
+        Pointer: ?*c_void,
         Size: usize,
-        Handle: HANDLE,
+        Handle: ?HANDLE,
         ULong: u32,
     },
 };
@@ -6229,7 +6229,7 @@ pub const MemSectionExtendedParameterNumaNode = MEM_SECTION_EXTENDED_PARAMETER_T
 pub const MemSectionExtendedParameterMax = MEM_SECTION_EXTENDED_PARAMETER_TYPE.Max;
 
 pub const FILE_SEGMENT_ELEMENT = extern union {
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     Alignment: u64,
 };
 
@@ -6302,7 +6302,7 @@ pub const SHARED_VIRTUAL_DISK_SUPPORT = extern struct {
 pub const REARRANGE_FILE_DATA = extern struct {
     SourceStartingOffset: u64,
     TargetOffset: u64,
-    SourceFileHandle: HANDLE,
+    SourceFileHandle: ?HANDLE,
     Length: u32,
     Flags: u32,
 };
@@ -6800,7 +6800,7 @@ pub const PPM_WMI_IDLE_STATES_EX = extern struct {
     Count: u32,
     TargetState: u32,
     OldState: u32,
-    TargetProcessors: *c_void,
+    TargetProcessors: ?*c_void,
     State: [1]PPM_WMI_IDLE_STATE,
 };
 
@@ -6858,7 +6858,7 @@ pub const PPM_WMI_PERF_STATES_EX = extern struct {
     Type: u8,
     Reserved: u8,
     TimerInterval: u32,
-    TargetProcessors: *c_void,
+    TargetProcessors: ?*c_void,
     PStateHandler: u32,
     PStateContext: u32,
     TStateHandler: u32,
@@ -7382,9 +7382,9 @@ pub const IMAGE_THUNK_DATA32 = extern struct {
 };
 
 pub const PIMAGE_TLS_CALLBACK = fn(
-    DllHandle: *c_void,
+    DllHandle: ?*c_void,
     Reason: u32,
-    Reserved: *c_void,
+    Reserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
@@ -7815,7 +7815,7 @@ pub const IMAGE_COR20_HEADER = extern struct {
 };
 
 pub const RTL_RUN_ONCE = extern union {
-    Ptr: *c_void,
+    Ptr: ?*c_void,
 };
 
 pub const RTL_BARRIER = extern struct {
@@ -7857,7 +7857,7 @@ pub const UmsSchedulerThreadYield = RTL_UMS_SCHEDULER_REASON.ThreadYield;
 pub const PRTL_UMS_SCHEDULER_ENTRY_POINT = fn(
     Reason: RTL_UMS_SCHEDULER_REASON,
     ActivationPayload: usize,
-    SchedulerParam: *c_void,
+    SchedulerParam: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const OS_DEPLOYEMENT_STATE_VALUES = enum(i32) {
@@ -7868,7 +7868,7 @@ pub const OS_DEPLOYMENT_STANDARD = OS_DEPLOYEMENT_STATE_VALUES.STANDARD;
 pub const OS_DEPLOYMENT_COMPACT = OS_DEPLOYEMENT_STATE_VALUES.COMPACT;
 
 pub const NV_MEMORY_RANGE = extern struct {
-    BaseAddress: *c_void,
+    BaseAddress: ?*c_void,
     Length: usize,
 };
 
@@ -7879,7 +7879,7 @@ pub const CORRELATION_VECTOR = extern struct {
 
 pub const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = extern struct {
     Size: u32,
-    TriggerId: [*:0]const u16,
+    TriggerId: ?[*:0]const u16,
 };
 
 pub const IMAGE_POLICY_ENTRY_TYPE = enum(i32) {
@@ -7946,7 +7946,7 @@ pub const IMAGE_POLICY_ENTRY = extern struct {
     Type: IMAGE_POLICY_ENTRY_TYPE,
     PolicyId: IMAGE_POLICY_ID,
     u: extern union {
-        None: *const c_void,
+        None: ?*const c_void,
         BoolValue: u8,
         Int8Value: i8,
         UInt8Value: u8,
@@ -7956,8 +7956,8 @@ pub const IMAGE_POLICY_ENTRY = extern struct {
         UInt32Value: u32,
         Int64Value: i64,
         UInt64Value: u64,
-        AnsiStringValue: [*:0]const u8,
-        UnicodeStringValue: [*:0]const u16,
+        AnsiStringValue: ?[*:0]const u8,
+        UnicodeStringValue: ?[*:0]const u16,
     },
 };
 
@@ -7971,7 +7971,7 @@ pub const IMAGE_POLICY_METADATA = extern struct {
 pub const RTL_CRITICAL_SECTION_DEBUG = extern struct {
     Type: u16,
     CreatorBackTraceIndex: u16,
-    CriticalSection: *RTL_CRITICAL_SECTION,
+    CriticalSection: ?*RTL_CRITICAL_SECTION,
     ProcessLocksList: LIST_ENTRY,
     EntryCount: u32,
     ContentionCount: u32,
@@ -7981,20 +7981,20 @@ pub const RTL_CRITICAL_SECTION_DEBUG = extern struct {
 };
 
 pub const RTL_CRITICAL_SECTION = extern struct {
-    DebugInfo: *RTL_CRITICAL_SECTION_DEBUG,
+    DebugInfo: ?*RTL_CRITICAL_SECTION_DEBUG,
     LockCount: i32,
     RecursionCount: i32,
-    OwningThread: HANDLE,
-    LockSemaphore: HANDLE,
+    OwningThread: ?HANDLE,
+    LockSemaphore: ?HANDLE,
     SpinCount: usize,
 };
 
 pub const RTL_SRWLOCK = extern struct {
-    Ptr: *c_void,
+    Ptr: ?*c_void,
 };
 
 pub const RTL_CONDITION_VARIABLE = extern struct {
-    Ptr: *c_void,
+    Ptr: ?*c_void,
 };
 
 pub const PAPCFUNC = fn(
@@ -8016,22 +8016,22 @@ pub const HEAP_OPTIMIZE_RESOURCES_INFORMATION = extern struct {
 };
 
 pub const WAITORTIMERCALLBACK = fn(
-    param0: *c_void,
+    param0: ?*c_void,
     param1: u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WORKERCALLBACKFUNC = fn(
-    param0: *c_void,
+    param0: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const APC_CALLBACK_FUNCTION = fn(
     param0: u32,
-    param1: *c_void,
-    param2: *c_void,
+    param1: ?*c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFLS_CALLBACK_FUNCTION = fn(
-    lpFlsData: *c_void,
+    lpFlsData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const ACTIVATION_CONTEXT_INFO_CLASS = enum(i32) {
@@ -8209,7 +8209,7 @@ pub const TAPE_CREATE_PARTITION = extern struct {
 pub const TAPE_WMI_OPERATIONS = extern struct {
     Method: u32,
     DataBufferSize: u32,
-    DataBuffer: *c_void,
+    DataBuffer: ?*c_void,
 };
 
 pub const TAPE_DRIVE_PROBLEM_TYPE = enum(i32) {
@@ -8290,7 +8290,7 @@ pub const TRANSACTION_PROPERTIES_INFORMATION = extern struct {
 };
 
 pub const TRANSACTION_BIND_INFORMATION = extern struct {
-    TmHandle: HANDLE,
+    TmHandle: ?HANDLE,
 };
 
 pub const TRANSACTION_ENLISTMENT_PAIR = extern struct {
@@ -8314,7 +8314,7 @@ pub const RESOURCEMANAGER_BASIC_INFORMATION = extern struct {
 };
 
 pub const RESOURCEMANAGER_COMPLETION_INFORMATION = extern struct {
-    IoCompletionPortHandle: HANDLE,
+    IoCompletionPortHandle: ?HANDLE,
     CompletionKey: usize,
 };
 
@@ -8405,7 +8405,7 @@ pub const KTMOBJECT_CURSOR = extern struct {
 };
 
 pub const PTP_SIMPLE_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
+    Instance: ?*TP_CALLBACK_INSTANCE,
     Context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -8439,10 +8439,10 @@ pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
     Version: u32,
     Pool: PTP_POOL,
     CleanupGroup: isize,
-    CleanupGroupCancelCallback: PTP_CLEANUP_GROUP_CANCEL_CALLBACK,
-    RaceDll: *c_void,
+    CleanupGroupCancelCallback: ?PTP_CLEANUP_GROUP_CANCEL_CALLBACK,
+    RaceDll: ?*c_void,
     ActivationContext: isize,
-    FinalizationCallback: PTP_SIMPLE_CALLBACK,
+    FinalizationCallback: ?PTP_SIMPLE_CALLBACK,
     u: extern union {
         Flags: u32,
         s: extern struct {
@@ -8454,21 +8454,21 @@ pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
 };
 
 pub const PTP_WORK_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
+    Instance: ?*TP_CALLBACK_INSTANCE,
     Context: ?*c_void,
-    Work: *TP_WORK,
+    Work: ?*TP_WORK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PTP_TIMER_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
+    Instance: ?*TP_CALLBACK_INSTANCE,
     Context: ?*c_void,
-    Timer: *TP_TIMER,
+    Timer: ?*TP_TIMER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PTP_WAIT_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
+    Instance: ?*TP_CALLBACK_INSTANCE,
     Context: ?*c_void,
-    Wait: *TP_WAIT,
+    Wait: ?*TP_WAIT,
     WaitResult: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -8480,27 +8480,27 @@ pub const OVERLAPPED = extern struct {
             Offset: u32,
             OffsetHigh: u32,
         },
-        Pointer: *c_void,
+        Pointer: ?*c_void,
     },
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
 };
 
 pub const PROCESS_HEAP_ENTRY = extern struct {
-    lpData: *c_void,
+    lpData: ?*c_void,
     cbData: u32,
     cbOverhead: u8,
     iRegionIndex: u8,
     wFlags: u16,
     Anonymous: extern union {
         Block: extern struct {
-            hMem: HANDLE,
+            hMem: ?HANDLE,
             dwReserved: [3]u32,
         },
         Region: extern struct {
             dwCommittedSize: u32,
             dwUnCommittedSize: u32,
-            lpFirstBlock: *c_void,
-            lpLastBlock: *c_void,
+            lpFirstBlock: ?*c_void,
+            lpLastBlock: ?*c_void,
         },
     },
 };
@@ -8510,23 +8510,23 @@ pub const REASON_CONTEXT = extern struct {
     Flags: POWER_REQUEST_CONTEXT_FLAGS,
     Reason: extern union {
         Detailed: extern struct {
-            LocalizedReasonModule: HINSTANCE,
+            LocalizedReasonModule: ?HINSTANCE,
             LocalizedReasonId: u32,
             ReasonStringCount: u32,
-            ReasonStrings: *PWSTR,
+            ReasonStrings: ?*?PWSTR,
         },
-        SimpleReasonString: PWSTR,
+        SimpleReasonString: ?PWSTR,
     },
 };
 
 pub const LPTHREAD_START_ROUTINE = fn(
-    lpThreadParameter: *c_void,
+    lpThreadParameter: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RPC_IMPORT_CONTEXT_P = extern struct {
-    LookupContext: *c_void,
-    ProposedHandle: *c_void,
-    Bindings: *RPC_BINDING_VECTOR,
+    LookupContext: ?*c_void,
+    ProposedHandle: ?*c_void,
+    Bindings: ?*RPC_BINDING_VECTOR,
 };
 
 pub const RemHGLOBAL = extern struct {
@@ -8567,7 +8567,7 @@ pub const userCLIPFORMAT = extern struct {
     fContext: i32,
     u: extern struct {
         dwValue: u32,
-        pwszName: PWSTR,
+        pwszName: ?PWSTR,
     },
 };
 
@@ -8575,7 +8575,7 @@ pub const GDI_NONREMOTE = extern struct {
     fContext: i32,
     u: extern struct {
         hInproc: i32,
-        hRemote: *DWORD_BLOB,
+        hRemote: ?*DWORD_BLOB,
     },
 };
 
@@ -8583,7 +8583,7 @@ pub const userHGLOBAL = extern struct {
     fContext: i32,
     u: extern struct {
         hInproc: i32,
-        hRemote: *FLAGGED_BYTE_BLOB,
+        hRemote: ?*FLAGGED_BYTE_BLOB,
         hInproc64: i64,
     },
 };
@@ -8592,7 +8592,7 @@ pub const userHMETAFILE = extern struct {
     fContext: i32,
     u: extern struct {
         hInproc: i32,
-        hRemote: *BYTE_BLOB,
+        hRemote: ?*BYTE_BLOB,
         hInproc64: i64,
     },
 };
@@ -8601,14 +8601,14 @@ pub const remoteMETAFILEPICT = extern struct {
     mm: i32,
     xExt: i32,
     yExt: i32,
-    hMF: *userHMETAFILE,
+    hMF: ?*userHMETAFILE,
 };
 
 pub const userHMETAFILEPICT = extern struct {
     fContext: i32,
     u: extern struct {
         hInproc: i32,
-        hRemote: *remoteMETAFILEPICT,
+        hRemote: ?*remoteMETAFILEPICT,
         hInproc64: i64,
     },
 };
@@ -8617,7 +8617,7 @@ pub const userHENHMETAFILE = extern struct {
     fContext: i32,
     u: extern struct {
         hInproc: i32,
-        hRemote: *BYTE_BLOB,
+        hRemote: ?*BYTE_BLOB,
         hInproc64: i64,
     },
 };
@@ -8637,7 +8637,7 @@ pub const userHBITMAP = extern struct {
     fContext: i32,
     u: extern struct {
         hInproc: i32,
-        hRemote: *userBITMAP,
+        hRemote: ?*userBITMAP,
         hInproc64: i64,
     },
 };
@@ -8646,7 +8646,7 @@ pub const userHPALETTE = extern struct {
     fContext: i32,
     u: extern struct {
         hInproc: i32,
-        hRemote: *LOGPALETTE,
+        hRemote: ?*LOGPALETTE,
         hInproc64: i64,
     },
 };
@@ -8688,25 +8688,25 @@ pub const DECIMAL = extern struct {
 
 pub const BSTRBLOB = extern struct {
     cbSize: u32,
-    pData: *u8,
+    pData: ?*u8,
 };
 
 pub const CLIPDATA = extern struct {
     cbSize: u32,
     ulClipFmt: i32,
-    pClipData: *u8,
+    pClipData: ?*u8,
 };
 
 pub const uCLSSPEC = extern struct {
     tyspec: u32,
     tagged_union: extern struct {
         clsid: Guid,
-        pFileExt: PWSTR,
-        pMimeType: PWSTR,
-        pProgId: PWSTR,
-        pFileName: PWSTR,
+        pFileExt: ?PWSTR,
+        pMimeType: ?PWSTR,
+        pProgId: ?PWSTR,
+        pFileName: ?PWSTR,
         ByName: extern struct {
-            pPackageName: PWSTR,
+            pPackageName: ?PWSTR,
             PolicyId: Guid,
         },
         ByObjectId: extern struct {
@@ -8723,16 +8723,16 @@ pub const IServiceProvider = extern struct {
         base: IUnknown.VTable,
         QueryService: fn(
             self: *const IServiceProvider,
-            guidService: *const Guid,
-            riid: *const Guid,
-            ppvObject: **c_void,
+            guidService: ?*const Guid,
+            riid: ?*const Guid,
+            ppvObject: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IServiceProvider_QueryService(self: *const T, guidService: *const Guid, riid: *const Guid, ppvObject: **c_void) callconv(.Inline) HRESULT {
+        pub fn IServiceProvider_QueryService(self: *const T, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IServiceProvider.VTable, self.vtable).QueryService(@ptrCast(*const IServiceProvider, self), guidService, riid, ppvObject);
         }
     };}
@@ -8748,18 +8748,18 @@ pub const LPTIMECALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LPD3DVALIDATECALLBACK = fn(
-    lpUserArg: *c_void,
+    lpUserArg: ?*c_void,
     dwOffset: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPD3DENUMTEXTUREFORMATSCALLBACK = fn(
-    lpDdsd: *DDSURFACEDESC,
-    lpContext: *c_void,
+    lpDdsd: ?*DDSURFACEDESC,
+    lpContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPD3DENUMPIXELFORMATSCALLBACK = fn(
-    lpDDPixFmt: *DDPIXELFORMAT,
-    lpContext: *c_void,
+    lpDDPixFmt: ?*DDPIXELFORMAT,
+    lpContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const D3DHVERTEX = extern struct {
@@ -8919,11 +8919,11 @@ pub const D3DVIEWPORT7 = extern struct {
 
 pub const D3DTRANSFORMDATA = extern struct {
     dwSize: u32,
-    lpIn: *c_void,
+    lpIn: ?*c_void,
     dwInSize: u32,
-    lpOut: *c_void,
+    lpOut: ?*c_void,
     dwOutSize: u32,
-    lpHOut: *D3DHVERTEX,
+    lpHOut: ?*D3DHVERTEX,
     dwClip: u32,
     dwClipIntersection: u32,
     dwClipUnion: u32,
@@ -9033,9 +9033,9 @@ pub const D3DLIGHT2 = extern struct {
 
 pub const D3DLIGHTDATA = extern struct {
     dwSize: u32,
-    lpIn: *D3DLIGHTINGELEMENT,
+    lpIn: ?*D3DLIGHTINGELEMENT,
     dwInSize: u32,
-    lpOut: *D3DTLVERTEX,
+    lpOut: ?*D3DTLVERTEX,
     dwOutSize: u32,
 };
 
@@ -9332,7 +9332,7 @@ pub const D3DVERTEXBUFFERDESC = extern struct {
 };
 
 pub const D3DDP_PTRSTRIDE = extern struct {
-    lpvData: *c_void,
+    lpvData: ?*c_void,
     dwStride: u32,
 };
 
@@ -9446,19 +9446,19 @@ pub const _D3DDeviceDesc7 = extern struct {
 };
 
 pub const LPD3DENUMDEVICESCALLBACK = fn(
-    lpGuid: *Guid,
-    lpDeviceDescription: PSTR,
-    lpDeviceName: PSTR,
-    param3: *_D3DDeviceDesc,
-    param4: *_D3DDeviceDesc,
-    param5: *c_void,
+    lpGuid: ?*Guid,
+    lpDeviceDescription: ?PSTR,
+    lpDeviceName: ?PSTR,
+    param3: ?*_D3DDeviceDesc,
+    param4: ?*_D3DDeviceDesc,
+    param5: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPD3DENUMDEVICESCALLBACK7 = fn(
-    lpDeviceDescription: PSTR,
-    lpDeviceName: PSTR,
-    param2: *_D3DDeviceDesc7,
-    param3: *c_void,
+    lpDeviceDescription: ?PSTR,
+    lpDeviceName: ?PSTR,
+    param2: ?*_D3DDeviceDesc7,
+    param3: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const D3DFINDDEVICESEARCH = extern struct {
@@ -9483,7 +9483,7 @@ pub const _D3DExecuteBufferDesc = extern struct {
     dwFlags: u32,
     dwCaps: u32,
     dwBufferSize: u32,
-    lpData: *c_void,
+    lpData: ?*c_void,
 };
 
 pub const D3DDEVINFO_TEXTUREMANAGER = extern struct {
@@ -9596,7 +9596,7 @@ pub const D3DNTHAL_GLOBALDRIVERDATA = extern struct {
     dwNumVertices: u32,
     dwNumClipVertices: u32,
     dwNumTextureFormats: u32,
-    lpTextureFormats: *DDSURFACEDESC,
+    lpTextureFormats: ?*DDSURFACEDESC,
 };
 
 pub const D3DNTHAL_D3DDX6EXTENDEDCAPS = extern struct {
@@ -9660,16 +9660,16 @@ pub const D3DNTHAL_D3DEXTENDEDCAPS = extern struct {
 
 pub const D3DNTHAL_CONTEXTCREATEDATA = extern struct {
     Anonymous1: extern union {
-        lpDDGbl: *DD_DIRECTDRAW_GLOBAL,
-        lpDDLcl: *DD_DIRECTDRAW_LOCAL,
+        lpDDGbl: ?*DD_DIRECTDRAW_GLOBAL,
+        lpDDLcl: ?*DD_DIRECTDRAW_LOCAL,
     },
     Anonymous2: extern union {
-        lpDDS: *DD_SURFACE_LOCAL,
-        lpDDSLcl: *DD_SURFACE_LOCAL,
+        lpDDS: ?*DD_SURFACE_LOCAL,
+        lpDDSLcl: ?*DD_SURFACE_LOCAL,
     },
     Anonymous3: extern union {
-        lpDDSZ: *DD_SURFACE_LOCAL,
-        lpDDSZLcl: *DD_SURFACE_LOCAL,
+        lpDDSZ: ?*DD_SURFACE_LOCAL,
+        lpDDSZLcl: ?*DD_SURFACE_LOCAL,
     },
     dwPID: u32,
     dwhContext: usize,
@@ -9694,7 +9694,7 @@ pub const D3DNTHAL_SCENECAPTUREDATA = extern struct {
 
 pub const D3DNTHAL_TEXTURECREATEDATA = extern struct {
     dwhContext: usize,
-    hDDS: HANDLE,
+    hDDS: ?HANDLE,
     dwHandle: usize,
     ddrval: HRESULT,
 };
@@ -9714,69 +9714,69 @@ pub const D3DNTHAL_TEXTURESWAPDATA = extern struct {
 
 pub const D3DNTHAL_TEXTUREGETSURFDATA = extern struct {
     dwhContext: usize,
-    hDDS: HANDLE,
+    hDDS: ?HANDLE,
     dwHandle: usize,
     ddrval: HRESULT,
 };
 
 pub const LPD3DNTHAL_CONTEXTCREATECB = fn(
-    param0: *D3DNTHAL_CONTEXTCREATEDATA,
+    param0: ?*D3DNTHAL_CONTEXTCREATEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_CONTEXTDESTROYCB = fn(
-    param0: *D3DNTHAL_CONTEXTDESTROYDATA,
+    param0: ?*D3DNTHAL_CONTEXTDESTROYDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_CONTEXTDESTROYALLCB = fn(
-    param0: *D3DNTHAL_CONTEXTDESTROYALLDATA,
+    param0: ?*D3DNTHAL_CONTEXTDESTROYALLDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_SCENECAPTURECB = fn(
-    param0: *D3DNTHAL_SCENECAPTUREDATA,
+    param0: ?*D3DNTHAL_SCENECAPTUREDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_TEXTURECREATECB = fn(
-    param0: *D3DNTHAL_TEXTURECREATEDATA,
+    param0: ?*D3DNTHAL_TEXTURECREATEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_TEXTUREDESTROYCB = fn(
-    param0: *D3DNTHAL_TEXTUREDESTROYDATA,
+    param0: ?*D3DNTHAL_TEXTUREDESTROYDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_TEXTURESWAPCB = fn(
-    param0: *D3DNTHAL_TEXTURESWAPDATA,
+    param0: ?*D3DNTHAL_TEXTURESWAPDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_TEXTUREGETSURFCB = fn(
-    param0: *D3DNTHAL_TEXTUREGETSURFDATA,
+    param0: ?*D3DNTHAL_TEXTUREGETSURFDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const D3DNTHAL_CALLBACKS = extern struct {
     dwSize: u32,
-    ContextCreate: LPD3DNTHAL_CONTEXTCREATECB,
-    ContextDestroy: LPD3DNTHAL_CONTEXTDESTROYCB,
-    ContextDestroyAll: LPD3DNTHAL_CONTEXTDESTROYALLCB,
-    SceneCapture: LPD3DNTHAL_SCENECAPTURECB,
-    dwReserved10: *c_void,
-    dwReserved11: *c_void,
-    dwReserved22: *c_void,
-    dwReserved23: *c_void,
+    ContextCreate: ?LPD3DNTHAL_CONTEXTCREATECB,
+    ContextDestroy: ?LPD3DNTHAL_CONTEXTDESTROYCB,
+    ContextDestroyAll: ?LPD3DNTHAL_CONTEXTDESTROYALLCB,
+    SceneCapture: ?LPD3DNTHAL_SCENECAPTURECB,
+    dwReserved10: ?*c_void,
+    dwReserved11: ?*c_void,
+    dwReserved22: ?*c_void,
+    dwReserved23: ?*c_void,
     dwReserved: usize,
-    TextureCreate: LPD3DNTHAL_TEXTURECREATECB,
-    TextureDestroy: LPD3DNTHAL_TEXTUREDESTROYCB,
-    TextureSwap: LPD3DNTHAL_TEXTURESWAPCB,
-    TextureGetSurf: LPD3DNTHAL_TEXTUREGETSURFCB,
-    dwReserved12: *c_void,
-    dwReserved13: *c_void,
-    dwReserved14: *c_void,
-    dwReserved15: *c_void,
-    dwReserved16: *c_void,
-    dwReserved17: *c_void,
-    dwReserved18: *c_void,
-    dwReserved19: *c_void,
-    dwReserved20: *c_void,
-    dwReserved21: *c_void,
-    dwReserved24: *c_void,
+    TextureCreate: ?LPD3DNTHAL_TEXTURECREATECB,
+    TextureDestroy: ?LPD3DNTHAL_TEXTUREDESTROYCB,
+    TextureSwap: ?LPD3DNTHAL_TEXTURESWAPCB,
+    TextureGetSurf: ?LPD3DNTHAL_TEXTUREGETSURFCB,
+    dwReserved12: ?*c_void,
+    dwReserved13: ?*c_void,
+    dwReserved14: ?*c_void,
+    dwReserved15: ?*c_void,
+    dwReserved16: ?*c_void,
+    dwReserved17: ?*c_void,
+    dwReserved18: ?*c_void,
+    dwReserved19: ?*c_void,
+    dwReserved20: ?*c_void,
+    dwReserved21: ?*c_void,
+    dwReserved24: ?*c_void,
     dwReserved0: usize,
     dwReserved1: usize,
     dwReserved2: usize,
@@ -9791,23 +9791,23 @@ pub const D3DNTHAL_CALLBACKS = extern struct {
 
 pub const D3DNTHAL_SETRENDERTARGETDATA = extern struct {
     dwhContext: usize,
-    lpDDS: *DD_SURFACE_LOCAL,
-    lpDDSZ: *DD_SURFACE_LOCAL,
+    lpDDS: ?*DD_SURFACE_LOCAL,
+    lpDDSZ: ?*DD_SURFACE_LOCAL,
     ddrval: HRESULT,
 };
 
 pub const LPD3DNTHAL_SETRENDERTARGETCB = fn(
-    param0: *D3DNTHAL_SETRENDERTARGETDATA,
+    param0: ?*D3DNTHAL_SETRENDERTARGETDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const D3DNTHAL_CALLBACKS2 = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    SetRenderTarget: LPD3DNTHAL_SETRENDERTARGETCB,
-    dwReserved1: *c_void,
-    dwReserved2: *c_void,
-    dwReserved3: *c_void,
-    dwReserved4: *c_void,
+    SetRenderTarget: ?LPD3DNTHAL_SETRENDERTARGETCB,
+    dwReserved1: ?*c_void,
+    dwReserved2: ?*c_void,
+    dwReserved3: ?*c_void,
+    dwReserved4: ?*c_void,
 };
 
 pub const D3DNTHAL_CLEAR2DATA = extern struct {
@@ -9816,7 +9816,7 @@ pub const D3DNTHAL_CLEAR2DATA = extern struct {
     dwFillColor: u32,
     dvFillDepth: f32,
     dwFillStencil: u32,
-    lpRects: *D3DRECT,
+    lpRects: ?*D3DRECT,
     dwNumRects: u32,
     ddrval: HRESULT,
 };
@@ -10081,18 +10081,18 @@ pub const D3DNTHAL_DRAWPRIMITIVES2DATA = extern struct {
     dwhContext: usize,
     dwFlags: u32,
     dwVertexType: u32,
-    lpDDCommands: *DD_SURFACE_LOCAL,
+    lpDDCommands: ?*DD_SURFACE_LOCAL,
     dwCommandOffset: u32,
     dwCommandLength: u32,
     Anonymous1: extern union {
-        lpDDVertex: *DD_SURFACE_LOCAL,
-        lpVertices: *c_void,
+        lpDDVertex: ?*DD_SURFACE_LOCAL,
+        lpVertices: ?*c_void,
     },
     dwVertexOffset: u32,
     dwVertexLength: u32,
     dwReqVertexBufSize: u32,
     dwReqCommandBufSize: u32,
-    lpdwRStates: *u32,
+    lpdwRStates: ?*u32,
     Anonymous2: extern union {
         dwVertexSize: u32,
         ddrval: HRESULT,
@@ -10101,29 +10101,29 @@ pub const D3DNTHAL_DRAWPRIMITIVES2DATA = extern struct {
 };
 
 pub const LPD3DNTHAL_CLEAR2CB = fn(
-    param0: *D3DNTHAL_CLEAR2DATA,
+    param0: ?*D3DNTHAL_CLEAR2DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_VALIDATETEXTURESTAGESTATECB = fn(
-    param0: *D3DNTHAL_VALIDATETEXTURESTAGESTATEDATA,
+    param0: ?*D3DNTHAL_VALIDATETEXTURESTAGESTATEDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPD3DNTHAL_DRAWPRIMITIVES2CB = fn(
-    param0: *D3DNTHAL_DRAWPRIMITIVES2DATA,
+    param0: ?*D3DNTHAL_DRAWPRIMITIVES2DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const D3DNTHAL_CALLBACKS3 = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    Clear2: LPD3DNTHAL_CLEAR2CB,
-    lpvReserved: *c_void,
-    ValidateTextureStageState: LPD3DNTHAL_VALIDATETEXTURESTAGESTATECB,
-    DrawPrimitives2: LPD3DNTHAL_DRAWPRIMITIVES2CB,
+    Clear2: ?LPD3DNTHAL_CLEAR2CB,
+    lpvReserved: ?*c_void,
+    ValidateTextureStageState: ?LPD3DNTHAL_VALIDATETEXTURESTAGESTATECB,
+    DrawPrimitives2: ?LPD3DNTHAL_DRAWPRIMITIVES2CB,
 };
 
 pub const PFND3DNTPARSEUNKNOWNCOMMAND = fn(
-    lpvCommands: *c_void,
-    lplpvReturnedCommand: **c_void,
+    lpvCommands: ?*c_void,
+    lplpvReturnedCommand: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const POINTE = extern struct {
@@ -10150,7 +10150,7 @@ pub const RECTFX = extern struct {
 
 pub const LIGATURE = extern struct {
     culSize: u32,
-    pwsz: PWSTR,
+    pwsz: ?PWSTR,
     chglyph: u32,
     ahglyph: [1]u32,
 };
@@ -10172,9 +10172,9 @@ pub const PFN = fn(
 
 pub const CDDDXGK_REDIRBITMAPPRESENTINFO = extern struct {
     NumDirtyRects: u32,
-    DirtyRect: *RECT,
+    DirtyRect: ?*RECT,
     NumContexts: u32,
-    hContext: [65]HANDLE,
+    hContext: [65]?HANDLE,
     bDoNotSynchronizeWithDxContent: u8,
 };
 
@@ -10186,7 +10186,7 @@ pub const XFORMOBJ = extern struct {
 };
 
 pub const WNDOBJCHANGEPROC = fn(
-    pwo: *WNDOBJ,
+    pwo: ?*WNDOBJ,
     fl: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -10195,8 +10195,8 @@ pub const HSEMAPHORE__ = extern struct {
 };
 
 pub const SORTCOMP = fn(
-    pv1: *const c_void,
-    pv2: *const c_void,
+    pv1: ?*const c_void,
+    pv2: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ENG_SYSTEM_ATTRIBUTE = enum(i32) {
@@ -10219,39 +10219,39 @@ pub const QDA_ACCELERATION_LEVEL = ENG_DEVICE_ATTRIBUTE.ACCELERATION_LEVEL;
 
 pub const EMFINFO = extern struct {
     nSize: u32,
-    hdc: HDC,
-    pvEMF: *u8,
-    pvCurrentRecord: *u8,
+    hdc: ?HDC,
+    pvEMF: ?*u8,
+    pvCurrentRecord: ?*u8,
 };
 
 pub const PFN_DrvEnableDriver = fn(
     param0: u32,
     param1: u32,
-    param2: *DRVENABLEDATA,
+    param2: ?*DRVENABLEDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvEnablePDEV = fn(
-    param0: *DEVMODEW,
-    param1: PWSTR,
+    param0: ?*DEVMODEW,
+    param1: ?PWSTR,
     param2: u32,
-    param3: *HSURF,
+    param3: ?*?HSURF,
     param4: u32,
-    param5: *GDIINFO,
+    param5: ?*GDIINFO,
     param6: u32,
-    param7: *DEVINFO,
-    param8: HDEV,
-    param9: PWSTR,
-    param10: HANDLE,
+    param7: ?*DEVINFO,
+    param8: ?HDEV,
+    param9: ?PWSTR,
+    param10: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) DHPDEV;
 
 pub const PFN_DrvCompletePDEV = fn(
     param0: DHPDEV,
-    param1: HDEV,
+    param1: ?HDEV,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvResetDevice = fn(
     param0: DHPDEV,
-    param1: *c_void,
+    param1: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvDisablePDEV = fn(
@@ -10260,12 +10260,12 @@ pub const PFN_DrvDisablePDEV = fn(
 
 pub const PFN_DrvSynchronize = fn(
     param0: DHPDEV,
-    param1: *RECTL,
+    param1: ?*RECTL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvEnableSurface = fn(
     param0: DHPDEV,
-) callconv(@import("std").os.windows.WINAPI) HSURF;
+) callconv(@import("std").os.windows.WINAPI) ?HSURF;
 
 pub const PFN_DrvDisableDriver = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -10280,117 +10280,117 @@ pub const PFN_DrvAssertMode = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvTextOut = fn(
-    param0: *SURFOBJ,
-    param1: *STROBJ,
-    param2: *FONTOBJ,
-    param3: *CLIPOBJ,
-    param4: *RECTL,
-    param5: *RECTL,
-    param6: *BRUSHOBJ,
-    param7: *BRUSHOBJ,
-    param8: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*STROBJ,
+    param2: ?*FONTOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*RECTL,
+    param5: ?*RECTL,
+    param6: ?*BRUSHOBJ,
+    param7: ?*BRUSHOBJ,
+    param8: ?*POINTL,
     param9: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStretchBlt = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *SURFOBJ,
-    param3: *CLIPOBJ,
-    param4: *XLATEOBJ,
-    param5: *COLORADJUSTMENT,
-    param6: *POINTL,
-    param7: *RECTL,
-    param8: *RECTL,
-    param9: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*COLORADJUSTMENT,
+    param6: ?*POINTL,
+    param7: ?*RECTL,
+    param8: ?*RECTL,
+    param9: ?*POINTL,
     param10: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStretchBltROP = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *SURFOBJ,
-    param3: *CLIPOBJ,
-    param4: *XLATEOBJ,
-    param5: *COLORADJUSTMENT,
-    param6: *POINTL,
-    param7: *RECTL,
-    param8: *RECTL,
-    param9: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*COLORADJUSTMENT,
+    param6: ?*POINTL,
+    param7: ?*RECTL,
+    param8: ?*RECTL,
+    param9: ?*POINTL,
     param10: u32,
-    param11: *BRUSHOBJ,
+    param11: ?*BRUSHOBJ,
     param12: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvTransparentBlt = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *CLIPOBJ,
-    param3: *XLATEOBJ,
-    param4: *RECTL,
-    param5: *RECTL,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XLATEOBJ,
+    param4: ?*RECTL,
+    param5: ?*RECTL,
     param6: u32,
     param7: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvPlgBlt = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *SURFOBJ,
-    param3: *CLIPOBJ,
-    param4: *XLATEOBJ,
-    param5: *COLORADJUSTMENT,
-    param6: *POINTL,
-    param7: *POINTFIX,
-    param8: *RECTL,
-    param9: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*COLORADJUSTMENT,
+    param6: ?*POINTL,
+    param7: ?*POINTFIX,
+    param8: ?*RECTL,
+    param9: ?*POINTL,
     param10: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvBitBlt = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *SURFOBJ,
-    param3: *CLIPOBJ,
-    param4: *XLATEOBJ,
-    param5: *RECTL,
-    param6: *POINTL,
-    param7: *POINTL,
-    param8: *BRUSHOBJ,
-    param9: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*RECTL,
+    param6: ?*POINTL,
+    param7: ?*POINTL,
+    param8: ?*BRUSHOBJ,
+    param9: ?*POINTL,
     param10: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvRealizeBrush = fn(
-    param0: *BRUSHOBJ,
-    param1: *SURFOBJ,
-    param2: *SURFOBJ,
-    param3: *SURFOBJ,
-    param4: *XLATEOBJ,
+    param0: ?*BRUSHOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*SURFOBJ,
+    param4: ?*XLATEOBJ,
     param5: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvCopyBits = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *CLIPOBJ,
-    param3: *XLATEOBJ,
-    param4: *RECTL,
-    param5: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XLATEOBJ,
+    param4: ?*RECTL,
+    param5: ?*POINTL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvDitherColor = fn(
     param0: DHPDEV,
     param1: u32,
     param2: u32,
-    param3: *u32,
+    param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvCreateDeviceBitmap = fn(
     param0: DHPDEV,
     param1: SIZE,
     param2: u32,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 pub const PFN_DrvDeleteDeviceBitmap = fn(
     param0: DHSURF,
@@ -10398,75 +10398,75 @@ pub const PFN_DrvDeleteDeviceBitmap = fn(
 
 pub const PFN_DrvSetPalette = fn(
     param0: DHPDEV,
-    param1: *PALOBJ,
+    param1: ?*PALOBJ,
     param2: u32,
     param3: u32,
     param4: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvEscape = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
     param1: u32,
     param2: u32,
-    param3: *c_void,
+    param3: ?*c_void,
     param4: u32,
-    param5: *c_void,
+    param5: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvDrawEscape = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
     param1: u32,
-    param2: *CLIPOBJ,
-    param3: *RECTL,
+    param2: ?*CLIPOBJ,
+    param3: ?*RECTL,
     param4: u32,
-    param5: *c_void,
+    param5: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvQueryFont = fn(
     param0: DHPDEV,
     param1: usize,
     param2: u32,
-    param3: *usize,
-) callconv(@import("std").os.windows.WINAPI) *IFIMETRICS;
+    param3: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) ?*IFIMETRICS;
 
 pub const PFN_DrvQueryFontTree = fn(
     param0: DHPDEV,
     param1: usize,
     param2: u32,
     param3: u32,
-    param4: *usize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    param4: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PFN_DrvQueryFontData = fn(
     param0: DHPDEV,
-    param1: *FONTOBJ,
+    param1: ?*FONTOBJ,
     param2: u32,
     param3: u32,
-    param4: *GLYPHDATA,
-    param5: *c_void,
+    param4: ?*GLYPHDATA,
+    param5: ?*c_void,
     param6: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvFree = fn(
-    param0: *c_void,
+    param0: ?*c_void,
     param1: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvDestroyFont = fn(
-    param0: *FONTOBJ,
+    param0: ?*FONTOBJ,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvQueryFontCaps = fn(
     param0: u32,
-    param1: *u32,
+    param1: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvLoadFontFile = fn(
     param0: u32,
-    param1: *usize,
-    param2: **c_void,
-    param3: *u32,
-    param4: *DESIGNVECTOR,
+    param1: ?*usize,
+    param2: ?*?*c_void,
+    param3: ?*u32,
+    param4: ?*DESIGNVECTOR,
     param5: u32,
     param6: u32,
 ) callconv(@import("std").os.windows.WINAPI) usize;
@@ -10476,106 +10476,106 @@ pub const PFN_DrvUnloadFontFile = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvSetPointerShape = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *SURFOBJ,
-    param3: *XLATEOBJ,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*XLATEOBJ,
     param4: i32,
     param5: i32,
     param6: i32,
     param7: i32,
-    param8: *RECTL,
+    param8: ?*RECTL,
     param9: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvMovePointer = fn(
-    pso: *SURFOBJ,
+    pso: ?*SURFOBJ,
     x: i32,
     y: i32,
-    prcl: *RECTL,
+    prcl: ?*RECTL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvSendPage = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStartPage = fn(
-    pso: *SURFOBJ,
+    pso: ?*SURFOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStartDoc = fn(
-    pso: *SURFOBJ,
-    pwszDocName: PWSTR,
+    pso: ?*SURFOBJ,
+    pwszDocName: ?PWSTR,
     dwJobId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvEndDoc = fn(
-    pso: *SURFOBJ,
+    pso: ?*SURFOBJ,
     fl: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvQuerySpoolType = fn(
     dhpdev: DHPDEV,
-    pwchType: PWSTR,
+    pwchType: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvLineTo = fn(
-    param0: *SURFOBJ,
-    param1: *CLIPOBJ,
-    param2: *BRUSHOBJ,
+    param0: ?*SURFOBJ,
+    param1: ?*CLIPOBJ,
+    param2: ?*BRUSHOBJ,
     param3: i32,
     param4: i32,
     param5: i32,
     param6: i32,
-    param7: *RECTL,
+    param7: ?*RECTL,
     param8: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStrokePath = fn(
-    param0: *SURFOBJ,
-    param1: *PATHOBJ,
-    param2: *CLIPOBJ,
-    param3: *XFORMOBJ,
-    param4: *BRUSHOBJ,
-    param5: *POINTL,
-    param6: *LINEATTRS,
+    param0: ?*SURFOBJ,
+    param1: ?*PATHOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XFORMOBJ,
+    param4: ?*BRUSHOBJ,
+    param5: ?*POINTL,
+    param6: ?*LINEATTRS,
     param7: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvFillPath = fn(
-    param0: *SURFOBJ,
-    param1: *PATHOBJ,
-    param2: *CLIPOBJ,
-    param3: *BRUSHOBJ,
-    param4: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*PATHOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*BRUSHOBJ,
+    param4: ?*POINTL,
     param5: u32,
     param6: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStrokeAndFillPath = fn(
-    param0: *SURFOBJ,
-    param1: *PATHOBJ,
-    param2: *CLIPOBJ,
-    param3: *XFORMOBJ,
-    param4: *BRUSHOBJ,
-    param5: *LINEATTRS,
-    param6: *BRUSHOBJ,
-    param7: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*PATHOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XFORMOBJ,
+    param4: ?*BRUSHOBJ,
+    param5: ?*LINEATTRS,
+    param6: ?*BRUSHOBJ,
+    param7: ?*POINTL,
     param8: u32,
     param9: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvPaint = fn(
-    param0: *SURFOBJ,
-    param1: *CLIPOBJ,
-    param2: *BRUSHOBJ,
-    param3: *POINTL,
+    param0: ?*SURFOBJ,
+    param1: ?*CLIPOBJ,
+    param2: ?*BRUSHOBJ,
+    param3: ?*POINTL,
     param4: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvGetGlyphMode = fn(
     dhpdev: DHPDEV,
-    pfo: *FONTOBJ,
+    pfo: ?*FONTOBJ,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvResetPDEV = fn(
@@ -10584,16 +10584,16 @@ pub const PFN_DrvResetPDEV = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvSaveScreenBits = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
     param1: u32,
     param2: usize,
-    param3: *RECTL,
+    param3: ?*RECTL,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub const PFN_DrvGetModes = fn(
-    param0: HANDLE,
+    param0: ?HANDLE,
     param1: u32,
-    param2: *DEVMODEW,
+    param2: ?*DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvQueryTrueTypeTable = fn(
@@ -10602,98 +10602,98 @@ pub const PFN_DrvQueryTrueTypeTable = fn(
     param2: u32,
     param3: i32,
     param4: u32,
-    param5: *u8,
-    param6: **u8,
-    param7: *u32,
+    param5: ?*u8,
+    param6: ?*?*u8,
+    param7: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvQueryTrueTypeSection = fn(
     param0: u32,
     param1: u32,
     param2: u32,
-    param3: *HANDLE,
-    param4: *i32,
+    param3: ?*?HANDLE,
+    param4: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvQueryTrueTypeOutline = fn(
     param0: DHPDEV,
-    param1: *FONTOBJ,
+    param1: ?*FONTOBJ,
     param2: u32,
     param3: BOOL,
-    param4: *GLYPHDATA,
+    param4: ?*GLYPHDATA,
     param5: u32,
-    param6: *TTPOLYGONHEADER,
+    param6: ?*TTPOLYGONHEADER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvGetTrueTypeFile = fn(
     param0: usize,
-    param1: *u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+    param1: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub const PFN_DrvQueryFontFile = fn(
     param0: usize,
     param1: u32,
     param2: u32,
-    param3: *u32,
+    param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvQueryAdvanceWidths = fn(
     param0: DHPDEV,
-    param1: *FONTOBJ,
+    param1: ?*FONTOBJ,
     param2: u32,
-    param3: *u32,
-    param4: *c_void,
+    param3: ?*u32,
+    param4: ?*c_void,
     param5: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvFontManagement = fn(
-    param0: *SURFOBJ,
-    param1: *FONTOBJ,
+    param0: ?*SURFOBJ,
+    param1: ?*FONTOBJ,
     param2: u32,
     param3: u32,
-    param4: *c_void,
+    param4: ?*c_void,
     param5: u32,
-    param6: *c_void,
+    param6: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvSetPixelFormat = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
     param1: i32,
-    param2: HWND,
+    param2: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvDescribePixelFormat = fn(
     param0: DHPDEV,
     param1: i32,
     param2: u32,
-    param3: *PIXELFORMATDESCRIPTOR,
+    param3: ?*PIXELFORMATDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvSwapBuffers = fn(
-    param0: *SURFOBJ,
-    param1: *WNDOBJ,
+    param0: ?*SURFOBJ,
+    param1: ?*WNDOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStartBanding = fn(
-    param0: *SURFOBJ,
-    ppointl: *POINTL,
+    param0: ?*SURFOBJ,
+    ppointl: ?*POINTL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvNextBand = fn(
-    param0: *SURFOBJ,
-    ppointl: *POINTL,
+    param0: ?*SURFOBJ,
+    ppointl: ?*POINTL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvQueryPerBandInfo = fn(
-    param0: *SURFOBJ,
-    param1: *PERBANDINFO,
+    param0: ?*SURFOBJ,
+    param1: ?*PERBANDINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvEnableDirectDraw = fn(
     param0: DHPDEV,
-    param1: *DD_CALLBACKS,
-    param2: *DD_SURFACECALLBACKS,
-    param3: *DD_PALETTECALLBACKS,
+    param1: ?*DD_CALLBACKS,
+    param2: ?*DD_SURFACECALLBACKS,
+    param3: ?*DD_PALETTECALLBACKS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvDisableDirectDraw = fn(
@@ -10702,92 +10702,92 @@ pub const PFN_DrvDisableDirectDraw = fn(
 
 pub const PFN_DrvGetDirectDrawInfo = fn(
     param0: DHPDEV,
-    param1: *DD_HALINFO,
-    param2: *u32,
-    param3: *VIDEOMEMORY,
-    param4: *u32,
-    param5: *u32,
+    param1: ?*DD_HALINFO,
+    param2: ?*u32,
+    param3: ?*VIDEOMEMORY,
+    param4: ?*u32,
+    param5: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvIcmCreateColorTransform = fn(
     param0: DHPDEV,
-    param1: *LOGCOLORSPACEW,
-    param2: *c_void,
+    param1: ?*LOGCOLORSPACEW,
+    param2: ?*c_void,
     param3: u32,
-    param4: *c_void,
+    param4: ?*c_void,
     param5: u32,
-    param6: *c_void,
+    param6: ?*c_void,
     param7: u32,
     param8: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub const PFN_DrvIcmDeleteColorTransform = fn(
     param0: DHPDEV,
-    param1: HANDLE,
+    param1: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvIcmCheckBitmapBits = fn(
     param0: DHPDEV,
-    param1: HANDLE,
-    param2: *SURFOBJ,
-    param3: *u8,
+    param1: ?HANDLE,
+    param2: ?*SURFOBJ,
+    param3: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvIcmSetDeviceGammaRamp = fn(
     param0: DHPDEV,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvAlphaBlend = fn(
-    param0: *SURFOBJ,
-    param1: *SURFOBJ,
-    param2: *CLIPOBJ,
-    param3: *XLATEOBJ,
-    param4: *RECTL,
-    param5: *RECTL,
-    param6: *BLENDOBJ,
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XLATEOBJ,
+    param4: ?*RECTL,
+    param5: ?*RECTL,
+    param6: ?*BLENDOBJ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvGradientFill = fn(
-    param0: *SURFOBJ,
-    param1: *CLIPOBJ,
-    param2: *XLATEOBJ,
-    param3: *TRIVERTEX,
+    param0: ?*SURFOBJ,
+    param1: ?*CLIPOBJ,
+    param2: ?*XLATEOBJ,
+    param3: ?*TRIVERTEX,
     param4: u32,
-    param5: *c_void,
+    param5: ?*c_void,
     param6: u32,
-    param7: *RECTL,
-    param8: *POINTL,
+    param7: ?*RECTL,
+    param8: ?*POINTL,
     param9: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvQueryDeviceSupport = fn(
-    param0: *SURFOBJ,
-    param1: *XLATEOBJ,
-    param2: *XFORMOBJ,
+    param0: ?*SURFOBJ,
+    param1: ?*XLATEOBJ,
+    param2: ?*XFORMOBJ,
     param3: u32,
     param4: u32,
-    param5: *c_void,
+    param5: ?*c_void,
     param6: u32,
-    param7: *c_void,
+    param7: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvDeriveSurface = fn(
-    param0: *DD_DIRECTDRAW_GLOBAL,
-    param1: *DD_SURFACE_LOCAL,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+    param0: ?*DD_DIRECTDRAW_GLOBAL,
+    param1: ?*DD_SURFACE_LOCAL,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 pub const PFN_DrvSynchronizeSurface = fn(
-    param0: *SURFOBJ,
-    param1: *RECTL,
+    param0: ?*SURFOBJ,
+    param1: ?*RECTL,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvNotify = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
     param1: u32,
-    param2: *c_void,
+    param2: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvRenderHint = fn(
@@ -10799,7 +10799,7 @@ pub const PFN_DrvRenderHint = fn(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DRH_APIBITMAPDATA = extern struct {
-    pso: *SURFOBJ,
+    pso: ?*SURFOBJ,
     b: BOOL,
 };
 
@@ -10808,46 +10808,46 @@ pub const PFN_EngCreateRectRgn = fn(
     top: i32,
     right: i32,
     bottom: i32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub const PFN_EngDeleteRgn = fn(
-    hrgn: HANDLE,
+    hrgn: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_EngCombineRgn = fn(
-    hrgnTrg: HANDLE,
-    hrgnSrc1: HANDLE,
-    hrgnSrc2: HANDLE,
+    hrgnTrg: ?HANDLE,
+    hrgnSrc1: ?HANDLE,
+    hrgnSrc2: ?HANDLE,
     imode: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_EngCopyRgn = fn(
-    hrgnDst: HANDLE,
-    hrgnSrc: HANDLE,
+    hrgnDst: ?HANDLE,
+    hrgnSrc: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_EngIntersectRgn = fn(
-    hrgnResult: HANDLE,
-    hRgnA: HANDLE,
-    hRgnB: HANDLE,
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_EngSubtractRgn = fn(
-    hrgnResult: HANDLE,
-    hRgnA: HANDLE,
-    hRgnB: HANDLE,
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_EngUnionRgn = fn(
-    hrgnResult: HANDLE,
-    hRgnA: HANDLE,
-    hRgnB: HANDLE,
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_EngXorRgn = fn(
-    hrgnResult: HANDLE,
-    hRgnA: HANDLE,
-    hRgnB: HANDLE,
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvCreateDeviceBitmapEx = fn(
@@ -10858,56 +10858,56 @@ pub const PFN_DrvCreateDeviceBitmapEx = fn(
     param4: DHSURF,
     param5: u32,
     param6: u32,
-    param7: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+    param7: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 pub const PFN_DrvDeleteDeviceBitmapEx = fn(
     param0: DHSURF,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvAssociateSharedSurface = fn(
-    param0: *SURFOBJ,
-    param1: HANDLE,
-    param2: HANDLE,
+    param0: ?*SURFOBJ,
+    param1: ?HANDLE,
+    param2: ?HANDLE,
     param3: SIZE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvSynchronizeRedirectionBitmaps = fn(
     param0: DHPDEV,
-    param1: *u64,
+    param1: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PFN_DrvAccumulateD3DDirtyRect = fn(
-    param0: *SURFOBJ,
-    param1: *CDDDXGK_REDIRBITMAPPRESENTINFO,
+    param0: ?*SURFOBJ,
+    param1: ?*CDDDXGK_REDIRBITMAPPRESENTINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvStartDxInterop = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
     param1: BOOL,
-    KernelModeDeviceHandle: *c_void,
+    KernelModeDeviceHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvEndDxInterop = fn(
-    param0: *SURFOBJ,
+    param0: ?*SURFOBJ,
     param1: BOOL,
-    param2: *BOOL,
-    KernelModeDeviceHandle: *c_void,
+    param2: ?*BOOL,
+    KernelModeDeviceHandle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvLockDisplayArea = fn(
     param0: DHPDEV,
-    param1: *RECTL,
+    param1: ?*RECTL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvUnlockDisplayArea = fn(
     param0: DHPDEV,
-    param1: *RECTL,
+    param1: ?*RECTL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvSurfaceComplete = fn(
     param0: DHPDEV,
-    param1: HANDLE,
+    param1: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const STORAGE_HOTPLUG_INFO = extern struct {
@@ -12771,14 +12771,14 @@ pub const DISK_HISTOGRAM = extern struct {
     Size: u32,
     ReadCount: u32,
     WriteCount: u32,
-    Histogram: *HISTOGRAM_BUCKET,
+    Histogram: ?*HISTOGRAM_BUCKET,
 };
 
 pub const DISK_RECORD = extern struct {
     ByteOffset: LARGE_INTEGER,
     StartTime: LARGE_INTEGER,
     EndTime: LARGE_INTEGER,
-    VirtualAddress: *c_void,
+    VirtualAddress: ?*c_void,
     NumberOfBytes: u32,
     DeviceNumber: u8,
     ReadRequest: u8,
@@ -12786,7 +12786,7 @@ pub const DISK_RECORD = extern struct {
 
 pub const DISK_LOGGING = extern struct {
     Function: u8,
-    BufferAddress: *c_void,
+    BufferAddress: ?*c_void,
     BufferSize: u32,
 };
 
@@ -13082,7 +13082,7 @@ pub const RETRIEVAL_POINTER_COUNT = extern struct {
 };
 
 pub const MOVE_FILE_RECORD_DATA = extern struct {
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     SourceFileRecord: LARGE_INTEGER,
     TargetFileRecord: LARGE_INTEGER,
 };
@@ -13108,7 +13108,7 @@ pub const FILE_PREFETCH = extern struct {
 pub const FILE_PREFETCH_EX = extern struct {
     Type: u32,
     Count: u32,
-    Context: *c_void,
+    Context: ?*c_void,
     Prefetch: [1]u64,
 };
 
@@ -13598,7 +13598,7 @@ pub const FILE_DESIRED_STORAGE_CLASS_INFORMATION = extern struct {
 
 pub const DUPLICATE_EXTENTS_DATA_EX = extern struct {
     Size: usize,
-    FileHandle: HANDLE,
+    FileHandle: ?HANDLE,
     SourceFileOffset: LARGE_INTEGER,
     TargetFileOffset: LARGE_INTEGER,
     ByteCount: LARGE_INTEGER,
@@ -13834,15 +13834,15 @@ pub const GET_FILTER_FILE_IDENTIFIER_OUTPUT = extern struct {
 };
 
 pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = fn(
-    SourceContext: *IO_IRP_EXT_TRACK_OFFSET_HEADER,
-    TargetContext: *IO_IRP_EXT_TRACK_OFFSET_HEADER,
+    SourceContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
+    TargetContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
     RelativeOffset: i64,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IO_IRP_EXT_TRACK_OFFSET_HEADER = extern struct {
     Validation: u16,
     Flags: u16,
-    TrackedOffsetCallback: PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK,
+    TrackedOffsetCallback: ?PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK,
 };
 
 pub const DEVICE_EVENT_MOUNT = extern struct {
@@ -13902,14 +13902,14 @@ pub const DEVPROP_STORE_USER = DEVPROPSTORE.USER;
 pub const DEVPROPCOMPKEY = extern struct {
     Key: DEVPROPKEY,
     Store: DEVPROPSTORE,
-    LocaleName: [*:0]const u16,
+    LocaleName: ?[*:0]const u16,
 };
 
 pub const DEVPROPERTY = extern struct {
     CompKey: DEVPROPCOMPKEY,
     Type: u32,
     BufferSize: u32,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
 };
 
 pub const REDBOOK_DIGITAL_AUDIO_EXTRACTION_INFO = extern struct {
@@ -14005,8 +14005,8 @@ pub const DEV_BROADCAST_HANDLE = extern struct {
     dbch_size: u32,
     dbch_devicetype: u32,
     dbch_reserved: u32,
-    dbch_handle: HANDLE,
-    dbch_hdevnotify: *c_void,
+    dbch_handle: ?HANDLE,
+    dbch_hdevnotify: ?*c_void,
     dbch_eventguid: Guid,
     dbch_nameoffset: i32,
     dbch_data: [1]u8,
@@ -14070,9 +14070,9 @@ pub const XSTATE_CONTEXT = extern struct {
     Mask: u64,
     Length: u32,
     Reserved1: u32,
-    Area: *XSAVE_AREA,
+    Area: ?*XSAVE_AREA,
     Reserved2: u32,
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     Reserved3: u32,
 };
 
@@ -15032,9 +15032,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 
 pub extern "ntdll" fn RtlGetNonVolatileToken(
     // TODO: what to do with BytesParamIndex 1?
-    NvBuffer: *c_void,
+    NvBuffer: ?*c_void,
     Size: usize,
-    NvToken: **c_void,
+    NvToken: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -15043,7 +15043,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFreeNonVolatileToken(
-    NvToken: *c_void,
+    NvToken: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -15052,9 +15052,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFlushNonVolatileMemory(
-    NvToken: *c_void,
+    NvToken: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    NvBuffer: *c_void,
+    NvBuffer: ?*c_void,
     Size: usize,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -15065,7 +15065,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlDrainNonVolatileFlush(
-    NvToken: *c_void,
+    NvToken: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -15074,11 +15074,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlWriteNonVolatileMemory(
-    NvToken: *c_void,
+    NvToken: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    NvDestination: *c_void,
+    NvDestination: ?*c_void,
     // TODO: what to do with BytesParamIndex 3?
-    Source: *const c_void,
+    Source: ?*const c_void,
     Size: usize,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -15089,9 +15089,9 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFillNonVolatileMemory(
-    NvToken: *c_void,
+    NvToken: ?*c_void,
     // TODO: what to do with BytesParamIndex 2?
-    NvDestination: *c_void,
+    NvDestination: ?*c_void,
     Size: usize,
     Value: u8,
     Flags: u32,
@@ -15103,7 +15103,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFlushNonVolatileMemoryRanges(
-    NvToken: *c_void,
+    NvToken: ?*c_void,
     NvRanges: [*]NV_MEMORY_RANGE,
     NumRanges: usize,
     Flags: u32,
@@ -15113,57 +15113,57 @@ pub extern "ntdll" fn RtlFlushNonVolatileMemoryRanges(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn BindIoCompletionCallback(
-    FileHandle: HANDLE,
-    Function: LPOVERLAPPED_COMPLETION_ROUTINE,
+    FileHandle: ?HANDLE,
+    Function: ?LPOVERLAPPED_COMPLETION_ROUTINE,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn RtlRaiseException(
-    ExceptionRecord: *EXCEPTION_RECORD,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "KERNEL32" fn RtlCompareMemory(
-    Source1: *const c_void,
-    Source2: *const c_void,
+    Source1: ?*const c_void,
+    Source2: ?*const c_void,
     Length: usize,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInitializeSListHead(
-    ListHead: *SLIST_HEADER,
+    ListHead: ?*SLIST_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlFirstEntrySList(
-    ListHead: *const SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SLIST_ENTRY;
+    ListHead: ?*const SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInterlockedPopEntrySList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SLIST_ENTRY;
+    ListHead: ?*SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInterlockedPushEntrySList(
-    ListHead: *SLIST_HEADER,
-    ListEntry: *SLIST_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) *SLIST_ENTRY;
+    ListHead: ?*SLIST_HEADER,
+    ListEntry: ?*SLIST_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 pub extern "ntdll" fn RtlInterlockedPushListSListEx(
-    ListHead: *SLIST_HEADER,
-    List: *SLIST_ENTRY,
-    ListEnd: *SLIST_ENTRY,
+    ListHead: ?*SLIST_HEADER,
+    List: ?*SLIST_ENTRY,
+    ListEnd: ?*SLIST_ENTRY,
     Count: u32,
-) callconv(@import("std").os.windows.WINAPI) *SLIST_ENTRY;
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInterlockedFlushSList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SLIST_ENTRY;
+    ListHead: ?*SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlQueryDepthSList(
-    ListHead: *SLIST_HEADER,
+    ListHead: ?*SLIST_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 pub extern "ntdll" fn RtlGetReturnAddressHijackTarget(
@@ -15174,19 +15174,19 @@ pub extern "ntdll" fn RtlGetProductInfo(
     OSMinorVersion: u32,
     SpMajorVersion: u32,
     SpMinorVersion: u32,
-    ReturnedProductType: *u32,
+    ReturnedProductType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "ntdll" fn RtlCrc32(
     // TODO: what to do with BytesParamIndex 1?
-    Buffer: *const c_void,
+    Buffer: ?*const c_void,
     Size: usize,
     InitialCrc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ntdll" fn RtlCrc64(
     // TODO: what to do with BytesParamIndex 1?
-    Buffer: *const c_void,
+    Buffer: ?*const c_void,
     Size: usize,
     InitialCrc: u64,
 ) callconv(@import("std").os.windows.WINAPI) u64;
@@ -15196,36 +15196,36 @@ pub extern "ntdll" fn RtlOsDeploymentState(
 ) callconv(@import("std").os.windows.WINAPI) OS_DEPLOYEMENT_STATE_VALUES;
 
 pub extern "ntdll" fn RtlInitializeCorrelationVector(
-    CorrelationVector: *CORRELATION_VECTOR,
+    CorrelationVector: ?*CORRELATION_VECTOR,
     Version: i32,
     Guid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ntdll" fn RtlIncrementCorrelationVector(
-    CorrelationVector: *CORRELATION_VECTOR,
+    CorrelationVector: ?*CORRELATION_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ntdll" fn RtlExtendCorrelationVector(
-    CorrelationVector: *CORRELATION_VECTOR,
+    CorrelationVector: ?*CORRELATION_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ntdll" fn RtlValidateCorrelationVector(
-    Vector: *CORRELATION_VECTOR,
+    Vector: ?*CORRELATION_VECTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ntdll" fn RtlRaiseCustomSystemEventTrigger(
-    TriggerConfig: *CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
+    TriggerConfig: ?*CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ntdll" fn RtlIsZeroMemory(
-    Buffer: *c_void,
+    Buffer: ?*c_void,
     Length: usize,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
-    SecurityDescriptor: **SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     SecurityDescriptorLength: u32,
-    NewSecurityDescriptor: ?**SECURITY_DESCRIPTOR,
+    NewSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     NewSecurityDescriptorLength: ?*u32,
     CheckOnly: u8,
 ) callconv(@import("std").os.windows.WINAPI) u8;
@@ -15237,42 +15237,42 @@ pub extern "ntdll" fn RtlGetDeviceFamilyInfoEnum(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ntdll" fn RtlConvertDeviceFamilyInfoToString(
-    pulDeviceFamilyBufferSize: *u32,
-    pulDeviceFormBufferSize: *u32,
+    pulDeviceFamilyBufferSize: ?*u32,
+    pulDeviceFormBufferSize: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
-    DeviceFamily: PWSTR,
+    DeviceFamily: ?PWSTR,
     // TODO: what to do with BytesParamIndex 1?
-    DeviceForm: PWSTR,
+    DeviceForm: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ntdll" fn RtlSwitchedVVI(
-    VersionInfo: *OSVERSIONINFOEXW,
+    VersionInfo: ?*OSVERSIONINFOEXW,
     TypeMask: u32,
     ConditionMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "RPCNS4" fn I_RpcNsGetBuffer(
-    Message: *RPC_MESSAGE,
+    Message: ?*RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "RPCNS4" fn I_RpcNsSendReceive(
-    Message: *RPC_MESSAGE,
-    Handle: **c_void,
+    Message: ?*RPC_MESSAGE,
+    Handle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "RPCNS4" fn I_RpcNsRaiseException(
-    Message: *RPC_MESSAGE,
+    Message: ?*RPC_MESSAGE,
     Status: RPC_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCNS4" fn I_RpcReBindBuffer(
-    Message: *RPC_MESSAGE,
+    Message: ?*RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "WINMM" fn timeSetEvent(
     uDelay: u32,
     uResolution: u32,
-    fptc: LPTIMECALLBACK,
+    fptc: ?LPTIMECALLBACK,
     dwUser: usize,
     fuEvent: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -15282,13 +15282,13 @@ pub extern "WINMM" fn timeKillEvent(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "GDI32" fn EngQueryEMFInfo(
-    hdev: HDEV,
-    pEMFInfo: *EMFINFO,
+    hdev: ?HDEV,
+    pEMFInfo: ?*EMFINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DeviceIoControl(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     dwIoControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpInBuffer: ?*c_void,
@@ -15302,38 +15302,38 @@ pub extern "KERNEL32" fn DeviceIoControl(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetOverlappedResult(
-    hFile: HANDLE,
-    lpOverlapped: *OVERLAPPED,
-    lpNumberOfBytesTransferred: *u32,
+    hFile: ?HANDLE,
+    lpOverlapped: ?*OVERLAPPED,
+    lpNumberOfBytesTransferred: ?*u32,
     bWait: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetOverlappedResultEx(
-    hFile: HANDLE,
-    lpOverlapped: *OVERLAPPED,
-    lpNumberOfBytesTransferred: *u32,
+    hFile: ?HANDLE,
+    lpOverlapped: ?*OVERLAPPED,
+    lpNumberOfBytesTransferred: ?*u32,
     dwMilliseconds: u32,
     bAlertable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn RegisterDeviceNotificationA(
-    hRecipient: HANDLE,
-    NotificationFilter: *c_void,
+    hRecipient: ?HANDLE,
+    NotificationFilter: ?*c_void,
     Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn RegisterDeviceNotificationW(
-    hRecipient: HANDLE,
-    NotificationFilter: *c_void,
+    hRecipient: ?HANDLE,
+    NotificationFilter: ?*c_void,
     Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn UnregisterDeviceNotification(
-    Handle: *c_void,
+    Handle: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

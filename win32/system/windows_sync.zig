@@ -39,8 +39,8 @@ pub const SYNC_VERSION = extern struct {
 };
 
 pub const SYNC_RANGE = extern struct {
-    pbClosedLowerBound: *u8,
-    pbClosedUpperBound: *u8,
+    pbClosedLowerBound: ?*u8,
+    pbClosedUpperBound: ?*u8,
 };
 
 pub const SYNC_TIME = extern struct {
@@ -172,22 +172,22 @@ pub const IClockVectorElement = extern struct {
         base: IUnknown.VTable,
         GetReplicaKey: fn(
             self: *const IClockVectorElement,
-            pdwReplicaKey: *u32,
+            pdwReplicaKey: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTickCount: fn(
             self: *const IClockVectorElement,
-            pullTickCount: *u64,
+            pullTickCount: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVectorElement_GetReplicaKey(self: *const T, pdwReplicaKey: *u32) callconv(.Inline) HRESULT {
+        pub fn IClockVectorElement_GetReplicaKey(self: *const T, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClockVectorElement.VTable, self.vtable).GetReplicaKey(@ptrCast(*const IClockVectorElement, self), pdwReplicaKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVectorElement_GetTickCount(self: *const T, pullTickCount: *u64) callconv(.Inline) HRESULT {
+        pub fn IClockVectorElement_GetTickCount(self: *const T, pullTickCount: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClockVectorElement.VTable, self.vtable).GetTickCount(@ptrCast(*const IClockVectorElement, self), pullTickCount);
         }
     };}
@@ -202,22 +202,22 @@ pub const IFeedClockVectorElement = extern struct {
         base: IClockVectorElement.VTable,
         GetSyncTime: fn(
             self: *const IFeedClockVectorElement,
-            pSyncTime: *SYNC_TIME,
+            pSyncTime: ?*SYNC_TIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFlags: fn(
             self: *const IFeedClockVectorElement,
-            pbFlags: *u8,
+            pbFlags: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IClockVectorElement.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVectorElement_GetSyncTime(self: *const T, pSyncTime: *SYNC_TIME) callconv(.Inline) HRESULT {
+        pub fn IFeedClockVectorElement_GetSyncTime(self: *const T, pSyncTime: ?*SYNC_TIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFeedClockVectorElement.VTable, self.vtable).GetSyncTime(@ptrCast(*const IFeedClockVectorElement, self), pSyncTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVectorElement_GetFlags(self: *const T, pbFlags: *u8) callconv(.Inline) HRESULT {
+        pub fn IFeedClockVectorElement_GetFlags(self: *const T, pbFlags: ?*u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFeedClockVectorElement.VTable, self.vtable).GetFlags(@ptrCast(*const IFeedClockVectorElement, self), pbFlags);
         }
     };}
@@ -232,23 +232,23 @@ pub const IClockVector = extern struct {
         base: IUnknown.VTable,
         GetClockVectorElements: fn(
             self: *const IClockVector,
-            riid: *const Guid,
-            ppiEnumClockVector: **c_void,
+            riid: ?*const Guid,
+            ppiEnumClockVector: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClockVectorElementCount: fn(
             self: *const IClockVector,
-            pdwCount: *u32,
+            pdwCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVector_GetClockVectorElements(self: *const T, riid: *const Guid, ppiEnumClockVector: **c_void) callconv(.Inline) HRESULT {
+        pub fn IClockVector_GetClockVectorElements(self: *const T, riid: ?*const Guid, ppiEnumClockVector: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClockVector.VTable, self.vtable).GetClockVectorElements(@ptrCast(*const IClockVector, self), riid, ppiEnumClockVector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVector_GetClockVectorElementCount(self: *const T, pdwCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IClockVector_GetClockVectorElementCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClockVector.VTable, self.vtable).GetClockVectorElementCount(@ptrCast(*const IClockVector, self), pdwCount);
         }
     };}
@@ -263,22 +263,22 @@ pub const IFeedClockVector = extern struct {
         base: IClockVector.VTable,
         GetUpdateCount: fn(
             self: *const IFeedClockVector,
-            pdwUpdateCount: *u32,
+            pdwUpdateCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsNoConflictsSpecified: fn(
             self: *const IFeedClockVector,
-            pfIsNoConflictsSpecified: *BOOL,
+            pfIsNoConflictsSpecified: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IClockVector.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVector_GetUpdateCount(self: *const T, pdwUpdateCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IFeedClockVector_GetUpdateCount(self: *const T, pdwUpdateCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFeedClockVector.VTable, self.vtable).GetUpdateCount(@ptrCast(*const IFeedClockVector, self), pdwUpdateCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFeedClockVector_IsNoConflictsSpecified(self: *const T, pfIsNoConflictsSpecified: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IFeedClockVector_IsNoConflictsSpecified(self: *const T, pfIsNoConflictsSpecified: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFeedClockVector.VTable, self.vtable).IsNoConflictsSpecified(@ptrCast(*const IFeedClockVector, self), pfIsNoConflictsSpecified);
         }
     };}
@@ -294,8 +294,8 @@ pub const IEnumClockVector = extern struct {
         Next: fn(
             self: *const IEnumClockVector,
             cClockVectorElements: u32,
-            ppiClockVectorElements: **IClockVectorElement,
-            pcFetched: *u32,
+            ppiClockVectorElements: ?*?*IClockVectorElement,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumClockVector,
@@ -306,14 +306,14 @@ pub const IEnumClockVector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumClockVector,
-            ppiEnum: **IEnumClockVector,
+            ppiEnum: ?*?*IEnumClockVector,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: **IClockVectorElement, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumClockVector.VTable, self.vtable).Next(@ptrCast(*const IEnumClockVector, self), cClockVectorElements, ppiClockVectorElements, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -325,7 +325,7 @@ pub const IEnumClockVector = extern struct {
             return @ptrCast(*const IEnumClockVector.VTable, self.vtable).Reset(@ptrCast(*const IEnumClockVector, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumClockVector_Clone(self: *const T, ppiEnum: **IEnumClockVector) callconv(.Inline) HRESULT {
+        pub fn IEnumClockVector_Clone(self: *const T, ppiEnum: ?*?*IEnumClockVector) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumClockVector.VTable, self.vtable).Clone(@ptrCast(*const IEnumClockVector, self), ppiEnum);
         }
     };}
@@ -341,8 +341,8 @@ pub const IEnumFeedClockVector = extern struct {
         Next: fn(
             self: *const IEnumFeedClockVector,
             cClockVectorElements: u32,
-            ppiClockVectorElements: **IFeedClockVectorElement,
-            pcFetched: *u32,
+            ppiClockVectorElements: ?*?*IFeedClockVectorElement,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumFeedClockVector,
@@ -353,14 +353,14 @@ pub const IEnumFeedClockVector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumFeedClockVector,
-            ppiEnum: **IEnumFeedClockVector,
+            ppiEnum: ?*?*IEnumFeedClockVector,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumFeedClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: **IFeedClockVectorElement, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumFeedClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumFeedClockVector.VTable, self.vtable).Next(@ptrCast(*const IEnumFeedClockVector, self), cClockVectorElements, ppiClockVectorElements, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -372,7 +372,7 @@ pub const IEnumFeedClockVector = extern struct {
             return @ptrCast(*const IEnumFeedClockVector.VTable, self.vtable).Reset(@ptrCast(*const IEnumFeedClockVector, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumFeedClockVector_Clone(self: *const T, ppiEnum: **IEnumFeedClockVector) callconv(.Inline) HRESULT {
+        pub fn IEnumFeedClockVector_Clone(self: *const T, ppiEnum: ?*?*IEnumFeedClockVector) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumFeedClockVector.VTable, self.vtable).Clone(@ptrCast(*const IEnumFeedClockVector, self), ppiEnum);
         }
     };}
@@ -387,36 +387,36 @@ pub const ICoreFragment = extern struct {
         base: IUnknown.VTable,
         NextColumn: fn(
             self: *const ICoreFragment,
-            pChangeUnitId: *u8,
-            pChangeUnitIdSize: *u32,
+            pChangeUnitId: ?*u8,
+            pChangeUnitIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NextRange: fn(
             self: *const ICoreFragment,
-            pItemId: *u8,
-            pItemIdSize: *u32,
-            piClockVector: **IClockVector,
+            pItemId: ?*u8,
+            pItemIdSize: ?*u32,
+            piClockVector: ?*?*IClockVector,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const ICoreFragment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumnCount: fn(
             self: *const ICoreFragment,
-            pColumnCount: *u32,
+            pColumnCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRangeCount: fn(
             self: *const ICoreFragment,
-            pRangeCount: *u32,
+            pRangeCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_NextColumn(self: *const T, pChangeUnitId: *u8, pChangeUnitIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ICoreFragment_NextColumn(self: *const T, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoreFragment.VTable, self.vtable).NextColumn(@ptrCast(*const ICoreFragment, self), pChangeUnitId, pChangeUnitIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_NextRange(self: *const T, pItemId: *u8, pItemIdSize: *u32, piClockVector: **IClockVector) callconv(.Inline) HRESULT {
+        pub fn ICoreFragment_NextRange(self: *const T, pItemId: ?*u8, pItemIdSize: ?*u32, piClockVector: ?*?*IClockVector) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoreFragment.VTable, self.vtable).NextRange(@ptrCast(*const ICoreFragment, self), pItemId, pItemIdSize, piClockVector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -424,11 +424,11 @@ pub const ICoreFragment = extern struct {
             return @ptrCast(*const ICoreFragment.VTable, self.vtable).Reset(@ptrCast(*const ICoreFragment, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_GetColumnCount(self: *const T, pColumnCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ICoreFragment_GetColumnCount(self: *const T, pColumnCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoreFragment.VTable, self.vtable).GetColumnCount(@ptrCast(*const ICoreFragment, self), pColumnCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragment_GetRangeCount(self: *const T, pRangeCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ICoreFragment_GetRangeCount(self: *const T, pRangeCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoreFragment.VTable, self.vtable).GetRangeCount(@ptrCast(*const ICoreFragment, self), pRangeCount);
         }
     };}
@@ -444,8 +444,8 @@ pub const ICoreFragmentInspector = extern struct {
         NextCoreFragments: fn(
             self: *const ICoreFragmentInspector,
             requestedCount: u32,
-            ppiCoreFragments: **ICoreFragment,
-            pFetchedCount: *u32,
+            ppiCoreFragments: ?*?*ICoreFragment,
+            pFetchedCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const ICoreFragmentInspector,
@@ -455,7 +455,7 @@ pub const ICoreFragmentInspector = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFragmentInspector_NextCoreFragments(self: *const T, requestedCount: u32, ppiCoreFragments: **ICoreFragment, pFetchedCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ICoreFragmentInspector_NextCoreFragments(self: *const T, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoreFragmentInspector.VTable, self.vtable).NextCoreFragments(@ptrCast(*const ICoreFragmentInspector, self), requestedCount, ppiCoreFragments, pFetchedCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -474,33 +474,33 @@ pub const IRangeException = extern struct {
         base: IUnknown.VTable,
         GetClosedRangeStart: fn(
             self: *const IRangeException,
-            pbClosedRangeStart: *u8,
-            pcbIdSize: *u32,
+            pbClosedRangeStart: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClosedRangeEnd: fn(
             self: *const IRangeException,
-            pbClosedRangeEnd: *u8,
-            pcbIdSize: *u32,
+            pbClosedRangeEnd: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClockVector: fn(
             self: *const IRangeException,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeException_GetClosedRangeStart(self: *const T, pbClosedRangeStart: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IRangeException_GetClosedRangeStart(self: *const T, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeException.VTable, self.vtable).GetClosedRangeStart(@ptrCast(*const IRangeException, self), pbClosedRangeStart, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeException_GetClosedRangeEnd(self: *const T, pbClosedRangeEnd: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IRangeException_GetClosedRangeEnd(self: *const T, pbClosedRangeEnd: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeException.VTable, self.vtable).GetClosedRangeEnd(@ptrCast(*const IRangeException, self), pbClosedRangeEnd, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeException_GetClockVector(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn IRangeException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeException.VTable, self.vtable).GetClockVector(@ptrCast(*const IRangeException, self), riid, ppUnk);
         }
     };}
@@ -516,8 +516,8 @@ pub const IEnumRangeExceptions = extern struct {
         Next: fn(
             self: *const IEnumRangeExceptions,
             cExceptions: u32,
-            ppRangeException: **IRangeException,
-            pcFetched: *u32,
+            ppRangeException: ?*?*IRangeException,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumRangeExceptions,
@@ -528,14 +528,14 @@ pub const IEnumRangeExceptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumRangeExceptions,
-            ppEnum: **IEnumRangeExceptions,
+            ppEnum: ?*?*IEnumRangeExceptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRangeExceptions_Next(self: *const T, cExceptions: u32, ppRangeException: **IRangeException, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumRangeExceptions_Next(self: *const T, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumRangeExceptions.VTable, self.vtable).Next(@ptrCast(*const IEnumRangeExceptions, self), cExceptions, ppRangeException, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -547,7 +547,7 @@ pub const IEnumRangeExceptions = extern struct {
             return @ptrCast(*const IEnumRangeExceptions.VTable, self.vtable).Reset(@ptrCast(*const IEnumRangeExceptions, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRangeExceptions_Clone(self: *const T, ppEnum: **IEnumRangeExceptions) callconv(.Inline) HRESULT {
+        pub fn IEnumRangeExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumRangeExceptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumRangeExceptions.VTable, self.vtable).Clone(@ptrCast(*const IEnumRangeExceptions, self), ppEnum);
         }
     };}
@@ -562,24 +562,24 @@ pub const ISingleItemException = extern struct {
         base: IUnknown.VTable,
         GetItemId: fn(
             self: *const ISingleItemException,
-            pbItemId: *u8,
-            pcbIdSize: *u32,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClockVector: fn(
             self: *const ISingleItemException,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISingleItemException_GetItemId(self: *const T, pbItemId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISingleItemException_GetItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISingleItemException.VTable, self.vtable).GetItemId(@ptrCast(*const ISingleItemException, self), pbItemId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISingleItemException_GetClockVector(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISingleItemException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISingleItemException.VTable, self.vtable).GetClockVector(@ptrCast(*const ISingleItemException, self), riid, ppUnk);
         }
     };}
@@ -595,8 +595,8 @@ pub const IEnumSingleItemExceptions = extern struct {
         Next: fn(
             self: *const IEnumSingleItemExceptions,
             cExceptions: u32,
-            ppSingleItemException: **ISingleItemException,
-            pcFetched: *u32,
+            ppSingleItemException: ?*?*ISingleItemException,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumSingleItemExceptions,
@@ -607,14 +607,14 @@ pub const IEnumSingleItemExceptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSingleItemExceptions,
-            ppEnum: **IEnumSingleItemExceptions,
+            ppEnum: ?*?*IEnumSingleItemExceptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSingleItemExceptions_Next(self: *const T, cExceptions: u32, ppSingleItemException: **ISingleItemException, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumSingleItemExceptions_Next(self: *const T, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSingleItemExceptions.VTable, self.vtable).Next(@ptrCast(*const IEnumSingleItemExceptions, self), cExceptions, ppSingleItemException, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -626,7 +626,7 @@ pub const IEnumSingleItemExceptions = extern struct {
             return @ptrCast(*const IEnumSingleItemExceptions.VTable, self.vtable).Reset(@ptrCast(*const IEnumSingleItemExceptions, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSingleItemExceptions_Clone(self: *const T, ppEnum: **IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
+        pub fn IEnumSingleItemExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSingleItemExceptions.VTable, self.vtable).Clone(@ptrCast(*const IEnumSingleItemExceptions, self), ppEnum);
         }
     };}
@@ -641,33 +641,33 @@ pub const IChangeUnitException = extern struct {
         base: IUnknown.VTable,
         GetItemId: fn(
             self: *const IChangeUnitException,
-            pbItemId: *u8,
-            pcbIdSize: *u32,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitId: fn(
             self: *const IChangeUnitException,
-            pbChangeUnitId: *u8,
-            pcbIdSize: *u32,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClockVector: fn(
             self: *const IChangeUnitException,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitException_GetItemId(self: *const T, pbItemId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitException_GetItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitException.VTable, self.vtable).GetItemId(@ptrCast(*const IChangeUnitException, self), pbItemId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitException_GetChangeUnitId(self: *const T, pbChangeUnitId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitException_GetChangeUnitId(self: *const T, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitException.VTable, self.vtable).GetChangeUnitId(@ptrCast(*const IChangeUnitException, self), pbChangeUnitId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitException_GetClockVector(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitException.VTable, self.vtable).GetClockVector(@ptrCast(*const IChangeUnitException, self), riid, ppUnk);
         }
     };}
@@ -683,8 +683,8 @@ pub const IEnumChangeUnitExceptions = extern struct {
         Next: fn(
             self: *const IEnumChangeUnitExceptions,
             cExceptions: u32,
-            ppChangeUnitException: **IChangeUnitException,
-            pcFetched: *u32,
+            ppChangeUnitException: ?*?*IChangeUnitException,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumChangeUnitExceptions,
@@ -695,14 +695,14 @@ pub const IEnumChangeUnitExceptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumChangeUnitExceptions,
-            ppEnum: **IEnumChangeUnitExceptions,
+            ppEnum: ?*?*IEnumChangeUnitExceptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumChangeUnitExceptions_Next(self: *const T, cExceptions: u32, ppChangeUnitException: **IChangeUnitException, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumChangeUnitExceptions_Next(self: *const T, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumChangeUnitExceptions.VTable, self.vtable).Next(@ptrCast(*const IEnumChangeUnitExceptions, self), cExceptions, ppChangeUnitException, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -714,7 +714,7 @@ pub const IEnumChangeUnitExceptions = extern struct {
             return @ptrCast(*const IEnumChangeUnitExceptions.VTable, self.vtable).Reset(@ptrCast(*const IEnumChangeUnitExceptions, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumChangeUnitExceptions_Clone(self: *const T, ppEnum: **IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
+        pub fn IEnumChangeUnitExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumChangeUnitExceptions.VTable, self.vtable).Clone(@ptrCast(*const IEnumChangeUnitExceptions, self), ppEnum);
         }
     };}
@@ -729,34 +729,34 @@ pub const IReplicaKeyMap = extern struct {
         base: IUnknown.VTable,
         LookupReplicaKey: fn(
             self: *const IReplicaKeyMap,
-            pbReplicaId: *const u8,
-            pdwReplicaKey: *u32,
+            pbReplicaId: ?*const u8,
+            pdwReplicaKey: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupReplicaId: fn(
             self: *const IReplicaKeyMap,
             dwReplicaKey: u32,
-            pbReplicaId: *u8,
-            pcbIdSize: *u32,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const IReplicaKeyMap,
-            pbReplicaKeyMap: *u8,
-            pcbReplicaKeyMap: *u32,
+            pbReplicaKeyMap: ?*u8,
+            pcbReplicaKeyMap: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReplicaKeyMap_LookupReplicaKey(self: *const T, pbReplicaId: *const u8, pdwReplicaKey: *u32) callconv(.Inline) HRESULT {
+        pub fn IReplicaKeyMap_LookupReplicaKey(self: *const T, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IReplicaKeyMap.VTable, self.vtable).LookupReplicaKey(@ptrCast(*const IReplicaKeyMap, self), pbReplicaId, pdwReplicaKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReplicaKeyMap_LookupReplicaId(self: *const T, dwReplicaKey: u32, pbReplicaId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IReplicaKeyMap_LookupReplicaId(self: *const T, dwReplicaKey: u32, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IReplicaKeyMap.VTable, self.vtable).LookupReplicaId(@ptrCast(*const IReplicaKeyMap, self), dwReplicaKey, pbReplicaId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReplicaKeyMap_Serialize(self: *const T, pbReplicaKeyMap: *u8, pcbReplicaKeyMap: *u32) callconv(.Inline) HRESULT {
+        pub fn IReplicaKeyMap_Serialize(self: *const T, pbReplicaKeyMap: ?*u8, pcbReplicaKeyMap: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IReplicaKeyMap.VTable, self.vtable).Serialize(@ptrCast(*const IReplicaKeyMap, self), pbReplicaKeyMap, pcbReplicaKeyMap);
         }
     };}
@@ -771,15 +771,15 @@ pub const IConstructReplicaKeyMap = extern struct {
         base: IUnknown.VTable,
         FindOrAddReplica: fn(
             self: *const IConstructReplicaKeyMap,
-            pbReplicaId: *const u8,
-            pdwReplicaKey: *u32,
+            pbReplicaId: ?*const u8,
+            pdwReplicaKey: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstructReplicaKeyMap_FindOrAddReplica(self: *const T, pbReplicaId: *const u8, pdwReplicaKey: *u32) callconv(.Inline) HRESULT {
+        pub fn IConstructReplicaKeyMap_FindOrAddReplica(self: *const T, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstructReplicaKeyMap.VTable, self.vtable).FindOrAddReplica(@ptrCast(*const IConstructReplicaKeyMap, self), pbReplicaId, pdwReplicaKey);
         }
     };}
@@ -794,14 +794,14 @@ pub const ISyncKnowledge = extern struct {
         base: IUnknown.VTable,
         GetOwnerReplicaId: fn(
             self: *const ISyncKnowledge,
-            pbReplicaId: *u8,
-            pcbIdSize: *u32,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const ISyncKnowledge,
             fSerializeReplicaKeyMap: BOOL,
-            pbKnowledge: *u8,
-            pcbKnowledge: *u32,
+            pbKnowledge: ?*u8,
+            pcbKnowledge: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetLocalTickCount: fn(
             self: *const ISyncKnowledge,
@@ -809,124 +809,124 @@ pub const ISyncKnowledge = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ContainsChange: fn(
             self: *const ISyncKnowledge,
-            pbVersionOwnerReplicaId: *const u8,
-            pgidItemId: *const u8,
-            pSyncVersion: *const SYNC_VERSION,
+            pbVersionOwnerReplicaId: ?*const u8,
+            pgidItemId: ?*const u8,
+            pSyncVersion: ?*const SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ContainsChangeUnit: fn(
             self: *const ISyncKnowledge,
-            pbVersionOwnerReplicaId: *const u8,
-            pbItemId: *const u8,
-            pbChangeUnitId: *const u8,
-            pSyncVersion: *const SYNC_VERSION,
+            pbVersionOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            pSyncVersion: ?*const SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetScopeVector: fn(
             self: *const ISyncKnowledge,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReplicaKeyMap: fn(
             self: *const ISyncKnowledge,
-            ppReplicaKeyMap: **IReplicaKeyMap,
+            ppReplicaKeyMap: ?*?*IReplicaKeyMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const ISyncKnowledge,
-            ppClonedKnowledge: **ISyncKnowledge,
+            ppClonedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConvertVersion: fn(
             self: *const ISyncKnowledge,
-            pKnowledgeIn: *ISyncKnowledge,
-            pbCurrentOwnerId: *const u8,
-            pVersionIn: *const SYNC_VERSION,
-            pbNewOwnerId: *u8,
-            pcbIdSize: *u32,
-            pVersionOut: *SYNC_VERSION,
+            pKnowledgeIn: ?*ISyncKnowledge,
+            pbCurrentOwnerId: ?*const u8,
+            pVersionIn: ?*const SYNC_VERSION,
+            pbNewOwnerId: ?*u8,
+            pcbIdSize: ?*u32,
+            pVersionOut: ?*SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MapRemoteToLocal: fn(
             self: *const ISyncKnowledge,
-            pRemoteKnowledge: *ISyncKnowledge,
-            ppMappedKnowledge: **ISyncKnowledge,
+            pRemoteKnowledge: ?*ISyncKnowledge,
+            ppMappedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Union: fn(
             self: *const ISyncKnowledge,
-            pKnowledge: *ISyncKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProjectOntoItem: fn(
             self: *const ISyncKnowledge,
-            pbItemId: *const u8,
-            ppKnowledgeOut: **ISyncKnowledge,
+            pbItemId: ?*const u8,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProjectOntoChangeUnit: fn(
             self: *const ISyncKnowledge,
-            pbItemId: *const u8,
-            pbChangeUnitId: *const u8,
-            ppKnowledgeOut: **ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProjectOntoRange: fn(
             self: *const ISyncKnowledge,
-            psrngSyncRange: *const SYNC_RANGE,
-            ppKnowledgeOut: **ISyncKnowledge,
+            psrngSyncRange: ?*const SYNC_RANGE,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExcludeItem: fn(
             self: *const ISyncKnowledge,
-            pbItemId: *const u8,
+            pbItemId: ?*const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExcludeChangeUnit: fn(
             self: *const ISyncKnowledge,
-            pbItemId: *const u8,
-            pbChangeUnitId: *const u8,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ContainsKnowledge: fn(
             self: *const ISyncKnowledge,
-            pKnowledge: *ISyncKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindMinTickCountForReplica: fn(
             self: *const ISyncKnowledge,
-            pbReplicaId: *const u8,
-            pullReplicaTickCount: *u64,
+            pbReplicaId: ?*const u8,
+            pullReplicaTickCount: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRangeExceptions: fn(
             self: *const ISyncKnowledge,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSingleItemExceptions: fn(
             self: *const ISyncKnowledge,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitExceptions: fn(
             self: *const ISyncKnowledge,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindClockVectorForItem: fn(
             self: *const ISyncKnowledge,
-            pbItemId: *const u8,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            pbItemId: ?*const u8,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindClockVectorForChangeUnit: fn(
             self: *const ISyncKnowledge,
-            pbItemId: *const u8,
-            pbChangeUnitId: *const u8,
-            riid: *const Guid,
-            ppUnk: **c_void,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            riid: ?*const Guid,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersion: fn(
             self: *const ISyncKnowledge,
-            pdwVersion: *u32,
+            pdwVersion: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetOwnerReplicaId(self: *const T, pbReplicaId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetOwnerReplicaId(self: *const T, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetOwnerReplicaId(@ptrCast(*const ISyncKnowledge, self), pbReplicaId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_Serialize(self: *const T, fSerializeReplicaKeyMap: BOOL, pbKnowledge: *u8, pcbKnowledge: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_Serialize(self: *const T, fSerializeReplicaKeyMap: BOOL, pbKnowledge: ?*u8, pcbKnowledge: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).Serialize(@ptrCast(*const ISyncKnowledge, self), fSerializeReplicaKeyMap, pbKnowledge, pcbKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -934,87 +934,87 @@ pub const ISyncKnowledge = extern struct {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).SetLocalTickCount(@ptrCast(*const ISyncKnowledge, self), ullTickCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ContainsChange(self: *const T, pbVersionOwnerReplicaId: *const u8, pgidItemId: *const u8, pSyncVersion: *const SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ContainsChange(self: *const T, pbVersionOwnerReplicaId: ?*const u8, pgidItemId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ContainsChange(@ptrCast(*const ISyncKnowledge, self), pbVersionOwnerReplicaId, pgidItemId, pSyncVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ContainsChangeUnit(self: *const T, pbVersionOwnerReplicaId: *const u8, pbItemId: *const u8, pbChangeUnitId: *const u8, pSyncVersion: *const SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ContainsChangeUnit(self: *const T, pbVersionOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ContainsChangeUnit(@ptrCast(*const ISyncKnowledge, self), pbVersionOwnerReplicaId, pbItemId, pbChangeUnitId, pSyncVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetScopeVector(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetScopeVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetScopeVector(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetReplicaKeyMap(self: *const T, ppReplicaKeyMap: **IReplicaKeyMap) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetReplicaKeyMap(self: *const T, ppReplicaKeyMap: ?*?*IReplicaKeyMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetReplicaKeyMap(@ptrCast(*const ISyncKnowledge, self), ppReplicaKeyMap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_Clone(self: *const T, ppClonedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_Clone(self: *const T, ppClonedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).Clone(@ptrCast(*const ISyncKnowledge, self), ppClonedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ConvertVersion(self: *const T, pKnowledgeIn: *ISyncKnowledge, pbCurrentOwnerId: *const u8, pVersionIn: *const SYNC_VERSION, pbNewOwnerId: *u8, pcbIdSize: *u32, pVersionOut: *SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ConvertVersion(self: *const T, pKnowledgeIn: ?*ISyncKnowledge, pbCurrentOwnerId: ?*const u8, pVersionIn: ?*const SYNC_VERSION, pbNewOwnerId: ?*u8, pcbIdSize: ?*u32, pVersionOut: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ConvertVersion(@ptrCast(*const ISyncKnowledge, self), pKnowledgeIn, pbCurrentOwnerId, pVersionIn, pbNewOwnerId, pcbIdSize, pVersionOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_MapRemoteToLocal(self: *const T, pRemoteKnowledge: *ISyncKnowledge, ppMappedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_MapRemoteToLocal(self: *const T, pRemoteKnowledge: ?*ISyncKnowledge, ppMappedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).MapRemoteToLocal(@ptrCast(*const ISyncKnowledge, self), pRemoteKnowledge, ppMappedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_Union(self: *const T, pKnowledge: *ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_Union(self: *const T, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).Union(@ptrCast(*const ISyncKnowledge, self), pKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ProjectOntoItem(self: *const T, pbItemId: *const u8, ppKnowledgeOut: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ProjectOntoItem(self: *const T, pbItemId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ProjectOntoItem(@ptrCast(*const ISyncKnowledge, self), pbItemId, ppKnowledgeOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ProjectOntoChangeUnit(self: *const T, pbItemId: *const u8, pbChangeUnitId: *const u8, ppKnowledgeOut: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ProjectOntoChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ProjectOntoChangeUnit(@ptrCast(*const ISyncKnowledge, self), pbItemId, pbChangeUnitId, ppKnowledgeOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ProjectOntoRange(self: *const T, psrngSyncRange: *const SYNC_RANGE, ppKnowledgeOut: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ProjectOntoRange(self: *const T, psrngSyncRange: ?*const SYNC_RANGE, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ProjectOntoRange(@ptrCast(*const ISyncKnowledge, self), psrngSyncRange, ppKnowledgeOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ExcludeItem(self: *const T, pbItemId: *const u8) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ExcludeItem(self: *const T, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ExcludeItem(@ptrCast(*const ISyncKnowledge, self), pbItemId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ExcludeChangeUnit(self: *const T, pbItemId: *const u8, pbChangeUnitId: *const u8) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ExcludeChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ExcludeChangeUnit(@ptrCast(*const ISyncKnowledge, self), pbItemId, pbChangeUnitId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_ContainsKnowledge(self: *const T, pKnowledge: *ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_ContainsKnowledge(self: *const T, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ContainsKnowledge(@ptrCast(*const ISyncKnowledge, self), pKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindMinTickCountForReplica(self: *const T, pbReplicaId: *const u8, pullReplicaTickCount: *u64) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_FindMinTickCountForReplica(self: *const T, pbReplicaId: ?*const u8, pullReplicaTickCount: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).FindMinTickCountForReplica(@ptrCast(*const ISyncKnowledge, self), pbReplicaId, pullReplicaTickCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetRangeExceptions(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetRangeExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetRangeExceptions(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetSingleItemExceptions(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetSingleItemExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetSingleItemExceptions(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetChangeUnitExceptions(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetChangeUnitExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetChangeUnitExceptions(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindClockVectorForItem(self: *const T, pbItemId: *const u8, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_FindClockVectorForItem(self: *const T, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).FindClockVectorForItem(@ptrCast(*const ISyncKnowledge, self), pbItemId, riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindClockVectorForChangeUnit(self: *const T, pbItemId: *const u8, pbChangeUnitId: *const u8, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_FindClockVectorForChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).FindClockVectorForChangeUnit(@ptrCast(*const ISyncKnowledge, self), pbItemId, pbChangeUnitId, riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetVersion(self: *const T, pdwVersion: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetVersion(self: *const T, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetVersion(@ptrCast(*const ISyncKnowledge, self), pdwVersion);
         }
     };}
@@ -1029,15 +1029,15 @@ pub const IForgottenKnowledge = extern struct {
         base: ISyncKnowledge.VTable,
         ForgetToVersion: fn(
             self: *const IForgottenKnowledge,
-            pKnowledge: *ISyncKnowledge,
-            pVersion: *const SYNC_VERSION,
+            pKnowledge: ?*ISyncKnowledge,
+            pVersion: ?*const SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncKnowledge.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IForgottenKnowledge_ForgetToVersion(self: *const T, pKnowledge: *ISyncKnowledge, pVersion: *const SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn IForgottenKnowledge_ForgetToVersion(self: *const T, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IForgottenKnowledge.VTable, self.vtable).ForgetToVersion(@ptrCast(*const IForgottenKnowledge, self), pKnowledge, pVersion);
         }
     };}
@@ -1052,134 +1052,134 @@ pub const ISyncKnowledge2 = extern struct {
         base: ISyncKnowledge.VTable,
         GetIdParameters: fn(
             self: *const ISyncKnowledge2,
-            pIdParameters: *ID_PARAMETERS,
+            pIdParameters: ?*ID_PARAMETERS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProjectOntoColumnSet: fn(
             self: *const ISyncKnowledge2,
-            ppColumns: *const *u8,
+            ppColumns: ?*const ?*u8,
             count: u32,
-            ppiKnowledgeOut: **ISyncKnowledge2,
+            ppiKnowledgeOut: ?*?*ISyncKnowledge2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SerializeWithOptions: fn(
             self: *const ISyncKnowledge2,
             targetFormatVersion: SYNC_SERIALIZATION_VERSION,
             dwFlags: u32,
-            pbBuffer: *u8,
-            pdwSerializedSize: *u32,
+            pbBuffer: ?*u8,
+            pdwSerializedSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLowestUncontainedId: fn(
             self: *const ISyncKnowledge2,
-            piSyncKnowledge: *ISyncKnowledge2,
-            pbItemId: *u8,
-            pcbItemIdSize: *u32,
+            piSyncKnowledge: ?*ISyncKnowledge2,
+            pbItemId: ?*u8,
+            pcbItemIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInspector: fn(
             self: *const ISyncKnowledge2,
-            riid: *const Guid,
-            ppiInspector: **c_void,
+            riid: ?*const Guid,
+            ppiInspector: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinimumSupportedVersion: fn(
             self: *const ISyncKnowledge2,
-            pVersion: *SYNC_SERIALIZATION_VERSION,
+            pVersion: ?*SYNC_SERIALIZATION_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStatistics: fn(
             self: *const ISyncKnowledge2,
             which: SYNC_STATISTICS,
-            pValue: *u32,
+            pValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ContainsKnowledgeForItem: fn(
             self: *const ISyncKnowledge2,
-            pKnowledge: *ISyncKnowledge,
-            pbItemId: *const u8,
+            pKnowledge: ?*ISyncKnowledge,
+            pbItemId: ?*const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ContainsKnowledgeForChangeUnit: fn(
             self: *const ISyncKnowledge2,
-            pKnowledge: *ISyncKnowledge,
-            pbItemId: *const u8,
-            pbChangeUnitId: *const u8,
+            pKnowledge: ?*ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProjectOntoKnowledgeWithPrerequisite: fn(
             self: *const ISyncKnowledge2,
-            pPrerequisiteKnowledge: *ISyncKnowledge,
-            pTemplateKnowledge: *ISyncKnowledge,
-            ppProjectedKnowledge: **ISyncKnowledge,
+            pPrerequisiteKnowledge: ?*ISyncKnowledge,
+            pTemplateKnowledge: ?*ISyncKnowledge,
+            ppProjectedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Complement: fn(
             self: *const ISyncKnowledge2,
-            pSyncKnowledge: *ISyncKnowledge,
-            ppComplementedKnowledge: **ISyncKnowledge,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppComplementedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IntersectsWithKnowledge: fn(
             self: *const ISyncKnowledge2,
-            pSyncKnowledge: *ISyncKnowledge,
+            pSyncKnowledge: ?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKnowledgeCookie: fn(
             self: *const ISyncKnowledge2,
-            ppKnowledgeCookie: **IUnknown,
+            ppKnowledgeCookie: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareToKnowledgeCookie: fn(
             self: *const ISyncKnowledge2,
-            pKnowledgeCookie: *IUnknown,
-            pResult: *KNOWLEDGE_COOKIE_COMPARISON_RESULT,
+            pKnowledgeCookie: ?*IUnknown,
+            pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncKnowledge.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetIdParameters(self: *const T, pIdParameters: *ID_PARAMETERS) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetIdParameters(@ptrCast(*const ISyncKnowledge2, self), pIdParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ProjectOntoColumnSet(self: *const T, ppColumns: *const *u8, count: u32, ppiKnowledgeOut: **ISyncKnowledge2) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_ProjectOntoColumnSet(self: *const T, ppColumns: ?*const ?*u8, count: u32, ppiKnowledgeOut: ?*?*ISyncKnowledge2) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).ProjectOntoColumnSet(@ptrCast(*const ISyncKnowledge2, self), ppColumns, count, ppiKnowledgeOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: *u8, pdwSerializedSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).SerializeWithOptions(@ptrCast(*const ISyncKnowledge2, self), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetLowestUncontainedId(self: *const T, piSyncKnowledge: *ISyncKnowledge2, pbItemId: *u8, pcbItemIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_GetLowestUncontainedId(self: *const T, piSyncKnowledge: ?*ISyncKnowledge2, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetLowestUncontainedId(@ptrCast(*const ISyncKnowledge2, self), piSyncKnowledge, pbItemId, pcbItemIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetInspector(self: *const T, riid: *const Guid, ppiInspector: **c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_GetInspector(self: *const T, riid: ?*const Guid, ppiInspector: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetInspector(@ptrCast(*const ISyncKnowledge2, self), riid, ppiInspector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetMinimumSupportedVersion(self: *const T, pVersion: *SYNC_SERIALIZATION_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_GetMinimumSupportedVersion(self: *const T, pVersion: ?*SYNC_SERIALIZATION_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetMinimumSupportedVersion(@ptrCast(*const ISyncKnowledge2, self), pVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetStatistics(self: *const T, which: SYNC_STATISTICS, pValue: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_GetStatistics(self: *const T, which: SYNC_STATISTICS, pValue: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetStatistics(@ptrCast(*const ISyncKnowledge2, self), which, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ContainsKnowledgeForItem(self: *const T, pKnowledge: *ISyncKnowledge, pbItemId: *const u8) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_ContainsKnowledgeForItem(self: *const T, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).ContainsKnowledgeForItem(@ptrCast(*const ISyncKnowledge2, self), pKnowledge, pbItemId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ContainsKnowledgeForChangeUnit(self: *const T, pKnowledge: *ISyncKnowledge, pbItemId: *const u8, pbChangeUnitId: *const u8) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_ContainsKnowledgeForChangeUnit(self: *const T, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).ContainsKnowledgeForChangeUnit(@ptrCast(*const ISyncKnowledge2, self), pKnowledge, pbItemId, pbChangeUnitId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_ProjectOntoKnowledgeWithPrerequisite(self: *const T, pPrerequisiteKnowledge: *ISyncKnowledge, pTemplateKnowledge: *ISyncKnowledge, ppProjectedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_ProjectOntoKnowledgeWithPrerequisite(self: *const T, pPrerequisiteKnowledge: ?*ISyncKnowledge, pTemplateKnowledge: ?*ISyncKnowledge, ppProjectedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).ProjectOntoKnowledgeWithPrerequisite(@ptrCast(*const ISyncKnowledge2, self), pPrerequisiteKnowledge, pTemplateKnowledge, ppProjectedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_Complement(self: *const T, pSyncKnowledge: *ISyncKnowledge, ppComplementedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_Complement(self: *const T, pSyncKnowledge: ?*ISyncKnowledge, ppComplementedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).Complement(@ptrCast(*const ISyncKnowledge2, self), pSyncKnowledge, ppComplementedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_IntersectsWithKnowledge(self: *const T, pSyncKnowledge: *ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_IntersectsWithKnowledge(self: *const T, pSyncKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).IntersectsWithKnowledge(@ptrCast(*const ISyncKnowledge2, self), pSyncKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetKnowledgeCookie(self: *const T, ppKnowledgeCookie: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_GetKnowledgeCookie(self: *const T, ppKnowledgeCookie: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetKnowledgeCookie(@ptrCast(*const ISyncKnowledge2, self), ppKnowledgeCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_CompareToKnowledgeCookie(self: *const T, pKnowledgeCookie: *IUnknown, pResult: *KNOWLEDGE_COOKIE_COMPARISON_RESULT) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_CompareToKnowledgeCookie(self: *const T, pKnowledgeCookie: ?*IUnknown, pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).CompareToKnowledgeCookie(@ptrCast(*const ISyncKnowledge2, self), pKnowledgeCookie, pResult);
         }
     };}
@@ -1194,33 +1194,33 @@ pub const IRecoverableErrorData = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IRecoverableErrorData,
-            pcszItemDisplayName: [*:0]const u16,
-            pcszErrorDescription: [*:0]const u16,
+            pcszItemDisplayName: ?[*:0]const u16,
+            pcszErrorDescription: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetItemDisplayName: fn(
             self: *const IRecoverableErrorData,
-            pszItemDisplayName: PWSTR,
-            pcchItemDisplayName: *u32,
+            pszItemDisplayName: ?PWSTR,
+            pcchItemDisplayName: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorDescription: fn(
             self: *const IRecoverableErrorData,
-            pszErrorDescription: PWSTR,
-            pcchErrorDescription: *u32,
+            pszErrorDescription: ?PWSTR,
+            pcchErrorDescription: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableErrorData_Initialize(self: *const T, pcszItemDisplayName: [*:0]const u16, pcszErrorDescription: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IRecoverableErrorData_Initialize(self: *const T, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableErrorData.VTable, self.vtable).Initialize(@ptrCast(*const IRecoverableErrorData, self), pcszItemDisplayName, pcszErrorDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableErrorData_GetItemDisplayName(self: *const T, pszItemDisplayName: PWSTR, pcchItemDisplayName: *u32) callconv(.Inline) HRESULT {
+        pub fn IRecoverableErrorData_GetItemDisplayName(self: *const T, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableErrorData.VTable, self.vtable).GetItemDisplayName(@ptrCast(*const IRecoverableErrorData, self), pszItemDisplayName, pcchItemDisplayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableErrorData_GetErrorDescription(self: *const T, pszErrorDescription: PWSTR, pcchErrorDescription: *u32) callconv(.Inline) HRESULT {
+        pub fn IRecoverableErrorData_GetErrorDescription(self: *const T, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableErrorData.VTable, self.vtable).GetErrorDescription(@ptrCast(*const IRecoverableErrorData, self), pszErrorDescription, pcchErrorDescription);
         }
     };}
@@ -1235,49 +1235,49 @@ pub const IRecoverableError = extern struct {
         base: IUnknown.VTable,
         GetStage: fn(
             self: *const IRecoverableError,
-            pStage: *SYNC_PROGRESS_STAGE,
+            pStage: ?*SYNC_PROGRESS_STAGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProvider: fn(
             self: *const IRecoverableError,
-            pProviderRole: *SYNC_PROVIDER_ROLE,
+            pProviderRole: ?*SYNC_PROVIDER_ROLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeWithRecoverableError: fn(
             self: *const IRecoverableError,
-            ppChangeWithRecoverableError: **ISyncChange,
+            ppChangeWithRecoverableError: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecoverableErrorDataForChange: fn(
             self: *const IRecoverableError,
-            phrError: *HRESULT,
-            ppErrorData: **IRecoverableErrorData,
+            phrError: ?*HRESULT,
+            ppErrorData: ?*?*IRecoverableErrorData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecoverableErrorDataForChangeUnit: fn(
             self: *const IRecoverableError,
-            pChangeUnit: *ISyncChangeUnit,
-            phrError: *HRESULT,
-            ppErrorData: **IRecoverableErrorData,
+            pChangeUnit: ?*ISyncChangeUnit,
+            phrError: ?*HRESULT,
+            ppErrorData: ?*?*IRecoverableErrorData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetStage(self: *const T, pStage: *SYNC_PROGRESS_STAGE) callconv(.Inline) HRESULT {
+        pub fn IRecoverableError_GetStage(self: *const T, pStage: ?*SYNC_PROGRESS_STAGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableError.VTable, self.vtable).GetStage(@ptrCast(*const IRecoverableError, self), pStage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetProvider(self: *const T, pProviderRole: *SYNC_PROVIDER_ROLE) callconv(.Inline) HRESULT {
+        pub fn IRecoverableError_GetProvider(self: *const T, pProviderRole: ?*SYNC_PROVIDER_ROLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableError.VTable, self.vtable).GetProvider(@ptrCast(*const IRecoverableError, self), pProviderRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetChangeWithRecoverableError(self: *const T, ppChangeWithRecoverableError: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn IRecoverableError_GetChangeWithRecoverableError(self: *const T, ppChangeWithRecoverableError: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableError.VTable, self.vtable).GetChangeWithRecoverableError(@ptrCast(*const IRecoverableError, self), ppChangeWithRecoverableError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetRecoverableErrorDataForChange(self: *const T, phrError: *HRESULT, ppErrorData: **IRecoverableErrorData) callconv(.Inline) HRESULT {
+        pub fn IRecoverableError_GetRecoverableErrorDataForChange(self: *const T, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableError.VTable, self.vtable).GetRecoverableErrorDataForChange(@ptrCast(*const IRecoverableError, self), phrError, ppErrorData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecoverableError_GetRecoverableErrorDataForChangeUnit(self: *const T, pChangeUnit: *ISyncChangeUnit, phrError: *HRESULT, ppErrorData: **IRecoverableErrorData) callconv(.Inline) HRESULT {
+        pub fn IRecoverableError_GetRecoverableErrorDataForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecoverableError.VTable, self.vtable).GetRecoverableErrorDataForChangeUnit(@ptrCast(*const IRecoverableError, self), pChangeUnit, phrError, ppErrorData);
         }
     };}
@@ -1292,23 +1292,23 @@ pub const IChangeConflict = extern struct {
         base: IUnknown.VTable,
         GetDestinationProviderConflictingChange: fn(
             self: *const IChangeConflict,
-            ppConflictingChange: **ISyncChange,
+            ppConflictingChange: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceProviderConflictingChange: fn(
             self: *const IChangeConflict,
-            ppConflictingChange: **ISyncChange,
+            ppConflictingChange: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDestinationProviderConflictingData: fn(
             self: *const IChangeConflict,
-            ppConflictingData: **IUnknown,
+            ppConflictingData: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceProviderConflictingData: fn(
             self: *const IChangeConflict,
-            ppConflictingData: **IUnknown,
+            ppConflictingData: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResolveActionForChange: fn(
             self: *const IChangeConflict,
-            pResolveAction: *SYNC_RESOLVE_ACTION,
+            pResolveAction: ?*SYNC_RESOLVE_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetResolveActionForChange: fn(
             self: *const IChangeConflict,
@@ -1316,12 +1316,12 @@ pub const IChangeConflict = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResolveActionForChangeUnit: fn(
             self: *const IChangeConflict,
-            pChangeUnit: *ISyncChangeUnit,
-            pResolveAction: *SYNC_RESOLVE_ACTION,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pResolveAction: ?*SYNC_RESOLVE_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetResolveActionForChangeUnit: fn(
             self: *const IChangeConflict,
-            pChangeUnit: *ISyncChangeUnit,
+            pChangeUnit: ?*ISyncChangeUnit,
             resolveAction: SYNC_RESOLVE_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1329,23 +1329,23 @@ pub const IChangeConflict = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn IChangeConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).GetDestinationProviderConflictingChange(@ptrCast(*const IChangeConflict, self), ppConflictingChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn IChangeConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).GetSourceProviderConflictingChange(@ptrCast(*const IChangeConflict, self), ppConflictingChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IChangeConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).GetDestinationProviderConflictingData(@ptrCast(*const IChangeConflict, self), ppConflictingData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IChangeConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).GetSourceProviderConflictingData(@ptrCast(*const IChangeConflict, self), ppConflictingData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetResolveActionForChange(self: *const T, pResolveAction: *SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        pub fn IChangeConflict_GetResolveActionForChange(self: *const T, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).GetResolveActionForChange(@ptrCast(*const IChangeConflict, self), pResolveAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1353,11 +1353,11 @@ pub const IChangeConflict = extern struct {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).SetResolveActionForChange(@ptrCast(*const IChangeConflict, self), resolveAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_GetResolveActionForChangeUnit(self: *const T, pChangeUnit: *ISyncChangeUnit, pResolveAction: *SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        pub fn IChangeConflict_GetResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).GetResolveActionForChangeUnit(@ptrCast(*const IChangeConflict, self), pChangeUnit, pResolveAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeConflict_SetResolveActionForChangeUnit(self: *const T, pChangeUnit: *ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        pub fn IChangeConflict_SetResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeConflict.VTable, self.vtable).SetResolveActionForChangeUnit(@ptrCast(*const IChangeConflict, self), pChangeUnit, resolveAction);
         }
     };}
@@ -1371,31 +1371,31 @@ pub const IConstraintConflict = extern struct {
         base: IUnknown.VTable,
         GetDestinationProviderConflictingChange: fn(
             self: *const IConstraintConflict,
-            ppConflictingChange: **ISyncChange,
+            ppConflictingChange: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceProviderConflictingChange: fn(
             self: *const IConstraintConflict,
-            ppConflictingChange: **ISyncChange,
+            ppConflictingChange: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDestinationProviderOriginalChange: fn(
             self: *const IConstraintConflict,
-            ppOriginalChange: **ISyncChange,
+            ppOriginalChange: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDestinationProviderConflictingData: fn(
             self: *const IConstraintConflict,
-            ppConflictingData: **IUnknown,
+            ppConflictingData: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceProviderConflictingData: fn(
             self: *const IConstraintConflict,
-            ppConflictingData: **IUnknown,
+            ppConflictingData: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDestinationProviderOriginalData: fn(
             self: *const IConstraintConflict,
-            ppOriginalData: **IUnknown,
+            ppOriginalData: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConstraintResolveActionForChange: fn(
             self: *const IConstraintConflict,
-            pConstraintResolveAction: *SYNC_CONSTRAINT_RESOLVE_ACTION,
+            pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConstraintResolveActionForChange: fn(
             self: *const IConstraintConflict,
@@ -1403,17 +1403,17 @@ pub const IConstraintConflict = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConstraintResolveActionForChangeUnit: fn(
             self: *const IConstraintConflict,
-            pChangeUnit: *ISyncChangeUnit,
-            pConstraintResolveAction: *SYNC_CONSTRAINT_RESOLVE_ACTION,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConstraintResolveActionForChangeUnit: fn(
             self: *const IConstraintConflict,
-            pChangeUnit: *ISyncChangeUnit,
+            pChangeUnit: ?*ISyncChangeUnit,
             constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConstraintConflictReason: fn(
             self: *const IConstraintConflict,
-            pConstraintConflictReason: *CONSTRAINT_CONFLICT_REASON,
+            pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsTemporary: fn(
             self: *const IConstraintConflict,
@@ -1423,31 +1423,31 @@ pub const IConstraintConflict = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetDestinationProviderConflictingChange(@ptrCast(*const IConstraintConflict, self), ppConflictingChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetSourceProviderConflictingChange(@ptrCast(*const IConstraintConflict, self), ppConflictingChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderOriginalChange(self: *const T, ppOriginalChange: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetDestinationProviderOriginalChange(self: *const T, ppOriginalChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetDestinationProviderOriginalChange(@ptrCast(*const IConstraintConflict, self), ppOriginalChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetDestinationProviderConflictingData(@ptrCast(*const IConstraintConflict, self), ppConflictingData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetSourceProviderConflictingData(@ptrCast(*const IConstraintConflict, self), ppConflictingData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetDestinationProviderOriginalData(self: *const T, ppOriginalData: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetDestinationProviderOriginalData(self: *const T, ppOriginalData: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetDestinationProviderOriginalData(@ptrCast(*const IConstraintConflict, self), ppOriginalData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetConstraintResolveActionForChange(self: *const T, pConstraintResolveAction: *SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetConstraintResolveActionForChange(self: *const T, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetConstraintResolveActionForChange(@ptrCast(*const IConstraintConflict, self), pConstraintResolveAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1455,15 +1455,15 @@ pub const IConstraintConflict = extern struct {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).SetConstraintResolveActionForChange(@ptrCast(*const IConstraintConflict, self), constraintResolveAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: *ISyncChangeUnit, pConstraintResolveAction: *SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetConstraintResolveActionForChangeUnit(@ptrCast(*const IConstraintConflict, self), pChangeUnit, pConstraintResolveAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_SetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: *ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_SetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).SetConstraintResolveActionForChangeUnit(@ptrCast(*const IConstraintConflict, self), pChangeUnit, constraintResolveAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConstraintConflict_GetConstraintConflictReason(self: *const T, pConstraintConflictReason: *CONSTRAINT_CONFLICT_REASON) callconv(.Inline) HRESULT {
+        pub fn IConstraintConflict_GetConstraintConflictReason(self: *const T, pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConstraintConflict.VTable, self.vtable).GetConstraintConflictReason(@ptrCast(*const IConstraintConflict, self), pConstraintConflictReason);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1489,19 +1489,19 @@ pub const ISyncCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnChange: fn(
             self: *const ISyncCallback,
-            pSyncChange: *ISyncChange,
+            pSyncChange: ?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnConflict: fn(
             self: *const ISyncCallback,
-            pConflict: *IChangeConflict,
+            pConflict: ?*IChangeConflict,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnFullEnumerationNeeded: fn(
             self: *const ISyncCallback,
-            pFullEnumerationAction: *SYNC_FULL_ENUMERATION_ACTION,
+            pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnRecoverableError: fn(
             self: *const ISyncCallback,
-            pRecoverableError: *IRecoverableError,
+            pRecoverableError: ?*IRecoverableError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1512,19 +1512,19 @@ pub const ISyncCallback = extern struct {
             return @ptrCast(*const ISyncCallback.VTable, self.vtable).OnProgress(@ptrCast(*const ISyncCallback, self), provider, syncStage, dwCompletedWork, dwTotalWork);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnChange(self: *const T, pSyncChange: *ISyncChange) callconv(.Inline) HRESULT {
+        pub fn ISyncCallback_OnChange(self: *const T, pSyncChange: ?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncCallback.VTable, self.vtable).OnChange(@ptrCast(*const ISyncCallback, self), pSyncChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnConflict(self: *const T, pConflict: *IChangeConflict) callconv(.Inline) HRESULT {
+        pub fn ISyncCallback_OnConflict(self: *const T, pConflict: ?*IChangeConflict) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncCallback.VTable, self.vtable).OnConflict(@ptrCast(*const ISyncCallback, self), pConflict);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnFullEnumerationNeeded(self: *const T, pFullEnumerationAction: *SYNC_FULL_ENUMERATION_ACTION) callconv(.Inline) HRESULT {
+        pub fn ISyncCallback_OnFullEnumerationNeeded(self: *const T, pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncCallback.VTable, self.vtable).OnFullEnumerationNeeded(@ptrCast(*const ISyncCallback, self), pFullEnumerationAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncCallback_OnRecoverableError(self: *const T, pRecoverableError: *IRecoverableError) callconv(.Inline) HRESULT {
+        pub fn ISyncCallback_OnRecoverableError(self: *const T, pRecoverableError: ?*IRecoverableError) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncCallback.VTable, self.vtable).OnRecoverableError(@ptrCast(*const ISyncCallback, self), pRecoverableError);
         }
     };}
@@ -1570,14 +1570,14 @@ pub const ISyncConstraintCallback = extern struct {
         base: IUnknown.VTable,
         OnConstraintConflict: fn(
             self: *const ISyncConstraintCallback,
-            pConflict: *IConstraintConflict,
+            pConflict: ?*IConstraintConflict,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncConstraintCallback_OnConstraintConflict(self: *const T, pConflict: *IConstraintConflict) callconv(.Inline) HRESULT {
+        pub fn ISyncConstraintCallback_OnConstraintConflict(self: *const T, pConflict: ?*IConstraintConflict) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncConstraintCallback.VTable, self.vtable).OnConstraintConflict(@ptrCast(*const ISyncConstraintCallback, self), pConflict);
         }
     };}
@@ -1592,14 +1592,14 @@ pub const ISyncProvider = extern struct {
         base: IUnknown.VTable,
         GetIdParameters: fn(
             self: *const ISyncProvider,
-            pIdParameters: *ID_PARAMETERS,
+            pIdParameters: ?*ID_PARAMETERS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProvider_GetIdParameters(self: *const T, pIdParameters: *ID_PARAMETERS) callconv(.Inline) HRESULT {
+        pub fn ISyncProvider_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProvider.VTable, self.vtable).GetIdParameters(@ptrCast(*const ISyncProvider, self), pIdParameters);
         }
     };}
@@ -1614,31 +1614,31 @@ pub const ISyncSessionState = extern struct {
         base: IUnknown.VTable,
         IsCanceled: fn(
             self: *const ISyncSessionState,
-            pfIsCanceled: *BOOL,
+            pfIsCanceled: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInfoForChangeApplication: fn(
             self: *const ISyncSessionState,
-            pbChangeApplierInfo: *u8,
-            pcbChangeApplierInfo: *u32,
+            pbChangeApplierInfo: ?*u8,
+            pcbChangeApplierInfo: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadInfoFromChangeApplication: fn(
             self: *const ISyncSessionState,
-            pbChangeApplierInfo: *const u8,
+            pbChangeApplierInfo: ?*const u8,
             cbChangeApplierInfo: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetForgottenKnowledgeRecoveryRangeStart: fn(
             self: *const ISyncSessionState,
-            pbRangeStart: *u8,
-            pcbRangeStart: *u32,
+            pbRangeStart: ?*u8,
+            pcbRangeStart: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetForgottenKnowledgeRecoveryRangeEnd: fn(
             self: *const ISyncSessionState,
-            pbRangeEnd: *u8,
-            pcbRangeEnd: *u32,
+            pbRangeEnd: ?*u8,
+            pcbRangeEnd: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetForgottenKnowledgeRecoveryRange: fn(
             self: *const ISyncSessionState,
-            pRange: *const SYNC_RANGE,
+            pRange: ?*const SYNC_RANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnProgress: fn(
             self: *const ISyncSessionState,
@@ -1652,27 +1652,27 @@ pub const ISyncSessionState = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_IsCanceled(self: *const T, pfIsCanceled: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionState_IsCanceled(self: *const T, pfIsCanceled: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionState.VTable, self.vtable).IsCanceled(@ptrCast(*const ISyncSessionState, self), pfIsCanceled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_GetInfoForChangeApplication(self: *const T, pbChangeApplierInfo: *u8, pcbChangeApplierInfo: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionState_GetInfoForChangeApplication(self: *const T, pbChangeApplierInfo: ?*u8, pcbChangeApplierInfo: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionState.VTable, self.vtable).GetInfoForChangeApplication(@ptrCast(*const ISyncSessionState, self), pbChangeApplierInfo, pcbChangeApplierInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_LoadInfoFromChangeApplication(self: *const T, pbChangeApplierInfo: *const u8, cbChangeApplierInfo: u32) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionState_LoadInfoFromChangeApplication(self: *const T, pbChangeApplierInfo: ?*const u8, cbChangeApplierInfo: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionState.VTable, self.vtable).LoadInfoFromChangeApplication(@ptrCast(*const ISyncSessionState, self), pbChangeApplierInfo, cbChangeApplierInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeStart(self: *const T, pbRangeStart: *u8, pcbRangeStart: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeStart(self: *const T, pbRangeStart: ?*u8, pcbRangeStart: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionState.VTable, self.vtable).GetForgottenKnowledgeRecoveryRangeStart(@ptrCast(*const ISyncSessionState, self), pbRangeStart, pcbRangeStart);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeEnd(self: *const T, pbRangeEnd: *u8, pcbRangeEnd: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeEnd(self: *const T, pbRangeEnd: ?*u8, pcbRangeEnd: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionState.VTable, self.vtable).GetForgottenKnowledgeRecoveryRangeEnd(@ptrCast(*const ISyncSessionState, self), pbRangeEnd, pcbRangeEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState_SetForgottenKnowledgeRecoveryRange(self: *const T, pRange: *const SYNC_RANGE) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionState_SetForgottenKnowledgeRecoveryRange(self: *const T, pRange: ?*const SYNC_RANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionState.VTable, self.vtable).SetForgottenKnowledgeRecoveryRange(@ptrCast(*const ISyncSessionState, self), pRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1691,14 +1691,14 @@ pub const ISyncSessionExtendedErrorInfo = extern struct {
         base: IUnknown.VTable,
         GetSyncProviderWithError: fn(
             self: *const ISyncSessionExtendedErrorInfo,
-            ppProviderWithError: **ISyncProvider,
+            ppProviderWithError: ?*?*ISyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionExtendedErrorInfo_GetSyncProviderWithError(self: *const T, ppProviderWithError: **ISyncProvider) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionExtendedErrorInfo_GetSyncProviderWithError(self: *const T, ppProviderWithError: ?*?*ISyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionExtendedErrorInfo.VTable, self.vtable).GetSyncProviderWithError(@ptrCast(*const ISyncSessionExtendedErrorInfo, self), ppProviderWithError);
         }
     };}
@@ -1717,7 +1717,7 @@ pub const ISyncSessionState2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSessionErrorStatus: fn(
             self: *const ISyncSessionState2,
-            phrSessionError: *HRESULT,
+            phrSessionError: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1728,7 +1728,7 @@ pub const ISyncSessionState2 = extern struct {
             return @ptrCast(*const ISyncSessionState2.VTable, self.vtable).SetProviderWithError(@ptrCast(*const ISyncSessionState2, self), fSelf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncSessionState2_GetSessionErrorStatus(self: *const T, phrSessionError: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn ISyncSessionState2_GetSessionErrorStatus(self: *const T, phrSessionError: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncSessionState2.VTable, self.vtable).GetSessionErrorStatus(@ptrCast(*const ISyncSessionState2, self), phrSessionError);
         }
     };}
@@ -1743,15 +1743,15 @@ pub const ISyncFilterInfo = extern struct {
         base: IUnknown.VTable,
         Serialize: fn(
             self: *const ISyncFilterInfo,
-            pbBuffer: *u8,
-            pcbBuffer: *u32,
+            pbBuffer: ?*u8,
+            pcbBuffer: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilterInfo_Serialize(self: *const T, pbBuffer: *u8, pcbBuffer: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncFilterInfo_Serialize(self: *const T, pbBuffer: ?*u8, pcbBuffer: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFilterInfo.VTable, self.vtable).Serialize(@ptrCast(*const ISyncFilterInfo, self), pbBuffer, pcbBuffer);
         }
     };}
@@ -1766,14 +1766,14 @@ pub const ISyncFilterInfo2 = extern struct {
         base: ISyncFilterInfo.VTable,
         GetFlags: fn(
             self: *const ISyncFilterInfo2,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncFilterInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilterInfo2_GetFlags(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncFilterInfo2_GetFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFilterInfo2.VTable, self.vtable).GetFlags(@ptrCast(*const ISyncFilterInfo2, self), pdwFlags);
         }
     };}
@@ -1788,33 +1788,33 @@ pub const IChangeUnitListFilterInfo = extern struct {
         base: ISyncFilterInfo.VTable,
         Initialize: fn(
             self: *const IChangeUnitListFilterInfo,
-            ppbChangeUnitIds: *const *u8,
+            ppbChangeUnitIds: ?*const ?*u8,
             dwChangeUnitCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitIdCount: fn(
             self: *const IChangeUnitListFilterInfo,
-            pdwChangeUnitIdCount: *u32,
+            pdwChangeUnitIdCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitId: fn(
             self: *const IChangeUnitListFilterInfo,
             dwChangeUnitIdIndex: u32,
-            pbChangeUnitId: *u8,
-            pcbIdSize: *u32,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncFilterInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitListFilterInfo_Initialize(self: *const T, ppbChangeUnitIds: *const *u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitListFilterInfo_Initialize(self: *const T, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitListFilterInfo.VTable, self.vtable).Initialize(@ptrCast(*const IChangeUnitListFilterInfo, self), ppbChangeUnitIds, dwChangeUnitCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitListFilterInfo_GetChangeUnitIdCount(self: *const T, pdwChangeUnitIdCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitListFilterInfo_GetChangeUnitIdCount(self: *const T, pdwChangeUnitIdCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitListFilterInfo.VTable, self.vtable).GetChangeUnitIdCount(@ptrCast(*const IChangeUnitListFilterInfo, self), pdwChangeUnitIdCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitListFilterInfo_GetChangeUnitId(self: *const T, dwChangeUnitIdIndex: u32, pbChangeUnitId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitListFilterInfo_GetChangeUnitId(self: *const T, dwChangeUnitIdIndex: u32, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitListFilterInfo.VTable, self.vtable).GetChangeUnitId(@ptrCast(*const IChangeUnitListFilterInfo, self), dwChangeUnitIdIndex, pbChangeUnitId, pcbIdSize);
         }
     };}
@@ -1828,23 +1828,23 @@ pub const ISyncFilter = extern struct {
         base: IUnknown.VTable,
         IsIdentical: fn(
             self: *const ISyncFilter,
-            pSyncFilter: *ISyncFilter,
+            pSyncFilter: ?*ISyncFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const ISyncFilter,
-            pbSyncFilter: *u8,
-            pcbSyncFilter: *u32,
+            pbSyncFilter: ?*u8,
+            pcbSyncFilter: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilter_IsIdentical(self: *const T, pSyncFilter: *ISyncFilter) callconv(.Inline) HRESULT {
+        pub fn ISyncFilter_IsIdentical(self: *const T, pSyncFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFilter.VTable, self.vtable).IsIdentical(@ptrCast(*const ISyncFilter, self), pSyncFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilter_Serialize(self: *const T, pbSyncFilter: *u8, pcbSyncFilter: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncFilter_Serialize(self: *const T, pbSyncFilter: ?*u8, pcbSyncFilter: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFilter.VTable, self.vtable).Serialize(@ptrCast(*const ISyncFilter, self), pbSyncFilter, pcbSyncFilter);
         }
     };}
@@ -1858,16 +1858,16 @@ pub const ISyncFilterDeserializer = extern struct {
         base: IUnknown.VTable,
         DeserializeSyncFilter: fn(
             self: *const ISyncFilterDeserializer,
-            pbSyncFilter: *const u8,
+            pbSyncFilter: ?*const u8,
             dwCbSyncFilter: u32,
-            ppISyncFilter: **ISyncFilter,
+            ppISyncFilter: ?*?*ISyncFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFilterDeserializer_DeserializeSyncFilter(self: *const T, pbSyncFilter: *const u8, dwCbSyncFilter: u32, ppISyncFilter: **ISyncFilter) callconv(.Inline) HRESULT {
+        pub fn ISyncFilterDeserializer_DeserializeSyncFilter(self: *const T, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFilterDeserializer.VTable, self.vtable).DeserializeSyncFilter(@ptrCast(*const ISyncFilterDeserializer, self), pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
         }
     };}
@@ -1881,14 +1881,14 @@ pub const ICustomFilterInfo = extern struct {
         base: ISyncFilterInfo.VTable,
         GetSyncFilter: fn(
             self: *const ICustomFilterInfo,
-            pISyncFilter: **ISyncFilter,
+            pISyncFilter: ?*?*ISyncFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncFilterInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICustomFilterInfo_GetSyncFilter(self: *const T, pISyncFilter: **ISyncFilter) callconv(.Inline) HRESULT {
+        pub fn ICustomFilterInfo_GetSyncFilter(self: *const T, pISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICustomFilterInfo.VTable, self.vtable).GetSyncFilter(@ptrCast(*const ICustomFilterInfo, self), pISyncFilter);
         }
     };}
@@ -1907,31 +1907,31 @@ pub const ICombinedFilterInfo = extern struct {
         base: ISyncFilterInfo.VTable,
         GetFilterCount: fn(
             self: *const ICombinedFilterInfo,
-            pdwFilterCount: *u32,
+            pdwFilterCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilterInfo: fn(
             self: *const ICombinedFilterInfo,
             dwFilterIndex: u32,
-            ppIFilterInfo: **ISyncFilterInfo,
+            ppIFilterInfo: ?*?*ISyncFilterInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilterCombinationType: fn(
             self: *const ICombinedFilterInfo,
-            pFilterCombinationType: *FILTER_COMBINATION_TYPE,
+            pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncFilterInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICombinedFilterInfo_GetFilterCount(self: *const T, pdwFilterCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ICombinedFilterInfo_GetFilterCount(self: *const T, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICombinedFilterInfo.VTable, self.vtable).GetFilterCount(@ptrCast(*const ICombinedFilterInfo, self), pdwFilterCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICombinedFilterInfo_GetFilterInfo(self: *const T, dwFilterIndex: u32, ppIFilterInfo: **ISyncFilterInfo) callconv(.Inline) HRESULT {
+        pub fn ICombinedFilterInfo_GetFilterInfo(self: *const T, dwFilterIndex: u32, ppIFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICombinedFilterInfo.VTable, self.vtable).GetFilterInfo(@ptrCast(*const ICombinedFilterInfo, self), dwFilterIndex, ppIFilterInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICombinedFilterInfo_GetFilterCombinationType(self: *const T, pFilterCombinationType: *FILTER_COMBINATION_TYPE) callconv(.Inline) HRESULT {
+        pub fn ICombinedFilterInfo_GetFilterCombinationType(self: *const T, pFilterCombinationType: ?*FILTER_COMBINATION_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICombinedFilterInfo.VTable, self.vtable).GetFilterCombinationType(@ptrCast(*const ICombinedFilterInfo, self), pFilterCombinationType);
         }
     };}
@@ -1947,8 +1947,8 @@ pub const IEnumSyncChanges = extern struct {
         Next: fn(
             self: *const IEnumSyncChanges,
             cChanges: u32,
-            ppChange: **ISyncChange,
-            pcFetched: *u32,
+            ppChange: ?*?*ISyncChange,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumSyncChanges,
@@ -1959,14 +1959,14 @@ pub const IEnumSyncChanges = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncChanges,
-            ppEnum: **IEnumSyncChanges,
+            ppEnum: ?*?*IEnumSyncChanges,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChanges_Next(self: *const T, cChanges: u32, ppChange: **ISyncChange, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncChanges_Next(self: *const T, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncChanges.VTable, self.vtable).Next(@ptrCast(*const IEnumSyncChanges, self), cChanges, ppChange, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1978,7 +1978,7 @@ pub const IEnumSyncChanges = extern struct {
             return @ptrCast(*const IEnumSyncChanges.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncChanges, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChanges_Clone(self: *const T, ppEnum: **IEnumSyncChanges) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncChanges_Clone(self: *const T, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncChanges.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncChanges, self), ppEnum);
         }
     };}
@@ -1993,15 +1993,15 @@ pub const ISyncChangeBuilder = extern struct {
         base: IUnknown.VTable,
         AddChangeUnitMetadata: fn(
             self: *const ISyncChangeBuilder,
-            pbChangeUnitId: *const u8,
-            pChangeUnitVersion: *const SYNC_VERSION,
+            pbChangeUnitId: ?*const u8,
+            pChangeUnitVersion: ?*const SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBuilder_AddChangeUnitMetadata(self: *const T, pbChangeUnitId: *const u8, pChangeUnitVersion: *const SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBuilder_AddChangeUnitMetadata(self: *const T, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBuilder.VTable, self.vtable).AddChangeUnitMetadata(@ptrCast(*const ISyncChangeBuilder, self), pbChangeUnitId, pChangeUnitVersion);
         }
     };}
@@ -2016,7 +2016,7 @@ pub const IFilterTrackingSyncChangeBuilder = extern struct {
         AddFilterChange: fn(
             self: *const IFilterTrackingSyncChangeBuilder,
             dwFilterKey: u32,
-            pFilterChange: *const SYNC_FILTER_CHANGE,
+            pFilterChange: ?*const SYNC_FILTER_CHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAllChangeUnitsPresentFlag: fn(
             self: *const IFilterTrackingSyncChangeBuilder,
@@ -2026,7 +2026,7 @@ pub const IFilterTrackingSyncChangeBuilder = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterTrackingSyncChangeBuilder_AddFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: *const SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+        pub fn IFilterTrackingSyncChangeBuilder_AddFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterTrackingSyncChangeBuilder.VTable, self.vtable).AddFilterChange(@ptrCast(*const IFilterTrackingSyncChangeBuilder, self), dwFilterKey, pFilterChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2045,50 +2045,50 @@ pub const ISyncChangeBatchBase = extern struct {
         base: IUnknown.VTable,
         GetChangeEnumerator: fn(
             self: *const ISyncChangeBatchBase,
-            ppEnum: **IEnumSyncChanges,
+            ppEnum: ?*?*IEnumSyncChanges,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIsLastBatch: fn(
             self: *const ISyncChangeBatchBase,
-            pfLastBatch: *BOOL,
+            pfLastBatch: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWorkEstimateForBatch: fn(
             self: *const ISyncChangeBatchBase,
-            pdwWorkForBatch: *u32,
+            pdwWorkForBatch: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRemainingWorkEstimateForSession: fn(
             self: *const ISyncChangeBatchBase,
-            pdwRemainingWorkForSession: *u32,
+            pdwRemainingWorkForSession: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BeginOrderedGroup: fn(
             self: *const ISyncChangeBatchBase,
-            pbLowerBound: *const u8,
+            pbLowerBound: ?*const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndOrderedGroup: fn(
             self: *const ISyncChangeBatchBase,
-            pbUpperBound: *const u8,
-            pMadeWithKnowledge: *ISyncKnowledge,
+            pbUpperBound: ?*const u8,
+            pMadeWithKnowledge: ?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddItemMetadataToGroup: fn(
             self: *const ISyncChangeBatchBase,
-            pbOwnerReplicaId: *const u8,
-            pbItemId: *const u8,
-            pChangeVersion: *const SYNC_VERSION,
-            pCreationVersion: *const SYNC_VERSION,
+            pbOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
             dwFlags: u32,
             dwWorkForChange: u32,
-            ppChangeBuilder: **ISyncChangeBuilder,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedKnowledge: fn(
             self: *const ISyncChangeBatchBase,
-            ppLearnedKnowledge: **ISyncKnowledge,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrerequisiteKnowledge: fn(
             self: *const ISyncChangeBatchBase,
-            ppPrerequisteKnowledge: **ISyncKnowledge,
+            ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSourceForgottenKnowledge: fn(
             self: *const ISyncChangeBatchBase,
-            ppSourceForgottenKnowledge: **IForgottenKnowledge,
+            ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetLastBatch: fn(
             self: *const ISyncChangeBatchBase,
@@ -2103,51 +2103,51 @@ pub const ISyncChangeBatchBase = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const ISyncChangeBatchBase,
-            pbChangeBatch: *u8,
-            pcbChangeBatch: *u32,
+            pbChangeBatch: ?*u8,
+            pcbChangeBatch: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetChangeEnumerator(self: *const T, ppEnum: **IEnumSyncChanges) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_GetChangeEnumerator(self: *const T, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).GetChangeEnumerator(@ptrCast(*const ISyncChangeBatchBase, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetIsLastBatch(self: *const T, pfLastBatch: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_GetIsLastBatch(self: *const T, pfLastBatch: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).GetIsLastBatch(@ptrCast(*const ISyncChangeBatchBase, self), pfLastBatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetWorkEstimateForBatch(self: *const T, pdwWorkForBatch: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_GetWorkEstimateForBatch(self: *const T, pdwWorkForBatch: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).GetWorkEstimateForBatch(@ptrCast(*const ISyncChangeBatchBase, self), pdwWorkForBatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetRemainingWorkEstimateForSession(self: *const T, pdwRemainingWorkForSession: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_GetRemainingWorkEstimateForSession(self: *const T, pdwRemainingWorkForSession: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).GetRemainingWorkEstimateForSession(@ptrCast(*const ISyncChangeBatchBase, self), pdwRemainingWorkForSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_BeginOrderedGroup(self: *const T, pbLowerBound: *const u8) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_BeginOrderedGroup(self: *const T, pbLowerBound: ?*const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).BeginOrderedGroup(@ptrCast(*const ISyncChangeBatchBase, self), pbLowerBound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_EndOrderedGroup(self: *const T, pbUpperBound: *const u8, pMadeWithKnowledge: *ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_EndOrderedGroup(self: *const T, pbUpperBound: ?*const u8, pMadeWithKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).EndOrderedGroup(@ptrCast(*const ISyncChangeBatchBase, self), pbUpperBound, pMadeWithKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_AddItemMetadataToGroup(self: *const T, pbOwnerReplicaId: *const u8, pbItemId: *const u8, pChangeVersion: *const SYNC_VERSION, pCreationVersion: *const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: **ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_AddItemMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).AddItemMetadataToGroup(@ptrCast(*const ISyncChangeBatchBase, self), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, ppChangeBuilder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).GetLearnedKnowledge(@ptrCast(*const ISyncChangeBatchBase, self), ppLearnedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetPrerequisiteKnowledge(self: *const T, ppPrerequisteKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_GetPrerequisiteKnowledge(self: *const T, ppPrerequisteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).GetPrerequisiteKnowledge(@ptrCast(*const ISyncChangeBatchBase, self), ppPrerequisteKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_GetSourceForgottenKnowledge(self: *const T, ppSourceForgottenKnowledge: **IForgottenKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_GetSourceForgottenKnowledge(self: *const T, ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).GetSourceForgottenKnowledge(@ptrCast(*const ISyncChangeBatchBase, self), ppSourceForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2163,7 +2163,7 @@ pub const ISyncChangeBatchBase = extern struct {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).SetRemainingWorkEstimateForSession(@ptrCast(*const ISyncChangeBatchBase, self), dwRemainingWorkForSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase_Serialize(self: *const T, pbChangeBatch: *u8, pcbChangeBatch: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase_Serialize(self: *const T, pbChangeBatch: ?*u8, pcbChangeBatch: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase.VTable, self.vtable).Serialize(@ptrCast(*const ISyncChangeBatchBase, self), pbChangeBatch, pcbChangeBatch);
         }
     };}
@@ -2181,19 +2181,19 @@ pub const ISyncChangeBatch = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndUnorderedGroup: fn(
             self: *const ISyncChangeBatch,
-            pMadeWithKnowledge: *ISyncKnowledge,
+            pMadeWithKnowledge: ?*ISyncKnowledge,
             fAllChangesForKnowledge: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddLoggedConflict: fn(
             self: *const ISyncChangeBatch,
-            pbOwnerReplicaId: *const u8,
-            pbItemId: *const u8,
-            pChangeVersion: *const SYNC_VERSION,
-            pCreationVersion: *const SYNC_VERSION,
+            pbOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
             dwFlags: u32,
             dwWorkForChange: u32,
-            pConflictKnowledge: *ISyncKnowledge,
-            ppChangeBuilder: **ISyncChangeBuilder,
+            pConflictKnowledge: ?*ISyncKnowledge,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2204,11 +2204,11 @@ pub const ISyncChangeBatch = extern struct {
             return @ptrCast(*const ISyncChangeBatch.VTable, self.vtable).BeginUnorderedGroup(@ptrCast(*const ISyncChangeBatch, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch_EndUnorderedGroup(self: *const T, pMadeWithKnowledge: *ISyncKnowledge, fAllChangesForKnowledge: BOOL) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatch_EndUnorderedGroup(self: *const T, pMadeWithKnowledge: ?*ISyncKnowledge, fAllChangesForKnowledge: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatch.VTable, self.vtable).EndUnorderedGroup(@ptrCast(*const ISyncChangeBatch, self), pMadeWithKnowledge, fAllChangesForKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch_AddLoggedConflict(self: *const T, pbOwnerReplicaId: *const u8, pbItemId: *const u8, pChangeVersion: *const SYNC_VERSION, pCreationVersion: *const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: *ISyncKnowledge, ppChangeBuilder: **ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatch_AddLoggedConflict(self: *const T, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatch.VTable, self.vtable).AddLoggedConflict(@ptrCast(*const ISyncChangeBatch, self), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
         }
     };}
@@ -2223,32 +2223,32 @@ pub const ISyncFullEnumerationChangeBatch = extern struct {
         base: ISyncChangeBatchBase.VTable,
         GetLearnedKnowledgeAfterRecoveryComplete: fn(
             self: *const ISyncFullEnumerationChangeBatch,
-            ppLearnedKnowledgeAfterRecoveryComplete: **ISyncKnowledge,
+            ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClosedLowerBoundItemId: fn(
             self: *const ISyncFullEnumerationChangeBatch,
-            pbClosedLowerBoundItemId: *u8,
-            pcbIdSize: *u32,
+            pbClosedLowerBoundItemId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClosedUpperBoundItemId: fn(
             self: *const ISyncFullEnumerationChangeBatch,
-            pbClosedUpperBoundItemId: *u8,
-            pcbIdSize: *u32,
+            pbClosedUpperBoundItemId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledgeAfterRecoveryComplete: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncFullEnumerationChangeBatch_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFullEnumerationChangeBatch.VTable, self.vtable).GetLearnedKnowledgeAfterRecoveryComplete(@ptrCast(*const ISyncFullEnumerationChangeBatch, self), ppLearnedKnowledgeAfterRecoveryComplete);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch_GetClosedLowerBoundItemId(self: *const T, pbClosedLowerBoundItemId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncFullEnumerationChangeBatch_GetClosedLowerBoundItemId(self: *const T, pbClosedLowerBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFullEnumerationChangeBatch.VTable, self.vtable).GetClosedLowerBoundItemId(@ptrCast(*const ISyncFullEnumerationChangeBatch, self), pbClosedLowerBoundItemId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch_GetClosedUpperBoundItemId(self: *const T, pbClosedUpperBoundItemId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncFullEnumerationChangeBatch_GetClosedUpperBoundItemId(self: *const T, pbClosedUpperBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFullEnumerationChangeBatch.VTable, self.vtable).GetClosedUpperBoundItemId(@ptrCast(*const ISyncFullEnumerationChangeBatch, self), pbClosedUpperBoundItemId, pcbIdSize);
         }
     };}
@@ -2263,31 +2263,31 @@ pub const ISyncChangeBatchWithPrerequisite = extern struct {
         base: ISyncChangeBatchBase.VTable,
         SetPrerequisiteKnowledge: fn(
             self: *const ISyncChangeBatchWithPrerequisite,
-            pPrerequisiteKnowledge: *ISyncKnowledge,
+            pPrerequisiteKnowledge: ?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedKnowledgeWithPrerequisite: fn(
             self: *const ISyncChangeBatchWithPrerequisite,
-            pDestinationKnowledge: *ISyncKnowledge,
-            ppLearnedWithPrerequisiteKnowledge: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedForgottenKnowledge: fn(
             self: *const ISyncChangeBatchWithPrerequisite,
-            ppLearnedForgottenKnowledge: **IForgottenKnowledge,
+            ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithPrerequisite_SetPrerequisiteKnowledge(self: *const T, pPrerequisiteKnowledge: *ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithPrerequisite_SetPrerequisiteKnowledge(self: *const T, pPrerequisiteKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithPrerequisite.VTable, self.vtable).SetPrerequisiteKnowledge(@ptrCast(*const ISyncChangeBatchWithPrerequisite, self), pPrerequisiteKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: *ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithPrerequisite.VTable, self.vtable).GetLearnedKnowledgeWithPrerequisite(@ptrCast(*const ISyncChangeBatchWithPrerequisite, self), pDestinationKnowledge, ppLearnedWithPrerequisiteKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithPrerequisite_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: **IForgottenKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithPrerequisite_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithPrerequisite.VTable, self.vtable).GetLearnedForgottenKnowledge(@ptrCast(*const ISyncChangeBatchWithPrerequisite, self), ppLearnedForgottenKnowledge);
         }
     };}
@@ -2304,15 +2304,15 @@ pub const ISyncChangeBatchBase2 = extern struct {
             self: *const ISyncChangeBatchBase2,
             targetFormatVersion: SYNC_SERIALIZATION_VERSION,
             dwFlags: u32,
-            pbBuffer: *u8,
-            pdwSerializedSize: *u32,
+            pbBuffer: ?*u8,
+            pdwSerializedSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchBase2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: *u8, pdwSerializedSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchBase2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchBase2.VTable, self.vtable).SerializeWithOptions(@ptrCast(*const ISyncChangeBatchBase2, self), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
         }
     };}
@@ -2327,39 +2327,39 @@ pub const ISyncChangeBatchAdvanced = extern struct {
         base: IUnknown.VTable,
         GetFilterInfo: fn(
             self: *const ISyncChangeBatchAdvanced,
-            ppFilterInfo: **ISyncFilterInfo,
+            ppFilterInfo: ?*?*ISyncFilterInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConvertFullEnumerationChangeBatchToRegularChangeBatch: fn(
             self: *const ISyncChangeBatchAdvanced,
-            ppChangeBatch: **ISyncChangeBatch,
+            ppChangeBatch: ?*?*ISyncChangeBatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUpperBoundItemId: fn(
             self: *const ISyncChangeBatchAdvanced,
-            pbItemId: *u8,
-            pcbIdSize: *u32,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBatchLevelKnowledgeShouldBeApplied: fn(
             self: *const ISyncChangeBatchAdvanced,
-            pfBatchKnowledgeShouldBeApplied: *BOOL,
+            pfBatchKnowledgeShouldBeApplied: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_GetFilterInfo(self: *const T, ppFilterInfo: **ISyncFilterInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchAdvanced_GetFilterInfo(self: *const T, ppFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchAdvanced.VTable, self.vtable).GetFilterInfo(@ptrCast(*const ISyncChangeBatchAdvanced, self), ppFilterInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const T, ppChangeBatch: **ISyncChangeBatch) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchAdvanced_ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const T, ppChangeBatch: ?*?*ISyncChangeBatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchAdvanced.VTable, self.vtable).ConvertFullEnumerationChangeBatchToRegularChangeBatch(@ptrCast(*const ISyncChangeBatchAdvanced, self), ppChangeBatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_GetUpperBoundItemId(self: *const T, pbItemId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchAdvanced_GetUpperBoundItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchAdvanced.VTable, self.vtable).GetUpperBoundItemId(@ptrCast(*const ISyncChangeBatchAdvanced, self), pbItemId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchAdvanced_GetBatchLevelKnowledgeShouldBeApplied(self: *const T, pfBatchKnowledgeShouldBeApplied: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchAdvanced_GetBatchLevelKnowledgeShouldBeApplied(self: *const T, pfBatchKnowledgeShouldBeApplied: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchAdvanced.VTable, self.vtable).GetBatchLevelKnowledgeShouldBeApplied(@ptrCast(*const ISyncChangeBatchAdvanced, self), pfBatchKnowledgeShouldBeApplied);
         }
     };}
@@ -2373,35 +2373,35 @@ pub const ISyncChangeBatch2 = extern struct {
         base: ISyncChangeBatch.VTable,
         AddMergeTombstoneMetadataToGroup: fn(
             self: *const ISyncChangeBatch2,
-            pbOwnerReplicaId: *const u8,
-            pbWinnerItemId: *const u8,
-            pbItemId: *const u8,
-            pChangeVersion: *const SYNC_VERSION,
-            pCreationVersion: *const SYNC_VERSION,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
             dwWorkForChange: u32,
-            ppChangeBuilder: **ISyncChangeBuilder,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddMergeTombstoneLoggedConflict: fn(
             self: *const ISyncChangeBatch2,
-            pbOwnerReplicaId: *const u8,
-            pbWinnerItemId: *const u8,
-            pbItemId: *const u8,
-            pChangeVersion: *const SYNC_VERSION,
-            pCreationVersion: *const SYNC_VERSION,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
             dwWorkForChange: u32,
-            pConflictKnowledge: *ISyncKnowledge,
-            ppChangeBuilder: **ISyncChangeBuilder,
+            pConflictKnowledge: ?*ISyncKnowledge,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncChangeBatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: *const u8, pbWinnerItemId: *const u8, pbItemId: *const u8, pChangeVersion: *const SYNC_VERSION, pCreationVersion: *const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: **ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatch2.VTable, self.vtable).AddMergeTombstoneMetadataToGroup(@ptrCast(*const ISyncChangeBatch2, self), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatch2_AddMergeTombstoneLoggedConflict(self: *const T, pbOwnerReplicaId: *const u8, pbWinnerItemId: *const u8, pbItemId: *const u8, pChangeVersion: *const SYNC_VERSION, pCreationVersion: *const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: *ISyncKnowledge, ppChangeBuilder: **ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatch2_AddMergeTombstoneLoggedConflict(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatch2.VTable, self.vtable).AddMergeTombstoneLoggedConflict(@ptrCast(*const ISyncChangeBatch2, self), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
         }
     };}
@@ -2415,20 +2415,20 @@ pub const ISyncFullEnumerationChangeBatch2 = extern struct {
         base: ISyncFullEnumerationChangeBatch.VTable,
         AddMergeTombstoneMetadataToGroup: fn(
             self: *const ISyncFullEnumerationChangeBatch2,
-            pbOwnerReplicaId: *const u8,
-            pbWinnerItemId: *const u8,
-            pbItemId: *const u8,
-            pChangeVersion: *const SYNC_VERSION,
-            pCreationVersion: *const SYNC_VERSION,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
             dwWorkForChange: u32,
-            ppChangeBuilder: **ISyncChangeBuilder,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncFullEnumerationChangeBatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: *const u8, pbWinnerItemId: *const u8, pbItemId: *const u8, pChangeVersion: *const SYNC_VERSION, pCreationVersion: *const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: **ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        pub fn ISyncFullEnumerationChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFullEnumerationChangeBatch2.VTable, self.vtable).AddMergeTombstoneMetadataToGroup(@ptrCast(*const ISyncFullEnumerationChangeBatch2, self), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
         }
     };}
@@ -2444,78 +2444,78 @@ pub const IKnowledgeSyncProvider = extern struct {
         BeginSession: fn(
             self: *const IKnowledgeSyncProvider,
             role: SYNC_PROVIDER_ROLE,
-            pSessionState: *ISyncSessionState,
+            pSessionState: ?*ISyncSessionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncBatchParameters: fn(
             self: *const IKnowledgeSyncProvider,
-            ppSyncKnowledge: **ISyncKnowledge,
-            pdwRequestedBatchSize: *u32,
+            ppSyncKnowledge: ?*?*ISyncKnowledge,
+            pdwRequestedBatchSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeBatch: fn(
             self: *const IKnowledgeSyncProvider,
             dwBatchSize: u32,
-            pSyncKnowledge: *ISyncKnowledge,
-            ppSyncChangeBatch: **ISyncChangeBatch,
-            ppUnkDataRetriever: **IUnknown,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppSyncChangeBatch: ?*?*ISyncChangeBatch,
+            ppUnkDataRetriever: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFullEnumerationChangeBatch: fn(
             self: *const IKnowledgeSyncProvider,
             dwBatchSize: u32,
-            pbLowerEnumerationBound: *const u8,
-            pSyncKnowledge: *ISyncKnowledge,
-            ppSyncChangeBatch: **ISyncFullEnumerationChangeBatch,
-            ppUnkDataRetriever: **IUnknown,
+            pbLowerEnumerationBound: ?*const u8,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
+            ppUnkDataRetriever: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessChangeBatch: fn(
             self: *const IKnowledgeSyncProvider,
             resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-            pSourceChangeBatch: *ISyncChangeBatch,
-            pUnkDataRetriever: *IUnknown,
-            pCallback: *ISyncCallback,
-            pSyncSessionStatistics: *SYNC_SESSION_STATISTICS,
+            pSourceChangeBatch: ?*ISyncChangeBatch,
+            pUnkDataRetriever: ?*IUnknown,
+            pCallback: ?*ISyncCallback,
+            pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessFullEnumerationChangeBatch: fn(
             self: *const IKnowledgeSyncProvider,
             resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-            pSourceChangeBatch: *ISyncFullEnumerationChangeBatch,
-            pUnkDataRetriever: *IUnknown,
-            pCallback: *ISyncCallback,
-            pSyncSessionStatistics: *SYNC_SESSION_STATISTICS,
+            pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch,
+            pUnkDataRetriever: ?*IUnknown,
+            pCallback: ?*ISyncCallback,
+            pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndSession: fn(
             self: *const IKnowledgeSyncProvider,
-            pSessionState: *ISyncSessionState,
+            pSessionState: ?*ISyncSessionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISyncProvider.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_BeginSession(self: *const T, role: SYNC_PROVIDER_ROLE, pSessionState: *ISyncSessionState) callconv(.Inline) HRESULT {
+        pub fn IKnowledgeSyncProvider_BeginSession(self: *const T, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnowledgeSyncProvider.VTable, self.vtable).BeginSession(@ptrCast(*const IKnowledgeSyncProvider, self), role, pSessionState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_GetSyncBatchParameters(self: *const T, ppSyncKnowledge: **ISyncKnowledge, pdwRequestedBatchSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IKnowledgeSyncProvider_GetSyncBatchParameters(self: *const T, ppSyncKnowledge: ?*?*ISyncKnowledge, pdwRequestedBatchSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnowledgeSyncProvider.VTable, self.vtable).GetSyncBatchParameters(@ptrCast(*const IKnowledgeSyncProvider, self), ppSyncKnowledge, pdwRequestedBatchSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_GetChangeBatch(self: *const T, dwBatchSize: u32, pSyncKnowledge: *ISyncKnowledge, ppSyncChangeBatch: **ISyncChangeBatch, ppUnkDataRetriever: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IKnowledgeSyncProvider_GetChangeBatch(self: *const T, dwBatchSize: u32, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnowledgeSyncProvider.VTable, self.vtable).GetChangeBatch(@ptrCast(*const IKnowledgeSyncProvider, self), dwBatchSize, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_GetFullEnumerationChangeBatch(self: *const T, dwBatchSize: u32, pbLowerEnumerationBound: *const u8, pSyncKnowledge: *ISyncKnowledge, ppSyncChangeBatch: **ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IKnowledgeSyncProvider_GetFullEnumerationChangeBatch(self: *const T, dwBatchSize: u32, pbLowerEnumerationBound: ?*const u8, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnowledgeSyncProvider.VTable, self.vtable).GetFullEnumerationChangeBatch(@ptrCast(*const IKnowledgeSyncProvider, self), dwBatchSize, pbLowerEnumerationBound, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_ProcessChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: *ISyncChangeBatch, pUnkDataRetriever: *IUnknown, pCallback: *ISyncCallback, pSyncSessionStatistics: *SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+        pub fn IKnowledgeSyncProvider_ProcessChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnowledgeSyncProvider.VTable, self.vtable).ProcessChangeBatch(@ptrCast(*const IKnowledgeSyncProvider, self), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_ProcessFullEnumerationChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: *ISyncFullEnumerationChangeBatch, pUnkDataRetriever: *IUnknown, pCallback: *ISyncCallback, pSyncSessionStatistics: *SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+        pub fn IKnowledgeSyncProvider_ProcessFullEnumerationChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnowledgeSyncProvider.VTable, self.vtable).ProcessFullEnumerationChangeBatch(@ptrCast(*const IKnowledgeSyncProvider, self), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnowledgeSyncProvider_EndSession(self: *const T, pSessionState: *ISyncSessionState) callconv(.Inline) HRESULT {
+        pub fn IKnowledgeSyncProvider_EndSession(self: *const T, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnowledgeSyncProvider.VTable, self.vtable).EndSession(@ptrCast(*const IKnowledgeSyncProvider, self), pSessionState);
         }
     };}
@@ -2530,32 +2530,32 @@ pub const ISyncChangeUnit = extern struct {
         base: IUnknown.VTable,
         GetItemChange: fn(
             self: *const ISyncChangeUnit,
-            ppSyncChange: **ISyncChange,
+            ppSyncChange: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitId: fn(
             self: *const ISyncChangeUnit,
-            pbChangeUnitId: *u8,
-            pcbIdSize: *u32,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitVersion: fn(
             self: *const ISyncChangeUnit,
-            pbCurrentReplicaId: *const u8,
-            pVersion: *SYNC_VERSION,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeUnit_GetItemChange(self: *const T, ppSyncChange: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeUnit_GetItemChange(self: *const T, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeUnit.VTable, self.vtable).GetItemChange(@ptrCast(*const ISyncChangeUnit, self), ppSyncChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeUnit_GetChangeUnitId(self: *const T, pbChangeUnitId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeUnit_GetChangeUnitId(self: *const T, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeUnit.VTable, self.vtable).GetChangeUnitId(@ptrCast(*const ISyncChangeUnit, self), pbChangeUnitId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeUnit_GetChangeUnitVersion(self: *const T, pbCurrentReplicaId: *const u8, pVersion: *SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeUnit_GetChangeUnitVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeUnit.VTable, self.vtable).GetChangeUnitVersion(@ptrCast(*const ISyncChangeUnit, self), pbCurrentReplicaId, pVersion);
         }
     };}
@@ -2571,8 +2571,8 @@ pub const IEnumSyncChangeUnits = extern struct {
         Next: fn(
             self: *const IEnumSyncChangeUnits,
             cChanges: u32,
-            ppChangeUnit: **ISyncChangeUnit,
-            pcFetched: *u32,
+            ppChangeUnit: ?*?*ISyncChangeUnit,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumSyncChangeUnits,
@@ -2583,14 +2583,14 @@ pub const IEnumSyncChangeUnits = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncChangeUnits,
-            ppEnum: **IEnumSyncChangeUnits,
+            ppEnum: ?*?*IEnumSyncChangeUnits,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChangeUnits_Next(self: *const T, cChanges: u32, ppChangeUnit: **ISyncChangeUnit, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncChangeUnits_Next(self: *const T, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncChangeUnits.VTable, self.vtable).Next(@ptrCast(*const IEnumSyncChangeUnits, self), cChanges, ppChangeUnit, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2602,7 +2602,7 @@ pub const IEnumSyncChangeUnits = extern struct {
             return @ptrCast(*const IEnumSyncChangeUnits.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncChangeUnits, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncChangeUnits_Clone(self: *const T, ppEnum: **IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncChangeUnits_Clone(self: *const T, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncChangeUnits.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncChangeUnits, self), ppEnum);
         }
     };}
@@ -2617,43 +2617,43 @@ pub const ISyncChange = extern struct {
         base: IUnknown.VTable,
         GetOwnerReplicaId: fn(
             self: *const ISyncChange,
-            pbReplicaId: *u8,
-            pcbIdSize: *u32,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRootItemId: fn(
             self: *const ISyncChange,
-            pbRootItemId: *u8,
-            pcbIdSize: *u32,
+            pbRootItemId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeVersion: fn(
             self: *const ISyncChange,
-            pbCurrentReplicaId: *const u8,
-            pVersion: *SYNC_VERSION,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCreationVersion: fn(
             self: *const ISyncChange,
-            pbCurrentReplicaId: *const u8,
-            pVersion: *SYNC_VERSION,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFlags: fn(
             self: *const ISyncChange,
-            pdwFlags: *u32,
+            pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWorkEstimate: fn(
             self: *const ISyncChange,
-            pdwWork: *u32,
+            pdwWork: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnits: fn(
             self: *const ISyncChange,
-            ppEnum: **IEnumSyncChangeUnits,
+            ppEnum: ?*?*IEnumSyncChangeUnits,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMadeWithKnowledge: fn(
             self: *const ISyncChange,
-            ppMadeWithKnowledge: **ISyncKnowledge,
+            ppMadeWithKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedKnowledge: fn(
             self: *const ISyncChange,
-            ppLearnedKnowledge: **ISyncKnowledge,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetWorkEstimate: fn(
             self: *const ISyncChange,
@@ -2664,39 +2664,39 @@ pub const ISyncChange = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetOwnerReplicaId(self: *const T, pbReplicaId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetOwnerReplicaId(self: *const T, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetOwnerReplicaId(@ptrCast(*const ISyncChange, self), pbReplicaId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetRootItemId(self: *const T, pbRootItemId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetRootItemId(self: *const T, pbRootItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetRootItemId(@ptrCast(*const ISyncChange, self), pbRootItemId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetChangeVersion(self: *const T, pbCurrentReplicaId: *const u8, pVersion: *SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetChangeVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetChangeVersion(@ptrCast(*const ISyncChange, self), pbCurrentReplicaId, pVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetCreationVersion(self: *const T, pbCurrentReplicaId: *const u8, pVersion: *SYNC_VERSION) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetCreationVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetCreationVersion(@ptrCast(*const ISyncChange, self), pbCurrentReplicaId, pVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetFlags(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetFlags(@ptrCast(*const ISyncChange, self), pdwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetWorkEstimate(self: *const T, pdwWork: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetWorkEstimate(self: *const T, pdwWork: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetWorkEstimate(@ptrCast(*const ISyncChange, self), pdwWork);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetChangeUnits(self: *const T, ppEnum: **IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetChangeUnits(self: *const T, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetChangeUnits(@ptrCast(*const ISyncChange, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetMadeWithKnowledge(self: *const T, ppMadeWithKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetMadeWithKnowledge(self: *const T, ppMadeWithKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetMadeWithKnowledge(@ptrCast(*const ISyncChange, self), ppMadeWithKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChange_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChange_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChange.VTable, self.vtable).GetLearnedKnowledge(@ptrCast(*const ISyncChange, self), ppLearnedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2715,23 +2715,23 @@ pub const ISyncChangeWithPrerequisite = extern struct {
         base: IUnknown.VTable,
         GetPrerequisiteKnowledge: fn(
             self: *const ISyncChangeWithPrerequisite,
-            ppPrerequisiteKnowledge: **ISyncKnowledge,
+            ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedKnowledgeWithPrerequisite: fn(
             self: *const ISyncChangeWithPrerequisite,
-            pDestinationKnowledge: *ISyncKnowledge,
-            ppLearnedKnowledgeWithPrerequisite: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithPrerequisite_GetPrerequisiteKnowledge(self: *const T, ppPrerequisiteKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithPrerequisite_GetPrerequisiteKnowledge(self: *const T, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithPrerequisite.VTable, self.vtable).GetPrerequisiteKnowledge(@ptrCast(*const ISyncChangeWithPrerequisite, self), ppPrerequisiteKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: *ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithPrerequisite.VTable, self.vtable).GetLearnedKnowledgeWithPrerequisite(@ptrCast(*const ISyncChangeWithPrerequisite, self), pDestinationKnowledge, ppLearnedKnowledgeWithPrerequisite);
         }
     };}
@@ -2746,22 +2746,22 @@ pub const ISyncFullEnumerationChange = extern struct {
         base: IUnknown.VTable,
         GetLearnedKnowledgeAfterRecoveryComplete: fn(
             self: *const ISyncFullEnumerationChange,
-            ppLearnedKnowledge: **ISyncKnowledge,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedForgottenKnowledge: fn(
             self: *const ISyncFullEnumerationChange,
-            ppLearnedForgottenKnowledge: **IForgottenKnowledge,
+            ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChange_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncFullEnumerationChange_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFullEnumerationChange.VTable, self.vtable).GetLearnedKnowledgeAfterRecoveryComplete(@ptrCast(*const ISyncFullEnumerationChange, self), ppLearnedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncFullEnumerationChange_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: **IForgottenKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncFullEnumerationChange_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncFullEnumerationChange.VTable, self.vtable).GetLearnedForgottenKnowledge(@ptrCast(*const ISyncFullEnumerationChange, self), ppLearnedForgottenKnowledge);
         }
     };}
@@ -2775,15 +2775,15 @@ pub const ISyncMergeTombstoneChange = extern struct {
         base: IUnknown.VTable,
         GetWinnerItemId: fn(
             self: *const ISyncMergeTombstoneChange,
-            pbWinnerItemId: *u8,
-            pcbIdSize: *u32,
+            pbWinnerItemId: ?*u8,
+            pcbIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMergeTombstoneChange_GetWinnerItemId(self: *const T, pbWinnerItemId: *u8, pcbIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncMergeTombstoneChange_GetWinnerItemId(self: *const T, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMergeTombstoneChange.VTable, self.vtable).GetWinnerItemId(@ptrCast(*const ISyncMergeTombstoneChange, self), pbWinnerItemId, pcbIdSize);
         }
     };}
@@ -2797,15 +2797,15 @@ pub const IEnumItemIds = extern struct {
         base: IUnknown.VTable,
         Next: fn(
             self: *const IEnumItemIds,
-            pbItemId: *u8,
-            pcbItemIdSize: *u32,
+            pbItemId: ?*u8,
+            pcbItemIdSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumItemIds_Next(self: *const T, pbItemId: *u8, pcbItemIdSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumItemIds_Next(self: *const T, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumItemIds.VTable, self.vtable).Next(@ptrCast(*const IEnumItemIds, self), pbItemId, pcbItemIdSize);
         }
     };}
@@ -2819,41 +2819,41 @@ pub const IFilterKeyMap = extern struct {
         base: IUnknown.VTable,
         GetCount: fn(
             self: *const IFilterKeyMap,
-            pdwCount: *u32,
+            pdwCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddFilter: fn(
             self: *const IFilterKeyMap,
-            pISyncFilter: *ISyncFilter,
-            pdwFilterKey: *u32,
+            pISyncFilter: ?*ISyncFilter,
+            pdwFilterKey: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilter: fn(
             self: *const IFilterKeyMap,
             dwFilterKey: u32,
-            ppISyncFilter: **ISyncFilter,
+            ppISyncFilter: ?*?*ISyncFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Serialize: fn(
             self: *const IFilterKeyMap,
-            pbFilterKeyMap: *u8,
-            pcbFilterKeyMap: *u32,
+            pbFilterKeyMap: ?*u8,
+            pcbFilterKeyMap: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_GetCount(self: *const T, pdwCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IFilterKeyMap_GetCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterKeyMap.VTable, self.vtable).GetCount(@ptrCast(*const IFilterKeyMap, self), pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_AddFilter(self: *const T, pISyncFilter: *ISyncFilter, pdwFilterKey: *u32) callconv(.Inline) HRESULT {
+        pub fn IFilterKeyMap_AddFilter(self: *const T, pISyncFilter: ?*ISyncFilter, pdwFilterKey: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterKeyMap.VTable, self.vtable).AddFilter(@ptrCast(*const IFilterKeyMap, self), pISyncFilter, pdwFilterKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_GetFilter(self: *const T, dwFilterKey: u32, ppISyncFilter: **ISyncFilter) callconv(.Inline) HRESULT {
+        pub fn IFilterKeyMap_GetFilter(self: *const T, dwFilterKey: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterKeyMap.VTable, self.vtable).GetFilter(@ptrCast(*const IFilterKeyMap, self), dwFilterKey, ppISyncFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilterKeyMap_Serialize(self: *const T, pbFilterKeyMap: *u8, pcbFilterKeyMap: *u32) callconv(.Inline) HRESULT {
+        pub fn IFilterKeyMap_Serialize(self: *const T, pbFilterKeyMap: ?*u8, pcbFilterKeyMap: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFilterKeyMap.VTable, self.vtable).Serialize(@ptrCast(*const IFilterKeyMap, self), pbFilterKeyMap, pcbFilterKeyMap);
         }
     };}
@@ -2867,92 +2867,92 @@ pub const ISyncChangeWithFilterKeyMap = extern struct {
         base: IUnknown.VTable,
         GetFilterCount: fn(
             self: *const ISyncChangeWithFilterKeyMap,
-            pdwFilterCount: *u32,
+            pdwFilterCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilterChange: fn(
             self: *const ISyncChangeWithFilterKeyMap,
             dwFilterKey: u32,
-            pFilterChange: *SYNC_FILTER_CHANGE,
+            pFilterChange: ?*SYNC_FILTER_CHANGE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllChangeUnitsPresentFlag: fn(
             self: *const ISyncChangeWithFilterKeyMap,
-            pfAllChangeUnitsPresent: *BOOL,
+            pfAllChangeUnitsPresent: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilterForgottenKnowledge: fn(
             self: *const ISyncChangeWithFilterKeyMap,
             dwFilterKey: u32,
-            ppIFilterForgottenKnowledge: **ISyncKnowledge,
+            ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilteredReplicaLearnedKnowledge: fn(
             self: *const ISyncChangeWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
-            ppLearnedKnowledge: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedFilterForgottenKnowledge: fn(
             self: *const ISyncChangeWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
-            ppLearnedFilterForgottenKnowledge: **ISyncKnowledge,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledge: fn(
             self: *const ISyncChangeWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
-            ppLearnedForgottenKnowledge: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: fn(
             self: *const ISyncChangeWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
-            ppLearnedForgottenKnowledge: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: fn(
             self: *const ISyncChangeWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
-            ppLearnedFilterForgottenKnowledge: **ISyncKnowledge,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilterCount(self: *const T, pdwFilterCount: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetFilterCount(self: *const T, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetFilterCount(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), pdwFilterCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: *SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: ?*SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetFilterChange(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), dwFilterKey, pFilterChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetAllChangeUnitsPresentFlag(self: *const T, pfAllChangeUnitsPresent: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetAllChangeUnitsPresentFlag(self: *const T, pfAllChangeUnitsPresent: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetAllChangeUnitsPresentFlag(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), pfAllChangeUnitsPresent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, ppIFilterForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetFilterForgottenKnowledge(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), dwFilterKey, ppIFilterForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, ppLearnedKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetFilteredReplicaLearnedKnowledge(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, ppLearnedKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetLearnedFilterForgottenKnowledge(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, ppLearnedForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetFilteredReplicaLearnedForgottenKnowledge(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, ppLearnedForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeWithFilterKeyMap.VTable, self.vtable).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@ptrCast(*const ISyncChangeWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
         }
     };}
@@ -2966,83 +2966,83 @@ pub const ISyncChangeBatchWithFilterKeyMap = extern struct {
         base: IUnknown.VTable,
         GetFilterKeyMap: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
-            ppIFilterKeyMap: **IFilterKeyMap,
+            ppIFilterKeyMap: ?*?*IFilterKeyMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFilterKeyMap: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
-            pIFilterKeyMap: *IFilterKeyMap,
+            pIFilterKeyMap: ?*IFilterKeyMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFilterForgottenKnowledge: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             dwFilterKey: u32,
-            pFilterForgottenKnowledge: *ISyncKnowledge,
+            pFilterForgottenKnowledge: ?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilteredReplicaLearnedKnowledge: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
-            ppLearnedForgottenKnowledge: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedFilterForgottenKnowledge: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
-            ppLearnedFilterForgottenKnowledge: **ISyncKnowledge,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledge: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
-            ppLearnedForgottenKnowledge: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
-            ppLearnedForgottenKnowledge: **ISyncKnowledge,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
-            pDestinationKnowledge: *ISyncKnowledge,
-            pNewMoveins: *IEnumItemIds,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
-            ppLearnedFilterForgottenKnowledge: **ISyncKnowledge,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilterKeyMap(self: *const T, ppIFilterKeyMap: **IFilterKeyMap) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilterKeyMap(self: *const T, ppIFilterKeyMap: ?*?*IFilterKeyMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).GetFilterKeyMap(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), ppIFilterKeyMap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_SetFilterKeyMap(self: *const T, pIFilterKeyMap: *IFilterKeyMap) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_SetFilterKeyMap(self: *const T, pIFilterKeyMap: ?*IFilterKeyMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).SetFilterKeyMap(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), pIFilterKeyMap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_SetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, pFilterForgottenKnowledge: *ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_SetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, pFilterForgottenKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).SetFilterForgottenKnowledge(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), dwFilterKey, pFilterForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, ppLearnedForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).GetFilteredReplicaLearnedKnowledge(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).GetLearnedFilterForgottenKnowledge(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, ppLearnedForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).GetFilteredReplicaLearnedForgottenKnowledge(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, ppLearnedForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: *ISyncKnowledge, pNewMoveins: *IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: **ISyncKnowledge) callconv(.Inline) HRESULT {
+        pub fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncChangeBatchWithFilterKeyMap.VTable, self.vtable).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@ptrCast(*const ISyncChangeBatchWithFilterKeyMap, self), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
         }
     };}
@@ -3057,7 +3057,7 @@ pub const IDataRetrieverCallback = extern struct {
         base: IUnknown.VTable,
         LoadChangeDataComplete: fn(
             self: *const IDataRetrieverCallback,
-            pUnkData: *IUnknown,
+            pUnkData: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadChangeDataError: fn(
             self: *const IDataRetrieverCallback,
@@ -3068,7 +3068,7 @@ pub const IDataRetrieverCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataRetrieverCallback_LoadChangeDataComplete(self: *const T, pUnkData: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDataRetrieverCallback_LoadChangeDataComplete(self: *const T, pUnkData: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataRetrieverCallback.VTable, self.vtable).LoadChangeDataComplete(@ptrCast(*const IDataRetrieverCallback, self), pUnkData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3087,33 +3087,33 @@ pub const ILoadChangeContext = extern struct {
         base: IUnknown.VTable,
         GetSyncChange: fn(
             self: *const ILoadChangeContext,
-            ppSyncChange: **ISyncChange,
+            ppSyncChange: ?*?*ISyncChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRecoverableErrorOnChange: fn(
             self: *const ILoadChangeContext,
             hrError: HRESULT,
-            pErrorData: *IRecoverableErrorData,
+            pErrorData: ?*IRecoverableErrorData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRecoverableErrorOnChangeUnit: fn(
             self: *const ILoadChangeContext,
             hrError: HRESULT,
-            pChangeUnit: *ISyncChangeUnit,
-            pErrorData: *IRecoverableErrorData,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pErrorData: ?*IRecoverableErrorData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILoadChangeContext_GetSyncChange(self: *const T, ppSyncChange: **ISyncChange) callconv(.Inline) HRESULT {
+        pub fn ILoadChangeContext_GetSyncChange(self: *const T, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILoadChangeContext.VTable, self.vtable).GetSyncChange(@ptrCast(*const ILoadChangeContext, self), ppSyncChange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILoadChangeContext_SetRecoverableErrorOnChange(self: *const T, hrError: HRESULT, pErrorData: *IRecoverableErrorData) callconv(.Inline) HRESULT {
+        pub fn ILoadChangeContext_SetRecoverableErrorOnChange(self: *const T, hrError: HRESULT, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILoadChangeContext.VTable, self.vtable).SetRecoverableErrorOnChange(@ptrCast(*const ILoadChangeContext, self), hrError, pErrorData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILoadChangeContext_SetRecoverableErrorOnChangeUnit(self: *const T, hrError: HRESULT, pChangeUnit: *ISyncChangeUnit, pErrorData: *IRecoverableErrorData) callconv(.Inline) HRESULT {
+        pub fn ILoadChangeContext_SetRecoverableErrorOnChangeUnit(self: *const T, hrError: HRESULT, pChangeUnit: ?*ISyncChangeUnit, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILoadChangeContext.VTable, self.vtable).SetRecoverableErrorOnChangeUnit(@ptrCast(*const ILoadChangeContext, self), hrError, pChangeUnit, pErrorData);
         }
     };}
@@ -3128,23 +3128,23 @@ pub const ISynchronousDataRetriever = extern struct {
         base: IUnknown.VTable,
         GetIdParameters: fn(
             self: *const ISynchronousDataRetriever,
-            pIdParameters: *ID_PARAMETERS,
+            pIdParameters: ?*ID_PARAMETERS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadChangeData: fn(
             self: *const ISynchronousDataRetriever,
-            pLoadChangeContext: *ILoadChangeContext,
-            ppUnkData: **IUnknown,
+            pLoadChangeContext: ?*ILoadChangeContext,
+            ppUnkData: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: *ID_PARAMETERS) callconv(.Inline) HRESULT {
+        pub fn ISynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISynchronousDataRetriever.VTable, self.vtable).GetIdParameters(@ptrCast(*const ISynchronousDataRetriever, self), pIdParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: *ILoadChangeContext, ppUnkData: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: ?*ILoadChangeContext, ppUnkData: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISynchronousDataRetriever.VTable, self.vtable).LoadChangeData(@ptrCast(*const ISynchronousDataRetriever, self), pLoadChangeContext, ppUnkData);
         }
     };}
@@ -3159,38 +3159,38 @@ pub const IAsynchronousDataRetriever = extern struct {
         base: IUnknown.VTable,
         GetIdParameters: fn(
             self: *const IAsynchronousDataRetriever,
-            pIdParameters: *ID_PARAMETERS,
+            pIdParameters: ?*ID_PARAMETERS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterCallback: fn(
             self: *const IAsynchronousDataRetriever,
-            pDataRetrieverCallback: *IDataRetrieverCallback,
+            pDataRetrieverCallback: ?*IDataRetrieverCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RevokeCallback: fn(
             self: *const IAsynchronousDataRetriever,
-            pDataRetrieverCallback: *IDataRetrieverCallback,
+            pDataRetrieverCallback: ?*IDataRetrieverCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadChangeData: fn(
             self: *const IAsynchronousDataRetriever,
-            pLoadChangeContext: *ILoadChangeContext,
+            pLoadChangeContext: ?*ILoadChangeContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: *ID_PARAMETERS) callconv(.Inline) HRESULT {
+        pub fn IAsynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAsynchronousDataRetriever.VTable, self.vtable).GetIdParameters(@ptrCast(*const IAsynchronousDataRetriever, self), pIdParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_RegisterCallback(self: *const T, pDataRetrieverCallback: *IDataRetrieverCallback) callconv(.Inline) HRESULT {
+        pub fn IAsynchronousDataRetriever_RegisterCallback(self: *const T, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAsynchronousDataRetriever.VTable, self.vtable).RegisterCallback(@ptrCast(*const IAsynchronousDataRetriever, self), pDataRetrieverCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_RevokeCallback(self: *const T, pDataRetrieverCallback: *IDataRetrieverCallback) callconv(.Inline) HRESULT {
+        pub fn IAsynchronousDataRetriever_RevokeCallback(self: *const T, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAsynchronousDataRetriever.VTable, self.vtable).RevokeCallback(@ptrCast(*const IAsynchronousDataRetriever, self), pDataRetrieverCallback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: *ILoadChangeContext) callconv(.Inline) HRESULT {
+        pub fn IAsynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: ?*ILoadChangeContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAsynchronousDataRetriever.VTable, self.vtable).LoadChangeData(@ptrCast(*const IAsynchronousDataRetriever, self), pLoadChangeContext);
         }
     };}
@@ -3323,25 +3323,25 @@ pub const ISupportLastWriteTime = extern struct {
         base: IUnknown.VTable,
         GetItemChangeTime: fn(
             self: *const ISupportLastWriteTime,
-            pbItemId: *const u8,
-            pullTimestamp: *u64,
+            pbItemId: ?*const u8,
+            pullTimestamp: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitChangeTime: fn(
             self: *const ISupportLastWriteTime,
-            pbItemId: *const u8,
-            pbChangeUnitId: *const u8,
-            pullTimestamp: *u64,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            pullTimestamp: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISupportLastWriteTime_GetItemChangeTime(self: *const T, pbItemId: *const u8, pullTimestamp: *u64) callconv(.Inline) HRESULT {
+        pub fn ISupportLastWriteTime_GetItemChangeTime(self: *const T, pbItemId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISupportLastWriteTime.VTable, self.vtable).GetItemChangeTime(@ptrCast(*const ISupportLastWriteTime, self), pbItemId, pullTimestamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISupportLastWriteTime_GetChangeUnitChangeTime(self: *const T, pbItemId: *const u8, pbChangeUnitId: *const u8, pullTimestamp: *u64) callconv(.Inline) HRESULT {
+        pub fn ISupportLastWriteTime_GetChangeUnitChangeTime(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISupportLastWriteTime.VTable, self.vtable).GetChangeUnitChangeTime(@ptrCast(*const ISupportLastWriteTime, self), pbItemId, pbChangeUnitId, pullTimestamp);
         }
     };}
@@ -3356,14 +3356,14 @@ pub const IProviderConverter = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IProviderConverter,
-            pISyncProvider: *ISyncProvider,
+            pISyncProvider: ?*ISyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderConverter_Initialize(self: *const T, pISyncProvider: *ISyncProvider) callconv(.Inline) HRESULT {
+        pub fn IProviderConverter_Initialize(self: *const T, pISyncProvider: ?*ISyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProviderConverter.VTable, self.vtable).Initialize(@ptrCast(*const IProviderConverter, self), pISyncProvider);
         }
     };}
@@ -3377,46 +3377,46 @@ pub const ISyncDataConverter = extern struct {
         base: IUnknown.VTable,
         ConvertDataRetrieverFromProviderFormat: fn(
             self: *const ISyncDataConverter,
-            pUnkDataRetrieverIn: *IUnknown,
-            pEnumSyncChanges: *IEnumSyncChanges,
-            ppUnkDataOut: **IUnknown,
+            pUnkDataRetrieverIn: ?*IUnknown,
+            pEnumSyncChanges: ?*IEnumSyncChanges,
+            ppUnkDataOut: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConvertDataRetrieverToProviderFormat: fn(
             self: *const ISyncDataConverter,
-            pUnkDataRetrieverIn: *IUnknown,
-            pEnumSyncChanges: *IEnumSyncChanges,
-            ppUnkDataOut: **IUnknown,
+            pUnkDataRetrieverIn: ?*IUnknown,
+            pEnumSyncChanges: ?*IEnumSyncChanges,
+            ppUnkDataOut: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConvertDataFromProviderFormat: fn(
             self: *const ISyncDataConverter,
-            pDataContext: *ILoadChangeContext,
-            pUnkDataIn: *IUnknown,
-            ppUnkDataOut: **IUnknown,
+            pDataContext: ?*ILoadChangeContext,
+            pUnkDataIn: ?*IUnknown,
+            ppUnkDataOut: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConvertDataToProviderFormat: fn(
             self: *const ISyncDataConverter,
-            pDataContext: *ILoadChangeContext,
-            pUnkDataOut: *IUnknown,
-            ppUnkDataout: **IUnknown,
+            pDataContext: ?*ILoadChangeContext,
+            pUnkDataOut: ?*IUnknown,
+            ppUnkDataout: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataRetrieverFromProviderFormat(self: *const T, pUnkDataRetrieverIn: *IUnknown, pEnumSyncChanges: *IEnumSyncChanges, ppUnkDataOut: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISyncDataConverter_ConvertDataRetrieverFromProviderFormat(self: *const T, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncDataConverter.VTable, self.vtable).ConvertDataRetrieverFromProviderFormat(@ptrCast(*const ISyncDataConverter, self), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataRetrieverToProviderFormat(self: *const T, pUnkDataRetrieverIn: *IUnknown, pEnumSyncChanges: *IEnumSyncChanges, ppUnkDataOut: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISyncDataConverter_ConvertDataRetrieverToProviderFormat(self: *const T, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncDataConverter.VTable, self.vtable).ConvertDataRetrieverToProviderFormat(@ptrCast(*const ISyncDataConverter, self), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataFromProviderFormat(self: *const T, pDataContext: *ILoadChangeContext, pUnkDataIn: *IUnknown, ppUnkDataOut: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISyncDataConverter_ConvertDataFromProviderFormat(self: *const T, pDataContext: ?*ILoadChangeContext, pUnkDataIn: ?*IUnknown, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncDataConverter.VTable, self.vtable).ConvertDataFromProviderFormat(@ptrCast(*const ISyncDataConverter, self), pDataContext, pUnkDataIn, ppUnkDataOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncDataConverter_ConvertDataToProviderFormat(self: *const T, pDataContext: *ILoadChangeContext, pUnkDataOut: *IUnknown, ppUnkDataout: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISyncDataConverter_ConvertDataToProviderFormat(self: *const T, pDataContext: ?*ILoadChangeContext, pUnkDataOut: ?*IUnknown, ppUnkDataout: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncDataConverter.VTable, self.vtable).ConvertDataToProviderFormat(@ptrCast(*const ISyncDataConverter, self), pDataContext, pUnkDataOut, ppUnkDataout);
         }
     };}
@@ -3454,154 +3454,154 @@ pub const ISyncProviderRegistration = extern struct {
         base: IUnknown.VTable,
         CreateSyncProviderConfigUIRegistrationInstance: fn(
             self: *const ISyncProviderRegistration,
-            pConfigUIConfig: *const SyncProviderConfigUIConfiguration,
-            ppConfigUIInfo: ?**ISyncProviderConfigUIInfo,
+            pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterSyncProviderConfigUI: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
+            pguidInstanceId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateSyncProviderConfigUIs: fn(
             self: *const ISyncProviderRegistration,
             pguidContentType: ?*const Guid,
             dwSupportedArchitecture: u32,
-            ppEnumSyncProviderConfigUIInfos: ?**IEnumSyncProviderConfigUIInfos,
+            ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSyncProviderRegistrationInstance: fn(
             self: *const ISyncProviderRegistration,
-            pProviderConfiguration: *const SyncProviderConfiguration,
-            ppProviderInfo: ?**ISyncProviderInfo,
+            pProviderConfiguration: ?*const SyncProviderConfiguration,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterSyncProvider: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
+            pguidInstanceId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderConfigUIInfoforProvider: fn(
             self: *const ISyncProviderRegistration,
-            pguidProviderInstanceId: *const Guid,
-            ppProviderConfigUIInfo: ?**ISyncProviderConfigUIInfo,
+            pguidProviderInstanceId: ?*const Guid,
+            ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateSyncProviders: fn(
             self: *const ISyncProviderRegistration,
             pguidContentType: ?*const Guid,
             dwStateFlagsToFilterMask: u32,
             dwStateFlagsToFilter: u32,
-            refProviderClsId: *const Guid,
+            refProviderClsId: ?*const Guid,
             dwSupportedArchitecture: u32,
-            ppEnumSyncProviderInfos: ?**IEnumSyncProviderInfos,
+            ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderInfo: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
-            ppProviderInfo: ?**ISyncProviderInfo,
+            pguidInstanceId: ?*const Guid,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderFromInstanceId: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
+            pguidInstanceId: ?*const Guid,
             dwClsContext: u32,
-            ppSyncProvider: ?**IRegisteredSyncProvider,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderConfigUIInfo: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
-            ppConfigUIInfo: ?**ISyncProviderConfigUIInfo,
+            pguidInstanceId: ?*const Guid,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderConfigUIFromInstanceId: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
+            pguidInstanceId: ?*const Guid,
             dwClsContext: u32,
-            ppConfigUI: ?**ISyncProviderConfigUI,
+            ppConfigUI: ?*?*ISyncProviderConfigUI,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderState: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
-            pdwStateFlags: *u32,
+            pguidInstanceId: ?*const Guid,
+            pdwStateFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSyncProviderState: fn(
             self: *const ISyncProviderRegistration,
-            pguidInstanceId: *const Guid,
+            pguidInstanceId: ?*const Guid,
             dwStateFlagsMask: u32,
             dwStateFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterForEvent: fn(
             self: *const ISyncProviderRegistration,
-            phEvent: *HANDLE,
+            phEvent: ?*?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RevokeEvent: fn(
             self: *const ISyncProviderRegistration,
-            hEvent: HANDLE,
+            hEvent: ?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChange: fn(
             self: *const ISyncProviderRegistration,
-            hEvent: HANDLE,
-            ppChange: **ISyncRegistrationChange,
+            hEvent: ?HANDLE,
+            ppChange: ?*?*ISyncRegistrationChange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: *const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?**ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).CreateSyncProviderConfigUIRegistrationInstance(@ptrCast(*const ISyncProviderRegistration, self), pConfigUIConfig, ppConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_UnregisterSyncProviderConfigUI(self: *const T, pguidInstanceId: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_UnregisterSyncProviderConfigUI(self: *const T, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).UnregisterSyncProviderConfigUI(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?**IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).EnumerateSyncProviderConfigUIs(@ptrCast(*const ISyncProviderRegistration, self), pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: *const SyncProviderConfiguration, ppProviderInfo: ?**ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: ?*const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).CreateSyncProviderRegistrationInstance(@ptrCast(*const ISyncProviderRegistration, self), pProviderConfiguration, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_UnregisterSyncProvider(self: *const T, pguidInstanceId: *const Guid) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_UnregisterSyncProvider(self: *const T, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).UnregisterSyncProvider(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: *const Guid, ppProviderConfigUIInfo: ?**ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: ?*const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIInfoforProvider(@ptrCast(*const ISyncProviderRegistration, self), pguidProviderInstanceId, ppProviderConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: *const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?**IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).EnumerateSyncProviders(@ptrCast(*const ISyncProviderRegistration, self), pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: *const Guid, ppProviderInfo: ?**ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: ?*const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderInfo(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: *const Guid, dwClsContext: u32, ppSyncProvider: ?**IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderFromInstanceId(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, dwClsContext, ppSyncProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: *const Guid, ppConfigUIInfo: ?**ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: ?*const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIInfo(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, ppConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: *const Guid, dwClsContext: u32, ppConfigUI: ?**ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIFromInstanceId(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, dwClsContext, ppConfigUI);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderState(self: *const T, pguidInstanceId: *const Guid, pdwStateFlags: *u32) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderState(self: *const T, pguidInstanceId: ?*const Guid, pdwStateFlags: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderState(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, pdwStateFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_SetSyncProviderState(self: *const T, pguidInstanceId: *const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_SetSyncProviderState(self: *const T, pguidInstanceId: ?*const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).SetSyncProviderState(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, dwStateFlagsMask, dwStateFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_RegisterForEvent(self: *const T, phEvent: *HANDLE) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_RegisterForEvent(self: *const T, phEvent: ?*?HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ISyncProviderRegistration, self), phEvent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_RevokeEvent(self: *const T, hEvent: HANDLE) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_RevokeEvent(self: *const T, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).RevokeEvent(@ptrCast(*const ISyncProviderRegistration, self), hEvent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetChange(self: *const T, hEvent: HANDLE, ppChange: **ISyncRegistrationChange) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetChange(self: *const T, hEvent: ?HANDLE, ppChange: ?*?*ISyncRegistrationChange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetChange(@ptrCast(*const ISyncProviderRegistration, self), hEvent, ppChange);
         }
     };}
@@ -3617,8 +3617,8 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
         Next: fn(
             self: *const IEnumSyncProviderConfigUIInfos,
             cFactories: u32,
-            ppSyncProviderConfigUIInfo: [*]*ISyncProviderConfigUIInfo,
-            pcFetched: *u32,
+            ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumSyncProviderConfigUIInfos,
@@ -3629,14 +3629,14 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncProviderConfigUIInfos,
-            ppEnum: ?**IEnumSyncProviderConfigUIInfos,
+            ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Next(self: *const T, cFactories: u32, ppSyncProviderConfigUIInfo: [*]*ISyncProviderConfigUIInfo, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderConfigUIInfos_Next(self: *const T, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderConfigUIInfos.VTable, self.vtable).Next(@ptrCast(*const IEnumSyncProviderConfigUIInfos, self), cFactories, ppSyncProviderConfigUIInfo, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3648,7 +3648,7 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
             return @ptrCast(*const IEnumSyncProviderConfigUIInfos.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncProviderConfigUIInfos, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: ?**IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderConfigUIInfos.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncProviderConfigUIInfos, self), ppEnum);
         }
     };}
@@ -3664,8 +3664,8 @@ pub const IEnumSyncProviderInfos = extern struct {
         Next: fn(
             self: *const IEnumSyncProviderInfos,
             cInstances: u32,
-            ppSyncProviderInfo: [*]*ISyncProviderInfo,
-            pcFetched: *u32,
+            ppSyncProviderInfo: [*]?*ISyncProviderInfo,
+            pcFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
             self: *const IEnumSyncProviderInfos,
@@ -3676,14 +3676,14 @@ pub const IEnumSyncProviderInfos = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncProviderInfos,
-            ppEnum: ?**IEnumSyncProviderInfos,
+            ppEnum: ?*?*IEnumSyncProviderInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Next(self: *const T, cInstances: u32, ppSyncProviderInfo: [*]*ISyncProviderInfo, pcFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderInfos_Next(self: *const T, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderInfos.VTable, self.vtable).Next(@ptrCast(*const IEnumSyncProviderInfos, self), cInstances, ppSyncProviderInfo, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3695,7 +3695,7 @@ pub const IEnumSyncProviderInfos = extern struct {
             return @ptrCast(*const IEnumSyncProviderInfos.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncProviderInfos, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: ?**IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderInfos.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncProviderInfos, self), ppEnum);
         }
     };}
@@ -3711,14 +3711,14 @@ pub const ISyncProviderInfo = extern struct {
         GetSyncProvider: fn(
             self: *const ISyncProviderInfo,
             dwClsContext: u32,
-            ppSyncProvider: ?**IRegisteredSyncProvider,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: ?**IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderInfo.VTable, self.vtable).GetSyncProvider(@ptrCast(*const ISyncProviderInfo, self), dwClsContext, ppSyncProvider);
         }
     };}
@@ -3734,14 +3734,14 @@ pub const ISyncProviderConfigUIInfo = extern struct {
         GetSyncProviderConfigUI: fn(
             self: *const ISyncProviderConfigUIInfo,
             dwClsContext: u32,
-            ppSyncProviderConfigUI: ?**ISyncProviderConfigUI,
+            ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: ?**ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUIInfo.VTable, self.vtable).GetSyncProviderConfigUI(@ptrCast(*const ISyncProviderConfigUIInfo, self), dwClsContext, ppSyncProviderConfigUI);
         }
     };}
@@ -3756,19 +3756,19 @@ pub const ISyncProviderConfigUI = extern struct {
         base: IUnknown.VTable,
         Init: fn(
             self: *const ISyncProviderConfigUI,
-            pguidInstanceId: *const Guid,
-            pguidContentType: *const Guid,
+            pguidInstanceId: ?*const Guid,
+            pguidContentType: ?*const Guid,
             pConfigurationProperties: ?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegisteredProperties: fn(
             self: *const ISyncProviderConfigUI,
-            ppConfigUIProperties: ?**IPropertyStore,
+            ppConfigUIProperties: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndRegisterNewSyncProvider: fn(
             self: *const ISyncProviderConfigUI,
             hwndParent: ?HWND,
             pUnkContext: ?*IUnknown,
-            ppProviderInfo: ?**ISyncProviderInfo,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ModifySyncProvider: fn(
             self: *const ISyncProviderConfigUI,
@@ -3781,15 +3781,15 @@ pub const ISyncProviderConfigUI = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_Init(self: *const T, pguidInstanceId: *const Guid, pguidContentType: *const Guid, pConfigurationProperties: ?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_Init(self: *const T, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).Init(@ptrCast(*const ISyncProviderConfigUI, self), pguidInstanceId, pguidContentType, pConfigurationProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: ?**IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).GetRegisteredProperties(@ptrCast(*const ISyncProviderConfigUI, self), ppConfigUIProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?**ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).CreateAndRegisterNewSyncProvider(@ptrCast(*const ISyncProviderConfigUI, self), hwndParent, pUnkContext, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3808,13 +3808,13 @@ pub const IRegisteredSyncProvider = extern struct {
         base: IUnknown.VTable,
         Init: fn(
             self: *const IRegisteredSyncProvider,
-            pguidInstanceId: *const Guid,
-            pguidContentType: *const Guid,
+            pguidInstanceId: ?*const Guid,
+            pguidContentType: ?*const Guid,
             pContextPropertyStore: ?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInstanceId: fn(
             self: *const IRegisteredSyncProvider,
-            pguidInstanceId: *Guid,
+            pguidInstanceId: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IRegisteredSyncProvider,
@@ -3824,11 +3824,11 @@ pub const IRegisteredSyncProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredSyncProvider_Init(self: *const T, pguidInstanceId: *const Guid, pguidContentType: *const Guid, pContextPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IRegisteredSyncProvider_Init(self: *const T, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredSyncProvider.VTable, self.vtable).Init(@ptrCast(*const IRegisteredSyncProvider, self), pguidInstanceId, pguidContentType, pContextPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredSyncProvider_GetInstanceId(self: *const T, pguidInstanceId: *Guid) callconv(.Inline) HRESULT {
+        pub fn IRegisteredSyncProvider_GetInstanceId(self: *const T, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredSyncProvider.VTable, self.vtable).GetInstanceId(@ptrCast(*const IRegisteredSyncProvider, self), pguidInstanceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3864,22 +3864,22 @@ pub const ISyncRegistrationChange = extern struct {
         base: IUnknown.VTable,
         GetEvent: fn(
             self: *const ISyncRegistrationChange,
-            psreEvent: *SYNC_REGISTRATION_EVENT,
+            psreEvent: ?*SYNC_REGISTRATION_EVENT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInstanceId: fn(
             self: *const ISyncRegistrationChange,
-            pguidInstanceId: *Guid,
+            pguidInstanceId: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncRegistrationChange_GetEvent(self: *const T, psreEvent: *SYNC_REGISTRATION_EVENT) callconv(.Inline) HRESULT {
+        pub fn ISyncRegistrationChange_GetEvent(self: *const T, psreEvent: ?*SYNC_REGISTRATION_EVENT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncRegistrationChange.VTable, self.vtable).GetEvent(@ptrCast(*const ISyncRegistrationChange, self), psreEvent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncRegistrationChange_GetInstanceId(self: *const T, pguidInstanceId: *Guid) callconv(.Inline) HRESULT {
+        pub fn ISyncRegistrationChange_GetInstanceId(self: *const T, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncRegistrationChange.VTable, self.vtable).GetInstanceId(@ptrCast(*const ISyncRegistrationChange, self), pguidInstanceId);
         }
     };}

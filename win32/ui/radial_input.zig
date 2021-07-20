@@ -14,16 +14,16 @@ pub const IRadialControllerInterop = extern struct {
         base: IInspectable.VTable,
         CreateForWindow: fn(
             self: *const IRadialControllerInterop,
-            hwnd: HWND,
-            riid: *const Guid,
-            ppv: **c_void,
+            hwnd: ?HWND,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerInterop_CreateForWindow(self: *const T, hwnd: HWND, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IRadialControllerInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRadialControllerInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IRadialControllerInterop, self), hwnd, riid, ppv);
         }
     };}
@@ -38,16 +38,16 @@ pub const IRadialControllerConfigurationInterop = extern struct {
         base: IInspectable.VTable,
         GetForWindow: fn(
             self: *const IRadialControllerConfigurationInterop,
-            hwnd: HWND,
-            riid: *const Guid,
-            ppv: **c_void,
+            hwnd: ?HWND,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerConfigurationInterop_GetForWindow(self: *const T, hwnd: HWND, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IRadialControllerConfigurationInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRadialControllerConfigurationInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IRadialControllerConfigurationInterop, self), hwnd, riid, ppv);
         }
     };}
@@ -61,16 +61,16 @@ pub const IRadialControllerIndependentInputSourceInterop = extern struct {
         base: IInspectable.VTable,
         CreateForWindow: fn(
             self: *const IRadialControllerIndependentInputSourceInterop,
-            hwnd: HWND,
-            riid: *const Guid,
-            ppv: **c_void,
+            hwnd: ?HWND,
+            riid: ?*const Guid,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerIndependentInputSourceInterop_CreateForWindow(self: *const T, hwnd: HWND, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IRadialControllerIndependentInputSourceInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRadialControllerIndependentInputSourceInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IRadialControllerIndependentInputSourceInterop, self), hwnd, riid, ppv);
         }
     };}

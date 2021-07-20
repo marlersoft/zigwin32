@@ -932,50 +932,50 @@ const CLSID_CAccPropServices_Value = @import("../zig.zig").Guid.initString("b5f8
 pub const CLSID_CAccPropServices = &CLSID_CAccPropServices_Value;
 
 pub const LPFNLRESULTFROMOBJECT = fn(
-    riid: *const Guid,
+    riid: ?*const Guid,
     wParam: WPARAM,
-    punk: *IUnknown,
+    punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 pub const LPFNOBJECTFROMLRESULT = fn(
     lResult: LRESULT,
-    riid: *const Guid,
+    riid: ?*const Guid,
     wParam: WPARAM,
-    ppvObject: **c_void,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPFNACCESSIBLEOBJECTFROMWINDOW = fn(
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwId: u32,
-    riid: *const Guid,
-    ppvObject: **c_void,
+    riid: ?*const Guid,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPFNACCESSIBLEOBJECTFROMPOINT = fn(
     ptScreen: POINT,
-    ppacc: **IAccessible,
-    pvarChild: *VARIANT,
+    ppacc: ?*?*IAccessible,
+    pvarChild: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPFNCREATESTDACCESSIBLEOBJECT = fn(
-    hwnd: HWND,
+    hwnd: ?HWND,
     idObject: i32,
-    riid: *const Guid,
-    ppvObject: **c_void,
+    riid: ?*const Guid,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPFNACCESSIBLECHILDREN = fn(
-    paccContainer: *IAccessible,
+    paccContainer: ?*IAccessible,
     iChildStart: i32,
     cChildren: i32,
-    rgvarChildren: *VARIANT,
-    pcObtained: *i32,
+    rgvarChildren: ?*VARIANT,
+    pcObtained: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const MSAAMENUINFO = extern struct {
     dwMSAASignature: u32,
     cchWText: u32,
-    pszWText: PWSTR,
+    pszWText: ?PWSTR,
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -987,83 +987,83 @@ pub const IAccessible = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accParent: fn(
             self: *const IAccessible,
-            ppdispParent: **IDispatch,
+            ppdispParent: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accChildCount: fn(
             self: *const IAccessible,
-            pcountChildren: *i32,
+            pcountChildren: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accChild: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            ppdispChild: **IDispatch,
+            ppdispChild: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accName: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pszName: *BSTR,
+            pszName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accValue: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pszValue: *BSTR,
+            pszValue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accDescription: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pszDescription: *BSTR,
+            pszDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accRole: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pvarRole: *VARIANT,
+            pvarRole: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accState: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pvarState: *VARIANT,
+            pvarState: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accHelp: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pszHelp: *BSTR,
+            pszHelp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accHelpTopic: fn(
             self: *const IAccessible,
-            pszHelpFile: *BSTR,
+            pszHelpFile: ?*?BSTR,
             varChild: VARIANT,
-            pidTopic: *i32,
+            pidTopic: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accKeyboardShortcut: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pszKeyboardShortcut: *BSTR,
+            pszKeyboardShortcut: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accFocus: fn(
             self: *const IAccessible,
-            pvarChild: *VARIANT,
+            pvarChild: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accSelection: fn(
             self: *const IAccessible,
-            pvarChildren: *VARIANT,
+            pvarChildren: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accDefaultAction: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            pszDefaultAction: *BSTR,
+            pszDefaultAction: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         accSelect: fn(
             self: *const IAccessible,
@@ -1072,23 +1072,23 @@ pub const IAccessible = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         accLocation: fn(
             self: *const IAccessible,
-            pxLeft: *i32,
-            pyTop: *i32,
-            pcxWidth: *i32,
-            pcyHeight: *i32,
+            pxLeft: ?*i32,
+            pyTop: ?*i32,
+            pcxWidth: ?*i32,
+            pcyHeight: ?*i32,
             varChild: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         accNavigate: fn(
             self: *const IAccessible,
             navDir: i32,
             varStart: VARIANT,
-            pvarEndUpAt: *VARIANT,
+            pvarEndUpAt: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         accHitTest: fn(
             self: *const IAccessible,
             xLeft: i32,
             yTop: i32,
-            pvarChild: *VARIANT,
+            pvarChild: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         accDoDefaultAction: fn(
             self: *const IAccessible,
@@ -1098,72 +1098,72 @@ pub const IAccessible = extern struct {
         put_accName: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            szName: BSTR,
+            szName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_accValue: fn(
             self: *const IAccessible,
             varChild: VARIANT,
-            szValue: BSTR,
+            szValue: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accParent(self: *const T, ppdispParent: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accParent(self: *const T, ppdispParent: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accParent(@ptrCast(*const IAccessible, self), ppdispParent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accChildCount(self: *const T, pcountChildren: *i32) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accChildCount(self: *const T, pcountChildren: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accChildCount(@ptrCast(*const IAccessible, self), pcountChildren);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accChild(self: *const T, varChild: VARIANT, ppdispChild: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accChild(self: *const T, varChild: VARIANT, ppdispChild: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accChild(@ptrCast(*const IAccessible, self), varChild, ppdispChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accName(self: *const T, varChild: VARIANT, pszName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accName(self: *const T, varChild: VARIANT, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accName(@ptrCast(*const IAccessible, self), varChild, pszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accValue(self: *const T, varChild: VARIANT, pszValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accValue(self: *const T, varChild: VARIANT, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accValue(@ptrCast(*const IAccessible, self), varChild, pszValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accDescription(self: *const T, varChild: VARIANT, pszDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accDescription(self: *const T, varChild: VARIANT, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accDescription(@ptrCast(*const IAccessible, self), varChild, pszDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accRole(self: *const T, varChild: VARIANT, pvarRole: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accRole(self: *const T, varChild: VARIANT, pvarRole: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accRole(@ptrCast(*const IAccessible, self), varChild, pvarRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accState(self: *const T, varChild: VARIANT, pvarState: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accState(self: *const T, varChild: VARIANT, pvarState: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accState(@ptrCast(*const IAccessible, self), varChild, pvarState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accHelp(self: *const T, varChild: VARIANT, pszHelp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accHelp(self: *const T, varChild: VARIANT, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accHelp(@ptrCast(*const IAccessible, self), varChild, pszHelp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accHelpTopic(self: *const T, pszHelpFile: *BSTR, varChild: VARIANT, pidTopic: *i32) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accHelpTopic(self: *const T, pszHelpFile: ?*?BSTR, varChild: VARIANT, pidTopic: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accHelpTopic(@ptrCast(*const IAccessible, self), pszHelpFile, varChild, pidTopic);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accKeyboardShortcut(self: *const T, varChild: VARIANT, pszKeyboardShortcut: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accKeyboardShortcut(self: *const T, varChild: VARIANT, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accKeyboardShortcut(@ptrCast(*const IAccessible, self), varChild, pszKeyboardShortcut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accFocus(self: *const T, pvarChild: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accFocus(self: *const T, pvarChild: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accFocus(@ptrCast(*const IAccessible, self), pvarChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accSelection(self: *const T, pvarChildren: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accSelection(self: *const T, pvarChildren: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accSelection(@ptrCast(*const IAccessible, self), pvarChildren);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_get_accDefaultAction(self: *const T, varChild: VARIANT, pszDefaultAction: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_get_accDefaultAction(self: *const T, varChild: VARIANT, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).get_accDefaultAction(@ptrCast(*const IAccessible, self), varChild, pszDefaultAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1171,15 +1171,15 @@ pub const IAccessible = extern struct {
             return @ptrCast(*const IAccessible.VTable, self.vtable).accSelect(@ptrCast(*const IAccessible, self), flagsSelect, varChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_accLocation(self: *const T, pxLeft: *i32, pyTop: *i32, pcxWidth: *i32, pcyHeight: *i32, varChild: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccessible_accLocation(self: *const T, pxLeft: ?*i32, pyTop: ?*i32, pcxWidth: ?*i32, pcyHeight: ?*i32, varChild: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).accLocation(@ptrCast(*const IAccessible, self), pxLeft, pyTop, pcxWidth, pcyHeight, varChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_accNavigate(self: *const T, navDir: i32, varStart: VARIANT, pvarEndUpAt: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccessible_accNavigate(self: *const T, navDir: i32, varStart: VARIANT, pvarEndUpAt: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).accNavigate(@ptrCast(*const IAccessible, self), navDir, varStart, pvarEndUpAt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_accHitTest(self: *const T, xLeft: i32, yTop: i32, pvarChild: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccessible_accHitTest(self: *const T, xLeft: i32, yTop: i32, pvarChild: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).accHitTest(@ptrCast(*const IAccessible, self), xLeft, yTop, pvarChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1187,11 +1187,11 @@ pub const IAccessible = extern struct {
             return @ptrCast(*const IAccessible.VTable, self.vtable).accDoDefaultAction(@ptrCast(*const IAccessible, self), varChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_put_accName(self: *const T, varChild: VARIANT, szName: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_put_accName(self: *const T, varChild: VARIANT, szName: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).put_accName(@ptrCast(*const IAccessible, self), varChild, szName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessible_put_accValue(self: *const T, varChild: VARIANT, szValue: BSTR) callconv(.Inline) HRESULT {
+        pub fn IAccessible_put_accValue(self: *const T, varChild: VARIANT, szValue: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessible.VTable, self.vtable).put_accValue(@ptrCast(*const IAccessible, self), varChild, szValue);
         }
     };}
@@ -1208,14 +1208,14 @@ pub const IAccessibleHandler = extern struct {
             self: *const IAccessibleHandler,
             hwnd: i32,
             lObjectID: i32,
-            pIAccessible: **IAccessible,
+            pIAccessible: ?*?*IAccessible,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleHandler_AccessibleObjectFromID(self: *const T, hwnd: i32, lObjectID: i32, pIAccessible: **IAccessible) callconv(.Inline) HRESULT {
+        pub fn IAccessibleHandler_AccessibleObjectFromID(self: *const T, hwnd: i32, lObjectID: i32, pIAccessible: ?*?*IAccessible) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleHandler.VTable, self.vtable).AccessibleObjectFromID(@ptrCast(*const IAccessibleHandler, self), hwnd, lObjectID, pIAccessible);
         }
     };}
@@ -1231,41 +1231,41 @@ pub const IAccessibleWindowlessSite = extern struct {
         AcquireObjectIdRange: fn(
             self: *const IAccessibleWindowlessSite,
             rangeSize: i32,
-            pRangeOwner: *IAccessibleHandler,
-            pRangeBase: *i32,
+            pRangeOwner: ?*IAccessibleHandler,
+            pRangeBase: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseObjectIdRange: fn(
             self: *const IAccessibleWindowlessSite,
             rangeBase: i32,
-            pRangeOwner: *IAccessibleHandler,
+            pRangeOwner: ?*IAccessibleHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryObjectIdRanges: fn(
             self: *const IAccessibleWindowlessSite,
-            pRangesOwner: *IAccessibleHandler,
-            psaRanges: **SAFEARRAY,
+            pRangesOwner: ?*IAccessibleHandler,
+            psaRanges: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParentAccessible: fn(
             self: *const IAccessibleWindowlessSite,
-            ppParent: **IAccessible,
+            ppParent: ?*?*IAccessible,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleWindowlessSite_AcquireObjectIdRange(self: *const T, rangeSize: i32, pRangeOwner: *IAccessibleHandler, pRangeBase: *i32) callconv(.Inline) HRESULT {
+        pub fn IAccessibleWindowlessSite_AcquireObjectIdRange(self: *const T, rangeSize: i32, pRangeOwner: ?*IAccessibleHandler, pRangeBase: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleWindowlessSite.VTable, self.vtable).AcquireObjectIdRange(@ptrCast(*const IAccessibleWindowlessSite, self), rangeSize, pRangeOwner, pRangeBase);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleWindowlessSite_ReleaseObjectIdRange(self: *const T, rangeBase: i32, pRangeOwner: *IAccessibleHandler) callconv(.Inline) HRESULT {
+        pub fn IAccessibleWindowlessSite_ReleaseObjectIdRange(self: *const T, rangeBase: i32, pRangeOwner: ?*IAccessibleHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleWindowlessSite.VTable, self.vtable).ReleaseObjectIdRange(@ptrCast(*const IAccessibleWindowlessSite, self), rangeBase, pRangeOwner);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleWindowlessSite_QueryObjectIdRanges(self: *const T, pRangesOwner: *IAccessibleHandler, psaRanges: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IAccessibleWindowlessSite_QueryObjectIdRanges(self: *const T, pRangesOwner: ?*IAccessibleHandler, psaRanges: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleWindowlessSite.VTable, self.vtable).QueryObjectIdRanges(@ptrCast(*const IAccessibleWindowlessSite, self), pRangesOwner, psaRanges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleWindowlessSite_GetParentAccessible(self: *const T, ppParent: **IAccessible) callconv(.Inline) HRESULT {
+        pub fn IAccessibleWindowlessSite_GetParentAccessible(self: *const T, ppParent: ?*?*IAccessible) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleWindowlessSite.VTable, self.vtable).GetParentAccessible(@ptrCast(*const IAccessibleWindowlessSite, self), ppParent);
         }
     };}
@@ -1288,15 +1288,15 @@ pub const IAccIdentity = extern struct {
         GetIdentityString: fn(
             self: *const IAccIdentity,
             dwIDChild: u32,
-            ppIDString: [*]*u8,
-            pdwIDStringLen: *u32,
+            ppIDString: [*]?*u8,
+            pdwIDStringLen: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccIdentity_GetIdentityString(self: *const T, dwIDChild: u32, ppIDString: [*]*u8, pdwIDStringLen: *u32) callconv(.Inline) HRESULT {
+        pub fn IAccIdentity_GetIdentityString(self: *const T, dwIDChild: u32, ppIDString: [*]?*u8, pdwIDStringLen: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccIdentity.VTable, self.vtable).GetIdentityString(@ptrCast(*const IAccIdentity, self), dwIDChild, ppIDString, pdwIDStringLen);
         }
     };}
@@ -1314,15 +1314,15 @@ pub const IAccPropServer = extern struct {
             pIDString: [*:0]const u8,
             dwIDStringLen: u32,
             idProp: Guid,
-            pvarValue: *VARIANT,
-            pfHasProp: *BOOL,
+            pvarValue: ?*VARIANT,
+            pfHasProp: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServer_GetPropValue(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, idProp: Guid, pvarValue: *VARIANT, pfHasProp: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IAccPropServer_GetPropValue(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, idProp: Guid, pvarValue: ?*VARIANT, pfHasProp: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServer.VTable, self.vtable).GetPropValue(@ptrCast(*const IAccPropServer, self), pIDString, dwIDStringLen, idProp, pvarValue, pfHasProp);
         }
     };}
@@ -1348,7 +1348,7 @@ pub const IAccPropServices = extern struct {
             dwIDStringLen: u32,
             paProps: [*]const Guid,
             cProps: i32,
-            pServer: *IAccPropServer,
+            pServer: ?*IAccPropServer,
             annoScope: AnnoScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearProps: fn(
@@ -1360,7 +1360,7 @@ pub const IAccPropServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHwndProp: fn(
             self: *const IAccPropServices,
-            hwnd: HWND,
+            hwnd: ?HWND,
             idObject: u32,
             idChild: u32,
             idProp: Guid,
@@ -1368,25 +1368,25 @@ pub const IAccPropServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHwndPropStr: fn(
             self: *const IAccPropServices,
-            hwnd: HWND,
+            hwnd: ?HWND,
             idObject: u32,
             idChild: u32,
             idProp: Guid,
-            str: [*:0]const u16,
+            str: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHwndPropServer: fn(
             self: *const IAccPropServices,
-            hwnd: HWND,
+            hwnd: ?HWND,
             idObject: u32,
             idChild: u32,
             paProps: [*]const Guid,
             cProps: i32,
-            pServer: *IAccPropServer,
+            pServer: ?*IAccPropServer,
             annoScope: AnnoScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearHwndProps: fn(
             self: *const IAccPropServices,
-            hwnd: HWND,
+            hwnd: ?HWND,
             idObject: u32,
             idChild: u32,
             paProps: [*]const Guid,
@@ -1394,63 +1394,63 @@ pub const IAccPropServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ComposeHwndIdentityString: fn(
             self: *const IAccPropServices,
-            hwnd: HWND,
+            hwnd: ?HWND,
             idObject: u32,
             idChild: u32,
-            ppIDString: [*]*u8,
-            pdwIDStringLen: *u32,
+            ppIDString: [*]?*u8,
+            pdwIDStringLen: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DecomposeHwndIdentityString: fn(
             self: *const IAccPropServices,
             pIDString: [*:0]const u8,
             dwIDStringLen: u32,
-            phwnd: *HWND,
-            pidObject: *u32,
-            pidChild: *u32,
+            phwnd: ?*?HWND,
+            pidObject: ?*u32,
+            pidChild: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHmenuProp: fn(
             self: *const IAccPropServices,
-            hmenu: HMENU,
+            hmenu: ?HMENU,
             idChild: u32,
             idProp: Guid,
             @"var": VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHmenuPropStr: fn(
             self: *const IAccPropServices,
-            hmenu: HMENU,
+            hmenu: ?HMENU,
             idChild: u32,
             idProp: Guid,
-            str: [*:0]const u16,
+            str: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHmenuPropServer: fn(
             self: *const IAccPropServices,
-            hmenu: HMENU,
+            hmenu: ?HMENU,
             idChild: u32,
             paProps: [*]const Guid,
             cProps: i32,
-            pServer: *IAccPropServer,
+            pServer: ?*IAccPropServer,
             annoScope: AnnoScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearHmenuProps: fn(
             self: *const IAccPropServices,
-            hmenu: HMENU,
+            hmenu: ?HMENU,
             idChild: u32,
             paProps: [*]const Guid,
             cProps: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ComposeHmenuIdentityString: fn(
             self: *const IAccPropServices,
-            hmenu: HMENU,
+            hmenu: ?HMENU,
             idChild: u32,
-            ppIDString: [*]*u8,
-            pdwIDStringLen: *u32,
+            ppIDString: [*]?*u8,
+            pdwIDStringLen: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DecomposeHmenuIdentityString: fn(
             self: *const IAccPropServices,
             pIDString: [*:0]const u8,
             dwIDStringLen: u32,
-            phmenu: *HMENU,
-            pidChild: *u32,
+            phmenu: ?*?HMENU,
+            pidChild: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1461,7 +1461,7 @@ pub const IAccPropServices = extern struct {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetPropValue(@ptrCast(*const IAccPropServices, self), pIDString, dwIDStringLen, idProp, @"var");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_SetPropServer(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, paProps: [*]const Guid, cProps: i32, pServer: *IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_SetPropServer(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, paProps: [*]const Guid, cProps: i32, pServer: ?*IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetPropServer(@ptrCast(*const IAccPropServices, self), pIDString, dwIDStringLen, paProps, cProps, pServer, annoScope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1469,51 +1469,51 @@ pub const IAccPropServices = extern struct {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).ClearProps(@ptrCast(*const IAccPropServices, self), pIDString, dwIDStringLen, paProps, cProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_SetHwndProp(self: *const T, hwnd: HWND, idObject: u32, idChild: u32, idProp: Guid, @"var": VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_SetHwndProp(self: *const T, hwnd: ?HWND, idObject: u32, idChild: u32, idProp: Guid, @"var": VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetHwndProp(@ptrCast(*const IAccPropServices, self), hwnd, idObject, idChild, idProp, @"var");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_SetHwndPropStr(self: *const T, hwnd: HWND, idObject: u32, idChild: u32, idProp: Guid, str: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_SetHwndPropStr(self: *const T, hwnd: ?HWND, idObject: u32, idChild: u32, idProp: Guid, str: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetHwndPropStr(@ptrCast(*const IAccPropServices, self), hwnd, idObject, idChild, idProp, str);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_SetHwndPropServer(self: *const T, hwnd: HWND, idObject: u32, idChild: u32, paProps: [*]const Guid, cProps: i32, pServer: *IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_SetHwndPropServer(self: *const T, hwnd: ?HWND, idObject: u32, idChild: u32, paProps: [*]const Guid, cProps: i32, pServer: ?*IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetHwndPropServer(@ptrCast(*const IAccPropServices, self), hwnd, idObject, idChild, paProps, cProps, pServer, annoScope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_ClearHwndProps(self: *const T, hwnd: HWND, idObject: u32, idChild: u32, paProps: [*]const Guid, cProps: i32) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_ClearHwndProps(self: *const T, hwnd: ?HWND, idObject: u32, idChild: u32, paProps: [*]const Guid, cProps: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).ClearHwndProps(@ptrCast(*const IAccPropServices, self), hwnd, idObject, idChild, paProps, cProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_ComposeHwndIdentityString(self: *const T, hwnd: HWND, idObject: u32, idChild: u32, ppIDString: [*]*u8, pdwIDStringLen: *u32) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_ComposeHwndIdentityString(self: *const T, hwnd: ?HWND, idObject: u32, idChild: u32, ppIDString: [*]?*u8, pdwIDStringLen: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).ComposeHwndIdentityString(@ptrCast(*const IAccPropServices, self), hwnd, idObject, idChild, ppIDString, pdwIDStringLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_DecomposeHwndIdentityString(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, phwnd: *HWND, pidObject: *u32, pidChild: *u32) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_DecomposeHwndIdentityString(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, phwnd: ?*?HWND, pidObject: ?*u32, pidChild: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).DecomposeHwndIdentityString(@ptrCast(*const IAccPropServices, self), pIDString, dwIDStringLen, phwnd, pidObject, pidChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_SetHmenuProp(self: *const T, hmenu: HMENU, idChild: u32, idProp: Guid, @"var": VARIANT) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_SetHmenuProp(self: *const T, hmenu: ?HMENU, idChild: u32, idProp: Guid, @"var": VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetHmenuProp(@ptrCast(*const IAccPropServices, self), hmenu, idChild, idProp, @"var");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_SetHmenuPropStr(self: *const T, hmenu: HMENU, idChild: u32, idProp: Guid, str: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_SetHmenuPropStr(self: *const T, hmenu: ?HMENU, idChild: u32, idProp: Guid, str: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetHmenuPropStr(@ptrCast(*const IAccPropServices, self), hmenu, idChild, idProp, str);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_SetHmenuPropServer(self: *const T, hmenu: HMENU, idChild: u32, paProps: [*]const Guid, cProps: i32, pServer: *IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_SetHmenuPropServer(self: *const T, hmenu: ?HMENU, idChild: u32, paProps: [*]const Guid, cProps: i32, pServer: ?*IAccPropServer, annoScope: AnnoScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).SetHmenuPropServer(@ptrCast(*const IAccPropServices, self), hmenu, idChild, paProps, cProps, pServer, annoScope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_ClearHmenuProps(self: *const T, hmenu: HMENU, idChild: u32, paProps: [*]const Guid, cProps: i32) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_ClearHmenuProps(self: *const T, hmenu: ?HMENU, idChild: u32, paProps: [*]const Guid, cProps: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).ClearHmenuProps(@ptrCast(*const IAccPropServices, self), hmenu, idChild, paProps, cProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_ComposeHmenuIdentityString(self: *const T, hmenu: HMENU, idChild: u32, ppIDString: [*]*u8, pdwIDStringLen: *u32) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_ComposeHmenuIdentityString(self: *const T, hmenu: ?HMENU, idChild: u32, ppIDString: [*]?*u8, pdwIDStringLen: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).ComposeHmenuIdentityString(@ptrCast(*const IAccPropServices, self), hmenu, idChild, ppIDString, pdwIDStringLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccPropServices_DecomposeHmenuIdentityString(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, phmenu: *HMENU, pidChild: *u32) callconv(.Inline) HRESULT {
+        pub fn IAccPropServices_DecomposeHmenuIdentityString(self: *const T, pIDString: [*:0]const u8, dwIDStringLen: u32, phmenu: ?*?HMENU, pidChild: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccPropServices.VTable, self.vtable).DecomposeHmenuIdentityString(@ptrCast(*const IAccPropServices, self), pIDString, dwIDStringLen, phmenu, pidChild);
         }
     };}
@@ -2099,41 +2099,41 @@ pub const UIAutomationType_OutElementArray = UIAutomationType.OutElementArray;
 
 pub const UIAutomationParameter = extern struct {
     type: UIAutomationType,
-    pData: *c_void,
+    pData: ?*c_void,
 };
 
 pub const UIAutomationPropertyInfo = extern struct {
     guid: Guid,
-    pProgrammaticName: [*:0]const u16,
+    pProgrammaticName: ?[*:0]const u16,
     type: UIAutomationType,
 };
 
 pub const UIAutomationEventInfo = extern struct {
     guid: Guid,
-    pProgrammaticName: [*:0]const u16,
+    pProgrammaticName: ?[*:0]const u16,
 };
 
 pub const UIAutomationMethodInfo = extern struct {
-    pProgrammaticName: [*:0]const u16,
+    pProgrammaticName: ?[*:0]const u16,
     doSetFocus: BOOL,
     cInParameters: u32,
     cOutParameters: u32,
-    pParameterTypes: *UIAutomationType,
-    pParameterNames: *PWSTR,
+    pParameterTypes: ?*UIAutomationType,
+    pParameterNames: ?*?PWSTR,
 };
 
 pub const UIAutomationPatternInfo = extern struct {
     guid: Guid,
-    pProgrammaticName: [*:0]const u16,
+    pProgrammaticName: ?[*:0]const u16,
     providerInterfaceId: Guid,
     clientInterfaceId: Guid,
     cProperties: u32,
-    pProperties: *UIAutomationPropertyInfo,
+    pProperties: ?*UIAutomationPropertyInfo,
     cMethods: u32,
-    pMethods: *UIAutomationMethodInfo,
+    pMethods: ?*UIAutomationMethodInfo,
     cEvents: u32,
-    pEvents: *UIAutomationEventInfo,
-    pPatternHandler: *IUIAutomationPatternHandler,
+    pEvents: ?*UIAutomationEventInfo,
+    pPatternHandler: ?*IUIAutomationPatternHandler,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2145,41 +2145,41 @@ pub const IRawElementProviderSimple = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderOptions: fn(
             self: *const IRawElementProviderSimple,
-            pRetVal: *ProviderOptions,
+            pRetVal: ?*ProviderOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPatternProvider: fn(
             self: *const IRawElementProviderSimple,
             patternId: i32,
-            pRetVal: **IUnknown,
+            pRetVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyValue: fn(
             self: *const IRawElementProviderSimple,
             propertyId: i32,
-            pRetVal: *VARIANT,
+            pRetVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostRawElementProvider: fn(
             self: *const IRawElementProviderSimple,
-            pRetVal: **IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderSimple_get_ProviderOptions(self: *const T, pRetVal: *ProviderOptions) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderSimple_get_ProviderOptions(self: *const T, pRetVal: ?*ProviderOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderSimple.VTable, self.vtable).get_ProviderOptions(@ptrCast(*const IRawElementProviderSimple, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderSimple_GetPatternProvider(self: *const T, patternId: i32, pRetVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderSimple_GetPatternProvider(self: *const T, patternId: i32, pRetVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderSimple.VTable, self.vtable).GetPatternProvider(@ptrCast(*const IRawElementProviderSimple, self), patternId, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderSimple_GetPropertyValue(self: *const T, propertyId: i32, pRetVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderSimple_GetPropertyValue(self: *const T, propertyId: i32, pRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderSimple.VTable, self.vtable).GetPropertyValue(@ptrCast(*const IRawElementProviderSimple, self), propertyId, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderSimple_get_HostRawElementProvider(self: *const T, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderSimple_get_HostRawElementProvider(self: *const T, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderSimple.VTable, self.vtable).get_HostRawElementProvider(@ptrCast(*const IRawElementProviderSimple, self), pRetVal);
         }
     };}
@@ -2195,40 +2195,40 @@ pub const IAccessibleEx = extern struct {
         GetObjectForChild: fn(
             self: *const IAccessibleEx,
             idChild: i32,
-            pRetVal: **IAccessibleEx,
+            pRetVal: ?*?*IAccessibleEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIAccessiblePair: fn(
             self: *const IAccessibleEx,
-            ppAcc: **IAccessible,
-            pidChild: *i32,
+            ppAcc: ?*?*IAccessible,
+            pidChild: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRuntimeId: fn(
             self: *const IAccessibleEx,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConvertReturnedElement: fn(
             self: *const IAccessibleEx,
-            pIn: *IRawElementProviderSimple,
-            ppRetValOut: **IAccessibleEx,
+            pIn: ?*IRawElementProviderSimple,
+            ppRetValOut: ?*?*IAccessibleEx,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleEx_GetObjectForChild(self: *const T, idChild: i32, pRetVal: **IAccessibleEx) callconv(.Inline) HRESULT {
+        pub fn IAccessibleEx_GetObjectForChild(self: *const T, idChild: i32, pRetVal: ?*?*IAccessibleEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleEx.VTable, self.vtable).GetObjectForChild(@ptrCast(*const IAccessibleEx, self), idChild, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleEx_GetIAccessiblePair(self: *const T, ppAcc: **IAccessible, pidChild: *i32) callconv(.Inline) HRESULT {
+        pub fn IAccessibleEx_GetIAccessiblePair(self: *const T, ppAcc: ?*?*IAccessible, pidChild: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleEx.VTable, self.vtable).GetIAccessiblePair(@ptrCast(*const IAccessibleEx, self), ppAcc, pidChild);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleEx_GetRuntimeId(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IAccessibleEx_GetRuntimeId(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleEx.VTable, self.vtable).GetRuntimeId(@ptrCast(*const IAccessibleEx, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleEx_ConvertReturnedElement(self: *const T, pIn: *IRawElementProviderSimple, ppRetValOut: **IAccessibleEx) callconv(.Inline) HRESULT {
+        pub fn IAccessibleEx_ConvertReturnedElement(self: *const T, pIn: ?*IRawElementProviderSimple, ppRetValOut: ?*?*IAccessibleEx) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleEx.VTable, self.vtable).ConvertReturnedElement(@ptrCast(*const IAccessibleEx, self), pIn, ppRetValOut);
         }
     };}
@@ -2266,14 +2266,14 @@ pub const IRawElementProviderSimple3 = extern struct {
             self: *const IRawElementProviderSimple3,
             targetId: i32,
             metadataId: i32,
-            returnVal: *VARIANT,
+            returnVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRawElementProviderSimple2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderSimple3_GetMetadataValue(self: *const T, targetId: i32, metadataId: i32, returnVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderSimple3_GetMetadataValue(self: *const T, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderSimple3.VTable, self.vtable).GetMetadataValue(@ptrCast(*const IRawElementProviderSimple3, self), targetId, metadataId, returnVal);
         }
     };}
@@ -2290,22 +2290,22 @@ pub const IRawElementProviderFragmentRoot = extern struct {
             self: *const IRawElementProviderFragmentRoot,
             x: f64,
             y: f64,
-            pRetVal: **IRawElementProviderFragment,
+            pRetVal: ?*?*IRawElementProviderFragment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocus: fn(
             self: *const IRawElementProviderFragmentRoot,
-            pRetVal: **IRawElementProviderFragment,
+            pRetVal: ?*?*IRawElementProviderFragment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderFragmentRoot_ElementProviderFromPoint(self: *const T, x: f64, y: f64, pRetVal: **IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderFragmentRoot_ElementProviderFromPoint(self: *const T, x: f64, y: f64, pRetVal: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderFragmentRoot.VTable, self.vtable).ElementProviderFromPoint(@ptrCast(*const IRawElementProviderFragmentRoot, self), x, y, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderFragmentRoot_GetFocus(self: *const T, pRetVal: **IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderFragmentRoot_GetFocus(self: *const T, pRetVal: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderFragmentRoot.VTable, self.vtable).GetFocus(@ptrCast(*const IRawElementProviderFragmentRoot, self), pRetVal);
         }
     };}
@@ -2321,20 +2321,20 @@ pub const IRawElementProviderFragment = extern struct {
         Navigate: fn(
             self: *const IRawElementProviderFragment,
             direction: NavigateDirection,
-            pRetVal: **IRawElementProviderFragment,
+            pRetVal: ?*?*IRawElementProviderFragment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRuntimeId: fn(
             self: *const IRawElementProviderFragment,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundingRectangle: fn(
             self: *const IRawElementProviderFragment,
-            pRetVal: *UiaRect,
+            pRetVal: ?*UiaRect,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEmbeddedFragmentRoots: fn(
             self: *const IRawElementProviderFragment,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFocus: fn(
             self: *const IRawElementProviderFragment,
@@ -2342,26 +2342,26 @@ pub const IRawElementProviderFragment = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentRoot: fn(
             self: *const IRawElementProviderFragment,
-            pRetVal: **IRawElementProviderFragmentRoot,
+            pRetVal: ?*?*IRawElementProviderFragmentRoot,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderFragment_Navigate(self: *const T, direction: NavigateDirection, pRetVal: **IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderFragment_Navigate(self: *const T, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderFragment.VTable, self.vtable).Navigate(@ptrCast(*const IRawElementProviderFragment, self), direction, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderFragment_GetRuntimeId(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderFragment_GetRuntimeId(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderFragment.VTable, self.vtable).GetRuntimeId(@ptrCast(*const IRawElementProviderFragment, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderFragment_get_BoundingRectangle(self: *const T, pRetVal: *UiaRect) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderFragment_get_BoundingRectangle(self: *const T, pRetVal: ?*UiaRect) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderFragment.VTable, self.vtable).get_BoundingRectangle(@ptrCast(*const IRawElementProviderFragment, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderFragment_GetEmbeddedFragmentRoots(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderFragment_GetEmbeddedFragmentRoots(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderFragment.VTable, self.vtable).GetEmbeddedFragmentRoots(@ptrCast(*const IRawElementProviderFragment, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2369,7 +2369,7 @@ pub const IRawElementProviderFragment = extern struct {
             return @ptrCast(*const IRawElementProviderFragment.VTable, self.vtable).SetFocus(@ptrCast(*const IRawElementProviderFragment, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderFragment_get_FragmentRoot(self: *const T, pRetVal: **IRawElementProviderFragmentRoot) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderFragment_get_FragmentRoot(self: *const T, pRetVal: ?*?*IRawElementProviderFragmentRoot) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderFragment.VTable, self.vtable).get_FragmentRoot(@ptrCast(*const IRawElementProviderFragment, self), pRetVal);
         }
     };}
@@ -2385,23 +2385,23 @@ pub const IRawElementProviderAdviseEvents = extern struct {
         AdviseEventAdded: fn(
             self: *const IRawElementProviderAdviseEvents,
             eventId: i32,
-            propertyIDs: *SAFEARRAY,
+            propertyIDs: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AdviseEventRemoved: fn(
             self: *const IRawElementProviderAdviseEvents,
             eventId: i32,
-            propertyIDs: *SAFEARRAY,
+            propertyIDs: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderAdviseEvents_AdviseEventAdded(self: *const T, eventId: i32, propertyIDs: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderAdviseEvents_AdviseEventAdded(self: *const T, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderAdviseEvents.VTable, self.vtable).AdviseEventAdded(@ptrCast(*const IRawElementProviderAdviseEvents, self), eventId, propertyIDs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderAdviseEvents_AdviseEventRemoved(self: *const T, eventId: i32, propertyIDs: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderAdviseEvents_AdviseEventRemoved(self: *const T, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderAdviseEvents.VTable, self.vtable).AdviseEventRemoved(@ptrCast(*const IRawElementProviderAdviseEvents, self), eventId, propertyIDs);
         }
     };}
@@ -2416,15 +2416,15 @@ pub const IRawElementProviderHwndOverride = extern struct {
         base: IUnknown.VTable,
         GetOverrideProviderForHwnd: fn(
             self: *const IRawElementProviderHwndOverride,
-            hwnd: HWND,
-            pRetVal: **IRawElementProviderSimple,
+            hwnd: ?HWND,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderHwndOverride_GetOverrideProviderForHwnd(self: *const T, hwnd: HWND, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderHwndOverride_GetOverrideProviderForHwnd(self: *const T, hwnd: ?HWND, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderHwndOverride.VTable, self.vtable).GetOverrideProviderForHwnd(@ptrCast(*const IRawElementProviderHwndOverride, self), hwnd, pRetVal);
         }
     };}
@@ -2439,35 +2439,35 @@ pub const IProxyProviderWinEventSink = extern struct {
         base: IUnknown.VTable,
         AddAutomationPropertyChangedEvent: fn(
             self: *const IProxyProviderWinEventSink,
-            pProvider: *IRawElementProviderSimple,
+            pProvider: ?*IRawElementProviderSimple,
             id: i32,
             newValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAutomationEvent: fn(
             self: *const IProxyProviderWinEventSink,
-            pProvider: *IRawElementProviderSimple,
+            pProvider: ?*IRawElementProviderSimple,
             id: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStructureChangedEvent: fn(
             self: *const IProxyProviderWinEventSink,
-            pProvider: *IRawElementProviderSimple,
+            pProvider: ?*IRawElementProviderSimple,
             structureChangeType: StructureChangeType,
-            runtimeId: *SAFEARRAY,
+            runtimeId: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProxyProviderWinEventSink_AddAutomationPropertyChangedEvent(self: *const T, pProvider: *IRawElementProviderSimple, id: i32, newValue: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IProxyProviderWinEventSink_AddAutomationPropertyChangedEvent(self: *const T, pProvider: ?*IRawElementProviderSimple, id: i32, newValue: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProxyProviderWinEventSink.VTable, self.vtable).AddAutomationPropertyChangedEvent(@ptrCast(*const IProxyProviderWinEventSink, self), pProvider, id, newValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProxyProviderWinEventSink_AddAutomationEvent(self: *const T, pProvider: *IRawElementProviderSimple, id: i32) callconv(.Inline) HRESULT {
+        pub fn IProxyProviderWinEventSink_AddAutomationEvent(self: *const T, pProvider: ?*IRawElementProviderSimple, id: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProxyProviderWinEventSink.VTable, self.vtable).AddAutomationEvent(@ptrCast(*const IProxyProviderWinEventSink, self), pProvider, id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProxyProviderWinEventSink_AddStructureChangedEvent(self: *const T, pProvider: *IRawElementProviderSimple, structureChangeType: StructureChangeType, runtimeId: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IProxyProviderWinEventSink_AddStructureChangedEvent(self: *const T, pProvider: ?*IRawElementProviderSimple, structureChangeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProxyProviderWinEventSink.VTable, self.vtable).AddStructureChangedEvent(@ptrCast(*const IProxyProviderWinEventSink, self), pProvider, structureChangeType, runtimeId);
         }
     };}
@@ -2483,17 +2483,17 @@ pub const IProxyProviderWinEventHandler = extern struct {
         RespondToWinEvent: fn(
             self: *const IProxyProviderWinEventHandler,
             idWinEvent: u32,
-            hwnd: HWND,
+            hwnd: ?HWND,
             idObject: i32,
             idChild: i32,
-            pSink: *IProxyProviderWinEventSink,
+            pSink: ?*IProxyProviderWinEventSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProxyProviderWinEventHandler_RespondToWinEvent(self: *const T, idWinEvent: u32, hwnd: HWND, idObject: i32, idChild: i32, pSink: *IProxyProviderWinEventSink) callconv(.Inline) HRESULT {
+        pub fn IProxyProviderWinEventHandler_RespondToWinEvent(self: *const T, idWinEvent: u32, hwnd: ?HWND, idObject: i32, idChild: i32, pSink: ?*IProxyProviderWinEventSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProxyProviderWinEventHandler.VTable, self.vtable).RespondToWinEvent(@ptrCast(*const IProxyProviderWinEventHandler, self), idWinEvent, hwnd, idObject, idChild, pSink);
         }
     };}
@@ -2509,22 +2509,22 @@ pub const IRawElementProviderWindowlessSite = extern struct {
         GetAdjacentFragment: fn(
             self: *const IRawElementProviderWindowlessSite,
             direction: NavigateDirection,
-            ppParent: **IRawElementProviderFragment,
+            ppParent: ?*?*IRawElementProviderFragment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRuntimeIdPrefix: fn(
             self: *const IRawElementProviderWindowlessSite,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderWindowlessSite_GetAdjacentFragment(self: *const T, direction: NavigateDirection, ppParent: **IRawElementProviderFragment) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderWindowlessSite_GetAdjacentFragment(self: *const T, direction: NavigateDirection, ppParent: ?*?*IRawElementProviderFragment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderWindowlessSite.VTable, self.vtable).GetAdjacentFragment(@ptrCast(*const IRawElementProviderWindowlessSite, self), direction, ppParent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderWindowlessSite_GetRuntimeIdPrefix(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderWindowlessSite_GetRuntimeIdPrefix(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderWindowlessSite.VTable, self.vtable).GetRuntimeIdPrefix(@ptrCast(*const IRawElementProviderWindowlessSite, self), pRetVal);
         }
     };}
@@ -2539,23 +2539,23 @@ pub const IAccessibleHostingElementProviders = extern struct {
         base: IUnknown.VTable,
         GetEmbeddedFragmentRoots: fn(
             self: *const IAccessibleHostingElementProviders,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectIdForProvider: fn(
             self: *const IAccessibleHostingElementProviders,
-            pProvider: *IRawElementProviderSimple,
-            pidObject: *i32,
+            pProvider: ?*IRawElementProviderSimple,
+            pidObject: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleHostingElementProviders_GetEmbeddedFragmentRoots(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IAccessibleHostingElementProviders_GetEmbeddedFragmentRoots(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleHostingElementProviders.VTable, self.vtable).GetEmbeddedFragmentRoots(@ptrCast(*const IAccessibleHostingElementProviders, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibleHostingElementProviders_GetObjectIdForProvider(self: *const T, pProvider: *IRawElementProviderSimple, pidObject: *i32) callconv(.Inline) HRESULT {
+        pub fn IAccessibleHostingElementProviders_GetObjectIdForProvider(self: *const T, pProvider: ?*IRawElementProviderSimple, pidObject: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccessibleHostingElementProviders.VTable, self.vtable).GetObjectIdForProvider(@ptrCast(*const IAccessibleHostingElementProviders, self), pProvider, pidObject);
         }
     };}
@@ -2570,14 +2570,14 @@ pub const IRawElementProviderHostingAccessibles = extern struct {
         base: IUnknown.VTable,
         GetEmbeddedAccessibles: fn(
             self: *const IRawElementProviderHostingAccessibles,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawElementProviderHostingAccessibles_GetEmbeddedAccessibles(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawElementProviderHostingAccessibles_GetEmbeddedAccessibles(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawElementProviderHostingAccessibles.VTable, self.vtable).GetEmbeddedAccessibles(@ptrCast(*const IRawElementProviderHostingAccessibles, self), pRetVal);
         }
     };}
@@ -2597,7 +2597,7 @@ pub const IDockProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DockPosition: fn(
             self: *const IDockProvider,
-            pRetVal: *DockPosition,
+            pRetVal: ?*DockPosition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2608,7 +2608,7 @@ pub const IDockProvider = extern struct {
             return @ptrCast(*const IDockProvider.VTable, self.vtable).SetDockPosition(@ptrCast(*const IDockProvider, self), dockPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDockProvider_get_DockPosition(self: *const T, pRetVal: *DockPosition) callconv(.Inline) HRESULT {
+        pub fn IDockProvider_get_DockPosition(self: *const T, pRetVal: ?*DockPosition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDockProvider.VTable, self.vtable).get_DockPosition(@ptrCast(*const IDockProvider, self), pRetVal);
         }
     };}
@@ -2630,7 +2630,7 @@ pub const IExpandCollapseProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpandCollapseState: fn(
             self: *const IExpandCollapseProvider,
-            pRetVal: *ExpandCollapseState,
+            pRetVal: ?*ExpandCollapseState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2645,7 +2645,7 @@ pub const IExpandCollapseProvider = extern struct {
             return @ptrCast(*const IExpandCollapseProvider.VTable, self.vtable).Collapse(@ptrCast(*const IExpandCollapseProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExpandCollapseProvider_get_ExpandCollapseState(self: *const T, pRetVal: *ExpandCollapseState) callconv(.Inline) HRESULT {
+        pub fn IExpandCollapseProvider_get_ExpandCollapseState(self: *const T, pRetVal: ?*ExpandCollapseState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExpandCollapseProvider.VTable, self.vtable).get_ExpandCollapseState(@ptrCast(*const IExpandCollapseProvider, self), pRetVal);
         }
     };}
@@ -2662,32 +2662,32 @@ pub const IGridProvider = extern struct {
             self: *const IGridProvider,
             row: i32,
             column: i32,
-            pRetVal: **IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RowCount: fn(
             self: *const IGridProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ColumnCount: fn(
             self: *const IGridProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridProvider_GetItem(self: *const T, row: i32, column: i32, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IGridProvider_GetItem(self: *const T, row: i32, column: i32, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridProvider.VTable, self.vtable).GetItem(@ptrCast(*const IGridProvider, self), row, column, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridProvider_get_RowCount(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGridProvider_get_RowCount(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridProvider.VTable, self.vtable).get_RowCount(@ptrCast(*const IGridProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridProvider_get_ColumnCount(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGridProvider_get_ColumnCount(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridProvider.VTable, self.vtable).get_ColumnCount(@ptrCast(*const IGridProvider, self), pRetVal);
         }
     };}
@@ -2703,50 +2703,50 @@ pub const IGridItemProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Row: fn(
             self: *const IGridItemProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Column: fn(
             self: *const IGridItemProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RowSpan: fn(
             self: *const IGridItemProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ColumnSpan: fn(
             self: *const IGridItemProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainingGrid: fn(
             self: *const IGridItemProvider,
-            pRetVal: **IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridItemProvider_get_Row(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGridItemProvider_get_Row(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridItemProvider.VTable, self.vtable).get_Row(@ptrCast(*const IGridItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridItemProvider_get_Column(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGridItemProvider_get_Column(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridItemProvider.VTable, self.vtable).get_Column(@ptrCast(*const IGridItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridItemProvider_get_RowSpan(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGridItemProvider_get_RowSpan(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridItemProvider.VTable, self.vtable).get_RowSpan(@ptrCast(*const IGridItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridItemProvider_get_ColumnSpan(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IGridItemProvider_get_ColumnSpan(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridItemProvider.VTable, self.vtable).get_ColumnSpan(@ptrCast(*const IGridItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGridItemProvider_get_ContainingGrid(self: *const T, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IGridItemProvider_get_ContainingGrid(self: *const T, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGridItemProvider.VTable, self.vtable).get_ContainingGrid(@ptrCast(*const IGridItemProvider, self), pRetVal);
         }
     };}
@@ -2783,7 +2783,7 @@ pub const IMultipleViewProvider = extern struct {
         GetViewName: fn(
             self: *const IMultipleViewProvider,
             viewId: i32,
-            pRetVal: *BSTR,
+            pRetVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCurrentView: fn(
             self: *const IMultipleViewProvider,
@@ -2792,18 +2792,18 @@ pub const IMultipleViewProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentView: fn(
             self: *const IMultipleViewProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedViews: fn(
             self: *const IMultipleViewProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultipleViewProvider_GetViewName(self: *const T, viewId: i32, pRetVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMultipleViewProvider_GetViewName(self: *const T, viewId: i32, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMultipleViewProvider.VTable, self.vtable).GetViewName(@ptrCast(*const IMultipleViewProvider, self), viewId, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2811,11 +2811,11 @@ pub const IMultipleViewProvider = extern struct {
             return @ptrCast(*const IMultipleViewProvider.VTable, self.vtable).SetCurrentView(@ptrCast(*const IMultipleViewProvider, self), viewId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultipleViewProvider_get_CurrentView(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IMultipleViewProvider_get_CurrentView(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMultipleViewProvider.VTable, self.vtable).get_CurrentView(@ptrCast(*const IMultipleViewProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultipleViewProvider_GetSupportedViews(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMultipleViewProvider_GetSupportedViews(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMultipleViewProvider.VTable, self.vtable).GetSupportedViews(@ptrCast(*const IMultipleViewProvider, self), pRetVal);
         }
     };}
@@ -2835,32 +2835,32 @@ pub const IRangeValueProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IRangeValueProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsReadOnly: fn(
             self: *const IRangeValueProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Maximum: fn(
             self: *const IRangeValueProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Minimum: fn(
             self: *const IRangeValueProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LargeChange: fn(
             self: *const IRangeValueProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmallChange: fn(
             self: *const IRangeValueProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2871,27 +2871,27 @@ pub const IRangeValueProvider = extern struct {
             return @ptrCast(*const IRangeValueProvider.VTable, self.vtable).SetValue(@ptrCast(*const IRangeValueProvider, self), val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeValueProvider_get_Value(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IRangeValueProvider_get_Value(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeValueProvider.VTable, self.vtable).get_Value(@ptrCast(*const IRangeValueProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeValueProvider_get_IsReadOnly(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IRangeValueProvider_get_IsReadOnly(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeValueProvider.VTable, self.vtable).get_IsReadOnly(@ptrCast(*const IRangeValueProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeValueProvider_get_Maximum(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IRangeValueProvider_get_Maximum(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeValueProvider.VTable, self.vtable).get_Maximum(@ptrCast(*const IRangeValueProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeValueProvider_get_Minimum(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IRangeValueProvider_get_Minimum(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeValueProvider.VTable, self.vtable).get_Minimum(@ptrCast(*const IRangeValueProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeValueProvider_get_LargeChange(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IRangeValueProvider_get_LargeChange(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeValueProvider.VTable, self.vtable).get_LargeChange(@ptrCast(*const IRangeValueProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeValueProvider_get_SmallChange(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IRangeValueProvider_get_SmallChange(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeValueProvider.VTable, self.vtable).get_SmallChange(@ptrCast(*const IRangeValueProvider, self), pRetVal);
         }
     };}
@@ -2927,32 +2927,32 @@ pub const ISelectionProvider = extern struct {
         base: IUnknown.VTable,
         GetSelection: fn(
             self: *const ISelectionProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanSelectMultiple: fn(
             self: *const ISelectionProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSelectionRequired: fn(
             self: *const ISelectionProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionProvider_GetSelection(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ISelectionProvider_GetSelection(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionProvider.VTable, self.vtable).GetSelection(@ptrCast(*const ISelectionProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionProvider_get_CanSelectMultiple(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISelectionProvider_get_CanSelectMultiple(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionProvider.VTable, self.vtable).get_CanSelectMultiple(@ptrCast(*const ISelectionProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionProvider_get_IsSelectionRequired(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISelectionProvider_get_IsSelectionRequired(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionProvider.VTable, self.vtable).get_IsSelectionRequired(@ptrCast(*const ISelectionProvider, self), pRetVal);
         }
     };}
@@ -2968,41 +2968,41 @@ pub const ISelectionProvider2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstSelectedItem: fn(
             self: *const ISelectionProvider2,
-            retVal: **IRawElementProviderSimple,
+            retVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastSelectedItem: fn(
             self: *const ISelectionProvider2,
-            retVal: **IRawElementProviderSimple,
+            retVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSelectedItem: fn(
             self: *const ISelectionProvider2,
-            retVal: **IRawElementProviderSimple,
+            retVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ItemCount: fn(
             self: *const ISelectionProvider2,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISelectionProvider.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionProvider2_get_FirstSelectedItem(self: *const T, retVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ISelectionProvider2_get_FirstSelectedItem(self: *const T, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionProvider2.VTable, self.vtable).get_FirstSelectedItem(@ptrCast(*const ISelectionProvider2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionProvider2_get_LastSelectedItem(self: *const T, retVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ISelectionProvider2_get_LastSelectedItem(self: *const T, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionProvider2.VTable, self.vtable).get_LastSelectedItem(@ptrCast(*const ISelectionProvider2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionProvider2_get_CurrentSelectedItem(self: *const T, retVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ISelectionProvider2_get_CurrentSelectedItem(self: *const T, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionProvider2.VTable, self.vtable).get_CurrentSelectedItem(@ptrCast(*const ISelectionProvider2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionProvider2_get_ItemCount(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ISelectionProvider2_get_ItemCount(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionProvider2.VTable, self.vtable).get_ItemCount(@ptrCast(*const ISelectionProvider2, self), retVal);
         }
     };}
@@ -3028,32 +3028,32 @@ pub const IScrollProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HorizontalScrollPercent: fn(
             self: *const IScrollProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VerticalScrollPercent: fn(
             self: *const IScrollProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HorizontalViewSize: fn(
             self: *const IScrollProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VerticalViewSize: fn(
             self: *const IScrollProvider,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HorizontallyScrollable: fn(
             self: *const IScrollProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VerticallyScrollable: fn(
             self: *const IScrollProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3068,27 +3068,27 @@ pub const IScrollProvider = extern struct {
             return @ptrCast(*const IScrollProvider.VTable, self.vtable).SetScrollPercent(@ptrCast(*const IScrollProvider, self), horizontalPercent, verticalPercent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScrollProvider_get_HorizontalScrollPercent(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IScrollProvider_get_HorizontalScrollPercent(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScrollProvider.VTable, self.vtable).get_HorizontalScrollPercent(@ptrCast(*const IScrollProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScrollProvider_get_VerticalScrollPercent(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IScrollProvider_get_VerticalScrollPercent(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScrollProvider.VTable, self.vtable).get_VerticalScrollPercent(@ptrCast(*const IScrollProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScrollProvider_get_HorizontalViewSize(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IScrollProvider_get_HorizontalViewSize(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScrollProvider.VTable, self.vtable).get_HorizontalViewSize(@ptrCast(*const IScrollProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScrollProvider_get_VerticalViewSize(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IScrollProvider_get_VerticalViewSize(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScrollProvider.VTable, self.vtable).get_VerticalViewSize(@ptrCast(*const IScrollProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScrollProvider_get_HorizontallyScrollable(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IScrollProvider_get_HorizontallyScrollable(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScrollProvider.VTable, self.vtable).get_HorizontallyScrollable(@ptrCast(*const IScrollProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScrollProvider_get_VerticallyScrollable(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IScrollProvider_get_VerticallyScrollable(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScrollProvider.VTable, self.vtable).get_VerticallyScrollable(@ptrCast(*const IScrollProvider, self), pRetVal);
         }
     };}
@@ -3113,12 +3113,12 @@ pub const ISelectionItemProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSelected: fn(
             self: *const ISelectionItemProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionContainer: fn(
             self: *const ISelectionItemProvider,
-            pRetVal: **IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3137,11 +3137,11 @@ pub const ISelectionItemProvider = extern struct {
             return @ptrCast(*const ISelectionItemProvider.VTable, self.vtable).RemoveFromSelection(@ptrCast(*const ISelectionItemProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionItemProvider_get_IsSelected(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ISelectionItemProvider_get_IsSelected(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionItemProvider.VTable, self.vtable).get_IsSelected(@ptrCast(*const ISelectionItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISelectionItemProvider_get_SelectionContainer(self: *const T, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ISelectionItemProvider_get_SelectionContainer(self: *const T, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISelectionItemProvider.VTable, self.vtable).get_SelectionContainer(@ptrCast(*const ISelectionItemProvider, self), pRetVal);
         }
     };}
@@ -3185,31 +3185,31 @@ pub const ITableProvider = extern struct {
         base: IUnknown.VTable,
         GetRowHeaders: fn(
             self: *const ITableProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumnHeaders: fn(
             self: *const ITableProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RowOrColumnMajor: fn(
             self: *const ITableProvider,
-            pRetVal: *RowOrColumnMajor,
+            pRetVal: ?*RowOrColumnMajor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITableProvider_GetRowHeaders(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITableProvider_GetRowHeaders(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITableProvider.VTable, self.vtable).GetRowHeaders(@ptrCast(*const ITableProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITableProvider_GetColumnHeaders(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITableProvider_GetColumnHeaders(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITableProvider.VTable, self.vtable).GetColumnHeaders(@ptrCast(*const ITableProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITableProvider_get_RowOrColumnMajor(self: *const T, pRetVal: *RowOrColumnMajor) callconv(.Inline) HRESULT {
+        pub fn ITableProvider_get_RowOrColumnMajor(self: *const T, pRetVal: ?*RowOrColumnMajor) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITableProvider.VTable, self.vtable).get_RowOrColumnMajor(@ptrCast(*const ITableProvider, self), pRetVal);
         }
     };}
@@ -3224,22 +3224,22 @@ pub const ITableItemProvider = extern struct {
         base: IUnknown.VTable,
         GetRowHeaderItems: fn(
             self: *const ITableItemProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumnHeaderItems: fn(
             self: *const ITableItemProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITableItemProvider_GetRowHeaderItems(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITableItemProvider_GetRowHeaderItems(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITableItemProvider.VTable, self.vtable).GetRowHeaderItems(@ptrCast(*const ITableItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITableItemProvider_GetColumnHeaderItems(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITableItemProvider_GetColumnHeaderItems(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITableItemProvider.VTable, self.vtable).GetColumnHeaderItems(@ptrCast(*const ITableItemProvider, self), pRetVal);
         }
     };}
@@ -3258,7 +3258,7 @@ pub const IToggleProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ToggleState: fn(
             self: *const IToggleProvider,
-            pRetVal: *ToggleState,
+            pRetVal: ?*ToggleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3269,7 +3269,7 @@ pub const IToggleProvider = extern struct {
             return @ptrCast(*const IToggleProvider.VTable, self.vtable).Toggle(@ptrCast(*const IToggleProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IToggleProvider_get_ToggleState(self: *const T, pRetVal: *ToggleState) callconv(.Inline) HRESULT {
+        pub fn IToggleProvider_get_ToggleState(self: *const T, pRetVal: ?*ToggleState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IToggleProvider.VTable, self.vtable).get_ToggleState(@ptrCast(*const IToggleProvider, self), pRetVal);
         }
     };}
@@ -3299,17 +3299,17 @@ pub const ITransformProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanMove: fn(
             self: *const ITransformProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanResize: fn(
             self: *const ITransformProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanRotate: fn(
             self: *const ITransformProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3328,15 +3328,15 @@ pub const ITransformProvider = extern struct {
             return @ptrCast(*const ITransformProvider.VTable, self.vtable).Rotate(@ptrCast(*const ITransformProvider, self), degrees);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransformProvider_get_CanMove(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITransformProvider_get_CanMove(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransformProvider.VTable, self.vtable).get_CanMove(@ptrCast(*const ITransformProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransformProvider_get_CanResize(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITransformProvider_get_CanResize(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransformProvider.VTable, self.vtable).get_CanResize(@ptrCast(*const ITransformProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransformProvider_get_CanRotate(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITransformProvider_get_CanRotate(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransformProvider.VTable, self.vtable).get_CanRotate(@ptrCast(*const ITransformProvider, self), pRetVal);
         }
     };}
@@ -3351,32 +3351,32 @@ pub const IValueProvider = extern struct {
         base: IUnknown.VTable,
         SetValue: fn(
             self: *const IValueProvider,
-            val: [*:0]const u16,
+            val: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IValueProvider,
-            pRetVal: *BSTR,
+            pRetVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsReadOnly: fn(
             self: *const IValueProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueProvider_SetValue(self: *const T, val: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IValueProvider_SetValue(self: *const T, val: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValueProvider.VTable, self.vtable).SetValue(@ptrCast(*const IValueProvider, self), val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueProvider_get_Value(self: *const T, pRetVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IValueProvider_get_Value(self: *const T, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValueProvider.VTable, self.vtable).get_Value(@ptrCast(*const IValueProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueProvider_get_IsReadOnly(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IValueProvider_get_IsReadOnly(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValueProvider.VTable, self.vtable).get_IsReadOnly(@ptrCast(*const IValueProvider, self), pRetVal);
         }
     };}
@@ -3399,37 +3399,37 @@ pub const IWindowProvider = extern struct {
         WaitForInputIdle: fn(
             self: *const IWindowProvider,
             milliseconds: i32,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanMaximize: fn(
             self: *const IWindowProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanMinimize: fn(
             self: *const IWindowProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsModal: fn(
             self: *const IWindowProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowVisualState: fn(
             self: *const IWindowProvider,
-            pRetVal: *WindowVisualState,
+            pRetVal: ?*WindowVisualState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowInteractionState: fn(
             self: *const IWindowProvider,
-            pRetVal: *WindowInteractionState,
+            pRetVal: ?*WindowInteractionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTopmost: fn(
             self: *const IWindowProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3444,31 +3444,31 @@ pub const IWindowProvider = extern struct {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).Close(@ptrCast(*const IWindowProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowProvider_WaitForInputIdle(self: *const T, milliseconds: i32, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWindowProvider_WaitForInputIdle(self: *const T, milliseconds: i32, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).WaitForInputIdle(@ptrCast(*const IWindowProvider, self), milliseconds, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowProvider_get_CanMaximize(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWindowProvider_get_CanMaximize(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).get_CanMaximize(@ptrCast(*const IWindowProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowProvider_get_CanMinimize(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWindowProvider_get_CanMinimize(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).get_CanMinimize(@ptrCast(*const IWindowProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowProvider_get_IsModal(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWindowProvider_get_IsModal(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).get_IsModal(@ptrCast(*const IWindowProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowProvider_get_WindowVisualState(self: *const T, pRetVal: *WindowVisualState) callconv(.Inline) HRESULT {
+        pub fn IWindowProvider_get_WindowVisualState(self: *const T, pRetVal: ?*WindowVisualState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).get_WindowVisualState(@ptrCast(*const IWindowProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowProvider_get_WindowInteractionState(self: *const T, pRetVal: *WindowInteractionState) callconv(.Inline) HRESULT {
+        pub fn IWindowProvider_get_WindowInteractionState(self: *const T, pRetVal: ?*WindowInteractionState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).get_WindowInteractionState(@ptrCast(*const IWindowProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowProvider_get_IsTopmost(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWindowProvider_get_IsTopmost(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowProvider.VTable, self.vtable).get_IsTopmost(@ptrCast(*const IWindowProvider, self), pRetVal);
         }
     };}
@@ -3490,60 +3490,60 @@ pub const ILegacyIAccessibleProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: fn(
             self: *const ILegacyIAccessibleProvider,
-            szValue: [*:0]const u16,
+            szValue: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIAccessible: fn(
             self: *const ILegacyIAccessibleProvider,
-            ppAccessible: **IAccessible,
+            ppAccessible: ?*?*IAccessible,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChildId: fn(
             self: *const ILegacyIAccessibleProvider,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ILegacyIAccessibleProvider,
-            pszName: *BSTR,
+            pszName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const ILegacyIAccessibleProvider,
-            pszValue: *BSTR,
+            pszValue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const ILegacyIAccessibleProvider,
-            pszDescription: *BSTR,
+            pszDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Role: fn(
             self: *const ILegacyIAccessibleProvider,
-            pdwRole: *u32,
+            pdwRole: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const ILegacyIAccessibleProvider,
-            pdwState: *u32,
+            pdwState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Help: fn(
             self: *const ILegacyIAccessibleProvider,
-            pszHelp: *BSTR,
+            pszHelp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeyboardShortcut: fn(
             self: *const ILegacyIAccessibleProvider,
-            pszKeyboardShortcut: *BSTR,
+            pszKeyboardShortcut: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelection: fn(
             self: *const ILegacyIAccessibleProvider,
-            pvarSelectedChildren: **SAFEARRAY,
+            pvarSelectedChildren: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultAction: fn(
             self: *const ILegacyIAccessibleProvider,
-            pszDefaultAction: *BSTR,
+            pszDefaultAction: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3558,51 +3558,51 @@ pub const ILegacyIAccessibleProvider = extern struct {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).DoDefaultAction(@ptrCast(*const ILegacyIAccessibleProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_SetValue(self: *const T, szValue: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_SetValue(self: *const T, szValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).SetValue(@ptrCast(*const ILegacyIAccessibleProvider, self), szValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_GetIAccessible(self: *const T, ppAccessible: **IAccessible) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_GetIAccessible(self: *const T, ppAccessible: ?*?*IAccessible) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).GetIAccessible(@ptrCast(*const ILegacyIAccessibleProvider, self), ppAccessible);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_ChildId(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_ChildId(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_ChildId(@ptrCast(*const ILegacyIAccessibleProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_Name(self: *const T, pszName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_Name(self: *const T, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_Name(@ptrCast(*const ILegacyIAccessibleProvider, self), pszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_Value(self: *const T, pszValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_Value(self: *const T, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_Value(@ptrCast(*const ILegacyIAccessibleProvider, self), pszValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_Description(self: *const T, pszDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_Description(self: *const T, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_Description(@ptrCast(*const ILegacyIAccessibleProvider, self), pszDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_Role(self: *const T, pdwRole: *u32) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_Role(self: *const T, pdwRole: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_Role(@ptrCast(*const ILegacyIAccessibleProvider, self), pdwRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_State(self: *const T, pdwState: *u32) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_State(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_State(@ptrCast(*const ILegacyIAccessibleProvider, self), pdwState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_Help(self: *const T, pszHelp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_Help(self: *const T, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_Help(@ptrCast(*const ILegacyIAccessibleProvider, self), pszHelp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_KeyboardShortcut(self: *const T, pszKeyboardShortcut: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_KeyboardShortcut(self: *const T, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_KeyboardShortcut(@ptrCast(*const ILegacyIAccessibleProvider, self), pszKeyboardShortcut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_GetSelection(self: *const T, pvarSelectedChildren: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_GetSelection(self: *const T, pvarSelectedChildren: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).GetSelection(@ptrCast(*const ILegacyIAccessibleProvider, self), pvarSelectedChildren);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILegacyIAccessibleProvider_get_DefaultAction(self: *const T, pszDefaultAction: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ILegacyIAccessibleProvider_get_DefaultAction(self: *const T, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILegacyIAccessibleProvider.VTable, self.vtable).get_DefaultAction(@ptrCast(*const ILegacyIAccessibleProvider, self), pszDefaultAction);
         }
     };}
@@ -3617,17 +3617,17 @@ pub const IItemContainerProvider = extern struct {
         base: IUnknown.VTable,
         FindItemByProperty: fn(
             self: *const IItemContainerProvider,
-            pStartAfter: *IRawElementProviderSimple,
+            pStartAfter: ?*IRawElementProviderSimple,
             propertyId: i32,
             value: VARIANT,
-            pFound: **IRawElementProviderSimple,
+            pFound: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IItemContainerProvider_FindItemByProperty(self: *const T, pStartAfter: *IRawElementProviderSimple, propertyId: i32, value: VARIANT, pFound: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IItemContainerProvider_FindItemByProperty(self: *const T, pStartAfter: ?*IRawElementProviderSimple, propertyId: i32, value: VARIANT, pFound: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IItemContainerProvider.VTable, self.vtable).FindItemByProperty(@ptrCast(*const IItemContainerProvider, self), pStartAfter, propertyId, value, pFound);
         }
     };}
@@ -3663,14 +3663,14 @@ pub const IObjectModelProvider = extern struct {
         base: IUnknown.VTable,
         GetUnderlyingObjectModel: fn(
             self: *const IObjectModelProvider,
-            ppUnknown: **IUnknown,
+            ppUnknown: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectModelProvider_GetUnderlyingObjectModel(self: *const T, ppUnknown: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IObjectModelProvider_GetUnderlyingObjectModel(self: *const T, ppUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectModelProvider.VTable, self.vtable).GetUnderlyingObjectModel(@ptrCast(*const IObjectModelProvider, self), ppUnknown);
         }
     };}
@@ -3686,50 +3686,50 @@ pub const IAnnotationProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AnnotationTypeId: fn(
             self: *const IAnnotationProvider,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AnnotationTypeName: fn(
             self: *const IAnnotationProvider,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Author: fn(
             self: *const IAnnotationProvider,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DateTime: fn(
             self: *const IAnnotationProvider,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Target: fn(
             self: *const IAnnotationProvider,
-            retVal: **IRawElementProviderSimple,
+            retVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnnotationProvider_get_AnnotationTypeId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IAnnotationProvider_get_AnnotationTypeId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnnotationProvider.VTable, self.vtable).get_AnnotationTypeId(@ptrCast(*const IAnnotationProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnnotationProvider_get_AnnotationTypeName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAnnotationProvider_get_AnnotationTypeName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnnotationProvider.VTable, self.vtable).get_AnnotationTypeName(@ptrCast(*const IAnnotationProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnnotationProvider_get_Author(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAnnotationProvider_get_Author(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnnotationProvider.VTable, self.vtable).get_Author(@ptrCast(*const IAnnotationProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnnotationProvider_get_DateTime(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAnnotationProvider_get_DateTime(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnnotationProvider.VTable, self.vtable).get_DateTime(@ptrCast(*const IAnnotationProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAnnotationProvider_get_Target(self: *const T, retVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IAnnotationProvider_get_Target(self: *const T, retVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAnnotationProvider.VTable, self.vtable).get_Target(@ptrCast(*const IAnnotationProvider, self), retVal);
         }
     };}
@@ -3745,68 +3745,68 @@ pub const IStylesProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StyleId: fn(
             self: *const IStylesProvider,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StyleName: fn(
             self: *const IStylesProvider,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FillColor: fn(
             self: *const IStylesProvider,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FillPatternStyle: fn(
             self: *const IStylesProvider,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Shape: fn(
             self: *const IStylesProvider,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FillPatternColor: fn(
             self: *const IStylesProvider,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtendedProperties: fn(
             self: *const IStylesProvider,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylesProvider_get_StyleId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IStylesProvider_get_StyleId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylesProvider.VTable, self.vtable).get_StyleId(@ptrCast(*const IStylesProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylesProvider_get_StyleName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IStylesProvider_get_StyleName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylesProvider.VTable, self.vtable).get_StyleName(@ptrCast(*const IStylesProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylesProvider_get_FillColor(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IStylesProvider_get_FillColor(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylesProvider.VTable, self.vtable).get_FillColor(@ptrCast(*const IStylesProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylesProvider_get_FillPatternStyle(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IStylesProvider_get_FillPatternStyle(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylesProvider.VTable, self.vtable).get_FillPatternStyle(@ptrCast(*const IStylesProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylesProvider_get_Shape(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IStylesProvider_get_Shape(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylesProvider.VTable, self.vtable).get_Shape(@ptrCast(*const IStylesProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylesProvider_get_FillPatternColor(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IStylesProvider_get_FillPatternColor(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylesProvider.VTable, self.vtable).get_FillPatternColor(@ptrCast(*const IStylesProvider, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylesProvider_get_ExtendedProperties(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IStylesProvider_get_ExtendedProperties(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStylesProvider.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IStylesProvider, self), retVal);
         }
     };}
@@ -3821,15 +3821,15 @@ pub const ISpreadsheetProvider = extern struct {
         base: IUnknown.VTable,
         GetItemByName: fn(
             self: *const ISpreadsheetProvider,
-            name: [*:0]const u16,
-            pRetVal: **IRawElementProviderSimple,
+            name: ?[*:0]const u16,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpreadsheetProvider_GetItemByName(self: *const T, name: [*:0]const u16, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ISpreadsheetProvider_GetItemByName(self: *const T, name: ?[*:0]const u16, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpreadsheetProvider.VTable, self.vtable).GetItemByName(@ptrCast(*const ISpreadsheetProvider, self), name, pRetVal);
         }
     };}
@@ -3845,30 +3845,30 @@ pub const ISpreadsheetItemProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Formula: fn(
             self: *const ISpreadsheetItemProvider,
-            pRetVal: *BSTR,
+            pRetVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAnnotationObjects: fn(
             self: *const ISpreadsheetItemProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAnnotationTypes: fn(
             self: *const ISpreadsheetItemProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpreadsheetItemProvider_get_Formula(self: *const T, pRetVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ISpreadsheetItemProvider_get_Formula(self: *const T, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpreadsheetItemProvider.VTable, self.vtable).get_Formula(@ptrCast(*const ISpreadsheetItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpreadsheetItemProvider_GetAnnotationObjects(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ISpreadsheetItemProvider_GetAnnotationObjects(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpreadsheetItemProvider.VTable, self.vtable).GetAnnotationObjects(@ptrCast(*const ISpreadsheetItemProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpreadsheetItemProvider_GetAnnotationTypes(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ISpreadsheetItemProvider_GetAnnotationTypes(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpreadsheetItemProvider.VTable, self.vtable).GetAnnotationTypes(@ptrCast(*const ISpreadsheetItemProvider, self), pRetVal);
         }
     };}
@@ -3888,22 +3888,22 @@ pub const ITransformProvider2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanZoom: fn(
             self: *const ITransformProvider2,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ZoomLevel: fn(
             self: *const ITransformProvider2,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ZoomMinimum: fn(
             self: *const ITransformProvider2,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ZoomMaximum: fn(
             self: *const ITransformProvider2,
-            pRetVal: *f64,
+            pRetVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ZoomByUnit: fn(
             self: *const ITransformProvider2,
@@ -3918,19 +3918,19 @@ pub const ITransformProvider2 = extern struct {
             return @ptrCast(*const ITransformProvider2.VTable, self.vtable).Zoom(@ptrCast(*const ITransformProvider2, self), zoom);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransformProvider2_get_CanZoom(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITransformProvider2_get_CanZoom(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransformProvider2.VTable, self.vtable).get_CanZoom(@ptrCast(*const ITransformProvider2, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransformProvider2_get_ZoomLevel(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn ITransformProvider2_get_ZoomLevel(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransformProvider2.VTable, self.vtable).get_ZoomLevel(@ptrCast(*const ITransformProvider2, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransformProvider2_get_ZoomMinimum(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn ITransformProvider2_get_ZoomMinimum(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransformProvider2.VTable, self.vtable).get_ZoomMinimum(@ptrCast(*const ITransformProvider2, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransformProvider2_get_ZoomMaximum(self: *const T, pRetVal: *f64) callconv(.Inline) HRESULT {
+        pub fn ITransformProvider2_get_ZoomMaximum(self: *const T, pRetVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransformProvider2.VTable, self.vtable).get_ZoomMaximum(@ptrCast(*const ITransformProvider2, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3950,40 +3950,40 @@ pub const IDragProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsGrabbed: fn(
             self: *const IDragProvider,
-            pRetVal: *BOOL,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropEffect: fn(
             self: *const IDragProvider,
-            pRetVal: *BSTR,
+            pRetVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropEffects: fn(
             self: *const IDragProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGrabbedItems: fn(
             self: *const IDragProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDragProvider_get_IsGrabbed(self: *const T, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IDragProvider_get_IsGrabbed(self: *const T, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDragProvider.VTable, self.vtable).get_IsGrabbed(@ptrCast(*const IDragProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDragProvider_get_DropEffect(self: *const T, pRetVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDragProvider_get_DropEffect(self: *const T, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDragProvider.VTable, self.vtable).get_DropEffect(@ptrCast(*const IDragProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDragProvider_get_DropEffects(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDragProvider_get_DropEffects(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDragProvider.VTable, self.vtable).get_DropEffects(@ptrCast(*const IDragProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDragProvider_GetGrabbedItems(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDragProvider_GetGrabbedItems(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDragProvider.VTable, self.vtable).GetGrabbedItems(@ptrCast(*const IDragProvider, self), pRetVal);
         }
     };}
@@ -3999,23 +3999,23 @@ pub const IDropTargetProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropTargetEffect: fn(
             self: *const IDropTargetProvider,
-            pRetVal: *BSTR,
+            pRetVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropTargetEffects: fn(
             self: *const IDropTargetProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropTargetProvider_get_DropTargetEffect(self: *const T, pRetVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDropTargetProvider_get_DropTargetEffect(self: *const T, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDropTargetProvider.VTable, self.vtable).get_DropTargetEffect(@ptrCast(*const IDropTargetProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDropTargetProvider_get_DropTargetEffects(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDropTargetProvider_get_DropTargetEffects(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDropTargetProvider.VTable, self.vtable).get_DropTargetEffects(@ptrCast(*const IDropTargetProvider, self), pRetVal);
         }
     };}
@@ -4030,19 +4030,19 @@ pub const ITextRangeProvider = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const ITextRangeProvider,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Compare: fn(
             self: *const ITextRangeProvider,
-            range: *ITextRangeProvider,
-            pRetVal: *BOOL,
+            range: ?*ITextRangeProvider,
+            pRetVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareEndpoints: fn(
             self: *const ITextRangeProvider,
             endpoint: TextPatternRangeEndpoint,
-            targetRange: *ITextRangeProvider,
+            targetRange: ?*ITextRangeProvider,
             targetEndpoint: TextPatternRangeEndpoint,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExpandToEnclosingUnit: fn(
             self: *const ITextRangeProvider,
@@ -4053,50 +4053,50 @@ pub const ITextRangeProvider = extern struct {
             attributeId: i32,
             val: VARIANT,
             backward: BOOL,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindText: fn(
             self: *const ITextRangeProvider,
-            text: BSTR,
+            text: ?BSTR,
             backward: BOOL,
             ignoreCase: BOOL,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue: fn(
             self: *const ITextRangeProvider,
             attributeId: i32,
-            pRetVal: *VARIANT,
+            pRetVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBoundingRectangles: fn(
             self: *const ITextRangeProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnclosingElement: fn(
             self: *const ITextRangeProvider,
-            pRetVal: **IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetText: fn(
             self: *const ITextRangeProvider,
             maxLength: i32,
-            pRetVal: *BSTR,
+            pRetVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Move: fn(
             self: *const ITextRangeProvider,
             unit: TextUnit,
             count: i32,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveEndpointByUnit: fn(
             self: *const ITextRangeProvider,
             endpoint: TextPatternRangeEndpoint,
             unit: TextUnit,
             count: i32,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveEndpointByRange: fn(
             self: *const ITextRangeProvider,
             endpoint: TextPatternRangeEndpoint,
-            targetRange: *ITextRangeProvider,
+            targetRange: ?*ITextRangeProvider,
             targetEndpoint: TextPatternRangeEndpoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Select: fn(
@@ -4114,22 +4114,22 @@ pub const ITextRangeProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildren: fn(
             self: *const ITextRangeProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_Clone(self: *const T, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_Clone(self: *const T, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).Clone(@ptrCast(*const ITextRangeProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_Compare(self: *const T, range: *ITextRangeProvider, pRetVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_Compare(self: *const T, range: ?*ITextRangeProvider, pRetVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).Compare(@ptrCast(*const ITextRangeProvider, self), range, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_CompareEndpoints(self: *const T, endpoint: TextPatternRangeEndpoint, targetRange: *ITextRangeProvider, targetEndpoint: TextPatternRangeEndpoint, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_CompareEndpoints(self: *const T, endpoint: TextPatternRangeEndpoint, targetRange: ?*ITextRangeProvider, targetEndpoint: TextPatternRangeEndpoint, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).CompareEndpoints(@ptrCast(*const ITextRangeProvider, self), endpoint, targetRange, targetEndpoint, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4137,39 +4137,39 @@ pub const ITextRangeProvider = extern struct {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).ExpandToEnclosingUnit(@ptrCast(*const ITextRangeProvider, self), unit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_FindAttribute(self: *const T, attributeId: i32, val: VARIANT, backward: BOOL, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_FindAttribute(self: *const T, attributeId: i32, val: VARIANT, backward: BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).FindAttribute(@ptrCast(*const ITextRangeProvider, self), attributeId, val, backward, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_FindText(self: *const T, text: BSTR, backward: BOOL, ignoreCase: BOOL, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_FindText(self: *const T, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).FindText(@ptrCast(*const ITextRangeProvider, self), text, backward, ignoreCase, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_GetAttributeValue(self: *const T, attributeId: i32, pRetVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_GetAttributeValue(self: *const T, attributeId: i32, pRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ITextRangeProvider, self), attributeId, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_GetBoundingRectangles(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_GetBoundingRectangles(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).GetBoundingRectangles(@ptrCast(*const ITextRangeProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_GetEnclosingElement(self: *const T, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_GetEnclosingElement(self: *const T, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).GetEnclosingElement(@ptrCast(*const ITextRangeProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_GetText(self: *const T, maxLength: i32, pRetVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_GetText(self: *const T, maxLength: i32, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).GetText(@ptrCast(*const ITextRangeProvider, self), maxLength, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_Move(self: *const T, unit: TextUnit, count: i32, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_Move(self: *const T, unit: TextUnit, count: i32, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).Move(@ptrCast(*const ITextRangeProvider, self), unit, count, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_MoveEndpointByUnit(self: *const T, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_MoveEndpointByUnit(self: *const T, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).MoveEndpointByUnit(@ptrCast(*const ITextRangeProvider, self), endpoint, unit, count, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_MoveEndpointByRange(self: *const T, endpoint: TextPatternRangeEndpoint, targetRange: *ITextRangeProvider, targetEndpoint: TextPatternRangeEndpoint) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_MoveEndpointByRange(self: *const T, endpoint: TextPatternRangeEndpoint, targetRange: ?*ITextRangeProvider, targetEndpoint: TextPatternRangeEndpoint) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).MoveEndpointByRange(@ptrCast(*const ITextRangeProvider, self), endpoint, targetRange, targetEndpoint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4189,7 +4189,7 @@ pub const ITextRangeProvider = extern struct {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).ScrollIntoView(@ptrCast(*const ITextRangeProvider, self), alignToTop);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_GetChildren(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITextRangeProvider_GetChildren(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).GetChildren(@ptrCast(*const ITextRangeProvider, self), pRetVal);
         }
     };}
@@ -4204,58 +4204,58 @@ pub const ITextProvider = extern struct {
         base: IUnknown.VTable,
         GetSelection: fn(
             self: *const ITextProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleRanges: fn(
             self: *const ITextProvider,
-            pRetVal: **SAFEARRAY,
+            pRetVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RangeFromChild: fn(
             self: *const ITextProvider,
-            childElement: *IRawElementProviderSimple,
-            pRetVal: **ITextRangeProvider,
+            childElement: ?*IRawElementProviderSimple,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RangeFromPoint: fn(
             self: *const ITextProvider,
             point: UiaPoint,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DocumentRange: fn(
             self: *const ITextProvider,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedTextSelection: fn(
             self: *const ITextProvider,
-            pRetVal: *SupportedTextSelection,
+            pRetVal: ?*SupportedTextSelection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider_GetSelection(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITextProvider_GetSelection(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider.VTable, self.vtable).GetSelection(@ptrCast(*const ITextProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider_GetVisibleRanges(self: *const T, pRetVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITextProvider_GetVisibleRanges(self: *const T, pRetVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider.VTable, self.vtable).GetVisibleRanges(@ptrCast(*const ITextProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider_RangeFromChild(self: *const T, childElement: *IRawElementProviderSimple, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextProvider_RangeFromChild(self: *const T, childElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider.VTable, self.vtable).RangeFromChild(@ptrCast(*const ITextProvider, self), childElement, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider_RangeFromPoint(self: *const T, point: UiaPoint, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextProvider_RangeFromPoint(self: *const T, point: UiaPoint, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider.VTable, self.vtable).RangeFromPoint(@ptrCast(*const ITextProvider, self), point, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider_get_DocumentRange(self: *const T, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextProvider_get_DocumentRange(self: *const T, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider.VTable, self.vtable).get_DocumentRange(@ptrCast(*const ITextProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider_get_SupportedTextSelection(self: *const T, pRetVal: *SupportedTextSelection) callconv(.Inline) HRESULT {
+        pub fn ITextProvider_get_SupportedTextSelection(self: *const T, pRetVal: ?*SupportedTextSelection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider.VTable, self.vtable).get_SupportedTextSelection(@ptrCast(*const ITextProvider, self), pRetVal);
         }
     };}
@@ -4270,24 +4270,24 @@ pub const ITextProvider2 = extern struct {
         base: ITextProvider.VTable,
         RangeFromAnnotation: fn(
             self: *const ITextProvider2,
-            annotationElement: *IRawElementProviderSimple,
-            pRetVal: **ITextRangeProvider,
+            annotationElement: ?*IRawElementProviderSimple,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCaretRange: fn(
             self: *const ITextProvider2,
-            isActive: *BOOL,
-            pRetVal: **ITextRangeProvider,
+            isActive: ?*BOOL,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextProvider.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider2_RangeFromAnnotation(self: *const T, annotationElement: *IRawElementProviderSimple, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextProvider2_RangeFromAnnotation(self: *const T, annotationElement: ?*IRawElementProviderSimple, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider2.VTable, self.vtable).RangeFromAnnotation(@ptrCast(*const ITextProvider2, self), annotationElement, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextProvider2_GetCaretRange(self: *const T, isActive: *BOOL, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextProvider2_GetCaretRange(self: *const T, isActive: ?*BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextProvider2.VTable, self.vtable).GetCaretRange(@ptrCast(*const ITextProvider2, self), isActive, pRetVal);
         }
     };}
@@ -4302,22 +4302,22 @@ pub const ITextEditProvider = extern struct {
         base: ITextProvider.VTable,
         GetActiveComposition: fn(
             self: *const ITextEditProvider,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConversionTarget: fn(
             self: *const ITextEditProvider,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextProvider.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextEditProvider_GetActiveComposition(self: *const T, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextEditProvider_GetActiveComposition(self: *const T, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextEditProvider.VTable, self.vtable).GetActiveComposition(@ptrCast(*const ITextEditProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextEditProvider_GetConversionTarget(self: *const T, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextEditProvider_GetConversionTarget(self: *const T, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextEditProvider.VTable, self.vtable).GetConversionTarget(@ptrCast(*const ITextEditProvider, self), pRetVal);
         }
     };}
@@ -4354,23 +4354,23 @@ pub const ITextChildProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextContainer: fn(
             self: *const ITextChildProvider,
-            pRetVal: **IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextRange: fn(
             self: *const ITextChildProvider,
-            pRetVal: **ITextRangeProvider,
+            pRetVal: ?*?*ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextChildProvider_get_TextContainer(self: *const T, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ITextChildProvider_get_TextContainer(self: *const T, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextChildProvider.VTable, self.vtable).get_TextContainer(@ptrCast(*const ITextChildProvider, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextChildProvider_get_TextRange(self: *const T, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+        pub fn ITextChildProvider_get_TextRange(self: *const T, pRetVal: ?*?*ITextRangeProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextChildProvider.VTable, self.vtable).get_TextRange(@ptrCast(*const ITextChildProvider, self), pRetVal);
         }
     };}
@@ -4385,14 +4385,14 @@ pub const ICustomNavigationProvider = extern struct {
         Navigate: fn(
             self: *const ICustomNavigationProvider,
             direction: NavigateDirection,
-            pRetVal: **IRawElementProviderSimple,
+            pRetVal: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICustomNavigationProvider_Navigate(self: *const T, direction: NavigateDirection, pRetVal: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn ICustomNavigationProvider_Navigate(self: *const T, direction: NavigateDirection, pRetVal: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICustomNavigationProvider.VTable, self.vtable).Navigate(@ptrCast(*const ICustomNavigationProvider, self), direction, pRetVal);
         }
     };}
@@ -4410,12 +4410,12 @@ pub const IUIAutomationPatternInstance = extern struct {
             index: u32,
             cached: BOOL,
             type: UIAutomationType,
-            pPtr: *c_void,
+            pPtr: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CallMethod: fn(
             self: *const IUIAutomationPatternInstance,
             index: u32,
-            pParams: *const UIAutomationParameter,
+            pParams: ?*const UIAutomationParameter,
             cParams: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4423,11 +4423,11 @@ pub const IUIAutomationPatternInstance = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPatternInstance_GetProperty(self: *const T, index: u32, cached: BOOL, type_: UIAutomationType, pPtr: *c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPatternInstance_GetProperty(self: *const T, index: u32, cached: BOOL, type_: UIAutomationType, pPtr: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPatternInstance.VTable, self.vtable).GetProperty(@ptrCast(*const IUIAutomationPatternInstance, self), index, cached, type_, pPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPatternInstance_CallMethod(self: *const T, index: u32, pParams: *const UIAutomationParameter, cParams: u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPatternInstance_CallMethod(self: *const T, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPatternInstance.VTable, self.vtable).CallMethod(@ptrCast(*const IUIAutomationPatternInstance, self), index, pParams, cParams);
         }
     };}
@@ -4442,14 +4442,14 @@ pub const IUIAutomationPatternHandler = extern struct {
         base: IUnknown.VTable,
         CreateClientWrapper: fn(
             self: *const IUIAutomationPatternHandler,
-            pPatternInstance: *IUIAutomationPatternInstance,
-            pClientWrapper: **IUnknown,
+            pPatternInstance: ?*IUIAutomationPatternInstance,
+            pClientWrapper: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Dispatch: fn(
             self: *const IUIAutomationPatternHandler,
-            pTarget: *IUnknown,
+            pTarget: ?*IUnknown,
             index: u32,
-            pParams: *const UIAutomationParameter,
+            pParams: ?*const UIAutomationParameter,
             cParams: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4457,11 +4457,11 @@ pub const IUIAutomationPatternHandler = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPatternHandler_CreateClientWrapper(self: *const T, pPatternInstance: *IUIAutomationPatternInstance, pClientWrapper: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPatternHandler_CreateClientWrapper(self: *const T, pPatternInstance: ?*IUIAutomationPatternInstance, pClientWrapper: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPatternHandler.VTable, self.vtable).CreateClientWrapper(@ptrCast(*const IUIAutomationPatternHandler, self), pPatternInstance, pClientWrapper);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPatternHandler_Dispatch(self: *const T, pTarget: *IUnknown, index: u32, pParams: *const UIAutomationParameter, cParams: u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPatternHandler_Dispatch(self: *const T, pTarget: ?*IUnknown, index: u32, pParams: ?*const UIAutomationParameter, cParams: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPatternHandler.VTable, self.vtable).Dispatch(@ptrCast(*const IUIAutomationPatternHandler, self), pTarget, index, pParams, cParams);
         }
     };}
@@ -4476,19 +4476,19 @@ pub const IUIAutomationRegistrar = extern struct {
         base: IUnknown.VTable,
         RegisterProperty: fn(
             self: *const IUIAutomationRegistrar,
-            property: *const UIAutomationPropertyInfo,
-            propertyId: *i32,
+            property: ?*const UIAutomationPropertyInfo,
+            propertyId: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterEvent: fn(
             self: *const IUIAutomationRegistrar,
-            event: *const UIAutomationEventInfo,
-            eventId: *i32,
+            event: ?*const UIAutomationEventInfo,
+            eventId: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterPattern: fn(
             self: *const IUIAutomationRegistrar,
-            pattern: *const UIAutomationPatternInfo,
-            pPatternId: *i32,
-            pPatternAvailablePropertyId: *i32,
+            pattern: ?*const UIAutomationPatternInfo,
+            pPatternId: ?*i32,
+            pPatternAvailablePropertyId: ?*i32,
             propertyIdCount: u32,
             pPropertyIds: [*]i32,
             eventIdCount: u32,
@@ -4499,15 +4499,15 @@ pub const IUIAutomationRegistrar = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRegistrar_RegisterProperty(self: *const T, property: *const UIAutomationPropertyInfo, propertyId: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRegistrar_RegisterProperty(self: *const T, property: ?*const UIAutomationPropertyInfo, propertyId: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRegistrar.VTable, self.vtable).RegisterProperty(@ptrCast(*const IUIAutomationRegistrar, self), property, propertyId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRegistrar_RegisterEvent(self: *const T, event: *const UIAutomationEventInfo, eventId: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRegistrar_RegisterEvent(self: *const T, event: ?*const UIAutomationEventInfo, eventId: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRegistrar.VTable, self.vtable).RegisterEvent(@ptrCast(*const IUIAutomationRegistrar, self), event, eventId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRegistrar_RegisterPattern(self: *const T, pattern: *const UIAutomationPatternInfo, pPatternId: *i32, pPatternAvailablePropertyId: *i32, propertyIdCount: u32, pPropertyIds: [*]i32, eventIdCount: u32, pEventIds: [*]i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRegistrar_RegisterPattern(self: *const T, pattern: ?*const UIAutomationPatternInfo, pPatternId: ?*i32, pPatternAvailablePropertyId: ?*i32, propertyIdCount: u32, pPropertyIds: [*]i32, eventIdCount: u32, pEventIds: [*]i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRegistrar.VTable, self.vtable).RegisterPattern(@ptrCast(*const IUIAutomationRegistrar, self), pattern, pPatternId, pPatternAvailablePropertyId, propertyIdCount, pPropertyIds, eventIdCount, pEventIds);
         }
     };}
@@ -4571,8 +4571,8 @@ pub const CoalesceEventsOptions_Disabled = CoalesceEventsOptions.Disabled;
 pub const CoalesceEventsOptions_Enabled = CoalesceEventsOptions.Enabled;
 
 pub const ExtendedProperty = extern struct {
-    PropertyName: BSTR,
-    PropertyValue: BSTR,
+    PropertyName: ?BSTR,
+    PropertyValue: ?BSTR,
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4586,415 +4586,415 @@ pub const IUIAutomationElement = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRuntimeId: fn(
             self: *const IUIAutomationElement,
-            runtimeId: **SAFEARRAY,
+            runtimeId: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindFirst: fn(
             self: *const IUIAutomationElement,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
-            found: **IUIAutomationElement,
+            condition: ?*IUIAutomationCondition,
+            found: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindAll: fn(
             self: *const IUIAutomationElement,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
-            found: **IUIAutomationElementArray,
+            condition: ?*IUIAutomationCondition,
+            found: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindFirstBuildCache: fn(
             self: *const IUIAutomationElement,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
-            cacheRequest: *IUIAutomationCacheRequest,
-            found: **IUIAutomationElement,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            found: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindAllBuildCache: fn(
             self: *const IUIAutomationElement,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
-            cacheRequest: *IUIAutomationCacheRequest,
-            found: **IUIAutomationElementArray,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            found: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BuildUpdatedCache: fn(
             self: *const IUIAutomationElement,
-            cacheRequest: *IUIAutomationCacheRequest,
-            updatedElement: **IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            updatedElement: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPropertyValue: fn(
             self: *const IUIAutomationElement,
             propertyId: i32,
-            retVal: *VARIANT,
+            retVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPropertyValueEx: fn(
             self: *const IUIAutomationElement,
             propertyId: i32,
             ignoreDefaultValue: BOOL,
-            retVal: *VARIANT,
+            retVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedPropertyValue: fn(
             self: *const IUIAutomationElement,
             propertyId: i32,
-            retVal: *VARIANT,
+            retVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedPropertyValueEx: fn(
             self: *const IUIAutomationElement,
             propertyId: i32,
             ignoreDefaultValue: BOOL,
-            retVal: *VARIANT,
+            retVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPatternAs: fn(
             self: *const IUIAutomationElement,
             patternId: i32,
-            riid: *const Guid,
-            patternObject: **c_void,
+            riid: ?*const Guid,
+            patternObject: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedPatternAs: fn(
             self: *const IUIAutomationElement,
             patternId: i32,
-            riid: *const Guid,
-            patternObject: **c_void,
+            riid: ?*const Guid,
+            patternObject: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPattern: fn(
             self: *const IUIAutomationElement,
             patternId: i32,
-            patternObject: **IUnknown,
+            patternObject: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedPattern: fn(
             self: *const IUIAutomationElement,
             patternId: i32,
-            patternObject: **IUnknown,
+            patternObject: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedParent: fn(
             self: *const IUIAutomationElement,
-            parent: **IUIAutomationElement,
+            parent: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedChildren: fn(
             self: *const IUIAutomationElement,
-            children: **IUIAutomationElementArray,
+            children: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentProcessId: fn(
             self: *const IUIAutomationElement,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentControlType: fn(
             self: *const IUIAutomationElement,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLocalizedControlType: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentName: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAcceleratorKey: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAccessKey: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHasKeyboardFocus: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsKeyboardFocusable: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsEnabled: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAutomationId: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentClassName: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHelpText: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCulture: fn(
             self: *const IUIAutomationElement,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsControlElement: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsContentElement: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsPassword: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentNativeWindowHandle: fn(
             self: *const IUIAutomationElement,
-            retVal: **c_void,
+            retVal: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentItemType: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsOffscreen: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentOrientation: fn(
             self: *const IUIAutomationElement,
-            retVal: *OrientationType,
+            retVal: ?*OrientationType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFrameworkId: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsRequiredForForm: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentItemStatus: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentBoundingRectangle: fn(
             self: *const IUIAutomationElement,
-            retVal: *RECT,
+            retVal: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLabeledBy: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAriaRole: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAriaProperties: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsDataValidForForm: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentControllerFor: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDescribedBy: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFlowsTo: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentProviderDescription: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedProcessId: fn(
             self: *const IUIAutomationElement,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedControlType: fn(
             self: *const IUIAutomationElement,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLocalizedControlType: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedName: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAcceleratorKey: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAccessKey: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHasKeyboardFocus: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsKeyboardFocusable: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsEnabled: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAutomationId: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedClassName: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHelpText: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCulture: fn(
             self: *const IUIAutomationElement,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsControlElement: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsContentElement: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsPassword: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedNativeWindowHandle: fn(
             self: *const IUIAutomationElement,
-            retVal: **c_void,
+            retVal: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedItemType: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsOffscreen: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedOrientation: fn(
             self: *const IUIAutomationElement,
-            retVal: *OrientationType,
+            retVal: ?*OrientationType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFrameworkId: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsRequiredForForm: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedItemStatus: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedBoundingRectangle: fn(
             self: *const IUIAutomationElement,
-            retVal: *RECT,
+            retVal: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLabeledBy: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAriaRole: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAriaProperties: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsDataValidForForm: fn(
             self: *const IUIAutomationElement,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedControllerFor: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDescribedBy: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFlowsTo: fn(
             self: *const IUIAutomationElement,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedProviderDescription: fn(
             self: *const IUIAutomationElement,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClickablePoint: fn(
             self: *const IUIAutomationElement,
-            clickable: *POINT,
-            gotClickable: *BOOL,
+            clickable: ?*POINT,
+            gotClickable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5005,327 +5005,327 @@ pub const IUIAutomationElement = extern struct {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).SetFocus(@ptrCast(*const IUIAutomationElement, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetRuntimeId(self: *const T, runtimeId: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetRuntimeId(self: *const T, runtimeId: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetRuntimeId(@ptrCast(*const IUIAutomationElement, self), runtimeId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_FindFirst(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, found: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_FindFirst(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).FindFirst(@ptrCast(*const IUIAutomationElement, self), scope, condition, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_FindAll(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, found: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_FindAll(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).FindAll(@ptrCast(*const IUIAutomationElement, self), scope, condition, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_FindFirstBuildCache(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, cacheRequest: *IUIAutomationCacheRequest, found: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_FindFirstBuildCache(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).FindFirstBuildCache(@ptrCast(*const IUIAutomationElement, self), scope, condition, cacheRequest, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_FindAllBuildCache(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, cacheRequest: *IUIAutomationCacheRequest, found: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_FindAllBuildCache(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).FindAllBuildCache(@ptrCast(*const IUIAutomationElement, self), scope, condition, cacheRequest, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_BuildUpdatedCache(self: *const T, cacheRequest: *IUIAutomationCacheRequest, updatedElement: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_BuildUpdatedCache(self: *const T, cacheRequest: ?*IUIAutomationCacheRequest, updatedElement: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).BuildUpdatedCache(@ptrCast(*const IUIAutomationElement, self), cacheRequest, updatedElement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCurrentPropertyValue(self: *const T, propertyId: i32, retVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCurrentPropertyValue(self: *const T, propertyId: i32, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCurrentPropertyValue(@ptrCast(*const IUIAutomationElement, self), propertyId, retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCurrentPropertyValueEx(self: *const T, propertyId: i32, ignoreDefaultValue: BOOL, retVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCurrentPropertyValueEx(self: *const T, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCurrentPropertyValueEx(@ptrCast(*const IUIAutomationElement, self), propertyId, ignoreDefaultValue, retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedPropertyValue(self: *const T, propertyId: i32, retVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedPropertyValue(self: *const T, propertyId: i32, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPropertyValue(@ptrCast(*const IUIAutomationElement, self), propertyId, retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedPropertyValueEx(self: *const T, propertyId: i32, ignoreDefaultValue: BOOL, retVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedPropertyValueEx(self: *const T, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPropertyValueEx(@ptrCast(*const IUIAutomationElement, self), propertyId, ignoreDefaultValue, retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCurrentPatternAs(self: *const T, patternId: i32, riid: *const Guid, patternObject: **c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCurrentPatternAs(self: *const T, patternId: i32, riid: ?*const Guid, patternObject: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCurrentPatternAs(@ptrCast(*const IUIAutomationElement, self), patternId, riid, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedPatternAs(self: *const T, patternId: i32, riid: *const Guid, patternObject: **c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedPatternAs(self: *const T, patternId: i32, riid: ?*const Guid, patternObject: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPatternAs(@ptrCast(*const IUIAutomationElement, self), patternId, riid, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCurrentPattern(self: *const T, patternId: i32, patternObject: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCurrentPattern(self: *const T, patternId: i32, patternObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCurrentPattern(@ptrCast(*const IUIAutomationElement, self), patternId, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedPattern(self: *const T, patternId: i32, patternObject: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedPattern(self: *const T, patternId: i32, patternObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPattern(@ptrCast(*const IUIAutomationElement, self), patternId, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedParent(self: *const T, parent: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedParent(self: *const T, parent: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedParent(@ptrCast(*const IUIAutomationElement, self), parent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedChildren(self: *const T, children: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedChildren(self: *const T, children: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedChildren(@ptrCast(*const IUIAutomationElement, self), children);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentProcessId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentProcessId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentProcessId(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentControlType(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentControlType(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentControlType(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentLocalizedControlType(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentLocalizedControlType(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentLocalizedControlType(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentName(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentAcceleratorKey(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentAcceleratorKey(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentAcceleratorKey(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentAccessKey(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentAccessKey(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentAccessKey(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentHasKeyboardFocus(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentHasKeyboardFocus(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentHasKeyboardFocus(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsKeyboardFocusable(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsKeyboardFocusable(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsKeyboardFocusable(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsEnabled(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsEnabled(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsEnabled(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentAutomationId(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentAutomationId(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentAutomationId(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentClassName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentClassName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentClassName(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentHelpText(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentHelpText(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentHelpText(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentCulture(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentCulture(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentCulture(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsControlElement(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsControlElement(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsControlElement(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsContentElement(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsContentElement(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsContentElement(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsPassword(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsPassword(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsPassword(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentNativeWindowHandle(self: *const T, retVal: **c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentNativeWindowHandle(self: *const T, retVal: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentNativeWindowHandle(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentItemType(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentItemType(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentItemType(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsOffscreen(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsOffscreen(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsOffscreen(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentOrientation(self: *const T, retVal: *OrientationType) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentOrientation(self: *const T, retVal: ?*OrientationType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentOrientation(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentFrameworkId(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentFrameworkId(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentFrameworkId(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsRequiredForForm(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsRequiredForForm(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsRequiredForForm(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentItemStatus(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentItemStatus(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentItemStatus(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentBoundingRectangle(self: *const T, retVal: *RECT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentBoundingRectangle(self: *const T, retVal: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentBoundingRectangle(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentLabeledBy(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentLabeledBy(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentLabeledBy(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentAriaRole(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentAriaRole(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentAriaRole(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentAriaProperties(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentAriaProperties(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentAriaProperties(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentIsDataValidForForm(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentIsDataValidForForm(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsDataValidForForm(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentControllerFor(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentControllerFor(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentControllerFor(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentDescribedBy(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentDescribedBy(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentDescribedBy(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentFlowsTo(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentFlowsTo(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentFlowsTo(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentProviderDescription(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentProviderDescription(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentProviderDescription(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedProcessId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedProcessId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedProcessId(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedControlType(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedControlType(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedControlType(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedLocalizedControlType(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedLocalizedControlType(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedLocalizedControlType(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedName(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedAcceleratorKey(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedAcceleratorKey(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedAcceleratorKey(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedAccessKey(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedAccessKey(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedAccessKey(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedHasKeyboardFocus(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedHasKeyboardFocus(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedHasKeyboardFocus(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsKeyboardFocusable(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsKeyboardFocusable(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsKeyboardFocusable(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsEnabled(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsEnabled(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsEnabled(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedAutomationId(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedAutomationId(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedAutomationId(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedClassName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedClassName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedClassName(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedHelpText(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedHelpText(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedHelpText(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedCulture(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedCulture(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedCulture(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsControlElement(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsControlElement(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsControlElement(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsContentElement(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsContentElement(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsContentElement(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsPassword(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsPassword(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsPassword(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedNativeWindowHandle(self: *const T, retVal: **c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedNativeWindowHandle(self: *const T, retVal: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedNativeWindowHandle(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedItemType(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedItemType(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedItemType(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsOffscreen(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsOffscreen(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsOffscreen(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedOrientation(self: *const T, retVal: *OrientationType) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedOrientation(self: *const T, retVal: ?*OrientationType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedOrientation(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedFrameworkId(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedFrameworkId(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedFrameworkId(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsRequiredForForm(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsRequiredForForm(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsRequiredForForm(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedItemStatus(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedItemStatus(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedItemStatus(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedBoundingRectangle(self: *const T, retVal: *RECT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedBoundingRectangle(self: *const T, retVal: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedBoundingRectangle(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedLabeledBy(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedLabeledBy(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedLabeledBy(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedAriaRole(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedAriaRole(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedAriaRole(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedAriaProperties(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedAriaProperties(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedAriaProperties(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedIsDataValidForForm(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedIsDataValidForForm(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsDataValidForForm(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedControllerFor(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedControllerFor(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedControllerFor(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedDescribedBy(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedDescribedBy(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedDescribedBy(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedFlowsTo(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedFlowsTo(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedFlowsTo(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedProviderDescription(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedProviderDescription(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedProviderDescription(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetClickablePoint(self: *const T, clickable: *POINT, gotClickable: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetClickablePoint(self: *const T, clickable: ?*POINT, gotClickable: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetClickablePoint(@ptrCast(*const IUIAutomationElement, self), clickable, gotClickable);
         }
     };}
@@ -5341,23 +5341,23 @@ pub const IUIAutomationElementArray = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: fn(
             self: *const IUIAutomationElementArray,
-            length: *i32,
+            length: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetElement: fn(
             self: *const IUIAutomationElementArray,
             index: i32,
-            element: **IUIAutomationElement,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElementArray_get_Length(self: *const T, length: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElementArray_get_Length(self: *const T, length: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElementArray.VTable, self.vtable).get_Length(@ptrCast(*const IUIAutomationElementArray, self), length);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElementArray_GetElement(self: *const T, index: i32, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElementArray_GetElement(self: *const T, index: i32, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElementArray.VTable, self.vtable).GetElement(@ptrCast(*const IUIAutomationElementArray, self), index, element);
         }
     };}
@@ -5387,14 +5387,14 @@ pub const IUIAutomationBoolCondition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BooleanValue: fn(
             self: *const IUIAutomationBoolCondition,
-            boolVal: *BOOL,
+            boolVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationCondition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationBoolCondition_get_BooleanValue(self: *const T, boolVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationBoolCondition_get_BooleanValue(self: *const T, boolVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationBoolCondition.VTable, self.vtable).get_BooleanValue(@ptrCast(*const IUIAutomationBoolCondition, self), boolVal);
         }
     };}
@@ -5410,32 +5410,32 @@ pub const IUIAutomationPropertyCondition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: fn(
             self: *const IUIAutomationPropertyCondition,
-            propertyId: *i32,
+            propertyId: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyValue: fn(
             self: *const IUIAutomationPropertyCondition,
-            propertyValue: *VARIANT,
+            propertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyConditionFlags: fn(
             self: *const IUIAutomationPropertyCondition,
-            flags: *PropertyConditionFlags,
+            flags: ?*PropertyConditionFlags,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationCondition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPropertyCondition_get_PropertyId(self: *const T, propertyId: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPropertyCondition_get_PropertyId(self: *const T, propertyId: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPropertyCondition.VTable, self.vtable).get_PropertyId(@ptrCast(*const IUIAutomationPropertyCondition, self), propertyId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPropertyCondition_get_PropertyValue(self: *const T, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPropertyCondition_get_PropertyValue(self: *const T, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPropertyCondition.VTable, self.vtable).get_PropertyValue(@ptrCast(*const IUIAutomationPropertyCondition, self), propertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPropertyCondition_get_PropertyConditionFlags(self: *const T, flags: *PropertyConditionFlags) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPropertyCondition_get_PropertyConditionFlags(self: *const T, flags: ?*PropertyConditionFlags) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPropertyCondition.VTable, self.vtable).get_PropertyConditionFlags(@ptrCast(*const IUIAutomationPropertyCondition, self), flags);
         }
     };}
@@ -5451,31 +5451,31 @@ pub const IUIAutomationAndCondition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChildCount: fn(
             self: *const IUIAutomationAndCondition,
-            childCount: *i32,
+            childCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildrenAsNativeArray: fn(
             self: *const IUIAutomationAndCondition,
-            childArray: [*]**IUIAutomationCondition,
-            childArrayCount: *i32,
+            childArray: [*]?*?*IUIAutomationCondition,
+            childArrayCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildren: fn(
             self: *const IUIAutomationAndCondition,
-            childArray: **SAFEARRAY,
+            childArray: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationCondition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAndCondition_get_ChildCount(self: *const T, childCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAndCondition_get_ChildCount(self: *const T, childCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAndCondition.VTable, self.vtable).get_ChildCount(@ptrCast(*const IUIAutomationAndCondition, self), childCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAndCondition_GetChildrenAsNativeArray(self: *const T, childArray: [*]**IUIAutomationCondition, childArrayCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAndCondition_GetChildrenAsNativeArray(self: *const T, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAndCondition.VTable, self.vtable).GetChildrenAsNativeArray(@ptrCast(*const IUIAutomationAndCondition, self), childArray, childArrayCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAndCondition_GetChildren(self: *const T, childArray: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAndCondition_GetChildren(self: *const T, childArray: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAndCondition.VTable, self.vtable).GetChildren(@ptrCast(*const IUIAutomationAndCondition, self), childArray);
         }
     };}
@@ -5491,31 +5491,31 @@ pub const IUIAutomationOrCondition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChildCount: fn(
             self: *const IUIAutomationOrCondition,
-            childCount: *i32,
+            childCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildrenAsNativeArray: fn(
             self: *const IUIAutomationOrCondition,
-            childArray: [*]**IUIAutomationCondition,
-            childArrayCount: *i32,
+            childArray: [*]?*?*IUIAutomationCondition,
+            childArrayCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildren: fn(
             self: *const IUIAutomationOrCondition,
-            childArray: **SAFEARRAY,
+            childArray: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationCondition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationOrCondition_get_ChildCount(self: *const T, childCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationOrCondition_get_ChildCount(self: *const T, childCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationOrCondition.VTable, self.vtable).get_ChildCount(@ptrCast(*const IUIAutomationOrCondition, self), childCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationOrCondition_GetChildrenAsNativeArray(self: *const T, childArray: [*]**IUIAutomationCondition, childArrayCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationOrCondition_GetChildrenAsNativeArray(self: *const T, childArray: [*]?*?*IUIAutomationCondition, childArrayCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationOrCondition.VTable, self.vtable).GetChildrenAsNativeArray(@ptrCast(*const IUIAutomationOrCondition, self), childArray, childArrayCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationOrCondition_GetChildren(self: *const T, childArray: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationOrCondition_GetChildren(self: *const T, childArray: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationOrCondition.VTable, self.vtable).GetChildren(@ptrCast(*const IUIAutomationOrCondition, self), childArray);
         }
     };}
@@ -5530,14 +5530,14 @@ pub const IUIAutomationNotCondition = extern struct {
         base: IUIAutomationCondition.VTable,
         GetChild: fn(
             self: *const IUIAutomationNotCondition,
-            condition: **IUIAutomationCondition,
+            condition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationCondition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationNotCondition_GetChild(self: *const T, condition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationNotCondition_GetChild(self: *const T, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationNotCondition.VTable, self.vtable).GetChild(@ptrCast(*const IUIAutomationNotCondition, self), condition);
         }
     };}
@@ -5560,12 +5560,12 @@ pub const IUIAutomationCacheRequest = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IUIAutomationCacheRequest,
-            clonedRequest: **IUIAutomationCacheRequest,
+            clonedRequest: ?*?*IUIAutomationCacheRequest,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TreeScope: fn(
             self: *const IUIAutomationCacheRequest,
-            scope: *TreeScope,
+            scope: ?*TreeScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TreeScope: fn(
@@ -5575,17 +5575,17 @@ pub const IUIAutomationCacheRequest = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TreeFilter: fn(
             self: *const IUIAutomationCacheRequest,
-            filter: **IUIAutomationCondition,
+            filter: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TreeFilter: fn(
             self: *const IUIAutomationCacheRequest,
-            filter: *IUIAutomationCondition,
+            filter: ?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutomationElementMode: fn(
             self: *const IUIAutomationCacheRequest,
-            mode: *AutomationElementMode,
+            mode: ?*AutomationElementMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutomationElementMode: fn(
@@ -5605,11 +5605,11 @@ pub const IUIAutomationCacheRequest = extern struct {
             return @ptrCast(*const IUIAutomationCacheRequest.VTable, self.vtable).AddPattern(@ptrCast(*const IUIAutomationCacheRequest, self), patternId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationCacheRequest_Clone(self: *const T, clonedRequest: **IUIAutomationCacheRequest) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationCacheRequest_Clone(self: *const T, clonedRequest: ?*?*IUIAutomationCacheRequest) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationCacheRequest.VTable, self.vtable).Clone(@ptrCast(*const IUIAutomationCacheRequest, self), clonedRequest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationCacheRequest_get_TreeScope(self: *const T, scope: *TreeScope) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationCacheRequest_get_TreeScope(self: *const T, scope: ?*TreeScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationCacheRequest.VTable, self.vtable).get_TreeScope(@ptrCast(*const IUIAutomationCacheRequest, self), scope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5617,15 +5617,15 @@ pub const IUIAutomationCacheRequest = extern struct {
             return @ptrCast(*const IUIAutomationCacheRequest.VTable, self.vtable).put_TreeScope(@ptrCast(*const IUIAutomationCacheRequest, self), scope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationCacheRequest_get_TreeFilter(self: *const T, filter: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationCacheRequest_get_TreeFilter(self: *const T, filter: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationCacheRequest.VTable, self.vtable).get_TreeFilter(@ptrCast(*const IUIAutomationCacheRequest, self), filter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationCacheRequest_put_TreeFilter(self: *const T, filter: *IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationCacheRequest_put_TreeFilter(self: *const T, filter: ?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationCacheRequest.VTable, self.vtable).put_TreeFilter(@ptrCast(*const IUIAutomationCacheRequest, self), filter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationCacheRequest_get_AutomationElementMode(self: *const T, mode: *AutomationElementMode) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationCacheRequest_get_AutomationElementMode(self: *const T, mode: ?*AutomationElementMode) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationCacheRequest.VTable, self.vtable).get_AutomationElementMode(@ptrCast(*const IUIAutomationCacheRequest, self), mode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5644,129 +5644,129 @@ pub const IUIAutomationTreeWalker = extern struct {
         base: IUnknown.VTable,
         GetParentElement: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            parent: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            parent: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFirstChildElement: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            first: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            first: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLastChildElement: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            last: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            last: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextSiblingElement: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            next: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            next: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreviousSiblingElement: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            previous: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            previous: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NormalizeElement: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            normalized: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            normalized: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParentElementBuildCache: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            cacheRequest: *IUIAutomationCacheRequest,
-            parent: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            parent: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFirstChildElementBuildCache: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            cacheRequest: *IUIAutomationCacheRequest,
-            first: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            first: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLastChildElementBuildCache: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            cacheRequest: *IUIAutomationCacheRequest,
-            last: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            last: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextSiblingElementBuildCache: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            cacheRequest: *IUIAutomationCacheRequest,
-            next: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            next: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreviousSiblingElementBuildCache: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            cacheRequest: *IUIAutomationCacheRequest,
-            previous: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            previous: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NormalizeElementBuildCache: fn(
             self: *const IUIAutomationTreeWalker,
-            element: *IUIAutomationElement,
-            cacheRequest: *IUIAutomationCacheRequest,
-            normalized: **IUIAutomationElement,
+            element: ?*IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            normalized: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Condition: fn(
             self: *const IUIAutomationTreeWalker,
-            condition: **IUIAutomationCondition,
+            condition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetParentElement(self: *const T, element: *IUIAutomationElement, parent: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetParentElement(self: *const T, element: ?*IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetParentElement(@ptrCast(*const IUIAutomationTreeWalker, self), element, parent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetFirstChildElement(self: *const T, element: *IUIAutomationElement, first: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetFirstChildElement(self: *const T, element: ?*IUIAutomationElement, first: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetFirstChildElement(@ptrCast(*const IUIAutomationTreeWalker, self), element, first);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetLastChildElement(self: *const T, element: *IUIAutomationElement, last: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetLastChildElement(self: *const T, element: ?*IUIAutomationElement, last: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetLastChildElement(@ptrCast(*const IUIAutomationTreeWalker, self), element, last);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetNextSiblingElement(self: *const T, element: *IUIAutomationElement, next: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetNextSiblingElement(self: *const T, element: ?*IUIAutomationElement, next: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetNextSiblingElement(@ptrCast(*const IUIAutomationTreeWalker, self), element, next);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetPreviousSiblingElement(self: *const T, element: *IUIAutomationElement, previous: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetPreviousSiblingElement(self: *const T, element: ?*IUIAutomationElement, previous: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetPreviousSiblingElement(@ptrCast(*const IUIAutomationTreeWalker, self), element, previous);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_NormalizeElement(self: *const T, element: *IUIAutomationElement, normalized: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_NormalizeElement(self: *const T, element: ?*IUIAutomationElement, normalized: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).NormalizeElement(@ptrCast(*const IUIAutomationTreeWalker, self), element, normalized);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetParentElementBuildCache(self: *const T, element: *IUIAutomationElement, cacheRequest: *IUIAutomationCacheRequest, parent: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetParentElementBuildCache(self: *const T, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, parent: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetParentElementBuildCache(@ptrCast(*const IUIAutomationTreeWalker, self), element, cacheRequest, parent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetFirstChildElementBuildCache(self: *const T, element: *IUIAutomationElement, cacheRequest: *IUIAutomationCacheRequest, first: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetFirstChildElementBuildCache(self: *const T, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, first: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetFirstChildElementBuildCache(@ptrCast(*const IUIAutomationTreeWalker, self), element, cacheRequest, first);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetLastChildElementBuildCache(self: *const T, element: *IUIAutomationElement, cacheRequest: *IUIAutomationCacheRequest, last: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetLastChildElementBuildCache(self: *const T, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, last: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetLastChildElementBuildCache(@ptrCast(*const IUIAutomationTreeWalker, self), element, cacheRequest, last);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetNextSiblingElementBuildCache(self: *const T, element: *IUIAutomationElement, cacheRequest: *IUIAutomationCacheRequest, next: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetNextSiblingElementBuildCache(self: *const T, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, next: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetNextSiblingElementBuildCache(@ptrCast(*const IUIAutomationTreeWalker, self), element, cacheRequest, next);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_GetPreviousSiblingElementBuildCache(self: *const T, element: *IUIAutomationElement, cacheRequest: *IUIAutomationCacheRequest, previous: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_GetPreviousSiblingElementBuildCache(self: *const T, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, previous: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).GetPreviousSiblingElementBuildCache(@ptrCast(*const IUIAutomationTreeWalker, self), element, cacheRequest, previous);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_NormalizeElementBuildCache(self: *const T, element: *IUIAutomationElement, cacheRequest: *IUIAutomationCacheRequest, normalized: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_NormalizeElementBuildCache(self: *const T, element: ?*IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, normalized: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).NormalizeElementBuildCache(@ptrCast(*const IUIAutomationTreeWalker, self), element, cacheRequest, normalized);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTreeWalker_get_Condition(self: *const T, condition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTreeWalker_get_Condition(self: *const T, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTreeWalker.VTable, self.vtable).get_Condition(@ptrCast(*const IUIAutomationTreeWalker, self), condition);
         }
     };}
@@ -5781,7 +5781,7 @@ pub const IUIAutomationEventHandler = extern struct {
         base: IUnknown.VTable,
         HandleAutomationEvent: fn(
             self: *const IUIAutomationEventHandler,
-            sender: *IUIAutomationElement,
+            sender: ?*IUIAutomationElement,
             eventId: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -5789,7 +5789,7 @@ pub const IUIAutomationEventHandler = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandler_HandleAutomationEvent(self: *const T, sender: *IUIAutomationElement, eventId: i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandler_HandleAutomationEvent(self: *const T, sender: ?*IUIAutomationElement, eventId: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandler.VTable, self.vtable).HandleAutomationEvent(@ptrCast(*const IUIAutomationEventHandler, self), sender, eventId);
         }
     };}
@@ -5804,7 +5804,7 @@ pub const IUIAutomationPropertyChangedEventHandler = extern struct {
         base: IUnknown.VTable,
         HandlePropertyChangedEvent: fn(
             self: *const IUIAutomationPropertyChangedEventHandler,
-            sender: *IUIAutomationElement,
+            sender: ?*IUIAutomationElement,
             propertyId: i32,
             newValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5813,7 +5813,7 @@ pub const IUIAutomationPropertyChangedEventHandler = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPropertyChangedEventHandler_HandlePropertyChangedEvent(self: *const T, sender: *IUIAutomationElement, propertyId: i32, newValue: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPropertyChangedEventHandler_HandlePropertyChangedEvent(self: *const T, sender: ?*IUIAutomationElement, propertyId: i32, newValue: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPropertyChangedEventHandler.VTable, self.vtable).HandlePropertyChangedEvent(@ptrCast(*const IUIAutomationPropertyChangedEventHandler, self), sender, propertyId, newValue);
         }
     };}
@@ -5828,16 +5828,16 @@ pub const IUIAutomationStructureChangedEventHandler = extern struct {
         base: IUnknown.VTable,
         HandleStructureChangedEvent: fn(
             self: *const IUIAutomationStructureChangedEventHandler,
-            sender: *IUIAutomationElement,
+            sender: ?*IUIAutomationElement,
             changeType: StructureChangeType,
-            runtimeId: *SAFEARRAY,
+            runtimeId: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStructureChangedEventHandler_HandleStructureChangedEvent(self: *const T, sender: *IUIAutomationElement, changeType: StructureChangeType, runtimeId: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStructureChangedEventHandler_HandleStructureChangedEvent(self: *const T, sender: ?*IUIAutomationElement, changeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStructureChangedEventHandler.VTable, self.vtable).HandleStructureChangedEvent(@ptrCast(*const IUIAutomationStructureChangedEventHandler, self), sender, changeType, runtimeId);
         }
     };}
@@ -5852,14 +5852,14 @@ pub const IUIAutomationFocusChangedEventHandler = extern struct {
         base: IUnknown.VTable,
         HandleFocusChangedEvent: fn(
             self: *const IUIAutomationFocusChangedEventHandler,
-            sender: *IUIAutomationElement,
+            sender: ?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationFocusChangedEventHandler_HandleFocusChangedEvent(self: *const T, sender: *IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationFocusChangedEventHandler_HandleFocusChangedEvent(self: *const T, sender: ?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationFocusChangedEventHandler.VTable, self.vtable).HandleFocusChangedEvent(@ptrCast(*const IUIAutomationFocusChangedEventHandler, self), sender);
         }
     };}
@@ -5874,16 +5874,16 @@ pub const IUIAutomationTextEditTextChangedEventHandler = extern struct {
         base: IUnknown.VTable,
         HandleTextEditTextChangedEvent: fn(
             self: *const IUIAutomationTextEditTextChangedEventHandler,
-            sender: *IUIAutomationElement,
+            sender: ?*IUIAutomationElement,
             textEditChangeType: TextEditChangeType,
-            eventStrings: *SAFEARRAY,
+            eventStrings: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextEditTextChangedEventHandler_HandleTextEditTextChangedEvent(self: *const T, sender: *IUIAutomationElement, textEditChangeType: TextEditChangeType, eventStrings: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextEditTextChangedEventHandler_HandleTextEditTextChangedEvent(self: *const T, sender: ?*IUIAutomationElement, textEditChangeType: TextEditChangeType, eventStrings: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextEditTextChangedEventHandler.VTable, self.vtable).HandleTextEditTextChangedEvent(@ptrCast(*const IUIAutomationTextEditTextChangedEventHandler, self), sender, textEditChangeType, eventStrings);
         }
     };}
@@ -5898,7 +5898,7 @@ pub const IUIAutomationChangesEventHandler = extern struct {
         base: IUnknown.VTable,
         HandleChangesEvent: fn(
             self: *const IUIAutomationChangesEventHandler,
-            sender: *IUIAutomationElement,
+            sender: ?*IUIAutomationElement,
             uiaChanges: [*]UiaChangeInfo,
             changesCount: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5907,7 +5907,7 @@ pub const IUIAutomationChangesEventHandler = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationChangesEventHandler_HandleChangesEvent(self: *const T, sender: *IUIAutomationElement, uiaChanges: [*]UiaChangeInfo, changesCount: i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationChangesEventHandler_HandleChangesEvent(self: *const T, sender: ?*IUIAutomationElement, uiaChanges: [*]UiaChangeInfo, changesCount: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationChangesEventHandler.VTable, self.vtable).HandleChangesEvent(@ptrCast(*const IUIAutomationChangesEventHandler, self), sender, uiaChanges, changesCount);
         }
     };}
@@ -5922,18 +5922,18 @@ pub const IUIAutomationNotificationEventHandler = extern struct {
         base: IUnknown.VTable,
         HandleNotificationEvent: fn(
             self: *const IUIAutomationNotificationEventHandler,
-            sender: *IUIAutomationElement,
+            sender: ?*IUIAutomationElement,
             notificationKind: NotificationKind,
             notificationProcessing: NotificationProcessing,
-            displayString: BSTR,
-            activityId: BSTR,
+            displayString: ?BSTR,
+            activityId: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationNotificationEventHandler_HandleNotificationEvent(self: *const T, sender: *IUIAutomationElement, notificationKind: NotificationKind, notificationProcessing: NotificationProcessing, displayString: BSTR, activityId: BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationNotificationEventHandler_HandleNotificationEvent(self: *const T, sender: ?*IUIAutomationElement, notificationKind: NotificationKind, notificationProcessing: NotificationProcessing, displayString: ?BSTR, activityId: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationNotificationEventHandler.VTable, self.vtable).HandleNotificationEvent(@ptrCast(*const IUIAutomationNotificationEventHandler, self), sender, notificationKind, notificationProcessing, displayString, activityId);
         }
     };}
@@ -5974,12 +5974,12 @@ pub const IUIAutomationDockPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDockPosition: fn(
             self: *const IUIAutomationDockPattern,
-            retVal: *DockPosition,
+            retVal: ?*DockPosition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDockPosition: fn(
             self: *const IUIAutomationDockPattern,
-            retVal: *DockPosition,
+            retVal: ?*DockPosition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5990,11 +5990,11 @@ pub const IUIAutomationDockPattern = extern struct {
             return @ptrCast(*const IUIAutomationDockPattern.VTable, self.vtable).SetDockPosition(@ptrCast(*const IUIAutomationDockPattern, self), dockPos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDockPattern_get_CurrentDockPosition(self: *const T, retVal: *DockPosition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDockPattern_get_CurrentDockPosition(self: *const T, retVal: ?*DockPosition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDockPattern.VTable, self.vtable).get_CurrentDockPosition(@ptrCast(*const IUIAutomationDockPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDockPattern_get_CachedDockPosition(self: *const T, retVal: *DockPosition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDockPattern_get_CachedDockPosition(self: *const T, retVal: ?*DockPosition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDockPattern.VTable, self.vtable).get_CachedDockPosition(@ptrCast(*const IUIAutomationDockPattern, self), retVal);
         }
     };}
@@ -6016,12 +6016,12 @@ pub const IUIAutomationExpandCollapsePattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentExpandCollapseState: fn(
             self: *const IUIAutomationExpandCollapsePattern,
-            retVal: *ExpandCollapseState,
+            retVal: ?*ExpandCollapseState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedExpandCollapseState: fn(
             self: *const IUIAutomationExpandCollapsePattern,
-            retVal: *ExpandCollapseState,
+            retVal: ?*ExpandCollapseState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6036,11 +6036,11 @@ pub const IUIAutomationExpandCollapsePattern = extern struct {
             return @ptrCast(*const IUIAutomationExpandCollapsePattern.VTable, self.vtable).Collapse(@ptrCast(*const IUIAutomationExpandCollapsePattern, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationExpandCollapsePattern_get_CurrentExpandCollapseState(self: *const T, retVal: *ExpandCollapseState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationExpandCollapsePattern_get_CurrentExpandCollapseState(self: *const T, retVal: ?*ExpandCollapseState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationExpandCollapsePattern.VTable, self.vtable).get_CurrentExpandCollapseState(@ptrCast(*const IUIAutomationExpandCollapsePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationExpandCollapsePattern_get_CachedExpandCollapseState(self: *const T, retVal: *ExpandCollapseState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationExpandCollapsePattern_get_CachedExpandCollapseState(self: *const T, retVal: ?*ExpandCollapseState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationExpandCollapsePattern.VTable, self.vtable).get_CachedExpandCollapseState(@ptrCast(*const IUIAutomationExpandCollapsePattern, self), retVal);
         }
     };}
@@ -6057,50 +6057,50 @@ pub const IUIAutomationGridPattern = extern struct {
             self: *const IUIAutomationGridPattern,
             row: i32,
             column: i32,
-            element: **IUIAutomationElement,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRowCount: fn(
             self: *const IUIAutomationGridPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentColumnCount: fn(
             self: *const IUIAutomationGridPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRowCount: fn(
             self: *const IUIAutomationGridPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedColumnCount: fn(
             self: *const IUIAutomationGridPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridPattern_GetItem(self: *const T, row: i32, column: i32, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridPattern_GetItem(self: *const T, row: i32, column: i32, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridPattern.VTable, self.vtable).GetItem(@ptrCast(*const IUIAutomationGridPattern, self), row, column, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridPattern_get_CurrentRowCount(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridPattern_get_CurrentRowCount(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridPattern.VTable, self.vtable).get_CurrentRowCount(@ptrCast(*const IUIAutomationGridPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridPattern_get_CurrentColumnCount(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridPattern_get_CurrentColumnCount(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridPattern.VTable, self.vtable).get_CurrentColumnCount(@ptrCast(*const IUIAutomationGridPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridPattern_get_CachedRowCount(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridPattern_get_CachedRowCount(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridPattern.VTable, self.vtable).get_CachedRowCount(@ptrCast(*const IUIAutomationGridPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridPattern_get_CachedColumnCount(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridPattern_get_CachedColumnCount(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridPattern.VTable, self.vtable).get_CachedColumnCount(@ptrCast(*const IUIAutomationGridPattern, self), retVal);
         }
     };}
@@ -6116,95 +6116,95 @@ pub const IUIAutomationGridItemPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentContainingGrid: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRow: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentColumn: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRowSpan: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentColumnSpan: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedContainingGrid: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRow: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedColumn: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRowSpan: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedColumnSpan: fn(
             self: *const IUIAutomationGridItemPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CurrentContainingGrid(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CurrentContainingGrid(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CurrentContainingGrid(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CurrentRow(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CurrentRow(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CurrentRow(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CurrentColumn(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CurrentColumn(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CurrentColumn(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CurrentRowSpan(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CurrentRowSpan(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CurrentRowSpan(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CurrentColumnSpan(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CurrentColumnSpan(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CurrentColumnSpan(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CachedContainingGrid(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CachedContainingGrid(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CachedContainingGrid(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CachedRow(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CachedRow(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CachedRow(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CachedColumn(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CachedColumn(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CachedColumn(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CachedRowSpan(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CachedRowSpan(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CachedRowSpan(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationGridItemPattern_get_CachedColumnSpan(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationGridItemPattern_get_CachedColumnSpan(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationGridItemPattern.VTable, self.vtable).get_CachedColumnSpan(@ptrCast(*const IUIAutomationGridItemPattern, self), retVal);
         }
     };}
@@ -6220,7 +6220,7 @@ pub const IUIAutomationMultipleViewPattern = extern struct {
         GetViewName: fn(
             self: *const IUIAutomationMultipleViewPattern,
             view: i32,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCurrentView: fn(
             self: *const IUIAutomationMultipleViewPattern,
@@ -6229,27 +6229,27 @@ pub const IUIAutomationMultipleViewPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCurrentView: fn(
             self: *const IUIAutomationMultipleViewPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentSupportedViews: fn(
             self: *const IUIAutomationMultipleViewPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCurrentView: fn(
             self: *const IUIAutomationMultipleViewPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedSupportedViews: fn(
             self: *const IUIAutomationMultipleViewPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationMultipleViewPattern_GetViewName(self: *const T, view: i32, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationMultipleViewPattern_GetViewName(self: *const T, view: i32, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationMultipleViewPattern.VTable, self.vtable).GetViewName(@ptrCast(*const IUIAutomationMultipleViewPattern, self), view, name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6257,19 +6257,19 @@ pub const IUIAutomationMultipleViewPattern = extern struct {
             return @ptrCast(*const IUIAutomationMultipleViewPattern.VTable, self.vtable).SetCurrentView(@ptrCast(*const IUIAutomationMultipleViewPattern, self), view);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationMultipleViewPattern_get_CurrentCurrentView(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationMultipleViewPattern_get_CurrentCurrentView(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationMultipleViewPattern.VTable, self.vtable).get_CurrentCurrentView(@ptrCast(*const IUIAutomationMultipleViewPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationMultipleViewPattern_GetCurrentSupportedViews(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationMultipleViewPattern_GetCurrentSupportedViews(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationMultipleViewPattern.VTable, self.vtable).GetCurrentSupportedViews(@ptrCast(*const IUIAutomationMultipleViewPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationMultipleViewPattern_get_CachedCurrentView(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationMultipleViewPattern_get_CachedCurrentView(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationMultipleViewPattern.VTable, self.vtable).get_CachedCurrentView(@ptrCast(*const IUIAutomationMultipleViewPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationMultipleViewPattern_GetCachedSupportedViews(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationMultipleViewPattern_GetCachedSupportedViews(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationMultipleViewPattern.VTable, self.vtable).GetCachedSupportedViews(@ptrCast(*const IUIAutomationMultipleViewPattern, self), retVal);
         }
     };}
@@ -6284,14 +6284,14 @@ pub const IUIAutomationObjectModelPattern = extern struct {
         base: IUnknown.VTable,
         GetUnderlyingObjectModel: fn(
             self: *const IUIAutomationObjectModelPattern,
-            retVal: **IUnknown,
+            retVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationObjectModelPattern_GetUnderlyingObjectModel(self: *const T, retVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationObjectModelPattern_GetUnderlyingObjectModel(self: *const T, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationObjectModelPattern.VTable, self.vtable).GetUnderlyingObjectModel(@ptrCast(*const IUIAutomationObjectModelPattern, self), retVal);
         }
     };}
@@ -6311,62 +6311,62 @@ pub const IUIAutomationRangeValuePattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentValue: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsReadOnly: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentMaximum: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentMinimum: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLargeChange: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSmallChange: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedValue: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsReadOnly: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedMaximum: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedMinimum: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLargeChange: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedSmallChange: fn(
             self: *const IUIAutomationRangeValuePattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6377,51 +6377,51 @@ pub const IUIAutomationRangeValuePattern = extern struct {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).SetValue(@ptrCast(*const IUIAutomationRangeValuePattern, self), val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CurrentValue(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CurrentValue(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CurrentValue(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CurrentIsReadOnly(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CurrentIsReadOnly(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CurrentIsReadOnly(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CurrentMaximum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CurrentMaximum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CurrentMaximum(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CurrentMinimum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CurrentMinimum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CurrentMinimum(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CurrentLargeChange(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CurrentLargeChange(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CurrentLargeChange(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CurrentSmallChange(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CurrentSmallChange(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CurrentSmallChange(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CachedValue(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CachedValue(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CachedValue(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CachedIsReadOnly(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CachedIsReadOnly(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CachedIsReadOnly(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CachedMaximum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CachedMaximum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CachedMaximum(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CachedMinimum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CachedMinimum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CachedMinimum(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CachedLargeChange(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CachedLargeChange(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CachedLargeChange(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationRangeValuePattern_get_CachedSmallChange(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationRangeValuePattern_get_CachedSmallChange(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationRangeValuePattern.VTable, self.vtable).get_CachedSmallChange(@ptrCast(*const IUIAutomationRangeValuePattern, self), retVal);
         }
     };}
@@ -6447,62 +6447,62 @@ pub const IUIAutomationScrollPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHorizontalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentVerticalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHorizontalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentVerticalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHorizontallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentVerticallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHorizontalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedVerticalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHorizontalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedVerticalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHorizontallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedVerticallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6517,51 +6517,51 @@ pub const IUIAutomationScrollPattern = extern struct {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).SetScrollPercent(@ptrCast(*const IUIAutomationScrollPattern, self), horizontalPercent, verticalPercent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CurrentHorizontalScrollPercent(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CurrentHorizontalScrollPercent(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CurrentHorizontalScrollPercent(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CurrentVerticalScrollPercent(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CurrentVerticalScrollPercent(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CurrentVerticalScrollPercent(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CurrentHorizontalViewSize(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CurrentHorizontalViewSize(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CurrentHorizontalViewSize(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CurrentVerticalViewSize(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CurrentVerticalViewSize(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CurrentVerticalViewSize(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CurrentHorizontallyScrollable(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CurrentHorizontallyScrollable(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CurrentHorizontallyScrollable(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CurrentVerticallyScrollable(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CurrentVerticallyScrollable(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CurrentVerticallyScrollable(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CachedHorizontalScrollPercent(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CachedHorizontalScrollPercent(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CachedHorizontalScrollPercent(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CachedVerticalScrollPercent(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CachedVerticalScrollPercent(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CachedVerticalScrollPercent(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CachedHorizontalViewSize(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CachedHorizontalViewSize(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CachedHorizontalViewSize(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CachedVerticalViewSize(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CachedVerticalViewSize(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CachedVerticalViewSize(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CachedHorizontallyScrollable(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CachedHorizontallyScrollable(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CachedHorizontallyScrollable(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationScrollPattern_get_CachedVerticallyScrollable(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationScrollPattern_get_CachedVerticallyScrollable(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationScrollPattern.VTable, self.vtable).get_CachedVerticallyScrollable(@ptrCast(*const IUIAutomationScrollPattern, self), retVal);
         }
     };}
@@ -6597,58 +6597,58 @@ pub const IUIAutomationSelectionPattern = extern struct {
         base: IUnknown.VTable,
         GetCurrentSelection: fn(
             self: *const IUIAutomationSelectionPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanSelectMultiple: fn(
             self: *const IUIAutomationSelectionPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsSelectionRequired: fn(
             self: *const IUIAutomationSelectionPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedSelection: fn(
             self: *const IUIAutomationSelectionPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanSelectMultiple: fn(
             self: *const IUIAutomationSelectionPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsSelectionRequired: fn(
             self: *const IUIAutomationSelectionPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern_GetCurrentSelection(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern_GetCurrentSelection(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern.VTable, self.vtable).GetCurrentSelection(@ptrCast(*const IUIAutomationSelectionPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern_get_CurrentCanSelectMultiple(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern_get_CurrentCanSelectMultiple(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern.VTable, self.vtable).get_CurrentCanSelectMultiple(@ptrCast(*const IUIAutomationSelectionPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern_get_CurrentIsSelectionRequired(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern_get_CurrentIsSelectionRequired(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern.VTable, self.vtable).get_CurrentIsSelectionRequired(@ptrCast(*const IUIAutomationSelectionPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern_GetCachedSelection(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern_GetCachedSelection(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern.VTable, self.vtable).GetCachedSelection(@ptrCast(*const IUIAutomationSelectionPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern_get_CachedCanSelectMultiple(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern_get_CachedCanSelectMultiple(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern.VTable, self.vtable).get_CachedCanSelectMultiple(@ptrCast(*const IUIAutomationSelectionPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern_get_CachedIsSelectionRequired(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern_get_CachedIsSelectionRequired(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern.VTable, self.vtable).get_CachedIsSelectionRequired(@ptrCast(*const IUIAutomationSelectionPattern, self), retVal);
         }
     };}
@@ -6664,77 +6664,77 @@ pub const IUIAutomationSelectionPattern2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFirstSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLastSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCurrentSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentItemCount: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFirstSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLastSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCurrentSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedItemCount: fn(
             self: *const IUIAutomationSelectionPattern2,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationSelectionPattern.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CurrentFirstSelectedItem(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CurrentFirstSelectedItem(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CurrentFirstSelectedItem(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CurrentLastSelectedItem(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CurrentLastSelectedItem(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CurrentLastSelectedItem(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CurrentCurrentSelectedItem(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CurrentCurrentSelectedItem(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CurrentCurrentSelectedItem(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CurrentItemCount(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CurrentItemCount(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CurrentItemCount(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CachedFirstSelectedItem(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CachedFirstSelectedItem(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CachedFirstSelectedItem(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CachedLastSelectedItem(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CachedLastSelectedItem(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CachedLastSelectedItem(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CachedCurrentSelectedItem(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CachedCurrentSelectedItem(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CachedCurrentSelectedItem(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionPattern2_get_CachedItemCount(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionPattern2_get_CachedItemCount(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionPattern2.VTable, self.vtable).get_CachedItemCount(@ptrCast(*const IUIAutomationSelectionPattern2, self), retVal);
         }
     };}
@@ -6759,22 +6759,22 @@ pub const IUIAutomationSelectionItemPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsSelected: fn(
             self: *const IUIAutomationSelectionItemPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSelectionContainer: fn(
             self: *const IUIAutomationSelectionItemPattern,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsSelected: fn(
             self: *const IUIAutomationSelectionItemPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedSelectionContainer: fn(
             self: *const IUIAutomationSelectionItemPattern,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6793,19 +6793,19 @@ pub const IUIAutomationSelectionItemPattern = extern struct {
             return @ptrCast(*const IUIAutomationSelectionItemPattern.VTable, self.vtable).RemoveFromSelection(@ptrCast(*const IUIAutomationSelectionItemPattern, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionItemPattern_get_CurrentIsSelected(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionItemPattern_get_CurrentIsSelected(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionItemPattern.VTable, self.vtable).get_CurrentIsSelected(@ptrCast(*const IUIAutomationSelectionItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionItemPattern_get_CurrentSelectionContainer(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionItemPattern_get_CurrentSelectionContainer(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionItemPattern.VTable, self.vtable).get_CurrentSelectionContainer(@ptrCast(*const IUIAutomationSelectionItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionItemPattern_get_CachedIsSelected(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionItemPattern_get_CachedIsSelected(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionItemPattern.VTable, self.vtable).get_CachedIsSelected(@ptrCast(*const IUIAutomationSelectionItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSelectionItemPattern_get_CachedSelectionContainer(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSelectionItemPattern_get_CachedSelectionContainer(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSelectionItemPattern.VTable, self.vtable).get_CachedSelectionContainer(@ptrCast(*const IUIAutomationSelectionItemPattern, self), retVal);
         }
     };}
@@ -6849,56 +6849,56 @@ pub const IUIAutomationTablePattern = extern struct {
         base: IUnknown.VTable,
         GetCurrentRowHeaders: fn(
             self: *const IUIAutomationTablePattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentColumnHeaders: fn(
             self: *const IUIAutomationTablePattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRowOrColumnMajor: fn(
             self: *const IUIAutomationTablePattern,
-            retVal: *RowOrColumnMajor,
+            retVal: ?*RowOrColumnMajor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedRowHeaders: fn(
             self: *const IUIAutomationTablePattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedColumnHeaders: fn(
             self: *const IUIAutomationTablePattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRowOrColumnMajor: fn(
             self: *const IUIAutomationTablePattern,
-            retVal: *RowOrColumnMajor,
+            retVal: ?*RowOrColumnMajor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTablePattern_GetCurrentRowHeaders(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTablePattern_GetCurrentRowHeaders(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTablePattern.VTable, self.vtable).GetCurrentRowHeaders(@ptrCast(*const IUIAutomationTablePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTablePattern_GetCurrentColumnHeaders(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTablePattern_GetCurrentColumnHeaders(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTablePattern.VTable, self.vtable).GetCurrentColumnHeaders(@ptrCast(*const IUIAutomationTablePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTablePattern_get_CurrentRowOrColumnMajor(self: *const T, retVal: *RowOrColumnMajor) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTablePattern_get_CurrentRowOrColumnMajor(self: *const T, retVal: ?*RowOrColumnMajor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTablePattern.VTable, self.vtable).get_CurrentRowOrColumnMajor(@ptrCast(*const IUIAutomationTablePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTablePattern_GetCachedRowHeaders(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTablePattern_GetCachedRowHeaders(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTablePattern.VTable, self.vtable).GetCachedRowHeaders(@ptrCast(*const IUIAutomationTablePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTablePattern_GetCachedColumnHeaders(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTablePattern_GetCachedColumnHeaders(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTablePattern.VTable, self.vtable).GetCachedColumnHeaders(@ptrCast(*const IUIAutomationTablePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTablePattern_get_CachedRowOrColumnMajor(self: *const T, retVal: *RowOrColumnMajor) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTablePattern_get_CachedRowOrColumnMajor(self: *const T, retVal: ?*RowOrColumnMajor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTablePattern.VTable, self.vtable).get_CachedRowOrColumnMajor(@ptrCast(*const IUIAutomationTablePattern, self), retVal);
         }
     };}
@@ -6913,38 +6913,38 @@ pub const IUIAutomationTableItemPattern = extern struct {
         base: IUnknown.VTable,
         GetCurrentRowHeaderItems: fn(
             self: *const IUIAutomationTableItemPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentColumnHeaderItems: fn(
             self: *const IUIAutomationTableItemPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedRowHeaderItems: fn(
             self: *const IUIAutomationTableItemPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedColumnHeaderItems: fn(
             self: *const IUIAutomationTableItemPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTableItemPattern_GetCurrentRowHeaderItems(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTableItemPattern_GetCurrentRowHeaderItems(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTableItemPattern.VTable, self.vtable).GetCurrentRowHeaderItems(@ptrCast(*const IUIAutomationTableItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTableItemPattern_GetCurrentColumnHeaderItems(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTableItemPattern_GetCurrentColumnHeaderItems(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTableItemPattern.VTable, self.vtable).GetCurrentColumnHeaderItems(@ptrCast(*const IUIAutomationTableItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTableItemPattern_GetCachedRowHeaderItems(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTableItemPattern_GetCachedRowHeaderItems(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTableItemPattern.VTable, self.vtable).GetCachedRowHeaderItems(@ptrCast(*const IUIAutomationTableItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTableItemPattern_GetCachedColumnHeaderItems(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTableItemPattern_GetCachedColumnHeaderItems(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTableItemPattern.VTable, self.vtable).GetCachedColumnHeaderItems(@ptrCast(*const IUIAutomationTableItemPattern, self), retVal);
         }
     };}
@@ -6963,12 +6963,12 @@ pub const IUIAutomationTogglePattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentToggleState: fn(
             self: *const IUIAutomationTogglePattern,
-            retVal: *ToggleState,
+            retVal: ?*ToggleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedToggleState: fn(
             self: *const IUIAutomationTogglePattern,
-            retVal: *ToggleState,
+            retVal: ?*ToggleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6979,11 +6979,11 @@ pub const IUIAutomationTogglePattern = extern struct {
             return @ptrCast(*const IUIAutomationTogglePattern.VTable, self.vtable).Toggle(@ptrCast(*const IUIAutomationTogglePattern, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTogglePattern_get_CurrentToggleState(self: *const T, retVal: *ToggleState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTogglePattern_get_CurrentToggleState(self: *const T, retVal: ?*ToggleState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTogglePattern.VTable, self.vtable).get_CurrentToggleState(@ptrCast(*const IUIAutomationTogglePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTogglePattern_get_CachedToggleState(self: *const T, retVal: *ToggleState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTogglePattern_get_CachedToggleState(self: *const T, retVal: ?*ToggleState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTogglePattern.VTable, self.vtable).get_CachedToggleState(@ptrCast(*const IUIAutomationTogglePattern, self), retVal);
         }
     };}
@@ -7013,32 +7013,32 @@ pub const IUIAutomationTransformPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanMove: fn(
             self: *const IUIAutomationTransformPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanResize: fn(
             self: *const IUIAutomationTransformPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanRotate: fn(
             self: *const IUIAutomationTransformPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanMove: fn(
             self: *const IUIAutomationTransformPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanResize: fn(
             self: *const IUIAutomationTransformPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanRotate: fn(
             self: *const IUIAutomationTransformPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7057,27 +7057,27 @@ pub const IUIAutomationTransformPattern = extern struct {
             return @ptrCast(*const IUIAutomationTransformPattern.VTable, self.vtable).Rotate(@ptrCast(*const IUIAutomationTransformPattern, self), degrees);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern_get_CurrentCanMove(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern_get_CurrentCanMove(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern.VTable, self.vtable).get_CurrentCanMove(@ptrCast(*const IUIAutomationTransformPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern_get_CurrentCanResize(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern_get_CurrentCanResize(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern.VTable, self.vtable).get_CurrentCanResize(@ptrCast(*const IUIAutomationTransformPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern_get_CurrentCanRotate(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern_get_CurrentCanRotate(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern.VTable, self.vtable).get_CurrentCanRotate(@ptrCast(*const IUIAutomationTransformPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern_get_CachedCanMove(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern_get_CachedCanMove(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern.VTable, self.vtable).get_CachedCanMove(@ptrCast(*const IUIAutomationTransformPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern_get_CachedCanResize(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern_get_CachedCanResize(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern.VTable, self.vtable).get_CachedCanResize(@ptrCast(*const IUIAutomationTransformPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern_get_CachedCanRotate(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern_get_CachedCanRotate(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern.VTable, self.vtable).get_CachedCanRotate(@ptrCast(*const IUIAutomationTransformPattern, self), retVal);
         }
     };}
@@ -7092,50 +7092,50 @@ pub const IUIAutomationValuePattern = extern struct {
         base: IUnknown.VTable,
         SetValue: fn(
             self: *const IUIAutomationValuePattern,
-            val: BSTR,
+            val: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentValue: fn(
             self: *const IUIAutomationValuePattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsReadOnly: fn(
             self: *const IUIAutomationValuePattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedValue: fn(
             self: *const IUIAutomationValuePattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsReadOnly: fn(
             self: *const IUIAutomationValuePattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationValuePattern_SetValue(self: *const T, val: BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationValuePattern_SetValue(self: *const T, val: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationValuePattern.VTable, self.vtable).SetValue(@ptrCast(*const IUIAutomationValuePattern, self), val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationValuePattern_get_CurrentValue(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationValuePattern_get_CurrentValue(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationValuePattern.VTable, self.vtable).get_CurrentValue(@ptrCast(*const IUIAutomationValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationValuePattern_get_CurrentIsReadOnly(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationValuePattern_get_CurrentIsReadOnly(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationValuePattern.VTable, self.vtable).get_CurrentIsReadOnly(@ptrCast(*const IUIAutomationValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationValuePattern_get_CachedValue(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationValuePattern_get_CachedValue(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationValuePattern.VTable, self.vtable).get_CachedValue(@ptrCast(*const IUIAutomationValuePattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationValuePattern_get_CachedIsReadOnly(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationValuePattern_get_CachedIsReadOnly(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationValuePattern.VTable, self.vtable).get_CachedIsReadOnly(@ptrCast(*const IUIAutomationValuePattern, self), retVal);
         }
     };}
@@ -7154,7 +7154,7 @@ pub const IUIAutomationWindowPattern = extern struct {
         WaitForInputIdle: fn(
             self: *const IUIAutomationWindowPattern,
             milliseconds: i32,
-            success: *BOOL,
+            success: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetWindowVisualState: fn(
             self: *const IUIAutomationWindowPattern,
@@ -7163,62 +7163,62 @@ pub const IUIAutomationWindowPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanMaximize: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanMinimize: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsModal: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsTopmost: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentWindowVisualState: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *WindowVisualState,
+            retVal: ?*WindowVisualState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentWindowInteractionState: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *WindowInteractionState,
+            retVal: ?*WindowInteractionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanMaximize: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanMinimize: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsModal: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsTopmost: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedWindowVisualState: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *WindowVisualState,
+            retVal: ?*WindowVisualState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedWindowInteractionState: fn(
             self: *const IUIAutomationWindowPattern,
-            retVal: *WindowInteractionState,
+            retVal: ?*WindowInteractionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7229,7 +7229,7 @@ pub const IUIAutomationWindowPattern = extern struct {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).Close(@ptrCast(*const IUIAutomationWindowPattern, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_WaitForInputIdle(self: *const T, milliseconds: i32, success: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_WaitForInputIdle(self: *const T, milliseconds: i32, success: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).WaitForInputIdle(@ptrCast(*const IUIAutomationWindowPattern, self), milliseconds, success);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7237,51 +7237,51 @@ pub const IUIAutomationWindowPattern = extern struct {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).SetWindowVisualState(@ptrCast(*const IUIAutomationWindowPattern, self), state);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CurrentCanMaximize(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CurrentCanMaximize(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CurrentCanMaximize(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CurrentCanMinimize(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CurrentCanMinimize(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CurrentCanMinimize(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CurrentIsModal(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CurrentIsModal(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CurrentIsModal(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CurrentIsTopmost(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CurrentIsTopmost(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CurrentIsTopmost(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CurrentWindowVisualState(self: *const T, retVal: *WindowVisualState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CurrentWindowVisualState(self: *const T, retVal: ?*WindowVisualState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CurrentWindowVisualState(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CurrentWindowInteractionState(self: *const T, retVal: *WindowInteractionState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CurrentWindowInteractionState(self: *const T, retVal: ?*WindowInteractionState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CurrentWindowInteractionState(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CachedCanMaximize(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CachedCanMaximize(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CachedCanMaximize(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CachedCanMinimize(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CachedCanMinimize(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CachedCanMinimize(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CachedIsModal(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CachedIsModal(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CachedIsModal(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CachedIsTopmost(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CachedIsTopmost(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CachedIsTopmost(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CachedWindowVisualState(self: *const T, retVal: *WindowVisualState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CachedWindowVisualState(self: *const T, retVal: ?*WindowVisualState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CachedWindowVisualState(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationWindowPattern_get_CachedWindowInteractionState(self: *const T, retVal: *WindowInteractionState) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationWindowPattern_get_CachedWindowInteractionState(self: *const T, retVal: ?*WindowInteractionState) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationWindowPattern.VTable, self.vtable).get_CachedWindowInteractionState(@ptrCast(*const IUIAutomationWindowPattern, self), retVal);
         }
     };}
@@ -7296,19 +7296,19 @@ pub const IUIAutomationTextRange = extern struct {
         base: IUnknown.VTable,
         Clone: fn(
             self: *const IUIAutomationTextRange,
-            clonedRange: **IUIAutomationTextRange,
+            clonedRange: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Compare: fn(
             self: *const IUIAutomationTextRange,
-            range: *IUIAutomationTextRange,
-            areSame: *BOOL,
+            range: ?*IUIAutomationTextRange,
+            areSame: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareEndpoints: fn(
             self: *const IUIAutomationTextRange,
             srcEndPoint: TextPatternRangeEndpoint,
-            range: *IUIAutomationTextRange,
+            range: ?*IUIAutomationTextRange,
             targetEndPoint: TextPatternRangeEndpoint,
-            compValue: *i32,
+            compValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExpandToEnclosingUnit: fn(
             self: *const IUIAutomationTextRange,
@@ -7319,50 +7319,50 @@ pub const IUIAutomationTextRange = extern struct {
             attr: i32,
             val: VARIANT,
             backward: BOOL,
-            found: **IUIAutomationTextRange,
+            found: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindText: fn(
             self: *const IUIAutomationTextRange,
-            text: BSTR,
+            text: ?BSTR,
             backward: BOOL,
             ignoreCase: BOOL,
-            found: **IUIAutomationTextRange,
+            found: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue: fn(
             self: *const IUIAutomationTextRange,
             attr: i32,
-            value: *VARIANT,
+            value: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBoundingRectangles: fn(
             self: *const IUIAutomationTextRange,
-            boundingRects: **SAFEARRAY,
+            boundingRects: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnclosingElement: fn(
             self: *const IUIAutomationTextRange,
-            enclosingElement: **IUIAutomationElement,
+            enclosingElement: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetText: fn(
             self: *const IUIAutomationTextRange,
             maxLength: i32,
-            text: *BSTR,
+            text: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Move: fn(
             self: *const IUIAutomationTextRange,
             unit: TextUnit,
             count: i32,
-            moved: *i32,
+            moved: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveEndpointByUnit: fn(
             self: *const IUIAutomationTextRange,
             endpoint: TextPatternRangeEndpoint,
             unit: TextUnit,
             count: i32,
-            moved: *i32,
+            moved: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveEndpointByRange: fn(
             self: *const IUIAutomationTextRange,
             srcEndPoint: TextPatternRangeEndpoint,
-            range: *IUIAutomationTextRange,
+            range: ?*IUIAutomationTextRange,
             targetEndPoint: TextPatternRangeEndpoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Select: fn(
@@ -7380,22 +7380,22 @@ pub const IUIAutomationTextRange = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildren: fn(
             self: *const IUIAutomationTextRange,
-            children: **IUIAutomationElementArray,
+            children: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_Clone(self: *const T, clonedRange: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_Clone(self: *const T, clonedRange: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).Clone(@ptrCast(*const IUIAutomationTextRange, self), clonedRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_Compare(self: *const T, range: *IUIAutomationTextRange, areSame: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_Compare(self: *const T, range: ?*IUIAutomationTextRange, areSame: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).Compare(@ptrCast(*const IUIAutomationTextRange, self), range, areSame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_CompareEndpoints(self: *const T, srcEndPoint: TextPatternRangeEndpoint, range: *IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint, compValue: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_CompareEndpoints(self: *const T, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint, compValue: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).CompareEndpoints(@ptrCast(*const IUIAutomationTextRange, self), srcEndPoint, range, targetEndPoint, compValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7403,39 +7403,39 @@ pub const IUIAutomationTextRange = extern struct {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).ExpandToEnclosingUnit(@ptrCast(*const IUIAutomationTextRange, self), textUnit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_FindAttribute(self: *const T, attr: i32, val: VARIANT, backward: BOOL, found: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_FindAttribute(self: *const T, attr: i32, val: VARIANT, backward: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).FindAttribute(@ptrCast(*const IUIAutomationTextRange, self), attr, val, backward, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_FindText(self: *const T, text: BSTR, backward: BOOL, ignoreCase: BOOL, found: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_FindText(self: *const T, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).FindText(@ptrCast(*const IUIAutomationTextRange, self), text, backward, ignoreCase, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_GetAttributeValue(self: *const T, attr: i32, value: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_GetAttributeValue(self: *const T, attr: i32, value: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).GetAttributeValue(@ptrCast(*const IUIAutomationTextRange, self), attr, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_GetBoundingRectangles(self: *const T, boundingRects: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_GetBoundingRectangles(self: *const T, boundingRects: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).GetBoundingRectangles(@ptrCast(*const IUIAutomationTextRange, self), boundingRects);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_GetEnclosingElement(self: *const T, enclosingElement: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_GetEnclosingElement(self: *const T, enclosingElement: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).GetEnclosingElement(@ptrCast(*const IUIAutomationTextRange, self), enclosingElement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_GetText(self: *const T, maxLength: i32, text: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_GetText(self: *const T, maxLength: i32, text: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).GetText(@ptrCast(*const IUIAutomationTextRange, self), maxLength, text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_Move(self: *const T, unit: TextUnit, count: i32, moved: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_Move(self: *const T, unit: TextUnit, count: i32, moved: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).Move(@ptrCast(*const IUIAutomationTextRange, self), unit, count, moved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_MoveEndpointByUnit(self: *const T, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, moved: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_MoveEndpointByUnit(self: *const T, endpoint: TextPatternRangeEndpoint, unit: TextUnit, count: i32, moved: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).MoveEndpointByUnit(@ptrCast(*const IUIAutomationTextRange, self), endpoint, unit, count, moved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_MoveEndpointByRange(self: *const T, srcEndPoint: TextPatternRangeEndpoint, range: *IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_MoveEndpointByRange(self: *const T, srcEndPoint: TextPatternRangeEndpoint, range: ?*IUIAutomationTextRange, targetEndPoint: TextPatternRangeEndpoint) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).MoveEndpointByRange(@ptrCast(*const IUIAutomationTextRange, self), srcEndPoint, range, targetEndPoint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7455,7 +7455,7 @@ pub const IUIAutomationTextRange = extern struct {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).ScrollIntoView(@ptrCast(*const IUIAutomationTextRange, self), alignToTop);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_GetChildren(self: *const T, children: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange_GetChildren(self: *const T, children: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).GetChildren(@ptrCast(*const IUIAutomationTextRange, self), children);
         }
     };}
@@ -7491,34 +7491,34 @@ pub const IUIAutomationTextRange3 = extern struct {
         base: IUIAutomationTextRange2.VTable,
         GetEnclosingElementBuildCache: fn(
             self: *const IUIAutomationTextRange3,
-            cacheRequest: *IUIAutomationCacheRequest,
-            enclosingElement: **IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            enclosingElement: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChildrenBuildCache: fn(
             self: *const IUIAutomationTextRange3,
-            cacheRequest: *IUIAutomationCacheRequest,
-            children: **IUIAutomationElementArray,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            children: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValues: fn(
             self: *const IUIAutomationTextRange3,
             attributeIds: [*]const i32,
             attributeIdCount: i32,
-            attributeValues: **SAFEARRAY,
+            attributeValues: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationTextRange2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange3_GetEnclosingElementBuildCache(self: *const T, cacheRequest: *IUIAutomationCacheRequest, enclosingElement: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange3_GetEnclosingElementBuildCache(self: *const T, cacheRequest: ?*IUIAutomationCacheRequest, enclosingElement: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange3.VTable, self.vtable).GetEnclosingElementBuildCache(@ptrCast(*const IUIAutomationTextRange3, self), cacheRequest, enclosingElement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange3_GetChildrenBuildCache(self: *const T, cacheRequest: *IUIAutomationCacheRequest, children: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange3_GetChildrenBuildCache(self: *const T, cacheRequest: ?*IUIAutomationCacheRequest, children: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange3.VTable, self.vtable).GetChildrenBuildCache(@ptrCast(*const IUIAutomationTextRange3, self), cacheRequest, children);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange3_GetAttributeValues(self: *const T, attributeIds: [*]const i32, attributeIdCount: i32, attributeValues: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRange3_GetAttributeValues(self: *const T, attributeIds: [*]const i32, attributeIdCount: i32, attributeValues: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRange3.VTable, self.vtable).GetAttributeValues(@ptrCast(*const IUIAutomationTextRange3, self), attributeIds, attributeIdCount, attributeValues);
         }
     };}
@@ -7534,23 +7534,23 @@ pub const IUIAutomationTextRangeArray = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: fn(
             self: *const IUIAutomationTextRangeArray,
-            length: *i32,
+            length: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetElement: fn(
             self: *const IUIAutomationTextRangeArray,
             index: i32,
-            element: **IUIAutomationTextRange,
+            element: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRangeArray_get_Length(self: *const T, length: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRangeArray_get_Length(self: *const T, length: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRangeArray.VTable, self.vtable).get_Length(@ptrCast(*const IUIAutomationTextRangeArray, self), length);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRangeArray_GetElement(self: *const T, index: i32, element: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextRangeArray_GetElement(self: *const T, index: i32, element: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextRangeArray.VTable, self.vtable).GetElement(@ptrCast(*const IUIAutomationTextRangeArray, self), index, element);
         }
     };}
@@ -7566,57 +7566,57 @@ pub const IUIAutomationTextPattern = extern struct {
         RangeFromPoint: fn(
             self: *const IUIAutomationTextPattern,
             pt: POINT,
-            range: **IUIAutomationTextRange,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RangeFromChild: fn(
             self: *const IUIAutomationTextPattern,
-            child: *IUIAutomationElement,
-            range: **IUIAutomationTextRange,
+            child: ?*IUIAutomationElement,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelection: fn(
             self: *const IUIAutomationTextPattern,
-            ranges: **IUIAutomationTextRangeArray,
+            ranges: ?*?*IUIAutomationTextRangeArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleRanges: fn(
             self: *const IUIAutomationTextPattern,
-            ranges: **IUIAutomationTextRangeArray,
+            ranges: ?*?*IUIAutomationTextRangeArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DocumentRange: fn(
             self: *const IUIAutomationTextPattern,
-            range: **IUIAutomationTextRange,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedTextSelection: fn(
             self: *const IUIAutomationTextPattern,
-            supportedTextSelection: *SupportedTextSelection,
+            supportedTextSelection: ?*SupportedTextSelection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern_RangeFromPoint(self: *const T, pt: POINT, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern_RangeFromPoint(self: *const T, pt: POINT, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern.VTable, self.vtable).RangeFromPoint(@ptrCast(*const IUIAutomationTextPattern, self), pt, range);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern_RangeFromChild(self: *const T, child: *IUIAutomationElement, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern_RangeFromChild(self: *const T, child: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern.VTable, self.vtable).RangeFromChild(@ptrCast(*const IUIAutomationTextPattern, self), child, range);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern_GetSelection(self: *const T, ranges: **IUIAutomationTextRangeArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern_GetSelection(self: *const T, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern.VTable, self.vtable).GetSelection(@ptrCast(*const IUIAutomationTextPattern, self), ranges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern_GetVisibleRanges(self: *const T, ranges: **IUIAutomationTextRangeArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern_GetVisibleRanges(self: *const T, ranges: ?*?*IUIAutomationTextRangeArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern.VTable, self.vtable).GetVisibleRanges(@ptrCast(*const IUIAutomationTextPattern, self), ranges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern_get_DocumentRange(self: *const T, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern_get_DocumentRange(self: *const T, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern.VTable, self.vtable).get_DocumentRange(@ptrCast(*const IUIAutomationTextPattern, self), range);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern_get_SupportedTextSelection(self: *const T, supportedTextSelection: *SupportedTextSelection) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern_get_SupportedTextSelection(self: *const T, supportedTextSelection: ?*SupportedTextSelection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern.VTable, self.vtable).get_SupportedTextSelection(@ptrCast(*const IUIAutomationTextPattern, self), supportedTextSelection);
         }
     };}
@@ -7631,24 +7631,24 @@ pub const IUIAutomationTextPattern2 = extern struct {
         base: IUIAutomationTextPattern.VTable,
         RangeFromAnnotation: fn(
             self: *const IUIAutomationTextPattern2,
-            annotation: *IUIAutomationElement,
-            range: **IUIAutomationTextRange,
+            annotation: ?*IUIAutomationElement,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCaretRange: fn(
             self: *const IUIAutomationTextPattern2,
-            isActive: *BOOL,
-            range: **IUIAutomationTextRange,
+            isActive: ?*BOOL,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationTextPattern.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern2_RangeFromAnnotation(self: *const T, annotation: *IUIAutomationElement, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern2_RangeFromAnnotation(self: *const T, annotation: ?*IUIAutomationElement, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern2.VTable, self.vtable).RangeFromAnnotation(@ptrCast(*const IUIAutomationTextPattern2, self), annotation, range);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextPattern2_GetCaretRange(self: *const T, isActive: *BOOL, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextPattern2_GetCaretRange(self: *const T, isActive: ?*BOOL, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextPattern2.VTable, self.vtable).GetCaretRange(@ptrCast(*const IUIAutomationTextPattern2, self), isActive, range);
         }
     };}
@@ -7663,22 +7663,22 @@ pub const IUIAutomationTextEditPattern = extern struct {
         base: IUIAutomationTextPattern.VTable,
         GetActiveComposition: fn(
             self: *const IUIAutomationTextEditPattern,
-            range: **IUIAutomationTextRange,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConversionTarget: fn(
             self: *const IUIAutomationTextEditPattern,
-            range: **IUIAutomationTextRange,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationTextPattern.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextEditPattern_GetActiveComposition(self: *const T, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextEditPattern_GetActiveComposition(self: *const T, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextEditPattern.VTable, self.vtable).GetActiveComposition(@ptrCast(*const IUIAutomationTextEditPattern, self), range);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextEditPattern_GetConversionTarget(self: *const T, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextEditPattern_GetConversionTarget(self: *const T, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextEditPattern.VTable, self.vtable).GetConversionTarget(@ptrCast(*const IUIAutomationTextEditPattern, self), range);
         }
     };}
@@ -7694,14 +7694,14 @@ pub const IUIAutomationCustomNavigationPattern = extern struct {
         Navigate: fn(
             self: *const IUIAutomationCustomNavigationPattern,
             direction: NavigateDirection,
-            pRetVal: **IUIAutomationElement,
+            pRetVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationCustomNavigationPattern_Navigate(self: *const T, direction: NavigateDirection, pRetVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationCustomNavigationPattern_Navigate(self: *const T, direction: NavigateDirection, pRetVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationCustomNavigationPattern.VTable, self.vtable).Navigate(@ptrCast(*const IUIAutomationCustomNavigationPattern, self), direction, pRetVal);
         }
     };}
@@ -7716,15 +7716,15 @@ pub const IUIAutomationActiveTextPositionChangedEventHandler = extern struct {
         base: IUnknown.VTable,
         HandleActiveTextPositionChangedEvent: fn(
             self: *const IUIAutomationActiveTextPositionChangedEventHandler,
-            sender: *IUIAutomationElement,
-            range: *IUIAutomationTextRange,
+            sender: ?*IUIAutomationElement,
+            range: ?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationActiveTextPositionChangedEventHandler_HandleActiveTextPositionChangedEvent(self: *const T, sender: *IUIAutomationElement, range: *IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationActiveTextPositionChangedEventHandler_HandleActiveTextPositionChangedEvent(self: *const T, sender: ?*IUIAutomationElement, range: ?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationActiveTextPositionChangedEventHandler.VTable, self.vtable).HandleActiveTextPositionChangedEvent(@ptrCast(*const IUIAutomationActiveTextPositionChangedEventHandler, self), sender, range);
         }
     };}
@@ -7746,109 +7746,109 @@ pub const IUIAutomationLegacyIAccessiblePattern = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            szValue: [*:0]const u16,
+            szValue: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentChildId: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentName: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszName: *BSTR,
+            pszName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentValue: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszValue: *BSTR,
+            pszValue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDescription: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDescription: *BSTR,
+            pszDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRole: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwRole: *u32,
+            pdwRole: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentState: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwState: *u32,
+            pdwState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHelp: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszHelp: *BSTR,
+            pszHelp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentKeyboardShortcut: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszKeyboardShortcut: *BSTR,
+            pszKeyboardShortcut: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentSelection: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pvarSelectedChildren: **IUIAutomationElementArray,
+            pvarSelectedChildren: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDefaultAction: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDefaultAction: *BSTR,
+            pszDefaultAction: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedChildId: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pRetVal: *i32,
+            pRetVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedName: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszName: *BSTR,
+            pszName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedValue: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszValue: *BSTR,
+            pszValue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDescription: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDescription: *BSTR,
+            pszDescription: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRole: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwRole: *u32,
+            pdwRole: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedState: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pdwState: *u32,
+            pdwState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHelp: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszHelp: *BSTR,
+            pszHelp: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedKeyboardShortcut: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszKeyboardShortcut: *BSTR,
+            pszKeyboardShortcut: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedSelection: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pvarSelectedChildren: **IUIAutomationElementArray,
+            pvarSelectedChildren: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDefaultAction: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            pszDefaultAction: *BSTR,
+            pszDefaultAction: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIAccessible: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
-            ppAccessible: **IAccessible,
+            ppAccessible: ?*?*IAccessible,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7863,91 +7863,91 @@ pub const IUIAutomationLegacyIAccessiblePattern = extern struct {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).DoDefaultAction(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_SetValue(self: *const T, szValue: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_SetValue(self: *const T, szValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).SetValue(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), szValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentChildId(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentChildId(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentChildId(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentName(self: *const T, pszName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentName(self: *const T, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentName(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentValue(self: *const T, pszValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentValue(self: *const T, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentValue(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentDescription(self: *const T, pszDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentDescription(self: *const T, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentDescription(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentRole(self: *const T, pdwRole: *u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentRole(self: *const T, pdwRole: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentRole(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pdwRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentState(self: *const T, pdwState: *u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentState(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pdwState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentHelp(self: *const T, pszHelp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentHelp(self: *const T, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentHelp(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszHelp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentKeyboardShortcut(self: *const T, pszKeyboardShortcut: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentKeyboardShortcut(self: *const T, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentKeyboardShortcut(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszKeyboardShortcut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_GetCurrentSelection(self: *const T, pvarSelectedChildren: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_GetCurrentSelection(self: *const T, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).GetCurrentSelection(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pvarSelectedChildren);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentDefaultAction(self: *const T, pszDefaultAction: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CurrentDefaultAction(self: *const T, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CurrentDefaultAction(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszDefaultAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedChildId(self: *const T, pRetVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedChildId(self: *const T, pRetVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedChildId(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedName(self: *const T, pszName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedName(self: *const T, pszName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedName(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedValue(self: *const T, pszValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedValue(self: *const T, pszValue: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedValue(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedDescription(self: *const T, pszDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedDescription(self: *const T, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedDescription(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedRole(self: *const T, pdwRole: *u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedRole(self: *const T, pdwRole: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedRole(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pdwRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedState(self: *const T, pdwState: *u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedState(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pdwState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedHelp(self: *const T, pszHelp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedHelp(self: *const T, pszHelp: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedHelp(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszHelp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedKeyboardShortcut(self: *const T, pszKeyboardShortcut: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedKeyboardShortcut(self: *const T, pszKeyboardShortcut: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedKeyboardShortcut(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszKeyboardShortcut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_GetCachedSelection(self: *const T, pvarSelectedChildren: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_GetCachedSelection(self: *const T, pvarSelectedChildren: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).GetCachedSelection(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pvarSelectedChildren);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedDefaultAction(self: *const T, pszDefaultAction: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_get_CachedDefaultAction(self: *const T, pszDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).get_CachedDefaultAction(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), pszDefaultAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationLegacyIAccessiblePattern_GetIAccessible(self: *const T, ppAccessible: **IAccessible) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationLegacyIAccessiblePattern_GetIAccessible(self: *const T, ppAccessible: ?*?*IAccessible) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationLegacyIAccessiblePattern.VTable, self.vtable).GetIAccessible(@ptrCast(*const IUIAutomationLegacyIAccessiblePattern, self), ppAccessible);
         }
     };}
@@ -7962,17 +7962,17 @@ pub const IUIAutomationItemContainerPattern = extern struct {
         base: IUnknown.VTable,
         FindItemByProperty: fn(
             self: *const IUIAutomationItemContainerPattern,
-            pStartAfter: *IUIAutomationElement,
+            pStartAfter: ?*IUIAutomationElement,
             propertyId: i32,
             value: VARIANT,
-            pFound: **IUIAutomationElement,
+            pFound: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationItemContainerPattern_FindItemByProperty(self: *const T, pStartAfter: *IUIAutomationElement, propertyId: i32, value: VARIANT, pFound: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationItemContainerPattern_FindItemByProperty(self: *const T, pStartAfter: ?*IUIAutomationElement, propertyId: i32, value: VARIANT, pFound: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationItemContainerPattern.VTable, self.vtable).FindItemByProperty(@ptrCast(*const IUIAutomationItemContainerPattern, self), pStartAfter, propertyId, value, pFound);
         }
     };}
@@ -8009,95 +8009,95 @@ pub const IUIAutomationAnnotationPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypeId: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypeName: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAuthor: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDateTime: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentTarget: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypeId: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypeName: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAuthor: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDateTime: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedTarget: fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: **IUIAutomationElement,
+            retVal: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CurrentAnnotationTypeId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CurrentAnnotationTypeId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CurrentAnnotationTypeId(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CurrentAnnotationTypeName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CurrentAnnotationTypeName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CurrentAnnotationTypeName(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CurrentAuthor(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CurrentAuthor(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CurrentAuthor(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CurrentDateTime(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CurrentDateTime(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CurrentDateTime(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CurrentTarget(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CurrentTarget(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CurrentTarget(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CachedAnnotationTypeId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CachedAnnotationTypeId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CachedAnnotationTypeId(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CachedAnnotationTypeName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CachedAnnotationTypeName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CachedAnnotationTypeName(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CachedAuthor(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CachedAuthor(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CachedAuthor(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CachedDateTime(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CachedDateTime(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CachedDateTime(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationAnnotationPattern_get_CachedTarget(self: *const T, retVal: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationAnnotationPattern_get_CachedTarget(self: *const T, retVal: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationAnnotationPattern.VTable, self.vtable).get_CachedTarget(@ptrCast(*const IUIAutomationAnnotationPattern, self), retVal);
         }
     };}
@@ -8113,149 +8113,149 @@ pub const IUIAutomationStylesPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStyleId: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStyleName: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFillColor: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFillPatternStyle: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentShape: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFillPatternColor: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentExtendedProperties: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentExtendedPropertiesAsArray: fn(
             self: *const IUIAutomationStylesPattern,
-            propertyArray: **ExtendedProperty,
-            propertyCount: *i32,
+            propertyArray: ?*?*ExtendedProperty,
+            propertyCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedStyleId: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedStyleName: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFillColor: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFillPatternStyle: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedShape: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFillPatternColor: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedExtendedProperties: fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedExtendedPropertiesAsArray: fn(
             self: *const IUIAutomationStylesPattern,
-            propertyArray: **ExtendedProperty,
-            propertyCount: *i32,
+            propertyArray: ?*?*ExtendedProperty,
+            propertyCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CurrentStyleId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CurrentStyleId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CurrentStyleId(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CurrentStyleName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CurrentStyleName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CurrentStyleName(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CurrentFillColor(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CurrentFillColor(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CurrentFillColor(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CurrentFillPatternStyle(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CurrentFillPatternStyle(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CurrentFillPatternStyle(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CurrentShape(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CurrentShape(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CurrentShape(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CurrentFillPatternColor(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CurrentFillPatternColor(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CurrentFillPatternColor(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CurrentExtendedProperties(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CurrentExtendedProperties(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CurrentExtendedProperties(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_GetCurrentExtendedPropertiesAsArray(self: *const T, propertyArray: **ExtendedProperty, propertyCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_GetCurrentExtendedPropertiesAsArray(self: *const T, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).GetCurrentExtendedPropertiesAsArray(@ptrCast(*const IUIAutomationStylesPattern, self), propertyArray, propertyCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CachedStyleId(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CachedStyleId(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CachedStyleId(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CachedStyleName(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CachedStyleName(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CachedStyleName(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CachedFillColor(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CachedFillColor(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CachedFillColor(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CachedFillPatternStyle(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CachedFillPatternStyle(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CachedFillPatternStyle(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CachedShape(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CachedShape(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CachedShape(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CachedFillPatternColor(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CachedFillPatternColor(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CachedFillPatternColor(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_get_CachedExtendedProperties(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_get_CachedExtendedProperties(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).get_CachedExtendedProperties(@ptrCast(*const IUIAutomationStylesPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationStylesPattern_GetCachedExtendedPropertiesAsArray(self: *const T, propertyArray: **ExtendedProperty, propertyCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationStylesPattern_GetCachedExtendedPropertiesAsArray(self: *const T, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationStylesPattern.VTable, self.vtable).GetCachedExtendedPropertiesAsArray(@ptrCast(*const IUIAutomationStylesPattern, self), propertyArray, propertyCount);
         }
     };}
@@ -8270,15 +8270,15 @@ pub const IUIAutomationSpreadsheetPattern = extern struct {
         base: IUnknown.VTable,
         GetItemByName: fn(
             self: *const IUIAutomationSpreadsheetPattern,
-            name: BSTR,
-            element: **IUIAutomationElement,
+            name: ?BSTR,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSpreadsheetPattern_GetItemByName(self: *const T, name: BSTR, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSpreadsheetPattern_GetItemByName(self: *const T, name: ?BSTR, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSpreadsheetPattern.VTable, self.vtable).GetItemByName(@ptrCast(*const IUIAutomationSpreadsheetPattern, self), name, element);
         }
     };}
@@ -8294,55 +8294,55 @@ pub const IUIAutomationSpreadsheetItemPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFormula: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentAnnotationObjects: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentAnnotationTypes: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFormula: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedAnnotationObjects: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedAnnotationTypes: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSpreadsheetItemPattern_get_CurrentFormula(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSpreadsheetItemPattern_get_CurrentFormula(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSpreadsheetItemPattern.VTable, self.vtable).get_CurrentFormula(@ptrCast(*const IUIAutomationSpreadsheetItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSpreadsheetItemPattern_GetCurrentAnnotationObjects(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSpreadsheetItemPattern_GetCurrentAnnotationObjects(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSpreadsheetItemPattern.VTable, self.vtable).GetCurrentAnnotationObjects(@ptrCast(*const IUIAutomationSpreadsheetItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSpreadsheetItemPattern_GetCurrentAnnotationTypes(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSpreadsheetItemPattern_GetCurrentAnnotationTypes(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSpreadsheetItemPattern.VTable, self.vtable).GetCurrentAnnotationTypes(@ptrCast(*const IUIAutomationSpreadsheetItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSpreadsheetItemPattern_get_CachedFormula(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSpreadsheetItemPattern_get_CachedFormula(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSpreadsheetItemPattern.VTable, self.vtable).get_CachedFormula(@ptrCast(*const IUIAutomationSpreadsheetItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSpreadsheetItemPattern_GetCachedAnnotationObjects(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSpreadsheetItemPattern_GetCachedAnnotationObjects(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSpreadsheetItemPattern.VTable, self.vtable).GetCachedAnnotationObjects(@ptrCast(*const IUIAutomationSpreadsheetItemPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationSpreadsheetItemPattern_GetCachedAnnotationTypes(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationSpreadsheetItemPattern_GetCachedAnnotationTypes(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationSpreadsheetItemPattern.VTable, self.vtable).GetCachedAnnotationTypes(@ptrCast(*const IUIAutomationSpreadsheetItemPattern, self), retVal);
         }
     };}
@@ -8366,42 +8366,42 @@ pub const IUIAutomationTransformPattern2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanZoom: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanZoom: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentZoomLevel: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedZoomLevel: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentZoomMinimum: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedZoomMinimum: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentZoomMaximum: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedZoomMaximum: fn(
             self: *const IUIAutomationTransformPattern2,
-            retVal: *f64,
+            retVal: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8416,35 +8416,35 @@ pub const IUIAutomationTransformPattern2 = extern struct {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).ZoomByUnit(@ptrCast(*const IUIAutomationTransformPattern2, self), zoomUnit);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CurrentCanZoom(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CurrentCanZoom(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CurrentCanZoom(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CachedCanZoom(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CachedCanZoom(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CachedCanZoom(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CurrentZoomLevel(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CurrentZoomLevel(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CurrentZoomLevel(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CachedZoomLevel(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CachedZoomLevel(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CachedZoomLevel(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CurrentZoomMinimum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CurrentZoomMinimum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CurrentZoomMinimum(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CachedZoomMinimum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CachedZoomMinimum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CachedZoomMinimum(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CurrentZoomMaximum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CurrentZoomMaximum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CurrentZoomMaximum(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTransformPattern2_get_CachedZoomMaximum(self: *const T, retVal: *f64) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTransformPattern2_get_CachedZoomMaximum(self: *const T, retVal: ?*f64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTransformPattern2.VTable, self.vtable).get_CachedZoomMaximum(@ptrCast(*const IUIAutomationTransformPattern2, self), retVal);
         }
     };}
@@ -8460,23 +8460,23 @@ pub const IUIAutomationTextChildPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextContainer: fn(
             self: *const IUIAutomationTextChildPattern,
-            container: **IUIAutomationElement,
+            container: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextRange: fn(
             self: *const IUIAutomationTextChildPattern,
-            range: **IUIAutomationTextRange,
+            range: ?*?*IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextChildPattern_get_TextContainer(self: *const T, container: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextChildPattern_get_TextContainer(self: *const T, container: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextChildPattern.VTable, self.vtable).get_TextContainer(@ptrCast(*const IUIAutomationTextChildPattern, self), container);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextChildPattern_get_TextRange(self: *const T, range: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationTextChildPattern_get_TextRange(self: *const T, range: ?*?*IUIAutomationTextRange) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationTextChildPattern.VTable, self.vtable).get_TextRange(@ptrCast(*const IUIAutomationTextChildPattern, self), range);
         }
     };}
@@ -8492,75 +8492,75 @@ pub const IUIAutomationDragPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsGrabbed: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsGrabbed: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropEffect: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropEffect: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropEffects: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropEffects: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentGrabbedItems: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedGrabbedItems: fn(
             self: *const IUIAutomationDragPattern,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_get_CurrentIsGrabbed(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_get_CurrentIsGrabbed(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).get_CurrentIsGrabbed(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_get_CachedIsGrabbed(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_get_CachedIsGrabbed(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).get_CachedIsGrabbed(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_get_CurrentDropEffect(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_get_CurrentDropEffect(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).get_CurrentDropEffect(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_get_CachedDropEffect(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_get_CachedDropEffect(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).get_CachedDropEffect(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_get_CurrentDropEffects(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_get_CurrentDropEffects(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).get_CurrentDropEffects(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_get_CachedDropEffects(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_get_CachedDropEffects(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).get_CachedDropEffects(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_GetCurrentGrabbedItems(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_GetCurrentGrabbedItems(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).GetCurrentGrabbedItems(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDragPattern_GetCachedGrabbedItems(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDragPattern_GetCachedGrabbedItems(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDragPattern.VTable, self.vtable).GetCachedGrabbedItems(@ptrCast(*const IUIAutomationDragPattern, self), retVal);
         }
     };}
@@ -8576,41 +8576,41 @@ pub const IUIAutomationDropTargetPattern = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropTargetEffect: fn(
             self: *const IUIAutomationDropTargetPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropTargetEffect: fn(
             self: *const IUIAutomationDropTargetPattern,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropTargetEffects: fn(
             self: *const IUIAutomationDropTargetPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropTargetEffects: fn(
             self: *const IUIAutomationDropTargetPattern,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDropTargetPattern_get_CurrentDropTargetEffect(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDropTargetPattern_get_CurrentDropTargetEffect(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDropTargetPattern.VTable, self.vtable).get_CurrentDropTargetEffect(@ptrCast(*const IUIAutomationDropTargetPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDropTargetPattern_get_CachedDropTargetEffect(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDropTargetPattern_get_CachedDropTargetEffect(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDropTargetPattern.VTable, self.vtable).get_CachedDropTargetEffect(@ptrCast(*const IUIAutomationDropTargetPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDropTargetPattern_get_CurrentDropTargetEffects(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDropTargetPattern_get_CurrentDropTargetEffects(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDropTargetPattern.VTable, self.vtable).get_CurrentDropTargetEffects(@ptrCast(*const IUIAutomationDropTargetPattern, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationDropTargetPattern_get_CachedDropTargetEffects(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationDropTargetPattern_get_CachedDropTargetEffects(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationDropTargetPattern.VTable, self.vtable).get_CachedDropTargetEffects(@ptrCast(*const IUIAutomationDropTargetPattern, self), retVal);
         }
     };}
@@ -8626,59 +8626,59 @@ pub const IUIAutomationElement2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentOptimizeForVisualContent: fn(
             self: *const IUIAutomationElement2,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedOptimizeForVisualContent: fn(
             self: *const IUIAutomationElement2,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLiveSetting: fn(
             self: *const IUIAutomationElement2,
-            retVal: *LiveSetting,
+            retVal: ?*LiveSetting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLiveSetting: fn(
             self: *const IUIAutomationElement2,
-            retVal: *LiveSetting,
+            retVal: ?*LiveSetting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFlowsFrom: fn(
             self: *const IUIAutomationElement2,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFlowsFrom: fn(
             self: *const IUIAutomationElement2,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationElement.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement2_get_CurrentOptimizeForVisualContent(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement2_get_CurrentOptimizeForVisualContent(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement2.VTable, self.vtable).get_CurrentOptimizeForVisualContent(@ptrCast(*const IUIAutomationElement2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement2_get_CachedOptimizeForVisualContent(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement2_get_CachedOptimizeForVisualContent(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement2.VTable, self.vtable).get_CachedOptimizeForVisualContent(@ptrCast(*const IUIAutomationElement2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement2_get_CurrentLiveSetting(self: *const T, retVal: *LiveSetting) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement2_get_CurrentLiveSetting(self: *const T, retVal: ?*LiveSetting) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement2.VTable, self.vtable).get_CurrentLiveSetting(@ptrCast(*const IUIAutomationElement2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement2_get_CachedLiveSetting(self: *const T, retVal: *LiveSetting) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement2_get_CachedLiveSetting(self: *const T, retVal: ?*LiveSetting) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement2.VTable, self.vtable).get_CachedLiveSetting(@ptrCast(*const IUIAutomationElement2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement2_get_CurrentFlowsFrom(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement2_get_CurrentFlowsFrom(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement2.VTable, self.vtable).get_CurrentFlowsFrom(@ptrCast(*const IUIAutomationElement2, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement2_get_CachedFlowsFrom(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement2_get_CachedFlowsFrom(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement2.VTable, self.vtable).get_CachedFlowsFrom(@ptrCast(*const IUIAutomationElement2, self), retVal);
         }
     };}
@@ -8697,12 +8697,12 @@ pub const IUIAutomationElement3 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsPeripheral: fn(
             self: *const IUIAutomationElement3,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsPeripheral: fn(
             self: *const IUIAutomationElement3,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8713,11 +8713,11 @@ pub const IUIAutomationElement3 = extern struct {
             return @ptrCast(*const IUIAutomationElement3.VTable, self.vtable).ShowContextMenu(@ptrCast(*const IUIAutomationElement3, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement3_get_CurrentIsPeripheral(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement3_get_CurrentIsPeripheral(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement3.VTable, self.vtable).get_CurrentIsPeripheral(@ptrCast(*const IUIAutomationElement3, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement3_get_CachedIsPeripheral(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement3_get_CachedIsPeripheral(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement3.VTable, self.vtable).get_CachedIsPeripheral(@ptrCast(*const IUIAutomationElement3, self), retVal);
         }
     };}
@@ -8733,95 +8733,95 @@ pub const IUIAutomationElement4 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPositionInSet: fn(
             self: *const IUIAutomationElement4,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSizeOfSet: fn(
             self: *const IUIAutomationElement4,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLevel: fn(
             self: *const IUIAutomationElement4,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypes: fn(
             self: *const IUIAutomationElement4,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationObjects: fn(
             self: *const IUIAutomationElement4,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedPositionInSet: fn(
             self: *const IUIAutomationElement4,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedSizeOfSet: fn(
             self: *const IUIAutomationElement4,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLevel: fn(
             self: *const IUIAutomationElement4,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypes: fn(
             self: *const IUIAutomationElement4,
-            retVal: **SAFEARRAY,
+            retVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationObjects: fn(
             self: *const IUIAutomationElement4,
-            retVal: **IUIAutomationElementArray,
+            retVal: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationElement3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CurrentPositionInSet(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CurrentPositionInSet(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CurrentPositionInSet(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CurrentSizeOfSet(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CurrentSizeOfSet(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CurrentSizeOfSet(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CurrentLevel(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CurrentLevel(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CurrentLevel(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CurrentAnnotationTypes(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CurrentAnnotationTypes(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CurrentAnnotationTypes(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CurrentAnnotationObjects(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CurrentAnnotationObjects(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CurrentAnnotationObjects(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CachedPositionInSet(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CachedPositionInSet(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CachedPositionInSet(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CachedSizeOfSet(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CachedSizeOfSet(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CachedSizeOfSet(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CachedLevel(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CachedLevel(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CachedLevel(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CachedAnnotationTypes(self: *const T, retVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CachedAnnotationTypes(self: *const T, retVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CachedAnnotationTypes(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement4_get_CachedAnnotationObjects(self: *const T, retVal: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement4_get_CachedAnnotationObjects(self: *const T, retVal: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement4.VTable, self.vtable).get_CachedAnnotationObjects(@ptrCast(*const IUIAutomationElement4, self), retVal);
         }
     };}
@@ -8837,41 +8837,41 @@ pub const IUIAutomationElement5 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLandmarkType: fn(
             self: *const IUIAutomationElement5,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLocalizedLandmarkType: fn(
             self: *const IUIAutomationElement5,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLandmarkType: fn(
             self: *const IUIAutomationElement5,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLocalizedLandmarkType: fn(
             self: *const IUIAutomationElement5,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationElement4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement5_get_CurrentLandmarkType(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement5_get_CurrentLandmarkType(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement5.VTable, self.vtable).get_CurrentLandmarkType(@ptrCast(*const IUIAutomationElement5, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement5_get_CurrentLocalizedLandmarkType(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement5_get_CurrentLocalizedLandmarkType(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement5.VTable, self.vtable).get_CurrentLocalizedLandmarkType(@ptrCast(*const IUIAutomationElement5, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement5_get_CachedLandmarkType(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement5_get_CachedLandmarkType(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement5.VTable, self.vtable).get_CachedLandmarkType(@ptrCast(*const IUIAutomationElement5, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement5_get_CachedLocalizedLandmarkType(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement5_get_CachedLocalizedLandmarkType(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement5.VTable, self.vtable).get_CachedLocalizedLandmarkType(@ptrCast(*const IUIAutomationElement5, self), retVal);
         }
     };}
@@ -8887,23 +8887,23 @@ pub const IUIAutomationElement6 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFullDescription: fn(
             self: *const IUIAutomationElement6,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFullDescription: fn(
             self: *const IUIAutomationElement6,
-            retVal: *BSTR,
+            retVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationElement5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement6_get_CurrentFullDescription(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement6_get_CurrentFullDescription(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement6.VTable, self.vtable).get_CurrentFullDescription(@ptrCast(*const IUIAutomationElement6, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement6_get_CachedFullDescription(self: *const T, retVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement6_get_CachedFullDescription(self: *const T, retVal: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement6.VTable, self.vtable).get_CachedFullDescription(@ptrCast(*const IUIAutomationElement6, self), retVal);
         }
     };}
@@ -8919,65 +8919,65 @@ pub const IUIAutomationElement7 = extern struct {
         FindFirstWithOptions: fn(
             self: *const IUIAutomationElement7,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
+            condition: ?*IUIAutomationCondition,
             traversalOptions: TreeTraversalOptions,
-            root: *IUIAutomationElement,
-            found: **IUIAutomationElement,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindAllWithOptions: fn(
             self: *const IUIAutomationElement7,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
+            condition: ?*IUIAutomationCondition,
             traversalOptions: TreeTraversalOptions,
-            root: *IUIAutomationElement,
-            found: **IUIAutomationElementArray,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindFirstWithOptionsBuildCache: fn(
             self: *const IUIAutomationElement7,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
-            cacheRequest: *IUIAutomationCacheRequest,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
             traversalOptions: TreeTraversalOptions,
-            root: *IUIAutomationElement,
-            found: **IUIAutomationElement,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindAllWithOptionsBuildCache: fn(
             self: *const IUIAutomationElement7,
             scope: TreeScope,
-            condition: *IUIAutomationCondition,
-            cacheRequest: *IUIAutomationCacheRequest,
+            condition: ?*IUIAutomationCondition,
+            cacheRequest: ?*IUIAutomationCacheRequest,
             traversalOptions: TreeTraversalOptions,
-            root: *IUIAutomationElement,
-            found: **IUIAutomationElementArray,
+            root: ?*IUIAutomationElement,
+            found: ?*?*IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentMetadataValue: fn(
             self: *const IUIAutomationElement7,
             targetId: i32,
             metadataId: i32,
-            returnVal: *VARIANT,
+            returnVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationElement6.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement7_FindFirstWithOptions(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: *IUIAutomationElement, found: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement7_FindFirstWithOptions(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement7.VTable, self.vtable).FindFirstWithOptions(@ptrCast(*const IUIAutomationElement7, self), scope, condition, traversalOptions, root, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement7_FindAllWithOptions(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: *IUIAutomationElement, found: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement7_FindAllWithOptions(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement7.VTable, self.vtable).FindAllWithOptions(@ptrCast(*const IUIAutomationElement7, self), scope, condition, traversalOptions, root, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement7_FindFirstWithOptionsBuildCache(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, cacheRequest: *IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: *IUIAutomationElement, found: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement7_FindFirstWithOptionsBuildCache(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement7.VTable, self.vtable).FindFirstWithOptionsBuildCache(@ptrCast(*const IUIAutomationElement7, self), scope, condition, cacheRequest, traversalOptions, root, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement7_FindAllWithOptionsBuildCache(self: *const T, scope: TreeScope, condition: *IUIAutomationCondition, cacheRequest: *IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: *IUIAutomationElement, found: **IUIAutomationElementArray) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement7_FindAllWithOptionsBuildCache(self: *const T, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement7.VTable, self.vtable).FindAllWithOptionsBuildCache(@ptrCast(*const IUIAutomationElement7, self), scope, condition, cacheRequest, traversalOptions, root, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement7_GetCurrentMetadataValue(self: *const T, targetId: i32, metadataId: i32, returnVal: *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement7_GetCurrentMetadataValue(self: *const T, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement7.VTable, self.vtable).GetCurrentMetadataValue(@ptrCast(*const IUIAutomationElement7, self), targetId, metadataId, returnVal);
         }
     };}
@@ -8993,23 +8993,23 @@ pub const IUIAutomationElement8 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHeadingLevel: fn(
             self: *const IUIAutomationElement8,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHeadingLevel: fn(
             self: *const IUIAutomationElement8,
-            retVal: *i32,
+            retVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationElement7.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement8_get_CurrentHeadingLevel(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement8_get_CurrentHeadingLevel(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement8.VTable, self.vtable).get_CurrentHeadingLevel(@ptrCast(*const IUIAutomationElement8, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement8_get_CachedHeadingLevel(self: *const T, retVal: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement8_get_CachedHeadingLevel(self: *const T, retVal: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement8.VTable, self.vtable).get_CachedHeadingLevel(@ptrCast(*const IUIAutomationElement8, self), retVal);
         }
     };}
@@ -9025,23 +9025,23 @@ pub const IUIAutomationElement9 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsDialog: fn(
             self: *const IUIAutomationElement9,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsDialog: fn(
             self: *const IUIAutomationElement9,
-            retVal: *BOOL,
+            retVal: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomationElement8.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement9_get_CurrentIsDialog(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement9_get_CurrentIsDialog(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement9.VTable, self.vtable).get_CurrentIsDialog(@ptrCast(*const IUIAutomationElement9, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement9_get_CachedIsDialog(self: *const T, retVal: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement9_get_CachedIsDialog(self: *const T, retVal: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement9.VTable, self.vtable).get_CachedIsDialog(@ptrCast(*const IUIAutomationElement9, self), retVal);
         }
     };}
@@ -9056,26 +9056,26 @@ pub const IUIAutomationProxyFactory = extern struct {
         base: IUnknown.VTable,
         CreateProvider: fn(
             self: *const IUIAutomationProxyFactory,
-            hwnd: *c_void,
+            hwnd: ?*c_void,
             idObject: i32,
             idChild: i32,
-            provider: **IRawElementProviderSimple,
+            provider: ?*?*IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyFactoryId: fn(
             self: *const IUIAutomationProxyFactory,
-            factoryId: *BSTR,
+            factoryId: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactory_CreateProvider(self: *const T, hwnd: *c_void, idObject: i32, idChild: i32, provider: **IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactory_CreateProvider(self: *const T, hwnd: ?*c_void, idObject: i32, idChild: i32, provider: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactory.VTable, self.vtable).CreateProvider(@ptrCast(*const IUIAutomationProxyFactory, self), hwnd, idObject, idChild, provider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactory_get_ProxyFactoryId(self: *const T, factoryId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactory_get_ProxyFactoryId(self: *const T, factoryId: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactory.VTable, self.vtable).get_ProxyFactoryId(@ptrCast(*const IUIAutomationProxyFactory, self), factoryId);
         }
     };}
@@ -9091,42 +9091,42 @@ pub const IUIAutomationProxyFactoryEntry = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyFactory: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            factory: **IUIAutomationProxyFactory,
+            factory: ?*?*IUIAutomationProxyFactory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            className: *BSTR,
+            className: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImageName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            imageName: *BSTR,
+            imageName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowSubstringMatch: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            allowSubstringMatch: *BOOL,
+            allowSubstringMatch: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanCheckBaseClass: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            canCheckBaseClass: *BOOL,
+            canCheckBaseClass: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsAdviseEvents: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            adviseEvents: *BOOL,
+            adviseEvents: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            className: [*:0]const u16,
+            className: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ImageName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            imageName: [*:0]const u16,
+            imageName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowSubstringMatch: fn(
@@ -9147,48 +9147,48 @@ pub const IUIAutomationProxyFactoryEntry = extern struct {
             self: *const IUIAutomationProxyFactoryEntry,
             eventId: i32,
             propertyId: i32,
-            winEvents: *SAFEARRAY,
+            winEvents: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWinEventsForAutomationEvent: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             eventId: i32,
             propertyId: i32,
-            winEvents: **SAFEARRAY,
+            winEvents: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_get_ProxyFactory(self: *const T, factory: **IUIAutomationProxyFactory) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_get_ProxyFactory(self: *const T, factory: ?*?*IUIAutomationProxyFactory) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).get_ProxyFactory(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), factory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_get_ClassName(self: *const T, className: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_get_ClassName(self: *const T, className: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).get_ClassName(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), className);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_get_ImageName(self: *const T, imageName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_get_ImageName(self: *const T, imageName: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).get_ImageName(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), imageName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_get_AllowSubstringMatch(self: *const T, allowSubstringMatch: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_get_AllowSubstringMatch(self: *const T, allowSubstringMatch: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).get_AllowSubstringMatch(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), allowSubstringMatch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_get_CanCheckBaseClass(self: *const T, canCheckBaseClass: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_get_CanCheckBaseClass(self: *const T, canCheckBaseClass: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).get_CanCheckBaseClass(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), canCheckBaseClass);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_get_NeedsAdviseEvents(self: *const T, adviseEvents: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_get_NeedsAdviseEvents(self: *const T, adviseEvents: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).get_NeedsAdviseEvents(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), adviseEvents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_put_ClassName(self: *const T, className: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_put_ClassName(self: *const T, className: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).put_ClassName(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), className);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_put_ImageName(self: *const T, imageName: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_put_ImageName(self: *const T, imageName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).put_ImageName(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), imageName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9204,11 +9204,11 @@ pub const IUIAutomationProxyFactoryEntry = extern struct {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).put_NeedsAdviseEvents(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), adviseEvents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_SetWinEventsForAutomationEvent(self: *const T, eventId: i32, propertyId: i32, winEvents: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_SetWinEventsForAutomationEvent(self: *const T, eventId: i32, propertyId: i32, winEvents: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).SetWinEventsForAutomationEvent(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), eventId, propertyId, winEvents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryEntry_GetWinEventsForAutomationEvent(self: *const T, eventId: i32, propertyId: i32, winEvents: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryEntry_GetWinEventsForAutomationEvent(self: *const T, eventId: i32, propertyId: i32, winEvents: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryEntry.VTable, self.vtable).GetWinEventsForAutomationEvent(@ptrCast(*const IUIAutomationProxyFactoryEntry, self), eventId, propertyId, winEvents);
         }
     };}
@@ -9224,30 +9224,30 @@ pub const IUIAutomationProxyFactoryMapping = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUIAutomationProxyFactoryMapping,
-            count: *u32,
+            count: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTable: fn(
             self: *const IUIAutomationProxyFactoryMapping,
-            table: **SAFEARRAY,
+            table: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEntry: fn(
             self: *const IUIAutomationProxyFactoryMapping,
             index: u32,
-            entry: **IUIAutomationProxyFactoryEntry,
+            entry: ?*?*IUIAutomationProxyFactoryEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTable: fn(
             self: *const IUIAutomationProxyFactoryMapping,
-            factoryList: *SAFEARRAY,
+            factoryList: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEntries: fn(
             self: *const IUIAutomationProxyFactoryMapping,
             before: u32,
-            factoryList: *SAFEARRAY,
+            factoryList: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertEntry: fn(
             self: *const IUIAutomationProxyFactoryMapping,
             before: u32,
-            factory: *IUIAutomationProxyFactoryEntry,
+            factory: ?*IUIAutomationProxyFactoryEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveEntry: fn(
             self: *const IUIAutomationProxyFactoryMapping,
@@ -9264,27 +9264,27 @@ pub const IUIAutomationProxyFactoryMapping = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryMapping_get_Count(self: *const T, count: *u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryMapping_get_Count(self: *const T, count: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryMapping.VTable, self.vtable).get_Count(@ptrCast(*const IUIAutomationProxyFactoryMapping, self), count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryMapping_GetTable(self: *const T, table: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryMapping_GetTable(self: *const T, table: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryMapping.VTable, self.vtable).GetTable(@ptrCast(*const IUIAutomationProxyFactoryMapping, self), table);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryMapping_GetEntry(self: *const T, index: u32, entry: **IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryMapping_GetEntry(self: *const T, index: u32, entry: ?*?*IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryMapping.VTable, self.vtable).GetEntry(@ptrCast(*const IUIAutomationProxyFactoryMapping, self), index, entry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryMapping_SetTable(self: *const T, factoryList: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryMapping_SetTable(self: *const T, factoryList: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryMapping.VTable, self.vtable).SetTable(@ptrCast(*const IUIAutomationProxyFactoryMapping, self), factoryList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryMapping_InsertEntries(self: *const T, before: u32, factoryList: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryMapping_InsertEntries(self: *const T, before: u32, factoryList: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryMapping.VTable, self.vtable).InsertEntries(@ptrCast(*const IUIAutomationProxyFactoryMapping, self), before, factoryList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactoryMapping_InsertEntry(self: *const T, before: u32, factory: *IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactoryMapping_InsertEntry(self: *const T, before: u32, factory: ?*IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactoryMapping.VTable, self.vtable).InsertEntry(@ptrCast(*const IUIAutomationProxyFactoryMapping, self), before, factory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9312,81 +9312,81 @@ pub const IUIAutomationEventHandlerGroup = extern struct {
         AddActiveTextPositionChangedEventHandler: fn(
             self: *const IUIAutomationEventHandlerGroup,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationActiveTextPositionChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationActiveTextPositionChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAutomationEventHandler: fn(
             self: *const IUIAutomationEventHandlerGroup,
             eventId: i32,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddChangesEventHandler: fn(
             self: *const IUIAutomationEventHandlerGroup,
             scope: TreeScope,
             changeTypes: [*]i32,
             changesCount: i32,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationChangesEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationChangesEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddNotificationEventHandler: fn(
             self: *const IUIAutomationEventHandlerGroup,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationNotificationEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationNotificationEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPropertyChangedEventHandler: fn(
             self: *const IUIAutomationEventHandlerGroup,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationPropertyChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationPropertyChangedEventHandler,
             propertyArray: [*]i32,
             propertyCount: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStructureChangedEventHandler: fn(
             self: *const IUIAutomationEventHandlerGroup,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationStructureChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationStructureChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddTextEditTextChangedEventHandler: fn(
             self: *const IUIAutomationEventHandlerGroup,
             scope: TreeScope,
             textEditChangeType: TextEditChangeType,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationTextEditTextChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationTextEditTextChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandlerGroup_AddActiveTextPositionChangedEventHandler(self: *const T, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandlerGroup_AddActiveTextPositionChangedEventHandler(self: *const T, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandlerGroup.VTable, self.vtable).AddActiveTextPositionChangedEventHandler(@ptrCast(*const IUIAutomationEventHandlerGroup, self), scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandlerGroup_AddAutomationEventHandler(self: *const T, eventId: i32, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandlerGroup_AddAutomationEventHandler(self: *const T, eventId: i32, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandlerGroup.VTable, self.vtable).AddAutomationEventHandler(@ptrCast(*const IUIAutomationEventHandlerGroup, self), eventId, scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandlerGroup_AddChangesEventHandler(self: *const T, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandlerGroup_AddChangesEventHandler(self: *const T, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandlerGroup.VTable, self.vtable).AddChangesEventHandler(@ptrCast(*const IUIAutomationEventHandlerGroup, self), scope, changeTypes, changesCount, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandlerGroup_AddNotificationEventHandler(self: *const T, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandlerGroup_AddNotificationEventHandler(self: *const T, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandlerGroup.VTable, self.vtable).AddNotificationEventHandler(@ptrCast(*const IUIAutomationEventHandlerGroup, self), scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandlerGroup_AddPropertyChangedEventHandler(self: *const T, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandlerGroup_AddPropertyChangedEventHandler(self: *const T, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandlerGroup.VTable, self.vtable).AddPropertyChangedEventHandler(@ptrCast(*const IUIAutomationEventHandlerGroup, self), scope, cacheRequest, handler, propertyArray, propertyCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandlerGroup_AddStructureChangedEventHandler(self: *const T, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandlerGroup_AddStructureChangedEventHandler(self: *const T, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandlerGroup.VTable, self.vtable).AddStructureChangedEventHandler(@ptrCast(*const IUIAutomationEventHandlerGroup, self), scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationEventHandlerGroup_AddTextEditTextChangedEventHandler(self: *const T, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationEventHandlerGroup_AddTextEditTextChangedEventHandler(self: *const T, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationEventHandlerGroup.VTable, self.vtable).AddTextEditTextChangedEventHandler(@ptrCast(*const IUIAutomationEventHandlerGroup, self), scope, textEditChangeType, cacheRequest, handler);
         }
     };}
@@ -9401,211 +9401,211 @@ pub const IUIAutomation = extern struct {
         base: IUnknown.VTable,
         CompareElements: fn(
             self: *const IUIAutomation,
-            el1: *IUIAutomationElement,
-            el2: *IUIAutomationElement,
-            areSame: *BOOL,
+            el1: ?*IUIAutomationElement,
+            el2: ?*IUIAutomationElement,
+            areSame: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareRuntimeIds: fn(
             self: *const IUIAutomation,
-            runtimeId1: *SAFEARRAY,
-            runtimeId2: *SAFEARRAY,
-            areSame: *BOOL,
+            runtimeId1: ?*SAFEARRAY,
+            runtimeId2: ?*SAFEARRAY,
+            areSame: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRootElement: fn(
             self: *const IUIAutomation,
-            root: **IUIAutomationElement,
+            root: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromHandle: fn(
             self: *const IUIAutomation,
-            hwnd: *c_void,
-            element: **IUIAutomationElement,
+            hwnd: ?*c_void,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromPoint: fn(
             self: *const IUIAutomation,
             pt: POINT,
-            element: **IUIAutomationElement,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocusedElement: fn(
             self: *const IUIAutomation,
-            element: **IUIAutomationElement,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRootElementBuildCache: fn(
             self: *const IUIAutomation,
-            cacheRequest: *IUIAutomationCacheRequest,
-            root: **IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            root: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromHandleBuildCache: fn(
             self: *const IUIAutomation,
-            hwnd: *c_void,
-            cacheRequest: *IUIAutomationCacheRequest,
-            element: **IUIAutomationElement,
+            hwnd: ?*c_void,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromPointBuildCache: fn(
             self: *const IUIAutomation,
             pt: POINT,
-            cacheRequest: *IUIAutomationCacheRequest,
-            element: **IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocusedElementBuildCache: fn(
             self: *const IUIAutomation,
-            cacheRequest: *IUIAutomationCacheRequest,
-            element: **IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTreeWalker: fn(
             self: *const IUIAutomation,
-            pCondition: *IUIAutomationCondition,
-            walker: **IUIAutomationTreeWalker,
+            pCondition: ?*IUIAutomationCondition,
+            walker: ?*?*IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ControlViewWalker: fn(
             self: *const IUIAutomation,
-            walker: **IUIAutomationTreeWalker,
+            walker: ?*?*IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentViewWalker: fn(
             self: *const IUIAutomation,
-            walker: **IUIAutomationTreeWalker,
+            walker: ?*?*IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RawViewWalker: fn(
             self: *const IUIAutomation,
-            walker: **IUIAutomationTreeWalker,
+            walker: ?*?*IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RawViewCondition: fn(
             self: *const IUIAutomation,
-            condition: **IUIAutomationCondition,
+            condition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ControlViewCondition: fn(
             self: *const IUIAutomation,
-            condition: **IUIAutomationCondition,
+            condition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentViewCondition: fn(
             self: *const IUIAutomation,
-            condition: **IUIAutomationCondition,
+            condition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCacheRequest: fn(
             self: *const IUIAutomation,
-            cacheRequest: **IUIAutomationCacheRequest,
+            cacheRequest: ?*?*IUIAutomationCacheRequest,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTrueCondition: fn(
             self: *const IUIAutomation,
-            newCondition: **IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFalseCondition: fn(
             self: *const IUIAutomation,
-            newCondition: **IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePropertyCondition: fn(
             self: *const IUIAutomation,
             propertyId: i32,
             value: VARIANT,
-            newCondition: **IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePropertyConditionEx: fn(
             self: *const IUIAutomation,
             propertyId: i32,
             value: VARIANT,
             flags: PropertyConditionFlags,
-            newCondition: **IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndCondition: fn(
             self: *const IUIAutomation,
-            condition1: *IUIAutomationCondition,
-            condition2: *IUIAutomationCondition,
-            newCondition: **IUIAutomationCondition,
+            condition1: ?*IUIAutomationCondition,
+            condition2: ?*IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndConditionFromArray: fn(
             self: *const IUIAutomation,
-            conditions: *SAFEARRAY,
-            newCondition: **IUIAutomationCondition,
+            conditions: ?*SAFEARRAY,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndConditionFromNativeArray: fn(
             self: *const IUIAutomation,
-            conditions: [*]*IUIAutomationCondition,
+            conditions: [*]?*IUIAutomationCondition,
             conditionCount: i32,
-            newCondition: **IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOrCondition: fn(
             self: *const IUIAutomation,
-            condition1: *IUIAutomationCondition,
-            condition2: *IUIAutomationCondition,
-            newCondition: **IUIAutomationCondition,
+            condition1: ?*IUIAutomationCondition,
+            condition2: ?*IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOrConditionFromArray: fn(
             self: *const IUIAutomation,
-            conditions: *SAFEARRAY,
-            newCondition: **IUIAutomationCondition,
+            conditions: ?*SAFEARRAY,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOrConditionFromNativeArray: fn(
             self: *const IUIAutomation,
-            conditions: [*]*IUIAutomationCondition,
+            conditions: [*]?*IUIAutomationCondition,
             conditionCount: i32,
-            newCondition: **IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNotCondition: fn(
             self: *const IUIAutomation,
-            condition: *IUIAutomationCondition,
-            newCondition: **IUIAutomationCondition,
+            condition: ?*IUIAutomationCondition,
+            newCondition: ?*?*IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAutomationEventHandler: fn(
             self: *const IUIAutomation,
             eventId: i32,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAutomationEventHandler: fn(
             self: *const IUIAutomation,
             eventId: i32,
-            element: *IUIAutomationElement,
-            handler: *IUIAutomationEventHandler,
+            element: ?*IUIAutomationElement,
+            handler: ?*IUIAutomationEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPropertyChangedEventHandlerNativeArray: fn(
             self: *const IUIAutomation,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationPropertyChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationPropertyChangedEventHandler,
             propertyArray: [*]i32,
             propertyCount: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPropertyChangedEventHandler: fn(
             self: *const IUIAutomation,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationPropertyChangedEventHandler,
-            propertyArray: *SAFEARRAY,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationPropertyChangedEventHandler,
+            propertyArray: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemovePropertyChangedEventHandler: fn(
             self: *const IUIAutomation,
-            element: *IUIAutomationElement,
-            handler: *IUIAutomationPropertyChangedEventHandler,
+            element: ?*IUIAutomationElement,
+            handler: ?*IUIAutomationPropertyChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStructureChangedEventHandler: fn(
             self: *const IUIAutomation,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationStructureChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationStructureChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveStructureChangedEventHandler: fn(
             self: *const IUIAutomation,
-            element: *IUIAutomationElement,
-            handler: *IUIAutomationStructureChangedEventHandler,
+            element: ?*IUIAutomationElement,
+            handler: ?*IUIAutomationStructureChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddFocusChangedEventHandler: fn(
             self: *const IUIAutomation,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationFocusChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationFocusChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveFocusChangedEventHandler: fn(
             self: *const IUIAutomation,
-            handler: *IUIAutomationFocusChangedEventHandler,
+            handler: ?*IUIAutomationFocusChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAllEventHandlers: fn(
             self: *const IUIAutomation,
@@ -9614,244 +9614,244 @@ pub const IUIAutomation = extern struct {
             self: *const IUIAutomation,
             array: [*]i32,
             arrayCount: i32,
-            safeArray: **SAFEARRAY,
+            safeArray: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IntSafeArrayToNativeArray: fn(
             self: *const IUIAutomation,
-            intArray: *SAFEARRAY,
-            array: [*]*i32,
-            arrayCount: *i32,
+            intArray: ?*SAFEARRAY,
+            array: [*]?*i32,
+            arrayCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RectToVariant: fn(
             self: *const IUIAutomation,
             rc: RECT,
-            @"var": *VARIANT,
+            @"var": ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VariantToRect: fn(
             self: *const IUIAutomation,
             @"var": VARIANT,
-            rc: *RECT,
+            rc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SafeArrayToRectNativeArray: fn(
             self: *const IUIAutomation,
-            rects: *SAFEARRAY,
-            rectArray: [*]*RECT,
-            rectArrayCount: *i32,
+            rects: ?*SAFEARRAY,
+            rectArray: [*]?*RECT,
+            rectArrayCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateProxyFactoryEntry: fn(
             self: *const IUIAutomation,
-            factory: *IUIAutomationProxyFactory,
-            factoryEntry: **IUIAutomationProxyFactoryEntry,
+            factory: ?*IUIAutomationProxyFactory,
+            factoryEntry: ?*?*IUIAutomationProxyFactoryEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyFactoryMapping: fn(
             self: *const IUIAutomation,
-            factoryMapping: **IUIAutomationProxyFactoryMapping,
+            factoryMapping: ?*?*IUIAutomationProxyFactoryMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyProgrammaticName: fn(
             self: *const IUIAutomation,
             property: i32,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPatternProgrammaticName: fn(
             self: *const IUIAutomation,
             pattern: i32,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PollForPotentialSupportedPatterns: fn(
             self: *const IUIAutomation,
-            pElement: *IUIAutomationElement,
-            patternIds: **SAFEARRAY,
-            patternNames: **SAFEARRAY,
+            pElement: ?*IUIAutomationElement,
+            patternIds: ?*?*SAFEARRAY,
+            patternNames: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PollForPotentialSupportedProperties: fn(
             self: *const IUIAutomation,
-            pElement: *IUIAutomationElement,
-            propertyIds: **SAFEARRAY,
-            propertyNames: **SAFEARRAY,
+            pElement: ?*IUIAutomationElement,
+            propertyIds: ?*?*SAFEARRAY,
+            propertyNames: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CheckNotSupported: fn(
             self: *const IUIAutomation,
             value: VARIANT,
-            isNotSupported: *BOOL,
+            isNotSupported: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReservedNotSupportedValue: fn(
             self: *const IUIAutomation,
-            notSupportedValue: **IUnknown,
+            notSupportedValue: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReservedMixedAttributeValue: fn(
             self: *const IUIAutomation,
-            mixedAttributeValue: **IUnknown,
+            mixedAttributeValue: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromIAccessible: fn(
             self: *const IUIAutomation,
-            accessible: *IAccessible,
+            accessible: ?*IAccessible,
             childId: i32,
-            element: **IUIAutomationElement,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromIAccessibleBuildCache: fn(
             self: *const IUIAutomation,
-            accessible: *IAccessible,
+            accessible: ?*IAccessible,
             childId: i32,
-            cacheRequest: *IUIAutomationCacheRequest,
-            element: **IUIAutomationElement,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CompareElements(self: *const T, el1: *IUIAutomationElement, el2: *IUIAutomationElement, areSame: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CompareElements(self: *const T, el1: ?*IUIAutomationElement, el2: ?*IUIAutomationElement, areSame: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CompareElements(@ptrCast(*const IUIAutomation, self), el1, el2, areSame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CompareRuntimeIds(self: *const T, runtimeId1: *SAFEARRAY, runtimeId2: *SAFEARRAY, areSame: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CompareRuntimeIds(self: *const T, runtimeId1: ?*SAFEARRAY, runtimeId2: ?*SAFEARRAY, areSame: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CompareRuntimeIds(@ptrCast(*const IUIAutomation, self), runtimeId1, runtimeId2, areSame);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_GetRootElement(self: *const T, root: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_GetRootElement(self: *const T, root: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetRootElement(@ptrCast(*const IUIAutomation, self), root);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromHandle(self: *const T, hwnd: *c_void, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromHandle(self: *const T, hwnd: ?*c_void, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromHandle(@ptrCast(*const IUIAutomation, self), hwnd, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromPoint(self: *const T, pt: POINT, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromPoint(self: *const T, pt: POINT, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromPoint(@ptrCast(*const IUIAutomation, self), pt, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_GetFocusedElement(self: *const T, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_GetFocusedElement(self: *const T, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetFocusedElement(@ptrCast(*const IUIAutomation, self), element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_GetRootElementBuildCache(self: *const T, cacheRequest: *IUIAutomationCacheRequest, root: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_GetRootElementBuildCache(self: *const T, cacheRequest: ?*IUIAutomationCacheRequest, root: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetRootElementBuildCache(@ptrCast(*const IUIAutomation, self), cacheRequest, root);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromHandleBuildCache(self: *const T, hwnd: *c_void, cacheRequest: *IUIAutomationCacheRequest, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromHandleBuildCache(self: *const T, hwnd: ?*c_void, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromHandleBuildCache(@ptrCast(*const IUIAutomation, self), hwnd, cacheRequest, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromPointBuildCache(self: *const T, pt: POINT, cacheRequest: *IUIAutomationCacheRequest, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromPointBuildCache(self: *const T, pt: POINT, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromPointBuildCache(@ptrCast(*const IUIAutomation, self), pt, cacheRequest, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_GetFocusedElementBuildCache(self: *const T, cacheRequest: *IUIAutomationCacheRequest, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_GetFocusedElementBuildCache(self: *const T, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetFocusedElementBuildCache(@ptrCast(*const IUIAutomation, self), cacheRequest, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateTreeWalker(self: *const T, pCondition: *IUIAutomationCondition, walker: **IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateTreeWalker(self: *const T, pCondition: ?*IUIAutomationCondition, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateTreeWalker(@ptrCast(*const IUIAutomation, self), pCondition, walker);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_ControlViewWalker(self: *const T, walker: **IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_ControlViewWalker(self: *const T, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_ControlViewWalker(@ptrCast(*const IUIAutomation, self), walker);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_ContentViewWalker(self: *const T, walker: **IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_ContentViewWalker(self: *const T, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_ContentViewWalker(@ptrCast(*const IUIAutomation, self), walker);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_RawViewWalker(self: *const T, walker: **IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_RawViewWalker(self: *const T, walker: ?*?*IUIAutomationTreeWalker) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_RawViewWalker(@ptrCast(*const IUIAutomation, self), walker);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_RawViewCondition(self: *const T, condition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_RawViewCondition(self: *const T, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_RawViewCondition(@ptrCast(*const IUIAutomation, self), condition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_ControlViewCondition(self: *const T, condition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_ControlViewCondition(self: *const T, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_ControlViewCondition(@ptrCast(*const IUIAutomation, self), condition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_ContentViewCondition(self: *const T, condition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_ContentViewCondition(self: *const T, condition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_ContentViewCondition(@ptrCast(*const IUIAutomation, self), condition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateCacheRequest(self: *const T, cacheRequest: **IUIAutomationCacheRequest) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateCacheRequest(self: *const T, cacheRequest: ?*?*IUIAutomationCacheRequest) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateCacheRequest(@ptrCast(*const IUIAutomation, self), cacheRequest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateTrueCondition(self: *const T, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateTrueCondition(self: *const T, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateTrueCondition(@ptrCast(*const IUIAutomation, self), newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateFalseCondition(self: *const T, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateFalseCondition(self: *const T, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateFalseCondition(@ptrCast(*const IUIAutomation, self), newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreatePropertyCondition(self: *const T, propertyId: i32, value: VARIANT, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreatePropertyCondition(self: *const T, propertyId: i32, value: VARIANT, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreatePropertyCondition(@ptrCast(*const IUIAutomation, self), propertyId, value, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreatePropertyConditionEx(self: *const T, propertyId: i32, value: VARIANT, flags: PropertyConditionFlags, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreatePropertyConditionEx(self: *const T, propertyId: i32, value: VARIANT, flags: PropertyConditionFlags, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreatePropertyConditionEx(@ptrCast(*const IUIAutomation, self), propertyId, value, flags, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateAndCondition(self: *const T, condition1: *IUIAutomationCondition, condition2: *IUIAutomationCondition, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateAndCondition(self: *const T, condition1: ?*IUIAutomationCondition, condition2: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateAndCondition(@ptrCast(*const IUIAutomation, self), condition1, condition2, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateAndConditionFromArray(self: *const T, conditions: *SAFEARRAY, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateAndConditionFromArray(self: *const T, conditions: ?*SAFEARRAY, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateAndConditionFromArray(@ptrCast(*const IUIAutomation, self), conditions, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateAndConditionFromNativeArray(self: *const T, conditions: [*]*IUIAutomationCondition, conditionCount: i32, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateAndConditionFromNativeArray(self: *const T, conditions: [*]?*IUIAutomationCondition, conditionCount: i32, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateAndConditionFromNativeArray(@ptrCast(*const IUIAutomation, self), conditions, conditionCount, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateOrCondition(self: *const T, condition1: *IUIAutomationCondition, condition2: *IUIAutomationCondition, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateOrCondition(self: *const T, condition1: ?*IUIAutomationCondition, condition2: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateOrCondition(@ptrCast(*const IUIAutomation, self), condition1, condition2, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateOrConditionFromArray(self: *const T, conditions: *SAFEARRAY, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateOrConditionFromArray(self: *const T, conditions: ?*SAFEARRAY, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateOrConditionFromArray(@ptrCast(*const IUIAutomation, self), conditions, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateOrConditionFromNativeArray(self: *const T, conditions: [*]*IUIAutomationCondition, conditionCount: i32, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateOrConditionFromNativeArray(self: *const T, conditions: [*]?*IUIAutomationCondition, conditionCount: i32, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateOrConditionFromNativeArray(@ptrCast(*const IUIAutomation, self), conditions, conditionCount, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateNotCondition(self: *const T, condition: *IUIAutomationCondition, newCondition: **IUIAutomationCondition) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateNotCondition(self: *const T, condition: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateNotCondition(@ptrCast(*const IUIAutomation, self), condition, newCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_AddAutomationEventHandler(self: *const T, eventId: i32, element: *IUIAutomationElement, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_AddAutomationEventHandler(self: *const T, eventId: i32, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).AddAutomationEventHandler(@ptrCast(*const IUIAutomation, self), eventId, element, scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_RemoveAutomationEventHandler(self: *const T, eventId: i32, element: *IUIAutomationElement, handler: *IUIAutomationEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_RemoveAutomationEventHandler(self: *const T, eventId: i32, element: ?*IUIAutomationElement, handler: ?*IUIAutomationEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).RemoveAutomationEventHandler(@ptrCast(*const IUIAutomation, self), eventId, element, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_AddPropertyChangedEventHandlerNativeArray(self: *const T, element: *IUIAutomationElement, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_AddPropertyChangedEventHandlerNativeArray(self: *const T, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).AddPropertyChangedEventHandlerNativeArray(@ptrCast(*const IUIAutomation, self), element, scope, cacheRequest, handler, propertyArray, propertyCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_AddPropertyChangedEventHandler(self: *const T, element: *IUIAutomationElement, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationPropertyChangedEventHandler, propertyArray: *SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_AddPropertyChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: ?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).AddPropertyChangedEventHandler(@ptrCast(*const IUIAutomation, self), element, scope, cacheRequest, handler, propertyArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_RemovePropertyChangedEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationPropertyChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_RemovePropertyChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, handler: ?*IUIAutomationPropertyChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).RemovePropertyChangedEventHandler(@ptrCast(*const IUIAutomation, self), element, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_AddStructureChangedEventHandler(self: *const T, element: *IUIAutomationElement, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_AddStructureChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).AddStructureChangedEventHandler(@ptrCast(*const IUIAutomation, self), element, scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_RemoveStructureChangedEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_RemoveStructureChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).RemoveStructureChangedEventHandler(@ptrCast(*const IUIAutomation, self), element, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_AddFocusChangedEventHandler(self: *const T, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationFocusChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_AddFocusChangedEventHandler(self: *const T, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationFocusChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).AddFocusChangedEventHandler(@ptrCast(*const IUIAutomation, self), cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_RemoveFocusChangedEventHandler(self: *const T, handler: *IUIAutomationFocusChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_RemoveFocusChangedEventHandler(self: *const T, handler: ?*IUIAutomationFocusChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).RemoveFocusChangedEventHandler(@ptrCast(*const IUIAutomation, self), handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9859,67 +9859,67 @@ pub const IUIAutomation = extern struct {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).RemoveAllEventHandlers(@ptrCast(*const IUIAutomation, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_IntNativeArrayToSafeArray(self: *const T, array: [*]i32, arrayCount: i32, safeArray: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_IntNativeArrayToSafeArray(self: *const T, array: [*]i32, arrayCount: i32, safeArray: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).IntNativeArrayToSafeArray(@ptrCast(*const IUIAutomation, self), array, arrayCount, safeArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_IntSafeArrayToNativeArray(self: *const T, intArray: *SAFEARRAY, array: [*]*i32, arrayCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_IntSafeArrayToNativeArray(self: *const T, intArray: ?*SAFEARRAY, array: [*]?*i32, arrayCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).IntSafeArrayToNativeArray(@ptrCast(*const IUIAutomation, self), intArray, array, arrayCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_RectToVariant(self: *const T, rc: RECT, @"var": *VARIANT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_RectToVariant(self: *const T, rc: RECT, @"var": ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).RectToVariant(@ptrCast(*const IUIAutomation, self), rc, @"var");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_VariantToRect(self: *const T, @"var": VARIANT, rc: *RECT) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_VariantToRect(self: *const T, @"var": VARIANT, rc: ?*RECT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).VariantToRect(@ptrCast(*const IUIAutomation, self), @"var", rc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_SafeArrayToRectNativeArray(self: *const T, rects: *SAFEARRAY, rectArray: [*]*RECT, rectArrayCount: *i32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_SafeArrayToRectNativeArray(self: *const T, rects: ?*SAFEARRAY, rectArray: [*]?*RECT, rectArrayCount: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).SafeArrayToRectNativeArray(@ptrCast(*const IUIAutomation, self), rects, rectArray, rectArrayCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CreateProxyFactoryEntry(self: *const T, factory: *IUIAutomationProxyFactory, factoryEntry: **IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CreateProxyFactoryEntry(self: *const T, factory: ?*IUIAutomationProxyFactory, factoryEntry: ?*?*IUIAutomationProxyFactoryEntry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CreateProxyFactoryEntry(@ptrCast(*const IUIAutomation, self), factory, factoryEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_ProxyFactoryMapping(self: *const T, factoryMapping: **IUIAutomationProxyFactoryMapping) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_ProxyFactoryMapping(self: *const T, factoryMapping: ?*?*IUIAutomationProxyFactoryMapping) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_ProxyFactoryMapping(@ptrCast(*const IUIAutomation, self), factoryMapping);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_GetPropertyProgrammaticName(self: *const T, property: i32, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_GetPropertyProgrammaticName(self: *const T, property: i32, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetPropertyProgrammaticName(@ptrCast(*const IUIAutomation, self), property, name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_GetPatternProgrammaticName(self: *const T, pattern: i32, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_GetPatternProgrammaticName(self: *const T, pattern: i32, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetPatternProgrammaticName(@ptrCast(*const IUIAutomation, self), pattern, name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_PollForPotentialSupportedPatterns(self: *const T, pElement: *IUIAutomationElement, patternIds: **SAFEARRAY, patternNames: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_PollForPotentialSupportedPatterns(self: *const T, pElement: ?*IUIAutomationElement, patternIds: ?*?*SAFEARRAY, patternNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).PollForPotentialSupportedPatterns(@ptrCast(*const IUIAutomation, self), pElement, patternIds, patternNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_PollForPotentialSupportedProperties(self: *const T, pElement: *IUIAutomationElement, propertyIds: **SAFEARRAY, propertyNames: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_PollForPotentialSupportedProperties(self: *const T, pElement: ?*IUIAutomationElement, propertyIds: ?*?*SAFEARRAY, propertyNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).PollForPotentialSupportedProperties(@ptrCast(*const IUIAutomation, self), pElement, propertyIds, propertyNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_CheckNotSupported(self: *const T, value: VARIANT, isNotSupported: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_CheckNotSupported(self: *const T, value: VARIANT, isNotSupported: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).CheckNotSupported(@ptrCast(*const IUIAutomation, self), value, isNotSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_ReservedNotSupportedValue(self: *const T, notSupportedValue: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_ReservedNotSupportedValue(self: *const T, notSupportedValue: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_ReservedNotSupportedValue(@ptrCast(*const IUIAutomation, self), notSupportedValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_get_ReservedMixedAttributeValue(self: *const T, mixedAttributeValue: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_get_ReservedMixedAttributeValue(self: *const T, mixedAttributeValue: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).get_ReservedMixedAttributeValue(@ptrCast(*const IUIAutomation, self), mixedAttributeValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromIAccessible(self: *const T, accessible: *IAccessible, childId: i32, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromIAccessible(self: *const T, accessible: ?*IAccessible, childId: i32, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromIAccessible(@ptrCast(*const IUIAutomation, self), accessible, childId, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromIAccessibleBuildCache(self: *const T, accessible: *IAccessible, childId: i32, cacheRequest: *IUIAutomationCacheRequest, element: **IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromIAccessibleBuildCache(self: *const T, accessible: ?*IAccessible, childId: i32, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromIAccessibleBuildCache(@ptrCast(*const IUIAutomation, self), accessible, childId, cacheRequest, element);
         }
     };}
@@ -9935,7 +9935,7 @@ pub const IUIAutomation2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoSetFocus: fn(
             self: *const IUIAutomation2,
-            autoSetFocus: *BOOL,
+            autoSetFocus: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoSetFocus: fn(
@@ -9945,7 +9945,7 @@ pub const IUIAutomation2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionTimeout: fn(
             self: *const IUIAutomation2,
-            timeout: *u32,
+            timeout: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectionTimeout: fn(
@@ -9955,7 +9955,7 @@ pub const IUIAutomation2 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionTimeout: fn(
             self: *const IUIAutomation2,
-            timeout: *u32,
+            timeout: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TransactionTimeout: fn(
@@ -9967,7 +9967,7 @@ pub const IUIAutomation2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomation.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation2_get_AutoSetFocus(self: *const T, autoSetFocus: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation2_get_AutoSetFocus(self: *const T, autoSetFocus: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation2.VTable, self.vtable).get_AutoSetFocus(@ptrCast(*const IUIAutomation2, self), autoSetFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9975,7 +9975,7 @@ pub const IUIAutomation2 = extern struct {
             return @ptrCast(*const IUIAutomation2.VTable, self.vtable).put_AutoSetFocus(@ptrCast(*const IUIAutomation2, self), autoSetFocus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation2_get_ConnectionTimeout(self: *const T, timeout: *u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation2_get_ConnectionTimeout(self: *const T, timeout: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation2.VTable, self.vtable).get_ConnectionTimeout(@ptrCast(*const IUIAutomation2, self), timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9983,7 +9983,7 @@ pub const IUIAutomation2 = extern struct {
             return @ptrCast(*const IUIAutomation2.VTable, self.vtable).put_ConnectionTimeout(@ptrCast(*const IUIAutomation2, self), timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation2_get_TransactionTimeout(self: *const T, timeout: *u32) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation2_get_TransactionTimeout(self: *const T, timeout: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation2.VTable, self.vtable).get_TransactionTimeout(@ptrCast(*const IUIAutomation2, self), timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10002,27 +10002,27 @@ pub const IUIAutomation3 = extern struct {
         base: IUIAutomation2.VTable,
         AddTextEditTextChangedEventHandler: fn(
             self: *const IUIAutomation3,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
             textEditChangeType: TextEditChangeType,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationTextEditTextChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationTextEditTextChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveTextEditTextChangedEventHandler: fn(
             self: *const IUIAutomation3,
-            element: *IUIAutomationElement,
-            handler: *IUIAutomationTextEditTextChangedEventHandler,
+            element: ?*IUIAutomationElement,
+            handler: ?*IUIAutomationTextEditTextChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomation2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation3_AddTextEditTextChangedEventHandler(self: *const T, element: *IUIAutomationElement, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation3_AddTextEditTextChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, scope: TreeScope, textEditChangeType: TextEditChangeType, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation3.VTable, self.vtable).AddTextEditTextChangedEventHandler(@ptrCast(*const IUIAutomation3, self), element, scope, textEditChangeType, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation3_RemoveTextEditTextChangedEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation3_RemoveTextEditTextChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, handler: ?*IUIAutomationTextEditTextChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation3.VTable, self.vtable).RemoveTextEditTextChangedEventHandler(@ptrCast(*const IUIAutomation3, self), element, handler);
         }
     };}
@@ -10037,28 +10037,28 @@ pub const IUIAutomation4 = extern struct {
         base: IUIAutomation3.VTable,
         AddChangesEventHandler: fn(
             self: *const IUIAutomation4,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
             changeTypes: [*]i32,
             changesCount: i32,
-            pCacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationChangesEventHandler,
+            pCacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationChangesEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveChangesEventHandler: fn(
             self: *const IUIAutomation4,
-            element: *IUIAutomationElement,
-            handler: *IUIAutomationChangesEventHandler,
+            element: ?*IUIAutomationElement,
+            handler: ?*IUIAutomationChangesEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomation3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation4_AddChangesEventHandler(self: *const T, element: *IUIAutomationElement, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, pCacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation4_AddChangesEventHandler(self: *const T, element: ?*IUIAutomationElement, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, pCacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation4.VTable, self.vtable).AddChangesEventHandler(@ptrCast(*const IUIAutomation4, self), element, scope, changeTypes, changesCount, pCacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation4_RemoveChangesEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation4_RemoveChangesEventHandler(self: *const T, element: ?*IUIAutomationElement, handler: ?*IUIAutomationChangesEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation4.VTable, self.vtable).RemoveChangesEventHandler(@ptrCast(*const IUIAutomation4, self), element, handler);
         }
     };}
@@ -10073,26 +10073,26 @@ pub const IUIAutomation5 = extern struct {
         base: IUIAutomation4.VTable,
         AddNotificationEventHandler: fn(
             self: *const IUIAutomation5,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationNotificationEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationNotificationEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveNotificationEventHandler: fn(
             self: *const IUIAutomation5,
-            element: *IUIAutomationElement,
-            handler: *IUIAutomationNotificationEventHandler,
+            element: ?*IUIAutomationElement,
+            handler: ?*IUIAutomationNotificationEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomation4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation5_AddNotificationEventHandler(self: *const T, element: *IUIAutomationElement, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation5_AddNotificationEventHandler(self: *const T, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation5.VTable, self.vtable).AddNotificationEventHandler(@ptrCast(*const IUIAutomation5, self), element, scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation5_RemoveNotificationEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation5_RemoveNotificationEventHandler(self: *const T, element: ?*IUIAutomationElement, handler: ?*IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation5.VTable, self.vtable).RemoveNotificationEventHandler(@ptrCast(*const IUIAutomation5, self), element, handler);
         }
     };}
@@ -10107,22 +10107,22 @@ pub const IUIAutomation6 = extern struct {
         base: IUIAutomation5.VTable,
         CreateEventHandlerGroup: fn(
             self: *const IUIAutomation6,
-            handlerGroup: **IUIAutomationEventHandlerGroup,
+            handlerGroup: ?*?*IUIAutomationEventHandlerGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddEventHandlerGroup: fn(
             self: *const IUIAutomation6,
-            element: *IUIAutomationElement,
-            handlerGroup: *IUIAutomationEventHandlerGroup,
+            element: ?*IUIAutomationElement,
+            handlerGroup: ?*IUIAutomationEventHandlerGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveEventHandlerGroup: fn(
             self: *const IUIAutomation6,
-            element: *IUIAutomationElement,
-            handlerGroup: *IUIAutomationEventHandlerGroup,
+            element: ?*IUIAutomationElement,
+            handlerGroup: ?*IUIAutomationEventHandlerGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionRecoveryBehavior: fn(
             self: *const IUIAutomation6,
-            connectionRecoveryBehaviorOptions: *ConnectionRecoveryBehaviorOptions,
+            connectionRecoveryBehaviorOptions: ?*ConnectionRecoveryBehaviorOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectionRecoveryBehavior: fn(
@@ -10132,7 +10132,7 @@ pub const IUIAutomation6 = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CoalesceEvents: fn(
             self: *const IUIAutomation6,
-            coalesceEventsOptions: *CoalesceEventsOptions,
+            coalesceEventsOptions: ?*CoalesceEventsOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CoalesceEvents: fn(
@@ -10141,34 +10141,34 @@ pub const IUIAutomation6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddActiveTextPositionChangedEventHandler: fn(
             self: *const IUIAutomation6,
-            element: *IUIAutomationElement,
+            element: ?*IUIAutomationElement,
             scope: TreeScope,
-            cacheRequest: *IUIAutomationCacheRequest,
-            handler: *IUIAutomationActiveTextPositionChangedEventHandler,
+            cacheRequest: ?*IUIAutomationCacheRequest,
+            handler: ?*IUIAutomationActiveTextPositionChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveActiveTextPositionChangedEventHandler: fn(
             self: *const IUIAutomation6,
-            element: *IUIAutomationElement,
-            handler: *IUIAutomationActiveTextPositionChangedEventHandler,
+            element: ?*IUIAutomationElement,
+            handler: ?*IUIAutomationActiveTextPositionChangedEventHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUIAutomation5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation6_CreateEventHandlerGroup(self: *const T, handlerGroup: **IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation6_CreateEventHandlerGroup(self: *const T, handlerGroup: ?*?*IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).CreateEventHandlerGroup(@ptrCast(*const IUIAutomation6, self), handlerGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation6_AddEventHandlerGroup(self: *const T, element: *IUIAutomationElement, handlerGroup: *IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation6_AddEventHandlerGroup(self: *const T, element: ?*IUIAutomationElement, handlerGroup: ?*IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).AddEventHandlerGroup(@ptrCast(*const IUIAutomation6, self), element, handlerGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation6_RemoveEventHandlerGroup(self: *const T, element: *IUIAutomationElement, handlerGroup: *IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation6_RemoveEventHandlerGroup(self: *const T, element: ?*IUIAutomationElement, handlerGroup: ?*IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).RemoveEventHandlerGroup(@ptrCast(*const IUIAutomation6, self), element, handlerGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation6_get_ConnectionRecoveryBehavior(self: *const T, connectionRecoveryBehaviorOptions: *ConnectionRecoveryBehaviorOptions) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation6_get_ConnectionRecoveryBehavior(self: *const T, connectionRecoveryBehaviorOptions: ?*ConnectionRecoveryBehaviorOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).get_ConnectionRecoveryBehavior(@ptrCast(*const IUIAutomation6, self), connectionRecoveryBehaviorOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10176,7 +10176,7 @@ pub const IUIAutomation6 = extern struct {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).put_ConnectionRecoveryBehavior(@ptrCast(*const IUIAutomation6, self), connectionRecoveryBehaviorOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation6_get_CoalesceEvents(self: *const T, coalesceEventsOptions: *CoalesceEventsOptions) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation6_get_CoalesceEvents(self: *const T, coalesceEventsOptions: ?*CoalesceEventsOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).get_CoalesceEvents(@ptrCast(*const IUIAutomation6, self), coalesceEventsOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10184,11 +10184,11 @@ pub const IUIAutomation6 = extern struct {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).put_CoalesceEvents(@ptrCast(*const IUIAutomation6, self), coalesceEventsOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation6_AddActiveTextPositionChangedEventHandler(self: *const T, element: *IUIAutomationElement, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation6_AddActiveTextPositionChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).AddActiveTextPositionChangedEventHandler(@ptrCast(*const IUIAutomation6, self), element, scope, cacheRequest, handler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation6_RemoveActiveTextPositionChangedEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation6_RemoveActiveTextPositionChangedEventHandler(self: *const T, element: ?*IUIAutomationElement, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation6.VTable, self.vtable).RemoveActiveTextPositionChangedEventHandler(@ptrCast(*const IUIAutomation6, self), element, handler);
         }
     };}
@@ -10223,21 +10223,21 @@ pub const UiaPropertyCondition = extern struct {
 
 pub const UiaAndOrCondition = extern struct {
     ConditionType: ConditionType,
-    ppConditions: **UiaCondition,
+    ppConditions: ?*?*UiaCondition,
     cConditions: i32,
 };
 
 pub const UiaNotCondition = extern struct {
     ConditionType: ConditionType,
-    pCondition: *UiaCondition,
+    pCondition: ?*UiaCondition,
 };
 
 pub const UiaCacheRequest = extern struct {
-    pViewCondition: *UiaCondition,
+    pViewCondition: ?*UiaCondition,
     Scope: TreeScope,
-    pProperties: *i32,
+    pProperties: ?*i32,
     cProperties: i32,
-    pPatterns: *i32,
+    pPatterns: ?*i32,
     cPatterns: i32,
     automationElementMode: AutomationElementMode,
 };
@@ -10255,7 +10255,7 @@ pub const UiaFindParams = extern struct {
     MaxDepth: i32,
     FindFirst: BOOL,
     ExcludeRoot: BOOL,
-    pFindCondition: *UiaCondition,
+    pFindCondition: ?*UiaCondition,
 };
 
 pub const ProviderType = enum(i32) {
@@ -10268,9 +10268,9 @@ pub const ProviderType_Proxy = ProviderType.Proxy;
 pub const ProviderType_NonClientArea = ProviderType.NonClientArea;
 
 pub const UiaProviderCallback = fn(
-    hwnd: HWND,
+    hwnd: ?HWND,
     providerType: ProviderType,
-) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
+) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
 pub const AutomationIdentifierType = enum(i32) {
     Property = 0,
@@ -10342,7 +10342,7 @@ pub const UiaStructureChangedEventArgs = extern struct {
     Type: EventArgsType,
     EventId: i32,
     StructureChangeType: StructureChangeType,
-    pRuntimeId: *i32,
+    pRuntimeId: ?*i32,
     cRuntimeIdLen: i32,
 };
 
@@ -10350,14 +10350,14 @@ pub const UiaTextEditTextChangedEventArgs = extern struct {
     Type: EventArgsType,
     EventId: i32,
     TextEditChangeType: TextEditChangeType,
-    pTextChange: *SAFEARRAY,
+    pTextChange: ?*SAFEARRAY,
 };
 
 pub const UiaChangesEventArgs = extern struct {
     Type: EventArgsType,
     EventId: i32,
     EventIdCount: i32,
-    pUiaChanges: *UiaChangeInfo,
+    pUiaChanges: ?*UiaChangeInfo,
 };
 
 pub const UiaAsyncContentLoadedEventArgs = extern struct {
@@ -10370,14 +10370,14 @@ pub const UiaAsyncContentLoadedEventArgs = extern struct {
 pub const UiaWindowClosedEventArgs = extern struct {
     Type: EventArgsType,
     EventId: i32,
-    pRuntimeId: *i32,
+    pRuntimeId: ?*i32,
     cRuntimeIdLen: i32,
 };
 
 pub const UiaEventCallback = fn(
-    pArgs: *UiaEventArgs,
-    pRequestedData: *SAFEARRAY,
-    pTreeStructure: BSTR,
+    pArgs: ?*UiaEventArgs,
+    pRequestedData: ?*SAFEARRAY,
+    pTreeStructure: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const STICKYKEYS_FLAGS = enum(u32) {
@@ -10642,8 +10642,8 @@ pub const HUIAEVENT = *opaque{};
 pub const SERIALKEYSA = extern struct {
     cbSize: u32,
     dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: PSTR,
-    lpszPort: PSTR,
+    lpszActivePort: ?PSTR,
+    lpszPort: ?PSTR,
     iBaudRate: u32,
     iPortState: u32,
     iActive: u32,
@@ -10652,8 +10652,8 @@ pub const SERIALKEYSA = extern struct {
 pub const SERIALKEYSW = extern struct {
     cbSize: u32,
     dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: PWSTR,
-    lpszPort: PWSTR,
+    lpszActivePort: ?PWSTR,
+    lpszPort: ?PWSTR,
     iBaudRate: u32,
     iPortState: u32,
     iActive: u32,
@@ -10662,13 +10662,13 @@ pub const SERIALKEYSW = extern struct {
 pub const HIGHCONTRASTA = extern struct {
     cbSize: u32,
     dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: PSTR,
+    lpszDefaultScheme: ?PSTR,
 };
 
 pub const HIGHCONTRASTW = extern struct {
     cbSize: u32,
     dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: PWSTR,
+    lpszDefaultScheme: ?PWSTR,
 };
 
 pub const FILTERKEYS = extern struct {
@@ -10712,7 +10712,7 @@ pub const SOUNDSENTRYA = extern struct {
     iFSGrafEffectColor: u32,
     iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
     iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: PSTR,
+    lpszWindowsEffectDLL: ?PSTR,
     iWindowsEffectOrdinal: u32,
 };
 
@@ -10727,7 +10727,7 @@ pub const SOUNDSENTRYW = extern struct {
     iFSGrafEffectColor: u32,
     iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
     iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: PWSTR,
+    lpszWindowsEffectDLL: ?PWSTR,
     iWindowsEffectOrdinal: u32,
 };
 
@@ -10737,9 +10737,9 @@ pub const TOGGLEKEYS = extern struct {
 };
 
 pub const WINEVENTPROC = fn(
-    hWinEventHook: HWINEVENTHOOK,
+    hWinEventHook: ?HWINEVENTHOOK,
     event: u32,
-    hwnd: HWND,
+    hwnd: ?HWND,
     idObject: i32,
     idChild: i32,
     idEventThread: u32,
@@ -10752,56 +10752,56 @@ pub const WINEVENTPROC = fn(
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn LresultFromObject(
-    riid: *const Guid,
+    riid: ?*const Guid,
     wParam: WPARAM,
-    punk: *IUnknown,
+    punk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEACC" fn ObjectFromLresult(
     lResult: LRESULT,
-    riid: *const Guid,
+    riid: ?*const Guid,
     wParam: WPARAM,
-    ppvObject: **c_void,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn WindowFromAccessibleObject(
-    param0: *IAccessible,
-    phwnd: ?*HWND,
+    param0: ?*IAccessible,
+    phwnd: ?*?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleObjectFromWindow(
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwId: u32,
-    riid: *const Guid,
-    ppvObject: **c_void,
+    riid: ?*const Guid,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleObjectFromEvent(
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwId: u32,
     dwChildId: u32,
-    ppacc: **IAccessible,
-    pvarChild: *VARIANT,
+    ppacc: ?*?*IAccessible,
+    pvarChild: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleObjectFromPoint(
     ptScreen: POINT,
-    ppacc: **IAccessible,
-    pvarChild: *VARIANT,
+    ppacc: ?*?*IAccessible,
+    pvarChild: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn AccessibleChildren(
-    paccContainer: *IAccessible,
+    paccContainer: ?*IAccessible,
     iChildStart: i32,
     cChildren: i32,
     rgvarChildren: [*]VARIANT,
-    pcObtained: *i32,
+    pcObtained: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10834,185 +10834,185 @@ pub extern "OLEACC" fn GetStateTextW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn GetOleaccVersionInfo(
-    pVer: *u32,
-    pBuild: *u32,
+    pVer: ?*u32,
+    pBuild: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn CreateStdAccessibleObject(
-    hwnd: HWND,
+    hwnd: ?HWND,
     idObject: i32,
-    riid: *const Guid,
-    ppvObject: **c_void,
+    riid: ?*const Guid,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn CreateStdAccessibleProxyA(
-    hwnd: HWND,
-    pClassName: [*:0]const u8,
+    hwnd: ?HWND,
+    pClassName: ?[*:0]const u8,
     idObject: i32,
-    riid: *const Guid,
-    ppvObject: **c_void,
+    riid: ?*const Guid,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn CreateStdAccessibleProxyW(
-    hwnd: HWND,
-    pClassName: [*:0]const u16,
+    hwnd: ?HWND,
+    pClassName: ?[*:0]const u16,
     idObject: i32,
-    riid: *const Guid,
-    ppvObject: **c_void,
+    riid: ?*const Guid,
+    ppvObject: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "OLEACC" fn AccSetRunningUtilityState(
-    hwndApp: HWND,
+    hwndApp: ?HWND,
     dwUtilityStateMask: u32,
     dwUtilityState: ACC_UTILITY_STATE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "OLEACC" fn AccNotifyTouchInteraction(
-    hwndApp: HWND,
-    hwndTarget: HWND,
+    hwndApp: ?HWND,
+    hwndTarget: ?HWND,
     ptTarget: POINT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetErrorDescription(
-    pDescription: *BSTR,
+    pDescription: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHUiaNodeFromVariant(
-    pvar: *VARIANT,
-    phnode: *HUIANODE,
+    pvar: ?*VARIANT,
+    phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHPatternObjectFromVariant(
-    pvar: *VARIANT,
-    phobj: *HUIAPATTERNOBJECT,
+    pvar: ?*VARIANT,
+    phobj: ?*?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHTextRangeFromVariant(
-    pvar: *VARIANT,
-    phtextrange: *HUIATEXTRANGE,
+    pvar: ?*VARIANT,
+    phtextrange: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeRelease(
-    hnode: HUIANODE,
+    hnode: ?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetPropertyValue(
-    hnode: HUIANODE,
+    hnode: ?HUIANODE,
     propertyId: i32,
-    pValue: *VARIANT,
+    pValue: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetPatternProvider(
-    hnode: HUIANODE,
+    hnode: ?HUIANODE,
     patternId: i32,
-    phobj: *HUIAPATTERNOBJECT,
+    phobj: ?*?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetRuntimeId(
-    hnode: HUIANODE,
-    pruntimeId: **SAFEARRAY,
+    hnode: ?HUIANODE,
+    pruntimeId: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaSetFocus(
-    hnode: HUIANODE,
+    hnode: ?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNavigate(
-    hnode: HUIANODE,
+    hnode: ?HUIANODE,
     direction: NavigateDirection,
-    pCondition: *UiaCondition,
-    pRequest: *UiaCacheRequest,
-    ppRequestedData: **SAFEARRAY,
-    ppTreeStructure: *BSTR,
+    pCondition: ?*UiaCondition,
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetUpdatedCache(
-    hnode: HUIANODE,
-    pRequest: *UiaCacheRequest,
+    hnode: ?HUIANODE,
+    pRequest: ?*UiaCacheRequest,
     normalizeState: NormalizeState,
-    pNormalizeCondition: *UiaCondition,
-    ppRequestedData: **SAFEARRAY,
-    ppTreeStructure: *BSTR,
+    pNormalizeCondition: ?*UiaCondition,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaFind(
-    hnode: HUIANODE,
-    pParams: *UiaFindParams,
-    pRequest: *UiaCacheRequest,
-    ppRequestedData: **SAFEARRAY,
-    ppOffsets: **SAFEARRAY,
-    ppTreeStructures: **SAFEARRAY,
+    hnode: ?HUIANODE,
+    pParams: ?*UiaFindParams,
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppOffsets: ?*?*SAFEARRAY,
+    ppTreeStructures: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromPoint(
     x: f64,
     y: f64,
-    pRequest: *UiaCacheRequest,
-    ppRequestedData: **SAFEARRAY,
-    ppTreeStructure: *BSTR,
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromFocus(
-    pRequest: *UiaCacheRequest,
-    ppRequestedData: **SAFEARRAY,
-    ppTreeStructure: *BSTR,
+    pRequest: ?*UiaCacheRequest,
+    ppRequestedData: ?*?*SAFEARRAY,
+    ppTreeStructure: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromHandle(
-    hwnd: HWND,
-    phnode: *HUIANODE,
+    hwnd: ?HWND,
+    phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaNodeFromProvider(
-    pProvider: *IRawElementProviderSimple,
-    phnode: *HUIANODE,
+    pProvider: ?*IRawElementProviderSimple,
+    phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetRootNode(
-    phnode: *HUIANODE,
+    phnode: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRegisterProviderCallback(
-    pCallback: *UiaProviderCallback,
+    pCallback: ?*?UiaProviderCallback,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaLookupId(
     type: AutomationIdentifierType,
-    pGuid: *const Guid,
+    pGuid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetReservedNotSupportedValue(
-    punkNotSupportedValue: **IUnknown,
+    punkNotSupportedValue: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaGetReservedMixedAttributeValue(
-    punkMixedAttributeValue: **IUnknown,
+    punkMixedAttributeValue: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -11021,7 +11021,7 @@ pub extern "UIAutomationCore" fn UiaClientsAreListening(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseAutomationPropertyChangedEvent(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
     id: i32,
     oldValue: VARIANT,
     newValue: VARIANT,
@@ -11029,470 +11029,470 @@ pub extern "UIAutomationCore" fn UiaRaiseAutomationPropertyChangedEvent(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseAutomationEvent(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
     id: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseStructureChangedEvent(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
     structureChangeType: StructureChangeType,
-    pRuntimeId: *i32,
+    pRuntimeId: ?*i32,
     cRuntimeIdLen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRaiseAsyncContentLoadedEvent(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
     asyncContentLoadedState: AsyncContentLoadedState,
     percentComplete: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "UIAutomationCore" fn UiaRaiseTextEditTextChangedEvent(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
     textEditChangeType: TextEditChangeType,
-    pChangedData: *SAFEARRAY,
+    pChangedData: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "UIAutomationCore" fn UiaRaiseChangesEvent(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
     eventIdCount: i32,
-    pUiaChanges: *UiaChangeInfo,
+    pUiaChanges: ?*UiaChangeInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "UIAutomationCore" fn UiaRaiseNotificationEvent(
-    provider: *IRawElementProviderSimple,
+    provider: ?*IRawElementProviderSimple,
     notificationKind: NotificationKind,
     notificationProcessing: NotificationProcessing,
     displayString: ?BSTR,
-    activityId: BSTR,
+    activityId: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "UIAutomationCore" fn UiaRaiseActiveTextPositionChangedEvent(
-    provider: *IRawElementProviderSimple,
+    provider: ?*IRawElementProviderSimple,
     textRange: ?*ITextRangeProvider,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaAddEvent(
-    hnode: HUIANODE,
+    hnode: ?HUIANODE,
     eventId: i32,
-    pCallback: *UiaEventCallback,
+    pCallback: ?*?UiaEventCallback,
     scope: TreeScope,
-    pProperties: *i32,
+    pProperties: ?*i32,
     cProperties: i32,
-    pRequest: *UiaCacheRequest,
-    phEvent: *HUIAEVENT,
+    pRequest: ?*UiaCacheRequest,
+    phEvent: ?*?HUIAEVENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaRemoveEvent(
-    hEvent: HUIAEVENT,
+    hEvent: ?HUIAEVENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaEventAddWindow(
-    hEvent: HUIAEVENT,
-    hwnd: HWND,
+    hEvent: ?HUIAEVENT,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaEventRemoveWindow(
-    hEvent: HUIAEVENT,
-    hwnd: HWND,
+    hEvent: ?HUIAEVENT,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn DockPattern_SetDockPosition(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     dockPosition: DockPosition,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ExpandCollapsePattern_Collapse(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ExpandCollapsePattern_Expand(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn GridPattern_GetItem(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     row: i32,
     column: i32,
-    pResult: *HUIANODE,
+    pResult: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn InvokePattern_Invoke(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn MultipleViewPattern_GetViewName(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     viewId: i32,
-    ppStr: *BSTR,
+    ppStr: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn MultipleViewPattern_SetCurrentView(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     viewId: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn RangeValuePattern_SetValue(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     val: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ScrollItemPattern_ScrollIntoView(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ScrollPattern_Scroll(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     horizontalAmount: ScrollAmount,
     verticalAmount: ScrollAmount,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ScrollPattern_SetScrollPercent(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     horizontalPercent: f64,
     verticalPercent: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn SelectionItemPattern_AddToSelection(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn SelectionItemPattern_RemoveFromSelection(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn SelectionItemPattern_Select(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TogglePattern_Toggle(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TransformPattern_Move(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     x: f64,
     y: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TransformPattern_Resize(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     width: f64,
     height: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TransformPattern_Rotate(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     degrees: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn ValuePattern_SetValue(
-    hobj: HUIAPATTERNOBJECT,
-    pVal: [*:0]const u16,
+    hobj: ?HUIAPATTERNOBJECT,
+    pVal: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn WindowPattern_Close(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn WindowPattern_SetWindowVisualState(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     state: WindowVisualState,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn WindowPattern_WaitForInputIdle(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     milliseconds: i32,
-    pResult: *BOOL,
+    pResult: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_GetSelection(
-    hobj: HUIAPATTERNOBJECT,
-    pRetVal: **SAFEARRAY,
+    hobj: ?HUIAPATTERNOBJECT,
+    pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_GetVisibleRanges(
-    hobj: HUIAPATTERNOBJECT,
-    pRetVal: **SAFEARRAY,
+    hobj: ?HUIAPATTERNOBJECT,
+    pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_RangeFromChild(
-    hobj: HUIAPATTERNOBJECT,
-    hnodeChild: HUIANODE,
-    pRetVal: *HUIATEXTRANGE,
+    hobj: ?HUIAPATTERNOBJECT,
+    hnodeChild: ?HUIANODE,
+    pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_RangeFromPoint(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     point: UiaPoint,
-    pRetVal: *HUIATEXTRANGE,
+    pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_get_DocumentRange(
-    hobj: HUIAPATTERNOBJECT,
-    pRetVal: *HUIATEXTRANGE,
+    hobj: ?HUIAPATTERNOBJECT,
+    pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextPattern_get_SupportedTextSelection(
-    hobj: HUIAPATTERNOBJECT,
-    pRetVal: *SupportedTextSelection,
+    hobj: ?HUIAPATTERNOBJECT,
+    pRetVal: ?*SupportedTextSelection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Clone(
-    hobj: HUIATEXTRANGE,
-    pRetVal: *HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
+    pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Compare(
-    hobj: HUIATEXTRANGE,
-    range: HUIATEXTRANGE,
-    pRetVal: *BOOL,
+    hobj: ?HUIATEXTRANGE,
+    range: ?HUIATEXTRANGE,
+    pRetVal: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_CompareEndpoints(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
-    targetRange: HUIATEXTRANGE,
+    targetRange: ?HUIATEXTRANGE,
     targetEndpoint: TextPatternRangeEndpoint,
-    pRetVal: *i32,
+    pRetVal: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_ExpandToEnclosingUnit(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     unit: TextUnit,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetAttributeValue(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     attributeId: i32,
-    pRetVal: *VARIANT,
+    pRetVal: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_FindAttribute(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     attributeId: i32,
     val: VARIANT,
     backward: BOOL,
-    pRetVal: *HUIATEXTRANGE,
+    pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_FindText(
-    hobj: HUIATEXTRANGE,
-    text: BSTR,
+    hobj: ?HUIATEXTRANGE,
+    text: ?BSTR,
     backward: BOOL,
     ignoreCase: BOOL,
-    pRetVal: *HUIATEXTRANGE,
+    pRetVal: ?*?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetBoundingRectangles(
-    hobj: HUIATEXTRANGE,
-    pRetVal: **SAFEARRAY,
+    hobj: ?HUIATEXTRANGE,
+    pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetEnclosingElement(
-    hobj: HUIATEXTRANGE,
-    pRetVal: *HUIANODE,
+    hobj: ?HUIATEXTRANGE,
+    pRetVal: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetText(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     maxLength: i32,
-    pRetVal: *BSTR,
+    pRetVal: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Move(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     unit: TextUnit,
     count: i32,
-    pRetVal: *i32,
+    pRetVal: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_MoveEndpointByUnit(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
     unit: TextUnit,
     count: i32,
-    pRetVal: *i32,
+    pRetVal: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_MoveEndpointByRange(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     endpoint: TextPatternRangeEndpoint,
-    targetRange: HUIATEXTRANGE,
+    targetRange: ?HUIATEXTRANGE,
     targetEndpoint: TextPatternRangeEndpoint,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_Select(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_AddToSelection(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_RemoveFromSelection(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_ScrollIntoView(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
     alignToTop: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn TextRange_GetChildren(
-    hobj: HUIATEXTRANGE,
-    pRetVal: **SAFEARRAY,
+    hobj: ?HUIATEXTRANGE,
+    pRetVal: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn ItemContainerPattern_FindItemByProperty(
-    hobj: HUIAPATTERNOBJECT,
-    hnodeStartAfter: HUIANODE,
+    hobj: ?HUIAPATTERNOBJECT,
+    hnodeStartAfter: ?HUIANODE,
     propertyId: i32,
     value: VARIANT,
-    pFound: *HUIANODE,
+    pFound: ?*?HUIANODE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_Select(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     flagsSelect: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_DoDefaultAction(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_SetValue(
-    hobj: HUIAPATTERNOBJECT,
-    szValue: [*:0]const u16,
+    hobj: ?HUIAPATTERNOBJECT,
+    szValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn LegacyIAccessiblePattern_GetIAccessible(
-    hobj: HUIAPATTERNOBJECT,
-    pAccessible: **IAccessible,
+    hobj: ?HUIAPATTERNOBJECT,
+    pAccessible: ?*?*IAccessible,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn SynchronizedInputPattern_StartListening(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
     inputType: SynchronizedInputType,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn SynchronizedInputPattern_Cancel(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "UIAutomationCore" fn VirtualizedItemPattern_Realize(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaPatternRelease(
-    hobj: HUIAPATTERNOBJECT,
+    hobj: ?HUIAPATTERNOBJECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaTextRangeRelease(
-    hobj: HUIATEXTRANGE,
+    hobj: ?HUIATEXTRANGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaReturnRawElementProvider(
-    hwnd: HWND,
+    hwnd: ?HWND,
     wParam: WPARAM,
     lParam: LPARAM,
-    el: *IRawElementProviderSimple,
+    el: ?*IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHostProviderFromHwnd(
-    hwnd: HWND,
-    ppProvider: **IRawElementProviderSimple,
+    hwnd: ?HWND,
+    ppProvider: ?*?*IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaProviderForNonClient(
-    hwnd: HWND,
+    hwnd: ?HWND,
     idObject: i32,
     idChild: i32,
-    ppProvider: **IRawElementProviderSimple,
+    ppProvider: ?*?*IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaIAccessibleFromProvider(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
     dwFlags: u32,
-    ppAccessible: **IAccessible,
-    pvarChild: *VARIANT,
+    ppAccessible: ?*?*IAccessible,
+    pvarChild: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaProviderFromIAccessible(
-    pAccessible: *IAccessible,
+    pAccessible: ?*IAccessible,
     idChild: i32,
     dwFlags: u32,
-    ppProvider: **IRawElementProviderSimple,
+    ppProvider: ?*?*IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -11501,43 +11501,43 @@ pub extern "UIAutomationCore" fn UiaDisconnectAllProviders(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "UIAutomationCore" fn UiaDisconnectProvider(
-    pProvider: *IRawElementProviderSimple,
+    pProvider: ?*IRawElementProviderSimple,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "UIAutomationCore" fn UiaHasServerSideProvider(
-    hwnd: HWND,
+    hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn RegisterPointerInputTarget(
-    hwnd: HWND,
+    hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "USER32" fn UnregisterPointerInputTarget(
-    hwnd: HWND,
+    hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "USER32" fn RegisterPointerInputTargetEx(
-    hwnd: HWND,
+    hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
     fObserve: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "USER32" fn UnregisterPointerInputTargetEx(
-    hwnd: HWND,
+    hwnd: ?HWND,
     pointerType: POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn NotifyWinEvent(
     event: u32,
-    hwnd: HWND,
+    hwnd: ?HWND,
     idObject: i32,
     idChild: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -11547,11 +11547,11 @@ pub extern "USER32" fn SetWinEventHook(
     eventMin: u32,
     eventMax: u32,
     hmodWinEventProc: ?HINSTANCE,
-    pfnWinEventProc: WINEVENTPROC,
+    pfnWinEventProc: ?WINEVENTPROC,
     idProcess: u32,
     idThread: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HWINEVENTHOOK;
+) callconv(@import("std").os.windows.WINAPI) ?HWINEVENTHOOK;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn IsWinEventHookInstalled(
@@ -11560,7 +11560,7 @@ pub extern "USER32" fn IsWinEventHookInstalled(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn UnhookWinEvent(
-    hWinEventHook: HWINEVENTHOOK,
+    hWinEventHook: ?HWINEVENTHOOK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

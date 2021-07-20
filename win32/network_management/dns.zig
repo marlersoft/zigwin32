@@ -423,16 +423,16 @@ pub const DNS_A_DATA = extern struct {
 };
 
 pub const DNS_PTR_DATAW = extern struct {
-    pNameHost: PWSTR,
+    pNameHost: ?PWSTR,
 };
 
 pub const DNS_PTR_DATAA = extern struct {
-    pNameHost: PSTR,
+    pNameHost: ?PSTR,
 };
 
 pub const DNS_SOA_DATAW = extern struct {
-    pNamePrimaryServer: PWSTR,
-    pNameAdministrator: PWSTR,
+    pNamePrimaryServer: ?PWSTR,
+    pNameAdministrator: ?PWSTR,
     dwSerialNo: u32,
     dwRefresh: u32,
     dwRetry: u32,
@@ -441,8 +441,8 @@ pub const DNS_SOA_DATAW = extern struct {
 };
 
 pub const DNS_SOA_DATAA = extern struct {
-    pNamePrimaryServer: PSTR,
-    pNameAdministrator: PSTR,
+    pNamePrimaryServer: ?PSTR,
+    pNameAdministrator: ?PSTR,
     dwSerialNo: u32,
     dwRefresh: u32,
     dwRetry: u32,
@@ -451,35 +451,35 @@ pub const DNS_SOA_DATAA = extern struct {
 };
 
 pub const DNS_MINFO_DATAW = extern struct {
-    pNameMailbox: PWSTR,
-    pNameErrorsMailbox: PWSTR,
+    pNameMailbox: ?PWSTR,
+    pNameErrorsMailbox: ?PWSTR,
 };
 
 pub const DNS_MINFO_DATAA = extern struct {
-    pNameMailbox: PSTR,
-    pNameErrorsMailbox: PSTR,
+    pNameMailbox: ?PSTR,
+    pNameErrorsMailbox: ?PSTR,
 };
 
 pub const DNS_MX_DATAW = extern struct {
-    pNameExchange: PWSTR,
+    pNameExchange: ?PWSTR,
     wPreference: u16,
     Pad: u16,
 };
 
 pub const DNS_MX_DATAA = extern struct {
-    pNameExchange: PSTR,
+    pNameExchange: ?PSTR,
     wPreference: u16,
     Pad: u16,
 };
 
 pub const DNS_TXT_DATAW = extern struct {
     dwStringCount: u32,
-    pStringArray: [1]PWSTR,
+    pStringArray: [1]?PWSTR,
 };
 
 pub const DNS_TXT_DATAA = extern struct {
     dwStringCount: u32,
-    pStringArray: [1]PSTR,
+    pStringArray: [1]?PSTR,
 };
 
 pub const DNS_NULL_DATA = extern struct {
@@ -506,7 +506,7 @@ pub const DNS_SIG_DATAW = extern struct {
     dwTimeSigned: u32,
     wKeyTag: u16,
     wSignatureLength: u16,
-    pNameSigner: PWSTR,
+    pNameSigner: ?PWSTR,
     Signature: [1]u8,
 };
 
@@ -519,7 +519,7 @@ pub const DNS_SIG_DATAA = extern struct {
     dwTimeSigned: u32,
     wKeyTag: u16,
     wSignatureLength: u16,
-    pNameSigner: PSTR,
+    pNameSigner: ?PSTR,
     Signature: [1]u8,
 };
 
@@ -538,14 +538,14 @@ pub const DNS_DHCID_DATA = extern struct {
 };
 
 pub const DNS_NSEC_DATAW = extern struct {
-    pNextDomainName: PWSTR,
+    pNextDomainName: ?PWSTR,
     wTypeBitMapsLength: u16,
     wPad: u16,
     TypeBitMaps: [1]u8,
 };
 
 pub const DNS_NSEC_DATAA = extern struct {
-    pNextDomainName: PSTR,
+    pNextDomainName: ?PSTR,
     wTypeBitMapsLength: u16,
     wPad: u16,
     TypeBitMaps: [1]u8,
@@ -605,19 +605,19 @@ pub const DNS_LOC_DATA = extern struct {
 };
 
 pub const DNS_NXT_DATAW = extern struct {
-    pNameNext: PWSTR,
+    pNameNext: ?PWSTR,
     wNumTypes: u16,
     wTypes: [1]u16,
 };
 
 pub const DNS_NXT_DATAA = extern struct {
-    pNameNext: PSTR,
+    pNameNext: ?PSTR,
     wNumTypes: u16,
     wTypes: [1]u16,
 };
 
 pub const DNS_SRV_DATAW = extern struct {
-    pNameTarget: PWSTR,
+    pNameTarget: ?PWSTR,
     wPriority: u16,
     wWeight: u16,
     wPort: u16,
@@ -625,7 +625,7 @@ pub const DNS_SRV_DATAW = extern struct {
 };
 
 pub const DNS_SRV_DATAA = extern struct {
-    pNameTarget: PSTR,
+    pNameTarget: ?PSTR,
     wPriority: u16,
     wWeight: u16,
     wPort: u16,
@@ -635,19 +635,19 @@ pub const DNS_SRV_DATAA = extern struct {
 pub const DNS_NAPTR_DATAW = extern struct {
     wOrder: u16,
     wPreference: u16,
-    pFlags: PWSTR,
-    pService: PWSTR,
-    pRegularExpression: PWSTR,
-    pReplacement: PWSTR,
+    pFlags: ?PWSTR,
+    pService: ?PWSTR,
+    pRegularExpression: ?PWSTR,
+    pReplacement: ?PWSTR,
 };
 
 pub const DNS_NAPTR_DATAA = extern struct {
     wOrder: u16,
     wPreference: u16,
-    pFlags: PSTR,
-    pService: PSTR,
-    pRegularExpression: PSTR,
-    pReplacement: PSTR,
+    pFlags: ?PSTR,
+    pService: ?PSTR,
+    pRegularExpression: ?PSTR,
+    pReplacement: ?PSTR,
 };
 
 pub const DNS_ATMA_DATA = extern struct {
@@ -656,10 +656,10 @@ pub const DNS_ATMA_DATA = extern struct {
 };
 
 pub const DNS_TKEY_DATAW = extern struct {
-    pNameAlgorithm: PWSTR,
-    pAlgorithmPacket: *u8,
-    pKey: *u8,
-    pOtherData: *u8,
+    pNameAlgorithm: ?PWSTR,
+    pAlgorithmPacket: ?*u8,
+    pKey: ?*u8,
+    pOtherData: ?*u8,
     dwCreateTime: u32,
     dwExpireTime: u32,
     wMode: u16,
@@ -671,10 +671,10 @@ pub const DNS_TKEY_DATAW = extern struct {
 };
 
 pub const DNS_TKEY_DATAA = extern struct {
-    pNameAlgorithm: PSTR,
-    pAlgorithmPacket: *u8,
-    pKey: *u8,
-    pOtherData: *u8,
+    pNameAlgorithm: ?PSTR,
+    pAlgorithmPacket: ?*u8,
+    pKey: ?*u8,
+    pOtherData: ?*u8,
     dwCreateTime: u32,
     dwExpireTime: u32,
     wMode: u16,
@@ -686,10 +686,10 @@ pub const DNS_TKEY_DATAA = extern struct {
 };
 
 pub const DNS_TSIG_DATAW = extern struct {
-    pNameAlgorithm: PWSTR,
-    pAlgorithmPacket: *u8,
-    pSignature: *u8,
-    pOtherData: *u8,
+    pNameAlgorithm: ?PWSTR,
+    pAlgorithmPacket: ?*u8,
+    pSignature: ?*u8,
+    pOtherData: ?*u8,
     i64CreateTime: i64,
     wFudgeTime: u16,
     wOriginalXid: u16,
@@ -701,10 +701,10 @@ pub const DNS_TSIG_DATAW = extern struct {
 };
 
 pub const DNS_TSIG_DATAA = extern struct {
-    pNameAlgorithm: PSTR,
-    pAlgorithmPacket: *u8,
-    pSignature: *u8,
-    pOtherData: *u8,
+    pNameAlgorithm: ?PSTR,
+    pAlgorithmPacket: ?*u8,
+    pSignature: ?*u8,
+    pOtherData: ?*u8,
     i64CreateTime: i64,
     wFudgeTime: u16,
     wOriginalXid: u16,
@@ -732,14 +732,14 @@ pub const DNS_WINSR_DATAW = extern struct {
     dwMappingFlag: u32,
     dwLookupTimeout: u32,
     dwCacheTimeout: u32,
-    pNameResultDomain: PWSTR,
+    pNameResultDomain: ?PWSTR,
 };
 
 pub const DNS_WINSR_DATAA = extern struct {
     dwMappingFlag: u32,
     dwLookupTimeout: u32,
     dwCacheTimeout: u32,
-    pNameResultDomain: PSTR,
+    pNameResultDomain: ?PSTR,
 };
 
 pub const DNS_RECORD_FLAGS = extern struct {
@@ -758,8 +758,8 @@ pub const DnsSectionAuthority = DNS_SECTION.Authority;
 pub const DnsSectionAddtional = DNS_SECTION.Addtional;
 
 pub const DNS_RECORDW = extern struct {
-    pNext: *DNS_RECORDW,
-    pName: PWSTR,
+    pNext: ?*DNS_RECORDW,
+    pName: ?PWSTR,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -852,13 +852,13 @@ pub const DNS_RECORDW = extern struct {
         Tlsa: DNS_TLSA_DATA,
         UNKNOWN: DNS_UNKNOWN_DATA,
         Unknown: DNS_UNKNOWN_DATA,
-        pDataPtr: *u8,
+        pDataPtr: ?*u8,
     },
 };
 
 pub const _DnsRecordOptW = extern struct {
-    pNext: *DNS_RECORDW,
-    pName: PWSTR,
+    pNext: ?*DNS_RECORDW,
+    pName: ?PWSTR,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -875,8 +875,8 @@ pub const _DnsRecordOptW = extern struct {
 };
 
 pub const DNS_RECORDA = extern struct {
-    pNext: *DNS_RECORDA,
-    pName: PSTR,
+    pNext: ?*DNS_RECORDA,
+    pName: ?PSTR,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -969,13 +969,13 @@ pub const DNS_RECORDA = extern struct {
         Tlsa: DNS_TLSA_DATA,
         UNKNOWN: DNS_UNKNOWN_DATA,
         Unknown: DNS_UNKNOWN_DATA,
-        pDataPtr: *u8,
+        pDataPtr: ?*u8,
     },
 };
 
 pub const _DnsRecordOptA = extern struct {
-    pNext: *DNS_RECORDA,
-    pName: PSTR,
+    pNext: ?*DNS_RECORDA,
+    pName: ?PSTR,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -992,8 +992,8 @@ pub const _DnsRecordOptA = extern struct {
 };
 
 pub const DNS_RRSET = extern struct {
-    pFirstRR: *DNS_RECORDA,
-    pLastRR: *DNS_RECORDA,
+    pFirstRR: ?*DNS_RECORDA,
+    pLastRR: ?*DNS_RECORDA,
 };
 
 pub const DNS_PROXY_COMPLETION_ROUTINE = fn(
@@ -1015,7 +1015,7 @@ pub const DNS_PROXY_INFORMATION_DOES_NOT_EXIST = DNS_PROXY_INFORMATION_TYPE.DOES
 pub const DNS_PROXY_INFORMATION = extern struct {
     version: u32,
     proxyInformationType: DNS_PROXY_INFORMATION_TYPE,
-    proxyName: PWSTR,
+    proxyName: ?PWSTR,
 };
 
 pub const DNS_CHARSET = enum(i32) {
@@ -1042,24 +1042,24 @@ pub const DNS_QUERY_RESULT = extern struct {
     Version: u32,
     QueryStatus: i32,
     QueryOptions: u64,
-    pQueryRecords: *DNS_RECORDA,
-    Reserved: *c_void,
+    pQueryRecords: ?*DNS_RECORDA,
+    Reserved: ?*c_void,
 };
 
 pub const PDNS_QUERY_COMPLETION_ROUTINE = fn(
-    pQueryContext: *c_void,
-    pQueryResults: *DNS_QUERY_RESULT,
+    pQueryContext: ?*c_void,
+    pQueryResults: ?*DNS_QUERY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_QUERY_REQUEST = extern struct {
     Version: u32,
-    QueryName: [*:0]const u16,
+    QueryName: ?[*:0]const u16,
     QueryType: u16,
     QueryOptions: u64,
-    pDnsServerList: *DNS_ADDR_ARRAY,
+    pDnsServerList: ?*DNS_ADDR_ARRAY,
     InterfaceIndex: u32,
-    pQueryCompletionCallback: PDNS_QUERY_COMPLETION_ROUTINE,
-    pQueryContext: *c_void,
+    pQueryCompletionCallback: ?PDNS_QUERY_COMPLETION_ROUTINE,
+    pQueryContext: ?*c_void,
 };
 
 pub const DNS_QUERY_CANCEL = extern struct {
@@ -1112,22 +1112,22 @@ pub const DNS_CONNECTION_PROXY_INFO_SWITCH_WPAD = DNS_CONNECTION_PROXY_INFO_SWIT
 
 pub const DNS_CONNECTION_PROXY_INFO = extern struct {
     Version: u32,
-    pwszFriendlyName: PWSTR,
+    pwszFriendlyName: ?PWSTR,
     Flags: u32,
     Switch: DNS_CONNECTION_PROXY_INFO_SWITCH,
     Anonymous: extern union {
         pub const _DNS_CONNECTION_PROXY_INFO_CONFIG = extern struct {
-            pwszServer: PWSTR,
-            pwszUsername: PWSTR,
-            pwszPassword: PWSTR,
-            pwszException: PWSTR,
-            pwszExtraInfo: PWSTR,
+            pwszServer: ?PWSTR,
+            pwszUsername: ?PWSTR,
+            pwszPassword: ?PWSTR,
+            pwszException: ?PWSTR,
+            pwszExtraInfo: ?PWSTR,
             Port: u16,
         };
         pub const _DNS_CONNECTION_PROXY_INFO_SCRIPT = extern struct {
-            pwszScript: PWSTR,
-            pwszUsername: PWSTR,
-            pwszPassword: PWSTR,
+            pwszScript: ?PWSTR,
+            pwszUsername: ?PWSTR,
+            pwszPassword: ?PWSTR,
         };
         Config: _DNS_CONNECTION_PROXY_INFO_CONFIG,
         Script: _DNS_CONNECTION_PROXY_INFO_SCRIPT,
@@ -1137,9 +1137,9 @@ pub const DNS_CONNECTION_PROXY_INFO = extern struct {
 pub const DNS_CONNECTION_PROXY_INFO_EX = extern struct {
     ProxyInfo: DNS_CONNECTION_PROXY_INFO,
     dwInterfaceIndex: u32,
-    pwszConnectionName: PWSTR,
+    pwszConnectionName: ?PWSTR,
     fDirectConfiguration: BOOL,
-    hConnection: HANDLE,
+    hConnection: ?HANDLE,
 };
 
 pub const DNS_CONNECTION_PROXY_ELEMENT = extern struct {
@@ -1149,7 +1149,7 @@ pub const DNS_CONNECTION_PROXY_ELEMENT = extern struct {
 
 pub const DNS_CONNECTION_PROXY_LIST = extern struct {
     cProxies: u32,
-    pProxies: *DNS_CONNECTION_PROXY_ELEMENT,
+    pProxies: ?*DNS_CONNECTION_PROXY_ELEMENT,
 };
 
 pub const DNS_CONNECTION_NAME = extern struct {
@@ -1158,31 +1158,31 @@ pub const DNS_CONNECTION_NAME = extern struct {
 
 pub const DNS_CONNECTION_NAME_LIST = extern struct {
     cNames: u32,
-    pNames: *DNS_CONNECTION_NAME,
+    pNames: ?*DNS_CONNECTION_NAME,
 };
 
 pub const DNS_CONNECTION_IFINDEX_ENTRY = extern struct {
-    pwszConnectionName: [*:0]const u16,
+    pwszConnectionName: ?[*:0]const u16,
     dwIfIndex: u32,
 };
 
 pub const DNS_CONNECTION_IFINDEX_LIST = extern struct {
-    pConnectionIfIndexEntries: *DNS_CONNECTION_IFINDEX_ENTRY,
+    pConnectionIfIndexEntries: ?*DNS_CONNECTION_IFINDEX_ENTRY,
     nEntries: u32,
 };
 
 pub const DNS_CONNECTION_POLICY_ENTRY = extern struct {
-    pwszHost: [*:0]const u16,
-    pwszAppId: [*:0]const u16,
+    pwszHost: ?[*:0]const u16,
+    pwszAppId: ?[*:0]const u16,
     cbAppSid: u32,
-    pbAppSid: *u8,
+    pbAppSid: ?*u8,
     nConnections: u32,
-    ppwszConnections: *PWSTR,
+    ppwszConnections: ?*?PWSTR,
     dwPolicyEntryFlags: u32,
 };
 
 pub const DNS_CONNECTION_POLICY_ENTRY_LIST = extern struct {
-    pPolicyEntries: *DNS_CONNECTION_POLICY_ENTRY,
+    pPolicyEntries: ?*DNS_CONNECTION_POLICY_ENTRY,
     nEntries: u32,
 };
 
@@ -1196,93 +1196,93 @@ pub const TAG_DNS_CONNECTION_POLICY_TAG_CONNECTION_MANAGER = DNS_CONNECTION_POLI
 pub const TAG_DNS_CONNECTION_POLICY_TAG_WWWPT = DNS_CONNECTION_POLICY_TAG.WWWPT;
 
 pub const DNS_SERVICE_INSTANCE = extern struct {
-    pszInstanceName: PWSTR,
-    pszHostName: PWSTR,
-    ip4Address: *u32,
-    ip6Address: *IP6_ADDRESS,
+    pszInstanceName: ?PWSTR,
+    pszHostName: ?PWSTR,
+    ip4Address: ?*u32,
+    ip6Address: ?*IP6_ADDRESS,
     wPort: u16,
     wPriority: u16,
     wWeight: u16,
     dwPropertyCount: u32,
-    keys: *PWSTR,
-    values: *PWSTR,
+    keys: ?*?PWSTR,
+    values: ?*?PWSTR,
     dwInterfaceIndex: u32,
 };
 
 pub const DNS_SERVICE_CANCEL = extern struct {
-    reserved: *c_void,
+    reserved: ?*c_void,
 };
 
 pub const PDNS_SERVICE_BROWSE_CALLBACK = fn(
     Status: u32,
-    pQueryContext: *c_void,
-    pDnsRecord: *DNS_RECORDA,
+    pQueryContext: ?*c_void,
+    pDnsRecord: ?*DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     Version: u32,
     InterfaceIndex: u32,
-    QueryName: [*:0]const u16,
+    QueryName: ?[*:0]const u16,
     Anonymous: extern union {
-        pBrowseCallback: PDNS_SERVICE_BROWSE_CALLBACK,
-        pBrowseCallbackV2: PDNS_QUERY_COMPLETION_ROUTINE,
+        pBrowseCallback: ?PDNS_SERVICE_BROWSE_CALLBACK,
+        pBrowseCallbackV2: ?PDNS_QUERY_COMPLETION_ROUTINE,
     },
-    pQueryContext: *c_void,
+    pQueryContext: ?*c_void,
 };
 
 pub const PDNS_SERVICE_RESOLVE_COMPLETE = fn(
     Status: u32,
-    pQueryContext: *c_void,
-    pInstance: *DNS_SERVICE_INSTANCE,
+    pQueryContext: ?*c_void,
+    pInstance: ?*DNS_SERVICE_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     Version: u32,
     InterfaceIndex: u32,
-    QueryName: PWSTR,
-    pResolveCompletionCallback: PDNS_SERVICE_RESOLVE_COMPLETE,
-    pQueryContext: *c_void,
+    QueryName: ?PWSTR,
+    pResolveCompletionCallback: ?PDNS_SERVICE_RESOLVE_COMPLETE,
+    pQueryContext: ?*c_void,
 };
 
 pub const PDNS_SERVICE_REGISTER_COMPLETE = fn(
     Status: u32,
-    pQueryContext: *c_void,
-    pInstance: *DNS_SERVICE_INSTANCE,
+    pQueryContext: ?*c_void,
+    pInstance: ?*DNS_SERVICE_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
     Version: u32,
     InterfaceIndex: u32,
-    pServiceInstance: *DNS_SERVICE_INSTANCE,
-    pRegisterCompletionCallback: PDNS_SERVICE_REGISTER_COMPLETE,
-    pQueryContext: *c_void,
-    hCredentials: HANDLE,
+    pServiceInstance: ?*DNS_SERVICE_INSTANCE,
+    pRegisterCompletionCallback: ?PDNS_SERVICE_REGISTER_COMPLETE,
+    pQueryContext: ?*c_void,
+    hCredentials: ?HANDLE,
     unicastEnabled: BOOL,
 };
 
 pub const MDNS_QUERY_HANDLE = extern struct {
     nameBuf: [256]u16,
     wType: u16,
-    pSubscription: *c_void,
-    pWnfCallbackParams: *c_void,
+    pSubscription: ?*c_void,
+    pWnfCallbackParams: ?*c_void,
     stateNameData: [2]u32,
 };
 
 pub const PMDNS_QUERY_CALLBACK = fn(
-    pQueryContext: *c_void,
-    pQueryHandle: *MDNS_QUERY_HANDLE,
-    pQueryResults: *DNS_QUERY_RESULT,
+    pQueryContext: ?*c_void,
+    pQueryHandle: ?*MDNS_QUERY_HANDLE,
+    pQueryResults: ?*DNS_QUERY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MDNS_QUERY_REQUEST = extern struct {
     Version: u32,
     ulRefCount: u32,
-    Query: [*:0]const u16,
+    Query: ?[*:0]const u16,
     QueryType: u16,
     QueryOptions: u64,
     InterfaceIndex: u32,
-    pQueryCallback: PMDNS_QUERY_CALLBACK,
-    pQueryContext: *c_void,
+    pQueryCallback: ?PMDNS_QUERY_CALLBACK,
+    pQueryContext: ?*c_void,
     fAnswerReceived: BOOL,
     ulResendCount: u32,
 };
@@ -1313,41 +1313,41 @@ pub extern "DNSAPI" fn DnsQueryConfig(
     pReserved: ?*c_void,
     // TODO: what to do with BytesParamIndex 5?
     pBuffer: ?*c_void,
-    pBufLen: *u32,
+    pBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordCopyEx(
-    pRecord: *DNS_RECORDA,
+    pRecord: ?*DNS_RECORDA,
     CharSetIn: DNS_CHARSET,
     CharSetOut: DNS_CHARSET,
-) callconv(@import("std").os.windows.WINAPI) *DNS_RECORDA;
+) callconv(@import("std").os.windows.WINAPI) ?*DNS_RECORDA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordSetCopyEx(
-    pRecordSet: *DNS_RECORDA,
+    pRecordSet: ?*DNS_RECORDA,
     CharSetIn: DNS_CHARSET,
     CharSetOut: DNS_CHARSET,
-) callconv(@import("std").os.windows.WINAPI) *DNS_RECORDA;
+) callconv(@import("std").os.windows.WINAPI) ?*DNS_RECORDA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordCompare(
-    pRecord1: *DNS_RECORDA,
-    pRecord2: *DNS_RECORDA,
+    pRecord1: ?*DNS_RECORDA,
+    pRecord2: ?*DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordSetCompare(
-    pRR1: *DNS_RECORDA,
-    pRR2: *DNS_RECORDA,
-    ppDiff1: ?**DNS_RECORDA,
-    ppDiff2: ?**DNS_RECORDA,
+    pRR1: ?*DNS_RECORDA,
+    pRR2: ?*DNS_RECORDA,
+    ppDiff1: ?*?*DNS_RECORDA,
+    ppDiff2: ?*?*DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsRecordSetDetach(
-    pRecordList: *DNS_RECORDA,
-) callconv(@import("std").os.windows.WINAPI) *DNS_RECORDA;
+    pRecordList: ?*DNS_RECORDA,
+) callconv(@import("std").os.windows.WINAPI) ?*DNS_RECORDA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "DNSAPI" fn DnsFree(
@@ -1357,63 +1357,63 @@ pub extern "DNSAPI" fn DnsFree(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsQuery_A(
-    pszName: [*:0]const u8,
+    pszName: ?[*:0]const u8,
     wType: u16,
     Options: u32,
     pExtra: ?*c_void,
-    ppQueryResults: ?**DNS_RECORDA,
-    pReserved: ?**c_void,
+    ppQueryResults: ?*?*DNS_RECORDA,
+    pReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsQuery_UTF8(
-    pszName: [*:0]const u8,
+    pszName: ?[*:0]const u8,
     wType: u16,
     Options: u32,
     pExtra: ?*c_void,
-    ppQueryResults: ?**DNS_RECORDA,
-    pReserved: ?**c_void,
+    ppQueryResults: ?*?*DNS_RECORDA,
+    pReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsQuery_W(
-    pszName: [*:0]const u16,
+    pszName: ?[*:0]const u16,
     wType: u16,
     Options: u32,
     pExtra: ?*c_void,
-    ppQueryResults: ?**DNS_RECORDA,
-    pReserved: ?**c_void,
+    ppQueryResults: ?*?*DNS_RECORDA,
+    pReserved: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "DNSAPI" fn DnsQueryEx(
-    pQueryRequest: *DNS_QUERY_REQUEST,
-    pQueryResults: *DNS_QUERY_RESULT,
+    pQueryRequest: ?*DNS_QUERY_REQUEST,
+    pQueryResults: ?*DNS_QUERY_RESULT,
     pCancelHandle: ?*DNS_QUERY_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "DNSAPI" fn DnsCancelQuery(
-    pCancelHandle: *DNS_QUERY_CANCEL,
+    pCancelHandle: ?*DNS_QUERY_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsAcquireContextHandle_W(
     CredentialFlags: u32,
     Credentials: ?*c_void,
-    pContext: *DnsContextHandle,
+    pContext: ?*DnsContextHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsAcquireContextHandle_A(
     CredentialFlags: u32,
     Credentials: ?*c_void,
-    pContext: *DnsContextHandle,
+    pContext: ?*DnsContextHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReleaseContextHandle(
-    hContext: HANDLE,
+    hContext: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1448,7 +1448,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_UTF8(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReplaceRecordSetW(
-    pReplaceSet: *DNS_RECORDA,
+    pReplaceSet: ?*DNS_RECORDA,
     Options: u32,
     hContext: ?HANDLE,
     pExtraInfo: ?*c_void,
@@ -1457,7 +1457,7 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReplaceRecordSetA(
-    pReplaceSet: *DNS_RECORDA,
+    pReplaceSet: ?*DNS_RECORDA,
     Options: u32,
     hContext: ?HANDLE,
     pExtraInfo: ?*c_void,
@@ -1466,7 +1466,7 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsReplaceRecordSetUTF8(
-    pReplaceSet: *DNS_RECORDA,
+    pReplaceSet: ?*DNS_RECORDA,
     Options: u32,
     hContext: ?HANDLE,
     pExtraInfo: ?*c_void,
@@ -1475,39 +1475,39 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetUTF8(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsValidateName_W(
-    pszName: [*:0]const u16,
+    pszName: ?[*:0]const u16,
     Format: DNS_NAME_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsValidateName_A(
-    pszName: [*:0]const u8,
+    pszName: ?[*:0]const u8,
     Format: DNS_NAME_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsValidateName_UTF8(
-    pszName: [*:0]const u8,
+    pszName: ?[*:0]const u8,
     Format: DNS_NAME_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsNameCompare_A(
-    pName1: [*:0]const u8,
-    pName2: [*:0]const u8,
+    pName1: ?[*:0]const u8,
+    pName2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsNameCompare_W(
-    pName1: [*:0]const u16,
-    pName2: [*:0]const u16,
+    pName1: ?[*:0]const u16,
+    pName2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_W(
-    pDnsBuffer: *DNS_MESSAGE_BUFFER,
-    pdwBufferSize: *u32,
-    pszName: [*:0]const u16,
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
+    pdwBufferSize: ?*u32,
+    pszName: ?[*:0]const u16,
     wType: u16,
     Xid: u16,
     fRecursionDesired: BOOL,
@@ -1515,9 +1515,9 @@ pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_W(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_UTF8(
-    pDnsBuffer: *DNS_MESSAGE_BUFFER,
-    pdwBufferSize: *u32,
-    pszName: [*:0]const u8,
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
+    pdwBufferSize: ?*u32,
+    pszName: ?[*:0]const u8,
     wType: u16,
     Xid: u16,
     fRecursionDesired: BOOL,
@@ -1525,22 +1525,22 @@ pub extern "DNSAPI" fn DnsWriteQuestionToBuffer_UTF8(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsExtractRecordsFromMessage_W(
-    pDnsBuffer: *DNS_MESSAGE_BUFFER,
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
     wMessageLength: u16,
-    ppRecord: **DNS_RECORDA,
+    ppRecord: ?*?*DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsExtractRecordsFromMessage_UTF8(
-    pDnsBuffer: *DNS_MESSAGE_BUFFER,
+    pDnsBuffer: ?*DNS_MESSAGE_BUFFER,
     wMessageLength: u16,
-    ppRecord: **DNS_RECORDA,
+    ppRecord: ?*?*DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "DNSAPI" fn DnsGetProxyInformation(
-    hostName: [*:0]const u16,
-    proxyInformation: *DNS_PROXY_INFORMATION,
+    hostName: ?[*:0]const u16,
+    proxyInformation: ?*DNS_PROXY_INFORMATION,
     defaultProxyInformation: ?*DNS_PROXY_INFORMATION,
     completionRoutine: ?DNS_PROXY_COMPLETION_ROUTINE,
     completionContext: ?*c_void,
@@ -1552,62 +1552,62 @@ pub extern "DNSAPI" fn DnsFreeProxyName(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "DNSAPI" fn DnsConnectionGetProxyInfoForHostUrl(
-    pwszHostUrl: [*:0]const u16,
+    pwszHostUrl: ?[*:0]const u16,
     pSelectionContext: ?[*:0]u8,
     dwSelectionContextLength: u32,
     dwExplicitInterfaceIndex: u32,
-    pProxyInfoEx: *DNS_CONNECTION_PROXY_INFO_EX,
+    pProxyInfoEx: ?*DNS_CONNECTION_PROXY_INFO_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionFreeProxyInfoEx(
-    pProxyInfoEx: *DNS_CONNECTION_PROXY_INFO_EX,
+    pProxyInfoEx: ?*DNS_CONNECTION_PROXY_INFO_EX,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "DNSAPI" fn DnsConnectionGetProxyInfo(
-    pwszConnectionName: [*:0]const u16,
+    pwszConnectionName: ?[*:0]const u16,
     Type: DNS_CONNECTION_PROXY_TYPE,
-    pProxyInfo: *DNS_CONNECTION_PROXY_INFO,
+    pProxyInfo: ?*DNS_CONNECTION_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionFreeProxyInfo(
-    pProxyInfo: *DNS_CONNECTION_PROXY_INFO,
+    pProxyInfo: ?*DNS_CONNECTION_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "DNSAPI" fn DnsConnectionSetProxyInfo(
-    pwszConnectionName: [*:0]const u16,
+    pwszConnectionName: ?[*:0]const u16,
     Type: DNS_CONNECTION_PROXY_TYPE,
-    pProxyInfo: *const DNS_CONNECTION_PROXY_INFO,
+    pProxyInfo: ?*const DNS_CONNECTION_PROXY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionDeleteProxyInfo(
-    pwszConnectionName: [*:0]const u16,
+    pwszConnectionName: ?[*:0]const u16,
     Type: DNS_CONNECTION_PROXY_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionGetProxyList(
-    pwszConnectionName: [*:0]const u16,
-    pProxyList: *DNS_CONNECTION_PROXY_LIST,
+    pwszConnectionName: ?[*:0]const u16,
+    pProxyList: ?*DNS_CONNECTION_PROXY_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionFreeProxyList(
-    pProxyList: *DNS_CONNECTION_PROXY_LIST,
+    pProxyList: ?*DNS_CONNECTION_PROXY_LIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "DNSAPI" fn DnsConnectionGetNameList(
-    pNameList: *DNS_CONNECTION_NAME_LIST,
+    pNameList: ?*DNS_CONNECTION_NAME_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionFreeNameList(
-    pNameList: *DNS_CONNECTION_NAME_LIST,
+    pNameList: ?*DNS_CONNECTION_NAME_LIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "DNSAPI" fn DnsConnectionUpdateIfIndexTable(
-    pConnectionIfIndexEntries: *DNS_CONNECTION_IFINDEX_LIST,
+    pConnectionIfIndexEntries: ?*DNS_CONNECTION_IFINDEX_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionSetPolicyEntries(
     PolicyEntryTag: DNS_CONNECTION_POLICY_TAG,
-    pPolicyEntryList: *DNS_CONNECTION_POLICY_ENTRY_LIST,
+    pPolicyEntryList: ?*DNS_CONNECTION_POLICY_ENTRY_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DNSAPI" fn DnsConnectionDeletePolicyEntries(
@@ -1616,76 +1616,76 @@ pub extern "DNSAPI" fn DnsConnectionDeletePolicyEntries(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceConstructInstance(
-    pServiceName: [*:0]const u16,
-    pHostName: [*:0]const u16,
+    pServiceName: ?[*:0]const u16,
+    pHostName: ?[*:0]const u16,
     pIp4: ?*u32,
     pIp6: ?*IP6_ADDRESS,
     wPort: u16,
     wPriority: u16,
     wWeight: u16,
     dwPropertiesCount: u32,
-    keys: [*]PWSTR,
-    values: [*]PWSTR,
-) callconv(@import("std").os.windows.WINAPI) *DNS_SERVICE_INSTANCE;
+    keys: [*]?PWSTR,
+    values: [*]?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) ?*DNS_SERVICE_INSTANCE;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceCopyInstance(
-    pOrig: *DNS_SERVICE_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) *DNS_SERVICE_INSTANCE;
+    pOrig: ?*DNS_SERVICE_INSTANCE,
+) callconv(@import("std").os.windows.WINAPI) ?*DNS_SERVICE_INSTANCE;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceFreeInstance(
-    pInstance: *DNS_SERVICE_INSTANCE,
+    pInstance: ?*DNS_SERVICE_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceBrowse(
-    pRequest: *DNS_SERVICE_BROWSE_REQUEST,
-    pCancel: *DNS_SERVICE_CANCEL,
+    pRequest: ?*DNS_SERVICE_BROWSE_REQUEST,
+    pCancel: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceBrowseCancel(
-    pCancelHandle: *DNS_SERVICE_CANCEL,
+    pCancelHandle: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceResolve(
-    pRequest: *DNS_SERVICE_RESOLVE_REQUEST,
-    pCancel: *DNS_SERVICE_CANCEL,
+    pRequest: ?*DNS_SERVICE_RESOLVE_REQUEST,
+    pCancel: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceResolveCancel(
-    pCancelHandle: *DNS_SERVICE_CANCEL,
+    pCancelHandle: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceRegister(
-    pRequest: *DNS_SERVICE_REGISTER_REQUEST,
+    pRequest: ?*DNS_SERVICE_REGISTER_REQUEST,
     pCancel: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceDeRegister(
-    pRequest: *DNS_SERVICE_REGISTER_REQUEST,
+    pRequest: ?*DNS_SERVICE_REGISTER_REQUEST,
     pCancel: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsServiceRegisterCancel(
-    pCancelHandle: *DNS_SERVICE_CANCEL,
+    pCancelHandle: ?*DNS_SERVICE_CANCEL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsStartMulticastQuery(
-    pQueryRequest: *MDNS_QUERY_REQUEST,
-    pHandle: *MDNS_QUERY_HANDLE,
+    pQueryRequest: ?*MDNS_QUERY_REQUEST,
+    pHandle: ?*MDNS_QUERY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "DNSAPI" fn DnsStopMulticastQuery(
-    pHandle: *MDNS_QUERY_HANDLE,
+    pHandle: ?*MDNS_QUERY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 

@@ -258,24 +258,24 @@ pub const WerReportInvalid = WER_REPORT_TYPE.Invalid;
 
 pub const WER_REPORT_INFORMATION = extern struct {
     dwSize: u32,
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     wzConsentKey: [64]u16,
     wzFriendlyEventName: [128]u16,
     wzApplicationName: [128]u16,
     wzApplicationPath: [260]u16,
     wzDescription: [512]u16,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
 };
 
 pub const WER_REPORT_INFORMATION_V3 = extern struct {
     dwSize: u32,
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     wzConsentKey: [64]u16,
     wzFriendlyEventName: [128]u16,
     wzApplicationName: [128]u16,
     wzApplicationPath: [260]u16,
     wzDescription: [512]u16,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     wzNamespacePartner: [64]u16,
     wzNamespaceGroup: [64]u16,
 };
@@ -312,34 +312,34 @@ pub const WER_DUMP_CUSTOM_OPTIONS_V2 = extern struct {
 
 pub const WER_REPORT_INFORMATION_V4 = extern struct {
     dwSize: u32,
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     wzConsentKey: [64]u16,
     wzFriendlyEventName: [128]u16,
     wzApplicationName: [128]u16,
     wzApplicationPath: [260]u16,
     wzDescription: [512]u16,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     wzNamespacePartner: [64]u16,
     wzNamespaceGroup: [64]u16,
     rgbApplicationIdentity: [16]u8,
-    hSnapshot: HANDLE,
-    hDeleteFilesImpersonationToken: HANDLE,
+    hSnapshot: ?HANDLE,
+    hDeleteFilesImpersonationToken: ?HANDLE,
 };
 
 pub const WER_REPORT_INFORMATION_V5 = extern struct {
     dwSize: u32,
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     wzConsentKey: [64]u16,
     wzFriendlyEventName: [128]u16,
     wzApplicationName: [128]u16,
     wzApplicationPath: [260]u16,
     wzDescription: [512]u16,
-    hwndParent: HWND,
+    hwndParent: ?HWND,
     wzNamespacePartner: [64]u16,
     wzNamespaceGroup: [64]u16,
     rgbApplicationIdentity: [16]u8,
-    hSnapshot: HANDLE,
-    hDeleteFilesImpersonationToken: HANDLE,
+    hSnapshot: ?HANDLE,
+    hDeleteFilesImpersonationToken: ?HANDLE,
     submitResultMax: WER_SUBMIT_RESULT,
 };
 
@@ -357,13 +357,13 @@ pub const WER_DUMP_CUSTOM_OPTIONS_V3 = extern struct {
     wzPreferredModuleList: [256]u16,
     dwPreferredModuleResetFlags: u32,
     dwOtherModuleResetFlags: u32,
-    pvDumpKey: *c_void,
-    hSnapshot: HANDLE,
+    pvDumpKey: ?*c_void,
+    hSnapshot: ?HANDLE,
     dwThreadID: u32,
 };
 
 pub const WER_EXCEPTION_INFORMATION = extern struct {
-    pExceptionPointers: *EXCEPTION_POINTERS,
+    pExceptionPointers: ?*EXCEPTION_POINTERS,
     bClientPointers: BOOL,
 };
 
@@ -397,41 +397,41 @@ pub const WerDumpTypeMax = WER_DUMP_TYPE.Max;
 
 pub const WER_RUNTIME_EXCEPTION_INFORMATION = extern struct {
     dwSize: u32,
-    hProcess: HANDLE,
-    hThread: HANDLE,
+    hProcess: ?HANDLE,
+    hThread: ?HANDLE,
     exceptionRecord: EXCEPTION_RECORD,
     context: CONTEXT,
-    pwszReportId: [*:0]const u16,
+    pwszReportId: ?[*:0]const u16,
     bIsFatal: BOOL,
     dwReserved: u32,
 };
 
 pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = fn(
-    pContext: *c_void,
-    pExceptionInformation: *const WER_RUNTIME_EXCEPTION_INFORMATION,
-    pbOwnershipClaimed: *BOOL,
+    pContext: ?*c_void,
+    pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+    pbOwnershipClaimed: ?*BOOL,
     pwszEventName: [*:0]u16,
-    pchSize: *u32,
-    pdwSignatureCount: *u32,
+    pchSize: ?*u32,
+    pdwSignatureCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = fn(
-    pContext: *c_void,
-    pExceptionInformation: *const WER_RUNTIME_EXCEPTION_INFORMATION,
+    pContext: ?*c_void,
+    pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
     dwIndex: u32,
     pwszName: [*:0]u16,
-    pchName: *u32,
+    pchName: ?*u32,
     pwszValue: [*:0]u16,
-    pchValue: *u32,
+    pchValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = fn(
-    pContext: *c_void,
-    pExceptionInformation: *const WER_RUNTIME_EXCEPTION_INFORMATION,
-    pbIsCustomDebugger: *BOOL,
+    pContext: ?*c_void,
+    pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+    pbIsCustomDebugger: ?*BOOL,
     pwszDebuggerLaunch: [*:0]u16,
-    pchDebuggerLaunch: *u32,
-    pbIsDebuggerAutolaunch: *BOOL,
+    pchDebuggerLaunch: ?*u32,
+    pbIsDebuggerAutolaunch: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const REPORT_STORE_TYPES = enum(i32) {
@@ -468,7 +468,7 @@ pub const WER_REPORT_METADATA_V2 = extern struct {
     ReportIntegratorId: Guid,
     NumberOfFiles: u32,
     SizeOfFileNames: u32,
-    FileNames: PWSTR,
+    FileNames: ?PWSTR,
 };
 
 pub const WER_REPORT_METADATA_V3 = extern struct {
@@ -482,7 +482,7 @@ pub const WER_REPORT_METADATA_V3 = extern struct {
     ReportIntegratorId: Guid,
     NumberOfFiles: u32,
     SizeOfFileNames: u32,
-    FileNames: PWSTR,
+    FileNames: ?PWSTR,
     FriendlyEventName: [128]u16,
     ApplicationName: [128]u16,
     ApplicationPath: [260]u16,
@@ -525,16 +525,16 @@ pub const frrvErrNoMemory = EFaultRepRetVal.ErrNoMemory;
 pub const frrvErrDoubleFault = EFaultRepRetVal.ErrDoubleFault;
 
 pub const pfn_REPORTFAULT = fn(
-    param0: *EXCEPTION_POINTERS,
+    param0: ?*EXCEPTION_POINTERS,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
 
 pub const pfn_ADDEREXCLUDEDAPPLICATIONA = fn(
-    param0: [*:0]const u8,
+    param0: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
 
 pub const pfn_ADDEREXCLUDEDAPPLICATIONW = fn(
-    param0: [*:0]const u16,
+    param0: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
 
 
@@ -543,10 +543,10 @@ pub const pfn_ADDEREXCLUDEDAPPLICATIONW = fn(
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportCreate(
-    pwzEventType: [*:0]const u16,
+    pwzEventType: ?[*:0]const u16,
     repType: WER_REPORT_TYPE,
     pReportInformation: ?*WER_REPORT_INFORMATION,
-    phReportHandle: *isize,
+    phReportHandle: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -554,13 +554,13 @@ pub extern "wer" fn WerReportSetParameter(
     hReportHandle: isize,
     dwparamID: u32,
     pwzName: ?[*:0]const u16,
-    pwzValue: [*:0]const u16,
+    pwzValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportAddFile(
     hReportHandle: isize,
-    pwzPath: [*:0]const u16,
+    pwzPath: ?[*:0]const u16,
     repFileType: WER_FILE_TYPE,
     dwFileFlags: WER_FILE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -569,7 +569,7 @@ pub extern "wer" fn WerReportAddFile(
 pub extern "wer" fn WerReportSetUIOption(
     hReportHandle: isize,
     repUITypeID: WER_REPORT_UI,
-    pwzValue: [*:0]const u16,
+    pwzValue: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -583,7 +583,7 @@ pub extern "wer" fn WerReportSubmit(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerReportAddDump(
     hReportHandle: isize,
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     hThread: ?HANDLE,
     dumpType: WER_DUMP_TYPE,
     pExceptionParam: ?*WER_EXCEPTION_INFORMATION,
@@ -598,47 +598,47 @@ pub extern "wer" fn WerReportCloseHandle(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn WerRegisterFile(
-    pwzFile: [*:0]const u16,
+    pwzFile: ?[*:0]const u16,
     regFileType: WER_REGISTER_FILE_TYPE,
     dwFlags: WER_FILE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn WerUnregisterFile(
-    pwzFilePath: [*:0]const u16,
+    pwzFilePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn WerRegisterMemoryBlock(
-    pvAddress: *c_void,
+    pvAddress: ?*c_void,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn WerUnregisterMemoryBlock(
-    pvAddress: *c_void,
+    pvAddress: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "KERNEL32" fn WerRegisterExcludedMemoryBlock(
-    address: *const c_void,
+    address: ?*const c_void,
     size: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "KERNEL32" fn WerUnregisterExcludedMemoryBlock(
-    address: *const c_void,
+    address: ?*const c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "KERNEL32" fn WerRegisterCustomMetadata(
-    key: [*:0]const u16,
-    value: [*:0]const u16,
+    key: ?[*:0]const u16,
+    value: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "KERNEL32" fn WerUnregisterCustomMetadata(
-    key: [*:0]const u16,
+    key: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -654,7 +654,7 @@ pub extern "KERNEL32" fn WerUnregisterAdditionalProcess(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "KERNEL32" fn WerRegisterAppLocalDump(
-    localAppDataRelativePath: [*:0]const u16,
+    localAppDataRelativePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
@@ -668,38 +668,38 @@ pub extern "KERNEL32" fn WerSetFlags(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn WerGetFlags(
-    hProcess: HANDLE,
-    pdwFlags: *WER_FAULT_REPORTING,
+    hProcess: ?HANDLE,
+    pdwFlags: ?*WER_FAULT_REPORTING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerAddExcludedApplication(
-    pwzExeName: [*:0]const u16,
+    pwzExeName: ?[*:0]const u16,
     bAllUsers: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wer" fn WerRemoveExcludedApplication(
-    pwzExeName: [*:0]const u16,
+    pwzExeName: ?[*:0]const u16,
     bAllUsers: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn WerRegisterRuntimeExceptionModule(
-    pwszOutOfProcessCallbackDll: [*:0]const u16,
-    pContext: *c_void,
+    pwszOutOfProcessCallbackDll: ?[*:0]const u16,
+    pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn WerUnregisterRuntimeExceptionModule(
-    pwszOutOfProcessCallbackDll: [*:0]const u16,
-    pContext: *c_void,
+    pwszOutOfProcessCallbackDll: ?[*:0]const u16,
+    pContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreOpen(
     repStoreType: REPORT_STORE_TYPES,
-    phReportStore: **c_void,
+    phReportStore: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -709,79 +709,79 @@ pub extern "wer" fn WerStoreClose(
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetFirstReportKey(
-    hReportStore: *c_void,
-    ppszReportKey: ?*PWSTR,
+    hReportStore: ?*c_void,
+    ppszReportKey: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetNextReportKey(
-    hReportStore: *c_void,
-    ppszReportKey: ?*PWSTR,
+    hReportStore: ?*c_void,
+    ppszReportKey: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreQueryReportMetadataV2(
-    hReportStore: *c_void,
-    pszReportKey: [*:0]const u16,
-    pReportMetadata: *WER_REPORT_METADATA_V2,
+    hReportStore: ?*c_void,
+    pszReportKey: ?[*:0]const u16,
+    pReportMetadata: ?*WER_REPORT_METADATA_V2,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreQueryReportMetadataV3(
-    hReportStore: *c_void,
-    pszReportKey: [*:0]const u16,
-    pReportMetadata: *WER_REPORT_METADATA_V3,
+    hReportStore: ?*c_void,
+    pszReportKey: ?[*:0]const u16,
+    pReportMetadata: ?*WER_REPORT_METADATA_V3,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerFreeString(
-    pwszStr: [*:0]const u16,
+    pwszStr: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "wer" fn WerStorePurge(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreGetReportCount(
-    hReportStore: *c_void,
-    pdwReportCount: *u32,
+    hReportStore: ?*c_void,
+    pdwReportCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreGetSizeOnDisk(
-    hReportStore: *c_void,
-    pqwSizeInBytes: *u64,
+    hReportStore: ?*c_void,
+    pqwSizeInBytes: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreQueryReportMetadataV1(
-    hReportStore: *c_void,
-    pszReportKey: [*:0]const u16,
-    pReportMetadata: *WER_REPORT_METADATA_V1,
+    hReportStore: ?*c_void,
+    pszReportKey: ?[*:0]const u16,
+    pReportMetadata: ?*WER_REPORT_METADATA_V1,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreUploadReport(
-    hReportStore: *c_void,
-    pszReportKey: [*:0]const u16,
+    hReportStore: ?*c_void,
+    pszReportKey: ?[*:0]const u16,
     dwFlags: u32,
     pSubmitResult: ?*WER_SUBMIT_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "faultrep" fn ReportFault(
-    pep: *EXCEPTION_POINTERS,
+    pep: ?*EXCEPTION_POINTERS,
     dwOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "faultrep" fn AddERExcludedApplicationA(
-    szApplication: [*:0]const u8,
+    szApplication: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "faultrep" fn AddERExcludedApplicationW(
-    wszApplication: [*:0]const u16,
+    wszApplication: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "faultrep" fn WerReportHang(
-    hwndHungApp: HWND,
+    hwndHungApp: ?HWND,
     pwzHungApplicationName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

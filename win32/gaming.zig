@@ -8,13 +8,13 @@
 //--------------------------------------------------------------------------------
 pub const GameUICompletionRoutine = fn(
     returnCode: HRESULT,
-    context: *c_void,
+    context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PlayerPickerUICompletionRoutine = fn(
     returnCode: HRESULT,
-    context: *c_void,
-    selectedXuids: [*]const HSTRING,
+    context: ?*c_void,
+    selectedXuids: [*]const ?HSTRING,
     selectedXuidsCount: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -124,67 +124,67 @@ pub const IXblIdpAuthManager = extern struct {
         base: IUnknown.VTable,
         SetGamerAccount: fn(
             self: *const IXblIdpAuthManager,
-            msaAccountId: [*:0]const u16,
-            xuid: [*:0]const u16,
+            msaAccountId: ?[*:0]const u16,
+            xuid: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGamerAccount: fn(
             self: *const IXblIdpAuthManager,
-            msaAccountId: *PWSTR,
-            xuid: *PWSTR,
+            msaAccountId: ?*?PWSTR,
+            xuid: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAppViewInitialized: fn(
             self: *const IXblIdpAuthManager,
-            appSid: [*:0]const u16,
-            msaAccountId: [*:0]const u16,
+            appSid: ?[*:0]const u16,
+            msaAccountId: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnvironment: fn(
             self: *const IXblIdpAuthManager,
-            environment: *PWSTR,
+            environment: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSandbox: fn(
             self: *const IXblIdpAuthManager,
-            sandbox: *PWSTR,
+            sandbox: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTokenAndSignatureWithTokenResult: fn(
             self: *const IXblIdpAuthManager,
-            msaAccountId: [*:0]const u16,
-            appSid: [*:0]const u16,
-            msaTarget: [*:0]const u16,
-            msaPolicy: [*:0]const u16,
-            httpMethod: [*:0]const u16,
-            uri: [*:0]const u16,
-            headers: [*:0]const u16,
+            msaAccountId: ?[*:0]const u16,
+            appSid: ?[*:0]const u16,
+            msaTarget: ?[*:0]const u16,
+            msaPolicy: ?[*:0]const u16,
+            httpMethod: ?[*:0]const u16,
+            uri: ?[*:0]const u16,
+            headers: ?[*:0]const u16,
             body: [*:0]u8,
             bodySize: u32,
             forceRefresh: BOOL,
-            result: **IXblIdpAuthTokenResult,
+            result: ?*?*IXblIdpAuthTokenResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_SetGamerAccount(self: *const T, msaAccountId: [*:0]const u16, xuid: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthManager_SetGamerAccount(self: *const T, msaAccountId: ?[*:0]const u16, xuid: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthManager.VTable, self.vtable).SetGamerAccount(@ptrCast(*const IXblIdpAuthManager, self), msaAccountId, xuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetGamerAccount(self: *const T, msaAccountId: *PWSTR, xuid: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthManager_GetGamerAccount(self: *const T, msaAccountId: ?*?PWSTR, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthManager.VTable, self.vtable).GetGamerAccount(@ptrCast(*const IXblIdpAuthManager, self), msaAccountId, xuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_SetAppViewInitialized(self: *const T, appSid: [*:0]const u16, msaAccountId: [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthManager_SetAppViewInitialized(self: *const T, appSid: ?[*:0]const u16, msaAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthManager.VTable, self.vtable).SetAppViewInitialized(@ptrCast(*const IXblIdpAuthManager, self), appSid, msaAccountId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetEnvironment(self: *const T, environment: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthManager_GetEnvironment(self: *const T, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthManager.VTable, self.vtable).GetEnvironment(@ptrCast(*const IXblIdpAuthManager, self), environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetSandbox(self: *const T, sandbox: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthManager_GetSandbox(self: *const T, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthManager.VTable, self.vtable).GetSandbox(@ptrCast(*const IXblIdpAuthManager, self), sandbox);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthManager_GetTokenAndSignatureWithTokenResult(self: *const T, msaAccountId: [*:0]const u16, appSid: [*:0]const u16, msaTarget: [*:0]const u16, msaPolicy: [*:0]const u16, httpMethod: [*:0]const u16, uri: [*:0]const u16, headers: [*:0]const u16, body: [*:0]u8, bodySize: u32, forceRefresh: BOOL, result: **IXblIdpAuthTokenResult) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthManager_GetTokenAndSignatureWithTokenResult(self: *const T, msaAccountId: ?[*:0]const u16, appSid: ?[*:0]const u16, msaTarget: ?[*:0]const u16, msaPolicy: ?[*:0]const u16, httpMethod: ?[*:0]const u16, uri: ?[*:0]const u16, headers: ?[*:0]const u16, body: [*:0]u8, bodySize: u32, forceRefresh: BOOL, result: ?*?*IXblIdpAuthTokenResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthManager.VTable, self.vtable).GetTokenAndSignatureWithTokenResult(@ptrCast(*const IXblIdpAuthManager, self), msaAccountId, appSid, msaTarget, msaPolicy, httpMethod, uri, headers, body, bodySize, forceRefresh, result);
         }
     };}
@@ -198,166 +198,166 @@ pub const IXblIdpAuthTokenResult = extern struct {
         base: IUnknown.VTable,
         GetStatus: fn(
             self: *const IXblIdpAuthTokenResult,
-            status: *XBL_IDP_AUTH_TOKEN_STATUS,
+            status: ?*XBL_IDP_AUTH_TOKEN_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorCode: fn(
             self: *const IXblIdpAuthTokenResult,
-            errorCode: *HRESULT,
+            errorCode: ?*HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetToken: fn(
             self: *const IXblIdpAuthTokenResult,
-            token: *PWSTR,
+            token: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSignature: fn(
             self: *const IXblIdpAuthTokenResult,
-            signature: *PWSTR,
+            signature: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSandbox: fn(
             self: *const IXblIdpAuthTokenResult,
-            sandbox: *PWSTR,
+            sandbox: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnvironment: fn(
             self: *const IXblIdpAuthTokenResult,
-            environment: *PWSTR,
+            environment: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMsaAccountId: fn(
             self: *const IXblIdpAuthTokenResult,
-            msaAccountId: *PWSTR,
+            msaAccountId: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetXuid: fn(
             self: *const IXblIdpAuthTokenResult,
-            xuid: *PWSTR,
+            xuid: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGamertag: fn(
             self: *const IXblIdpAuthTokenResult,
-            gamertag: *PWSTR,
+            gamertag: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAgeGroup: fn(
             self: *const IXblIdpAuthTokenResult,
-            ageGroup: *PWSTR,
+            ageGroup: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrivileges: fn(
             self: *const IXblIdpAuthTokenResult,
-            privileges: *PWSTR,
+            privileges: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMsaTarget: fn(
             self: *const IXblIdpAuthTokenResult,
-            msaTarget: *PWSTR,
+            msaTarget: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMsaPolicy: fn(
             self: *const IXblIdpAuthTokenResult,
-            msaPolicy: *PWSTR,
+            msaPolicy: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMsaAppId: fn(
             self: *const IXblIdpAuthTokenResult,
-            msaAppId: *PWSTR,
+            msaAppId: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRedirect: fn(
             self: *const IXblIdpAuthTokenResult,
-            redirect: *PWSTR,
+            redirect: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMessage: fn(
             self: *const IXblIdpAuthTokenResult,
-            message: *PWSTR,
+            message: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHelpId: fn(
             self: *const IXblIdpAuthTokenResult,
-            helpId: *PWSTR,
+            helpId: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnforcementBans: fn(
             self: *const IXblIdpAuthTokenResult,
-            enforcementBans: *PWSTR,
+            enforcementBans: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRestrictions: fn(
             self: *const IXblIdpAuthTokenResult,
-            restrictions: *PWSTR,
+            restrictions: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTitleRestrictions: fn(
             self: *const IXblIdpAuthTokenResult,
-            titleRestrictions: *PWSTR,
+            titleRestrictions: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetStatus(self: *const T, status: *XBL_IDP_AUTH_TOKEN_STATUS) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetStatus(self: *const T, status: ?*XBL_IDP_AUTH_TOKEN_STATUS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetStatus(@ptrCast(*const IXblIdpAuthTokenResult, self), status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetErrorCode(self: *const T, errorCode: *HRESULT) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetErrorCode(self: *const T, errorCode: ?*HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetErrorCode(@ptrCast(*const IXblIdpAuthTokenResult, self), errorCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetToken(self: *const T, token: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetToken(self: *const T, token: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetToken(@ptrCast(*const IXblIdpAuthTokenResult, self), token);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetSignature(self: *const T, signature: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetSignature(self: *const T, signature: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetSignature(@ptrCast(*const IXblIdpAuthTokenResult, self), signature);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetSandbox(self: *const T, sandbox: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetSandbox(self: *const T, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetSandbox(@ptrCast(*const IXblIdpAuthTokenResult, self), sandbox);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetEnvironment(self: *const T, environment: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetEnvironment(self: *const T, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetEnvironment(@ptrCast(*const IXblIdpAuthTokenResult, self), environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaAccountId(self: *const T, msaAccountId: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetMsaAccountId(self: *const T, msaAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetMsaAccountId(@ptrCast(*const IXblIdpAuthTokenResult, self), msaAccountId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetXuid(self: *const T, xuid: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetXuid(self: *const T, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetXuid(@ptrCast(*const IXblIdpAuthTokenResult, self), xuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetGamertag(self: *const T, gamertag: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetGamertag(self: *const T, gamertag: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetGamertag(@ptrCast(*const IXblIdpAuthTokenResult, self), gamertag);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetAgeGroup(self: *const T, ageGroup: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetAgeGroup(self: *const T, ageGroup: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetAgeGroup(@ptrCast(*const IXblIdpAuthTokenResult, self), ageGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetPrivileges(self: *const T, privileges: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetPrivileges(self: *const T, privileges: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetPrivileges(@ptrCast(*const IXblIdpAuthTokenResult, self), privileges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaTarget(self: *const T, msaTarget: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetMsaTarget(self: *const T, msaTarget: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetMsaTarget(@ptrCast(*const IXblIdpAuthTokenResult, self), msaTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaPolicy(self: *const T, msaPolicy: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetMsaPolicy(self: *const T, msaPolicy: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetMsaPolicy(@ptrCast(*const IXblIdpAuthTokenResult, self), msaPolicy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMsaAppId(self: *const T, msaAppId: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetMsaAppId(self: *const T, msaAppId: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetMsaAppId(@ptrCast(*const IXblIdpAuthTokenResult, self), msaAppId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetRedirect(self: *const T, redirect: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetRedirect(self: *const T, redirect: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetRedirect(@ptrCast(*const IXblIdpAuthTokenResult, self), redirect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMessage(self: *const T, message: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetMessage(self: *const T, message: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetMessage(@ptrCast(*const IXblIdpAuthTokenResult, self), message);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetHelpId(self: *const T, helpId: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetHelpId(self: *const T, helpId: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetHelpId(@ptrCast(*const IXblIdpAuthTokenResult, self), helpId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetEnforcementBans(self: *const T, enforcementBans: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetEnforcementBans(self: *const T, enforcementBans: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetEnforcementBans(@ptrCast(*const IXblIdpAuthTokenResult, self), enforcementBans);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetRestrictions(self: *const T, restrictions: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetRestrictions(self: *const T, restrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetRestrictions(@ptrCast(*const IXblIdpAuthTokenResult, self), restrictions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetTitleRestrictions(self: *const T, titleRestrictions: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult_GetTitleRestrictions(self: *const T, titleRestrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetTitleRestrictions(@ptrCast(*const IXblIdpAuthTokenResult, self), titleRestrictions);
         }
     };}
@@ -371,30 +371,30 @@ pub const IXblIdpAuthTokenResult2 = extern struct {
         base: IUnknown.VTable,
         GetModernGamertag: fn(
             self: *const IXblIdpAuthTokenResult2,
-            value: *PWSTR,
+            value: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetModernGamertagSuffix: fn(
             self: *const IXblIdpAuthTokenResult2,
-            value: *PWSTR,
+            value: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUniqueModernGamertag: fn(
             self: *const IXblIdpAuthTokenResult2,
-            value: *PWSTR,
+            value: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult2_GetModernGamertag(self: *const T, value: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult2_GetModernGamertag(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult2.VTable, self.vtable).GetModernGamertag(@ptrCast(*const IXblIdpAuthTokenResult2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult2_GetModernGamertagSuffix(self: *const T, value: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult2_GetModernGamertagSuffix(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult2.VTable, self.vtable).GetModernGamertagSuffix(@ptrCast(*const IXblIdpAuthTokenResult2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult2_GetUniqueModernGamertag(self: *const T, value: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IXblIdpAuthTokenResult2_GetUniqueModernGamertag(self: *const T, value: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXblIdpAuthTokenResult2.VTable, self.vtable).GetUniqueModernGamertag(@ptrCast(*const IXblIdpAuthTokenResult2, self), value);
         }
     };}
@@ -406,41 +406,41 @@ pub const IXblIdpAuthTokenResult2 = extern struct {
 // Section: Functions (30)
 //--------------------------------------------------------------------------------
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowGameInviteUI(
-    serviceConfigurationId: HSTRING,
-    sessionTemplateName: HSTRING,
-    sessionId: HSTRING,
-    invitationDisplayText: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    serviceConfigurationId: ?HSTRING,
+    sessionTemplateName: ?HSTRING,
+    sessionId: ?HSTRING,
+    invitationDisplayText: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowPlayerPickerUI(
-    promptDisplayText: HSTRING,
-    xuids: [*]const HSTRING,
+    promptDisplayText: ?HSTRING,
+    xuids: [*]const ?HSTRING,
     xuidsCount: usize,
-    preSelectedXuids: ?[*]const HSTRING,
+    preSelectedXuids: ?[*]const ?HSTRING,
     preSelectedXuidsCount: usize,
     minSelectionCount: usize,
     maxSelectionCount: usize,
-    completionRoutine: PlayerPickerUICompletionRoutine,
+    completionRoutine: ?PlayerPickerUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowProfileCardUI(
-    targetUserXuid: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowChangeFriendRelationshipUI(
-    targetUserXuid: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowTitleAchievementsUI(
     titleId: u32,
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -453,162 +453,162 @@ pub extern "api-ms-win-gaming-tcui-l1-1-0" fn TryCancelPendingGameUI(
 
 pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeWithUI(
     privilegeId: u32,
-    scope: HSTRING,
-    policy: HSTRING,
+    scope: ?HSTRING,
+    policy: ?HSTRING,
     friendlyMessage: ?HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeSilently(
     privilegeId: u32,
-    scope: HSTRING,
-    policy: HSTRING,
-    hasPrivilege: *BOOL,
+    scope: ?HSTRING,
+    policy: ?HSTRING,
+    hasPrivilege: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowGameInviteUIForUser(
-    user: *IInspectable,
-    serviceConfigurationId: HSTRING,
-    sessionTemplateName: HSTRING,
-    sessionId: HSTRING,
-    invitationDisplayText: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    user: ?*IInspectable,
+    serviceConfigurationId: ?HSTRING,
+    sessionTemplateName: ?HSTRING,
+    sessionId: ?HSTRING,
+    invitationDisplayText: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowPlayerPickerUIForUser(
-    user: *IInspectable,
-    promptDisplayText: HSTRING,
-    xuids: [*]const HSTRING,
+    user: ?*IInspectable,
+    promptDisplayText: ?HSTRING,
+    xuids: [*]const ?HSTRING,
     xuidsCount: usize,
-    preSelectedXuids: ?[*]const HSTRING,
+    preSelectedXuids: ?[*]const ?HSTRING,
     preSelectedXuidsCount: usize,
     minSelectionCount: usize,
     maxSelectionCount: usize,
-    completionRoutine: PlayerPickerUICompletionRoutine,
+    completionRoutine: ?PlayerPickerUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowProfileCardUIForUser(
-    user: *IInspectable,
-    targetUserXuid: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    user: ?*IInspectable,
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowChangeFriendRelationshipUIForUser(
-    user: *IInspectable,
-    targetUserXuid: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    user: ?*IInspectable,
+    targetUserXuid: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowTitleAchievementsUIForUser(
-    user: *IInspectable,
+    user: ?*IInspectable,
     titleId: u32,
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeWithUIForUser(
-    user: *IInspectable,
+    user: ?*IInspectable,
     privilegeId: u32,
-    scope: HSTRING,
-    policy: HSTRING,
+    scope: ?HSTRING,
+    policy: ?HSTRING,
     friendlyMessage: ?HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeSilentlyForUser(
-    user: *IInspectable,
+    user: ?*IInspectable,
     privilegeId: u32,
-    scope: HSTRING,
-    policy: HSTRING,
-    hasPrivilege: *BOOL,
+    scope: ?HSTRING,
+    policy: ?HSTRING,
+    hasPrivilege: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-3" fn ShowGameInviteUIWithContext(
-    serviceConfigurationId: HSTRING,
-    sessionTemplateName: HSTRING,
-    sessionId: HSTRING,
-    invitationDisplayText: HSTRING,
-    customActivationContext: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    serviceConfigurationId: ?HSTRING,
+    sessionTemplateName: ?HSTRING,
+    sessionId: ?HSTRING,
+    invitationDisplayText: ?HSTRING,
+    customActivationContext: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-3" fn ShowGameInviteUIWithContextForUser(
-    user: *IInspectable,
-    serviceConfigurationId: HSTRING,
-    sessionTemplateName: HSTRING,
-    sessionId: HSTRING,
-    invitationDisplayText: HSTRING,
-    customActivationContext: HSTRING,
-    completionRoutine: GameUICompletionRoutine,
+    user: ?*IInspectable,
+    serviceConfigurationId: ?HSTRING,
+    sessionTemplateName: ?HSTRING,
+    sessionId: ?HSTRING,
+    invitationDisplayText: ?HSTRING,
+    customActivationContext: ?HSTRING,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUI(
     titleId: u32,
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUIForUser(
-    user: *IInspectable,
+    user: ?*IInspectable,
     titleId: u32,
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUI(
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUIForUser(
-    user: *IInspectable,
-    completionRoutine: GameUICompletionRoutine,
+    user: ?*IInspectable,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUI(
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUIForUser(
-    user: *IInspectable,
-    completionRoutine: GameUICompletionRoutine,
+    user: ?*IInspectable,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUI(
-    completionRoutine: GameUICompletionRoutine,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUIForUser(
-    user: *IInspectable,
-    completionRoutine: GameUICompletionRoutine,
+    user: ?*IInspectable,
+    completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn HasExpandedResources(
-    hasExpandedResources: *BOOL,
+    hasExpandedResources: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn GetExpandedResourceExclusiveCpuCount(
-    exclusiveCpuCount: *u32,
+    exclusiveCpuCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn ReleaseExclusiveCpuSets(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-deviceinformation-l1-1-0" fn GetGamingDeviceModelInformation(
-    information: *GAMING_DEVICE_MODEL_INFORMATION,
+    information: ?*GAMING_DEVICE_MODEL_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

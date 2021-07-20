@@ -55,12 +55,12 @@ pub const WSMAN_COMMAND = extern struct {
 
 pub const WSMAN_DATA_TEXT = extern struct {
     bufferLength: u32,
-    buffer: [*:0]const u16,
+    buffer: ?[*:0]const u16,
 };
 
 pub const WSMAN_DATA_BINARY = extern struct {
     dataLength: u32,
-    data: *u8,
+    data: ?*u8,
 };
 
 pub const WSManDataType = enum(i32) {
@@ -85,15 +85,15 @@ pub const WSMAN_DATA = extern struct {
 
 pub const WSMAN_ERROR = extern struct {
     code: u32,
-    errorDetail: [*:0]const u16,
-    language: [*:0]const u16,
-    machineName: [*:0]const u16,
-    pluginName: [*:0]const u16,
+    errorDetail: ?[*:0]const u16,
+    language: ?[*:0]const u16,
+    machineName: ?[*:0]const u16,
+    pluginName: ?[*:0]const u16,
 };
 
 pub const WSMAN_USERNAME_PASSWORD_CREDS = extern struct {
-    username: [*:0]const u16,
-    password: [*:0]const u16,
+    username: ?[*:0]const u16,
+    password: ?[*:0]const u16,
 };
 
 pub const WSManAuthenticationFlags = enum(i32) {
@@ -119,47 +119,47 @@ pub const WSMAN_AUTHENTICATION_CREDENTIALS = extern struct {
     authenticationMechanism: u32,
     Anonymous: extern union {
         userAccount: WSMAN_USERNAME_PASSWORD_CREDS,
-        certificateThumbprint: [*:0]const u16,
+        certificateThumbprint: ?[*:0]const u16,
     },
 };
 
 pub const WSMAN_OPTION = extern struct {
-    name: [*:0]const u16,
-    value: [*:0]const u16,
+    name: ?[*:0]const u16,
+    value: ?[*:0]const u16,
     mustComply: BOOL,
 };
 
 pub const WSMAN_OPTION_SET = extern struct {
     optionsCount: u32,
-    options: *WSMAN_OPTION,
+    options: ?*WSMAN_OPTION,
     optionsMustUnderstand: BOOL,
 };
 
 pub const WSMAN_OPTION_SETEX = extern struct {
     optionsCount: u32,
-    options: *WSMAN_OPTION,
+    options: ?*WSMAN_OPTION,
     optionsMustUnderstand: BOOL,
-    optionTypes: *PWSTR,
+    optionTypes: ?*?PWSTR,
 };
 
 pub const WSMAN_KEY = extern struct {
-    key: [*:0]const u16,
-    value: [*:0]const u16,
+    key: ?[*:0]const u16,
+    value: ?[*:0]const u16,
 };
 
 pub const WSMAN_SELECTOR_SET = extern struct {
     numberKeys: u32,
-    keys: *WSMAN_KEY,
+    keys: ?*WSMAN_KEY,
 };
 
 pub const WSMAN_FRAGMENT = extern struct {
-    path: [*:0]const u16,
-    dialect: [*:0]const u16,
+    path: ?[*:0]const u16,
+    dialect: ?[*:0]const u16,
 };
 
 pub const WSMAN_FILTER = extern struct {
-    filter: [*:0]const u16,
-    dialect: [*:0]const u16,
+    filter: ?[*:0]const u16,
+    dialect: ?[*:0]const u16,
 };
 
 pub const WSMAN_OPERATION_INFO = extern struct {
@@ -167,7 +167,7 @@ pub const WSMAN_OPERATION_INFO = extern struct {
     filter: WSMAN_FILTER,
     selectorSet: WSMAN_SELECTOR_SET,
     optionSet: WSMAN_OPTION_SET,
-    reserved: *c_void,
+    reserved: ?*c_void,
     version: u32,
 };
 
@@ -177,8 +177,8 @@ pub const WSMAN_OPERATION_INFOEX = extern struct {
     selectorSet: WSMAN_SELECTOR_SET,
     optionSet: WSMAN_OPTION_SETEX,
     version: u32,
-    uiLocale: [*:0]const u16,
-    dataLocale: [*:0]const u16,
+    uiLocale: ?[*:0]const u16,
+    dataLocale: ?[*:0]const u16,
 };
 
 pub const WSManProxyAccessType = enum(i32) {
@@ -271,30 +271,30 @@ pub const WSMAN_FLAG_CALLBACK_RECEIVE_DELAY_STREAM_REQUEST_PROCESSED = WSManCall
 
 pub const WSMAN_STREAM_ID_SET = extern struct {
     streamIDsCount: u32,
-    streamIDs: *PWSTR,
+    streamIDs: ?*?PWSTR,
 };
 
 pub const WSMAN_ENVIRONMENT_VARIABLE = extern struct {
-    name: [*:0]const u16,
-    value: [*:0]const u16,
+    name: ?[*:0]const u16,
+    value: ?[*:0]const u16,
 };
 
 pub const WSMAN_ENVIRONMENT_VARIABLE_SET = extern struct {
     varsCount: u32,
-    vars: *WSMAN_ENVIRONMENT_VARIABLE,
+    vars: ?*WSMAN_ENVIRONMENT_VARIABLE,
 };
 
 pub const WSMAN_SHELL_STARTUP_INFO_V10 = extern struct {
-    inputStreamSet: *WSMAN_STREAM_ID_SET,
-    outputStreamSet: *WSMAN_STREAM_ID_SET,
+    inputStreamSet: ?*WSMAN_STREAM_ID_SET,
+    outputStreamSet: ?*WSMAN_STREAM_ID_SET,
     idleTimeoutMs: u32,
-    workingDirectory: [*:0]const u16,
-    variableSet: *WSMAN_ENVIRONMENT_VARIABLE_SET,
+    workingDirectory: ?[*:0]const u16,
+    variableSet: ?*WSMAN_ENVIRONMENT_VARIABLE_SET,
 };
 
 pub const WSMAN_SHELL_STARTUP_INFO_V11 = extern struct {
     __AnonymousBase_wsman_L665_C48: WSMAN_SHELL_STARTUP_INFO_V10,
-    name: [*:0]const u16,
+    name: ?[*:0]const u16,
 };
 
 pub const WSMAN_SHELL_DISCONNECT_INFO = extern struct {
@@ -315,9 +315,9 @@ pub const WSMAN_FLAG_SERVER_BUFFERING_MODE_BLOCK = WSManShellFlag.SERVER_BUFFERI
 pub const WSMAN_FLAG_RECEIVE_DELAY_OUTPUT_STREAM = WSManShellFlag.RECEIVE_DELAY_OUTPUT_STREAM;
 
 pub const WSMAN_RECEIVE_DATA_RESULT = extern struct {
-    streamId: [*:0]const u16,
+    streamId: ?[*:0]const u16,
     streamData: WSMAN_DATA,
-    commandState: [*:0]const u16,
+    commandState: ?[*:0]const u16,
     exitCode: u32,
 };
 
@@ -338,62 +338,62 @@ pub const WSMAN_RESPONSE_DATA = extern union {
 pub const WSMAN_SHELL_COMPLETION_FUNCTION = fn(
     operationContext: ?*c_void,
     flags: u32,
-    @"error": *WSMAN_ERROR,
-    shell: *WSMAN_SHELL,
+    @"error": ?*WSMAN_ERROR,
+    shell: ?*WSMAN_SHELL,
     command: ?*WSMAN_COMMAND,
     operationHandle: ?*WSMAN_OPERATION,
     data: ?*WSMAN_RESPONSE_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_SHELL_ASYNC = extern struct {
-    operationContext: *c_void,
-    completionFunction: WSMAN_SHELL_COMPLETION_FUNCTION,
+    operationContext: ?*c_void,
+    completionFunction: ?WSMAN_SHELL_COMPLETION_FUNCTION,
 };
 
 pub const WSMAN_COMMAND_ARG_SET = extern struct {
     argsCount: u32,
-    args: *PWSTR,
+    args: ?*?PWSTR,
 };
 
 pub const WSMAN_CERTIFICATE_DETAILS = extern struct {
-    subject: [*:0]const u16,
-    issuerName: [*:0]const u16,
-    issuerThumbprint: [*:0]const u16,
-    subjectName: [*:0]const u16,
+    subject: ?[*:0]const u16,
+    issuerName: ?[*:0]const u16,
+    issuerThumbprint: ?[*:0]const u16,
+    subjectName: ?[*:0]const u16,
 };
 
 pub const WSMAN_SENDER_DETAILS = extern struct {
-    senderName: [*:0]const u16,
-    authenticationMechanism: [*:0]const u16,
-    certificateDetails: *WSMAN_CERTIFICATE_DETAILS,
-    clientToken: HANDLE,
-    httpURL: [*:0]const u16,
+    senderName: ?[*:0]const u16,
+    authenticationMechanism: ?[*:0]const u16,
+    certificateDetails: ?*WSMAN_CERTIFICATE_DETAILS,
+    clientToken: ?HANDLE,
+    httpURL: ?[*:0]const u16,
 };
 
 pub const WSMAN_PLUGIN_REQUEST = extern struct {
-    senderDetails: *WSMAN_SENDER_DETAILS,
-    locale: [*:0]const u16,
-    resourceUri: [*:0]const u16,
-    operationInfo: *WSMAN_OPERATION_INFO,
+    senderDetails: ?*WSMAN_SENDER_DETAILS,
+    locale: ?[*:0]const u16,
+    resourceUri: ?[*:0]const u16,
+    operationInfo: ?*WSMAN_OPERATION_INFO,
     shutdownNotification: i32,
-    shutdownNotificationHandle: HANDLE,
-    dataLocale: [*:0]const u16,
+    shutdownNotificationHandle: ?HANDLE,
+    dataLocale: ?[*:0]const u16,
 };
 
 pub const WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT = fn(
-    shellContext: *c_void,
+    shellContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT = fn(
-    shellContext: *c_void,
-    commandContext: *c_void,
+    shellContext: ?*c_void,
+    commandContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_STARTUP = fn(
     flags: u32,
-    applicationIdentification: [*:0]const u16,
+    applicationIdentification: ?[*:0]const u16,
     extraInfo: ?[*:0]const u16,
-    pluginContext: **c_void,
+    pluginContext: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WSMAN_PLUGIN_SHUTDOWN = fn(
@@ -403,50 +403,50 @@ pub const WSMAN_PLUGIN_SHUTDOWN = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WSMAN_PLUGIN_SHELL = fn(
-    pluginContext: *c_void,
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    pluginContext: ?*c_void,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
     startupInfo: ?*WSMAN_SHELL_STARTUP_INFO_V11,
     inboundShellInformation: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_COMMAND = fn(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: *c_void,
-    commandLine: [*:0]const u16,
+    shellContext: ?*c_void,
+    commandLine: ?[*:0]const u16,
     arguments: ?*WSMAN_COMMAND_ARG_SET,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_SEND = fn(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: *c_void,
+    shellContext: ?*c_void,
     commandContext: ?*c_void,
-    stream: [*:0]const u16,
-    inboundData: *WSMAN_DATA,
+    stream: ?[*:0]const u16,
+    inboundData: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_RECEIVE = fn(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: *c_void,
+    shellContext: ?*c_void,
     commandContext: ?*c_void,
     streamSet: ?*WSMAN_STREAM_ID_SET,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_SIGNAL = fn(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: *c_void,
+    shellContext: ?*c_void,
     commandContext: ?*c_void,
-    code: [*:0]const u16,
+    code: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_CONNECT = fn(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: *c_void,
+    shellContext: ?*c_void,
     commandContext: ?*c_void,
     inboundConnectInformation: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -459,28 +459,28 @@ pub const WSMAN_AUTHZ_QUOTA = extern struct {
 };
 
 pub const WSMAN_PLUGIN_AUTHORIZE_USER = fn(
-    pluginContext: *c_void,
-    senderDetails: *WSMAN_SENDER_DETAILS,
+    pluginContext: ?*c_void,
+    senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = fn(
-    pluginContext: *c_void,
-    senderDetails: *WSMAN_SENDER_DETAILS,
+    pluginContext: ?*c_void,
+    senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
     operation: u32,
-    action: [*:0]const u16,
-    resourceUri: [*:0]const u16,
+    action: ?[*:0]const u16,
+    resourceUri: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA = fn(
-    pluginContext: *c_void,
-    senderDetails: *WSMAN_SENDER_DETAILS,
+    pluginContext: ?*c_void,
+    senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT = fn(
-    userAuthorizationContext: *c_void,
+    userAuthorizationContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 const CLSID_WSMan_Value = @import("../zig.zig").Guid.initString("bced617b-ec03-420b-8508-977dc7a686bd");
@@ -575,43 +575,43 @@ pub const IWSMan = extern struct {
         base: IDispatch.VTable,
         CreateSession: fn(
             self: *const IWSMan,
-            connection: BSTR,
+            connection: ?BSTR,
             flags: i32,
-            connectionOptions: *IDispatch,
-            session: **IDispatch,
+            connectionOptions: ?*IDispatch,
+            session: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateConnectionOptions: fn(
             self: *const IWSMan,
-            connectionOptions: **IDispatch,
+            connectionOptions: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommandLine: fn(
             self: *const IWSMan,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSMan,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_CreateSession(self: *const T, connection: BSTR, flags: i32, connectionOptions: *IDispatch, session: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWSMan_CreateSession(self: *const T, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSMan.VTable, self.vtable).CreateSession(@ptrCast(*const IWSMan, self), connection, flags, connectionOptions, session);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_CreateConnectionOptions(self: *const T, connectionOptions: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWSMan_CreateConnectionOptions(self: *const T, connectionOptions: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSMan.VTable, self.vtable).CreateConnectionOptions(@ptrCast(*const IWSMan, self), connectionOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_get_CommandLine(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSMan_get_CommandLine(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSMan.VTable, self.vtable).get_CommandLine(@ptrCast(*const IWSMan, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_get_Error(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSMan_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSMan.VTable, self.vtable).get_Error(@ptrCast(*const IWSMan, self), value);
         }
     };}
@@ -626,168 +626,168 @@ pub const IWSManEx = extern struct {
         base: IWSMan.VTable,
         CreateResourceLocator: fn(
             self: *const IWSManEx,
-            strResourceLocator: BSTR,
-            newResourceLocator: **IDispatch,
+            strResourceLocator: ?BSTR,
+            newResourceLocator: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUTF8: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagCredUsernamePassword: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagSkipCACheck: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagSkipCNCheck: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUseDigest: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUseNegotiate: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUseBasic: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUseKerberos: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagNoEncryption: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagEnableSPNServerPort: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUseNoAuthentication: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagNonXmlText: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagReturnEPR: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagReturnObjectAndEPR: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorMessage: fn(
             self: *const IWSManEx,
             errorNumber: u32,
-            errorMessage: *BSTR,
+            errorMessage: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagHierarchyDeep: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagHierarchyShallow: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagHierarchyDeepBasePropsOnly: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagReturnObject: fn(
             self: *const IWSManEx,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSMan.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_CreateResourceLocator(self: *const T, strResourceLocator: BSTR, newResourceLocator: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_CreateResourceLocator(self: *const T, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).CreateResourceLocator(@ptrCast(*const IWSManEx, self), strResourceLocator, newResourceLocator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUTF8(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagUTF8(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUTF8(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagCredUsernamePassword(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagCredUsernamePassword(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagCredUsernamePassword(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagSkipCACheck(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagSkipCACheck(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCACheck(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagSkipCNCheck(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagSkipCNCheck(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCNCheck(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseDigest(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagUseDigest(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseDigest(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseNegotiate(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagUseNegotiate(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNegotiate(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseBasic(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagUseBasic(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseBasic(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseKerberos(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagUseKerberos(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseKerberos(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagNoEncryption(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagNoEncryption(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagNoEncryption(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagEnableSPNServerPort(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagEnableSPNServerPort(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagEnableSPNServerPort(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseNoAuthentication(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_SessionFlagUseNoAuthentication(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNoAuthentication(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagNonXmlText(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_EnumerationFlagNonXmlText(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagNonXmlText(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagReturnEPR(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_EnumerationFlagReturnEPR(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnEPR(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagReturnObjectAndEPR(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_EnumerationFlagReturnObjectAndEPR(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObjectAndEPR(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_GetErrorMessage(self: *const T, errorNumber: u32, errorMessage: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_GetErrorMessage(self: *const T, errorNumber: u32, errorMessage: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).GetErrorMessage(@ptrCast(*const IWSManEx, self), errorNumber, errorMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagHierarchyDeep(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_EnumerationFlagHierarchyDeep(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeep(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagHierarchyShallow(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_EnumerationFlagHierarchyShallow(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyShallow(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagHierarchyDeepBasePropsOnly(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_EnumerationFlagHierarchyDeepBasePropsOnly(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeepBasePropsOnly(@ptrCast(*const IWSManEx, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagReturnObject(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx_EnumerationFlagReturnObject(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObject(@ptrCast(*const IWSManEx, self), flags);
         }
     };}
@@ -802,14 +802,14 @@ pub const IWSManEx2 = extern struct {
         base: IWSManEx.VTable,
         SessionFlagUseClientCertificate: fn(
             self: *const IWSManEx2,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManEx.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx2_SessionFlagUseClientCertificate(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx2_SessionFlagUseClientCertificate(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx2.VTable, self.vtable).SessionFlagUseClientCertificate(@ptrCast(*const IWSManEx2, self), flags);
         }
     };}
@@ -824,62 +824,62 @@ pub const IWSManEx3 = extern struct {
         base: IWSManEx2.VTable,
         SessionFlagUTF16: fn(
             self: *const IWSManEx3,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUseCredSsp: fn(
             self: *const IWSManEx3,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagAssociationInstance: fn(
             self: *const IWSManEx3,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerationFlagAssociatedInstance: fn(
             self: *const IWSManEx3,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagSkipRevocationCheck: fn(
             self: *const IWSManEx3,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagAllowNegotiateImplicitCredentials: fn(
             self: *const IWSManEx3,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionFlagUseSsl: fn(
             self: *const IWSManEx3,
-            flags: *i32,
+            flags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManEx2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagUTF16(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx3_SessionFlagUTF16(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUTF16(@ptrCast(*const IWSManEx3, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagUseCredSsp(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx3_SessionFlagUseCredSsp(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseCredSsp(@ptrCast(*const IWSManEx3, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_EnumerationFlagAssociationInstance(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx3_EnumerationFlagAssociationInstance(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociationInstance(@ptrCast(*const IWSManEx3, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_EnumerationFlagAssociatedInstance(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx3_EnumerationFlagAssociatedInstance(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociatedInstance(@ptrCast(*const IWSManEx3, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagSkipRevocationCheck(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx3_SessionFlagSkipRevocationCheck(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagSkipRevocationCheck(@ptrCast(*const IWSManEx3, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagAllowNegotiateImplicitCredentials(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx3_SessionFlagAllowNegotiateImplicitCredentials(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagAllowNegotiateImplicitCredentials(@ptrCast(*const IWSManEx3, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagUseSsl(self: *const T, flags: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManEx3_SessionFlagUseSsl(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseSsl(@ptrCast(*const IWSManEx3, self), flags);
         }
     };}
@@ -895,32 +895,32 @@ pub const IWSManConnectionOptions = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserName: fn(
             self: *const IWSManConnectionOptions,
-            name: *BSTR,
+            name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserName: fn(
             self: *const IWSManConnectionOptions,
-            name: BSTR,
+            name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Password: fn(
             self: *const IWSManConnectionOptions,
-            password: BSTR,
+            password: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptions_get_UserName(self: *const T, name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptions_get_UserName(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).get_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptions_put_UserName(self: *const T, name: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptions_put_UserName(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptions_put_Password(self: *const T, password: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptions_put_Password(self: *const T, password: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_Password(@ptrCast(*const IWSManConnectionOptions, self), password);
         }
     };}
@@ -936,23 +936,23 @@ pub const IWSManConnectionOptionsEx = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CertificateThumbprint: fn(
             self: *const IWSManConnectionOptionsEx,
-            thumbprint: *BSTR,
+            thumbprint: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CertificateThumbprint: fn(
             self: *const IWSManConnectionOptionsEx,
-            thumbprint: BSTR,
+            thumbprint: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManConnectionOptions.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx_get_CertificateThumbprint(self: *const T, thumbprint: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx_get_CertificateThumbprint(self: *const T, thumbprint: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).get_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx_put_CertificateThumbprint(self: *const T, thumbprint: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx_put_CertificateThumbprint(self: *const T, thumbprint: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).put_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
         }
     };}
@@ -969,71 +969,71 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
             self: *const IWSManConnectionOptionsEx2,
             accessType: i32,
             authenticationMechanism: i32,
-            userName: BSTR,
-            password: BSTR,
+            userName: ?BSTR,
+            password: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProxyIEConfig: fn(
             self: *const IWSManConnectionOptionsEx2,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProxyWinHttpConfig: fn(
             self: *const IWSManConnectionOptionsEx2,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProxyAutoDetect: fn(
             self: *const IWSManConnectionOptionsEx2,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProxyNoProxyServer: fn(
             self: *const IWSManConnectionOptionsEx2,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProxyAuthenticationUseNegotiate: fn(
             self: *const IWSManConnectionOptionsEx2,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProxyAuthenticationUseBasic: fn(
             self: *const IWSManConnectionOptionsEx2,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProxyAuthenticationUseDigest: fn(
             self: *const IWSManConnectionOptionsEx2,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWSManConnectionOptionsEx.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_SetProxy(self: *const T, accessType: i32, authenticationMechanism: i32, userName: BSTR, password: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_SetProxy(self: *const T, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).SetProxy(@ptrCast(*const IWSManConnectionOptionsEx2, self), accessType, authenticationMechanism, userName, password);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyIEConfig(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_ProxyIEConfig(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyIEConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyWinHttpConfig(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_ProxyWinHttpConfig(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyWinHttpConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAutoDetect(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_ProxyAutoDetect(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAutoDetect(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyNoProxyServer(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_ProxyNoProxyServer(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyNoProxyServer(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseNegotiate(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseNegotiate(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseNegotiate(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseBasic(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseBasic(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseBasic(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseDigest(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseDigest(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseDigest(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
         }
     };}
@@ -1050,21 +1050,21 @@ pub const IWSManSession = extern struct {
             self: *const IWSManSession,
             resourceUri: VARIANT,
             flags: i32,
-            resource: *BSTR,
+            resource: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Put: fn(
             self: *const IWSManSession,
             resourceUri: VARIANT,
-            resource: BSTR,
+            resource: ?BSTR,
             flags: i32,
-            resultResource: *BSTR,
+            resultResource: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Create: fn(
             self: *const IWSManSession,
             resourceUri: VARIANT,
-            resource: BSTR,
+            resource: ?BSTR,
             flags: i32,
-            newUri: *BSTR,
+            newUri: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IWSManSession,
@@ -1073,34 +1073,34 @@ pub const IWSManSession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Invoke: fn(
             self: *const IWSManSession,
-            actionUri: BSTR,
+            actionUri: ?BSTR,
             resourceUri: VARIANT,
-            parameters: BSTR,
+            parameters: ?BSTR,
             flags: i32,
-            result: *BSTR,
+            result: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Enumerate: fn(
             self: *const IWSManSession,
             resourceUri: VARIANT,
-            filter: BSTR,
-            dialect: BSTR,
+            filter: ?BSTR,
+            dialect: ?BSTR,
             flags: i32,
-            resultSet: **IDispatch,
+            resultSet: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Identify: fn(
             self: *const IWSManSession,
             flags: i32,
-            result: *BSTR,
+            result: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSManSession,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BatchItems: fn(
             self: *const IWSManSession,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BatchItems: fn(
@@ -1110,7 +1110,7 @@ pub const IWSManSession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timeout: fn(
             self: *const IWSManSession,
-            value: *i32,
+            value: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Timeout: fn(
@@ -1122,15 +1122,15 @@ pub const IWSManSession = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Get(self: *const T, resourceUri: VARIANT, flags: i32, resource: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_Get(self: *const T, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).Get(@ptrCast(*const IWSManSession, self), resourceUri, flags, resource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Put(self: *const T, resourceUri: VARIANT, resource: BSTR, flags: i32, resultResource: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_Put(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).Put(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, resultResource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Create(self: *const T, resourceUri: VARIANT, resource: BSTR, flags: i32, newUri: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_Create(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).Create(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, newUri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1138,23 +1138,23 @@ pub const IWSManSession = extern struct {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).Delete(@ptrCast(*const IWSManSession, self), resourceUri, flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Invoke(self: *const T, actionUri: BSTR, resourceUri: VARIANT, parameters: BSTR, flags: i32, result: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_Invoke(self: *const T, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).Invoke(@ptrCast(*const IWSManSession, self), actionUri, resourceUri, parameters, flags, result);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Enumerate(self: *const T, resourceUri: VARIANT, filter: BSTR, dialect: BSTR, flags: i32, resultSet: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_Enumerate(self: *const T, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).Enumerate(@ptrCast(*const IWSManSession, self), resourceUri, filter, dialect, flags, resultSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Identify(self: *const T, flags: i32, result: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_Identify(self: *const T, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).Identify(@ptrCast(*const IWSManSession, self), flags, result);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_get_Error(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Error(@ptrCast(*const IWSManSession, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_get_BatchItems(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_get_BatchItems(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).get_BatchItems(@ptrCast(*const IWSManSession, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1162,7 +1162,7 @@ pub const IWSManSession = extern struct {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).put_BatchItems(@ptrCast(*const IWSManSession, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_get_Timeout(self: *const T, value: *i32) callconv(.Inline) HRESULT {
+        pub fn IWSManSession_get_Timeout(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Timeout(@ptrCast(*const IWSManSession, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1181,32 +1181,32 @@ pub const IWSManEnumerator = extern struct {
         base: IDispatch.VTable,
         ReadItem: fn(
             self: *const IWSManEnumerator,
-            resource: *BSTR,
+            resource: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AtEndOfStream: fn(
             self: *const IWSManEnumerator,
-            eos: *i16,
+            eos: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSManEnumerator,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEnumerator_ReadItem(self: *const T, resource: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManEnumerator_ReadItem(self: *const T, resource: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).ReadItem(@ptrCast(*const IWSManEnumerator, self), resource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEnumerator_get_AtEndOfStream(self: *const T, eos: *i16) callconv(.Inline) HRESULT {
+        pub fn IWSManEnumerator_get_AtEndOfStream(self: *const T, eos: ?*i16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_AtEndOfStream(@ptrCast(*const IWSManEnumerator, self), eos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEnumerator_get_Error(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManEnumerator_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManEnumerator, self), value);
         }
     };}
@@ -1222,16 +1222,16 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ResourceURI: fn(
             self: *const IWSManResourceLocator,
-            uri: BSTR,
+            uri: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourceURI: fn(
             self: *const IWSManResourceLocator,
-            uri: *BSTR,
+            uri: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddSelector: fn(
             self: *const IWSManResourceLocator,
-            resourceSelName: BSTR,
+            resourceSelName: ?BSTR,
             selValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearSelectors: fn(
@@ -1240,26 +1240,26 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentPath: fn(
             self: *const IWSManResourceLocator,
-            text: *BSTR,
+            text: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentPath: fn(
             self: *const IWSManResourceLocator,
-            text: BSTR,
+            text: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentDialect: fn(
             self: *const IWSManResourceLocator,
-            text: *BSTR,
+            text: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentDialect: fn(
             self: *const IWSManResourceLocator,
-            text: BSTR,
+            text: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddOption: fn(
             self: *const IWSManResourceLocator,
-            OptionName: BSTR,
+            OptionName: ?BSTR,
             OptionValue: VARIANT,
             mustComply: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1271,7 +1271,7 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MustUnderstandOptions: fn(
             self: *const IWSManResourceLocator,
-            mustUnderstand: *BOOL,
+            mustUnderstand: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearOptions: fn(
             self: *const IWSManResourceLocator,
@@ -1279,22 +1279,22 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSManResourceLocator,
-            value: *BSTR,
+            value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_put_ResourceURI(self: *const T, uri: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_put_ResourceURI(self: *const T, uri: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_ResourceURI(self: *const T, uri: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_get_ResourceURI(self: *const T, uri: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_AddSelector(self: *const T, resourceSelName: BSTR, selValue: VARIANT) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_AddSelector(self: *const T, resourceSelName: ?BSTR, selValue: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddSelector(@ptrCast(*const IWSManResourceLocator, self), resourceSelName, selValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1302,23 +1302,23 @@ pub const IWSManResourceLocator = extern struct {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearSelectors(@ptrCast(*const IWSManResourceLocator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_FragmentPath(self: *const T, text: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_get_FragmentPath(self: *const T, text: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_put_FragmentPath(self: *const T, text: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_put_FragmentPath(self: *const T, text: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_FragmentDialect(self: *const T, text: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_get_FragmentDialect(self: *const T, text: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_put_FragmentDialect(self: *const T, text: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_put_FragmentDialect(self: *const T, text: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_AddOption(self: *const T, OptionName: BSTR, OptionValue: VARIANT, mustComply: BOOL) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_AddOption(self: *const T, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddOption(@ptrCast(*const IWSManResourceLocator, self), OptionName, OptionValue, mustComply);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1326,7 +1326,7 @@ pub const IWSManResourceLocator = extern struct {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_MustUnderstandOptions(self: *const T, mustUnderstand: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_get_MustUnderstandOptions(self: *const T, mustUnderstand: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1334,7 +1334,7 @@ pub const IWSManResourceLocator = extern struct {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearOptions(@ptrCast(*const IWSManResourceLocator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_Error(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManResourceLocator_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManResourceLocator, self), value);
         }
     };}
@@ -1361,17 +1361,17 @@ pub const IWSManInternal = extern struct {
         base: IDispatch.VTable,
         ConfigSDDL: fn(
             self: *const IWSManInternal,
-            session: *IDispatch,
+            session: ?*IDispatch,
             resourceUri: VARIANT,
             flags: i32,
-            resource: *BSTR,
+            resource: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManInternal_ConfigSDDL(self: *const T, session: *IDispatch, resourceUri: VARIANT, flags: i32, resource: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWSManInternal_ConfigSDDL(self: *const T, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSManInternal.VTable, self.vtable).ConfigSDDL(@ptrCast(*const IWSManInternal, self), session, resourceUri, flags, resource);
         }
     };}
@@ -1385,7 +1385,7 @@ pub const IWSManInternal = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManInitialize(
     flags: u32,
-    apiHandle: **WSMAN_API,
+    apiHandle: ?*?*WSMAN_API,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1396,23 +1396,23 @@ pub extern "WsmSvc" fn WSManDeinitialize(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManGetErrorMessage(
-    apiHandle: *WSMAN_API,
+    apiHandle: ?*WSMAN_API,
     flags: u32,
     languageCode: ?[*:0]const u16,
     errorCode: u32,
     messageLength: u32,
     message: ?[*:0]u16,
-    messageLengthUsed: *u32,
+    messageLengthUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCreateSession(
-    apiHandle: *WSMAN_API,
+    apiHandle: ?*WSMAN_API,
     connection: ?[*:0]const u16,
     flags: u32,
     serverAuthenticationCredentials: ?*WSMAN_AUTHENTICATION_CREDENTIALS,
     proxyInfo: ?*WSMAN_PROXY_INFO,
-    session: **WSMAN_SESSION,
+    session: ?*?*WSMAN_SESSION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1423,25 +1423,25 @@ pub extern "WsmSvc" fn WSManCloseSession(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManSetSessionOption(
-    session: *WSMAN_SESSION,
+    session: ?*WSMAN_SESSION,
     option: WSManSessionOption,
-    data: *WSMAN_DATA,
+    data: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManGetSessionOptionAsDword(
-    session: *WSMAN_SESSION,
+    session: ?*WSMAN_SESSION,
     option: WSManSessionOption,
-    value: *u32,
+    value: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManGetSessionOptionAsString(
-    session: *WSMAN_SESSION,
+    session: ?*WSMAN_SESSION,
     option: WSManSessionOption,
     stringLength: u32,
     string: ?[*:0]u16,
-    stringLengthUsed: *u32,
+    stringLengthUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1452,153 +1452,153 @@ pub extern "WsmSvc" fn WSManCloseOperation(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCreateShell(
-    session: *WSMAN_SESSION,
+    session: ?*WSMAN_SESSION,
     flags: u32,
-    resourceUri: [*:0]const u16,
+    resourceUri: ?[*:0]const u16,
     startupInfo: ?*WSMAN_SHELL_STARTUP_INFO_V11,
     options: ?*WSMAN_OPTION_SET,
     createXml: ?*WSMAN_DATA,
-    @"async": *WSMAN_SHELL_ASYNC,
-    shell: **WSMAN_SHELL,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    shell: ?*?*WSMAN_SHELL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManRunShellCommand(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     flags: u32,
-    commandLine: [*:0]const u16,
+    commandLine: ?[*:0]const u16,
     args: ?*WSMAN_COMMAND_ARG_SET,
     options: ?*WSMAN_OPTION_SET,
-    @"async": *WSMAN_SHELL_ASYNC,
-    command: **WSMAN_COMMAND,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    command: ?*?*WSMAN_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManSignalShell(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     command: ?*WSMAN_COMMAND,
     flags: u32,
-    code: [*:0]const u16,
-    @"async": *WSMAN_SHELL_ASYNC,
-    signalOperation: **WSMAN_OPERATION,
+    code: ?[*:0]const u16,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    signalOperation: ?*?*WSMAN_OPERATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManReceiveShellOutput(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     command: ?*WSMAN_COMMAND,
     flags: u32,
     desiredStreamSet: ?*WSMAN_STREAM_ID_SET,
-    @"async": *WSMAN_SHELL_ASYNC,
-    receiveOperation: **WSMAN_OPERATION,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    receiveOperation: ?*?*WSMAN_OPERATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManSendShellInput(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     command: ?*WSMAN_COMMAND,
     flags: u32,
-    streamId: [*:0]const u16,
-    streamData: *WSMAN_DATA,
+    streamId: ?[*:0]const u16,
+    streamData: ?*WSMAN_DATA,
     endOfStream: BOOL,
-    @"async": *WSMAN_SHELL_ASYNC,
-    sendOperation: **WSMAN_OPERATION,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    sendOperation: ?*?*WSMAN_OPERATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCloseCommand(
     commandHandle: ?*WSMAN_COMMAND,
     flags: u32,
-    @"async": *WSMAN_SHELL_ASYNC,
+    @"async": ?*WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManCloseShell(
     shellHandle: ?*WSMAN_SHELL,
     flags: u32,
-    @"async": *WSMAN_SHELL_ASYNC,
+    @"async": ?*WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManCreateShellEx(
-    session: *WSMAN_SESSION,
+    session: ?*WSMAN_SESSION,
     flags: u32,
-    resourceUri: [*:0]const u16,
-    shellId: [*:0]const u16,
+    resourceUri: ?[*:0]const u16,
+    shellId: ?[*:0]const u16,
     startupInfo: ?*WSMAN_SHELL_STARTUP_INFO_V11,
     options: ?*WSMAN_OPTION_SET,
     createXml: ?*WSMAN_DATA,
-    @"async": *WSMAN_SHELL_ASYNC,
-    shell: **WSMAN_SHELL,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    shell: ?*?*WSMAN_SHELL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManRunShellCommandEx(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     flags: u32,
-    commandId: [*:0]const u16,
-    commandLine: [*:0]const u16,
+    commandId: ?[*:0]const u16,
+    commandLine: ?[*:0]const u16,
     args: ?*WSMAN_COMMAND_ARG_SET,
     options: ?*WSMAN_OPTION_SET,
-    @"async": *WSMAN_SHELL_ASYNC,
-    command: **WSMAN_COMMAND,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    command: ?*?*WSMAN_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManDisconnectShell(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     flags: u32,
-    disconnectInfo: *WSMAN_SHELL_DISCONNECT_INFO,
-    @"async": *WSMAN_SHELL_ASYNC,
+    disconnectInfo: ?*WSMAN_SHELL_DISCONNECT_INFO,
+    @"async": ?*WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManReconnectShell(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     flags: u32,
-    @"async": *WSMAN_SHELL_ASYNC,
+    @"async": ?*WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManReconnectShellCommand(
-    commandHandle: *WSMAN_COMMAND,
+    commandHandle: ?*WSMAN_COMMAND,
     flags: u32,
-    @"async": *WSMAN_SHELL_ASYNC,
+    @"async": ?*WSMAN_SHELL_ASYNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManConnectShell(
-    session: *WSMAN_SESSION,
+    session: ?*WSMAN_SESSION,
     flags: u32,
-    resourceUri: [*:0]const u16,
-    shellID: [*:0]const u16,
+    resourceUri: ?[*:0]const u16,
+    shellID: ?[*:0]const u16,
     options: ?*WSMAN_OPTION_SET,
     connectXml: ?*WSMAN_DATA,
-    @"async": *WSMAN_SHELL_ASYNC,
-    shell: **WSMAN_SHELL,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    shell: ?*?*WSMAN_SHELL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WsmSvc" fn WSManConnectShellCommand(
-    shell: *WSMAN_SHELL,
+    shell: ?*WSMAN_SHELL,
     flags: u32,
-    commandID: [*:0]const u16,
+    commandID: ?[*:0]const u16,
     options: ?*WSMAN_OPTION_SET,
     connectXml: ?*WSMAN_DATA,
-    @"async": *WSMAN_SHELL_ASYNC,
-    command: **WSMAN_COMMAND,
+    @"async": ?*WSMAN_SHELL_ASYNC,
+    command: ?*?*WSMAN_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginReportContext(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    context: *c_void,
+    context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginReceiveResult(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
     stream: ?[*:0]const u16,
     streamResult: ?*WSMAN_DATA,
@@ -1608,7 +1608,7 @@ pub extern "WsmSvc" fn WSManPluginReceiveResult(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginOperationComplete(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
     errorCode: u32,
     extendedInformation: ?[*:0]const u16,
@@ -1616,30 +1616,30 @@ pub extern "WsmSvc" fn WSManPluginOperationComplete(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginGetOperationParameters(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    data: *WSMAN_DATA,
+    data: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WsmSvc" fn WSManPluginGetConfiguration(
-    pluginContext: *c_void,
+    pluginContext: ?*c_void,
     flags: u32,
-    data: *WSMAN_DATA,
+    data: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WsmSvc" fn WSManPluginReportCompletion(
-    pluginContext: *c_void,
+    pluginContext: ?*c_void,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginFreeRequestDetails(
-    requestDetails: *WSMAN_PLUGIN_REQUEST,
+    requestDetails: ?*WSMAN_PLUGIN_REQUEST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginAuthzUserComplete(
-    senderDetails: *WSMAN_SENDER_DETAILS,
+    senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
     userAuthorizationContext: ?*c_void,
     impersonationToken: ?HANDLE,
@@ -1650,7 +1650,7 @@ pub extern "WsmSvc" fn WSManPluginAuthzUserComplete(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginAuthzOperationComplete(
-    senderDetails: *WSMAN_SENDER_DETAILS,
+    senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
     userAuthorizationContext: ?*c_void,
     errorCode: u32,
@@ -1659,7 +1659,7 @@ pub extern "WsmSvc" fn WSManPluginAuthzOperationComplete(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WsmSvc" fn WSManPluginAuthzQueryQuotaComplete(
-    senderDetails: *WSMAN_SENDER_DETAILS,
+    senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
     quota: ?*WSMAN_AUTHZ_QUOTA,
     errorCode: u32,

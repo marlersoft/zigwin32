@@ -12,23 +12,23 @@
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn CreateMailslotA(
-    lpName: [*:0]const u8,
+    lpName: ?[*:0]const u8,
     nMaxMessageSize: u32,
     lReadTimeout: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn CreateMailslotW(
-    lpName: [*:0]const u16,
+    lpName: ?[*:0]const u16,
     nMaxMessageSize: u32,
     lReadTimeout: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetMailslotInfo(
-    hMailslot: HANDLE,
+    hMailslot: ?HANDLE,
     lpMaxMessageSize: ?*u32,
     lpNextSize: ?*u32,
     lpMessageCount: ?*u32,
@@ -37,7 +37,7 @@ pub extern "KERNEL32" fn GetMailslotInfo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn SetMailslotInfo(
-    hMailslot: HANDLE,
+    hMailslot: ?HANDLE,
     lReadTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
