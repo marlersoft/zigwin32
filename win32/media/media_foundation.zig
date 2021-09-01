@@ -9265,16 +9265,16 @@ pub const IDirectXVideoDecoderService = extern struct {
             return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderDeviceGuids(@ptrCast(*const IDirectXVideoDecoderService, self), pCount, pGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoDecoderService_GetDecoderRenderTargets(self: *const T, Guid: ?*const Guid, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderRenderTargets(@ptrCast(*const IDirectXVideoDecoderService, self), Guid, pCount, pFormats);
+        pub fn IDirectXVideoDecoderService_GetDecoderRenderTargets(self: *const T, _param_Guid: ?*const Guid, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderRenderTargets(@ptrCast(*const IDirectXVideoDecoderService, self), _param_Guid, pCount, pFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoDecoderService_GetDecoderConfigurations(self: *const T, Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pReserved: ?*c_void, pCount: ?*u32, ppConfigs: ?*?*DXVA2_ConfigPictureDecode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderConfigurations(@ptrCast(*const IDirectXVideoDecoderService, self), Guid, pVideoDesc, pReserved, pCount, ppConfigs);
+        pub fn IDirectXVideoDecoderService_GetDecoderConfigurations(self: *const T, _param_Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pReserved: ?*c_void, pCount: ?*u32, ppConfigs: ?*?*DXVA2_ConfigPictureDecode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderConfigurations(@ptrCast(*const IDirectXVideoDecoderService, self), _param_Guid, pVideoDesc, pReserved, pCount, ppConfigs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoDecoderService_CreateVideoDecoder(self: *const T, Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pConfig: ?*const DXVA2_ConfigPictureDecode, ppDecoderRenderTargets: [*]?*IDirect3DSurface9, NumRenderTargets: u32, ppDecode: ?*?*IDirectXVideoDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).CreateVideoDecoder(@ptrCast(*const IDirectXVideoDecoderService, self), Guid, pVideoDesc, pConfig, ppDecoderRenderTargets, NumRenderTargets, ppDecode);
+        pub fn IDirectXVideoDecoderService_CreateVideoDecoder(self: *const T, _param_Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pConfig: ?*const DXVA2_ConfigPictureDecode, ppDecoderRenderTargets: [*]?*IDirect3DSurface9, NumRenderTargets: u32, ppDecode: ?*?*IDirectXVideoDecoder) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).CreateVideoDecoder(@ptrCast(*const IDirectXVideoDecoderService, self), _param_Guid, pVideoDesc, pConfig, ppDecoderRenderTargets, NumRenderTargets, ppDecode);
         }
     };}
     pub usingnamespace MethodMixin(@This());

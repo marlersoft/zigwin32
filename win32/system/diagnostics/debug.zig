@@ -10763,8 +10763,8 @@ pub const IDebugBreakpoint3 = extern struct {
             return @ptrCast(*const IDebugBreakpoint3.VTable, self.vtable).SetOffsetExpressionWide(@ptrCast(*const IDebugBreakpoint3, self), Expression);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugBreakpoint3_GetGuid(self: *const T, Guid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugBreakpoint3.VTable, self.vtable).GetGuid(@ptrCast(*const IDebugBreakpoint3, self), Guid);
+        pub fn IDebugBreakpoint3_GetGuid(self: *const T, _param_Guid: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugBreakpoint3.VTable, self.vtable).GetGuid(@ptrCast(*const IDebugBreakpoint3, self), _param_Guid);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -22022,8 +22022,8 @@ pub const IDebugControl5 = extern struct {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).OutputContextStackTraceEx(@ptrCast(*const IDebugControl5, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_GetBreakpointByGuid(self: *const T, Guid: ?*Guid, Bp: ?*?*IDebugBreakpoint3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetBreakpointByGuid(@ptrCast(*const IDebugControl5, self), Guid, Bp);
+        pub fn IDebugControl5_GetBreakpointByGuid(self: *const T, _param_Guid: ?*Guid, Bp: ?*?*IDebugBreakpoint3) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetBreakpointByGuid(@ptrCast(*const IDebugControl5, self), _param_Guid, Bp);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -23741,8 +23741,8 @@ pub const IDebugControl6 = extern struct {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).OutputContextStackTraceEx(@ptrCast(*const IDebugControl6, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_GetBreakpointByGuid(self: *const T, Guid: ?*Guid, Bp: ?*?*IDebugBreakpoint3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetBreakpointByGuid(@ptrCast(*const IDebugControl6, self), Guid, Bp);
+        pub fn IDebugControl6_GetBreakpointByGuid(self: *const T, _param_Guid: ?*Guid, Bp: ?*?*IDebugBreakpoint3) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetBreakpointByGuid(@ptrCast(*const IDebugControl6, self), _param_Guid, Bp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugControl6_GetExecutionStatusEx(self: *const T, Status: ?*u32) callconv(.Inline) HRESULT {
@@ -25474,8 +25474,8 @@ pub const IDebugControl7 = extern struct {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).OutputContextStackTraceEx(@ptrCast(*const IDebugControl7, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_GetBreakpointByGuid(self: *const T, Guid: ?*Guid, Bp: ?*?*IDebugBreakpoint3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetBreakpointByGuid(@ptrCast(*const IDebugControl7, self), Guid, Bp);
+        pub fn IDebugControl7_GetBreakpointByGuid(self: *const T, _param_Guid: ?*Guid, Bp: ?*?*IDebugBreakpoint3) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetBreakpointByGuid(@ptrCast(*const IDebugControl7, self), _param_Guid, Bp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugControl7_GetExecutionStatusEx(self: *const T, Status: ?*u32) callconv(.Inline) HRESULT {
@@ -28712,8 +28712,8 @@ pub const IDebugSymbols = extern struct {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetNameByOffset(@ptrCast(*const IDebugSymbols, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_GetOffsetByName(self: *const T, Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols, self), Symbol, Offset);
+        pub fn IDebugSymbols_GetOffsetByName(self: *const T, _param_Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols_GetNearNameByOffset(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -28752,8 +28752,8 @@ pub const IDebugSymbols = extern struct {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetModuleParameters(@ptrCast(*const IDebugSymbols, self), Count, Bases, Start, Params);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_GetSymbolModule(self: *const T, Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols, self), Symbol, Base);
+        pub fn IDebugSymbols_GetSymbolModule(self: *const T, _param_Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols_GetTypeName(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -28772,8 +28772,8 @@ pub const IDebugSymbols = extern struct {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetFieldOffset(@ptrCast(*const IDebugSymbols, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_GetSymbolTypeId(self: *const T, Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols_GetSymbolTypeId(self: *const T, _param_Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols_GetOffsetTypeId(self: *const T, Offset: u64, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
@@ -29288,8 +29288,8 @@ pub const IDebugSymbols2 = extern struct {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetNameByOffset(@ptrCast(*const IDebugSymbols2, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_GetOffsetByName(self: *const T, Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols2, self), Symbol, Offset);
+        pub fn IDebugSymbols2_GetOffsetByName(self: *const T, _param_Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols2, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols2_GetNearNameByOffset(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -29328,8 +29328,8 @@ pub const IDebugSymbols2 = extern struct {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetModuleParameters(@ptrCast(*const IDebugSymbols2, self), Count, Bases, Start, Params);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_GetSymbolModule(self: *const T, Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols2, self), Symbol, Base);
+        pub fn IDebugSymbols2_GetSymbolModule(self: *const T, _param_Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols2, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols2_GetTypeName(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -29348,8 +29348,8 @@ pub const IDebugSymbols2 = extern struct {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetFieldOffset(@ptrCast(*const IDebugSymbols2, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_GetSymbolTypeId(self: *const T, Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols2, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols2_GetSymbolTypeId(self: *const T, _param_Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols2, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols2_GetOffsetTypeId(self: *const T, Offset: u64, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
@@ -30360,8 +30360,8 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetNameByOffset(@ptrCast(*const IDebugSymbols3, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetOffsetByName(self: *const T, Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols3, self), Symbol, Offset);
+        pub fn IDebugSymbols3_GetOffsetByName(self: *const T, _param_Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols3_GetNearNameByOffset(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -30400,8 +30400,8 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetModuleParameters(@ptrCast(*const IDebugSymbols3, self), Count, Bases, Start, Params);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetSymbolModule(self: *const T, Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols3, self), Symbol, Base);
+        pub fn IDebugSymbols3_GetSymbolModule(self: *const T, _param_Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols3_GetTypeName(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -30420,8 +30420,8 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetFieldOffset(@ptrCast(*const IDebugSymbols3, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetSymbolTypeId(self: *const T, Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols3, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols3_GetSymbolTypeId(self: *const T, _param_Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols3_GetOffsetTypeId(self: *const T, Offset: u64, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
@@ -30572,8 +30572,8 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetNameByOffsetWide(@ptrCast(*const IDebugSymbols3, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetOffsetByNameWide(self: *const T, Symbol: ?[*:0]const u16, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetOffsetByNameWide(@ptrCast(*const IDebugSymbols3, self), Symbol, Offset);
+        pub fn IDebugSymbols3_GetOffsetByNameWide(self: *const T, _param_Symbol: ?[*:0]const u16, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetOffsetByNameWide(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols3_GetNearNameByOffsetWide(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u16, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -30592,8 +30592,8 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetModuleByModuleNameWide(@ptrCast(*const IDebugSymbols3, self), Name, StartIndex, Index, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetSymbolModuleWide(self: *const T, Symbol: ?[*:0]const u16, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolModuleWide(@ptrCast(*const IDebugSymbols3, self), Symbol, Base);
+        pub fn IDebugSymbols3_GetSymbolModuleWide(self: *const T, _param_Symbol: ?[*:0]const u16, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolModuleWide(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols3_GetTypeNameWide(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u16, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -30608,8 +30608,8 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetFieldOffsetWide(@ptrCast(*const IDebugSymbols3, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetSymbolTypeIdWide(self: *const T, Symbol: ?[*:0]const u16, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolTypeIdWide(@ptrCast(*const IDebugSymbols3, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols3_GetSymbolTypeIdWide(self: *const T, _param_Symbol: ?[*:0]const u16, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolTypeIdWide(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols3_GetScopeSymbolGroup2(self: *const T, Flags: u32, Update: ?*IDebugSymbolGroup2, Symbols: ?*?*IDebugSymbolGroup2) callconv(.Inline) HRESULT {
@@ -30772,12 +30772,12 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolEntriesByOffset(@ptrCast(*const IDebugSymbols3, self), Offset, Flags, Ids, Displacements, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetSymbolEntriesByName(self: *const T, Symbol: ?[*:0]const u8, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolEntriesByName(@ptrCast(*const IDebugSymbols3, self), Symbol, Flags, Ids, IdsCount, Entries);
+        pub fn IDebugSymbols3_GetSymbolEntriesByName(self: *const T, _param_Symbol: ?[*:0]const u8, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolEntriesByName(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, Flags, Ids, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetSymbolEntriesByNameWide(self: *const T, Symbol: ?[*:0]const u16, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolEntriesByNameWide(@ptrCast(*const IDebugSymbols3, self), Symbol, Flags, Ids, IdsCount, Entries);
+        pub fn IDebugSymbols3_GetSymbolEntriesByNameWide(self: *const T, _param_Symbol: ?[*:0]const u16, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSymbolEntriesByNameWide(@ptrCast(*const IDebugSymbols3, self), _param_Symbol, Flags, Ids, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols3_GetSymbolEntryByToken(self: *const T, ModuleBase: u64, Token: u32, Id: ?*DEBUG_MODULE_AND_ID) callconv(.Inline) HRESULT {
@@ -31737,8 +31737,8 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetNameByOffset(@ptrCast(*const IDebugSymbols4, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetOffsetByName(self: *const T, Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols4, self), Symbol, Offset);
+        pub fn IDebugSymbols4_GetOffsetByName(self: *const T, _param_Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols4_GetNearNameByOffset(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -31777,8 +31777,8 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetModuleParameters(@ptrCast(*const IDebugSymbols4, self), Count, Bases, Start, Params);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetSymbolModule(self: *const T, Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols4, self), Symbol, Base);
+        pub fn IDebugSymbols4_GetSymbolModule(self: *const T, _param_Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols4_GetTypeName(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -31797,8 +31797,8 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetFieldOffset(@ptrCast(*const IDebugSymbols4, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetSymbolTypeId(self: *const T, Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols4, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols4_GetSymbolTypeId(self: *const T, _param_Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols4_GetOffsetTypeId(self: *const T, Offset: u64, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
@@ -31949,8 +31949,8 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetNameByOffsetWide(@ptrCast(*const IDebugSymbols4, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetOffsetByNameWide(self: *const T, Symbol: ?[*:0]const u16, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetOffsetByNameWide(@ptrCast(*const IDebugSymbols4, self), Symbol, Offset);
+        pub fn IDebugSymbols4_GetOffsetByNameWide(self: *const T, _param_Symbol: ?[*:0]const u16, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetOffsetByNameWide(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols4_GetNearNameByOffsetWide(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u16, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -31969,8 +31969,8 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetModuleByModuleNameWide(@ptrCast(*const IDebugSymbols4, self), Name, StartIndex, Index, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetSymbolModuleWide(self: *const T, Symbol: ?[*:0]const u16, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolModuleWide(@ptrCast(*const IDebugSymbols4, self), Symbol, Base);
+        pub fn IDebugSymbols4_GetSymbolModuleWide(self: *const T, _param_Symbol: ?[*:0]const u16, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolModuleWide(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols4_GetTypeNameWide(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u16, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -31985,8 +31985,8 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetFieldOffsetWide(@ptrCast(*const IDebugSymbols4, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetSymbolTypeIdWide(self: *const T, Symbol: ?[*:0]const u16, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolTypeIdWide(@ptrCast(*const IDebugSymbols4, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols4_GetSymbolTypeIdWide(self: *const T, _param_Symbol: ?[*:0]const u16, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolTypeIdWide(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols4_GetScopeSymbolGroup2(self: *const T, Flags: u32, Update: ?*IDebugSymbolGroup2, Symbols: ?*?*IDebugSymbolGroup2) callconv(.Inline) HRESULT {
@@ -32149,12 +32149,12 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolEntriesByOffset(@ptrCast(*const IDebugSymbols4, self), Offset, Flags, Ids, Displacements, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetSymbolEntriesByName(self: *const T, Symbol: ?[*:0]const u8, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolEntriesByName(@ptrCast(*const IDebugSymbols4, self), Symbol, Flags, Ids, IdsCount, Entries);
+        pub fn IDebugSymbols4_GetSymbolEntriesByName(self: *const T, _param_Symbol: ?[*:0]const u8, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolEntriesByName(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, Flags, Ids, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetSymbolEntriesByNameWide(self: *const T, Symbol: ?[*:0]const u16, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolEntriesByNameWide(@ptrCast(*const IDebugSymbols4, self), Symbol, Flags, Ids, IdsCount, Entries);
+        pub fn IDebugSymbols4_GetSymbolEntriesByNameWide(self: *const T, _param_Symbol: ?[*:0]const u16, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSymbolEntriesByNameWide(@ptrCast(*const IDebugSymbols4, self), _param_Symbol, Flags, Ids, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols4_GetSymbolEntryByToken(self: *const T, ModuleBase: u64, Token: u32, Id: ?*DEBUG_MODULE_AND_ID) callconv(.Inline) HRESULT {
@@ -33152,8 +33152,8 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetNameByOffset(@ptrCast(*const IDebugSymbols5, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetOffsetByName(self: *const T, Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols5, self), Symbol, Offset);
+        pub fn IDebugSymbols5_GetOffsetByName(self: *const T, _param_Symbol: ?[*:0]const u8, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetOffsetByName(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols5_GetNearNameByOffset(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -33192,8 +33192,8 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetModuleParameters(@ptrCast(*const IDebugSymbols5, self), Count, Bases, Start, Params);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetSymbolModule(self: *const T, Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols5, self), Symbol, Base);
+        pub fn IDebugSymbols5_GetSymbolModule(self: *const T, _param_Symbol: ?[*:0]const u8, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolModule(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols5_GetTypeName(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u8, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -33212,8 +33212,8 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetFieldOffset(@ptrCast(*const IDebugSymbols5, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetSymbolTypeId(self: *const T, Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols5, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols5_GetSymbolTypeId(self: *const T, _param_Symbol: ?[*:0]const u8, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolTypeId(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols5_GetOffsetTypeId(self: *const T, Offset: u64, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
@@ -33364,8 +33364,8 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetNameByOffsetWide(@ptrCast(*const IDebugSymbols5, self), Offset, NameBuffer, NameBufferSize, NameSize, Displacement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetOffsetByNameWide(self: *const T, Symbol: ?[*:0]const u16, Offset: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetOffsetByNameWide(@ptrCast(*const IDebugSymbols5, self), Symbol, Offset);
+        pub fn IDebugSymbols5_GetOffsetByNameWide(self: *const T, _param_Symbol: ?[*:0]const u16, Offset: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetOffsetByNameWide(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols5_GetNearNameByOffsetWide(self: *const T, Offset: u64, Delta: i32, NameBuffer: ?[*:0]u16, NameBufferSize: u32, NameSize: ?*u32, Displacement: ?*u64) callconv(.Inline) HRESULT {
@@ -33384,8 +33384,8 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetModuleByModuleNameWide(@ptrCast(*const IDebugSymbols5, self), Name, StartIndex, Index, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetSymbolModuleWide(self: *const T, Symbol: ?[*:0]const u16, Base: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolModuleWide(@ptrCast(*const IDebugSymbols5, self), Symbol, Base);
+        pub fn IDebugSymbols5_GetSymbolModuleWide(self: *const T, _param_Symbol: ?[*:0]const u16, Base: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolModuleWide(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, Base);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols5_GetTypeNameWide(self: *const T, Module: u64, TypeId: u32, NameBuffer: ?[*:0]u16, NameBufferSize: u32, NameSize: ?*u32) callconv(.Inline) HRESULT {
@@ -33400,8 +33400,8 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetFieldOffsetWide(@ptrCast(*const IDebugSymbols5, self), Module, TypeId, Field, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetSymbolTypeIdWide(self: *const T, Symbol: ?[*:0]const u16, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolTypeIdWide(@ptrCast(*const IDebugSymbols5, self), Symbol, TypeId, Module);
+        pub fn IDebugSymbols5_GetSymbolTypeIdWide(self: *const T, _param_Symbol: ?[*:0]const u16, TypeId: ?*u32, Module: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolTypeIdWide(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols5_GetScopeSymbolGroup2(self: *const T, Flags: u32, Update: ?*IDebugSymbolGroup2, Symbols: ?*?*IDebugSymbolGroup2) callconv(.Inline) HRESULT {
@@ -33564,12 +33564,12 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolEntriesByOffset(@ptrCast(*const IDebugSymbols5, self), Offset, Flags, Ids, Displacements, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetSymbolEntriesByName(self: *const T, Symbol: ?[*:0]const u8, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolEntriesByName(@ptrCast(*const IDebugSymbols5, self), Symbol, Flags, Ids, IdsCount, Entries);
+        pub fn IDebugSymbols5_GetSymbolEntriesByName(self: *const T, _param_Symbol: ?[*:0]const u8, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolEntriesByName(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, Flags, Ids, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetSymbolEntriesByNameWide(self: *const T, Symbol: ?[*:0]const u16, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolEntriesByNameWide(@ptrCast(*const IDebugSymbols5, self), Symbol, Flags, Ids, IdsCount, Entries);
+        pub fn IDebugSymbols5_GetSymbolEntriesByNameWide(self: *const T, _param_Symbol: ?[*:0]const u16, Flags: u32, Ids: ?[*]DEBUG_MODULE_AND_ID, IdsCount: u32, Entries: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSymbolEntriesByNameWide(@ptrCast(*const IDebugSymbols5, self), _param_Symbol, Flags, Ids, IdsCount, Entries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDebugSymbols5_GetSymbolEntryByToken(self: *const T, ModuleBase: u64, Token: u32, Id: ?*DEBUG_MODULE_AND_ID) callconv(.Inline) HRESULT {

@@ -626,9 +626,8 @@ pub const DHCP_SUBNET_ELEMENT_DATA = extern struct {
     Element: DHCP_SUBNET_ELEMENT_UNION,
 };
 
-pub const DHCP_SUBNET_ELEMENT_UNION = extern union {
-    placeholder: usize, // TODO: why is this type empty?
-};
+// WARNING: this type symbol conflicts with something!
+pub const DHCP_SUBNET_ELEMENT_UNION_CONFLICT_ = usize;
 
 pub const DHCP_SUBNET_ELEMENT_INFO_ARRAY = extern struct {
     NumElements: u32,
@@ -713,9 +712,8 @@ pub const DHCP_OPTION_DATA_ELEMENT = extern struct {
     Element: DHCP_OPTION_ELEMENT_UNION,
 };
 
-pub const DHCP_OPTION_ELEMENT_UNION = extern union {
-    placeholder: usize, // TODO: why is this type empty?
-};
+// WARNING: this type symbol conflicts with something!
+pub const DHCP_OPTION_ELEMENT_UNION_CONFLICT_ = usize;
 
 pub const DHCP_OPTION_DATA = extern struct {
     NumElements: u32,
@@ -808,9 +806,8 @@ pub const DHCP_OPTION_SCOPE_INFO6 = extern struct {
     ScopeInfo: DHCP_OPTION_SCOPE_UNION6,
 };
 
-pub const DHCP_OPTION_SCOPE_UNION6 = extern union {
-    placeholder: usize, // TODO: why is this type empty?
-};
+// WARNING: this type symbol conflicts with something!
+pub const DHCP_OPTION_SCOPE_UNION6_CONFLICT_ = usize;
 
 pub const DHCP_OPTION_LIST = extern struct {
     NumOptions: u32,
@@ -931,9 +928,8 @@ pub const DHCP_SEARCH_INFO = extern struct {
     SearchInfo: DHCP_CLIENT_SEARCH_UNION,
 };
 
-pub const DHCP_CLIENT_SEARCH_UNION = extern union {
-    placeholder: usize, // TODO: why is this type empty?
-};
+// WARNING: this type symbol conflicts with something!
+pub const DHCP_CLIENT_SEARCH_UNION_CONFLICT_ = usize;
 
 pub const DHCP_PROPERTY_TYPE = enum(i32) {
     Byte = 0,
@@ -1173,9 +1169,8 @@ pub const DHCP_SUBNET_ELEMENT_DATA_V4 = extern struct {
     Element: DHCP_SUBNET_ELEMENT_UNION_V4,
 };
 
-pub const DHCP_SUBNET_ELEMENT_UNION_V4 = extern union {
-    placeholder: usize, // TODO: why is this type empty?
-};
+// WARNING: this type symbol conflicts with something!
+pub const DHCP_SUBNET_ELEMENT_UNION_V4_CONFLICT_ = usize;
 
 pub const DHCP_SUBNET_ELEMENT_INFO_ARRAY_V4 = extern struct {
     NumElements: u32,
@@ -1483,9 +1478,8 @@ pub const DHCP_SUBNET_ELEMENT_DATA_V6 = extern struct {
     Element: DHCP_SUBNET_ELEMENT_UNION_V6,
 };
 
-pub const DHCP_SUBNET_ELEMENT_UNION_V6 = extern union {
-    placeholder: usize, // TODO: why is this type empty?
-};
+// WARNING: this type symbol conflicts with something!
+pub const DHCP_SUBNET_ELEMENT_UNION_V6_CONFLICT_ = usize;
 
 pub const DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6 = extern struct {
     NumElements: u32,
