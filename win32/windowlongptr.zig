@@ -14,14 +14,15 @@ pub usingnamespace if (@sizeOf(usize) == 8) struct {
     pub const GetWindowLongPtrW = win32.ui.windows_and_messaging.GetWindowLongW;
 };
 
+const thismodule = @This();
 pub usingnamespace switch (@import("zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const SetWindowLongPtr = @This().SetWindowLongPtrA;
-        pub const GetWindowLongPtr = @This().GetWindowLongPtrA;
+        pub const SetWindowLongPtr = thismodule.SetWindowLongPtrA;
+        pub const GetWindowLongPtr = thismodule.GetWindowLongPtrA;
     },
     .wide => struct {
-        pub const SetWindowLongPtr = @This().SetWindowLongPtrW;
-        pub const GetWindowLongPtr = @This().GetWindowLongPtrW;
+        pub const SetWindowLongPtr = thismodule.SetWindowLongPtrW;
+        pub const GetWindowLongPtr = thismodule.GetWindowLongPtrW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const SetWindowLongPtr = *opaque{};
