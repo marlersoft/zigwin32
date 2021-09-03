@@ -1466,467 +1466,27 @@ pub const DI_COMPAT = DI_FLAGS.COMPAT;
 pub const DI_DEFAULTSIZE = DI_FLAGS.DEFAULTSIZE;
 pub const DI_NOMIRROR = DI_FLAGS.NOMIRROR;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAME_NT4A = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u8,
-    lpstrCustomFilter: ?PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u8,
-    lpstrTitle: ?[*:0]const u8,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAME_NT4W = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u16,
-    lpstrCustomFilter: ?PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u16,
-    lpstrTitle: ?[*:0]const u16,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAMEA = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u8,
-    lpstrCustomFilter: ?PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u8,
-    lpstrTitle: ?[*:0]const u8,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
-    pvReserved: ?*c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAMEW = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u16,
-    lpstrCustomFilter: ?PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u16,
-    lpstrTitle: ?[*:0]const u16,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
-    pvReserved: ?*c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYA = extern struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEA,
-    pszFile: ?PSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYW = extern struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEW,
-    pszFile: ?PWSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYEXA = extern struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEA,
-    psf: ?*c_void,
-    pidl: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYEXW = extern struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEW,
-    psf: ?*c_void,
-    pidl: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSECOLORA = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HWND,
-    rgbResult: u32,
-    lpCustColors: ?*u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCCHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSECOLORW = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HWND,
-    rgbResult: u32,
-    lpCustColors: ?*u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCCHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FINDREPLACEA = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: ?PSTR,
-    lpstrReplaceWith: ?PSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPFRHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FINDREPLACEW = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: ?PWSTR,
-    lpstrReplaceWith: ?PWSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPFRHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSEFONTA = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDC: ?HDC,
-    lpLogFont: ?*LOGFONTA,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCFHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
-    hInstance: ?HINSTANCE,
-    lpszStyle: ?PSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSEFONTW = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDC: ?HDC,
-    lpLogFont: ?*LOGFONTW,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCFHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
-    hInstance: ?HINSTANCE,
-    lpszStyle: ?PWSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGA = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: ?LPPRINTHOOKPROC,
-    lpfnSetupHook: ?LPSETUPHOOKPROC,
-    lpPrintTemplateName: ?[*:0]const u8,
-    lpSetupTemplateName: ?[*:0]const u8,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGW = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: ?LPPRINTHOOKPROC,
-    lpfnSetupHook: ?LPSETUPHOOKPROC,
-    lpPrintTemplateName: ?[*:0]const u16,
-    lpSetupTemplateName: ?[*:0]const u16,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTPAGERANGE = extern struct {
-    nFromPage: u32,
-    nToPage: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGEXA = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: ?*PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: ?HINSTANCE,
-    lpPrintTemplateName: ?[*:0]const u8,
-    lpCallback: ?*IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: ?*?HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGEXW = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: ?*PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: ?HINSTANCE,
-    lpPrintTemplateName: ?[*:0]const u16,
-    lpCallback: ?*IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: ?*?HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DEVNAMES = extern struct {
-    wDriverOffset: u16,
-    wDeviceOffset: u16,
-    wOutputOffset: u16,
-    wDefault: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PAGESETUPDLGA = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: ?LPPAGESETUPHOOK,
-    lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: ?[*:0]const u8,
-    hPageSetupTemplate: isize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PAGESETUPDLGW = extern struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: ?LPPAGESETUPHOOK,
-    lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: ?[*:0]const u16,
-    hPageSetupTemplate: isize,
-};
-
-}, else => struct { } };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
 pub const HHOOK = *opaque{};
@@ -6300,468 +5860,732 @@ pub const GUI_INMOVESIZE = GUITHREADINFO_FLAGS.INMOVESIZE;
 pub const GUI_POPUPMENUMODE = GUITHREADINFO_FLAGS.POPUPMENUMODE;
 pub const GUI_SYSTEMMENUMODE = GUITHREADINFO_FLAGS.SYSTEMMENUMODE;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const OPENFILENAME_NT4A = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u8,
-    lpstrCustomFilter: ?PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u8,
-    lpstrTitle: ?[*:0]const u8,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pub const OPENFILENAME_NT4A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u8,
+        lpstrCustomFilter: ?PSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u8,
+        lpstrTitle: ?[*:0]const u8,
+        Flags: u32,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u8,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u8,
+        lpstrCustomFilter: ?PSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u8,
+        lpstrTitle: ?[*:0]const u8,
+        Flags: u32,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u8,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPENFILENAME_NT4W = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u16,
-    lpstrCustomFilter: ?PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u16,
-    lpstrTitle: ?[*:0]const u16,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
+pub const OPENFILENAME_NT4W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u16,
+        lpstrCustomFilter: ?PWSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PWSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PWSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u16,
+        lpstrTitle: ?[*:0]const u16,
+        Flags: u32,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u16,
+        lpstrCustomFilter: ?PWSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PWSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PWSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u16,
+        lpstrTitle: ?[*:0]const u16,
+        Flags: u32,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPENFILENAMEA = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u8,
-    lpstrCustomFilter: ?PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u8,
-    lpstrTitle: ?[*:0]const u8,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
-    pvReserved: ?*c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
+pub const OPENFILENAMEA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u8,
+        lpstrCustomFilter: ?PSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u8,
+        lpstrTitle: ?[*:0]const u8,
+        Flags: OPEN_FILENAME_FLAGS,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u8,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+        pvReserved: ?*c_void,
+        dwReserved: u32,
+        FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u8,
+        lpstrCustomFilter: ?PSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u8,
+        lpstrTitle: ?[*:0]const u8,
+        Flags: OPEN_FILENAME_FLAGS,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u8,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+        pvReserved: ?*c_void,
+        dwReserved: u32,
+        FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPENFILENAMEW = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    lpstrFilter: ?[*:0]const u16,
-    lpstrCustomFilter: ?PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: ?PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: ?PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: ?[*:0]const u16,
-    lpstrTitle: ?[*:0]const u16,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: ?[*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPOFNHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
-    pvReserved: ?*c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
+pub const OPENFILENAMEW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u16,
+        lpstrCustomFilter: ?PWSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PWSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PWSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u16,
+        lpstrTitle: ?[*:0]const u16,
+        Flags: OPEN_FILENAME_FLAGS,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+        pvReserved: ?*c_void,
+        dwReserved: u32,
+        FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        lpstrFilter: ?[*:0]const u16,
+        lpstrCustomFilter: ?PWSTR,
+        nMaxCustFilter: u32,
+        nFilterIndex: u32,
+        lpstrFile: ?PWSTR,
+        nMaxFile: u32,
+        lpstrFileTitle: ?PWSTR,
+        nMaxFileTitle: u32,
+        lpstrInitialDir: ?[*:0]const u16,
+        lpstrTitle: ?[*:0]const u16,
+        Flags: OPEN_FILENAME_FLAGS,
+        nFileOffset: u16,
+        nFileExtension: u16,
+        lpstrDefExt: ?[*:0]const u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPOFNHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+        pvReserved: ?*c_void,
+        dwReserved: u32,
+        FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYA = packed struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEA,
-    pszFile: ?PSTR,
+pub const OFNOTIFYA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEA,
+        pszFile: ?PSTR,
+    },
+    .X86 => packed struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEA,
+        pszFile: ?PSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYW = packed struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEW,
-    pszFile: ?PWSTR,
+pub const OFNOTIFYW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEW,
+        pszFile: ?PWSTR,
+    },
+    .X86 => packed struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEW,
+        pszFile: ?PWSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYEXA = packed struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEA,
-    psf: ?*c_void,
-    pidl: ?*c_void,
+pub const OFNOTIFYEXA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEA,
+        psf: ?*c_void,
+        pidl: ?*c_void,
+    },
+    .X86 => packed struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEA,
+        psf: ?*c_void,
+        pidl: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYEXW = packed struct {
-    hdr: NMHDR,
-    lpOFN: ?*OPENFILENAMEW,
-    psf: ?*c_void,
-    pidl: ?*c_void,
+pub const OFNOTIFYEXW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEW,
+        psf: ?*c_void,
+        pidl: ?*c_void,
+    },
+    .X86 => packed struct {
+        hdr: NMHDR,
+        lpOFN: ?*OPENFILENAMEW,
+        psf: ?*c_void,
+        pidl: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSECOLORA = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HWND,
-    rgbResult: u32,
-    lpCustColors: ?*u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCCHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
+pub const CHOOSECOLORA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HWND,
+        rgbResult: u32,
+        lpCustColors: ?*u32,
+        Flags: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCCHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HWND,
+        rgbResult: u32,
+        lpCustColors: ?*u32,
+        Flags: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCCHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSECOLORW = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HWND,
-    rgbResult: u32,
-    lpCustColors: ?*u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCCHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
+pub const CHOOSECOLORW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HWND,
+        rgbResult: u32,
+        lpCustColors: ?*u32,
+        Flags: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCCHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HWND,
+        rgbResult: u32,
+        lpCustColors: ?*u32,
+        Flags: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCCHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDREPLACEA = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: ?PSTR,
-    lpstrReplaceWith: ?PSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPFRHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
+pub const FINDREPLACEA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        Flags: FINDREPLACE_FLAGS,
+        lpstrFindWhat: ?PSTR,
+        lpstrReplaceWith: ?PSTR,
+        wFindWhatLen: u16,
+        wReplaceWithLen: u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPFRHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        Flags: FINDREPLACE_FLAGS,
+        lpstrFindWhat: ?PSTR,
+        lpstrReplaceWith: ?PSTR,
+        wFindWhatLen: u16,
+        wReplaceWithLen: u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPFRHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDREPLACEW = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hInstance: ?HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: ?PWSTR,
-    lpstrReplaceWith: ?PWSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: ?LPFRHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
+pub const FINDREPLACEW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        Flags: FINDREPLACE_FLAGS,
+        lpstrFindWhat: ?PWSTR,
+        lpstrReplaceWith: ?PWSTR,
+        wFindWhatLen: u16,
+        wReplaceWithLen: u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPFRHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hInstance: ?HINSTANCE,
+        Flags: FINDREPLACE_FLAGS,
+        lpstrFindWhat: ?PWSTR,
+        lpstrReplaceWith: ?PWSTR,
+        wFindWhatLen: u16,
+        wReplaceWithLen: u16,
+        lCustData: LPARAM,
+        lpfnHook: ?LPFRHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSEFONTA = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDC: ?HDC,
-    lpLogFont: ?*LOGFONTA,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCFHOOKPROC,
-    lpTemplateName: ?[*:0]const u8,
-    hInstance: ?HINSTANCE,
-    lpszStyle: ?PSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
+pub const CHOOSEFONTA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDC: ?HDC,
+        lpLogFont: ?*LOGFONTA,
+        iPointSize: i32,
+        Flags: CHOOSEFONT_FLAGS,
+        rgbColors: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCFHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+        hInstance: ?HINSTANCE,
+        lpszStyle: ?PSTR,
+        nFontType: CHOOSEFONT_FONT_TYPE,
+        ___MISSING_ALIGNMENT__: u16,
+        nSizeMin: i32,
+        nSizeMax: i32,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDC: ?HDC,
+        lpLogFont: ?*LOGFONTA,
+        iPointSize: i32,
+        Flags: CHOOSEFONT_FLAGS,
+        rgbColors: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCFHOOKPROC,
+        lpTemplateName: ?[*:0]const u8,
+        hInstance: ?HINSTANCE,
+        lpszStyle: ?PSTR,
+        nFontType: CHOOSEFONT_FONT_TYPE,
+        ___MISSING_ALIGNMENT__: u16,
+        nSizeMin: i32,
+        nSizeMax: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSEFONTW = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDC: ?HDC,
-    lpLogFont: ?*LOGFONTW,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: ?LPCFHOOKPROC,
-    lpTemplateName: ?[*:0]const u16,
-    hInstance: ?HINSTANCE,
-    lpszStyle: ?PWSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
+pub const CHOOSEFONTW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDC: ?HDC,
+        lpLogFont: ?*LOGFONTW,
+        iPointSize: i32,
+        Flags: CHOOSEFONT_FLAGS,
+        rgbColors: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCFHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+        hInstance: ?HINSTANCE,
+        lpszStyle: ?PWSTR,
+        nFontType: CHOOSEFONT_FONT_TYPE,
+        ___MISSING_ALIGNMENT__: u16,
+        nSizeMin: i32,
+        nSizeMax: i32,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDC: ?HDC,
+        lpLogFont: ?*LOGFONTW,
+        iPointSize: i32,
+        Flags: CHOOSEFONT_FLAGS,
+        rgbColors: u32,
+        lCustData: LPARAM,
+        lpfnHook: ?LPCFHOOKPROC,
+        lpTemplateName: ?[*:0]const u16,
+        hInstance: ?HINSTANCE,
+        lpszStyle: ?PWSTR,
+        nFontType: CHOOSEFONT_FONT_TYPE,
+        ___MISSING_ALIGNMENT__: u16,
+        nSizeMin: i32,
+        nSizeMax: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGA = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: ?LPPRINTHOOKPROC,
-    lpfnSetupHook: ?LPSETUPHOOKPROC,
-    lpPrintTemplateName: ?[*:0]const u8,
-    lpSetupTemplateName: ?[*:0]const u8,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
+pub const PRINTDLGA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        nFromPage: u16,
+        nToPage: u16,
+        nMinPage: u16,
+        nMaxPage: u16,
+        nCopies: u16,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPrintHook: ?LPPRINTHOOKPROC,
+        lpfnSetupHook: ?LPSETUPHOOKPROC,
+        lpPrintTemplateName: ?[*:0]const u8,
+        lpSetupTemplateName: ?[*:0]const u8,
+        hPrintTemplate: isize,
+        hSetupTemplate: isize,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        nFromPage: u16,
+        nToPage: u16,
+        nMinPage: u16,
+        nMaxPage: u16,
+        nCopies: u16,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPrintHook: ?LPPRINTHOOKPROC,
+        lpfnSetupHook: ?LPSETUPHOOKPROC,
+        lpPrintTemplateName: ?[*:0]const u8,
+        lpSetupTemplateName: ?[*:0]const u8,
+        hPrintTemplate: isize,
+        hSetupTemplate: isize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGW = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: ?LPPRINTHOOKPROC,
-    lpfnSetupHook: ?LPSETUPHOOKPROC,
-    lpPrintTemplateName: ?[*:0]const u16,
-    lpSetupTemplateName: ?[*:0]const u16,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
+pub const PRINTDLGW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        nFromPage: u16,
+        nToPage: u16,
+        nMinPage: u16,
+        nMaxPage: u16,
+        nCopies: u16,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPrintHook: ?LPPRINTHOOKPROC,
+        lpfnSetupHook: ?LPSETUPHOOKPROC,
+        lpPrintTemplateName: ?[*:0]const u16,
+        lpSetupTemplateName: ?[*:0]const u16,
+        hPrintTemplate: isize,
+        hSetupTemplate: isize,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        nFromPage: u16,
+        nToPage: u16,
+        nMinPage: u16,
+        nMaxPage: u16,
+        nCopies: u16,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPrintHook: ?LPPRINTHOOKPROC,
+        lpfnSetupHook: ?LPSETUPHOOKPROC,
+        lpPrintTemplateName: ?[*:0]const u16,
+        lpSetupTemplateName: ?[*:0]const u16,
+        hPrintTemplate: isize,
+        hSetupTemplate: isize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTPAGERANGE = packed struct {
-    nFromPage: u32,
-    nToPage: u32,
+pub const PRINTPAGERANGE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        nFromPage: u32,
+        nToPage: u32,
+    },
+    .X86 => packed struct {
+        nFromPage: u32,
+        nToPage: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGEXA = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: ?*PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: ?HINSTANCE,
-    lpPrintTemplateName: ?[*:0]const u8,
-    lpCallback: ?*IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: ?*?HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
+pub const PRINTDLGEXA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        Flags2: u32,
+        ExclusionFlags: u32,
+        nPageRanges: u32,
+        nMaxPageRanges: u32,
+        lpPageRanges: ?*PRINTPAGERANGE,
+        nMinPage: u32,
+        nMaxPage: u32,
+        nCopies: u32,
+        hInstance: ?HINSTANCE,
+        lpPrintTemplateName: ?[*:0]const u8,
+        lpCallback: ?*IUnknown,
+        nPropertyPages: u32,
+        lphPropertyPages: ?*?HPROPSHEETPAGE,
+        nStartPage: u32,
+        dwResultAction: u32,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        Flags2: u32,
+        ExclusionFlags: u32,
+        nPageRanges: u32,
+        nMaxPageRanges: u32,
+        lpPageRanges: ?*PRINTPAGERANGE,
+        nMinPage: u32,
+        nMaxPage: u32,
+        nCopies: u32,
+        hInstance: ?HINSTANCE,
+        lpPrintTemplateName: ?[*:0]const u8,
+        lpCallback: ?*IUnknown,
+        nPropertyPages: u32,
+        lphPropertyPages: ?*?HPROPSHEETPAGE,
+        nStartPage: u32,
+        dwResultAction: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGEXW = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: ?HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: ?*PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: ?HINSTANCE,
-    lpPrintTemplateName: ?[*:0]const u16,
-    lpCallback: ?*IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: ?*?HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
+pub const PRINTDLGEXW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        Flags2: u32,
+        ExclusionFlags: u32,
+        nPageRanges: u32,
+        nMaxPageRanges: u32,
+        lpPageRanges: ?*PRINTPAGERANGE,
+        nMinPage: u32,
+        nMaxPage: u32,
+        nCopies: u32,
+        hInstance: ?HINSTANCE,
+        lpPrintTemplateName: ?[*:0]const u16,
+        lpCallback: ?*IUnknown,
+        nPropertyPages: u32,
+        lphPropertyPages: ?*?HPROPSHEETPAGE,
+        nStartPage: u32,
+        dwResultAction: u32,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        hDC: ?HDC,
+        Flags: PRINTDLGEX_FLAGS,
+        Flags2: u32,
+        ExclusionFlags: u32,
+        nPageRanges: u32,
+        nMaxPageRanges: u32,
+        lpPageRanges: ?*PRINTPAGERANGE,
+        nMinPage: u32,
+        nMaxPage: u32,
+        nCopies: u32,
+        hInstance: ?HINSTANCE,
+        lpPrintTemplateName: ?[*:0]const u16,
+        lpCallback: ?*IUnknown,
+        nPropertyPages: u32,
+        lphPropertyPages: ?*?HPROPSHEETPAGE,
+        nStartPage: u32,
+        dwResultAction: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DEVNAMES = packed struct {
-    wDriverOffset: u16,
-    wDeviceOffset: u16,
-    wOutputOffset: u16,
-    wDefault: u16,
+pub const DEVNAMES = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        wDriverOffset: u16,
+        wDeviceOffset: u16,
+        wOutputOffset: u16,
+        wDefault: u16,
+    },
+    .X86 => packed struct {
+        wDriverOffset: u16,
+        wDeviceOffset: u16,
+        wOutputOffset: u16,
+        wDefault: u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PAGESETUPDLGA = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: ?LPPAGESETUPHOOK,
-    lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: ?[*:0]const u8,
-    hPageSetupTemplate: isize,
+pub const PAGESETUPDLGA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        Flags: PAGESETUPDLG_FLAGS,
+        ptPaperSize: POINT,
+        rtMinMargin: RECT,
+        rtMargin: RECT,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
+        lpPageSetupTemplateName: ?[*:0]const u8,
+        hPageSetupTemplate: isize,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        Flags: PAGESETUPDLG_FLAGS,
+        ptPaperSize: POINT,
+        rtMinMargin: RECT,
+        rtMargin: RECT,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
+        lpPageSetupTemplateName: ?[*:0]const u8,
+        hPageSetupTemplate: isize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PAGESETUPDLGW = packed struct {
-    lStructSize: u32,
-    hwndOwner: ?HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: ?HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: ?LPPAGESETUPHOOK,
-    lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: ?[*:0]const u16,
-    hPageSetupTemplate: isize,
+pub const PAGESETUPDLGW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        Flags: PAGESETUPDLG_FLAGS,
+        ptPaperSize: POINT,
+        rtMinMargin: RECT,
+        rtMargin: RECT,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
+        lpPageSetupTemplateName: ?[*:0]const u16,
+        hPageSetupTemplate: isize,
+    },
+    .X86 => packed struct {
+        lStructSize: u32,
+        hwndOwner: ?HWND,
+        hDevMode: isize,
+        hDevNames: isize,
+        Flags: PAGESETUPDLG_FLAGS,
+        ptPaperSize: POINT,
+        rtMinMargin: RECT,
+        rtMargin: RECT,
+        hInstance: ?HINSTANCE,
+        lCustData: LPARAM,
+        lpfnPageSetupHook: ?LPPAGESETUPHOOK,
+        lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
+        lpPageSetupTemplateName: ?[*:0]const u16,
+        hPageSetupTemplate: isize,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (424)
@@ -9614,274 +9438,275 @@ pub extern "MrmSupport" fn MrmCreateConfigInMemory(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (132)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const WINSTAENUMPROC = WINSTAENUMPROCA;
-        pub const DESKTOPENUMPROC = DESKTOPENUMPROCA;
-        pub const OPENFILENAME_NT4 = OPENFILENAME_NT4A;
-        pub const OPENFILENAME = OPENFILENAMEA;
-        pub const OFNOTIFY = OFNOTIFYA;
-        pub const OFNOTIFYEX = OFNOTIFYEXA;
-        pub const CHOOSECOLOR = CHOOSECOLORA;
-        pub const FINDREPLACE = FINDREPLACEA;
-        pub const CHOOSEFONT = CHOOSEFONTA;
-        pub const PRINTDLG = PRINTDLGA;
-        pub const PRINTDLGEX = PRINTDLGEXA;
-        pub const PAGESETUPDLG = PAGESETUPDLGA;
-        pub const PROPENUMPROC = PROPENUMPROCA;
-        pub const PROPENUMPROCEX = PROPENUMPROCEXA;
-        pub const NAMEENUMPROC = NAMEENUMPROCA;
-        pub const CBT_CREATEWND = CBT_CREATEWNDA;
-        pub const WNDCLASSEX = WNDCLASSEXA;
-        pub const WNDCLASS = WNDCLASSA;
-        pub const CREATESTRUCT = CREATESTRUCTA;
-        pub const MENUITEMINFO = MENUITEMINFOA;
-        pub const MSGBOXPARAMS = MSGBOXPARAMSA;
-        pub const ICONINFOEX = ICONINFOEXA;
-        pub const MDICREATESTRUCT = MDICREATESTRUCTA;
-        pub const NONCLIENTMETRICS = NONCLIENTMETRICSA;
-        pub const ICONMETRICS = ICONMETRICSA;
-        pub const GetWindowLongPtr = GetWindowLongPtrA;
-        pub const SetWindowLongPtr = SetWindowLongPtrA;
-        pub const GetClassLongPtr = GetClassLongPtrA;
-        pub const SetClassLongPtr = SetClassLongPtrA;
-        pub const GetOpenFileName = GetOpenFileNameA;
-        pub const GetSaveFileName = GetSaveFileNameA;
-        pub const GetFileTitle = GetFileTitleA;
-        pub const ChooseColor = ChooseColorA;
-        pub const FindText = FindTextA;
-        pub const ReplaceText = ReplaceTextA;
-        pub const ChooseFont = ChooseFontA;
-        pub const PrintDlg = PrintDlgA;
-        pub const PrintDlgEx = PrintDlgExA;
-        pub const PageSetupDlg = PageSetupDlgA;
-        pub const LoadString = LoadStringA;
-        pub const wvsprintf = wvsprintfA;
-        pub const wsprintf = wsprintfA;
-        pub const RegisterWindowMessage = RegisterWindowMessageA;
-        pub const GetMessage = GetMessageA;
-        pub const DispatchMessage = DispatchMessageA;
-        pub const PeekMessage = PeekMessageA;
-        pub const SendMessage = SendMessageA;
-        pub const SendMessageTimeout = SendMessageTimeoutA;
-        pub const SendNotifyMessage = SendNotifyMessageA;
-        pub const SendMessageCallback = SendMessageCallbackA;
-        pub const BroadcastSystemMessageEx = BroadcastSystemMessageExA;
-        pub const BroadcastSystemMessage = BroadcastSystemMessageA;
-        pub const PostMessage = PostMessageA;
-        pub const PostThreadMessage = PostThreadMessageA;
-        pub const DefWindowProc = DefWindowProcA;
-        pub const CallWindowProc = CallWindowProcA;
-        pub const RegisterClass = RegisterClassA;
-        pub const UnregisterClass = UnregisterClassA;
-        pub const GetClassInfo = GetClassInfoA;
-        pub const RegisterClassEx = RegisterClassExA;
-        pub const GetClassInfoEx = GetClassInfoExA;
-        pub const CreateWindowEx = CreateWindowExA;
-        pub const CreateDialogParam = CreateDialogParamA;
-        pub const CreateDialogIndirectParam = CreateDialogIndirectParamA;
-        pub const DialogBoxParam = DialogBoxParamA;
-        pub const DialogBoxIndirectParam = DialogBoxIndirectParamA;
-        pub const SetDlgItemText = SetDlgItemTextA;
-        pub const GetDlgItemText = GetDlgItemTextA;
-        pub const SendDlgItemMessage = SendDlgItemMessageA;
-        pub const DefDlgProc = DefDlgProcA;
-        pub const CallMsgFilter = CallMsgFilterA;
-        pub const CharToOem = CharToOemA;
-        pub const OemToChar = OemToCharA;
-        pub const CharToOemBuff = CharToOemBuffA;
-        pub const OemToCharBuff = OemToCharBuffA;
-        pub const CharUpper = CharUpperA;
-        pub const CharUpperBuff = CharUpperBuffA;
-        pub const CharLower = CharLowerA;
-        pub const CharLowerBuff = CharLowerBuffA;
-        pub const CharNext = CharNextA;
-        pub const CharPrev = CharPrevA;
-        pub const IsCharAlpha = IsCharAlphaA;
-        pub const IsCharAlphaNumeric = IsCharAlphaNumericA;
-        pub const IsCharUpper = IsCharUpperA;
-        pub const LoadAccelerators = LoadAcceleratorsA;
-        pub const CreateAcceleratorTable = CreateAcceleratorTableA;
-        pub const CopyAcceleratorTable = CopyAcceleratorTableA;
-        pub const TranslateAccelerator = TranslateAcceleratorA;
-        pub const LoadMenu = LoadMenuA;
-        pub const LoadMenuIndirect = LoadMenuIndirectA;
-        pub const ChangeMenu = ChangeMenuA;
-        pub const GetMenuString = GetMenuStringA;
-        pub const InsertMenu = InsertMenuA;
-        pub const AppendMenu = AppendMenuA;
-        pub const ModifyMenu = ModifyMenuA;
-        pub const InsertMenuItem = InsertMenuItemA;
-        pub const GetMenuItemInfo = GetMenuItemInfoA;
-        pub const SetMenuItemInfo = SetMenuItemInfoA;
-        pub const SetProp = SetPropA;
-        pub const GetProp = GetPropA;
-        pub const RemoveProp = RemovePropA;
-        pub const EnumPropsEx = EnumPropsExA;
-        pub const EnumProps = EnumPropsA;
-        pub const SetWindowText = SetWindowTextA;
-        pub const GetWindowText = GetWindowTextA;
-        pub const GetWindowTextLength = GetWindowTextLengthA;
-        pub const MessageBox = MessageBoxA;
-        pub const MessageBoxEx = MessageBoxExA;
-        pub const MessageBoxIndirect = MessageBoxIndirectA;
-        pub const GetWindowLong = GetWindowLongA;
-        pub const SetWindowLong = SetWindowLongA;
-        pub const GetClassLong = GetClassLongA;
-        pub const SetClassLong = SetClassLongA;
-        pub const FindWindow = FindWindowA;
-        pub const FindWindowEx = FindWindowExA;
-        pub const GetClassName = GetClassNameA;
-        pub const SetWindowsHook = SetWindowsHookA;
-        pub const SetWindowsHookEx = SetWindowsHookExA;
-        pub const LoadCursor = LoadCursorA;
-        pub const LoadCursorFromFile = LoadCursorFromFileA;
-        pub const LoadIcon = LoadIconA;
-        pub const PrivateExtractIcons = PrivateExtractIconsA;
-        pub const LoadImage = LoadImageA;
-        pub const GetIconInfoEx = GetIconInfoExA;
-        pub const IsDialogMessage = IsDialogMessageA;
-        pub const DefFrameProc = DefFrameProcA;
-        pub const DefMDIChildProc = DefMDIChildProcA;
-        pub const CreateMDIWindow = CreateMDIWindowA;
-        pub const SystemParametersInfo = SystemParametersInfoA;
-        pub const GetWindowModuleFileName = GetWindowModuleFileNameA;
-        pub const RealGetWindowClass = RealGetWindowClassA;
-        pub const GetAltTabInfo = GetAltTabInfoA;
+        pub const WINSTAENUMPROC = thismodule.WINSTAENUMPROCA;
+        pub const DESKTOPENUMPROC = thismodule.DESKTOPENUMPROCA;
+        pub const OPENFILENAME_NT4 = thismodule.OPENFILENAME_NT4A;
+        pub const OPENFILENAME = thismodule.OPENFILENAMEA;
+        pub const OFNOTIFY = thismodule.OFNOTIFYA;
+        pub const OFNOTIFYEX = thismodule.OFNOTIFYEXA;
+        pub const CHOOSECOLOR = thismodule.CHOOSECOLORA;
+        pub const FINDREPLACE = thismodule.FINDREPLACEA;
+        pub const CHOOSEFONT = thismodule.CHOOSEFONTA;
+        pub const PRINTDLG = thismodule.PRINTDLGA;
+        pub const PRINTDLGEX = thismodule.PRINTDLGEXA;
+        pub const PAGESETUPDLG = thismodule.PAGESETUPDLGA;
+        pub const PROPENUMPROC = thismodule.PROPENUMPROCA;
+        pub const PROPENUMPROCEX = thismodule.PROPENUMPROCEXA;
+        pub const NAMEENUMPROC = thismodule.NAMEENUMPROCA;
+        pub const CBT_CREATEWND = thismodule.CBT_CREATEWNDA;
+        pub const WNDCLASSEX = thismodule.WNDCLASSEXA;
+        pub const WNDCLASS = thismodule.WNDCLASSA;
+        pub const CREATESTRUCT = thismodule.CREATESTRUCTA;
+        pub const MENUITEMINFO = thismodule.MENUITEMINFOA;
+        pub const MSGBOXPARAMS = thismodule.MSGBOXPARAMSA;
+        pub const ICONINFOEX = thismodule.ICONINFOEXA;
+        pub const MDICREATESTRUCT = thismodule.MDICREATESTRUCTA;
+        pub const NONCLIENTMETRICS = thismodule.NONCLIENTMETRICSA;
+        pub const ICONMETRICS = thismodule.ICONMETRICSA;
+        pub const GetWindowLongPtr = thismodule.GetWindowLongPtrA;
+        pub const SetWindowLongPtr = thismodule.SetWindowLongPtrA;
+        pub const GetClassLongPtr = thismodule.GetClassLongPtrA;
+        pub const SetClassLongPtr = thismodule.SetClassLongPtrA;
+        pub const GetOpenFileName = thismodule.GetOpenFileNameA;
+        pub const GetSaveFileName = thismodule.GetSaveFileNameA;
+        pub const GetFileTitle = thismodule.GetFileTitleA;
+        pub const ChooseColor = thismodule.ChooseColorA;
+        pub const FindText = thismodule.FindTextA;
+        pub const ReplaceText = thismodule.ReplaceTextA;
+        pub const ChooseFont = thismodule.ChooseFontA;
+        pub const PrintDlg = thismodule.PrintDlgA;
+        pub const PrintDlgEx = thismodule.PrintDlgExA;
+        pub const PageSetupDlg = thismodule.PageSetupDlgA;
+        pub const LoadString = thismodule.LoadStringA;
+        pub const wvsprintf = thismodule.wvsprintfA;
+        pub const wsprintf = thismodule.wsprintfA;
+        pub const RegisterWindowMessage = thismodule.RegisterWindowMessageA;
+        pub const GetMessage = thismodule.GetMessageA;
+        pub const DispatchMessage = thismodule.DispatchMessageA;
+        pub const PeekMessage = thismodule.PeekMessageA;
+        pub const SendMessage = thismodule.SendMessageA;
+        pub const SendMessageTimeout = thismodule.SendMessageTimeoutA;
+        pub const SendNotifyMessage = thismodule.SendNotifyMessageA;
+        pub const SendMessageCallback = thismodule.SendMessageCallbackA;
+        pub const BroadcastSystemMessageEx = thismodule.BroadcastSystemMessageExA;
+        pub const BroadcastSystemMessage = thismodule.BroadcastSystemMessageA;
+        pub const PostMessage = thismodule.PostMessageA;
+        pub const PostThreadMessage = thismodule.PostThreadMessageA;
+        pub const DefWindowProc = thismodule.DefWindowProcA;
+        pub const CallWindowProc = thismodule.CallWindowProcA;
+        pub const RegisterClass = thismodule.RegisterClassA;
+        pub const UnregisterClass = thismodule.UnregisterClassA;
+        pub const GetClassInfo = thismodule.GetClassInfoA;
+        pub const RegisterClassEx = thismodule.RegisterClassExA;
+        pub const GetClassInfoEx = thismodule.GetClassInfoExA;
+        pub const CreateWindowEx = thismodule.CreateWindowExA;
+        pub const CreateDialogParam = thismodule.CreateDialogParamA;
+        pub const CreateDialogIndirectParam = thismodule.CreateDialogIndirectParamA;
+        pub const DialogBoxParam = thismodule.DialogBoxParamA;
+        pub const DialogBoxIndirectParam = thismodule.DialogBoxIndirectParamA;
+        pub const SetDlgItemText = thismodule.SetDlgItemTextA;
+        pub const GetDlgItemText = thismodule.GetDlgItemTextA;
+        pub const SendDlgItemMessage = thismodule.SendDlgItemMessageA;
+        pub const DefDlgProc = thismodule.DefDlgProcA;
+        pub const CallMsgFilter = thismodule.CallMsgFilterA;
+        pub const CharToOem = thismodule.CharToOemA;
+        pub const OemToChar = thismodule.OemToCharA;
+        pub const CharToOemBuff = thismodule.CharToOemBuffA;
+        pub const OemToCharBuff = thismodule.OemToCharBuffA;
+        pub const CharUpper = thismodule.CharUpperA;
+        pub const CharUpperBuff = thismodule.CharUpperBuffA;
+        pub const CharLower = thismodule.CharLowerA;
+        pub const CharLowerBuff = thismodule.CharLowerBuffA;
+        pub const CharNext = thismodule.CharNextA;
+        pub const CharPrev = thismodule.CharPrevA;
+        pub const IsCharAlpha = thismodule.IsCharAlphaA;
+        pub const IsCharAlphaNumeric = thismodule.IsCharAlphaNumericA;
+        pub const IsCharUpper = thismodule.IsCharUpperA;
+        pub const LoadAccelerators = thismodule.LoadAcceleratorsA;
+        pub const CreateAcceleratorTable = thismodule.CreateAcceleratorTableA;
+        pub const CopyAcceleratorTable = thismodule.CopyAcceleratorTableA;
+        pub const TranslateAccelerator = thismodule.TranslateAcceleratorA;
+        pub const LoadMenu = thismodule.LoadMenuA;
+        pub const LoadMenuIndirect = thismodule.LoadMenuIndirectA;
+        pub const ChangeMenu = thismodule.ChangeMenuA;
+        pub const GetMenuString = thismodule.GetMenuStringA;
+        pub const InsertMenu = thismodule.InsertMenuA;
+        pub const AppendMenu = thismodule.AppendMenuA;
+        pub const ModifyMenu = thismodule.ModifyMenuA;
+        pub const InsertMenuItem = thismodule.InsertMenuItemA;
+        pub const GetMenuItemInfo = thismodule.GetMenuItemInfoA;
+        pub const SetMenuItemInfo = thismodule.SetMenuItemInfoA;
+        pub const SetProp = thismodule.SetPropA;
+        pub const GetProp = thismodule.GetPropA;
+        pub const RemoveProp = thismodule.RemovePropA;
+        pub const EnumPropsEx = thismodule.EnumPropsExA;
+        pub const EnumProps = thismodule.EnumPropsA;
+        pub const SetWindowText = thismodule.SetWindowTextA;
+        pub const GetWindowText = thismodule.GetWindowTextA;
+        pub const GetWindowTextLength = thismodule.GetWindowTextLengthA;
+        pub const MessageBox = thismodule.MessageBoxA;
+        pub const MessageBoxEx = thismodule.MessageBoxExA;
+        pub const MessageBoxIndirect = thismodule.MessageBoxIndirectA;
+        pub const GetWindowLong = thismodule.GetWindowLongA;
+        pub const SetWindowLong = thismodule.SetWindowLongA;
+        pub const GetClassLong = thismodule.GetClassLongA;
+        pub const SetClassLong = thismodule.SetClassLongA;
+        pub const FindWindow = thismodule.FindWindowA;
+        pub const FindWindowEx = thismodule.FindWindowExA;
+        pub const GetClassName = thismodule.GetClassNameA;
+        pub const SetWindowsHook = thismodule.SetWindowsHookA;
+        pub const SetWindowsHookEx = thismodule.SetWindowsHookExA;
+        pub const LoadCursor = thismodule.LoadCursorA;
+        pub const LoadCursorFromFile = thismodule.LoadCursorFromFileA;
+        pub const LoadIcon = thismodule.LoadIconA;
+        pub const PrivateExtractIcons = thismodule.PrivateExtractIconsA;
+        pub const LoadImage = thismodule.LoadImageA;
+        pub const GetIconInfoEx = thismodule.GetIconInfoExA;
+        pub const IsDialogMessage = thismodule.IsDialogMessageA;
+        pub const DefFrameProc = thismodule.DefFrameProcA;
+        pub const DefMDIChildProc = thismodule.DefMDIChildProcA;
+        pub const CreateMDIWindow = thismodule.CreateMDIWindowA;
+        pub const SystemParametersInfo = thismodule.SystemParametersInfoA;
+        pub const GetWindowModuleFileName = thismodule.GetWindowModuleFileNameA;
+        pub const RealGetWindowClass = thismodule.RealGetWindowClassA;
+        pub const GetAltTabInfo = thismodule.GetAltTabInfoA;
     },
     .wide => struct {
-        pub const WINSTAENUMPROC = WINSTAENUMPROCW;
-        pub const DESKTOPENUMPROC = DESKTOPENUMPROCW;
-        pub const OPENFILENAME_NT4 = OPENFILENAME_NT4W;
-        pub const OPENFILENAME = OPENFILENAMEW;
-        pub const OFNOTIFY = OFNOTIFYW;
-        pub const OFNOTIFYEX = OFNOTIFYEXW;
-        pub const CHOOSECOLOR = CHOOSECOLORW;
-        pub const FINDREPLACE = FINDREPLACEW;
-        pub const CHOOSEFONT = CHOOSEFONTW;
-        pub const PRINTDLG = PRINTDLGW;
-        pub const PRINTDLGEX = PRINTDLGEXW;
-        pub const PAGESETUPDLG = PAGESETUPDLGW;
-        pub const PROPENUMPROC = PROPENUMPROCW;
-        pub const PROPENUMPROCEX = PROPENUMPROCEXW;
-        pub const NAMEENUMPROC = NAMEENUMPROCW;
-        pub const CBT_CREATEWND = CBT_CREATEWNDW;
-        pub const WNDCLASSEX = WNDCLASSEXW;
-        pub const WNDCLASS = WNDCLASSW;
-        pub const CREATESTRUCT = CREATESTRUCTW;
-        pub const MENUITEMINFO = MENUITEMINFOW;
-        pub const MSGBOXPARAMS = MSGBOXPARAMSW;
-        pub const ICONINFOEX = ICONINFOEXW;
-        pub const MDICREATESTRUCT = MDICREATESTRUCTW;
-        pub const NONCLIENTMETRICS = NONCLIENTMETRICSW;
-        pub const ICONMETRICS = ICONMETRICSW;
-        pub const GetWindowLongPtr = GetWindowLongPtrW;
-        pub const SetWindowLongPtr = SetWindowLongPtrW;
-        pub const GetClassLongPtr = GetClassLongPtrW;
-        pub const SetClassLongPtr = SetClassLongPtrW;
-        pub const GetOpenFileName = GetOpenFileNameW;
-        pub const GetSaveFileName = GetSaveFileNameW;
-        pub const GetFileTitle = GetFileTitleW;
-        pub const ChooseColor = ChooseColorW;
-        pub const FindText = FindTextW;
-        pub const ReplaceText = ReplaceTextW;
-        pub const ChooseFont = ChooseFontW;
-        pub const PrintDlg = PrintDlgW;
-        pub const PrintDlgEx = PrintDlgExW;
-        pub const PageSetupDlg = PageSetupDlgW;
-        pub const LoadString = LoadStringW;
-        pub const wvsprintf = wvsprintfW;
-        pub const wsprintf = wsprintfW;
-        pub const RegisterWindowMessage = RegisterWindowMessageW;
-        pub const GetMessage = GetMessageW;
-        pub const DispatchMessage = DispatchMessageW;
-        pub const PeekMessage = PeekMessageW;
-        pub const SendMessage = SendMessageW;
-        pub const SendMessageTimeout = SendMessageTimeoutW;
-        pub const SendNotifyMessage = SendNotifyMessageW;
-        pub const SendMessageCallback = SendMessageCallbackW;
-        pub const BroadcastSystemMessageEx = BroadcastSystemMessageExW;
-        pub const BroadcastSystemMessage = BroadcastSystemMessageW;
-        pub const PostMessage = PostMessageW;
-        pub const PostThreadMessage = PostThreadMessageW;
-        pub const DefWindowProc = DefWindowProcW;
-        pub const CallWindowProc = CallWindowProcW;
-        pub const RegisterClass = RegisterClassW;
-        pub const UnregisterClass = UnregisterClassW;
-        pub const GetClassInfo = GetClassInfoW;
-        pub const RegisterClassEx = RegisterClassExW;
-        pub const GetClassInfoEx = GetClassInfoExW;
-        pub const CreateWindowEx = CreateWindowExW;
-        pub const CreateDialogParam = CreateDialogParamW;
-        pub const CreateDialogIndirectParam = CreateDialogIndirectParamW;
-        pub const DialogBoxParam = DialogBoxParamW;
-        pub const DialogBoxIndirectParam = DialogBoxIndirectParamW;
-        pub const SetDlgItemText = SetDlgItemTextW;
-        pub const GetDlgItemText = GetDlgItemTextW;
-        pub const SendDlgItemMessage = SendDlgItemMessageW;
-        pub const DefDlgProc = DefDlgProcW;
-        pub const CallMsgFilter = CallMsgFilterW;
-        pub const CharToOem = CharToOemW;
-        pub const OemToChar = OemToCharW;
-        pub const CharToOemBuff = CharToOemBuffW;
-        pub const OemToCharBuff = OemToCharBuffW;
-        pub const CharUpper = CharUpperW;
-        pub const CharUpperBuff = CharUpperBuffW;
-        pub const CharLower = CharLowerW;
-        pub const CharLowerBuff = CharLowerBuffW;
-        pub const CharNext = CharNextW;
-        pub const CharPrev = CharPrevW;
-        pub const IsCharAlpha = IsCharAlphaW;
-        pub const IsCharAlphaNumeric = IsCharAlphaNumericW;
-        pub const IsCharUpper = IsCharUpperW;
-        pub const LoadAccelerators = LoadAcceleratorsW;
-        pub const CreateAcceleratorTable = CreateAcceleratorTableW;
-        pub const CopyAcceleratorTable = CopyAcceleratorTableW;
-        pub const TranslateAccelerator = TranslateAcceleratorW;
-        pub const LoadMenu = LoadMenuW;
-        pub const LoadMenuIndirect = LoadMenuIndirectW;
-        pub const ChangeMenu = ChangeMenuW;
-        pub const GetMenuString = GetMenuStringW;
-        pub const InsertMenu = InsertMenuW;
-        pub const AppendMenu = AppendMenuW;
-        pub const ModifyMenu = ModifyMenuW;
-        pub const InsertMenuItem = InsertMenuItemW;
-        pub const GetMenuItemInfo = GetMenuItemInfoW;
-        pub const SetMenuItemInfo = SetMenuItemInfoW;
-        pub const SetProp = SetPropW;
-        pub const GetProp = GetPropW;
-        pub const RemoveProp = RemovePropW;
-        pub const EnumPropsEx = EnumPropsExW;
-        pub const EnumProps = EnumPropsW;
-        pub const SetWindowText = SetWindowTextW;
-        pub const GetWindowText = GetWindowTextW;
-        pub const GetWindowTextLength = GetWindowTextLengthW;
-        pub const MessageBox = MessageBoxW;
-        pub const MessageBoxEx = MessageBoxExW;
-        pub const MessageBoxIndirect = MessageBoxIndirectW;
-        pub const GetWindowLong = GetWindowLongW;
-        pub const SetWindowLong = SetWindowLongW;
-        pub const GetClassLong = GetClassLongW;
-        pub const SetClassLong = SetClassLongW;
-        pub const FindWindow = FindWindowW;
-        pub const FindWindowEx = FindWindowExW;
-        pub const GetClassName = GetClassNameW;
-        pub const SetWindowsHook = SetWindowsHookW;
-        pub const SetWindowsHookEx = SetWindowsHookExW;
-        pub const LoadCursor = LoadCursorW;
-        pub const LoadCursorFromFile = LoadCursorFromFileW;
-        pub const LoadIcon = LoadIconW;
-        pub const PrivateExtractIcons = PrivateExtractIconsW;
-        pub const LoadImage = LoadImageW;
-        pub const GetIconInfoEx = GetIconInfoExW;
-        pub const IsDialogMessage = IsDialogMessageW;
-        pub const DefFrameProc = DefFrameProcW;
-        pub const DefMDIChildProc = DefMDIChildProcW;
-        pub const CreateMDIWindow = CreateMDIWindowW;
-        pub const SystemParametersInfo = SystemParametersInfoW;
-        pub const GetWindowModuleFileName = GetWindowModuleFileNameW;
-        pub const RealGetWindowClass = RealGetWindowClassW;
-        pub const GetAltTabInfo = GetAltTabInfoW;
+        pub const WINSTAENUMPROC = thismodule.WINSTAENUMPROCW;
+        pub const DESKTOPENUMPROC = thismodule.DESKTOPENUMPROCW;
+        pub const OPENFILENAME_NT4 = thismodule.OPENFILENAME_NT4W;
+        pub const OPENFILENAME = thismodule.OPENFILENAMEW;
+        pub const OFNOTIFY = thismodule.OFNOTIFYW;
+        pub const OFNOTIFYEX = thismodule.OFNOTIFYEXW;
+        pub const CHOOSECOLOR = thismodule.CHOOSECOLORW;
+        pub const FINDREPLACE = thismodule.FINDREPLACEW;
+        pub const CHOOSEFONT = thismodule.CHOOSEFONTW;
+        pub const PRINTDLG = thismodule.PRINTDLGW;
+        pub const PRINTDLGEX = thismodule.PRINTDLGEXW;
+        pub const PAGESETUPDLG = thismodule.PAGESETUPDLGW;
+        pub const PROPENUMPROC = thismodule.PROPENUMPROCW;
+        pub const PROPENUMPROCEX = thismodule.PROPENUMPROCEXW;
+        pub const NAMEENUMPROC = thismodule.NAMEENUMPROCW;
+        pub const CBT_CREATEWND = thismodule.CBT_CREATEWNDW;
+        pub const WNDCLASSEX = thismodule.WNDCLASSEXW;
+        pub const WNDCLASS = thismodule.WNDCLASSW;
+        pub const CREATESTRUCT = thismodule.CREATESTRUCTW;
+        pub const MENUITEMINFO = thismodule.MENUITEMINFOW;
+        pub const MSGBOXPARAMS = thismodule.MSGBOXPARAMSW;
+        pub const ICONINFOEX = thismodule.ICONINFOEXW;
+        pub const MDICREATESTRUCT = thismodule.MDICREATESTRUCTW;
+        pub const NONCLIENTMETRICS = thismodule.NONCLIENTMETRICSW;
+        pub const ICONMETRICS = thismodule.ICONMETRICSW;
+        pub const GetWindowLongPtr = thismodule.GetWindowLongPtrW;
+        pub const SetWindowLongPtr = thismodule.SetWindowLongPtrW;
+        pub const GetClassLongPtr = thismodule.GetClassLongPtrW;
+        pub const SetClassLongPtr = thismodule.SetClassLongPtrW;
+        pub const GetOpenFileName = thismodule.GetOpenFileNameW;
+        pub const GetSaveFileName = thismodule.GetSaveFileNameW;
+        pub const GetFileTitle = thismodule.GetFileTitleW;
+        pub const ChooseColor = thismodule.ChooseColorW;
+        pub const FindText = thismodule.FindTextW;
+        pub const ReplaceText = thismodule.ReplaceTextW;
+        pub const ChooseFont = thismodule.ChooseFontW;
+        pub const PrintDlg = thismodule.PrintDlgW;
+        pub const PrintDlgEx = thismodule.PrintDlgExW;
+        pub const PageSetupDlg = thismodule.PageSetupDlgW;
+        pub const LoadString = thismodule.LoadStringW;
+        pub const wvsprintf = thismodule.wvsprintfW;
+        pub const wsprintf = thismodule.wsprintfW;
+        pub const RegisterWindowMessage = thismodule.RegisterWindowMessageW;
+        pub const GetMessage = thismodule.GetMessageW;
+        pub const DispatchMessage = thismodule.DispatchMessageW;
+        pub const PeekMessage = thismodule.PeekMessageW;
+        pub const SendMessage = thismodule.SendMessageW;
+        pub const SendMessageTimeout = thismodule.SendMessageTimeoutW;
+        pub const SendNotifyMessage = thismodule.SendNotifyMessageW;
+        pub const SendMessageCallback = thismodule.SendMessageCallbackW;
+        pub const BroadcastSystemMessageEx = thismodule.BroadcastSystemMessageExW;
+        pub const BroadcastSystemMessage = thismodule.BroadcastSystemMessageW;
+        pub const PostMessage = thismodule.PostMessageW;
+        pub const PostThreadMessage = thismodule.PostThreadMessageW;
+        pub const DefWindowProc = thismodule.DefWindowProcW;
+        pub const CallWindowProc = thismodule.CallWindowProcW;
+        pub const RegisterClass = thismodule.RegisterClassW;
+        pub const UnregisterClass = thismodule.UnregisterClassW;
+        pub const GetClassInfo = thismodule.GetClassInfoW;
+        pub const RegisterClassEx = thismodule.RegisterClassExW;
+        pub const GetClassInfoEx = thismodule.GetClassInfoExW;
+        pub const CreateWindowEx = thismodule.CreateWindowExW;
+        pub const CreateDialogParam = thismodule.CreateDialogParamW;
+        pub const CreateDialogIndirectParam = thismodule.CreateDialogIndirectParamW;
+        pub const DialogBoxParam = thismodule.DialogBoxParamW;
+        pub const DialogBoxIndirectParam = thismodule.DialogBoxIndirectParamW;
+        pub const SetDlgItemText = thismodule.SetDlgItemTextW;
+        pub const GetDlgItemText = thismodule.GetDlgItemTextW;
+        pub const SendDlgItemMessage = thismodule.SendDlgItemMessageW;
+        pub const DefDlgProc = thismodule.DefDlgProcW;
+        pub const CallMsgFilter = thismodule.CallMsgFilterW;
+        pub const CharToOem = thismodule.CharToOemW;
+        pub const OemToChar = thismodule.OemToCharW;
+        pub const CharToOemBuff = thismodule.CharToOemBuffW;
+        pub const OemToCharBuff = thismodule.OemToCharBuffW;
+        pub const CharUpper = thismodule.CharUpperW;
+        pub const CharUpperBuff = thismodule.CharUpperBuffW;
+        pub const CharLower = thismodule.CharLowerW;
+        pub const CharLowerBuff = thismodule.CharLowerBuffW;
+        pub const CharNext = thismodule.CharNextW;
+        pub const CharPrev = thismodule.CharPrevW;
+        pub const IsCharAlpha = thismodule.IsCharAlphaW;
+        pub const IsCharAlphaNumeric = thismodule.IsCharAlphaNumericW;
+        pub const IsCharUpper = thismodule.IsCharUpperW;
+        pub const LoadAccelerators = thismodule.LoadAcceleratorsW;
+        pub const CreateAcceleratorTable = thismodule.CreateAcceleratorTableW;
+        pub const CopyAcceleratorTable = thismodule.CopyAcceleratorTableW;
+        pub const TranslateAccelerator = thismodule.TranslateAcceleratorW;
+        pub const LoadMenu = thismodule.LoadMenuW;
+        pub const LoadMenuIndirect = thismodule.LoadMenuIndirectW;
+        pub const ChangeMenu = thismodule.ChangeMenuW;
+        pub const GetMenuString = thismodule.GetMenuStringW;
+        pub const InsertMenu = thismodule.InsertMenuW;
+        pub const AppendMenu = thismodule.AppendMenuW;
+        pub const ModifyMenu = thismodule.ModifyMenuW;
+        pub const InsertMenuItem = thismodule.InsertMenuItemW;
+        pub const GetMenuItemInfo = thismodule.GetMenuItemInfoW;
+        pub const SetMenuItemInfo = thismodule.SetMenuItemInfoW;
+        pub const SetProp = thismodule.SetPropW;
+        pub const GetProp = thismodule.GetPropW;
+        pub const RemoveProp = thismodule.RemovePropW;
+        pub const EnumPropsEx = thismodule.EnumPropsExW;
+        pub const EnumProps = thismodule.EnumPropsW;
+        pub const SetWindowText = thismodule.SetWindowTextW;
+        pub const GetWindowText = thismodule.GetWindowTextW;
+        pub const GetWindowTextLength = thismodule.GetWindowTextLengthW;
+        pub const MessageBox = thismodule.MessageBoxW;
+        pub const MessageBoxEx = thismodule.MessageBoxExW;
+        pub const MessageBoxIndirect = thismodule.MessageBoxIndirectW;
+        pub const GetWindowLong = thismodule.GetWindowLongW;
+        pub const SetWindowLong = thismodule.SetWindowLongW;
+        pub const GetClassLong = thismodule.GetClassLongW;
+        pub const SetClassLong = thismodule.SetClassLongW;
+        pub const FindWindow = thismodule.FindWindowW;
+        pub const FindWindowEx = thismodule.FindWindowExW;
+        pub const GetClassName = thismodule.GetClassNameW;
+        pub const SetWindowsHook = thismodule.SetWindowsHookW;
+        pub const SetWindowsHookEx = thismodule.SetWindowsHookExW;
+        pub const LoadCursor = thismodule.LoadCursorW;
+        pub const LoadCursorFromFile = thismodule.LoadCursorFromFileW;
+        pub const LoadIcon = thismodule.LoadIconW;
+        pub const PrivateExtractIcons = thismodule.PrivateExtractIconsW;
+        pub const LoadImage = thismodule.LoadImageW;
+        pub const GetIconInfoEx = thismodule.GetIconInfoExW;
+        pub const IsDialogMessage = thismodule.IsDialogMessageW;
+        pub const DefFrameProc = thismodule.DefFrameProcW;
+        pub const DefMDIChildProc = thismodule.DefMDIChildProcW;
+        pub const CreateMDIWindow = thismodule.CreateMDIWindowW;
+        pub const SystemParametersInfo = thismodule.SystemParametersInfoW;
+        pub const GetWindowModuleFileName = thismodule.GetWindowModuleFileNameW;
+        pub const RealGetWindowClass = thismodule.RealGetWindowClassW;
+        pub const GetAltTabInfo = thismodule.GetAltTabInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const WINSTAENUMPROC = *opaque{};
@@ -10154,37 +9979,37 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (31)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../foundation.zig").LPARAM;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const NMHDR = @import("../ui/controls.zig").NMHDR;
-const BOOL = @import("../foundation.zig").BOOL;
-const DEVMODEA = @import("../ui/display_devices.zig").DEVMODEA;
-const HBRUSH = @import("../graphics/gdi.zig").HBRUSH;
-const LUID = @import("../system/system_services.zig").LUID;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const HELPINFO = @import("../ui/shell.zig").HELPINFO;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HDESK = @import("../system/stations_and_desktops.zig").HDESK;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const SCROLLBAR_OBJID = @import("../ui/controls.zig").SCROLLBAR_OBJID;
-const IMAGE_FLAGS = @import("../ui/controls.zig").IMAGE_FLAGS;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
-const HWND = @import("../foundation.zig").HWND;
-const DPI_AWARENESS_CONTEXT = @import("../system/system_services.zig").DPI_AWARENESS_CONTEXT;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
-const POINT = @import("../foundation.zig").POINT;
-const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
-const LOGFONTA = @import("../graphics/gdi.zig").LOGFONTA;
+const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const DEVMODEA = @import("../ui/display_devices.zig").DEVMODEA;
+const DPI_AWARENESS_CONTEXT = @import("../system/system_services.zig").DPI_AWARENESS_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const HBRUSH = @import("../graphics/gdi.zig").HBRUSH;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HDESK = @import("../system/stations_and_desktops.zig").HDESK;
+const HELPINFO = @import("../ui/shell.zig").HELPINFO;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IMAGE_FLAGS = @import("../ui/controls.zig").IMAGE_FLAGS;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LOGFONTA = @import("../graphics/gdi.zig").LOGFONTA;
+const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
+const LUID = @import("../system/system_services.zig").LUID;
+const NMHDR = @import("../ui/controls.zig").NMHDR;
+const POINT = @import("../foundation.zig").POINT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SCROLLBAR_OBJID = @import("../ui/controls.zig").SCROLLBAR_OBJID;
 const SIZE = @import("../foundation.zig").SIZE;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

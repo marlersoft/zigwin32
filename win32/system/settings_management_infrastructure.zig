@@ -955,6 +955,7 @@ pub const ISettingsContext = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -968,14 +969,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

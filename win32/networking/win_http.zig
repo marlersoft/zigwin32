@@ -412,38 +412,8 @@ pub const WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 15000);
 //--------------------------------------------------------------------------------
 // Section: Types (36)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const WINHTTP_CONNECTION_INFO = extern struct {
-    cbSize: u32,
-    LocalAddress: SOCKADDR_STORAGE,
-    RemoteAddress: SOCKADDR_STORAGE,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_REQUEST_TIMES = extern struct {
-    cTimes: u32,
-    rgullTimes: [64]u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_REQUEST_STATS = extern struct {
-    ullFlags: u64,
-    ulIndex: u32,
-    cStats: u32,
-    rgullStats: [32]u64,
-};
-
-}, else => struct { } };
 
 pub const INTERNET_PORT = enum(u32) {
     HTTP_PORT = 80,
@@ -853,42 +823,48 @@ pub const WINHTTP_WEB_SOCKET_STATUS = extern struct {
     eBufferType: WINHTTP_WEB_SOCKET_BUFFER_TYPE,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const WINHTTP_CONNECTION_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbSize: u32,
-    LocalAddress: SOCKADDR_STORAGE,
-    RemoteAddress: SOCKADDR_STORAGE,
+
+
+pub const WINHTTP_CONNECTION_INFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        LocalAddress: SOCKADDR_STORAGE,
+        RemoteAddress: SOCKADDR_STORAGE,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cbSize: u32,
+        LocalAddress: SOCKADDR_STORAGE,
+        RemoteAddress: SOCKADDR_STORAGE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const WINHTTP_REQUEST_TIMES = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cTimes: u32,
-    rgullTimes: [64]u64,
+pub const WINHTTP_REQUEST_TIMES = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cTimes: u32,
+        rgullTimes: [64]u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cTimes: u32,
+        rgullTimes: [64]u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const WINHTTP_REQUEST_STATS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ullFlags: u64,
-    ulIndex: u32,
-    cStats: u32,
-    rgullStats: [32]u64,
+pub const WINHTTP_REQUEST_STATS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ullFlags: u64,
+        ulIndex: u32,
+        cStats: u32,
+        rgullStats: [32]u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        ullFlags: u64,
+        ulIndex: u32,
+        cStats: u32,
+        rgullStats: [32]u64,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (47)
@@ -1244,6 +1220,7 @@ pub extern "WINHTTP" fn WinHttpWebSocketQueryCloseStatus(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1256,13 +1233,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
-const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSTR = @import("../foundation.zig").PSTR;
-const BOOL = @import("../foundation.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -1554,6 +1554,7 @@ pub extern "cldapi" fn CfReportProviderProgress2(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1568,16 +1569,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const FILE_BASIC_INFO = @import("../storage/file_system.zig").FILE_BASIC_INFO;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 const CORRELATION_VECTOR = @import("../system/system_services.zig").CORRELATION_VECTOR;
+const FILE_BASIC_INFO = @import("../storage/file_system.zig").FILE_BASIC_INFO;
+const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

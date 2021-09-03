@@ -1945,6 +1945,7 @@ pub const IOpcFactory = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1957,14 +1958,14 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-const IStream = @import("../../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../../foundation.zig").PWSTR;
+const BOOL = @import("../../foundation.zig").BOOL;
 const CERT_CONTEXT = @import("../../security/cryptography/core.zig").CERT_CONTEXT;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const IStream = @import("../../storage/structured_storage.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IUri = @import("../../system/com.zig").IUri;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../../security.zig").SECURITY_ATTRIBUTES;
-const BOOL = @import("../../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

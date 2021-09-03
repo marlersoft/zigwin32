@@ -3325,6 +3325,7 @@ pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3338,31 +3339,31 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (26)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const IPropertyStorage = @import("../storage/structured_storage.zig").IPropertyStorage;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const POINTL = @import("../foundation.zig").POINTL;
+const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const IUnknown = @import("../system/com.zig").IUnknown;
+const CONDITION_OPERATION = @import("../system/search.zig").CONDITION_OPERATION;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const BSTR = @import("../foundation.zig").BSTR;
-const ITEMIDLIST = @import("../ui/shell.zig").ITEMIDLIST;
-const IBindCtx = @import("../system/com.zig").IBindCtx;
-const BOOL = @import("../foundation.zig").BOOL;
-const POINTS = @import("../foundation.zig").POINTS;
-const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
-const PSTR = @import("../foundation.zig").PSTR;
 const HWND = @import("../foundation.zig").HWND;
-const PROPSPEC = @import("../storage/structured_storage.zig").PROPSPEC;
+const IBindCtx = @import("../system/com.zig").IBindCtx;
+const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
 const IPropertySetStorage = @import("../storage/structured_storage.zig").IPropertySetStorage;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const STRRET = @import("../ui/shell.zig").STRRET;
-const HANDLE = @import("../foundation.zig").HANDLE;
+const IPropertyStorage = @import("../storage/structured_storage.zig").IPropertyStorage;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const ITEMIDLIST = @import("../ui/shell.zig").ITEMIDLIST;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const POINTL = @import("../foundation.zig").POINTL;
+const POINTS = @import("../foundation.zig").POINTS;
+const PROPSPEC = @import("../storage/structured_storage.zig").PROPSPEC;
+const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const RECTL = @import("../foundation.zig").RECTL;
-const CONDITION_OPERATION = @import("../system/search.zig").CONDITION_OPERATION;
+const STRRET = @import("../ui/shell.zig").STRRET;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

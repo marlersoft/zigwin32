@@ -2074,20 +2074,6 @@ pub const _IMAGELIST = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const TBBUTTON = extern struct {
-    iBitmap: i32,
-    idCommand: i32,
-    fsState: u8,
-    fsStyle: u8,
-    bReserved: [6]u8,
-    dwData: usize,
-    iString: isize,
-};
-
-}, else => struct { } };
 
 pub const _TREEITEM = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -2101,345 +2087,33 @@ pub const _DPA = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    xWidth: i32,
-    yHeight: i32,
-    Ascent: i32,
-    Type: TEXT_ALIGN_OPTIONS,
-    pwszAlternateText: ?[*:0]const u16,
-    pIStream: ?*IStream,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENDCOMPOSITIONNOTIFY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    dwCode: ENDCOMPOSITIONNOTIFY_CODE,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const TEXTRANGEA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?PSTR,
-};
-
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const TEXTRANGEW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?PWSTR,
-};
-
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const EDITSTREAM = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwCookie: usize,
-    dwError: u32,
-    pfnCallback: ?EDITSTREAMCALLBACK,
-};
-
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FINDTEXTA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FINDTEXTW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u16,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const FINDTEXTEXA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u8,
-    chrgText: CHARRANGE,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const FINDTEXTEXW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u16,
-    chrgText: CHARRANGE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const FORMATRANGE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    hdc: ?HDC,
-    hdcTarget: ?HDC,
-    rc: RECT,
-    rcPage: RECT,
-    chrg: CHARRANGE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MSGFILTER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const REQRESIZE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    rc: RECT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SELCHANGE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    chrg: CHARRANGE,
-    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const _grouptypingchange = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    fGroupTyping: BOOL,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CLIPBOARDFORMAT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    cf: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const GETCONTEXTMENUEX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    dwFlags: u32,
-    pt: POINT,
-    pvReserved: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENDROPFILES = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    hDrop: ?HANDLE,
-    cp: i32,
-    fProtected: BOOL,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENPROTECTED = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    chrg: CHARRANGE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENSAVECLIPBOARD = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    cObjectCount: i32,
-    cch: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENOLEOPFAILED = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    iob: i32,
-    lOper: i32,
-    hr: HRESULT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OBJECTPOSITIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    cObjectCount: i32,
-    pcpPositions: ?*i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENLINK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    chrg: CHARRANGE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENLOWFIRTF = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    szControl: ?PSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ENCORRECTTEXT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    chrg: CHARRANGE,
-    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PUNCTUATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    iSize: u32,
-    szPunctuation: ?PSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const REPASTESPECIAL = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwAspect: DVASPECT,
-    dwParam: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const GETTEXTEX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cb: u32,
-    flags: GETTEXTEX_FLAGS,
-    codepage: u32,
-    lpDefaultChar: ?[*:0]const u8,
-    lpUsedDefChar: ?*i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const HYPHENATEINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbSize: i16,
-    dxHyphenateZone: i16,
-    pfnHyphenate: isize,
-};
-
-}, else => struct { } };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // TODO: this type has a FreeFunc 'DestroyPropertySheetPage', what can Zig do with this information?
 pub const HPROPSHEETPAGE = *opaque{};
@@ -14885,333 +14559,427 @@ pub const ILC_PERITEMMIRROR = IMAGELIST_CREATION_FLAGS.PERITEMMIRROR;
 pub const ILC_ORIGINALSIZE = IMAGELIST_CREATION_FLAGS.ORIGINALSIZE;
 pub const ILC_HIGHQUALITYSCALE = IMAGELIST_CREATION_FLAGS.HIGHQUALITYSCALE;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const TBBUTTON = extern struct {
-    iBitmap: i32,
-    idCommand: i32,
-    fsState: u8,
-    fsStyle: u8,
-    bReserved: [2]u8,
-    dwData: usize,
-    iString: isize,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pub const TBBUTTON = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        iBitmap: i32,
+        idCommand: i32,
+        fsState: u8,
+        fsStyle: u8,
+        bReserved: [6]u8,
+        dwData: usize,
+        iString: isize,
+    },
+    .X86 => extern struct {
+        iBitmap: i32,
+        idCommand: i32,
+        fsState: u8,
+        fsStyle: u8,
+        bReserved: [2]u8,
+        dwData: usize,
+        iString: isize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
-    xWidth: i32,
-    yHeight: i32,
-    Ascent: i32,
-    Type: TEXT_ALIGN_OPTIONS,
-    pwszAlternateText: ?[*:0]const u16,
-    pIStream: ?*IStream,
+pub const RICHEDIT_IMAGE_PARAMETERS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        xWidth: i32,
+        yHeight: i32,
+        Ascent: i32,
+        Type: TEXT_ALIGN_OPTIONS,
+        pwszAlternateText: ?[*:0]const u16,
+        pIStream: ?*IStream,
+    },
+    .X86 => extern struct {
+        xWidth: i32,
+        yHeight: i32,
+        Ascent: i32,
+        Type: TEXT_ALIGN_OPTIONS,
+        pwszAlternateText: ?[*:0]const u16,
+        pIStream: ?*IStream,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENDCOMPOSITIONNOTIFY = extern struct {
-    nmhdr: NMHDR,
-    dwCode: ENDCOMPOSITIONNOTIFY_CODE,
+pub const ENDCOMPOSITIONNOTIFY = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        dwCode: ENDCOMPOSITIONNOTIFY_CODE,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        dwCode: ENDCOMPOSITIONNOTIFY_CODE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const TEXTRANGEA = extern struct {
-    chrg: CHARRANGE,
-    lpstrText: ?PSTR,
+pub const TEXTRANGEA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        chrg: CHARRANGE,
+        lpstrText: ?PSTR,
+    },
+    .X86 => extern struct {
+        chrg: CHARRANGE,
+        lpstrText: ?PSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const TEXTRANGEW = extern struct {
-    chrg: CHARRANGE,
-    lpstrText: ?PWSTR,
+pub const TEXTRANGEW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        chrg: CHARRANGE,
+        lpstrText: ?PWSTR,
+    },
+    .X86 => extern struct {
+        chrg: CHARRANGE,
+        lpstrText: ?PWSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const EDITSTREAM = extern struct {
-    dwCookie: usize,
-    dwError: u32,
-    pfnCallback: ?EDITSTREAMCALLBACK,
+pub const EDITSTREAM = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwCookie: usize,
+        dwError: u32,
+        pfnCallback: ?EDITSTREAMCALLBACK,
+    },
+    .X86 => extern struct {
+        dwCookie: usize,
+        dwError: u32,
+        pfnCallback: ?EDITSTREAMCALLBACK,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDTEXTA = extern struct {
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u8,
+pub const FINDTEXTA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u8,
+    },
+    .X86 => extern struct {
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDTEXTW = extern struct {
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u16,
+pub const FINDTEXTW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u16,
+    },
+    .X86 => extern struct {
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDTEXTEXA = extern struct {
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u8,
-    chrgText: CHARRANGE,
+pub const FINDTEXTEXA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u8,
+        chrgText: CHARRANGE,
+    },
+    .X86 => extern struct {
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u8,
+        chrgText: CHARRANGE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDTEXTEXW = extern struct {
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u16,
-    chrgText: CHARRANGE,
+pub const FINDTEXTEXW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u16,
+        chrgText: CHARRANGE,
+    },
+    .X86 => extern struct {
+        chrg: CHARRANGE,
+        lpstrText: ?[*:0]const u16,
+        chrgText: CHARRANGE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FORMATRANGE = extern struct {
-    hdc: ?HDC,
-    hdcTarget: ?HDC,
-    rc: RECT,
-    rcPage: RECT,
-    chrg: CHARRANGE,
+pub const FORMATRANGE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        hdc: ?HDC,
+        hdcTarget: ?HDC,
+        rc: RECT,
+        rcPage: RECT,
+        chrg: CHARRANGE,
+    },
+    .X86 => extern struct {
+        hdc: ?HDC,
+        hdcTarget: ?HDC,
+        rc: RECT,
+        rcPage: RECT,
+        chrg: CHARRANGE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const MSGFILTER = extern struct {
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+pub const MSGFILTER = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        msg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        msg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const REQRESIZE = extern struct {
-    nmhdr: NMHDR,
-    rc: RECT,
+pub const REQRESIZE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        rc: RECT,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        rc: RECT,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SELCHANGE = extern struct {
-    nmhdr: NMHDR,
-    chrg: CHARRANGE,
-    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+pub const SELCHANGE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        chrg: CHARRANGE,
+        seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        chrg: CHARRANGE,
+        seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const _grouptypingchange = extern struct {
-    nmhdr: NMHDR,
-    fGroupTyping: BOOL,
+pub const _grouptypingchange = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        fGroupTyping: BOOL,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        fGroupTyping: BOOL,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CLIPBOARDFORMAT = extern struct {
-    nmhdr: NMHDR,
-    cf: u16,
+pub const CLIPBOARDFORMAT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        cf: u16,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        cf: u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const GETCONTEXTMENUEX = extern struct {
-    chrg: CHARRANGE,
-    dwFlags: u32,
-    pt: POINT,
-    pvReserved: ?*c_void,
+pub const GETCONTEXTMENUEX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        chrg: CHARRANGE,
+        dwFlags: u32,
+        pt: POINT,
+        pvReserved: ?*c_void,
+    },
+    .X86 => extern struct {
+        chrg: CHARRANGE,
+        dwFlags: u32,
+        pt: POINT,
+        pvReserved: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENDROPFILES = extern struct {
-    nmhdr: NMHDR,
-    hDrop: ?HANDLE,
-    cp: i32,
-    fProtected: BOOL,
+pub const ENDROPFILES = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        hDrop: ?HANDLE,
+        cp: i32,
+        fProtected: BOOL,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        hDrop: ?HANDLE,
+        cp: i32,
+        fProtected: BOOL,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENPROTECTED = extern struct {
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    chrg: CHARRANGE,
+pub const ENPROTECTED = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        msg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+        chrg: CHARRANGE,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        msg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+        chrg: CHARRANGE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENSAVECLIPBOARD = extern struct {
-    nmhdr: NMHDR,
-    cObjectCount: i32,
-    cch: i32,
+pub const ENSAVECLIPBOARD = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        cObjectCount: i32,
+        cch: i32,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        cObjectCount: i32,
+        cch: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENOLEOPFAILED = extern struct {
-    nmhdr: NMHDR,
-    iob: i32,
-    lOper: i32,
-    hr: HRESULT,
+pub const ENOLEOPFAILED = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        iob: i32,
+        lOper: i32,
+        hr: HRESULT,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        iob: i32,
+        lOper: i32,
+        hr: HRESULT,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OBJECTPOSITIONS = extern struct {
-    nmhdr: NMHDR,
-    cObjectCount: i32,
-    pcpPositions: ?*i32,
+pub const OBJECTPOSITIONS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        cObjectCount: i32,
+        pcpPositions: ?*i32,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        cObjectCount: i32,
+        pcpPositions: ?*i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENLINK = extern struct {
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    chrg: CHARRANGE,
+pub const ENLINK = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        msg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+        chrg: CHARRANGE,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        msg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+        chrg: CHARRANGE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENLOWFIRTF = extern struct {
-    nmhdr: NMHDR,
-    szControl: ?PSTR,
+pub const ENLOWFIRTF = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        szControl: ?PSTR,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        szControl: ?PSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ENCORRECTTEXT = extern struct {
-    nmhdr: NMHDR,
-    chrg: CHARRANGE,
-    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+pub const ENCORRECTTEXT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        nmhdr: NMHDR,
+        chrg: CHARRANGE,
+        seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+    },
+    .X86 => extern struct {
+        nmhdr: NMHDR,
+        chrg: CHARRANGE,
+        seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PUNCTUATION = extern struct {
-    iSize: u32,
-    szPunctuation: ?PSTR,
+pub const PUNCTUATION = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        iSize: u32,
+        szPunctuation: ?PSTR,
+    },
+    .X86 => extern struct {
+        iSize: u32,
+        szPunctuation: ?PSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const REPASTESPECIAL = extern struct {
-    dwAspect: DVASPECT,
-    dwParam: usize,
+pub const REPASTESPECIAL = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwAspect: DVASPECT,
+        dwParam: usize,
+    },
+    .X86 => extern struct {
+        dwAspect: DVASPECT,
+        dwParam: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const GETTEXTEX = extern struct {
-    cb: u32,
-    flags: GETTEXTEX_FLAGS,
-    codepage: u32,
-    lpDefaultChar: ?[*:0]const u8,
-    lpUsedDefChar: ?*i32,
+pub const GETTEXTEX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cb: u32,
+        flags: GETTEXTEX_FLAGS,
+        codepage: u32,
+        lpDefaultChar: ?[*:0]const u8,
+        lpUsedDefChar: ?*i32,
+    },
+    .X86 => extern struct {
+        cb: u32,
+        flags: GETTEXTEX_FLAGS,
+        codepage: u32,
+        lpDefaultChar: ?[*:0]const u8,
+        lpUsedDefChar: ?*i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const HYPHENATEINFO = extern struct {
-    cbSize: i16,
-    dxHyphenateZone: i16,
-    pfnHyphenate: isize,
+pub const HYPHENATEINFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cbSize: i16,
+        dxHyphenateZone: i16,
+        pfnHyphenate: isize,
+    },
+    .X86 => extern struct {
+        cbSize: i16,
+        dxHyphenateZone: i16,
+        pfnHyphenate: isize,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (229)
@@ -16929,118 +16697,119 @@ pub extern "USER32" fn GetCIMSSM(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (54)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const TEXTRANGE = TEXTRANGEA;
-        pub const FINDTEXT = FINDTEXTA;
-        pub const FINDTEXTEX = FINDTEXTEXA;
-        pub const LPFNPSPCALLBACK = LPFNPSPCALLBACKA;
-        pub const PROPSHEETPAGE = PROPSHEETPAGEA;
-        pub const HD_TEXTFILTER = HD_TEXTFILTERA;
-        pub const HDITEM = HDITEMA;
-        pub const NMHEADER = NMHEADERA;
-        pub const NMHDDISPINFO = NMHDDISPINFOA;
-        pub const TBSAVEPARAMS = TBSAVEPARAMSA;
-        pub const TBBUTTONINFO = TBBUTTONINFOA;
-        pub const NMTBGETINFOTIP = NMTBGETINFOTIPA;
-        pub const NMTBDISPINFO = NMTBDISPINFOA;
-        pub const NMTOOLBAR = NMTOOLBARA;
-        pub const REBARBANDINFO = REBARBANDINFOA;
-        pub const TTTOOLINFO = TTTOOLINFOA;
-        pub const TTHITTESTINFO = TTHITTESTINFOA;
-        pub const NMTTDISPINFO = NMTTDISPINFOA;
-        pub const LVITEM = LVITEMA;
-        pub const LVFINDINFO = LVFINDINFOA;
-        pub const LVCOLUMN = LVCOLUMNA;
-        pub const LVBKIMAGE = LVBKIMAGEA;
-        pub const NMLVFINDITEM = NMLVFINDITEMA;
-        pub const NMLVDISPINFO = NMLVDISPINFOA;
-        pub const NMLVGETINFOTIP = NMLVGETINFOTIPA;
-        pub const TVITEM = TVITEMA;
-        pub const TVITEMEX = TVITEMEXA;
-        pub const TVINSERTSTRUCT = TVINSERTSTRUCTA;
-        pub const NMTREEVIEW = NMTREEVIEWA;
-        pub const NMTVDISPINFO = NMTVDISPINFOA;
-        pub const NMTVDISPINFOEX = NMTVDISPINFOEXA;
-        pub const NMTVGETINFOTIP = NMTVGETINFOTIPA;
-        pub const COMBOBOXEXITEM = COMBOBOXEXITEMA;
-        pub const NMCOMBOBOXEX = NMCOMBOBOXEXA;
-        pub const NMCBEDRAGBEGIN = NMCBEDRAGBEGINA;
-        pub const NMCBEENDEDIT = NMCBEENDEDITA;
-        pub const TCITEMHEADER = TCITEMHEADERA;
-        pub const TCITEM = TCITEMA;
-        pub const NMDATETIMESTRING = NMDATETIMESTRINGA;
-        pub const NMDATETIMEWMKEYDOWN = NMDATETIMEWMKEYDOWNA;
-        pub const NMDATETIMEFORMAT = NMDATETIMEFORMATA;
-        pub const NMDATETIMEFORMATQUERY = NMDATETIMEFORMATQUERYA;
-        pub const CHARFORMAT = CHARFORMATA;
-        pub const CHARFORMAT2 = CHARFORMAT2A;
-        pub const EDITWORDBREAKPROC = EDITWORDBREAKPROCA;
-        pub const CreatePropertySheetPage = CreatePropertySheetPageA;
-        pub const PropertySheet = PropertySheetA;
-        pub const ImageList_LoadImage = ImageList_LoadImageA;
-        pub const DrawStatusText = DrawStatusTextA;
-        pub const CreateStatusWindow = CreateStatusWindowA;
-        pub const DlgDirList = DlgDirListA;
-        pub const DlgDirSelectEx = DlgDirSelectExA;
-        pub const DlgDirListComboBox = DlgDirListComboBoxA;
-        pub const DlgDirSelectComboBoxEx = DlgDirSelectComboBoxExA;
+        pub const TEXTRANGE = thismodule.TEXTRANGEA;
+        pub const FINDTEXT = thismodule.FINDTEXTA;
+        pub const FINDTEXTEX = thismodule.FINDTEXTEXA;
+        pub const LPFNPSPCALLBACK = thismodule.LPFNPSPCALLBACKA;
+        pub const PROPSHEETPAGE = thismodule.PROPSHEETPAGEA;
+        pub const HD_TEXTFILTER = thismodule.HD_TEXTFILTERA;
+        pub const HDITEM = thismodule.HDITEMA;
+        pub const NMHEADER = thismodule.NMHEADERA;
+        pub const NMHDDISPINFO = thismodule.NMHDDISPINFOA;
+        pub const TBSAVEPARAMS = thismodule.TBSAVEPARAMSA;
+        pub const TBBUTTONINFO = thismodule.TBBUTTONINFOA;
+        pub const NMTBGETINFOTIP = thismodule.NMTBGETINFOTIPA;
+        pub const NMTBDISPINFO = thismodule.NMTBDISPINFOA;
+        pub const NMTOOLBAR = thismodule.NMTOOLBARA;
+        pub const REBARBANDINFO = thismodule.REBARBANDINFOA;
+        pub const TTTOOLINFO = thismodule.TTTOOLINFOA;
+        pub const TTHITTESTINFO = thismodule.TTHITTESTINFOA;
+        pub const NMTTDISPINFO = thismodule.NMTTDISPINFOA;
+        pub const LVITEM = thismodule.LVITEMA;
+        pub const LVFINDINFO = thismodule.LVFINDINFOA;
+        pub const LVCOLUMN = thismodule.LVCOLUMNA;
+        pub const LVBKIMAGE = thismodule.LVBKIMAGEA;
+        pub const NMLVFINDITEM = thismodule.NMLVFINDITEMA;
+        pub const NMLVDISPINFO = thismodule.NMLVDISPINFOA;
+        pub const NMLVGETINFOTIP = thismodule.NMLVGETINFOTIPA;
+        pub const TVITEM = thismodule.TVITEMA;
+        pub const TVITEMEX = thismodule.TVITEMEXA;
+        pub const TVINSERTSTRUCT = thismodule.TVINSERTSTRUCTA;
+        pub const NMTREEVIEW = thismodule.NMTREEVIEWA;
+        pub const NMTVDISPINFO = thismodule.NMTVDISPINFOA;
+        pub const NMTVDISPINFOEX = thismodule.NMTVDISPINFOEXA;
+        pub const NMTVGETINFOTIP = thismodule.NMTVGETINFOTIPA;
+        pub const COMBOBOXEXITEM = thismodule.COMBOBOXEXITEMA;
+        pub const NMCOMBOBOXEX = thismodule.NMCOMBOBOXEXA;
+        pub const NMCBEDRAGBEGIN = thismodule.NMCBEDRAGBEGINA;
+        pub const NMCBEENDEDIT = thismodule.NMCBEENDEDITA;
+        pub const TCITEMHEADER = thismodule.TCITEMHEADERA;
+        pub const TCITEM = thismodule.TCITEMA;
+        pub const NMDATETIMESTRING = thismodule.NMDATETIMESTRINGA;
+        pub const NMDATETIMEWMKEYDOWN = thismodule.NMDATETIMEWMKEYDOWNA;
+        pub const NMDATETIMEFORMAT = thismodule.NMDATETIMEFORMATA;
+        pub const NMDATETIMEFORMATQUERY = thismodule.NMDATETIMEFORMATQUERYA;
+        pub const CHARFORMAT = thismodule.CHARFORMATA;
+        pub const CHARFORMAT2 = thismodule.CHARFORMAT2A;
+        pub const EDITWORDBREAKPROC = thismodule.EDITWORDBREAKPROCA;
+        pub const CreatePropertySheetPage = thismodule.CreatePropertySheetPageA;
+        pub const PropertySheet = thismodule.PropertySheetA;
+        pub const ImageList_LoadImage = thismodule.ImageList_LoadImageA;
+        pub const DrawStatusText = thismodule.DrawStatusTextA;
+        pub const CreateStatusWindow = thismodule.CreateStatusWindowA;
+        pub const DlgDirList = thismodule.DlgDirListA;
+        pub const DlgDirSelectEx = thismodule.DlgDirSelectExA;
+        pub const DlgDirListComboBox = thismodule.DlgDirListComboBoxA;
+        pub const DlgDirSelectComboBoxEx = thismodule.DlgDirSelectComboBoxExA;
     },
     .wide => struct {
-        pub const TEXTRANGE = TEXTRANGEW;
-        pub const FINDTEXT = FINDTEXTW;
-        pub const FINDTEXTEX = FINDTEXTEXW;
-        pub const LPFNPSPCALLBACK = LPFNPSPCALLBACKW;
-        pub const PROPSHEETPAGE = PROPSHEETPAGEW;
-        pub const HD_TEXTFILTER = HD_TEXTFILTERW;
-        pub const HDITEM = HDITEMW;
-        pub const NMHEADER = NMHEADERW;
-        pub const NMHDDISPINFO = NMHDDISPINFOW;
-        pub const TBSAVEPARAMS = TBSAVEPARAMSW;
-        pub const TBBUTTONINFO = TBBUTTONINFOW;
-        pub const NMTBGETINFOTIP = NMTBGETINFOTIPW;
-        pub const NMTBDISPINFO = NMTBDISPINFOW;
-        pub const NMTOOLBAR = NMTOOLBARW;
-        pub const REBARBANDINFO = REBARBANDINFOW;
-        pub const TTTOOLINFO = TTTOOLINFOW;
-        pub const TTHITTESTINFO = TTHITTESTINFOW;
-        pub const NMTTDISPINFO = NMTTDISPINFOW;
-        pub const LVITEM = LVITEMW;
-        pub const LVFINDINFO = LVFINDINFOW;
-        pub const LVCOLUMN = LVCOLUMNW;
-        pub const LVBKIMAGE = LVBKIMAGEW;
-        pub const NMLVFINDITEM = NMLVFINDITEMW;
-        pub const NMLVDISPINFO = NMLVDISPINFOW;
-        pub const NMLVGETINFOTIP = NMLVGETINFOTIPW;
-        pub const TVITEM = TVITEMW;
-        pub const TVITEMEX = TVITEMEXW;
-        pub const TVINSERTSTRUCT = TVINSERTSTRUCTW;
-        pub const NMTREEVIEW = NMTREEVIEWW;
-        pub const NMTVDISPINFO = NMTVDISPINFOW;
-        pub const NMTVDISPINFOEX = NMTVDISPINFOEXW;
-        pub const NMTVGETINFOTIP = NMTVGETINFOTIPW;
-        pub const COMBOBOXEXITEM = COMBOBOXEXITEMW;
-        pub const NMCOMBOBOXEX = NMCOMBOBOXEXW;
-        pub const NMCBEDRAGBEGIN = NMCBEDRAGBEGINW;
-        pub const NMCBEENDEDIT = NMCBEENDEDITW;
-        pub const TCITEMHEADER = TCITEMHEADERW;
-        pub const TCITEM = TCITEMW;
-        pub const NMDATETIMESTRING = NMDATETIMESTRINGW;
-        pub const NMDATETIMEWMKEYDOWN = NMDATETIMEWMKEYDOWNW;
-        pub const NMDATETIMEFORMAT = NMDATETIMEFORMATW;
-        pub const NMDATETIMEFORMATQUERY = NMDATETIMEFORMATQUERYW;
-        pub const CHARFORMAT = CHARFORMATW;
-        pub const CHARFORMAT2 = CHARFORMAT2W;
-        pub const EDITWORDBREAKPROC = EDITWORDBREAKPROCW;
-        pub const CreatePropertySheetPage = CreatePropertySheetPageW;
-        pub const PropertySheet = PropertySheetW;
-        pub const ImageList_LoadImage = ImageList_LoadImageW;
-        pub const DrawStatusText = DrawStatusTextW;
-        pub const CreateStatusWindow = CreateStatusWindowW;
-        pub const DlgDirList = DlgDirListW;
-        pub const DlgDirSelectEx = DlgDirSelectExW;
-        pub const DlgDirListComboBox = DlgDirListComboBoxW;
-        pub const DlgDirSelectComboBoxEx = DlgDirSelectComboBoxExW;
+        pub const TEXTRANGE = thismodule.TEXTRANGEW;
+        pub const FINDTEXT = thismodule.FINDTEXTW;
+        pub const FINDTEXTEX = thismodule.FINDTEXTEXW;
+        pub const LPFNPSPCALLBACK = thismodule.LPFNPSPCALLBACKW;
+        pub const PROPSHEETPAGE = thismodule.PROPSHEETPAGEW;
+        pub const HD_TEXTFILTER = thismodule.HD_TEXTFILTERW;
+        pub const HDITEM = thismodule.HDITEMW;
+        pub const NMHEADER = thismodule.NMHEADERW;
+        pub const NMHDDISPINFO = thismodule.NMHDDISPINFOW;
+        pub const TBSAVEPARAMS = thismodule.TBSAVEPARAMSW;
+        pub const TBBUTTONINFO = thismodule.TBBUTTONINFOW;
+        pub const NMTBGETINFOTIP = thismodule.NMTBGETINFOTIPW;
+        pub const NMTBDISPINFO = thismodule.NMTBDISPINFOW;
+        pub const NMTOOLBAR = thismodule.NMTOOLBARW;
+        pub const REBARBANDINFO = thismodule.REBARBANDINFOW;
+        pub const TTTOOLINFO = thismodule.TTTOOLINFOW;
+        pub const TTHITTESTINFO = thismodule.TTHITTESTINFOW;
+        pub const NMTTDISPINFO = thismodule.NMTTDISPINFOW;
+        pub const LVITEM = thismodule.LVITEMW;
+        pub const LVFINDINFO = thismodule.LVFINDINFOW;
+        pub const LVCOLUMN = thismodule.LVCOLUMNW;
+        pub const LVBKIMAGE = thismodule.LVBKIMAGEW;
+        pub const NMLVFINDITEM = thismodule.NMLVFINDITEMW;
+        pub const NMLVDISPINFO = thismodule.NMLVDISPINFOW;
+        pub const NMLVGETINFOTIP = thismodule.NMLVGETINFOTIPW;
+        pub const TVITEM = thismodule.TVITEMW;
+        pub const TVITEMEX = thismodule.TVITEMEXW;
+        pub const TVINSERTSTRUCT = thismodule.TVINSERTSTRUCTW;
+        pub const NMTREEVIEW = thismodule.NMTREEVIEWW;
+        pub const NMTVDISPINFO = thismodule.NMTVDISPINFOW;
+        pub const NMTVDISPINFOEX = thismodule.NMTVDISPINFOEXW;
+        pub const NMTVGETINFOTIP = thismodule.NMTVGETINFOTIPW;
+        pub const COMBOBOXEXITEM = thismodule.COMBOBOXEXITEMW;
+        pub const NMCOMBOBOXEX = thismodule.NMCOMBOBOXEXW;
+        pub const NMCBEDRAGBEGIN = thismodule.NMCBEDRAGBEGINW;
+        pub const NMCBEENDEDIT = thismodule.NMCBEENDEDITW;
+        pub const TCITEMHEADER = thismodule.TCITEMHEADERW;
+        pub const TCITEM = thismodule.TCITEMW;
+        pub const NMDATETIMESTRING = thismodule.NMDATETIMESTRINGW;
+        pub const NMDATETIMEWMKEYDOWN = thismodule.NMDATETIMEWMKEYDOWNW;
+        pub const NMDATETIMEFORMAT = thismodule.NMDATETIMEFORMATW;
+        pub const NMDATETIMEFORMATQUERY = thismodule.NMDATETIMEFORMATQUERYW;
+        pub const CHARFORMAT = thismodule.CHARFORMATW;
+        pub const CHARFORMAT2 = thismodule.CHARFORMAT2W;
+        pub const EDITWORDBREAKPROC = thismodule.EDITWORDBREAKPROCW;
+        pub const CreatePropertySheetPage = thismodule.CreatePropertySheetPageW;
+        pub const PropertySheet = thismodule.PropertySheetW;
+        pub const ImageList_LoadImage = thismodule.ImageList_LoadImageW;
+        pub const DrawStatusText = thismodule.DrawStatusTextW;
+        pub const CreateStatusWindow = thismodule.CreateStatusWindowW;
+        pub const DlgDirList = thismodule.DlgDirListW;
+        pub const DlgDirSelectEx = thismodule.DlgDirSelectExW;
+        pub const DlgDirListComboBox = thismodule.DlgDirListComboBoxW;
+        pub const DlgDirSelectComboBoxEx = thismodule.DlgDirSelectComboBoxExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const TEXTRANGE = *opaque{};
@@ -17158,65 +16927,65 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (60)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const HRGN = @import("../graphics/gdi.zig").HRGN;
-const HPEN = @import("../graphics/gdi.zig").HPEN;
-const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const HMENU = @import("../ui/windows_and_messaging.zig").HMENU;
-const HIMC = @import("../globalization.zig").HIMC;
-const IOleClientSite = @import("../system/com.zig").IOleClientSite;
-const IRawElementProviderWindowlessSite = @import("../ui/accessibility.zig").IRawElementProviderWindowlessSite;
-const TTTOOLINFO_FLAGS = @import("../system/system_services.zig").TTTOOLINFO_FLAGS;
-const IOleInPlaceFrame = @import("../system/com.zig").IOleInPlaceFrame;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const DVASPECT = @import("../system/com.zig").DVASPECT;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const POINTER_TOUCH_INFO = @import("../ui/pointer_input.zig").POINTER_TOUCH_INFO;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
-const IStorage = @import("../storage/structured_storage.zig").IStorage;
-const SHOW_WINDOW_CMD = @import("../ui/windows_and_messaging.zig").SHOW_WINDOW_CMD;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
+const DLGTEMPLATE = @import("../ui/windows_and_messaging.zig").DLGTEMPLATE;
+const DVASPECT = @import("../system/com.zig").DVASPECT;
+const DVTARGETDEVICE = @import("../system/com.zig").DVTARGETDEVICE;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const UiaRect = @import("../ui/accessibility.zig").UiaRect;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const HBRUSH = @import("../graphics/gdi.zig").HBRUSH;
 const HCURSOR = @import("../ui/windows_and_messaging.zig").HCURSOR;
 const HDC = @import("../graphics/gdi.zig").HDC;
-const LPARAM = @import("../foundation.zig").LPARAM;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const HIMC = @import("../globalization.zig").HIMC;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HKEY = @import("../system/registry.zig").HKEY;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const OIFI = @import("../system/com.zig").OIFI;
-const IRawElementProviderSimple = @import("../ui/accessibility.zig").IRawElementProviderSimple;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const ID2D1RenderTarget = @import("../graphics/direct2d.zig").ID2D1RenderTarget;
-const IOleObject = @import("../system/com.zig").IOleObject;
-const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
-const BOOL = @import("../foundation.zig").BOOL;
-const HBRUSH = @import("../graphics/gdi.zig").HBRUSH;
-const IOleInPlaceUIWindow = @import("../system/com.zig").IOleInPlaceUIWindow;
-const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
+const HMENU = @import("../ui/windows_and_messaging.zig").HMENU;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const TEXTMETRICW = @import("../graphics/gdi.zig").TEXTMETRICW;
-const DVTARGETDEVICE = @import("../system/com.zig").DVTARGETDEVICE;
-const HICON = @import("../ui/windows_and_messaging.zig").HICON;
-const DLGTEMPLATE = @import("../ui/windows_and_messaging.zig").DLGTEMPLATE;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IDropTarget = @import("../system/com.zig").IDropTarget;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const POINTER_PEN_INFO = @import("../ui/pointer_input.zig").POINTER_PEN_INFO;
+const HPEN = @import("../graphics/gdi.zig").HPEN;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HRGN = @import("../graphics/gdi.zig").HRGN;
 const HWND = @import("../foundation.zig").HWND;
-const WINDOWPOS = @import("../ui/windows_and_messaging.zig").WINDOWPOS;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const ID2D1RenderTarget = @import("../graphics/direct2d.zig").ID2D1RenderTarget;
 const IDataObject = @import("../system/com.zig").IDataObject;
-const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDropTarget = @import("../system/com.zig").IDropTarget;
+const IOleClientSite = @import("../system/com.zig").IOleClientSite;
+const IOleInPlaceFrame = @import("../system/com.zig").IOleInPlaceFrame;
+const IOleInPlaceUIWindow = @import("../system/com.zig").IOleInPlaceUIWindow;
+const IOleObject = @import("../system/com.zig").IOleObject;
+const IRawElementProviderSimple = @import("../ui/accessibility.zig").IRawElementProviderSimple;
+const IRawElementProviderWindowlessSite = @import("../ui/accessibility.zig").IRawElementProviderWindowlessSite;
+const IStorage = @import("../storage/structured_storage.zig").IStorage;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
+const OIFI = @import("../system/com.zig").OIFI;
 const POINT = @import("../foundation.zig").POINT;
-const SIZE = @import("../foundation.zig").SIZE;
+const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
+const POINTER_PEN_INFO = @import("../ui/pointer_input.zig").POINTER_PEN_INFO;
+const POINTER_TOUCH_INFO = @import("../ui/pointer_input.zig").POINTER_TOUCH_INFO;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
+const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
+const SHOW_WINDOW_CMD = @import("../ui/windows_and_messaging.zig").SHOW_WINDOW_CMD;
+const SIZE = @import("../foundation.zig").SIZE;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const TEXTMETRICW = @import("../graphics/gdi.zig").TEXTMETRICW;
+const TTTOOLINFO_FLAGS = @import("../system/system_services.zig").TTTOOLINFO_FLAGS;
+const UiaRect = @import("../ui/accessibility.zig").UiaRect;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WINDOWPOS = @import("../ui/windows_and_messaging.zig").WINDOWPOS;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

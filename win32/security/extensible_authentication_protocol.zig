@@ -1810,6 +1810,7 @@ pub extern "eappprxy" fn EapHostPeerFreeRuntimeMemory(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1823,14 +1824,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IXMLDOMDocument2 = @import("../data/xml/ms_xml.zig").IXMLDOMDocument2;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const IXMLDOMNode = @import("../data/xml/ms_xml.zig").IXMLDOMNode;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const IXMLDOMDocument2 = @import("../data/xml/ms_xml.zig").IXMLDOMDocument2;
+const IXMLDOMNode = @import("../data/xml/ms_xml.zig").IXMLDOMNode;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -1545,6 +1545,7 @@ pub extern "DirectML" fn DMLCreateDevice1(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1558,15 +1559,15 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const ID3D12CommandList = @import("../../graphics/direct3d12.zig").ID3D12CommandList;
-const IUnknown = @import("../../system/com.zig").IUnknown;
-const HRESULT = @import("../../foundation.zig").HRESULT;
-const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
-const D3D12_GPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_GPU_DESCRIPTOR_HANDLE;
 const BOOL = @import("../../foundation.zig").BOOL;
 const D3D12_CPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_CPU_DESCRIPTOR_HANDLE;
+const D3D12_GPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_GPU_DESCRIPTOR_HANDLE;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const ID3D12CommandList = @import("../../graphics/direct3d12.zig").ID3D12CommandList;
+const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

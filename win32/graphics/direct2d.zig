@@ -9634,6 +9634,7 @@ pub extern "d2d1" fn D2D1GetGradientMeshInteriorPointsFromCoonsPatch(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -9647,34 +9648,34 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const IDWriteTextFormat = @import("../graphics/direct_write.zig").IDWriteTextFormat;
-const D3D_FEATURE_LEVEL = @import("../graphics/direct3d11.zig").D3D_FEATURE_LEVEL;
-const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi.zig").DXGI_COLOR_SPACE_TYPE;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const IDWriteRenderingParams = @import("../graphics/direct_write.zig").IDWriteRenderingParams;
 const BOOL = @import("../foundation.zig").BOOL;
-const IWICBitmap = @import("../graphics/imaging.zig").IWICBitmap;
-const IPrintDocumentPackageTarget = @import("../storage/xps/printing.zig").IPrintDocumentPackageTarget;
+const D3D_FEATURE_LEVEL = @import("../graphics/direct3d11.zig").D3D_FEATURE_LEVEL;
 const DWRITE_GLYPH_IMAGE_FORMATS = @import("../graphics/direct_write.zig").DWRITE_GLYPH_IMAGE_FORMATS;
+const DWRITE_GLYPH_RUN = @import("../graphics/direct_write.zig").DWRITE_GLYPH_RUN;
+const DWRITE_GLYPH_RUN_DESCRIPTION = @import("../graphics/direct_write.zig").DWRITE_GLYPH_RUN_DESCRIPTION;
+const DWRITE_MEASURING_MODE = @import("../graphics/direct_write.zig").DWRITE_MEASURING_MODE;
+const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi.zig").DXGI_COLOR_SPACE_TYPE;
+const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDWriteFontFace = @import("../graphics/direct_write.zig").IDWriteFontFace;
+const IDWriteRenderingParams = @import("../graphics/direct_write.zig").IDWriteRenderingParams;
+const IDWriteTextFormat = @import("../graphics/direct_write.zig").IDWriteTextFormat;
+const IDWriteTextLayout = @import("../graphics/direct_write.zig").IDWriteTextLayout;
 const IDXGIDevice = @import("../graphics/dxgi.zig").IDXGIDevice;
 const IDXGISurface = @import("../graphics/dxgi.zig").IDXGISurface;
+const IPrintDocumentPackageTarget = @import("../storage/xps/printing.zig").IPrintDocumentPackageTarget;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const DWRITE_GLYPH_RUN = @import("../graphics/direct_write.zig").DWRITE_GLYPH_RUN;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const IWICBitmap = @import("../graphics/imaging.zig").IWICBitmap;
 const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
-const RECT = @import("../foundation.zig").RECT;
-const IWICImagingFactory = @import("../graphics/imaging.zig").IWICImagingFactory;
-const PSTR = @import("../foundation.zig").PSTR;
-const HWND = @import("../foundation.zig").HWND;
-const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
-const DWRITE_GLYPH_RUN_DESCRIPTION = @import("../graphics/direct_write.zig").DWRITE_GLYPH_RUN_DESCRIPTION;
-const IDWriteFontFace = @import("../graphics/direct_write.zig").IDWriteFontFace;
-const DWRITE_MEASURING_MODE = @import("../graphics/direct_write.zig").DWRITE_MEASURING_MODE;
-const IDWriteTextLayout = @import("../graphics/direct_write.zig").IDWriteTextLayout;
 const IWICColorContext = @import("../graphics/imaging.zig").IWICColorContext;
+const IWICImagingFactory = @import("../graphics/imaging.zig").IWICImagingFactory;
 const POINT = @import("../foundation.zig").POINT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

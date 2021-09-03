@@ -2199,6 +2199,7 @@ pub extern "CSCAPI" fn OfflineFilesQueryStatusEx(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2212,15 +2213,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
+const BOOL = @import("../foundation.zig").BOOL;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

@@ -503,6 +503,7 @@ pub extern "KERNEL32" fn PssWalkMarkerSeekToBeginning(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -515,13 +516,13 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
+const BOOL = @import("../../foundation.zig").BOOL;
+const CONTEXT = @import("../../system/diagnostics/debug.zig").CONTEXT;
 const FILETIME = @import("../../foundation.zig").FILETIME;
-const PWSTR = @import("../../foundation.zig").PWSTR;
+const HANDLE = @import("../../foundation.zig").HANDLE;
 const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
 const MEMORY_BASIC_INFORMATION = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION;
-const HANDLE = @import("../../foundation.zig").HANDLE;
-const CONTEXT = @import("../../system/diagnostics/debug.zig").CONTEXT;
-const BOOL = @import("../../foundation.zig").BOOL;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

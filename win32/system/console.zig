@@ -796,58 +796,59 @@ pub extern "KERNEL32" fn SetStdHandleEx(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (24)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ReadConsoleInput = ReadConsoleInputA;
-        pub const PeekConsoleInput = PeekConsoleInputA;
-        pub const ReadConsole = ReadConsoleA;
-        pub const WriteConsole = WriteConsoleA;
-        pub const FillConsoleOutputCharacter = FillConsoleOutputCharacterA;
-        pub const WriteConsoleOutputCharacter = WriteConsoleOutputCharacterA;
-        pub const ReadConsoleOutputCharacter = ReadConsoleOutputCharacterA;
-        pub const WriteConsoleInput = WriteConsoleInputA;
-        pub const ScrollConsoleScreenBuffer = ScrollConsoleScreenBufferA;
-        pub const WriteConsoleOutput = WriteConsoleOutputA;
-        pub const ReadConsoleOutput = ReadConsoleOutputA;
-        pub const GetConsoleTitle = GetConsoleTitleA;
-        pub const GetConsoleOriginalTitle = GetConsoleOriginalTitleA;
-        pub const SetConsoleTitle = SetConsoleTitleA;
-        pub const AddConsoleAlias = AddConsoleAliasA;
-        pub const GetConsoleAlias = GetConsoleAliasA;
-        pub const GetConsoleAliasesLength = GetConsoleAliasesLengthA;
-        pub const GetConsoleAliasExesLength = GetConsoleAliasExesLengthA;
-        pub const GetConsoleAliases = GetConsoleAliasesA;
-        pub const GetConsoleAliasExes = GetConsoleAliasExesA;
-        pub const ExpungeConsoleCommandHistory = ExpungeConsoleCommandHistoryA;
-        pub const SetConsoleNumberOfCommands = SetConsoleNumberOfCommandsA;
-        pub const GetConsoleCommandHistoryLength = GetConsoleCommandHistoryLengthA;
-        pub const GetConsoleCommandHistory = GetConsoleCommandHistoryA;
+        pub const ReadConsoleInput = thismodule.ReadConsoleInputA;
+        pub const PeekConsoleInput = thismodule.PeekConsoleInputA;
+        pub const ReadConsole = thismodule.ReadConsoleA;
+        pub const WriteConsole = thismodule.WriteConsoleA;
+        pub const FillConsoleOutputCharacter = thismodule.FillConsoleOutputCharacterA;
+        pub const WriteConsoleOutputCharacter = thismodule.WriteConsoleOutputCharacterA;
+        pub const ReadConsoleOutputCharacter = thismodule.ReadConsoleOutputCharacterA;
+        pub const WriteConsoleInput = thismodule.WriteConsoleInputA;
+        pub const ScrollConsoleScreenBuffer = thismodule.ScrollConsoleScreenBufferA;
+        pub const WriteConsoleOutput = thismodule.WriteConsoleOutputA;
+        pub const ReadConsoleOutput = thismodule.ReadConsoleOutputA;
+        pub const GetConsoleTitle = thismodule.GetConsoleTitleA;
+        pub const GetConsoleOriginalTitle = thismodule.GetConsoleOriginalTitleA;
+        pub const SetConsoleTitle = thismodule.SetConsoleTitleA;
+        pub const AddConsoleAlias = thismodule.AddConsoleAliasA;
+        pub const GetConsoleAlias = thismodule.GetConsoleAliasA;
+        pub const GetConsoleAliasesLength = thismodule.GetConsoleAliasesLengthA;
+        pub const GetConsoleAliasExesLength = thismodule.GetConsoleAliasExesLengthA;
+        pub const GetConsoleAliases = thismodule.GetConsoleAliasesA;
+        pub const GetConsoleAliasExes = thismodule.GetConsoleAliasExesA;
+        pub const ExpungeConsoleCommandHistory = thismodule.ExpungeConsoleCommandHistoryA;
+        pub const SetConsoleNumberOfCommands = thismodule.SetConsoleNumberOfCommandsA;
+        pub const GetConsoleCommandHistoryLength = thismodule.GetConsoleCommandHistoryLengthA;
+        pub const GetConsoleCommandHistory = thismodule.GetConsoleCommandHistoryA;
     },
     .wide => struct {
-        pub const ReadConsoleInput = ReadConsoleInputW;
-        pub const PeekConsoleInput = PeekConsoleInputW;
-        pub const ReadConsole = ReadConsoleW;
-        pub const WriteConsole = WriteConsoleW;
-        pub const FillConsoleOutputCharacter = FillConsoleOutputCharacterW;
-        pub const WriteConsoleOutputCharacter = WriteConsoleOutputCharacterW;
-        pub const ReadConsoleOutputCharacter = ReadConsoleOutputCharacterW;
-        pub const WriteConsoleInput = WriteConsoleInputW;
-        pub const ScrollConsoleScreenBuffer = ScrollConsoleScreenBufferW;
-        pub const WriteConsoleOutput = WriteConsoleOutputW;
-        pub const ReadConsoleOutput = ReadConsoleOutputW;
-        pub const GetConsoleTitle = GetConsoleTitleW;
-        pub const GetConsoleOriginalTitle = GetConsoleOriginalTitleW;
-        pub const SetConsoleTitle = SetConsoleTitleW;
-        pub const AddConsoleAlias = AddConsoleAliasW;
-        pub const GetConsoleAlias = GetConsoleAliasW;
-        pub const GetConsoleAliasesLength = GetConsoleAliasesLengthW;
-        pub const GetConsoleAliasExesLength = GetConsoleAliasExesLengthW;
-        pub const GetConsoleAliases = GetConsoleAliasesW;
-        pub const GetConsoleAliasExes = GetConsoleAliasExesW;
-        pub const ExpungeConsoleCommandHistory = ExpungeConsoleCommandHistoryW;
-        pub const SetConsoleNumberOfCommands = SetConsoleNumberOfCommandsW;
-        pub const GetConsoleCommandHistoryLength = GetConsoleCommandHistoryLengthW;
-        pub const GetConsoleCommandHistory = GetConsoleCommandHistoryW;
+        pub const ReadConsoleInput = thismodule.ReadConsoleInputW;
+        pub const PeekConsoleInput = thismodule.PeekConsoleInputW;
+        pub const ReadConsole = thismodule.ReadConsoleW;
+        pub const WriteConsole = thismodule.WriteConsoleW;
+        pub const FillConsoleOutputCharacter = thismodule.FillConsoleOutputCharacterW;
+        pub const WriteConsoleOutputCharacter = thismodule.WriteConsoleOutputCharacterW;
+        pub const ReadConsoleOutputCharacter = thismodule.ReadConsoleOutputCharacterW;
+        pub const WriteConsoleInput = thismodule.WriteConsoleInputW;
+        pub const ScrollConsoleScreenBuffer = thismodule.ScrollConsoleScreenBufferW;
+        pub const WriteConsoleOutput = thismodule.WriteConsoleOutputW;
+        pub const ReadConsoleOutput = thismodule.ReadConsoleOutputW;
+        pub const GetConsoleTitle = thismodule.GetConsoleTitleW;
+        pub const GetConsoleOriginalTitle = thismodule.GetConsoleOriginalTitleW;
+        pub const SetConsoleTitle = thismodule.SetConsoleTitleW;
+        pub const AddConsoleAlias = thismodule.AddConsoleAliasW;
+        pub const GetConsoleAlias = thismodule.GetConsoleAliasW;
+        pub const GetConsoleAliasesLength = thismodule.GetConsoleAliasesLengthW;
+        pub const GetConsoleAliasExesLength = thismodule.GetConsoleAliasExesLengthW;
+        pub const GetConsoleAliases = thismodule.GetConsoleAliasesW;
+        pub const GetConsoleAliasExes = thismodule.GetConsoleAliasExesW;
+        pub const ExpungeConsoleCommandHistory = thismodule.ExpungeConsoleCommandHistoryW;
+        pub const SetConsoleNumberOfCommands = thismodule.SetConsoleNumberOfCommandsW;
+        pub const GetConsoleCommandHistoryLength = thismodule.GetConsoleCommandHistoryLengthW;
+        pub const GetConsoleCommandHistory = thismodule.GetConsoleCommandHistoryW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ReadConsoleInput = *opaque{};
@@ -904,14 +905,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

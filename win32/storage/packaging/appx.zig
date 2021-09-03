@@ -22,36 +22,7 @@ pub const PACKAGE_FILTER_ALL_LOADED = @as(u32, 0);
 //--------------------------------------------------------------------------------
 // Section: Types (120)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const PACKAGE_ID = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    reserved: u32,
-    processorArchitecture: u32,
-    version: PACKAGE_VERSION,
-    name: ?PWSTR,
-    publisher: ?PWSTR,
-    resourceId: ?PWSTR,
-    publisherId: ?PWSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PACKAGE_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    reserved: u32,
-    flags: u32,
-    path: ?PWSTR,
-    packageFullName: ?PWSTR,
-    packageFamilyName: ?PWSTR,
-    packageId: PACKAGE_ID,
-};
-
-}, else => struct { } };
 
 const CLSID_AppxFactory_Value = @import("../../zig.zig").Guid.initString("5842a140-ff9f-4166-8f5c-62f5b7b0c781");
 pub const CLSID_AppxFactory = &CLSID_AppxFactory_Value;
@@ -3418,35 +3389,48 @@ pub const AppPolicyCreateFileAccess = enum(i32) {
 pub const AppPolicyCreateFileAccess_Full = AppPolicyCreateFileAccess.Full;
 pub const AppPolicyCreateFileAccess_Limited = AppPolicyCreateFileAccess.Limited;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
 
-pub const PACKAGE_ID = extern struct {
-    reserved: u32,
-    processorArchitecture: u32,
-    version: PACKAGE_VERSION,
-    name: ?PWSTR,
-    publisher: ?PWSTR,
-    resourceId: ?PWSTR,
-    publisherId: ?PWSTR,
+
+pub const PACKAGE_ID = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        reserved: u32,
+        processorArchitecture: u32,
+        version: PACKAGE_VERSION,
+        name: ?PWSTR,
+        publisher: ?PWSTR,
+        resourceId: ?PWSTR,
+        publisherId: ?PWSTR,
+    },
+    .X86 => extern struct {
+        reserved: u32,
+        processorArchitecture: u32,
+        version: PACKAGE_VERSION,
+        name: ?PWSTR,
+        publisher: ?PWSTR,
+        resourceId: ?PWSTR,
+        publisherId: ?PWSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PACKAGE_INFO = extern struct {
-    reserved: u32,
-    flags: u32,
-    path: ?PWSTR,
-    packageFullName: ?PWSTR,
-    packageFamilyName: ?PWSTR,
-    packageId: PACKAGE_ID,
+pub const PACKAGE_INFO = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        reserved: u32,
+        flags: u32,
+        path: ?PWSTR,
+        packageFullName: ?PWSTR,
+        packageFamilyName: ?PWSTR,
+        packageId: PACKAGE_ID,
+    },
+    .X86 => extern struct {
+        reserved: u32,
+        flags: u32,
+        path: ?PWSTR,
+        packageFullName: ?PWSTR,
+        packageFamilyName: ?PWSTR,
+        packageId: PACKAGE_ID,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (49)
@@ -3788,6 +3772,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3800,15 +3785,15 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
+const BOOL = @import("../../foundation.zig").BOOL;
+const HANDLE = @import("../../foundation.zig").HANDLE;
+const HRESULT = @import("../../foundation.zig").HRESULT;
 const IStream = @import("../../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IUri = @import("../../system/com.zig").IUri;
-const HRESULT = @import("../../foundation.zig").HRESULT;
-const HANDLE = @import("../../foundation.zig").HANDLE;
-const PSTR = @import("../../foundation.zig").PSTR;
 const PSID = @import("../../foundation.zig").PSID;
-const BOOL = @import("../../foundation.zig").BOOL;
+const PSTR = @import("../../foundation.zig").PSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

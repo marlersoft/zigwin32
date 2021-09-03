@@ -264,6 +264,7 @@ pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -276,15 +277,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const POINT = @import("../foundation.zig").POINT;
-const RECT = @import("../foundation.zig").RECT;
-const DPI_AWARENESS_CONTEXT = @import("../system/system_services.zig").DPI_AWARENESS_CONTEXT;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
+const DPI_AWARENESS_CONTEXT = @import("../system/system_services.zig").DPI_AWARENESS_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const POINT = @import("../foundation.zig").POINT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     @setEvalBranchQuota(

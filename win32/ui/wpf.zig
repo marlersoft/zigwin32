@@ -903,6 +903,7 @@ pub const IMILBitmapEffectEvents = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -916,11 +917,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const MilMatrix3x2D = @import("../graphics/dwm.zig").MilMatrix3x2D;
-const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
 const BSTR = @import("../foundation.zig").BSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
+const MilMatrix3x2D = @import("../graphics/dwm.zig").MilMatrix3x2D;
 
 test {
     @setEvalBranchQuota(

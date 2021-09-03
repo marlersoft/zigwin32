@@ -3441,25 +3441,6 @@ pub const LPMIDICALLBACK = fn(
     dw2: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ACMSTREAMHEADER = packed struct {
-    cbStruct: u32,
-    fdwStatus: u32,
-    dwUser: usize,
-    pbSrc: ?*u8,
-    cbSrcLength: u32,
-    cbSrcLengthUsed: u32,
-    dwSrcUser: usize,
-    pbDst: ?*u8,
-    cbDstLength: u32,
-    cbDstLengthUsed: u32,
-    dwDstUser: usize,
-    dwReservedDriver: [15]u32,
-};
-
-}, else => struct { } };
 
 pub const HMIDI = *opaque{};
 
@@ -6029,26 +6010,37 @@ pub const LPTASKCALLBACK = fn(
     dwInst: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const ACMSTREAMHEADER = packed struct {
-    cbStruct: u32,
-    fdwStatus: u32,
-    dwUser: usize,
-    pbSrc: ?*u8,
-    cbSrcLength: u32,
-    cbSrcLengthUsed: u32,
-    dwSrcUser: usize,
-    pbDst: ?*u8,
-    cbDstLength: u32,
-    cbDstLengthUsed: u32,
-    dwDstUser: usize,
-    dwReservedDriver: [10]u32,
+pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => packed struct {
+        cbStruct: u32,
+        fdwStatus: u32,
+        dwUser: usize,
+        pbSrc: ?*u8,
+        cbSrcLength: u32,
+        cbSrcLengthUsed: u32,
+        dwSrcUser: usize,
+        pbDst: ?*u8,
+        cbDstLength: u32,
+        cbDstLengthUsed: u32,
+        dwDstUser: usize,
+        dwReservedDriver: [15]u32,
+    },
+    .X86 => packed struct {
+        cbStruct: u32,
+        fdwStatus: u32,
+        dwUser: usize,
+        pbSrc: ?*u8,
+        cbSrcLength: u32,
+        cbSrcLengthUsed: u32,
+        dwSrcUser: usize,
+        pbDst: ?*u8,
+        cbDstLength: u32,
+        cbDstLengthUsed: u32,
+        dwDstUser: usize,
+        dwReservedDriver: [10]u32,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (304)
@@ -8206,196 +8198,197 @@ pub extern "WINMM" fn mmGetCurrentTask(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (93)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const WAVEOUTCAPS = WAVEOUTCAPSA;
-        pub const WAVEOUTCAPS2 = WAVEOUTCAPS2A;
-        pub const WAVEINCAPS = WAVEINCAPSA;
-        pub const WAVEINCAPS2 = WAVEINCAPS2A;
-        pub const MIDIOUTCAPS = MIDIOUTCAPSA;
-        pub const MIDIOUTCAPS2 = MIDIOUTCAPS2A;
-        pub const MIDIINCAPS = MIDIINCAPSA;
-        pub const MIDIINCAPS2 = MIDIINCAPS2A;
-        pub const AUXCAPS = AUXCAPSA;
-        pub const AUXCAPS2 = AUXCAPS2A;
-        pub const MIXERCAPS = MIXERCAPSA;
-        pub const MIXERCAPS2 = MIXERCAPS2A;
-        pub const MIXERLINE = MIXERLINEA;
-        pub const MIXERCONTROL = MIXERCONTROLA;
-        pub const MIXERLINECONTROLS = MIXERLINECONTROLSA;
-        pub const MIXERCONTROLDETAILS_LISTTEXT = MIXERCONTROLDETAILS_LISTTEXTA;
-        pub const JOYCAPS = JOYCAPSA;
-        pub const JOYCAPS2 = JOYCAPS2A;
-        pub const MCI_DGV_CAPTURE_PARMS = MCI_DGV_CAPTURE_PARMSA;
-        pub const MCI_DGV_INFO_PARMS = MCI_DGV_INFO_PARMSA;
-        pub const MCI_DGV_LIST_PARMS = MCI_DGV_LIST_PARMSA;
-        pub const MCI_DGV_OPEN_PARMS = MCI_DGV_OPEN_PARMSA;
-        pub const MCI_DGV_QUALITY_PARMS = MCI_DGV_QUALITY_PARMSA;
-        pub const MCI_DGV_RESERVE_PARMS = MCI_DGV_RESERVE_PARMSA;
-        pub const MCI_DGV_RESTORE_PARMS = MCI_DGV_RESTORE_PARMSA;
-        pub const MCI_DGV_SAVE_PARMS = MCI_DGV_SAVE_PARMSA;
-        pub const MCI_DGV_SETAUDIO_PARMS = MCI_DGV_SETAUDIO_PARMSA;
-        pub const MCI_DGV_SETVIDEO_PARMS = MCI_DGV_SETVIDEO_PARMSA;
-        pub const MCI_DGV_STATUS_PARMS = MCI_DGV_STATUS_PARMSA;
-        pub const MCI_DGV_WINDOW_PARMS = MCI_DGV_WINDOW_PARMSA;
-        pub const ACMDRIVERDETAILS = ACMDRIVERDETAILSA;
-        pub const ACMFORMATTAGDETAILS = ACMFORMATTAGDETAILSA;
-        pub const ACMFORMATTAGENUMCB = ACMFORMATTAGENUMCBA;
-        pub const ACMFORMATENUMCB = ACMFORMATENUMCBA;
-        pub const ACMFORMATCHOOSEHOOKPROC = ACMFORMATCHOOSEHOOKPROCA;
-        pub const ACMFORMATCHOOSE = ACMFORMATCHOOSEA;
-        pub const ACMFILTERTAGDETAILS = ACMFILTERTAGDETAILSA;
-        pub const ACMFILTERTAGENUMCB = ACMFILTERTAGENUMCBA;
-        pub const ACMFILTERDETAILS = ACMFILTERDETAILSA;
-        pub const ACMFILTERENUMCB = ACMFILTERENUMCBA;
-        pub const ACMFILTERCHOOSEHOOKPROC = ACMFILTERCHOOSEHOOKPROCA;
-        pub const ACMFILTERCHOOSE = ACMFILTERCHOOSEA;
-        pub const AVISTREAMINFO = AVISTREAMINFOA;
-        pub const AVIFILEINFO = AVIFILEINFOA;
-        pub const CAPSTATUSCALLBACK = CAPSTATUSCALLBACKA;
-        pub const CAPERRORCALLBACK = CAPERRORCALLBACKA;
-        pub const mmioStringToFOURCC = mmioStringToFOURCCA;
-        pub const mmioInstallIOProc = mmioInstallIOProcA;
-        pub const mmioOpen = mmioOpenA;
-        pub const mmioRename = mmioRenameA;
-        pub const sndPlaySound = sndPlaySoundA;
-        pub const PlaySound = PlaySoundA;
-        pub const waveOutGetDevCaps = waveOutGetDevCapsA;
-        pub const waveOutGetErrorText = waveOutGetErrorTextA;
-        pub const waveInGetDevCaps = waveInGetDevCapsA;
-        pub const waveInGetErrorText = waveInGetErrorTextA;
-        pub const midiOutGetDevCaps = midiOutGetDevCapsA;
-        pub const midiOutGetErrorText = midiOutGetErrorTextA;
-        pub const midiInGetDevCaps = midiInGetDevCapsA;
-        pub const midiInGetErrorText = midiInGetErrorTextA;
-        pub const auxGetDevCaps = auxGetDevCapsA;
-        pub const mixerGetDevCaps = mixerGetDevCapsA;
-        pub const mixerGetLineInfo = mixerGetLineInfoA;
-        pub const mixerGetLineControls = mixerGetLineControlsA;
-        pub const mixerGetControlDetails = mixerGetControlDetailsA;
-        pub const joyGetDevCaps = joyGetDevCapsA;
-        pub const acmDriverAdd = acmDriverAddA;
-        pub const acmDriverDetails = acmDriverDetailsA;
-        pub const acmFormatTagDetails = acmFormatTagDetailsA;
-        pub const acmFormatTagEnum = acmFormatTagEnumA;
-        pub const acmFormatDetails = acmFormatDetailsA;
-        pub const acmFormatEnum = acmFormatEnumA;
-        pub const acmFormatChoose = acmFormatChooseA;
-        pub const acmFilterTagDetails = acmFilterTagDetailsA;
-        pub const acmFilterTagEnum = acmFilterTagEnumA;
-        pub const acmFilterDetails = acmFilterDetailsA;
-        pub const acmFilterEnum = acmFilterEnumA;
-        pub const acmFilterChoose = acmFilterChooseA;
-        pub const AVIFileOpen = AVIFileOpenA;
-        pub const AVIFileInfo = AVIFileInfoA;
-        pub const AVIFileCreateStream = AVIFileCreateStreamA;
-        pub const AVIStreamInfo = AVIStreamInfoA;
-        pub const AVIStreamOpenFromFile = AVIStreamOpenFromFileA;
-        pub const AVISave = AVISaveA;
-        pub const AVISaveV = AVISaveVA;
-        pub const AVIBuildFilter = AVIBuildFilterA;
-        pub const EditStreamSetName = EditStreamSetNameA;
-        pub const EditStreamSetInfo = EditStreamSetInfoA;
-        pub const MCIWndCreate = MCIWndCreateA;
-        pub const capCreateCaptureWindow = capCreateCaptureWindowA;
-        pub const capGetDriverDescription = capGetDriverDescriptionA;
-        pub const GetOpenFileNamePreview = GetOpenFileNamePreviewA;
-        pub const GetSaveFileNamePreview = GetSaveFileNamePreviewA;
+        pub const WAVEOUTCAPS = thismodule.WAVEOUTCAPSA;
+        pub const WAVEOUTCAPS2 = thismodule.WAVEOUTCAPS2A;
+        pub const WAVEINCAPS = thismodule.WAVEINCAPSA;
+        pub const WAVEINCAPS2 = thismodule.WAVEINCAPS2A;
+        pub const MIDIOUTCAPS = thismodule.MIDIOUTCAPSA;
+        pub const MIDIOUTCAPS2 = thismodule.MIDIOUTCAPS2A;
+        pub const MIDIINCAPS = thismodule.MIDIINCAPSA;
+        pub const MIDIINCAPS2 = thismodule.MIDIINCAPS2A;
+        pub const AUXCAPS = thismodule.AUXCAPSA;
+        pub const AUXCAPS2 = thismodule.AUXCAPS2A;
+        pub const MIXERCAPS = thismodule.MIXERCAPSA;
+        pub const MIXERCAPS2 = thismodule.MIXERCAPS2A;
+        pub const MIXERLINE = thismodule.MIXERLINEA;
+        pub const MIXERCONTROL = thismodule.MIXERCONTROLA;
+        pub const MIXERLINECONTROLS = thismodule.MIXERLINECONTROLSA;
+        pub const MIXERCONTROLDETAILS_LISTTEXT = thismodule.MIXERCONTROLDETAILS_LISTTEXTA;
+        pub const JOYCAPS = thismodule.JOYCAPSA;
+        pub const JOYCAPS2 = thismodule.JOYCAPS2A;
+        pub const MCI_DGV_CAPTURE_PARMS = thismodule.MCI_DGV_CAPTURE_PARMSA;
+        pub const MCI_DGV_INFO_PARMS = thismodule.MCI_DGV_INFO_PARMSA;
+        pub const MCI_DGV_LIST_PARMS = thismodule.MCI_DGV_LIST_PARMSA;
+        pub const MCI_DGV_OPEN_PARMS = thismodule.MCI_DGV_OPEN_PARMSA;
+        pub const MCI_DGV_QUALITY_PARMS = thismodule.MCI_DGV_QUALITY_PARMSA;
+        pub const MCI_DGV_RESERVE_PARMS = thismodule.MCI_DGV_RESERVE_PARMSA;
+        pub const MCI_DGV_RESTORE_PARMS = thismodule.MCI_DGV_RESTORE_PARMSA;
+        pub const MCI_DGV_SAVE_PARMS = thismodule.MCI_DGV_SAVE_PARMSA;
+        pub const MCI_DGV_SETAUDIO_PARMS = thismodule.MCI_DGV_SETAUDIO_PARMSA;
+        pub const MCI_DGV_SETVIDEO_PARMS = thismodule.MCI_DGV_SETVIDEO_PARMSA;
+        pub const MCI_DGV_STATUS_PARMS = thismodule.MCI_DGV_STATUS_PARMSA;
+        pub const MCI_DGV_WINDOW_PARMS = thismodule.MCI_DGV_WINDOW_PARMSA;
+        pub const ACMDRIVERDETAILS = thismodule.ACMDRIVERDETAILSA;
+        pub const ACMFORMATTAGDETAILS = thismodule.ACMFORMATTAGDETAILSA;
+        pub const ACMFORMATTAGENUMCB = thismodule.ACMFORMATTAGENUMCBA;
+        pub const ACMFORMATENUMCB = thismodule.ACMFORMATENUMCBA;
+        pub const ACMFORMATCHOOSEHOOKPROC = thismodule.ACMFORMATCHOOSEHOOKPROCA;
+        pub const ACMFORMATCHOOSE = thismodule.ACMFORMATCHOOSEA;
+        pub const ACMFILTERTAGDETAILS = thismodule.ACMFILTERTAGDETAILSA;
+        pub const ACMFILTERTAGENUMCB = thismodule.ACMFILTERTAGENUMCBA;
+        pub const ACMFILTERDETAILS = thismodule.ACMFILTERDETAILSA;
+        pub const ACMFILTERENUMCB = thismodule.ACMFILTERENUMCBA;
+        pub const ACMFILTERCHOOSEHOOKPROC = thismodule.ACMFILTERCHOOSEHOOKPROCA;
+        pub const ACMFILTERCHOOSE = thismodule.ACMFILTERCHOOSEA;
+        pub const AVISTREAMINFO = thismodule.AVISTREAMINFOA;
+        pub const AVIFILEINFO = thismodule.AVIFILEINFOA;
+        pub const CAPSTATUSCALLBACK = thismodule.CAPSTATUSCALLBACKA;
+        pub const CAPERRORCALLBACK = thismodule.CAPERRORCALLBACKA;
+        pub const mmioStringToFOURCC = thismodule.mmioStringToFOURCCA;
+        pub const mmioInstallIOProc = thismodule.mmioInstallIOProcA;
+        pub const mmioOpen = thismodule.mmioOpenA;
+        pub const mmioRename = thismodule.mmioRenameA;
+        pub const sndPlaySound = thismodule.sndPlaySoundA;
+        pub const PlaySound = thismodule.PlaySoundA;
+        pub const waveOutGetDevCaps = thismodule.waveOutGetDevCapsA;
+        pub const waveOutGetErrorText = thismodule.waveOutGetErrorTextA;
+        pub const waveInGetDevCaps = thismodule.waveInGetDevCapsA;
+        pub const waveInGetErrorText = thismodule.waveInGetErrorTextA;
+        pub const midiOutGetDevCaps = thismodule.midiOutGetDevCapsA;
+        pub const midiOutGetErrorText = thismodule.midiOutGetErrorTextA;
+        pub const midiInGetDevCaps = thismodule.midiInGetDevCapsA;
+        pub const midiInGetErrorText = thismodule.midiInGetErrorTextA;
+        pub const auxGetDevCaps = thismodule.auxGetDevCapsA;
+        pub const mixerGetDevCaps = thismodule.mixerGetDevCapsA;
+        pub const mixerGetLineInfo = thismodule.mixerGetLineInfoA;
+        pub const mixerGetLineControls = thismodule.mixerGetLineControlsA;
+        pub const mixerGetControlDetails = thismodule.mixerGetControlDetailsA;
+        pub const joyGetDevCaps = thismodule.joyGetDevCapsA;
+        pub const acmDriverAdd = thismodule.acmDriverAddA;
+        pub const acmDriverDetails = thismodule.acmDriverDetailsA;
+        pub const acmFormatTagDetails = thismodule.acmFormatTagDetailsA;
+        pub const acmFormatTagEnum = thismodule.acmFormatTagEnumA;
+        pub const acmFormatDetails = thismodule.acmFormatDetailsA;
+        pub const acmFormatEnum = thismodule.acmFormatEnumA;
+        pub const acmFormatChoose = thismodule.acmFormatChooseA;
+        pub const acmFilterTagDetails = thismodule.acmFilterTagDetailsA;
+        pub const acmFilterTagEnum = thismodule.acmFilterTagEnumA;
+        pub const acmFilterDetails = thismodule.acmFilterDetailsA;
+        pub const acmFilterEnum = thismodule.acmFilterEnumA;
+        pub const acmFilterChoose = thismodule.acmFilterChooseA;
+        pub const AVIFileOpen = thismodule.AVIFileOpenA;
+        pub const AVIFileInfo = thismodule.AVIFileInfoA;
+        pub const AVIFileCreateStream = thismodule.AVIFileCreateStreamA;
+        pub const AVIStreamInfo = thismodule.AVIStreamInfoA;
+        pub const AVIStreamOpenFromFile = thismodule.AVIStreamOpenFromFileA;
+        pub const AVISave = thismodule.AVISaveA;
+        pub const AVISaveV = thismodule.AVISaveVA;
+        pub const AVIBuildFilter = thismodule.AVIBuildFilterA;
+        pub const EditStreamSetName = thismodule.EditStreamSetNameA;
+        pub const EditStreamSetInfo = thismodule.EditStreamSetInfoA;
+        pub const MCIWndCreate = thismodule.MCIWndCreateA;
+        pub const capCreateCaptureWindow = thismodule.capCreateCaptureWindowA;
+        pub const capGetDriverDescription = thismodule.capGetDriverDescriptionA;
+        pub const GetOpenFileNamePreview = thismodule.GetOpenFileNamePreviewA;
+        pub const GetSaveFileNamePreview = thismodule.GetSaveFileNamePreviewA;
     },
     .wide => struct {
-        pub const WAVEOUTCAPS = WAVEOUTCAPSW;
-        pub const WAVEOUTCAPS2 = WAVEOUTCAPS2W;
-        pub const WAVEINCAPS = WAVEINCAPSW;
-        pub const WAVEINCAPS2 = WAVEINCAPS2W;
-        pub const MIDIOUTCAPS = MIDIOUTCAPSW;
-        pub const MIDIOUTCAPS2 = MIDIOUTCAPS2W;
-        pub const MIDIINCAPS = MIDIINCAPSW;
-        pub const MIDIINCAPS2 = MIDIINCAPS2W;
-        pub const AUXCAPS = AUXCAPSW;
-        pub const AUXCAPS2 = AUXCAPS2W;
-        pub const MIXERCAPS = MIXERCAPSW;
-        pub const MIXERCAPS2 = MIXERCAPS2W;
-        pub const MIXERLINE = MIXERLINEW;
-        pub const MIXERCONTROL = MIXERCONTROLW;
-        pub const MIXERLINECONTROLS = MIXERLINECONTROLSW;
-        pub const MIXERCONTROLDETAILS_LISTTEXT = MIXERCONTROLDETAILS_LISTTEXTW;
-        pub const JOYCAPS = JOYCAPSW;
-        pub const JOYCAPS2 = JOYCAPS2W;
-        pub const MCI_DGV_CAPTURE_PARMS = MCI_DGV_CAPTURE_PARMSW;
-        pub const MCI_DGV_INFO_PARMS = MCI_DGV_INFO_PARMSW;
-        pub const MCI_DGV_LIST_PARMS = MCI_DGV_LIST_PARMSW;
-        pub const MCI_DGV_OPEN_PARMS = MCI_DGV_OPEN_PARMSW;
-        pub const MCI_DGV_QUALITY_PARMS = MCI_DGV_QUALITY_PARMSW;
-        pub const MCI_DGV_RESERVE_PARMS = MCI_DGV_RESERVE_PARMSW;
-        pub const MCI_DGV_RESTORE_PARMS = MCI_DGV_RESTORE_PARMSW;
-        pub const MCI_DGV_SAVE_PARMS = MCI_DGV_SAVE_PARMSW;
-        pub const MCI_DGV_SETAUDIO_PARMS = MCI_DGV_SETAUDIO_PARMSW;
-        pub const MCI_DGV_SETVIDEO_PARMS = MCI_DGV_SETVIDEO_PARMSW;
-        pub const MCI_DGV_STATUS_PARMS = MCI_DGV_STATUS_PARMSW;
-        pub const MCI_DGV_WINDOW_PARMS = MCI_DGV_WINDOW_PARMSW;
-        pub const ACMDRIVERDETAILS = ACMDRIVERDETAILSW;
-        pub const ACMFORMATTAGDETAILS = ACMFORMATTAGDETAILSW;
-        pub const ACMFORMATTAGENUMCB = ACMFORMATTAGENUMCBW;
-        pub const ACMFORMATENUMCB = ACMFORMATENUMCBW;
-        pub const ACMFORMATCHOOSEHOOKPROC = ACMFORMATCHOOSEHOOKPROCW;
-        pub const ACMFORMATCHOOSE = ACMFORMATCHOOSEW;
-        pub const ACMFILTERTAGDETAILS = ACMFILTERTAGDETAILSW;
-        pub const ACMFILTERTAGENUMCB = ACMFILTERTAGENUMCBW;
-        pub const ACMFILTERDETAILS = ACMFILTERDETAILSW;
-        pub const ACMFILTERENUMCB = ACMFILTERENUMCBW;
-        pub const ACMFILTERCHOOSEHOOKPROC = ACMFILTERCHOOSEHOOKPROCW;
-        pub const ACMFILTERCHOOSE = ACMFILTERCHOOSEW;
-        pub const AVISTREAMINFO = AVISTREAMINFOW;
-        pub const AVIFILEINFO = AVIFILEINFOW;
-        pub const CAPSTATUSCALLBACK = CAPSTATUSCALLBACKW;
-        pub const CAPERRORCALLBACK = CAPERRORCALLBACKW;
-        pub const mmioStringToFOURCC = mmioStringToFOURCCW;
-        pub const mmioInstallIOProc = mmioInstallIOProcW;
-        pub const mmioOpen = mmioOpenW;
-        pub const mmioRename = mmioRenameW;
-        pub const sndPlaySound = sndPlaySoundW;
-        pub const PlaySound = PlaySoundW;
-        pub const waveOutGetDevCaps = waveOutGetDevCapsW;
-        pub const waveOutGetErrorText = waveOutGetErrorTextW;
-        pub const waveInGetDevCaps = waveInGetDevCapsW;
-        pub const waveInGetErrorText = waveInGetErrorTextW;
-        pub const midiOutGetDevCaps = midiOutGetDevCapsW;
-        pub const midiOutGetErrorText = midiOutGetErrorTextW;
-        pub const midiInGetDevCaps = midiInGetDevCapsW;
-        pub const midiInGetErrorText = midiInGetErrorTextW;
-        pub const auxGetDevCaps = auxGetDevCapsW;
-        pub const mixerGetDevCaps = mixerGetDevCapsW;
-        pub const mixerGetLineInfo = mixerGetLineInfoW;
-        pub const mixerGetLineControls = mixerGetLineControlsW;
-        pub const mixerGetControlDetails = mixerGetControlDetailsW;
-        pub const joyGetDevCaps = joyGetDevCapsW;
-        pub const acmDriverAdd = acmDriverAddW;
-        pub const acmDriverDetails = acmDriverDetailsW;
-        pub const acmFormatTagDetails = acmFormatTagDetailsW;
-        pub const acmFormatTagEnum = acmFormatTagEnumW;
-        pub const acmFormatDetails = acmFormatDetailsW;
-        pub const acmFormatEnum = acmFormatEnumW;
-        pub const acmFormatChoose = acmFormatChooseW;
-        pub const acmFilterTagDetails = acmFilterTagDetailsW;
-        pub const acmFilterTagEnum = acmFilterTagEnumW;
-        pub const acmFilterDetails = acmFilterDetailsW;
-        pub const acmFilterEnum = acmFilterEnumW;
-        pub const acmFilterChoose = acmFilterChooseW;
-        pub const AVIFileOpen = AVIFileOpenW;
-        pub const AVIFileInfo = AVIFileInfoW;
-        pub const AVIFileCreateStream = AVIFileCreateStreamW;
-        pub const AVIStreamInfo = AVIStreamInfoW;
-        pub const AVIStreamOpenFromFile = AVIStreamOpenFromFileW;
-        pub const AVISave = AVISaveW;
-        pub const AVISaveV = AVISaveVW;
-        pub const AVIBuildFilter = AVIBuildFilterW;
-        pub const EditStreamSetName = EditStreamSetNameW;
-        pub const EditStreamSetInfo = EditStreamSetInfoW;
-        pub const MCIWndCreate = MCIWndCreateW;
-        pub const capCreateCaptureWindow = capCreateCaptureWindowW;
-        pub const capGetDriverDescription = capGetDriverDescriptionW;
-        pub const GetOpenFileNamePreview = GetOpenFileNamePreviewW;
-        pub const GetSaveFileNamePreview = GetSaveFileNamePreviewW;
+        pub const WAVEOUTCAPS = thismodule.WAVEOUTCAPSW;
+        pub const WAVEOUTCAPS2 = thismodule.WAVEOUTCAPS2W;
+        pub const WAVEINCAPS = thismodule.WAVEINCAPSW;
+        pub const WAVEINCAPS2 = thismodule.WAVEINCAPS2W;
+        pub const MIDIOUTCAPS = thismodule.MIDIOUTCAPSW;
+        pub const MIDIOUTCAPS2 = thismodule.MIDIOUTCAPS2W;
+        pub const MIDIINCAPS = thismodule.MIDIINCAPSW;
+        pub const MIDIINCAPS2 = thismodule.MIDIINCAPS2W;
+        pub const AUXCAPS = thismodule.AUXCAPSW;
+        pub const AUXCAPS2 = thismodule.AUXCAPS2W;
+        pub const MIXERCAPS = thismodule.MIXERCAPSW;
+        pub const MIXERCAPS2 = thismodule.MIXERCAPS2W;
+        pub const MIXERLINE = thismodule.MIXERLINEW;
+        pub const MIXERCONTROL = thismodule.MIXERCONTROLW;
+        pub const MIXERLINECONTROLS = thismodule.MIXERLINECONTROLSW;
+        pub const MIXERCONTROLDETAILS_LISTTEXT = thismodule.MIXERCONTROLDETAILS_LISTTEXTW;
+        pub const JOYCAPS = thismodule.JOYCAPSW;
+        pub const JOYCAPS2 = thismodule.JOYCAPS2W;
+        pub const MCI_DGV_CAPTURE_PARMS = thismodule.MCI_DGV_CAPTURE_PARMSW;
+        pub const MCI_DGV_INFO_PARMS = thismodule.MCI_DGV_INFO_PARMSW;
+        pub const MCI_DGV_LIST_PARMS = thismodule.MCI_DGV_LIST_PARMSW;
+        pub const MCI_DGV_OPEN_PARMS = thismodule.MCI_DGV_OPEN_PARMSW;
+        pub const MCI_DGV_QUALITY_PARMS = thismodule.MCI_DGV_QUALITY_PARMSW;
+        pub const MCI_DGV_RESERVE_PARMS = thismodule.MCI_DGV_RESERVE_PARMSW;
+        pub const MCI_DGV_RESTORE_PARMS = thismodule.MCI_DGV_RESTORE_PARMSW;
+        pub const MCI_DGV_SAVE_PARMS = thismodule.MCI_DGV_SAVE_PARMSW;
+        pub const MCI_DGV_SETAUDIO_PARMS = thismodule.MCI_DGV_SETAUDIO_PARMSW;
+        pub const MCI_DGV_SETVIDEO_PARMS = thismodule.MCI_DGV_SETVIDEO_PARMSW;
+        pub const MCI_DGV_STATUS_PARMS = thismodule.MCI_DGV_STATUS_PARMSW;
+        pub const MCI_DGV_WINDOW_PARMS = thismodule.MCI_DGV_WINDOW_PARMSW;
+        pub const ACMDRIVERDETAILS = thismodule.ACMDRIVERDETAILSW;
+        pub const ACMFORMATTAGDETAILS = thismodule.ACMFORMATTAGDETAILSW;
+        pub const ACMFORMATTAGENUMCB = thismodule.ACMFORMATTAGENUMCBW;
+        pub const ACMFORMATENUMCB = thismodule.ACMFORMATENUMCBW;
+        pub const ACMFORMATCHOOSEHOOKPROC = thismodule.ACMFORMATCHOOSEHOOKPROCW;
+        pub const ACMFORMATCHOOSE = thismodule.ACMFORMATCHOOSEW;
+        pub const ACMFILTERTAGDETAILS = thismodule.ACMFILTERTAGDETAILSW;
+        pub const ACMFILTERTAGENUMCB = thismodule.ACMFILTERTAGENUMCBW;
+        pub const ACMFILTERDETAILS = thismodule.ACMFILTERDETAILSW;
+        pub const ACMFILTERENUMCB = thismodule.ACMFILTERENUMCBW;
+        pub const ACMFILTERCHOOSEHOOKPROC = thismodule.ACMFILTERCHOOSEHOOKPROCW;
+        pub const ACMFILTERCHOOSE = thismodule.ACMFILTERCHOOSEW;
+        pub const AVISTREAMINFO = thismodule.AVISTREAMINFOW;
+        pub const AVIFILEINFO = thismodule.AVIFILEINFOW;
+        pub const CAPSTATUSCALLBACK = thismodule.CAPSTATUSCALLBACKW;
+        pub const CAPERRORCALLBACK = thismodule.CAPERRORCALLBACKW;
+        pub const mmioStringToFOURCC = thismodule.mmioStringToFOURCCW;
+        pub const mmioInstallIOProc = thismodule.mmioInstallIOProcW;
+        pub const mmioOpen = thismodule.mmioOpenW;
+        pub const mmioRename = thismodule.mmioRenameW;
+        pub const sndPlaySound = thismodule.sndPlaySoundW;
+        pub const PlaySound = thismodule.PlaySoundW;
+        pub const waveOutGetDevCaps = thismodule.waveOutGetDevCapsW;
+        pub const waveOutGetErrorText = thismodule.waveOutGetErrorTextW;
+        pub const waveInGetDevCaps = thismodule.waveInGetDevCapsW;
+        pub const waveInGetErrorText = thismodule.waveInGetErrorTextW;
+        pub const midiOutGetDevCaps = thismodule.midiOutGetDevCapsW;
+        pub const midiOutGetErrorText = thismodule.midiOutGetErrorTextW;
+        pub const midiInGetDevCaps = thismodule.midiInGetDevCapsW;
+        pub const midiInGetErrorText = thismodule.midiInGetErrorTextW;
+        pub const auxGetDevCaps = thismodule.auxGetDevCapsW;
+        pub const mixerGetDevCaps = thismodule.mixerGetDevCapsW;
+        pub const mixerGetLineInfo = thismodule.mixerGetLineInfoW;
+        pub const mixerGetLineControls = thismodule.mixerGetLineControlsW;
+        pub const mixerGetControlDetails = thismodule.mixerGetControlDetailsW;
+        pub const joyGetDevCaps = thismodule.joyGetDevCapsW;
+        pub const acmDriverAdd = thismodule.acmDriverAddW;
+        pub const acmDriverDetails = thismodule.acmDriverDetailsW;
+        pub const acmFormatTagDetails = thismodule.acmFormatTagDetailsW;
+        pub const acmFormatTagEnum = thismodule.acmFormatTagEnumW;
+        pub const acmFormatDetails = thismodule.acmFormatDetailsW;
+        pub const acmFormatEnum = thismodule.acmFormatEnumW;
+        pub const acmFormatChoose = thismodule.acmFormatChooseW;
+        pub const acmFilterTagDetails = thismodule.acmFilterTagDetailsW;
+        pub const acmFilterTagEnum = thismodule.acmFilterTagEnumW;
+        pub const acmFilterDetails = thismodule.acmFilterDetailsW;
+        pub const acmFilterEnum = thismodule.acmFilterEnumW;
+        pub const acmFilterChoose = thismodule.acmFilterChooseW;
+        pub const AVIFileOpen = thismodule.AVIFileOpenW;
+        pub const AVIFileInfo = thismodule.AVIFileInfoW;
+        pub const AVIFileCreateStream = thismodule.AVIFileCreateStreamW;
+        pub const AVIStreamInfo = thismodule.AVIStreamInfoW;
+        pub const AVIStreamOpenFromFile = thismodule.AVIStreamOpenFromFileW;
+        pub const AVISave = thismodule.AVISaveW;
+        pub const AVISaveV = thismodule.AVISaveVW;
+        pub const AVIBuildFilter = thismodule.AVIBuildFilterW;
+        pub const EditStreamSetName = thismodule.EditStreamSetNameW;
+        pub const EditStreamSetInfo = thismodule.EditStreamSetInfoW;
+        pub const MCIWndCreate = thismodule.MCIWndCreateW;
+        pub const capCreateCaptureWindow = thismodule.capCreateCaptureWindowW;
+        pub const capGetDriverDescription = thismodule.capGetDriverDescriptionW;
+        pub const GetOpenFileNamePreview = thismodule.GetOpenFileNamePreviewW;
+        pub const GetSaveFileNamePreview = thismodule.GetSaveFileNamePreviewW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const WAVEOUTCAPS = *opaque{};
@@ -8591,33 +8584,33 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const JOYREGHWVALUES = @import("../devices/human_interface_device.zig").JOYREGHWVALUES;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const OPENFILENAMEA = @import("../ui/windows_and_messaging.zig").OPENFILENAMEA;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const BITMAPINFO = @import("../graphics/gdi.zig").BITMAPINFO;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const HTASK = @import("../media/audio/core_audio.zig").HTASK;
+const CHAR = @import("../system/system_services.zig").CHAR;
 const FARPROC = @import("../foundation.zig").FARPROC;
-const OPENFILENAMEW = @import("../ui/windows_and_messaging.zig").OPENFILENAMEW;
-const HICON = @import("../ui/windows_and_messaging.zig").HICON;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const LPTIMECALLBACK = @import("../system/system_services.zig").LPTIMECALLBACK;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
-const HWND = @import("../foundation.zig").HWND;
-const BITMAPINFO = @import("../graphics/gdi.zig").BITMAPINFO;
-const IPersistFile = @import("../system/com.zig").IPersistFile;
-const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HTASK = @import("../media/audio/core_audio.zig").HTASK;
+const HWND = @import("../foundation.zig").HWND;
+const IPersistFile = @import("../system/com.zig").IPersistFile;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const JOYREGHWVALUES = @import("../devices/human_interface_device.zig").JOYREGHWVALUES;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LPTIMECALLBACK = @import("../system/system_services.zig").LPTIMECALLBACK;
+const LRESULT = @import("../foundation.zig").LRESULT;
+const OPENFILENAMEA = @import("../ui/windows_and_messaging.zig").OPENFILENAMEA;
+const OPENFILENAMEW = @import("../ui/windows_and_messaging.zig").OPENFILENAMEW;
+const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const POINT = @import("../foundation.zig").POINT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

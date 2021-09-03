@@ -2103,6 +2103,7 @@ pub const IWiaVideo = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2116,19 +2117,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IEnumSTATPROPSTG = @import("../storage/structured_storage.zig").IEnumSTATPROPSTG;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const BSTR = @import("../foundation.zig").BSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
+const IEnumSTATPROPSTG = @import("../storage/structured_storage.zig").IEnumSTATPROPSTG;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPSPEC = @import("../storage/structured_storage.zig").PROPSPEC;
+const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const STATPROPSETSTG = @import("../storage/structured_storage.zig").STATPROPSETSTG;
+const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
 
 test {
     @setEvalBranchQuota(

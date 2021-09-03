@@ -3001,6 +3001,7 @@ pub const NDIS_HARDWARE_CROSSTIMESTAMP = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3014,15 +3015,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const NET_IF_MEDIA_CONNECT_STATE = @import("../network_management/ip_helper.zig").NET_IF_MEDIA_CONNECT_STATE;
-const NET_LUID_LH = @import("../network_management/ip_helper.zig").NET_LUID_LH;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const NET_IF_DIRECTION_TYPE = @import("../network_management/ip_helper.zig").NET_IF_DIRECTION_TYPE;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const NET_IF_DIRECTION_TYPE = @import("../network_management/ip_helper.zig").NET_IF_DIRECTION_TYPE;
+const NET_IF_MEDIA_CONNECT_STATE = @import("../network_management/ip_helper.zig").NET_IF_MEDIA_CONNECT_STATE;
 const NET_IF_MEDIA_DUPLEX_STATE = @import("../network_management/ip_helper.zig").NET_IF_MEDIA_DUPLEX_STATE;
 const NET_IF_OPER_STATUS = @import("../network_management/ip_helper.zig").NET_IF_OPER_STATUS;
+const NET_LUID_LH = @import("../network_management/ip_helper.zig").NET_LUID_LH;
 
 test {
     @setEvalBranchQuota(

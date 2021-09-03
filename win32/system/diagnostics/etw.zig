@@ -2660,32 +2660,33 @@ pub extern "ADVAPI32" fn CveEventWrite(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (11)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const PEVENT_TRACE_BUFFER_CALLBACK = PEVENT_TRACE_BUFFER_CALLBACKA;
-        pub const EVENT_TRACE_LOGFILE = EVENT_TRACE_LOGFILEA;
-        pub const StartTrace = StartTraceA;
-        pub const StopTrace = StopTraceA;
-        pub const QueryTrace = QueryTraceA;
-        pub const UpdateTrace = UpdateTraceA;
-        pub const FlushTrace = FlushTraceA;
-        pub const ControlTrace = ControlTraceA;
-        pub const QueryAllTraces = QueryAllTracesA;
-        pub const RegisterTraceGuids = RegisterTraceGuidsA;
-        pub const OpenTrace = OpenTraceA;
+        pub const PEVENT_TRACE_BUFFER_CALLBACK = thismodule.PEVENT_TRACE_BUFFER_CALLBACKA;
+        pub const EVENT_TRACE_LOGFILE = thismodule.EVENT_TRACE_LOGFILEA;
+        pub const StartTrace = thismodule.StartTraceA;
+        pub const StopTrace = thismodule.StopTraceA;
+        pub const QueryTrace = thismodule.QueryTraceA;
+        pub const UpdateTrace = thismodule.UpdateTraceA;
+        pub const FlushTrace = thismodule.FlushTraceA;
+        pub const ControlTrace = thismodule.ControlTraceA;
+        pub const QueryAllTraces = thismodule.QueryAllTracesA;
+        pub const RegisterTraceGuids = thismodule.RegisterTraceGuidsA;
+        pub const OpenTrace = thismodule.OpenTraceA;
     },
     .wide => struct {
-        pub const PEVENT_TRACE_BUFFER_CALLBACK = PEVENT_TRACE_BUFFER_CALLBACKW;
-        pub const EVENT_TRACE_LOGFILE = EVENT_TRACE_LOGFILEW;
-        pub const StartTrace = StartTraceW;
-        pub const StopTrace = StopTraceW;
-        pub const QueryTrace = QueryTraceW;
-        pub const UpdateTrace = UpdateTraceW;
-        pub const FlushTrace = FlushTraceW;
-        pub const ControlTrace = ControlTraceW;
-        pub const QueryAllTraces = QueryAllTracesW;
-        pub const RegisterTraceGuids = RegisterTraceGuidsW;
-        pub const OpenTrace = OpenTraceW;
+        pub const PEVENT_TRACE_BUFFER_CALLBACK = thismodule.PEVENT_TRACE_BUFFER_CALLBACKW;
+        pub const EVENT_TRACE_LOGFILE = thismodule.EVENT_TRACE_LOGFILEW;
+        pub const StartTrace = thismodule.StartTraceW;
+        pub const StopTrace = thismodule.StopTraceW;
+        pub const QueryTrace = thismodule.QueryTraceW;
+        pub const UpdateTrace = thismodule.UpdateTraceW;
+        pub const FlushTrace = thismodule.FlushTraceW;
+        pub const ControlTrace = thismodule.ControlTraceW;
+        pub const QueryAllTraces = thismodule.QueryAllTracesW;
+        pub const RegisterTraceGuids = thismodule.RegisterTraceGuidsW;
+        pub const OpenTrace = thismodule.OpenTraceW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const PEVENT_TRACE_BUFFER_CALLBACK = *opaque{};
@@ -2717,18 +2718,18 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
 const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
-const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const FILETIME = @import("../../foundation.zig").FILETIME;
-const IUnknown = @import("../../system/com.zig").IUnknown;
-const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
-const HRESULT = @import("../../foundation.zig").HRESULT;
-const HANDLE = @import("../../foundation.zig").HANDLE;
-const PSTR = @import("../../foundation.zig").PSTR;
 const BSTR = @import("../../foundation.zig").BSTR;
+const FILETIME = @import("../../foundation.zig").FILETIME;
+const HANDLE = @import("../../foundation.zig").HANDLE;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
 const PSID = @import("../../foundation.zig").PSID;
+const PSTR = @import("../../foundation.zig").PSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
+const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
+const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

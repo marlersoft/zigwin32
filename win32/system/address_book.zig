@@ -2400,6 +2400,7 @@ pub const genderMale = Gender.Male;
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2413,15 +2414,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CY = @import("../system/system_services.zig").CY;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const CY = @import("../system/system_services.zig").CY;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

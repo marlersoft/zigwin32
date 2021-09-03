@@ -1115,236 +1115,14 @@ pub const UNAVAILABLE_ERROR = @as(u32, 12);
 //--------------------------------------------------------------------------------
 // Section: Types (733)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
 
-pub const CONTEXT = extern struct {
-    ContextFlags: u32,
-    Cpsr: u32,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            X0: u64,
-            X1: u64,
-            X2: u64,
-            X3: u64,
-            X4: u64,
-            X5: u64,
-            X6: u64,
-            X7: u64,
-            X8: u64,
-            X9: u64,
-            X10: u64,
-            X11: u64,
-            X12: u64,
-            X13: u64,
-            X14: u64,
-            X15: u64,
-            X16: u64,
-            X17: u64,
-            X18: u64,
-            X19: u64,
-            X20: u64,
-            X21: u64,
-            X22: u64,
-            X23: u64,
-            X24: u64,
-            X25: u64,
-            X26: u64,
-            X27: u64,
-            X28: u64,
-            Fp: u64,
-            Lr: u64,
-        },
-        X: [31]u64,
-    },
-    Sp: u64,
-    Pc: u64,
-    V: [32]ARM64_NT_NEON128,
-    Fpcr: u32,
-    Fpsr: u32,
-    Bcr: [8]u32,
-    Bvr: [8]u64,
-    Wcr: [2]u32,
-    Wvr: [2]u64,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ExceptionPointers: ?*EXCEPTION_POINTERS,
-    ClientPointers: BOOL,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const MINIDUMP_USER_STREAM = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Type: u32,
-    BufferSize: u32,
-    Buffer: ?*c_void,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    UserStreamCount: u32,
-    UserStreamArray: ?*MINIDUMP_USER_STREAM,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
-
-pub const MINIDUMP_THREAD_CALLBACK = extern struct {
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Pad: u32,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
-
-pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Pad: u32,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-    BackingStoreBase: u64,
-    BackingStoreEnd: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
-    CallbackParam: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const LOADED_IMAGE = extern struct {
-    ModuleName: ?PSTR,
-    hFile: ?HANDLE,
-    MappedAddress: ?*u8,
-    FileHeader: ?*IMAGE_NT_HEADERS64,
-    LastRvaSection: ?*IMAGE_SECTION_HEADER,
-    NumberOfSections: u32,
-    Sections: ?*IMAGE_SECTION_HEADER,
-    Characteristics: IMAGE_FILE_CHARACTERISTICS,
-    fSystemImage: BOOLEAN,
-    fDOSImage: BOOLEAN,
-    fReadOnly: BOOLEAN,
-    Version: u8,
-    Links: LIST_ENTRY,
-    SizeOfImage: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub const CONTEXT = extern struct {
-    P1Home: u64,
-    P2Home: u64,
-    P3Home: u64,
-    P4Home: u64,
-    P5Home: u64,
-    P6Home: u64,
-    ContextFlags: u32,
-    MxCsr: u32,
-    SegCs: u16,
-    SegDs: u16,
-    SegEs: u16,
-    SegFs: u16,
-    SegGs: u16,
-    SegSs: u16,
-    EFlags: u32,
-    Dr0: u64,
-    Dr1: u64,
-    Dr2: u64,
-    Dr3: u64,
-    Dr6: u64,
-    Dr7: u64,
-    Rax: u64,
-    Rcx: u64,
-    Rdx: u64,
-    Rbx: u64,
-    Rsp: u64,
-    Rbp: u64,
-    Rsi: u64,
-    Rdi: u64,
-    R8: u64,
-    R9: u64,
-    R10: u64,
-    R11: u64,
-    R12: u64,
-    R13: u64,
-    R14: u64,
-    R15: u64,
-    Rip: u64,
-    Anonymous: extern union {
-        FltSave: XSAVE_FORMAT,
-        Anonymous: extern struct {
-            Header: [2]M128A,
-            Legacy: [8]M128A,
-            Xmm0: M128A,
-            Xmm1: M128A,
-            Xmm2: M128A,
-            Xmm3: M128A,
-            Xmm4: M128A,
-            Xmm5: M128A,
-            Xmm6: M128A,
-            Xmm7: M128A,
-            Xmm8: M128A,
-            Xmm9: M128A,
-            Xmm10: M128A,
-            Xmm11: M128A,
-            Xmm12: M128A,
-            Xmm13: M128A,
-            Xmm14: M128A,
-            Xmm15: M128A,
-        },
-    },
-    VectorRegister: [26]M128A,
-    VectorControl: u64,
-    DebugControl: u64,
-    LastBranchToRip: u64,
-    LastBranchFromRip: u64,
-    LastExceptionToRip: u64,
-    LastExceptionFromRip: u64,
-};
-
-}, else => struct { } };
 
 pub const LDT_ENTRY = extern struct {
     LimitLow: u16,
@@ -2607,35 +2385,7 @@ pub const VmQueryCallback = MINIDUMP_CALLBACK_TYPE.VmQueryCallback;
 pub const VmPreReadCallback = MINIDUMP_CALLBACK_TYPE.VmPreReadCallback;
 pub const VmPostReadCallback = MINIDUMP_CALLBACK_TYPE.VmPostReadCallback;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
 
-pub const MINIDUMP_THREAD_CALLBACK = extern struct {
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-    BackingStoreBase: u64,
-    BackingStoreEnd: u64,
-};
-
-}, else => struct { } };
 
 pub const MINIDUMP_INCLUDE_THREAD_CALLBACK = extern struct {
     ThreadId: u32,
@@ -46696,510 +46446,590 @@ pub const MODLOAD_DATA_TYPE = enum(u32) {
 pub const DBHHEADER_DEBUGDIRS = MODLOAD_DATA_TYPE.DEBUGDIRS;
 pub const DBHHEADER_CVMISC = MODLOAD_DATA_TYPE.CVMISC;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
 
-pub const CONTEXT = extern struct {
-    ContextFlags: u32,
-    Dr0: u32,
-    Dr1: u32,
-    Dr2: u32,
-    Dr3: u32,
-    Dr6: u32,
-    Dr7: u32,
-    FloatSave: FLOATING_SAVE_AREA,
-    SegGs: u32,
-    SegFs: u32,
-    SegEs: u32,
-    SegDs: u32,
-    Edi: u32,
-    Esi: u32,
-    Ebx: u32,
-    Edx: u32,
-    Ecx: u32,
-    Eax: u32,
-    Ebp: u32,
-    Eip: u32,
-    SegCs: u32,
-    EFlags: u32,
-    Esp: u32,
-    SegSs: u32,
-    ExtendedRegisters: [512]u8,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pub const CONTEXT = switch(@import("../../zig.zig").arch) {
+    .Arm64 => extern struct {
+        ContextFlags: u32,
+        Cpsr: u32,
+        Anonymous: extern union {
+            Anonymous: extern struct {
+                X0: u64,
+                X1: u64,
+                X2: u64,
+                X3: u64,
+                X4: u64,
+                X5: u64,
+                X6: u64,
+                X7: u64,
+                X8: u64,
+                X9: u64,
+                X10: u64,
+                X11: u64,
+                X12: u64,
+                X13: u64,
+                X14: u64,
+                X15: u64,
+                X16: u64,
+                X17: u64,
+                X18: u64,
+                X19: u64,
+                X20: u64,
+                X21: u64,
+                X22: u64,
+                X23: u64,
+                X24: u64,
+                X25: u64,
+                X26: u64,
+                X27: u64,
+                X28: u64,
+                Fp: u64,
+                Lr: u64,
+            },
+            X: [31]u64,
+        },
+        Sp: u64,
+        Pc: u64,
+        V: [32]ARM64_NT_NEON128,
+        Fpcr: u32,
+        Fpsr: u32,
+        Bcr: [8]u32,
+        Bvr: [8]u64,
+        Wcr: [2]u32,
+        Wvr: [2]u64,
+    },
+    .X64 => extern struct {
+        P1Home: u64,
+        P2Home: u64,
+        P3Home: u64,
+        P4Home: u64,
+        P5Home: u64,
+        P6Home: u64,
+        ContextFlags: u32,
+        MxCsr: u32,
+        SegCs: u16,
+        SegDs: u16,
+        SegEs: u16,
+        SegFs: u16,
+        SegGs: u16,
+        SegSs: u16,
+        EFlags: u32,
+        Dr0: u64,
+        Dr1: u64,
+        Dr2: u64,
+        Dr3: u64,
+        Dr6: u64,
+        Dr7: u64,
+        Rax: u64,
+        Rcx: u64,
+        Rdx: u64,
+        Rbx: u64,
+        Rsp: u64,
+        Rbp: u64,
+        Rsi: u64,
+        Rdi: u64,
+        R8: u64,
+        R9: u64,
+        R10: u64,
+        R11: u64,
+        R12: u64,
+        R13: u64,
+        R14: u64,
+        R15: u64,
+        Rip: u64,
+        Anonymous: extern union {
+            FltSave: XSAVE_FORMAT,
+            Anonymous: extern struct {
+                Header: [2]M128A,
+                Legacy: [8]M128A,
+                Xmm0: M128A,
+                Xmm1: M128A,
+                Xmm2: M128A,
+                Xmm3: M128A,
+                Xmm4: M128A,
+                Xmm5: M128A,
+                Xmm6: M128A,
+                Xmm7: M128A,
+                Xmm8: M128A,
+                Xmm9: M128A,
+                Xmm10: M128A,
+                Xmm11: M128A,
+                Xmm12: M128A,
+                Xmm13: M128A,
+                Xmm14: M128A,
+                Xmm15: M128A,
+            },
+        },
+        VectorRegister: [26]M128A,
+        VectorControl: u64,
+        DebugControl: u64,
+        LastBranchToRip: u64,
+        LastBranchFromRip: u64,
+        LastExceptionToRip: u64,
+        LastExceptionFromRip: u64,
+    },
+    .X86 => extern struct {
+        ContextFlags: u32,
+        Dr0: u32,
+        Dr1: u32,
+        Dr2: u32,
+        Dr3: u32,
+        Dr6: u32,
+        Dr7: u32,
+        FloatSave: FLOATING_SAVE_AREA,
+        SegGs: u32,
+        SegFs: u32,
+        SegEs: u32,
+        SegDs: u32,
+        Edi: u32,
+        Esi: u32,
+        Ebx: u32,
+        Edx: u32,
+        Ecx: u32,
+        Eax: u32,
+        Ebp: u32,
+        Eip: u32,
+        SegCs: u32,
+        EFlags: u32,
+        Esp: u32,
+        SegSs: u32,
+        ExtendedRegisters: [512]u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
-    ThreadId: u32,
-    ExceptionPointers: ?*EXCEPTION_POINTERS,
-    ClientPointers: BOOL,
+pub const MINIDUMP_EXCEPTION_INFORMATION = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        ThreadId: u32,
+        ExceptionPointers: ?*EXCEPTION_POINTERS,
+        ClientPointers: BOOL,
+    },
+    .X86 => extern struct {
+        ThreadId: u32,
+        ExceptionPointers: ?*EXCEPTION_POINTERS,
+        ClientPointers: BOOL,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_USER_STREAM = extern struct {
-    Type: u32,
-    BufferSize: u32,
-    Buffer: ?*c_void,
+pub const MINIDUMP_USER_STREAM = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        Type: u32,
+        BufferSize: u32,
+        Buffer: ?*c_void,
+    },
+    .X86 => extern struct {
+        Type: u32,
+        BufferSize: u32,
+        Buffer: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
-    UserStreamCount: u32,
-    UserStreamArray: ?*MINIDUMP_USER_STREAM,
+pub const MINIDUMP_USER_STREAM_INFORMATION = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        UserStreamCount: u32,
+        UserStreamArray: ?*MINIDUMP_USER_STREAM,
+    },
+    .X86 => extern struct {
+        UserStreamCount: u32,
+        UserStreamArray: ?*MINIDUMP_USER_STREAM,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_THREAD_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
+pub const MINIDUMP_THREAD_CALLBACK = switch(@import("../../zig.zig").arch) {
+    .Arm64 => extern struct {
+        ThreadId: u32,
+        ThreadHandle: ?HANDLE,
+        Pad: u32,
+        Context: CONTEXT,
+        SizeOfContext: u32,
+        StackBase: u64,
+        StackEnd: u64,
+    },
+    .X64 => extern struct {
+        ThreadId: u32,
+        ThreadHandle: ?HANDLE,
+        Context: CONTEXT,
+        SizeOfContext: u32,
+        StackBase: u64,
+        StackEnd: u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        ThreadId: u32,
+        ThreadHandle: ?HANDLE,
+        Context: CONTEXT,
+        SizeOfContext: u32,
+        StackBase: u64,
+        StackEnd: u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-    BackingStoreBase: u64,
-    BackingStoreEnd: u64,
+pub const MINIDUMP_THREAD_EX_CALLBACK = switch(@import("../../zig.zig").arch) {
+    .Arm64 => extern struct {
+        ThreadId: u32,
+        ThreadHandle: ?HANDLE,
+        Pad: u32,
+        Context: CONTEXT,
+        SizeOfContext: u32,
+        StackBase: u64,
+        StackEnd: u64,
+        BackingStoreBase: u64,
+        BackingStoreEnd: u64,
+    },
+    .X64 => extern struct {
+        ThreadId: u32,
+        ThreadHandle: ?HANDLE,
+        Context: CONTEXT,
+        SizeOfContext: u32,
+        StackBase: u64,
+        StackEnd: u64,
+        BackingStoreBase: u64,
+        BackingStoreEnd: u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        ThreadId: u32,
+        ThreadHandle: ?HANDLE,
+        Context: CONTEXT,
+        SizeOfContext: u32,
+        StackBase: u64,
+        StackEnd: u64,
+        BackingStoreBase: u64,
+        BackingStoreEnd: u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
-    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
-    CallbackParam: ?*c_void,
+pub const MINIDUMP_CALLBACK_INFORMATION = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
+        CallbackParam: ?*c_void,
+    },
+    .X86 => extern struct {
+        CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
+        CallbackParam: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const LOADED_IMAGE = extern struct {
-    ModuleName: ?PSTR,
-    hFile: ?HANDLE,
-    MappedAddress: ?*u8,
-    FileHeader: ?*IMAGE_NT_HEADERS32,
-    LastRvaSection: ?*IMAGE_SECTION_HEADER,
-    NumberOfSections: u32,
-    Sections: ?*IMAGE_SECTION_HEADER,
-    Characteristics: IMAGE_FILE_CHARACTERISTICS,
-    fSystemImage: BOOLEAN,
-    fDOSImage: BOOLEAN,
-    fReadOnly: BOOLEAN,
-    Version: u8,
-    Links: LIST_ENTRY,
-    SizeOfImage: u32,
+pub const LOADED_IMAGE = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ModuleName: ?PSTR,
+        hFile: ?HANDLE,
+        MappedAddress: ?*u8,
+        FileHeader: ?*IMAGE_NT_HEADERS64,
+        LastRvaSection: ?*IMAGE_SECTION_HEADER,
+        NumberOfSections: u32,
+        Sections: ?*IMAGE_SECTION_HEADER,
+        Characteristics: IMAGE_FILE_CHARACTERISTICS,
+        fSystemImage: BOOLEAN,
+        fDOSImage: BOOLEAN,
+        fReadOnly: BOOLEAN,
+        Version: u8,
+        Links: LIST_ENTRY,
+        SizeOfImage: u32,
+    },
+    .X86 => extern struct {
+        ModuleName: ?PSTR,
+        hFile: ?HANDLE,
+        MappedAddress: ?*u8,
+        FileHeader: ?*IMAGE_NT_HEADERS32,
+        LastRvaSection: ?*IMAGE_SECTION_HEADER,
+        NumberOfSections: u32,
+        Sections: ?*IMAGE_SECTION_HEADER,
+        Characteristics: IMAGE_FILE_CHARACTERISTICS,
+        fSystemImage: BOOLEAN,
+        fDOSImage: BOOLEAN,
+        fReadOnly: BOOLEAN,
+        Version: u8,
+        Links: LIST_ENTRY,
+        SizeOfImage: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGE_DEBUG_INFORMATION = extern struct {
-    List: LIST_ENTRY,
-    ReservedSize: u32,
-    ReservedMappedBase: ?*c_void,
-    ReservedMachine: u16,
-    ReservedCharacteristics: u16,
-    ReservedCheckSum: u32,
-    ImageBase: u32,
-    SizeOfImage: u32,
-    ReservedNumberOfSections: u32,
-    ReservedSections: ?*IMAGE_SECTION_HEADER,
-    ReservedExportedNamesSize: u32,
-    ReservedExportedNames: ?PSTR,
-    ReservedNumberOfFunctionTableEntries: u32,
-    ReservedFunctionTableEntries: ?*IMAGE_FUNCTION_ENTRY,
-    ReservedLowestFunctionStartingAddress: u32,
-    ReservedHighestFunctionEndingAddress: u32,
-    ReservedNumberOfFpoTableEntries: u32,
-    ReservedFpoTableEntries: ?*FPO_DATA,
-    SizeOfCoffSymbols: u32,
-    CoffSymbols: ?*IMAGE_COFF_SYMBOLS_HEADER,
-    ReservedSizeOfCodeViewSymbols: u32,
-    ReservedCodeViewSymbols: ?*c_void,
-    ImageFilePath: ?PSTR,
-    ImageFileName: ?PSTR,
-    ReservedDebugFilePath: ?PSTR,
-    ReservedTimeDateStamp: u32,
-    ReservedRomImage: BOOL,
-    ReservedDebugDirectory: ?*IMAGE_DEBUG_DIRECTORY,
-    ReservedNumberOfDebugDirectories: u32,
-    ReservedOriginalFunctionTableBaseAddress: u32,
-    Reserved: [2]u32,
+pub const IMAGE_DEBUG_INFORMATION = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        List: LIST_ENTRY,
+        ReservedSize: u32,
+        ReservedMappedBase: ?*c_void,
+        ReservedMachine: u16,
+        ReservedCharacteristics: u16,
+        ReservedCheckSum: u32,
+        ImageBase: u32,
+        SizeOfImage: u32,
+        ReservedNumberOfSections: u32,
+        ReservedSections: ?*IMAGE_SECTION_HEADER,
+        ReservedExportedNamesSize: u32,
+        ReservedExportedNames: ?PSTR,
+        ReservedNumberOfFunctionTableEntries: u32,
+        ReservedFunctionTableEntries: ?*IMAGE_FUNCTION_ENTRY,
+        ReservedLowestFunctionStartingAddress: u32,
+        ReservedHighestFunctionEndingAddress: u32,
+        ReservedNumberOfFpoTableEntries: u32,
+        ReservedFpoTableEntries: ?*FPO_DATA,
+        SizeOfCoffSymbols: u32,
+        CoffSymbols: ?*IMAGE_COFF_SYMBOLS_HEADER,
+        ReservedSizeOfCodeViewSymbols: u32,
+        ReservedCodeViewSymbols: ?*c_void,
+        ImageFilePath: ?PSTR,
+        ImageFileName: ?PSTR,
+        ReservedDebugFilePath: ?PSTR,
+        ReservedTimeDateStamp: u32,
+        ReservedRomImage: BOOL,
+        ReservedDebugDirectory: ?*IMAGE_DEBUG_DIRECTORY,
+        ReservedNumberOfDebugDirectories: u32,
+        ReservedOriginalFunctionTableBaseAddress: u32,
+        Reserved: [2]u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const ADDRESS = extern struct {
-    Offset: u32,
-    Segment: u16,
-    Mode: ADDRESS_MODE,
+pub const ADDRESS = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        Offset: u32,
+        Segment: u16,
+        Mode: ADDRESS_MODE,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const KDHELP = extern struct {
-    Thread: u32,
-    ThCallbackStack: u32,
-    NextCallback: u32,
-    FramePointer: u32,
-    KiCallUserMode: u32,
-    KeUserCallbackDispatcher: u32,
-    SystemRangeStart: u32,
-    ThCallbackBStore: u32,
-    KiUserExceptionDispatcher: u32,
-    StackBase: u32,
-    StackLimit: u32,
-    Reserved: [5]u32,
+pub const KDHELP = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        Thread: u32,
+        ThCallbackStack: u32,
+        NextCallback: u32,
+        FramePointer: u32,
+        KiCallUserMode: u32,
+        KeUserCallbackDispatcher: u32,
+        SystemRangeStart: u32,
+        ThCallbackBStore: u32,
+        KiUserExceptionDispatcher: u32,
+        StackBase: u32,
+        StackLimit: u32,
+        Reserved: [5]u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const STACKFRAME = extern struct {
-    AddrPC: ADDRESS,
-    AddrReturn: ADDRESS,
-    AddrFrame: ADDRESS,
-    AddrStack: ADDRESS,
-    FuncTableEntry: ?*c_void,
-    Params: [4]u32,
-    Far: BOOL,
-    Virtual: BOOL,
-    Reserved: [3]u32,
-    KdHelp: KDHELP,
-    AddrBStore: ADDRESS,
+pub const STACKFRAME = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        AddrPC: ADDRESS,
+        AddrReturn: ADDRESS,
+        AddrFrame: ADDRESS,
+        AddrStack: ADDRESS,
+        FuncTableEntry: ?*c_void,
+        Params: [4]u32,
+        Far: BOOL,
+        Virtual: BOOL,
+        Reserved: [3]u32,
+        KdHelp: KDHELP,
+        AddrBStore: ADDRESS,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PREAD_PROCESS_MEMORY_ROUTINE = fn(
-    hProcess: ?HANDLE,
-    lpBaseAddress: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
-    nSize: u32,
-    lpNumberOfBytesRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PFUNCTION_TABLE_ACCESS_ROUTINE = fn(
-    hProcess: ?HANDLE,
-    AddrBase: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PGET_MODULE_BASE_ROUTINE = fn(
-    hProcess: ?HANDLE,
-    Address: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PTRANSLATE_ADDRESS_ROUTINE = fn(
-    hProcess: ?HANDLE,
-    hThread: ?HANDLE,
-    lpaddr: ?*ADDRESS,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYM_ENUMMODULES_CALLBACK = fn(
-    ModuleName: ?[*:0]const u8,
-    BaseOfDll: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYM_ENUMSYMBOLS_CALLBACK = fn(
-    SymbolName: ?[*:0]const u8,
-    SymbolAddress: u32,
-    SymbolSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYM_ENUMSYMBOLS_CALLBACKW = fn(
-    SymbolName: ?[*:0]const u16,
-    SymbolAddress: u32,
-    SymbolSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PENUMLOADED_MODULES_CALLBACK = fn(
-    ModuleName: ?[*:0]const u8,
-    ModuleBase: u32,
-    ModuleSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYMBOL_REGISTERED_CALLBACK = fn(
-    hProcess: ?HANDLE,
-    ActionCode: u32,
-    CallbackData: ?*c_void,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_SYMBOL = extern struct {
-    SizeOfStruct: u32,
-    Address: u32,
-    Size: u32,
-    Flags: u32,
-    MaxNameLength: u32,
-    Name: [1]CHAR,
+pub const PREAD_PROCESS_MEMORY_ROUTINE = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        hProcess: ?HANDLE,
+        lpBaseAddress: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        lpBuffer: ?*c_void,
+        nSize: u32,
+        lpNumberOfBytesRead: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_SYMBOL_PACKAGE = extern struct {
-    sym: IMAGEHLP_SYMBOL,
-    name: [2001]CHAR,
+pub const PFUNCTION_TABLE_ACCESS_ROUTINE = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        hProcess: ?HANDLE,
+        AddrBase: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_SYMBOLW = extern struct {
-    SizeOfStruct: u32,
-    Address: u32,
-    Size: u32,
-    Flags: u32,
-    MaxNameLength: u32,
-    Name: [1]u16,
+pub const PGET_MODULE_BASE_ROUTINE = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        hProcess: ?HANDLE,
+        Address: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_SYMBOLW_PACKAGE = extern struct {
-    sym: IMAGEHLP_SYMBOLW,
-    name: [2001]u16,
+pub const PTRANSLATE_ADDRESS_ROUTINE = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        hProcess: ?HANDLE,
+        hThread: ?HANDLE,
+        lpaddr: ?*ADDRESS,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_MODULE = extern struct {
-    SizeOfStruct: u32,
-    BaseOfImage: u32,
-    ImageSize: u32,
-    TimeDateStamp: u32,
-    CheckSum: u32,
-    NumSyms: u32,
-    SymType: SYM_TYPE,
-    ModuleName: [32]CHAR,
-    ImageName: [256]CHAR,
-    LoadedImageName: [256]CHAR,
+pub const PSYM_ENUMMODULES_CALLBACK = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        ModuleName: ?[*:0]const u8,
+        BaseOfDll: u32,
+        UserContext: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_MODULEW = extern struct {
-    SizeOfStruct: u32,
-    BaseOfImage: u32,
-    ImageSize: u32,
-    TimeDateStamp: u32,
-    CheckSum: u32,
-    NumSyms: u32,
-    SymType: SYM_TYPE,
-    ModuleName: [32]u16,
-    ImageName: [256]u16,
-    LoadedImageName: [256]u16,
+pub const PSYM_ENUMSYMBOLS_CALLBACK = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        SymbolName: ?[*:0]const u8,
+        SymbolAddress: u32,
+        SymbolSize: u32,
+        UserContext: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_LINE = extern struct {
-    SizeOfStruct: u32,
-    Key: ?*c_void,
-    LineNumber: u32,
-    FileName: ?[*]u8,
-    Address: u32,
+pub const PSYM_ENUMSYMBOLS_CALLBACKW = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        SymbolName: ?[*:0]const u16,
+        SymbolAddress: u32,
+        SymbolSize: u32,
+        UserContext: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_LINEW = extern struct {
-    SizeOfStruct: u32,
-    Key: ?*c_void,
-    LineNumber: u32,
-    FileName: ?[*]u8,
-    Address: u64,
+pub const PENUMLOADED_MODULES_CALLBACK = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        ModuleName: ?[*:0]const u8,
+        ModuleBase: u32,
+        ModuleSize: u32,
+        UserContext: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD = extern struct {
-    SizeOfStruct: u32,
-    BaseOfImage: u32,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    FileName: [260]CHAR,
-    Reparse: BOOLEAN,
-    hFile: ?HANDLE,
+pub const PSYMBOL_REGISTERED_CALLBACK = switch(@import("../../zig.zig").arch) {
+    .X86 => fn(
+        hProcess: ?HANDLE,
+        ActionCode: u32,
+        CallbackData: ?*c_void,
+        UserContext: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_DUPLICATE_SYMBOL = extern struct {
-    SizeOfStruct: u32,
-    NumberOfDups: u32,
-    Symbol: ?*IMAGEHLP_SYMBOL,
-    SelectedSymbol: u32,
+pub const IMAGEHLP_SYMBOL = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        Address: u32,
+        Size: u32,
+        Flags: u32,
+        MaxNameLength: u32,
+        Name: [1]CHAR,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
+pub const IMAGEHLP_SYMBOL_PACKAGE = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        sym: IMAGEHLP_SYMBOL,
+        name: [2001]CHAR,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_SYMBOLW = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        Address: u32,
+        Size: u32,
+        Flags: u32,
+        MaxNameLength: u32,
+        Name: [1]u16,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_SYMBOLW_PACKAGE = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        sym: IMAGEHLP_SYMBOLW,
+        name: [2001]u16,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_MODULE = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        BaseOfImage: u32,
+        ImageSize: u32,
+        TimeDateStamp: u32,
+        CheckSum: u32,
+        NumSyms: u32,
+        SymType: SYM_TYPE,
+        ModuleName: [32]CHAR,
+        ImageName: [256]CHAR,
+        LoadedImageName: [256]CHAR,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_MODULEW = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        BaseOfImage: u32,
+        ImageSize: u32,
+        TimeDateStamp: u32,
+        CheckSum: u32,
+        NumSyms: u32,
+        SymType: SYM_TYPE,
+        ModuleName: [32]u16,
+        ImageName: [256]u16,
+        LoadedImageName: [256]u16,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_LINE = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        Key: ?*c_void,
+        LineNumber: u32,
+        FileName: ?[*]u8,
+        Address: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_LINEW = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        Key: ?*c_void,
+        LineNumber: u32,
+        FileName: ?[*]u8,
+        Address: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        BaseOfImage: u32,
+        CheckSum: u32,
+        TimeDateStamp: u32,
+        FileName: [260]CHAR,
+        Reparse: BOOLEAN,
+        hFile: ?HANDLE,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const IMAGEHLP_DUPLICATE_SYMBOL = switch(@import("../../zig.zig").arch) {
+    .X86 => extern struct {
+        SizeOfStruct: u32,
+        NumberOfDups: u32,
+        Symbol: ?*IMAGEHLP_SYMBOL,
+        SelectedSymbol: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (302)
@@ -49488,16 +49318,17 @@ pub extern "dbghelp" fn SymGetSymPrev(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const OutputDebugString = OutputDebugStringA;
-        pub const FatalAppExit = FatalAppExitA;
-        pub const FormatMessage = FormatMessageA;
+        pub const OutputDebugString = thismodule.OutputDebugStringA;
+        pub const FatalAppExit = thismodule.FatalAppExitA;
+        pub const FormatMessage = thismodule.FormatMessageA;
     },
     .wide => struct {
-        pub const OutputDebugString = OutputDebugStringW;
-        pub const FatalAppExit = FatalAppExitW;
-        pub const FormatMessage = FormatMessageW;
+        pub const OutputDebugString = thismodule.OutputDebugStringW;
+        pub const FatalAppExit = thismodule.FatalAppExitW;
+        pub const FormatMessage = thismodule.FormatMessageW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const OutputDebugString = *opaque{};
@@ -49513,104 +49344,85 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (49)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const VS_FIXEDFILEINFO = @import("../../storage/file_system.zig").VS_FIXEDFILEINFO;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-    pub const M128A = @import("../../system/system_services.zig").M128A;
-
-}, else => struct { } };
-const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
-const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
-const IServiceProvider = @import("../../system/system_services.zig").IServiceProvider;
-const CHAR = @import("../../system/system_services.zig").CHAR;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-    pub const FLOATING_SAVE_AREA = @import("../../system/kernel.zig").FLOATING_SAVE_AREA;
-
-}, else => struct { } };
-const HRESULT = @import("../../foundation.zig").HRESULT;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-    pub const UNWIND_HISTORY_TABLE = @import("../../system/system_services.zig").UNWIND_HISTORY_TABLE;
-
-}, else => struct { } };
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-    pub const KNONVOLATILE_CONTEXT_POINTERS = @import("../../system/system_services.zig").KNONVOLATILE_CONTEXT_POINTERS;
-
-}, else => struct { } };
-const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 const BOOL = @import("../../foundation.zig").BOOL;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-    pub const XSAVE_FORMAT = @import("../../system/system_services.zig").XSAVE_FORMAT;
-
-}, else => struct { } };
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-    pub const PGET_RUNTIME_FUNCTION_CALLBACK = @import("../../system/system_services.zig").PGET_RUNTIME_FUNCTION_CALLBACK;
-
-}, else => struct { } };
 const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
-const PROCESSOR_ARCHITECTURE = @import("../../system/deployment_services.zig").PROCESSOR_ARCHITECTURE;
-const DISPPARAMS = @import("../../system/ole_automation.zig").DISPPARAMS;
-const ILockBytes = @import("../../storage/structured_storage.zig").ILockBytes;
-const TYPEDESC = @import("../../system/ole_automation.zig").TYPEDESC;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-    pub const EXCEPTION_ROUTINE = @import("../../system/kernel.zig").EXCEPTION_ROUTINE;
-
-}, else => struct { } };
-const CADWORD = @import("../../system/com.zig").CADWORD;
-const LIST_ENTRY = @import("../../system/kernel.zig").LIST_ENTRY;
-const ITypeInfo = @import("../../system/ole_automation.zig").ITypeInfo;
-const IHTMLDocument2 = @import("../../web/ms_html.zig").IHTMLDocument2;
-const FARPROC = @import("../../foundation.zig").FARPROC;
-const MEMORY_BASIC_INFORMATION64 = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION64;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
-
-    pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = @import("../../system/system_services.zig").IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
-
-}, else => struct { } };
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-    pub const IMAGE_RUNTIME_FUNCTION_ENTRY = @import("../../system/system_services.zig").IMAGE_RUNTIME_FUNCTION_ENTRY;
-
-}, else => struct { } };
-const IStream = @import("../../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const EXCEPINFO = @import("../../system/ole_automation.zig").EXCEPINFO;
-const IUnknown = @import("../../system/com.zig").IUnknown;
-const LPTHREAD_START_ROUTINE = @import("../../system/system_services.zig").LPTHREAD_START_ROUTINE;
 const BSTR = @import("../../foundation.zig").BSTR;
-const PSTR = @import("../../foundation.zig").PSTR;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
-
-    pub const ARM64_NT_NEON128 = @import("../../system/system_services.zig").ARM64_NT_NEON128;
-
-}, else => struct { } };
+const CADWORD = @import("../../system/com.zig").CADWORD;
 const CALPOLESTR = @import("../../system/com.zig").CALPOLESTR;
-const HWND = @import("../../foundation.zig").HWND;
-const VIRTUAL_ALLOCATION_TYPE = @import("../../system/memory.zig").VIRTUAL_ALLOCATION_TYPE;
-const IMAGE_LOAD_CONFIG_CODE_INTEGRITY = @import("../../system/system_services.zig").IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
-const LIST_ENTRY64 = @import("../../system/kernel.zig").LIST_ENTRY64;
-const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
-const XSTATE_FEATURE = @import("../../system/system_services.zig").XSTATE_FEATURE;
-const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
+const CHAR = @import("../../system/system_services.zig").CHAR;
+const DISPPARAMS = @import("../../system/ole_automation.zig").DISPPARAMS;
+const EXCEPINFO = @import("../../system/ole_automation.zig").EXCEPINFO;
+const FARPROC = @import("../../foundation.zig").FARPROC;
 const HANDLE = @import("../../foundation.zig").HANDLE;
+const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const HWND = @import("../../foundation.zig").HWND;
+const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
+const IHTMLDocument2 = @import("../../web/ms_html.zig").IHTMLDocument2;
 const IHTMLWindow2 = @import("../../web/ms_html.zig").IHTMLWindow2;
+const ILockBytes = @import("../../storage/structured_storage.zig").ILockBytes;
+const IMAGE_LOAD_CONFIG_CODE_INTEGRITY = @import("../../system/system_services.zig").IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
+const IServiceProvider = @import("../../system/system_services.zig").IServiceProvider;
+const IStream = @import("../../storage/structured_storage.zig").IStream;
+const ITypeInfo = @import("../../system/ole_automation.zig").ITypeInfo;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
+const LIST_ENTRY = @import("../../system/kernel.zig").LIST_ENTRY;
 const LIST_ENTRY32 = @import("../../system/kernel.zig").LIST_ENTRY32;
+const LIST_ENTRY64 = @import("../../system/kernel.zig").LIST_ENTRY64;
+const LPTHREAD_START_ROUTINE = @import("../../system/system_services.zig").LPTHREAD_START_ROUTINE;
+const MEMORY_BASIC_INFORMATION64 = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION64;
 const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
+const PROCESSOR_ARCHITECTURE = @import("../../system/deployment_services.zig").PROCESSOR_ARCHITECTURE;
+const PSTR = @import("../../foundation.zig").PSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
+const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
+const TYPEDESC = @import("../../system/ole_automation.zig").TYPEDESC;
+const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
+const VIRTUAL_ALLOCATION_TYPE = @import("../../system/memory.zig").VIRTUAL_ALLOCATION_TYPE;
+const VS_FIXEDFILEINFO = @import("../../storage/file_system.zig").VS_FIXEDFILEINFO;
+const XSTATE_FEATURE = @import("../../system/system_services.zig").XSTATE_FEATURE;
+// 10 arch-specific imports
+const ARM64_NT_NEON128 = switch(@import("../../zig.zig").arch) {
+    .Arm64 => @import("../../system/system_services.zig").ARM64_NT_NEON128,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const EXCEPTION_ROUTINE = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => @import("../../system/kernel.zig").EXCEPTION_ROUTINE,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const FLOATING_SAVE_AREA = switch(@import("../../zig.zig").arch) {
+    .X86 => @import("../../system/kernel.zig").FLOATING_SAVE_AREA,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = switch(@import("../../zig.zig").arch) {
+    .Arm64 => @import("../../system/system_services.zig").IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const IMAGE_RUNTIME_FUNCTION_ENTRY = switch(@import("../../zig.zig").arch) {
+    .X64 => @import("../../system/system_services.zig").IMAGE_RUNTIME_FUNCTION_ENTRY,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const KNONVOLATILE_CONTEXT_POINTERS = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => @import("../../system/system_services.zig").KNONVOLATILE_CONTEXT_POINTERS,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const M128A = switch(@import("../../zig.zig").arch) {
+    .X64 => @import("../../system/system_services.zig").M128A,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const PGET_RUNTIME_FUNCTION_CALLBACK = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => @import("../../system/system_services.zig").PGET_RUNTIME_FUNCTION_CALLBACK,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const UNWIND_HISTORY_TABLE = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => @import("../../system/system_services.zig").UNWIND_HISTORY_TABLE,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const XSAVE_FORMAT = switch(@import("../../zig.zig").arch) {
+    .X64 => @import("../../system/system_services.zig").XSAVE_FORMAT,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

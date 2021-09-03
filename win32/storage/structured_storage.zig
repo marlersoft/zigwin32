@@ -1030,95 +1030,11 @@ pub const PMemoryAllocator = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const JET_INDEXID = extern struct {
-    cbStruct: u32,
-    rgbIndexId: [16]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const JET_OBJECTINFO = extern struct {
-    cbStruct: u32,
-    objtyp: u32,
-    dtCreate: f64,
-    dtUpdate: f64,
-    grbit: u32,
-    flags: u32,
-    cRecord: u32,
-    cPage: u32,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const JET_THREADSTATS2 = extern struct {
-    cbStruct: u32,
-    cPageReferenced: u32,
-    cPageRead: u32,
-    cPagePreread: u32,
-    cPageDirtied: u32,
-    cPageRedirtied: u32,
-    cLogRecord: u32,
-    cbLogRecord: u32,
-    cusecPageCacheMiss: u64,
-    cPageCacheMiss: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const JET_COMMIT_ID = extern struct {
-    signLog: JET_SIGNATURE,
-    reserved: i32,
-    commitId: i64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const JET_RECSIZE = extern struct {
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const JET_RECSIZE2 = extern struct {
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
-    cCompressedColumns: u64,
-    cbDataCompressed: u64,
-    cbLongValueDataCompressed: u64,
-};
-
-}, else => struct { } };
 
 pub const JET_HANDLE = usize;
 
@@ -3368,101 +3284,137 @@ pub const PROPSPEC_KIND = enum(u32) {
 pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
 pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const JET_INDEXID = extern struct {
-    cbStruct: u32,
-    rgbIndexId: [12]u8,
+
+
+
+
+
+pub const JET_INDEXID = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbStruct: u32,
+        rgbIndexId: [16]u8,
+    },
+    .X86 => extern struct {
+        cbStruct: u32,
+        rgbIndexId: [12]u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_OBJECTINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbStruct: u32,
-    objtyp: u32,
-    dtCreate: f64,
-    dtUpdate: f64,
-    grbit: u32,
-    flags: u32,
-    cRecord: u32,
-    cPage: u32,
+pub const JET_OBJECTINFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbStruct: u32,
+        objtyp: u32,
+        dtCreate: f64,
+        dtUpdate: f64,
+        grbit: u32,
+        flags: u32,
+        cRecord: u32,
+        cPage: u32,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cbStruct: u32,
+        objtyp: u32,
+        dtCreate: f64,
+        dtUpdate: f64,
+        grbit: u32,
+        flags: u32,
+        cRecord: u32,
+        cPage: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_THREADSTATS2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbStruct: u32,
-    cPageReferenced: u32,
-    cPageRead: u32,
-    cPagePreread: u32,
-    cPageDirtied: u32,
-    cPageRedirtied: u32,
-    cLogRecord: u32,
-    cbLogRecord: u32,
-    cusecPageCacheMiss: u64,
-    cPageCacheMiss: u32,
+pub const JET_THREADSTATS2 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbStruct: u32,
+        cPageReferenced: u32,
+        cPageRead: u32,
+        cPagePreread: u32,
+        cPageDirtied: u32,
+        cPageRedirtied: u32,
+        cLogRecord: u32,
+        cbLogRecord: u32,
+        cusecPageCacheMiss: u64,
+        cPageCacheMiss: u32,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cbStruct: u32,
+        cPageReferenced: u32,
+        cPageRead: u32,
+        cPagePreread: u32,
+        cPageDirtied: u32,
+        cPageRedirtied: u32,
+        cLogRecord: u32,
+        cbLogRecord: u32,
+        cusecPageCacheMiss: u64,
+        cPageCacheMiss: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_COMMIT_ID = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    signLog: JET_SIGNATURE,
-    reserved: i32,
-    commitId: i64,
+pub const JET_COMMIT_ID = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        signLog: JET_SIGNATURE,
+        reserved: i32,
+        commitId: i64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        signLog: JET_SIGNATURE,
+        reserved: i32,
+        commitId: i64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_RECSIZE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
+pub const JET_RECSIZE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbData: u64,
+        cbLongValueData: u64,
+        cbOverhead: u64,
+        cbLongValueOverhead: u64,
+        cNonTaggedColumns: u64,
+        cTaggedColumns: u64,
+        cLongValues: u64,
+        cMultiValues: u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cbData: u64,
+        cbLongValueData: u64,
+        cbOverhead: u64,
+        cbLongValueOverhead: u64,
+        cNonTaggedColumns: u64,
+        cTaggedColumns: u64,
+        cLongValues: u64,
+        cMultiValues: u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_RECSIZE2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
-    cCompressedColumns: u64,
-    cbDataCompressed: u64,
-    cbLongValueDataCompressed: u64,
+pub const JET_RECSIZE2 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbData: u64,
+        cbLongValueData: u64,
+        cbOverhead: u64,
+        cbLongValueOverhead: u64,
+        cNonTaggedColumns: u64,
+        cTaggedColumns: u64,
+        cLongValues: u64,
+        cMultiValues: u64,
+        cCompressedColumns: u64,
+        cbDataCompressed: u64,
+        cbLongValueDataCompressed: u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cbData: u64,
+        cbLongValueData: u64,
+        cbOverhead: u64,
+        cbLongValueOverhead: u64,
+        cNonTaggedColumns: u64,
+        cTaggedColumns: u64,
+        cLongValues: u64,
+        cMultiValues: u64,
+        cCompressedColumns: u64,
+        cbDataCompressed: u64,
+        cbLongValueDataCompressed: u64,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (274)
@@ -5474,180 +5426,181 @@ pub extern "ESENT" fn JetGetSessionParameter(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (85)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const JET_RSTMAP_ = JET_RSTMAP_A;
-        pub const CONVERT_ = CONVERT_A;
-        pub const JET_COLUMNBASE_ = JET_COLUMNBASE_A;
-        pub const JET_COLUMNCREATE_ = JET_COLUMNCREATE_A;
-        pub const JET_USERDEFINEDDEFAULT_ = JET_USERDEFINEDDEFAULT_A;
-        pub const JET_CONDITIONALCOLUMN_ = JET_CONDITIONALCOLUMN_A;
-        pub const JET_INDEXCREATE_ = JET_INDEXCREATE_A;
-        pub const JET_INDEXCREATE2_ = JET_INDEXCREATE2_A;
-        pub const JET_INDEXCREATE3_ = JET_INDEXCREATE3_A;
-        pub const JET_TABLECREATE_ = JET_TABLECREATE_A;
-        pub const JET_TABLECREATE2_ = JET_TABLECREATE2_A;
-        pub const JET_TABLECREATE3_ = JET_TABLECREATE3_A;
-        pub const JET_TABLECREATE4_ = JET_TABLECREATE4_A;
-        pub const JET_RSTINFO_ = JET_RSTINFO_A;
-        pub const JET_SETSYSPARAM_ = JET_SETSYSPARAM_A;
-        pub const JET_LOGINFO_ = JET_LOGINFO_A;
-        pub const JET_INSTANCE_INFO_ = JET_INSTANCE_INFO_A;
-        pub const JetInit3 = JetInit3A;
-        pub const JetCreateInstance = JetCreateInstanceA;
-        pub const JetCreateInstance2 = JetCreateInstance2A;
-        pub const JetSetSystemParameter = JetSetSystemParameterA;
-        pub const JetGetSystemParameter = JetGetSystemParameterA;
-        pub const JetEnableMultiInstance = JetEnableMultiInstanceA;
-        pub const JetBeginSession = JetBeginSessionA;
-        pub const JetCreateDatabase = JetCreateDatabaseA;
-        pub const JetCreateDatabase2 = JetCreateDatabase2A;
-        pub const JetAttachDatabase = JetAttachDatabaseA;
-        pub const JetAttachDatabase2 = JetAttachDatabase2A;
-        pub const JetDetachDatabase = JetDetachDatabaseA;
-        pub const JetDetachDatabase2 = JetDetachDatabase2A;
-        pub const JetGetObjectInfo = JetGetObjectInfoA;
-        pub const JetGetTableInfo = JetGetTableInfoA;
-        pub const JetCreateTable = JetCreateTableA;
-        pub const JetCreateTableColumnIndex = JetCreateTableColumnIndexA;
-        pub const JetCreateTableColumnIndex2 = JetCreateTableColumnIndex2A;
-        pub const JetCreateTableColumnIndex3 = JetCreateTableColumnIndex3A;
-        pub const JetCreateTableColumnIndex4 = JetCreateTableColumnIndex4A;
-        pub const JetDeleteTable = JetDeleteTableA;
-        pub const JetRenameTable = JetRenameTableA;
-        pub const JetGetTableColumnInfo = JetGetTableColumnInfoA;
-        pub const JetGetColumnInfo = JetGetColumnInfoA;
-        pub const JetAddColumn = JetAddColumnA;
-        pub const JetDeleteColumn = JetDeleteColumnA;
-        pub const JetDeleteColumn2 = JetDeleteColumn2A;
-        pub const JetRenameColumn = JetRenameColumnA;
-        pub const JetSetColumnDefaultValue = JetSetColumnDefaultValueA;
-        pub const JetGetTableIndexInfo = JetGetTableIndexInfoA;
-        pub const JetGetIndexInfo = JetGetIndexInfoA;
-        pub const JetCreateIndex = JetCreateIndexA;
-        pub const JetCreateIndex2 = JetCreateIndex2A;
-        pub const JetCreateIndex3 = JetCreateIndex3A;
-        pub const JetCreateIndex4 = JetCreateIndex4A;
-        pub const JetDeleteIndex = JetDeleteIndexA;
-        pub const JetGetDatabaseInfo = JetGetDatabaseInfoA;
-        pub const JetGetDatabaseFileInfo = JetGetDatabaseFileInfoA;
-        pub const JetOpenDatabase = JetOpenDatabaseA;
-        pub const JetOpenTable = JetOpenTableA;
-        pub const JetGetCurrentIndex = JetGetCurrentIndexA;
-        pub const JetSetCurrentIndex = JetSetCurrentIndexA;
-        pub const JetSetCurrentIndex2 = JetSetCurrentIndex2A;
-        pub const JetSetCurrentIndex3 = JetSetCurrentIndex3A;
-        pub const JetSetCurrentIndex4 = JetSetCurrentIndex4A;
-        pub const JetCompact = JetCompactA;
-        pub const JetDefragment = JetDefragmentA;
-        pub const JetDefragment2 = JetDefragment2A;
-        pub const JetDefragment3 = JetDefragment3A;
-        pub const JetSetDatabaseSize = JetSetDatabaseSizeA;
-        pub const JetBackup = JetBackupA;
-        pub const JetBackupInstance = JetBackupInstanceA;
-        pub const JetRestore = JetRestoreA;
-        pub const JetRestore2 = JetRestore2A;
-        pub const JetRestoreInstance = JetRestoreInstanceA;
-        pub const JetGetAttachInfo = JetGetAttachInfoA;
-        pub const JetGetAttachInfoInstance = JetGetAttachInfoInstanceA;
-        pub const JetOpenFile = JetOpenFileA;
-        pub const JetOpenFileInstance = JetOpenFileInstanceA;
-        pub const JetGetLogInfo = JetGetLogInfoA;
-        pub const JetGetLogInfoInstance = JetGetLogInfoInstanceA;
-        pub const JetGetLogInfoInstance2 = JetGetLogInfoInstance2A;
-        pub const JetGetTruncateLogInfoInstance = JetGetTruncateLogInfoInstanceA;
-        pub const JetExternalRestore = JetExternalRestoreA;
-        pub const JetExternalRestore2 = JetExternalRestore2A;
-        pub const JetGetInstanceInfo = JetGetInstanceInfoA;
-        pub const JetOSSnapshotFreeze = JetOSSnapshotFreezeA;
-        pub const JetOSSnapshotGetFreezeInfo = JetOSSnapshotGetFreezeInfoA;
+        pub const JET_RSTMAP_ = thismodule.JET_RSTMAP_A;
+        pub const CONVERT_ = thismodule.CONVERT_A;
+        pub const JET_COLUMNBASE_ = thismodule.JET_COLUMNBASE_A;
+        pub const JET_COLUMNCREATE_ = thismodule.JET_COLUMNCREATE_A;
+        pub const JET_USERDEFINEDDEFAULT_ = thismodule.JET_USERDEFINEDDEFAULT_A;
+        pub const JET_CONDITIONALCOLUMN_ = thismodule.JET_CONDITIONALCOLUMN_A;
+        pub const JET_INDEXCREATE_ = thismodule.JET_INDEXCREATE_A;
+        pub const JET_INDEXCREATE2_ = thismodule.JET_INDEXCREATE2_A;
+        pub const JET_INDEXCREATE3_ = thismodule.JET_INDEXCREATE3_A;
+        pub const JET_TABLECREATE_ = thismodule.JET_TABLECREATE_A;
+        pub const JET_TABLECREATE2_ = thismodule.JET_TABLECREATE2_A;
+        pub const JET_TABLECREATE3_ = thismodule.JET_TABLECREATE3_A;
+        pub const JET_TABLECREATE4_ = thismodule.JET_TABLECREATE4_A;
+        pub const JET_RSTINFO_ = thismodule.JET_RSTINFO_A;
+        pub const JET_SETSYSPARAM_ = thismodule.JET_SETSYSPARAM_A;
+        pub const JET_LOGINFO_ = thismodule.JET_LOGINFO_A;
+        pub const JET_INSTANCE_INFO_ = thismodule.JET_INSTANCE_INFO_A;
+        pub const JetInit3 = thismodule.JetInit3A;
+        pub const JetCreateInstance = thismodule.JetCreateInstanceA;
+        pub const JetCreateInstance2 = thismodule.JetCreateInstance2A;
+        pub const JetSetSystemParameter = thismodule.JetSetSystemParameterA;
+        pub const JetGetSystemParameter = thismodule.JetGetSystemParameterA;
+        pub const JetEnableMultiInstance = thismodule.JetEnableMultiInstanceA;
+        pub const JetBeginSession = thismodule.JetBeginSessionA;
+        pub const JetCreateDatabase = thismodule.JetCreateDatabaseA;
+        pub const JetCreateDatabase2 = thismodule.JetCreateDatabase2A;
+        pub const JetAttachDatabase = thismodule.JetAttachDatabaseA;
+        pub const JetAttachDatabase2 = thismodule.JetAttachDatabase2A;
+        pub const JetDetachDatabase = thismodule.JetDetachDatabaseA;
+        pub const JetDetachDatabase2 = thismodule.JetDetachDatabase2A;
+        pub const JetGetObjectInfo = thismodule.JetGetObjectInfoA;
+        pub const JetGetTableInfo = thismodule.JetGetTableInfoA;
+        pub const JetCreateTable = thismodule.JetCreateTableA;
+        pub const JetCreateTableColumnIndex = thismodule.JetCreateTableColumnIndexA;
+        pub const JetCreateTableColumnIndex2 = thismodule.JetCreateTableColumnIndex2A;
+        pub const JetCreateTableColumnIndex3 = thismodule.JetCreateTableColumnIndex3A;
+        pub const JetCreateTableColumnIndex4 = thismodule.JetCreateTableColumnIndex4A;
+        pub const JetDeleteTable = thismodule.JetDeleteTableA;
+        pub const JetRenameTable = thismodule.JetRenameTableA;
+        pub const JetGetTableColumnInfo = thismodule.JetGetTableColumnInfoA;
+        pub const JetGetColumnInfo = thismodule.JetGetColumnInfoA;
+        pub const JetAddColumn = thismodule.JetAddColumnA;
+        pub const JetDeleteColumn = thismodule.JetDeleteColumnA;
+        pub const JetDeleteColumn2 = thismodule.JetDeleteColumn2A;
+        pub const JetRenameColumn = thismodule.JetRenameColumnA;
+        pub const JetSetColumnDefaultValue = thismodule.JetSetColumnDefaultValueA;
+        pub const JetGetTableIndexInfo = thismodule.JetGetTableIndexInfoA;
+        pub const JetGetIndexInfo = thismodule.JetGetIndexInfoA;
+        pub const JetCreateIndex = thismodule.JetCreateIndexA;
+        pub const JetCreateIndex2 = thismodule.JetCreateIndex2A;
+        pub const JetCreateIndex3 = thismodule.JetCreateIndex3A;
+        pub const JetCreateIndex4 = thismodule.JetCreateIndex4A;
+        pub const JetDeleteIndex = thismodule.JetDeleteIndexA;
+        pub const JetGetDatabaseInfo = thismodule.JetGetDatabaseInfoA;
+        pub const JetGetDatabaseFileInfo = thismodule.JetGetDatabaseFileInfoA;
+        pub const JetOpenDatabase = thismodule.JetOpenDatabaseA;
+        pub const JetOpenTable = thismodule.JetOpenTableA;
+        pub const JetGetCurrentIndex = thismodule.JetGetCurrentIndexA;
+        pub const JetSetCurrentIndex = thismodule.JetSetCurrentIndexA;
+        pub const JetSetCurrentIndex2 = thismodule.JetSetCurrentIndex2A;
+        pub const JetSetCurrentIndex3 = thismodule.JetSetCurrentIndex3A;
+        pub const JetSetCurrentIndex4 = thismodule.JetSetCurrentIndex4A;
+        pub const JetCompact = thismodule.JetCompactA;
+        pub const JetDefragment = thismodule.JetDefragmentA;
+        pub const JetDefragment2 = thismodule.JetDefragment2A;
+        pub const JetDefragment3 = thismodule.JetDefragment3A;
+        pub const JetSetDatabaseSize = thismodule.JetSetDatabaseSizeA;
+        pub const JetBackup = thismodule.JetBackupA;
+        pub const JetBackupInstance = thismodule.JetBackupInstanceA;
+        pub const JetRestore = thismodule.JetRestoreA;
+        pub const JetRestore2 = thismodule.JetRestore2A;
+        pub const JetRestoreInstance = thismodule.JetRestoreInstanceA;
+        pub const JetGetAttachInfo = thismodule.JetGetAttachInfoA;
+        pub const JetGetAttachInfoInstance = thismodule.JetGetAttachInfoInstanceA;
+        pub const JetOpenFile = thismodule.JetOpenFileA;
+        pub const JetOpenFileInstance = thismodule.JetOpenFileInstanceA;
+        pub const JetGetLogInfo = thismodule.JetGetLogInfoA;
+        pub const JetGetLogInfoInstance = thismodule.JetGetLogInfoInstanceA;
+        pub const JetGetLogInfoInstance2 = thismodule.JetGetLogInfoInstance2A;
+        pub const JetGetTruncateLogInfoInstance = thismodule.JetGetTruncateLogInfoInstanceA;
+        pub const JetExternalRestore = thismodule.JetExternalRestoreA;
+        pub const JetExternalRestore2 = thismodule.JetExternalRestore2A;
+        pub const JetGetInstanceInfo = thismodule.JetGetInstanceInfoA;
+        pub const JetOSSnapshotFreeze = thismodule.JetOSSnapshotFreezeA;
+        pub const JetOSSnapshotGetFreezeInfo = thismodule.JetOSSnapshotGetFreezeInfoA;
     },
     .wide => struct {
-        pub const JET_RSTMAP_ = JET_RSTMAP_W;
-        pub const CONVERT_ = CONVERT_W;
-        pub const JET_COLUMNBASE_ = JET_COLUMNBASE_W;
-        pub const JET_COLUMNCREATE_ = JET_COLUMNCREATE_W;
-        pub const JET_USERDEFINEDDEFAULT_ = JET_USERDEFINEDDEFAULT_W;
-        pub const JET_CONDITIONALCOLUMN_ = JET_CONDITIONALCOLUMN_W;
-        pub const JET_INDEXCREATE_ = JET_INDEXCREATE_W;
-        pub const JET_INDEXCREATE2_ = JET_INDEXCREATE2_W;
-        pub const JET_INDEXCREATE3_ = JET_INDEXCREATE3_W;
-        pub const JET_TABLECREATE_ = JET_TABLECREATE_W;
-        pub const JET_TABLECREATE2_ = JET_TABLECREATE2_W;
-        pub const JET_TABLECREATE3_ = JET_TABLECREATE3_W;
-        pub const JET_TABLECREATE4_ = JET_TABLECREATE4_W;
-        pub const JET_RSTINFO_ = JET_RSTINFO_W;
-        pub const JET_SETSYSPARAM_ = JET_SETSYSPARAM_W;
-        pub const JET_LOGINFO_ = JET_LOGINFO_W;
-        pub const JET_INSTANCE_INFO_ = JET_INSTANCE_INFO_W;
-        pub const JetInit3 = JetInit3W;
-        pub const JetCreateInstance = JetCreateInstanceW;
-        pub const JetCreateInstance2 = JetCreateInstance2W;
-        pub const JetSetSystemParameter = JetSetSystemParameterW;
-        pub const JetGetSystemParameter = JetGetSystemParameterW;
-        pub const JetEnableMultiInstance = JetEnableMultiInstanceW;
-        pub const JetBeginSession = JetBeginSessionW;
-        pub const JetCreateDatabase = JetCreateDatabaseW;
-        pub const JetCreateDatabase2 = JetCreateDatabase2W;
-        pub const JetAttachDatabase = JetAttachDatabaseW;
-        pub const JetAttachDatabase2 = JetAttachDatabase2W;
-        pub const JetDetachDatabase = JetDetachDatabaseW;
-        pub const JetDetachDatabase2 = JetDetachDatabase2W;
-        pub const JetGetObjectInfo = JetGetObjectInfoW;
-        pub const JetGetTableInfo = JetGetTableInfoW;
-        pub const JetCreateTable = JetCreateTableW;
-        pub const JetCreateTableColumnIndex = JetCreateTableColumnIndexW;
-        pub const JetCreateTableColumnIndex2 = JetCreateTableColumnIndex2W;
-        pub const JetCreateTableColumnIndex3 = JetCreateTableColumnIndex3W;
-        pub const JetCreateTableColumnIndex4 = JetCreateTableColumnIndex4W;
-        pub const JetDeleteTable = JetDeleteTableW;
-        pub const JetRenameTable = JetRenameTableW;
-        pub const JetGetTableColumnInfo = JetGetTableColumnInfoW;
-        pub const JetGetColumnInfo = JetGetColumnInfoW;
-        pub const JetAddColumn = JetAddColumnW;
-        pub const JetDeleteColumn = JetDeleteColumnW;
-        pub const JetDeleteColumn2 = JetDeleteColumn2W;
-        pub const JetRenameColumn = JetRenameColumnW;
-        pub const JetSetColumnDefaultValue = JetSetColumnDefaultValueW;
-        pub const JetGetTableIndexInfo = JetGetTableIndexInfoW;
-        pub const JetGetIndexInfo = JetGetIndexInfoW;
-        pub const JetCreateIndex = JetCreateIndexW;
-        pub const JetCreateIndex2 = JetCreateIndex2W;
-        pub const JetCreateIndex3 = JetCreateIndex3W;
-        pub const JetCreateIndex4 = JetCreateIndex4W;
-        pub const JetDeleteIndex = JetDeleteIndexW;
-        pub const JetGetDatabaseInfo = JetGetDatabaseInfoW;
-        pub const JetGetDatabaseFileInfo = JetGetDatabaseFileInfoW;
-        pub const JetOpenDatabase = JetOpenDatabaseW;
-        pub const JetOpenTable = JetOpenTableW;
-        pub const JetGetCurrentIndex = JetGetCurrentIndexW;
-        pub const JetSetCurrentIndex = JetSetCurrentIndexW;
-        pub const JetSetCurrentIndex2 = JetSetCurrentIndex2W;
-        pub const JetSetCurrentIndex3 = JetSetCurrentIndex3W;
-        pub const JetSetCurrentIndex4 = JetSetCurrentIndex4W;
-        pub const JetCompact = JetCompactW;
-        pub const JetDefragment = JetDefragmentW;
-        pub const JetDefragment2 = JetDefragment2W;
-        pub const JetDefragment3 = JetDefragment3W;
-        pub const JetSetDatabaseSize = JetSetDatabaseSizeW;
-        pub const JetBackup = JetBackupW;
-        pub const JetBackupInstance = JetBackupInstanceW;
-        pub const JetRestore = JetRestoreW;
-        pub const JetRestore2 = JetRestore2W;
-        pub const JetRestoreInstance = JetRestoreInstanceW;
-        pub const JetGetAttachInfo = JetGetAttachInfoW;
-        pub const JetGetAttachInfoInstance = JetGetAttachInfoInstanceW;
-        pub const JetOpenFile = JetOpenFileW;
-        pub const JetOpenFileInstance = JetOpenFileInstanceW;
-        pub const JetGetLogInfo = JetGetLogInfoW;
-        pub const JetGetLogInfoInstance = JetGetLogInfoInstanceW;
-        pub const JetGetLogInfoInstance2 = JetGetLogInfoInstance2W;
-        pub const JetGetTruncateLogInfoInstance = JetGetTruncateLogInfoInstanceW;
-        pub const JetExternalRestore = JetExternalRestoreW;
-        pub const JetExternalRestore2 = JetExternalRestore2W;
-        pub const JetGetInstanceInfo = JetGetInstanceInfoW;
-        pub const JetOSSnapshotFreeze = JetOSSnapshotFreezeW;
-        pub const JetOSSnapshotGetFreezeInfo = JetOSSnapshotGetFreezeInfoW;
+        pub const JET_RSTMAP_ = thismodule.JET_RSTMAP_W;
+        pub const CONVERT_ = thismodule.CONVERT_W;
+        pub const JET_COLUMNBASE_ = thismodule.JET_COLUMNBASE_W;
+        pub const JET_COLUMNCREATE_ = thismodule.JET_COLUMNCREATE_W;
+        pub const JET_USERDEFINEDDEFAULT_ = thismodule.JET_USERDEFINEDDEFAULT_W;
+        pub const JET_CONDITIONALCOLUMN_ = thismodule.JET_CONDITIONALCOLUMN_W;
+        pub const JET_INDEXCREATE_ = thismodule.JET_INDEXCREATE_W;
+        pub const JET_INDEXCREATE2_ = thismodule.JET_INDEXCREATE2_W;
+        pub const JET_INDEXCREATE3_ = thismodule.JET_INDEXCREATE3_W;
+        pub const JET_TABLECREATE_ = thismodule.JET_TABLECREATE_W;
+        pub const JET_TABLECREATE2_ = thismodule.JET_TABLECREATE2_W;
+        pub const JET_TABLECREATE3_ = thismodule.JET_TABLECREATE3_W;
+        pub const JET_TABLECREATE4_ = thismodule.JET_TABLECREATE4_W;
+        pub const JET_RSTINFO_ = thismodule.JET_RSTINFO_W;
+        pub const JET_SETSYSPARAM_ = thismodule.JET_SETSYSPARAM_W;
+        pub const JET_LOGINFO_ = thismodule.JET_LOGINFO_W;
+        pub const JET_INSTANCE_INFO_ = thismodule.JET_INSTANCE_INFO_W;
+        pub const JetInit3 = thismodule.JetInit3W;
+        pub const JetCreateInstance = thismodule.JetCreateInstanceW;
+        pub const JetCreateInstance2 = thismodule.JetCreateInstance2W;
+        pub const JetSetSystemParameter = thismodule.JetSetSystemParameterW;
+        pub const JetGetSystemParameter = thismodule.JetGetSystemParameterW;
+        pub const JetEnableMultiInstance = thismodule.JetEnableMultiInstanceW;
+        pub const JetBeginSession = thismodule.JetBeginSessionW;
+        pub const JetCreateDatabase = thismodule.JetCreateDatabaseW;
+        pub const JetCreateDatabase2 = thismodule.JetCreateDatabase2W;
+        pub const JetAttachDatabase = thismodule.JetAttachDatabaseW;
+        pub const JetAttachDatabase2 = thismodule.JetAttachDatabase2W;
+        pub const JetDetachDatabase = thismodule.JetDetachDatabaseW;
+        pub const JetDetachDatabase2 = thismodule.JetDetachDatabase2W;
+        pub const JetGetObjectInfo = thismodule.JetGetObjectInfoW;
+        pub const JetGetTableInfo = thismodule.JetGetTableInfoW;
+        pub const JetCreateTable = thismodule.JetCreateTableW;
+        pub const JetCreateTableColumnIndex = thismodule.JetCreateTableColumnIndexW;
+        pub const JetCreateTableColumnIndex2 = thismodule.JetCreateTableColumnIndex2W;
+        pub const JetCreateTableColumnIndex3 = thismodule.JetCreateTableColumnIndex3W;
+        pub const JetCreateTableColumnIndex4 = thismodule.JetCreateTableColumnIndex4W;
+        pub const JetDeleteTable = thismodule.JetDeleteTableW;
+        pub const JetRenameTable = thismodule.JetRenameTableW;
+        pub const JetGetTableColumnInfo = thismodule.JetGetTableColumnInfoW;
+        pub const JetGetColumnInfo = thismodule.JetGetColumnInfoW;
+        pub const JetAddColumn = thismodule.JetAddColumnW;
+        pub const JetDeleteColumn = thismodule.JetDeleteColumnW;
+        pub const JetDeleteColumn2 = thismodule.JetDeleteColumn2W;
+        pub const JetRenameColumn = thismodule.JetRenameColumnW;
+        pub const JetSetColumnDefaultValue = thismodule.JetSetColumnDefaultValueW;
+        pub const JetGetTableIndexInfo = thismodule.JetGetTableIndexInfoW;
+        pub const JetGetIndexInfo = thismodule.JetGetIndexInfoW;
+        pub const JetCreateIndex = thismodule.JetCreateIndexW;
+        pub const JetCreateIndex2 = thismodule.JetCreateIndex2W;
+        pub const JetCreateIndex3 = thismodule.JetCreateIndex3W;
+        pub const JetCreateIndex4 = thismodule.JetCreateIndex4W;
+        pub const JetDeleteIndex = thismodule.JetDeleteIndexW;
+        pub const JetGetDatabaseInfo = thismodule.JetGetDatabaseInfoW;
+        pub const JetGetDatabaseFileInfo = thismodule.JetGetDatabaseFileInfoW;
+        pub const JetOpenDatabase = thismodule.JetOpenDatabaseW;
+        pub const JetOpenTable = thismodule.JetOpenTableW;
+        pub const JetGetCurrentIndex = thismodule.JetGetCurrentIndexW;
+        pub const JetSetCurrentIndex = thismodule.JetSetCurrentIndexW;
+        pub const JetSetCurrentIndex2 = thismodule.JetSetCurrentIndex2W;
+        pub const JetSetCurrentIndex3 = thismodule.JetSetCurrentIndex3W;
+        pub const JetSetCurrentIndex4 = thismodule.JetSetCurrentIndex4W;
+        pub const JetCompact = thismodule.JetCompactW;
+        pub const JetDefragment = thismodule.JetDefragmentW;
+        pub const JetDefragment2 = thismodule.JetDefragment2W;
+        pub const JetDefragment3 = thismodule.JetDefragment3W;
+        pub const JetSetDatabaseSize = thismodule.JetSetDatabaseSizeW;
+        pub const JetBackup = thismodule.JetBackupW;
+        pub const JetBackupInstance = thismodule.JetBackupInstanceW;
+        pub const JetRestore = thismodule.JetRestoreW;
+        pub const JetRestore2 = thismodule.JetRestore2W;
+        pub const JetRestoreInstance = thismodule.JetRestoreInstanceW;
+        pub const JetGetAttachInfo = thismodule.JetGetAttachInfoW;
+        pub const JetGetAttachInfoInstance = thismodule.JetGetAttachInfoInstanceW;
+        pub const JetOpenFile = thismodule.JetOpenFileW;
+        pub const JetOpenFileInstance = thismodule.JetOpenFileInstanceW;
+        pub const JetGetLogInfo = thismodule.JetGetLogInfoW;
+        pub const JetGetLogInfoInstance = thismodule.JetGetLogInfoInstanceW;
+        pub const JetGetLogInfoInstance2 = thismodule.JetGetLogInfoInstance2W;
+        pub const JetGetTruncateLogInfoInstance = thismodule.JetGetTruncateLogInfoInstanceW;
+        pub const JetExternalRestore = thismodule.JetExternalRestoreW;
+        pub const JetExternalRestore2 = thismodule.JetExternalRestore2W;
+        pub const JetGetInstanceInfo = thismodule.JetGetInstanceInfoW;
+        pub const JetOSSnapshotFreeze = thismodule.JetOSSnapshotFreezeW;
+        pub const JetOSSnapshotGetFreezeInfo = thismodule.JetOSSnapshotGetFreezeInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const JET_RSTMAP_ = *opaque{};
@@ -5828,29 +5781,29 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const CY = @import("../system/system_services.zig").CY;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTRBLOB = @import("../system/system_services.zig").BSTRBLOB;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
 const BOOL = @import("../foundation.zig").BOOL;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const HWND = @import("../foundation.zig").HWND;
-const DECIMAL = @import("../system/system_services.zig").DECIMAL;
-const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const OLESTREAM = @import("../system/com.zig").OLESTREAM;
-const IBindStatusCallback = @import("../system/com.zig").IBindStatusCallback;
-const DVTARGETDEVICE = @import("../system/com.zig").DVTARGETDEVICE;
+const BSTR = @import("../foundation.zig").BSTR;
+const BSTRBLOB = @import("../system/system_services.zig").BSTRBLOB;
+const CHAR = @import("../system/system_services.zig").CHAR;
 const CLIPDATA = @import("../system/system_services.zig").CLIPDATA;
+const CY = @import("../system/system_services.zig").CY;
+const DECIMAL = @import("../system/system_services.zig").DECIMAL;
+const DVTARGETDEVICE = @import("../system/com.zig").DVTARGETDEVICE;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IBindStatusCallback = @import("../system/com.zig").IBindStatusCallback;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const OLESTREAM = @import("../system/com.zig").OLESTREAM;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
+const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

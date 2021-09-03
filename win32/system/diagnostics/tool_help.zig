@@ -243,6 +243,7 @@ pub extern "KERNEL32" fn Module32Next(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -255,10 +256,10 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
+const BOOL = @import("../../foundation.zig").BOOL;
+const CHAR = @import("../../system/system_services.zig").CHAR;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
-const CHAR = @import("../../system/system_services.zig").CHAR;
-const BOOL = @import("../../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

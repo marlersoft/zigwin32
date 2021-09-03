@@ -1222,26 +1222,27 @@ pub extern "USER32" fn DefRawInputProc(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (8)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const LoadKeyboardLayout = LoadKeyboardLayoutA;
-        pub const GetKeyboardLayoutName = GetKeyboardLayoutNameA;
-        pub const GetKeyNameText = GetKeyNameTextA;
-        pub const VkKeyScan = VkKeyScanA;
-        pub const VkKeyScanEx = VkKeyScanExA;
-        pub const MapVirtualKey = MapVirtualKeyA;
-        pub const MapVirtualKeyEx = MapVirtualKeyExA;
-        pub const GetRawInputDeviceInfo = GetRawInputDeviceInfoA;
+        pub const LoadKeyboardLayout = thismodule.LoadKeyboardLayoutA;
+        pub const GetKeyboardLayoutName = thismodule.GetKeyboardLayoutNameA;
+        pub const GetKeyNameText = thismodule.GetKeyNameTextA;
+        pub const VkKeyScan = thismodule.VkKeyScanA;
+        pub const VkKeyScanEx = thismodule.VkKeyScanExA;
+        pub const MapVirtualKey = thismodule.MapVirtualKeyA;
+        pub const MapVirtualKeyEx = thismodule.MapVirtualKeyExA;
+        pub const GetRawInputDeviceInfo = thismodule.GetRawInputDeviceInfoA;
     },
     .wide => struct {
-        pub const LoadKeyboardLayout = LoadKeyboardLayoutW;
-        pub const GetKeyboardLayoutName = GetKeyboardLayoutNameW;
-        pub const GetKeyNameText = GetKeyNameTextW;
-        pub const VkKeyScan = VkKeyScanW;
-        pub const VkKeyScanEx = VkKeyScanExW;
-        pub const MapVirtualKey = MapVirtualKeyW;
-        pub const MapVirtualKeyEx = MapVirtualKeyExW;
-        pub const GetRawInputDeviceInfo = GetRawInputDeviceInfoW;
+        pub const LoadKeyboardLayout = thismodule.LoadKeyboardLayoutW;
+        pub const GetKeyboardLayoutName = thismodule.GetKeyboardLayoutNameW;
+        pub const GetKeyNameText = thismodule.GetKeyNameTextW;
+        pub const VkKeyScan = thismodule.VkKeyScanW;
+        pub const VkKeyScanEx = thismodule.VkKeyScanExW;
+        pub const MapVirtualKey = thismodule.MapVirtualKeyW;
+        pub const MapVirtualKeyEx = thismodule.MapVirtualKeyExW;
+        pub const GetRawInputDeviceInfo = thismodule.GetRawInputDeviceInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const LoadKeyboardLayout = *opaque{};
@@ -1266,16 +1267,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
-const WPARAM = @import("../foundation.zig").WPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const LRESULT = @import("../foundation.zig").LRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
 const HKL = @import("../ui/text_services.zig").HKL;
-const BOOL = @import("../foundation.zig").BOOL;
 const HWND = @import("../foundation.zig").HWND;
+const LRESULT = @import("../foundation.zig").LRESULT;
 const POINT = @import("../foundation.zig").POINT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     @setEvalBranchQuota(

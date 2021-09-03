@@ -1907,6 +1907,7 @@ pub extern "WINUSB" fn WinUsb_StopTrackingForTimeSync(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1920,10 +1921,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 
 test {

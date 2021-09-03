@@ -27,6 +27,7 @@ pub extern "WSClient" fn RemoveDeveloperLicense(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -40,8 +41,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const FILETIME = @import("../foundation.zig").FILETIME;
-const HWND = @import("../foundation.zig").HWND;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

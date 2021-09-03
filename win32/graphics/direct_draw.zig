@@ -6349,20 +6349,21 @@ pub extern "DDRAW" fn DirectDrawCreateClipper(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const LPDDENUMCALLBACK = LPDDENUMCALLBACKA;
-        pub const LPDDENUMCALLBACKEX = LPDDENUMCALLBACKEXA;
-        pub const LPDIRECTDRAWENUMERATEEX = LPDIRECTDRAWENUMERATEEXA;
-        pub const DirectDrawEnumerate = DirectDrawEnumerateA;
-        pub const DirectDrawEnumerateEx = DirectDrawEnumerateExA;
+        pub const LPDDENUMCALLBACK = thismodule.LPDDENUMCALLBACKA;
+        pub const LPDDENUMCALLBACKEX = thismodule.LPDDENUMCALLBACKEXA;
+        pub const LPDIRECTDRAWENUMERATEEX = thismodule.LPDIRECTDRAWENUMERATEEXA;
+        pub const DirectDrawEnumerate = thismodule.DirectDrawEnumerateA;
+        pub const DirectDrawEnumerateEx = thismodule.DirectDrawEnumerateExA;
     },
     .wide => struct {
-        pub const LPDDENUMCALLBACK = LPDDENUMCALLBACKW;
-        pub const LPDDENUMCALLBACKEX = LPDDENUMCALLBACKEXW;
-        pub const LPDIRECTDRAWENUMERATEEX = LPDIRECTDRAWENUMERATEEXW;
-        pub const DirectDrawEnumerate = DirectDrawEnumerateW;
-        pub const DirectDrawEnumerateEx = DirectDrawEnumerateExW;
+        pub const LPDDENUMCALLBACK = thismodule.LPDDENUMCALLBACKW;
+        pub const LPDDENUMCALLBACKEX = thismodule.LPDDENUMCALLBACKEXW;
+        pub const LPDIRECTDRAWENUMERATEEX = thismodule.LPDIRECTDRAWENUMERATEEXW;
+        pub const DirectDrawEnumerate = thismodule.DirectDrawEnumerateW;
+        pub const DirectDrawEnumerateEx = thismodule.DirectDrawEnumerateExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const LPDDENUMCALLBACK = *opaque{};
@@ -6382,39 +6383,39 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (34)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const DDVIDEOPORTCAPS = @import("../ui/display_devices.zig").DDVIDEOPORTCAPS;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const DD_BLTDATA = @import("../ui/display_devices.zig").DD_BLTDATA;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const DDHAL_DESTROYDDLOCALDATA = @import("../ui/display_devices.zig").DDHAL_DESTROYDDLOCALDATA;
-const VIDEOMEMORYINFO = @import("../ui/display_devices.zig").VIDEOMEMORYINFO;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const DD_DIRECTDRAW_LOCAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_LOCAL;
 const BOOL = @import("../foundation.zig").BOOL;
-const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const DDVIDEOPORTDESC = @import("../ui/display_devices.zig").DDVIDEOPORTDESC;
-const PDD_GETDRIVERINFO = @import("../ui/display_devices.zig").PDD_GETDRIVERINFO;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const DDVIDEOPORTINFO = @import("../ui/display_devices.zig").DDVIDEOPORTINFO;
-const DDCORECAPS = @import("../ui/display_devices.zig").DDCORECAPS;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
-const DD_SURFACE_LOCAL = @import("../ui/display_devices.zig").DD_SURFACE_LOCAL;
-const HWND = @import("../foundation.zig").HWND;
-const DDVIDEOPORTBANDWIDTH = @import("../ui/display_devices.zig").DDVIDEOPORTBANDWIDTH;
-const HEAPALIGNMENT = @import("../devices/display.zig").HEAPALIGNMENT;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const DD_BLTDATA = @import("../ui/display_devices.zig").DD_BLTDATA;
 const DD_DIRECTDRAW_GLOBAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_GLOBAL;
-const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
-const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const SIZE = @import("../foundation.zig").SIZE;
-const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
-const RECTL = @import("../foundation.zig").RECTL;
+const DD_DIRECTDRAW_LOCAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_LOCAL;
+const DD_SURFACE_LOCAL = @import("../ui/display_devices.zig").DD_SURFACE_LOCAL;
+const DDCORECAPS = @import("../ui/display_devices.zig").DDCORECAPS;
+const DDHAL_DESTROYDDLOCALDATA = @import("../ui/display_devices.zig").DDHAL_DESTROYDDLOCALDATA;
 const DDKERNELCAPS = @import("../ui/display_devices.zig").DDKERNELCAPS;
+const DDVIDEOPORTBANDWIDTH = @import("../ui/display_devices.zig").DDVIDEOPORTBANDWIDTH;
+const DDVIDEOPORTCAPS = @import("../ui/display_devices.zig").DDVIDEOPORTCAPS;
+const DDVIDEOPORTDESC = @import("../ui/display_devices.zig").DDVIDEOPORTDESC;
+const DDVIDEOPORTINFO = @import("../ui/display_devices.zig").DDVIDEOPORTINFO;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HEAPALIGNMENT = @import("../devices/display.zig").HEAPALIGNMENT;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
+const PDD_GETDRIVERINFO = @import("../ui/display_devices.zig").PDD_GETDRIVERINFO;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const RECTL = @import("../foundation.zig").RECTL;
+const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
+const SIZE = @import("../foundation.zig").SIZE;
+const VIDEOMEMORYINFO = @import("../ui/display_devices.zig").VIDEOMEMORYINFO;
+const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

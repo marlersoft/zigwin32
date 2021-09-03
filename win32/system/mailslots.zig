@@ -45,12 +45,13 @@ pub extern "KERNEL32" fn SetMailslotInfo(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const CreateMailslot = CreateMailslotA;
+        pub const CreateMailslot = thismodule.CreateMailslotA;
     },
     .wide => struct {
-        pub const CreateMailslot = CreateMailslotW;
+        pub const CreateMailslot = thismodule.CreateMailslotW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CreateMailslot = *opaque{};
@@ -61,11 +62,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const BOOL = @import("../foundation.zig").BOOL;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

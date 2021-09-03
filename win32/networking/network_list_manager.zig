@@ -782,6 +782,7 @@ pub const INetworkConnectionCostEvents = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -795,12 +796,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BSTR = @import("../foundation.zig").BSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const BSTR = @import("../foundation.zig").BSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

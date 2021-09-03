@@ -3178,6 +3178,7 @@ pub extern "dcomp" fn DCompositionAttachMouseDragToHwnd(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3191,33 +3192,33 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const D2D_MATRIX_4X4_F = @import("../graphics/direct2d.zig").D2D_MATRIX_4X4_F;
-const D2D_VECTOR_4F = @import("../graphics/direct2d.zig").D2D_VECTOR_4F;
 const BOOL = @import("../foundation.zig").BOOL;
-const DXGI_ALPHA_MODE = @import("../graphics/dxgi.zig").DXGI_ALPHA_MODE;
-const D2D1_COLOR_F = @import("../graphics/direct2d.zig").D2D1_COLOR_F;
+const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = @import("../graphics/direct2d.zig").D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE;
+const D2D1_BLEND_MODE = @import("../graphics/direct2d.zig").D2D1_BLEND_MODE;
 const D2D1_BORDER_MODE = @import("../graphics/direct2d.zig").D2D1_BORDER_MODE;
+const D2D1_COLOR_F = @import("../graphics/direct2d.zig").D2D1_COLOR_F;
 const D2D1_COLORMATRIX_ALPHA_MODE = @import("../graphics/direct2d.zig").D2D1_COLORMATRIX_ALPHA_MODE;
 const D2D1_COMPOSITE_MODE = @import("../graphics/direct2d.zig").D2D1_COMPOSITE_MODE;
-const DXGI_RATIONAL = @import("../graphics/dxgi.zig").DXGI_RATIONAL;
-const IDXGIDevice = @import("../graphics/dxgi.zig").IDXGIDevice;
-const D2D_RECT_F = @import("../graphics/direct2d.zig").D2D_RECT_F;
-const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = @import("../graphics/direct2d.zig").D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE;
-const D2D_MATRIX_5X4_F = @import("../graphics/direct2d.zig").D2D_MATRIX_5X4_F;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const D2D_MATRIX_3X2_F = @import("../graphics/direct2d.zig").D2D_MATRIX_3X2_F;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const D2D1_TURBULENCE_NOISE = @import("../graphics/direct2d.zig").D2D1_TURBULENCE_NOISE;
-const RECT = @import("../foundation.zig").RECT;
+const D2D_MATRIX_3X2_F = @import("../graphics/direct2d.zig").D2D_MATRIX_3X2_F;
+const D2D_MATRIX_4X4_F = @import("../graphics/direct2d.zig").D2D_MATRIX_4X4_F;
+const D2D_MATRIX_5X4_F = @import("../graphics/direct2d.zig").D2D_MATRIX_5X4_F;
+const D2D_RECT_F = @import("../graphics/direct2d.zig").D2D_RECT_F;
 const D2D_VECTOR_2F = @import("../graphics/direct2d.zig").D2D_VECTOR_2F;
-const HWND = @import("../foundation.zig").HWND;
-const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
-const D2D1_BLEND_MODE = @import("../graphics/direct2d.zig").D2D1_BLEND_MODE;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const D2D_VECTOR_4F = @import("../graphics/direct2d.zig").D2D_VECTOR_4F;
 const D3DMATRIX = @import("../graphics/direct3d9.zig").D3DMATRIX;
+const DXGI_ALPHA_MODE = @import("../graphics/dxgi.zig").DXGI_ALPHA_MODE;
+const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
+const DXGI_RATIONAL = @import("../graphics/dxgi.zig").DXGI_RATIONAL;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDXGIDevice = @import("../graphics/dxgi.zig").IDXGIDevice;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const POINT = @import("../foundation.zig").POINT;
+const RECT = @import("../foundation.zig").RECT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

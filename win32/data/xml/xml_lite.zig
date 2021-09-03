@@ -1086,6 +1086,7 @@ pub extern "XmlLite" fn CreateXmlWriterOutputWithEncodingName(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1099,11 +1100,11 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const IMalloc = @import("../../system/com.zig").IMalloc;
-const IUnknown = @import("../../system/com.zig").IUnknown;
 const BOOL = @import("../../foundation.zig").BOOL;
 const HRESULT = @import("../../foundation.zig").HRESULT;
+const IMalloc = @import("../../system/com.zig").IMalloc;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

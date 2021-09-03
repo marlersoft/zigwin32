@@ -4727,18 +4727,19 @@ pub extern "GPEDIT" fn ExportRSoPData(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const GROUP_POLICY_OBJECT = GROUP_POLICY_OBJECTA;
-        pub const GetGPOList = GetGPOListA;
-        pub const FreeGPOList = FreeGPOListA;
-        pub const GetAppliedGPOList = GetAppliedGPOListA;
+        pub const GROUP_POLICY_OBJECT = thismodule.GROUP_POLICY_OBJECTA;
+        pub const GetGPOList = thismodule.GetGPOListA;
+        pub const FreeGPOList = thismodule.FreeGPOListA;
+        pub const GetAppliedGPOList = thismodule.GetAppliedGPOListA;
     },
     .wide => struct {
-        pub const GROUP_POLICY_OBJECT = GROUP_POLICY_OBJECTW;
-        pub const GetGPOList = GetGPOListW;
-        pub const FreeGPOList = FreeGPOListW;
-        pub const GetAppliedGPOList = GetAppliedGPOListW;
+        pub const GROUP_POLICY_OBJECT = thismodule.GROUP_POLICY_OBJECTW;
+        pub const GetGPOList = thismodule.GetGPOListW;
+        pub const FreeGPOList = thismodule.FreeGPOListW;
+        pub const GetAppliedGPOList = thismodule.GetAppliedGPOListW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const GROUP_POLICY_OBJECT = *opaque{};
@@ -4756,31 +4757,31 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (26)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const APPCATEGORYINFOLIST = @import("../ui/shell.zig").APPCATEGORYINFOLIST;
+const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HKEY = @import("../system/registry.zig").HKEY;
+const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const HKEY = @import("../system/registry.zig").HKEY;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const PSID = @import("../foundation.zig").PSID;
-const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
-const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
-const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
 const IWbemClassObject = @import("../system/wmi.zig").IWbemClassObject;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IWbemServices = @import("../system/wmi.zig").IWbemServices;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
+const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
+const PSID = @import("../foundation.zig").PSID;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const APPCATEGORYINFOLIST = @import("../ui/shell.zig").APPCATEGORYINFOLIST;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

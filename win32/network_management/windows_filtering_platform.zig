@@ -5938,6 +5938,7 @@ pub extern "fwpuclnt" fn FwpmvSwitchEventsSetSecurityInfo0(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -5951,22 +5952,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
+const ACL = @import("../security.zig").ACL;
+const BOOL = @import("../foundation.zig").BOOL;
+const COMPARTMENT_ID = @import("../system/kernel.zig").COMPARTMENT_ID;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
+const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
+const LUID = @import("../system/system_services.zig").LUID;
+const PSID = @import("../foundation.zig").PSID;
+const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
+const SCOPE_ID = @import("../networking/win_sock.zig").SCOPE_ID;
+const SEC_WINNT_AUTH_IDENTITY_W = @import("../system/rpc.zig").SEC_WINNT_AUTH_IDENTITY_W;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
-const SEC_WINNT_AUTH_IDENTITY_W = @import("../system/rpc.zig").SEC_WINNT_AUTH_IDENTITY_W;
-const PSTR = @import("../foundation.zig").PSTR;
-const PSID = @import("../foundation.zig").PSID;
-const BOOL = @import("../foundation.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
-const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
-const SCOPE_ID = @import("../networking/win_sock.zig").SCOPE_ID;
-const COMPARTMENT_ID = @import("../system/kernel.zig").COMPARTMENT_ID;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const ACL = @import("../security.zig").ACL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -312,17 +312,6 @@ pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (94)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const IP6_ADDRESS = extern union {
-    IP6Qword: [2]u64,
-    IP6Dword: [4]u32,
-    IP6Word: [8]u16,
-    IP6Byte: [16]u8,
-};
-
-}, else => struct { } };
 
 // TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
 pub const DnsContextHandle = isize;
@@ -1290,17 +1279,20 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     ulResendCount: u32,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const IP6_ADDRESS = extern union {
-    IP6Dword: [4]u32,
-    IP6Word: [8]u16,
-    IP6Byte: [16]u8,
+pub const IP6_ADDRESS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern union {
+        IP6Qword: [2]u64,
+        IP6Dword: [4]u32,
+        IP6Word: [8]u16,
+        IP6Byte: [16]u8,
+    },
+    .X86 => extern union {
+        IP6Dword: [4]u32,
+        IP6Word: [8]u16,
+        IP6Byte: [16]u8,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (57)
@@ -1692,52 +1684,53 @@ pub extern "DNSAPI" fn DnsStopMulticastQuery(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (21)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const DNS_PTR_DATA = DNS_PTR_DATAA;
-        pub const DNS_SOA_DATA = DNS_SOA_DATAA;
-        pub const DNS_MINFO_DATA = DNS_MINFO_DATAA;
-        pub const DNS_MX_DATA = DNS_MX_DATAA;
-        pub const DNS_TXT_DATA = DNS_TXT_DATAA;
-        pub const DNS_SIG_DATA = DNS_SIG_DATAA;
-        pub const DNS_NSEC_DATA = DNS_NSEC_DATAA;
-        pub const DNS_NXT_DATA = DNS_NXT_DATAA;
-        pub const DNS_SRV_DATA = DNS_SRV_DATAA;
-        pub const DNS_NAPTR_DATA = DNS_NAPTR_DATAA;
-        pub const DNS_TKEY_DATA = DNS_TKEY_DATAA;
-        pub const DNS_TSIG_DATA = DNS_TSIG_DATAA;
-        pub const DNS_WINSR_DATA = DNS_WINSR_DATAA;
-        pub const DNS_RECORD = DNS_RECORDA;
-        pub const _DnsRecordOpt = _DnsRecordOptA;
-        pub const DnsQuery_ = DnsQuery_A;
-        pub const DnsAcquireContextHandle_ = DnsAcquireContextHandle_A;
-        pub const DnsModifyRecordsInSet_ = DnsModifyRecordsInSet_A;
-        pub const DnsReplaceRecordSet = DnsReplaceRecordSetA;
-        pub const DnsValidateName_ = DnsValidateName_A;
-        pub const DnsNameCompare_ = DnsNameCompare_A;
+        pub const DNS_PTR_DATA = thismodule.DNS_PTR_DATAA;
+        pub const DNS_SOA_DATA = thismodule.DNS_SOA_DATAA;
+        pub const DNS_MINFO_DATA = thismodule.DNS_MINFO_DATAA;
+        pub const DNS_MX_DATA = thismodule.DNS_MX_DATAA;
+        pub const DNS_TXT_DATA = thismodule.DNS_TXT_DATAA;
+        pub const DNS_SIG_DATA = thismodule.DNS_SIG_DATAA;
+        pub const DNS_NSEC_DATA = thismodule.DNS_NSEC_DATAA;
+        pub const DNS_NXT_DATA = thismodule.DNS_NXT_DATAA;
+        pub const DNS_SRV_DATA = thismodule.DNS_SRV_DATAA;
+        pub const DNS_NAPTR_DATA = thismodule.DNS_NAPTR_DATAA;
+        pub const DNS_TKEY_DATA = thismodule.DNS_TKEY_DATAA;
+        pub const DNS_TSIG_DATA = thismodule.DNS_TSIG_DATAA;
+        pub const DNS_WINSR_DATA = thismodule.DNS_WINSR_DATAA;
+        pub const DNS_RECORD = thismodule.DNS_RECORDA;
+        pub const _DnsRecordOpt = thismodule._DnsRecordOptA;
+        pub const DnsQuery_ = thismodule.DnsQuery_A;
+        pub const DnsAcquireContextHandle_ = thismodule.DnsAcquireContextHandle_A;
+        pub const DnsModifyRecordsInSet_ = thismodule.DnsModifyRecordsInSet_A;
+        pub const DnsReplaceRecordSet = thismodule.DnsReplaceRecordSetA;
+        pub const DnsValidateName_ = thismodule.DnsValidateName_A;
+        pub const DnsNameCompare_ = thismodule.DnsNameCompare_A;
     },
     .wide => struct {
-        pub const DNS_PTR_DATA = DNS_PTR_DATAW;
-        pub const DNS_SOA_DATA = DNS_SOA_DATAW;
-        pub const DNS_MINFO_DATA = DNS_MINFO_DATAW;
-        pub const DNS_MX_DATA = DNS_MX_DATAW;
-        pub const DNS_TXT_DATA = DNS_TXT_DATAW;
-        pub const DNS_SIG_DATA = DNS_SIG_DATAW;
-        pub const DNS_NSEC_DATA = DNS_NSEC_DATAW;
-        pub const DNS_NXT_DATA = DNS_NXT_DATAW;
-        pub const DNS_SRV_DATA = DNS_SRV_DATAW;
-        pub const DNS_NAPTR_DATA = DNS_NAPTR_DATAW;
-        pub const DNS_TKEY_DATA = DNS_TKEY_DATAW;
-        pub const DNS_TSIG_DATA = DNS_TSIG_DATAW;
-        pub const DNS_WINSR_DATA = DNS_WINSR_DATAW;
-        pub const DNS_RECORD = DNS_RECORDW;
-        pub const _DnsRecordOpt = _DnsRecordOptW;
-        pub const DnsQuery_ = DnsQuery_W;
-        pub const DnsAcquireContextHandle_ = DnsAcquireContextHandle_W;
-        pub const DnsModifyRecordsInSet_ = DnsModifyRecordsInSet_W;
-        pub const DnsReplaceRecordSet = DnsReplaceRecordSetW;
-        pub const DnsValidateName_ = DnsValidateName_W;
-        pub const DnsNameCompare_ = DnsNameCompare_W;
+        pub const DNS_PTR_DATA = thismodule.DNS_PTR_DATAW;
+        pub const DNS_SOA_DATA = thismodule.DNS_SOA_DATAW;
+        pub const DNS_MINFO_DATA = thismodule.DNS_MINFO_DATAW;
+        pub const DNS_MX_DATA = thismodule.DNS_MX_DATAW;
+        pub const DNS_TXT_DATA = thismodule.DNS_TXT_DATAW;
+        pub const DNS_SIG_DATA = thismodule.DNS_SIG_DATAW;
+        pub const DNS_NSEC_DATA = thismodule.DNS_NSEC_DATAW;
+        pub const DNS_NXT_DATA = thismodule.DNS_NXT_DATAW;
+        pub const DNS_SRV_DATA = thismodule.DNS_SRV_DATAW;
+        pub const DNS_NAPTR_DATA = thismodule.DNS_NAPTR_DATAW;
+        pub const DNS_TKEY_DATA = thismodule.DNS_TKEY_DATAW;
+        pub const DNS_TSIG_DATA = thismodule.DNS_TSIG_DATAW;
+        pub const DNS_WINSR_DATA = thismodule.DNS_WINSR_DATAW;
+        pub const DNS_RECORD = thismodule.DNS_RECORDW;
+        pub const _DnsRecordOpt = thismodule._DnsRecordOptW;
+        pub const DnsQuery_ = thismodule.DnsQuery_W;
+        pub const DnsAcquireContextHandle_ = thismodule.DnsAcquireContextHandle_W;
+        pub const DnsModifyRecordsInSet_ = thismodule.DnsModifyRecordsInSet_W;
+        pub const DnsReplaceRecordSet = thismodule.DnsReplaceRecordSetW;
+        pub const DnsValidateName_ = thismodule.DnsValidateName_W;
+        pub const DnsNameCompare_ = thismodule.DnsNameCompare_W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const DNS_PTR_DATA = *opaque{};
@@ -1788,11 +1781,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
 const BOOL = @import("../foundation.zig").BOOL;
+const CHAR = @import("../system/system_services.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -2345,51 +2345,12 @@ pub const JOY_OEMPOLL_PASSDRIVERDATA = @as(u32, 7);
 //--------------------------------------------------------------------------------
 // Section: Types (134)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const HIDP_LINK_COLLECTION_NODE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    LinkUsage: u16,
-    LinkUsagePage: u16,
-    Parent: u16,
-    NumberOfChildren: u16,
-    NextSibling: u16,
-    FirstChild: u16,
-    _bitfield: u32,
-    UserContext: ?*c_void,
-};
-
-}, else => struct { } };
 
 pub const _HIDP_PREPARSED_DATA = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    NumGlobalUnknowns: u8,
-    Reserved: [3]u8,
-    GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN,
-    Data: [1]u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const HIDD_CONFIGURATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cookie: ?*c_void,
-    size: u32,
-    RingBufferSize: u32,
-};
-
-}, else => struct { } };
 
 pub const DICONSTANTFORCE = extern struct {
     lMagnitude: i32,
@@ -5397,45 +5358,60 @@ pub const JOYREGHWVALUES = packed struct {
     dwCalFlags: u32,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const HIDP_LINK_COLLECTION_NODE = extern struct {
-    LinkUsage: u16,
-    LinkUsagePage: u16,
-    Parent: u16,
-    NumberOfChildren: u16,
-    NextSibling: u16,
-    FirstChild: u16,
-    _bitfield: u32,
-    UserContext: ?*c_void,
+
+
+pub const HIDP_LINK_COLLECTION_NODE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        LinkUsage: u16,
+        LinkUsagePage: u16,
+        Parent: u16,
+        NumberOfChildren: u16,
+        NextSibling: u16,
+        FirstChild: u16,
+        _bitfield: u32,
+        UserContext: ?*c_void,
+    },
+    .X86 => extern struct {
+        LinkUsage: u16,
+        LinkUsagePage: u16,
+        Parent: u16,
+        NumberOfChildren: u16,
+        NextSibling: u16,
+        FirstChild: u16,
+        _bitfield: u32,
+        UserContext: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
-    NumGlobalUnknowns: u8,
-    Reserved: [3]u8,
-    GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN,
-    Data: [1]u32,
+pub const HIDP_EXTENDED_ATTRIBUTES = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        NumGlobalUnknowns: u8,
+        Reserved: [3]u8,
+        GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN,
+        Data: [1]u32,
+    },
+    .X86 => extern struct {
+        NumGlobalUnknowns: u8,
+        Reserved: [3]u8,
+        GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN,
+        Data: [1]u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const HIDD_CONFIGURATION = extern struct {
-    cookie: ?*c_void,
-    size: u32,
-    RingBufferSize: u32,
+pub const HIDD_CONFIGURATION = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        cookie: ?*c_void,
+        size: u32,
+        RingBufferSize: u32,
+    },
+    .X86 => extern struct {
+        cookie: ?*c_void,
+        size: u32,
+        RingBufferSize: u32,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (45)
@@ -5807,54 +5783,55 @@ pub extern "HID" fn HidD_GetMsGenreDescriptor(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (22)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const DIACTION = DIACTIONA;
-        pub const DIACTIONFORMAT = DIACTIONFORMATA;
-        pub const DICONFIGUREDEVICESPARAMS = DICONFIGUREDEVICESPARAMSA;
-        pub const DIDEVICEIMAGEINFO = DIDEVICEIMAGEINFOA;
-        pub const DIDEVICEIMAGEINFOHEADER = DIDEVICEIMAGEINFOHEADERA;
-        pub const DIDEVICEOBJECTINSTANCE_DX3 = DIDEVICEOBJECTINSTANCE_DX3A;
-        pub const DIDEVICEOBJECTINSTANCE = DIDEVICEOBJECTINSTANCEA;
-        pub const LPDIENUMDEVICEOBJECTSCALLBACK = LPDIENUMDEVICEOBJECTSCALLBACKA;
-        pub const DIDEVICEINSTANCE_DX3 = DIDEVICEINSTANCE_DX3A;
-        pub const DIDEVICEINSTANCE = DIDEVICEINSTANCEA;
-        pub const IDirectInputDevice = IDirectInputDeviceA;
-        pub const DIEFFECTINFO = DIEFFECTINFOA;
-        pub const LPDIENUMEFFECTSCALLBACK = LPDIENUMEFFECTSCALLBACKA;
-        pub const IDirectInputDevice2 = IDirectInputDevice2A;
-        pub const IDirectInputDevice7 = IDirectInputDevice7A;
-        pub const IDirectInputDevice8 = IDirectInputDevice8A;
-        pub const LPDIENUMDEVICESCALLBACK = LPDIENUMDEVICESCALLBACKA;
-        pub const LPDIENUMDEVICESBYSEMANTICSCB = LPDIENUMDEVICESBYSEMANTICSCBA;
-        pub const IDirectInput = IDirectInputA;
-        pub const IDirectInput2 = IDirectInput2A;
-        pub const IDirectInput7 = IDirectInput7A;
-        pub const IDirectInput8 = IDirectInput8A;
+        pub const DIACTION = thismodule.DIACTIONA;
+        pub const DIACTIONFORMAT = thismodule.DIACTIONFORMATA;
+        pub const DICONFIGUREDEVICESPARAMS = thismodule.DICONFIGUREDEVICESPARAMSA;
+        pub const DIDEVICEIMAGEINFO = thismodule.DIDEVICEIMAGEINFOA;
+        pub const DIDEVICEIMAGEINFOHEADER = thismodule.DIDEVICEIMAGEINFOHEADERA;
+        pub const DIDEVICEOBJECTINSTANCE_DX3 = thismodule.DIDEVICEOBJECTINSTANCE_DX3A;
+        pub const DIDEVICEOBJECTINSTANCE = thismodule.DIDEVICEOBJECTINSTANCEA;
+        pub const LPDIENUMDEVICEOBJECTSCALLBACK = thismodule.LPDIENUMDEVICEOBJECTSCALLBACKA;
+        pub const DIDEVICEINSTANCE_DX3 = thismodule.DIDEVICEINSTANCE_DX3A;
+        pub const DIDEVICEINSTANCE = thismodule.DIDEVICEINSTANCEA;
+        pub const IDirectInputDevice = thismodule.IDirectInputDeviceA;
+        pub const DIEFFECTINFO = thismodule.DIEFFECTINFOA;
+        pub const LPDIENUMEFFECTSCALLBACK = thismodule.LPDIENUMEFFECTSCALLBACKA;
+        pub const IDirectInputDevice2 = thismodule.IDirectInputDevice2A;
+        pub const IDirectInputDevice7 = thismodule.IDirectInputDevice7A;
+        pub const IDirectInputDevice8 = thismodule.IDirectInputDevice8A;
+        pub const LPDIENUMDEVICESCALLBACK = thismodule.LPDIENUMDEVICESCALLBACKA;
+        pub const LPDIENUMDEVICESBYSEMANTICSCB = thismodule.LPDIENUMDEVICESBYSEMANTICSCBA;
+        pub const IDirectInput = thismodule.IDirectInputA;
+        pub const IDirectInput2 = thismodule.IDirectInput2A;
+        pub const IDirectInput7 = thismodule.IDirectInput7A;
+        pub const IDirectInput8 = thismodule.IDirectInput8A;
     },
     .wide => struct {
-        pub const DIACTION = DIACTIONW;
-        pub const DIACTIONFORMAT = DIACTIONFORMATW;
-        pub const DICONFIGUREDEVICESPARAMS = DICONFIGUREDEVICESPARAMSW;
-        pub const DIDEVICEIMAGEINFO = DIDEVICEIMAGEINFOW;
-        pub const DIDEVICEIMAGEINFOHEADER = DIDEVICEIMAGEINFOHEADERW;
-        pub const DIDEVICEOBJECTINSTANCE_DX3 = DIDEVICEOBJECTINSTANCE_DX3W;
-        pub const DIDEVICEOBJECTINSTANCE = DIDEVICEOBJECTINSTANCEW;
-        pub const LPDIENUMDEVICEOBJECTSCALLBACK = LPDIENUMDEVICEOBJECTSCALLBACKW;
-        pub const DIDEVICEINSTANCE_DX3 = DIDEVICEINSTANCE_DX3W;
-        pub const DIDEVICEINSTANCE = DIDEVICEINSTANCEW;
-        pub const IDirectInputDevice = IDirectInputDeviceW;
-        pub const DIEFFECTINFO = DIEFFECTINFOW;
-        pub const LPDIENUMEFFECTSCALLBACK = LPDIENUMEFFECTSCALLBACKW;
-        pub const IDirectInputDevice2 = IDirectInputDevice2W;
-        pub const IDirectInputDevice7 = IDirectInputDevice7W;
-        pub const IDirectInputDevice8 = IDirectInputDevice8W;
-        pub const LPDIENUMDEVICESCALLBACK = LPDIENUMDEVICESCALLBACKW;
-        pub const LPDIENUMDEVICESBYSEMANTICSCB = LPDIENUMDEVICESBYSEMANTICSCBW;
-        pub const IDirectInput = IDirectInputW;
-        pub const IDirectInput2 = IDirectInput2W;
-        pub const IDirectInput7 = IDirectInput7W;
-        pub const IDirectInput8 = IDirectInput8W;
+        pub const DIACTION = thismodule.DIACTIONW;
+        pub const DIACTIONFORMAT = thismodule.DIACTIONFORMATW;
+        pub const DICONFIGUREDEVICESPARAMS = thismodule.DICONFIGUREDEVICESPARAMSW;
+        pub const DIDEVICEIMAGEINFO = thismodule.DIDEVICEIMAGEINFOW;
+        pub const DIDEVICEIMAGEINFOHEADER = thismodule.DIDEVICEIMAGEINFOHEADERW;
+        pub const DIDEVICEOBJECTINSTANCE_DX3 = thismodule.DIDEVICEOBJECTINSTANCE_DX3W;
+        pub const DIDEVICEOBJECTINSTANCE = thismodule.DIDEVICEOBJECTINSTANCEW;
+        pub const LPDIENUMDEVICEOBJECTSCALLBACK = thismodule.LPDIENUMDEVICEOBJECTSCALLBACKW;
+        pub const DIDEVICEINSTANCE_DX3 = thismodule.DIDEVICEINSTANCE_DX3W;
+        pub const DIDEVICEINSTANCE = thismodule.DIDEVICEINSTANCEW;
+        pub const IDirectInputDevice = thismodule.IDirectInputDeviceW;
+        pub const DIEFFECTINFO = thismodule.DIEFFECTINFOW;
+        pub const LPDIENUMEFFECTSCALLBACK = thismodule.LPDIENUMEFFECTSCALLBACKW;
+        pub const IDirectInputDevice2 = thismodule.IDirectInputDevice2W;
+        pub const IDirectInputDevice7 = thismodule.IDirectInputDevice7W;
+        pub const IDirectInputDevice8 = thismodule.IDirectInputDevice8W;
+        pub const LPDIENUMDEVICESCALLBACK = thismodule.LPDIENUMDEVICESCALLBACKW;
+        pub const LPDIENUMDEVICESBYSEMANTICSCB = thismodule.LPDIENUMDEVICESBYSEMANTICSCBW;
+        pub const IDirectInput = thismodule.IDirectInputW;
+        pub const IDirectInput2 = thismodule.IDirectInput2W;
+        pub const IDirectInput7 = thismodule.IDirectInput7W;
+        pub const IDirectInput8 = thismodule.IDirectInput8W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const DIACTION = *opaque{};
@@ -5908,26 +5885,26 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HKEY = @import("../system/registry.zig").HKEY;
-const JOYRANGE = @import("../media/multimedia.zig").JOYRANGE;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const JOYREGHWSETTINGS = @import("../media/multimedia.zig").JOYREGHWSETTINGS;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const JOYREGHWCONFIG = @import("../media/multimedia.zig").JOYREGHWCONFIG;
-const JOYREGUSERVALUES = @import("../media/multimedia.zig").JOYREGUSERVALUES;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const POINT = @import("../foundation.zig").POINT;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HKEY = @import("../system/registry.zig").HKEY;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const JOYRANGE = @import("../media/multimedia.zig").JOYRANGE;
+const JOYREGHWCONFIG = @import("../media/multimedia.zig").JOYREGHWCONFIG;
+const JOYREGHWSETTINGS = @import("../media/multimedia.zig").JOYREGHWSETTINGS;
+const JOYREGUSERVALUES = @import("../media/multimedia.zig").JOYREGUSERVALUES;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const POINT = @import("../foundation.zig").POINT;
+const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

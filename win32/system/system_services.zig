@@ -4681,207 +4681,17 @@ pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
     SchedulerParam: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const XSAVE_FORMAT = extern struct {
-    ControlWord: u16,
-    StatusWord: u16,
-    TagWord: u8,
-    Reserved1: u8,
-    ErrorOpcode: u16,
-    ErrorOffset: u32,
-    ErrorSelector: u16,
-    Reserved2: u16,
-    DataOffset: u32,
-    DataSelector: u16,
-    Reserved3: u16,
-    MxCsr: u32,
-    MxCsr_Mask: u32,
-    FloatRegisters: [8]M128A,
-    XmmRegisters: [16]M128A,
-    Reserved4: [96]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const XSTATE_CONTEXT = extern struct {
-    Mask: u64,
-    Length: u32,
-    Reserved1: u32,
-    Area: ?*XSAVE_AREA,
-    Buffer: ?*c_void,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
 
-pub const ARM64_NT_NEON128 = extern union {
-    Anonymous: extern struct {
-        Low: u64,
-        High: i64,
-    },
-    D: [2]f64,
-    S: [4]f32,
-    H: [8]u16,
-    B: [16]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
 
-pub const UNWIND_HISTORY_TABLE_ENTRY = extern struct {
-    ImageBase: u64,
-    FunctionEntry: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const UNWIND_HISTORY_TABLE = extern struct {
-    Count: u32,
-    LocalHint: u8,
-    GlobalHint: u8,
-    Search: u8,
-    Once: u8,
-    LowAddress: u64,
-    HighAddress: u64,
-    Entry: [12]UNWIND_HISTORY_TABLE_ENTRY,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub const DISPATCHER_CONTEXT = extern struct {
-    ControlPc: usize,
-    ImageBase: usize,
-    FunctionEntry: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
-    EstablisherFrame: usize,
-    TargetPc: usize,
-    ContextRecord: ?*CONTEXT,
-    LanguageHandler: ?EXCEPTION_ROUTINE,
-    HandlerData: ?*c_void,
-    HistoryTable: ?*UNWIND_HISTORY_TABLE,
-    ScopeIndex: u32,
-    ControlPcIsUnwound: BOOLEAN,
-    NonVolatileRegisters: ?*u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PEXCEPTION_FILTER = fn(
-    ExceptionPointers: ?*EXCEPTION_POINTERS,
-    EstablisherFrame: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub const PTERMINATION_HANDLER = fn(
-    _abnormal_termination: BOOLEAN,
-    EstablisherFrame: u64,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub const PGET_RUNTIME_FUNCTION_CALLBACK = fn(
-    ControlPc: u64,
-    Context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = fn(
-    Process: ?HANDLE,
-    TableAddress: ?*c_void,
-    Entries: ?*u32,
-    Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
-
-pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
-    X19: ?*u64,
-    X20: ?*u64,
-    X21: ?*u64,
-    X22: ?*u64,
-    X23: ?*u64,
-    X24: ?*u64,
-    X25: ?*u64,
-    X26: ?*u64,
-    X27: ?*u64,
-    X28: ?*u64,
-    Fp: ?*u64,
-    Lr: ?*u64,
-    D8: ?*u64,
-    D9: ?*u64,
-    D10: ?*u64,
-    D11: ?*u64,
-    D12: ?*u64,
-    D13: ?*u64,
-    D14: ?*u64,
-    D15: ?*u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const REARRANGE_FILE_DATA32 = extern struct {
-    SourceStartingOffset: u64,
-    TargetOffset: u64,
-    SourceFileHandle: u32,
-    Length: u32,
-    Flags: u32,
-};
-
-}, else => struct { } };
 
 pub const TP_CALLBACK_INSTANCE = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -4915,43 +4725,8 @@ pub const TEB = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const MOVE_FILE_DATA32 = extern struct {
-    FileHandle: u32,
-    StartingVcn: LARGE_INTEGER,
-    StartingLcn: LARGE_INTEGER,
-    ClusterCount: u32,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DUPLICATE_EXTENTS_DATA32 = extern struct {
-    FileHandle: u32,
-    SourceFileOffset: LARGE_INTEGER,
-    TargetFileOffset: LARGE_INTEGER,
-    ByteCount: LARGE_INTEGER,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DUPLICATE_EXTENTS_DATA_EX32 = extern struct {
-    Size: u32,
-    FileHandle: u32,
-    SourceFileOffset: LARGE_INTEGER,
-    TargetFileOffset: LARGE_INTEGER,
-    ByteCount: LARGE_INTEGER,
-    Flags: u32,
-};
-
-}, else => struct { } };
 
 pub const AtlThunkData_t = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -5052,131 +4827,11 @@ pub const SCOPE_TABLE_AMD64 = extern struct {
     },
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
 
-pub const UNWIND_HISTORY_TABLE_ENTRY = extern struct {
-    ImageBase: u64,
-    FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
 
-pub const PGET_RUNTIME_FUNCTION_CALLBACK = fn(
-    ControlPc: u64,
-    Context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_RUNTIME_FUNCTION_ENTRY;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
-
-pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = fn(
-    Process: ?HANDLE,
-    TableAddress: ?*c_void,
-    Entries: ?*u32,
-    Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
-
-pub const DISPATCHER_CONTEXT = extern struct {
-    ControlPc: u64,
-    ImageBase: u64,
-    FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-    EstablisherFrame: u64,
-    TargetIp: u64,
-    ContextRecord: ?*CONTEXT,
-    LanguageHandler: ?EXCEPTION_ROUTINE,
-    HandlerData: ?*c_void,
-    HistoryTable: ?*UNWIND_HISTORY_TABLE,
-    ScopeIndex: u32,
-    Fill0: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
-
-pub const PTERMINATION_HANDLER = fn(
-    _abnormal_termination: BOOLEAN,
-    EstablisherFrame: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
-
-pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
-    Anonymous1: extern union {
-        FloatingContext: [16]?*M128A,
-        Anonymous: extern struct {
-            Xmm0: ?*M128A,
-            Xmm1: ?*M128A,
-            Xmm2: ?*M128A,
-            Xmm3: ?*M128A,
-            Xmm4: ?*M128A,
-            Xmm5: ?*M128A,
-            Xmm6: ?*M128A,
-            Xmm7: ?*M128A,
-            Xmm8: ?*M128A,
-            Xmm9: ?*M128A,
-            Xmm10: ?*M128A,
-            Xmm11: ?*M128A,
-            Xmm12: ?*M128A,
-            Xmm13: ?*M128A,
-            Xmm14: ?*M128A,
-            Xmm15: ?*M128A,
-        },
-    },
-    Anonymous2: extern union {
-        IntegerContext: [16]?*u64,
-        Anonymous: extern struct {
-            Rax: ?*u64,
-            Rcx: ?*u64,
-            Rdx: ?*u64,
-            Rbx: ?*u64,
-            Rsp: ?*u64,
-            Rbp: ?*u64,
-            Rsi: ?*u64,
-            Rdi: ?*u64,
-            R8: ?*u64,
-            R9: ?*u64,
-            R10: ?*u64,
-            R11: ?*u64,
-            R12: ?*u64,
-            R13: ?*u64,
-            R14: ?*u64,
-            R15: ?*u64,
-        },
-    },
-};
-
-}, else => struct { } };
 
 pub const SCOPE_TABLE_ARM = extern struct {
     Count: u32,
@@ -14951,54 +14606,286 @@ pub const POWER_REQUEST_CONTEXT_FLAGS = enum(u32) {
 pub const POWER_REQUEST_CONTEXT_DETAILED_STRING = POWER_REQUEST_CONTEXT_FLAGS.DETAILED_STRING;
 pub const POWER_REQUEST_CONTEXT_SIMPLE_STRING = POWER_REQUEST_CONTEXT_FLAGS.SIMPLE_STRING;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const XSAVE_FORMAT = extern struct {
-    ControlWord: u16,
-    StatusWord: u16,
-    TagWord: u8,
-    Reserved1: u8,
-    ErrorOpcode: u16,
-    ErrorOffset: u32,
-    ErrorSelector: u16,
-    Reserved2: u16,
-    DataOffset: u32,
-    DataSelector: u16,
-    Reserved3: u16,
-    MxCsr: u32,
-    MxCsr_Mask: u32,
-    FloatRegisters: [8]M128A,
-    XmmRegisters: [8]M128A,
-    Reserved4: [224]u8,
+
+
+pub const XSAVE_FORMAT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ControlWord: u16,
+        StatusWord: u16,
+        TagWord: u8,
+        Reserved1: u8,
+        ErrorOpcode: u16,
+        ErrorOffset: u32,
+        ErrorSelector: u16,
+        Reserved2: u16,
+        DataOffset: u32,
+        DataSelector: u16,
+        Reserved3: u16,
+        MxCsr: u32,
+        MxCsr_Mask: u32,
+        FloatRegisters: [8]M128A,
+        XmmRegisters: [16]M128A,
+        Reserved4: [96]u8,
+    },
+    .X86 => extern struct {
+        ControlWord: u16,
+        StatusWord: u16,
+        TagWord: u8,
+        Reserved1: u8,
+        ErrorOpcode: u16,
+        ErrorOffset: u32,
+        ErrorSelector: u16,
+        Reserved2: u16,
+        DataOffset: u32,
+        DataSelector: u16,
+        Reserved3: u16,
+        MxCsr: u32,
+        MxCsr_Mask: u32,
+        FloatRegisters: [8]M128A,
+        XmmRegisters: [8]M128A,
+        Reserved4: [224]u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const XSTATE_CONTEXT = extern struct {
-    Mask: u64,
-    Length: u32,
-    Reserved1: u32,
-    Area: ?*XSAVE_AREA,
-    Reserved2: u32,
-    Buffer: ?*c_void,
-    Reserved3: u32,
+pub const XSTATE_CONTEXT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Mask: u64,
+        Length: u32,
+        Reserved1: u32,
+        Area: ?*XSAVE_AREA,
+        Buffer: ?*c_void,
+    },
+    .X86 => extern struct {
+        Mask: u64,
+        Length: u32,
+        Reserved1: u32,
+        Area: ?*XSAVE_AREA,
+        Reserved2: u32,
+        Buffer: ?*c_void,
+        Reserved3: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
-    Dummy: u32,
+pub const ARM64_NT_NEON128 = switch(@import("../zig.zig").arch) {
+    .Arm64 => extern union {
+        Anonymous: extern struct {
+            Low: u64,
+            High: i64,
+        },
+        D: [2]f64,
+        S: [4]f32,
+        H: [8]u16,
+        B: [16]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
+pub const UNWIND_HISTORY_TABLE_ENTRY = switch(@import("../zig.zig").arch) {
+    .Arm64 => extern struct {
+        ImageBase: u64,
+        FunctionEntry: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    },
+    .X64 => extern struct {
+        ImageBase: u64,
+        FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const UNWIND_HISTORY_TABLE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Count: u32,
+        LocalHint: u8,
+        GlobalHint: u8,
+        Search: u8,
+        Once: u8,
+        LowAddress: u64,
+        HighAddress: u64,
+        Entry: [12]UNWIND_HISTORY_TABLE_ENTRY,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DISPATCHER_CONTEXT = switch(@import("../zig.zig").arch) {
+    .Arm64 => extern struct {
+        ControlPc: usize,
+        ImageBase: usize,
+        FunctionEntry: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+        EstablisherFrame: usize,
+        TargetPc: usize,
+        ContextRecord: ?*CONTEXT,
+        LanguageHandler: ?EXCEPTION_ROUTINE,
+        HandlerData: ?*c_void,
+        HistoryTable: ?*UNWIND_HISTORY_TABLE,
+        ScopeIndex: u32,
+        ControlPcIsUnwound: BOOLEAN,
+        NonVolatileRegisters: ?*u8,
+    },
+    .X64 => extern struct {
+        ControlPc: u64,
+        ImageBase: u64,
+        FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+        EstablisherFrame: u64,
+        TargetIp: u64,
+        ContextRecord: ?*CONTEXT,
+        LanguageHandler: ?EXCEPTION_ROUTINE,
+        HandlerData: ?*c_void,
+        HistoryTable: ?*UNWIND_HISTORY_TABLE,
+        ScopeIndex: u32,
+        Fill0: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const PEXCEPTION_FILTER = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => fn(
+        ExceptionPointers: ?*EXCEPTION_POINTERS,
+        EstablisherFrame: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const PTERMINATION_HANDLER = switch(@import("../zig.zig").arch) {
+    .Arm64 => fn(
+        _abnormal_termination: BOOLEAN,
+        EstablisherFrame: u64,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    .X64 => fn(
+        _abnormal_termination: BOOLEAN,
+        EstablisherFrame: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const PGET_RUNTIME_FUNCTION_CALLBACK = switch(@import("../zig.zig").arch) {
+    .Arm64 => fn(
+        ControlPc: u64,
+        Context: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    .X64 => fn(
+        ControlPc: u64,
+        Context: ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig").arch) {
+    .Arm64 => fn(
+        Process: ?HANDLE,
+        TableAddress: ?*c_void,
+        Entries: ?*u32,
+        Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    .X64 => fn(
+        Process: ?HANDLE,
+        TableAddress: ?*c_void,
+        Entries: ?*u32,
+        Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const KNONVOLATILE_CONTEXT_POINTERS = switch(@import("../zig.zig").arch) {
+    .Arm64 => extern struct {
+        X19: ?*u64,
+        X20: ?*u64,
+        X21: ?*u64,
+        X22: ?*u64,
+        X23: ?*u64,
+        X24: ?*u64,
+        X25: ?*u64,
+        X26: ?*u64,
+        X27: ?*u64,
+        X28: ?*u64,
+        Fp: ?*u64,
+        Lr: ?*u64,
+        D8: ?*u64,
+        D9: ?*u64,
+        D10: ?*u64,
+        D11: ?*u64,
+        D12: ?*u64,
+        D13: ?*u64,
+        D14: ?*u64,
+        D15: ?*u64,
+    },
+    .X64 => extern struct {
+        Anonymous1: extern union {
+            FloatingContext: [16]?*M128A,
+            Anonymous: extern struct {
+                Xmm0: ?*M128A,
+                Xmm1: ?*M128A,
+                Xmm2: ?*M128A,
+                Xmm3: ?*M128A,
+                Xmm4: ?*M128A,
+                Xmm5: ?*M128A,
+                Xmm6: ?*M128A,
+                Xmm7: ?*M128A,
+                Xmm8: ?*M128A,
+                Xmm9: ?*M128A,
+                Xmm10: ?*M128A,
+                Xmm11: ?*M128A,
+                Xmm12: ?*M128A,
+                Xmm13: ?*M128A,
+                Xmm14: ?*M128A,
+                Xmm15: ?*M128A,
+            },
+        },
+        Anonymous2: extern union {
+            IntegerContext: [16]?*u64,
+            Anonymous: extern struct {
+                Rax: ?*u64,
+                Rcx: ?*u64,
+                Rdx: ?*u64,
+                Rbx: ?*u64,
+                Rsp: ?*u64,
+                Rbp: ?*u64,
+                Rsi: ?*u64,
+                Rdi: ?*u64,
+                R8: ?*u64,
+                R9: ?*u64,
+                R10: ?*u64,
+                R11: ?*u64,
+                R12: ?*u64,
+                R13: ?*u64,
+                R14: ?*u64,
+                R15: ?*u64,
+            },
+        },
+    },
+    .X86 => extern struct {
+        Dummy: u32,
+    },
+};
+pub const REARRANGE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        SourceStartingOffset: u64,
+        TargetOffset: u64,
+        SourceFileHandle: u32,
+        Length: u32,
+        Flags: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MOVE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        FileHandle: u32,
+        StartingVcn: LARGE_INTEGER,
+        StartingLcn: LARGE_INTEGER,
+        ClusterCount: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DUPLICATE_EXTENTS_DATA32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        FileHandle: u32,
+        SourceFileOffset: LARGE_INTEGER,
+        TargetFileOffset: LARGE_INTEGER,
+        ByteCount: LARGE_INTEGER,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DUPLICATE_EXTENTS_DATA_EX32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Size: u32,
+        FileHandle: u32,
+        SourceFileOffset: LARGE_INTEGER,
+        TargetFileOffset: LARGE_INTEGER,
+        ByteCount: LARGE_INTEGER,
+        Flags: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (45)
@@ -15316,16 +15203,17 @@ pub extern "KERNEL32" fn BindIoCompletionCallback(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const DEV_BROADCAST_PORT_ = DEV_BROADCAST_PORT_A;
-        pub const DEV_BROADCAST_DEVICEINTERFACE_ = DEV_BROADCAST_DEVICEINTERFACE_A;
-        pub const RegisterDeviceNotification = RegisterDeviceNotificationA;
+        pub const DEV_BROADCAST_PORT_ = thismodule.DEV_BROADCAST_PORT_A;
+        pub const DEV_BROADCAST_DEVICEINTERFACE_ = thismodule.DEV_BROADCAST_DEVICEINTERFACE_A;
+        pub const RegisterDeviceNotification = thismodule.RegisterDeviceNotificationA;
     },
     .wide => struct {
-        pub const DEV_BROADCAST_PORT_ = DEV_BROADCAST_PORT_W;
-        pub const DEV_BROADCAST_DEVICEINTERFACE_ = DEV_BROADCAST_DEVICEINTERFACE_W;
-        pub const RegisterDeviceNotification = RegisterDeviceNotificationW;
+        pub const DEV_BROADCAST_PORT_ = thismodule.DEV_BROADCAST_PORT_W;
+        pub const DEV_BROADCAST_DEVICEINTERFACE_ = thismodule.DEV_BROADCAST_DEVICEINTERFACE_W;
+        pub const RegisterDeviceNotification = thismodule.RegisterDeviceNotificationW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const DEV_BROADCAST_PORT_ = *opaque{};
@@ -15341,140 +15229,130 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (114)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const ERASE_TAPE_TYPE = @import("../storage/file_system.zig").ERASE_TAPE_TYPE;
-const D3DRECT = @import("../graphics/direct3d9.zig").D3DRECT;
-const TOKEN_PRIVILEGES = @import("../security.zig").TOKEN_PRIVILEGES;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const EXCEPTION_ROUTINE = @import("../system/kernel.zig").EXCEPTION_ROUTINE;
-const DD_PALETTECALLBACKS = @import("../ui/display_devices.zig").DD_PALETTECALLBACKS;
-const SLIST_ENTRY = @import("../system/kernel.zig").SLIST_ENTRY;
-const XLATEOBJ = @import("../ui/display_devices.zig").XLATEOBJ;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const GLYPHDATA = @import("../ui/display_devices.zig").GLYPHDATA;
-const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
-const IMAGE_FILE_HEADER = @import("../system/diagnostics/debug.zig").IMAGE_FILE_HEADER;
-const PSTR = @import("../foundation.zig").PSTR;
-const GROUP_AFFINITY = @import("../system/kernel.zig").GROUP_AFFINITY;
-const D3DVECTOR = @import("../graphics/direct3d9.zig").D3DVECTOR;
-const RECT = @import("../foundation.zig").RECT;
-const BRUSHOBJ = @import("../ui/display_devices.zig").BRUSHOBJ;
-const DD_DIRECTDRAW_GLOBAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_GLOBAL;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
-const PARTITION_STYLE = @import("../storage/file_system.zig").PARTITION_STYLE;
-const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const RPC_BINDING_VECTOR = @import("../system/rpc.zig").RPC_BINDING_VECTOR;
-const PSID = @import("../foundation.zig").PSID;
-const SYSTEM_POWER_STATE = @import("../system/power.zig").SYSTEM_POWER_STATE;
+const ACE_HEADER = @import("../security.zig").ACE_HEADER;
+const BLENDOBJ = @import("../ui/display_devices.zig").BLENDOBJ;
 const BOOL = @import("../foundation.zig").BOOL;
-const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
-const VIDEOMEMORY = @import("../ui/display_devices.zig").VIDEOMEMORY;
-const IMAGE_DATA_DIRECTORY = @import("../system/diagnostics/debug.zig").IMAGE_DATA_DIRECTORY;
-const IFIMETRICS = @import("../ui/display_devices.zig").IFIMETRICS;
-const STORAGE_PROTOCOL_TYPE = @import("../storage/file_system.zig").STORAGE_PROTOCOL_TYPE;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BRUSHOBJ = @import("../ui/display_devices.zig").BRUSHOBJ;
+const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const CLIPOBJ = @import("../ui/display_devices.zig").CLIPOBJ;
-const DD_SURFACECALLBACKS = @import("../ui/display_devices.zig").DD_SURFACECALLBACKS;
-const RPC_MESSAGE = @import("../system/rpc.zig").RPC_MESSAGE;
-const OSVERSIONINFOEXW = @import("../system/system_information.zig").OSVERSIONINFOEXW;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const LINEATTRS = @import("../ui/display_devices.zig").LINEATTRS;
-const LOGICAL_PROCESSOR_RELATIONSHIP = @import("../system/system_information.zig").LOGICAL_PROCESSOR_RELATIONSHIP;
-const WNDOBJ = @import("../ui/display_devices.zig").WNDOBJ;
-const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
-const SURFOBJ = @import("../ui/display_devices.zig").SURFOBJ;
-const TAPE_POSITION_TYPE = @import("../storage/file_system.zig").TAPE_POSITION_TYPE;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const DESIGNVECTOR = @import("../graphics/gdi.zig").DESIGNVECTOR;
-const LOGPALETTE = @import("../graphics/gdi.zig").LOGPALETTE;
-const HWND = @import("../foundation.zig").HWND;
-const SECURITY_IMPERSONATION_LEVEL = @import("../security.zig").SECURITY_IMPERSONATION_LEVEL;
-const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
-const TAPE_POSITION_METHOD = @import("../storage/file_system.zig").TAPE_POSITION_METHOD;
-const POINT = @import("../foundation.zig").POINT;
-const RECTL = @import("../foundation.zig").RECTL;
-const TOKEN_USER = @import("../security.zig").TOKEN_USER;
-const DD_DIRECTDRAW_LOCAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_LOCAL;
-const PIXELFORMATDESCRIPTOR = @import("../graphics/open_gl.zig").PIXELFORMATDESCRIPTOR;
-const LOGCOLORSPACEW = @import("../ui/color_system.zig").LOGCOLORSPACEW;
-const STORAGE_PROPERTY_ID = @import("../storage/file_system.zig").STORAGE_PROPERTY_ID;
-const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
-const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
+const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
+const D3DCOLORVALUE = @import("../graphics/direct3d9.zig").D3DCOLORVALUE;
+const D3DLIGHTTYPE = @import("../graphics/direct3d9.zig").D3DLIGHTTYPE;
+const D3DMATRIX = @import("../graphics/direct3d9.zig").D3DMATRIX;
+const D3DRECT = @import("../graphics/direct3d9.zig").D3DRECT;
+const D3DRENDERSTATETYPE = @import("../graphics/direct3d9.zig").D3DRENDERSTATETYPE;
+const D3DSTATEBLOCKTYPE = @import("../graphics/direct3d9.zig").D3DSTATEBLOCKTYPE;
+const D3DTRANSFORMSTATETYPE = @import("../graphics/direct3d9.zig").D3DTRANSFORMSTATETYPE;
+const D3DVECTOR = @import("../graphics/direct3d9.zig").D3DVECTOR;
 const DD_CALLBACKS = @import("../ui/display_devices.zig").DD_CALLBACKS;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-    pub const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
-
-}, else => struct { } };
-const PERBANDINFO = @import("../ui/display_devices.zig").PERBANDINFO;
-const VIRTUAL_STORAGE_TYPE = @import("../storage/vhd.zig").VIRTUAL_STORAGE_TYPE;
+const DD_DIRECTDRAW_GLOBAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_GLOBAL;
+const DD_DIRECTDRAW_LOCAL = @import("../ui/display_devices.zig").DD_DIRECTDRAW_LOCAL;
+const DD_HALINFO = @import("../ui/display_devices.zig").DD_HALINFO;
+const DD_PALETTECALLBACKS = @import("../ui/display_devices.zig").DD_PALETTECALLBACKS;
+const DD_SURFACE_LOCAL = @import("../ui/display_devices.zig").DD_SURFACE_LOCAL;
+const DD_SURFACECALLBACKS = @import("../ui/display_devices.zig").DD_SURFACECALLBACKS;
+const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
+const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
+const DESIGNVECTOR = @import("../graphics/gdi.zig").DESIGNVECTOR;
+const DEVINFO = @import("../ui/display_devices.zig").DEVINFO;
+const DEVMODEW = @import("../ui/display_devices.zig").DEVMODEW;
+const DRVENABLEDATA = @import("../ui/display_devices.zig").DRVENABLEDATA;
 const DWORD_BLOB = @import("../system/com.zig").DWORD_BLOB;
-const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
-const STROBJ = @import("../ui/display_devices.zig").STROBJ;
-const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = @import("../system/power.zig").POWER_SETTING_REGISTER_NOTIFICATION_FLAGS;
-const PWSTR = @import("../foundation.zig").PWSTR;
+const ERASE_TAPE_TYPE = @import("../storage/file_system.zig").ERASE_TAPE_TYPE;
+const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
+const EXCEPTION_ROUTINE = @import("../system/kernel.zig").EXCEPTION_ROUTINE;
+const FILE_ID_128 = @import("../storage/file_system.zig").FILE_ID_128;
 const FLAGGED_BYTE_BLOB = @import("../system/com.zig").FLAGGED_BYTE_BLOB;
 const FONTOBJ = @import("../ui/display_devices.zig").FONTOBJ;
-const SYSTEM_POWER_CONDITION = @import("../system/power.zig").SYSTEM_POWER_CONDITION;
-const D3DTRANSFORMSTATETYPE = @import("../graphics/direct3d9.zig").D3DTRANSFORMSTATETYPE;
-const JOB_OBJECT_LIMIT = @import("../system/job_objects.zig").JOB_OBJECT_LIMIT;
-const PALOBJ = @import("../ui/display_devices.zig").PALOBJ;
-const TAPEMARK_TYPE = @import("../storage/file_system.zig").TAPEMARK_TYPE;
-const PARTITION_INFORMATION_GPT = @import("../storage/file_system.zig").PARTITION_INFORMATION_GPT;
-const RPC_STATUS = @import("../system/rpc.zig").RPC_STATUS;
-const ACE_HEADER = @import("../security.zig").ACE_HEADER;
-const DD_HALINFO = @import("../ui/display_devices.zig").DD_HALINFO;
-const D3DLIGHTTYPE = @import("../graphics/direct3d9.zig").D3DLIGHTTYPE;
-const DEVINFO = @import("../ui/display_devices.zig").DEVINFO;
-usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-    pub const EXCEPTION_POINTERS = @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS;
-
-}, else => struct { } };
 const GDIINFO = @import("../ui/display_devices.zig").GDIINFO;
+const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
+const GLYPHDATA = @import("../ui/display_devices.zig").GLYPHDATA;
+const GROUP_AFFINITY = @import("../system/kernel.zig").GROUP_AFFINITY;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const HDC = @import("../graphics/gdi.zig").HDC;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const JOB_OBJECT_UILIMIT = @import("../system/job_objects.zig").JOB_OBJECT_UILIMIT;
-const POINTL = @import("../foundation.zig").POINTL;
-const LPOVERLAPPED_COMPLETION_ROUTINE = @import("../storage/file_system.zig").LPOVERLAPPED_COMPLETION_ROUTINE;
-const D3DCOLORVALUE = @import("../graphics/direct3d9.zig").D3DCOLORVALUE;
-const SLIST_HEADER = @import("../system/kernel.zig").SLIST_HEADER;
-const REPORT_EVENT_TYPE = @import("../system/event_log.zig").REPORT_EVENT_TYPE;
-const D3DSTATEBLOCKTYPE = @import("../graphics/direct3d9.zig").D3DSTATEBLOCKTYPE;
-const SET_PARTITION_INFORMATION = @import("../storage/file_system.zig").SET_PARTITION_INFORMATION;
-const D3DRENDERSTATETYPE = @import("../graphics/direct3d9.zig").D3DRENDERSTATETYPE;
-const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
-const BLENDOBJ = @import("../ui/display_devices.zig").BLENDOBJ;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IFIMETRICS = @import("../ui/display_devices.zig").IFIMETRICS;
+const IMAGE_DATA_DIRECTORY = @import("../system/diagnostics/debug.zig").IMAGE_DATA_DIRECTORY;
+const IMAGE_FILE_HEADER = @import("../system/diagnostics/debug.zig").IMAGE_FILE_HEADER;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const JOB_OBJECT_LIMIT = @import("../system/job_objects.zig").JOB_OBJECT_LIMIT;
 const JOB_OBJECT_SECURITY = @import("../system/job_objects.zig").JOB_OBJECT_SECURITY;
-const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
-const DRVENABLEDATA = @import("../ui/display_devices.zig").DRVENABLEDATA;
-const SID = @import("../security.zig").SID;
-const DEVMODEW = @import("../ui/display_devices.zig").DEVMODEW;
-const DD_SURFACE_LOCAL = @import("../ui/display_devices.zig").DD_SURFACE_LOCAL;
-const FILE_ID_128 = @import("../storage/file_system.zig").FILE_ID_128;
-const PREPARE_TAPE_OPERATION = @import("../storage/file_system.zig").PREPARE_TAPE_OPERATION;
-const RETRIEVAL_POINTERS_BUFFER = @import("../storage/file_system.zig").RETRIEVAL_POINTERS_BUFFER;
-const D3DMATRIX = @import("../graphics/direct3d9.zig").D3DMATRIX;
-const PTP_POOL = @import("../system/threading.zig").PTP_POOL;
+const JOB_OBJECT_UILIMIT = @import("../system/job_objects.zig").JOB_OBJECT_UILIMIT;
+const LINEATTRS = @import("../ui/display_devices.zig").LINEATTRS;
+const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
+const LOGCOLORSPACEW = @import("../ui/color_system.zig").LOGCOLORSPACEW;
+const LOGICAL_PROCESSOR_RELATIONSHIP = @import("../system/system_information.zig").LOGICAL_PROCESSOR_RELATIONSHIP;
+const LOGPALETTE = @import("../graphics/gdi.zig").LOGPALETTE;
+const LPOVERLAPPED_COMPLETION_ROUTINE = @import("../storage/file_system.zig").LPOVERLAPPED_COMPLETION_ROUTINE;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
+const OSVERSIONINFOEXW = @import("../system/system_information.zig").OSVERSIONINFOEXW;
+const PALOBJ = @import("../ui/display_devices.zig").PALOBJ;
+const PARTITION_INFORMATION_GPT = @import("../storage/file_system.zig").PARTITION_INFORMATION_GPT;
+const PARTITION_STYLE = @import("../storage/file_system.zig").PARTITION_STYLE;
 const PATHOBJ = @import("../ui/display_devices.zig").PATHOBJ;
+const PERBANDINFO = @import("../ui/display_devices.zig").PERBANDINFO;
+const PIXELFORMATDESCRIPTOR = @import("../graphics/open_gl.zig").PIXELFORMATDESCRIPTOR;
+const POINT = @import("../foundation.zig").POINT;
+const POINTL = @import("../foundation.zig").POINTL;
+const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = @import("../system/power.zig").POWER_SETTING_REGISTER_NOTIFICATION_FLAGS;
+const PREPARE_TAPE_OPERATION = @import("../storage/file_system.zig").PREPARE_TAPE_OPERATION;
+const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
+const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
+const PSID = @import("../foundation.zig").PSID;
+const PSTR = @import("../foundation.zig").PSTR;
+const PTP_POOL = @import("../system/threading.zig").PTP_POOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const RECTL = @import("../foundation.zig").RECTL;
+const REPORT_EVENT_TYPE = @import("../system/event_log.zig").REPORT_EVENT_TYPE;
+const RETRIEVAL_POINTERS_BUFFER = @import("../storage/file_system.zig").RETRIEVAL_POINTERS_BUFFER;
+const RPC_BINDING_VECTOR = @import("../system/rpc.zig").RPC_BINDING_VECTOR;
+const RPC_MESSAGE = @import("../system/rpc.zig").RPC_MESSAGE;
+const RPC_STATUS = @import("../system/rpc.zig").RPC_STATUS;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
+const SECURITY_IMPERSONATION_LEVEL = @import("../security.zig").SECURITY_IMPERSONATION_LEVEL;
+const SET_PARTITION_INFORMATION = @import("../storage/file_system.zig").SET_PARTITION_INFORMATION;
+const SID = @import("../security.zig").SID;
+const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const SIZE = @import("../foundation.zig").SIZE;
+const SLIST_ENTRY = @import("../system/kernel.zig").SLIST_ENTRY;
+const SLIST_HEADER = @import("../system/kernel.zig").SLIST_HEADER;
+const STORAGE_PROPERTY_ID = @import("../storage/file_system.zig").STORAGE_PROPERTY_ID;
+const STORAGE_PROTOCOL_TYPE = @import("../storage/file_system.zig").STORAGE_PROTOCOL_TYPE;
+const STROBJ = @import("../ui/display_devices.zig").STROBJ;
+const SURFOBJ = @import("../ui/display_devices.zig").SURFOBJ;
+const SYSTEM_POWER_CONDITION = @import("../system/power.zig").SYSTEM_POWER_CONDITION;
+const SYSTEM_POWER_STATE = @import("../system/power.zig").SYSTEM_POWER_STATE;
+const TAPE_POSITION_METHOD = @import("../storage/file_system.zig").TAPE_POSITION_METHOD;
+const TAPE_POSITION_TYPE = @import("../storage/file_system.zig").TAPE_POSITION_TYPE;
+const TAPEMARK_TYPE = @import("../storage/file_system.zig").TAPEMARK_TYPE;
+const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
+const TOKEN_PRIVILEGES = @import("../security.zig").TOKEN_PRIVILEGES;
+const TOKEN_USER = @import("../security.zig").TOKEN_USER;
+const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
 const TTPOLYGONHEADER = @import("../graphics/gdi.zig").TTPOLYGONHEADER;
+const VIDEOMEMORY = @import("../ui/display_devices.zig").VIDEOMEMORY;
+const VIRTUAL_STORAGE_TYPE = @import("../storage/vhd.zig").VIRTUAL_STORAGE_TYPE;
+const WNDOBJ = @import("../ui/display_devices.zig").WNDOBJ;
+const XLATEOBJ = @import("../ui/display_devices.zig").XLATEOBJ;
+// 2 arch-specific imports
+const CONTEXT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => @import("../system/diagnostics/debug.zig").CONTEXT,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const EXCEPTION_POINTERS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     if (@hasDecl(@This(), "PUMS_SCHEDULER_ENTRY_POINT")) { _ = PUMS_SCHEDULER_ENTRY_POINT; }
-    if (@hasDecl(@This(), "PEXCEPTION_FILTER")) { _ = PEXCEPTION_FILTER; }
-    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) { _ = PTERMINATION_HANDLER; }
-    if (@hasDecl(@This(), "PGET_RUNTIME_FUNCTION_CALLBACK")) { _ = PGET_RUNTIME_FUNCTION_CALLBACK; }
-    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) { _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK; }
-    if (@hasDecl(@This(), "PGET_RUNTIME_FUNCTION_CALLBACK")) { _ = PGET_RUNTIME_FUNCTION_CALLBACK; }
-    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) { _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK; }
-    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) { _ = PTERMINATION_HANDLER; }
     if (@hasDecl(@This(), "PIMAGE_TLS_CALLBACK")) { _ = PIMAGE_TLS_CALLBACK; }
     if (@hasDecl(@This(), "PRTL_UMS_SCHEDULER_ENTRY_POINT")) { _ = PRTL_UMS_SCHEDULER_ENTRY_POINT; }
     if (@hasDecl(@This(), "PAPCFUNC")) { _ = PAPCFUNC; }
@@ -15604,6 +15482,13 @@ test {
     if (@hasDecl(@This(), "PFN_DrvUnlockDisplayArea")) { _ = PFN_DrvUnlockDisplayArea; }
     if (@hasDecl(@This(), "PFN_DrvSurfaceComplete")) { _ = PFN_DrvSurfaceComplete; }
     if (@hasDecl(@This(), "PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK")) { _ = PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK; }
+    if (@hasDecl(@This(), "PEXCEPTION_FILTER")) { _ = PEXCEPTION_FILTER; }
+    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) { _ = PTERMINATION_HANDLER; }
+    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) { _ = PTERMINATION_HANDLER; }
+    if (@hasDecl(@This(), "PGET_RUNTIME_FUNCTION_CALLBACK")) { _ = PGET_RUNTIME_FUNCTION_CALLBACK; }
+    if (@hasDecl(@This(), "PGET_RUNTIME_FUNCTION_CALLBACK")) { _ = PGET_RUNTIME_FUNCTION_CALLBACK; }
+    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) { _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK; }
+    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) { _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

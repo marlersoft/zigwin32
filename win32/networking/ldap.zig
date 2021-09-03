@@ -2363,38 +2363,39 @@ pub extern "WLDAP32" fn ber_scanf(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (14)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ldapcontrol = ldapcontrolA;
-        pub const ldapmod = ldapmodA;
-        pub const ldapapiinfo = ldapapiinfoA;
-        pub const LDAPAPIFeatureInfo = LDAPAPIFeatureInfoA;
-        pub const ldapsortkey = ldapsortkeyA;
-        pub const ldap_sasl_bind = ldap_sasl_bindA;
-        pub const ldap_sasl_bind_s = ldap_sasl_bind_sA;
-        pub const ldap_check_filter = ldap_check_filterA;
-        pub const ldap_parse_extended_result = ldap_parse_extended_resultA;
-        pub const ldap_encode_sort_control = ldap_encode_sort_controlA;
-        pub const ldap_create_vlv_control = ldap_create_vlv_controlA;
-        pub const ldap_parse_vlv_control = ldap_parse_vlv_controlA;
-        pub const ldap_start_tls_s = ldap_start_tls_sA;
-        pub const ldap_extended_operation_s = ldap_extended_operation_sA;
+        pub const ldapcontrol = thismodule.ldapcontrolA;
+        pub const ldapmod = thismodule.ldapmodA;
+        pub const ldapapiinfo = thismodule.ldapapiinfoA;
+        pub const LDAPAPIFeatureInfo = thismodule.LDAPAPIFeatureInfoA;
+        pub const ldapsortkey = thismodule.ldapsortkeyA;
+        pub const ldap_sasl_bind = thismodule.ldap_sasl_bindA;
+        pub const ldap_sasl_bind_s = thismodule.ldap_sasl_bind_sA;
+        pub const ldap_check_filter = thismodule.ldap_check_filterA;
+        pub const ldap_parse_extended_result = thismodule.ldap_parse_extended_resultA;
+        pub const ldap_encode_sort_control = thismodule.ldap_encode_sort_controlA;
+        pub const ldap_create_vlv_control = thismodule.ldap_create_vlv_controlA;
+        pub const ldap_parse_vlv_control = thismodule.ldap_parse_vlv_controlA;
+        pub const ldap_start_tls_s = thismodule.ldap_start_tls_sA;
+        pub const ldap_extended_operation_s = thismodule.ldap_extended_operation_sA;
     },
     .wide => struct {
-        pub const ldapcontrol = ldapcontrolW;
-        pub const ldapmod = ldapmodW;
-        pub const ldapapiinfo = ldapapiinfoW;
-        pub const LDAPAPIFeatureInfo = LDAPAPIFeatureInfoW;
-        pub const ldapsortkey = ldapsortkeyW;
-        pub const ldap_sasl_bind = ldap_sasl_bindW;
-        pub const ldap_sasl_bind_s = ldap_sasl_bind_sW;
-        pub const ldap_check_filter = ldap_check_filterW;
-        pub const ldap_parse_extended_result = ldap_parse_extended_resultW;
-        pub const ldap_encode_sort_control = ldap_encode_sort_controlW;
-        pub const ldap_create_vlv_control = ldap_create_vlv_controlW;
-        pub const ldap_parse_vlv_control = ldap_parse_vlv_controlW;
-        pub const ldap_start_tls_s = ldap_start_tls_sW;
-        pub const ldap_extended_operation_s = ldap_extended_operation_sW;
+        pub const ldapcontrol = thismodule.ldapcontrolW;
+        pub const ldapmod = thismodule.ldapmodW;
+        pub const ldapapiinfo = thismodule.ldapapiinfoW;
+        pub const LDAPAPIFeatureInfo = thismodule.LDAPAPIFeatureInfoW;
+        pub const ldapsortkey = thismodule.ldapsortkeyW;
+        pub const ldap_sasl_bind = thismodule.ldap_sasl_bindW;
+        pub const ldap_sasl_bind_s = thismodule.ldap_sasl_bind_sW;
+        pub const ldap_check_filter = thismodule.ldap_check_filterW;
+        pub const ldap_parse_extended_result = thismodule.ldap_parse_extended_resultW;
+        pub const ldap_encode_sort_control = thismodule.ldap_encode_sort_controlW;
+        pub const ldap_create_vlv_control = thismodule.ldap_create_vlv_controlW;
+        pub const ldap_parse_vlv_control = thismodule.ldap_parse_vlv_controlW;
+        pub const ldap_start_tls_s = thismodule.ldap_start_tls_sW;
+        pub const ldap_extended_operation_s = thismodule.ldap_extended_operation_sW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ldapcontrol = *opaque{};
@@ -2432,11 +2433,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity/core.zig").SecPkgContext_IssuerListInfoEx;
 
 test {

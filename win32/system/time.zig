@@ -132,6 +132,7 @@ pub extern "KERNEL32" fn LocalSystemTimeToLocalFileTime(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -144,10 +145,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
+const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

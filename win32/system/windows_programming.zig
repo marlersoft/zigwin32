@@ -589,15 +589,6 @@ pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const tcp_request_query_information_ex32_xp = extern struct {
-    ID: TDIObjectID,
-    Context: [4]u32,
-};
-
-}, else => struct { } };
 
 pub const HWINWATCH = *opaque{};
 
@@ -3918,6 +3909,13 @@ pub const PWLDP_WLDPISAPPAPPROVEDBYPOLICY_API = fn(
     PackageVersion: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+pub const tcp_request_query_information_ex32_xp = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ID: TDIObjectID,
+        Context: [4]u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (226)
@@ -5459,114 +5457,115 @@ pub extern "Wldp" fn WldpQueryDynamicCodeTrust(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (52)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const HW_PROFILE_INFO = HW_PROFILE_INFOA;
-        pub const STRENTRY = STRENTRYA;
-        pub const STRTABLE = STRTABLEA;
-        pub const CABINFO = CABINFOA;
-        pub const PERUSERSECTION = PERUSERSECTIONA;
-        pub const IMEPRO = IMEPROA;
-        pub const GetFirmwareEnvironmentVariable = GetFirmwareEnvironmentVariableA;
-        pub const GetFirmwareEnvironmentVariableEx = GetFirmwareEnvironmentVariableExA;
-        pub const SetFirmwareEnvironmentVariable = SetFirmwareEnvironmentVariableA;
-        pub const SetFirmwareEnvironmentVariableEx = SetFirmwareEnvironmentVariableExA;
-        pub const GetProfileInt = GetProfileIntA;
-        pub const GetProfileString = GetProfileStringA;
-        pub const WriteProfileString = WriteProfileStringA;
-        pub const GetProfileSection = GetProfileSectionA;
-        pub const WriteProfileSection = WriteProfileSectionA;
-        pub const GetPrivateProfileInt = GetPrivateProfileIntA;
-        pub const GetPrivateProfileString = GetPrivateProfileStringA;
-        pub const WritePrivateProfileString = WritePrivateProfileStringA;
-        pub const GetPrivateProfileSection = GetPrivateProfileSectionA;
-        pub const WritePrivateProfileSection = WritePrivateProfileSectionA;
-        pub const GetPrivateProfileSectionNames = GetPrivateProfileSectionNamesA;
-        pub const GetPrivateProfileStruct = GetPrivateProfileStructA;
-        pub const WritePrivateProfileStruct = WritePrivateProfileStructA;
-        pub const GetComputerName = GetComputerNameA;
-        pub const DnsHostnameToComputerName = DnsHostnameToComputerNameA;
-        pub const GetUserName = GetUserNameA;
-        pub const GetCurrentHwProfile = GetCurrentHwProfileA;
-        pub const RunSetupCommand = RunSetupCommandA;
-        pub const RebootCheckOnInstall = RebootCheckOnInstallA;
-        pub const TranslateInfString = TranslateInfStringA;
-        pub const RegInstall = RegInstallA;
-        pub const ExecuteCab = ExecuteCabA;
-        pub const AdvInstallFile = AdvInstallFileA;
-        pub const RegSaveRestore = RegSaveRestoreA;
-        pub const RegSaveRestoreOnINF = RegSaveRestoreOnINFA;
-        pub const RegRestoreAll = RegRestoreAllA;
-        pub const FileSaveRestoreOnINF = FileSaveRestoreOnINFA;
-        pub const AddDelBackupEntry = AddDelBackupEntryA;
-        pub const FileSaveMarkNotExist = FileSaveMarkNotExistA;
-        pub const GetVersionFromFile = GetVersionFromFileA;
-        pub const GetVersionFromFileEx = GetVersionFromFileExA;
-        pub const DelNode = DelNodeA;
-        pub const OpenINFEngine = OpenINFEngineA;
-        pub const TranslateInfStringEx = TranslateInfStringExA;
-        pub const ExtractFiles = ExtractFilesA;
-        pub const UserInstStubWrapper = UserInstStubWrapperA;
-        pub const UserUnInstStubWrapper = UserUnInstStubWrapperA;
-        pub const SetPerUserSecValues = SetPerUserSecValuesA;
-        pub const SendIMEMessageEx = SendIMEMessageExA;
-        pub const IMPGetIME = IMPGetIMEA;
-        pub const IMPQueryIME = IMPQueryIMEA;
-        pub const IMPSetIME = IMPSetIMEA;
+        pub const HW_PROFILE_INFO = thismodule.HW_PROFILE_INFOA;
+        pub const STRENTRY = thismodule.STRENTRYA;
+        pub const STRTABLE = thismodule.STRTABLEA;
+        pub const CABINFO = thismodule.CABINFOA;
+        pub const PERUSERSECTION = thismodule.PERUSERSECTIONA;
+        pub const IMEPRO = thismodule.IMEPROA;
+        pub const GetFirmwareEnvironmentVariable = thismodule.GetFirmwareEnvironmentVariableA;
+        pub const GetFirmwareEnvironmentVariableEx = thismodule.GetFirmwareEnvironmentVariableExA;
+        pub const SetFirmwareEnvironmentVariable = thismodule.SetFirmwareEnvironmentVariableA;
+        pub const SetFirmwareEnvironmentVariableEx = thismodule.SetFirmwareEnvironmentVariableExA;
+        pub const GetProfileInt = thismodule.GetProfileIntA;
+        pub const GetProfileString = thismodule.GetProfileStringA;
+        pub const WriteProfileString = thismodule.WriteProfileStringA;
+        pub const GetProfileSection = thismodule.GetProfileSectionA;
+        pub const WriteProfileSection = thismodule.WriteProfileSectionA;
+        pub const GetPrivateProfileInt = thismodule.GetPrivateProfileIntA;
+        pub const GetPrivateProfileString = thismodule.GetPrivateProfileStringA;
+        pub const WritePrivateProfileString = thismodule.WritePrivateProfileStringA;
+        pub const GetPrivateProfileSection = thismodule.GetPrivateProfileSectionA;
+        pub const WritePrivateProfileSection = thismodule.WritePrivateProfileSectionA;
+        pub const GetPrivateProfileSectionNames = thismodule.GetPrivateProfileSectionNamesA;
+        pub const GetPrivateProfileStruct = thismodule.GetPrivateProfileStructA;
+        pub const WritePrivateProfileStruct = thismodule.WritePrivateProfileStructA;
+        pub const GetComputerName = thismodule.GetComputerNameA;
+        pub const DnsHostnameToComputerName = thismodule.DnsHostnameToComputerNameA;
+        pub const GetUserName = thismodule.GetUserNameA;
+        pub const GetCurrentHwProfile = thismodule.GetCurrentHwProfileA;
+        pub const RunSetupCommand = thismodule.RunSetupCommandA;
+        pub const RebootCheckOnInstall = thismodule.RebootCheckOnInstallA;
+        pub const TranslateInfString = thismodule.TranslateInfStringA;
+        pub const RegInstall = thismodule.RegInstallA;
+        pub const ExecuteCab = thismodule.ExecuteCabA;
+        pub const AdvInstallFile = thismodule.AdvInstallFileA;
+        pub const RegSaveRestore = thismodule.RegSaveRestoreA;
+        pub const RegSaveRestoreOnINF = thismodule.RegSaveRestoreOnINFA;
+        pub const RegRestoreAll = thismodule.RegRestoreAllA;
+        pub const FileSaveRestoreOnINF = thismodule.FileSaveRestoreOnINFA;
+        pub const AddDelBackupEntry = thismodule.AddDelBackupEntryA;
+        pub const FileSaveMarkNotExist = thismodule.FileSaveMarkNotExistA;
+        pub const GetVersionFromFile = thismodule.GetVersionFromFileA;
+        pub const GetVersionFromFileEx = thismodule.GetVersionFromFileExA;
+        pub const DelNode = thismodule.DelNodeA;
+        pub const OpenINFEngine = thismodule.OpenINFEngineA;
+        pub const TranslateInfStringEx = thismodule.TranslateInfStringExA;
+        pub const ExtractFiles = thismodule.ExtractFilesA;
+        pub const UserInstStubWrapper = thismodule.UserInstStubWrapperA;
+        pub const UserUnInstStubWrapper = thismodule.UserUnInstStubWrapperA;
+        pub const SetPerUserSecValues = thismodule.SetPerUserSecValuesA;
+        pub const SendIMEMessageEx = thismodule.SendIMEMessageExA;
+        pub const IMPGetIME = thismodule.IMPGetIMEA;
+        pub const IMPQueryIME = thismodule.IMPQueryIMEA;
+        pub const IMPSetIME = thismodule.IMPSetIMEA;
     },
     .wide => struct {
-        pub const HW_PROFILE_INFO = HW_PROFILE_INFOW;
-        pub const STRENTRY = STRENTRYW;
-        pub const STRTABLE = STRTABLEW;
-        pub const CABINFO = CABINFOW;
-        pub const PERUSERSECTION = PERUSERSECTIONW;
-        pub const IMEPRO = IMEPROW;
-        pub const GetFirmwareEnvironmentVariable = GetFirmwareEnvironmentVariableW;
-        pub const GetFirmwareEnvironmentVariableEx = GetFirmwareEnvironmentVariableExW;
-        pub const SetFirmwareEnvironmentVariable = SetFirmwareEnvironmentVariableW;
-        pub const SetFirmwareEnvironmentVariableEx = SetFirmwareEnvironmentVariableExW;
-        pub const GetProfileInt = GetProfileIntW;
-        pub const GetProfileString = GetProfileStringW;
-        pub const WriteProfileString = WriteProfileStringW;
-        pub const GetProfileSection = GetProfileSectionW;
-        pub const WriteProfileSection = WriteProfileSectionW;
-        pub const GetPrivateProfileInt = GetPrivateProfileIntW;
-        pub const GetPrivateProfileString = GetPrivateProfileStringW;
-        pub const WritePrivateProfileString = WritePrivateProfileStringW;
-        pub const GetPrivateProfileSection = GetPrivateProfileSectionW;
-        pub const WritePrivateProfileSection = WritePrivateProfileSectionW;
-        pub const GetPrivateProfileSectionNames = GetPrivateProfileSectionNamesW;
-        pub const GetPrivateProfileStruct = GetPrivateProfileStructW;
-        pub const WritePrivateProfileStruct = WritePrivateProfileStructW;
-        pub const GetComputerName = GetComputerNameW;
-        pub const DnsHostnameToComputerName = DnsHostnameToComputerNameW;
-        pub const GetUserName = GetUserNameW;
-        pub const GetCurrentHwProfile = GetCurrentHwProfileW;
-        pub const RunSetupCommand = RunSetupCommandW;
-        pub const RebootCheckOnInstall = RebootCheckOnInstallW;
-        pub const TranslateInfString = TranslateInfStringW;
-        pub const RegInstall = RegInstallW;
-        pub const ExecuteCab = ExecuteCabW;
-        pub const AdvInstallFile = AdvInstallFileW;
-        pub const RegSaveRestore = RegSaveRestoreW;
-        pub const RegSaveRestoreOnINF = RegSaveRestoreOnINFW;
-        pub const RegRestoreAll = RegRestoreAllW;
-        pub const FileSaveRestoreOnINF = FileSaveRestoreOnINFW;
-        pub const AddDelBackupEntry = AddDelBackupEntryW;
-        pub const FileSaveMarkNotExist = FileSaveMarkNotExistW;
-        pub const GetVersionFromFile = GetVersionFromFileW;
-        pub const GetVersionFromFileEx = GetVersionFromFileExW;
-        pub const DelNode = DelNodeW;
-        pub const OpenINFEngine = OpenINFEngineW;
-        pub const TranslateInfStringEx = TranslateInfStringExW;
-        pub const ExtractFiles = ExtractFilesW;
-        pub const UserInstStubWrapper = UserInstStubWrapperW;
-        pub const UserUnInstStubWrapper = UserUnInstStubWrapperW;
-        pub const SetPerUserSecValues = SetPerUserSecValuesW;
-        pub const SendIMEMessageEx = SendIMEMessageExW;
-        pub const IMPGetIME = IMPGetIMEW;
-        pub const IMPQueryIME = IMPQueryIMEW;
-        pub const IMPSetIME = IMPSetIMEW;
+        pub const HW_PROFILE_INFO = thismodule.HW_PROFILE_INFOW;
+        pub const STRENTRY = thismodule.STRENTRYW;
+        pub const STRTABLE = thismodule.STRTABLEW;
+        pub const CABINFO = thismodule.CABINFOW;
+        pub const PERUSERSECTION = thismodule.PERUSERSECTIONW;
+        pub const IMEPRO = thismodule.IMEPROW;
+        pub const GetFirmwareEnvironmentVariable = thismodule.GetFirmwareEnvironmentVariableW;
+        pub const GetFirmwareEnvironmentVariableEx = thismodule.GetFirmwareEnvironmentVariableExW;
+        pub const SetFirmwareEnvironmentVariable = thismodule.SetFirmwareEnvironmentVariableW;
+        pub const SetFirmwareEnvironmentVariableEx = thismodule.SetFirmwareEnvironmentVariableExW;
+        pub const GetProfileInt = thismodule.GetProfileIntW;
+        pub const GetProfileString = thismodule.GetProfileStringW;
+        pub const WriteProfileString = thismodule.WriteProfileStringW;
+        pub const GetProfileSection = thismodule.GetProfileSectionW;
+        pub const WriteProfileSection = thismodule.WriteProfileSectionW;
+        pub const GetPrivateProfileInt = thismodule.GetPrivateProfileIntW;
+        pub const GetPrivateProfileString = thismodule.GetPrivateProfileStringW;
+        pub const WritePrivateProfileString = thismodule.WritePrivateProfileStringW;
+        pub const GetPrivateProfileSection = thismodule.GetPrivateProfileSectionW;
+        pub const WritePrivateProfileSection = thismodule.WritePrivateProfileSectionW;
+        pub const GetPrivateProfileSectionNames = thismodule.GetPrivateProfileSectionNamesW;
+        pub const GetPrivateProfileStruct = thismodule.GetPrivateProfileStructW;
+        pub const WritePrivateProfileStruct = thismodule.WritePrivateProfileStructW;
+        pub const GetComputerName = thismodule.GetComputerNameW;
+        pub const DnsHostnameToComputerName = thismodule.DnsHostnameToComputerNameW;
+        pub const GetUserName = thismodule.GetUserNameW;
+        pub const GetCurrentHwProfile = thismodule.GetCurrentHwProfileW;
+        pub const RunSetupCommand = thismodule.RunSetupCommandW;
+        pub const RebootCheckOnInstall = thismodule.RebootCheckOnInstallW;
+        pub const TranslateInfString = thismodule.TranslateInfStringW;
+        pub const RegInstall = thismodule.RegInstallW;
+        pub const ExecuteCab = thismodule.ExecuteCabW;
+        pub const AdvInstallFile = thismodule.AdvInstallFileW;
+        pub const RegSaveRestore = thismodule.RegSaveRestoreW;
+        pub const RegSaveRestoreOnINF = thismodule.RegSaveRestoreOnINFW;
+        pub const RegRestoreAll = thismodule.RegRestoreAllW;
+        pub const FileSaveRestoreOnINF = thismodule.FileSaveRestoreOnINFW;
+        pub const AddDelBackupEntry = thismodule.AddDelBackupEntryW;
+        pub const FileSaveMarkNotExist = thismodule.FileSaveMarkNotExistW;
+        pub const GetVersionFromFile = thismodule.GetVersionFromFileW;
+        pub const GetVersionFromFileEx = thismodule.GetVersionFromFileExW;
+        pub const DelNode = thismodule.DelNodeW;
+        pub const OpenINFEngine = thismodule.OpenINFEngineW;
+        pub const TranslateInfStringEx = thismodule.TranslateInfStringExW;
+        pub const ExtractFiles = thismodule.ExtractFilesW;
+        pub const UserInstStubWrapper = thismodule.UserInstStubWrapperW;
+        pub const UserUnInstStubWrapper = thismodule.UserUnInstStubWrapperW;
+        pub const SetPerUserSecValues = thismodule.SetPerUserSecValuesW;
+        pub const SendIMEMessageEx = thismodule.SendIMEMessageExW;
+        pub const IMPGetIME = thismodule.IMPGetIMEW;
+        pub const IMPQueryIME = thismodule.IMPQueryIMEW;
+        pub const IMPSetIME = thismodule.IMPSetIMEW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const HW_PROFILE_INFO = *opaque{};
@@ -5680,45 +5679,45 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (40)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const OLECMDF = @import("../system/com.zig").OLECMDF;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const OLECMDEXECOPT = @import("../system/com.zig").OLECMDEXECOPT;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const WAITORTIMERCALLBACK = @import("../system/system_services.zig").WAITORTIMERCALLBACK;
-const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const STARTUPINFOA = @import("../system/threading.zig").STARTUPINFOA;
-const HKEY = @import("../system/registry.zig").HKEY;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const FILE_SHARE_MODE = @import("../storage/file_system.zig").FILE_SHARE_MODE;
-const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
-const JOB_SET_ARRAY = @import("../system/system_services.zig").JOB_SET_ARRAY;
-const SHANDLE_PTR = @import("../system/system_services.zig").SHANDLE_PTR;
-const UNICODE_STRING = @import("../system/kernel.zig").UNICODE_STRING;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
-const READYSTATE = @import("../system/com.zig").READYSTATE;
-const HWND = @import("../foundation.zig").HWND;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const STRING = @import("../system/kernel.zig").STRING;
-const OLECMDID = @import("../system/com.zig").OLECMDID;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
 const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = @import("../system/system_services.zig").CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG;
+const FILE_SHARE_MODE = @import("../storage/file_system.zig").FILE_SHARE_MODE;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HKEY = @import("../system/registry.zig").HKEY;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const JOB_SET_ARRAY = @import("../system/system_services.zig").JOB_SET_ARRAY;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const OLECMDEXECOPT = @import("../system/com.zig").OLECMDEXECOPT;
+const OLECMDF = @import("../system/com.zig").OLECMDF;
+const OLECMDID = @import("../system/com.zig").OLECMDID;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const READYSTATE = @import("../system/com.zig").READYSTATE;
+const RECT = @import("../foundation.zig").RECT;
+const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const SHANDLE_PTR = @import("../system/system_services.zig").SHANDLE_PTR;
+const STARTUPINFOA = @import("../system/threading.zig").STARTUPINFOA;
+const STRING = @import("../system/kernel.zig").STRING;
+const UNICODE_STRING = @import("../system/kernel.zig").UNICODE_STRING;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WAITORTIMERCALLBACK = @import("../system/system_services.zig").WAITORTIMERCALLBACK;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

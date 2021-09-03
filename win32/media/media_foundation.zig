@@ -1291,69 +1291,9 @@ pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
 pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
 pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const D3DCONTENTPROTECTIONCAPS = extern struct {
-    Caps: u32,
-    KeyExchangeType: Guid,
-    BufferAlignmentStart: u32,
-    BlockAlignmentSize: u32,
-    ProtectedMemorySize: u64,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DXVA_VideoSample2 = extern struct {
-    Size: u32,
-    Reserved: u32,
-    rtStart: i64,
-    rtEnd: i64,
-    SampleFormat: u32,
-    SampleFlags: u32,
-    lpDDSSrcSurface: ?*c_void,
-    rcSrc: RECT,
-    rcDst: RECT,
-    Palette: [16]DXVA_AYUVsample2,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DXVA_VideoSample32 = extern struct {
-    rtStart: i64,
-    rtEnd: i64,
-    SampleFormat: u32,
-    SampleFlags: u32,
-    lpDDSSrcSurface: u32,
-    rcSrc: RECT,
-    rcDst: RECT,
-    Palette: [16]DXVA_AYUVsample2,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DXVA_DeinterlaceBltEx32 = extern struct {
-    Size: u32,
-    BackgroundColor: DXVA_AYUVsample2,
-    rcTarget: RECT,
-    rtTarget: i64,
-    NumSourceSurfaces: u32,
-    Alpha: f32,
-    Source: [32]DXVA_VideoSample32,
-    DestinationFormat: u32,
-    DestinationFlags: u32,
-};
-
-}, else => struct { } };
 
 pub const D3DOVERLAYCAPS = extern struct {
     Caps: u32,
@@ -27664,36 +27604,76 @@ pub const IMFContentDecryptionModuleFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const D3DCONTENTPROTECTIONCAPS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Caps: u32,
-    KeyExchangeType: Guid,
-    BufferAlignmentStart: u32,
-    BlockAlignmentSize: u32,
-    ProtectedMemorySize: u64,
+
+pub const D3DCONTENTPROTECTIONCAPS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Caps: u32,
+        KeyExchangeType: Guid,
+        BufferAlignmentStart: u32,
+        BlockAlignmentSize: u32,
+        ProtectedMemorySize: u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        Caps: u32,
+        KeyExchangeType: Guid,
+        BufferAlignmentStart: u32,
+        BlockAlignmentSize: u32,
+        ProtectedMemorySize: u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DXVA_VideoSample2 = extern struct {
-    rtStart: i64,
-    rtEnd: i64,
-    SampleFormat: u32,
-    SampleFlags: u32,
-    lpDDSSrcSurface: ?*c_void,
-    rcSrc: RECT,
-    rcDst: RECT,
-    Palette: [16]DXVA_AYUVsample2,
+pub const DXVA_VideoSample2 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Size: u32,
+        Reserved: u32,
+        rtStart: i64,
+        rtEnd: i64,
+        SampleFormat: u32,
+        SampleFlags: u32,
+        lpDDSSrcSurface: ?*c_void,
+        rcSrc: RECT,
+        rcDst: RECT,
+        Palette: [16]DXVA_AYUVsample2,
+    },
+    .X86 => extern struct {
+        rtStart: i64,
+        rtEnd: i64,
+        SampleFormat: u32,
+        SampleFlags: u32,
+        lpDDSSrcSurface: ?*c_void,
+        rcSrc: RECT,
+        rcDst: RECT,
+        Palette: [16]DXVA_AYUVsample2,
+    },
 };
-
-}, else => struct { } };
-
+pub const DXVA_VideoSample32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        rtStart: i64,
+        rtEnd: i64,
+        SampleFormat: u32,
+        SampleFlags: u32,
+        lpDDSSrcSurface: u32,
+        rcSrc: RECT,
+        rcDst: RECT,
+        Palette: [16]DXVA_AYUVsample2,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DXVA_DeinterlaceBltEx32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Size: u32,
+        BackgroundColor: DXVA_AYUVsample2,
+        rcTarget: RECT,
+        rtTarget: i64,
+        NumSourceSurfaces: u32,
+        Alpha: f32,
+        Source: [32]DXVA_VideoSample32,
+        DestinationFormat: u32,
+        DestinationFlags: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (235)
@@ -29287,6 +29267,7 @@ pub extern "MF" fn MFCreateEncryptedMediaExtensionsStoreActivate(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -29300,67 +29281,67 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (62)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const D3DDISPLAYROTATION = @import("../graphics/direct3d9.zig").D3DDISPLAYROTATION;
-const ID3D12CommandList = @import("../graphics/direct3d12.zig").ID3D12CommandList;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi.zig").DXGI_COLOR_SPACE_TYPE;
-const D3DPOOL = @import("../graphics/direct3d9.zig").D3DPOOL;
-const D3D12_PREDICATION_OP = @import("../graphics/direct3d12.zig").D3D12_PREDICATION_OP;
-const ID3D12Resource = @import("../graphics/direct3d12.zig").ID3D12Resource;
-const IInspectable = @import("../system/win_rt.zig").IInspectable;
-const D3DAUTHENTICATEDCHANNELTYPE = @import("../graphics/direct3d9.zig").D3DAUTHENTICATEDCHANNELTYPE;
 const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
-const IMFDeviceTransform = @import("../media/streaming.zig").IMFDeviceTransform;
-const ISpatialAudioMetadataItems = @import("../media/audio/core_audio.zig").ISpatialAudioMetadataItems;
-const INamedPropertyStore = @import("../system/properties_system.zig").INamedPropertyStore;
-const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
-const IDirect3DSurface9 = @import("../graphics/direct3d9.zig").IDirect3DSurface9;
-const D3DENCRYPTED_BLOCK_INFO = @import("../graphics/direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const D3D12_QUERY_TYPE = @import("../graphics/direct3d12.zig").D3D12_QUERY_TYPE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const D3DDEVTYPE = @import("../graphics/direct3d9.zig").D3DDEVTYPE;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
-const PSTR = @import("../foundation.zig").PSTR;
-const ID3D12QueryHeap = @import("../graphics/direct3d12.zig").ID3D12QueryHeap;
-const ID3D12ProtectedResourceSession = @import("../graphics/direct3d12.zig").ID3D12ProtectedResourceSession;
-const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
-const D3D12_COMMAND_LIST_SUPPORT_FLAGS = @import("../graphics/direct3d12.zig").D3D12_COMMAND_LIST_SUPPORT_FLAGS;
 const AudioObjectType = @import("../media/audio/core_audio.zig").AudioObjectType;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const IDirect3DDevice9 = @import("../graphics/direct3d9.zig").IDirect3DDevice9;
-const ID3D12Pageable = @import("../graphics/direct3d12.zig").ID3D12Pageable;
-const D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT = @import("../graphics/direct3d9.zig").D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const DMO_MEDIA_TYPE = @import("../graphics/direct_show.zig").DMO_MEDIA_TYPE;
-const VIDEOINFOHEADER2 = @import("../graphics/direct_show.zig").VIDEOINFOHEADER2;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
-const VIDEOINFOHEADER = @import("../graphics/direct_show.zig").VIDEOINFOHEADER;
-const DXGI_RATIONAL = @import("../graphics/dxgi.zig").DXGI_RATIONAL;
-const D3DDISPLAYMODEEX = @import("../graphics/direct3d9.zig").D3DDISPLAYMODEEX;
-const IDirect3DDevice9Ex = @import("../graphics/direct3d9.zig").IDirect3DDevice9Ex;
-const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER = @import("../graphics/direct3d12.zig").D3D12_WRITEBUFFERIMMEDIATE_PARAMETER;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const ID3D12CommandAllocator = @import("../graphics/direct3d12.zig").ID3D12CommandAllocator;
+const BSTR = @import("../foundation.zig").BSTR;
+const D3D12_COMMAND_LIST_SUPPORT_FLAGS = @import("../graphics/direct3d12.zig").D3D12_COMMAND_LIST_SUPPORT_FLAGS;
+const D3D12_DISCARD_REGION = @import("../graphics/direct3d12.zig").D3D12_DISCARD_REGION;
+const D3D12_PREDICATION_OP = @import("../graphics/direct3d12.zig").D3D12_PREDICATION_OP;
+const D3D12_QUERY_TYPE = @import("../graphics/direct3d12.zig").D3D12_QUERY_TYPE;
 const D3D12_RESOURCE_BARRIER = @import("../graphics/direct3d12.zig").D3D12_RESOURCE_BARRIER;
 const D3D12_WRITEBUFFERIMMEDIATE_MODE = @import("../graphics/direct3d12.zig").D3D12_WRITEBUFFERIMMEDIATE_MODE;
+const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER = @import("../graphics/direct3d12.zig").D3D12_WRITEBUFFERIMMEDIATE_PARAMETER;
+const D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT = @import("../graphics/direct3d9.zig").D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
+const D3DAUTHENTICATEDCHANNELTYPE = @import("../graphics/direct3d9.zig").D3DAUTHENTICATEDCHANNELTYPE;
+const D3DDEVTYPE = @import("../graphics/direct3d9.zig").D3DDEVTYPE;
+const D3DDISPLAYMODEEX = @import("../graphics/direct3d9.zig").D3DDISPLAYMODEEX;
+const D3DDISPLAYROTATION = @import("../graphics/direct3d9.zig").D3DDISPLAYROTATION;
+const D3DENCRYPTED_BLOCK_INFO = @import("../graphics/direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
+const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
+const D3DPOOL = @import("../graphics/direct3d9.zig").D3DPOOL;
+const DMO_MEDIA_TYPE = @import("../graphics/direct_show.zig").DMO_MEDIA_TYPE;
+const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi.zig").DXGI_COLOR_SPACE_TYPE;
+const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
+const DXGI_RATIONAL = @import("../graphics/dxgi.zig").DXGI_RATIONAL;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IClassFactory = @import("../system/com.zig").IClassFactory;
-const MPEG2VIDEOINFO = @import("../graphics/direct_show.zig").MPEG2VIDEOINFO;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const ID3D12CommandAllocator = @import("../graphics/direct3d12.zig").ID3D12CommandAllocator;
+const ID3D12CommandList = @import("../graphics/direct3d12.zig").ID3D12CommandList;
+const ID3D12Pageable = @import("../graphics/direct3d12.zig").ID3D12Pageable;
+const ID3D12ProtectedResourceSession = @import("../graphics/direct3d12.zig").ID3D12ProtectedResourceSession;
+const ID3D12QueryHeap = @import("../graphics/direct3d12.zig").ID3D12QueryHeap;
+const ID3D12Resource = @import("../graphics/direct3d12.zig").ID3D12Resource;
+const IDirect3DDevice9 = @import("../graphics/direct3d9.zig").IDirect3DDevice9;
+const IDirect3DDevice9Ex = @import("../graphics/direct3d9.zig").IDirect3DDevice9Ex;
+const IDirect3DSurface9 = @import("../graphics/direct3d9.zig").IDirect3DSurface9;
+const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const IMediaBuffer = @import("../graphics/direct_show.zig").IMediaBuffer;
-const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
-const D3D12_DISCARD_REGION = @import("../graphics/direct3d12.zig").D3D12_DISCARD_REGION;
-const SIZE = @import("../foundation.zig").SIZE;
-const WAVEFORMATEX = @import("../media/multimedia.zig").WAVEFORMATEX;
-const POINT = @import("../foundation.zig").POINT;
+const IMFDeviceTransform = @import("../media/streaming.zig").IMFDeviceTransform;
+const INamedPropertyStore = @import("../system/properties_system.zig").INamedPropertyStore;
+const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const ISpatialAudioMetadataItems = @import("../media/audio/core_audio.zig").ISpatialAudioMetadataItems;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LUID = @import("../system/system_services.zig").LUID;
 const MPEG1VIDEOINFO = @import("../graphics/direct_show.zig").MPEG1VIDEOINFO;
+const MPEG2VIDEOINFO = @import("../graphics/direct_show.zig").MPEG2VIDEOINFO;
+const POINT = @import("../foundation.zig").POINT;
+const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SIZE = @import("../foundation.zig").SIZE;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const VIDEOINFOHEADER = @import("../graphics/direct_show.zig").VIDEOINFOHEADER;
+const VIDEOINFOHEADER2 = @import("../graphics/direct_show.zig").VIDEOINFOHEADER2;
+const WAVEFORMATEX = @import("../media/multimedia.zig").WAVEFORMATEX;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

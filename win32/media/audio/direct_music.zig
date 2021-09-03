@@ -3711,16 +3711,17 @@ pub extern "DSOUND" fn GetDeviceID(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const LPDSENUMCALLBACK = LPDSENUMCALLBACKA;
-        pub const DirectSoundEnumerate = DirectSoundEnumerateA;
-        pub const DirectSoundCaptureEnumerate = DirectSoundCaptureEnumerateA;
+        pub const LPDSENUMCALLBACK = thismodule.LPDSENUMCALLBACKA;
+        pub const DirectSoundEnumerate = thismodule.DirectSoundEnumerateA;
+        pub const DirectSoundCaptureEnumerate = thismodule.DirectSoundCaptureEnumerateA;
     },
     .wide => struct {
-        pub const LPDSENUMCALLBACK = LPDSENUMCALLBACKW;
-        pub const DirectSoundEnumerate = DirectSoundEnumerateW;
-        pub const DirectSoundCaptureEnumerate = DirectSoundCaptureEnumerateW;
+        pub const LPDSENUMCALLBACK = thismodule.LPDSENUMCALLBACKW;
+        pub const DirectSoundEnumerate = thismodule.DirectSoundEnumerateW;
+        pub const DirectSoundCaptureEnumerate = thismodule.DirectSoundCaptureEnumerateW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const LPDSENUMCALLBACK = *opaque{};
@@ -3736,24 +3737,24 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const LPARAM = @import("../../foundation.zig").LPARAM;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const IUnknown = @import("../../system/com.zig").IUnknown;
-const MIDIOPENSTRMID = @import("../../media/multimedia.zig").MIDIOPENSTRMID;
-const HRESULT = @import("../../foundation.zig").HRESULT;
-const IMMDeviceCollection = @import("../../media/audio/core_audio.zig").IMMDeviceCollection;
-const KSP_PIN = @import("../../media/audio/core_audio.zig").KSP_PIN;
-const PSTR = @import("../../foundation.zig").PSTR;
-const IReferenceClock = @import("../../graphics/direct_show.zig").IReferenceClock;
+const APO_CONNECTION_PROPERTY = @import("../../system/remote_desktop.zig").APO_CONNECTION_PROPERTY;
 const BOOL = @import("../../foundation.zig").BOOL;
 const D3DVECTOR = @import("../../graphics/direct3d9.zig").D3DVECTOR;
-const HWND = @import("../../foundation.zig").HWND;
-const APO_CONNECTION_PROPERTY = @import("../../system/remote_desktop.zig").APO_CONNECTION_PROPERTY;
-const OVERLAPPED = @import("../../system/system_services.zig").OVERLAPPED;
 const HANDLE = @import("../../foundation.zig").HANDLE;
-const WAVEFORMATEX = @import("../../media/multimedia.zig").WAVEFORMATEX;
-const IPropertyStore = @import("../../system/properties_system.zig").IPropertyStore;
 const HMIDI = @import("../../media/multimedia.zig").HMIDI;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const HWND = @import("../../foundation.zig").HWND;
+const IMMDeviceCollection = @import("../../media/audio/core_audio.zig").IMMDeviceCollection;
+const IPropertyStore = @import("../../system/properties_system.zig").IPropertyStore;
+const IReferenceClock = @import("../../graphics/direct_show.zig").IReferenceClock;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const KSP_PIN = @import("../../media/audio/core_audio.zig").KSP_PIN;
+const LPARAM = @import("../../foundation.zig").LPARAM;
+const MIDIOPENSTRMID = @import("../../media/multimedia.zig").MIDIOPENSTRMID;
+const OVERLAPPED = @import("../../system/system_services.zig").OVERLAPPED;
+const PSTR = @import("../../foundation.zig").PSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
+const WAVEFORMATEX = @import("../../media/multimedia.zig").WAVEFORMATEX;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

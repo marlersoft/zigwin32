@@ -70845,6 +70845,7 @@ pub const IBFCacheable = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -70858,24 +70859,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const IDispatchEx = @import("../system/ole_automation.zig").IDispatchEx;
-const HRGN = @import("../graphics/gdi.zig").HRGN;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
 const BOOL = @import("../foundation.zig").BOOL;
-const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const BSTR = @import("../foundation.zig").BSTR;
 const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const POINT = @import("../foundation.zig").POINT;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HRGN = @import("../graphics/gdi.zig").HRGN;
 const IActiveIMMApp = @import("../globalization.zig").IActiveIMMApp;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDispatchEx = @import("../system/ole_automation.zig").IDispatchEx;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const POINT = @import("../foundation.zig").POINT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
 const SIZE = @import("../foundation.zig").SIZE;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

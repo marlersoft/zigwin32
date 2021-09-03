@@ -1295,6 +1295,7 @@ pub const IITResultSet = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1308,20 +1309,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const IStemmer = @import("../system/search.zig").IStemmer;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const NMHDR = @import("../ui/controls.zig").NMHDR;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
 const BOOL = @import("../foundation.zig").BOOL;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IPersistStreamInit = @import("../system/com.zig").IPersistStreamInit;
+const IStemmer = @import("../system/search.zig").IStemmer;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const NMHDR = @import("../ui/controls.zig").NMHDR;
 const POINT = @import("../foundation.zig").POINT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -689,20 +689,21 @@ pub extern "KERNEL32" fn SetDefaultCommConfigW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const BuildCommDCB = BuildCommDCBA;
-        pub const BuildCommDCBAndTimeouts = BuildCommDCBAndTimeoutsA;
-        pub const CommConfigDialog = CommConfigDialogA;
-        pub const GetDefaultCommConfig = GetDefaultCommConfigA;
-        pub const SetDefaultCommConfig = SetDefaultCommConfigA;
+        pub const BuildCommDCB = thismodule.BuildCommDCBA;
+        pub const BuildCommDCBAndTimeouts = thismodule.BuildCommDCBAndTimeoutsA;
+        pub const CommConfigDialog = thismodule.CommConfigDialogA;
+        pub const GetDefaultCommConfig = thismodule.GetDefaultCommConfigA;
+        pub const SetDefaultCommConfig = thismodule.SetDefaultCommConfigA;
     },
     .wide => struct {
-        pub const BuildCommDCB = BuildCommDCBW;
-        pub const BuildCommDCBAndTimeouts = BuildCommDCBAndTimeoutsW;
-        pub const CommConfigDialog = CommConfigDialogW;
-        pub const GetDefaultCommConfig = GetDefaultCommConfigW;
-        pub const SetDefaultCommConfig = SetDefaultCommConfigW;
+        pub const BuildCommDCB = thismodule.BuildCommDCBW;
+        pub const BuildCommDCBAndTimeouts = thismodule.BuildCommDCBAndTimeoutsW;
+        pub const CommConfigDialog = thismodule.CommConfigDialogW;
+        pub const GetDefaultCommConfig = thismodule.GetDefaultCommConfigW;
+        pub const SetDefaultCommConfig = thismodule.SetDefaultCommConfigW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const BuildCommDCB = *opaque{};
@@ -721,13 +722,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

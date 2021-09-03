@@ -325,6 +325,7 @@ pub extern "efswrt" fn UnprotectFile(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -338,16 +339,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-const HSTRING = @import("../system/win_rt.zig").HSTRING;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PACKAGE_ID = @import("../storage/packaging/appx.zig").PACKAGE_ID;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HSTRING = @import("../system/win_rt.zig").HSTRING;
 const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const PACKAGE_ID = @import("../storage/packaging/appx.zig").PACKAGE_ID;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

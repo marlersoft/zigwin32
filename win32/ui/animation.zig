@@ -2436,6 +2436,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2448,10 +2449,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
-const IDCompositionAnimation = @import("../graphics/direct_composition.zig").IDCompositionAnimation;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const IDCompositionAnimation = @import("../graphics/direct_composition.zig").IDCompositionAnimation;
+const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {
     @setEvalBranchQuota(

@@ -2754,6 +2754,7 @@ pub extern "VSSAPI" fn CreateVssExpressWriterInternal(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2767,15 +2768,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const VDS_LUN_INFORMATION = @import("../storage/virtual_disk_service.zig").VDS_LUN_INFORMATION;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const VDS_LUN_INFORMATION = @import("../storage/virtual_disk_service.zig").VDS_LUN_INFORMATION;
 
 test {
     @setEvalBranchQuota(

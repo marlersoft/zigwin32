@@ -1063,6 +1063,7 @@ pub const IPhotoAcquirePlugin = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1076,21 +1077,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IEnumString = @import("../system/com.zig").IEnumString;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const BSTR = @import("../foundation.zig").BSTR;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const SIZE = @import("../foundation.zig").SIZE;
-const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const BSTR = @import("../foundation.zig").BSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IEnumString = @import("../system/com.zig").IEnumString;
+const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
+const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     @setEvalBranchQuota(

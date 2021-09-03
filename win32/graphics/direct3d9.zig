@@ -321,70 +321,10 @@ pub const D3DPRESENT_FORCEIMMEDIATE = @as(i32, 256);
 //--------------------------------------------------------------------------------
 // Section: Types (153)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const D3DADAPTER_IDENTIFIER9 = extern struct {
-    Driver: [512]CHAR,
-    Description: [512]CHAR,
-    DeviceName: [32]CHAR,
-    DriverVersion: LARGE_INTEGER,
-    VendorId: u32,
-    DeviceId: u32,
-    SubSysId: u32,
-    Revision: u32,
-    DeviceIdentifier: Guid,
-    WHQLLevel: u32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const D3DMEMORYPRESSURE = extern struct {
-    BytesEvictedFromProcess: u64,
-    SizeOfInefficientAllocation: u64,
-    LevelOfEfficiency: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const D3DPRESENTSTATS = extern struct {
-    PresentCount: u32,
-    PresentRefreshCount: u32,
-    SyncRefreshCount: u32,
-    SyncQPCTime: LARGE_INTEGER,
-    SyncGPUTime: LARGE_INTEGER,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
-    Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
-    DeviceHandle: ?HANDLE,
-    CryptoSessionHandle: ?HANDLE,
-    OutputIDIndex: u32,
-    OutputID: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const D3DAES_CTR_IV = extern struct {
-    IV: u64,
-    Count: u64,
-};
-
-}, else => struct { } };
 
 pub const D3DVECTOR = extern struct {
     x: f32,
@@ -4755,76 +4695,96 @@ pub const IDirect3DSwapChain9Ex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const D3DADAPTER_IDENTIFIER9 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Driver: [512]CHAR,
-    Description: [512]CHAR,
-    DeviceName: [32]CHAR,
-    DriverVersion: LARGE_INTEGER,
-    VendorId: u32,
-    DeviceId: u32,
-    SubSysId: u32,
-    Revision: u32,
-    DeviceIdentifier: Guid,
-    WHQLLevel: u32,
+
+
+
+
+pub const D3DADAPTER_IDENTIFIER9 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Driver: [512]CHAR,
+        Description: [512]CHAR,
+        DeviceName: [32]CHAR,
+        DriverVersion: LARGE_INTEGER,
+        VendorId: u32,
+        DeviceId: u32,
+        SubSysId: u32,
+        Revision: u32,
+        DeviceIdentifier: Guid,
+        WHQLLevel: u32,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        Driver: [512]CHAR,
+        Description: [512]CHAR,
+        DeviceName: [32]CHAR,
+        DriverVersion: LARGE_INTEGER,
+        VendorId: u32,
+        DeviceId: u32,
+        SubSysId: u32,
+        Revision: u32,
+        DeviceIdentifier: Guid,
+        WHQLLevel: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const D3DMEMORYPRESSURE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BytesEvictedFromProcess: u64,
-    SizeOfInefficientAllocation: u64,
-    LevelOfEfficiency: u32,
+pub const D3DMEMORYPRESSURE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        BytesEvictedFromProcess: u64,
+        SizeOfInefficientAllocation: u64,
+        LevelOfEfficiency: u32,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        BytesEvictedFromProcess: u64,
+        SizeOfInefficientAllocation: u64,
+        LevelOfEfficiency: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const D3DPRESENTSTATS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    PresentCount: u32,
-    PresentRefreshCount: u32,
-    SyncRefreshCount: u32,
-    SyncQPCTime: LARGE_INTEGER,
-    SyncGPUTime: LARGE_INTEGER,
+pub const D3DPRESENTSTATS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PresentCount: u32,
+        PresentRefreshCount: u32,
+        SyncRefreshCount: u32,
+        SyncQPCTime: LARGE_INTEGER,
+        SyncGPUTime: LARGE_INTEGER,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        PresentCount: u32,
+        PresentRefreshCount: u32,
+        SyncRefreshCount: u32,
+        SyncQPCTime: LARGE_INTEGER,
+        SyncGPUTime: LARGE_INTEGER,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
-    DeviceHandle: ?HANDLE,
-    CryptoSessionHandle: ?HANDLE,
-    OutputIDIndex: u32,
-    OutputID: u64,
+pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
+        DeviceHandle: ?HANDLE,
+        CryptoSessionHandle: ?HANDLE,
+        OutputIDIndex: u32,
+        OutputID: u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
+        DeviceHandle: ?HANDLE,
+        CryptoSessionHandle: ?HANDLE,
+        OutputIDIndex: u32,
+        OutputID: u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const D3DAES_CTR_IV = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    IV: u64,
-    Count: u64,
+pub const D3DAES_CTR_IV = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        IV: u64,
+        Count: u64,
+    },
+    .X86 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        IV: u64,
+        Count: u64,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (9)
@@ -4870,6 +4830,7 @@ pub extern "d3d9" fn Direct3DCreate9Ex(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4883,21 +4844,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOL = @import("../foundation.zig").BOOL;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const RECT = @import("../foundation.zig").RECT;
-const BOOL = @import("../foundation.zig").BOOL;
 const HWND = @import("../foundation.zig").HWND;
-const LUID = @import("../system/system_services.zig").LUID;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LUID = @import("../system/system_services.zig").LUID;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
 const POINT = @import("../foundation.zig").POINT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
 
 test {
     @setEvalBranchQuota(

@@ -8140,6 +8140,7 @@ pub extern "mi" fn MI_Application_InitializeV1(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -8152,14 +8153,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -632,6 +632,7 @@ pub extern "chakra" fn JsStartDebugging(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -644,24 +645,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-    pub const IDebugApplication64 = @import("../system/diagnostics/debug.zig").IDebugApplication64;
-
-}, else => struct { } };
-const PWSTR = @import("../foundation.zig").PWSTR;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerHeapEnum;
 const PROFILER_EVENT_MASK = @import("../system/diagnostics/debug.zig").PROFILER_EVENT_MASK;
-usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-    pub const IDebugApplication32 = @import("../system/diagnostics/debug.zig").IDebugApplication32;
-
-}, else => struct { } };
+const PWSTR = @import("../foundation.zig").PWSTR;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+// 2 arch-specific imports
+const IDebugApplication32 = switch(@import("../zig.zig").arch) {
+    .X86 => @import("../system/diagnostics/debug.zig").IDebugApplication32,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const IDebugApplication64 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => @import("../system/diagnostics/debug.zig").IDebugApplication64,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

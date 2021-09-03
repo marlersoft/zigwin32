@@ -3623,6 +3623,7 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateStreamOverRandomAcce
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3636,51 +3637,51 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (46)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const IMarshal = @import("../system/com.zig").IMarshal;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const ID3D12CommandQueue = @import("../graphics/direct3d12.zig").ID3D12CommandQueue;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const ID3D12Fence = @import("../graphics/direct3d12.zig").ID3D12Fence;
-const IWICBitmap = @import("../graphics/imaging.zig").IWICBitmap;
 const BOOL = @import("../foundation.zig").BOOL;
-const ID3D12Resource = @import("../graphics/direct3d12.zig").ID3D12Resource;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const IXpsOMPageReference = @import("../storage/xps.zig").IXpsOMPageReference;
-const IPrinterQueue = @import("../graphics/printing.zig").IPrinterQueue;
-const ID2D1Geometry = @import("../graphics/direct2d.zig").ID2D1Geometry;
-const IPrinterPropertyBag = @import("../graphics/printing.zig").IPrinterPropertyBag;
-const IDXGIDevice = @import("../graphics/dxgi.zig").IDXGIDevice;
-const D2D_RECT_F = @import("../graphics/direct2d.zig").D2D_RECT_F;
-const INamedPropertyStore = @import("../system/properties_system.zig").INamedPropertyStore;
-const IDXGISurface = @import("../graphics/dxgi.zig").IDXGISurface;
-const IMFDXGIDeviceManager = @import("../media/media_foundation.zig").IMFDXGIDeviceManager;
-const ID2D1DeviceContext = @import("../graphics/direct2d.zig").ID2D1DeviceContext;
-const IMLOperatorRegistry = @import("../ai/machine_learning/win_ml.zig").IMLOperatorRegistry;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const D2D_COLOR_F = @import("../graphics/direct2d.zig").D2D_COLOR_F;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const ID3D12Device = @import("../graphics/direct3d12.zig").ID3D12Device;
-const POINTER_INFO = @import("../ui/pointer_input.zig").POINTER_INFO;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
-const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
-const IXpsOMObjectFactory1 = @import("../storage/xps.zig").IXpsOMObjectFactory1;
-const HWND = @import("../foundation.zig").HWND;
-const MFVideoArea = @import("../media/media_foundation.zig").MFVideoArea;
-const IMFSample = @import("../media/media_foundation.zig").IMFSample;
-const ID2D1Factory = @import("../graphics/direct2d.zig").ID2D1Factory;
-const IMF2DBuffer2 = @import("../media/media_foundation.zig").IMF2DBuffer2;
-const ID3D12ProtectedResourceSession = @import("../graphics/direct3d12.zig").ID3D12ProtectedResourceSession;
-const PSTR = @import("../foundation.zig").PSTR;
-const POINT = @import("../foundation.zig").POINT;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const SIZE = @import("../foundation.zig").SIZE;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const D2D_COLOR_F = @import("../graphics/direct2d.zig").D2D_COLOR_F;
+const D2D_RECT_F = @import("../graphics/direct2d.zig").D2D_RECT_F;
 const D3D12_RESOURCE_DESC = @import("../graphics/direct3d12.zig").D3D12_RESOURCE_DESC;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const ID2D1DeviceContext = @import("../graphics/direct2d.zig").ID2D1DeviceContext;
+const ID2D1Factory = @import("../graphics/direct2d.zig").ID2D1Factory;
+const ID2D1Geometry = @import("../graphics/direct2d.zig").ID2D1Geometry;
+const ID3D12CommandQueue = @import("../graphics/direct3d12.zig").ID3D12CommandQueue;
+const ID3D12Device = @import("../graphics/direct3d12.zig").ID3D12Device;
+const ID3D12Fence = @import("../graphics/direct3d12.zig").ID3D12Fence;
+const ID3D12ProtectedResourceSession = @import("../graphics/direct3d12.zig").ID3D12ProtectedResourceSession;
+const ID3D12Resource = @import("../graphics/direct3d12.zig").ID3D12Resource;
+const IDXGIDevice = @import("../graphics/dxgi.zig").IDXGIDevice;
+const IDXGISurface = @import("../graphics/dxgi.zig").IDXGISurface;
+const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
+const IMarshal = @import("../system/com.zig").IMarshal;
+const IMF2DBuffer2 = @import("../media/media_foundation.zig").IMF2DBuffer2;
+const IMFDXGIDeviceManager = @import("../media/media_foundation.zig").IMFDXGIDeviceManager;
+const IMFSample = @import("../media/media_foundation.zig").IMFSample;
+const IMLOperatorRegistry = @import("../ai/machine_learning/win_ml.zig").IMLOperatorRegistry;
+const INamedPropertyStore = @import("../system/properties_system.zig").INamedPropertyStore;
+const IPrinterPropertyBag = @import("../graphics/printing.zig").IPrinterPropertyBag;
+const IPrinterQueue = @import("../graphics/printing.zig").IPrinterQueue;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const IWICBitmap = @import("../graphics/imaging.zig").IWICBitmap;
 const IXpsDocumentPackageTarget = @import("../storage/xps.zig").IXpsDocumentPackageTarget;
+const IXpsOMObjectFactory1 = @import("../storage/xps.zig").IXpsOMObjectFactory1;
+const IXpsOMPageReference = @import("../storage/xps.zig").IXpsOMPageReference;
+const MFVideoArea = @import("../media/media_foundation.zig").MFVideoArea;
+const MSG = @import("../ui/windows_and_messaging.zig").MSG;
+const POINT = @import("../foundation.zig").POINT;
+const POINTER_INFO = @import("../ui/pointer_input.zig").POINTER_INFO;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

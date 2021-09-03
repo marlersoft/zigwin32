@@ -243,28 +243,29 @@ pub extern "USER32" fn SetUserObjectInformationW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (9)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const CreateDesktop = CreateDesktopA;
-        pub const CreateDesktopEx = CreateDesktopExA;
-        pub const OpenDesktop = OpenDesktopA;
-        pub const EnumDesktops = EnumDesktopsA;
-        pub const CreateWindowStation = CreateWindowStationA;
-        pub const OpenWindowStation = OpenWindowStationA;
-        pub const EnumWindowStations = EnumWindowStationsA;
-        pub const GetUserObjectInformation = GetUserObjectInformationA;
-        pub const SetUserObjectInformation = SetUserObjectInformationA;
+        pub const CreateDesktop = thismodule.CreateDesktopA;
+        pub const CreateDesktopEx = thismodule.CreateDesktopExA;
+        pub const OpenDesktop = thismodule.OpenDesktopA;
+        pub const EnumDesktops = thismodule.EnumDesktopsA;
+        pub const CreateWindowStation = thismodule.CreateWindowStationA;
+        pub const OpenWindowStation = thismodule.OpenWindowStationA;
+        pub const EnumWindowStations = thismodule.EnumWindowStationsA;
+        pub const GetUserObjectInformation = thismodule.GetUserObjectInformationA;
+        pub const SetUserObjectInformation = thismodule.SetUserObjectInformationA;
     },
     .wide => struct {
-        pub const CreateDesktop = CreateDesktopW;
-        pub const CreateDesktopEx = CreateDesktopExW;
-        pub const OpenDesktop = OpenDesktopW;
-        pub const EnumDesktops = EnumDesktopsW;
-        pub const CreateWindowStation = CreateWindowStationW;
-        pub const OpenWindowStation = OpenWindowStationW;
-        pub const EnumWindowStations = EnumWindowStationsW;
-        pub const GetUserObjectInformation = GetUserObjectInformationW;
-        pub const SetUserObjectInformation = SetUserObjectInformationW;
+        pub const CreateDesktop = thismodule.CreateDesktopW;
+        pub const CreateDesktopEx = thismodule.CreateDesktopExW;
+        pub const OpenDesktop = thismodule.OpenDesktopW;
+        pub const EnumDesktops = thismodule.EnumDesktopsW;
+        pub const CreateWindowStation = thismodule.CreateWindowStationW;
+        pub const OpenWindowStation = thismodule.OpenWindowStationW;
+        pub const EnumWindowStations = thismodule.EnumWindowStationsW;
+        pub const GetUserObjectInformation = thismodule.GetUserObjectInformationW;
+        pub const SetUserObjectInformation = thismodule.SetUserObjectInformationW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CreateDesktop = *opaque{};
@@ -291,19 +292,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const DEVMODEW = @import("../ui/display_devices.zig").DEVMODEW;
-const DESKTOPENUMPROCA = @import("../ui/windows_and_messaging.zig").DESKTOPENUMPROCA;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const PSTR = @import("../foundation.zig").PSTR;
-const DESKTOPENUMPROCW = @import("../ui/windows_and_messaging.zig").DESKTOPENUMPROCW;
 const BOOL = @import("../foundation.zig").BOOL;
+const DESKTOPENUMPROCA = @import("../ui/windows_and_messaging.zig").DESKTOPENUMPROCA;
+const DESKTOPENUMPROCW = @import("../ui/windows_and_messaging.zig").DESKTOPENUMPROCW;
 const DEVMODEA = @import("../ui/display_devices.zig").DEVMODEA;
+const DEVMODEW = @import("../ui/display_devices.zig").DEVMODEW;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const WINSTAENUMPROCA = @import("../ui/windows_and_messaging.zig").WINSTAENUMPROCA;
 const WINSTAENUMPROCW = @import("../ui/windows_and_messaging.zig").WINSTAENUMPROCW;
 const WNDENUMPROC = @import("../ui/windows_and_messaging.zig").WNDENUMPROC;
-const WINSTAENUMPROCA = @import("../ui/windows_and_messaging.zig").WINSTAENUMPROCA;
 
 test {
     @setEvalBranchQuota(

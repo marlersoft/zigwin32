@@ -2730,6 +2730,7 @@ pub extern "WDSBP" fn WdsBpGetOptionBuffer(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2742,18 +2743,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../foundation.zig").LPARAM;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const BSTR = @import("../foundation.zig").BSTR;
-const BOOL = @import("../foundation.zig").BOOL;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -1076,6 +1076,7 @@ pub extern "dxcompiler" fn DxcCreateInstance2(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1089,20 +1090,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PSTR = @import("../foundation.zig").PSTR;
-const ID3DInclude = @import("../graphics/direct3d11.zig").ID3DInclude;
 const BOOL = @import("../foundation.zig").BOOL;
-const ID3D10Effect = @import("../graphics/direct3d10.zig").ID3D10Effect;
-const ID3D11Linker = @import("../graphics/direct3d11.zig").ID3D11Linker;
-const ID3D11FunctionLinkingGraph = @import("../graphics/direct3d11.zig").ID3D11FunctionLinkingGraph;
-const IMalloc = @import("../system/com.zig").IMalloc;
 const D3D_SHADER_MACRO = @import("../graphics/direct3d11.zig").D3D_SHADER_MACRO;
-const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const ID3D10Effect = @import("../graphics/direct3d10.zig").ID3D10Effect;
+const ID3D11FunctionLinkingGraph = @import("../graphics/direct3d11.zig").ID3D11FunctionLinkingGraph;
+const ID3D11Linker = @import("../graphics/direct3d11.zig").ID3D11Linker;
 const ID3D11Module = @import("../graphics/direct3d11.zig").ID3D11Module;
+const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
+const ID3DInclude = @import("../graphics/direct3d11.zig").ID3DInclude;
+const IMalloc = @import("../system/com.zig").IMalloc;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

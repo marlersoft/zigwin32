@@ -436,33 +436,7 @@ pub const GAA_FLAG_SKIP_DNS_INFO = @as(u32, 2048);
 //--------------------------------------------------------------------------------
 // Section: Types (214)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const ip_option_information32 = extern struct {
-    Ttl: u8,
-    Tos: u8,
-    Flags: u8,
-    OptionsSize: u8,
-    OptionsData: ?*u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const icmp_echo_reply32 = extern struct {
-    Address: u32,
-    Status: u32,
-    RoundTripTime: u32,
-    DataSize: u16,
-    Reserved: u16,
-    Data: ?*c_void,
-    Options: ip_option_information32,
-};
-
-}, else => struct { } };
 
 // TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
 pub const IcmpHandle = isize;
@@ -2668,6 +2642,28 @@ pub const GAA_FLAG_INCLUDE_ALL_INTERFACES = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE
 pub const GAA_FLAG_INCLUDE_ALL_COMPARTMENTS = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_ALL_COMPARTMENTS;
 pub const GAA_FLAG_INCLUDE_TUNNEL_BINDINGORDER = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_TUNNEL_BINDINGORDER;
 
+pub const ip_option_information32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Ttl: u8,
+        Tos: u8,
+        Flags: u8,
+        OptionsSize: u8,
+        OptionsData: ?*u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const icmp_echo_reply32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Address: u32,
+        Status: u32,
+        RoundTripTime: u32,
+        DataSize: u16,
+        Reserved: u16,
+        Data: ?*c_void,
+        Options: ip_option_information32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (196)
@@ -3948,14 +3944,15 @@ pub extern "IPHLPAPI" fn PfTestPacket(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ConvertInterfaceNameToLuid = ConvertInterfaceNameToLuidA;
-        pub const ConvertInterfaceLuidToName = ConvertInterfaceLuidToNameA;
+        pub const ConvertInterfaceNameToLuid = thismodule.ConvertInterfaceNameToLuidA;
+        pub const ConvertInterfaceLuidToName = thismodule.ConvertInterfaceLuidToNameA;
     },
     .wide => struct {
-        pub const ConvertInterfaceNameToLuid = ConvertInterfaceNameToLuidW;
-        pub const ConvertInterfaceLuidToName = ConvertInterfaceLuidToNameW;
+        pub const ConvertInterfaceNameToLuid = thismodule.ConvertInterfaceNameToLuidW;
+        pub const ConvertInterfaceLuidToName = thismodule.ConvertInterfaceLuidToNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ConvertInterfaceNameToLuid = *opaque{};
@@ -3969,37 +3966,37 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (32)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const NL_DAD_STATE = @import("../networking/win_sock.zig").NL_DAD_STATE;
-const NL_SUFFIX_ORIGIN = @import("../networking/win_sock.zig").NL_SUFFIX_ORIGIN;
-const NL_ROUTE_PROTOCOL = @import("../networking/win_sock.zig").NL_ROUTE_PROTOCOL;
-const NL_BANDWIDTH_INFORMATION = @import("../networking/win_sock.zig").NL_BANDWIDTH_INFORMATION;
 const BOOL = @import("../foundation.zig").BOOL;
-const NL_ROUTER_DISCOVERY_BEHAVIOR = @import("../networking/win_sock.zig").NL_ROUTER_DISCOVERY_BEHAVIOR;
-const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const SCOPE_ID = @import("../networking/win_sock.zig").SCOPE_ID;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const NDIS_PHYSICAL_MEDIUM = @import("../network_management/ndis.zig").NDIS_PHYSICAL_MEDIUM;
-const SOCKADDR_INET = @import("../networking/win_sock.zig").SOCKADDR_INET;
-const WIN32_ERROR = @import("../system/diagnostics/debug.zig").WIN32_ERROR;
-const NL_NEIGHBOR_STATE = @import("../networking/win_sock.zig").NL_NEIGHBOR_STATE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const NL_NETWORK_CONNECTIVITY_HINT = @import("../networking/win_sock.zig").NL_NETWORK_CONNECTIVITY_HINT;
-const NL_PREFIX_ORIGIN = @import("../networking/win_sock.zig").NL_PREFIX_ORIGIN;
-const NL_LINK_LOCAL_ADDRESS_BEHAVIOR = @import("../networking/win_sock.zig").NL_LINK_LOCAL_ADDRESS_BEHAVIOR;
-const NL_INTERFACE_OFFLOAD_ROD = @import("../networking/win_sock.zig").NL_INTERFACE_OFFLOAD_ROD;
-const NDIS_MEDIUM = @import("../network_management/ndis.zig").NDIS_MEDIUM;
-const PSTR = @import("../foundation.zig").PSTR;
-const PIO_APC_ROUTINE = @import("../system/windows_programming.zig").PIO_APC_ROUTINE;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const SOCKADDR_IN6_PAIR = @import("../networking/win_sock.zig").SOCKADDR_IN6_PAIR;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
-const SOCKADDR_IN6 = @import("../networking/win_sock.zig").SOCKADDR_IN6;
+const NDIS_MEDIUM = @import("../network_management/ndis.zig").NDIS_MEDIUM;
+const NDIS_PHYSICAL_MEDIUM = @import("../network_management/ndis.zig").NDIS_PHYSICAL_MEDIUM;
+const NL_BANDWIDTH_INFORMATION = @import("../networking/win_sock.zig").NL_BANDWIDTH_INFORMATION;
+const NL_DAD_STATE = @import("../networking/win_sock.zig").NL_DAD_STATE;
+const NL_INTERFACE_OFFLOAD_ROD = @import("../networking/win_sock.zig").NL_INTERFACE_OFFLOAD_ROD;
+const NL_LINK_LOCAL_ADDRESS_BEHAVIOR = @import("../networking/win_sock.zig").NL_LINK_LOCAL_ADDRESS_BEHAVIOR;
+const NL_NEIGHBOR_STATE = @import("../networking/win_sock.zig").NL_NEIGHBOR_STATE;
+const NL_NETWORK_CONNECTIVITY_HINT = @import("../networking/win_sock.zig").NL_NETWORK_CONNECTIVITY_HINT;
+const NL_PREFIX_ORIGIN = @import("../networking/win_sock.zig").NL_PREFIX_ORIGIN;
 const NL_ROUTE_ORIGIN = @import("../networking/win_sock.zig").NL_ROUTE_ORIGIN;
+const NL_ROUTE_PROTOCOL = @import("../networking/win_sock.zig").NL_ROUTE_PROTOCOL;
+const NL_ROUTER_DISCOVERY_BEHAVIOR = @import("../networking/win_sock.zig").NL_ROUTER_DISCOVERY_BEHAVIOR;
+const NL_SUFFIX_ORIGIN = @import("../networking/win_sock.zig").NL_SUFFIX_ORIGIN;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PIO_APC_ROUTINE = @import("../system/windows_programming.zig").PIO_APC_ROUTINE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SCOPE_ID = @import("../networking/win_sock.zig").SCOPE_ID;
+const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
+const SOCKADDR_IN6 = @import("../networking/win_sock.zig").SOCKADDR_IN6;
+const SOCKADDR_IN6_PAIR = @import("../networking/win_sock.zig").SOCKADDR_IN6_PAIR;
+const SOCKADDR_INET = @import("../networking/win_sock.zig").SOCKADDR_INET;
+const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
+const WIN32_ERROR = @import("../system/diagnostics/debug.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

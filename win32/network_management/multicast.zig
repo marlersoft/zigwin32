@@ -106,6 +106,7 @@ pub extern "dhcpcsvc" fn McastReleaseAddress(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -118,8 +119,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const UNICODE_STRING = @import("../system/kernel.zig").UNICODE_STRING;
 const BOOL = @import("../foundation.zig").BOOL;
+const UNICODE_STRING = @import("../system/kernel.zig").UNICODE_STRING;
 
 test {
     @setEvalBranchQuota(

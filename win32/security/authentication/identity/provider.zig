@@ -968,6 +968,7 @@ pub const AsyncIIdentityStoreEx = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -981,17 +982,17 @@ pub usingnamespace switch (@import("../../../zig.zig").unicode_mode) {
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
-const PWSTR = @import("../../../foundation.zig").PWSTR;
-const IBindCtx = @import("../../../system/com.zig").IBindCtx;
-const VARIANT = @import("../../../system/ole_automation.zig").VARIANT;
-const IUnknown = @import("../../../system/com.zig").IUnknown;
+const BOOL = @import("../../../foundation.zig").BOOL;
 const HRESULT = @import("../../../foundation.zig").HRESULT;
-const PROPERTYKEY = @import("../../../system/properties_system.zig").PROPERTYKEY;
-const PROPVARIANT = @import("../../../storage/structured_storage.zig").PROPVARIANT;
+const HWND = @import("../../../foundation.zig").HWND;
+const IBindCtx = @import("../../../system/com.zig").IBindCtx;
 const IEnumUnknown = @import("../../../system/com.zig").IEnumUnknown;
 const IPropertyStore = @import("../../../system/properties_system.zig").IPropertyStore;
-const BOOL = @import("../../../foundation.zig").BOOL;
-const HWND = @import("../../../foundation.zig").HWND;
+const IUnknown = @import("../../../system/com.zig").IUnknown;
+const PROPERTYKEY = @import("../../../system/properties_system.zig").PROPERTYKEY;
+const PROPVARIANT = @import("../../../storage/structured_storage.zig").PROPVARIANT;
+const PWSTR = @import("../../../foundation.zig").PWSTR;
+const VARIANT = @import("../../../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

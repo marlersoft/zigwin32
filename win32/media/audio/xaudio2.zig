@@ -1231,6 +1231,7 @@ pub extern "HrtfApo" fn CreateHrtfApo(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1245,11 +1246,11 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const AUDIO_STREAM_CATEGORY = @import("../../media/audio/core_audio.zig").AUDIO_STREAM_CATEGORY;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const WAVEFORMATEX = @import("../../media/multimedia.zig").WAVEFORMATEX;
-const IUnknown = @import("../../system/com.zig").IUnknown;
 const BOOL = @import("../../foundation.zig").BOOL;
 const HRESULT = @import("../../foundation.zig").HRESULT;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const PWSTR = @import("../../foundation.zig").PWSTR;
+const WAVEFORMATEX = @import("../../media/multimedia.zig").WAVEFORMATEX;
 
 test {
     @setEvalBranchQuota(

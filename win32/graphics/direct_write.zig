@@ -7284,6 +7284,7 @@ pub extern "DWrite" fn DWriteCreateFactory(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -7297,23 +7298,23 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOL = @import("../foundation.zig").BOOL;
+const D2D_POINT_2F = @import("../graphics/direct2d.zig").D2D_POINT_2F;
+const D2D_SIZE_U = @import("../graphics/direct2d.zig").D2D_SIZE_U;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const FONTSIGNATURE = @import("../globalization.zig").FONTSIGNATURE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FONTSIGNATURE = @import("../globalization.zig").FONTSIGNATURE;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const RECT = @import("../foundation.zig").RECT;
 const ID2D1SimplifiedGeometrySink = @import("../graphics/direct2d.zig").ID2D1SimplifiedGeometrySink;
-const BOOL = @import("../foundation.zig").BOOL;
-const D2D_SIZE_U = @import("../graphics/direct2d.zig").D2D_SIZE_U;
-const D2D_POINT_2F = @import("../graphics/direct2d.zig").D2D_POINT_2F;
-const POINT = @import("../foundation.zig").POINT;
-const SIZE = @import("../foundation.zig").SIZE;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const LOGFONTA = @import("../graphics/gdi.zig").LOGFONTA;
-const HANDLE = @import("../foundation.zig").HANDLE;
+const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const POINT = @import("../foundation.zig").POINT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     @setEvalBranchQuota(

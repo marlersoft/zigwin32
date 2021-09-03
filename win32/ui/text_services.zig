@@ -8848,6 +8848,7 @@ pub extern "MsCtfMonitor" fn UninitLocalMsCtfMonitor(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -8861,28 +8862,28 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IEnumString = @import("../system/com.zig").IEnumString;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const IEnumGUID = @import("../system/com.zig").IEnumGUID;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IDataObject = @import("../system/com.zig").IDataObject;
+const BSTR = @import("../foundation.zig").BSTR;
 const FORMATETC = @import("../system/com.zig").FORMATETC;
-const POINT = @import("../foundation.zig").POINT;
-const SIZE = @import("../foundation.zig").SIZE;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDataObject = @import("../system/com.zig").IDataObject;
+const IEnumGUID = @import("../system/com.zig").IEnumGUID;
+const IEnumString = @import("../system/com.zig").IEnumString;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const MSG = @import("../ui/windows_and_messaging.zig").MSG;
+const POINT = @import("../foundation.zig").POINT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SIZE = @import("../foundation.zig").SIZE;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     @setEvalBranchQuota(

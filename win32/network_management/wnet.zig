@@ -1150,64 +1150,65 @@ pub extern "MPR" fn WNetSetLastErrorW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (27)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const NETRESOURCE = NETRESOURCEA;
-        pub const CONNECTDLGSTRUCT = CONNECTDLGSTRUCTA;
-        pub const DISCDLGSTRUCT = DISCDLGSTRUCTA;
-        pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOA;
-        pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOA;
-        pub const WNetAddConnection = WNetAddConnectionA;
-        pub const WNetAddConnection2 = WNetAddConnection2A;
-        pub const WNetAddConnection3 = WNetAddConnection3A;
-        pub const WNetAddConnection4 = WNetAddConnection4A;
-        pub const WNetCancelConnection = WNetCancelConnectionA;
-        pub const WNetCancelConnection2 = WNetCancelConnection2A;
-        pub const WNetGetConnection = WNetGetConnectionA;
-        pub const WNetUseConnection = WNetUseConnectionA;
-        pub const WNetUseConnection4 = WNetUseConnection4A;
-        pub const WNetConnectionDialog1 = WNetConnectionDialog1A;
-        pub const WNetDisconnectDialog1 = WNetDisconnectDialog1A;
-        pub const WNetOpenEnum = WNetOpenEnumA;
-        pub const WNetEnumResource = WNetEnumResourceA;
-        pub const WNetGetResourceParent = WNetGetResourceParentA;
-        pub const WNetGetResourceInformation = WNetGetResourceInformationA;
-        pub const WNetGetUniversalName = WNetGetUniversalNameA;
-        pub const WNetGetUser = WNetGetUserA;
-        pub const WNetGetProviderName = WNetGetProviderNameA;
-        pub const WNetGetNetworkInformation = WNetGetNetworkInformationA;
-        pub const WNetGetLastError = WNetGetLastErrorA;
-        pub const MultinetGetConnectionPerformance = MultinetGetConnectionPerformanceA;
-        pub const WNetSetLastError = WNetSetLastErrorA;
+        pub const NETRESOURCE = thismodule.NETRESOURCEA;
+        pub const CONNECTDLGSTRUCT = thismodule.CONNECTDLGSTRUCTA;
+        pub const DISCDLGSTRUCT = thismodule.DISCDLGSTRUCTA;
+        pub const UNIVERSAL_NAME_INFO = thismodule.UNIVERSAL_NAME_INFOA;
+        pub const REMOTE_NAME_INFO = thismodule.REMOTE_NAME_INFOA;
+        pub const WNetAddConnection = thismodule.WNetAddConnectionA;
+        pub const WNetAddConnection2 = thismodule.WNetAddConnection2A;
+        pub const WNetAddConnection3 = thismodule.WNetAddConnection3A;
+        pub const WNetAddConnection4 = thismodule.WNetAddConnection4A;
+        pub const WNetCancelConnection = thismodule.WNetCancelConnectionA;
+        pub const WNetCancelConnection2 = thismodule.WNetCancelConnection2A;
+        pub const WNetGetConnection = thismodule.WNetGetConnectionA;
+        pub const WNetUseConnection = thismodule.WNetUseConnectionA;
+        pub const WNetUseConnection4 = thismodule.WNetUseConnection4A;
+        pub const WNetConnectionDialog1 = thismodule.WNetConnectionDialog1A;
+        pub const WNetDisconnectDialog1 = thismodule.WNetDisconnectDialog1A;
+        pub const WNetOpenEnum = thismodule.WNetOpenEnumA;
+        pub const WNetEnumResource = thismodule.WNetEnumResourceA;
+        pub const WNetGetResourceParent = thismodule.WNetGetResourceParentA;
+        pub const WNetGetResourceInformation = thismodule.WNetGetResourceInformationA;
+        pub const WNetGetUniversalName = thismodule.WNetGetUniversalNameA;
+        pub const WNetGetUser = thismodule.WNetGetUserA;
+        pub const WNetGetProviderName = thismodule.WNetGetProviderNameA;
+        pub const WNetGetNetworkInformation = thismodule.WNetGetNetworkInformationA;
+        pub const WNetGetLastError = thismodule.WNetGetLastErrorA;
+        pub const MultinetGetConnectionPerformance = thismodule.MultinetGetConnectionPerformanceA;
+        pub const WNetSetLastError = thismodule.WNetSetLastErrorA;
     },
     .wide => struct {
-        pub const NETRESOURCE = NETRESOURCEW;
-        pub const CONNECTDLGSTRUCT = CONNECTDLGSTRUCTW;
-        pub const DISCDLGSTRUCT = DISCDLGSTRUCTW;
-        pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOW;
-        pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOW;
-        pub const WNetAddConnection = WNetAddConnectionW;
-        pub const WNetAddConnection2 = WNetAddConnection2W;
-        pub const WNetAddConnection3 = WNetAddConnection3W;
-        pub const WNetAddConnection4 = WNetAddConnection4W;
-        pub const WNetCancelConnection = WNetCancelConnectionW;
-        pub const WNetCancelConnection2 = WNetCancelConnection2W;
-        pub const WNetGetConnection = WNetGetConnectionW;
-        pub const WNetUseConnection = WNetUseConnectionW;
-        pub const WNetUseConnection4 = WNetUseConnection4W;
-        pub const WNetConnectionDialog1 = WNetConnectionDialog1W;
-        pub const WNetDisconnectDialog1 = WNetDisconnectDialog1W;
-        pub const WNetOpenEnum = WNetOpenEnumW;
-        pub const WNetEnumResource = WNetEnumResourceW;
-        pub const WNetGetResourceParent = WNetGetResourceParentW;
-        pub const WNetGetResourceInformation = WNetGetResourceInformationW;
-        pub const WNetGetUniversalName = WNetGetUniversalNameW;
-        pub const WNetGetUser = WNetGetUserW;
-        pub const WNetGetProviderName = WNetGetProviderNameW;
-        pub const WNetGetNetworkInformation = WNetGetNetworkInformationW;
-        pub const WNetGetLastError = WNetGetLastErrorW;
-        pub const MultinetGetConnectionPerformance = MultinetGetConnectionPerformanceW;
-        pub const WNetSetLastError = WNetSetLastErrorW;
+        pub const NETRESOURCE = thismodule.NETRESOURCEW;
+        pub const CONNECTDLGSTRUCT = thismodule.CONNECTDLGSTRUCTW;
+        pub const DISCDLGSTRUCT = thismodule.DISCDLGSTRUCTW;
+        pub const UNIVERSAL_NAME_INFO = thismodule.UNIVERSAL_NAME_INFOW;
+        pub const REMOTE_NAME_INFO = thismodule.REMOTE_NAME_INFOW;
+        pub const WNetAddConnection = thismodule.WNetAddConnectionW;
+        pub const WNetAddConnection2 = thismodule.WNetAddConnection2W;
+        pub const WNetAddConnection3 = thismodule.WNetAddConnection3W;
+        pub const WNetAddConnection4 = thismodule.WNetAddConnection4W;
+        pub const WNetCancelConnection = thismodule.WNetCancelConnectionW;
+        pub const WNetCancelConnection2 = thismodule.WNetCancelConnection2W;
+        pub const WNetGetConnection = thismodule.WNetGetConnectionW;
+        pub const WNetUseConnection = thismodule.WNetUseConnectionW;
+        pub const WNetUseConnection4 = thismodule.WNetUseConnection4W;
+        pub const WNetConnectionDialog1 = thismodule.WNetConnectionDialog1W;
+        pub const WNetDisconnectDialog1 = thismodule.WNetDisconnectDialog1W;
+        pub const WNetOpenEnum = thismodule.WNetOpenEnumW;
+        pub const WNetEnumResource = thismodule.WNetEnumResourceW;
+        pub const WNetGetResourceParent = thismodule.WNetGetResourceParentW;
+        pub const WNetGetResourceInformation = thismodule.WNetGetResourceInformationW;
+        pub const WNetGetUniversalName = thismodule.WNetGetUniversalNameW;
+        pub const WNetGetUser = thismodule.WNetGetUserW;
+        pub const WNetGetProviderName = thismodule.WNetGetProviderNameW;
+        pub const WNetGetNetworkInformation = thismodule.WNetGetNetworkInformationW;
+        pub const WNetGetLastError = thismodule.WNetGetLastErrorW;
+        pub const MultinetGetConnectionPerformance = thismodule.MultinetGetConnectionPerformanceW;
+        pub const WNetSetLastError = thismodule.WNetSetLastErrorW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const NETRESOURCE = *opaque{};
@@ -1270,13 +1271,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const WIN32_ERROR = @import("../system/diagnostics/debug.zig").WIN32_ERROR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const LUID = @import("../system/system_services.zig").LUID;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const WIN32_ERROR = @import("../system/diagnostics/debug.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

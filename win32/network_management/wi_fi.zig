@@ -4889,6 +4889,7 @@ pub extern "wlanapi" fn WFDUpdateDeviceVisibility(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4902,17 +4903,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const EAP_METHOD_TYPE = @import("../security/extensible_authentication_protocol.zig").EAP_METHOD_TYPE;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const NDIS_OBJECT_HEADER = @import("../network_management/ndis.zig").NDIS_OBJECT_HEADER;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const EAP_METHOD_TYPE = @import("../security/extensible_authentication_protocol.zig").EAP_METHOD_TYPE;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const NDIS_OBJECT_HEADER = @import("../network_management/ndis.zig").NDIS_OBJECT_HEADER;
+const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

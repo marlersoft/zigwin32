@@ -6572,6 +6572,7 @@ pub extern "d3d10_1" fn D3D10CreateDeviceAndSwapChain1(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -6585,31 +6586,31 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (26)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const D3D_RESOURCE_RETURN_TYPE = @import("../graphics/direct3d11.zig").D3D_RESOURCE_RETURN_TYPE;
-const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const IDXGIAdapter = @import("../graphics/dxgi.zig").IDXGIAdapter;
-const D3D_SHADER_MACRO = @import("../graphics/direct3d11.zig").D3D_SHADER_MACRO;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const D3D_SHADER_INPUT_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_INPUT_TYPE;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const D3D_SHADER_VARIABLE_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_VARIABLE_TYPE;
-const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const D3D_SRV_DIMENSION = @import("../graphics/direct3d11.zig").D3D_SRV_DIMENSION;
-const RECT = @import("../foundation.zig").RECT;
-const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
-const D3D_NAME = @import("../graphics/direct3d11.zig").D3D_NAME;
-const ID3DInclude = @import("../graphics/direct3d11.zig").ID3DInclude;
-const D3D_REGISTER_COMPONENT_TYPE = @import("../graphics/direct3d11.zig").D3D_REGISTER_COMPONENT_TYPE;
 const D3D_CBUFFER_TYPE = @import("../graphics/direct3d11.zig").D3D_CBUFFER_TYPE;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const D3D_PRIMITIVE_TOPOLOGY = @import("../graphics/direct3d11.zig").D3D_PRIMITIVE_TOPOLOGY;
-const DXGI_SAMPLE_DESC = @import("../graphics/dxgi.zig").DXGI_SAMPLE_DESC;
-const D3D_SHADER_VARIABLE_CLASS = @import("../graphics/direct3d11.zig").D3D_SHADER_VARIABLE_CLASS;
+const D3D_NAME = @import("../graphics/direct3d11.zig").D3D_NAME;
 const D3D_PRIMITIVE = @import("../graphics/direct3d11.zig").D3D_PRIMITIVE;
+const D3D_PRIMITIVE_TOPOLOGY = @import("../graphics/direct3d11.zig").D3D_PRIMITIVE_TOPOLOGY;
+const D3D_REGISTER_COMPONENT_TYPE = @import("../graphics/direct3d11.zig").D3D_REGISTER_COMPONENT_TYPE;
+const D3D_RESOURCE_RETURN_TYPE = @import("../graphics/direct3d11.zig").D3D_RESOURCE_RETURN_TYPE;
+const D3D_SHADER_INPUT_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_INPUT_TYPE;
+const D3D_SHADER_MACRO = @import("../graphics/direct3d11.zig").D3D_SHADER_MACRO;
+const D3D_SHADER_VARIABLE_CLASS = @import("../graphics/direct3d11.zig").D3D_SHADER_VARIABLE_CLASS;
+const D3D_SHADER_VARIABLE_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_VARIABLE_TYPE;
+const D3D_SRV_DIMENSION = @import("../graphics/direct3d11.zig").D3D_SRV_DIMENSION;
+const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
+const DXGI_SAMPLE_DESC = @import("../graphics/dxgi.zig").DXGI_SAMPLE_DESC;
 const DXGI_SWAP_CHAIN_DESC = @import("../graphics/dxgi.zig").DXGI_SWAP_CHAIN_DESC;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
+const ID3DInclude = @import("../graphics/direct3d11.zig").ID3DInclude;
+const IDXGIAdapter = @import("../graphics/dxgi.zig").IDXGIAdapter;
+const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PSTR = @import("../foundation.zig").PSTR;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

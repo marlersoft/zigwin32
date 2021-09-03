@@ -326,38 +326,6 @@ pub const DHCPV6_OPTION_NISP_DOMAIN_NAME = @as(u32, 30);
 //--------------------------------------------------------------------------------
 // Section: Types (164)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DHCP_SERVER_OPTIONS = extern struct {
-    MessageType: ?*u8,
-    SubnetMask: ?*u32,
-    RequestedAddress: ?*u32,
-    RequestLeaseTime: ?*u32,
-    OverlayFields: ?*u8,
-    RouterAddress: ?*u32,
-    Server: ?*u32,
-    ParameterRequestList: ?*u8,
-    ParameterRequestListLength: u32,
-    MachineName: ?PSTR,
-    MachineNameLength: u32,
-    ClientHardwareAddressType: u8,
-    ClientHardwareAddressLength: u8,
-    ClientHardwareAddress: ?*u8,
-    ClassIdentifier: ?PSTR,
-    ClassIdentifierLength: u32,
-    VendorClass: ?*u8,
-    VendorClassLength: u32,
-    DNSFlags: u32,
-    DNSNameLength: u32,
-    DNSName: ?*u8,
-    DSDomainNameRequested: BOOLEAN,
-    DSDomainName: ?PSTR,
-    DSDomainNameLen: u32,
-    ScopeId: ?*u32,
-};
-
-}, else => struct { } };
 
 pub const DHCPV6CAPI_PARAMS = extern struct {
     Flags: u32,
@@ -1799,39 +1767,63 @@ pub const DHCP_FAILOVER_STATISTICS = extern struct {
     ThisAddrInUse: u32,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const DHCP_SERVER_OPTIONS = extern struct {
-    MessageType: ?*u8,
-    SubnetMask: ?*u32,
-    RequestedAddress: ?*u32,
-    RequestLeaseTime: ?*u32,
-    OverlayFields: ?*u8,
-    RouterAddress: ?*u32,
-    Server: ?*u32,
-    ParameterRequestList: ?*u8,
-    ParameterRequestListLength: u32,
-    MachineName: ?PSTR,
-    MachineNameLength: u32,
-    ClientHardwareAddressType: u8,
-    ClientHardwareAddressLength: u8,
-    ClientHardwareAddress: ?*u8,
-    ClassIdentifier: ?PSTR,
-    ClassIdentifierLength: u32,
-    VendorClass: ?*u8,
-    VendorClassLength: u32,
-    DNSFlags: u32,
-    DNSNameLength: u32,
-    DNSName: ?*u8,
-    DSDomainNameRequested: BOOLEAN,
-    DSDomainName: ?PSTR,
-    DSDomainNameLen: u32,
-    ScopeId: ?*u32,
+pub const DHCP_SERVER_OPTIONS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        MessageType: ?*u8,
+        SubnetMask: ?*u32,
+        RequestedAddress: ?*u32,
+        RequestLeaseTime: ?*u32,
+        OverlayFields: ?*u8,
+        RouterAddress: ?*u32,
+        Server: ?*u32,
+        ParameterRequestList: ?*u8,
+        ParameterRequestListLength: u32,
+        MachineName: ?PSTR,
+        MachineNameLength: u32,
+        ClientHardwareAddressType: u8,
+        ClientHardwareAddressLength: u8,
+        ClientHardwareAddress: ?*u8,
+        ClassIdentifier: ?PSTR,
+        ClassIdentifierLength: u32,
+        VendorClass: ?*u8,
+        VendorClassLength: u32,
+        DNSFlags: u32,
+        DNSNameLength: u32,
+        DNSName: ?*u8,
+        DSDomainNameRequested: BOOLEAN,
+        DSDomainName: ?PSTR,
+        DSDomainNameLen: u32,
+        ScopeId: ?*u32,
+    },
+    .X86 => extern struct {
+        MessageType: ?*u8,
+        SubnetMask: ?*u32,
+        RequestedAddress: ?*u32,
+        RequestLeaseTime: ?*u32,
+        OverlayFields: ?*u8,
+        RouterAddress: ?*u32,
+        Server: ?*u32,
+        ParameterRequestList: ?*u8,
+        ParameterRequestListLength: u32,
+        MachineName: ?PSTR,
+        MachineNameLength: u32,
+        ClientHardwareAddressType: u8,
+        ClientHardwareAddressLength: u8,
+        ClientHardwareAddress: ?*u8,
+        ClassIdentifier: ?PSTR,
+        ClassIdentifierLength: u32,
+        VendorClass: ?*u8,
+        VendorClassLength: u32,
+        DNSFlags: u32,
+        DNSNameLength: u32,
+        DNSName: ?*u8,
+        DSDomainNameRequested: BOOLEAN,
+        DSDomainName: ?PSTR,
+        DSDomainNameLen: u32,
+        ScopeId: ?*u32,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (210)
@@ -3480,6 +3472,7 @@ pub extern "DHCPSAPI" fn DhcpV4EnumPoliciesEx(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3492,10 +3485,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

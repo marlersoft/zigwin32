@@ -463,6 +463,7 @@ pub extern "FLTLIB" fn FilterGetDosName(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -475,12 +476,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const HRESULT = @import("../foundation.zig").HRESULT;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

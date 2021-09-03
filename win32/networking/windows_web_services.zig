@@ -6026,6 +6026,7 @@ pub extern "webauthn" fn WebAuthNGetW3CExceptionDOMError(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -6039,15 +6040,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const DECIMAL = @import("../system/system_services.zig").DECIMAL;
-const IInspectable = @import("../system/win_rt.zig").IInspectable;
-const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
 const CHAR = @import("../system/system_services.zig").CHAR;
+const DECIMAL = @import("../system/system_services.zig").DECIMAL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const BOOL = @import("../foundation.zig").BOOL;
 const HWND = @import("../foundation.zig").HWND;
+const IInspectable = @import("../system/win_rt.zig").IInspectable;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity/core.zig").SecPkgContext_IssuerListInfoEx;
 
 test {

@@ -2328,325 +2328,25 @@ pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
 pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
 pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const DRAGINFOA = extern struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: ?[*]u8,
-    grfKeyState: u32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const DRAGINFOW = extern struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: ?[*]u16,
-    grfKeyState: u32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const APPBARDATA = extern struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uCallbackMessage: u32,
-    uEdge: u32,
-    rc: RECT,
-    lParam: LPARAM,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const SHFILEOPSTRUCTA = extern struct {
-    hwnd: ?HWND,
-    wFunc: u32,
-    pFrom: ?*i8,
-    pTo: ?*i8,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: ?*c_void,
-    lpszProgressTitle: ?[*:0]const u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const SHFILEOPSTRUCTW = extern struct {
-    hwnd: ?HWND,
-    wFunc: u32,
-    pFrom: ?[*]const u16,
-    pTo: ?[*]const u16,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: ?*c_void,
-    lpszProgressTitle: ?[*:0]const u16,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const SHNAMEMAPPINGA = extern struct {
-    pszOldPath: ?PSTR,
-    pszNewPath: ?PSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const SHNAMEMAPPINGW = extern struct {
-    pszOldPath: ?PWSTR,
-    pszNewPath: ?PWSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SHELLEXECUTEINFOA = extern struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: ?HWND,
-    lpVerb: ?[*:0]const u8,
-    lpFile: ?[*:0]const u8,
-    lpParameters: ?[*:0]const u8,
-    lpDirectory: ?[*:0]const u8,
-    nShow: i32,
-    hInstApp: ?HINSTANCE,
-    lpIDList: ?*c_void,
-    lpClass: ?[*:0]const u8,
-    hkeyClass: ?HKEY,
-    dwHotKey: u32,
-    Anonymous: extern union {
-        hIcon: ?HANDLE,
-        hMonitor: ?HANDLE,
-    },
-    hProcess: ?HANDLE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SHELLEXECUTEINFOW = extern struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: ?HWND,
-    lpVerb: ?[*:0]const u16,
-    lpFile: ?[*:0]const u16,
-    lpParameters: ?[*:0]const u16,
-    lpDirectory: ?[*:0]const u16,
-    nShow: i32,
-    hInstApp: ?HINSTANCE,
-    lpIDList: ?*c_void,
-    lpClass: ?[*:0]const u16,
-    hkeyClass: ?HKEY,
-    dwHotKey: u32,
-    Anonymous: extern union {
-        hIcon: ?HANDLE,
-        hMonitor: ?HANDLE,
-    },
-    hProcess: ?HANDLE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SHCREATEPROCESSINFOW = extern struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: ?HWND,
-    pszFile: ?[*:0]const u16,
-    pszParameters: ?[*:0]const u16,
-    pszCurrentDirectory: ?[*:0]const u16,
-    hUserToken: ?HANDLE,
-    lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
-    lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
-    bInheritHandles: BOOL,
-    dwCreationFlags: u32,
-    lpStartupInfo: ?*STARTUPINFOW,
-    lpProcessInformation: ?*PROCESS_INFORMATION,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ASSOCIATIONELEMENT = extern struct {
-    ac: ASSOCCLASS,
-    hkClass: ?HKEY,
-    pszClass: ?[*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SHQUERYRBINFO = extern struct {
-    cbSize: u32,
-    i64Size: i64,
-    i64NumItems: i64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const NOTIFYICONDATAA = extern struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uID: u32,
-    uFlags: NOTIFY_ICON_DATA_FLAGS,
-    uCallbackMessage: u32,
-    hIcon: ?HICON,
-    szTip: [128]CHAR,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]CHAR,
-    Anonymous: extern union {
-        uTimeout: u32,
-        uVersion: u32,
-    },
-    szInfoTitle: [64]CHAR,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: ?HICON,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const NOTIFYICONDATAW = extern struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uID: u32,
-    uFlags: NOTIFY_ICON_DATA_FLAGS,
-    uCallbackMessage: u32,
-    hIcon: ?HICON,
-    szTip: [128]u16,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]u16,
-    Anonymous: extern union {
-        uTimeout: u32,
-        uVersion: u32,
-    },
-    szInfoTitle: [64]u16,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: ?HICON,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const NOTIFYICONIDENTIFIER = extern struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uID: u32,
-    guidItem: Guid,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SHFILEINFOA = extern struct {
-    hIcon: ?HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]CHAR,
-    szTypeName: [80]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SHFILEINFOW = extern struct {
-    hIcon: ?HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]u16,
-    szTypeName: [80]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SHSTOCKICONINFO = extern struct {
-    cbSize: u32,
-    hIcon: ?HICON,
-    iSysImageIndex: i32,
-    iIcon: i32,
-    szPath: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPEN_PRINTER_PROPS_INFOA = extern struct {
-    dwSize: u32,
-    pszSheetName: ?PSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPEN_PRINTER_PROPS_INFOW = extern struct {
-    dwSize: u32,
-    pszSheetName: ?PWSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
-};
-
-}, else => struct { } };
 
 pub const _APPSTATE_REGISTRATION = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -19764,7 +19464,7 @@ pub const FILEDESCRIPTORW = packed struct {
     cFileName: [260]u16,
 };
 
-// TODO: not generating this type because it is causing some sort of error
+// TODO: not generating this type because array of 'win32.ui.shell.FILEDESCRIPTORA' not allowed in packed struct due to padding bits
 pub const FILEGROUPDESCRIPTORA = usize;
 
 pub const FILEGROUPDESCRIPTORW = packed struct {
@@ -28914,326 +28614,466 @@ pub const IShellWindows = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const DRAGINFOA = packed struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: ?[*]u8,
-    grfKeyState: u32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const DRAGINFOW = packed struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: ?[*]u16,
-    grfKeyState: u32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const APPBARDATA = packed struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uCallbackMessage: u32,
-    uEdge: u32,
-    rc: RECT,
-    lParam: LPARAM,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const SHFILEOPSTRUCTA = packed struct {
-    hwnd: ?HWND,
-    wFunc: u32,
-    pFrom: ?*i8,
-    pTo: ?*i8,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: ?*c_void,
-    lpszProgressTitle: ?[*:0]const u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const SHFILEOPSTRUCTW = packed struct {
-    hwnd: ?HWND,
-    wFunc: u32,
-    pFrom: ?[*]const u16,
-    pTo: ?[*]const u16,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: ?*c_void,
-    lpszProgressTitle: ?[*:0]const u16,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const SHNAMEMAPPINGA = packed struct {
-    pszOldPath: ?PSTR,
-    pszNewPath: ?PSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const SHNAMEMAPPINGW = packed struct {
-    pszOldPath: ?PWSTR,
-    pszNewPath: ?PWSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHELLEXECUTEINFOA = packed struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: ?HWND,
-    lpVerb: ?[*:0]const u8,
-    lpFile: ?[*:0]const u8,
-    lpParameters: ?[*:0]const u8,
-    lpDirectory: ?[*:0]const u8,
-    nShow: i32,
-    hInstApp: ?HINSTANCE,
-    lpIDList: ?*c_void,
-    lpClass: ?[*:0]const u8,
-    hkeyClass: ?HKEY,
-    dwHotKey: u32,
-    Anonymous: packed union {
-        hIcon: ?HANDLE,
-        hMonitor: ?HANDLE,
+pub const DRAGINFOA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        uSize: u32,
+        pt: POINT,
+        fNC: BOOL,
+        lpFileList: ?[*]u8,
+        grfKeyState: u32,
     },
-    hProcess: ?HANDLE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHELLEXECUTEINFOW = packed struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: ?HWND,
-    lpVerb: ?[*:0]const u16,
-    lpFile: ?[*:0]const u16,
-    lpParameters: ?[*:0]const u16,
-    lpDirectory: ?[*:0]const u16,
-    nShow: i32,
-    hInstApp: ?HINSTANCE,
-    lpIDList: ?*c_void,
-    lpClass: ?[*:0]const u16,
-    hkeyClass: ?HKEY,
-    dwHotKey: u32,
-    Anonymous: packed union {
-        hIcon: ?HANDLE,
-        hMonitor: ?HANDLE,
+    .X86 => packed struct {
+        uSize: u32,
+        pt: POINT,
+        fNC: BOOL,
+        lpFileList: ?[*]u8,
+        grfKeyState: u32,
     },
-    hProcess: ?HANDLE,
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHCREATEPROCESSINFOW = packed struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: ?HWND,
-    pszFile: ?[*:0]const u16,
-    pszParameters: ?[*:0]const u16,
-    pszCurrentDirectory: ?[*:0]const u16,
-    hUserToken: ?HANDLE,
-    lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
-    lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
-    bInheritHandles: BOOL,
-    dwCreationFlags: u32,
-    lpStartupInfo: ?*STARTUPINFOW,
-    lpProcessInformation: ?*PROCESS_INFORMATION,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ASSOCIATIONELEMENT = packed struct {
-    ac: ASSOCCLASS,
-    hkClass: ?HKEY,
-    pszClass: ?[*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHQUERYRBINFO = packed struct {
-    cbSize: u32,
-    i64Size: i64,
-    i64NumItems: i64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const NOTIFYICONDATAA = packed struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uID: u32,
-    uFlags: NOTIFY_ICON_DATA_FLAGS,
-    uCallbackMessage: u32,
-    hIcon: ?HICON,
-    szTip: [128]CHAR,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]CHAR,
-    Anonymous: packed union {
-        uTimeout: u32,
-        uVersion: u32,
+pub const DRAGINFOW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        uSize: u32,
+        pt: POINT,
+        fNC: BOOL,
+        lpFileList: ?[*]u16,
+        grfKeyState: u32,
     },
-    szInfoTitle: [64]CHAR,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: ?HICON,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const NOTIFYICONDATAW = packed struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uID: u32,
-    uFlags: NOTIFY_ICON_DATA_FLAGS,
-    uCallbackMessage: u32,
-    hIcon: ?HICON,
-    szTip: [128]u16,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]u16,
-    Anonymous: packed union {
-        uTimeout: u32,
-        uVersion: u32,
+    .X86 => packed struct {
+        uSize: u32,
+        pt: POINT,
+        fNC: BOOL,
+        lpFileList: ?[*]u16,
+        grfKeyState: u32,
     },
-    szInfoTitle: [64]u16,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: ?HICON,
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const NOTIFYICONIDENTIFIER = packed struct {
-    cbSize: u32,
-    hWnd: ?HWND,
-    uID: u32,
-    guidItem: Guid,
+pub const APPBARDATA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uCallbackMessage: u32,
+        uEdge: u32,
+        rc: RECT,
+        lParam: LPARAM,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uCallbackMessage: u32,
+        uEdge: u32,
+        rc: RECT,
+        lParam: LPARAM,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHFILEINFOA = packed struct {
-    hIcon: ?HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]CHAR,
-    szTypeName: [80]CHAR,
+pub const SHFILEOPSTRUCTA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hwnd: ?HWND,
+        wFunc: u32,
+        pFrom: ?*i8,
+        pTo: ?*i8,
+        fFlags: u16,
+        fAnyOperationsAborted: BOOL,
+        hNameMappings: ?*c_void,
+        lpszProgressTitle: ?[*:0]const u8,
+    },
+    .X86 => packed struct {
+        hwnd: ?HWND,
+        wFunc: u32,
+        pFrom: ?*i8,
+        pTo: ?*i8,
+        fFlags: u16,
+        fAnyOperationsAborted: BOOL,
+        hNameMappings: ?*c_void,
+        lpszProgressTitle: ?[*:0]const u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHFILEINFOW = packed struct {
-    hIcon: ?HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]u16,
-    szTypeName: [80]u16,
+pub const SHFILEOPSTRUCTW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hwnd: ?HWND,
+        wFunc: u32,
+        pFrom: ?[*]const u16,
+        pTo: ?[*]const u16,
+        fFlags: u16,
+        fAnyOperationsAborted: BOOL,
+        hNameMappings: ?*c_void,
+        lpszProgressTitle: ?[*:0]const u16,
+    },
+    .X86 => packed struct {
+        hwnd: ?HWND,
+        wFunc: u32,
+        pFrom: ?[*]const u16,
+        pTo: ?[*]const u16,
+        fFlags: u16,
+        fAnyOperationsAborted: BOOL,
+        hNameMappings: ?*c_void,
+        lpszProgressTitle: ?[*:0]const u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHSTOCKICONINFO = packed struct {
-    cbSize: u32,
-    hIcon: ?HICON,
-    iSysImageIndex: i32,
-    iIcon: i32,
-    szPath: [260]u16,
+pub const SHNAMEMAPPINGA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        pszOldPath: ?PSTR,
+        pszNewPath: ?PSTR,
+        cchOldPath: i32,
+        cchNewPath: i32,
+    },
+    .X86 => packed struct {
+        pszOldPath: ?PSTR,
+        pszNewPath: ?PSTR,
+        cchOldPath: i32,
+        cchNewPath: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPEN_PRINTER_PROPS_INFOA = packed struct {
-    dwSize: u32,
-    pszSheetName: ?PSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
+pub const SHNAMEMAPPINGW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        pszOldPath: ?PWSTR,
+        pszNewPath: ?PWSTR,
+        cchOldPath: i32,
+        cchNewPath: i32,
+    },
+    .X86 => packed struct {
+        pszOldPath: ?PWSTR,
+        pszNewPath: ?PWSTR,
+        cchOldPath: i32,
+        cchNewPath: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPEN_PRINTER_PROPS_INFOW = packed struct {
-    dwSize: u32,
-    pszSheetName: ?PWSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
+pub const SHELLEXECUTEINFOA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        fMask: u32,
+        hwnd: ?HWND,
+        lpVerb: ?[*:0]const u8,
+        lpFile: ?[*:0]const u8,
+        lpParameters: ?[*:0]const u8,
+        lpDirectory: ?[*:0]const u8,
+        nShow: i32,
+        hInstApp: ?HINSTANCE,
+        lpIDList: ?*c_void,
+        lpClass: ?[*:0]const u8,
+        hkeyClass: ?HKEY,
+        dwHotKey: u32,
+        Anonymous: extern union {
+            hIcon: ?HANDLE,
+            hMonitor: ?HANDLE,
+        },
+        hProcess: ?HANDLE,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        fMask: u32,
+        hwnd: ?HWND,
+        lpVerb: ?[*:0]const u8,
+        lpFile: ?[*:0]const u8,
+        lpParameters: ?[*:0]const u8,
+        lpDirectory: ?[*:0]const u8,
+        nShow: i32,
+        hInstApp: ?HINSTANCE,
+        lpIDList: ?*c_void,
+        lpClass: ?[*:0]const u8,
+        hkeyClass: ?HKEY,
+        dwHotKey: u32,
+        Anonymous: packed union {
+            hIcon: ?HANDLE,
+            hMonitor: ?HANDLE,
+        },
+        hProcess: ?HANDLE,
+    },
 };
-
-}, else => struct { } };
-
+pub const SHELLEXECUTEINFOW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        fMask: u32,
+        hwnd: ?HWND,
+        lpVerb: ?[*:0]const u16,
+        lpFile: ?[*:0]const u16,
+        lpParameters: ?[*:0]const u16,
+        lpDirectory: ?[*:0]const u16,
+        nShow: i32,
+        hInstApp: ?HINSTANCE,
+        lpIDList: ?*c_void,
+        lpClass: ?[*:0]const u16,
+        hkeyClass: ?HKEY,
+        dwHotKey: u32,
+        Anonymous: extern union {
+            hIcon: ?HANDLE,
+            hMonitor: ?HANDLE,
+        },
+        hProcess: ?HANDLE,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        fMask: u32,
+        hwnd: ?HWND,
+        lpVerb: ?[*:0]const u16,
+        lpFile: ?[*:0]const u16,
+        lpParameters: ?[*:0]const u16,
+        lpDirectory: ?[*:0]const u16,
+        nShow: i32,
+        hInstApp: ?HINSTANCE,
+        lpIDList: ?*c_void,
+        lpClass: ?[*:0]const u16,
+        hkeyClass: ?HKEY,
+        dwHotKey: u32,
+        Anonymous: packed union {
+            hIcon: ?HANDLE,
+            hMonitor: ?HANDLE,
+        },
+        hProcess: ?HANDLE,
+    },
+};
+pub const SHCREATEPROCESSINFOW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        fMask: u32,
+        hwnd: ?HWND,
+        pszFile: ?[*:0]const u16,
+        pszParameters: ?[*:0]const u16,
+        pszCurrentDirectory: ?[*:0]const u16,
+        hUserToken: ?HANDLE,
+        lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
+        lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
+        bInheritHandles: BOOL,
+        dwCreationFlags: u32,
+        lpStartupInfo: ?*STARTUPINFOW,
+        lpProcessInformation: ?*PROCESS_INFORMATION,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        fMask: u32,
+        hwnd: ?HWND,
+        pszFile: ?[*:0]const u16,
+        pszParameters: ?[*:0]const u16,
+        pszCurrentDirectory: ?[*:0]const u16,
+        hUserToken: ?HANDLE,
+        lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
+        lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
+        bInheritHandles: BOOL,
+        dwCreationFlags: u32,
+        lpStartupInfo: ?*STARTUPINFOW,
+        lpProcessInformation: ?*PROCESS_INFORMATION,
+    },
+};
+pub const ASSOCIATIONELEMENT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ac: ASSOCCLASS,
+        hkClass: ?HKEY,
+        pszClass: ?[*:0]const u16,
+    },
+    .X86 => packed struct {
+        ac: ASSOCCLASS,
+        hkClass: ?HKEY,
+        pszClass: ?[*:0]const u16,
+    },
+};
+pub const SHQUERYRBINFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        i64Size: i64,
+        i64NumItems: i64,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        i64Size: i64,
+        i64NumItems: i64,
+    },
+};
+pub const NOTIFYICONDATAA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uID: u32,
+        uFlags: NOTIFY_ICON_DATA_FLAGS,
+        uCallbackMessage: u32,
+        hIcon: ?HICON,
+        szTip: [128]CHAR,
+        dwState: u32,
+        dwStateMask: u32,
+        szInfo: [256]CHAR,
+        Anonymous: extern union {
+            uTimeout: u32,
+            uVersion: u32,
+        },
+        szInfoTitle: [64]CHAR,
+        dwInfoFlags: u32,
+        guidItem: Guid,
+        hBalloonIcon: ?HICON,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uID: u32,
+        uFlags: NOTIFY_ICON_DATA_FLAGS,
+        uCallbackMessage: u32,
+        hIcon: ?HICON,
+        szTip: [128]CHAR,
+        dwState: u32,
+        dwStateMask: u32,
+        szInfo: [256]CHAR,
+        Anonymous: packed union {
+            uTimeout: u32,
+            uVersion: u32,
+        },
+        szInfoTitle: [64]CHAR,
+        dwInfoFlags: u32,
+        guidItem: Guid,
+        hBalloonIcon: ?HICON,
+    },
+};
+pub const NOTIFYICONDATAW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uID: u32,
+        uFlags: NOTIFY_ICON_DATA_FLAGS,
+        uCallbackMessage: u32,
+        hIcon: ?HICON,
+        szTip: [128]u16,
+        dwState: u32,
+        dwStateMask: u32,
+        szInfo: [256]u16,
+        Anonymous: extern union {
+            uTimeout: u32,
+            uVersion: u32,
+        },
+        szInfoTitle: [64]u16,
+        dwInfoFlags: u32,
+        guidItem: Guid,
+        hBalloonIcon: ?HICON,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uID: u32,
+        uFlags: NOTIFY_ICON_DATA_FLAGS,
+        uCallbackMessage: u32,
+        hIcon: ?HICON,
+        szTip: [128]u16,
+        dwState: u32,
+        dwStateMask: u32,
+        szInfo: [256]u16,
+        Anonymous: packed union {
+            uTimeout: u32,
+            uVersion: u32,
+        },
+        szInfoTitle: [64]u16,
+        dwInfoFlags: u32,
+        guidItem: Guid,
+        hBalloonIcon: ?HICON,
+    },
+};
+pub const NOTIFYICONIDENTIFIER = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uID: u32,
+        guidItem: Guid,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        hWnd: ?HWND,
+        uID: u32,
+        guidItem: Guid,
+    },
+};
+pub const SHFILEINFOA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hIcon: ?HICON,
+        iIcon: i32,
+        dwAttributes: u32,
+        szDisplayName: [260]CHAR,
+        szTypeName: [80]CHAR,
+    },
+    .X86 => packed struct {
+        hIcon: ?HICON,
+        iIcon: i32,
+        dwAttributes: u32,
+        szDisplayName: [260]CHAR,
+        szTypeName: [80]CHAR,
+    },
+};
+pub const SHFILEINFOW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hIcon: ?HICON,
+        iIcon: i32,
+        dwAttributes: u32,
+        szDisplayName: [260]u16,
+        szTypeName: [80]u16,
+    },
+    .X86 => packed struct {
+        hIcon: ?HICON,
+        iIcon: i32,
+        dwAttributes: u32,
+        szDisplayName: [260]u16,
+        szTypeName: [80]u16,
+    },
+};
+pub const SHSTOCKICONINFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        hIcon: ?HICON,
+        iSysImageIndex: i32,
+        iIcon: i32,
+        szPath: [260]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        hIcon: ?HICON,
+        iSysImageIndex: i32,
+        iIcon: i32,
+        szPath: [260]u16,
+    },
+};
+pub const OPEN_PRINTER_PROPS_INFOA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        dwSize: u32,
+        pszSheetName: ?PSTR,
+        uSheetIndex: u32,
+        dwFlags: u32,
+        bModal: BOOL,
+    },
+    .X86 => packed struct {
+        dwSize: u32,
+        pszSheetName: ?PSTR,
+        uSheetIndex: u32,
+        dwFlags: u32,
+        bModal: BOOL,
+    },
+};
+pub const OPEN_PRINTER_PROPS_INFOW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        dwSize: u32,
+        pszSheetName: ?PWSTR,
+        uSheetIndex: u32,
+        dwFlags: u32,
+        bModal: BOOL,
+    },
+    .X86 => packed struct {
+        dwSize: u32,
+        pszSheetName: ?PWSTR,
+        uSheetIndex: u32,
+        dwFlags: u32,
+        bModal: BOOL,
+    },
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (689)
@@ -33992,420 +33832,421 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (205)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const DRAGINFO = DRAGINFOA;
-        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
-        pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
-        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOA;
-        pub const NOTIFYICONDATA = NOTIFYICONDATAA;
-        pub const SHFILEINFO = SHFILEINFOA;
-        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOA;
-        pub const MULTIKEYHELP = MULTIKEYHELPA;
-        pub const HELPWININFO = HELPWININFOA;
-        pub const IShellLink = IShellLinkA;
-        pub const IExtractIcon = IExtractIconA;
-        pub const BROWSEINFO = BROWSEINFOA;
-        pub const FILEDESCRIPTOR = FILEDESCRIPTORA;
-        pub const FILEGROUPDESCRIPTOR = FILEGROUPDESCRIPTORA;
-        pub const SHELLSTATE = SHELLSTATEA;
-        pub const INewShortcutHook = INewShortcutHookA;
-        pub const ICopyHook = ICopyHookA;
-        pub const PARSEDURL = PARSEDURLA;
-        pub const NEWCPLINFO = NEWCPLINFOA;
-        pub const PROFILEINFO = PROFILEINFOA;
-        pub const urlinvokecommandinfo = urlinvokecommandinfoA;
-        pub const IUniformResourceLocator = IUniformResourceLocatorA;
-        pub const WinHelp = WinHelpA;
-        pub const LoadUserProfile = LoadUserProfileA;
-        pub const GetProfilesDirectory = GetProfilesDirectoryA;
-        pub const DeleteProfile = DeleteProfileA;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryA;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
-        pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexA;
-        pub const ILCreateFromPath = ILCreateFromPathA;
-        pub const SHGetPathFromIDList = SHGetPathFromIDListA;
-        pub const SHCreateDirectoryEx = SHCreateDirectoryExA;
-        pub const SHGetSpecialFolderPath = SHGetSpecialFolderPathA;
-        pub const SHGetFolderPath = SHGetFolderPathA;
-        pub const SHSetFolderPath = SHSetFolderPathA;
-        pub const SHGetFolderPathAndSubDir = SHGetFolderPathAndSubDirA;
-        pub const SHBrowseForFolder = SHBrowseForFolderA;
-        pub const SHUpdateImage = SHUpdateImageA;
-        pub const SHGetDataFromIDList = SHGetDataFromIDListA;
-        pub const SHDefExtractIcon = SHDefExtractIconA;
-        pub const SHPathPrepareForWrite = SHPathPrepareForWriteA;
-        pub const PathIsSlow = PathIsSlowA;
-        pub const DragQueryFile = DragQueryFileA;
-        pub const ShellExecute = ShellExecuteA;
-        pub const FindExecutable = FindExecutableA;
-        pub const ShellAbout = ShellAboutA;
-        pub const ExtractAssociatedIcon = ExtractAssociatedIconA;
-        pub const ExtractAssociatedIconEx = ExtractAssociatedIconExA;
-        pub const ExtractIcon = ExtractIconA;
-        pub const DoEnvironmentSubst = DoEnvironmentSubstA;
-        pub const ExtractIconEx = ExtractIconExA;
-        pub const SHFileOperation = SHFileOperationA;
-        pub const ShellExecuteEx = ShellExecuteExA;
-        pub const SHQueryRecycleBin = SHQueryRecycleBinA;
-        pub const SHEmptyRecycleBin = SHEmptyRecycleBinA;
-        pub const Shell_NotifyIcon = Shell_NotifyIconA;
-        pub const SHGetFileInfo = SHGetFileInfoA;
-        pub const SHGetDiskFreeSpaceEx = SHGetDiskFreeSpaceExA;
-        pub const SHGetNewLinkInfo = SHGetNewLinkInfoA;
-        pub const SHInvokePrinterCommand = SHInvokePrinterCommandA;
-        pub const ShellMessageBox = ShellMessageBoxA;
-        pub const IsLFNDrive = IsLFNDriveA;
-        pub const StrChr = StrChrA;
-        pub const StrChrI = StrChrIA;
-        pub const StrCmpN = StrCmpNA;
-        pub const StrCmpNI = StrCmpNIA;
-        pub const StrCSpn = StrCSpnA;
-        pub const StrCSpnI = StrCSpnIA;
-        pub const StrDup = StrDupA;
-        pub const StrFormatByteSize = StrFormatByteSizeA;
-        pub const StrFormatKBSize = StrFormatKBSizeA;
-        pub const StrFromTimeInterval = StrFromTimeIntervalA;
-        pub const StrIsIntlEqual = StrIsIntlEqualA;
-        pub const StrNCat = StrNCatA;
-        pub const StrPBrk = StrPBrkA;
-        pub const StrRChr = StrRChrA;
-        pub const StrRChrI = StrRChrIA;
-        pub const StrRStrI = StrRStrIA;
-        pub const StrSpn = StrSpnA;
-        pub const StrStr = StrStrA;
-        pub const StrStrI = StrStrIA;
-        pub const StrToInt = StrToIntA;
-        pub const StrToIntEx = StrToIntExA;
-        pub const StrToInt64Ex = StrToInt64ExA;
-        pub const StrTrim = StrTrimA;
-        pub const StrCatBuff = StrCatBuffA;
-        pub const ChrCmpI = ChrCmpIA;
-        pub const wvnsprintf = wvnsprintfA;
-        pub const wnsprintf = wnsprintfA;
-        pub const StrRetToStr = StrRetToStrA;
-        pub const StrRetToBuf = StrRetToBufA;
-        pub const SHStrDup = SHStrDupA;
-        pub const IsCharSpace = IsCharSpaceA;
-        pub const StrCmpC = StrCmpCA;
-        pub const StrCmpIC = StrCmpICA;
-        pub const StrCmpNC = StrCmpNCA;
-        pub const StrCmpNIC = StrCmpNICA;
-        pub const IntlStrEqWorker = IntlStrEqWorkerA;
-        pub const PathAddBackslash = PathAddBackslashA;
-        pub const PathAddExtension = PathAddExtensionA;
-        pub const PathAppend = PathAppendA;
-        pub const PathBuildRoot = PathBuildRootA;
-        pub const PathCanonicalize = PathCanonicalizeA;
-        pub const PathCombine = PathCombineA;
-        pub const PathCompactPath = PathCompactPathA;
-        pub const PathCompactPathEx = PathCompactPathExA;
-        pub const PathCommonPrefix = PathCommonPrefixA;
-        pub const PathFileExists = PathFileExistsA;
-        pub const PathFindExtension = PathFindExtensionA;
-        pub const PathFindFileName = PathFindFileNameA;
-        pub const PathFindNextComponent = PathFindNextComponentA;
-        pub const PathFindOnPath = PathFindOnPathA;
-        pub const PathFindSuffixArray = PathFindSuffixArrayA;
-        pub const PathGetArgs = PathGetArgsA;
-        pub const PathIsLFNFileSpec = PathIsLFNFileSpecA;
-        pub const PathGetCharType = PathGetCharTypeA;
-        pub const PathGetDriveNumber = PathGetDriveNumberA;
-        pub const PathIsDirectory = PathIsDirectoryA;
-        pub const PathIsDirectoryEmpty = PathIsDirectoryEmptyA;
-        pub const PathIsFileSpec = PathIsFileSpecA;
-        pub const PathIsPrefix = PathIsPrefixA;
-        pub const PathIsRelative = PathIsRelativeA;
-        pub const PathIsRoot = PathIsRootA;
-        pub const PathIsSameRoot = PathIsSameRootA;
-        pub const PathIsUNC = PathIsUNCA;
-        pub const PathIsNetworkPath = PathIsNetworkPathA;
-        pub const PathIsUNCServer = PathIsUNCServerA;
-        pub const PathIsUNCServerShare = PathIsUNCServerShareA;
-        pub const PathIsContentType = PathIsContentTypeA;
-        pub const PathIsURL = PathIsURLA;
-        pub const PathMakePretty = PathMakePrettyA;
-        pub const PathMatchSpec = PathMatchSpecA;
-        pub const PathMatchSpecEx = PathMatchSpecExA;
-        pub const PathParseIconLocation = PathParseIconLocationA;
-        pub const PathQuoteSpaces = PathQuoteSpacesA;
-        pub const PathRelativePathTo = PathRelativePathToA;
-        pub const PathRemoveArgs = PathRemoveArgsA;
-        pub const PathRemoveBackslash = PathRemoveBackslashA;
-        pub const PathRemoveBlanks = PathRemoveBlanksA;
-        pub const PathRemoveExtension = PathRemoveExtensionA;
-        pub const PathRemoveFileSpec = PathRemoveFileSpecA;
-        pub const PathRenameExtension = PathRenameExtensionA;
-        pub const PathSearchAndQualify = PathSearchAndQualifyA;
-        pub const PathSetDlgItemPath = PathSetDlgItemPathA;
-        pub const PathSkipRoot = PathSkipRootA;
-        pub const PathStripPath = PathStripPathA;
-        pub const PathStripToRoot = PathStripToRootA;
-        pub const PathUnquoteSpaces = PathUnquoteSpacesA;
-        pub const PathMakeSystemFolder = PathMakeSystemFolderA;
-        pub const PathUnmakeSystemFolder = PathUnmakeSystemFolderA;
-        pub const PathIsSystemFolder = PathIsSystemFolderA;
-        pub const PathUndecorate = PathUndecorateA;
-        pub const PathUnExpandEnvStrings = PathUnExpandEnvStringsA;
-        pub const UrlCompare = UrlCompareA;
-        pub const UrlCombine = UrlCombineA;
-        pub const UrlCanonicalize = UrlCanonicalizeA;
-        pub const UrlIsOpaque = UrlIsOpaqueA;
-        pub const UrlIsNoHistory = UrlIsNoHistoryA;
-        pub const UrlIs = UrlIsA;
-        pub const UrlGetLocation = UrlGetLocationA;
-        pub const UrlUnescape = UrlUnescapeA;
-        pub const UrlEscape = UrlEscapeA;
-        pub const UrlCreateFromPath = UrlCreateFromPathA;
-        pub const PathCreateFromUrl = PathCreateFromUrlA;
-        pub const UrlHash = UrlHashA;
-        pub const UrlGetPart = UrlGetPartA;
-        pub const UrlApplyScheme = UrlApplySchemeA;
-        pub const ParseURL = ParseURLA;
-        pub const SHDeleteEmptyKey = SHDeleteEmptyKeyA;
-        pub const SHDeleteKey = SHDeleteKeyA;
-        pub const SHDeleteValue = SHDeleteValueA;
-        pub const SHGetValue = SHGetValueA;
-        pub const SHSetValue = SHSetValueA;
-        pub const SHRegGetValue = SHRegGetValueA;
-        pub const SHQueryValueEx = SHQueryValueExA;
-        pub const SHEnumKeyEx = SHEnumKeyExA;
-        pub const SHEnumValue = SHEnumValueA;
-        pub const SHQueryInfoKey = SHQueryInfoKeyA;
-        pub const SHCopyKey = SHCopyKeyA;
-        pub const SHRegGetPath = SHRegGetPathA;
-        pub const SHRegSetPath = SHRegSetPathA;
-        pub const SHRegCreateUSKey = SHRegCreateUSKeyA;
-        pub const SHRegOpenUSKey = SHRegOpenUSKeyA;
-        pub const SHRegQueryUSValue = SHRegQueryUSValueA;
-        pub const SHRegWriteUSValue = SHRegWriteUSValueA;
-        pub const SHRegDeleteUSValue = SHRegDeleteUSValueA;
-        pub const SHRegDeleteEmptyUSKey = SHRegDeleteEmptyUSKeyA;
-        pub const SHRegEnumUSKey = SHRegEnumUSKeyA;
-        pub const SHRegEnumUSValue = SHRegEnumUSValueA;
-        pub const SHRegQueryInfoUSKey = SHRegQueryInfoUSKeyA;
-        pub const SHRegGetUSValue = SHRegGetUSValueA;
-        pub const SHRegSetUSValue = SHRegSetUSValueA;
-        pub const SHRegGetBoolUSValue = SHRegGetBoolUSValueA;
-        pub const AssocQueryString = AssocQueryStringA;
-        pub const AssocQueryStringByKey = AssocQueryStringByKeyA;
-        pub const AssocQueryKey = AssocQueryKeyA;
-        pub const SHOpenRegStream = SHOpenRegStreamA;
-        pub const SHOpenRegStream2 = SHOpenRegStream2A;
-        pub const SHCreateStreamOnFile = SHCreateStreamOnFileA;
-        pub const GetAcceptLanguages = GetAcceptLanguagesA;
-        pub const SHFormatDateTime = SHFormatDateTimeA;
-        pub const SHMessageBoxCheck = SHMessageBoxCheckA;
-        pub const SHSendMessageBroadcast = SHSendMessageBroadcastA;
-        pub const SHStripMneumonic = SHStripMneumonicA;
+        pub const DRAGINFO = thismodule.DRAGINFOA;
+        pub const SHFILEOPSTRUCT = thismodule.SHFILEOPSTRUCTA;
+        pub const SHNAMEMAPPING = thismodule.SHNAMEMAPPINGA;
+        pub const SHELLEXECUTEINFO = thismodule.SHELLEXECUTEINFOA;
+        pub const NOTIFYICONDATA = thismodule.NOTIFYICONDATAA;
+        pub const SHFILEINFO = thismodule.SHFILEINFOA;
+        pub const OPEN_PRINTER_PROPS_INFO = thismodule.OPEN_PRINTER_PROPS_INFOA;
+        pub const MULTIKEYHELP = thismodule.MULTIKEYHELPA;
+        pub const HELPWININFO = thismodule.HELPWININFOA;
+        pub const IShellLink = thismodule.IShellLinkA;
+        pub const IExtractIcon = thismodule.IExtractIconA;
+        pub const BROWSEINFO = thismodule.BROWSEINFOA;
+        pub const FILEDESCRIPTOR = thismodule.FILEDESCRIPTORA;
+        pub const FILEGROUPDESCRIPTOR = thismodule.FILEGROUPDESCRIPTORA;
+        pub const SHELLSTATE = thismodule.SHELLSTATEA;
+        pub const INewShortcutHook = thismodule.INewShortcutHookA;
+        pub const ICopyHook = thismodule.ICopyHookA;
+        pub const PARSEDURL = thismodule.PARSEDURLA;
+        pub const NEWCPLINFO = thismodule.NEWCPLINFOA;
+        pub const PROFILEINFO = thismodule.PROFILEINFOA;
+        pub const urlinvokecommandinfo = thismodule.urlinvokecommandinfoA;
+        pub const IUniformResourceLocator = thismodule.IUniformResourceLocatorA;
+        pub const WinHelp = thismodule.WinHelpA;
+        pub const LoadUserProfile = thismodule.LoadUserProfileA;
+        pub const GetProfilesDirectory = thismodule.GetProfilesDirectoryA;
+        pub const DeleteProfile = thismodule.DeleteProfileA;
+        pub const GetDefaultUserProfileDirectory = thismodule.GetDefaultUserProfileDirectoryA;
+        pub const GetAllUsersProfileDirectory = thismodule.GetAllUsersProfileDirectoryA;
+        pub const GetUserProfileDirectory = thismodule.GetUserProfileDirectoryA;
+        pub const SHGetIconOverlayIndex = thismodule.SHGetIconOverlayIndexA;
+        pub const ILCreateFromPath = thismodule.ILCreateFromPathA;
+        pub const SHGetPathFromIDList = thismodule.SHGetPathFromIDListA;
+        pub const SHCreateDirectoryEx = thismodule.SHCreateDirectoryExA;
+        pub const SHGetSpecialFolderPath = thismodule.SHGetSpecialFolderPathA;
+        pub const SHGetFolderPath = thismodule.SHGetFolderPathA;
+        pub const SHSetFolderPath = thismodule.SHSetFolderPathA;
+        pub const SHGetFolderPathAndSubDir = thismodule.SHGetFolderPathAndSubDirA;
+        pub const SHBrowseForFolder = thismodule.SHBrowseForFolderA;
+        pub const SHUpdateImage = thismodule.SHUpdateImageA;
+        pub const SHGetDataFromIDList = thismodule.SHGetDataFromIDListA;
+        pub const SHDefExtractIcon = thismodule.SHDefExtractIconA;
+        pub const SHPathPrepareForWrite = thismodule.SHPathPrepareForWriteA;
+        pub const PathIsSlow = thismodule.PathIsSlowA;
+        pub const DragQueryFile = thismodule.DragQueryFileA;
+        pub const ShellExecute = thismodule.ShellExecuteA;
+        pub const FindExecutable = thismodule.FindExecutableA;
+        pub const ShellAbout = thismodule.ShellAboutA;
+        pub const ExtractAssociatedIcon = thismodule.ExtractAssociatedIconA;
+        pub const ExtractAssociatedIconEx = thismodule.ExtractAssociatedIconExA;
+        pub const ExtractIcon = thismodule.ExtractIconA;
+        pub const DoEnvironmentSubst = thismodule.DoEnvironmentSubstA;
+        pub const ExtractIconEx = thismodule.ExtractIconExA;
+        pub const SHFileOperation = thismodule.SHFileOperationA;
+        pub const ShellExecuteEx = thismodule.ShellExecuteExA;
+        pub const SHQueryRecycleBin = thismodule.SHQueryRecycleBinA;
+        pub const SHEmptyRecycleBin = thismodule.SHEmptyRecycleBinA;
+        pub const Shell_NotifyIcon = thismodule.Shell_NotifyIconA;
+        pub const SHGetFileInfo = thismodule.SHGetFileInfoA;
+        pub const SHGetDiskFreeSpaceEx = thismodule.SHGetDiskFreeSpaceExA;
+        pub const SHGetNewLinkInfo = thismodule.SHGetNewLinkInfoA;
+        pub const SHInvokePrinterCommand = thismodule.SHInvokePrinterCommandA;
+        pub const ShellMessageBox = thismodule.ShellMessageBoxA;
+        pub const IsLFNDrive = thismodule.IsLFNDriveA;
+        pub const StrChr = thismodule.StrChrA;
+        pub const StrChrI = thismodule.StrChrIA;
+        pub const StrCmpN = thismodule.StrCmpNA;
+        pub const StrCmpNI = thismodule.StrCmpNIA;
+        pub const StrCSpn = thismodule.StrCSpnA;
+        pub const StrCSpnI = thismodule.StrCSpnIA;
+        pub const StrDup = thismodule.StrDupA;
+        pub const StrFormatByteSize = thismodule.StrFormatByteSizeA;
+        pub const StrFormatKBSize = thismodule.StrFormatKBSizeA;
+        pub const StrFromTimeInterval = thismodule.StrFromTimeIntervalA;
+        pub const StrIsIntlEqual = thismodule.StrIsIntlEqualA;
+        pub const StrNCat = thismodule.StrNCatA;
+        pub const StrPBrk = thismodule.StrPBrkA;
+        pub const StrRChr = thismodule.StrRChrA;
+        pub const StrRChrI = thismodule.StrRChrIA;
+        pub const StrRStrI = thismodule.StrRStrIA;
+        pub const StrSpn = thismodule.StrSpnA;
+        pub const StrStr = thismodule.StrStrA;
+        pub const StrStrI = thismodule.StrStrIA;
+        pub const StrToInt = thismodule.StrToIntA;
+        pub const StrToIntEx = thismodule.StrToIntExA;
+        pub const StrToInt64Ex = thismodule.StrToInt64ExA;
+        pub const StrTrim = thismodule.StrTrimA;
+        pub const StrCatBuff = thismodule.StrCatBuffA;
+        pub const ChrCmpI = thismodule.ChrCmpIA;
+        pub const wvnsprintf = thismodule.wvnsprintfA;
+        pub const wnsprintf = thismodule.wnsprintfA;
+        pub const StrRetToStr = thismodule.StrRetToStrA;
+        pub const StrRetToBuf = thismodule.StrRetToBufA;
+        pub const SHStrDup = thismodule.SHStrDupA;
+        pub const IsCharSpace = thismodule.IsCharSpaceA;
+        pub const StrCmpC = thismodule.StrCmpCA;
+        pub const StrCmpIC = thismodule.StrCmpICA;
+        pub const StrCmpNC = thismodule.StrCmpNCA;
+        pub const StrCmpNIC = thismodule.StrCmpNICA;
+        pub const IntlStrEqWorker = thismodule.IntlStrEqWorkerA;
+        pub const PathAddBackslash = thismodule.PathAddBackslashA;
+        pub const PathAddExtension = thismodule.PathAddExtensionA;
+        pub const PathAppend = thismodule.PathAppendA;
+        pub const PathBuildRoot = thismodule.PathBuildRootA;
+        pub const PathCanonicalize = thismodule.PathCanonicalizeA;
+        pub const PathCombine = thismodule.PathCombineA;
+        pub const PathCompactPath = thismodule.PathCompactPathA;
+        pub const PathCompactPathEx = thismodule.PathCompactPathExA;
+        pub const PathCommonPrefix = thismodule.PathCommonPrefixA;
+        pub const PathFileExists = thismodule.PathFileExistsA;
+        pub const PathFindExtension = thismodule.PathFindExtensionA;
+        pub const PathFindFileName = thismodule.PathFindFileNameA;
+        pub const PathFindNextComponent = thismodule.PathFindNextComponentA;
+        pub const PathFindOnPath = thismodule.PathFindOnPathA;
+        pub const PathFindSuffixArray = thismodule.PathFindSuffixArrayA;
+        pub const PathGetArgs = thismodule.PathGetArgsA;
+        pub const PathIsLFNFileSpec = thismodule.PathIsLFNFileSpecA;
+        pub const PathGetCharType = thismodule.PathGetCharTypeA;
+        pub const PathGetDriveNumber = thismodule.PathGetDriveNumberA;
+        pub const PathIsDirectory = thismodule.PathIsDirectoryA;
+        pub const PathIsDirectoryEmpty = thismodule.PathIsDirectoryEmptyA;
+        pub const PathIsFileSpec = thismodule.PathIsFileSpecA;
+        pub const PathIsPrefix = thismodule.PathIsPrefixA;
+        pub const PathIsRelative = thismodule.PathIsRelativeA;
+        pub const PathIsRoot = thismodule.PathIsRootA;
+        pub const PathIsSameRoot = thismodule.PathIsSameRootA;
+        pub const PathIsUNC = thismodule.PathIsUNCA;
+        pub const PathIsNetworkPath = thismodule.PathIsNetworkPathA;
+        pub const PathIsUNCServer = thismodule.PathIsUNCServerA;
+        pub const PathIsUNCServerShare = thismodule.PathIsUNCServerShareA;
+        pub const PathIsContentType = thismodule.PathIsContentTypeA;
+        pub const PathIsURL = thismodule.PathIsURLA;
+        pub const PathMakePretty = thismodule.PathMakePrettyA;
+        pub const PathMatchSpec = thismodule.PathMatchSpecA;
+        pub const PathMatchSpecEx = thismodule.PathMatchSpecExA;
+        pub const PathParseIconLocation = thismodule.PathParseIconLocationA;
+        pub const PathQuoteSpaces = thismodule.PathQuoteSpacesA;
+        pub const PathRelativePathTo = thismodule.PathRelativePathToA;
+        pub const PathRemoveArgs = thismodule.PathRemoveArgsA;
+        pub const PathRemoveBackslash = thismodule.PathRemoveBackslashA;
+        pub const PathRemoveBlanks = thismodule.PathRemoveBlanksA;
+        pub const PathRemoveExtension = thismodule.PathRemoveExtensionA;
+        pub const PathRemoveFileSpec = thismodule.PathRemoveFileSpecA;
+        pub const PathRenameExtension = thismodule.PathRenameExtensionA;
+        pub const PathSearchAndQualify = thismodule.PathSearchAndQualifyA;
+        pub const PathSetDlgItemPath = thismodule.PathSetDlgItemPathA;
+        pub const PathSkipRoot = thismodule.PathSkipRootA;
+        pub const PathStripPath = thismodule.PathStripPathA;
+        pub const PathStripToRoot = thismodule.PathStripToRootA;
+        pub const PathUnquoteSpaces = thismodule.PathUnquoteSpacesA;
+        pub const PathMakeSystemFolder = thismodule.PathMakeSystemFolderA;
+        pub const PathUnmakeSystemFolder = thismodule.PathUnmakeSystemFolderA;
+        pub const PathIsSystemFolder = thismodule.PathIsSystemFolderA;
+        pub const PathUndecorate = thismodule.PathUndecorateA;
+        pub const PathUnExpandEnvStrings = thismodule.PathUnExpandEnvStringsA;
+        pub const UrlCompare = thismodule.UrlCompareA;
+        pub const UrlCombine = thismodule.UrlCombineA;
+        pub const UrlCanonicalize = thismodule.UrlCanonicalizeA;
+        pub const UrlIsOpaque = thismodule.UrlIsOpaqueA;
+        pub const UrlIsNoHistory = thismodule.UrlIsNoHistoryA;
+        pub const UrlIs = thismodule.UrlIsA;
+        pub const UrlGetLocation = thismodule.UrlGetLocationA;
+        pub const UrlUnescape = thismodule.UrlUnescapeA;
+        pub const UrlEscape = thismodule.UrlEscapeA;
+        pub const UrlCreateFromPath = thismodule.UrlCreateFromPathA;
+        pub const PathCreateFromUrl = thismodule.PathCreateFromUrlA;
+        pub const UrlHash = thismodule.UrlHashA;
+        pub const UrlGetPart = thismodule.UrlGetPartA;
+        pub const UrlApplyScheme = thismodule.UrlApplySchemeA;
+        pub const ParseURL = thismodule.ParseURLA;
+        pub const SHDeleteEmptyKey = thismodule.SHDeleteEmptyKeyA;
+        pub const SHDeleteKey = thismodule.SHDeleteKeyA;
+        pub const SHDeleteValue = thismodule.SHDeleteValueA;
+        pub const SHGetValue = thismodule.SHGetValueA;
+        pub const SHSetValue = thismodule.SHSetValueA;
+        pub const SHRegGetValue = thismodule.SHRegGetValueA;
+        pub const SHQueryValueEx = thismodule.SHQueryValueExA;
+        pub const SHEnumKeyEx = thismodule.SHEnumKeyExA;
+        pub const SHEnumValue = thismodule.SHEnumValueA;
+        pub const SHQueryInfoKey = thismodule.SHQueryInfoKeyA;
+        pub const SHCopyKey = thismodule.SHCopyKeyA;
+        pub const SHRegGetPath = thismodule.SHRegGetPathA;
+        pub const SHRegSetPath = thismodule.SHRegSetPathA;
+        pub const SHRegCreateUSKey = thismodule.SHRegCreateUSKeyA;
+        pub const SHRegOpenUSKey = thismodule.SHRegOpenUSKeyA;
+        pub const SHRegQueryUSValue = thismodule.SHRegQueryUSValueA;
+        pub const SHRegWriteUSValue = thismodule.SHRegWriteUSValueA;
+        pub const SHRegDeleteUSValue = thismodule.SHRegDeleteUSValueA;
+        pub const SHRegDeleteEmptyUSKey = thismodule.SHRegDeleteEmptyUSKeyA;
+        pub const SHRegEnumUSKey = thismodule.SHRegEnumUSKeyA;
+        pub const SHRegEnumUSValue = thismodule.SHRegEnumUSValueA;
+        pub const SHRegQueryInfoUSKey = thismodule.SHRegQueryInfoUSKeyA;
+        pub const SHRegGetUSValue = thismodule.SHRegGetUSValueA;
+        pub const SHRegSetUSValue = thismodule.SHRegSetUSValueA;
+        pub const SHRegGetBoolUSValue = thismodule.SHRegGetBoolUSValueA;
+        pub const AssocQueryString = thismodule.AssocQueryStringA;
+        pub const AssocQueryStringByKey = thismodule.AssocQueryStringByKeyA;
+        pub const AssocQueryKey = thismodule.AssocQueryKeyA;
+        pub const SHOpenRegStream = thismodule.SHOpenRegStreamA;
+        pub const SHOpenRegStream2 = thismodule.SHOpenRegStream2A;
+        pub const SHCreateStreamOnFile = thismodule.SHCreateStreamOnFileA;
+        pub const GetAcceptLanguages = thismodule.GetAcceptLanguagesA;
+        pub const SHFormatDateTime = thismodule.SHFormatDateTimeA;
+        pub const SHMessageBoxCheck = thismodule.SHMessageBoxCheckA;
+        pub const SHSendMessageBroadcast = thismodule.SHSendMessageBroadcastA;
+        pub const SHStripMneumonic = thismodule.SHStripMneumonicA;
     },
     .wide => struct {
-        pub const DRAGINFO = DRAGINFOW;
-        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
-        pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
-        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOW;
-        pub const NOTIFYICONDATA = NOTIFYICONDATAW;
-        pub const SHFILEINFO = SHFILEINFOW;
-        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOW;
-        pub const MULTIKEYHELP = MULTIKEYHELPW;
-        pub const HELPWININFO = HELPWININFOW;
-        pub const IShellLink = IShellLinkW;
-        pub const IExtractIcon = IExtractIconW;
-        pub const BROWSEINFO = BROWSEINFOW;
-        pub const FILEDESCRIPTOR = FILEDESCRIPTORW;
-        pub const FILEGROUPDESCRIPTOR = FILEGROUPDESCRIPTORW;
-        pub const SHELLSTATE = SHELLSTATEW;
-        pub const INewShortcutHook = INewShortcutHookW;
-        pub const ICopyHook = ICopyHookW;
-        pub const PARSEDURL = PARSEDURLW;
-        pub const NEWCPLINFO = NEWCPLINFOW;
-        pub const PROFILEINFO = PROFILEINFOW;
-        pub const urlinvokecommandinfo = urlinvokecommandinfoW;
-        pub const IUniformResourceLocator = IUniformResourceLocatorW;
-        pub const WinHelp = WinHelpW;
-        pub const LoadUserProfile = LoadUserProfileW;
-        pub const GetProfilesDirectory = GetProfilesDirectoryW;
-        pub const DeleteProfile = DeleteProfileW;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
-        pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexW;
-        pub const ILCreateFromPath = ILCreateFromPathW;
-        pub const SHGetPathFromIDList = SHGetPathFromIDListW;
-        pub const SHCreateDirectoryEx = SHCreateDirectoryExW;
-        pub const SHGetSpecialFolderPath = SHGetSpecialFolderPathW;
-        pub const SHGetFolderPath = SHGetFolderPathW;
-        pub const SHSetFolderPath = SHSetFolderPathW;
-        pub const SHGetFolderPathAndSubDir = SHGetFolderPathAndSubDirW;
-        pub const SHBrowseForFolder = SHBrowseForFolderW;
-        pub const SHUpdateImage = SHUpdateImageW;
-        pub const SHGetDataFromIDList = SHGetDataFromIDListW;
-        pub const SHDefExtractIcon = SHDefExtractIconW;
-        pub const SHPathPrepareForWrite = SHPathPrepareForWriteW;
-        pub const PathIsSlow = PathIsSlowW;
-        pub const DragQueryFile = DragQueryFileW;
-        pub const ShellExecute = ShellExecuteW;
-        pub const FindExecutable = FindExecutableW;
-        pub const ShellAbout = ShellAboutW;
-        pub const ExtractAssociatedIcon = ExtractAssociatedIconW;
-        pub const ExtractAssociatedIconEx = ExtractAssociatedIconExW;
-        pub const ExtractIcon = ExtractIconW;
-        pub const DoEnvironmentSubst = DoEnvironmentSubstW;
-        pub const ExtractIconEx = ExtractIconExW;
-        pub const SHFileOperation = SHFileOperationW;
-        pub const ShellExecuteEx = ShellExecuteExW;
-        pub const SHQueryRecycleBin = SHQueryRecycleBinW;
-        pub const SHEmptyRecycleBin = SHEmptyRecycleBinW;
-        pub const Shell_NotifyIcon = Shell_NotifyIconW;
-        pub const SHGetFileInfo = SHGetFileInfoW;
-        pub const SHGetDiskFreeSpaceEx = SHGetDiskFreeSpaceExW;
-        pub const SHGetNewLinkInfo = SHGetNewLinkInfoW;
-        pub const SHInvokePrinterCommand = SHInvokePrinterCommandW;
-        pub const ShellMessageBox = ShellMessageBoxW;
-        pub const IsLFNDrive = IsLFNDriveW;
-        pub const StrChr = StrChrW;
-        pub const StrChrI = StrChrIW;
-        pub const StrCmpN = StrCmpNW;
-        pub const StrCmpNI = StrCmpNIW;
-        pub const StrCSpn = StrCSpnW;
-        pub const StrCSpnI = StrCSpnIW;
-        pub const StrDup = StrDupW;
-        pub const StrFormatByteSize = StrFormatByteSizeW;
-        pub const StrFormatKBSize = StrFormatKBSizeW;
-        pub const StrFromTimeInterval = StrFromTimeIntervalW;
-        pub const StrIsIntlEqual = StrIsIntlEqualW;
-        pub const StrNCat = StrNCatW;
-        pub const StrPBrk = StrPBrkW;
-        pub const StrRChr = StrRChrW;
-        pub const StrRChrI = StrRChrIW;
-        pub const StrRStrI = StrRStrIW;
-        pub const StrSpn = StrSpnW;
-        pub const StrStr = StrStrW;
-        pub const StrStrI = StrStrIW;
-        pub const StrToInt = StrToIntW;
-        pub const StrToIntEx = StrToIntExW;
-        pub const StrToInt64Ex = StrToInt64ExW;
-        pub const StrTrim = StrTrimW;
-        pub const StrCatBuff = StrCatBuffW;
-        pub const ChrCmpI = ChrCmpIW;
-        pub const wvnsprintf = wvnsprintfW;
-        pub const wnsprintf = wnsprintfW;
-        pub const StrRetToStr = StrRetToStrW;
-        pub const StrRetToBuf = StrRetToBufW;
-        pub const SHStrDup = SHStrDupW;
-        pub const IsCharSpace = IsCharSpaceW;
-        pub const StrCmpC = StrCmpCW;
-        pub const StrCmpIC = StrCmpICW;
-        pub const StrCmpNC = StrCmpNCW;
-        pub const StrCmpNIC = StrCmpNICW;
-        pub const IntlStrEqWorker = IntlStrEqWorkerW;
-        pub const PathAddBackslash = PathAddBackslashW;
-        pub const PathAddExtension = PathAddExtensionW;
-        pub const PathAppend = PathAppendW;
-        pub const PathBuildRoot = PathBuildRootW;
-        pub const PathCanonicalize = PathCanonicalizeW;
-        pub const PathCombine = PathCombineW;
-        pub const PathCompactPath = PathCompactPathW;
-        pub const PathCompactPathEx = PathCompactPathExW;
-        pub const PathCommonPrefix = PathCommonPrefixW;
-        pub const PathFileExists = PathFileExistsW;
-        pub const PathFindExtension = PathFindExtensionW;
-        pub const PathFindFileName = PathFindFileNameW;
-        pub const PathFindNextComponent = PathFindNextComponentW;
-        pub const PathFindOnPath = PathFindOnPathW;
-        pub const PathFindSuffixArray = PathFindSuffixArrayW;
-        pub const PathGetArgs = PathGetArgsW;
-        pub const PathIsLFNFileSpec = PathIsLFNFileSpecW;
-        pub const PathGetCharType = PathGetCharTypeW;
-        pub const PathGetDriveNumber = PathGetDriveNumberW;
-        pub const PathIsDirectory = PathIsDirectoryW;
-        pub const PathIsDirectoryEmpty = PathIsDirectoryEmptyW;
-        pub const PathIsFileSpec = PathIsFileSpecW;
-        pub const PathIsPrefix = PathIsPrefixW;
-        pub const PathIsRelative = PathIsRelativeW;
-        pub const PathIsRoot = PathIsRootW;
-        pub const PathIsSameRoot = PathIsSameRootW;
-        pub const PathIsUNC = PathIsUNCW;
-        pub const PathIsNetworkPath = PathIsNetworkPathW;
-        pub const PathIsUNCServer = PathIsUNCServerW;
-        pub const PathIsUNCServerShare = PathIsUNCServerShareW;
-        pub const PathIsContentType = PathIsContentTypeW;
-        pub const PathIsURL = PathIsURLW;
-        pub const PathMakePretty = PathMakePrettyW;
-        pub const PathMatchSpec = PathMatchSpecW;
-        pub const PathMatchSpecEx = PathMatchSpecExW;
-        pub const PathParseIconLocation = PathParseIconLocationW;
-        pub const PathQuoteSpaces = PathQuoteSpacesW;
-        pub const PathRelativePathTo = PathRelativePathToW;
-        pub const PathRemoveArgs = PathRemoveArgsW;
-        pub const PathRemoveBackslash = PathRemoveBackslashW;
-        pub const PathRemoveBlanks = PathRemoveBlanksW;
-        pub const PathRemoveExtension = PathRemoveExtensionW;
-        pub const PathRemoveFileSpec = PathRemoveFileSpecW;
-        pub const PathRenameExtension = PathRenameExtensionW;
-        pub const PathSearchAndQualify = PathSearchAndQualifyW;
-        pub const PathSetDlgItemPath = PathSetDlgItemPathW;
-        pub const PathSkipRoot = PathSkipRootW;
-        pub const PathStripPath = PathStripPathW;
-        pub const PathStripToRoot = PathStripToRootW;
-        pub const PathUnquoteSpaces = PathUnquoteSpacesW;
-        pub const PathMakeSystemFolder = PathMakeSystemFolderW;
-        pub const PathUnmakeSystemFolder = PathUnmakeSystemFolderW;
-        pub const PathIsSystemFolder = PathIsSystemFolderW;
-        pub const PathUndecorate = PathUndecorateW;
-        pub const PathUnExpandEnvStrings = PathUnExpandEnvStringsW;
-        pub const UrlCompare = UrlCompareW;
-        pub const UrlCombine = UrlCombineW;
-        pub const UrlCanonicalize = UrlCanonicalizeW;
-        pub const UrlIsOpaque = UrlIsOpaqueW;
-        pub const UrlIsNoHistory = UrlIsNoHistoryW;
-        pub const UrlIs = UrlIsW;
-        pub const UrlGetLocation = UrlGetLocationW;
-        pub const UrlUnescape = UrlUnescapeW;
-        pub const UrlEscape = UrlEscapeW;
-        pub const UrlCreateFromPath = UrlCreateFromPathW;
-        pub const PathCreateFromUrl = PathCreateFromUrlW;
-        pub const UrlHash = UrlHashW;
-        pub const UrlGetPart = UrlGetPartW;
-        pub const UrlApplyScheme = UrlApplySchemeW;
-        pub const ParseURL = ParseURLW;
-        pub const SHDeleteEmptyKey = SHDeleteEmptyKeyW;
-        pub const SHDeleteKey = SHDeleteKeyW;
-        pub const SHDeleteValue = SHDeleteValueW;
-        pub const SHGetValue = SHGetValueW;
-        pub const SHSetValue = SHSetValueW;
-        pub const SHRegGetValue = SHRegGetValueW;
-        pub const SHQueryValueEx = SHQueryValueExW;
-        pub const SHEnumKeyEx = SHEnumKeyExW;
-        pub const SHEnumValue = SHEnumValueW;
-        pub const SHQueryInfoKey = SHQueryInfoKeyW;
-        pub const SHCopyKey = SHCopyKeyW;
-        pub const SHRegGetPath = SHRegGetPathW;
-        pub const SHRegSetPath = SHRegSetPathW;
-        pub const SHRegCreateUSKey = SHRegCreateUSKeyW;
-        pub const SHRegOpenUSKey = SHRegOpenUSKeyW;
-        pub const SHRegQueryUSValue = SHRegQueryUSValueW;
-        pub const SHRegWriteUSValue = SHRegWriteUSValueW;
-        pub const SHRegDeleteUSValue = SHRegDeleteUSValueW;
-        pub const SHRegDeleteEmptyUSKey = SHRegDeleteEmptyUSKeyW;
-        pub const SHRegEnumUSKey = SHRegEnumUSKeyW;
-        pub const SHRegEnumUSValue = SHRegEnumUSValueW;
-        pub const SHRegQueryInfoUSKey = SHRegQueryInfoUSKeyW;
-        pub const SHRegGetUSValue = SHRegGetUSValueW;
-        pub const SHRegSetUSValue = SHRegSetUSValueW;
-        pub const SHRegGetBoolUSValue = SHRegGetBoolUSValueW;
-        pub const AssocQueryString = AssocQueryStringW;
-        pub const AssocQueryStringByKey = AssocQueryStringByKeyW;
-        pub const AssocQueryKey = AssocQueryKeyW;
-        pub const SHOpenRegStream = SHOpenRegStreamW;
-        pub const SHOpenRegStream2 = SHOpenRegStream2W;
-        pub const SHCreateStreamOnFile = SHCreateStreamOnFileW;
-        pub const GetAcceptLanguages = GetAcceptLanguagesW;
-        pub const SHFormatDateTime = SHFormatDateTimeW;
-        pub const SHMessageBoxCheck = SHMessageBoxCheckW;
-        pub const SHSendMessageBroadcast = SHSendMessageBroadcastW;
-        pub const SHStripMneumonic = SHStripMneumonicW;
+        pub const DRAGINFO = thismodule.DRAGINFOW;
+        pub const SHFILEOPSTRUCT = thismodule.SHFILEOPSTRUCTW;
+        pub const SHNAMEMAPPING = thismodule.SHNAMEMAPPINGW;
+        pub const SHELLEXECUTEINFO = thismodule.SHELLEXECUTEINFOW;
+        pub const NOTIFYICONDATA = thismodule.NOTIFYICONDATAW;
+        pub const SHFILEINFO = thismodule.SHFILEINFOW;
+        pub const OPEN_PRINTER_PROPS_INFO = thismodule.OPEN_PRINTER_PROPS_INFOW;
+        pub const MULTIKEYHELP = thismodule.MULTIKEYHELPW;
+        pub const HELPWININFO = thismodule.HELPWININFOW;
+        pub const IShellLink = thismodule.IShellLinkW;
+        pub const IExtractIcon = thismodule.IExtractIconW;
+        pub const BROWSEINFO = thismodule.BROWSEINFOW;
+        pub const FILEDESCRIPTOR = thismodule.FILEDESCRIPTORW;
+        pub const FILEGROUPDESCRIPTOR = thismodule.FILEGROUPDESCRIPTORW;
+        pub const SHELLSTATE = thismodule.SHELLSTATEW;
+        pub const INewShortcutHook = thismodule.INewShortcutHookW;
+        pub const ICopyHook = thismodule.ICopyHookW;
+        pub const PARSEDURL = thismodule.PARSEDURLW;
+        pub const NEWCPLINFO = thismodule.NEWCPLINFOW;
+        pub const PROFILEINFO = thismodule.PROFILEINFOW;
+        pub const urlinvokecommandinfo = thismodule.urlinvokecommandinfoW;
+        pub const IUniformResourceLocator = thismodule.IUniformResourceLocatorW;
+        pub const WinHelp = thismodule.WinHelpW;
+        pub const LoadUserProfile = thismodule.LoadUserProfileW;
+        pub const GetProfilesDirectory = thismodule.GetProfilesDirectoryW;
+        pub const DeleteProfile = thismodule.DeleteProfileW;
+        pub const GetDefaultUserProfileDirectory = thismodule.GetDefaultUserProfileDirectoryW;
+        pub const GetAllUsersProfileDirectory = thismodule.GetAllUsersProfileDirectoryW;
+        pub const GetUserProfileDirectory = thismodule.GetUserProfileDirectoryW;
+        pub const SHGetIconOverlayIndex = thismodule.SHGetIconOverlayIndexW;
+        pub const ILCreateFromPath = thismodule.ILCreateFromPathW;
+        pub const SHGetPathFromIDList = thismodule.SHGetPathFromIDListW;
+        pub const SHCreateDirectoryEx = thismodule.SHCreateDirectoryExW;
+        pub const SHGetSpecialFolderPath = thismodule.SHGetSpecialFolderPathW;
+        pub const SHGetFolderPath = thismodule.SHGetFolderPathW;
+        pub const SHSetFolderPath = thismodule.SHSetFolderPathW;
+        pub const SHGetFolderPathAndSubDir = thismodule.SHGetFolderPathAndSubDirW;
+        pub const SHBrowseForFolder = thismodule.SHBrowseForFolderW;
+        pub const SHUpdateImage = thismodule.SHUpdateImageW;
+        pub const SHGetDataFromIDList = thismodule.SHGetDataFromIDListW;
+        pub const SHDefExtractIcon = thismodule.SHDefExtractIconW;
+        pub const SHPathPrepareForWrite = thismodule.SHPathPrepareForWriteW;
+        pub const PathIsSlow = thismodule.PathIsSlowW;
+        pub const DragQueryFile = thismodule.DragQueryFileW;
+        pub const ShellExecute = thismodule.ShellExecuteW;
+        pub const FindExecutable = thismodule.FindExecutableW;
+        pub const ShellAbout = thismodule.ShellAboutW;
+        pub const ExtractAssociatedIcon = thismodule.ExtractAssociatedIconW;
+        pub const ExtractAssociatedIconEx = thismodule.ExtractAssociatedIconExW;
+        pub const ExtractIcon = thismodule.ExtractIconW;
+        pub const DoEnvironmentSubst = thismodule.DoEnvironmentSubstW;
+        pub const ExtractIconEx = thismodule.ExtractIconExW;
+        pub const SHFileOperation = thismodule.SHFileOperationW;
+        pub const ShellExecuteEx = thismodule.ShellExecuteExW;
+        pub const SHQueryRecycleBin = thismodule.SHQueryRecycleBinW;
+        pub const SHEmptyRecycleBin = thismodule.SHEmptyRecycleBinW;
+        pub const Shell_NotifyIcon = thismodule.Shell_NotifyIconW;
+        pub const SHGetFileInfo = thismodule.SHGetFileInfoW;
+        pub const SHGetDiskFreeSpaceEx = thismodule.SHGetDiskFreeSpaceExW;
+        pub const SHGetNewLinkInfo = thismodule.SHGetNewLinkInfoW;
+        pub const SHInvokePrinterCommand = thismodule.SHInvokePrinterCommandW;
+        pub const ShellMessageBox = thismodule.ShellMessageBoxW;
+        pub const IsLFNDrive = thismodule.IsLFNDriveW;
+        pub const StrChr = thismodule.StrChrW;
+        pub const StrChrI = thismodule.StrChrIW;
+        pub const StrCmpN = thismodule.StrCmpNW;
+        pub const StrCmpNI = thismodule.StrCmpNIW;
+        pub const StrCSpn = thismodule.StrCSpnW;
+        pub const StrCSpnI = thismodule.StrCSpnIW;
+        pub const StrDup = thismodule.StrDupW;
+        pub const StrFormatByteSize = thismodule.StrFormatByteSizeW;
+        pub const StrFormatKBSize = thismodule.StrFormatKBSizeW;
+        pub const StrFromTimeInterval = thismodule.StrFromTimeIntervalW;
+        pub const StrIsIntlEqual = thismodule.StrIsIntlEqualW;
+        pub const StrNCat = thismodule.StrNCatW;
+        pub const StrPBrk = thismodule.StrPBrkW;
+        pub const StrRChr = thismodule.StrRChrW;
+        pub const StrRChrI = thismodule.StrRChrIW;
+        pub const StrRStrI = thismodule.StrRStrIW;
+        pub const StrSpn = thismodule.StrSpnW;
+        pub const StrStr = thismodule.StrStrW;
+        pub const StrStrI = thismodule.StrStrIW;
+        pub const StrToInt = thismodule.StrToIntW;
+        pub const StrToIntEx = thismodule.StrToIntExW;
+        pub const StrToInt64Ex = thismodule.StrToInt64ExW;
+        pub const StrTrim = thismodule.StrTrimW;
+        pub const StrCatBuff = thismodule.StrCatBuffW;
+        pub const ChrCmpI = thismodule.ChrCmpIW;
+        pub const wvnsprintf = thismodule.wvnsprintfW;
+        pub const wnsprintf = thismodule.wnsprintfW;
+        pub const StrRetToStr = thismodule.StrRetToStrW;
+        pub const StrRetToBuf = thismodule.StrRetToBufW;
+        pub const SHStrDup = thismodule.SHStrDupW;
+        pub const IsCharSpace = thismodule.IsCharSpaceW;
+        pub const StrCmpC = thismodule.StrCmpCW;
+        pub const StrCmpIC = thismodule.StrCmpICW;
+        pub const StrCmpNC = thismodule.StrCmpNCW;
+        pub const StrCmpNIC = thismodule.StrCmpNICW;
+        pub const IntlStrEqWorker = thismodule.IntlStrEqWorkerW;
+        pub const PathAddBackslash = thismodule.PathAddBackslashW;
+        pub const PathAddExtension = thismodule.PathAddExtensionW;
+        pub const PathAppend = thismodule.PathAppendW;
+        pub const PathBuildRoot = thismodule.PathBuildRootW;
+        pub const PathCanonicalize = thismodule.PathCanonicalizeW;
+        pub const PathCombine = thismodule.PathCombineW;
+        pub const PathCompactPath = thismodule.PathCompactPathW;
+        pub const PathCompactPathEx = thismodule.PathCompactPathExW;
+        pub const PathCommonPrefix = thismodule.PathCommonPrefixW;
+        pub const PathFileExists = thismodule.PathFileExistsW;
+        pub const PathFindExtension = thismodule.PathFindExtensionW;
+        pub const PathFindFileName = thismodule.PathFindFileNameW;
+        pub const PathFindNextComponent = thismodule.PathFindNextComponentW;
+        pub const PathFindOnPath = thismodule.PathFindOnPathW;
+        pub const PathFindSuffixArray = thismodule.PathFindSuffixArrayW;
+        pub const PathGetArgs = thismodule.PathGetArgsW;
+        pub const PathIsLFNFileSpec = thismodule.PathIsLFNFileSpecW;
+        pub const PathGetCharType = thismodule.PathGetCharTypeW;
+        pub const PathGetDriveNumber = thismodule.PathGetDriveNumberW;
+        pub const PathIsDirectory = thismodule.PathIsDirectoryW;
+        pub const PathIsDirectoryEmpty = thismodule.PathIsDirectoryEmptyW;
+        pub const PathIsFileSpec = thismodule.PathIsFileSpecW;
+        pub const PathIsPrefix = thismodule.PathIsPrefixW;
+        pub const PathIsRelative = thismodule.PathIsRelativeW;
+        pub const PathIsRoot = thismodule.PathIsRootW;
+        pub const PathIsSameRoot = thismodule.PathIsSameRootW;
+        pub const PathIsUNC = thismodule.PathIsUNCW;
+        pub const PathIsNetworkPath = thismodule.PathIsNetworkPathW;
+        pub const PathIsUNCServer = thismodule.PathIsUNCServerW;
+        pub const PathIsUNCServerShare = thismodule.PathIsUNCServerShareW;
+        pub const PathIsContentType = thismodule.PathIsContentTypeW;
+        pub const PathIsURL = thismodule.PathIsURLW;
+        pub const PathMakePretty = thismodule.PathMakePrettyW;
+        pub const PathMatchSpec = thismodule.PathMatchSpecW;
+        pub const PathMatchSpecEx = thismodule.PathMatchSpecExW;
+        pub const PathParseIconLocation = thismodule.PathParseIconLocationW;
+        pub const PathQuoteSpaces = thismodule.PathQuoteSpacesW;
+        pub const PathRelativePathTo = thismodule.PathRelativePathToW;
+        pub const PathRemoveArgs = thismodule.PathRemoveArgsW;
+        pub const PathRemoveBackslash = thismodule.PathRemoveBackslashW;
+        pub const PathRemoveBlanks = thismodule.PathRemoveBlanksW;
+        pub const PathRemoveExtension = thismodule.PathRemoveExtensionW;
+        pub const PathRemoveFileSpec = thismodule.PathRemoveFileSpecW;
+        pub const PathRenameExtension = thismodule.PathRenameExtensionW;
+        pub const PathSearchAndQualify = thismodule.PathSearchAndQualifyW;
+        pub const PathSetDlgItemPath = thismodule.PathSetDlgItemPathW;
+        pub const PathSkipRoot = thismodule.PathSkipRootW;
+        pub const PathStripPath = thismodule.PathStripPathW;
+        pub const PathStripToRoot = thismodule.PathStripToRootW;
+        pub const PathUnquoteSpaces = thismodule.PathUnquoteSpacesW;
+        pub const PathMakeSystemFolder = thismodule.PathMakeSystemFolderW;
+        pub const PathUnmakeSystemFolder = thismodule.PathUnmakeSystemFolderW;
+        pub const PathIsSystemFolder = thismodule.PathIsSystemFolderW;
+        pub const PathUndecorate = thismodule.PathUndecorateW;
+        pub const PathUnExpandEnvStrings = thismodule.PathUnExpandEnvStringsW;
+        pub const UrlCompare = thismodule.UrlCompareW;
+        pub const UrlCombine = thismodule.UrlCombineW;
+        pub const UrlCanonicalize = thismodule.UrlCanonicalizeW;
+        pub const UrlIsOpaque = thismodule.UrlIsOpaqueW;
+        pub const UrlIsNoHistory = thismodule.UrlIsNoHistoryW;
+        pub const UrlIs = thismodule.UrlIsW;
+        pub const UrlGetLocation = thismodule.UrlGetLocationW;
+        pub const UrlUnescape = thismodule.UrlUnescapeW;
+        pub const UrlEscape = thismodule.UrlEscapeW;
+        pub const UrlCreateFromPath = thismodule.UrlCreateFromPathW;
+        pub const PathCreateFromUrl = thismodule.PathCreateFromUrlW;
+        pub const UrlHash = thismodule.UrlHashW;
+        pub const UrlGetPart = thismodule.UrlGetPartW;
+        pub const UrlApplyScheme = thismodule.UrlApplySchemeW;
+        pub const ParseURL = thismodule.ParseURLW;
+        pub const SHDeleteEmptyKey = thismodule.SHDeleteEmptyKeyW;
+        pub const SHDeleteKey = thismodule.SHDeleteKeyW;
+        pub const SHDeleteValue = thismodule.SHDeleteValueW;
+        pub const SHGetValue = thismodule.SHGetValueW;
+        pub const SHSetValue = thismodule.SHSetValueW;
+        pub const SHRegGetValue = thismodule.SHRegGetValueW;
+        pub const SHQueryValueEx = thismodule.SHQueryValueExW;
+        pub const SHEnumKeyEx = thismodule.SHEnumKeyExW;
+        pub const SHEnumValue = thismodule.SHEnumValueW;
+        pub const SHQueryInfoKey = thismodule.SHQueryInfoKeyW;
+        pub const SHCopyKey = thismodule.SHCopyKeyW;
+        pub const SHRegGetPath = thismodule.SHRegGetPathW;
+        pub const SHRegSetPath = thismodule.SHRegSetPathW;
+        pub const SHRegCreateUSKey = thismodule.SHRegCreateUSKeyW;
+        pub const SHRegOpenUSKey = thismodule.SHRegOpenUSKeyW;
+        pub const SHRegQueryUSValue = thismodule.SHRegQueryUSValueW;
+        pub const SHRegWriteUSValue = thismodule.SHRegWriteUSValueW;
+        pub const SHRegDeleteUSValue = thismodule.SHRegDeleteUSValueW;
+        pub const SHRegDeleteEmptyUSKey = thismodule.SHRegDeleteEmptyUSKeyW;
+        pub const SHRegEnumUSKey = thismodule.SHRegEnumUSKeyW;
+        pub const SHRegEnumUSValue = thismodule.SHRegEnumUSValueW;
+        pub const SHRegQueryInfoUSKey = thismodule.SHRegQueryInfoUSKeyW;
+        pub const SHRegGetUSValue = thismodule.SHRegGetUSValueW;
+        pub const SHRegSetUSValue = thismodule.SHRegSetUSValueW;
+        pub const SHRegGetBoolUSValue = thismodule.SHRegGetBoolUSValueW;
+        pub const AssocQueryString = thismodule.AssocQueryStringW;
+        pub const AssocQueryStringByKey = thismodule.AssocQueryStringByKeyW;
+        pub const AssocQueryKey = thismodule.AssocQueryKeyW;
+        pub const SHOpenRegStream = thismodule.SHOpenRegStreamW;
+        pub const SHOpenRegStream2 = thismodule.SHOpenRegStream2W;
+        pub const SHCreateStreamOnFile = thismodule.SHCreateStreamOnFileW;
+        pub const GetAcceptLanguages = thismodule.GetAcceptLanguagesW;
+        pub const SHFormatDateTime = thismodule.SHFormatDateTimeW;
+        pub const SHMessageBoxCheck = thismodule.SHMessageBoxCheckW;
+        pub const SHSendMessageBroadcast = thismodule.SHSendMessageBroadcastW;
+        pub const SHStripMneumonic = thismodule.SHStripMneumonicW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const DRAGINFO = *opaque{};
@@ -34825,97 +34666,97 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (92)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const IOleCommandTarget = @import("../system/com.zig").IOleCommandTarget;
-const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BSTR = @import("../foundation.zig").BSTR;
+const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const COORD = @import("../system/console.zig").COORD;
 const CREATESTRUCTW = @import("../ui/windows_and_messaging.zig").CREATESTRUCTW;
 const DISPPARAMS = @import("../system/ole_automation.zig").DISPPARAMS;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const HMENU = @import("../ui/windows_and_messaging.zig").HMENU;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const HACCEL = @import("../ui/windows_and_messaging.zig").HACCEL;
-const FORMATETC = @import("../system/com.zig").FORMATETC;
-const IDropSource = @import("../system/com.zig").IDropSource;
-const IOleWindow = @import("../system/com.zig").IOleWindow;
-const OleMenuGroupWidths = @import("../system/com.zig").OleMenuGroupWidths;
-const IBindStatusCallback = @import("../system/com.zig").IBindStatusCallback;
-const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IBindCtx = @import("../system/com.zig").IBindCtx;
 const EXCEPINFO = @import("../system/ole_automation.zig").EXCEPINFO;
+const FILE_FLAGS_AND_ATTRIBUTES = @import("../storage/file_system.zig").FILE_FLAGS_AND_ATTRIBUTES;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const FORMATETC = @import("../system/com.zig").FORMATETC;
+const GETPROPERTYSTOREFLAGS = @import("../system/properties_system.zig").GETPROPERTYSTOREFLAGS;
+const HACCEL = @import("../ui/windows_and_messaging.zig").HACCEL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const HIMAGELIST = @import("../ui/controls.zig").HIMAGELIST;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HKEY = @import("../system/registry.zig").HKEY;
+const HMENU = @import("../ui/windows_and_messaging.zig").HMENU;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
+const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IBindCtx = @import("../system/com.zig").IBindCtx;
+const IBindStatusCallback = @import("../system/com.zig").IBindStatusCallback;
+const ICondition = @import("../system/search.zig").ICondition;
+const IConnectionPoint = @import("../system/com.zig").IConnectionPoint;
+const IDataObject = @import("../system/com.zig").IDataObject;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IDropSource = @import("../system/com.zig").IDropSource;
+const IDropTarget = @import("../system/com.zig").IDropTarget;
 const IEnumFORMATETC = @import("../system/com.zig").IEnumFORMATETC;
-const IOleInPlaceSite = @import("../system/com.zig").IOleInPlaceSite;
+const IEnumGUID = @import("../system/com.zig").IEnumGUID;
 const IEnumPrivacyRecords = @import("../web/ms_html.zig").IEnumPrivacyRecords;
-const COORD = @import("../system/console.zig").COORD;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const IEnumString = @import("../system/com.zig").IEnumString;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const IMalloc = @import("../system/com.zig").IMalloc;
+const IMoniker = @import("../system/com.zig").IMoniker;
+const IOleCommandTarget = @import("../system/com.zig").IOleCommandTarget;
+const IOleInPlaceSite = @import("../system/com.zig").IOleInPlaceSite;
+const IOleObject = @import("../system/com.zig").IOleObject;
+const IOleWindow = @import("../system/com.zig").IOleWindow;
+const IPersist = @import("../system/com.zig").IPersist;
+const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
+const IPropertyChangeArray = @import("../system/properties_system.zig").IPropertyChangeArray;
+const IPropertyDescriptionList = @import("../system/properties_system.zig").IPropertyDescriptionList;
+const IPropertySetStorage = @import("../storage/structured_storage.zig").IPropertySetStorage;
+const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const IServiceProvider = @import("../system/system_services.zig").IServiceProvider;
+const IStorage = @import("../storage/structured_storage.zig").IStorage;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const IWebBrowser2 = @import("../system/windows_programming.zig").IWebBrowser2;
+const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
+const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
+const LRESULT = @import("../foundation.zig").LRESULT;
+const LSTATUS = @import("../foundation.zig").LSTATUS;
+const MSG = @import("../ui/windows_and_messaging.zig").MSG;
+const NETRESOURCEA = @import("../network_management/wnet.zig").NETRESOURCEA;
+const NMHDR = @import("../ui/controls.zig").NMHDR;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const OleMenuGroupWidths = @import("../system/com.zig").OleMenuGroupWidths;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PDOPSTATUS = @import("../system/properties_system.zig").PDOPSTATUS;
+const POINT = @import("../foundation.zig").POINT;
+const POINTL = @import("../foundation.zig").POINTL;
+const PROCESS_INFORMATION = @import("../system/threading.zig").PROCESS_INFORMATION;
+const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
 const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
-const IStorage = @import("../storage/structured_storage.zig").IStorage;
-const BSTR = @import("../foundation.zig").BSTR;
-const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
-const LSTATUS = @import("../foundation.zig").LSTATUS;
-const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
-const IPropertySetStorage = @import("../storage/structured_storage.zig").IPropertySetStorage;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const GETPROPERTYSTOREFLAGS = @import("../system/properties_system.zig").GETPROPERTYSTOREFLAGS;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
-const IPropertyChangeArray = @import("../system/properties_system.zig").IPropertyChangeArray;
-const HIMAGELIST = @import("../ui/controls.zig").HIMAGELIST;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const HKEY = @import("../system/registry.zig").HKEY;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const STARTUPINFOW = @import("../system/threading.zig").STARTUPINFOW;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const POINTL = @import("../foundation.zig").POINTL;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const IEnumString = @import("../system/com.zig").IEnumString;
-const IEnumGUID = @import("../system/com.zig").IEnumGUID;
-const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
-const IOleObject = @import("../system/com.zig").IOleObject;
-const BOOL = @import("../foundation.zig").BOOL;
-const NMHDR = @import("../ui/controls.zig").NMHDR;
-const IPersist = @import("../system/com.zig").IPersist;
-const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
-const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const IConnectionPoint = @import("../system/com.zig").IConnectionPoint;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const PDOPSTATUS = @import("../system/properties_system.zig").PDOPSTATUS;
-const IMalloc = @import("../system/com.zig").IMalloc;
-const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
-const HICON = @import("../ui/windows_and_messaging.zig").HICON;
-const PROCESS_INFORMATION = @import("../system/threading.zig").PROCESS_INFORMATION;
-const TBBUTTON = @import("../ui/controls.zig").TBBUTTON;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IPropertyDescriptionList = @import("../system/properties_system.zig").IPropertyDescriptionList;
-const IDropTarget = @import("../system/com.zig").IDropTarget;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const FILE_FLAGS_AND_ATTRIBUTES = @import("../storage/file_system.zig").FILE_FLAGS_AND_ATTRIBUTES;
-const HWND = @import("../foundation.zig").HWND;
-const WIN32_FIND_DATAW = @import("../storage/file_system.zig").WIN32_FIND_DATAW;
-const ICondition = @import("../system/search.zig").ICondition;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IDataObject = @import("../system/com.zig").IDataObject;
-const NETRESOURCEA = @import("../network_management/wnet.zig").NETRESOURCEA;
-const IWebBrowser2 = @import("../system/windows_programming.zig").IWebBrowser2;
-const IMoniker = @import("../system/com.zig").IMoniker;
-const POINT = @import("../foundation.zig").POINT;
-const SIZE = @import("../foundation.zig").SIZE;
 const RECTL = @import("../foundation.zig").RECTL;
-const IServiceProvider = @import("../system/system_services.zig").IServiceProvider;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const SIZE = @import("../foundation.zig").SIZE;
+const STARTUPINFOW = @import("../system/threading.zig").STARTUPINFOW;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const TBBUTTON = @import("../ui/controls.zig").TBBUTTON;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
+const WIN32_FIND_DATAW = @import("../storage/file_system.zig").WIN32_FIND_DATAW;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -5405,6 +5405,7 @@ pub const RECORDER_OPENED = DISC_RECORDER_STATE_FLAGS.OPENED;
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -5418,16 +5419,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BSTR = @import("../foundation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const IPropertyStorage = @import("../storage/structured_storage.zig").IPropertyStorage;
+const IStorage = @import("../storage/structured_storage.zig").IStorage;
 const IStream = @import("../storage/structured_storage.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const IPropertyStorage = @import("../storage/structured_storage.zig").IPropertyStorage;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const IStorage = @import("../storage/structured_storage.zig").IStorage;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
 
 test {
     @setEvalBranchQuota(

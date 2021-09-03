@@ -91,45 +91,7 @@ pub const PLA_CAPABILITY_AUTOLOGGER = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (112)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const PERF_OBJECT_TYPE = extern struct {
-    TotalByteLength: u32,
-    DefinitionLength: u32,
-    HeaderLength: u32,
-    ObjectNameTitleIndex: u32,
-    ObjectNameTitle: u32,
-    ObjectHelpTitleIndex: u32,
-    ObjectHelpTitle: u32,
-    DetailLevel: u32,
-    NumCounters: u32,
-    DefaultCounter: i32,
-    NumInstances: i32,
-    CodePage: u32,
-    PerfTime: LARGE_INTEGER,
-    PerfFreq: LARGE_INTEGER,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PERF_COUNTER_DEFINITION = extern struct {
-    ByteLength: u32,
-    CounterNameTitleIndex: u32,
-    CounterNameTitle: u32,
-    CounterHelpTitleIndex: u32,
-    CounterHelpTitle: u32,
-    DefaultScale: i32,
-    DetailLevel: u32,
-    CounterType: u32,
-    CounterSize: u32,
-    CounterOffset: u32,
-};
-
-}, else => struct { } };
 
 // TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
 pub const PerfProviderHandle = isize;
@@ -3942,46 +3904,68 @@ pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_AGGREGATE_FUNC.TOTAL;
 pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
 pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const PERF_OBJECT_TYPE = extern struct {
-    TotalByteLength: u32,
-    DefinitionLength: u32,
-    HeaderLength: u32,
-    ObjectNameTitleIndex: u32,
-    ObjectNameTitle: ?PWSTR,
-    ObjectHelpTitleIndex: u32,
-    ObjectHelpTitle: ?PWSTR,
-    DetailLevel: u32,
-    NumCounters: u32,
-    DefaultCounter: i32,
-    NumInstances: i32,
-    CodePage: u32,
-    PerfTime: LARGE_INTEGER,
-    PerfFreq: LARGE_INTEGER,
+
+pub const PERF_OBJECT_TYPE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        TotalByteLength: u32,
+        DefinitionLength: u32,
+        HeaderLength: u32,
+        ObjectNameTitleIndex: u32,
+        ObjectNameTitle: u32,
+        ObjectHelpTitleIndex: u32,
+        ObjectHelpTitle: u32,
+        DetailLevel: u32,
+        NumCounters: u32,
+        DefaultCounter: i32,
+        NumInstances: i32,
+        CodePage: u32,
+        PerfTime: LARGE_INTEGER,
+        PerfFreq: LARGE_INTEGER,
+    },
+    .X86 => extern struct {
+        TotalByteLength: u32,
+        DefinitionLength: u32,
+        HeaderLength: u32,
+        ObjectNameTitleIndex: u32,
+        ObjectNameTitle: ?PWSTR,
+        ObjectHelpTitleIndex: u32,
+        ObjectHelpTitle: ?PWSTR,
+        DetailLevel: u32,
+        NumCounters: u32,
+        DefaultCounter: i32,
+        NumInstances: i32,
+        CodePage: u32,
+        PerfTime: LARGE_INTEGER,
+        PerfFreq: LARGE_INTEGER,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PERF_COUNTER_DEFINITION = extern struct {
-    ByteLength: u32,
-    CounterNameTitleIndex: u32,
-    CounterNameTitle: ?PWSTR,
-    CounterHelpTitleIndex: u32,
-    CounterHelpTitle: ?PWSTR,
-    DefaultScale: i32,
-    DetailLevel: u32,
-    CounterType: u32,
-    CounterSize: u32,
-    CounterOffset: u32,
+pub const PERF_COUNTER_DEFINITION = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ByteLength: u32,
+        CounterNameTitleIndex: u32,
+        CounterNameTitle: u32,
+        CounterHelpTitleIndex: u32,
+        CounterHelpTitle: u32,
+        DefaultScale: i32,
+        DetailLevel: u32,
+        CounterType: u32,
+        CounterSize: u32,
+        CounterOffset: u32,
+    },
+    .X86 => extern struct {
+        ByteLength: u32,
+        CounterNameTitleIndex: u32,
+        CounterNameTitle: ?PWSTR,
+        CounterHelpTitleIndex: u32,
+        CounterHelpTitle: ?PWSTR,
+        DefaultScale: i32,
+        DetailLevel: u32,
+        CounterType: u32,
+        CounterSize: u32,
+        CounterOffset: u32,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (135)
@@ -4982,110 +4966,111 @@ pub extern "pdh" fn PdhSetLogSetRunID(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (50)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const PDH_RAW_COUNTER_ITEM_ = PDH_RAW_COUNTER_ITEM_A;
-        pub const PDH_FMT_COUNTERVALUE_ITEM_ = PDH_FMT_COUNTERVALUE_ITEM_A;
-        pub const PDH_COUNTER_PATH_ELEMENTS_ = PDH_COUNTER_PATH_ELEMENTS_A;
-        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = PDH_DATA_ITEM_PATH_ELEMENTS_A;
-        pub const PDH_COUNTER_INFO_ = PDH_COUNTER_INFO_A;
-        pub const PDH_LOG_SERVICE_QUERY_INFO_ = PDH_LOG_SERVICE_QUERY_INFO_A;
-        pub const PDH_BROWSE_DLG_CONFIG_H = PDH_BROWSE_DLG_CONFIG_HA;
-        pub const PDH_BROWSE_DLG_CONFIG_ = PDH_BROWSE_DLG_CONFIG_A;
-        pub const InstallPerfDll = InstallPerfDllA;
-        pub const LoadPerfCounterTextStrings = LoadPerfCounterTextStringsA;
-        pub const UnloadPerfCounterTextStrings = UnloadPerfCounterTextStringsA;
-        pub const UpdatePerfNameFiles = UpdatePerfNameFilesA;
-        pub const SetServiceAsTrusted = SetServiceAsTrustedA;
-        pub const PdhOpenQuery = PdhOpenQueryA;
-        pub const PdhAddCounter = PdhAddCounterA;
-        pub const PdhAddEnglishCounter = PdhAddEnglishCounterA;
-        pub const PdhValidatePathEx = PdhValidatePathExA;
-        pub const PdhGetFormattedCounterArray = PdhGetFormattedCounterArrayA;
-        pub const PdhGetRawCounterArray = PdhGetRawCounterArrayA;
-        pub const PdhGetCounterInfo = PdhGetCounterInfoA;
-        pub const PdhConnectMachine = PdhConnectMachineA;
-        pub const PdhEnumMachines = PdhEnumMachinesA;
-        pub const PdhEnumObjects = PdhEnumObjectsA;
-        pub const PdhEnumObjectItems = PdhEnumObjectItemsA;
-        pub const PdhMakeCounterPath = PdhMakeCounterPathA;
-        pub const PdhParseCounterPath = PdhParseCounterPathA;
-        pub const PdhParseInstanceName = PdhParseInstanceNameA;
-        pub const PdhValidatePath = PdhValidatePathA;
-        pub const PdhGetDefaultPerfObject = PdhGetDefaultPerfObjectA;
-        pub const PdhGetDefaultPerfCounter = PdhGetDefaultPerfCounterA;
-        pub const PdhBrowseCounters = PdhBrowseCountersA;
-        pub const PdhExpandCounterPath = PdhExpandCounterPathA;
-        pub const PdhLookupPerfNameByIndex = PdhLookupPerfNameByIndexA;
-        pub const PdhLookupPerfIndexByName = PdhLookupPerfIndexByNameA;
-        pub const PdhExpandWildCardPath = PdhExpandWildCardPathA;
-        pub const PdhOpenLog = PdhOpenLogA;
-        pub const PdhUpdateLog = PdhUpdateLogA;
-        pub const PdhSelectDataSource = PdhSelectDataSourceA;
-        pub const PdhGetDataSourceTimeRange = PdhGetDataSourceTimeRangeA;
-        pub const PdhBindInputDataSource = PdhBindInputDataSourceA;
-        pub const PdhEnumMachinesH = PdhEnumMachinesHA;
-        pub const PdhEnumObjectsH = PdhEnumObjectsHA;
-        pub const PdhEnumObjectItemsH = PdhEnumObjectItemsHA;
-        pub const PdhExpandWildCardPathH = PdhExpandWildCardPathHA;
-        pub const PdhGetDefaultPerfObjectH = PdhGetDefaultPerfObjectHA;
-        pub const PdhGetDefaultPerfCounterH = PdhGetDefaultPerfCounterHA;
-        pub const PdhBrowseCountersH = PdhBrowseCountersHA;
-        pub const PdhVerifySQLDB = PdhVerifySQLDBA;
-        pub const PdhCreateSQLTables = PdhCreateSQLTablesA;
-        pub const PdhEnumLogSetNames = PdhEnumLogSetNamesA;
+        pub const PDH_RAW_COUNTER_ITEM_ = thismodule.PDH_RAW_COUNTER_ITEM_A;
+        pub const PDH_FMT_COUNTERVALUE_ITEM_ = thismodule.PDH_FMT_COUNTERVALUE_ITEM_A;
+        pub const PDH_COUNTER_PATH_ELEMENTS_ = thismodule.PDH_COUNTER_PATH_ELEMENTS_A;
+        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = thismodule.PDH_DATA_ITEM_PATH_ELEMENTS_A;
+        pub const PDH_COUNTER_INFO_ = thismodule.PDH_COUNTER_INFO_A;
+        pub const PDH_LOG_SERVICE_QUERY_INFO_ = thismodule.PDH_LOG_SERVICE_QUERY_INFO_A;
+        pub const PDH_BROWSE_DLG_CONFIG_H = thismodule.PDH_BROWSE_DLG_CONFIG_HA;
+        pub const PDH_BROWSE_DLG_CONFIG_ = thismodule.PDH_BROWSE_DLG_CONFIG_A;
+        pub const InstallPerfDll = thismodule.InstallPerfDllA;
+        pub const LoadPerfCounterTextStrings = thismodule.LoadPerfCounterTextStringsA;
+        pub const UnloadPerfCounterTextStrings = thismodule.UnloadPerfCounterTextStringsA;
+        pub const UpdatePerfNameFiles = thismodule.UpdatePerfNameFilesA;
+        pub const SetServiceAsTrusted = thismodule.SetServiceAsTrustedA;
+        pub const PdhOpenQuery = thismodule.PdhOpenQueryA;
+        pub const PdhAddCounter = thismodule.PdhAddCounterA;
+        pub const PdhAddEnglishCounter = thismodule.PdhAddEnglishCounterA;
+        pub const PdhValidatePathEx = thismodule.PdhValidatePathExA;
+        pub const PdhGetFormattedCounterArray = thismodule.PdhGetFormattedCounterArrayA;
+        pub const PdhGetRawCounterArray = thismodule.PdhGetRawCounterArrayA;
+        pub const PdhGetCounterInfo = thismodule.PdhGetCounterInfoA;
+        pub const PdhConnectMachine = thismodule.PdhConnectMachineA;
+        pub const PdhEnumMachines = thismodule.PdhEnumMachinesA;
+        pub const PdhEnumObjects = thismodule.PdhEnumObjectsA;
+        pub const PdhEnumObjectItems = thismodule.PdhEnumObjectItemsA;
+        pub const PdhMakeCounterPath = thismodule.PdhMakeCounterPathA;
+        pub const PdhParseCounterPath = thismodule.PdhParseCounterPathA;
+        pub const PdhParseInstanceName = thismodule.PdhParseInstanceNameA;
+        pub const PdhValidatePath = thismodule.PdhValidatePathA;
+        pub const PdhGetDefaultPerfObject = thismodule.PdhGetDefaultPerfObjectA;
+        pub const PdhGetDefaultPerfCounter = thismodule.PdhGetDefaultPerfCounterA;
+        pub const PdhBrowseCounters = thismodule.PdhBrowseCountersA;
+        pub const PdhExpandCounterPath = thismodule.PdhExpandCounterPathA;
+        pub const PdhLookupPerfNameByIndex = thismodule.PdhLookupPerfNameByIndexA;
+        pub const PdhLookupPerfIndexByName = thismodule.PdhLookupPerfIndexByNameA;
+        pub const PdhExpandWildCardPath = thismodule.PdhExpandWildCardPathA;
+        pub const PdhOpenLog = thismodule.PdhOpenLogA;
+        pub const PdhUpdateLog = thismodule.PdhUpdateLogA;
+        pub const PdhSelectDataSource = thismodule.PdhSelectDataSourceA;
+        pub const PdhGetDataSourceTimeRange = thismodule.PdhGetDataSourceTimeRangeA;
+        pub const PdhBindInputDataSource = thismodule.PdhBindInputDataSourceA;
+        pub const PdhEnumMachinesH = thismodule.PdhEnumMachinesHA;
+        pub const PdhEnumObjectsH = thismodule.PdhEnumObjectsHA;
+        pub const PdhEnumObjectItemsH = thismodule.PdhEnumObjectItemsHA;
+        pub const PdhExpandWildCardPathH = thismodule.PdhExpandWildCardPathHA;
+        pub const PdhGetDefaultPerfObjectH = thismodule.PdhGetDefaultPerfObjectHA;
+        pub const PdhGetDefaultPerfCounterH = thismodule.PdhGetDefaultPerfCounterHA;
+        pub const PdhBrowseCountersH = thismodule.PdhBrowseCountersHA;
+        pub const PdhVerifySQLDB = thismodule.PdhVerifySQLDBA;
+        pub const PdhCreateSQLTables = thismodule.PdhCreateSQLTablesA;
+        pub const PdhEnumLogSetNames = thismodule.PdhEnumLogSetNamesA;
     },
     .wide => struct {
-        pub const PDH_RAW_COUNTER_ITEM_ = PDH_RAW_COUNTER_ITEM_W;
-        pub const PDH_FMT_COUNTERVALUE_ITEM_ = PDH_FMT_COUNTERVALUE_ITEM_W;
-        pub const PDH_COUNTER_PATH_ELEMENTS_ = PDH_COUNTER_PATH_ELEMENTS_W;
-        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = PDH_DATA_ITEM_PATH_ELEMENTS_W;
-        pub const PDH_COUNTER_INFO_ = PDH_COUNTER_INFO_W;
-        pub const PDH_LOG_SERVICE_QUERY_INFO_ = PDH_LOG_SERVICE_QUERY_INFO_W;
-        pub const PDH_BROWSE_DLG_CONFIG_H = PDH_BROWSE_DLG_CONFIG_HW;
-        pub const PDH_BROWSE_DLG_CONFIG_ = PDH_BROWSE_DLG_CONFIG_W;
-        pub const InstallPerfDll = InstallPerfDllW;
-        pub const LoadPerfCounterTextStrings = LoadPerfCounterTextStringsW;
-        pub const UnloadPerfCounterTextStrings = UnloadPerfCounterTextStringsW;
-        pub const UpdatePerfNameFiles = UpdatePerfNameFilesW;
-        pub const SetServiceAsTrusted = SetServiceAsTrustedW;
-        pub const PdhOpenQuery = PdhOpenQueryW;
-        pub const PdhAddCounter = PdhAddCounterW;
-        pub const PdhAddEnglishCounter = PdhAddEnglishCounterW;
-        pub const PdhValidatePathEx = PdhValidatePathExW;
-        pub const PdhGetFormattedCounterArray = PdhGetFormattedCounterArrayW;
-        pub const PdhGetRawCounterArray = PdhGetRawCounterArrayW;
-        pub const PdhGetCounterInfo = PdhGetCounterInfoW;
-        pub const PdhConnectMachine = PdhConnectMachineW;
-        pub const PdhEnumMachines = PdhEnumMachinesW;
-        pub const PdhEnumObjects = PdhEnumObjectsW;
-        pub const PdhEnumObjectItems = PdhEnumObjectItemsW;
-        pub const PdhMakeCounterPath = PdhMakeCounterPathW;
-        pub const PdhParseCounterPath = PdhParseCounterPathW;
-        pub const PdhParseInstanceName = PdhParseInstanceNameW;
-        pub const PdhValidatePath = PdhValidatePathW;
-        pub const PdhGetDefaultPerfObject = PdhGetDefaultPerfObjectW;
-        pub const PdhGetDefaultPerfCounter = PdhGetDefaultPerfCounterW;
-        pub const PdhBrowseCounters = PdhBrowseCountersW;
-        pub const PdhExpandCounterPath = PdhExpandCounterPathW;
-        pub const PdhLookupPerfNameByIndex = PdhLookupPerfNameByIndexW;
-        pub const PdhLookupPerfIndexByName = PdhLookupPerfIndexByNameW;
-        pub const PdhExpandWildCardPath = PdhExpandWildCardPathW;
-        pub const PdhOpenLog = PdhOpenLogW;
-        pub const PdhUpdateLog = PdhUpdateLogW;
-        pub const PdhSelectDataSource = PdhSelectDataSourceW;
-        pub const PdhGetDataSourceTimeRange = PdhGetDataSourceTimeRangeW;
-        pub const PdhBindInputDataSource = PdhBindInputDataSourceW;
-        pub const PdhEnumMachinesH = PdhEnumMachinesHW;
-        pub const PdhEnumObjectsH = PdhEnumObjectsHW;
-        pub const PdhEnumObjectItemsH = PdhEnumObjectItemsHW;
-        pub const PdhExpandWildCardPathH = PdhExpandWildCardPathHW;
-        pub const PdhGetDefaultPerfObjectH = PdhGetDefaultPerfObjectHW;
-        pub const PdhGetDefaultPerfCounterH = PdhGetDefaultPerfCounterHW;
-        pub const PdhBrowseCountersH = PdhBrowseCountersHW;
-        pub const PdhVerifySQLDB = PdhVerifySQLDBW;
-        pub const PdhCreateSQLTables = PdhCreateSQLTablesW;
-        pub const PdhEnumLogSetNames = PdhEnumLogSetNamesW;
+        pub const PDH_RAW_COUNTER_ITEM_ = thismodule.PDH_RAW_COUNTER_ITEM_W;
+        pub const PDH_FMT_COUNTERVALUE_ITEM_ = thismodule.PDH_FMT_COUNTERVALUE_ITEM_W;
+        pub const PDH_COUNTER_PATH_ELEMENTS_ = thismodule.PDH_COUNTER_PATH_ELEMENTS_W;
+        pub const PDH_DATA_ITEM_PATH_ELEMENTS_ = thismodule.PDH_DATA_ITEM_PATH_ELEMENTS_W;
+        pub const PDH_COUNTER_INFO_ = thismodule.PDH_COUNTER_INFO_W;
+        pub const PDH_LOG_SERVICE_QUERY_INFO_ = thismodule.PDH_LOG_SERVICE_QUERY_INFO_W;
+        pub const PDH_BROWSE_DLG_CONFIG_H = thismodule.PDH_BROWSE_DLG_CONFIG_HW;
+        pub const PDH_BROWSE_DLG_CONFIG_ = thismodule.PDH_BROWSE_DLG_CONFIG_W;
+        pub const InstallPerfDll = thismodule.InstallPerfDllW;
+        pub const LoadPerfCounterTextStrings = thismodule.LoadPerfCounterTextStringsW;
+        pub const UnloadPerfCounterTextStrings = thismodule.UnloadPerfCounterTextStringsW;
+        pub const UpdatePerfNameFiles = thismodule.UpdatePerfNameFilesW;
+        pub const SetServiceAsTrusted = thismodule.SetServiceAsTrustedW;
+        pub const PdhOpenQuery = thismodule.PdhOpenQueryW;
+        pub const PdhAddCounter = thismodule.PdhAddCounterW;
+        pub const PdhAddEnglishCounter = thismodule.PdhAddEnglishCounterW;
+        pub const PdhValidatePathEx = thismodule.PdhValidatePathExW;
+        pub const PdhGetFormattedCounterArray = thismodule.PdhGetFormattedCounterArrayW;
+        pub const PdhGetRawCounterArray = thismodule.PdhGetRawCounterArrayW;
+        pub const PdhGetCounterInfo = thismodule.PdhGetCounterInfoW;
+        pub const PdhConnectMachine = thismodule.PdhConnectMachineW;
+        pub const PdhEnumMachines = thismodule.PdhEnumMachinesW;
+        pub const PdhEnumObjects = thismodule.PdhEnumObjectsW;
+        pub const PdhEnumObjectItems = thismodule.PdhEnumObjectItemsW;
+        pub const PdhMakeCounterPath = thismodule.PdhMakeCounterPathW;
+        pub const PdhParseCounterPath = thismodule.PdhParseCounterPathW;
+        pub const PdhParseInstanceName = thismodule.PdhParseInstanceNameW;
+        pub const PdhValidatePath = thismodule.PdhValidatePathW;
+        pub const PdhGetDefaultPerfObject = thismodule.PdhGetDefaultPerfObjectW;
+        pub const PdhGetDefaultPerfCounter = thismodule.PdhGetDefaultPerfCounterW;
+        pub const PdhBrowseCounters = thismodule.PdhBrowseCountersW;
+        pub const PdhExpandCounterPath = thismodule.PdhExpandCounterPathW;
+        pub const PdhLookupPerfNameByIndex = thismodule.PdhLookupPerfNameByIndexW;
+        pub const PdhLookupPerfIndexByName = thismodule.PdhLookupPerfIndexByNameW;
+        pub const PdhExpandWildCardPath = thismodule.PdhExpandWildCardPathW;
+        pub const PdhOpenLog = thismodule.PdhOpenLogW;
+        pub const PdhUpdateLog = thismodule.PdhUpdateLogW;
+        pub const PdhSelectDataSource = thismodule.PdhSelectDataSourceW;
+        pub const PdhGetDataSourceTimeRange = thismodule.PdhGetDataSourceTimeRangeW;
+        pub const PdhBindInputDataSource = thismodule.PdhBindInputDataSourceW;
+        pub const PdhEnumMachinesH = thismodule.PdhEnumMachinesHW;
+        pub const PdhEnumObjectsH = thismodule.PdhEnumObjectsHW;
+        pub const PdhEnumObjectItemsH = thismodule.PdhEnumObjectItemsHW;
+        pub const PdhExpandWildCardPathH = thismodule.PdhExpandWildCardPathHW;
+        pub const PdhGetDefaultPerfObjectH = thismodule.PdhGetDefaultPerfObjectHW;
+        pub const PdhGetDefaultPerfCounterH = thismodule.PdhGetDefaultPerfCounterHW;
+        pub const PdhBrowseCountersH = thismodule.PdhBrowseCountersHW;
+        pub const PdhVerifySQLDB = thismodule.PdhVerifySQLDBW;
+        pub const PdhCreateSQLTables = thismodule.PdhCreateSQLTablesW;
+        pub const PdhEnumLogSetNames = thismodule.PdhEnumLogSetNamesW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const PDH_RAW_COUNTER_ITEM_ = *opaque{};
@@ -5195,21 +5180,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const BSTR = @import("../foundation.zig").BSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

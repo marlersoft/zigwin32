@@ -588,6 +588,7 @@ pub extern "Windows.UI.Xaml" fn InitializeXamlDiagnosticsEx(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -601,16 +602,16 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const SAFEARRAY = @import("../../system/ole_automation.zig").SAFEARRAY;
-const DXGI_FORMAT = @import("../../graphics/dxgi.zig").DXGI_FORMAT;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const IUnknown = @import("../../system/com.zig").IUnknown;
-const HRESULT = @import("../../foundation.zig").HRESULT;
-const BSTR = @import("../../foundation.zig").BSTR;
-const RECT = @import("../../foundation.zig").RECT;
 const BOOL = @import("../../foundation.zig").BOOL;
+const BSTR = @import("../../foundation.zig").BSTR;
 const DXGI_ALPHA_MODE = @import("../../graphics/dxgi.zig").DXGI_ALPHA_MODE;
+const DXGI_FORMAT = @import("../../graphics/dxgi.zig").DXGI_FORMAT;
+const HRESULT = @import("../../foundation.zig").HRESULT;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const PWSTR = @import("../../foundation.zig").PWSTR;
+const RECT = @import("../../foundation.zig").RECT;
+const SAFEARRAY = @import("../../system/ole_automation.zig").SAFEARRAY;
 
 test {
     @setEvalBranchQuota(

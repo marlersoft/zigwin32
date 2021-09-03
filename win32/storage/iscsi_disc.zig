@@ -172,191 +172,15 @@ pub const ID_IPV6_ADDR = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (94)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const SCSI_PASS_THROUGH32 = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBufferOffset: u32,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const SCSI_PASS_THROUGH_DIRECT32 = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBuffer: ?*c_void,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const SCSI_PASS_THROUGH32_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBufferOffset: u32,
-    DataInBufferOffset: u32,
-    Cdb: [1]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SCSI_PASS_THROUGH_DIRECT32_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBuffer: ?*c_void,
-    DataInBuffer: ?*c_void,
-    Cdb: [1]u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ATA_PASS_THROUGH_EX32 = extern struct {
-    Length: u16,
-    AtaFlags: u16,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    ReservedAsUchar: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    ReservedAsUlong: u32,
-    DataBufferOffset: u32,
-    PreviousTaskFile: [8]u8,
-    CurrentTaskFile: [8]u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ATA_PASS_THROUGH_DIRECT32 = extern struct {
-    Length: u16,
-    AtaFlags: u16,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    ReservedAsUchar: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    ReservedAsUlong: u32,
-    DataBuffer: ?*c_void,
-    PreviousTaskFile: [8]u8,
-    CurrentTaskFile: [8]u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MPIO_PASS_THROUGH_PATH32 = extern struct {
-    PassThrough: SCSI_PASS_THROUGH32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT32 = extern struct {
-    PassThrough: SCSI_PASS_THROUGH_DIRECT32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MPIO_PASS_THROUGH_PATH32_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-}, else => struct { } };
 
 pub const _ADAPTER_OBJECT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -1195,6 +1019,162 @@ pub const ISCSI_VERSION_INFO = extern struct {
     BuildNumber: u32,
 };
 
+pub const SCSI_PASS_THROUGH32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Length: u16,
+        ScsiStatus: u8,
+        PathId: u8,
+        TargetId: u8,
+        Lun: u8,
+        CdbLength: u8,
+        SenseInfoLength: u8,
+        DataIn: u8,
+        DataTransferLength: u32,
+        TimeOutValue: u32,
+        DataBufferOffset: u32,
+        SenseInfoOffset: u32,
+        Cdb: [16]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const SCSI_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Length: u16,
+        ScsiStatus: u8,
+        PathId: u8,
+        TargetId: u8,
+        Lun: u8,
+        CdbLength: u8,
+        SenseInfoLength: u8,
+        DataIn: u8,
+        DataTransferLength: u32,
+        TimeOutValue: u32,
+        DataBuffer: ?*c_void,
+        SenseInfoOffset: u32,
+        Cdb: [16]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const SCSI_PASS_THROUGH32_EX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Version: u32,
+        Length: u32,
+        CdbLength: u32,
+        StorAddressLength: u32,
+        ScsiStatus: u8,
+        SenseInfoLength: u8,
+        DataDirection: u8,
+        Reserved: u8,
+        TimeOutValue: u32,
+        StorAddressOffset: u32,
+        SenseInfoOffset: u32,
+        DataOutTransferLength: u32,
+        DataInTransferLength: u32,
+        DataOutBufferOffset: u32,
+        DataInBufferOffset: u32,
+        Cdb: [1]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const SCSI_PASS_THROUGH_DIRECT32_EX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Version: u32,
+        Length: u32,
+        CdbLength: u32,
+        StorAddressLength: u32,
+        ScsiStatus: u8,
+        SenseInfoLength: u8,
+        DataDirection: u8,
+        Reserved: u8,
+        TimeOutValue: u32,
+        StorAddressOffset: u32,
+        SenseInfoOffset: u32,
+        DataOutTransferLength: u32,
+        DataInTransferLength: u32,
+        DataOutBuffer: ?*c_void,
+        DataInBuffer: ?*c_void,
+        Cdb: [1]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const ATA_PASS_THROUGH_EX32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Length: u16,
+        AtaFlags: u16,
+        PathId: u8,
+        TargetId: u8,
+        Lun: u8,
+        ReservedAsUchar: u8,
+        DataTransferLength: u32,
+        TimeOutValue: u32,
+        ReservedAsUlong: u32,
+        DataBufferOffset: u32,
+        PreviousTaskFile: [8]u8,
+        CurrentTaskFile: [8]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const ATA_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Length: u16,
+        AtaFlags: u16,
+        PathId: u8,
+        TargetId: u8,
+        Lun: u8,
+        ReservedAsUchar: u8,
+        DataTransferLength: u32,
+        TimeOutValue: u32,
+        ReservedAsUlong: u32,
+        DataBuffer: ?*c_void,
+        PreviousTaskFile: [8]u8,
+        CurrentTaskFile: [8]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThrough: SCSI_PASS_THROUGH32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH_DIRECT32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThrough: SCSI_PASS_THROUGH_DIRECT32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH32_EX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThroughOffset: u32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PassThroughOffset: u32,
+        Version: u32,
+        Length: u16,
+        Flags: u8,
+        PortNumber: u8,
+        MpioPathId: u64,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (79)
@@ -1763,94 +1743,95 @@ pub extern "ISCSIDSC" fn ReportRadiusServerListA(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (42)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ISCSI_TARGET_MAPPING = ISCSI_TARGET_MAPPINGA;
-        pub const ISCSI_TARGET_PORTAL = ISCSI_TARGET_PORTALA;
-        pub const ISCSI_TARGET_PORTAL_INFO = ISCSI_TARGET_PORTAL_INFOA;
-        pub const ISCSI_TARGET_PORTAL_INFO_EX = ISCSI_TARGET_PORTAL_INFO_EXA;
-        pub const ISCSI_TARGET_PORTAL_GROUP = ISCSI_TARGET_PORTAL_GROUPA;
-        pub const ISCSI_CONNECTION_INFO = ISCSI_CONNECTION_INFOA;
-        pub const ISCSI_SESSION_INFO = ISCSI_SESSION_INFOA;
-        pub const ISCSI_DEVICE_ON_SESSION = ISCSI_DEVICE_ON_SESSIONA;
-        pub const PERSISTENT_ISCSI_LOGIN_INFO = PERSISTENT_ISCSI_LOGIN_INFOA;
-        pub const GetIScsiTargetInformation = GetIScsiTargetInformationA;
-        pub const AddIScsiConnection = AddIScsiConnectionA;
-        pub const ReportIScsiTargets = ReportIScsiTargetsA;
-        pub const AddIScsiStaticTarget = AddIScsiStaticTargetA;
-        pub const RemoveIScsiStaticTarget = RemoveIScsiStaticTargetA;
-        pub const AddIScsiSendTargetPortal = AddIScsiSendTargetPortalA;
-        pub const RemoveIScsiSendTargetPortal = RemoveIScsiSendTargetPortalA;
-        pub const RefreshIScsiSendTargetPortal = RefreshIScsiSendTargetPortalA;
-        pub const ReportIScsiSendTargetPortals = ReportIScsiSendTargetPortalsA;
-        pub const ReportIScsiSendTargetPortalsEx = ReportIScsiSendTargetPortalsExA;
-        pub const LoginIScsiTarget = LoginIScsiTargetA;
-        pub const ReportIScsiPersistentLogins = ReportIScsiPersistentLoginsA;
-        pub const RemoveIScsiPersistentTarget = RemoveIScsiPersistentTargetA;
-        pub const ReportIScsiInitiatorList = ReportIScsiInitiatorListA;
-        pub const ReportActiveIScsiTargetMappings = ReportActiveIScsiTargetMappingsA;
-        pub const SetIScsiTunnelModeOuterAddress = SetIScsiTunnelModeOuterAddressA;
-        pub const SetIScsiIKEInfo = SetIScsiIKEInfoA;
-        pub const GetIScsiIKEInfo = GetIScsiIKEInfoA;
-        pub const SetIScsiInitiatorNodeName = SetIScsiInitiatorNodeNameA;
-        pub const GetIScsiInitiatorNodeName = GetIScsiInitiatorNodeNameA;
-        pub const AddISNSServer = AddISNSServerA;
-        pub const RemoveISNSServer = RemoveISNSServerA;
-        pub const RefreshISNSServer = RefreshISNSServerA;
-        pub const ReportISNSServerList = ReportISNSServerListA;
-        pub const GetIScsiSessionList = GetIScsiSessionListA;
-        pub const GetDevicesForIScsiSession = GetDevicesForIScsiSessionA;
-        pub const AddPersistentIScsiDevice = AddPersistentIScsiDeviceA;
-        pub const RemovePersistentIScsiDevice = RemovePersistentIScsiDeviceA;
-        pub const ReportPersistentIScsiDevices = ReportPersistentIScsiDevicesA;
-        pub const ReportIScsiTargetPortals = ReportIScsiTargetPortalsA;
-        pub const AddRadiusServer = AddRadiusServerA;
-        pub const RemoveRadiusServer = RemoveRadiusServerA;
-        pub const ReportRadiusServerList = ReportRadiusServerListA;
+        pub const ISCSI_TARGET_MAPPING = thismodule.ISCSI_TARGET_MAPPINGA;
+        pub const ISCSI_TARGET_PORTAL = thismodule.ISCSI_TARGET_PORTALA;
+        pub const ISCSI_TARGET_PORTAL_INFO = thismodule.ISCSI_TARGET_PORTAL_INFOA;
+        pub const ISCSI_TARGET_PORTAL_INFO_EX = thismodule.ISCSI_TARGET_PORTAL_INFO_EXA;
+        pub const ISCSI_TARGET_PORTAL_GROUP = thismodule.ISCSI_TARGET_PORTAL_GROUPA;
+        pub const ISCSI_CONNECTION_INFO = thismodule.ISCSI_CONNECTION_INFOA;
+        pub const ISCSI_SESSION_INFO = thismodule.ISCSI_SESSION_INFOA;
+        pub const ISCSI_DEVICE_ON_SESSION = thismodule.ISCSI_DEVICE_ON_SESSIONA;
+        pub const PERSISTENT_ISCSI_LOGIN_INFO = thismodule.PERSISTENT_ISCSI_LOGIN_INFOA;
+        pub const GetIScsiTargetInformation = thismodule.GetIScsiTargetInformationA;
+        pub const AddIScsiConnection = thismodule.AddIScsiConnectionA;
+        pub const ReportIScsiTargets = thismodule.ReportIScsiTargetsA;
+        pub const AddIScsiStaticTarget = thismodule.AddIScsiStaticTargetA;
+        pub const RemoveIScsiStaticTarget = thismodule.RemoveIScsiStaticTargetA;
+        pub const AddIScsiSendTargetPortal = thismodule.AddIScsiSendTargetPortalA;
+        pub const RemoveIScsiSendTargetPortal = thismodule.RemoveIScsiSendTargetPortalA;
+        pub const RefreshIScsiSendTargetPortal = thismodule.RefreshIScsiSendTargetPortalA;
+        pub const ReportIScsiSendTargetPortals = thismodule.ReportIScsiSendTargetPortalsA;
+        pub const ReportIScsiSendTargetPortalsEx = thismodule.ReportIScsiSendTargetPortalsExA;
+        pub const LoginIScsiTarget = thismodule.LoginIScsiTargetA;
+        pub const ReportIScsiPersistentLogins = thismodule.ReportIScsiPersistentLoginsA;
+        pub const RemoveIScsiPersistentTarget = thismodule.RemoveIScsiPersistentTargetA;
+        pub const ReportIScsiInitiatorList = thismodule.ReportIScsiInitiatorListA;
+        pub const ReportActiveIScsiTargetMappings = thismodule.ReportActiveIScsiTargetMappingsA;
+        pub const SetIScsiTunnelModeOuterAddress = thismodule.SetIScsiTunnelModeOuterAddressA;
+        pub const SetIScsiIKEInfo = thismodule.SetIScsiIKEInfoA;
+        pub const GetIScsiIKEInfo = thismodule.GetIScsiIKEInfoA;
+        pub const SetIScsiInitiatorNodeName = thismodule.SetIScsiInitiatorNodeNameA;
+        pub const GetIScsiInitiatorNodeName = thismodule.GetIScsiInitiatorNodeNameA;
+        pub const AddISNSServer = thismodule.AddISNSServerA;
+        pub const RemoveISNSServer = thismodule.RemoveISNSServerA;
+        pub const RefreshISNSServer = thismodule.RefreshISNSServerA;
+        pub const ReportISNSServerList = thismodule.ReportISNSServerListA;
+        pub const GetIScsiSessionList = thismodule.GetIScsiSessionListA;
+        pub const GetDevicesForIScsiSession = thismodule.GetDevicesForIScsiSessionA;
+        pub const AddPersistentIScsiDevice = thismodule.AddPersistentIScsiDeviceA;
+        pub const RemovePersistentIScsiDevice = thismodule.RemovePersistentIScsiDeviceA;
+        pub const ReportPersistentIScsiDevices = thismodule.ReportPersistentIScsiDevicesA;
+        pub const ReportIScsiTargetPortals = thismodule.ReportIScsiTargetPortalsA;
+        pub const AddRadiusServer = thismodule.AddRadiusServerA;
+        pub const RemoveRadiusServer = thismodule.RemoveRadiusServerA;
+        pub const ReportRadiusServerList = thismodule.ReportRadiusServerListA;
     },
     .wide => struct {
-        pub const ISCSI_TARGET_MAPPING = ISCSI_TARGET_MAPPINGW;
-        pub const ISCSI_TARGET_PORTAL = ISCSI_TARGET_PORTALW;
-        pub const ISCSI_TARGET_PORTAL_INFO = ISCSI_TARGET_PORTAL_INFOW;
-        pub const ISCSI_TARGET_PORTAL_INFO_EX = ISCSI_TARGET_PORTAL_INFO_EXW;
-        pub const ISCSI_TARGET_PORTAL_GROUP = ISCSI_TARGET_PORTAL_GROUPW;
-        pub const ISCSI_CONNECTION_INFO = ISCSI_CONNECTION_INFOW;
-        pub const ISCSI_SESSION_INFO = ISCSI_SESSION_INFOW;
-        pub const ISCSI_DEVICE_ON_SESSION = ISCSI_DEVICE_ON_SESSIONW;
-        pub const PERSISTENT_ISCSI_LOGIN_INFO = PERSISTENT_ISCSI_LOGIN_INFOW;
-        pub const GetIScsiTargetInformation = GetIScsiTargetInformationW;
-        pub const AddIScsiConnection = AddIScsiConnectionW;
-        pub const ReportIScsiTargets = ReportIScsiTargetsW;
-        pub const AddIScsiStaticTarget = AddIScsiStaticTargetW;
-        pub const RemoveIScsiStaticTarget = RemoveIScsiStaticTargetW;
-        pub const AddIScsiSendTargetPortal = AddIScsiSendTargetPortalW;
-        pub const RemoveIScsiSendTargetPortal = RemoveIScsiSendTargetPortalW;
-        pub const RefreshIScsiSendTargetPortal = RefreshIScsiSendTargetPortalW;
-        pub const ReportIScsiSendTargetPortals = ReportIScsiSendTargetPortalsW;
-        pub const ReportIScsiSendTargetPortalsEx = ReportIScsiSendTargetPortalsExW;
-        pub const LoginIScsiTarget = LoginIScsiTargetW;
-        pub const ReportIScsiPersistentLogins = ReportIScsiPersistentLoginsW;
-        pub const RemoveIScsiPersistentTarget = RemoveIScsiPersistentTargetW;
-        pub const ReportIScsiInitiatorList = ReportIScsiInitiatorListW;
-        pub const ReportActiveIScsiTargetMappings = ReportActiveIScsiTargetMappingsW;
-        pub const SetIScsiTunnelModeOuterAddress = SetIScsiTunnelModeOuterAddressW;
-        pub const SetIScsiIKEInfo = SetIScsiIKEInfoW;
-        pub const GetIScsiIKEInfo = GetIScsiIKEInfoW;
-        pub const SetIScsiInitiatorNodeName = SetIScsiInitiatorNodeNameW;
-        pub const GetIScsiInitiatorNodeName = GetIScsiInitiatorNodeNameW;
-        pub const AddISNSServer = AddISNSServerW;
-        pub const RemoveISNSServer = RemoveISNSServerW;
-        pub const RefreshISNSServer = RefreshISNSServerW;
-        pub const ReportISNSServerList = ReportISNSServerListW;
-        pub const GetIScsiSessionList = GetIScsiSessionListW;
-        pub const GetDevicesForIScsiSession = GetDevicesForIScsiSessionW;
-        pub const AddPersistentIScsiDevice = AddPersistentIScsiDeviceW;
-        pub const RemovePersistentIScsiDevice = RemovePersistentIScsiDeviceW;
-        pub const ReportPersistentIScsiDevices = ReportPersistentIScsiDevicesW;
-        pub const ReportIScsiTargetPortals = ReportIScsiTargetPortalsW;
-        pub const AddRadiusServer = AddRadiusServerW;
-        pub const RemoveRadiusServer = RemoveRadiusServerW;
-        pub const ReportRadiusServerList = ReportRadiusServerListW;
+        pub const ISCSI_TARGET_MAPPING = thismodule.ISCSI_TARGET_MAPPINGW;
+        pub const ISCSI_TARGET_PORTAL = thismodule.ISCSI_TARGET_PORTALW;
+        pub const ISCSI_TARGET_PORTAL_INFO = thismodule.ISCSI_TARGET_PORTAL_INFOW;
+        pub const ISCSI_TARGET_PORTAL_INFO_EX = thismodule.ISCSI_TARGET_PORTAL_INFO_EXW;
+        pub const ISCSI_TARGET_PORTAL_GROUP = thismodule.ISCSI_TARGET_PORTAL_GROUPW;
+        pub const ISCSI_CONNECTION_INFO = thismodule.ISCSI_CONNECTION_INFOW;
+        pub const ISCSI_SESSION_INFO = thismodule.ISCSI_SESSION_INFOW;
+        pub const ISCSI_DEVICE_ON_SESSION = thismodule.ISCSI_DEVICE_ON_SESSIONW;
+        pub const PERSISTENT_ISCSI_LOGIN_INFO = thismodule.PERSISTENT_ISCSI_LOGIN_INFOW;
+        pub const GetIScsiTargetInformation = thismodule.GetIScsiTargetInformationW;
+        pub const AddIScsiConnection = thismodule.AddIScsiConnectionW;
+        pub const ReportIScsiTargets = thismodule.ReportIScsiTargetsW;
+        pub const AddIScsiStaticTarget = thismodule.AddIScsiStaticTargetW;
+        pub const RemoveIScsiStaticTarget = thismodule.RemoveIScsiStaticTargetW;
+        pub const AddIScsiSendTargetPortal = thismodule.AddIScsiSendTargetPortalW;
+        pub const RemoveIScsiSendTargetPortal = thismodule.RemoveIScsiSendTargetPortalW;
+        pub const RefreshIScsiSendTargetPortal = thismodule.RefreshIScsiSendTargetPortalW;
+        pub const ReportIScsiSendTargetPortals = thismodule.ReportIScsiSendTargetPortalsW;
+        pub const ReportIScsiSendTargetPortalsEx = thismodule.ReportIScsiSendTargetPortalsExW;
+        pub const LoginIScsiTarget = thismodule.LoginIScsiTargetW;
+        pub const ReportIScsiPersistentLogins = thismodule.ReportIScsiPersistentLoginsW;
+        pub const RemoveIScsiPersistentTarget = thismodule.RemoveIScsiPersistentTargetW;
+        pub const ReportIScsiInitiatorList = thismodule.ReportIScsiInitiatorListW;
+        pub const ReportActiveIScsiTargetMappings = thismodule.ReportActiveIScsiTargetMappingsW;
+        pub const SetIScsiTunnelModeOuterAddress = thismodule.SetIScsiTunnelModeOuterAddressW;
+        pub const SetIScsiIKEInfo = thismodule.SetIScsiIKEInfoW;
+        pub const GetIScsiIKEInfo = thismodule.GetIScsiIKEInfoW;
+        pub const SetIScsiInitiatorNodeName = thismodule.SetIScsiInitiatorNodeNameW;
+        pub const GetIScsiInitiatorNodeName = thismodule.GetIScsiInitiatorNodeNameW;
+        pub const AddISNSServer = thismodule.AddISNSServerW;
+        pub const RemoveISNSServer = thismodule.RemoveISNSServerW;
+        pub const RefreshISNSServer = thismodule.RefreshISNSServerW;
+        pub const ReportISNSServerList = thismodule.ReportISNSServerListW;
+        pub const GetIScsiSessionList = thismodule.GetIScsiSessionListW;
+        pub const GetDevicesForIScsiSession = thismodule.GetDevicesForIScsiSessionW;
+        pub const AddPersistentIScsiDevice = thismodule.AddPersistentIScsiDeviceW;
+        pub const RemovePersistentIScsiDevice = thismodule.RemovePersistentIScsiDeviceW;
+        pub const ReportPersistentIScsiDevices = thismodule.ReportPersistentIScsiDevicesW;
+        pub const ReportIScsiTargetPortals = thismodule.ReportIScsiTargetPortalsW;
+        pub const AddRadiusServer = thismodule.AddRadiusServerW;
+        pub const RemoveRadiusServer = thismodule.RemoveRadiusServerW;
+        pub const ReportRadiusServerList = thismodule.ReportRadiusServerListW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ISCSI_TARGET_MAPPING = *opaque{};
@@ -1945,11 +1926,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const STORAGE_DEVICE_NUMBER = @import("../system/system_services.zig").STORAGE_DEVICE_NUMBER;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const STORAGE_DEVICE_NUMBER = @import("../system/system_services.zig").STORAGE_DEVICE_NUMBER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

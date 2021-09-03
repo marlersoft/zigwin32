@@ -235,20 +235,21 @@ pub extern "KERNEL32" fn GetNamedPipeServerSessionId(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const CreateNamedPipe = CreateNamedPipeA;
-        pub const WaitNamedPipe = WaitNamedPipeA;
-        pub const GetNamedPipeClientComputerName = GetNamedPipeClientComputerNameA;
-        pub const GetNamedPipeHandleState = GetNamedPipeHandleStateA;
-        pub const CallNamedPipe = CallNamedPipeA;
+        pub const CreateNamedPipe = thismodule.CreateNamedPipeA;
+        pub const WaitNamedPipe = thismodule.WaitNamedPipeA;
+        pub const GetNamedPipeClientComputerName = thismodule.GetNamedPipeClientComputerNameA;
+        pub const GetNamedPipeHandleState = thismodule.GetNamedPipeHandleStateA;
+        pub const CallNamedPipe = thismodule.CallNamedPipeA;
     },
     .wide => struct {
-        pub const CreateNamedPipe = CreateNamedPipeW;
-        pub const WaitNamedPipe = WaitNamedPipeW;
-        pub const GetNamedPipeClientComputerName = GetNamedPipeClientComputerNameW;
-        pub const GetNamedPipeHandleState = GetNamedPipeHandleStateW;
-        pub const CallNamedPipe = CallNamedPipeW;
+        pub const CreateNamedPipe = thismodule.CreateNamedPipeW;
+        pub const WaitNamedPipe = thismodule.WaitNamedPipeW;
+        pub const GetNamedPipeClientComputerName = thismodule.GetNamedPipeClientComputerNameW;
+        pub const GetNamedPipeHandleState = thismodule.GetNamedPipeHandleStateW;
+        pub const CallNamedPipe = thismodule.CallNamedPipeW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CreateNamedPipe = *opaque{};
@@ -267,12 +268,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

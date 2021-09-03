@@ -1374,6 +1374,7 @@ pub extern "BluetoothApis" fn BluetoothIsVersionAvailable(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1387,12 +1388,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
 const BOOL = @import("../foundation.zig").BOOL;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

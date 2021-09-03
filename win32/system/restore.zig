@@ -98,14 +98,15 @@ pub extern "sfc" fn SRSetRestorePointW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const RESTOREPOINTINFO = RESTOREPOINTINFOA;
-        pub const SRSetRestorePoint = SRSetRestorePointA;
+        pub const RESTOREPOINTINFO = thismodule.RESTOREPOINTINFOA;
+        pub const SRSetRestorePoint = thismodule.SRSetRestorePointA;
     },
     .wide => struct {
-        pub const RESTOREPOINTINFO = RESTOREPOINTINFOW;
-        pub const SRSetRestorePoint = SRSetRestorePointW;
+        pub const RESTOREPOINTINFO = thismodule.RESTOREPOINTINFOW;
+        pub const SRSetRestorePoint = thismodule.SRSetRestorePointW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const RESTOREPOINTINFO = *opaque{};
@@ -118,9 +119,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const FILETIME = @import("../foundation.zig").FILETIME;
-const CHAR = @import("../system/system_services.zig").CHAR;
 const BOOL = @import("../foundation.zig").BOOL;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 
 test {
     @setEvalBranchQuota(

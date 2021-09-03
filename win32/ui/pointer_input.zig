@@ -308,6 +308,7 @@ pub extern "USER32" fn GetPointerInputTransform(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -320,12 +321,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
+const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HWND = @import("../foundation.zig").HWND;
 const POINT = @import("../foundation.zig").POINT;
 const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
 const RECT = @import("../foundation.zig").RECT;
-const HWND = @import("../foundation.zig").HWND;
-const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

@@ -226,6 +226,7 @@ pub extern "XPSPRINT" fn StartXpsPrintJob1(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -239,14 +240,14 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
-const IStream = @import("../../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const IUnknown = @import("../../system/com.zig").IUnknown;
-const HRESULT = @import("../../foundation.zig").HRESULT;
 const HANDLE = @import("../../foundation.zig").HANDLE;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
 const ISequentialStream = @import("../../storage/structured_storage.zig").ISequentialStream;
+const IStream = @import("../../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../../system/com.zig").IUnknown;
 const IXpsOMPackageTarget = @import("../../storage/xps.zig").IXpsOMPackageTarget;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

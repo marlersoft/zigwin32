@@ -3440,6 +3440,7 @@ pub extern "dxgi" fn DXGIDeclareAdapterRemovalSupport(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3453,21 +3454,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const RECT = @import("../foundation.zig").RECT;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
-const HWND = @import("../foundation.zig").HWND;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LUID = @import("../system/system_services.zig").LUID;
 const POINT = @import("../foundation.zig").POINT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

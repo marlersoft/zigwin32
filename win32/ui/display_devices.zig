@@ -6,73 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (233)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const IFIMETRICS = extern struct {
-    cjThis: u32,
-    cjIfiExtra: u32,
-    dpwszFamilyName: i32,
-    dpwszStyleName: i32,
-    dpwszFaceName: i32,
-    dpwszUniqueName: i32,
-    dpFontSim: i32,
-    lEmbedId: i32,
-    lItalicAngle: i32,
-    lCharBias: i32,
-    dpCharSets: i32,
-    jWinCharSet: u8,
-    jWinPitchAndFamily: u8,
-    usWinWeight: u16,
-    flInfo: u32,
-    fsSelection: u16,
-    fsType: u16,
-    fwdUnitsPerEm: i16,
-    fwdLowestPPEm: i16,
-    fwdWinAscender: i16,
-    fwdWinDescender: i16,
-    fwdMacAscender: i16,
-    fwdMacDescender: i16,
-    fwdMacLineGap: i16,
-    fwdTypoAscender: i16,
-    fwdTypoDescender: i16,
-    fwdTypoLineGap: i16,
-    fwdAveCharWidth: i16,
-    fwdMaxCharInc: i16,
-    fwdCapHeight: i16,
-    fwdXHeight: i16,
-    fwdSubscriptXSize: i16,
-    fwdSubscriptYSize: i16,
-    fwdSubscriptXOffset: i16,
-    fwdSubscriptYOffset: i16,
-    fwdSuperscriptXSize: i16,
-    fwdSuperscriptYSize: i16,
-    fwdSuperscriptXOffset: i16,
-    fwdSuperscriptYOffset: i16,
-    fwdUnderscoreSize: i16,
-    fwdUnderscorePosition: i16,
-    fwdStrikeoutSize: i16,
-    fwdStrikeoutPosition: i16,
-    chFirstChar: u8,
-    chLastChar: u8,
-    chDefaultChar: u8,
-    chBreakChar: u8,
-    wcFirstChar: u16,
-    wcLastChar: u16,
-    wcDefaultChar: u16,
-    wcBreakChar: u16,
-    ptlBaseline: POINTL,
-    ptlAspect: POINTL,
-    ptlCaret: POINTL,
-    rclFontBox: RECTL,
-    achVendId: [4]u8,
-    cKerningPairs: u32,
-    ulPanoseCulture: u32,
-    panose: PANOSE,
-    Align: ?*c_void,
-};
-
-}, else => struct { } };
 
 // TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
 pub const HSEMAPHORE = *opaque{};
@@ -2203,73 +2136,132 @@ pub const DDKERNELCAPS = extern struct {
     dwIRQCaps: u32,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const IFIMETRICS = extern struct {
-    cjThis: u32,
-    cjIfiExtra: u32,
-    dpwszFamilyName: i32,
-    dpwszStyleName: i32,
-    dpwszFaceName: i32,
-    dpwszUniqueName: i32,
-    dpFontSim: i32,
-    lEmbedId: i32,
-    lItalicAngle: i32,
-    lCharBias: i32,
-    dpCharSets: i32,
-    jWinCharSet: u8,
-    jWinPitchAndFamily: u8,
-    usWinWeight: u16,
-    flInfo: u32,
-    fsSelection: u16,
-    fsType: u16,
-    fwdUnitsPerEm: i16,
-    fwdLowestPPEm: i16,
-    fwdWinAscender: i16,
-    fwdWinDescender: i16,
-    fwdMacAscender: i16,
-    fwdMacDescender: i16,
-    fwdMacLineGap: i16,
-    fwdTypoAscender: i16,
-    fwdTypoDescender: i16,
-    fwdTypoLineGap: i16,
-    fwdAveCharWidth: i16,
-    fwdMaxCharInc: i16,
-    fwdCapHeight: i16,
-    fwdXHeight: i16,
-    fwdSubscriptXSize: i16,
-    fwdSubscriptYSize: i16,
-    fwdSubscriptXOffset: i16,
-    fwdSubscriptYOffset: i16,
-    fwdSuperscriptXSize: i16,
-    fwdSuperscriptYSize: i16,
-    fwdSuperscriptXOffset: i16,
-    fwdSuperscriptYOffset: i16,
-    fwdUnderscoreSize: i16,
-    fwdUnderscorePosition: i16,
-    fwdStrikeoutSize: i16,
-    fwdStrikeoutPosition: i16,
-    chFirstChar: u8,
-    chLastChar: u8,
-    chDefaultChar: u8,
-    chBreakChar: u8,
-    wcFirstChar: u16,
-    wcLastChar: u16,
-    wcDefaultChar: u16,
-    wcBreakChar: u16,
-    ptlBaseline: POINTL,
-    ptlAspect: POINTL,
-    ptlCaret: POINTL,
-    rclFontBox: RECTL,
-    achVendId: [4]u8,
-    cKerningPairs: u32,
-    ulPanoseCulture: u32,
-    panose: PANOSE,
+pub const IFIMETRICS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cjThis: u32,
+        cjIfiExtra: u32,
+        dpwszFamilyName: i32,
+        dpwszStyleName: i32,
+        dpwszFaceName: i32,
+        dpwszUniqueName: i32,
+        dpFontSim: i32,
+        lEmbedId: i32,
+        lItalicAngle: i32,
+        lCharBias: i32,
+        dpCharSets: i32,
+        jWinCharSet: u8,
+        jWinPitchAndFamily: u8,
+        usWinWeight: u16,
+        flInfo: u32,
+        fsSelection: u16,
+        fsType: u16,
+        fwdUnitsPerEm: i16,
+        fwdLowestPPEm: i16,
+        fwdWinAscender: i16,
+        fwdWinDescender: i16,
+        fwdMacAscender: i16,
+        fwdMacDescender: i16,
+        fwdMacLineGap: i16,
+        fwdTypoAscender: i16,
+        fwdTypoDescender: i16,
+        fwdTypoLineGap: i16,
+        fwdAveCharWidth: i16,
+        fwdMaxCharInc: i16,
+        fwdCapHeight: i16,
+        fwdXHeight: i16,
+        fwdSubscriptXSize: i16,
+        fwdSubscriptYSize: i16,
+        fwdSubscriptXOffset: i16,
+        fwdSubscriptYOffset: i16,
+        fwdSuperscriptXSize: i16,
+        fwdSuperscriptYSize: i16,
+        fwdSuperscriptXOffset: i16,
+        fwdSuperscriptYOffset: i16,
+        fwdUnderscoreSize: i16,
+        fwdUnderscorePosition: i16,
+        fwdStrikeoutSize: i16,
+        fwdStrikeoutPosition: i16,
+        chFirstChar: u8,
+        chLastChar: u8,
+        chDefaultChar: u8,
+        chBreakChar: u8,
+        wcFirstChar: u16,
+        wcLastChar: u16,
+        wcDefaultChar: u16,
+        wcBreakChar: u16,
+        ptlBaseline: POINTL,
+        ptlAspect: POINTL,
+        ptlCaret: POINTL,
+        rclFontBox: RECTL,
+        achVendId: [4]u8,
+        cKerningPairs: u32,
+        ulPanoseCulture: u32,
+        panose: PANOSE,
+        Align: ?*c_void,
+    },
+    .X86 => extern struct {
+        cjThis: u32,
+        cjIfiExtra: u32,
+        dpwszFamilyName: i32,
+        dpwszStyleName: i32,
+        dpwszFaceName: i32,
+        dpwszUniqueName: i32,
+        dpFontSim: i32,
+        lEmbedId: i32,
+        lItalicAngle: i32,
+        lCharBias: i32,
+        dpCharSets: i32,
+        jWinCharSet: u8,
+        jWinPitchAndFamily: u8,
+        usWinWeight: u16,
+        flInfo: u32,
+        fsSelection: u16,
+        fsType: u16,
+        fwdUnitsPerEm: i16,
+        fwdLowestPPEm: i16,
+        fwdWinAscender: i16,
+        fwdWinDescender: i16,
+        fwdMacAscender: i16,
+        fwdMacDescender: i16,
+        fwdMacLineGap: i16,
+        fwdTypoAscender: i16,
+        fwdTypoDescender: i16,
+        fwdTypoLineGap: i16,
+        fwdAveCharWidth: i16,
+        fwdMaxCharInc: i16,
+        fwdCapHeight: i16,
+        fwdXHeight: i16,
+        fwdSubscriptXSize: i16,
+        fwdSubscriptYSize: i16,
+        fwdSubscriptXOffset: i16,
+        fwdSubscriptYOffset: i16,
+        fwdSuperscriptXSize: i16,
+        fwdSuperscriptYSize: i16,
+        fwdSuperscriptXOffset: i16,
+        fwdSuperscriptYOffset: i16,
+        fwdUnderscoreSize: i16,
+        fwdUnderscorePosition: i16,
+        fwdStrikeoutSize: i16,
+        fwdStrikeoutPosition: i16,
+        chFirstChar: u8,
+        chLastChar: u8,
+        chDefaultChar: u8,
+        chBreakChar: u8,
+        wcFirstChar: u16,
+        wcLastChar: u16,
+        wcDefaultChar: u16,
+        wcBreakChar: u16,
+        ptlBaseline: POINTL,
+        ptlAspect: POINTL,
+        ptlCaret: POINTL,
+        rclFontBox: RECTL,
+        achVendId: [4]u8,
+        cKerningPairs: u32,
+        ulPanoseCulture: u32,
+        panose: PANOSE,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (83)
@@ -2908,12 +2900,13 @@ pub extern "USER32" fn DisplayConfigSetDeviceInfo(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const DEVMODE = DEVMODEA;
+        pub const DEVMODE = thismodule.DEVMODEA;
     },
     .wide => struct {
-        pub const DEVMODE = DEVMODEW;
+        pub const DEVMODE = thismodule.DEVMODEW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const DEVMODE = *opaque{};
@@ -2925,60 +2918,60 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (55)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
-const DDOVERLAYFX = @import("../graphics/direct_draw.zig").DDOVERLAYFX;
-const POINTE = @import("../system/system_services.zig").POINTE;
-const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const PDD_SETMODE = @import("../graphics/direct_draw.zig").PDD_SETMODE;
-const FREEOBJPROC = @import("../system/system_services.zig").FREEOBJPROC;
+const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
+const BOOL = @import("../foundation.zig").BOOL;
+const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
+const DD_DESTROYDDLOCALDATA = @import("../graphics/direct_draw.zig").DD_DESTROYDDLOCALDATA;
+const DDARGB = @import("../graphics/direct_draw.zig").DDARGB;
+const DDBLTFX = @import("../graphics/direct_draw.zig").DDBLTFX;
 const DDCOLORCONTROL = @import("../graphics/direct_draw.zig").DDCOLORCONTROL;
 const DDCOLORKEY = @import("../graphics/direct_draw.zig").DDCOLORKEY;
-const POINTFIX = @import("../system/system_services.zig").POINTFIX;
-const DDVIDEOPORTCONNECT = @import("../graphics/direct_draw.zig").DDVIDEOPORTCONNECT;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PDD_SURFCB_SETCLIPLIST = @import("../graphics/direct_draw.zig").PDD_SURFCB_SETCLIPLIST;
-const RECT = @import("../foundation.zig").RECT;
-const PSTR = @import("../foundation.zig").PSTR;
-const DDSCAPS2 = @import("../graphics/direct_draw.zig").DDSCAPS2;
-const HDEV = @import("../system/system_services.zig").HDEV;
-const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
-const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
-const PDD_ALPHABLT = @import("../graphics/direct_draw.zig").PDD_ALPHABLT;
-const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PFN = @import("../system/system_services.zig").PFN;
+const DDNTCORECAPS = @import("../graphics/direct_draw.zig").DDNTCORECAPS;
+const DDOVERLAYFX = @import("../graphics/direct_draw.zig").DDOVERLAYFX;
+const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
 const DDRAWI_DIRECTDRAW_GBL = @import("../graphics/direct_draw.zig").DDRAWI_DIRECTDRAW_GBL;
-const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
-const POINTL = @import("../foundation.zig").POINTL;
+const DDRAWI_DIRECTDRAW_LCL = @import("../graphics/direct_draw.zig").DDRAWI_DIRECTDRAW_LCL;
+const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
+const DDSCAPS2 = @import("../graphics/direct_draw.zig").DDSCAPS2;
+const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
+const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
+const DDVIDEOPORTCONNECT = @import("../graphics/direct_draw.zig").DDVIDEOPORTCONNECT;
+const DHPDEV = @import("../system/system_services.zig").DHPDEV;
+const DHSURF = @import("../system/system_services.zig").DHSURF;
+const FLOAT_LONG = @import("../system/system_services.zig").FLOAT_LONG;
+const FREEOBJPROC = @import("../system/system_services.zig").FREEOBJPROC;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const HDEV = @import("../system/system_services.zig").HDEV;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HSEMAPHORE__ = @import("../system/system_services.zig").HSEMAPHORE__;
-const PDD_SETCOLORKEY = @import("../graphics/direct_draw.zig").PDD_SETCOLORKEY;
-const DHSURF = @import("../system/system_services.zig").DHSURF;
-const BOOL = @import("../foundation.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
-const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const DD_DESTROYDDLOCALDATA = @import("../graphics/direct_draw.zig").DD_DESTROYDDLOCALDATA;
-const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
-const POINTQF = @import("../system/system_services.zig").POINTQF;
-const DDARGB = @import("../graphics/direct_draw.zig").DDARGB;
-const XFORMOBJ = @import("../system/system_services.zig").XFORMOBJ;
-const RECTFX = @import("../system/system_services.zig").RECTFX;
-const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
 const HSURF = @import("../system/system_services.zig").HSURF;
-const DDRAWI_DIRECTDRAW_LCL = @import("../graphics/direct_draw.zig").DDRAWI_DIRECTDRAW_LCL;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const DHPDEV = @import("../system/system_services.zig").DHPDEV;
-const DDNTCORECAPS = @import("../graphics/direct_draw.zig").DDNTCORECAPS;
-const FLOAT_LONG = @import("../system/system_services.zig").FLOAT_LONG;
+const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
 const LPDDHAL_WAITFORVERTICALBLANK = @import("../graphics/direct_draw.zig").LPDDHAL_WAITFORVERTICALBLANK;
-const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
-const DDBLTFX = @import("../graphics/direct_draw.zig").DDBLTFX;
-const RECTL = @import("../foundation.zig").RECTL;
-const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
-const SIZE = @import("../foundation.zig").SIZE;
+const LUID = @import("../system/system_services.zig").LUID;
+const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const PANOSE = @import("../graphics/gdi.zig").PANOSE;
+const PDD_ALPHABLT = @import("../graphics/direct_draw.zig").PDD_ALPHABLT;
 const PDD_DESTROYDRIVER = @import("../graphics/direct_draw.zig").PDD_DESTROYDRIVER;
+const PDD_SETCOLORKEY = @import("../graphics/direct_draw.zig").PDD_SETCOLORKEY;
+const PDD_SETMODE = @import("../graphics/direct_draw.zig").PDD_SETMODE;
+const PDD_SURFCB_SETCLIPLIST = @import("../graphics/direct_draw.zig").PDD_SURFCB_SETCLIPLIST;
+const PFN = @import("../system/system_services.zig").PFN;
+const POINTE = @import("../system/system_services.zig").POINTE;
+const POINTFIX = @import("../system/system_services.zig").POINTFIX;
+const POINTL = @import("../foundation.zig").POINTL;
+const POINTQF = @import("../system/system_services.zig").POINTQF;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const RECTFX = @import("../system/system_services.zig").RECTFX;
+const RECTL = @import("../foundation.zig").RECTL;
+const SIZE = @import("../foundation.zig").SIZE;
+const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
+const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
+const XFORMOBJ = @import("../system/system_services.zig").XFORMOBJ;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

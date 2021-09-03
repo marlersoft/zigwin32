@@ -408,6 +408,7 @@ pub extern "fhsvcctl" fn FhServiceUnblockBackup(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -420,12 +421,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const FH_SERVICE_PIPE_HANDLE = @import("../system/windows_programming.zig").FH_SERVICE_PIPE_HANDLE;
-const BSTR = @import("../foundation.zig").BSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const FH_SERVICE_PIPE_HANDLE = @import("../system/windows_programming.zig").FH_SERVICE_PIPE_HANDLE;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {
     @setEvalBranchQuota(

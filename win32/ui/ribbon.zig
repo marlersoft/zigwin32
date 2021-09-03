@@ -670,6 +670,7 @@ pub const IUIImageFromBitmap = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -683,15 +684,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const HWND = @import("../foundation.zig").HWND;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

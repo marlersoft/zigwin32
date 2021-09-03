@@ -122,6 +122,7 @@ pub extern "wnvapi" fn WnvRequestNotification(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -134,12 +135,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
-const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const DL_EUI48 = @import("../network_management/windows_filtering_platform.zig").DL_EUI48;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
+const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
 const NL_DAD_STATE = @import("../networking/win_sock.zig").NL_DAD_STATE;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 
 test {
     @setEvalBranchQuota(

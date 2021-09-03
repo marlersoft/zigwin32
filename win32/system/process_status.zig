@@ -309,26 +309,27 @@ pub extern "KERNEL32" fn K32GetProcessImageFileNameW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (8)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = PENUM_PAGE_FILE_CALLBACKA;
-        pub const K32GetModuleBaseName = K32GetModuleBaseNameA;
-        pub const K32GetModuleFileNameEx = K32GetModuleFileNameExA;
-        pub const K32GetMappedFileName = K32GetMappedFileNameA;
-        pub const K32GetDeviceDriverBaseName = K32GetDeviceDriverBaseNameA;
-        pub const K32GetDeviceDriverFileName = K32GetDeviceDriverFileNameA;
-        pub const K32EnumPageFiles = K32EnumPageFilesA;
-        pub const K32GetProcessImageFileName = K32GetProcessImageFileNameA;
+        pub const PENUM_PAGE_FILE_CALLBACK = thismodule.PENUM_PAGE_FILE_CALLBACKA;
+        pub const K32GetModuleBaseName = thismodule.K32GetModuleBaseNameA;
+        pub const K32GetModuleFileNameEx = thismodule.K32GetModuleFileNameExA;
+        pub const K32GetMappedFileName = thismodule.K32GetMappedFileNameA;
+        pub const K32GetDeviceDriverBaseName = thismodule.K32GetDeviceDriverBaseNameA;
+        pub const K32GetDeviceDriverFileName = thismodule.K32GetDeviceDriverFileNameA;
+        pub const K32EnumPageFiles = thismodule.K32EnumPageFilesA;
+        pub const K32GetProcessImageFileName = thismodule.K32GetProcessImageFileNameA;
     },
     .wide => struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = PENUM_PAGE_FILE_CALLBACKW;
-        pub const K32GetModuleBaseName = K32GetModuleBaseNameW;
-        pub const K32GetModuleFileNameEx = K32GetModuleFileNameExW;
-        pub const K32GetMappedFileName = K32GetMappedFileNameW;
-        pub const K32GetDeviceDriverBaseName = K32GetDeviceDriverBaseNameW;
-        pub const K32GetDeviceDriverFileName = K32GetDeviceDriverFileNameW;
-        pub const K32EnumPageFiles = K32EnumPageFilesW;
-        pub const K32GetProcessImageFileName = K32GetProcessImageFileNameW;
+        pub const PENUM_PAGE_FILE_CALLBACK = thismodule.PENUM_PAGE_FILE_CALLBACKW;
+        pub const K32GetModuleBaseName = thismodule.K32GetModuleBaseNameW;
+        pub const K32GetModuleFileNameEx = thismodule.K32GetModuleFileNameExW;
+        pub const K32GetMappedFileName = thismodule.K32GetMappedFileNameW;
+        pub const K32GetDeviceDriverBaseName = thismodule.K32GetDeviceDriverBaseNameW;
+        pub const K32GetDeviceDriverFileName = thismodule.K32GetDeviceDriverFileNameW;
+        pub const K32EnumPageFiles = thismodule.K32EnumPageFilesW;
+        pub const K32GetProcessImageFileName = thismodule.K32GetProcessImageFileNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const PENUM_PAGE_FILE_CALLBACK = *opaque{};
@@ -353,11 +354,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
