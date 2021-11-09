@@ -3537,9 +3537,9 @@ pub const HSYNTHETICPOINTERDEVICE = *opaque{};
 
 pub const HTREEITEM = *opaque{};
 
-pub const HDSA = isize;
+pub const HDSA = *opaque{};
 
-pub const HDPA = isize;
+pub const HDPA = *opaque{};
 
 pub const LPFNPSPCALLBACKA = fn(
     hwnd: ?HWND,
