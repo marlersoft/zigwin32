@@ -311,7 +311,7 @@ pub const PRJ_CALLBACK_DATA = extern struct {
     VersionInfo: ?*PRJ_PLACEHOLDER_VERSION_INFO,
     TriggeringProcessId: u32,
     TriggeringProcessImageFileName: ?[*:0]const u16,
-    InstanceContext: ?*c_void,
+    InstanceContext: ?*anyopaque,
 };
 
 pub const PRJ_START_DIRECTORY_ENUMERATION_CB = fn(
@@ -407,7 +407,7 @@ pub const PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS = extern struct {
 pub extern "PROJECTEDFSLIB" fn PrjStartVirtualizing(
     virtualizationRootPath: ?[*:0]const u16,
     callbacks: ?*const PRJ_CALLBACKS,
-    instanceContext: ?*const c_void,
+    instanceContext: ?*const anyopaque,
     options: ?*const PRJ_STARTVIRTUALIZING_OPTIONS,
     namespaceVirtualizationContext: ?*PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -469,7 +469,7 @@ pub extern "PROJECTEDFSLIB" fn PrjWriteFileData(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     dataStreamId: ?*const Guid,
     // TODO: what to do with BytesParamIndex 4?
-    buffer: ?*c_void,
+    buffer: ?*anyopaque,
     byteOffset: u64,
     length: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -484,11 +484,11 @@ pub extern "PROJECTEDFSLIB" fn PrjGetOnDiskFileState(
 pub extern "PROJECTEDFSLIB" fn PrjAllocateAlignedBuffer(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     size: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjFreeAlignedBuffer(
-    buffer: ?*c_void,
+    buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.17763'

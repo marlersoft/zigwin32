@@ -393,29 +393,29 @@ pub const HKEY = *opaque{};
 
 pub const val_context = extern struct {
     valuelen: i32,
-    value_context: ?*c_void,
-    val_buff_ptr: ?*c_void,
+    value_context: ?*anyopaque,
+    val_buff_ptr: ?*anyopaque,
 };
 
 pub const pvalueA = extern struct {
     pv_valuename: ?PSTR,
     pv_valuelen: i32,
-    pv_value_context: ?*c_void,
+    pv_value_context: ?*anyopaque,
     pv_type: u32,
 };
 
 pub const pvalueW = extern struct {
     pv_valuename: ?PWSTR,
     pv_valuelen: i32,
-    pv_value_context: ?*c_void,
+    pv_value_context: ?*anyopaque,
     pv_type: u32,
 };
 
 pub const PQUERYHANDLER = fn(
-    keycontext: ?*c_void,
+    keycontext: ?*anyopaque,
     val_list: ?*val_context,
     num_vals: u32,
-    outputbuffer: ?*c_void,
+    outputbuffer: ?*anyopaque,
     total_outlen: ?*u32,
     input_blen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -426,7 +426,7 @@ pub const provider_info = extern struct {
     pi_R3_1val: ?PQUERYHANDLER,
     pi_R3_allvals: ?PQUERYHANDLER,
     pi_flags: u32,
-    pi_key_context: ?*c_void,
+    pi_key_context: ?*anyopaque,
 };
 
 pub const VALENTA = extern struct {
@@ -572,7 +572,7 @@ pub extern "ADVAPI32" fn RegCreateKeyTransactedA(
     phkResult: ?*?HKEY,
     lpdwDisposition: ?*REG_CREATE_KEY_DISPOSITION,
     hTransaction: ?HANDLE,
-    pExtendedParemeter: ?*c_void,
+    pExtendedParemeter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -587,7 +587,7 @@ pub extern "ADVAPI32" fn RegCreateKeyTransactedW(
     phkResult: ?*?HKEY,
     lpdwDisposition: ?*REG_CREATE_KEY_DISPOSITION,
     hTransaction: ?HANDLE,
-    pExtendedParemeter: ?*c_void,
+    pExtendedParemeter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -625,7 +625,7 @@ pub extern "ADVAPI32" fn RegDeleteKeyTransactedA(
     samDesired: u32,
     Reserved: u32,
     hTransaction: ?HANDLE,
-    pExtendedParameter: ?*c_void,
+    pExtendedParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -635,7 +635,7 @@ pub extern "ADVAPI32" fn RegDeleteKeyTransactedW(
     samDesired: u32,
     Reserved: u32,
     hTransaction: ?HANDLE,
-    pExtendedParameter: ?*c_void,
+    pExtendedParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -809,7 +809,7 @@ pub extern "ADVAPI32" fn RegOpenKeyTransactedA(
     samDesired: REG_SAM_FLAGS,
     phkResult: ?*?HKEY,
     hTransaction: ?HANDLE,
-    pExtendedParemeter: ?*c_void,
+    pExtendedParemeter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -820,7 +820,7 @@ pub extern "ADVAPI32" fn RegOpenKeyTransactedW(
     samDesired: REG_SAM_FLAGS,
     phkResult: ?*?HKEY,
     hTransaction: ?HANDLE,
-    pExtendedParemeter: ?*c_void,
+    pExtendedParemeter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1047,7 +1047,7 @@ pub extern "ADVAPI32" fn RegSetKeyValueA(
     lpValueName: ?[*:0]const u8,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*const c_void,
+    lpData: ?*const anyopaque,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -1058,7 +1058,7 @@ pub extern "ADVAPI32" fn RegSetKeyValueW(
     lpValueName: ?[*:0]const u16,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*const c_void,
+    lpData: ?*const anyopaque,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -1089,7 +1089,7 @@ pub extern "ADVAPI32" fn RegGetValueA(
     dwFlags: RRF_RT,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -1101,7 +1101,7 @@ pub extern "ADVAPI32" fn RegGetValueW(
     dwFlags: RRF_RT,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -1178,7 +1178,7 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pwszValue: ?[*:0]const u16,
     dwFlags: u32,
     pdwType: ?*u32,
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     cbDataIn: u32,
     pcbDataOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;

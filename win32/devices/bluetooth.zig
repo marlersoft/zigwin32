@@ -1030,7 +1030,7 @@ pub const BLUETOOTH_COD_PAIRS = extern struct {
 };
 
 pub const PFN_DEVICE_CALLBACK = fn(
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
     pDevice: ?*const BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1047,7 +1047,7 @@ pub const BLUETOOTH_SELECT_DEVICE_PARAMS = extern struct {
     fAddNewDeviceWizard: BOOL,
     fSkipServicesPage: BOOL,
     pfnDeviceCallback: ?PFN_DEVICE_CALLBACK,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
     cNumDevices: u32,
     pDevices: ?*BLUETOOTH_DEVICE_INFO,
 };
@@ -1071,12 +1071,12 @@ pub const BLUETOOTH_PASSKEY_INFO = extern struct {
 };
 
 pub const PFN_AUTHENTICATION_CALLBACK = fn(
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
     pDevice: ?*BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_AUTHENTICATION_CALLBACK_EX = fn(
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
     pAuthCallbackParams: ?*BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1140,7 +1140,7 @@ pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = fn(
     // TODO: what to do with BytesParamIndex 2?
     pValueStream: ?*u8,
     cbStreamSize: u32,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SOCKADDR_BTH = packed struct {
@@ -1370,7 +1370,7 @@ pub extern "BluetoothApis" fn BluetoothRegisterForAuthentication(
     pbtdi: ?*const BLUETOOTH_DEVICE_INFO,
     phRegHandle: ?*isize,
     pfnCallback: ?PFN_AUTHENTICATION_CALLBACK,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1378,7 +1378,7 @@ pub extern "BluetoothApis" fn BluetoothRegisterForAuthenticationEx(
     pbtdiIn: ?*const BLUETOOTH_DEVICE_INFO,
     phRegHandleOut: ?*isize,
     pfnCallbackIn: ?PFN_AUTHENTICATION_CALLBACK_EX,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1442,7 +1442,7 @@ pub extern "BluetoothApis" fn BluetoothSdpEnumAttributes(
     pSDPStream: ?*u8,
     cbStreamSize: u32,
     pfnCallback: ?PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'Windows Vista'

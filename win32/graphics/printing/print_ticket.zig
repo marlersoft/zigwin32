@@ -62,7 +62,7 @@ pub extern "prntvpt" fn PTCloseProvider(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTReleaseMemory(
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

@@ -637,8 +637,8 @@ pub const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = extern struct {
 };
 
 pub const PFIBER_CALLOUT_ROUTINE = fn(
-    lpParameter: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    lpParameter: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const JIT_DEBUG_INFO = extern struct {
     dwSize: u32,
@@ -708,21 +708,21 @@ pub const HW_PROFILE_INFOW = extern struct {
 pub const ACTCTX_SECTION_KEYED_DATA_2600 = extern struct {
     cbSize: u32,
     ulDataFormatVersion: u32,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     ulLength: u32,
-    lpSectionGlobalData: ?*c_void,
+    lpSectionGlobalData: ?*anyopaque,
     ulSectionGlobalDataLength: u32,
-    lpSectionBase: ?*c_void,
+    lpSectionBase: ?*anyopaque,
     ulSectionTotalLength: u32,
     hActCtx: ?HANDLE,
     ulAssemblyRosterIndex: u32,
 };
 
 pub const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = extern struct {
-    lpInformation: ?*c_void,
-    lpSectionBase: ?*c_void,
+    lpInformation: ?*anyopaque,
+    lpSectionBase: ?*anyopaque,
     ulSectionLength: u32,
-    lpSectionGlobalDataBase: ?*c_void,
+    lpSectionGlobalDataBase: ?*anyopaque,
     ulSectionGlobalDataLength: u32,
 };
 
@@ -734,16 +734,16 @@ pub const ACTIVATION_CONTEXT_BASIC_INFORMATION = extern struct {
 pub const PQUERYACTCTXW_FUNC = fn(
     dwFlags: u32,
     hActCtx: ?HANDLE,
-    pvSubInstance: ?*c_void,
+    pvSubInstance: ?*anyopaque,
     ulInfoClass: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
     cbBuffer: usize,
     pcbWrittenOrRequired: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const APPLICATION_RECOVERY_CALLBACK = fn(
-    pvParameter: ?*c_void,
+    pvParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const FILE_CASE_SENSITIVE_INFO = extern struct {
@@ -760,17 +760,17 @@ pub const CLIENT_ID = extern struct {
 };
 
 pub const LDR_DATA_TABLE_ENTRY = extern struct {
-    Reserved1: [2]?*c_void,
+    Reserved1: [2]?*anyopaque,
     InMemoryOrderLinks: LIST_ENTRY,
-    Reserved2: [2]?*c_void,
-    DllBase: ?*c_void,
-    Reserved3: [2]?*c_void,
+    Reserved2: [2]?*anyopaque,
+    DllBase: ?*anyopaque,
+    Reserved3: [2]?*anyopaque,
     FullDllName: UNICODE_STRING,
     Reserved4: [8]u8,
-    Reserved5: [3]?*c_void,
+    Reserved5: [3]?*anyopaque,
     Anonymous: extern union {
         CheckSum: u32,
-        Reserved6: ?*c_void,
+        Reserved6: ?*anyopaque,
     },
     TimeDateStamp: u32,
 };
@@ -780,20 +780,20 @@ pub const OBJECT_ATTRIBUTES = extern struct {
     RootDirectory: ?HANDLE,
     ObjectName: ?*UNICODE_STRING,
     Attributes: u32,
-    SecurityDescriptor: ?*c_void,
-    SecurityQualityOfService: ?*c_void,
+    SecurityDescriptor: ?*anyopaque,
+    SecurityQualityOfService: ?*anyopaque,
 };
 
 pub const IO_STATUS_BLOCK = extern struct {
     Anonymous: extern union {
         Status: NTSTATUS,
-        Pointer: ?*c_void,
+        Pointer: ?*anyopaque,
     },
     Information: usize,
 };
 
 pub const PIO_APC_ROUTINE = fn(
-    ApcContext: ?*c_void,
+    ApcContext: ?*anyopaque,
     IoStatusBlock: ?*IO_STATUS_BLOCK,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -813,18 +813,18 @@ pub const SYSTEM_PROCESS_INFORMATION = extern struct {
     ImageName: UNICODE_STRING,
     BasePriority: i32,
     UniqueProcessId: ?HANDLE,
-    Reserved2: ?*c_void,
+    Reserved2: ?*anyopaque,
     HandleCount: u32,
     SessionId: u32,
-    Reserved3: ?*c_void,
+    Reserved3: ?*anyopaque,
     PeakVirtualSize: usize,
     VirtualSize: usize,
     Reserved4: u32,
     PeakWorkingSetSize: usize,
     WorkingSetSize: usize,
-    Reserved5: ?*c_void,
+    Reserved5: ?*anyopaque,
     QuotaPagedPoolUsage: usize,
-    Reserved6: ?*c_void,
+    Reserved6: ?*anyopaque,
     QuotaNonPagedPoolUsage: usize,
     PagefileUsage: usize,
     PeakPagefileUsage: usize,
@@ -835,7 +835,7 @@ pub const SYSTEM_PROCESS_INFORMATION = extern struct {
 pub const SYSTEM_THREAD_INFORMATION = extern struct {
     Reserved1: [3]LARGE_INTEGER,
     Reserved2: u32,
-    StartAddress: ?*c_void,
+    StartAddress: ?*anyopaque,
     ClientId: CLIENT_ID,
     Priority: i32,
     BasePriority: i32,
@@ -847,12 +847,12 @@ pub const SYSTEM_THREAD_INFORMATION = extern struct {
 pub const SYSTEM_REGISTRY_QUOTA_INFORMATION = extern struct {
     RegistryQuotaAllowed: u32,
     RegistryQuotaUsed: u32,
-    Reserved1: ?*c_void,
+    Reserved1: ?*anyopaque,
 };
 
 pub const SYSTEM_BASIC_INFORMATION = extern struct {
     Reserved1: [24]u8,
-    Reserved2: [4]?*c_void,
+    Reserved2: [4]?*anyopaque,
     NumberOfProcessors: i8,
 };
 
@@ -877,7 +877,7 @@ pub const SYSTEM_INTERRUPT_INFORMATION = extern struct {
 };
 
 pub const SYSTEM_POLICY_INFORMATION = extern struct {
-    Reserved1: [2]?*c_void,
+    Reserved1: [2]?*anyopaque,
     Reserved2: [3]u32,
 };
 
@@ -979,7 +979,7 @@ pub const PWINSTATIONQUERYINFORMATIONW = fn(
     param0: ?HANDLE,
     param1: u32,
     param2: WINSTATIONINFOCLASS,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     param4: u32,
     param5: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
@@ -1366,7 +1366,7 @@ pub const FEATURE_ERROR = extern struct {
 };
 
 pub const PFEATURE_STATE_CHANGE_CALLBACK = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DCICMD = extern struct {
@@ -1385,7 +1385,7 @@ pub const DCICREATEINPUT = extern struct {
     dwHeight: u32,
     dwDCICaps: u32,
     dwBitCount: u32,
-    lpSurface: ?*c_void,
+    lpSurface: ?*anyopaque,
 };
 
 pub const DCISURFACEINFO = extern struct {
@@ -1410,7 +1410,7 @@ pub const DCISURFACEINFO = extern struct {
 
 pub const ENUM_CALLBACK = fn(
     lpSurfaceInfo: ?*DCISURFACEINFO,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DCIENUMINPUT = extern struct {
@@ -1418,7 +1418,7 @@ pub const DCIENUMINPUT = extern struct {
     rSrc: RECT,
     rDst: RECT,
     EnumCallback: isize,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 };
 
 pub const DCIOFFSCREEN = extern struct {
@@ -1630,9 +1630,9 @@ pub const TDI_TL_IO_CONTROL_ENDPOINT = extern struct {
         IoControlCode: u32,
         OptionName: u32,
     },
-    InputBuffer: ?*c_void,
+    InputBuffer: ?*anyopaque,
     InputBufferLength: u32,
-    OutputBuffer: ?*c_void,
+    OutputBuffer: ?*anyopaque,
     OutputBufferLength: u32,
 };
 
@@ -1759,7 +1759,7 @@ pub const PWLDP_ISDYNAMICCODEPOLICYENABLED_API = fn(
 pub const PWLDP_QUERYDYNAMICODETRUST_API = fn(
     fileHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    baseImage: ?*c_void,
+    baseImage: ?*anyopaque,
     imageSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1845,7 +1845,7 @@ pub const DELAYLOAD_PROC_DESCRIPTOR = extern struct {
 pub const PDELAYLOAD_FAILURE_DLL_CALLBACK = fn(
     NotificationReason: u32,
     DelayloadInfo: ?*DELAYLOAD_INFO,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 const IID_IDeleteBrowsingHistory_Value = @import("../zig.zig").Guid.initString("cf38ed4b-2be7-4461-8b5e-9a466dc82ae3");
 pub const IID_IDeleteBrowsingHistory = &IID_IDeleteBrowsingHistory_Value;
@@ -1883,8 +1883,8 @@ pub const DELAYLOAD_INFO = switch(@import("../zig.zig").arch) {
         ThunkAddress: ?*IMAGE_THUNK_DATA64,
         TargetDllName: ?[*:0]const u8,
         TargetApiDescriptor: DELAYLOAD_PROC_DESCRIPTOR,
-        TargetModuleBase: ?*c_void,
-        Unused: ?*c_void,
+        TargetModuleBase: ?*anyopaque,
+        Unused: ?*anyopaque,
         LastError: u32,
     },
     .X86 => extern struct {
@@ -1893,8 +1893,8 @@ pub const DELAYLOAD_INFO = switch(@import("../zig.zig").arch) {
         ThunkAddress: ?*IMAGE_THUNK_DATA32,
         TargetDllName: ?[*:0]const u8,
         TargetApiDescriptor: DELAYLOAD_PROC_DESCRIPTOR,
-        TargetModuleBase: ?*c_void,
-        Unused: ?*c_void,
+        TargetModuleBase: ?*anyopaque,
+        Unused: ?*anyopaque,
         LastError: u32,
     },
 };
@@ -1993,7 +1993,7 @@ pub extern "KERNEL32" fn GlobalUnfix(
 
 pub extern "KERNEL32" fn GlobalWire(
     hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "KERNEL32" fn GlobalUnWire(
     hMem: isize,
@@ -2069,7 +2069,7 @@ pub extern "KERNEL32" fn _lcreat(
 pub extern "KERNEL32" fn _lread(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     uBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2083,7 +2083,7 @@ pub extern "KERNEL32" fn _lwrite(
 pub extern "KERNEL32" fn _hread(
     hFile: i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lBytes: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2148,7 +2148,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2157,7 +2157,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2166,7 +2166,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     nSize: u32,
     pdwAttribubutes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2176,7 +2176,7 @@ pub extern "KERNEL32" fn GetFirmwareEnvironmentVariableExW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     nSize: u32,
     pdwAttribubutes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2186,7 +2186,7 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2195,7 +2195,7 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2204,7 +2204,7 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
     nSize: u32,
     dwAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2214,7 +2214,7 @@ pub extern "KERNEL32" fn SetFirmwareEnvironmentVariableExW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
     nSize: u32,
     dwAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2397,7 +2397,7 @@ pub extern "KERNEL32" fn GetPrivateProfileStructA(
     lpszSection: ?[*:0]const u8,
     lpszKey: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    lpStruct: ?*c_void,
+    lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2407,7 +2407,7 @@ pub extern "KERNEL32" fn GetPrivateProfileStructW(
     lpszSection: ?[*:0]const u16,
     lpszKey: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    lpStruct: ?*c_void,
+    lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2417,7 +2417,7 @@ pub extern "KERNEL32" fn WritePrivateProfileStructA(
     lpszSection: ?[*:0]const u8,
     lpszKey: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    lpStruct: ?*c_void,
+    lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2427,18 +2427,18 @@ pub extern "KERNEL32" fn WritePrivateProfileStructW(
     lpszSection: ?[*:0]const u16,
     lpszKey: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    lpStruct: ?*c_void,
+    lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn IsBadHugeReadPtr(
-    lp: ?*const c_void,
+    lp: ?*const anyopaque,
     ucb: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn IsBadHugeWritePtr(
-    lp: ?*c_void,
+    lp: ?*anyopaque,
     ucb: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2629,12 +2629,12 @@ pub extern "ntdll" fn NtNotifyChangeMultipleKeys(
     SubordinateObjects: ?[*]OBJECT_ATTRIBUTES,
     Event: ?HANDLE,
     ApcRoutine: ?PIO_APC_ROUTINE,
-    ApcContext: ?*c_void,
+    ApcContext: ?*anyopaque,
     IoStatusBlock: ?*IO_STATUS_BLOCK,
     CompletionFilter: u32,
     WatchTree: BOOLEAN,
     // TODO: what to do with BytesParamIndex 10?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferSize: u32,
     Asynchronous: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -2644,7 +2644,7 @@ pub extern "ntdll" fn NtQueryMultipleValueKey(
     ValueEntries: [*]KEY_VALUE_ENTRY,
     EntryCount: u32,
     // TODO: what to do with BytesParamIndex 4?
-    ValueBuffer: ?*c_void,
+    ValueBuffer: ?*anyopaque,
     BufferLength: ?*u32,
     RequiredBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -2653,7 +2653,7 @@ pub extern "ntdll" fn NtSetInformationKey(
     KeyHandle: ?HANDLE,
     KeySetInformationClass: KEY_SET_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    KeySetInformation: ?*c_void,
+    KeySetInformation: ?*anyopaque,
     KeySetInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -2662,12 +2662,12 @@ pub extern "ntdll" fn NtDeviceIoControlFile(
     FileHandle: ?HANDLE,
     Event: ?HANDLE,
     ApcRoutine: ?PIO_APC_ROUTINE,
-    ApcContext: ?*c_void,
+    ApcContext: ?*anyopaque,
     IoStatusBlock: ?*IO_STATUS_BLOCK,
     IoControlCode: u32,
-    InputBuffer: ?*c_void,
+    InputBuffer: ?*anyopaque,
     InputBufferLength: u32,
-    OutputBuffer: ?*c_void,
+    OutputBuffer: ?*anyopaque,
     OutputBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -2688,14 +2688,14 @@ pub extern "ntdll" fn NtQueryObject(
     Handle: ?HANDLE,
     ObjectInformationClass: OBJECT_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    ObjectInformation: ?*c_void,
+    ObjectInformation: ?*anyopaque,
     ObjectInformationLength: u32,
     ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtQuerySystemInformation(
     SystemInformationClass: SYSTEM_INFORMATION_CLASS,
-    SystemInformation: ?*c_void,
+    SystemInformation: ?*anyopaque,
     SystemInformationLength: u32,
     ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -2821,7 +2821,7 @@ pub extern "api-ms-win-core-featurestaging-l1-1-0" fn RecordFeatureError(
 pub extern "api-ms-win-core-featurestaging-l1-1-0" fn SubscribeFeatureStateChangeNotification(
     subscription: ?*FEATURE_STATE_CHANGE_SUBSCRIPTION,
     callback: ?PFEATURE_STATE_CHANGE_CALLBACK,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "api-ms-win-core-featurestaging-l1-1-0" fn UnsubscribeFeatureStateChangeNotification(
@@ -2865,7 +2865,7 @@ pub extern "DCIMAN32" fn DCICreateOffscreen(
 
 pub extern "DCIMAN32" fn DCICreateOverlay(
     hdc: ?HDC,
-    lpOffscreenSurf: ?*c_void,
+    lpOffscreenSurf: ?*anyopaque,
     lplpSurface: ?*?*DCIOVERLAY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2873,8 +2873,8 @@ pub extern "DCIMAN32" fn DCIEnum(
     hdc: ?HDC,
     lprDst: ?*RECT,
     lprSrc: ?*RECT,
-    lpFnCallback: ?*c_void,
-    lpContext: ?*c_void,
+    lpFnCallback: ?*anyopaque,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "DCIMAN32" fn DCISetSrcDestClip(
@@ -2966,7 +2966,7 @@ pub extern "ADVPACK" fn RunSetupCommandA(
     lpszTitle: ?[*:0]const u8,
     phEXE: ?*?HANDLE,
     dwFlags: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RunSetupCommandW(
@@ -2977,7 +2977,7 @@ pub extern "ADVPACK" fn RunSetupCommandW(
     lpszTitle: ?[*:0]const u16,
     phEXE: ?*?HANDLE,
     dwFlags: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn NeedRebootInit(
@@ -3009,7 +3009,7 @@ pub extern "ADVPACK" fn TranslateInfStringA(
     pszBuffer: ?[*:0]u8,
     cchBuffer: u32,
     pdwRequiredSize: ?*u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn TranslateInfStringW(
@@ -3020,7 +3020,7 @@ pub extern "ADVPACK" fn TranslateInfStringW(
     pszBuffer: ?[*:0]u16,
     cchBuffer: u32,
     pdwRequiredSize: ?*u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -3047,13 +3047,13 @@ pub extern "ADVPACK" fn LaunchINFSectionExW(
 pub extern "ADVPACK" fn ExecuteCabA(
     hwnd: ?HWND,
     pCab: ?*CABINFOA,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn ExecuteCabW(
     hwnd: ?HWND,
     pCab: ?*CABINFOW,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn AdvInstallFileA(
@@ -3236,42 +3236,42 @@ pub extern "ADVPACK" fn OpenINFEngineA(
     pszInfFilename: ?[*:0]const u8,
     pszInstallSection: ?[*:0]const u8,
     dwFlags: u32,
-    phInf: ?*?*c_void,
-    pvReserved: ?*c_void,
+    phInf: ?*?*anyopaque,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn OpenINFEngineW(
     pszInfFilename: ?[*:0]const u16,
     pszInstallSection: ?[*:0]const u16,
     dwFlags: u32,
-    phInf: ?*?*c_void,
-    pvReserved: ?*c_void,
+    phInf: ?*?*anyopaque,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn TranslateInfStringExA(
-    hInf: ?*c_void,
+    hInf: ?*anyopaque,
     pszInfFilename: ?[*:0]const u8,
     pszTranslateSection: ?[*:0]const u8,
     pszTranslateKey: ?[*:0]const u8,
     pszBuffer: [*:0]u8,
     dwBufferSize: u32,
     pdwRequiredSize: ?*u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn TranslateInfStringExW(
-    hInf: ?*c_void,
+    hInf: ?*anyopaque,
     pszInfFilename: ?[*:0]const u16,
     pszTranslateSection: ?[*:0]const u16,
     pszTranslateKey: ?[*:0]const u16,
     pszBuffer: [*:0]u16,
     dwBufferSize: u32,
     pdwRequiredSize: ?*u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn CloseINFEngine(
-    hInf: ?*c_void,
+    hInf: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn ExtractFilesA(
@@ -3279,7 +3279,7 @@ pub extern "ADVPACK" fn ExtractFilesA(
     pszExpandDir: ?[*:0]const u8,
     dwFlags: u32,
     pszFileList: ?[*:0]const u8,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -3288,7 +3288,7 @@ pub extern "ADVPACK" fn ExtractFilesW(
     pszExpandDir: ?[*:0]const u16,
     dwFlags: u32,
     pszFileList: ?[*:0]const u16,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -3419,7 +3419,7 @@ pub extern "Wldp" fn WldpIsDynamicCodePolicyEnabled(
 pub extern "Wldp" fn WldpQueryDynamicCodeTrust(
     fileHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    baseImage: ?*c_void,
+    baseImage: ?*anyopaque,
     imageSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

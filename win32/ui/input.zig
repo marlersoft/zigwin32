@@ -188,7 +188,7 @@ pub extern "USER32" fn GetRawInputData(
     hRawInput: ?HRAWINPUT,
     uiCommand: RAW_INPUT_DATA_COMMAND_FLAGS,
     // TODO: what to do with BytesParamIndex 3?
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     pcbSize: ?*u32,
     cbSizeHeader: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -198,7 +198,7 @@ pub extern "USER32" fn GetRawInputDeviceInfoA(
     hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
     // TODO: what to do with BytesParamIndex 3?
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -207,7 +207,7 @@ pub extern "USER32" fn GetRawInputDeviceInfoW(
     hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
     // TODO: what to do with BytesParamIndex 3?
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

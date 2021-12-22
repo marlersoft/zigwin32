@@ -208,7 +208,7 @@ pub const IUIFramework = extern struct {
             self: *const IUIFramework,
             viewId: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUICommandProperty: fn(
             self: *const IUIFramework,
@@ -252,7 +252,7 @@ pub const IUIFramework = extern struct {
             return @ptrCast(*const IUIFramework.VTable, self.vtable).LoadUI(@ptrCast(*const IUIFramework, self), instance, resourceName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIFramework_GetView(self: *const T, viewId: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIFramework_GetView(self: *const T, viewId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIFramework.VTable, self.vtable).GetView(@ptrCast(*const IUIFramework, self), viewId, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

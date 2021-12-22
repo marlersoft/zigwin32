@@ -377,7 +377,7 @@ pub extern "dwmapi" fn DwmGetWindowAttribute(
     hwnd: ?HWND,
     dwAttribute: DWMWINDOWATTRIBUTE,
     // TODO: what to do with BytesParamIndex 3?
-    pvAttribute: ?*c_void,
+    pvAttribute: ?*anyopaque,
     cbAttribute: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -423,7 +423,7 @@ pub extern "dwmapi" fn DwmSetWindowAttribute(
     hwnd: ?HWND,
     dwAttribute: DWMWINDOWATTRIBUTE,
     // TODO: what to do with BytesParamIndex 3?
-    pvAttribute: ?*const c_void,
+    pvAttribute: ?*const anyopaque,
     cbAttribute: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

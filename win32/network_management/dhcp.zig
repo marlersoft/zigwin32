@@ -399,15 +399,15 @@ pub const DHCPCAPI_CLASSID = extern struct {
 
 pub const LPDHCP_CONTROL = fn(
     dwControlCode: u32,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPDHCP_NEWPKT = fn(
     Packet: ?*?*u8,
     PacketSize: ?*u32,
     IpAddress: u32,
-    Reserved: ?*c_void,
-    PktContext: ?*?*c_void,
+    Reserved: ?*anyopaque,
+    PktContext: ?*?*anyopaque,
     ProcessIt: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -416,8 +416,8 @@ pub const LPDHCP_DROP_SEND = fn(
     PacketSize: ?*u32,
     ControlCode: u32,
     IpAddress: u32,
-    Reserved: ?*c_void,
-    PktContext: ?*c_void,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPDHCP_PROB = fn(
@@ -426,8 +426,8 @@ pub const LPDHCP_PROB = fn(
     ControlCode: u32,
     IpAddress: u32,
     AltAddress: u32,
-    Reserved: ?*c_void,
-    PktContext: ?*c_void,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPDHCP_GIVE_ADDRESS = fn(
@@ -438,15 +438,15 @@ pub const LPDHCP_GIVE_ADDRESS = fn(
     AltAddress: u32,
     AddrType: u32,
     LeaseTime: u32,
-    Reserved: ?*c_void,
-    PktContext: ?*c_void,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPDHCP_HANDLE_OPTIONS = fn(
     Packet: ?*u8,
     PacketSize: u32,
-    Reserved: ?*c_void,
-    PktContext: ?*c_void,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
     ServerOptions: ?*DHCP_SERVER_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -467,8 +467,8 @@ pub const DHCP_CALLOUT_TABLE = extern struct {
     DhcpAddressOfferHook: ?LPDHCP_GIVE_ADDRESS,
     DhcpHandleOptionsHook: ?LPDHCP_HANDLE_OPTIONS,
     DhcpDeleteClientHook: ?LPDHCP_DELETE_CLIENT,
-    DhcpExtensionHook: ?*c_void,
-    DhcpReservedHook: ?*c_void,
+    DhcpExtensionHook: ?*anyopaque,
+    DhcpReservedHook: ?*anyopaque,
 };
 
 pub const LPDHCP_ENTRY_POINT_FUNC = fn(
@@ -738,8 +738,8 @@ pub const DHCP_RESERVED_SCOPE = extern struct {
 
 pub const DHCP_OPTION_SCOPE_INFO = extern struct {
     pub const _DHCP_OPTION_SCOPE_UNION = extern union {
-        DefaultScopeInfo: ?*c_void,
-        GlobalScopeInfo: ?*c_void,
+        DefaultScopeInfo: ?*anyopaque,
+        GlobalScopeInfo: ?*anyopaque,
         SubnetScopeInfo: u32,
         ReservedScopeInfo: DHCP_RESERVED_SCOPE,
         MScopeInfo: ?PWSTR,
@@ -766,7 +766,7 @@ pub const DHCP_RESERVED_SCOPE6 = extern struct {
 
 pub const DHCP_OPTION_SCOPE_INFO6 = extern struct {
     pub const DHCP_OPTION_SCOPE_UNION6 = extern union {
-        DefaultScopeInfo: ?*c_void,
+        DefaultScopeInfo: ?*anyopaque,
         SubnetScopeInfo: DHCP_IPV6_ADDRESS,
         ReservedScopeInfo: DHCP_RESERVED_SCOPE6,
     };
@@ -1840,7 +1840,7 @@ pub extern "dhcpcsvc6" fn Dhcpv6CApiCleanup(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dhcpcsvc6" fn Dhcpv6RequestParams(
     forceNewInform: BOOL,
-    reserved: ?*c_void,
+    reserved: ?*anyopaque,
     adapterName: ?PWSTR,
     classId: ?*DHCPV6CAPI_CLASSID,
     recdParams: DHCPV6CAPI_PARAMS_ARRAY,
@@ -1884,7 +1884,7 @@ pub extern "dhcpcsvc" fn DhcpCApiCleanup(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn DhcpRequestParams(
     Flags: u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     AdapterName: ?PWSTR,
     ClassId: ?*DHCPCAPI_CLASSID,
     SendParams: DHCPCAPI_PARAMS_ARRAY,
@@ -1898,7 +1898,7 @@ pub extern "dhcpcsvc" fn DhcpRequestParams(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn DhcpUndoRequestParams(
     Flags: u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     AdapterName: ?PWSTR,
     RequestIdStr: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1906,18 +1906,18 @@ pub extern "dhcpcsvc" fn DhcpUndoRequestParams(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn DhcpRegisterParamChange(
     Flags: u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     AdapterName: ?PWSTR,
     ClassId: ?*DHCPCAPI_CLASSID,
     Params: DHCPCAPI_PARAMS_ARRAY,
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn DhcpDeRegisterParamChange(
     Flags: u32,
-    Reserved: ?*c_void,
-    Event: ?*c_void,
+    Reserved: ?*anyopaque,
+    Event: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2221,7 +2221,7 @@ pub extern "DHCPSAPI" fn DhcpScanDatabase(
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "DHCPSAPI" fn DhcpRpcFreeMemory(
-    BufferPointer: ?*c_void,
+    BufferPointer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -2524,28 +2524,28 @@ pub extern "DHCPSAPI" fn DhcpGetAllOptionValuesV6(
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "DHCPSAPI" fn DhcpEnumServers(
     Flags: u32,
-    IdInfo: ?*c_void,
+    IdInfo: ?*anyopaque,
     Servers: ?*?*DHCPDS_SERVERS,
-    CallbackFn: ?*c_void,
-    CallbackData: ?*c_void,
+    CallbackFn: ?*anyopaque,
+    CallbackData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "DHCPSAPI" fn DhcpAddServer(
     Flags: u32,
-    IdInfo: ?*c_void,
+    IdInfo: ?*anyopaque,
     NewServer: ?*DHCPDS_SERVER,
-    CallbackFn: ?*c_void,
-    CallbackData: ?*c_void,
+    CallbackFn: ?*anyopaque,
+    CallbackData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "DHCPSAPI" fn DhcpDeleteServer(
     Flags: u32,
-    IdInfo: ?*c_void,
+    IdInfo: ?*anyopaque,
     NewServer: ?*DHCPDS_SERVER,
-    CallbackFn: ?*c_void,
-    CallbackData: ?*c_void,
+    CallbackFn: ?*anyopaque,
+    CallbackData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -2719,13 +2719,13 @@ pub extern "DHCPSAPI" fn DhcpDsCleanup(
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "DHCPSAPI" fn DhcpSetThreadOptions(
     Flags: u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "DHCPSAPI" fn DhcpGetThreadOptions(
     pFlags: ?*u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'

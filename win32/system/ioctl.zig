@@ -4316,7 +4316,7 @@ pub const DISK_RECORD = extern struct {
     ByteOffset: LARGE_INTEGER,
     StartTime: LARGE_INTEGER,
     EndTime: LARGE_INTEGER,
-    VirtualAddress: ?*c_void,
+    VirtualAddress: ?*anyopaque,
     NumberOfBytes: u32,
     DeviceNumber: u8,
     ReadRequest: BOOLEAN,
@@ -4324,7 +4324,7 @@ pub const DISK_RECORD = extern struct {
 
 pub const DISK_LOGGING = extern struct {
     Function: u8,
-    BufferAddress: ?*c_void,
+    BufferAddress: ?*anyopaque,
     BufferSize: u32,
 };
 
@@ -4909,7 +4909,7 @@ pub const FILE_PREFETCH = extern struct {
 pub const FILE_PREFETCH_EX = extern struct {
     Type: u32,
     Count: u32,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     Prefetch: [1]u64,
 };
 

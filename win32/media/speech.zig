@@ -680,7 +680,7 @@ pub const ISpObjectToken = extern struct {
             pUnkOuter: ?*IUnknown,
             dwClsContext: u32,
             riid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStorageFileName: fn(
             self: *const ISpObjectToken,
@@ -703,7 +703,7 @@ pub const ISpObjectToken = extern struct {
         IsUISupported: fn(
             self: *const ISpObjectToken,
             pszTypeOfUI: ?[*:0]const u16,
-            pvExtraData: ?*c_void,
+            pvExtraData: ?*anyopaque,
             cbExtraData: u32,
             punkObject: ?*IUnknown,
             pfSupported: ?*BOOL,
@@ -713,7 +713,7 @@ pub const ISpObjectToken = extern struct {
             hwndParent: ?HWND,
             pszTitle: ?[*:0]const u16,
             pszTypeOfUI: ?[*:0]const u16,
-            pvExtraData: ?*c_void,
+            pvExtraData: ?*anyopaque,
             cbExtraData: u32,
             punkObject: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -739,7 +739,7 @@ pub const ISpObjectToken = extern struct {
             return @ptrCast(*const ISpObjectToken.VTable, self.vtable).GetCategory(@ptrCast(*const ISpObjectToken, self), ppTokenCategory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpObjectToken_CreateInstance(self: *const T, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpObjectToken_CreateInstance(self: *const T, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpObjectToken.VTable, self.vtable).CreateInstance(@ptrCast(*const ISpObjectToken, self), pUnkOuter, dwClsContext, riid, ppvObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -755,11 +755,11 @@ pub const ISpObjectToken = extern struct {
             return @ptrCast(*const ISpObjectToken.VTable, self.vtable).Remove(@ptrCast(*const ISpObjectToken, self), pclsidCaller);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpObjectToken_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*c_void, cbExtraData: u32, punkObject: ?*IUnknown, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        pub fn ISpObjectToken_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpObjectToken.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpObjectToken, self), pszTypeOfUI, pvExtraData, cbExtraData, punkObject, pfSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpObjectToken_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*c_void, cbExtraData: u32, punkObject: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISpObjectToken_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpObjectToken.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpObjectToken, self), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData, punkObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -901,7 +901,7 @@ pub const ISpResourceManager = extern struct {
             ObjectCLSID: ?*const Guid,
             ObjectIID: ?*const Guid,
             fReleaseWhenLastExternalRefReleased: BOOL,
-            ppObject: ?*?*c_void,
+            ppObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -912,7 +912,7 @@ pub const ISpResourceManager = extern struct {
             return @ptrCast(*const ISpResourceManager.VTable, self.vtable).SetObject(@ptrCast(*const ISpResourceManager, self), guidServiceId, pUnkObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpResourceManager_GetObject(self: *const T, guidServiceId: ?*const Guid, ObjectCLSID: ?*const Guid, ObjectIID: ?*const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpResourceManager_GetObject(self: *const T, guidServiceId: ?*const Guid, ObjectCLSID: ?*const Guid, ObjectIID: ?*const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpResourceManager.VTable, self.vtable).GetObject(@ptrCast(*const ISpResourceManager, self), guidServiceId, ObjectCLSID, ObjectIID, fReleaseWhenLastExternalRefReleased, ppObject);
         }
     };}
@@ -1528,7 +1528,7 @@ pub const ISpMMSysAudio = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMMHandle: fn(
             self: *const ISpMMSysAudio,
-            pHandle: ?*?*c_void,
+            pHandle: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLineId: fn(
             self: *const ISpMMSysAudio,
@@ -1551,7 +1551,7 @@ pub const ISpMMSysAudio = extern struct {
             return @ptrCast(*const ISpMMSysAudio.VTable, self.vtable).SetDeviceId(@ptrCast(*const ISpMMSysAudio, self), uDeviceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpMMSysAudio_GetMMHandle(self: *const T, pHandle: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpMMSysAudio_GetMMHandle(self: *const T, pHandle: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpMMSysAudio.VTable, self.vtable).GetMMHandle(@ptrCast(*const ISpMMSysAudio, self), pHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2474,7 +2474,7 @@ pub const ISpVoice = extern struct {
         IsUISupported: fn(
             self: *const ISpVoice,
             pszTypeOfUI: ?[*:0]const u16,
-            pvExtraData: ?*c_void,
+            pvExtraData: ?*anyopaque,
             cbExtraData: u32,
             pfSupported: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2483,7 +2483,7 @@ pub const ISpVoice = extern struct {
             hwndParent: ?HWND,
             pszTitle: ?[*:0]const u16,
             pszTypeOfUI: ?[*:0]const u16,
-            pvExtraData: ?*c_void,
+            pvExtraData: ?*anyopaque,
             cbExtraData: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2583,11 +2583,11 @@ pub const ISpVoice = extern struct {
             return @ptrCast(*const ISpVoice.VTable, self.vtable).SpeakCompleteEvent(@ptrCast(*const ISpVoice, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpVoice_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*c_void, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        pub fn ISpVoice_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpVoice.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpVoice, self), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpVoice_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*c_void, cbExtraData: u32) callconv(.Inline) HRESULT {
+        pub fn ISpVoice_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpVoice.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpVoice, self), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
         }
     };}
@@ -3116,14 +3116,14 @@ pub const ISpRecoGrammar = extern struct {
             self: *const ISpRecoGrammar,
             rguidParam: ?*const Guid,
             pszStringParam: ?[*:0]const u16,
-            pvDataPrarm: ?*const c_void,
+            pvDataPrarm: ?*const anyopaque,
             cbDataSize: u32,
             Options: SPLOADOPTIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRuleState: fn(
             self: *const ISpRecoGrammar,
             pszName: ?[*:0]const u16,
-            pReserved: ?*c_void,
+            pReserved: ?*anyopaque,
             NewState: SPRULESTATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRuleIdState: fn(
@@ -3200,11 +3200,11 @@ pub const ISpRecoGrammar = extern struct {
             return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadCmdFromMemory(@ptrCast(*const ISpRecoGrammar, self), pGrammar, Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpRecoGrammar_LoadCmdFromProprietaryGrammar(self: *const T, rguidParam: ?*const Guid, pszStringParam: ?[*:0]const u16, pvDataPrarm: ?*const c_void, cbDataSize: u32, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
+        pub fn ISpRecoGrammar_LoadCmdFromProprietaryGrammar(self: *const T, rguidParam: ?*const Guid, pszStringParam: ?[*:0]const u16, pvDataPrarm: ?*const anyopaque, cbDataSize: u32, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadCmdFromProprietaryGrammar(@ptrCast(*const ISpRecoGrammar, self), rguidParam, pszStringParam, pvDataPrarm, cbDataSize, Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpRecoGrammar_SetRuleState(self: *const T, pszName: ?[*:0]const u16, pReserved: ?*c_void, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
+        pub fn ISpRecoGrammar_SetRuleState(self: *const T, pszName: ?[*:0]const u16, pReserved: ?*anyopaque, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetRuleState(@ptrCast(*const ISpRecoGrammar, self), pszName, pReserved, NewState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3868,7 +3868,7 @@ pub const ISpRecognizer = extern struct {
         IsUISupported: fn(
             self: *const ISpRecognizer,
             pszTypeOfUI: ?[*:0]const u16,
-            pvExtraData: ?*c_void,
+            pvExtraData: ?*anyopaque,
             cbExtraData: u32,
             pfSupported: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3877,7 +3877,7 @@ pub const ISpRecognizer = extern struct {
             hwndParent: ?HWND,
             pszTitle: ?[*:0]const u16,
             pszTypeOfUI: ?[*:0]const u16,
-            pvExtraData: ?*c_void,
+            pvExtraData: ?*anyopaque,
             cbExtraData: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EmulateRecognition: fn(
@@ -3941,11 +3941,11 @@ pub const ISpRecognizer = extern struct {
             return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetFormat(@ptrCast(*const ISpRecognizer, self), WaveFormatType, pFormatId, ppCoMemWFEX);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpRecognizer_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*c_void, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        pub fn ISpRecognizer_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpRecognizer.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpRecognizer, self), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpRecognizer_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*c_void, cbExtraData: u32) callconv(.Inline) HRESULT {
+        pub fn ISpRecognizer_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpRecognizer.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpRecognizer, self), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

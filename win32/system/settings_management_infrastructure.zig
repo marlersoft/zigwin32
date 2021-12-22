@@ -190,13 +190,13 @@ pub const ISettingsIdentity = extern struct {
         base: IUnknown.VTable,
         GetAttribute: fn(
             self: *const ISettingsIdentity,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
             Name: ?[*:0]const u16,
             Value: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttribute: fn(
             self: *const ISettingsIdentity,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
             Name: ?[*:0]const u16,
             Value: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -213,11 +213,11 @@ pub const ISettingsIdentity = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_GetAttribute(self: *const T, Reserved: ?*c_void, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
+        pub fn ISettingsIdentity_GetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).GetAttribute(@ptrCast(*const ISettingsIdentity, self), Reserved, Name, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_SetAttribute(self: *const T, Reserved: ?*c_void, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn ISettingsIdentity_SetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).SetAttribute(@ptrCast(*const ISettingsIdentity, self), Reserved, Name, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -436,14 +436,14 @@ pub const ISettingsEngine = extern struct {
         GetNamespaces: fn(
             self: *const ISettingsEngine,
             Flags: WcmNamespaceEnumerationFlags,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
             Namespaces: ?*?*IItemEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamespace: fn(
             self: *const ISettingsEngine,
             SettingsID: ?*ISettingsIdentity,
             Access: WcmNamespaceAccess,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
             NamespaceItem: ?*?*ISettingsNamespace,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorDescription: fn(
@@ -457,7 +457,7 @@ pub const ISettingsEngine = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStoreStatus: fn(
             self: *const ISettingsEngine,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
             Status: ?*WcmUserStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadStore: fn(
@@ -466,7 +466,7 @@ pub const ISettingsEngine = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnloadStore: fn(
             self: *const ISettingsEngine,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterNamespace: fn(
             self: *const ISettingsEngine,
@@ -495,7 +495,7 @@ pub const ISettingsEngine = extern struct {
         CreateSettingsContext: fn(
             self: *const ISettingsEngine,
             Flags: u32,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
             SettingsContext: ?*?*ISettingsContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSettingsContext: fn(
@@ -517,11 +517,11 @@ pub const ISettingsEngine = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetNamespaces(self: *const T, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*c_void, Namespaces: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+        pub fn ISettingsEngine_GetNamespaces(self: *const T, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetNamespaces(@ptrCast(*const ISettingsEngine, self), Flags, Reserved, Namespaces);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*c_void, NamespaceItem: ?*?*ISettingsNamespace) callconv(.Inline) HRESULT {
+        pub fn ISettingsEngine_GetNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*anyopaque, NamespaceItem: ?*?*ISettingsNamespace) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetNamespace(@ptrCast(*const ISettingsEngine, self), SettingsID, Access, Reserved, NamespaceItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -533,7 +533,7 @@ pub const ISettingsEngine = extern struct {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateSettingsIdentity(@ptrCast(*const ISettingsEngine, self), SettingsID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetStoreStatus(self: *const T, Reserved: ?*c_void, Status: ?*WcmUserStatus) callconv(.Inline) HRESULT {
+        pub fn ISettingsEngine_GetStoreStatus(self: *const T, Reserved: ?*anyopaque, Status: ?*WcmUserStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetStoreStatus(@ptrCast(*const ISettingsEngine, self), Reserved, Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -541,7 +541,7 @@ pub const ISettingsEngine = extern struct {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).LoadStore(@ptrCast(*const ISettingsEngine, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_UnloadStore(self: *const T, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISettingsEngine_UnloadStore(self: *const T, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).UnloadStore(@ptrCast(*const ISettingsEngine, self), Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -565,7 +565,7 @@ pub const ISettingsEngine = extern struct {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).SetTargetInfo(@ptrCast(*const ISettingsEngine, self), Target);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_CreateSettingsContext(self: *const T, Flags: u32, Reserved: ?*c_void, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
+        pub fn ISettingsEngine_CreateSettingsContext(self: *const T, Flags: u32, Reserved: ?*anyopaque, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateSettingsContext(@ptrCast(*const ISettingsEngine, self), Flags, Reserved, SettingsContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -940,11 +940,11 @@ pub const ISettingsContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetUserData: fn(
             self: *const ISettingsContext,
-            pUserData: ?*c_void,
+            pUserData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetUserData: fn(
             self: *const ISettingsContext,
-            pUserData: ?*?*c_void,
+            pUserData: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamespaces: fn(
             self: *const ISettingsContext,
@@ -975,11 +975,11 @@ pub const ISettingsContext = extern struct {
             return @ptrCast(*const ISettingsContext.VTable, self.vtable).Deserialize(@ptrCast(*const ISettingsContext, self), pStream, pTarget, pppResults, pcResultCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_SetUserData(self: *const T, pUserData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISettingsContext_SetUserData(self: *const T, pUserData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsContext.VTable, self.vtable).SetUserData(@ptrCast(*const ISettingsContext, self), pUserData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_GetUserData(self: *const T, pUserData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISettingsContext_GetUserData(self: *const T, pUserData: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISettingsContext.VTable, self.vtable).GetUserData(@ptrCast(*const ISettingsContext, self), pUserData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

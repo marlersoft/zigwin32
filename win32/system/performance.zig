@@ -492,7 +492,7 @@ pub const plaDeleteReport = FolderActionSteps.DeleteReport;
 
 pub const PLA_CABEXTRACT_CALLBACK = fn(
     FileName: ?[*:0]const u16,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3542,18 +3542,18 @@ pub const PERF_COUNTER_IDENTITY = extern struct {
 
 pub const PERFLIBREQUEST = fn(
     RequestCode: u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PERF_MEM_ALLOC = fn(
     AllocSize: usize,
-    pContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    pContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const PERF_MEM_FREE = fn(
-    pBuffer: ?*c_void,
-    pContext: ?*c_void,
+    pBuffer: ?*anyopaque,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PERF_PROVIDER_CONTEXT = extern struct {
@@ -3562,7 +3562,7 @@ pub const PERF_PROVIDER_CONTEXT = extern struct {
     ControlCallback: ?PERFLIBREQUEST,
     MemAllocRoutine: ?PERF_MEM_ALLOC,
     MemFreeRoutine: ?PERF_MEM_FREE,
-    pMemContext: ?*c_void,
+    pMemContext: ?*anyopaque,
 };
 
 pub const PERF_INSTANCE_HEADER = extern struct {
@@ -3717,7 +3717,7 @@ pub const PM_OPEN_PROC = fn(
 
 pub const PM_COLLECT_PROC = fn(
     pValueName: ?PWSTR,
-    ppData: ?*?*c_void,
+    ppData: ?*?*anyopaque,
     pcbTotalBytes: ?*u32,
     pNumObjectTypes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -6644,7 +6644,7 @@ pub extern "ADVAPI32" fn PerfSetCounterRefValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
-    Address: ?*c_void,
+    Address: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

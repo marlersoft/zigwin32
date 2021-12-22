@@ -394,7 +394,7 @@ pub const MI_InstanceA = extern struct {
 };
 
 pub const MI_Array = extern struct {
-    data: ?*c_void,
+    data: ?*anyopaque,
     size: u32,
 };
 
@@ -1004,11 +1004,11 @@ pub const MI_PropertyDecl = extern struct {
     offset: u32,
     origin: ?*const u16,
     propagator: ?*const u16,
-    value: ?*const c_void,
+    value: ?*const anyopaque,
 };
 
 pub const MI_MethodDecl_Invoke = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1039,14 +1039,14 @@ pub const MI_QualifierDecl = extern struct {
     scope: u32,
     flavor: u32,
     subscript: u32,
-    value: ?*const c_void,
+    value: ?*const anyopaque,
 };
 
 pub const MI_Qualifier = extern struct {
     name: ?*const u16,
     type: u32,
     flavor: u32,
-    value: ?*const c_void,
+    value: ?*const anyopaque,
 };
 
 pub const MI_SchemaDecl = extern struct {
@@ -1061,18 +1061,18 @@ pub const MI_Module_Self = extern struct {
 };
 
 pub const MI_ProviderFT_Load = fn(
-    self: ?*?*c_void,
+    self: ?*?*anyopaque,
     selfModule: ?*MI_Module_Self,
     context: ?*MI_Context,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_Unload = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_GetInstance = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1081,7 +1081,7 @@ pub const MI_ProviderFT_GetInstance = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_EnumerateInstances = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1091,7 +1091,7 @@ pub const MI_ProviderFT_EnumerateInstances = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_CreateInstance = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1099,7 +1099,7 @@ pub const MI_ProviderFT_CreateInstance = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_ModifyInstance = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1108,7 +1108,7 @@ pub const MI_ProviderFT_ModifyInstance = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_DeleteInstance = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1116,7 +1116,7 @@ pub const MI_ProviderFT_DeleteInstance = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_AssociatorInstances = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1130,7 +1130,7 @@ pub const MI_ProviderFT_AssociatorInstances = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_ReferenceInstances = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1142,41 +1142,41 @@ pub const MI_ProviderFT_ReferenceInstances = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_EnableIndications = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     indicationsContext: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_DisableIndications = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     indicationsContext: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_Subscribe = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
     filter: ?*const MI_Filter,
     bookmark: ?*const u16,
     subscriptionID: u64,
-    subscriptionSelf: ?*?*c_void,
+    subscriptionSelf: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_Unsubscribe = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
     subscriptionID: u64,
-    subscriptionSelf: ?*c_void,
+    subscriptionSelf: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ProviderFT_Invoke = fn(
-    self: ?*c_void,
+    self: ?*anyopaque,
     context: ?*MI_Context,
     nameSpace: ?*const u16,
     className: ?*const u16,
@@ -1281,7 +1281,7 @@ pub const MI_REASON_SERVICESTOP = MI_CancellationReason.SERVICESTOP;
 
 pub const MI_CancelCallback = fn(
     reason: MI_CancellationReason,
-    callbackData: ?*c_void,
+    callbackData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_ContextFT = extern struct {
@@ -1389,7 +1389,7 @@ pub const MI_OperationCallback_ResponseType_YesToAll = MI_OperationCallback_Resp
 
 pub const MI_OperationCallback_PromptUser = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     message: ?*const u16,
     promptType: MI_PromptType,
     promptUserResult: isize,
@@ -1397,21 +1397,21 @@ pub const MI_OperationCallback_PromptUser = fn(
 
 pub const MI_OperationCallback_WriteError = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     instance: ?*MI_Instance,
     writeErrorResult: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_OperationCallback_WriteMessage = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     channel: u32,
     message: ?*const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_OperationCallback_WriteProgress = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     activity: ?*const u16,
     currentOperation: ?*const u16,
     statusDescription: ?*const u16,
@@ -1421,7 +1421,7 @@ pub const MI_OperationCallback_WriteProgress = fn(
 
 pub const MI_OperationCallback_Instance = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     instance: ?*const MI_Instance,
     moreResults: u8,
     resultCode: MI_Result,
@@ -1432,7 +1432,7 @@ pub const MI_OperationCallback_Instance = fn(
 
 pub const MI_OperationCallback_StreamedParameter = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     parameterName: ?*const u16,
     resultType: MI_Type,
     result: ?*const MI_Value,
@@ -1441,7 +1441,7 @@ pub const MI_OperationCallback_StreamedParameter = fn(
 
 pub const MI_OperationCallback_Indication = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     instance: ?*const MI_Instance,
     bookmark: ?*const u16,
     machineID: ?*const u16,
@@ -1454,7 +1454,7 @@ pub const MI_OperationCallback_Indication = fn(
 
 pub const MI_OperationCallback_Class = fn(
     operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     classResult: ?*const MI_Class,
     moreResults: u8,
     resultCode: MI_Result,
@@ -1464,7 +1464,7 @@ pub const MI_OperationCallback_Class = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MI_OperationCallbacks = extern struct {
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     promptUser: ?MI_OperationCallback_PromptUser,
     writeError: ?MI_OperationCallback_WriteError,
     writeMessage: ?MI_OperationCallback_WriteMessage,
@@ -1476,7 +1476,7 @@ pub const MI_OperationCallbacks = extern struct {
 };
 
 pub const MI_SessionCallbacks = extern struct {
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     writeMessage: isize,
     writeError: isize,
 };
@@ -1545,7 +1545,7 @@ pub const MI_SerializerFT = extern struct {
 };
 
 pub const MI_Deserializer_ClassObjectNeeded = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     serverName: ?*const u16,
     namespaceName: ?*const u16,
     className: ?*const u16,
@@ -1801,7 +1801,7 @@ pub const IWbemPathKeyList = extern struct {
             wszName: ?[*:0]const u16,
             uFlags: u32,
             uCimType: u32,
-            pKeyVal: ?*c_void,
+            pKeyVal: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey2: fn(
             self: *const IWbemPathKeyList,
@@ -1817,7 +1817,7 @@ pub const IWbemPathKeyList = extern struct {
             puNameBufSize: ?*u32,
             pszKeyName: ?[*:0]u16,
             puKeyValBufSize: ?*u32,
-            pKeyVal: ?*c_void,
+            pKeyVal: ?*anyopaque,
             puApparentCimType: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKey2: fn(
@@ -1862,7 +1862,7 @@ pub const IWbemPathKeyList = extern struct {
             return @ptrCast(*const IWbemPathKeyList.VTable, self.vtable).GetCount(@ptrCast(*const IWbemPathKeyList, self), puKeyCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_SetKey(self: *const T, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWbemPathKeyList_SetKey(self: *const T, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemPathKeyList.VTable, self.vtable).SetKey(@ptrCast(*const IWbemPathKeyList, self), wszName, uFlags, uCimType, pKeyVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1870,7 +1870,7 @@ pub const IWbemPathKeyList = extern struct {
             return @ptrCast(*const IWbemPathKeyList.VTable, self.vtable).SetKey2(@ptrCast(*const IWbemPathKeyList, self), wszName, uFlags, uCimType, pKeyVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPathKeyList_GetKey(self: *const T, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, puKeyValBufSize: ?*u32, pKeyVal: ?*c_void, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWbemPathKeyList_GetKey(self: *const T, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, puKeyValBufSize: ?*u32, pKeyVal: ?*anyopaque, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemPathKeyList.VTable, self.vtable).GetKey(@ptrCast(*const IWbemPathKeyList, self), uKeyIx, uFlags, puNameBufSize, pszKeyName, puKeyValBufSize, pKeyVal, puApparentCimType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2172,18 +2172,18 @@ pub const IWbemQuery = extern struct {
             self: *const IWbemQuery,
             uAnalysisType: u32,
             uFlags: u32,
-            pAnalysis: ?*?*c_void,
+            pAnalysis: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeMemory: fn(
             self: *const IWbemQuery,
-            pMem: ?*c_void,
+            pMem: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetQueryInfo: fn(
             self: *const IWbemQuery,
             uAnalysisType: u32,
             uInfoId: u32,
             uBufSize: u32,
-            pDestBuf: ?*c_void,
+            pDestBuf: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2206,15 +2206,15 @@ pub const IWbemQuery = extern struct {
             return @ptrCast(*const IWbemQuery.VTable, self.vtable).Parse(@ptrCast(*const IWbemQuery, self), pszLang, pszQuery, uFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_GetAnalysis(self: *const T, uAnalysisType: u32, uFlags: u32, pAnalysis: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWbemQuery_GetAnalysis(self: *const T, uAnalysisType: u32, uFlags: u32, pAnalysis: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemQuery.VTable, self.vtable).GetAnalysis(@ptrCast(*const IWbemQuery, self), uAnalysisType, uFlags, pAnalysis);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_FreeMemory(self: *const T, pMem: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWbemQuery_FreeMemory(self: *const T, pMem: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemQuery.VTable, self.vtable).FreeMemory(@ptrCast(*const IWbemQuery, self), pMem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemQuery_GetQueryInfo(self: *const T, uAnalysisType: u32, uInfoId: u32, uBufSize: u32, pDestBuf: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWbemQuery_GetQueryInfo(self: *const T, uAnalysisType: u32, uInfoId: u32, uBufSize: u32, pDestBuf: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemQuery.VTable, self.vtable).GetQueryInfo(@ptrCast(*const IWbemQuery, self), uAnalysisType, uInfoId, uBufSize, pDestBuf);
         }
     };}
@@ -2514,7 +2514,7 @@ pub const SWbemAnalysisMatrix = extern struct {
     m_pszProperty: ?[*:0]const u16,
     m_uPropertyType: u32,
     m_uEntries: u32,
-    m_pValues: ?*?*c_void,
+    m_pValues: ?*?*anyopaque,
     m_pbTruthTable: ?*BOOL,
 };
 
@@ -8279,14 +8279,14 @@ pub const IWbemConnectorLogin = extern struct {
             lFlags: i32,
             pCtx: ?*IWbemContext,
             riid: ?*const Guid,
-            pInterface: ?*?*c_void,
+            pInterface: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemConnectorLogin_ConnectorLogin(self: *const T, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWbemConnectorLogin_ConnectorLogin(self: *const T, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemConnectorLogin.VTable, self.vtable).ConnectorLogin(@ptrCast(*const IWbemConnectorLogin, self), wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
         }
     };}
@@ -8365,7 +8365,7 @@ pub const IWbemClientConnectionTransport = extern struct {
             lFlags: i32,
             pCtx: ?*IWbemContext,
             riid: ?*const Guid,
-            pInterface: ?*?*c_void,
+            pInterface: ?*?*anyopaque,
             pCallRes: ?*?*IWbemCallResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenAsync: fn(
@@ -8392,7 +8392,7 @@ pub const IWbemClientConnectionTransport = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemClientConnectionTransport_Open(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*c_void, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+        pub fn IWbemClientConnectionTransport_Open(self: *const T, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: ?*?*anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWbemClientConnectionTransport.VTable, self.vtable).Open(@ptrCast(*const IWbemClientConnectionTransport, self), strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pInterface, pCallRes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

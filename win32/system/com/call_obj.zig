@@ -75,7 +75,7 @@ pub const CALLFRAME_WALK_OUT = CALLFRAME_WALK.OUT;
 pub const CALLFRAME_MARSHALCONTEXT = extern struct {
     fIn: BOOLEAN,
     dwDestContext: u32,
-    pvDestContext: ?*c_void,
+    pvDestContext: ?*anyopaque,
     punkReserved: ?*IUnknown,
     guidTransferSyntax: Guid,
 };
@@ -102,10 +102,10 @@ pub const ICallFrame = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStackLocation: fn(
             self: *const ICallFrame,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         SetStackLocation: fn(
             self: *const ICallFrame,
-            pvStack: ?*c_void,
+            pvStack: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetReturnValue: fn(
             self: *const ICallFrame,
@@ -190,7 +190,7 @@ pub const ICallFrame = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Invoke: fn(
             self: *const ICallFrame,
-            pvReceiver: ?*c_void,
+            pvReceiver: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -209,11 +209,11 @@ pub const ICallFrame = extern struct {
             return @ptrCast(*const ICallFrame.VTable, self.vtable).GetNames(@ptrCast(*const ICallFrame, self), pwszInterface, pwszMethod);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICallFrame_GetStackLocation(self: *const T) callconv(.Inline) ?*c_void {
+        pub fn ICallFrame_GetStackLocation(self: *const T) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const ICallFrame.VTable, self.vtable).GetStackLocation(@ptrCast(*const ICallFrame, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICallFrame_SetStackLocation(self: *const T, pvStack: ?*c_void) callconv(.Inline) void {
+        pub fn ICallFrame_SetStackLocation(self: *const T, pvStack: ?*anyopaque) callconv(.Inline) void {
             return @ptrCast(*const ICallFrame.VTable, self.vtable).SetStackLocation(@ptrCast(*const ICallFrame, self), pvStack);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -269,7 +269,7 @@ pub const ICallFrame = extern struct {
             return @ptrCast(*const ICallFrame.VTable, self.vtable).ReleaseMarshalData(@ptrCast(*const ICallFrame, self), pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICallFrame_Invoke(self: *const T, pvReceiver: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICallFrame_Invoke(self: *const T, pvReceiver: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICallFrame.VTable, self.vtable).Invoke(@ptrCast(*const ICallFrame, self), pvReceiver);
         }
     };}
@@ -286,7 +286,7 @@ pub const ICallIndirect = extern struct {
             self: *const ICallIndirect,
             phrReturn: ?*HRESULT,
             iMethod: u32,
-            pvArgs: ?*c_void,
+            pvArgs: ?*anyopaque,
             cbArgs: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMethodInfo: fn(
@@ -312,7 +312,7 @@ pub const ICallIndirect = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICallIndirect_CallIndirect(self: *const T, phrReturn: ?*HRESULT, iMethod: u32, pvArgs: ?*c_void, cbArgs: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ICallIndirect_CallIndirect(self: *const T, phrReturn: ?*HRESULT, iMethod: u32, pvArgs: ?*anyopaque, cbArgs: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICallIndirect.VTable, self.vtable).CallIndirect(@ptrCast(*const ICallIndirect, self), phrReturn, iMethod, pvArgs, cbArgs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -434,7 +434,7 @@ pub const ICallFrameWalker = extern struct {
         OnWalkInterface: fn(
             self: *const ICallFrameWalker,
             iid: ?*const Guid,
-            ppvInterface: ?*?*c_void,
+            ppvInterface: ?*?*anyopaque,
             fIn: BOOL,
             fOut: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -443,7 +443,7 @@ pub const ICallFrameWalker = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICallFrameWalker_OnWalkInterface(self: *const T, iid: ?*const Guid, ppvInterface: ?*?*c_void, fIn: BOOL, fOut: BOOL) callconv(.Inline) HRESULT {
+        pub fn ICallFrameWalker_OnWalkInterface(self: *const T, iid: ?*const Guid, ppvInterface: ?*?*anyopaque, fIn: BOOL, fOut: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICallFrameWalker.VTable, self.vtable).OnWalkInterface(@ptrCast(*const ICallFrameWalker, self), iid, ppvInterface, fIn, fOut);
         }
     };}
@@ -488,7 +488,7 @@ pub extern "ole32" fn CoGetInterceptor(
     iidIntercepted: ?*const Guid,
     punkOuter: ?*IUnknown,
     iid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ole32" fn CoGetInterceptorFromTypeInfo(
@@ -496,7 +496,7 @@ pub extern "ole32" fn CoGetInterceptorFromTypeInfo(
     punkOuter: ?*IUnknown,
     typeInfo: ?*ITypeInfo,
     iid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -424,7 +424,7 @@ pub const TRUSTEE_ACCESSW = extern struct {
 
 pub const ACTRL_OVERLAPPED = extern struct {
     Anonymous: extern union {
-        Provider: ?*c_void,
+        Provider: ?*anyopaque,
         Reserved1: u32,
     },
     Reserved2: u32,
@@ -581,7 +581,7 @@ pub const AUTHZ_ACCESS_REQUEST = extern struct {
     PrincipalSelfSid: ?PSID,
     ObjectTypeList: ?*OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
-    OptionalArguments: ?*c_void,
+    OptionalArguments: ?*anyopaque,
 };
 
 pub const AUTHZ_ACCESS_REPLY = extern struct {
@@ -594,13 +594,13 @@ pub const AUTHZ_ACCESS_REPLY = extern struct {
 pub const PFN_AUTHZ_DYNAMIC_ACCESS_CHECK = fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pAce: ?*ACE_HEADER,
-    pArgs: ?*c_void,
+    pArgs: ?*anyopaque,
     pbAceApplicable: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    Args: ?*c_void,
+    Args: ?*anyopaque,
     pSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
     pSidCount: ?*u32,
     pRestrictedSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
@@ -614,13 +614,13 @@ pub const PFN_AUTHZ_FREE_DYNAMIC_GROUPS = fn(
 pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     capid: ?PSID,
-    pArgs: ?*c_void,
+    pArgs: ?*anyopaque,
     pCentralAccessPolicyApplicable: ?*BOOL,
-    ppCentralAccessPolicy: ?*?*c_void,
+    ppCentralAccessPolicy: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY = fn(
-    pCentralAccessPolicy: ?*c_void,
+    pCentralAccessPolicy: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
@@ -629,7 +629,7 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
 };
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
     ValueLength: u32,
 };
 
@@ -764,7 +764,7 @@ pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     szEventAccessStringsFile: ?PWSTR,
     szExecutableImagePath: ?PWSTR,
     Anonymous: extern union {
-        pReserved: ?*c_void,
+        pReserved: ?*anyopaque,
         pProviderGuid: ?*Guid,
     },
     dwObjectTypeNameCount: u32,
@@ -4839,7 +4839,7 @@ pub const FN_PROGRESS = fn(
     pObjectName: ?PWSTR,
     Status: u32,
     pInvokeSetting: ?*PROG_INVOKE_SETTING,
-    Args: ?*c_void,
+    Args: ?*anyopaque,
     SecuritySet: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -4930,7 +4930,7 @@ pub extern "AUTHZ" fn AuthzInitializeContextFromToken(
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
-    DynamicGroupArgs: ?*c_void,
+    DynamicGroupArgs: ?*anyopaque,
     phAuthzClientContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4941,7 +4941,7 @@ pub extern "AUTHZ" fn AuthzInitializeContextFromSid(
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
-    DynamicGroupArgs: ?*c_void,
+    DynamicGroupArgs: ?*anyopaque,
     phAuthzClientContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4951,7 +4951,7 @@ pub extern "AUTHZ" fn AuthzInitializeContextFromAuthzContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
-    DynamicGroupArgs: ?*c_void,
+    DynamicGroupArgs: ?*anyopaque,
     phNewAuthzClientContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5009,7 +5009,7 @@ pub extern "AUTHZ" fn AuthzGetInformationFromContext(
     InfoClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     BufferSize: u32,
     pSizeRequired: ?*u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5111,7 +5111,7 @@ pub extern "AUTHZ" fn AuthzReportSecurityEventFromParams(
 pub extern "AUTHZ" fn AuthzRegisterCapChangeNotification(
     phCapChangeSubscription: ?*?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
     pfnCapChangeCallback: ?LPTHREAD_START_ROUTINE,
-    pCallbackContext: ?*c_void,
+    pCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -5299,7 +5299,7 @@ pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoA(
     KeepExplicit: BOOL,
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
-    Args: ?*c_void,
+    Args: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5314,7 +5314,7 @@ pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoW(
     KeepExplicit: BOOL,
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
-    Args: ?*c_void,
+    Args: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5329,7 +5329,7 @@ pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoA(
     dwAction: TREE_SEC_INFO,
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
-    Args: ?*c_void,
+    Args: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5344,7 +5344,7 @@ pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoW(
     dwAction: TREE_SEC_INFO,
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
-    Args: ?*c_void,
+    Args: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

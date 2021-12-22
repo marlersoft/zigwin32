@@ -91,7 +91,7 @@ pub const CRYPTCATSTORE = extern struct {
     fdwStoreFlags: CRYPTCAT_OPEN_FLAGS,
     hReserved: ?HANDLE,
     hAttrs: ?HANDLE,
-    hCryptMsg: ?*c_void,
+    hCryptMsg: ?*anyopaque,
     hSorted: ?HANDLE,
 };
 

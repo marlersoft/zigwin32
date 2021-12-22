@@ -75,24 +75,24 @@ pub const SCESVC_ANALYSIS_INFO = extern struct {
 };
 
 pub const PFSCE_QUERY_INFO = fn(
-    sceHandle: ?*c_void,
+    sceHandle: ?*anyopaque,
     sceType: SCESVC_INFO_TYPE,
     lpPrefix: ?*i8,
     bExact: BOOL,
-    ppvInfo: ?*?*c_void,
+    ppvInfo: ?*?*anyopaque,
     psceEnumHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFSCE_SET_INFO = fn(
-    sceHandle: ?*c_void,
+    sceHandle: ?*anyopaque,
     sceType: SCESVC_INFO_TYPE,
     lpPrefix: ?*i8,
     bExact: BOOL,
-    pvInfo: ?*c_void,
+    pvInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFSCE_FREE_INFO = fn(
-    pvServiceInfo: ?*c_void,
+    pvServiceInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFSCE_LOG_INFO = fn(
@@ -102,7 +102,7 @@ pub const PFSCE_LOG_INFO = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const SCESVC_CALLBACK_INFO = extern struct {
-    sceHandle: ?*c_void,
+    sceHandle: ?*anyopaque,
     pfQueryInfo: ?PFSCE_QUERY_INFO,
     pfSetInfo: ?PFSCE_SET_INFO,
     pfFreeInfo: ?PFSCE_FREE_INFO,
@@ -127,8 +127,8 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
         Save: fn(
             self: *const ISceSvcAttachmentPersistInfo,
             lpTemplateName: ?*i8,
-            scesvcHandle: ?*?*c_void,
-            ppvData: ?*?*c_void,
+            scesvcHandle: ?*?*anyopaque,
+            ppvData: ?*?*anyopaque,
             pbOverwriteAll: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsDirty: fn(
@@ -137,14 +137,14 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const ISceSvcAttachmentPersistInfo,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_Save(self: *const T, lpTemplateName: ?*i8, scesvcHandle: ?*?*c_void, ppvData: ?*?*c_void, pbOverwriteAll: ?*BOOL) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentPersistInfo_Save(self: *const T, lpTemplateName: ?*i8, scesvcHandle: ?*?*anyopaque, ppvData: ?*?*anyopaque, pbOverwriteAll: ?*BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).Save(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -152,7 +152,7 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
             return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).IsDirty(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_FreeBuffer(self: *const T, pvData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentPersistInfo_FreeBuffer(self: *const T, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), pvData);
         }
     };}
@@ -167,9 +167,9 @@ pub const ISceSvcAttachmentData = extern struct {
         base: IUnknown.VTable,
         GetData: fn(
             self: *const ISceSvcAttachmentData,
-            scesvcHandle: ?*c_void,
+            scesvcHandle: ?*anyopaque,
             sceType: SCESVC_INFO_TYPE,
-            ppvData: ?*?*c_void,
+            ppvData: ?*?*anyopaque,
             psceEnumHandle: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
@@ -177,34 +177,34 @@ pub const ISceSvcAttachmentData = extern struct {
             lpServiceName: ?*i8,
             lpTemplateName: ?*i8,
             lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo,
-            pscesvcHandle: ?*?*c_void,
+            pscesvcHandle: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const ISceSvcAttachmentData,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CloseHandle: fn(
             self: *const ISceSvcAttachmentData,
-            scesvcHandle: ?*c_void,
+            scesvcHandle: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_GetData(self: *const T, scesvcHandle: ?*c_void, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*c_void, psceEnumHandle: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_GetData(self: *const T, scesvcHandle: ?*anyopaque, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*anyopaque, psceEnumHandle: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).GetData(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle, sceType, ppvData, psceEnumHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_Initialize(self: *const T, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_Initialize(self: *const T, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).Initialize(@ptrCast(*const ISceSvcAttachmentData, self), lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_FreeBuffer(self: *const T, pvData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_FreeBuffer(self: *const T, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentData, self), pvData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_CloseHandle(self: *const T, scesvcHandle: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISceSvcAttachmentData_CloseHandle(self: *const T, scesvcHandle: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).CloseHandle(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle);
         }
     };}

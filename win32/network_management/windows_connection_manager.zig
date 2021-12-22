@@ -127,7 +127,7 @@ pub const WCM_DATAPLAN_STATUS = extern struct {
 };
 
 pub const ONDEMAND_NOTIFICATION_CALLBACK = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const NET_INTERFACE_CONTEXT = extern struct {
@@ -150,7 +150,7 @@ pub extern "wcmapi" fn WcmQueryProperty(
     pInterface: ?*const Guid,
     strProfileName: ?[*:0]const u16,
     Property: WCM_PROPERTY,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     pdwDataSize: ?*u32,
     ppData: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -160,14 +160,14 @@ pub extern "wcmapi" fn WcmSetProperty(
     pInterface: ?*const Guid,
     strProfileName: ?[*:0]const u16,
     Property: WCM_PROPERTY,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     dwDataSize: u32,
     pbData: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmGetProfileList(
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     ppProfileList: ?*?*WCM_PROFILE_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -176,12 +176,12 @@ pub extern "wcmapi" fn WcmSetProfileList(
     pProfileList: ?*WCM_PROFILE_INFO_LIST,
     dwPosition: u32,
     fIgnoreUnknownProfiles: BOOL,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmFreeMemory(
-    pMemory: ?*c_void,
+    pMemory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -193,7 +193,7 @@ pub extern "OnDemandConnRouteHelper" fn OnDemandGetRoutingHint(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "OnDemandConnRouteHelper" fn OnDemandRegisterNotification(
     callback: ?ONDEMAND_NOTIFICATION_CALLBACK,
-    callbackContext: ?*c_void,
+    callbackContext: ?*anyopaque,
     registrationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

@@ -3850,7 +3850,7 @@ pub const ICondition = extern struct {
         GetSubConditions: fn(
             self: *const ICondition,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetComparisonInfo: fn(
             self: *const ICondition,
@@ -3885,7 +3885,7 @@ pub const ICondition = extern struct {
             return @ptrCast(*const ICondition.VTable, self.vtable).GetConditionType(@ptrCast(*const ICondition, self), pNodeType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICondition_GetSubConditions(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICondition_GetSubConditions(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICondition.VTable, self.vtable).GetSubConditions(@ptrCast(*const ICondition, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5264,7 +5264,7 @@ pub const IRowset = extern struct {
             self: *const IRowset,
             hRow: usize,
             hAccessor: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextRows: fn(
             self: *const IRowset,
@@ -5295,7 +5295,7 @@ pub const IRowset = extern struct {
             return @ptrCast(*const IRowset.VTable, self.vtable).AddRefRows(@ptrCast(*const IRowset, self), cRows, rghRows, rgRefCounts, rgRowStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowset_GetData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRowset_GetData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowset.VTable, self.vtable).GetData(@ptrCast(*const IRowset, self), hRow, hAccessor, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5446,7 +5446,7 @@ pub const IRowsetResynch = extern struct {
             self: *const IRowsetResynch,
             hRow: usize,
             hAccessor: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResynchRows: fn(
             self: *const IRowsetResynch,
@@ -5461,7 +5461,7 @@ pub const IRowsetResynch = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetResynch_GetVisibleData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRowsetResynch_GetVisibleData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetResynch.VTable, self.vtable).GetVisibleData(@ptrCast(*const IRowsetResynch, self), hRow, hAccessor, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5551,7 +5551,7 @@ pub const IRowsetFind = extern struct {
             self: *const IRowsetFind,
             hChapter: usize,
             hAccessor: usize,
-            pFindValue: ?*c_void,
+            pFindValue: ?*anyopaque,
             CompareOp: u32,
             cbBookmark: usize,
             pBookmark: ?*const u8,
@@ -5565,7 +5565,7 @@ pub const IRowsetFind = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetFind_FindNextRow(self: *const T, hChapter: usize, hAccessor: usize, pFindValue: ?*c_void, CompareOp: u32, cbBookmark: usize, pBookmark: ?*const u8, lRowsOffset: isize, cRows: isize, pcRowsObtained: ?*usize, prghRows: ?*?*usize) callconv(.Inline) HRESULT {
+        pub fn IRowsetFind_FindNextRow(self: *const T, hChapter: usize, hAccessor: usize, pFindValue: ?*anyopaque, CompareOp: u32, cbBookmark: usize, pBookmark: ?*const u8, lRowsOffset: isize, cRows: isize, pcRowsObtained: ?*usize, prghRows: ?*?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetFind.VTable, self.vtable).FindNextRow(@ptrCast(*const IRowsetFind, self), hChapter, hAccessor, pFindValue, CompareOp, cbBookmark, pBookmark, lRowsOffset, cRows, pcRowsObtained, prghRows);
         }
     };}
@@ -5769,7 +5769,7 @@ pub const IViewFilter = extern struct {
             hAccessor: usize,
             pcRows: ?*usize,
             pCompareOps: [*]?*u32,
-            pCriteriaData: ?*c_void,
+            pCriteriaData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilterBindings: fn(
             self: *const IViewFilter,
@@ -5781,14 +5781,14 @@ pub const IViewFilter = extern struct {
             hAccessor: usize,
             cRows: usize,
             CompareOps: [*]u32,
-            pCriteriaData: ?*c_void,
+            pCriteriaData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewFilter_GetFilter(self: *const T, hAccessor: usize, pcRows: ?*usize, pCompareOps: [*]?*u32, pCriteriaData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IViewFilter_GetFilter(self: *const T, hAccessor: usize, pcRows: ?*usize, pCompareOps: [*]?*u32, pCriteriaData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IViewFilter.VTable, self.vtable).GetFilter(@ptrCast(*const IViewFilter, self), hAccessor, pcRows, pCompareOps, pCriteriaData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5796,7 +5796,7 @@ pub const IViewFilter = extern struct {
             return @ptrCast(*const IViewFilter.VTable, self.vtable).GetFilterBindings(@ptrCast(*const IViewFilter, self), pcBindings, prgBindings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewFilter_SetFilter(self: *const T, hAccessor: usize, cRows: usize, CompareOps: [*]u32, pCriteriaData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IViewFilter_SetFilter(self: *const T, hAccessor: usize, cRows: usize, CompareOps: [*]u32, pCriteriaData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IViewFilter.VTable, self.vtable).SetFilter(@ptrCast(*const IViewFilter, self), hAccessor, cRows, CompareOps, pCriteriaData);
         }
     };}
@@ -5853,13 +5853,13 @@ pub const IRowsetChange = extern struct {
             self: *const IRowsetChange,
             hRow: usize,
             hAccessor: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertRow: fn(
             self: *const IRowsetChange,
             hReserved: usize,
             hAccessor: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             phRow: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -5871,11 +5871,11 @@ pub const IRowsetChange = extern struct {
             return @ptrCast(*const IRowsetChange.VTable, self.vtable).DeleteRows(@ptrCast(*const IRowsetChange, self), hReserved, cRows, rghRows, rgRowStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetChange_SetData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRowsetChange_SetData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetChange.VTable, self.vtable).SetData(@ptrCast(*const IRowsetChange, self), hRow, hAccessor, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetChange_InsertRow(self: *const T, hReserved: usize, hAccessor: usize, pData: ?*c_void, phRow: ?*usize) callconv(.Inline) HRESULT {
+        pub fn IRowsetChange_InsertRow(self: *const T, hReserved: usize, hAccessor: usize, pData: ?*anyopaque, phRow: ?*usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetChange.VTable, self.vtable).InsertRow(@ptrCast(*const IRowsetChange, self), hReserved, hAccessor, pData, phRow);
         }
     };}
@@ -5904,7 +5904,7 @@ pub const IRowsetUpdate = extern struct {
             self: *const IRowsetUpdate,
             hRow: usize,
             hAccessor: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPendingRows: fn(
             self: *const IRowsetUpdate,
@@ -5944,7 +5944,7 @@ pub const IRowsetUpdate = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRowsetChange.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetUpdate_GetOriginalData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRowsetUpdate_GetOriginalData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetUpdate.VTable, self.vtable).GetOriginalData(@ptrCast(*const IRowsetUpdate, self), hRow, hAccessor, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6097,16 +6097,16 @@ pub const IRowsetIndex = extern struct {
             self: *const IRowsetIndex,
             hAccessor: usize,
             cKeyValues: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             dwSeekOptions: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRange: fn(
             self: *const IRowsetIndex,
             hAccessor: usize,
             cStartKeyColumns: usize,
-            pStartData: ?*c_void,
+            pStartData: ?*anyopaque,
             cEndKeyColumns: usize,
-            pEndData: ?*c_void,
+            pEndData: ?*anyopaque,
             dwRangeOptions: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -6118,11 +6118,11 @@ pub const IRowsetIndex = extern struct {
             return @ptrCast(*const IRowsetIndex.VTable, self.vtable).GetIndexInfo(@ptrCast(*const IRowsetIndex, self), pcKeyColumns, prgIndexColumnDesc, pcIndexPropertySets, prgIndexPropertySets);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetIndex_Seek(self: *const T, hAccessor: usize, cKeyValues: usize, pData: ?*c_void, dwSeekOptions: u32) callconv(.Inline) HRESULT {
+        pub fn IRowsetIndex_Seek(self: *const T, hAccessor: usize, cKeyValues: usize, pData: ?*anyopaque, dwSeekOptions: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetIndex.VTable, self.vtable).Seek(@ptrCast(*const IRowsetIndex, self), hAccessor, cKeyValues, pData, dwSeekOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetIndex_SetRange(self: *const T, hAccessor: usize, cStartKeyColumns: usize, pStartData: ?*c_void, cEndKeyColumns: usize, pEndData: ?*c_void, dwRangeOptions: u32) callconv(.Inline) HRESULT {
+        pub fn IRowsetIndex_SetRange(self: *const T, hAccessor: usize, cStartKeyColumns: usize, pStartData: ?*anyopaque, cEndKeyColumns: usize, pEndData: ?*anyopaque, dwRangeOptions: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetIndex.VTable, self.vtable).SetRange(@ptrCast(*const IRowsetIndex, self), hAccessor, cStartKeyColumns, pStartData, cEndKeyColumns, pEndData, dwRangeOptions);
         }
     };}
@@ -7067,7 +7067,7 @@ pub const IMDDataset = extern struct {
             hAccessor: usize,
             ulStartCell: usize,
             ulEndCell: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpecification: fn(
             self: *const IMDDataset,
@@ -7091,7 +7091,7 @@ pub const IMDDataset = extern struct {
             return @ptrCast(*const IMDDataset.VTable, self.vtable).GetAxisRowset(@ptrCast(*const IMDDataset, self), pUnkOuter, iAxis, riid, cPropertySets, rgPropertySets, ppRowset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDDataset_GetCellData(self: *const T, hAccessor: usize, ulStartCell: usize, ulEndCell: usize, pData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IMDDataset_GetCellData(self: *const T, hAccessor: usize, ulStartCell: usize, ulEndCell: usize, pData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDDataset.VTable, self.vtable).GetCellData(@ptrCast(*const IMDDataset, self), hAccessor, ulStartCell, ulEndCell, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7313,7 +7313,7 @@ pub const IRowsetRefresh = extern struct {
             self: *const IRowsetRefresh,
             hRow: usize,
             hAccessor: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7324,7 +7324,7 @@ pub const IRowsetRefresh = extern struct {
             return @ptrCast(*const IRowsetRefresh.VTable, self.vtable).RefreshVisibleData(@ptrCast(*const IRowsetRefresh, self), hChapter, cRows, rghRows, fOverWrite, pcRowsRefreshed, prghRowsRefreshed, prgRowStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetRefresh_GetLastVisibleData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRowsetRefresh_GetLastVisibleData(self: *const T, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetRefresh.VTable, self.vtable).GetLastVisibleData(@ptrCast(*const IRowsetRefresh, self), hRow, hAccessor, pData);
         }
     };}
@@ -8789,7 +8789,7 @@ pub const IQuerySolution = extern struct {
         GetErrors: fn(
             self: *const IQuerySolution,
             riid: ?*const Guid,
-            ppParseErrors: ?*?*c_void,
+            ppParseErrors: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLexicalData: fn(
             self: *const IQuerySolution,
@@ -8807,7 +8807,7 @@ pub const IQuerySolution = extern struct {
             return @ptrCast(*const IQuerySolution.VTable, self.vtable).GetQuery(@ptrCast(*const IQuerySolution, self), ppQueryNode, ppMainType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQuerySolution_GetErrors(self: *const T, riid: ?*const Guid, ppParseErrors: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IQuerySolution_GetErrors(self: *const T, riid: ?*const Guid, ppParseErrors: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQuerySolution.VTable, self.vtable).GetErrors(@ptrCast(*const IQuerySolution, self), riid, ppParseErrors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8864,14 +8864,14 @@ pub const IConditionFactory2 = extern struct {
             fVal: BOOL,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateNegation: fn(
             self: *const IConditionFactory2,
             pcSub: ?*ICondition,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCompoundFromObjectArray: fn(
             self: *const IConditionFactory2,
@@ -8879,7 +8879,7 @@ pub const IConditionFactory2 = extern struct {
             poaSubs: ?*IObjectArray,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCompoundFromArray: fn(
             self: *const IConditionFactory2,
@@ -8888,7 +8888,7 @@ pub const IConditionFactory2 = extern struct {
             cSubs: u32,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStringLeaf: fn(
             self: *const IConditionFactory2,
@@ -8898,7 +8898,7 @@ pub const IConditionFactory2 = extern struct {
             pszLocaleName: ?[*:0]const u16,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateIntegerLeaf: fn(
             self: *const IConditionFactory2,
@@ -8907,7 +8907,7 @@ pub const IConditionFactory2 = extern struct {
             lValue: i32,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBooleanLeaf: fn(
             self: *const IConditionFactory2,
@@ -8916,7 +8916,7 @@ pub const IConditionFactory2 = extern struct {
             fValue: BOOL,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateLeaf: fn(
             self: *const IConditionFactory2,
@@ -8930,7 +8930,7 @@ pub const IConditionFactory2 = extern struct {
             pValueTerm: ?*IRichChunk,
             cco: CONDITION_CREATION_OPTIONS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveCondition: fn(
             self: *const IConditionFactory2,
@@ -8938,46 +8938,46 @@ pub const IConditionFactory2 = extern struct {
             sqro: STRUCTURED_QUERY_RESOLVE_OPTION,
             pstReferenceTime: ?*const SYSTEMTIME,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConditionFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateTrueFalse(self: *const T, fVal: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateTrueFalse(self: *const T, fVal: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateTrueFalse(@ptrCast(*const IConditionFactory2, self), fVal, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateNegation(self: *const T, pcSub: ?*ICondition, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateNegation(self: *const T, pcSub: ?*ICondition, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateNegation(@ptrCast(*const IConditionFactory2, self), pcSub, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateCompoundFromObjectArray(self: *const T, ct: CONDITION_TYPE, poaSubs: ?*IObjectArray, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateCompoundFromObjectArray(self: *const T, ct: CONDITION_TYPE, poaSubs: ?*IObjectArray, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateCompoundFromObjectArray(@ptrCast(*const IConditionFactory2, self), ct, poaSubs, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateCompoundFromArray(self: *const T, ct: CONDITION_TYPE, ppcondSubs: [*]?*ICondition, cSubs: u32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateCompoundFromArray(self: *const T, ct: CONDITION_TYPE, ppcondSubs: [*]?*ICondition, cSubs: u32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateCompoundFromArray(@ptrCast(*const IConditionFactory2, self), ct, ppcondSubs, cSubs, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateStringLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, pszValue: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateStringLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, pszValue: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateStringLeaf(@ptrCast(*const IConditionFactory2, self), propkey, cop, pszValue, pszLocaleName, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateIntegerLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, lValue: i32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateIntegerLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, lValue: i32, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateIntegerLeaf(@ptrCast(*const IConditionFactory2, self), propkey, cop, lValue, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateBooleanLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, fValue: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateBooleanLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, fValue: BOOL, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateBooleanLeaf(@ptrCast(*const IConditionFactory2, self), propkey, cop, fValue, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_CreateLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, propvar: ?*const PROPVARIANT, pszSemanticType: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, pPropertyNameTerm: ?*IRichChunk, pOperationTerm: ?*IRichChunk, pValueTerm: ?*IRichChunk, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_CreateLeaf(self: *const T, propkey: ?*const PROPERTYKEY, cop: CONDITION_OPERATION, propvar: ?*const PROPVARIANT, pszSemanticType: ?[*:0]const u16, pszLocaleName: ?[*:0]const u16, pPropertyNameTerm: ?*IRichChunk, pOperationTerm: ?*IRichChunk, pValueTerm: ?*IRichChunk, cco: CONDITION_CREATION_OPTIONS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).CreateLeaf(@ptrCast(*const IConditionFactory2, self), propkey, cop, propvar, pszSemanticType, pszLocaleName, pPropertyNameTerm, pOperationTerm, pValueTerm, cco, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConditionFactory2_ResolveCondition(self: *const T, pc: ?*ICondition, sqro: STRUCTURED_QUERY_RESOLVE_OPTION, pstReferenceTime: ?*const SYSTEMTIME, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IConditionFactory2_ResolveCondition(self: *const T, pc: ?*ICondition, sqro: STRUCTURED_QUERY_RESOLVE_OPTION, pstReferenceTime: ?*const SYSTEMTIME, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConditionFactory2.VTable, self.vtable).ResolveCondition(@ptrCast(*const IConditionFactory2, self), pc, sqro, pstReferenceTime, riid, ppv);
         }
     };}
@@ -9112,7 +9112,7 @@ pub const IEntity = extern struct {
         Relationships: fn(
             self: *const IEntity,
             riid: ?*const Guid,
-            pRelationships: ?*?*c_void,
+            pRelationships: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRelationship: fn(
             self: *const IEntity,
@@ -9122,12 +9122,12 @@ pub const IEntity = extern struct {
         MetaData: fn(
             self: *const IEntity,
             riid: ?*const Guid,
-            pMetaData: ?*?*c_void,
+            pMetaData: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NamedEntities: fn(
             self: *const IEntity,
             riid: ?*const Guid,
-            pNamedEntities: ?*?*c_void,
+            pNamedEntities: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamedEntity: fn(
             self: *const IEntity,
@@ -9151,7 +9151,7 @@ pub const IEntity = extern struct {
             return @ptrCast(*const IEntity.VTable, self.vtable).Base(@ptrCast(*const IEntity, self), pBaseEntity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEntity_Relationships(self: *const T, riid: ?*const Guid, pRelationships: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEntity_Relationships(self: *const T, riid: ?*const Guid, pRelationships: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEntity.VTable, self.vtable).Relationships(@ptrCast(*const IEntity, self), riid, pRelationships);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9159,11 +9159,11 @@ pub const IEntity = extern struct {
             return @ptrCast(*const IEntity.VTable, self.vtable).GetRelationship(@ptrCast(*const IEntity, self), pszRelationName, pRelationship);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEntity_MetaData(self: *const T, riid: ?*const Guid, pMetaData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEntity_MetaData(self: *const T, riid: ?*const Guid, pMetaData: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEntity.VTable, self.vtable).MetaData(@ptrCast(*const IEntity, self), riid, pMetaData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEntity_NamedEntities(self: *const T, riid: ?*const Guid, pNamedEntities: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEntity_NamedEntities(self: *const T, riid: ?*const Guid, pNamedEntities: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEntity.VTable, self.vtable).NamedEntities(@ptrCast(*const IEntity, self), riid, pNamedEntities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9199,7 +9199,7 @@ pub const IRelationship = extern struct {
         MetaData: fn(
             self: *const IRelationship,
             riid: ?*const Guid,
-            pMetaData: ?*?*c_void,
+            pMetaData: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DefaultPhrase: fn(
             self: *const IRelationship,
@@ -9222,7 +9222,7 @@ pub const IRelationship = extern struct {
             return @ptrCast(*const IRelationship.VTable, self.vtable).Destination(@ptrCast(*const IRelationship, self), pDestinationEntity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRelationship_MetaData(self: *const T, riid: ?*const Guid, pMetaData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRelationship_MetaData(self: *const T, riid: ?*const Guid, pMetaData: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRelationship.VTable, self.vtable).MetaData(@ptrCast(*const IRelationship, self), riid, pMetaData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9272,7 +9272,7 @@ pub const ISchemaProvider = extern struct {
         Entities: fn(
             self: *const ISchemaProvider,
             riid: ?*const Guid,
-            pEntities: ?*?*c_void,
+            pEntities: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RootEntity: fn(
             self: *const ISchemaProvider,
@@ -9286,7 +9286,7 @@ pub const ISchemaProvider = extern struct {
         MetaData: fn(
             self: *const ISchemaProvider,
             riid: ?*const Guid,
-            pMetaData: ?*?*c_void,
+            pMetaData: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Localize: fn(
             self: *const ISchemaProvider,
@@ -9311,7 +9311,7 @@ pub const ISchemaProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISchemaProvider_Entities(self: *const T, riid: ?*const Guid, pEntities: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISchemaProvider_Entities(self: *const T, riid: ?*const Guid, pEntities: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISchemaProvider.VTable, self.vtable).Entities(@ptrCast(*const ISchemaProvider, self), riid, pEntities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9323,7 +9323,7 @@ pub const ISchemaProvider = extern struct {
             return @ptrCast(*const ISchemaProvider.VTable, self.vtable).GetEntity(@ptrCast(*const ISchemaProvider, self), pszEntityName, pEntity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISchemaProvider_MetaData(self: *const T, riid: ?*const Guid, pMetaData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISchemaProvider_MetaData(self: *const T, riid: ?*const Guid, pMetaData: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISchemaProvider.VTable, self.vtable).MetaData(@ptrCast(*const ISchemaProvider, self), riid, pMetaData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9446,7 +9446,7 @@ pub const IQueryParserManager = extern struct {
             pszCatalog: ?[*:0]const u16,
             langidForKeywords: u16,
             riid: ?*const Guid,
-            ppQueryParser: ?*?*c_void,
+            ppQueryParser: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeOptions: fn(
             self: *const IQueryParserManager,
@@ -9464,7 +9464,7 @@ pub const IQueryParserManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryParserManager_CreateLoadedParser(self: *const T, pszCatalog: ?[*:0]const u16, langidForKeywords: u16, riid: ?*const Guid, ppQueryParser: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IQueryParserManager_CreateLoadedParser(self: *const T, pszCatalog: ?[*:0]const u16, langidForKeywords: u16, riid: ?*const Guid, ppQueryParser: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryParserManager.VTable, self.vtable).CreateLoadedParser(@ptrCast(*const IQueryParserManager, self), pszCatalog, langidForKeywords, riid, ppQueryParser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10817,7 +10817,7 @@ pub const ISearchCatalogManager = extern struct {
             self: *const ISearchCatalogManager,
             pISearchNotifyInlineSite: ?*ISearchNotifyInlineSite,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
             pGUIDCatalogResetSignature: ?*Guid,
             pGUIDCheckPointSignature: ?*Guid,
             pdwLastCheckPointNumber: ?*u32,
@@ -10930,7 +10930,7 @@ pub const ISearchCatalogManager = extern struct {
             return @ptrCast(*const ISearchCatalogManager.VTable, self.vtable).RegisterViewForNotification(@ptrCast(*const ISearchCatalogManager, self), pszView, pViewChangedSink, pdwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchCatalogManager_GetItemsChangedSink(self: *const T, pISearchNotifyInlineSite: ?*ISearchNotifyInlineSite, riid: ?*const Guid, ppv: ?*?*c_void, pGUIDCatalogResetSignature: ?*Guid, pGUIDCheckPointSignature: ?*Guid, pdwLastCheckPointNumber: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISearchCatalogManager_GetItemsChangedSink(self: *const T, pISearchNotifyInlineSite: ?*ISearchNotifyInlineSite, riid: ?*const Guid, ppv: ?*?*anyopaque, pGUIDCatalogResetSignature: ?*Guid, pGUIDCheckPointSignature: ?*Guid, pdwLastCheckPointNumber: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchCatalogManager.VTable, self.vtable).GetItemsChangedSink(@ptrCast(*const ISearchCatalogManager, self), pISearchNotifyInlineSite, riid, ppv, pGUIDCatalogResetSignature, pGUIDCheckPointSignature, pdwLastCheckPointNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11531,14 +11531,14 @@ pub const ISearchLanguageSupport = extern struct {
             self: *const ISearchLanguageSupport,
             lcid: u32,
             riid: ?*const Guid,
-            ppWordBreaker: ?*?*c_void,
+            ppWordBreaker: ?*?*anyopaque,
             pLcidUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LoadStemmer: fn(
             self: *const ISearchLanguageSupport,
             lcid: u32,
             riid: ?*const Guid,
-            ppStemmer: ?*?*c_void,
+            ppStemmer: ?*?*anyopaque,
             pLcidUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsPrefixNormalized: fn(
@@ -11562,11 +11562,11 @@ pub const ISearchLanguageSupport = extern struct {
             return @ptrCast(*const ISearchLanguageSupport.VTable, self.vtable).GetDiacriticSensitivity(@ptrCast(*const ISearchLanguageSupport, self), pfDiacriticSensitive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchLanguageSupport_LoadWordBreaker(self: *const T, lcid: u32, riid: ?*const Guid, ppWordBreaker: ?*?*c_void, pLcidUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISearchLanguageSupport_LoadWordBreaker(self: *const T, lcid: u32, riid: ?*const Guid, ppWordBreaker: ?*?*anyopaque, pLcidUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchLanguageSupport.VTable, self.vtable).LoadWordBreaker(@ptrCast(*const ISearchLanguageSupport, self), lcid, riid, ppWordBreaker, pLcidUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchLanguageSupport_LoadStemmer(self: *const T, lcid: u32, riid: ?*const Guid, ppStemmer: ?*?*c_void, pLcidUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISearchLanguageSupport_LoadStemmer(self: *const T, lcid: u32, riid: ?*const Guid, ppStemmer: ?*?*anyopaque, pLcidUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchLanguageSupport.VTable, self.vtable).LoadStemmer(@ptrCast(*const ISearchLanguageSupport, self), lcid, riid, ppStemmer, pLcidUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11848,7 +11848,7 @@ pub const SUBSCRIPTIONINFO = extern struct {
     fUpdateFlags: u32,
     schedule: SUBSCRIPTIONSCHEDULE,
     customGroupCookie: Guid,
-    pTrigger: ?*c_void,
+    pTrigger: ?*anyopaque,
     dwRecurseLevels: u32,
     fWebcrawlerFlags: u32,
     bMailNotification: BOOL,
@@ -12091,8 +12091,8 @@ pub const IDataConvert = extern struct {
             cbSrcLength: usize,
             pcbDstLength: ?*usize,
             // TODO: what to do with BytesParamIndex 2?
-            pSrc: ?*c_void,
-            pDst: ?*c_void,
+            pSrc: ?*anyopaque,
+            pDst: ?*anyopaque,
             cbDstMaxLength: usize,
             dbsSrcStatus: u32,
             pdbsStatus: ?*u32,
@@ -12112,14 +12112,14 @@ pub const IDataConvert = extern struct {
             pcbSrcLength: ?*usize,
             pcbDstLength: ?*usize,
             // TODO: what to do with BytesParamIndex 2?
-            pSrc: ?*c_void,
+            pSrc: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataConvert_DataConvert(self: *const T, wSrcType: u16, wDstType: u16, cbSrcLength: usize, pcbDstLength: ?*usize, pSrc: ?*c_void, pDst: ?*c_void, cbDstMaxLength: usize, dbsSrcStatus: u32, pdbsStatus: ?*u32, bPrecision: u8, bScale: u8, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDataConvert_DataConvert(self: *const T, wSrcType: u16, wDstType: u16, cbSrcLength: usize, pcbDstLength: ?*usize, pSrc: ?*anyopaque, pDst: ?*anyopaque, cbDstMaxLength: usize, dbsSrcStatus: u32, pdbsStatus: ?*u32, bPrecision: u8, bScale: u8, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataConvert.VTable, self.vtable).DataConvert(@ptrCast(*const IDataConvert, self), wSrcType, wDstType, cbSrcLength, pcbDstLength, pSrc, pDst, cbDstMaxLength, dbsSrcStatus, pdbsStatus, bPrecision, bScale, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12127,7 +12127,7 @@ pub const IDataConvert = extern struct {
             return @ptrCast(*const IDataConvert.VTable, self.vtable).CanConvert(@ptrCast(*const IDataConvert, self), wSrcType, wDstType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataConvert_GetConversionSize(self: *const T, wSrcType: u16, wDstType: u16, pcbSrcLength: ?*usize, pcbDstLength: ?*usize, pSrc: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDataConvert_GetConversionSize(self: *const T, wSrcType: u16, wDstType: u16, pcbSrcLength: ?*usize, pcbDstLength: ?*usize, pSrc: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataConvert.VTable, self.vtable).GetConversionSize(@ptrCast(*const IDataConvert, self), wSrcType, wDstType, pcbSrcLength, pcbDstLength, pSrc);
         }
     };}
@@ -14034,14 +14034,14 @@ pub const IUMSInitialize = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const IUMSInitialize,
-            pUMS: ?*c_void,
+            pUMS: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUMSInitialize_Initialize(self: *const T, pUMS: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUMSInitialize_Initialize(self: *const T, pUMS: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUMSInitialize.VTable, self.vtable).Initialize(@ptrCast(*const IUMSInitialize, self), pUMS);
         }
     };}
@@ -14134,7 +14134,7 @@ pub const IRowsetFastLoad = extern struct {
         InsertRow: fn(
             self: *const IRowsetFastLoad,
             hAccessor: usize,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Commit: fn(
             self: *const IRowsetFastLoad,
@@ -14145,7 +14145,7 @@ pub const IRowsetFastLoad = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetFastLoad_InsertRow(self: *const T, hAccessor: usize, pData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRowsetFastLoad_InsertRow(self: *const T, hAccessor: usize, pData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetFastLoad.VTable, self.vtable).InsertRow(@ptrCast(*const IRowsetFastLoad, self), hAccessor, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14198,7 +14198,7 @@ pub const ISchemaLock = extern struct {
 };
 
 pub const SQL_ASYNC_NOTIFICATION_CALLBACK = fn(
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     fLast: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -14233,12 +14233,12 @@ pub const SQL_ASYNC_NOTIFICATION_CALLBACK = fn(
 pub const DBVECTOR = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         size: usize,
-        ptr: ?*c_void,
+        ptr: ?*anyopaque,
     },
     .X86 => extern struct {
         // WARNING: unable to add field alignment because it's causing a compiler bug
         size: usize,
-        ptr: ?*c_void,
+        ptr: ?*anyopaque,
     },
 };
 pub const DBTIMESTAMP = switch(@import("../zig.zig").arch) {
@@ -14396,13 +14396,13 @@ pub const DBCOLUMNINFO = switch(@import("../zig.zig").arch) {
 };
 pub const DBPARAMS = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
-        pData: ?*c_void,
+        pData: ?*anyopaque,
         cParamSets: usize,
         hAccessor: usize,
     },
     .X86 => extern struct {
         // WARNING: unable to add field alignment because it's causing a compiler bug
-        pData: ?*c_void,
+        pData: ?*anyopaque,
         cParamSets: usize,
         hAccessor: usize,
     },
@@ -14543,7 +14543,7 @@ pub const DBCOLUMNDESC = switch(@import("../zig.zig").arch) {
 };
 pub const DBCOLUMNACCESS = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
-        pData: ?*c_void,
+        pData: ?*anyopaque,
         columnid: DBID,
         cbDataLen: usize,
         dwStatus: u32,
@@ -14555,7 +14555,7 @@ pub const DBCOLUMNACCESS = switch(@import("../zig.zig").arch) {
     },
     .X86 => extern struct {
         // WARNING: unable to add field alignment because it's causing a compiler bug
-        pData: ?*c_void,
+        pData: ?*anyopaque,
         columnid: DBID,
         cbDataLen: usize,
         dwStatus: u32,
@@ -14743,33 +14743,33 @@ pub const DBCOST = switch(@import("../zig.zig").arch) {
 // Section: Functions (211)
 //--------------------------------------------------------------------------------
 pub extern "ODBC32" fn SQLAllocConnect(
-    EnvironmentHandle: ?*c_void,
-    ConnectionHandle: ?*?*c_void,
+    EnvironmentHandle: ?*anyopaque,
+    ConnectionHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLAllocEnv(
-    EnvironmentHandle: ?*?*c_void,
+    EnvironmentHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLAllocHandle(
     HandleType: i16,
-    InputHandle: ?*c_void,
-    OutputHandle: ?*?*c_void,
+    InputHandle: ?*anyopaque,
+    OutputHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLAllocStmt(
-    ConnectionHandle: ?*c_void,
-    StatementHandle: ?*?*c_void,
+    ConnectionHandle: ?*anyopaque,
+    StatementHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLBindCol(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
-    TargetValue: ?*c_void,
+    TargetValue: ?*anyopaque,
     BufferLength: i64,
     StrLen_or_Ind: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -14780,40 +14780,40 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLBindParam(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
     ParameterType: i16,
     LengthPrecision: u64,
     ParameterScale: i16,
-    ParameterValue: ?*c_void,
+    ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLCancel(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLCancelHandle(
     HandleType: i16,
-    InputHandle: ?*c_void,
+    InputHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLCloseCursor(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLColAttribute(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     FieldIdentifier: u16,
     // TODO: what to do with BytesParamIndex 4?
-    CharacterAttribute: ?*c_void,
+    CharacterAttribute: ?*anyopaque,
     BufferLength: i16,
     StringLength: ?*i16,
     NumericAttribute: ?*i64,
@@ -14822,7 +14822,7 @@ pub extern "ODBC32" fn SQLColAttribute(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLColumns(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     CatalogName: ?[*:0]u8,
     NameLength1: i16,
     SchemaName: ?[*:0]u8,
@@ -14835,12 +14835,12 @@ pub extern "ODBC32" fn SQLColumns(
 
 pub extern "ODBC32" fn SQLCompleteAsync(
     HandleType: i16,
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
     AsyncRetCodePtr: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLConnect(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     ServerName: [*:0]u8,
     NameLength1: i16,
     UserName: [*:0]u8,
@@ -14850,12 +14850,12 @@ pub extern "ODBC32" fn SQLConnect(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLCopyDesc(
-    SourceDescHandle: ?*c_void,
-    TargetDescHandle: ?*c_void,
+    SourceDescHandle: ?*anyopaque,
+    TargetDescHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDataSources(
-    EnvironmentHandle: ?*c_void,
+    EnvironmentHandle: ?*anyopaque,
     Direction: u16,
     ServerName: ?[*:0]u8,
     BufferLength1: i16,
@@ -14869,7 +14869,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLDescribeCol(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     ColumnName: ?[*:0]u8,
     BufferLength: i16,
@@ -14883,19 +14883,19 @@ pub extern "ODBC32" fn SQLDescribeCol(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLDisconnect(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLEndTran(
     HandleType: i16,
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
     CompletionType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLError(
-    EnvironmentHandle: ?*c_void,
-    ConnectionHandle: ?*c_void,
-    StatementHandle: ?*c_void,
+    EnvironmentHandle: ?*anyopaque,
+    ConnectionHandle: ?*anyopaque,
+    StatementHandle: ?*anyopaque,
     Sqlstate: *[6]u8,
     NativeError: ?*i32,
     MessageText: ?[*:0]u8,
@@ -14904,24 +14904,24 @@ pub extern "ODBC32" fn SQLError(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLExecDirect(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     StatementText: ?[*:0]u8,
     TextLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLExecute(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLFetch(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLFetchScroll(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     FetchOrientation: i16,
     FetchOffset: i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -14929,39 +14929,39 @@ pub extern "ODBC32" fn SQLFetchScroll(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLFreeConnect(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLFreeEnv(
-    EnvironmentHandle: ?*c_void,
+    EnvironmentHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLFreeHandle(
     HandleType: i16,
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLFreeStmt(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     Option: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetConnectAttr(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     Attribute: i32,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     BufferLength: i32,
     StringLengthPtr: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetConnectOption(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     Option: u16,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetCursorName(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     CursorName: ?[*:0]u8,
     BufferLength: i16,
     NameLengthPtr: ?*i16,
@@ -14971,10 +14971,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLGetData(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
-    TargetValue: ?*c_void,
+    TargetValue: ?*anyopaque,
     BufferLength: i64,
     StrLen_or_IndPtr: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -14982,10 +14982,10 @@ pub extern "ODBC32" fn SQLGetData(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLGetDescField(
-    DescriptorHandle: ?*c_void,
+    DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     FieldIdentifier: i16,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     BufferLength: i32,
     StringLength: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -14994,7 +14994,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLGetDescRec(
-    DescriptorHandle: ?*c_void,
+    DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Name: ?[*:0]u8,
     BufferLength: i16,
@@ -15011,17 +15011,17 @@ pub extern "ODBC32" fn SQLGetDescRec(
 
 pub extern "ODBC32" fn SQLGetDiagField(
     HandleType: i16,
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
     RecNumber: i16,
     DiagIdentifier: i16,
-    DiagInfo: ?*c_void,
+    DiagInfo: ?*anyopaque,
     BufferLength: i16,
     StringLength: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetDiagRec(
     HandleType: i16,
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
     RecNumber: i16,
     Sqlstate: ?*[6]u8,
     NativeError: ?*i32,
@@ -15031,59 +15031,59 @@ pub extern "ODBC32" fn SQLGetDiagRec(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetEnvAttr(
-    EnvironmentHandle: ?*c_void,
+    EnvironmentHandle: ?*anyopaque,
     Attribute: i32,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     BufferLength: i32,
     StringLength: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetFunctions(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     FunctionId: u16,
     Supported: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetInfo(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     InfoType: u16,
     // TODO: what to do with BytesParamIndex 3?
-    InfoValue: ?*c_void,
+    InfoValue: ?*anyopaque,
     BufferLength: i16,
     StringLengthPtr: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetStmtAttr(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     Attribute: i32,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     BufferLength: i32,
     StringLength: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetStmtOption(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     Option: u16,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetTypeInfo(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     DataType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLNumResultCols(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnCount: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLParamData(
-    StatementHandle: ?*c_void,
-    Value: ?*?*c_void,
+    StatementHandle: ?*anyopaque,
+    Value: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLPrepare(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     StatementText: [*:0]u8,
     TextLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15092,8 +15092,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLPutData(
-    StatementHandle: ?*c_void,
-    Data: ?*c_void,
+    StatementHandle: ?*anyopaque,
+    Data: ?*anyopaque,
     StrLen_or_Ind: i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15103,17 +15103,17 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLRowCount(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     RowCount: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLSetConnectAttr(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     Attribute: i32,
     // TODO: what to do with BytesParamIndex 3?
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     StringLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15121,7 +15121,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetConnectOption(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: u64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15129,16 +15129,16 @@ pub extern "ODBC32" fn SQLSetConnectOption(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLSetCursorName(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     CursorName: [*:0]u8,
     NameLength: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLSetDescField(
-    DescriptorHandle: ?*c_void,
+    DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     FieldIdentifier: i16,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     BufferLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15146,7 +15146,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetDescRec(
-    DescriptorHandle: ?*c_void,
+    DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Type: i16,
     SubType: i16,
@@ -15154,7 +15154,7 @@ pub extern "ODBC32" fn SQLSetDescRec(
     Precision: i16,
     Scale: i16,
     // TODO: what to do with BytesParamIndex 4?
-    Data: ?*c_void,
+    Data: ?*anyopaque,
     StringLength: ?*i64,
     Indicator: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15162,10 +15162,10 @@ pub extern "ODBC32" fn SQLSetDescRec(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLSetEnvAttr(
-    EnvironmentHandle: ?*c_void,
+    EnvironmentHandle: ?*anyopaque,
     Attribute: i32,
     // TODO: what to do with BytesParamIndex 3?
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     StringLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15173,22 +15173,22 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetParam(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
     ParameterType: i16,
     LengthPrecision: u64,
     ParameterScale: i16,
-    ParameterValue: ?*c_void,
+    ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLSetStmtAttr(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     Attribute: i32,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     StringLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15196,7 +15196,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetStmtOption(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     Option: u16,
     Value: u64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15204,7 +15204,7 @@ pub extern "ODBC32" fn SQLSetStmtOption(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLSpecialColumns(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     IdentifierType: u16,
     CatalogName: ?[*:0]u8,
     NameLength1: i16,
@@ -15217,7 +15217,7 @@ pub extern "ODBC32" fn SQLSpecialColumns(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLStatistics(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     CatalogName: ?[*:0]u8,
     NameLength1: i16,
     SchemaName: ?[*:0]u8,
@@ -15229,7 +15229,7 @@ pub extern "ODBC32" fn SQLStatistics(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLTables(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     CatalogName: ?[*:0]u8,
     NameLength1: i16,
     SchemaName: ?[*:0]u8,
@@ -15241,17 +15241,17 @@ pub extern "ODBC32" fn SQLTables(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLTransact(
-    EnvironmentHandle: ?*c_void,
-    ConnectionHandle: ?*c_void,
+    EnvironmentHandle: ?*anyopaque,
+    ConnectionHandle: ?*anyopaque,
     CompletionType: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_batch(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "odbcbcp" fn bcp_bind(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*u8,
     param2: i32,
     param3: i32,
@@ -15262,7 +15262,7 @@ pub extern "odbcbcp" fn bcp_bind(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_colfmt(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
     param2: u8,
     param3: i32,
@@ -15273,48 +15273,48 @@ pub extern "odbcbcp" fn bcp_colfmt(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_collen(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
     param2: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_colptr(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*u8,
     param2: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_columns(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_control(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_done(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "odbcbcp" fn bcp_exec(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_getcolfmt(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
     param2: i32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     param4: i32,
     param5: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_initA(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u8,
     param2: ?[*:0]const u8,
     param3: ?[*:0]const u8,
@@ -15322,7 +15322,7 @@ pub extern "odbcbcp" fn bcp_initA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_initW(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u16,
     param2: ?[*:0]const u16,
     param3: ?[*:0]const u16,
@@ -15330,40 +15330,40 @@ pub extern "odbcbcp" fn bcp_initW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_moretext(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
     param2: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_readfmtA(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_readfmtW(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_sendrow(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_setcolfmt(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
     param2: i32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     param4: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_writefmtA(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn bcp_writefmtW(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15376,17 +15376,17 @@ pub extern "odbcbcp" fn dbprtypeW(
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 pub extern "odbcbcp" fn SQLLinkedServers(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn SQLLinkedCatalogsA(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u8,
     param2: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "odbcbcp" fn SQLLinkedCatalogsW(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?[*:0]const u16,
     param2: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15407,7 +15407,7 @@ pub extern "odbcbcp" fn SQLCloseEnumServers(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDriverConnect(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     hwnd: isize,
     szConnStrIn: [*:0]u8,
     cchConnStrIn: i16,
@@ -15418,7 +15418,7 @@ pub extern "ODBC32" fn SQLDriverConnect(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLBrowseConnect(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szConnStrIn: [*:0]u8,
     cchConnStrIn: i16,
     szConnStrOut: ?[*:0]u8,
@@ -15427,7 +15427,7 @@ pub extern "ODBC32" fn SQLBrowseConnect(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLBulkOperations(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     Operation: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15435,10 +15435,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLColAttributes(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
-    rgbDesc: ?*c_void,
+    rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i64,
@@ -15447,7 +15447,7 @@ pub extern "ODBC32" fn SQLColAttributes(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLColumnPrivileges(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -15462,7 +15462,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLDescribeParam(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     ipar: u16,
     pfSqlType: ?*i16,
     pcbParamDef: ?*u64,
@@ -15476,7 +15476,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLExtendedFetch(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fFetchType: u16,
     irow: i64,
     pcrow: ?*u64,
@@ -15486,7 +15486,7 @@ pub extern "ODBC32" fn SQLExtendedFetch(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLForeignKeys(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szPkCatalogName: ?[*:0]u8,
     cchPkCatalogName: i16,
     szPkSchemaName: ?[*:0]u8,
@@ -15502,11 +15502,11 @@ pub extern "ODBC32" fn SQLForeignKeys(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLMoreResults(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLNativeSql(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szSqlStrIn: [*:0]u8,
     cchSqlStrIn: i32,
     szSqlStr: ?[*:0]u8,
@@ -15515,7 +15515,7 @@ pub extern "ODBC32" fn SQLNativeSql(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLNumParams(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     pcpar: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15523,7 +15523,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLParamOptions(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     crow: u64,
     pirow: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15531,7 +15531,7 @@ pub extern "ODBC32" fn SQLParamOptions(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLPrimaryKeys(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -15541,7 +15541,7 @@ pub extern "ODBC32" fn SQLPrimaryKeys(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLProcedureColumns(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -15553,7 +15553,7 @@ pub extern "ODBC32" fn SQLProcedureColumns(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLProcedures(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -15566,7 +15566,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetPos(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     irow: u64,
     fOption: u16,
     fLock: u16,
@@ -15575,7 +15575,7 @@ pub extern "ODBC32" fn SQLSetPos(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLTablePrivileges(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -15585,7 +15585,7 @@ pub extern "ODBC32" fn SQLTablePrivileges(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDrivers(
-    henv: ?*c_void,
+    henv: ?*anyopaque,
     fDirection: u16,
     szDriverDesc: ?[*:0]u8,
     cchDriverDescMax: i16,
@@ -15599,14 +15599,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLBindParameter(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     ipar: u16,
     fParamType: i16,
     fCType: i16,
     fSqlType: i16,
     cbColDef: u64,
     ibScale: i16,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValueMax: i64,
     pcbValue: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15615,15 +15615,15 @@ pub extern "ODBC32" fn SQLBindParameter(
 
 pub extern "ODBC32" fn SQLAllocHandleStd(
     fHandleType: i16,
-    hInput: ?*c_void,
-    phOutput: ?*?*c_void,
+    hInput: ?*anyopaque,
+    phOutput: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetScrollOptions(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fConcurrency: u16,
     crowKeyset: i64,
     crowRowset: u16,
@@ -15642,11 +15642,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLColAttributeW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     iCol: u16,
     iField: u16,
     // TODO: what to do with BytesParamIndex 4?
-    pCharAttr: ?*c_void,
+    pCharAttr: ?*anyopaque,
     cbDescMax: i16,
     pcbCharAttr: ?*i16,
     pNumAttr: ?*i64,
@@ -15658,11 +15658,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLColAttributesW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
     // TODO: what to do with BytesParamIndex 4?
-    rgbDesc: ?*c_void,
+    rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i64,
@@ -15671,7 +15671,7 @@ pub extern "ODBC32" fn SQLColAttributesW(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLConnectW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szDSN: [*:0]u16,
     cchDSN: i16,
     szUID: [*:0]u16,
@@ -15684,7 +15684,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLDescribeColW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u16,
     cchColNameMax: i16,
@@ -15698,9 +15698,9 @@ pub extern "ODBC32" fn SQLDescribeColW(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLErrorW(
-    henv: ?*c_void,
-    hdbc: ?*c_void,
-    hstmt: ?*c_void,
+    henv: ?*anyopaque,
+    hdbc: ?*anyopaque,
+    hstmt: ?*anyopaque,
     wszSqlState: *[6]u16,
     pfNativeError: ?*i32,
     wszErrorMsg: ?[*:0]u16,
@@ -15709,39 +15709,39 @@ pub extern "ODBC32" fn SQLErrorW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLExecDirectW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szSqlStr: ?[*:0]u16,
     TextLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetConnectAttrW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fAttribute: i32,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetCursorNameW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCursor: ?[*:0]u16,
     cchCursorMax: i16,
     pcchCursor: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLSetDescFieldW(
-    DescriptorHandle: ?*c_void,
+    DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     FieldIdentifier: i16,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
     BufferLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetDescFieldW(
-    hdesc: ?*c_void,
+    hdesc: ?*anyopaque,
     iRecord: i16,
     iField: i16,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbBufferLength: i32,
     StringLength: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15750,7 +15750,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLGetDescRecW(
-    hdesc: ?*c_void,
+    hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u16,
     cchNameMax: i16,
@@ -15767,17 +15767,17 @@ pub extern "ODBC32" fn SQLGetDescRecW(
 
 pub extern "ODBC32" fn SQLGetDiagFieldW(
     fHandleType: i16,
-    handle: ?*c_void,
+    handle: ?*anyopaque,
     iRecord: i16,
     fDiagField: i16,
-    rgbDiagInfo: ?*c_void,
+    rgbDiagInfo: ?*anyopaque,
     cbBufferLength: i16,
     pcbStringLength: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetDiagRecW(
     fHandleType: i16,
-    handle: ?*c_void,
+    handle: ?*anyopaque,
     iRecord: i16,
     szSqlState: ?*[6]u16,
     pfNativeError: ?*i32,
@@ -15787,27 +15787,27 @@ pub extern "ODBC32" fn SQLGetDiagRecW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLPrepareW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szSqlStr: [*:0]u16,
     cchSqlStr: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLSetConnectAttrW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fAttribute: i32,
     // TODO: what to do with BytesParamIndex 3?
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValue: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLSetCursorNameW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCursor: [*:0]u16,
     cchCursor: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLColumnsW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -15819,22 +15819,22 @@ pub extern "ODBC32" fn SQLColumnsW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetConnectOptionW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fOption: u16,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetInfoW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fInfoType: u16,
     // TODO: what to do with BytesParamIndex 3?
-    rgbInfoValue: ?*c_void,
+    rgbInfoValue: ?*anyopaque,
     cbInfoValueMax: i16,
     pcbInfoValue: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetTypeInfoW(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     DataType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -15842,7 +15842,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetConnectOptionW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -15850,7 +15850,7 @@ pub extern "ODBC32" fn SQLSetConnectOptionW(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLSpecialColumnsW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fColType: u16,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
@@ -15863,7 +15863,7 @@ pub extern "ODBC32" fn SQLSpecialColumnsW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLStatisticsW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -15875,7 +15875,7 @@ pub extern "ODBC32" fn SQLStatisticsW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLTablesW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -15887,7 +15887,7 @@ pub extern "ODBC32" fn SQLTablesW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDataSourcesW(
-    henv: ?*c_void,
+    henv: ?*anyopaque,
     fDirection: u16,
     szDSN: ?[*:0]u16,
     cchDSNMax: i16,
@@ -15898,7 +15898,7 @@ pub extern "ODBC32" fn SQLDataSourcesW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDriverConnectW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     hwnd: isize,
     szConnStrIn: [*:0]u16,
     cchConnStrIn: i16,
@@ -15909,7 +15909,7 @@ pub extern "ODBC32" fn SQLDriverConnectW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLBrowseConnectW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szConnStrIn: [*:0]u16,
     cchConnStrIn: i16,
     szConnStrOut: ?[*:0]u16,
@@ -15918,7 +15918,7 @@ pub extern "ODBC32" fn SQLBrowseConnectW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLColumnPrivilegesW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -15930,22 +15930,22 @@ pub extern "ODBC32" fn SQLColumnPrivilegesW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetStmtAttrW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fAttribute: i32,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLSetStmtAttrW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fAttribute: i32,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValueMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLForeignKeysW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szPkCatalogName: ?[*:0]u16,
     cchPkCatalogName: i16,
     szPkSchemaName: ?[*:0]u16,
@@ -15961,7 +15961,7 @@ pub extern "ODBC32" fn SQLForeignKeysW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLNativeSqlW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szSqlStrIn: [*:0]u16,
     cchSqlStrIn: i32,
     szSqlStr: ?[*:0]u16,
@@ -15970,7 +15970,7 @@ pub extern "ODBC32" fn SQLNativeSqlW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLPrimaryKeysW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -15980,7 +15980,7 @@ pub extern "ODBC32" fn SQLPrimaryKeysW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLProcedureColumnsW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -15992,7 +15992,7 @@ pub extern "ODBC32" fn SQLProcedureColumnsW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLProceduresW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -16002,7 +16002,7 @@ pub extern "ODBC32" fn SQLProceduresW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLTablePrivilegesW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u16,
     cchCatalogName: i16,
     szSchemaName: ?[*:0]u16,
@@ -16012,7 +16012,7 @@ pub extern "ODBC32" fn SQLTablePrivilegesW(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDriversW(
-    henv: ?*c_void,
+    henv: ?*anyopaque,
     fDirection: u16,
     szDriverDesc: ?[*:0]u16,
     cchDriverDescMax: i16,
@@ -16026,11 +16026,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLColAttributeA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     iCol: i16,
     iField: i16,
     // TODO: what to do with BytesParamIndex 4?
-    pCharAttr: ?*c_void,
+    pCharAttr: ?*anyopaque,
     cbCharAttrMax: i16,
     pcbCharAttr: ?*i16,
     pNumAttr: ?*i64,
@@ -16042,11 +16042,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLColAttributesA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
     // TODO: what to do with BytesParamIndex 4?
-    rgbDesc: ?*c_void,
+    rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i64,
@@ -16055,7 +16055,7 @@ pub extern "ODBC32" fn SQLColAttributesA(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLConnectA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szDSN: [*:0]u8,
     cbDSN: i16,
     szUID: [*:0]u8,
@@ -16068,7 +16068,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLDescribeColA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u8,
     cbColNameMax: i16,
@@ -16082,9 +16082,9 @@ pub extern "ODBC32" fn SQLDescribeColA(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLErrorA(
-    henv: ?*c_void,
-    hdbc: ?*c_void,
-    hstmt: ?*c_void,
+    henv: ?*anyopaque,
+    hdbc: ?*anyopaque,
+    hstmt: ?*anyopaque,
     szSqlState: ?*u8,
     pfNativeError: ?*i32,
     szErrorMsg: ?[*:0]u8,
@@ -16093,31 +16093,31 @@ pub extern "ODBC32" fn SQLErrorA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLExecDirectA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szSqlStr: ?[*:0]u8,
     cbSqlStr: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetConnectAttrA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fAttribute: i32,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetCursorNameA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCursor: ?[*:0]u8,
     cbCursorMax: i16,
     pcbCursor: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetDescFieldA(
-    hdesc: ?*c_void,
+    hdesc: ?*anyopaque,
     iRecord: i16,
     iField: i16,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbBufferLength: i32,
     StringLength: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16126,7 +16126,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLGetDescRecA(
-    hdesc: ?*c_void,
+    hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u8,
     cbNameMax: i16,
@@ -16143,17 +16143,17 @@ pub extern "ODBC32" fn SQLGetDescRecA(
 
 pub extern "ODBC32" fn SQLGetDiagFieldA(
     fHandleType: i16,
-    handle: ?*c_void,
+    handle: ?*anyopaque,
     iRecord: i16,
     fDiagField: i16,
-    rgbDiagInfo: ?*c_void,
+    rgbDiagInfo: ?*anyopaque,
     cbDiagInfoMax: i16,
     pcbDiagInfo: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetDiagRecA(
     fHandleType: i16,
-    handle: ?*c_void,
+    handle: ?*anyopaque,
     iRecord: i16,
     szSqlState: ?*[6]u8,
     pfNativeError: ?*i32,
@@ -16163,40 +16163,40 @@ pub extern "ODBC32" fn SQLGetDiagRecA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetStmtAttrA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fAttribute: i32,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetTypeInfoA(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     DataType: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLPrepareA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szSqlStr: [*:0]u8,
     cbSqlStr: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLSetConnectAttrA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fAttribute: i32,
     // TODO: what to do with BytesParamIndex 3?
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValue: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLSetCursorNameA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCursor: [*:0]u8,
     cbCursor: i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLColumnsA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16208,16 +16208,16 @@ pub extern "ODBC32" fn SQLColumnsA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetConnectOptionA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fOption: u16,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLGetInfoA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fInfoType: u16,
     // TODO: what to do with BytesParamIndex 3?
-    rgbInfoValue: ?*c_void,
+    rgbInfoValue: ?*anyopaque,
     cbInfoValueMax: i16,
     pcbInfoValue: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16226,7 +16226,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ODBC32" fn SQLSetConnectOptionA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u64,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16234,7 +16234,7 @@ pub extern "ODBC32" fn SQLSetConnectOptionA(
 }, else => struct { } };
 
 pub extern "ODBC32" fn SQLSpecialColumnsA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fColType: u16,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
@@ -16247,7 +16247,7 @@ pub extern "ODBC32" fn SQLSpecialColumnsA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLStatisticsA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16259,7 +16259,7 @@ pub extern "ODBC32" fn SQLStatisticsA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLTablesA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16271,7 +16271,7 @@ pub extern "ODBC32" fn SQLTablesA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDataSourcesA(
-    henv: ?*c_void,
+    henv: ?*anyopaque,
     fDirection: u16,
     szDSN: ?[*:0]u8,
     cbDSNMax: i16,
@@ -16282,7 +16282,7 @@ pub extern "ODBC32" fn SQLDataSourcesA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDriverConnectA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     hwnd: isize,
     szConnStrIn: [*:0]u8,
     cbConnStrIn: i16,
@@ -16293,7 +16293,7 @@ pub extern "ODBC32" fn SQLDriverConnectA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLBrowseConnectA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szConnStrIn: [*:0]u8,
     cbConnStrIn: i16,
     szConnStrOut: ?[*:0]u8,
@@ -16302,7 +16302,7 @@ pub extern "ODBC32" fn SQLBrowseConnectA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLColumnPrivilegesA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16314,7 +16314,7 @@ pub extern "ODBC32" fn SQLColumnPrivilegesA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLForeignKeysA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szPkCatalogName: ?[*:0]u8,
     cbPkCatalogName: i16,
     szPkSchemaName: ?[*:0]u8,
@@ -16330,7 +16330,7 @@ pub extern "ODBC32" fn SQLForeignKeysA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLNativeSqlA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     szSqlStrIn: [*:0]u8,
     cbSqlStrIn: i32,
     szSqlStr: ?[*:0]u8,
@@ -16339,7 +16339,7 @@ pub extern "ODBC32" fn SQLNativeSqlA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLPrimaryKeysA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16349,7 +16349,7 @@ pub extern "ODBC32" fn SQLPrimaryKeysA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLProcedureColumnsA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16361,7 +16361,7 @@ pub extern "ODBC32" fn SQLProcedureColumnsA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLProceduresA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16371,7 +16371,7 @@ pub extern "ODBC32" fn SQLProceduresA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLTablePrivilegesA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     szCatalogName: ?[*:0]u8,
     cbCatalogName: i16,
     szSchemaName: ?[*:0]u8,
@@ -16381,7 +16381,7 @@ pub extern "ODBC32" fn SQLTablePrivilegesA(
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 pub extern "ODBC32" fn SQLDriversA(
-    henv: ?*c_void,
+    henv: ?*anyopaque,
     fDirection: u16,
     szDriverDesc: ?[*:0]u8,
     cbDriverDescMax: i16,
@@ -16395,10 +16395,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLBindCol(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
-    TargetValue: ?*c_void,
+    TargetValue: ?*anyopaque,
     BufferLength: i32,
     StrLen_or_Ind: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16409,13 +16409,13 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLBindParam(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
     ParameterType: i16,
     LengthPrecision: u32,
     ParameterScale: i16,
-    ParameterValue: ?*c_void,
+    ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -16425,14 +16425,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLColAttribute(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     FieldIdentifier: u16,
     // TODO: what to do with BytesParamIndex 4?
-    CharacterAttribute: ?*c_void,
+    CharacterAttribute: ?*anyopaque,
     BufferLength: i16,
     StringLength: ?*i16,
-    NumericAttribute: ?*c_void,
+    NumericAttribute: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 }, else => struct { } };
@@ -16441,7 +16441,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLDescribeCol(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     ColumnName: ?[*:0]u8,
     BufferLength: i16,
@@ -16458,7 +16458,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLFetchScroll(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     FetchOrientation: i16,
     FetchOffset: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16469,10 +16469,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLGetData(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     TargetType: i16,
-    TargetValue: ?*c_void,
+    TargetValue: ?*anyopaque,
     BufferLength: i32,
     StrLen_or_IndPtr: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16483,7 +16483,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLGetDescRec(
-    DescriptorHandle: ?*c_void,
+    DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Name: ?[*:0]u8,
     BufferLength: i16,
@@ -16502,8 +16502,8 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLPutData(
-    StatementHandle: ?*c_void,
-    Data: ?*c_void,
+    StatementHandle: ?*anyopaque,
+    Data: ?*anyopaque,
     StrLen_or_Ind: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -16513,7 +16513,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLRowCount(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     RowCount: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -16523,7 +16523,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetConnectOption(
-    ConnectionHandle: ?*c_void,
+    ConnectionHandle: ?*anyopaque,
     Option: u16,
     Value: u32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16534,7 +16534,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetDescRec(
-    DescriptorHandle: ?*c_void,
+    DescriptorHandle: ?*anyopaque,
     RecNumber: i16,
     Type: i16,
     SubType: i16,
@@ -16542,7 +16542,7 @@ pub extern "ODBC32" fn SQLSetDescRec(
     Precision: i16,
     Scale: i16,
     // TODO: what to do with BytesParamIndex 4?
-    Data: ?*c_void,
+    Data: ?*anyopaque,
     StringLength: ?*i32,
     Indicator: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16553,13 +16553,13 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetParam(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     ParameterNumber: u16,
     ValueType: i16,
     ParameterType: i16,
     LengthPrecision: u32,
     ParameterScale: i16,
-    ParameterValue: ?*c_void,
+    ParameterValue: ?*anyopaque,
     StrLen_or_Ind: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
@@ -16569,7 +16569,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetStmtOption(
-    StatementHandle: ?*c_void,
+    StatementHandle: ?*anyopaque,
     Option: u16,
     Value: u32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16580,10 +16580,10 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLColAttributes(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
-    rgbDesc: ?*c_void,
+    rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i32,
@@ -16595,7 +16595,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLDescribeParam(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     ipar: u16,
     pfSqlType: ?*i16,
     pcbParamDef: ?*u32,
@@ -16609,7 +16609,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLExtendedFetch(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fFetchType: u16,
     irow: i32,
     pcrow: ?*u32,
@@ -16622,7 +16622,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLParamOptions(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     crow: u32,
     pirow: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16633,7 +16633,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetPos(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     irow: u16,
     fOption: u16,
     fLock: u16,
@@ -16645,14 +16645,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLBindParameter(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     ipar: u16,
     fParamType: i16,
     fCType: i16,
     fSqlType: i16,
     cbColDef: u32,
     ibScale: i16,
-    rgbValue: ?*c_void,
+    rgbValue: ?*anyopaque,
     cbValueMax: i32,
     pcbValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16663,7 +16663,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetScrollOptions(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     fConcurrency: u16,
     crowKeyset: i32,
     crowRowset: u16,
@@ -16675,14 +16675,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLColAttributeW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     iCol: u16,
     iField: u16,
     // TODO: what to do with BytesParamIndex 4?
-    pCharAttr: ?*c_void,
+    pCharAttr: ?*anyopaque,
     cbDescMax: i16,
     pcbCharAttr: ?*i16,
-    pNumAttr: ?*c_void,
+    pNumAttr: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 }, else => struct { } };
@@ -16691,11 +16691,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLColAttributesW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
     // TODO: what to do with BytesParamIndex 4?
-    rgbDesc: ?*c_void,
+    rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i32,
@@ -16707,7 +16707,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLDescribeColW(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u16,
     cchColNameMax: i16,
@@ -16724,7 +16724,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLGetDescRecW(
-    hdesc: ?*c_void,
+    hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u16,
     cchNameMax: i16,
@@ -16743,7 +16743,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetConnectOptionW(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
@@ -16754,14 +16754,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLColAttributeA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     iCol: i16,
     iField: i16,
     // TODO: what to do with BytesParamIndex 4?
-    pCharAttr: ?*c_void,
+    pCharAttr: ?*anyopaque,
     cbCharAttrMax: i16,
     pcbCharAttr: ?*i16,
-    pNumAttr: ?*c_void,
+    pNumAttr: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 }, else => struct { } };
@@ -16770,11 +16770,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLColAttributesA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
     // TODO: what to do with BytesParamIndex 4?
-    rgbDesc: ?*c_void,
+    rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
     pfDesc: ?*i32,
@@ -16786,7 +16786,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLDescribeColA(
-    hstmt: ?*c_void,
+    hstmt: ?*anyopaque,
     icol: u16,
     szColName: ?[*:0]u8,
     cbColNameMax: i16,
@@ -16803,7 +16803,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLGetDescRecA(
-    hdesc: ?*c_void,
+    hdesc: ?*anyopaque,
     iRecord: i16,
     szName: ?[*:0]u8,
     cbNameMax: i16,
@@ -16822,7 +16822,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "ODBC32" fn SQLSetConnectOptionA(
-    hdbc: ?*c_void,
+    hdbc: ?*anyopaque,
     fOption: u16,
     vParam: u32,
 ) callconv(@import("std").os.windows.WINAPI) i16;

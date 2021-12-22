@@ -222,7 +222,7 @@ pub const IPresentationManager = extern struct {
         GetPresentRetiringFence: fn(
             self: *const IPresentationManager,
             riid: ?*const Guid,
-            fence: ?*?*c_void,
+            fence: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CancelPresentsFrom: fn(
             self: *const IPresentationManager,
@@ -278,7 +278,7 @@ pub const IPresentationManager = extern struct {
             return @ptrCast(*const IPresentationManager.VTable, self.vtable).Present(@ptrCast(*const IPresentationManager, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPresentationManager_GetPresentRetiringFence(self: *const T, riid: ?*const Guid, fence: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPresentationManager_GetPresentRetiringFence(self: *const T, riid: ?*const Guid, fence: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPresentationManager.VTable, self.vtable).GetPresentRetiringFence(@ptrCast(*const IPresentationManager, self), riid, fence);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -487,7 +487,7 @@ pub const IIndependentFlipFramePresentStatistics = extern struct {
 pub extern "dcomp" fn CreatePresentationFactory(
     d3dDevice: ?*IUnknown,
     riid: ?*const Guid,
-    presentationFactory: ?*?*c_void,
+    presentationFactory: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

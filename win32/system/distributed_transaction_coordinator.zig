@@ -104,8 +104,8 @@ pub const DTC_GET_TRANSACTION_MANAGER = fn(
     rid: ?*const Guid,
     dwReserved1: u32,
     wcbReserved2: u16,
-    pvReserved2: ?*c_void,
-    ppvObject: ?*?*c_void,
+    pvReserved2: ?*anyopaque,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DTC_GET_TRANSACTION_MANAGER_EX_A = fn(
@@ -113,8 +113,8 @@ pub const DTC_GET_TRANSACTION_MANAGER_EX_A = fn(
     i_pszTmName: ?PSTR,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
-    i_pvConfigParams: ?*c_void,
-    o_ppvObject: ?*?*c_void,
+    i_pvConfigParams: ?*anyopaque,
+    o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DTC_GET_TRANSACTION_MANAGER_EX_W = fn(
@@ -122,8 +122,8 @@ pub const DTC_GET_TRANSACTION_MANAGER_EX_W = fn(
     i_pwszTmName: ?PWSTR,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
-    i_pvConfigParams: ?*c_void,
-    o_ppvObject: ?*?*c_void,
+    i_pvConfigParams: ?*anyopaque,
+    o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DTC_INSTALL_CLIENT = fn(
@@ -842,14 +842,14 @@ pub const ITransactionImport = extern struct {
             cbTransactionCookie: u32,
             rgbTransactionCookie: [*:0]u8,
             piid: ?*const Guid,
-            ppvTransaction: ?*?*c_void,
+            ppvTransaction: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionImport_Import(self: *const T, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ITransactionImport_Import(self: *const T, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionImport.VTable, self.vtable).Import(@ptrCast(*const ITransactionImport, self), cbTransactionCookie, rgbTransactionCookie, piid, ppvTransaction);
         }
     };}
@@ -1563,7 +1563,7 @@ pub const IResourceManager = extern struct {
         GetDistributedTransactionManager: fn(
             self: *const IResourceManager,
             iid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1582,7 +1582,7 @@ pub const IResourceManager = extern struct {
             return @ptrCast(*const IResourceManager.VTable, self.vtable).ReenlistmentComplete(@ptrCast(*const IResourceManager, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResourceManager_GetDistributedTransactionManager(self: *const T, iid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IResourceManager_GetDistributedTransactionManager(self: *const T, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResourceManager.VTable, self.vtable).GetDistributedTransactionManager(@ptrCast(*const IResourceManager, self), iid, ppvObject);
         }
     };}
@@ -1795,14 +1795,14 @@ pub const IResourceManagerFactory2 = extern struct {
             pszRMName: ?PSTR,
             pIResMgrSink: ?*IResourceManagerSink,
             riidRequested: ?*const Guid,
-            ppvResMgr: ?*?*c_void,
+            ppvResMgr: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IResourceManagerFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResourceManagerFactory2_CreateEx(self: *const T, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IResourceManagerFactory2_CreateEx(self: *const T, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResourceManagerFactory2.VTable, self.vtable).CreateEx(@ptrCast(*const IResourceManagerFactory2, self), pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
         }
     };}
@@ -1876,14 +1876,14 @@ pub const IGetDispenser = extern struct {
         GetDispenser: fn(
             self: *const IGetDispenser,
             iid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetDispenser_GetDispenser(self: *const T, iid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IGetDispenser_GetDispenser(self: *const T, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetDispenser.VTable, self.vtable).GetDispenser(@ptrCast(*const IGetDispenser, self), iid, ppvObject);
         }
     };}
@@ -2507,14 +2507,14 @@ pub const IDtcLuRecoveryInitiatedByDtc = extern struct {
         GetWork: fn(
             self: *const IDtcLuRecoveryInitiatedByDtc,
             pWork: ?*_DtcLu_LocalRecovery_Work,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDtcLuRecoveryInitiatedByDtc_GetWork(self: *const T, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDtcLuRecoveryInitiatedByDtc_GetWork(self: *const T, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDtcLuRecoveryInitiatedByDtc.VTable, self.vtable).GetWork(@ptrCast(*const IDtcLuRecoveryInitiatedByDtc, self), pWork, ppv);
         }
     };}
@@ -2964,8 +2964,8 @@ pub extern "XOLEHLP" fn DtcGetTransactionManager(
     i_dwReserved1: u32,
     i_wcbReserved2: u16,
     // TODO: what to do with BytesParamIndex 4?
-    i_pvReserved2: ?*c_void,
-    o_ppvObject: ?*?*c_void,
+    i_pvReserved2: ?*anyopaque,
+    o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "XOLEHLP" fn DtcGetTransactionManagerC(
@@ -2975,8 +2975,8 @@ pub extern "XOLEHLP" fn DtcGetTransactionManagerC(
     i_dwReserved1: u32,
     i_wcbReserved2: u16,
     // TODO: what to do with BytesParamIndex 4?
-    i_pvReserved2: ?*c_void,
-    o_ppvObject: ?*?*c_void,
+    i_pvReserved2: ?*anyopaque,
+    o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "XOLEHLP" fn DtcGetTransactionManagerExA(
@@ -2984,8 +2984,8 @@ pub extern "XOLEHLP" fn DtcGetTransactionManagerExA(
     i_pszTmName: ?PSTR,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
-    i_pvConfigParams: ?*c_void,
-    o_ppvObject: ?*?*c_void,
+    i_pvConfigParams: ?*anyopaque,
+    o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "XOLEHLP" fn DtcGetTransactionManagerExW(
@@ -2993,8 +2993,8 @@ pub extern "XOLEHLP" fn DtcGetTransactionManagerExW(
     i_pwszTmName: ?PWSTR,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
-    i_pvConfigParams: ?*c_void,
-    o_ppvObject: ?*?*c_void,
+    i_pvConfigParams: ?*anyopaque,
+    o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -15,14 +15,14 @@ pub const ICoreFrameworkInputViewInterop = extern struct {
             self: *const ICoreFrameworkInputViewInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            coreFrameworkInputView: ?*?*c_void,
+            coreFrameworkInputView: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFrameworkInputViewInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICoreFrameworkInputViewInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoreFrameworkInputViewInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ICoreFrameworkInputViewInterop, self), appWindow, riid, coreFrameworkInputView);
         }
     };}

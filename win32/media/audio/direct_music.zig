@@ -873,7 +873,7 @@ pub const IDirectMusicDownload = extern struct {
         base: IUnknown.VTable,
         GetBuffer: fn(
             self: *const IDirectMusicDownload,
-            ppvBuffer: ?*?*c_void,
+            ppvBuffer: ?*?*anyopaque,
             pdwSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -881,7 +881,7 @@ pub const IDirectMusicDownload = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicDownload_GetBuffer(self: *const T, ppvBuffer: ?*?*c_void, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicDownload_GetBuffer(self: *const T, ppvBuffer: ?*?*anyopaque, pdwSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicDownload.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectMusicDownload, self), ppvBuffer, pdwSize);
         }
     };}
@@ -998,9 +998,9 @@ pub const IDirectMusicPort = extern struct {
         DeviceIoControl: fn(
             self: *const IDirectMusicPort,
             dwIoControlCode: u32,
-            lpInBuffer: ?*c_void,
+            lpInBuffer: ?*anyopaque,
             nInBufferSize: u32,
-            lpOutBuffer: ?*c_void,
+            lpOutBuffer: ?*anyopaque,
             nOutBufferSize: u32,
             lpBytesReturned: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
@@ -1081,7 +1081,7 @@ pub const IDirectMusicPort = extern struct {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectMusicPort, self), pPortCaps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_DeviceIoControl(self: *const T, dwIoControlCode: u32, lpInBuffer: ?*c_void, nInBufferSize: u32, lpOutBuffer: ?*c_void, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicPort_DeviceIoControl(self: *const T, dwIoControlCode: u32, lpInBuffer: ?*anyopaque, nInBufferSize: u32, lpOutBuffer: ?*anyopaque, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).DeviceIoControl(@ptrCast(*const IDirectMusicPort, self), dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1165,7 +1165,7 @@ pub const IDirectMusicSynth = extern struct {
         Download: fn(
             self: *const IDirectMusicSynth,
             phDownload: ?*?HANDLE,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
             pbFree: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unload: fn(
@@ -1248,7 +1248,7 @@ pub const IDirectMusicSynth = extern struct {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetNumChannelGroups(@ptrCast(*const IDirectMusicSynth, self), dwGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Download(self: *const T, phDownload: ?*?HANDLE, pvData: ?*c_void, pbFree: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_Download(self: *const T, phDownload: ?*?HANDLE, pvData: ?*anyopaque, pbFree: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicSynth, self), phDownload, pvData, pbFree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1537,32 +1537,32 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA = extern struct {
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1 = fn(
     param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1_DATA,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA = fn(
     param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A_DATA,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW = fn(
     param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA = extern struct {
     Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 };
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_A_DATA = extern struct {
     Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 };
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W_DATA = extern struct {
     Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 };
 
 pub const Tag_DVAudInfo = extern struct {
@@ -1577,7 +1577,7 @@ pub const Tag_DVAudInfo = extern struct {
 
 pub const MDEVICECAPSEX = packed struct {
     cbSize: u32,
-    pCaps: ?*c_void,
+    pCaps: ?*anyopaque,
 };
 
 pub const MIDIOPENDESC = packed struct {

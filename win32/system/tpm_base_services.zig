@@ -92,17 +92,17 @@ pub const TPM_DEVICE_INFO = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Context_Create(
     pContextParams: ?*TBS_CONTEXT_PARAMS,
-    phContext: ?*?*c_void,
+    phContext: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Context_Close(
-    hContext: ?*c_void,
+    hContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Submit_Command(
-    hContext: ?*c_void,
+    hContext: ?*anyopaque,
     Locality: TBS_COMMAND_LOCALITY,
     Priority: TBS_COMMAND_PRIORITY,
     // TODO: what to do with BytesParamIndex 4?
@@ -115,12 +115,12 @@ pub extern "tbs" fn Tbsip_Submit_Command(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Cancel_Commands(
-    hContext: ?*c_void,
+    hContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Physical_Presence_Command(
-    hContext: ?*c_void,
+    hContext: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pabInput: ?*u8,
     cbInput: u32,
@@ -131,7 +131,7 @@ pub extern "tbs" fn Tbsi_Physical_Presence_Command(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Get_TCG_Log(
-    hContext: ?*c_void,
+    hContext: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pOutputBuf: ?*u8,
     pOutputBufLen: ?*u32,
@@ -141,12 +141,12 @@ pub extern "tbs" fn Tbsi_Get_TCG_Log(
 pub extern "tbs" fn Tbsi_GetDeviceInfo(
     Size: u32,
     // TODO: what to do with BytesParamIndex 0?
-    Info: ?*c_void,
+    Info: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_Get_OwnerAuth(
-    hContext: ?*c_void,
+    hContext: ?*anyopaque,
     ownerauthType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pOutputBuf: ?*u8,

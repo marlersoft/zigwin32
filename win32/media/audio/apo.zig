@@ -377,7 +377,7 @@ pub const IAudioDeviceModulesClient = extern struct {
 
 pub const FNAPONOTIFICATIONCALLBACK = fn(
     pProperties: ?*APO_REG_PROPERTIES,
-    pvRefData: ?*c_void,
+    pvRefData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 const IID_IAudioSystemEffects_Value = @import("../../zig.zig").Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
@@ -535,7 +535,7 @@ pub const APOInitSystemEffects = extern struct {
     APOInit: APOInitBaseStruct,
     pAPOEndpointProperties: ?*IPropertyStore,
     pAPOSystemEffectsProperties: ?*IPropertyStore,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     pDeviceCollection: ?*IMMDeviceCollection,
 };
 
@@ -543,7 +543,7 @@ pub const APOInitSystemEffects2 = extern struct {
     APOInit: APOInitBaseStruct,
     pAPOEndpointProperties: ?*IPropertyStore,
     pAPOSystemEffectsProperties: ?*IPropertyStore,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     pDeviceCollection: ?*IMMDeviceCollection,
     nSoftwareIoDeviceInCollection: u32,
     nSoftwareIoConnectorIndex: u32,

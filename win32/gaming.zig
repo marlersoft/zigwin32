@@ -300,12 +300,12 @@ pub const GAMING_DEVICE_MODEL_INFORMATION = extern struct {
 
 pub const GameUICompletionRoutine = fn(
     returnCode: HRESULT,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PlayerPickerUICompletionRoutine = fn(
     returnCode: HRESULT,
-    context: ?*c_void,
+    context: ?*anyopaque,
     selectedXuids: [*]const ?HSTRING,
     selectedXuidsCount: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -693,7 +693,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowGameInviteUI(
     sessionId: ?HSTRING,
     invitationDisplayText: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowPlayerPickerUI(
@@ -705,25 +705,25 @@ pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowPlayerPickerUI(
     minSelectionCount: usize,
     maxSelectionCount: usize,
     completionRoutine: ?PlayerPickerUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowProfileCardUI(
     targetUserXuid: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowChangeFriendRelationshipUI(
     targetUserXuid: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowTitleAchievementsUI(
     titleId: u32,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ProcessPendingGameUI(
@@ -739,7 +739,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeWithUI(
     policy: ?HSTRING,
     friendlyMessage: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-1" fn CheckGamingPrivilegeSilently(
@@ -756,7 +756,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowGameInviteUIForUser(
     sessionId: ?HSTRING,
     invitationDisplayText: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowPlayerPickerUIForUser(
@@ -769,28 +769,28 @@ pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowPlayerPickerUIForUser(
     minSelectionCount: usize,
     maxSelectionCount: usize,
     completionRoutine: ?PlayerPickerUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowProfileCardUIForUser(
     user: ?*IInspectable,
     targetUserXuid: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowChangeFriendRelationshipUIForUser(
     user: ?*IInspectable,
     targetUserXuid: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn ShowTitleAchievementsUIForUser(
     user: ?*IInspectable,
     titleId: u32,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeWithUIForUser(
@@ -800,7 +800,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeWithUIForUser(
     policy: ?HSTRING,
     friendlyMessage: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-2" fn CheckGamingPrivilegeSilentlyForUser(
@@ -818,7 +818,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-3" fn ShowGameInviteUIWithContext(
     invitationDisplayText: ?HSTRING,
     customActivationContext: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-3" fn ShowGameInviteUIWithContextForUser(
@@ -829,53 +829,53 @@ pub extern "api-ms-win-gaming-tcui-l1-1-3" fn ShowGameInviteUIWithContextForUser
     invitationDisplayText: ?HSTRING,
     customActivationContext: ?HSTRING,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUI(
     titleId: u32,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowGameInfoUIForUser(
     user: ?*IInspectable,
     titleId: u32,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUI(
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowFindFriendsUIForUser(
     user: ?*IInspectable,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUI(
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowCustomizeUserProfileUIForUser(
     user: ?*IInspectable,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUI(
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUIForUser(
     user: ?*IInspectable,
     completionRoutine: ?GameUICompletionRoutine,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

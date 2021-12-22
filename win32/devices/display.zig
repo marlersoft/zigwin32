@@ -1622,7 +1622,7 @@ pub const GDIINFO = extern struct {
 
 pub const BRUSHOBJ = extern struct {
     iSolidColor: u32,
-    pvRbrush: ?*c_void,
+    pvRbrush: ?*anyopaque,
     flColorType: u32,
 };
 
@@ -1639,7 +1639,7 @@ pub const CLIPOBJ = extern struct {
 pub const FREEOBJPROC = fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DRIVEROBJ = extern struct {
-    pvObj: ?*c_void,
+    pvObj: ?*anyopaque,
     pFreeProc: ?FREEOBJPROC,
     hdev: ?HDEV,
     dhpdev: DHPDEV,
@@ -1654,8 +1654,8 @@ pub const FONTOBJ = extern struct {
     iFile: usize,
     sizLogResPpi: SIZE,
     ulStyleSize: u32,
-    pvConsumer: ?*c_void,
-    pvProducer: ?*c_void,
+    pvConsumer: ?*anyopaque,
+    pvProducer: ?*anyopaque,
 };
 
 pub const BLENDOBJ = extern struct {
@@ -1678,8 +1678,8 @@ pub const SURFOBJ = extern struct {
     hdev: ?HDEV,
     sizlBitmap: SIZE,
     cjBits: u32,
-    pvBits: ?*c_void,
-    pvScan0: ?*c_void,
+    pvBits: ?*anyopaque,
+    pvScan0: ?*anyopaque,
     lDelta: i32,
     iUniq: u32,
     iBitmapFormat: u32,
@@ -1689,7 +1689,7 @@ pub const SURFOBJ = extern struct {
 
 pub const WNDOBJ = extern struct {
     coClient: CLIPOBJ,
-    pvConsumer: ?*c_void,
+    pvConsumer: ?*anyopaque,
     rclClient: RECTL,
     psoOwner: ?*SURFOBJ,
 };
@@ -1825,8 +1825,8 @@ pub const ENGSAFESEMAPHORE = extern struct {
 
 
 pub const SORTCOMP = fn(
-    pv1: ?*const c_void,
-    pv2: ?*const c_void,
+    pv1: ?*const anyopaque,
+    pv2: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ENG_TIME_FIELDS = extern struct {
@@ -1892,7 +1892,7 @@ pub const PFN_DrvCompletePDEV = fn(
 
 pub const PFN_DrvResetDevice = fn(
     param0: DHPDEV,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvDisablePDEV = fn(
@@ -2049,9 +2049,9 @@ pub const PFN_DrvEscape = fn(
     param0: ?*SURFOBJ,
     param1: u32,
     param2: u32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     param4: u32,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvDrawEscape = fn(
@@ -2060,7 +2060,7 @@ pub const PFN_DrvDrawEscape = fn(
     param2: ?*CLIPOBJ,
     param3: ?*RECTL,
     param4: u32,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvQueryFont = fn(
@@ -2076,7 +2076,7 @@ pub const PFN_DrvQueryFontTree = fn(
     param2: u32,
     param3: u32,
     param4: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const PFN_DrvQueryFontData = fn(
     param0: DHPDEV,
@@ -2084,12 +2084,12 @@ pub const PFN_DrvQueryFontData = fn(
     param2: u32,
     param3: u32,
     param4: ?*GLYPHDATA,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
     param6: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFN_DrvFree = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -2105,7 +2105,7 @@ pub const PFN_DrvQueryFontCaps = fn(
 pub const PFN_DrvLoadFontFile = fn(
     param0: u32,
     param1: ?*usize,
-    param2: ?*?*c_void,
+    param2: ?*?*anyopaque,
     param3: ?*u32,
     param4: ?*DESIGNVECTOR,
     param5: u32,
@@ -2269,7 +2269,7 @@ pub const PFN_DrvQueryTrueTypeOutline = fn(
 pub const PFN_DrvGetTrueTypeFile = fn(
     param0: usize,
     param1: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const PFN_DrvQueryFontFile = fn(
     param0: usize,
@@ -2288,7 +2288,7 @@ pub const PFN_DrvQueryAdvanceWidths = fn(
     param1: ?*FONTOBJ,
     param2: u32,
     param3: ?*u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
     param5: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2297,9 +2297,9 @@ pub const PFN_DrvFontManagement = fn(
     param1: ?*FONTOBJ,
     param2: u32,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
     param5: u32,
-    param6: ?*c_void,
+    param6: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_DrvSetPixelFormat = fn(
@@ -2358,11 +2358,11 @@ pub const PFN_DrvGetDirectDrawInfo = fn(
 pub const PFN_DrvIcmCreateColorTransform = fn(
     param0: DHPDEV,
     param1: ?*LOGCOLORSPACEW,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
     param5: u32,
-    param6: ?*c_void,
+    param6: ?*anyopaque,
     param7: u32,
     param8: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
@@ -2382,7 +2382,7 @@ pub const PFN_DrvIcmCheckBitmapBits = fn(
 pub const PFN_DrvIcmSetDeviceGammaRamp = fn(
     param0: DHPDEV,
     param1: u32,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvAlphaBlend = fn(
@@ -2401,7 +2401,7 @@ pub const PFN_DrvGradientFill = fn(
     param2: ?*XLATEOBJ,
     param3: ?*TRIVERTEX,
     param4: u32,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
     param6: u32,
     param7: ?*RECTL,
     param8: ?*POINTL,
@@ -2414,9 +2414,9 @@ pub const PFN_DrvQueryDeviceSupport = fn(
     param2: ?*XFORMOBJ,
     param3: u32,
     param4: u32,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
     param6: u32,
-    param7: ?*c_void,
+    param7: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvDeriveSurface = fn(
@@ -2433,7 +2433,7 @@ pub const PFN_DrvSynchronizeSurface = fn(
 pub const PFN_DrvNotify = fn(
     param0: ?*SURFOBJ,
     param1: u32,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_DrvRenderHint = fn(
@@ -2441,7 +2441,7 @@ pub const PFN_DrvRenderHint = fn(
     NotifyCode: u32,
     Length: usize,
     // TODO: what to do with BytesParamIndex 2?
-    Data: ?*c_void,
+    Data: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DRH_APIBITMAPDATA = extern struct {
@@ -2531,14 +2531,14 @@ pub const PFN_DrvAccumulateD3DDirtyRect = fn(
 pub const PFN_DrvStartDxInterop = fn(
     param0: ?*SURFOBJ,
     param1: BOOL,
-    KernelModeDeviceHandle: ?*c_void,
+    KernelModeDeviceHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvEndDxInterop = fn(
     param0: ?*SURFOBJ,
     param1: BOOL,
     param2: ?*BOOL,
-    KernelModeDeviceHandle: ?*c_void,
+    KernelModeDeviceHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvLockDisplayArea = fn(
@@ -2611,8 +2611,8 @@ pub const BlackScreenDiagnosticsData = BlackScreenDiagnosticsCalloutParam.agnost
 pub const BlackScreenDisplayRecovery = BlackScreenDiagnosticsCalloutParam.splayRecovery;
 
 pub const DXGK_WIN32K_PARAM_DATA = extern struct {
-    PathsArray: ?*c_void,
-    ModesArray: ?*c_void,
+    PathsArray: ?*anyopaque,
+    ModesArray: ?*anyopaque,
     NumPathArrayElements: u32,
     NumModeArrayElements: u32,
     SDCFlags: u32,
@@ -2620,7 +2620,7 @@ pub const DXGK_WIN32K_PARAM_DATA = extern struct {
 
 pub const VIDEO_WIN32K_CALLBACKS_PARAMS = extern struct {
     CalloutType: VIDEO_WIN32K_CALLBACKS_PARAMS_TYPE,
-    PhysDisp: ?*c_void,
+    PhysDisp: ?*anyopaque,
     Param: usize,
     Status: i32,
     LockUserSession: BOOLEAN,
@@ -2630,11 +2630,11 @@ pub const VIDEO_WIN32K_CALLBACKS_PARAMS = extern struct {
 };
 
 pub const PVIDEO_WIN32K_CALLOUT = fn(
-    Params: ?*c_void,
+    Params: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const VIDEO_WIN32K_CALLBACKS = extern struct {
-    PhysDisp: ?*c_void,
+    PhysDisp: ?*anyopaque,
     Callout: ?PVIDEO_WIN32K_CALLOUT,
     bACPI: u32,
     pPhysDeviceObject: ?HANDLE,
@@ -2676,7 +2676,7 @@ pub const VIDEO_HARDWARE_STATE_HEADER = extern struct {
     DIBXlatOffset: u32,
     DIBXlatLength: u32,
     VesaInfoOffset: u32,
-    FrameBufferData: ?*c_void,
+    FrameBufferData: ?*anyopaque,
 };
 
 pub const VIDEO_HARDWARE_STATE = extern struct {
@@ -2813,33 +2813,33 @@ pub const VideoBanked2RW = VIDEO_BANK_TYPE.VideoBanked2RW;
 pub const NumVideoBankTypes = VIDEO_BANK_TYPE.NumVideoBankTypes;
 
 pub const VIDEO_MEMORY = extern struct {
-    RequestedVirtualAddress: ?*c_void,
+    RequestedVirtualAddress: ?*anyopaque,
 };
 
 pub const VIDEO_SHARE_MEMORY = extern struct {
     ProcessHandle: ?HANDLE,
     ViewOffset: u32,
     ViewSize: u32,
-    RequestedVirtualAddress: ?*c_void,
+    RequestedVirtualAddress: ?*anyopaque,
 };
 
 pub const VIDEO_SHARE_MEMORY_INFORMATION = extern struct {
     SharedViewOffset: u32,
     SharedViewSize: u32,
-    VirtualAddress: ?*c_void,
+    VirtualAddress: ?*anyopaque,
 };
 
 pub const VIDEO_MEMORY_INFORMATION = extern struct {
-    VideoRamBase: ?*c_void,
+    VideoRamBase: ?*anyopaque,
     VideoRamLength: u32,
-    FrameBufferBase: ?*c_void,
+    FrameBufferBase: ?*anyopaque,
     FrameBufferLength: u32,
 };
 
 pub const VIDEO_PUBLIC_ACCESS_RANGES = extern struct {
     InIoSpace: u32,
     MappedInIoSpace: u32,
-    VirtualAddress: ?*c_void,
+    VirtualAddress: ?*anyopaque,
 };
 
 pub const VIDEO_COLOR_CAPABILITIES = extern struct {
@@ -2972,7 +2972,7 @@ pub const FSVIDEO_CURSOR_POSITION = extern struct {
 };
 
 pub const ENG_EVENT = extern struct {
-    pKEvent: ?*c_void,
+    pKEvent: ?*anyopaque,
     fFlags: u32,
 };
 
@@ -3504,7 +3504,7 @@ pub const IFIMETRICS = switch(@import("../zig.zig").arch) {
         cKerningPairs: u32,
         ulPanoseCulture: u32,
         panose: PANOSE,
-        Align: ?*c_void,
+        Align: ?*anyopaque,
     },
     .X86 => extern struct {
         cjThis: u32,
@@ -3855,12 +3855,12 @@ pub extern "dxva2" fn RestoreMonitorFactoryDefaults(
 pub extern "GDI32" fn BRUSHOBJ_pvAllocRbrush(
     pbo: ?*BRUSHOBJ,
     cj: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_pvGetRbrush(
     pbo: ?*BRUSHOBJ,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn BRUSHOBJ_ulGetBrushColor(
@@ -3912,7 +3912,7 @@ pub extern "GDI32" fn FONTOBJ_cGetGlyphs(
     iMode: u32,
     cGlyph: u32,
     phg: ?*u32,
-    ppvGlyph: ?*?*c_void,
+    ppvGlyph: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3934,7 +3934,7 @@ pub extern "GDI32" fn FONTOBJ_pfdg(
 pub extern "GDI32" fn FONTOBJ_pvTrueTypeFontFile(
     pfo: ?*FONTOBJ,
     pcjFile: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn FONTOBJ_pQueryGlyphAttrs(
@@ -4017,8 +4017,8 @@ pub extern "GDI32" fn XFORMOBJ_bApplyXform(
     pxo: ?*XFORMOBJ,
     iMode: u32,
     cPoints: u32,
-    pvIn: ?*c_void,
-    pvOut: ?*c_void,
+    pvIn: ?*anyopaque,
+    pvOut: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4051,7 +4051,7 @@ pub extern "GDI32" fn EngCreateBitmap(
     lWidth: i32,
     iFormat: u32,
     fl: u32,
-    pvBits: ?*c_void,
+    pvBits: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4214,7 +4214,7 @@ pub extern "GDI32" fn EngGradientFill(
     pxlo: ?*XLATEOBJ,
     pVertex: ?*TRIVERTEX,
     nVertex: u32,
-    pMesh: ?*c_void,
+    pMesh: ?*anyopaque,
     nMesh: u32,
     prclExtents: ?*RECTL,
     pptlDitherOrg: ?*POINTL,
@@ -4357,7 +4357,7 @@ pub extern "GDI32" fn EngFindResource(
     iName: i32,
     iType: i32,
     pulSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn EngFreeModule(

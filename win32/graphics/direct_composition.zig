@@ -1534,7 +1534,7 @@ pub const IDCompositionSurface = extern struct {
             self: *const IDCompositionSurface,
             updateRect: ?*const RECT,
             iid: ?*const Guid,
-            updateObject: ?*?*c_void,
+            updateObject: ?*?*anyopaque,
             updateOffset: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndDraw: fn(
@@ -1558,7 +1558,7 @@ pub const IDCompositionSurface = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDCompositionSurface_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*c_void, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
+        pub fn IDCompositionSurface_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDCompositionSurface.VTable, self.vtable).BeginDraw(@ptrCast(*const IDCompositionSurface, self), updateRect, iid, updateObject, updateOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3266,20 +3266,20 @@ pub const IDCompositionInkTrailDevice = extern struct {
 pub extern "dcomp" fn DCompositionCreateDevice(
     dxgiDevice: ?*IDXGIDevice,
     iid: ?*const Guid,
-    dcompositionDevice: ?*?*c_void,
+    dcompositionDevice: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dcomp" fn DCompositionCreateDevice2(
     renderingDevice: ?*IUnknown,
     iid: ?*const Guid,
-    dcompositionDevice: ?*?*c_void,
+    dcompositionDevice: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dcomp" fn DCompositionCreateDevice3(
     renderingDevice: ?*IUnknown,
     iid: ?*const Guid,
-    dcompositionDevice: ?*?*c_void,
+    dcompositionDevice: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

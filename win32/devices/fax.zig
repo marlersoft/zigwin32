@@ -694,7 +694,7 @@ pub const PFAXSENDDOCUMENTW = fn(
 pub const PFAX_RECIPIENT_CALLBACKA = fn(
     FaxHandle: ?HANDLE,
     RecipientNumber: u32,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     JobParams: ?*FAX_JOB_PARAMA,
     CoverpageInfo: ?*FAX_COVERPAGE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -702,7 +702,7 @@ pub const PFAX_RECIPIENT_CALLBACKA = fn(
 pub const PFAX_RECIPIENT_CALLBACKW = fn(
     FaxHandle: ?HANDLE,
     RecipientNumber: u32,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     JobParams: ?*FAX_JOB_PARAMW,
     CoverpageInfo: ?*FAX_COVERPAGE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -712,7 +712,7 @@ pub const PFAXSENDDOCUMENTFORBROADCASTA = fn(
     FileName: ?[*:0]const u8,
     FaxJobId: ?*u32,
     FaxRecipientCallback: ?PFAX_RECIPIENT_CALLBACKA,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXSENDDOCUMENTFORBROADCASTW = fn(
@@ -720,7 +720,7 @@ pub const PFAXSENDDOCUMENTFORBROADCASTW = fn(
     FileName: ?[*:0]const u16,
     FaxJobId: ?*u32,
     FaxRecipientCallback: ?PFAX_RECIPIENT_CALLBACKW,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXENUMJOBSA = fn(
@@ -944,7 +944,7 @@ pub const PFAXINITIALIZEEVENTQUEUE = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXFREEBUFFER = fn(
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFAXSTARTPRINTJOBA = fn(
@@ -984,7 +984,7 @@ pub const PFAXUNREGISTERSERVICEPROVIDERW = fn(
 
 pub const PFAX_ROUTING_INSTALLATION_CALLBACKW = fn(
     FaxHandle: ?HANDLE,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     MethodName: ?PWSTR,
     FriendlyName: ?PWSTR,
     FunctionName: ?PWSTR,
@@ -997,7 +997,7 @@ pub const PFAXREGISTERROUTINGEXTENSIONW = fn(
     FriendlyName: ?[*:0]const u16,
     ImageName: ?[*:0]const u16,
     CallBack: ?PFAX_ROUTING_INSTALLATION_CALLBACKW,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXACCESSCHECK = fn(
@@ -7711,14 +7711,14 @@ pub const PFAXROUTEENUMFILE = fn(
     GuidOwner: ?*Guid,
     GuidCaller: ?*Guid,
     FileName: ?[*:0]const u16,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXROUTEENUMFILES = fn(
     JobId: u32,
     Guid: ?*Guid,
     FileEnumerator: ?PFAXROUTEENUMFILE,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFAXROUTEMODIFYROUTINGDATA = fn(
@@ -7771,7 +7771,7 @@ pub const PFAXROUTEINITIALIZE = fn(
 
 pub const PFAXROUTEMETHOD = fn(
     param0: ?*const FAX_ROUTE,
-    param1: ?*?*c_void,
+    param1: ?*?*anyopaque,
     param2: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7844,7 +7844,7 @@ pub const PFAX_EXT_UNREGISTER_FOR_EVENTS = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFAX_EXT_FREE_BUFFER = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFAX_EXT_INITIALIZE_CONFIG = fn(
@@ -7961,12 +7961,12 @@ pub const IStillImageW = extern struct {
             dwType: u32,
             dwFlags: u32,
             pdwItemsReturned: ?*u32,
-            ppBuffer: ?*?*c_void,
+            ppBuffer: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceInfo: fn(
             self: *const IStillImageW,
             pwszDeviceName: ?PWSTR,
-            ppBuffer: ?*?*c_void,
+            ppBuffer: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDevice: fn(
             self: *const IStillImageW,
@@ -8046,11 +8046,11 @@ pub const IStillImageW = extern struct {
             return @ptrCast(*const IStillImageW.VTable, self.vtable).Initialize(@ptrCast(*const IStillImageW, self), hinst, dwVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStillImageW_GetDeviceList(self: *const T, dwType: u32, dwFlags: u32, pdwItemsReturned: ?*u32, ppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IStillImageW_GetDeviceList(self: *const T, dwType: u32, dwFlags: u32, pdwItemsReturned: ?*u32, ppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStillImageW.VTable, self.vtable).GetDeviceList(@ptrCast(*const IStillImageW, self), dwType, dwFlags, pdwItemsReturned, ppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStillImageW_GetDeviceInfo(self: *const T, pwszDeviceName: ?PWSTR, ppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IStillImageW_GetDeviceInfo(self: *const T, pwszDeviceName: ?PWSTR, ppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStillImageW.VTable, self.vtable).GetDeviceInfo(@ptrCast(*const IStillImageW, self), pwszDeviceName, ppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8136,10 +8136,10 @@ pub const IStiDevice = extern struct {
             self: *const IStiDevice,
             EscapeFunction: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lpInData: ?*c_void,
+            lpInData: ?*anyopaque,
             cbInDataSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            pOutData: ?*c_void,
+            pOutData: ?*anyopaque,
             dwOutDataSize: u32,
             pdwActualData: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8157,28 +8157,28 @@ pub const IStiDevice = extern struct {
         RawReadData: fn(
             self: *const IStiDevice,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawWriteData: fn(
             self: *const IStiDevice,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawReadCommand: fn(
             self: *const IStiDevice,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawWriteCommand: fn(
             self: *const IStiDevice,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8222,7 +8222,7 @@ pub const IStiDevice = extern struct {
             return @ptrCast(*const IStiDevice.VTable, self.vtable).Diagnostic(@ptrCast(*const IStiDevice, self), pBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDevice_Escape(self: *const T, EscapeFunction: u32, lpInData: ?*c_void, cbInDataSize: u32, pOutData: ?*c_void, dwOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IStiDevice_Escape(self: *const T, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, dwOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDevice.VTable, self.vtable).Escape(@ptrCast(*const IStiDevice, self), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8238,19 +8238,19 @@ pub const IStiDevice = extern struct {
             return @ptrCast(*const IStiDevice.VTable, self.vtable).UnLockDevice(@ptrCast(*const IStiDevice, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDevice_RawReadData(self: *const T, lpBuffer: ?*c_void, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDevice_RawReadData(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDevice.VTable, self.vtable).RawReadData(@ptrCast(*const IStiDevice, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDevice_RawWriteData(self: *const T, lpBuffer: ?*c_void, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDevice_RawWriteData(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDevice.VTable, self.vtable).RawWriteData(@ptrCast(*const IStiDevice, self), lpBuffer, nNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDevice_RawReadCommand(self: *const T, lpBuffer: ?*c_void, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDevice_RawReadCommand(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDevice.VTable, self.vtable).RawReadCommand(@ptrCast(*const IStiDevice, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDevice_RawWriteCommand(self: *const T, lpBuffer: ?*c_void, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDevice_RawWriteCommand(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDevice.VTable, self.vtable).RawWriteCommand(@ptrCast(*const IStiDevice, self), lpBuffer, nNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8292,34 +8292,34 @@ pub const IStiDeviceControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawReadData: fn(
             self: *const IStiDeviceControl,
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawWriteData: fn(
             self: *const IStiDeviceControl,
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawReadCommand: fn(
             self: *const IStiDeviceControl,
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawWriteCommand: fn(
             self: *const IStiDeviceControl,
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawDeviceControl: fn(
             self: *const IStiDeviceControl,
             EscapeFunction: u32,
-            lpInData: ?*c_void,
+            lpInData: ?*anyopaque,
             cbInDataSize: u32,
-            pOutData: ?*c_void,
+            pOutData: ?*anyopaque,
             dwOutDataSize: u32,
             pdwActualData: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8355,23 +8355,23 @@ pub const IStiDeviceControl = extern struct {
             return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).Initialize(@ptrCast(*const IStiDeviceControl, self), dwDeviceType, dwMode, pwszPortName, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDeviceControl_RawReadData(self: *const T, lpBuffer: ?*c_void, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDeviceControl_RawReadData(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawReadData(@ptrCast(*const IStiDeviceControl, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDeviceControl_RawWriteData(self: *const T, lpBuffer: ?*c_void, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDeviceControl_RawWriteData(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawWriteData(@ptrCast(*const IStiDeviceControl, self), lpBuffer, nNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDeviceControl_RawReadCommand(self: *const T, lpBuffer: ?*c_void, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDeviceControl_RawReadCommand(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawReadCommand(@ptrCast(*const IStiDeviceControl, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDeviceControl_RawWriteCommand(self: *const T, lpBuffer: ?*c_void, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiDeviceControl_RawWriteCommand(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawWriteCommand(@ptrCast(*const IStiDeviceControl, self), lpBuffer, nNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiDeviceControl_RawDeviceControl(self: *const T, EscapeFunction: u32, lpInData: ?*c_void, cbInDataSize: u32, pOutData: ?*c_void, dwOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IStiDeviceControl_RawDeviceControl(self: *const T, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, dwOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawDeviceControl(@ptrCast(*const IStiDeviceControl, self), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8428,10 +8428,10 @@ pub const IStiUSD = extern struct {
             self: *const IStiUSD,
             EscapeFunction: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lpInData: ?*c_void,
+            lpInData: ?*anyopaque,
             cbInDataSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            pOutData: ?*c_void,
+            pOutData: ?*anyopaque,
             cbOutDataSize: u32,
             pdwActualData: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8448,28 +8448,28 @@ pub const IStiUSD = extern struct {
         RawReadData: fn(
             self: *const IStiUSD,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawWriteData: fn(
             self: *const IStiUSD,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawReadCommand: fn(
             self: *const IStiUSD,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RawWriteCommand: fn(
             self: *const IStiUSD,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8510,7 +8510,7 @@ pub const IStiUSD = extern struct {
             return @ptrCast(*const IStiUSD.VTable, self.vtable).Diagnostic(@ptrCast(*const IStiUSD, self), pBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiUSD_Escape(self: *const T, EscapeFunction: u32, lpInData: ?*c_void, cbInDataSize: u32, pOutData: ?*c_void, cbOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IStiUSD_Escape(self: *const T, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, cbOutDataSize: u32, pdwActualData: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiUSD.VTable, self.vtable).Escape(@ptrCast(*const IStiUSD, self), EscapeFunction, lpInData, cbInDataSize, pOutData, cbOutDataSize, pdwActualData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8526,19 +8526,19 @@ pub const IStiUSD = extern struct {
             return @ptrCast(*const IStiUSD.VTable, self.vtable).UnLockDevice(@ptrCast(*const IStiUSD, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiUSD_RawReadData(self: *const T, lpBuffer: ?*c_void, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiUSD_RawReadData(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiUSD.VTable, self.vtable).RawReadData(@ptrCast(*const IStiUSD, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiUSD_RawWriteData(self: *const T, lpBuffer: ?*c_void, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiUSD_RawWriteData(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiUSD.VTable, self.vtable).RawWriteData(@ptrCast(*const IStiUSD, self), lpBuffer, nNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiUSD_RawReadCommand(self: *const T, lpBuffer: ?*c_void, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiUSD_RawReadCommand(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiUSD.VTable, self.vtable).RawReadCommand(@ptrCast(*const IStiUSD, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStiUSD_RawWriteCommand(self: *const T, lpBuffer: ?*c_void, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStiUSD_RawWriteCommand(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStiUSD.VTable, self.vtable).RawWriteCommand(@ptrCast(*const IStiUSD, self), lpBuffer, nNumberOfBytes, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8620,7 +8620,7 @@ pub extern "WINFAX" fn FaxSendDocumentForBroadcastA(
     FileName: ?[*:0]const u8,
     FaxJobId: ?*u32,
     FaxRecipientCallback: ?PFAX_RECIPIENT_CALLBACKA,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8629,7 +8629,7 @@ pub extern "WINFAX" fn FaxSendDocumentForBroadcastW(
     FileName: ?[*:0]const u16,
     FaxJobId: ?*u32,
     FaxRecipientCallback: ?PFAX_RECIPIENT_CALLBACKW,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8887,7 +8887,7 @@ pub extern "WINFAX" fn FaxInitializeEventQueue(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINFAX" fn FaxFreeBuffer(
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8937,7 +8937,7 @@ pub extern "WINFAX" fn FaxRegisterRoutingExtensionW(
     FriendlyName: ?[*:0]const u16,
     ImageName: ?[*:0]const u16,
     CallBack: ?PFAX_ROUTING_INSTALLATION_CALLBACKW,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINFAX" fn FaxAccessCheck(

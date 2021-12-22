@@ -387,17 +387,17 @@ pub const SRowSet = extern struct {
 
 pub const LPALLOCATEBUFFER = fn(
     cbSize: u32,
-    lppBuffer: ?*?*c_void,
+    lppBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPALLOCATEMORE = fn(
     cbSize: u32,
-    lpObject: ?*c_void,
-    lppBuffer: ?*?*c_void,
+    lpObject: ?*anyopaque,
+    lppBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPFREEBUFFER = fn(
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const MAPIERROR = extern struct {
@@ -495,7 +495,7 @@ pub const IMAPIAdviseSink = extern struct {
 };
 
 pub const LPNOTIFCALLBACK = fn(
-    lpvContext: ?*c_void,
+    lpvContext: ?*anyopaque,
     cNotification: u32,
     lpNotifications: ?*NOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -616,7 +616,7 @@ pub const IMAPIProp = extern struct {
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             lpInterface: ?*Guid,
-            lpDestObj: ?*c_void,
+            lpDestObj: ?*anyopaque,
             ulFlags: u32,
             lppProblems: ?*?*SPropProblemArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -626,7 +626,7 @@ pub const IMAPIProp = extern struct {
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             lpInterface: ?*Guid,
-            lpDestObj: ?*c_void,
+            lpDestObj: ?*anyopaque,
             ulFlags: u32,
             lppProblems: ?*?*SPropProblemArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -678,11 +678,11 @@ pub const IMAPIProp = extern struct {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).DeleteProps(@ptrCast(*const IMAPIProp, self), lpPropTagArray, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: ?*Guid, lpExcludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*c_void, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: ?*Guid, lpExcludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).CopyTo(@ptrCast(*const IMAPIProp, self), ciidExclude, rgiidExclude, lpExcludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIProp_CopyProps(self: *const T, lpIncludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*c_void, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+        pub fn IMAPIProp_CopyProps(self: *const T, lpIncludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIProp.VTable, self.vtable).CopyProps(@ptrCast(*const IMAPIProp, self), lpIncludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1284,7 +1284,7 @@ pub const IMAPIFolder = extern struct {
             self: *const IMAPIFolder,
             lpMsgList: ?*SBinaryArray,
             lpInterface: ?*Guid,
-            lpDestFolder: ?*c_void,
+            lpDestFolder: ?*anyopaque,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
             ulFlags: u32,
@@ -1311,7 +1311,7 @@ pub const IMAPIFolder = extern struct {
             // TODO: what to do with BytesParamIndex 0?
             lpEntryID: ?*ENTRYID,
             lpInterface: ?*Guid,
-            lpDestFolder: ?*c_void,
+            lpDestFolder: ?*anyopaque,
             lpszNewFolderName: ?*i8,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
@@ -1370,7 +1370,7 @@ pub const IMAPIFolder = extern struct {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CreateMessage(@ptrCast(*const IMAPIFolder, self), lpInterface, ulFlags, lppMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CopyMessages(self: *const T, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*c_void, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CopyMessages(self: *const T, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CopyMessages(@ptrCast(*const IMAPIFolder, self), lpMsgList, lpInterface, lpDestFolder, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1382,7 +1382,7 @@ pub const IMAPIFolder = extern struct {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CreateFolder(@ptrCast(*const IMAPIFolder, self), ulFolderType, lpszFolderName, lpszFolderComment, lpInterface, ulFlags, lppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMAPIFolder_CopyFolder(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*c_void, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IMAPIFolder_CopyFolder(self: *const T, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMAPIFolder.VTable, self.vtable).CopyFolder(@ptrCast(*const IMAPIFolder, self), cbEntryID, lpEntryID, lpInterface, lpDestFolder, lpszNewFolderName, ulUIParam, lpProgress, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1663,17 +1663,17 @@ pub const IAttach = extern struct {
 
 pub const LPFNABSDI = fn(
     ulUIParam: usize,
-    lpvmsg: ?*c_void,
+    lpvmsg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFNDISMISS = fn(
     ulUIParam: usize,
-    lpvContext: ?*c_void,
+    lpvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LPFNBUTTON = fn(
     ulUIParam: usize,
-    lpvContext: ?*c_void,
+    lpvContext: ?*anyopaque,
     cbEntryID: u32,
     lpSelection: ?*ENTRYID,
     ulFlags: u32,
@@ -1683,12 +1683,12 @@ pub const ADRPARM = extern struct {
     cbABContEntryID: u32,
     lpABContEntryID: ?*ENTRYID,
     ulFlags: u32,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
     ulHelpContext: u32,
     lpszHelpFileName: ?*i8,
     lpfnABSDI: ?LPFNABSDI,
     lpfnDismiss: ?LPFNDISMISS,
-    lpvDismissContext: ?*c_void,
+    lpvDismissContext: ?*anyopaque,
     lpszCaption: ?*i8,
     lpszNewEntryTitle: ?*i8,
     lpszDestWellsTitle: ?*i8,
@@ -2033,7 +2033,7 @@ pub const IPropData = extern struct {
 };
 
 pub const FNIDLE = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFNIDLE = fn(
@@ -2056,7 +2056,7 @@ pub const DTCTL = extern struct {
     lpszFilter: ?*i8,
     ulItemID: u32,
     ctl: extern union {
-        lpv: ?*c_void,
+        lpv: ?*anyopaque,
         lplabel: ?*DTBLLABEL,
         lpedit: ?*DTBLEDIT,
         lplbx: ?*DTBLLBX,
@@ -2164,11 +2164,11 @@ pub const IAddrBook = extern struct {
             self: *const IAddrBook,
             lpulUIParam: ?*usize,
             lpfnDismiss: ?LPFNDISMISS,
-            lpvDismissContext: ?*c_void,
+            lpvDismissContext: ?*anyopaque,
             cbEntryID: u32,
             lpEntryID: ?*ENTRYID,
             lpfButtonCallback: ?LPFNBUTTON,
-            lpvButtonContext: ?*c_void,
+            lpvButtonContext: ?*anyopaque,
             lpszButtonText: ?*i8,
             ulFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2258,7 +2258,7 @@ pub const IAddrBook = extern struct {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Address(@ptrCast(*const IAddrBook, self), lpulUIParam, lpAdrParms, lppAdrList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAddrBook_Details(self: *const T, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*c_void, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*c_void, lpszButtonText: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IAddrBook_Details(self: *const T, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*anyopaque, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*anyopaque, lpszButtonText: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAddrBook.VTable, self.vtable).Details(@ptrCast(*const IAddrBook, self), lpulUIParam, lpfnDismiss, lpvDismissContext, cbEntryID, lpEntryID, lpfButtonCallback, lpvButtonContext, lpszButtonText, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2318,17 +2318,17 @@ pub const IWABObject = extern struct {
         AllocateBuffer: fn(
             self: *const IWABObject,
             cbSize: u32,
-            lppBuffer: ?*?*c_void,
+            lppBuffer: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateMore: fn(
             self: *const IWABObject,
             cbSize: u32,
-            lpObject: ?*c_void,
-            lppBuffer: ?*?*c_void,
+            lpObject: ?*anyopaque,
+            lppBuffer: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const IWABObject,
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Backup: fn(
             self: *const IWABObject,
@@ -2395,15 +2395,15 @@ pub const IWABObject = extern struct {
             return @ptrCast(*const IWABObject.VTable, self.vtable).GetLastError(@ptrCast(*const IWABObject, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWABObject_AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IWABObject, self), cbSize, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_AllocateMore(self: *const T, cbSize: u32, lpObject: ?*c_void, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWABObject_AllocateMore(self: *const T, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).AllocateMore(@ptrCast(*const IWABObject, self), cbSize, lpObject, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABObject_FreeBuffer(self: *const T, lpBuffer: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWABObject_FreeBuffer(self: *const T, lpBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABObject.VTable, self.vtable).FreeBuffer(@ptrCast(*const IWABObject, self), lpBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2448,7 +2448,7 @@ pub const IWABObject = extern struct {
 
 pub const IWABOBJECT_QueryInterface_METHOD = fn(
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_AddRef_METHOD = fn(
@@ -2465,17 +2465,17 @@ pub const IWABOBJECT_GetLastError_METHOD = fn(
 
 pub const IWABOBJECT_AllocateBuffer_METHOD = fn(
     cbSize: u32,
-    lppBuffer: ?*?*c_void,
+    lppBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_AllocateMore_METHOD = fn(
     cbSize: u32,
-    lpObject: ?*c_void,
-    lppBuffer: ?*?*c_void,
+    lpObject: ?*anyopaque,
+    lppBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_FreeBuffer_METHOD = fn(
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const IWABOBJECT_Backup_METHOD = fn(
@@ -2539,7 +2539,7 @@ pub const IWABOBJECT_ = extern struct {
         QueryInterface: fn(
             self: *const IWABOBJECT_,
             riid: ?*const Guid,
-            ppvObj: ?*?*c_void,
+            ppvObj: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRef: fn(
             self: *const IWABOBJECT_,
@@ -2556,17 +2556,17 @@ pub const IWABOBJECT_ = extern struct {
         AllocateBuffer: fn(
             self: *const IWABOBJECT_,
             cbSize: u32,
-            lppBuffer: ?*?*c_void,
+            lppBuffer: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateMore: fn(
             self: *const IWABOBJECT_,
             cbSize: u32,
-            lpObject: ?*c_void,
-            lppBuffer: ?*?*c_void,
+            lpObject: ?*anyopaque,
+            lppBuffer: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreeBuffer: fn(
             self: *const IWABOBJECT_,
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Backup: fn(
             self: *const IWABOBJECT_,
@@ -2628,7 +2628,7 @@ pub const IWABOBJECT_ = extern struct {
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__QueryInterface(self: *const T, riid: ?*const Guid, ppvObj: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__QueryInterface(self: *const T, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).QueryInterface(@ptrCast(*const IWABOBJECT_, self), riid, ppvObj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2644,15 +2644,15 @@ pub const IWABOBJECT_ = extern struct {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).GetLastError(@ptrCast(*const IWABOBJECT_, self), hResult, ulFlags, lppMAPIError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__AllocateBuffer(self: *const T, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IWABOBJECT_, self), cbSize, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__AllocateMore(self: *const T, cbSize: u32, lpObject: ?*c_void, lppBuffer: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__AllocateMore(self: *const T, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).AllocateMore(@ptrCast(*const IWABOBJECT_, self), cbSize, lpObject, lppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWABOBJECT__FreeBuffer(self: *const T, lpBuffer: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWABOBJECT__FreeBuffer(self: *const T, lpBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWABOBJECT_.VTable, self.vtable).FreeBuffer(@ptrCast(*const IWABOBJECT_, self), lpBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2736,7 +2736,7 @@ pub const WABEXTDISPLAY = extern struct {
     fReadOnly: BOOL,
     fDataChanged: BOOL,
     ulFlags: u32,
-    lpv: ?*c_void,
+    lpv: ?*anyopaque,
     lpsz: ?*i8,
 };
 
@@ -2765,19 +2765,19 @@ pub const IWABExtInit = extern struct {
 pub const LPWABALLOCATEBUFFER = fn(
     lpWABObject: ?*IWABObject,
     cbSize: u32,
-    lppBuffer: ?*?*c_void,
+    lppBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPWABALLOCATEMORE = fn(
     lpWABObject: ?*IWABObject,
     cbSize: u32,
-    lpObject: ?*c_void,
-    lppBuffer: ?*?*c_void,
+    lpObject: ?*anyopaque,
+    lppBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPWABFREEBUFFER = fn(
     lpWABObject: ?*IWABObject,
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const NOTIFKEY = extern struct {
@@ -2794,7 +2794,7 @@ pub extern "rtm" fn CreateTable(
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lpAllocateMore: ?LPALLOCATEMORE,
     lpFreeBuffer: ?LPFREEBUFFER,
-    lpvReserved: ?*c_void,
+    lpvReserved: ?*anyopaque,
     ulTableType: u32,
     ulPropTagIndexColumn: u32,
     lpSPropTagArrayColumns: ?*SPropTagArray,
@@ -2806,12 +2806,12 @@ pub extern "MAPI32" fn CreateIProp(
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lpAllocateMore: ?LPALLOCATEMORE,
     lpFreeBuffer: ?LPFREEBUFFER,
-    lpvReserved: ?*c_void,
+    lpvReserved: ?*anyopaque,
     lppPropData: ?*?*IPropData,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn MAPIInitIdle(
-    lpvReserved: ?*c_void,
+    lpvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn MAPIDeinitIdle(
@@ -2819,25 +2819,25 @@ pub extern "MAPI32" fn MAPIDeinitIdle(
 
 pub extern "MAPI32" fn FtgRegisterIdleRoutine(
     lpfnIdle: ?PFNIDLE,
-    lpvIdleParam: ?*c_void,
+    lpvIdleParam: ?*anyopaque,
     priIdle: i16,
     csecIdle: u32,
     iroIdle: u16,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "MAPI32" fn DeregisterIdleRoutine(
-    ftg: ?*c_void,
+    ftg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "MAPI32" fn EnableIdleRoutine(
-    ftg: ?*c_void,
+    ftg: ?*anyopaque,
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "MAPI32" fn ChangeIdleRoutine(
-    ftg: ?*c_void,
+    ftg: ?*anyopaque,
     lpfnIdle: ?PFNIDLE,
-    lpvIdleParam: ?*c_void,
+    lpvIdleParam: ?*anyopaque,
     priIdle: i16,
     csecIdle: u32,
     iroIdle: u16,
@@ -2860,7 +2860,7 @@ pub extern "MAPI32" fn PropCopyMore(
     lpSPropValueDest: ?*SPropValue,
     lpSPropValueSrc: ?*SPropValue,
     lpfAllocMore: ?LPALLOCATEMORE,
-    lpvObject: ?*c_void,
+    lpvObject: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn UlPropSize(
@@ -2906,7 +2906,7 @@ pub extern "MAPI32" fn HrAddColumnsEx(
 
 pub extern "MAPI32" fn HrAllocAdviseSink(
     lpfnCallback: ?LPNOTIFCALLBACK,
-    lpvContext: ?*c_void,
+    lpvContext: ?*anyopaque,
     lppAdviseSink: ?*?*IMAPIAdviseSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2941,15 +2941,15 @@ pub extern "MAPI32" fn ScCountNotifications(
 pub extern "MAPI32" fn ScCopyNotifications(
     cNotification: i32,
     lpNotifications: ?*NOTIFICATION,
-    lpvDst: ?*c_void,
+    lpvDst: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn ScRelocNotifications(
     cNotification: i32,
     lpNotifications: ?*NOTIFICATION,
-    lpvBaseOld: ?*c_void,
-    lpvBaseNew: ?*c_void,
+    lpvBaseOld: ?*anyopaque,
+    lpvBaseNew: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2968,15 +2968,15 @@ pub extern "MAPI32" fn LpValFindProp(
 pub extern "MAPI32" fn ScCopyProps(
     cValues: i32,
     lpPropArray: ?*SPropValue,
-    lpvDst: ?*c_void,
+    lpvDst: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn ScRelocProps(
     cValues: i32,
     lpPropArray: ?*SPropValue,
-    lpvBaseOld: ?*c_void,
-    lpvBaseNew: ?*c_void,
+    lpvBaseOld: ?*anyopaque,
+    lpvBaseNew: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2988,11 +2988,11 @@ pub extern "MAPI32" fn ScDupPropset(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn UlAddRef(
-    lpunk: ?*c_void,
+    lpunk: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "MAPI32" fn UlRelease(
-    lpunk: ?*c_void,
+    lpunk: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "MAPI32" fn HrGetOneProp(

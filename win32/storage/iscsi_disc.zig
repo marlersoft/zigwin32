@@ -206,7 +206,7 @@ pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
     DataIn: u8,
     DataTransferLength: u32,
     TimeOutValue: u32,
-    DataBuffer: ?*c_void,
+    DataBuffer: ?*anyopaque,
     SenseInfoOffset: u32,
     Cdb: [16]u8,
 };
@@ -246,8 +246,8 @@ pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
     SenseInfoOffset: u32,
     DataOutTransferLength: u32,
     DataInTransferLength: u32,
-    DataOutBuffer: ?*c_void,
-    DataInBuffer: ?*c_void,
+    DataOutBuffer: ?*anyopaque,
+    DataInBuffer: ?*anyopaque,
     Cdb: [1]u8,
 };
 
@@ -278,7 +278,7 @@ pub const ATA_PASS_THROUGH_DIRECT = extern struct {
     DataTransferLength: u32,
     TimeOutValue: u32,
     ReservedAsUlong: u32,
-    DataBuffer: ?*c_void,
+    DataBuffer: ?*anyopaque,
     PreviousTaskFile: [8]u8,
     CurrentTaskFile: [8]u8,
 };
@@ -658,7 +658,7 @@ pub const SCSI_ADDRESS = extern struct {
 };
 
 pub const DUMP_DEVICE_POWERON_ROUTINE = fn(
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PDUMP_DEVICE_POWERON_ROUTINE = fn(
@@ -671,38 +671,38 @@ pub const DUMP_POINTERS_VERSION = extern struct {
 
 pub const DUMP_POINTERS = extern struct {
     AdapterObject: ?*_ADAPTER_OBJECT,
-    MappedRegisterBase: ?*c_void,
-    DumpData: ?*c_void,
-    CommonBufferVa: ?*c_void,
+    MappedRegisterBase: ?*anyopaque,
+    DumpData: ?*anyopaque,
+    CommonBufferVa: ?*anyopaque,
     CommonBufferPa: LARGE_INTEGER,
     CommonBufferSize: u32,
     AllocateCommonBuffers: BOOLEAN,
     UseDiskDump: BOOLEAN,
     Spare1: [2]u8,
-    DeviceObject: ?*c_void,
+    DeviceObject: ?*anyopaque,
 };
 
 pub const DUMP_POINTERS_EX = extern struct {
     Header: DUMP_POINTERS_VERSION,
-    DumpData: ?*c_void,
-    CommonBufferVa: ?*c_void,
+    DumpData: ?*anyopaque,
+    CommonBufferVa: ?*anyopaque,
     CommonBufferSize: u32,
     AllocateCommonBuffers: BOOLEAN,
-    DeviceObject: ?*c_void,
-    DriverList: ?*c_void,
+    DeviceObject: ?*anyopaque,
+    DriverList: ?*anyopaque,
     dwPortFlags: u32,
     MaxDeviceDumpSectionSize: u32,
     MaxDeviceDumpLevel: u32,
     MaxTransferSize: u32,
-    AdapterObject: ?*c_void,
-    MappedRegisterBase: ?*c_void,
+    AdapterObject: ?*anyopaque,
+    MappedRegisterBase: ?*anyopaque,
     DeviceReady: ?*BOOLEAN,
     DumpDevicePowerOn: ?PDUMP_DEVICE_POWERON_ROUTINE,
-    DumpDevicePowerOnContext: ?*c_void,
+    DumpDevicePowerOnContext: ?*anyopaque,
 };
 
 pub const DUMP_DRIVER = extern struct {
-    DumpDriverList: ?*c_void,
+    DumpDriverList: ?*anyopaque,
     DriverName: [15]u16,
     BaseName: [15]u16,
 };
@@ -714,7 +714,7 @@ pub const NTSCSI_UNICODE_STRING = extern struct {
 };
 
 pub const DUMP_DRIVER_EX = extern struct {
-    DumpDriverList: ?*c_void,
+    DumpDriverList: ?*anyopaque,
     DriverName: [15]u16,
     BaseName: [15]u16,
     DriverFullPath: NTSCSI_UNICODE_STRING,
@@ -1052,7 +1052,7 @@ pub const SCSI_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
         DataIn: u8,
         DataTransferLength: u32,
         TimeOutValue: u32,
-        DataBuffer: ?*c_void,
+        DataBuffer: ?*anyopaque,
         SenseInfoOffset: u32,
         Cdb: [16]u8,
     },
@@ -1094,8 +1094,8 @@ pub const SCSI_PASS_THROUGH_DIRECT32_EX = switch(@import("../zig.zig").arch) {
         SenseInfoOffset: u32,
         DataOutTransferLength: u32,
         DataInTransferLength: u32,
-        DataOutBuffer: ?*c_void,
-        DataInBuffer: ?*c_void,
+        DataOutBuffer: ?*anyopaque,
+        DataInBuffer: ?*anyopaque,
         Cdb: [1]u8,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
@@ -1128,7 +1128,7 @@ pub const ATA_PASS_THROUGH_DIRECT32 = switch(@import("../zig.zig").arch) {
         DataTransferLength: u32,
         TimeOutValue: u32,
         ReservedAsUlong: u32,
-        DataBuffer: ?*c_void,
+        DataBuffer: ?*anyopaque,
         PreviousTaskFile: [8]u8,
         CurrentTaskFile: [8]u8,
     },
@@ -1193,7 +1193,7 @@ pub extern "ISCSIDSC" fn GetIScsiTargetInformationW(
     DiscoveryMechanism: ?PWSTR,
     InfoClass: TARGET_INFORMATION_CLASS,
     BufferSize: ?*u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1202,13 +1202,13 @@ pub extern "ISCSIDSC" fn GetIScsiTargetInformationA(
     DiscoveryMechanism: ?PSTR,
     InfoClass: TARGET_INFORMATION_CLASS,
     BufferSize: ?*u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiConnectionW(
     UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     InitiatorPortNumber: u32,
     TargetPortal: ?*ISCSI_TARGET_PORTALW,
     SecurityFlags: u64,
@@ -1221,7 +1221,7 @@ pub extern "ISCSIDSC" fn AddIScsiConnectionW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn AddIScsiConnectionA(
     UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     InitiatorPortNumber: u32,
     TargetPortal: ?*ISCSI_TARGET_PORTALA,
     SecurityFlags: u64,

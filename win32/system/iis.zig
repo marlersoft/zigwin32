@@ -2001,7 +2001,7 @@ pub const HSE_VERSION_INFO = extern struct {
 pub const EXTENSION_CONTROL_BLOCK = extern struct {
     cbSize: u32,
     dwVersion: u32,
-    ConnID: ?*c_void,
+    ConnID: ?*anyopaque,
     dwHttpStatusCode: u32,
     lpszLogData: [80]CHAR,
     lpszMethod: ?PSTR,
@@ -2036,21 +2036,21 @@ pub const HSE_UNICODE_URL_MAPEX_INFO = extern struct {
 
 pub const PFN_HSE_IO_COMPLETION = fn(
     pECB: ?*EXTENSION_CONTROL_BLOCK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     cbIO: u32,
     dwError: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const HSE_TF_INFO = extern struct {
     pfnHseIO: ?PFN_HSE_IO_COMPLETION,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     hFile: ?HANDLE,
     pszStatusCode: ?[*:0]const u8,
     BytesToWrite: u32,
     Offset: u32,
-    pHead: ?*c_void,
+    pHead: ?*anyopaque,
     HeadLength: u32,
-    pTail: ?*c_void,
+    pTail: ?*anyopaque,
     TailLength: u32,
     dwFlags: u32,
 };
@@ -2071,7 +2071,7 @@ pub const HSE_EXEC_URL_USER_INFO = extern struct {
 
 pub const HSE_EXEC_URL_ENTITY_INFO = extern struct {
     cbAvailable: u32,
-    lpbData: ?*c_void,
+    lpbData: ?*anyopaque,
 };
 
 pub const HSE_EXEC_URL_STATUS = extern struct {
@@ -2112,7 +2112,7 @@ pub const HSE_CUSTOM_ERROR_INFO = extern struct {
 
 pub const HSE_VECTOR_ELEMENT = extern struct {
     ElementType: u32,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     cbOffset: u64,
     cbSize: u64,
 };
@@ -2146,7 +2146,7 @@ pub const PFN_HSE_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK = fn(
     pszProtocolManagerDll: ?[*:0]const u16,
     pszProtocolManagerDllInitFunction: ?[*:0]const u16,
     dwCustomInterfaceId: u32,
-    ppCustomInterface: ?*?*c_void,
+    ppCustomInterface: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_GETEXTENSIONVERSION = fn(
@@ -2207,10 +2207,10 @@ pub const SF_STATUS_REQ_READ_NEXT = SF_STATUS_TYPE.READ_NEXT;
 pub const HTTP_FILTER_CONTEXT = extern struct {
     cbSize: u32,
     Revision: u32,
-    ServerContext: ?*c_void,
+    ServerContext: ?*anyopaque,
     ulReserved: u32,
     fIsSecurePort: BOOL,
-    pFilterContext: ?*c_void,
+    pFilterContext: ?*anyopaque,
     GetServerVariable: isize,
     AddResponseHeaders: isize,
     WriteClient: isize,
@@ -2219,7 +2219,7 @@ pub const HTTP_FILTER_CONTEXT = extern struct {
 };
 
 pub const HTTP_FILTER_RAW_DATA = extern struct {
-    pvInData: ?*c_void,
+    pvInData: ?*anyopaque,
     cbInData: u32,
     cbInBuffer: u32,
     dwReserved: u32,
@@ -2381,7 +2381,7 @@ pub extern "RpcProxy" fn HttpExtensionProc(
 pub extern "RpcProxy" fn HttpFilterProc(
     pfc: ?*HTTP_FILTER_CONTEXT,
     NotificationType: u32,
-    pvNotification: ?*c_void,
+    pvNotification: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "RpcProxy" fn GetFilterVersion(

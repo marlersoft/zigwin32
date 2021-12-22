@@ -1111,7 +1111,7 @@ pub const UsbdPipeTypeInterrupt = USBD_PIPE_TYPE.Interrupt;
 
 pub const USBD_DEVICE_INFORMATION = extern struct {
     OffsetNext: u32,
-    UsbdDeviceHandle: ?*c_void,
+    UsbdDeviceHandle: ?*anyopaque,
     DeviceDescriptor: USB_DEVICE_DESCRIPTOR,
 };
 
@@ -1120,7 +1120,7 @@ pub const USBD_PIPE_INFORMATION = extern struct {
     EndpointAddress: u8,
     Interval: u8,
     PipeType: USBD_PIPE_TYPE,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     MaximumTransferSize: u32,
     PipeFlags: u32,
 };
@@ -1142,12 +1142,12 @@ pub const USBD_ENDPOINT_OFFLOAD_INFORMATION = packed struct {
     _bitfield1: u32,
     _bitfield2: u32,
     TransferSegmentLA: LARGE_INTEGER,
-    TransferSegmentVA: ?*c_void,
+    TransferSegmentVA: ?*anyopaque,
     TransferRingSize: usize,
     TransferRingInitialCycleBit: u32,
     MessageNumber: u32,
     EventRingSegmentLA: LARGE_INTEGER,
-    EventRingSegmentVA: ?*c_void,
+    EventRingSegmentVA: ?*anyopaque,
     EventRingSize: usize,
     EventRingInitialCycleBit: u32,
 };
@@ -1160,39 +1160,39 @@ pub const USBD_INTERFACE_INFORMATION = extern struct {
     SubClass: u8,
     Protocol: u8,
     Reserved: u8,
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     NumberOfPipes: u32,
     Pipes: [1]USBD_PIPE_INFORMATION,
 };
 
 pub const _URB_HCD_AREA = extern struct {
-    Reserved8: [8]?*c_void,
+    Reserved8: [8]?*anyopaque,
 };
 
 pub const _URB_HEADER = extern struct {
     Length: u16,
     Function: u16,
     Status: i32,
-    UsbdDeviceHandle: ?*c_void,
+    UsbdDeviceHandle: ?*anyopaque,
     UsbdFlags: u32,
 };
 
 pub const _URB_SELECT_INTERFACE = extern struct {
     Hdr: _URB_HEADER,
-    ConfigurationHandle: ?*c_void,
+    ConfigurationHandle: ?*anyopaque,
     Interface: USBD_INTERFACE_INFORMATION,
 };
 
 pub const _URB_SELECT_CONFIGURATION = extern struct {
     Hdr: _URB_HEADER,
     ConfigurationDescriptor: ?*USB_CONFIGURATION_DESCRIPTOR,
-    ConfigurationHandle: ?*c_void,
+    ConfigurationHandle: ?*anyopaque,
     Interface: USBD_INTERFACE_INFORMATION,
 };
 
 pub const _URB_PIPE_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     Reserved: u32,
 };
 
@@ -1218,11 +1218,11 @@ pub const _URB_GET_CURRENT_FRAME_NUMBER = extern struct {
 
 pub const _URB_CONTROL_DESCRIPTOR_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Reserved0: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     Reserved1: u16,
@@ -1234,11 +1234,11 @@ pub const _URB_CONTROL_DESCRIPTOR_REQUEST = extern struct {
 
 pub const _URB_CONTROL_GET_STATUS_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Reserved0: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     Reserved1: [4]u8,
@@ -1248,11 +1248,11 @@ pub const _URB_CONTROL_GET_STATUS_REQUEST = extern struct {
 
 pub const _URB_CONTROL_FEATURE_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Reserved2: u32,
     Reserved3: u32,
-    Reserved4: ?*c_void,
-    Reserved5: ?*c_void,
+    Reserved4: ?*anyopaque,
+    Reserved5: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     Reserved0: u16,
@@ -1263,11 +1263,11 @@ pub const _URB_CONTROL_FEATURE_REQUEST = extern struct {
 
 pub const _URB_CONTROL_VENDOR_OR_CLASS_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     TransferFlags: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     RequestTypeReservedBits: u8,
@@ -1279,11 +1279,11 @@ pub const _URB_CONTROL_VENDOR_OR_CLASS_REQUEST = extern struct {
 
 pub const _URB_CONTROL_GET_INTERFACE_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Reserved0: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     Reserved1: [4]u8,
@@ -1293,11 +1293,11 @@ pub const _URB_CONTROL_GET_INTERFACE_REQUEST = extern struct {
 
 pub const _URB_CONTROL_GET_CONFIGURATION_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Reserved0: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     Reserved1: [8]u8,
@@ -1316,11 +1316,11 @@ pub const OS_STRING = extern struct {
 
 pub const _URB_OS_FEATURE_DESCRIPTOR_REQUEST = extern struct {
     Hdr: _URB_HEADER,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Reserved0: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     _bitfield: u8,
@@ -1333,11 +1333,11 @@ pub const _URB_OS_FEATURE_DESCRIPTOR_REQUEST = extern struct {
 
 pub const _URB_CONTROL_TRANSFER = extern struct {
     Hdr: _URB_HEADER,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     TransferFlags: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     SetupPacket: [8]u8,
@@ -1345,11 +1345,11 @@ pub const _URB_CONTROL_TRANSFER = extern struct {
 
 pub const _URB_CONTROL_TRANSFER_EX = extern struct {
     Hdr: _URB_HEADER,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     TransferFlags: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     Timeout: u32,
     hca: _URB_HCD_AREA,
     SetupPacket: [8]u8,
@@ -1357,11 +1357,11 @@ pub const _URB_CONTROL_TRANSFER_EX = extern struct {
 
 pub const _URB_BULK_OR_INTERRUPT_TRANSFER = extern struct {
     Hdr: _URB_HEADER,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     TransferFlags: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
 };
@@ -1374,11 +1374,11 @@ pub const USBD_ISO_PACKET_DESCRIPTOR = extern struct {
 
 pub const _URB_ISOCH_TRANSFER = extern struct {
     Hdr: _URB_HEADER,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     TransferFlags: u32,
     TransferBufferLength: u32,
-    TransferBuffer: ?*c_void,
-    TransferBufferMDL: ?*c_void,
+    TransferBuffer: ?*anyopaque,
+    TransferBufferMDL: ?*anyopaque,
     UrbLink: ?*URB,
     hca: _URB_HCD_AREA,
     StartFrame: u32,
@@ -1388,7 +1388,7 @@ pub const _URB_ISOCH_TRANSFER = extern struct {
 };
 
 pub const USBD_STREAM_INFORMATION = extern struct {
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     StreamID: u32,
     MaximumTransferSize: u32,
     PipeFlags: u32,
@@ -1396,7 +1396,7 @@ pub const USBD_STREAM_INFORMATION = extern struct {
 
 pub const _URB_OPEN_STATIC_STREAMS = extern struct {
     Hdr: _URB_HEADER,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     NumberOfStreams: u32,
     StreamInfoVersion: u16,
     StreamInfoSize: u16,
@@ -1405,7 +1405,7 @@ pub const _URB_OPEN_STATIC_STREAMS = extern struct {
 
 pub const _URB_GET_ISOCH_PIPE_TRANSFER_PATH_DELAYS = extern struct {
     Hdr: _URB_HEADER,
-    PipeHandle: ?*c_void,
+    PipeHandle: ?*anyopaque,
     MaximumSendPathDelayInMilliSeconds: u32,
     MaximumCompletionPathDelayInMilliSeconds: u32,
 };
@@ -1437,12 +1437,12 @@ pub const URB = extern struct {
 };
 
 pub const USB_IDLE_CALLBACK = fn(
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const USB_IDLE_CALLBACK_INFO = extern struct {
     IdleCallback: ?USB_IDLE_CALLBACK,
-    IdleContext: ?*c_void,
+    IdleContext: ?*anyopaque,
 };
 
 pub const USB_USER_ERROR_CODE = enum(i32) {
@@ -2016,21 +2016,21 @@ pub const USBSCAN_TIMEOUT = extern struct {
 //--------------------------------------------------------------------------------
 pub extern "WINUSB" fn WinUsb_Initialize(
     DeviceHandle: ?HANDLE,
-    InterfaceHandle: ?*?*c_void,
+    InterfaceHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_Free(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetAssociatedInterface(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     AssociatedInterfaceIndex: u8,
-    AssociatedInterfaceHandle: ?*?*c_void,
+    AssociatedInterfaceHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetDescriptor(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     DescriptorType: u8,
     Index: u8,
     LanguageID: u16,
@@ -2041,63 +2041,63 @@ pub extern "WINUSB" fn WinUsb_GetDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_QueryInterfaceSettings(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     AlternateInterfaceNumber: u8,
     UsbAltInterfaceDescriptor: ?*USB_INTERFACE_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_QueryDeviceInformation(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     InformationType: u32,
     BufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_SetCurrentAlternateSetting(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     SettingNumber: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetCurrentAlternateSetting(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     SettingNumber: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_QueryPipe(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     AlternateInterfaceNumber: u8,
     PipeIndex: u8,
     PipeInformation: ?*WINUSB_PIPE_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_QueryPipeEx(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     AlternateSettingNumber: u8,
     PipeIndex: u8,
     PipeInformationEx: ?*WINUSB_PIPE_INFORMATION_EX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_SetPipePolicy(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     PolicyType: u32,
     ValueLength: u32,
     // TODO: what to do with BytesParamIndex 3?
-    Value: ?*c_void,
+    Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetPipePolicy(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     PolicyType: u32,
     ValueLength: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    Value: ?*c_void,
+    Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_ReadPipe(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*u8,
@@ -2107,7 +2107,7 @@ pub extern "WINUSB" fn WinUsb_ReadPipe(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_WritePipe(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*u8,
@@ -2117,7 +2117,7 @@ pub extern "WINUSB" fn WinUsb_WritePipe(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_ControlTransfer(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     SetupPacket: WINUSB_SETUP_PACKET,
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*u8,
@@ -2127,38 +2127,38 @@ pub extern "WINUSB" fn WinUsb_ControlTransfer(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_ResetPipe(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_AbortPipe(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_FlushPipe(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_SetPowerPolicy(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PolicyType: u32,
     ValueLength: u32,
     // TODO: what to do with BytesParamIndex 2?
-    Value: ?*c_void,
+    Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetPowerPolicy(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PolicyType: u32,
     ValueLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    Value: ?*c_void,
+    Value: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetOverlappedResult(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     lpOverlapped: ?*OVERLAPPED,
     lpNumberOfBytesTransferred: ?*u32,
     bWait: BOOL,
@@ -2166,7 +2166,7 @@ pub extern "WINUSB" fn WinUsb_GetOverlappedResult(
 
 pub extern "WINUSB" fn WinUsb_ParseConfigurationDescriptor(
     ConfigurationDescriptor: ?*USB_CONFIGURATION_DESCRIPTOR,
-    StartPosition: ?*c_void,
+    StartPosition: ?*anyopaque,
     InterfaceNumber: i32,
     AlternateSetting: i32,
     InterfaceClass: i32,
@@ -2176,15 +2176,15 @@ pub extern "WINUSB" fn WinUsb_ParseConfigurationDescriptor(
 
 pub extern "WINUSB" fn WinUsb_ParseDescriptors(
     // TODO: what to do with BytesParamIndex 1?
-    DescriptorBuffer: ?*c_void,
+    DescriptorBuffer: ?*anyopaque,
     TotalLength: u32,
-    StartPosition: ?*c_void,
+    StartPosition: ?*anyopaque,
     DescriptorType: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*USB_COMMON_DESCRIPTOR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WINUSB" fn WinUsb_GetCurrentFrameNumber(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     CurrentFrameNumber: ?*u32,
     TimeStamp: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2197,22 +2197,22 @@ pub extern "WINUSB" fn WinUsb_GetAdjustedFrameNumber(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WINUSB" fn WinUsb_RegisterIsochBuffer(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     PipeID: u8,
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*u8,
     BufferLength: u32,
-    IsochBufferHandle: ?*?*c_void,
+    IsochBufferHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WINUSB" fn WinUsb_UnregisterIsochBuffer(
-    IsochBufferHandle: ?*c_void,
+    IsochBufferHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WINUSB" fn WinUsb_WriteIsochPipe(
-    BufferHandle: ?*c_void,
+    BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
     FrameNumber: ?*u32,
@@ -2221,7 +2221,7 @@ pub extern "WINUSB" fn WinUsb_WriteIsochPipe(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WINUSB" fn WinUsb_ReadIsochPipe(
-    BufferHandle: ?*c_void,
+    BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
     FrameNumber: ?*u32,
@@ -2232,7 +2232,7 @@ pub extern "WINUSB" fn WinUsb_ReadIsochPipe(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WINUSB" fn WinUsb_WriteIsochPipeAsap(
-    BufferHandle: ?*c_void,
+    BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
     ContinueStream: BOOL,
@@ -2241,7 +2241,7 @@ pub extern "WINUSB" fn WinUsb_WriteIsochPipeAsap(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WINUSB" fn WinUsb_ReadIsochPipeAsap(
-    BufferHandle: ?*c_void,
+    BufferHandle: ?*anyopaque,
     Offset: u32,
     Length: u32,
     ContinueStream: BOOL,
@@ -2252,19 +2252,19 @@ pub extern "WINUSB" fn WinUsb_ReadIsochPipeAsap(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "WINUSB" fn WinUsb_StartTrackingForTimeSync(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     StartTrackingInfo: ?*USB_START_TRACKING_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "WINUSB" fn WinUsb_GetCurrentFrameNumberAndQpc(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     FrameQpcInfo: ?*USB_FRAME_NUMBER_AND_QPC_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "WINUSB" fn WinUsb_StopTrackingForTimeSync(
-    InterfaceHandle: ?*c_void,
+    InterfaceHandle: ?*anyopaque,
     StopTrackingInfo: ?*USB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

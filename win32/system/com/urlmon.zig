@@ -1401,7 +1401,7 @@ pub const PI_PREFERDEFAULTHANDLER = PI_FLAGS.I_PREFERDEFAULTHANDLER;
 pub const PROTOCOLDATA = extern struct {
     grfFlags: u32,
     dwState: u32,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     cbData: u32,
 };
 
@@ -1682,14 +1682,14 @@ pub const IInternetSession = extern struct {
         SetSessionOption: fn(
             self: *const IInternetSession,
             dwOption: u32,
-            pBuffer: ?*c_void,
+            pBuffer: ?*anyopaque,
             dwBufferLength: u32,
             dwReserved: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSessionOption: fn(
             self: *const IInternetSession,
             dwOption: u32,
-            pBuffer: ?*c_void,
+            pBuffer: ?*anyopaque,
             pdwBufferLength: ?*u32,
             dwReserved: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1718,11 +1718,11 @@ pub const IInternetSession = extern struct {
             return @ptrCast(*const IInternetSession.VTable, self.vtable).CreateBinding(@ptrCast(*const IInternetSession, self), pBC, szUrl, pUnkOuter, ppUnk, ppOInetProt, dwOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInternetSession_SetSessionOption(self: *const T, dwOption: u32, pBuffer: ?*c_void, dwBufferLength: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        pub fn IInternetSession_SetSessionOption(self: *const T, dwOption: u32, pBuffer: ?*anyopaque, dwBufferLength: u32, dwReserved: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInternetSession.VTable, self.vtable).SetSessionOption(@ptrCast(*const IInternetSession, self), dwOption, pBuffer, dwBufferLength, dwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInternetSession_GetSessionOption(self: *const T, dwOption: u32, pBuffer: ?*c_void, pdwBufferLength: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        pub fn IInternetSession_GetSessionOption(self: *const T, dwOption: u32, pBuffer: ?*anyopaque, pdwBufferLength: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInternetSession.VTable, self.vtable).GetSessionOption(@ptrCast(*const IInternetSession, self), dwOption, pBuffer, pdwBufferLength, dwReserved);
         }
     };}
@@ -2797,7 +2797,7 @@ pub const ISoftDistExt = extern struct {
         AsyncInstallDistributionUnit: fn(
             self: *const ISoftDistExt,
             pbc: ?*IBindCtx,
-            pvReserved: ?*c_void,
+            pvReserved: ?*anyopaque,
             flags: u32,
             lpcbh: ?*CODEBASEHOLD,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2818,7 +2818,7 @@ pub const ISoftDistExt = extern struct {
             return @ptrCast(*const ISoftDistExt.VTable, self.vtable).GetNextCodeBase(@ptrCast(*const ISoftDistExt, self), szCodeBase, dwMaxSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISoftDistExt_AsyncInstallDistributionUnit(self: *const T, pbc: ?*IBindCtx, pvReserved: ?*c_void, flags: u32, lpcbh: ?*CODEBASEHOLD) callconv(.Inline) HRESULT {
+        pub fn ISoftDistExt_AsyncInstallDistributionUnit(self: *const T, pbc: ?*IBindCtx, pvReserved: ?*anyopaque, flags: u32, lpcbh: ?*CODEBASEHOLD) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISoftDistExt.VTable, self.vtable).AsyncInstallDistributionUnit(@ptrCast(*const ISoftDistExt, self), pbc, pvReserved, flags, lpcbh);
         }
     };}
@@ -2836,7 +2836,7 @@ pub const ICatalogFileInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJavaTrust: fn(
             self: *const ICatalogFileInfo,
-            ppJavaTrust: ?*?*c_void,
+            ppJavaTrust: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2847,7 +2847,7 @@ pub const ICatalogFileInfo = extern struct {
             return @ptrCast(*const ICatalogFileInfo.VTable, self.vtable).GetCatalogFile(@ptrCast(*const ICatalogFileInfo, self), ppszCatalogFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalogFileInfo_GetJavaTrust(self: *const T, ppJavaTrust: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICatalogFileInfo_GetJavaTrust(self: *const T, ppJavaTrust: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICatalogFileInfo.VTable, self.vtable).GetJavaTrust(@ptrCast(*const ICatalogFileInfo, self), ppJavaTrust);
         }
     };}
@@ -3140,7 +3140,7 @@ pub extern "urlmon" fn GetClassFileOrMime(
     pBC: ?*IBindCtx,
     szFilename: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     cbSize: u32,
     szMime: ?[*:0]const u16,
     dwReserved: u32,
@@ -3161,9 +3161,9 @@ pub extern "urlmon" fn CoGetClassObjectFromURL(
     szTYPE: ?[*:0]const u16,
     pBindCtx: ?*IBindCtx,
     dwClsContext: CLSCTX,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "urlmon" fn IEInstallScope(
@@ -3233,7 +3233,7 @@ pub extern "urlmon" fn FindMediaTypeClass(
 pub extern "urlmon" fn UrlMkSetSessionOption(
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     dwBufferLength: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -3241,7 +3241,7 @@ pub extern "urlmon" fn UrlMkSetSessionOption(
 pub extern "urlmon" fn UrlMkGetSessionOption(
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     dwBufferLength: u32,
     pdwBufferLengthOut: ?*u32,
     dwReserved: u32,
@@ -3251,7 +3251,7 @@ pub extern "urlmon" fn FindMimeFromData(
     pBC: ?*IBindCtx,
     pwzUrl: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     cbSize: u32,
     pwzMimeProposed: ?[*:0]const u16,
     dwMimeFlags: u32,
@@ -3466,7 +3466,7 @@ pub extern "urlmon" fn CoInternetQueryInfo(
     QueryOptions: QUERYOPTION,
     dwQueryFlags: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
     cbBuffer: u32,
     pcbBuffer: ?*u32,
     dwReserved: u32,

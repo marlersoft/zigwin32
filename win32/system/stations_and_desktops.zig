@@ -167,7 +167,7 @@ pub extern "USER32" fn CreateDesktopExA(
     dwDesiredAccess: u32,
     lpsa: ?*SECURITY_ATTRIBUTES,
     ulHeapSize: u32,
-    pvoid: ?*c_void,
+    pvoid: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -179,7 +179,7 @@ pub extern "USER32" fn CreateDesktopExW(
     dwDesiredAccess: u32,
     lpsa: ?*SECURITY_ATTRIBUTES,
     ulHeapSize: u32,
-    pvoid: ?*c_void,
+    pvoid: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -307,7 +307,7 @@ pub extern "USER32" fn GetUserObjectInformationA(
     hObj: ?HANDLE,
     nIndex: USER_OBJECT_INFORMATION_INDEX,
     // TODO: what to do with BytesParamIndex 3?
-    pvInfo: ?*c_void,
+    pvInfo: ?*anyopaque,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -317,7 +317,7 @@ pub extern "USER32" fn GetUserObjectInformationW(
     hObj: ?HANDLE,
     nIndex: USER_OBJECT_INFORMATION_INDEX,
     // TODO: what to do with BytesParamIndex 3?
-    pvInfo: ?*c_void,
+    pvInfo: ?*anyopaque,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -327,7 +327,7 @@ pub extern "USER32" fn SetUserObjectInformationA(
     hObj: ?HANDLE,
     nIndex: i32,
     // TODO: what to do with BytesParamIndex 3?
-    pvInfo: ?*c_void,
+    pvInfo: ?*anyopaque,
     nLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -336,7 +336,7 @@ pub extern "USER32" fn SetUserObjectInformationW(
     hObj: ?HANDLE,
     nIndex: i32,
     // TODO: what to do with BytesParamIndex 3?
-    pvInfo: ?*c_void,
+    pvInfo: ?*anyopaque,
     nLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

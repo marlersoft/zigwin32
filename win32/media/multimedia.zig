@@ -5673,8 +5673,8 @@ pub const ICOPEN = extern struct {
     dwVersion: u32,
     dwFlags: u32,
     dwError: LRESULT,
-    pV1Reserved: ?*c_void,
-    pV2Reserved: ?*c_void,
+    pV1Reserved: ?*anyopaque,
+    pV2Reserved: ?*anyopaque,
     dnDevNode: u32,
 };
 
@@ -5693,16 +5693,16 @@ pub const ICINFO = extern struct {
 pub const ICCOMPRESS = extern struct {
     dwFlags: u32,
     lpbiOutput: ?*BITMAPINFOHEADER,
-    lpOutput: ?*c_void,
+    lpOutput: ?*anyopaque,
     lpbiInput: ?*BITMAPINFOHEADER,
-    lpInput: ?*c_void,
+    lpInput: ?*anyopaque,
     lpckid: ?*u32,
     lpdwFlags: ?*u32,
     lFrameNum: i32,
     dwFrameSize: u32,
     dwQuality: u32,
     lpbiPrev: ?*BITMAPINFOHEADER,
-    lpPrev: ?*c_void,
+    lpPrev: ?*anyopaque,
 };
 
 pub const ICCOMPRESSFRAMES = extern struct {
@@ -5733,18 +5733,18 @@ pub const ICSETSTATUSPROC = extern struct {
 pub const ICDECOMPRESS = extern struct {
     dwFlags: u32,
     lpbiInput: ?*BITMAPINFOHEADER,
-    lpInput: ?*c_void,
+    lpInput: ?*anyopaque,
     lpbiOutput: ?*BITMAPINFOHEADER,
-    lpOutput: ?*c_void,
+    lpOutput: ?*anyopaque,
     ckid: u32,
 };
 
 pub const ICDECOMPRESSEX = extern struct {
     dwFlags: u32,
     lpbiSrc: ?*BITMAPINFOHEADER,
-    lpSrc: ?*c_void,
+    lpSrc: ?*anyopaque,
     lpbiDst: ?*BITMAPINFOHEADER,
-    lpDst: ?*c_void,
+    lpDst: ?*anyopaque,
     xDst: i32,
     yDst: i32,
     dxDst: i32,
@@ -5775,8 +5775,8 @@ pub const ICDRAWBEGIN = extern struct {
 
 pub const ICDRAW = extern struct {
     dwFlags: u32,
-    lpFormat: ?*c_void,
-    lpData: ?*c_void,
+    lpFormat: ?*anyopaque,
+    lpData: ?*anyopaque,
     cbData: u32,
     lTime: i32,
 };
@@ -5806,14 +5806,14 @@ pub const COMPVARS = extern struct {
     fccHandler: u32,
     lpbiIn: ?*BITMAPINFO,
     lpbiOut: ?*BITMAPINFO,
-    lpBitsOut: ?*c_void,
-    lpBitsPrev: ?*c_void,
+    lpBitsOut: ?*anyopaque,
+    lpBitsPrev: ?*anyopaque,
     lFrame: i32,
     lKey: i32,
     lDataRate: i32,
     lQ: i32,
     lKeyCount: i32,
-    lpState: ?*c_void,
+    lpState: ?*anyopaque,
     cbState: i32,
 };
 
@@ -5910,9 +5910,9 @@ pub const AVICOMPRESSOPTIONS = extern struct {
     dwQuality: u32,
     dwBytesPerSecond: u32,
     dwFlags: u32,
-    lpFormat: ?*c_void,
+    lpFormat: ?*anyopaque,
     cbFormat: u32,
-    lpParms: ?*c_void,
+    lpParms: ?*anyopaque,
     cbParms: u32,
     dwInterleaveEvery: u32,
 };
@@ -5943,14 +5943,14 @@ pub const IAVIStream = extern struct {
             self: *const IAVIStream,
             lPos: i32,
             // TODO: what to do with BytesParamIndex 2?
-            lpFormat: ?*c_void,
+            lpFormat: ?*anyopaque,
             lpcbFormat: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFormat: fn(
             self: *const IAVIStream,
             lPos: i32,
             // TODO: what to do with BytesParamIndex 2?
-            lpFormat: ?*c_void,
+            lpFormat: ?*anyopaque,
             cbFormat: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Read: fn(
@@ -5958,7 +5958,7 @@ pub const IAVIStream = extern struct {
             lStart: i32,
             lSamples: i32,
             // TODO: what to do with BytesParamIndex 3?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             cbBuffer: i32,
             plBytes: ?*i32,
             plSamples: ?*i32,
@@ -5968,7 +5968,7 @@ pub const IAVIStream = extern struct {
             lStart: i32,
             lSamples: i32,
             // TODO: what to do with BytesParamIndex 3?
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             cbBuffer: i32,
             dwFlags: u32,
             plSampWritten: ?*i32,
@@ -5983,14 +5983,14 @@ pub const IAVIStream = extern struct {
             self: *const IAVIStream,
             fcc: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lp: ?*c_void,
+            lp: ?*anyopaque,
             lpcb: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteData: fn(
             self: *const IAVIStream,
             fcc: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lp: ?*c_void,
+            lp: ?*anyopaque,
             cb: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetInfo: fn(
@@ -6016,19 +6016,19 @@ pub const IAVIStream = extern struct {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).FindSample(@ptrCast(*const IAVIStream, self), lPos, lFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_ReadFormat(self: *const T, lPos: i32, lpFormat: ?*c_void, lpcbFormat: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IAVIStream_ReadFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, lpcbFormat: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, lpcbFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_SetFormat(self: *const T, lPos: i32, lpFormat: ?*c_void, cbFormat: i32) callconv(.Inline) HRESULT {
+        pub fn IAVIStream_SetFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, cbFormat: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).SetFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, cbFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_Read(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*c_void, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IAVIStream_Read(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).Read(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, plBytes, plSamples);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_Write(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*c_void, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IAVIStream_Write(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).Write(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, dwFlags, plSampWritten, plBytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6036,11 +6036,11 @@ pub const IAVIStream = extern struct {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).Delete(@ptrCast(*const IAVIStream, self), lStart, lSamples);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_ReadData(self: *const T, fcc: u32, lp: ?*c_void, lpcb: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IAVIStream_ReadData(self: *const T, fcc: u32, lp: ?*anyopaque, lpcb: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadData(@ptrCast(*const IAVIStream, self), fcc, lp, lpcb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_WriteData(self: *const T, fcc: u32, lp: ?*c_void, cb: i32) callconv(.Inline) HRESULT {
+        pub fn IAVIStream_WriteData(self: *const T, fcc: u32, lp: ?*anyopaque, cb: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIStream.VTable, self.vtable).WriteData(@ptrCast(*const IAVIStream, self), fcc, lp, cb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6193,14 +6193,14 @@ pub const IAVIFile = extern struct {
             self: *const IAVIFile,
             ckid: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lpData: ?*c_void,
+            lpData: ?*anyopaque,
             cbData: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReadData: fn(
             self: *const IAVIFile,
             ckid: u32,
             // TODO: what to do with BytesParamIndex 2?
-            lpData: ?*c_void,
+            lpData: ?*anyopaque,
             lpcbData: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndRecord: fn(
@@ -6228,11 +6228,11 @@ pub const IAVIFile = extern struct {
             return @ptrCast(*const IAVIFile.VTable, self.vtable).CreateStream(@ptrCast(*const IAVIFile, self), ppStream, psi);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_WriteData(self: *const T, ckid: u32, lpData: ?*c_void, cbData: i32) callconv(.Inline) HRESULT {
+        pub fn IAVIFile_WriteData(self: *const T, ckid: u32, lpData: ?*anyopaque, cbData: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIFile.VTable, self.vtable).WriteData(@ptrCast(*const IAVIFile, self), ckid, lpData, cbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_ReadData(self: *const T, ckid: u32, lpData: ?*c_void, lpcbData: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IAVIFile_ReadData(self: *const T, ckid: u32, lpData: ?*anyopaque, lpcbData: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAVIFile.VTable, self.vtable).ReadData(@ptrCast(*const IAVIFile, self), ckid, lpData, lpcbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6256,7 +6256,7 @@ pub const IGetFrame = extern struct {
         GetFrame: fn(
             self: *const IGetFrame,
             lPos: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         Begin: fn(
             self: *const IGetFrame,
             lStart: i32,
@@ -6269,7 +6269,7 @@ pub const IGetFrame = extern struct {
         SetFormat: fn(
             self: *const IGetFrame,
             lpbi: ?*BITMAPINFOHEADER,
-            lpBits: ?*c_void,
+            lpBits: ?*anyopaque,
             x: i32,
             y: i32,
             dx: i32,
@@ -6280,7 +6280,7 @@ pub const IGetFrame = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetFrame_GetFrame(self: *const T, lPos: i32) callconv(.Inline) ?*c_void {
+        pub fn IGetFrame_GetFrame(self: *const T, lPos: i32) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const IGetFrame.VTable, self.vtable).GetFrame(@ptrCast(*const IGetFrame, self), lPos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6292,7 +6292,7 @@ pub const IGetFrame = extern struct {
             return @ptrCast(*const IGetFrame.VTable, self.vtable).End(@ptrCast(*const IGetFrame, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetFrame_SetFormat(self: *const T, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*c_void, x: i32, y: i32, dx: i32, dy: i32) callconv(.Inline) HRESULT {
+        pub fn IGetFrame_SetFormat(self: *const T, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*anyopaque, x: i32, y: i32, dx: i32, dy: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetFrame.VTable, self.vtable).SetFormat(@ptrCast(*const IGetFrame, self), lpbi, lpBits, x, y, dx, dy);
         }
     };}
@@ -6385,7 +6385,7 @@ pub const CAPTUREPARMS = extern struct {
 
 pub const CAPINFOCHUNK = extern struct {
     fccInfoID: u32,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     cbData: i32,
 };
 
@@ -6453,7 +6453,7 @@ pub const MIDIOPENSTRMID = packed struct {
 
 pub const MIXEROPENDESC = packed struct {
     hmx: ?HMIXER,
-    pReserved0: ?*c_void,
+    pReserved0: ?*anyopaque,
     dwCallback: usize,
     dwInstance: usize,
     dnDevNode: usize,
@@ -6480,7 +6480,7 @@ pub const LPTASKCALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const VFWWDMExtensionProc = fn(
-    pfnDeviceIoControl: ?*c_void,
+    pfnDeviceIoControl: ?*anyopaque,
     pfnAddPropertyPage: ?LPFNSVADDPROPSHEETPAGE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -6489,9 +6489,9 @@ pub const LPFNEXTDEVIO = fn(
     lParam: LPARAM,
     dwFlags: u32,
     dwIoControlCode: u32,
-    lpInBuffer: ?*c_void,
+    lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    lpOutBuffer: ?*c_void,
+    lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -6943,16 +6943,16 @@ pub extern "MSVFW32" fn ICCompress(
     hic: ?HIC,
     dwFlags: u32,
     lpbiOutput: ?*BITMAPINFOHEADER,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     lpbiInput: ?*BITMAPINFOHEADER,
-    lpBits: ?*c_void,
+    lpBits: ?*anyopaque,
     lpckid: ?*u32,
     lpdwFlags: ?*u32,
     lFrameNum: i32,
     dwFrameSize: u32,
     dwQuality: u32,
     lpbiPrev: ?*BITMAPINFOHEADER,
-    lpPrev: ?*c_void,
+    lpPrev: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6960,9 +6960,9 @@ pub extern "MSVFW32" fn ICDecompress(
     hic: ?HIC,
     dwFlags: u32,
     lpbiFormat: ?*BITMAPINFOHEADER,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     lpbi: ?*BITMAPINFOHEADER,
-    lpBits: ?*c_void,
+    lpBits: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6989,9 +6989,9 @@ pub extern "MSVFW32" fn ICDrawBegin(
 pub extern "MSVFW32" fn ICDraw(
     hic: ?HIC,
     dwFlags: u32,
-    lpFormat: ?*c_void,
+    lpFormat: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 4?
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     cbData: u32,
     lTime: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -7020,7 +7020,7 @@ pub extern "MSVFW32" fn ICImageCompress(
     hic: ?HIC,
     uiFlags: u32,
     lpbiIn: ?*BITMAPINFO,
-    lpBits: ?*c_void,
+    lpBits: ?*anyopaque,
     lpbiOut: ?*BITMAPINFO,
     lQuality: i32,
     plSize: ?*i32,
@@ -7031,7 +7031,7 @@ pub extern "MSVFW32" fn ICImageDecompress(
     hic: ?HIC,
     uiFlags: u32,
     lpbiIn: ?*BITMAPINFO,
-    lpBits: ?*c_void,
+    lpBits: ?*anyopaque,
     lpbiOut: ?*BITMAPINFO,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
@@ -7039,8 +7039,8 @@ pub extern "MSVFW32" fn ICImageDecompress(
 pub extern "MSVFW32" fn ICCompressorChoose(
     hwnd: ?HWND,
     uiFlags: u32,
-    pvIn: ?*c_void,
-    lpData: ?*c_void,
+    pvIn: ?*anyopaque,
+    lpData: ?*anyopaque,
     pc: ?*COMPVARS,
     lpszTitle: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -7060,10 +7060,10 @@ pub extern "MSVFW32" fn ICSeqCompressFrameEnd(
 pub extern "MSVFW32" fn ICSeqCompressFrame(
     pc: ?*COMPVARS,
     uiFlags: u32,
-    lpBits: ?*c_void,
+    lpBits: ?*anyopaque,
     pfKey: ?*BOOL,
     plSize: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn ICCompressorFree(
@@ -7085,7 +7085,7 @@ pub extern "MSVFW32" fn DrawDibGetBuffer(
     lpbi: ?*BITMAPINFOHEADER,
     dwSize: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSVFW32" fn DrawDibGetPalette(
@@ -7145,7 +7145,7 @@ pub extern "MSVFW32" fn DrawDibDraw(
     dxDst: i32,
     dyDst: i32,
     lpbi: ?*BITMAPINFOHEADER,
-    lpBits: ?*c_void,
+    lpBits: ?*anyopaque,
     xSrc: i32,
     ySrc: i32,
     dxSrc: i32,
@@ -7246,7 +7246,7 @@ pub extern "AVIFIL32" fn AVIFileWriteData(
     pfile: ?*IAVIFile,
     ckid: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     cbData: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -7255,7 +7255,7 @@ pub extern "AVIFIL32" fn AVIFileReadData(
     pfile: ?*IAVIFile,
     ckid: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     lpcbData: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -7302,7 +7302,7 @@ pub extern "AVIFIL32" fn AVIStreamReadFormat(
     pavi: ?*IAVIStream,
     lPos: i32,
     // TODO: what to do with BytesParamIndex 3?
-    lpFormat: ?*c_void,
+    lpFormat: ?*anyopaque,
     lpcbFormat: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -7311,7 +7311,7 @@ pub extern "AVIFIL32" fn AVIStreamSetFormat(
     pavi: ?*IAVIStream,
     lPos: i32,
     // TODO: what to do with BytesParamIndex 3?
-    lpFormat: ?*c_void,
+    lpFormat: ?*anyopaque,
     cbFormat: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -7320,7 +7320,7 @@ pub extern "AVIFIL32" fn AVIStreamReadData(
     pavi: ?*IAVIStream,
     fcc: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lp: ?*c_void,
+    lp: ?*anyopaque,
     lpcb: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -7329,7 +7329,7 @@ pub extern "AVIFIL32" fn AVIStreamWriteData(
     pavi: ?*IAVIStream,
     fcc: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lp: ?*c_void,
+    lp: ?*anyopaque,
     cb: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -7339,7 +7339,7 @@ pub extern "AVIFIL32" fn AVIStreamRead(
     lStart: i32,
     lSamples: i32,
     // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     cbBuffer: i32,
     plBytes: ?*i32,
     plSamples: ?*i32,
@@ -7351,7 +7351,7 @@ pub extern "AVIFIL32" fn AVIStreamWrite(
     lStart: i32,
     lSamples: i32,
     // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     cbBuffer: i32,
     dwFlags: u32,
     plSampWritten: ?*i32,
@@ -7403,7 +7403,7 @@ pub extern "AVIFIL32" fn AVIStreamGetFrameOpen(
 pub extern "AVIFIL32" fn AVIStreamGetFrame(
     pg: ?*IGetFrame,
     lPos: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "AVIFIL32" fn AVIStreamGetFrameClose(

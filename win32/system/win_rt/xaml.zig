@@ -183,7 +183,7 @@ pub const ISurfaceImageSourceNativeWithD2D = extern struct {
             self: *const ISurfaceImageSourceNativeWithD2D,
             updateRect: ?*const RECT,
             iid: ?*const Guid,
-            updateObject: ?*?*c_void,
+            updateObject: ?*?*anyopaque,
             offset: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndDraw: fn(
@@ -204,7 +204,7 @@ pub const ISurfaceImageSourceNativeWithD2D = extern struct {
             return @ptrCast(*const ISurfaceImageSourceNativeWithD2D.VTable, self.vtable).SetDevice(@ptrCast(*const ISurfaceImageSourceNativeWithD2D, self), device);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISurfaceImageSourceNativeWithD2D_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*c_void, offset: ?*POINT) callconv(.Inline) HRESULT {
+        pub fn ISurfaceImageSourceNativeWithD2D_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, offset: ?*POINT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISurfaceImageSourceNativeWithD2D.VTable, self.vtable).BeginDraw(@ptrCast(*const ISurfaceImageSourceNativeWithD2D, self), updateRect, iid, updateObject, offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

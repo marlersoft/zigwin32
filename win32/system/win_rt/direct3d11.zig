@@ -14,14 +14,14 @@ pub const IDirect3DDxgiInterfaceAccess = extern struct {
         GetInterface: fn(
             self: *const IDirect3DDxgiInterfaceAccess,
             iid: ?*const Guid,
-            p: ?*?*c_void,
+            p: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDxgiInterfaceAccess_GetInterface(self: *const T, iid: ?*const Guid, p: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirect3DDxgiInterfaceAccess_GetInterface(self: *const T, iid: ?*const Guid, p: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirect3DDxgiInterfaceAccess.VTable, self.vtable).GetInterface(@ptrCast(*const IDirect3DDxgiInterfaceAccess, self), iid, p);
         }
     };}

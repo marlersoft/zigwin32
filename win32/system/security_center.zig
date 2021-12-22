@@ -317,10 +317,10 @@ pub const WSC_SECURITY_PROVIDER_HEALTH_SNOOZE = WSC_SECURITY_PROVIDER_HEALTH.SNO
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WSCAPI" fn WscRegisterForChanges(
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     phCallbackRegistration: ?*?HANDLE,
     lpCallbackAddress: ?LPTHREAD_START_ROUTINE,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

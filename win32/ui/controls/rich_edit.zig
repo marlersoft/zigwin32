@@ -1325,7 +1325,7 @@ pub const GETCONTEXTMENUEX = extern struct {
     chrg: CHARRANGE,
     dwFlags: u32,
     pt: POINT,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 };
 
 pub const ENDROPFILES = extern struct {
@@ -1534,7 +1534,7 @@ pub const CN_NEWREDO = CHANGETYPE.NEWREDO;
 
 pub const CHANGENOTIFY = extern struct {
     dwChangeType: CHANGETYPE,
-    pvCookieData: ?*c_void,
+    pvCookieData: ?*anyopaque,
 };
 
 pub const ITextServices = extern struct {
@@ -1551,7 +1551,7 @@ pub const ITextServices = extern struct {
             self: *const ITextServices,
             dwDrawAspect: DVASPECT,
             lindex: i32,
-            pvAspect: ?*c_void,
+            pvAspect: ?*anyopaque,
             ptd: ?*DVTARGETDEVICE,
             hdcDraw: ?HDC,
             hicTargetDev: ?HDC,
@@ -1582,7 +1582,7 @@ pub const ITextServices = extern struct {
             self: *const ITextServices,
             dwDrawAspect: DVASPECT,
             lindex: i32,
-            pvAspect: ?*c_void,
+            pvAspect: ?*anyopaque,
             ptd: ?*DVTARGETDEVICE,
             hdcDraw: ?HDC,
             hicTargetDev: ?HDC,
@@ -1594,7 +1594,7 @@ pub const ITextServices = extern struct {
             self: *const ITextServices,
             dwDrawAspect: DVASPECT,
             lindex: i32,
-            pvAspect: ?*c_void,
+            pvAspect: ?*anyopaque,
             ptd: ?*DVTARGETDEVICE,
             hdcDraw: ?HDC,
             hicTargetDev: ?HDC,
@@ -1666,7 +1666,7 @@ pub const ITextServices = extern struct {
             return @ptrCast(*const ITextServices.VTable, self.vtable).TxSendMessage(@ptrCast(*const ITextServices, self), msg, wparam, lparam, plresult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxDraw(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*c_void, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, lprcUpdate: ?*RECT, pfnContinue: isize, dwContinue: u32, lViewId: i32) callconv(.Inline) HRESULT {
+        pub fn ITextServices_TxDraw(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, lprcUpdate: ?*RECT, pfnContinue: isize, dwContinue: u32, lViewId: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextServices.VTable, self.vtable).TxDraw(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcBounds, lprcWBounds, lprcUpdate, pfnContinue, dwContinue, lViewId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1678,11 +1678,11 @@ pub const ITextServices = extern struct {
             return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetVScroll(@ptrCast(*const ITextServices, self), plMin, plMax, plPos, plPage, pfEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_OnTxSetCursor(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*c_void, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32) callconv(.Inline) HRESULT {
+        pub fn ITextServices_OnTxSetCursor(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxSetCursor(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxQueryHitPoint(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*c_void, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ITextServices_TxQueryHitPoint(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextServices.VTable, self.vtable).TxQueryHitPoint(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y, pHitResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1921,7 +1921,7 @@ pub const ITextHost = extern struct {
         TxNotify: fn(
             self: *const ITextHost,
             iNotify: u32,
-            pv: ?*c_void,
+            pv: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TxImmGetContext: fn(
             self: *const ITextHost,
@@ -2079,7 +2079,7 @@ pub const ITextHost = extern struct {
             return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetPropertyBits(@ptrCast(*const ITextHost, self), dwMask, pdwBits);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxNotify(self: *const T, iNotify: u32, pv: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ITextHost_TxNotify(self: *const T, iNotify: u32, pv: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextHost.VTable, self.vtable).TxNotify(@ptrCast(*const ITextHost, self), iNotify, pv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

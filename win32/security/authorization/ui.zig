@@ -387,9 +387,9 @@ pub const ISecurityInformation3 = extern struct {
 
 pub const SECURITY_OBJECT = extern struct {
     pwszName: ?PWSTR,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     cbData: u32,
-    pData2: ?*c_void,
+    pData2: ?*anyopaque,
     cbData2: u32,
     Id: u32,
     fWellKnown: BOOLEAN,

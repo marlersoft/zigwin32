@@ -168,7 +168,7 @@ pub const PWLX_USE_CTRL_ALT_DEL = fn(
 
 pub const PWLX_SET_CONTEXT_POINTER = fn(
     hWlx: ?HANDLE,
-    pWlxContext: ?*c_void,
+    pWlxContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWLX_SAS_NOTIFY = fn(
@@ -267,7 +267,7 @@ pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = fn(
     pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
     dwChangeInfo: u32,
     ProviderName: ?PWSTR,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PWLX_CLOSE_USER_DESKTOP = fn(

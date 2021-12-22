@@ -14,7 +14,7 @@ pub const OVERLAPPED = extern struct {
             Offset: u32,
             OffsetHigh: u32,
         },
-        Pointer: ?*c_void,
+        Pointer: ?*anyopaque,
     },
     hEvent: ?HANDLE,
 };
@@ -76,10 +76,10 @@ pub extern "KERNEL32" fn DeviceIoControl(
     hDevice: ?HANDLE,
     dwIoControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpInBuffer: ?*c_void,
+    lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpOutBuffer: ?*c_void,
+    lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
     lpOverlapped: ?*OVERLAPPED,

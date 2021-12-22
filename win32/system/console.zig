@@ -332,7 +332,7 @@ pub extern "KERNEL32" fn PeekConsoleInputW(
 
 pub extern "KERNEL32" fn ReadConsoleA(
     hConsoleInput: ?HANDLE,
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     nNumberOfCharsToRead: u32,
     lpNumberOfCharsRead: ?*u32,
     pInputControl: ?*CONSOLE_READCONSOLE_CONTROL,
@@ -340,7 +340,7 @@ pub extern "KERNEL32" fn ReadConsoleA(
 
 pub extern "KERNEL32" fn ReadConsoleW(
     hConsoleInput: ?HANDLE,
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     nNumberOfCharsToRead: u32,
     lpNumberOfCharsRead: ?*u32,
     pInputControl: ?*CONSOLE_READCONSOLE_CONTROL,
@@ -351,7 +351,7 @@ pub extern "KERNEL32" fn WriteConsoleA(
     lpBuffer: [*]const u8,
     nNumberOfCharsToWrite: u32,
     lpNumberOfCharsWritten: ?*u32,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn WriteConsoleW(
@@ -359,7 +359,7 @@ pub extern "KERNEL32" fn WriteConsoleW(
     lpBuffer: [*]const u8,
     nNumberOfCharsToWrite: u32,
     lpNumberOfCharsWritten: ?*u32,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn SetConsoleCtrlHandler(
@@ -418,7 +418,7 @@ pub extern "KERNEL32" fn CreateConsoleScreenBuffer(
     dwShareMode: u32,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
     dwFlags: u32,
-    lpScreenBufferData: ?*c_void,
+    lpScreenBufferData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "KERNEL32" fn SetConsoleActiveScreenBuffer(

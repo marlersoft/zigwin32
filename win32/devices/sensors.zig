@@ -934,7 +934,7 @@ pub extern "SensorsUtilsV2" fn PropVariantGetInformation(
     PropVariantValue: ?*const PROPVARIANT,
     PropVariantOffset: ?*u32,
     PropVariantSize: ?*u32,
-    PropVariantPointer: ?*?*c_void,
+    PropVariantPointer: ?*?*anyopaque,
     RemappedType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 

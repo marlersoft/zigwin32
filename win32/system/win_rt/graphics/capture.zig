@@ -15,24 +15,24 @@ pub const IGraphicsCaptureItemInterop = extern struct {
             self: *const IGraphicsCaptureItemInterop,
             window: ?HWND,
             riid: ?*const Guid,
-            result: ?*?*c_void,
+            result: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateForMonitor: fn(
             self: *const IGraphicsCaptureItemInterop,
             monitor: ?HMONITOR,
             riid: ?*const Guid,
-            result: ?*?*c_void,
+            result: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsCaptureItemInterop_CreateForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, result: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IGraphicsCaptureItemInterop_CreateForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGraphicsCaptureItemInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IGraphicsCaptureItemInterop, self), window, riid, result);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsCaptureItemInterop_CreateForMonitor(self: *const T, monitor: ?HMONITOR, riid: ?*const Guid, result: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IGraphicsCaptureItemInterop_CreateForMonitor(self: *const T, monitor: ?HMONITOR, riid: ?*const Guid, result: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGraphicsCaptureItemInterop.VTable, self.vtable).CreateForMonitor(@ptrCast(*const IGraphicsCaptureItemInterop, self), monitor, riid, result);
         }
     };}

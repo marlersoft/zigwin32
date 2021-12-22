@@ -947,21 +947,21 @@ pub const LPDDENUMCALLBACKA = fn(
     param0: ?*Guid,
     param1: ?PSTR,
     param2: ?PSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDDENUMCALLBACKW = fn(
     param0: ?*Guid,
     param1: ?PWSTR,
     param2: ?PWSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDDENUMCALLBACKEXA = fn(
     param0: ?*Guid,
     param1: ?PSTR,
     param2: ?PSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     param4: ?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -969,48 +969,48 @@ pub const LPDDENUMCALLBACKEXW = fn(
     param0: ?*Guid,
     param1: ?PWSTR,
     param2: ?PWSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     param4: ?HMONITOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDIRECTDRAWENUMERATEEXA = fn(
     lpCallback: ?LPDDENUMCALLBACKEXA,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPDIRECTDRAWENUMERATEEXW = fn(
     lpCallback: ?LPDDENUMCALLBACKEXW,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPDDENUMMODESCALLBACK = fn(
     param0: ?*DDSURFACEDESC,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPDDENUMMODESCALLBACK2 = fn(
     param0: ?*DDSURFACEDESC2,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPDDENUMSURFACESCALLBACK = fn(
     param0: ?*IDirectDrawSurface,
     param1: ?*DDSURFACEDESC,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPDDENUMSURFACESCALLBACK2 = fn(
     param0: ?*IDirectDrawSurface4,
     param1: ?*DDSURFACEDESC2,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPDDENUMSURFACESCALLBACK7 = fn(
     param0: ?*IDirectDrawSurface7,
     param1: ?*DDSURFACEDESC2,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DDARGB = extern struct {
@@ -1482,7 +1482,7 @@ pub const LPCLIPPERCALLBACK = fn(
     lpDDClipper: ?*IDirectDrawClipper,
     hWnd: ?HWND,
     code: u32,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 const IID_IDirectDraw_Value = @import("../zig.zig").Guid.initString("6c14db80-a733-11ce-a521-0020af0be560");
@@ -1521,14 +1521,14 @@ pub const IDirectDraw = extern struct {
             self: *const IDirectDraw,
             param0: u32,
             param1: ?*DDSURFACEDESC,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumSurfaces: fn(
             self: *const IDirectDraw,
             param0: u32,
             param1: ?*DDSURFACEDESC,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FlipToGDISurface: fn(
@@ -1612,11 +1612,11 @@ pub const IDirectDraw = extern struct {
             return @ptrCast(*const IDirectDraw.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*c_void, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*c_void, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1711,14 +1711,14 @@ pub const IDirectDraw2 = extern struct {
             self: *const IDirectDraw2,
             param0: u32,
             param1: ?*DDSURFACEDESC,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumSurfaces: fn(
             self: *const IDirectDraw2,
             param0: u32,
             param1: ?*DDSURFACEDESC,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FlipToGDISurface: fn(
@@ -1810,11 +1810,11 @@ pub const IDirectDraw2 = extern struct {
             return @ptrCast(*const IDirectDraw2.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw2, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw2_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*c_void, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw2_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw2.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw2, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw2_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*c_void, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw2_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw2.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw2, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1913,14 +1913,14 @@ pub const IDirectDraw4 = extern struct {
             self: *const IDirectDraw4,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumSurfaces: fn(
             self: *const IDirectDraw4,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FlipToGDISurface: fn(
@@ -2028,11 +2028,11 @@ pub const IDirectDraw4 = extern struct {
             return @ptrCast(*const IDirectDraw4.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw4, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw4_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*c_void, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw4_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw4.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw4, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw4_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*c_void, param3: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw4_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw4.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw4, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2147,14 +2147,14 @@ pub const IDirectDraw7 = extern struct {
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumSurfaces: fn(
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK7,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FlipToGDISurface: fn(
@@ -2273,11 +2273,11 @@ pub const IDirectDraw7 = extern struct {
             return @ptrCast(*const IDirectDraw7.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw7, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw7_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*c_void, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw7_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw7.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw7, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDraw7_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*c_void, param3: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+        pub fn IDirectDraw7_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDraw7.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw7, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2525,13 +2525,13 @@ pub const IDirectDrawSurface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumAttachedSurfaces: fn(
             self: *const IDirectDrawSurface,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumOverlayZOrders: fn(
             self: *const IDirectDrawSurface,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Flip: fn(
@@ -2628,7 +2628,7 @@ pub const IDirectDrawSurface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unlock: fn(
             self: *const IDirectDrawSurface,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateOverlay: fn(
             self: *const IDirectDrawSurface,
@@ -2676,11 +2676,11 @@ pub const IDirectDrawSurface = extern struct {
             return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface_EnumAttachedSurfaces(self: *const T, param0: ?*c_void, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*c_void, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2768,7 +2768,7 @@ pub const IDirectDrawSurface = extern struct {
             return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface_Unlock(self: *const T, param0: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface_Unlock(self: *const T, param0: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2829,13 +2829,13 @@ pub const IDirectDrawSurface2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumAttachedSurfaces: fn(
             self: *const IDirectDrawSurface2,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumOverlayZOrders: fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Flip: fn(
@@ -2932,7 +2932,7 @@ pub const IDirectDrawSurface2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unlock: fn(
             self: *const IDirectDrawSurface2,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateOverlay: fn(
             self: *const IDirectDrawSurface2,
@@ -2953,7 +2953,7 @@ pub const IDirectDrawSurface2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDDInterface: fn(
             self: *const IDirectDrawSurface2,
-            param0: ?*?*c_void,
+            param0: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PageLock: fn(
             self: *const IDirectDrawSurface2,
@@ -2992,11 +2992,11 @@ pub const IDirectDrawSurface2 = extern struct {
             return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface2_EnumAttachedSurfaces(self: *const T, param0: ?*c_void, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface2_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface2_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*c_void, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface2_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface2, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3084,7 +3084,7 @@ pub const IDirectDrawSurface2 = extern struct {
             return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface2, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface2_Unlock(self: *const T, param0: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface2_Unlock(self: *const T, param0: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface2, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3100,7 +3100,7 @@ pub const IDirectDrawSurface2 = extern struct {
             return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface2_GetDDInterface(self: *const T, param0: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface2_GetDDInterface(self: *const T, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface2, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3157,13 +3157,13 @@ pub const IDirectDrawSurface3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumAttachedSurfaces: fn(
             self: *const IDirectDrawSurface3,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumOverlayZOrders: fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Flip: fn(
@@ -3260,7 +3260,7 @@ pub const IDirectDrawSurface3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unlock: fn(
             self: *const IDirectDrawSurface3,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateOverlay: fn(
             self: *const IDirectDrawSurface3,
@@ -3281,7 +3281,7 @@ pub const IDirectDrawSurface3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDDInterface: fn(
             self: *const IDirectDrawSurface3,
-            param0: ?*?*c_void,
+            param0: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PageLock: fn(
             self: *const IDirectDrawSurface3,
@@ -3325,11 +3325,11 @@ pub const IDirectDrawSurface3 = extern struct {
             return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface3_EnumAttachedSurfaces(self: *const T, param0: ?*c_void, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface3_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface3_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*c_void, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface3_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface3, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3417,7 +3417,7 @@ pub const IDirectDrawSurface3 = extern struct {
             return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface3, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface3_Unlock(self: *const T, param0: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface3_Unlock(self: *const T, param0: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface3, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3433,7 +3433,7 @@ pub const IDirectDrawSurface3 = extern struct {
             return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface3_GetDDInterface(self: *const T, param0: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface3_GetDDInterface(self: *const T, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface3, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3494,13 +3494,13 @@ pub const IDirectDrawSurface4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumAttachedSurfaces: fn(
             self: *const IDirectDrawSurface4,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumOverlayZOrders: fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Flip: fn(
@@ -3618,7 +3618,7 @@ pub const IDirectDrawSurface4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDDInterface: fn(
             self: *const IDirectDrawSurface4,
-            param0: ?*?*c_void,
+            param0: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PageLock: fn(
             self: *const IDirectDrawSurface4,
@@ -3636,14 +3636,14 @@ pub const IDirectDrawSurface4 = extern struct {
         SetPrivateData: fn(
             self: *const IDirectDrawSurface4,
             param0: ?*const Guid,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrivateData: fn(
             self: *const IDirectDrawSurface4,
             param0: ?*const Guid,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreePrivateData: fn(
@@ -3686,11 +3686,11 @@ pub const IDirectDrawSurface4 = extern struct {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface4_EnumAttachedSurfaces(self: *const T, param0: ?*c_void, param1: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface4_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface4_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*c_void, param2: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface4_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3794,7 +3794,7 @@ pub const IDirectDrawSurface4 = extern struct {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface4_GetDDInterface(self: *const T, param0: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface4_GetDDInterface(self: *const T, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface4, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3810,11 +3810,11 @@ pub const IDirectDrawSurface4 = extern struct {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetSurfaceDesc(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface4_SetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*c_void, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface4_SetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface4_GetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*c_void, param2: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface4_GetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3875,13 +3875,13 @@ pub const IDirectDrawSurface7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumAttachedSurfaces: fn(
             self: *const IDirectDrawSurface7,
-            param0: ?*c_void,
+            param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK7,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumOverlayZOrders: fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK7,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Flip: fn(
@@ -3999,7 +3999,7 @@ pub const IDirectDrawSurface7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDDInterface: fn(
             self: *const IDirectDrawSurface7,
-            param0: ?*?*c_void,
+            param0: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PageLock: fn(
             self: *const IDirectDrawSurface7,
@@ -4017,14 +4017,14 @@ pub const IDirectDrawSurface7 = extern struct {
         SetPrivateData: fn(
             self: *const IDirectDrawSurface7,
             param0: ?*const Guid,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrivateData: fn(
             self: *const IDirectDrawSurface7,
             param0: ?*const Guid,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FreePrivateData: fn(
@@ -4083,11 +4083,11 @@ pub const IDirectDrawSurface7 = extern struct {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface7_EnumAttachedSurfaces(self: *const T, param0: ?*c_void, param1: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface7_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface7_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*c_void, param2: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface7_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4191,7 +4191,7 @@ pub const IDirectDrawSurface7 = extern struct {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface7_GetDDInterface(self: *const T, param0: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface7_GetDDInterface(self: *const T, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface7, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4207,11 +4207,11 @@ pub const IDirectDrawSurface7 = extern struct {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetSurfaceDesc(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface7_SetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*c_void, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface7_SetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurface7_GetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*c_void, param2: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDirectDrawSurface7_GetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4323,7 +4323,7 @@ pub const DDSURFACEDESC = extern struct {
     },
     dwAlphaBitDepth: u32,
     dwReserved: u32,
-    lpSurface: ?*c_void,
+    lpSurface: ?*anyopaque,
     ddckCKDestOverlay: DDCOLORKEY,
     ddckCKDestBlt: DDCOLORKEY,
     ddckCKSrcOverlay: DDCOLORKEY,
@@ -4352,7 +4352,7 @@ pub const DDSURFACEDESC2 = extern struct {
     },
     dwAlphaBitDepth: u32,
     dwReserved: u32,
-    lpSurface: ?*c_void,
+    lpSurface: ?*anyopaque,
     Anonymous4: extern union {
         ddckCKDestOverlay: DDCOLORKEY,
         dwEmptyFaceColor: u32,
@@ -4404,7 +4404,7 @@ pub const IDirectDrawVideoPortNotifyVtbl = extern struct {
 
 pub const LPDDENUMVIDEOCALLBACK = fn(
     param0: ?*DDVIDEOPORTCAPS,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 const IID_IDDVideoPortContainer_Value = @import("../zig.zig").Guid.initString("6c142760-a733-11ce-a521-0020af0be560");
@@ -4423,7 +4423,7 @@ pub const IDDVideoPortContainer = extern struct {
             self: *const IDDVideoPortContainer,
             param0: u32,
             param1: ?*DDVIDEOPORTCAPS,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: ?LPDDENUMVIDEOCALLBACK,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoPortConnectInfo: fn(
@@ -4446,7 +4446,7 @@ pub const IDDVideoPortContainer = extern struct {
             return @ptrCast(*const IDDVideoPortContainer.VTable, self.vtable).CreateVideoPort(@ptrCast(*const IDDVideoPortContainer, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDDVideoPortContainer_EnumVideoPorts(self: *const T, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*c_void, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.Inline) HRESULT {
+        pub fn IDDVideoPortContainer_EnumVideoPorts(self: *const T, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDDVideoPortContainer.VTable, self.vtable).EnumVideoPorts(@ptrCast(*const IDDVideoPortContainer, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4820,7 +4820,7 @@ pub const DD_GETHEAPALIGNMENTDATA = extern struct {
     dwInstance: usize,
     dwHeap: u32,
     ddRVal: HRESULT,
-    GetHeapAlignment: ?*c_void,
+    GetHeapAlignment: ?*anyopaque,
     Alignment: HEAPALIGNMENT,
 };
 
@@ -4852,8 +4852,8 @@ pub const VMEMR = extern struct {
 pub const VMEMHEAP = extern struct {
     dwFlags: u32,
     stride: u32,
-    freeList: ?*c_void,
-    allocList: ?*c_void,
+    freeList: ?*anyopaque,
+    allocList: ?*anyopaque,
     dwTotalSize: u32,
     fpGARTLin: usize,
     fpGARTDev: usize,
@@ -4864,7 +4864,7 @@ pub const VMEMHEAP = extern struct {
     ddsCapsExAlt: DDSCAPSEX,
     liPhysAGPBase: LARGE_INTEGER,
     hdevAGP: ?HANDLE,
-    pvPhysRsrv: ?*c_void,
+    pvPhysRsrv: ?*anyopaque,
     pAgpCommitMask: ?*u8,
     dwAgpCommitMaskSize: u32,
 };
@@ -5001,7 +5001,7 @@ pub const VIDMEMINFO = extern struct {
 
 pub const HEAPALIAS = extern struct {
     fpVidMem: usize,
-    lpAlias: ?*c_void,
+    lpAlias: ?*anyopaque,
     dwAliasSize: u32,
 };
 
@@ -5163,7 +5163,7 @@ pub const DDHAL_DDSURFACECALLBACKS = extern struct {
     GetFlipStatus: ?LPDDHALSURFCB_GETFLIPSTATUS,
     UpdateOverlay: ?LPDDHALSURFCB_UPDATEOVERLAY,
     SetOverlayPosition: ?LPDDHALSURFCB_SETOVERLAYPOSITION,
-    reserved4: ?*c_void,
+    reserved4: ?*anyopaque,
     SetPalette: ?LPDDHALSURFCB_SETPALETTE,
 };
 
@@ -5203,7 +5203,7 @@ pub const LPDDHAL_DESTROYDDLOCAL = fn(
 pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     CreateSurfaceEx: ?LPDDHAL_CREATESURFACEEX,
     GetDriverState: ?LPDDHAL_GETDRIVERSTATE,
     DestroyDDLocal: ?LPDDHAL_DESTROYDDLOCAL,
@@ -5308,7 +5308,7 @@ pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
     GetVideoPortBandwidth: ?LPDDHALVPORTCB_GETBANDWIDTH,
     GetVideoPortInputFormats: ?LPDDHALVPORTCB_GETINPUTFORMATS,
     GetVideoPortOutputFormats: ?LPDDHALVPORTCB_GETOUTPUTFORMATS,
-    lpReserved1: ?*c_void,
+    lpReserved1: ?*anyopaque,
     GetVideoPortField: ?LPDDHALVPORTCB_GETFIELD,
     GetVideoPortLine: ?LPDDHALVPORTCB_GETLINE,
     GetVideoPortConnectInfo: ?LPDDHALVPORTCB_GETVPORTCONNECT,
@@ -5434,7 +5434,7 @@ pub const DDSTEREOMODE = extern struct {
 };
 
 pub const DDRAWI_DDRAWPALETTE_INT = extern struct {
-    lpVtbl: ?*c_void,
+    lpVtbl: ?*anyopaque,
     lpLcl: ?*DDRAWI_DDRAWPALETTE_LCL,
     lpLink: ?*DDRAWI_DDRAWPALETTE_INT,
     dwIntRefCnt: u32,
@@ -5470,7 +5470,7 @@ pub const DDRAWI_DDRAWPALETTE_LCL = extern struct {
 };
 
 pub const DDRAWI_DDRAWCLIPPER_INT = extern struct {
-    lpVtbl: ?*c_void,
+    lpVtbl: ?*anyopaque,
     lpLcl: ?*DDRAWI_DDRAWCLIPPER_LCL,
     lpLink: ?*DDRAWI_DDRAWCLIPPER_INT,
     dwIntRefCnt: u32,
@@ -5515,13 +5515,13 @@ pub const ACCESSRECTLIST = extern struct {
     lpLink: ?*ACCESSRECTLIST,
     rDest: RECT,
     lpOwner: ?*DDRAWI_DIRECTDRAW_LCL,
-    lpSurfaceData: ?*c_void,
+    lpSurfaceData: ?*anyopaque,
     dwFlags: u32,
     lpHeapAliasInfo: ?*HEAPALIASINFO,
 };
 
 pub const DDRAWI_DDRAWSURFACE_INT = extern struct {
-    lpVtbl: ?*c_void,
+    lpVtbl: ?*anyopaque,
     lpLcl: ?*DDRAWI_DDRAWSURFACE_LCL,
     lpLink: ?*DDRAWI_DDRAWSURFACE_INT,
     dwIntRefCnt: u32,
@@ -5541,7 +5541,7 @@ pub const DDRAWI_DDRAWSURFACE_GBL = extern struct {
     },
     Anonymous3: extern union {
         lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-        lpDDHandle: ?*c_void,
+        lpDDHandle: ?*anyopaque,
     },
     fpVidMem: usize,
     Anonymous4: extern union {
@@ -5573,8 +5573,8 @@ pub const DDRAWI_DDRAWSURFACE_GBL_MORE = extern struct {
     lpColorInfo: ?*DDCOLORCONTROL,
     fpNTAlias: usize,
     dwContentsStamp: u32,
-    lpvUnswappedDriverReserved: ?*c_void,
-    lpDDRAWReserved2: ?*c_void,
+    lpvUnswappedDriverReserved: ?*anyopaque,
+    lpDDRAWReserved2: ?*anyopaque,
     dwDDRAWReserved1: u32,
     dwDDRAWReserved2: u32,
     fpAliasOfVidMem: usize,
@@ -5591,27 +5591,27 @@ pub const DDRAWI_DDRAWSURFACE_MORE = extern struct {
     lpDDIClipper: ?*DDRAWI_DDRAWCLIPPER_INT,
     lpHeapAliasInfo: ?*HEAPALIASINFO,
     dwOverlayFlags: u32,
-    rgjunc: ?*c_void,
+    rgjunc: ?*anyopaque,
     lpVideoPort: ?*DDRAWI_DDVIDEOPORT_LCL,
     lpddOverlayFX: ?*DDOVERLAYFX,
     ddsCapsEx: DDSCAPSEX,
     dwTextureStage: u32,
-    lpDDRAWReserved: ?*c_void,
-    lpDDRAWReserved2: ?*c_void,
-    lpDDrawReserved3: ?*c_void,
+    lpDDRAWReserved: ?*anyopaque,
+    lpDDRAWReserved2: ?*anyopaque,
+    lpDDrawReserved3: ?*anyopaque,
     dwDDrawReserved4: u32,
-    lpDDrawReserved5: ?*c_void,
+    lpDDrawReserved5: ?*anyopaque,
     lpGammaRamp: ?*u32,
     lpOriginalGammaRamp: ?*u32,
-    lpDDrawReserved6: ?*c_void,
+    lpDDrawReserved6: ?*anyopaque,
     dwSurfaceHandle: u32,
     qwDDrawReserved8: [2]u32,
-    lpDDrawReserved9: ?*c_void,
+    lpDDrawReserved9: ?*anyopaque,
     cSurfaces: u32,
     pCreatedDDSurfaceDesc2: ?*DDSURFACEDESC2,
     slist: ?*?*DDRAWI_DDRAWSURFACE_LCL,
     dwFVF: u32,
-    lpVB: ?*c_void,
+    lpVB: ?*anyopaque,
 };
 
 pub const DDRAWI_DDRAWSURFACE_LCL = extern struct {
@@ -5664,7 +5664,7 @@ pub const DDHALMODEINFO = extern struct {
 };
 
 pub const DDRAWI_DIRECTDRAW_INT = extern struct {
-    lpVtbl: ?*c_void,
+    lpVtbl: ?*anyopaque,
     lpLcl: ?*DDRAWI_DIRECTDRAW_LCL,
     lpLink: ?*DDRAWI_DIRECTDRAW_INT,
     dwIntRefCnt: u32,
@@ -5769,7 +5769,7 @@ pub const DDRAWI_DIRECTDRAW_GBL = extern struct {
     ddckCKDestOverlay: DDCOLORKEY,
     ddckCKSrcOverlay: DDCOLORKEY,
     vmiData: VIDMEMINFO,
-    lpDriverHandle: ?*c_void,
+    lpDriverHandle: ?*anyopaque,
     lpExclusiveOwner: ?*DDRAWI_DIRECTDRAW_LCL,
     dwModeIndex: u32,
     dwModeIndexOrig: u32,
@@ -5801,8 +5801,8 @@ pub const DDRAWI_DIRECTDRAW_GBL = extern struct {
     lpD3DHALCallbacks2: usize,
     rectDevice: RECT,
     cMonitors: u32,
-    gpbmiSrc: ?*c_void,
-    gpbmiDest: ?*c_void,
+    gpbmiSrc: ?*anyopaque,
+    gpbmiDest: ?*anyopaque,
     phaiHeapAliases: ?*HEAPALIASINFO,
     hKernelHandle: usize,
     pfnNotifyProc: usize,
@@ -5852,7 +5852,7 @@ pub const DDRAWI_DIRECTDRAW_LCL = extern struct {
 };
 
 pub const DDRAWI_DDVIDEOPORT_INT = extern struct {
-    lpVtbl: ?*c_void,
+    lpVtbl: ?*anyopaque,
     lpLcl: ?*DDRAWI_DDVIDEOPORT_LCL,
     lpLink: ?*DDRAWI_DDVIDEOPORT_INT,
     dwIntRefCnt: u32,
@@ -5885,7 +5885,7 @@ pub const DDRAWI_DDVIDEOPORT_LCL = extern struct {
 };
 
 pub const DDRAWI_DDMOTIONCOMP_INT = extern struct {
-    lpVtbl: ?*c_void,
+    lpVtbl: ?*anyopaque,
     lpLcl: ?*DDRAWI_DDMOTIONCOMP_LCL,
     lpLink: ?*DDRAWI_DDMOTIONCOMP_INT,
     dwIntRefCnt: u32,
@@ -5904,9 +5904,9 @@ pub const DDRAWI_DDMOTIONCOMP_LCL = extern struct {
     dwDriverReserved1: u32,
     dwDriverReserved2: u32,
     dwDriverReserved3: u32,
-    lpDriverReserved1: ?*c_void,
-    lpDriverReserved2: ?*c_void,
-    lpDriverReserved3: ?*c_void,
+    lpDriverReserved1: ?*anyopaque,
+    lpDriverReserved2: ?*anyopaque,
+    lpDriverReserved3: ?*anyopaque,
 };
 
 pub const DDHALINFO = extern struct {
@@ -5923,7 +5923,7 @@ pub const DDHALINFO = extern struct {
     dwNumModes: u32,
     lpModeInfo: ?*DDHALMODEINFO,
     dwFlags: u32,
-    lpPDevice: ?*c_void,
+    lpPDevice: ?*anyopaque,
     hInstance: u32,
     lpD3DGlobalDriverData: usize,
     lpD3DHALCallbacks: usize,
@@ -5978,7 +5978,7 @@ pub const DDHAL_LOCKDATA = extern struct {
     lpDDSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
     bHasRect: u32,
     rArea: RECTL,
-    lpSurfData: ?*c_void,
+    lpSurfData: ?*anyopaque,
     ddRVal: HRESULT,
     Lock: ?LPDDHALSURFCB_LOCK,
     dwFlags: u32,
@@ -6328,7 +6328,7 @@ pub const DDHAL_GETDRIVERINFODATA = extern struct {
     dwFlags: u32,
     guidInfo: Guid,
     dwExpectedSize: u32,
-    lpvData: ?*c_void,
+    lpvData: ?*anyopaque,
     dwActualSize: u32,
     ddRVal: HRESULT,
     dwContext: usize,
@@ -6440,7 +6440,7 @@ pub const DDHAL_CREATEMOCOMPDATA = extern struct {
     dwUncompWidth: u32,
     dwUncompHeight: u32,
     ddUncompPixelFormat: DDPIXELFORMAT,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     dwDataSize: u32,
     ddRVal: HRESULT,
     CreateMoComp: ?LPDDHALMOCOMPCB_CREATE,
@@ -6484,9 +6484,9 @@ pub const DDHAL_BEGINMOCOMPFRAMEDATA = extern struct {
     lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
     lpDestSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
     dwInputDataSize: u32,
-    lpInputData: ?*c_void,
+    lpInputData: ?*anyopaque,
     dwOutputDataSize: u32,
-    lpOutputData: ?*c_void,
+    lpOutputData: ?*anyopaque,
     ddRVal: HRESULT,
     BeginMoCompFrame: ?LPDDHALMOCOMPCB_BEGINFRAME,
 };
@@ -6494,7 +6494,7 @@ pub const DDHAL_BEGINMOCOMPFRAMEDATA = extern struct {
 pub const DDHAL_ENDMOCOMPFRAMEDATA = extern struct {
     lpDD: ?*DDRAWI_DIRECTDRAW_LCL,
     lpMoComp: ?*DDRAWI_DDMOTIONCOMP_LCL,
-    lpInputData: ?*c_void,
+    lpInputData: ?*anyopaque,
     dwInputDataSize: u32,
     ddRVal: HRESULT,
     EndMoCompFrame: ?LPDDHALMOCOMPCB_ENDFRAME,
@@ -6505,7 +6505,7 @@ pub const DDMCBUFFERINFO = extern struct {
     lpCompSurface: ?*DDRAWI_DDRAWSURFACE_LCL,
     dwDataOffset: u32,
     dwDataSize: u32,
-    lpPrivate: ?*c_void,
+    lpPrivate: ?*anyopaque,
 };
 
 pub const DDHAL_RENDERMOCOMPDATA = extern struct {
@@ -6514,9 +6514,9 @@ pub const DDHAL_RENDERMOCOMPDATA = extern struct {
     dwNumBuffers: u32,
     lpBufferInfo: ?*DDMCBUFFERINFO,
     dwFunction: u32,
-    lpInputData: ?*c_void,
+    lpInputData: ?*anyopaque,
     dwInputDataSize: u32,
-    lpOutputData: ?*c_void,
+    lpOutputData: ?*anyopaque,
     dwOutputDataSize: u32,
     ddRVal: HRESULT,
     RenderMoComp: ?LPDDHALMOCOMPCB_RENDER,
@@ -6577,7 +6577,7 @@ pub const VIDEOMEMORYINFO = extern struct {
     dwTextureAlign: u32,
     dwZBufferAlign: u32,
     dwAlphaAlign: u32,
-    pvPrimary: ?*c_void,
+    pvPrimary: ?*anyopaque,
 };
 
 pub const PDD_SETCOLORKEY = fn(
@@ -6771,7 +6771,7 @@ pub const DD_SURFACECALLBACKS = extern struct {
     GetFlipStatus: ?PDD_SURFCB_GETFLIPSTATUS,
     UpdateOverlay: ?PDD_SURFCB_UPDATEOVERLAY,
     SetOverlayPosition: ?PDD_SURFCB_SETOVERLAYPOSITION,
-    reserved4: ?*c_void,
+    reserved4: ?*anyopaque,
     SetPalette: ?PDD_SURFCB_SETPALETTE,
 };
 
@@ -6848,7 +6848,7 @@ pub const DD_VIDEOPORTCALLBACKS = extern struct {
     GetVideoPortBandwidth: ?PDD_VPORTCB_GETBANDWIDTH,
     GetVideoPortInputFormats: ?PDD_VPORTCB_GETINPUTFORMATS,
     GetVideoPortOutputFormats: ?PDD_VPORTCB_GETOUTPUTFORMATS,
-    lpReserved1: ?*c_void,
+    lpReserved1: ?*anyopaque,
     GetVideoPortField: ?PDD_VPORTCB_GETFIELD,
     GetVideoPortLine: ?PDD_VPORTCB_GETLINE,
     GetVideoPortConnectInfo: ?PDD_VPORTCB_GETVPORTCONNECT,
@@ -7117,13 +7117,13 @@ pub const DD_HALINFO = extern struct {
     ddCaps: DDNTCORECAPS,
     GetDriverInfo: ?PDD_GETDRIVERINFO,
     dwFlags: u32,
-    lpD3DGlobalDriverData: ?*c_void,
-    lpD3DHALCallbacks: ?*c_void,
+    lpD3DGlobalDriverData: ?*anyopaque,
+    lpD3DHALCallbacks: ?*anyopaque,
     lpD3DBufCallbacks: ?*DD_D3DBUFCALLBACKS,
 };
 
 pub const DD_DIRECTDRAW_GLOBAL = extern struct {
-    dhpdev: ?*c_void,
+    dhpdev: ?*anyopaque,
     dwReserved1: usize,
     dwReserved2: usize,
     lpDDVideoPortCaps: ?*DDVIDEOPORTCAPS,
@@ -7155,9 +7155,9 @@ pub const DD_MOTIONCOMP_LOCAL = extern struct {
     dwDriverReserved1: u32,
     dwDriverReserved2: u32,
     dwDriverReserved3: u32,
-    lpDriverReserved1: ?*c_void,
-    lpDriverReserved2: ?*c_void,
-    lpDriverReserved3: ?*c_void,
+    lpDriverReserved1: ?*anyopaque,
+    lpDriverReserved2: ?*anyopaque,
+    lpDriverReserved3: ?*anyopaque,
 };
 
 pub const DD_MORESURFACECAPS = extern struct {
@@ -7186,7 +7186,7 @@ pub const DD_UPDATENONLOCALHEAPDATA = extern struct {
     fpGARTDev: usize,
     ulPolicyMaxBytes: usize,
     ddRVal: HRESULT,
-    UpdateNonLocalHeap: ?*c_void,
+    UpdateNonLocalHeap: ?*anyopaque,
 };
 
 pub const DD_NTPRIVATEDRIVERCAPS = extern struct {
@@ -7204,7 +7204,7 @@ pub const DD_BLTDATA = extern struct {
     dwROPFlags: u32,
     bltFX: DDBLTFX,
     ddRVal: HRESULT,
-    Blt: ?*c_void,
+    Blt: ?*anyopaque,
     IsClipped: BOOL,
     rOrigDest: RECTL,
     rOrigSrc: RECTL,
@@ -7219,9 +7219,9 @@ pub const DD_LOCKDATA = extern struct {
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     bHasRect: u32,
     rArea: RECTL,
-    lpSurfData: ?*c_void,
+    lpSurfData: ?*anyopaque,
     ddRVal: HRESULT,
-    Lock: ?*c_void,
+    Lock: ?*anyopaque,
     dwFlags: u32,
     fpProcess: usize,
 };
@@ -7230,7 +7230,7 @@ pub const DD_UNLOCKDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    Unlock: ?*c_void,
+    Unlock: ?*anyopaque,
 };
 
 pub const DD_UPDATEOVERLAYDATA = extern struct {
@@ -7242,7 +7242,7 @@ pub const DD_UPDATEOVERLAYDATA = extern struct {
     dwFlags: u32,
     overlayFX: DDOVERLAYFX,
     ddRVal: HRESULT,
-    UpdateOverlay: ?*c_void,
+    UpdateOverlay: ?*anyopaque,
 };
 
 pub const DD_SETOVERLAYPOSITIONDATA = extern struct {
@@ -7252,7 +7252,7 @@ pub const DD_SETOVERLAYPOSITIONDATA = extern struct {
     lXPos: i32,
     lYPos: i32,
     ddRVal: HRESULT,
-    SetOverlayPosition: ?*c_void,
+    SetOverlayPosition: ?*anyopaque,
 };
 
 pub const DD_SETPALETTEDATA = extern struct {
@@ -7260,7 +7260,7 @@ pub const DD_SETPALETTEDATA = extern struct {
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     lpDDPalette: ?*DD_PALETTE_GLOBAL,
     ddRVal: HRESULT,
-    SetPalette: ?*c_void,
+    SetPalette: ?*anyopaque,
     Attach: BOOL,
 };
 
@@ -7270,7 +7270,7 @@ pub const DD_FLIPDATA = extern struct {
     lpSurfTarg: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    Flip: ?*c_void,
+    Flip: ?*anyopaque,
     lpSurfCurrLeft: ?*DD_SURFACE_LOCAL,
     lpSurfTargLeft: ?*DD_SURFACE_LOCAL,
 };
@@ -7279,14 +7279,14 @@ pub const DD_DESTROYSURFACEDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    DestroySurface: ?*c_void,
+    DestroySurface: ?*anyopaque,
 };
 
 pub const DD_SETCLIPLISTDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    SetClipList: ?*c_void,
+    SetClipList: ?*anyopaque,
 };
 
 pub const DD_ADDATTACHEDSURFACEDATA = extern struct {
@@ -7294,7 +7294,7 @@ pub const DD_ADDATTACHEDSURFACEDATA = extern struct {
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     lpSurfAttached: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    AddAttachedSurface: ?*c_void,
+    AddAttachedSurface: ?*anyopaque,
 };
 
 pub const DD_SETCOLORKEYDATA = extern struct {
@@ -7303,7 +7303,7 @@ pub const DD_SETCOLORKEYDATA = extern struct {
     dwFlags: u32,
     ckNew: DDCOLORKEY,
     ddRVal: HRESULT,
-    SetColorKey: ?*c_void,
+    SetColorKey: ?*anyopaque,
 };
 
 pub const DD_GETBLTSTATUSDATA = extern struct {
@@ -7311,7 +7311,7 @@ pub const DD_GETBLTSTATUSDATA = extern struct {
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    GetBltStatus: ?*c_void,
+    GetBltStatus: ?*anyopaque,
 };
 
 pub const DD_GETFLIPSTATUSDATA = extern struct {
@@ -7319,14 +7319,14 @@ pub const DD_GETFLIPSTATUSDATA = extern struct {
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    GetFlipStatus: ?*c_void,
+    GetFlipStatus: ?*anyopaque,
 };
 
 pub const DD_DESTROYPALETTEDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     lpDDPalette: ?*DD_PALETTE_GLOBAL,
     ddRVal: HRESULT,
-    DestroyPalette: ?*c_void,
+    DestroyPalette: ?*anyopaque,
 };
 
 pub const DD_SETENTRIESDATA = extern struct {
@@ -7336,7 +7336,7 @@ pub const DD_SETENTRIESDATA = extern struct {
     dwNumEntries: u32,
     lpEntries: ?*PALETTEENTRY,
     ddRVal: HRESULT,
-    SetEntries: ?*c_void,
+    SetEntries: ?*anyopaque,
 };
 
 pub const DD_CREATESURFACEDATA = extern struct {
@@ -7345,7 +7345,7 @@ pub const DD_CREATESURFACEDATA = extern struct {
     lplpSList: ?*?*DD_SURFACE_LOCAL,
     dwSCnt: u32,
     ddRVal: HRESULT,
-    CreateSurface: ?*c_void,
+    CreateSurface: ?*anyopaque,
 };
 
 pub const DD_CANCREATESURFACEDATA = extern struct {
@@ -7353,7 +7353,7 @@ pub const DD_CANCREATESURFACEDATA = extern struct {
     lpDDSurfaceDesc: ?*DDSURFACEDESC,
     bIsDifferentPixelFormat: u32,
     ddRVal: HRESULT,
-    CanCreateSurface: ?*c_void,
+    CanCreateSurface: ?*anyopaque,
 };
 
 pub const DD_CREATEPALETTEDATA = extern struct {
@@ -7361,7 +7361,7 @@ pub const DD_CREATEPALETTEDATA = extern struct {
     lpDDPalette: ?*DD_PALETTE_GLOBAL,
     lpColorTable: ?*PALETTEENTRY,
     ddRVal: HRESULT,
-    CreatePalette: ?*c_void,
+    CreatePalette: ?*anyopaque,
     is_excl: BOOL,
 };
 
@@ -7371,7 +7371,7 @@ pub const DD_WAITFORVERTICALBLANKDATA = extern struct {
     bIsInVB: u32,
     hEvent: usize,
     ddRVal: HRESULT,
-    WaitForVerticalBlank: ?*c_void,
+    WaitForVerticalBlank: ?*anyopaque,
 };
 
 pub const DD_DRVSETCOLORKEYDATA = extern struct {
@@ -7379,14 +7379,14 @@ pub const DD_DRVSETCOLORKEYDATA = extern struct {
     dwFlags: u32,
     ckNew: DDCOLORKEY,
     ddRVal: HRESULT,
-    SetColorKey: ?*c_void,
+    SetColorKey: ?*anyopaque,
 };
 
 pub const DD_GETSCANLINEDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     dwScanLine: u32,
     ddRVal: HRESULT,
-    GetScanLine: ?*c_void,
+    GetScanLine: ?*anyopaque,
 };
 
 pub const DD_MAPMEMORYDATA = extern struct {
@@ -7401,7 +7401,7 @@ pub const DD_CANCREATEVPORTDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_LOCAL,
     lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
     ddRVal: HRESULT,
-    CanCreateVideoPort: ?*c_void,
+    CanCreateVideoPort: ?*anyopaque,
 };
 
 pub const DD_CREATEVPORTDATA = extern struct {
@@ -7409,7 +7409,7 @@ pub const DD_CREATEVPORTDATA = extern struct {
     lpDDVideoPortDesc: ?*DDVIDEOPORTDESC,
     lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     ddRVal: HRESULT,
-    CreateVideoPort: ?*c_void,
+    CreateVideoPort: ?*anyopaque,
 };
 
 pub const DD_FLIPVPORTDATA = extern struct {
@@ -7418,7 +7418,7 @@ pub const DD_FLIPVPORTDATA = extern struct {
     lpSurfCurr: ?*DD_SURFACE_LOCAL,
     lpSurfTarg: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    FlipVideoPort: ?*c_void,
+    FlipVideoPort: ?*anyopaque,
 };
 
 pub const DD_GETVPORTBANDWIDTHDATA = extern struct {
@@ -7430,7 +7430,7 @@ pub const DD_GETVPORTBANDWIDTHDATA = extern struct {
     dwFlags: u32,
     lpBandwidth: ?*DDVIDEOPORTBANDWIDTH,
     ddRVal: HRESULT,
-    GetVideoPortBandwidth: ?*c_void,
+    GetVideoPortBandwidth: ?*anyopaque,
 };
 
 pub const DD_GETVPORTINPUTFORMATDATA = extern struct {
@@ -7440,7 +7440,7 @@ pub const DD_GETVPORTINPUTFORMATDATA = extern struct {
     lpddpfFormat: ?*DDPIXELFORMAT,
     dwNumFormats: u32,
     ddRVal: HRESULT,
-    GetVideoPortInputFormats: ?*c_void,
+    GetVideoPortInputFormats: ?*anyopaque,
 };
 
 pub const DD_GETVPORTOUTPUTFORMATDATA = extern struct {
@@ -7451,7 +7451,7 @@ pub const DD_GETVPORTOUTPUTFORMATDATA = extern struct {
     lpddpfOutputFormats: ?*DDPIXELFORMAT,
     dwNumFormats: u32,
     ddRVal: HRESULT,
-    GetVideoPortInputFormats: ?*c_void,
+    GetVideoPortInputFormats: ?*anyopaque,
 };
 
 pub const DD_GETVPORTFIELDDATA = extern struct {
@@ -7459,7 +7459,7 @@ pub const DD_GETVPORTFIELDDATA = extern struct {
     lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     bField: BOOL,
     ddRVal: HRESULT,
-    GetVideoPortField: ?*c_void,
+    GetVideoPortField: ?*anyopaque,
 };
 
 pub const DD_GETVPORTLINEDATA = extern struct {
@@ -7467,7 +7467,7 @@ pub const DD_GETVPORTLINEDATA = extern struct {
     lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwLine: u32,
     ddRVal: HRESULT,
-    GetVideoPortLine: ?*c_void,
+    GetVideoPortLine: ?*anyopaque,
 };
 
 pub const DD_GETVPORTCONNECTDATA = extern struct {
@@ -7476,21 +7476,21 @@ pub const DD_GETVPORTCONNECTDATA = extern struct {
     lpConnect: ?*DDVIDEOPORTCONNECT,
     dwNumEntries: u32,
     ddRVal: HRESULT,
-    GetVideoPortConnectInfo: ?*c_void,
+    GetVideoPortConnectInfo: ?*anyopaque,
 };
 
 pub const DD_DESTROYVPORTDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_LOCAL,
     lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     ddRVal: HRESULT,
-    DestroyVideoPort: ?*c_void,
+    DestroyVideoPort: ?*anyopaque,
 };
 
 pub const DD_GETVPORTFLIPSTATUSDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_LOCAL,
     fpSurface: usize,
     ddRVal: HRESULT,
-    GetVideoPortFlipStatus: ?*c_void,
+    GetVideoPortFlipStatus: ?*anyopaque,
 };
 
 pub const DD_UPDATEVPORTDATA = extern struct {
@@ -7503,7 +7503,7 @@ pub const DD_UPDATEVPORTDATA = extern struct {
     dwNumAutoflip: u32,
     dwNumVBIAutoflip: u32,
     ddRVal: HRESULT,
-    UpdateVideoPort: ?*c_void,
+    UpdateVideoPort: ?*anyopaque,
 };
 
 pub const DD_WAITFORVPORTSYNCDATA = extern struct {
@@ -7513,7 +7513,7 @@ pub const DD_WAITFORVPORTSYNCDATA = extern struct {
     dwLine: u32,
     dwTimeOut: u32,
     ddRVal: HRESULT,
-    UpdateVideoPort: ?*c_void,
+    UpdateVideoPort: ?*anyopaque,
 };
 
 pub const DD_GETVPORTSIGNALDATA = extern struct {
@@ -7521,7 +7521,7 @@ pub const DD_GETVPORTSIGNALDATA = extern struct {
     lpVideoPort: ?*DD_VIDEOPORT_LOCAL,
     dwStatus: u32,
     ddRVal: HRESULT,
-    GetVideoSignalStatus: ?*c_void,
+    GetVideoSignalStatus: ?*anyopaque,
 };
 
 pub const DD_VPORTCOLORDATA = extern struct {
@@ -7530,7 +7530,7 @@ pub const DD_VPORTCOLORDATA = extern struct {
     dwFlags: u32,
     lpColorData: ?*DDCOLORCONTROL,
     ddRVal: HRESULT,
-    ColorControl: ?*c_void,
+    ColorControl: ?*anyopaque,
 };
 
 pub const DD_COLORCONTROLDATA = extern struct {
@@ -7539,16 +7539,16 @@ pub const DD_COLORCONTROLDATA = extern struct {
     lpColorData: ?*DDCOLORCONTROL,
     dwFlags: u32,
     ddRVal: HRESULT,
-    ColorControl: ?*c_void,
+    ColorControl: ?*anyopaque,
 };
 
 pub const DD_GETDRIVERINFODATA = extern struct {
-    dhpdev: ?*c_void,
+    dhpdev: ?*anyopaque,
     dwSize: u32,
     dwFlags: u32,
     guidInfo: Guid,
     dwExpectedSize: u32,
-    lpvData: ?*c_void,
+    lpvData: ?*anyopaque,
     dwActualSize: u32,
     ddRVal: HRESULT,
 };
@@ -7559,14 +7559,14 @@ pub const DD_GETAVAILDRIVERMEMORYDATA = extern struct {
     dwTotal: u32,
     dwFree: u32,
     ddRVal: HRESULT,
-    GetAvailDriverMemory: ?*c_void,
+    GetAvailDriverMemory: ?*anyopaque,
 };
 
 pub const DD_FREEDRIVERMEMORYDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_GLOBAL,
     lpDDSurface: ?*DD_SURFACE_LOCAL,
     ddRVal: HRESULT,
-    FreeDriverMemory: ?*c_void,
+    FreeDriverMemory: ?*anyopaque,
 };
 
 pub const DD_SETEXCLUSIVEMODEDATA = extern struct {
@@ -7574,7 +7574,7 @@ pub const DD_SETEXCLUSIVEMODEDATA = extern struct {
     dwEnterExcl: u32,
     dwReserved: u32,
     ddRVal: HRESULT,
-    SetExclusiveMode: ?*c_void,
+    SetExclusiveMode: ?*anyopaque,
 };
 
 pub const DD_FLIPTOGDISURFACEDATA = extern struct {
@@ -7582,7 +7582,7 @@ pub const DD_FLIPTOGDISURFACEDATA = extern struct {
     dwToGDI: u32,
     dwReserved: u32,
     ddRVal: HRESULT,
-    FlipToGDISurface: ?*c_void,
+    FlipToGDISurface: ?*anyopaque,
 };
 
 pub const DD_SYNCSURFACEDATA = extern struct {
@@ -7633,7 +7633,7 @@ pub const DD_CREATEMOCOMPDATA = extern struct {
     dwUncompWidth: u32,
     dwUncompHeight: u32,
     ddUncompPixelFormat: DDPIXELFORMAT,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     dwDataSize: u32,
     ddRVal: HRESULT,
 };
@@ -7674,16 +7674,16 @@ pub const DD_BEGINMOCOMPFRAMEDATA = extern struct {
     lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
     lpDestSurface: ?*DD_SURFACE_LOCAL,
     dwInputDataSize: u32,
-    lpInputData: ?*c_void,
+    lpInputData: ?*anyopaque,
     dwOutputDataSize: u32,
-    lpOutputData: ?*c_void,
+    lpOutputData: ?*anyopaque,
     ddRVal: HRESULT,
 };
 
 pub const DD_ENDMOCOMPFRAMEDATA = extern struct {
     lpDD: ?*DD_DIRECTDRAW_LOCAL,
     lpMoComp: ?*DD_MOTIONCOMP_LOCAL,
-    lpInputData: ?*c_void,
+    lpInputData: ?*anyopaque,
     dwInputDataSize: u32,
     ddRVal: HRESULT,
 };
@@ -7693,7 +7693,7 @@ pub const DDMOCOMPBUFFERINFO = extern struct {
     lpCompSurface: ?*DD_SURFACE_LOCAL,
     dwDataOffset: u32,
     dwDataSize: u32,
-    lpPrivate: ?*c_void,
+    lpPrivate: ?*anyopaque,
 };
 
 pub const DD_RENDERMOCOMPDATA = extern struct {
@@ -7702,9 +7702,9 @@ pub const DD_RENDERMOCOMPDATA = extern struct {
     dwNumBuffers: u32,
     lpBufferInfo: ?*DDMOCOMPBUFFERINFO,
     dwFunction: u32,
-    lpInputData: ?*c_void,
+    lpInputData: ?*anyopaque,
     dwInputDataSize: u32,
-    lpOutputData: ?*c_void,
+    lpOutputData: ?*anyopaque,
     dwOutputDataSize: u32,
     ddRVal: HRESULT,
 };
@@ -7902,89 +7902,89 @@ pub const DDGETTRANSFERSTATUSOUTINFO = extern struct {
 };
 
 pub const PDX_GETIRQINFO = fn(
-    param0: ?*c_void,
-    param1: ?*c_void,
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
     param2: ?*DDGETIRQINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_ENABLEIRQ = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDENABLEIRQINFO,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_SKIPNEXTFIELD = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDSKIPNEXTFIELDINFO,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_BOBNEXTFIELD = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDBOBNEXTFIELDINFO,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_SETSTATE = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDSETSTATEININFO,
     param2: ?*DDSETSTATEOUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_LOCK = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDLOCKININFO,
     param2: ?*DDLOCKOUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_FLIPOVERLAY = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDFLIPOVERLAYINFO,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_FLIPVIDEOPORT = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDFLIPVIDEOPORTINFO,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_GETPOLARITY = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDGETPOLARITYININFO,
     param2: ?*DDGETPOLARITYOUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_GETCURRENTAUTOFLIP = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDGETCURRENTAUTOFLIPININFO,
     param2: ?*DDGETCURRENTAUTOFLIPOUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_GETPREVIOUSAUTOFLIP = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDGETPREVIOUSAUTOFLIPININFO,
     param2: ?*DDGETPREVIOUSAUTOFLIPOUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_TRANSFER = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?*DDTRANSFERININFO,
     param2: ?*DDTRANSFEROUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PDX_GETTRANSFERSTATUS = fn(
-    param0: ?*c_void,
-    param1: ?*c_void,
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
     param2: ?*DDGETTRANSFERSTATUSOUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DXAPI_INTERFACE = extern struct {
     Size: u16,
     Version: u16,
-    Context: ?*c_void,
-    InterfaceReference: ?*c_void,
-    InterfaceDereference: ?*c_void,
+    Context: ?*anyopaque,
+    InterfaceReference: ?*anyopaque,
+    InterfaceDereference: ?*anyopaque,
     DxGetIrqInfo: ?PDX_GETIRQINFO,
     DxEnableIrq: ?PDX_ENABLEIRQ,
     DxSkipNextField: ?PDX_SKIPNEXTFIELD,
@@ -8006,23 +8006,23 @@ pub const DXAPI_INTERFACE = extern struct {
 //--------------------------------------------------------------------------------
 pub extern "DDRAW" fn DirectDrawEnumerateW(
     lpCallback: ?LPDDENUMCALLBACKW,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DDRAW" fn DirectDrawEnumerateA(
     lpCallback: ?LPDDENUMCALLBACKA,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DDRAW" fn DirectDrawEnumerateExW(
     lpCallback: ?LPDDENUMCALLBACKEXW,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DDRAW" fn DirectDrawEnumerateExA(
     lpCallback: ?LPDDENUMCALLBACKEXA,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -8034,7 +8034,7 @@ pub extern "DDRAW" fn DirectDrawCreate(
 
 pub extern "DDRAW" fn DirectDrawCreateEx(
     lpGuid: ?*Guid,
-    lplpDD: ?*?*c_void,
+    lplpDD: ?*?*anyopaque,
     iid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

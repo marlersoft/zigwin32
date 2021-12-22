@@ -3670,32 +3670,32 @@ pub const FWPM_VSWITCH_EVENT_SUBSCRIPTION0 = extern struct {
 };
 
 pub const FWPM_PROVIDER_CHANGE_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     change: ?*const FWPM_PROVIDER_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     change: ?*const FWPM_PROVIDER_CONTEXT_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_SUBLAYER_CHANGE_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     change: ?*const FWPM_SUBLAYER_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_CALLOUT_CHANGE_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     change: ?*const FWPM_CALLOUT_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_FILTER_CHANGE_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     change: ?*const FWPM_FILTER_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IPSEC_SA_CONTEXT_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     change: ?*const IPSEC_SA_CONTEXT_CHANGE0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -3725,48 +3725,48 @@ pub const IPSEC_KEY_MANAGER_CALLBACKS0 = extern struct {
 };
 
 pub const FWPM_NET_EVENT_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     event: ?*const FWPM_NET_EVENT1,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK1 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     event: ?*const FWPM_NET_EVENT2,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK2 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     event: ?*const FWPM_NET_EVENT3,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK3 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     event: ?*const FWPM_NET_EVENT4_,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_NET_EVENT_CALLBACK4 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     event: ?*const FWPM_NET_EVENT5_,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_DYNAMIC_KEYWORD_CALLBACK0 = fn(
-    notification: ?*c_void,
-    context: ?*c_void,
+    notification: ?*anyopaque,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_SYSTEM_PORTS_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     sysPorts: ?*const FWPM_SYSTEM_PORTS0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_CONNECTION_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventType: FWPM_CONNECTION_EVENT_TYPE,
     connection: ?*const FWPM_CONNECTION0,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FWPM_VSWITCH_EVENT_CALLBACK0 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     vSwitchEvent: ?*const FWPM_VSWITCH_EVENT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4471,7 +4471,7 @@ pub const FallbackIndexMax = FALLBACK_INDEX.Max;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "fwpuclnt" fn FwpmFreeMemory0(
-    p: ?*?*c_void,
+    p: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4631,7 +4631,7 @@ pub extern "fwpuclnt" fn FwpmProviderSubscribeChanges0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_PROVIDER_SUBSCRIPTION0,
     callback: ?FWPM_PROVIDER_CHANGE_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4821,7 +4821,7 @@ pub extern "fwpuclnt" fn FwpmProviderContextSubscribeChanges0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0,
     callback: ?FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4908,7 +4908,7 @@ pub extern "fwpuclnt" fn FwpmSubLayerSubscribeChanges0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_SUBLAYER_SUBSCRIPTION0,
     callback: ?FWPM_SUBLAYER_CHANGE_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5068,7 +5068,7 @@ pub extern "fwpuclnt" fn FwpmCalloutSubscribeChanges0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_CALLOUT_SUBSCRIPTION0,
     callback: ?FWPM_CALLOUT_CHANGE_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5169,7 +5169,7 @@ pub extern "fwpuclnt" fn FwpmFilterSubscribeChanges0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_FILTER_SUBSCRIPTION0,
     callback: ?FWPM_FILTER_CHANGE_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     changeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5394,7 +5394,7 @@ pub extern "fwpuclnt" fn IPsecSaContextSubscribe0(
     engineHandle: ?HANDLE,
     subscription: ?*const IPSEC_SA_CONTEXT_SUBSCRIPTION0,
     callback: ?IPSEC_SA_CONTEXT_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5536,7 +5536,7 @@ pub extern "fwpuclnt" fn IPsecKeyManagersGet0(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecKeyManagerGetSecurityInfoByKey0(
     engineHandle: ?HANDLE,
-    reserved: ?*const c_void,
+    reserved: ?*const anyopaque,
     securityInfo: u32,
     sidOwner: ?*?PSID,
     sidGroup: ?*?PSID,
@@ -5548,7 +5548,7 @@ pub extern "fwpuclnt" fn IPsecKeyManagerGetSecurityInfoByKey0(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "fwpuclnt" fn IPsecKeyManagerSetSecurityInfoByKey0(
     engineHandle: ?HANDLE,
-    reserved: ?*const c_void,
+    reserved: ?*const anyopaque,
     securityInfo: u32,
     sidOwner: ?*const SID,
     sidGroup: ?*const SID,
@@ -5749,7 +5749,7 @@ pub extern "fwpuclnt" fn FwpmNetEventSubscribe0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
     callback: ?FWPM_NET_EVENT_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5771,7 +5771,7 @@ pub extern "fwpuclnt" fn FwpmNetEventSubscribe1(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
     callback: ?FWPM_NET_EVENT_CALLBACK1,
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5780,7 +5780,7 @@ pub extern "fwpuclnt" fn FwpmNetEventSubscribe2(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
     callback: ?FWPM_NET_EVENT_CALLBACK2,
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5788,7 +5788,7 @@ pub extern "fwpuclnt" fn FwpmNetEventSubscribe3(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
     callback: ?FWPM_NET_EVENT_CALLBACK3,
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5796,14 +5796,14 @@ pub extern "fwpuclnt" fn FwpmNetEventSubscribe4(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_NET_EVENT_SUBSCRIPTION0,
     callback: ?FWPM_NET_EVENT_CALLBACK4,
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "fwpuclnt" fn FwpmDynamicKeywordSubscribe0(
     flags: u32,
     callback: ?FWPM_DYNAMIC_KEYWORD_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     subscriptionHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5820,9 +5820,9 @@ pub extern "fwpuclnt" fn FwpmSystemPortsGet0(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "fwpuclnt" fn FwpmSystemPortsSubscribe0(
     engineHandle: ?HANDLE,
-    reserved: ?*c_void,
+    reserved: ?*anyopaque,
     callback: ?FWPM_SYSTEM_PORTS_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     sysPortsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5887,7 +5887,7 @@ pub extern "fwpuclnt" fn FwpmConnectionSubscribe0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_CONNECTION_SUBSCRIPTION0,
     callback: ?FWPM_CONNECTION_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     eventsHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5902,7 +5902,7 @@ pub extern "fwpuclnt" fn FwpmvSwitchEventSubscribe0(
     engineHandle: ?HANDLE,
     subscription: ?*const FWPM_VSWITCH_EVENT_SUBSCRIPTION0,
     callback: ?FWPM_VSWITCH_EVENT_CALLBACK0,
-    context: ?*c_void,
+    context: ?*anyopaque,
     subscriptionHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

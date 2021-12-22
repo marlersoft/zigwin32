@@ -386,7 +386,7 @@ pub const NgcTicketContext = extern struct {
 pub const RAS_AUTH_ATTRIBUTE = extern struct {
     raaType: RAS_AUTH_ATTRIBUTE_TYPE,
     dwLength: u32,
-    Value: ?*c_void,
+    Value: ?*anyopaque,
 };
 
 pub const PPP_EAP_PACKET = extern struct {
@@ -1403,7 +1403,7 @@ pub const EapCodeMaximum = EapCode.Failure;
 
 pub const NotificationHandler = fn(
     connectionId: Guid,
-    pContextData: ?*c_void,
+    pContextData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const EAP_METHOD_AUTHENTICATOR_RESPONSE_ACTION = enum(i32) {
@@ -1587,7 +1587,7 @@ pub extern "eappcfg" fn EapHostPeerInvokeIdentityUI(
     ppUserDataOut: ?*?*u8,
     ppwszIdentity: ?*?PWSTR,
     ppEapError: ?*?*EAP_ERROR,
-    ppvReserved: ?*?*c_void,
+    ppvReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1608,7 +1608,7 @@ pub extern "eappcfg" fn EapHostPeerQueryInteractiveUIInputFields(
     pUIContextData: [*:0]const u8,
     pEapInteractiveUIData: ?*EAP_INTERACTIVE_UI_DATA,
     ppEapError: ?*?*EAP_ERROR,
-    ppvReserved: ?*?*c_void,
+    ppvReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1621,7 +1621,7 @@ pub extern "eappcfg" fn EapHostPeerQueryUIBlobFromInteractiveUIInputFields(
     pdwSizeOfDataFromInteractiveUI: ?*u32,
     ppDataFromInteractiveUI: ?*?*u8,
     ppEapError: ?*?*EAP_ERROR,
-    ppvReserved: ?*?*c_void,
+    ppvReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1687,7 +1687,7 @@ pub extern "eappprxy" fn EapHostPeerBeginSession(
     dwMaxSendPacketSize: u32,
     pConnectionId: ?*const Guid,
     func: ?NotificationHandler,
-    pContextData: ?*c_void,
+    pContextData: ?*anyopaque,
     pSessionId: ?*u32,
     ppEapError: ?*?*EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;

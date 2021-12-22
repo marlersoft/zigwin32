@@ -214,7 +214,7 @@ pub const EvtSubscribeActionDeliver = EVT_SUBSCRIBE_NOTIFY_ACTION.Deliver;
 
 pub const EVT_SUBSCRIBE_CALLBACK = fn(
     Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
     Event: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -562,7 +562,7 @@ pub const EVENTLOG_FULL_INFORMATION = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenSession(
     LoginClass: EVT_LOGIN_CLASS,
-    Login: ?*c_void,
+    Login: ?*anyopaque,
     Timeout: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
@@ -618,7 +618,7 @@ pub extern "wevtapi" fn EvtSubscribe(
     ChannelPath: ?[*:0]const u16,
     Query: ?[*:0]const u16,
     Bookmark: isize,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     Callback: ?EVT_SUBSCRIBE_CALLBACK,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
@@ -637,7 +637,7 @@ pub extern "wevtapi" fn EvtRender(
     Flags: u32,
     BufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferUsed: ?*u32,
     PropertyCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -943,7 +943,7 @@ pub extern "ADVAPI32" fn ReadEventLogA(
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     nNumberOfBytesToRead: u32,
     pnBytesRead: ?*u32,
     pnMinNumberOfBytesNeeded: ?*u32,
@@ -955,7 +955,7 @@ pub extern "ADVAPI32" fn ReadEventLogW(
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     nNumberOfBytesToRead: u32,
     pnBytesRead: ?*u32,
     pnMinNumberOfBytesNeeded: ?*u32,
@@ -972,7 +972,7 @@ pub extern "ADVAPI32" fn ReportEventA(
     dwDataSize: u32,
     lpStrings: ?[*]?PSTR,
     // TODO: what to do with BytesParamIndex 6?
-    lpRawData: ?*c_void,
+    lpRawData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -986,7 +986,7 @@ pub extern "ADVAPI32" fn ReportEventW(
     dwDataSize: u32,
     lpStrings: ?[*]?PWSTR,
     // TODO: what to do with BytesParamIndex 6?
-    lpRawData: ?*c_void,
+    lpRawData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -994,7 +994,7 @@ pub extern "ADVAPI32" fn GetEventLogInformation(
     hEventLog: ?HANDLE,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

@@ -84,7 +84,7 @@ pub extern "KERNEL32" fn SetNamedPipeHandleState(
 pub extern "KERNEL32" fn PeekNamedPipe(
     hNamedPipe: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     nBufferSize: u32,
     lpBytesRead: ?*u32,
     lpTotalBytesAvail: ?*u32,
@@ -95,10 +95,10 @@ pub extern "KERNEL32" fn PeekNamedPipe(
 pub extern "KERNEL32" fn TransactNamedPipe(
     hNamedPipe: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpInBuffer: ?*c_void,
+    lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpOutBuffer: ?*c_void,
+    lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesRead: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -154,10 +154,10 @@ pub extern "KERNEL32" fn GetNamedPipeHandleStateW(
 pub extern "KERNEL32" fn CallNamedPipeW(
     lpNamedPipeName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
-    lpInBuffer: ?*c_void,
+    lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpOutBuffer: ?*c_void,
+    lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesRead: ?*u32,
     nTimeOut: u32,
@@ -190,10 +190,10 @@ pub extern "KERNEL32" fn GetNamedPipeHandleStateA(
 pub extern "KERNEL32" fn CallNamedPipeA(
     lpNamedPipeName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 2?
-    lpInBuffer: ?*c_void,
+    lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 4?
-    lpOutBuffer: ?*c_void,
+    lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesRead: ?*u32,
     nTimeOut: u32,

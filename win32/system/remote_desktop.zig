@@ -1899,23 +1899,23 @@ pub const CHANNEL_PDU_HEADER = extern struct {
 };
 
 pub const PCHANNEL_INIT_EVENT_FN = fn(
-    pInitHandle: ?*c_void,
+    pInitHandle: ?*anyopaque,
     event: u32,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     dataLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PCHANNEL_OPEN_EVENT_FN = fn(
     openHandle: u32,
     event: u32,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     dataLength: u32,
     totalLength: u32,
     dataFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PVIRTUALCHANNELINIT = fn(
-    ppInitHandle: ?*?*c_void,
+    ppInitHandle: ?*?*anyopaque,
     pChannel: ?*CHANNEL_DEF,
     channelCount: i32,
     versionRequested: u32,
@@ -1923,7 +1923,7 @@ pub const PVIRTUALCHANNELINIT = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PVIRTUALCHANNELOPEN = fn(
-    pInitHandle: ?*c_void,
+    pInitHandle: ?*anyopaque,
     pOpenHandle: ?*u32,
     pChannelName: ?[*]u8,
     pChannelOpenEventProc: ?PCHANNEL_OPEN_EVENT_FN,
@@ -1935,9 +1935,9 @@ pub const PVIRTUALCHANNELCLOSE = fn(
 
 pub const PVIRTUALCHANNELWRITE = fn(
     openHandle: u32,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     dataLength: u32,
-    pUserData: ?*c_void,
+    pUserData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CHANNEL_ENTRY_POINTS = extern struct {
@@ -7333,14 +7333,14 @@ pub const IRemoteSystemAdditionalInfoProvider = extern struct {
             self: *const IRemoteSystemAdditionalInfoProvider,
             deduplicationId: ?*?HSTRING,
             riid: ?*const Guid,
-            mapView: ?*?*c_void,
+            mapView: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteSystemAdditionalInfoProvider_GetAdditionalInfo(self: *const T, deduplicationId: ?*?HSTRING, riid: ?*const Guid, mapView: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRemoteSystemAdditionalInfoProvider_GetAdditionalInfo(self: *const T, deduplicationId: ?*?HSTRING, riid: ?*const Guid, mapView: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRemoteSystemAdditionalInfoProvider.VTable, self.vtable).GetAdditionalInfo(@ptrCast(*const IRemoteSystemAdditionalInfoProvider, self), deduplicationId, riid, mapView);
         }
     };}
@@ -7664,13 +7664,13 @@ pub extern "WTSAPI32" fn WTSVirtualChannelPurgeOutput(
 pub extern "WTSAPI32" fn WTSVirtualChannelQuery(
     hChannelHandle: ?HANDLE,
     param1: WTS_VIRTUAL_CLASS,
-    ppBuffer: ?*?*c_void,
+    ppBuffer: ?*?*anyopaque,
     pBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WTSAPI32" fn WTSFreeMemory(
-    pMemory: ?*c_void,
+    pMemory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7706,14 +7706,14 @@ pub extern "WTSAPI32" fn WTSQueryUserToken(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSFreeMemoryExW(
     WTSTypeClass: WTS_TYPE_CLASS,
-    pMemory: ?*c_void,
+    pMemory: ?*anyopaque,
     NumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSFreeMemoryExA(
     WTSTypeClass: WTS_TYPE_CLASS,
-    pMemory: ?*c_void,
+    pMemory: ?*anyopaque,
     NumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7738,7 +7738,7 @@ pub extern "WTSAPI32" fn WTSEnumerateProcessesExA(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSEnumerateListenersW(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListeners: ?[*]?*u16,
     pCount: ?*u32,
@@ -7747,7 +7747,7 @@ pub extern "WTSAPI32" fn WTSEnumerateListenersW(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSEnumerateListenersA(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListeners: ?[*]?*i8,
     pCount: ?*u32,
@@ -7756,7 +7756,7 @@ pub extern "WTSAPI32" fn WTSEnumerateListenersA(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSQueryListenerConfigW(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PWSTR,
     pBuffer: ?*WTSLISTENERCONFIGW,
@@ -7765,7 +7765,7 @@ pub extern "WTSAPI32" fn WTSQueryListenerConfigW(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSQueryListenerConfigA(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PSTR,
     pBuffer: ?*WTSLISTENERCONFIGA,
@@ -7774,7 +7774,7 @@ pub extern "WTSAPI32" fn WTSQueryListenerConfigA(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSCreateListenerW(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PWSTR,
     pBuffer: ?*WTSLISTENERCONFIGW,
@@ -7784,7 +7784,7 @@ pub extern "WTSAPI32" fn WTSCreateListenerW(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSCreateListenerA(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PSTR,
     pBuffer: ?*WTSLISTENERCONFIGA,
@@ -7794,7 +7794,7 @@ pub extern "WTSAPI32" fn WTSCreateListenerA(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSSetListenerSecurityW(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PWSTR,
     SecurityInformation: u32,
@@ -7804,7 +7804,7 @@ pub extern "WTSAPI32" fn WTSSetListenerSecurityW(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSSetListenerSecurityA(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PSTR,
     SecurityInformation: u32,
@@ -7814,7 +7814,7 @@ pub extern "WTSAPI32" fn WTSSetListenerSecurityA(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSGetListenerSecurityW(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PWSTR,
     SecurityInformation: u32,
@@ -7826,7 +7826,7 @@ pub extern "WTSAPI32" fn WTSGetListenerSecurityW(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "WTSAPI32" fn WTSGetListenerSecurityA(
     hServer: ?HANDLE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     Reserved: u32,
     pListenerName: ?PSTR,
     SecurityInformation: u32,

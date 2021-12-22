@@ -23,7 +23,7 @@ pub const IDisplayDeviceInterop = extern struct {
             self: *const IDisplayDeviceInterop,
             NTHandle: ?HANDLE,
             riid: Guid,
-            ppvObj: ?*?*c_void,
+            ppvObj: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -34,7 +34,7 @@ pub const IDisplayDeviceInterop = extern struct {
             return @ptrCast(*const IDisplayDeviceInterop.VTable, self.vtable).CreateSharedHandle(@ptrCast(*const IDisplayDeviceInterop, self), pObject, pSecurityAttributes, Access, Name, pHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayDeviceInterop_OpenSharedHandle(self: *const T, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDisplayDeviceInterop_OpenSharedHandle(self: *const T, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDisplayDeviceInterop.VTable, self.vtable).OpenSharedHandle(@ptrCast(*const IDisplayDeviceInterop, self), NTHandle, riid, ppvObj);
         }
     };}

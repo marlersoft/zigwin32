@@ -801,14 +801,14 @@ pub const PFNGLVERTEXPOINTEREXTPROC = fn(
     type: u32,
     stride: i32,
     count: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLNORMALPOINTEREXTPROC = fn(
     type: u32,
     stride: i32,
     count: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLCOLORPOINTEREXTPROC = fn(
@@ -816,14 +816,14 @@ pub const PFNGLCOLORPOINTEREXTPROC = fn(
     type: u32,
     stride: i32,
     count: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLINDEXPOINTEREXTPROC = fn(
     type: u32,
     stride: i32,
     count: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLTEXCOORDPOINTEREXTPROC = fn(
@@ -831,7 +831,7 @@ pub const PFNGLTEXCOORDPOINTEREXTPROC = fn(
     type: u32,
     stride: i32,
     count: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLEDGEFLAGPOINTEREXTPROC = fn(
@@ -842,13 +842,13 @@ pub const PFNGLEDGEFLAGPOINTEREXTPROC = fn(
 
 pub const PFNGLGETPOINTERVEXTPROC = fn(
     pname: u32,
-    params: ?*?*c_void,
+    params: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLARRAYELEMENTARRAYEXTPROC = fn(
     mode: u32,
     count: i32,
-    pi: ?*const c_void,
+    pi: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLDRAWRANGEELEMENTSWINPROC = fn(
@@ -857,7 +857,7 @@ pub const PFNGLDRAWRANGEELEMENTSWINPROC = fn(
     end: u32,
     count: i32,
     type: u32,
-    indices: ?*const c_void,
+    indices: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLADDSWAPHINTRECTWINPROC = fn(
@@ -873,7 +873,7 @@ pub const PFNGLCOLORTABLEEXTPROC = fn(
     width: i32,
     format: u32,
     type: u32,
-    data: ?*const c_void,
+    data: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLCOLORSUBTABLEEXTPROC = fn(
@@ -882,14 +882,14 @@ pub const PFNGLCOLORSUBTABLEEXTPROC = fn(
     count: i32,
     format: u32,
     type: u32,
-    data: ?*const c_void,
+    data: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLGETCOLORTABLEEXTPROC = fn(
     target: u32,
     format: u32,
     type: u32,
-    data: ?*c_void,
+    data: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFNGLGETCOLORTABLEPARAMETERIVEXTPROC = fn(
@@ -929,7 +929,7 @@ pub const GLUtessEdgeFlagProc = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessVertexProc = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessEndProc = fn(
@@ -941,41 +941,41 @@ pub const GLUtessErrorProc = fn(
 
 pub const GLUtessCombineProc = fn(
     param0: ?*f64,
-    param1: ?*?*c_void,
+    param1: ?*?*anyopaque,
     param2: ?*f32,
-    param3: ?*?*c_void,
+    param3: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessBeginDataProc = fn(
     param0: u32,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessEdgeFlagDataProc = fn(
     param0: u8,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessVertexDataProc = fn(
-    param0: ?*c_void,
-    param1: ?*c_void,
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessEndDataProc = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessErrorDataProc = fn(
     param0: u32,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUtessCombineDataProc = fn(
     param0: ?*f64,
-    param1: ?*?*c_void,
+    param1: ?*?*anyopaque,
     param2: ?*f32,
-    param3: ?*?*c_void,
-    param4: ?*c_void,
+    param3: ?*?*anyopaque,
+    param4: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUnurbsErrorProc = fn(
@@ -1205,7 +1205,7 @@ pub extern "OPENGL32" fn glCallList(
 pub extern "OPENGL32" fn glCallLists(
     n: i32,
     type: u32,
-    lists: ?*const c_void,
+    lists: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glClear(
@@ -1427,7 +1427,7 @@ pub extern "OPENGL32" fn glColorPointer(
     size: i32,
     type: u32,
     stride: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glCopyPixels(
@@ -1528,7 +1528,7 @@ pub extern "OPENGL32" fn glDrawElements(
     mode: u32,
     count: i32,
     type: u32,
-    indices: ?*const c_void,
+    indices: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glDrawPixels(
@@ -1536,7 +1536,7 @@ pub extern "OPENGL32" fn glDrawPixels(
     height: i32,
     format: u32,
     type: u32,
-    pixels: ?*const c_void,
+    pixels: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glEdgeFlag(
@@ -1545,7 +1545,7 @@ pub extern "OPENGL32" fn glEdgeFlag(
 
 pub extern "OPENGL32" fn glEdgeFlagPointer(
     stride: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glEdgeFlagv(
@@ -1764,7 +1764,7 @@ pub extern "OPENGL32" fn glGetPixelMapusv(
 
 pub extern "OPENGL32" fn glGetPointerv(
     pname: u32,
-    params: ?*?*c_void,
+    params: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glGetPolygonStipple(
@@ -1810,7 +1810,7 @@ pub extern "OPENGL32" fn glGetTexImage(
     level: i32,
     format: u32,
     type: u32,
-    pixels: ?*c_void,
+    pixels: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glGetTexLevelParameterfv(
@@ -1851,7 +1851,7 @@ pub extern "OPENGL32" fn glIndexMask(
 pub extern "OPENGL32" fn glIndexPointer(
     type: u32,
     stride: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glIndexd(
@@ -1900,7 +1900,7 @@ pub extern "OPENGL32" fn glInitNames(
 pub extern "OPENGL32" fn glInterleavedArrays(
     format: u32,
     stride: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glIsEnabled(
@@ -2159,7 +2159,7 @@ pub extern "OPENGL32" fn glNormal3sv(
 pub extern "OPENGL32" fn glNormalPointer(
     type: u32,
     stride: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glOrtho(
@@ -2400,7 +2400,7 @@ pub extern "OPENGL32" fn glReadPixels(
     height: i32,
     format: u32,
     type: u32,
-    pixels: ?*c_void,
+    pixels: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glRectd(
@@ -2669,7 +2669,7 @@ pub extern "OPENGL32" fn glTexCoordPointer(
     size: i32,
     type: u32,
     stride: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glTexEnvf(
@@ -2740,7 +2740,7 @@ pub extern "OPENGL32" fn glTexImage1D(
     border: i32,
     format: u32,
     type: u32,
-    pixels: ?*const c_void,
+    pixels: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glTexImage2D(
@@ -2752,7 +2752,7 @@ pub extern "OPENGL32" fn glTexImage2D(
     border: i32,
     format: u32,
     type: u32,
-    pixels: ?*const c_void,
+    pixels: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glTexParameterf(
@@ -2786,7 +2786,7 @@ pub extern "OPENGL32" fn glTexSubImage1D(
     width: i32,
     format: u32,
     type: u32,
-    pixels: ?*const c_void,
+    pixels: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glTexSubImage2D(
@@ -2798,7 +2798,7 @@ pub extern "OPENGL32" fn glTexSubImage2D(
     height: i32,
     format: u32,
     type: u32,
-    pixels: ?*const c_void,
+    pixels: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glTranslated(
@@ -2937,7 +2937,7 @@ pub extern "OPENGL32" fn glVertexPointer(
     size: i32,
     type: u32,
     stride: i32,
-    pointer: ?*const c_void,
+    pointer: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OPENGL32" fn glViewport(
@@ -3022,11 +3022,11 @@ pub extern "GLU32" fn gluScaleImage(
     widthin: i32,
     heightin: i32,
     typein: u32,
-    datain: ?*const c_void,
+    datain: ?*const anyopaque,
     widthout: i32,
     heightout: i32,
     typeout: u32,
-    dataout: ?*c_void,
+    dataout: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "GLU32" fn gluBuild1DMipmaps(
@@ -3035,7 +3035,7 @@ pub extern "GLU32" fn gluBuild1DMipmaps(
     width: i32,
     format: u32,
     type: u32,
-    data: ?*const c_void,
+    data: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "GLU32" fn gluBuild2DMipmaps(
@@ -3045,7 +3045,7 @@ pub extern "GLU32" fn gluBuild2DMipmaps(
     height: i32,
     format: u32,
     type: u32,
-    data: ?*const c_void,
+    data: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "GLU32" fn gluNewQuadric(
@@ -3124,7 +3124,7 @@ pub extern "GLU32" fn gluDeleteTess(
 
 pub extern "GLU32" fn gluTessBeginPolygon(
     tess: ?*GLUtesselator,
-    polygon_data: ?*c_void,
+    polygon_data: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "GLU32" fn gluTessBeginContour(
@@ -3134,7 +3134,7 @@ pub extern "GLU32" fn gluTessBeginContour(
 pub extern "GLU32" fn gluTessVertex(
     tess: ?*GLUtesselator,
     coords: ?*f64,
-    data: ?*c_void,
+    data: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "GLU32" fn gluTessEndContour(

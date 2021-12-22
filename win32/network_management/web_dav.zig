@@ -14,7 +14,7 @@ pub const DAV_AUTHN_SCHEME_FBA = @as(u32, 1048576);
 // Section: Types (6)
 //--------------------------------------------------------------------------------
 pub const DAV_CALLBACK_AUTH_BLOB = extern struct {
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     ulSize: u32,
     ulType: u32,
 };
@@ -43,7 +43,7 @@ pub const RetryRequest = AUTHNEXTSTEP.RetryRequest;
 pub const CancelRequest = AUTHNEXTSTEP.CancelRequest;
 
 pub const PFNDAVAUTHCALLBACK_FREECRED = fn(
-    pbuffer: ?*c_void,
+    pbuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFNDAVAUTHCALLBACK = fn(

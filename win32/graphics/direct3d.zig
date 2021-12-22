@@ -563,7 +563,7 @@ pub const ID3DBlob = extern struct {
         base: IUnknown.VTable,
         GetBufferPointer: fn(
             self: *const ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         GetBufferSize: fn(
             self: *const ID3DBlob,
         ) callconv(@import("std").os.windows.WINAPI) usize,
@@ -572,7 +572,7 @@ pub const ID3DBlob = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DBlob_GetBufferPointer(self: *const T) callconv(.Inline) ?*c_void {
+        pub fn ID3DBlob_GetBufferPointer(self: *const T) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const ID3DBlob.VTable, self.vtable).GetBufferPointer(@ptrCast(*const ID3DBlob, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -584,7 +584,7 @@ pub const ID3DBlob = extern struct {
 };
 
 pub const PFN_DESTRUCTION_CALLBACK = fn(
-    pData: ?*c_void,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -596,7 +596,7 @@ pub const ID3DDestructionNotifier = extern struct {
         RegisterDestructionCallback: fn(
             self: *const ID3DDestructionNotifier,
             callbackFn: ?PFN_DESTRUCTION_CALLBACK,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             pCallbackID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterDestructionCallback: fn(
@@ -608,7 +608,7 @@ pub const ID3DDestructionNotifier = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DDestructionNotifier_RegisterDestructionCallback(self: *const T, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*c_void, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ID3DDestructionNotifier_RegisterDestructionCallback(self: *const T, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3DDestructionNotifier.VTable, self.vtable).RegisterDestructionCallback(@ptrCast(*const ID3DDestructionNotifier, self), callbackFn, pData, pCallbackID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -638,23 +638,23 @@ pub const ID3DInclude = extern struct {
             self: *const ID3DInclude,
             IncludeType: D3D_INCLUDE_TYPE,
             pFileName: ?[*:0]const u8,
-            pParentData: ?*const c_void,
-            ppData: ?*?*c_void,
+            pParentData: ?*const anyopaque,
+            ppData: ?*?*anyopaque,
             pBytes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const ID3DInclude,
-            pData: ?*const c_void,
+            pData: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DInclude_Open(self: *const T, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const c_void, ppData: ?*?*c_void, pBytes: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ID3DInclude_Open(self: *const T, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3DInclude.VTable, self.vtable).Open(@ptrCast(*const ID3DInclude, self), IncludeType, pFileName, pParentData, ppData, pBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DInclude_Close(self: *const T, pData: ?*const c_void) callconv(.Inline) HRESULT {
+        pub fn ID3DInclude_Close(self: *const T, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3DInclude.VTable, self.vtable).Close(@ptrCast(*const ID3DInclude, self), pData);
         }
     };}

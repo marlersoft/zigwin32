@@ -556,7 +556,7 @@ pub const icmp_echo_reply = extern struct {
     RoundTripTime: u32,
     DataSize: u16,
     Reserved: u16,
-    Data: ?*c_void,
+    Data: ?*anyopaque,
     Options: ip_option_information,
 };
 
@@ -983,7 +983,7 @@ pub const MIB_INVERTEDIFSTACK_TABLE = extern struct {
 };
 
 pub const PIPINTERFACE_CHANGE_CALLBACK = fn(
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     Row: ?*MIB_IPINTERFACE_ROW,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1014,13 +1014,13 @@ pub const MIB_UNICASTIPADDRESS_TABLE = extern struct {
 };
 
 pub const PUNICAST_IPADDRESS_CHANGE_CALLBACK = fn(
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     Row: ?*MIB_UNICASTIPADDRESS_ROW,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK = fn(
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     AddressTable: ?*MIB_UNICASTIPADDRESS_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1077,7 +1077,7 @@ pub const MIB_IPFORWARD_TABLE2 = extern struct {
 };
 
 pub const PIPFORWARD_CHANGE_CALLBACK = fn(
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     Row: ?*MIB_IPFORWARD_ROW2,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1130,7 +1130,7 @@ pub const MIB_IPNET_TABLE2 = extern struct {
 };
 
 pub const PTEREDO_PORT_CHANGE_CALLBACK = fn(
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     Port: u16,
     NotificationType: MIB_NOTIFICATION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1214,7 +1214,7 @@ pub const DNS_INTERFACE_SETTINGS3 = extern struct {
 };
 
 pub const PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK = fn(
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     ConnectivityHint: NL_NETWORK_CONNECTIVITY_HINT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1529,7 +1529,7 @@ pub const MIB_IPMCAST_OIF_XP = extern struct {
 pub const MIB_IPMCAST_OIF_W2K = extern struct {
     dwOutIfIndex: u32,
     dwNextHopAddr: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
     dwReserved: u32,
 };
 
@@ -1570,7 +1570,7 @@ pub const MIB_IPMCAST_OIF_STATS_LH = extern struct {
 pub const MIB_IPMCAST_OIF_STATS_W2K = extern struct {
     dwOutIfIndex: u32,
     dwNextHopAddr: u32,
-    pvDialContext: ?*c_void,
+    pvDialContext: ?*anyopaque,
     ulTtlTooLow: u32,
     ulFragNeeded: u32,
     ulOutPackets: u32,
@@ -2670,7 +2670,7 @@ pub const INTERFACE_HARDWARE_CROSSTIMESTAMP = extern struct {
 };
 
 pub const PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK = fn(
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const NET_ADDRESS_FORMAT = enum(i32) {
@@ -2729,7 +2729,7 @@ pub const PF_FILTER_STATS = extern struct {
 };
 
 pub const PF_INTERFACE_STATS = extern struct {
-    pvDriverContext: ?*c_void,
+    pvDriverContext: ?*anyopaque,
     dwFlags: u32,
     dwInDrops: u32,
     dwOutDrops: u32,
@@ -2791,7 +2791,7 @@ pub const icmp_echo_reply32 = switch(@import("../zig.zig").arch) {
         RoundTripTime: u32,
         DataSize: u16,
         Reserved: u16,
-        Data: ?*c_void,
+        Data: ?*anyopaque,
         Options: ip_option_information32,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
@@ -2852,7 +2852,7 @@ pub extern "IPHLPAPI" fn InitializeIpInterfaceEntry(
 pub extern "IPHLPAPI" fn NotifyIpInterfaceChange(
     Family: u16,
     Callback: ?PIPINTERFACE_CHANGE_CALLBACK,
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,
     NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -2899,7 +2899,7 @@ pub extern "IPHLPAPI" fn InitializeUnicastIpAddressEntry(
 pub extern "IPHLPAPI" fn NotifyUnicastIpAddressChange(
     Family: u16,
     Callback: ?PUNICAST_IPADDRESS_CHANGE_CALLBACK,
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,
     NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -2909,7 +2909,7 @@ pub extern "IPHLPAPI" fn NotifyStableUnicastIpAddressTable(
     Family: u16,
     Table: ?*?*MIB_UNICASTIPADDRESS_TABLE,
     CallerCallback: ?PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK,
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -2991,7 +2991,7 @@ pub extern "IPHLPAPI" fn InitializeIpForwardEntry(
 pub extern "IPHLPAPI" fn NotifyRouteChange2(
     AddressFamily: u16,
     Callback: ?PIPFORWARD_CHANGE_CALLBACK,
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,
     NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -3058,7 +3058,7 @@ pub extern "IPHLPAPI" fn SetIpNetEntry2(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn NotifyTeredoPortChange(
     Callback: ?PTEREDO_PORT_CHANGE_CALLBACK,
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,
     NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -3075,7 +3075,7 @@ pub extern "IPHLPAPI" fn CancelMibChangeNotify2(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn FreeMibTable(
-    Memory: ?*c_void,
+    Memory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3277,7 +3277,7 @@ pub extern "IPHLPAPI" fn GetNetworkConnectivityHintForInterface(
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "IPHLPAPI" fn NotifyNetworkConnectivityHintChange(
     Callback: ?PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK,
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,
     NotificationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -3300,11 +3300,11 @@ pub extern "IPHLPAPI" fn IcmpSendEcho(
     IcmpHandle: IcmpHandle,
     DestinationAddress: u32,
     // TODO: what to do with BytesParamIndex 3?
-    RequestData: ?*c_void,
+    RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 6?
-    ReplyBuffer: ?*c_void,
+    ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3314,14 +3314,14 @@ pub extern "IPHLPAPI" fn IcmpSendEcho2(
     IcmpHandle: IcmpHandle,
     Event: ?HANDLE,
     ApcRoutine: ?PIO_APC_ROUTINE,
-    ApcContext: ?*c_void,
+    ApcContext: ?*anyopaque,
     DestinationAddress: u32,
     // TODO: what to do with BytesParamIndex 6?
-    RequestData: ?*c_void,
+    RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 9?
-    ReplyBuffer: ?*c_void,
+    ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3331,15 +3331,15 @@ pub extern "IPHLPAPI" fn IcmpSendEcho2Ex(
     IcmpHandle: IcmpHandle,
     Event: ?HANDLE,
     ApcRoutine: ?PIO_APC_ROUTINE,
-    ApcContext: ?*c_void,
+    ApcContext: ?*anyopaque,
     SourceAddress: u32,
     DestinationAddress: u32,
     // TODO: what to do with BytesParamIndex 7?
-    RequestData: ?*c_void,
+    RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 10?
-    ReplyBuffer: ?*c_void,
+    ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3349,15 +3349,15 @@ pub extern "IPHLPAPI" fn Icmp6SendEcho2(
     IcmpHandle: IcmpHandle,
     Event: ?HANDLE,
     ApcRoutine: ?PIO_APC_ROUTINE,
-    ApcContext: ?*c_void,
+    ApcContext: ?*anyopaque,
     SourceAddress: ?*SOCKADDR_IN6,
     DestinationAddress: ?*SOCKADDR_IN6,
     // TODO: what to do with BytesParamIndex 7?
-    RequestData: ?*c_void,
+    RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*ip_option_information,
     // TODO: what to do with BytesParamIndex 10?
-    ReplyBuffer: ?*c_void,
+    ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3365,14 +3365,14 @@ pub extern "IPHLPAPI" fn Icmp6SendEcho2(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IcmpParseReplies(
     // TODO: what to do with BytesParamIndex 1?
-    ReplyBuffer: ?*c_void,
+    ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn Icmp6ParseReplies(
     // TODO: what to do with BytesParamIndex 1?
-    ReplyBuffer: ?*c_void,
+    ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3429,7 +3429,7 @@ pub extern "IPHLPAPI" fn GetTcpTable(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetExtendedTcpTable(
     // TODO: what to do with BytesParamIndex 1?
-    pTcpTable: ?*c_void,
+    pTcpTable: ?*anyopaque,
     pdwSize: ?*u32,
     bOrder: BOOL,
     ulAf: u32,
@@ -3442,7 +3442,7 @@ pub extern "IPHLPAPI" fn GetOwnerModuleFromTcpEntry(
     pTcpEntry: ?*MIB_TCPROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3457,7 +3457,7 @@ pub extern "IPHLPAPI" fn GetUdpTable(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn GetExtendedUdpTable(
     // TODO: what to do with BytesParamIndex 1?
-    pUdpTable: ?*c_void,
+    pUdpTable: ?*anyopaque,
     pdwSize: ?*u32,
     bOrder: BOOL,
     ulAf: u32,
@@ -3470,7 +3470,7 @@ pub extern "IPHLPAPI" fn GetOwnerModuleFromUdpEntry(
     pUdpEntry: ?*MIB_UDPROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3561,7 +3561,7 @@ pub extern "IPHLPAPI" fn GetOwnerModuleFromTcp6Entry(
     pTcpEntry: ?*MIB_TCP6ROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3578,7 +3578,7 @@ pub extern "IPHLPAPI" fn GetOwnerModuleFromUdp6Entry(
     pUdpEntry: ?*MIB_UDP6ROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3587,7 +3587,7 @@ pub extern "IPHLPAPI" fn GetOwnerModuleFromPidAndInfo(
     pInfo: ?*u64,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 4?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3822,7 +3822,7 @@ pub extern "IPHLPAPI" fn GetAdapterOrderMap(
 pub extern "IPHLPAPI" fn GetAdaptersAddresses(
     Family: ADDRESS_FAMILY,
     Flags: GET_ADAPTERS_ADDRESSES_FLAGS,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 4?
     AdapterAddresses: ?*IP_ADAPTER_ADDRESSES_LH,
     SizePointer: ?*u32,
@@ -3853,7 +3853,7 @@ pub extern "IPHLPAPI" fn CaptureInterfaceHardwareCrossTimestamp(
 
 pub extern "IPHLPAPI" fn RegisterInterfaceTimestampConfigChange(
     Callback: ?PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK,
-    CallerContext: ?*c_void,
+    CallerContext: ?*anyopaque,
     NotificationHandle: ?*?HIFTIMESTAMPCHANGE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3876,7 +3876,7 @@ pub extern "IPHLPAPI" fn SendARP(
     DestIP: u32,
     SrcIP: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pMacAddr: ?*c_void,
+    pMacAddr: ?*anyopaque,
     PhyAddrLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3928,7 +3928,7 @@ pub extern "IPHLPAPI" fn GetIpErrorString(
 pub extern "IPHLPAPI" fn ResolveNeighbor(
     NetworkAddress: ?*SOCKADDR,
     // TODO: what to do with BytesParamIndex 2?
-    PhysicalAddress: ?*c_void,
+    PhysicalAddress: ?*anyopaque,
     PhysicalAddressLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3978,24 +3978,24 @@ pub extern "IPHLPAPI" fn PfCreateInterface(
     outAction: PFFORWARD_ACTION,
     bUseLog: BOOL,
     bMustBeUnique: BOOL,
-    ppInterface: ?*?*c_void,
+    ppInterface: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfDeleteInterface(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfAddFiltersToInterface(
-    ih: ?*c_void,
+    ih: ?*anyopaque,
     cInFilters: u32,
     pfiltIn: ?*PF_FILTER_DESCRIPTOR,
     cOutFilters: u32,
     pfiltOut: ?*PF_FILTER_DESCRIPTOR,
-    pfHandle: ?*?*c_void,
+    pfHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRemoveFiltersFromInterface(
-    ih: ?*c_void,
+    ih: ?*anyopaque,
     cInFilters: u32,
     pfiltIn: ?*PF_FILTER_DESCRIPTOR,
     cOutFilters: u32,
@@ -4003,40 +4003,40 @@ pub extern "IPHLPAPI" fn PfRemoveFiltersFromInterface(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRemoveFilterHandles(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
     cFilters: u32,
-    pvHandles: ?*?*c_void,
+    pvHandles: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfUnBindInterface(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfBindInterfaceToIndex(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
     dwIndex: u32,
     pfatLinkType: PFADDRESSTYPE,
     LinkIPAddress: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfBindInterfaceToIPAddress(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
     pfatType: PFADDRESSTYPE,
     IPAddress: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRebindFilters(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
     pLateBindInfo: ?*PF_LATEBIND_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfAddGlobalFilterToInterface(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
     gfFilter: GLOBAL_FILTER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfRemoveGlobalFilterFromInterface(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
     gfFilter: GLOBAL_FILTER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4058,15 +4058,15 @@ pub extern "IPHLPAPI" fn PfDeleteLog(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfGetInterfaceStatistics(
-    pInterface: ?*c_void,
+    pInterface: ?*anyopaque,
     ppfStats: ?*PF_INTERFACE_STATS,
     pdwBufferSize: ?*u32,
     fResetCounters: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "IPHLPAPI" fn PfTestPacket(
-    pInInterface: ?*c_void,
-    pOutInterface: ?*c_void,
+    pInInterface: ?*anyopaque,
+    pOutInterface: ?*anyopaque,
     cBytes: u32,
     pbPacket: ?*u8,
     ppAction: ?*PFFORWARD_ACTION,

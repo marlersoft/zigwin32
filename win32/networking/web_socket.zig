@@ -94,7 +94,7 @@ pub const WEB_SOCKET_INDICATE_RECEIVE_COMPLETE_ACTION = WEB_SOCKET_ACTION.INDICA
 
 pub const WEB_SOCKET_PROPERTY = extern struct {
     Type: WEB_SOCKET_PROPERTY_TYPE,
-    pvValue: ?*c_void,
+    pvValue: ?*anyopaque,
     ulValueSize: u32,
 };
 
@@ -180,14 +180,14 @@ pub extern "websocket" fn WebSocketSend(
     hWebSocket: WEB_SOCKET_HANDLE,
     BufferType: WEB_SOCKET_BUFFER_TYPE,
     pBuffer: ?*WEB_SOCKET_BUFFER,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketReceive(
     hWebSocket: WEB_SOCKET_HANDLE,
     pBuffer: ?*WEB_SOCKET_BUFFER,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -198,14 +198,14 @@ pub extern "websocket" fn WebSocketGetAction(
     pulDataBufferCount: ?*u32,
     pAction: ?*WEB_SOCKET_ACTION,
     pBufferType: ?*WEB_SOCKET_BUFFER_TYPE,
-    pvApplicationContext: ?*?*c_void,
-    pvActionContext: ?*?*c_void,
+    pvApplicationContext: ?*?*anyopaque,
+    pvActionContext: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketCompleteAction(
     hWebSocket: WEB_SOCKET_HANDLE,
-    pvActionContext: ?*c_void,
+    pvActionContext: ?*anyopaque,
     ulBytesTransferred: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 

@@ -224,7 +224,7 @@ pub const IStorage = extern struct {
         OpenStream: fn(
             self: *const IStorage,
             pwcsName: ?[*:0]const u16,
-            reserved1: ?*c_void,
+            reserved1: ?*anyopaque,
             grfMode: u32,
             reserved2: u32,
             ppstm: ?*?*IStream,
@@ -270,7 +270,7 @@ pub const IStorage = extern struct {
         EnumElements: fn(
             self: *const IStorage,
             reserved1: u32,
-            reserved2: ?*c_void,
+            reserved2: ?*anyopaque,
             reserved3: u32,
             ppenum: ?*?*IEnumSTATSTG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -313,7 +313,7 @@ pub const IStorage = extern struct {
             return @ptrCast(*const IStorage.VTable, self.vtable).CreateStream(@ptrCast(*const IStorage, self), pwcsName, grfMode, reserved1, reserved2, ppstm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_OpenStream(self: *const T, pwcsName: ?[*:0]const u16, reserved1: ?*c_void, grfMode: u32, reserved2: u32, ppstm: ?*?*IStream) callconv(.Inline) HRESULT {
+        pub fn IStorage_OpenStream(self: *const T, pwcsName: ?[*:0]const u16, reserved1: ?*anyopaque, grfMode: u32, reserved2: u32, ppstm: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStorage.VTable, self.vtable).OpenStream(@ptrCast(*const IStorage, self), pwcsName, reserved1, grfMode, reserved2, ppstm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -341,7 +341,7 @@ pub const IStorage = extern struct {
             return @ptrCast(*const IStorage.VTable, self.vtable).Revert(@ptrCast(*const IStorage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_EnumElements(self: *const T, reserved1: u32, reserved2: ?*c_void, reserved3: u32, ppenum: ?*?*IEnumSTATSTG) callconv(.Inline) HRESULT {
+        pub fn IStorage_EnumElements(self: *const T, reserved1: u32, reserved2: ?*anyopaque, reserved3: u32, ppenum: ?*?*IEnumSTATSTG) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStorage.VTable, self.vtable).EnumElements(@ptrCast(*const IStorage, self), reserved1, reserved2, reserved3, ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -443,7 +443,7 @@ pub const ILockBytes = extern struct {
             self: *const ILockBytes,
             ulOffset: ULARGE_INTEGER,
             // TODO: what to do with BytesParamIndex 2?
-            pv: ?*c_void,
+            pv: ?*anyopaque,
             cb: u32,
             pcbRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -451,7 +451,7 @@ pub const ILockBytes = extern struct {
             self: *const ILockBytes,
             ulOffset: ULARGE_INTEGER,
             // TODO: what to do with BytesParamIndex 2?
-            pv: ?*const c_void,
+            pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -484,11 +484,11 @@ pub const ILockBytes = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_ReadAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*c_void, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ILockBytes_ReadAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILockBytes.VTable, self.vtable).ReadAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_WriteAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const c_void, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ILockBytes_WriteAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILockBytes.VTable, self.vtable).WriteAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -546,7 +546,7 @@ pub const IFillLockBytes = extern struct {
         FillAppend: fn(
             self: *const IFillLockBytes,
             // TODO: what to do with BytesParamIndex 1?
-            pv: ?*const c_void,
+            pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -554,7 +554,7 @@ pub const IFillLockBytes = extern struct {
             self: *const IFillLockBytes,
             ulOffset: ULARGE_INTEGER,
             // TODO: what to do with BytesParamIndex 2?
-            pv: ?*const c_void,
+            pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -571,11 +571,11 @@ pub const IFillLockBytes = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_FillAppend(self: *const T, pv: ?*const c_void, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IFillLockBytes_FillAppend(self: *const T, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAppend(@ptrCast(*const IFillLockBytes, self), pv, cb, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_FillAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const c_void, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IFillLockBytes_FillAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAt(@ptrCast(*const IFillLockBytes, self), ulOffset, pv, cb, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1396,7 +1396,7 @@ pub extern "OLE32" fn GetHGlobalFromStream(
 pub extern "OLE32" fn CoGetInterfaceAndReleaseStream(
     pStm: ?*IStream,
     iid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1479,7 +1479,7 @@ pub extern "OLE32" fn StgCreateStorageEx(
     pStgOptions: ?*STGOPTIONS,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     riid: ?*const Guid,
-    ppObjectOpen: ?*?*c_void,
+    ppObjectOpen: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1491,7 +1491,7 @@ pub extern "OLE32" fn StgOpenStorageEx(
     pStgOptions: ?*STGOPTIONS,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     riid: ?*const Guid,
-    ppObjectOpen: ?*?*c_void,
+    ppObjectOpen: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

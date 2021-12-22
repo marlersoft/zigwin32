@@ -426,7 +426,7 @@ pub const ieStatusFail = STATUSTYPES.Fail;
 pub const ieStatusCancel = STATUSTYPES.Cancel;
 
 pub const LPDISPLAYVAL = fn(
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     uiType: RESULTTYPES,
     szwVal: ?[*:0]const u16,
     szwDescription: ?[*:0]const u16,
@@ -436,7 +436,7 @@ pub const LPDISPLAYVAL = fn(
 pub const LPEVALCOMCALLBACK = fn(
     iStatus: STATUSTYPES,
     szData: ?[*:0]const u16,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IValidate_Value = @import("../zig.zig").Guid.initString("e482e5c6-e31e-4143-a2e6-dbc3d8e4b8d3");
@@ -461,12 +461,12 @@ pub const IValidate = extern struct {
         SetDisplay: fn(
             self: *const IValidate,
             pDisplayFunction: ?LPDISPLAYVAL,
-            pContext: ?*c_void,
+            pContext: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStatus: fn(
             self: *const IValidate,
             pStatusFunction: ?LPEVALCOMCALLBACK,
-            pContext: ?*c_void,
+            pContext: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Validate: fn(
             self: *const IValidate,
@@ -493,11 +493,11 @@ pub const IValidate = extern struct {
             return @ptrCast(*const IValidate.VTable, self.vtable).CloseCUB(@ptrCast(*const IValidate, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidate_SetDisplay(self: *const T, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IValidate_SetDisplay(self: *const T, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidate.VTable, self.vtable).SetDisplay(@ptrCast(*const IValidate, self), pDisplayFunction, pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidate_SetStatus(self: *const T, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IValidate_SetStatus(self: *const T, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidate.VTable, self.vtable).SetStatus(@ptrCast(*const IValidate, self), pStatusFunction, pContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1094,19 +1094,19 @@ pub const INSTALLMESSAGE_INSTALLSTART = INSTALLMESSAGE.INSTALLSTART;
 pub const INSTALLMESSAGE_INSTALLEND = INSTALLMESSAGE.INSTALLEND;
 
 pub const INSTALLUI_HANDLERA = fn(
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     iMessageType: u32,
     szMessage: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const INSTALLUI_HANDLERW = fn(
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     iMessageType: u32,
     szMessage: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PINSTALLUI_HANDLER_RECORD = fn(
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     iMessageType: u32,
     hRecord: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1814,13 +1814,13 @@ pub const IAssemblyName = extern struct {
         SetProperty: fn(
             self: *const IAssemblyName,
             PropertyId: u32,
-            pvProperty: ?*c_void,
+            pvProperty: ?*anyopaque,
             cbProperty: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAssemblyName,
             PropertyId: u32,
-            pvProperty: ?*c_void,
+            pvProperty: ?*anyopaque,
             pcbProperty: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finalize: fn(
@@ -1839,9 +1839,9 @@ pub const IAssemblyName = extern struct {
             pUnkReserved2: ?*IUnknown,
             szReserved: ?[*:0]const u16,
             llReserved: i64,
-            pvReserved: ?*c_void,
+            pvReserved: ?*anyopaque,
             cbReserved: u32,
-            ppReserved: ?*?*c_void,
+            ppReserved: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetName: fn(
             self: *const IAssemblyName,
@@ -1867,11 +1867,11 @@ pub const IAssemblyName = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_SetProperty(self: *const T, PropertyId: u32, pvProperty: ?*c_void, cbProperty: u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_SetProperty(self: *const T, PropertyId: u32, pvProperty: ?*anyopaque, cbProperty: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).SetProperty(@ptrCast(*const IAssemblyName, self), PropertyId, pvProperty, cbProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_GetProperty(self: *const T, PropertyId: u32, pvProperty: ?*c_void, pcbProperty: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_GetProperty(self: *const T, PropertyId: u32, pvProperty: ?*anyopaque, pcbProperty: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).GetProperty(@ptrCast(*const IAssemblyName, self), PropertyId, pvProperty, pcbProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1883,7 +1883,7 @@ pub const IAssemblyName = extern struct {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).GetDisplayName(@ptrCast(*const IAssemblyName, self), szDisplayName, pccDisplayName, dwDisplayFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyName_Reserved(self: *const T, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*c_void, cbReserved: u32, ppReserved: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAssemblyName_Reserved(self: *const T, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*anyopaque, cbReserved: u32, ppReserved: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyName.VTable, self.vtable).Reserved(@ptrCast(*const IAssemblyName, self), refIID, pUnkReserved1, pUnkReserved2, szReserved, llReserved, pvReserved, cbReserved, ppReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1971,7 +1971,7 @@ pub const IAssemblyCache = extern struct {
         CreateAssemblyCacheItem: fn(
             self: *const IAssemblyCache,
             dwFlags: u32,
-            pvReserved: ?*c_void,
+            pvReserved: ?*anyopaque,
             ppAsmItem: ?*?*IAssemblyCacheItem,
             pszAssemblyName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1998,7 +1998,7 @@ pub const IAssemblyCache = extern struct {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).QueryAssemblyInfo(@ptrCast(*const IAssemblyCache, self), dwFlags, pszAssemblyName, pAsmInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_CreateAssemblyCacheItem(self: *const T, dwFlags: u32, pvReserved: ?*c_void, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_CreateAssemblyCacheItem(self: *const T, dwFlags: u32, pvReserved: ?*anyopaque, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).CreateAssemblyCacheItem(@ptrCast(*const IAssemblyCache, self), dwFlags, pvReserved, ppAsmItem, pszAssemblyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5399,7 +5399,7 @@ pub const IPMBackgroundWorkerInfoEnumerator = extern struct {
 };
 
 pub const PPATCH_PROGRESS_CALLBACK = fn(
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
     CurrentPosition: u32,
     MaximumPosition: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5412,7 +5412,7 @@ pub const PPATCH_SYMLOAD_CALLBACK = fn(
     SymbolFileTimeDate: u32,
     ImageFileCheckSum: u32,
     ImageFileTimeDate: u32,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PATCH_IGNORE_RANGE = extern struct {
@@ -5482,22 +5482,22 @@ pub const PATCH_OPTION_DATA = extern struct {
     OldFileSymbolPathArray: ?*?PSTR,
     ExtendedOptionFlags: u32,
     SymLoadCallback: ?PPATCH_SYMLOAD_CALLBACK,
-    SymLoadContext: ?*c_void,
+    SymLoadContext: ?*anyopaque,
     InterleaveMapArray: ?*?*PATCH_INTERLEAVE_MAP,
     MaxLzxWindowSize: u32,
 };
 
 pub const DELTA_INPUT = extern struct {
     Anonymous: extern union {
-        lpcStart: ?*const c_void,
-        lpStart: ?*c_void,
+        lpcStart: ?*const anyopaque,
+        lpStart: ?*anyopaque,
     },
     uSize: usize,
     Editable: BOOL,
 };
 
 pub const DELTA_OUTPUT = extern struct {
-    lpStart: ?*c_void,
+    lpStart: ?*anyopaque,
     uSize: usize,
 };
 
@@ -5634,11 +5634,11 @@ pub const ACTCTXW = extern struct {
 pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
     cbSize: u32,
     ulDataFormatVersion: u32,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     ulLength: u32,
-    lpSectionGlobalData: ?*c_void,
+    lpSectionGlobalData: ?*anyopaque,
     ulSectionGlobalDataLength: u32,
-    lpSectionBase: ?*c_void,
+    lpSectionBase: ?*anyopaque,
     ulSectionTotalLength: u32,
     hActCtx: ?HANDLE,
     ulAssemblyRosterIndex: u32,
@@ -5669,21 +5669,21 @@ pub extern "msi" fn MsiSetInternalUI(
 pub extern "msi" fn MsiSetExternalUIA(
     puiHandler: ?INSTALLUI_HANDLERA,
     dwMessageFilter: u32,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?INSTALLUI_HANDLERA;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetExternalUIW(
     puiHandler: ?INSTALLUI_HANDLERW,
     dwMessageFilter: u32,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?INSTALLUI_HANDLERW;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiSetExternalUIRecord(
     puiHandler: ?PINSTALLUI_HANDLER_RECORD,
     dwMessageFilter: u32,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     ppuiPrevHandler: ?PINSTALLUI_HANDLER_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -7770,7 +7770,7 @@ pub extern "mspatchc" fn CreatePatchFileExA(
     OptionFlags: u32,
     OptionData: ?*PATCH_OPTION_DATA,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileExW(
@@ -7781,7 +7781,7 @@ pub extern "mspatchc" fn CreatePatchFileExW(
     OptionFlags: u32,
     OptionData: ?*PATCH_OPTION_DATA,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileByHandlesEx(
@@ -7792,7 +7792,7 @@ pub extern "mspatchc" fn CreatePatchFileByHandlesEx(
     OptionFlags: u32,
     OptionData: ?*PATCH_OPTION_DATA,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mspatchc" fn ExtractPatchHeaderToFileA(
@@ -7866,7 +7866,7 @@ pub extern "mspatcha" fn ApplyPatchToFileExA(
     NewFileName: ?[*:0]const u8,
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileExW(
@@ -7875,7 +7875,7 @@ pub extern "mspatcha" fn ApplyPatchToFileExW(
     NewFileName: ?[*:0]const u16,
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileByHandlesEx(
@@ -7884,7 +7884,7 @@ pub extern "mspatcha" fn ApplyPatchToFileByHandlesEx(
     NewFileHandle: ?HANDLE,
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileByBuffers(
@@ -7901,13 +7901,13 @@ pub extern "mspatcha" fn ApplyPatchToFileByBuffers(
     NewFileTime: ?*FILETIME,
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureA(
     FileName: ?[*:0]const u8,
     OptionFlags: u32,
-    OptionData: ?*c_void,
+    OptionData: ?*anyopaque,
     IgnoreRangeCount: u32,
     IgnoreRangeArray: ?[*]PATCH_IGNORE_RANGE,
     RetainRangeCount: u32,
@@ -7920,7 +7920,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureA(
 pub extern "mspatcha" fn GetFilePatchSignatureW(
     FileName: ?[*:0]const u16,
     OptionFlags: u32,
-    OptionData: ?*c_void,
+    OptionData: ?*anyopaque,
     IgnoreRangeCount: u32,
     IgnoreRangeArray: ?[*]PATCH_IGNORE_RANGE,
     RetainRangeCount: u32,
@@ -7933,7 +7933,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureW(
 pub extern "mspatcha" fn GetFilePatchSignatureByHandle(
     FileHandle: ?HANDLE,
     OptionFlags: u32,
-    OptionData: ?*c_void,
+    OptionData: ?*anyopaque,
     IgnoreRangeCount: u32,
     IgnoreRangeArray: ?[*]PATCH_IGNORE_RANGE,
     RetainRangeCount: u32,
@@ -7948,7 +7948,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
     FileBufferWritable: ?*u8,
     FileSize: u32,
     OptionFlags: u32,
-    OptionData: ?*c_void,
+    OptionData: ?*anyopaque,
     IgnoreRangeCount: u32,
     IgnoreRangeArray: ?[*]PATCH_IGNORE_RANGE,
     RetainRangeCount: u32,
@@ -7960,7 +7960,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
 
 pub extern "mspatcha" fn NormalizeFileForPatchSignature(
     // TODO: what to do with BytesParamIndex 1?
-    FileBuffer: ?*c_void,
+    FileBuffer: ?*anyopaque,
     FileSize: u32,
     OptionFlags: u32,
     OptionData: ?*PATCH_OPTION_DATA,
@@ -8008,7 +8008,7 @@ pub extern "msdelta" fn ApplyDeltaProvidedB(
     Source: DELTA_INPUT,
     Delta: DELTA_INPUT,
     // TODO: what to do with BytesParamIndex 4?
-    lpTarget: ?*c_void,
+    lpTarget: ?*anyopaque,
     uTargetSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -8094,12 +8094,12 @@ pub extern "msdelta" fn DeltaNormalizeProvidedB(
     NormalizeFlags: i64,
     NormalizeOptions: DELTA_INPUT,
     // TODO: what to do with BytesParamIndex 4?
-    lpSource: ?*c_void,
+    lpSource: ?*anyopaque,
     uSourceSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "msdelta" fn DeltaFree(
-    lpMemory: ?*c_void,
+    lpMemory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8175,10 +8175,10 @@ pub extern "KERNEL32" fn FindActCtxSectionGuid(
 pub extern "KERNEL32" fn QueryActCtxW(
     dwFlags: u32,
     hActCtx: ?HANDLE,
-    pvSubInstance: ?*c_void,
+    pvSubInstance: ?*anyopaque,
     ulInfoClass: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
     cbBuffer: usize,
     pcbWrittenOrRequired: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

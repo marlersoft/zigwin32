@@ -271,7 +271,7 @@ pub const PFN_WdsCliCallback = fn(
     dwMessageId: PFN_WDS_CLI_CALLBACK_MESSAGE_ID,
     wParam: WPARAM,
     lParam: LPARAM,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PXE_DHCP_OPTION = extern struct {
@@ -350,7 +350,7 @@ pub const PXE_ADDRESS = extern struct {
 pub const PXE_DHCPV6_NESTED_RELAY_MESSAGE = extern struct {
     pRelayMessage: ?*PXE_DHCPV6_RELAY_MESSAGE,
     cbRelayMessage: u32,
-    pInterfaceIdOption: ?*c_void,
+    pInterfaceIdOption: ?*anyopaque,
     cbInterfaceIdOption: u16,
 };
 
@@ -420,42 +420,42 @@ pub const TRANSPORTCLIENT_SESSION_INFO = extern struct {
 
 pub const PFN_WdsTransportClientSessionStart = fn(
     hSessionKey: ?HANDLE,
-    pCallerData: ?*c_void,
+    pCallerData: ?*anyopaque,
     ullFileSize: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_WdsTransportClientSessionStartEx = fn(
     hSessionKey: ?HANDLE,
-    pCallerData: ?*c_void,
+    pCallerData: ?*anyopaque,
     Info: ?*TRANSPORTCLIENT_SESSION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_WdsTransportClientReceiveMetadata = fn(
     hSessionKey: ?HANDLE,
-    pCallerData: ?*c_void,
+    pCallerData: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    pMetadata: ?*c_void,
+    pMetadata: ?*anyopaque,
     ulSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_WdsTransportClientReceiveContents = fn(
     hSessionKey: ?HANDLE,
-    pCallerData: ?*c_void,
+    pCallerData: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    pContents: ?*c_void,
+    pContents: ?*anyopaque,
     ulSize: u32,
     pullContentOffset: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_WdsTransportClientSessionComplete = fn(
     hSessionKey: ?HANDLE,
-    pCallerData: ?*c_void,
+    pCallerData: ?*anyopaque,
     dwError: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_WdsTransportClientSessionNegotiate = fn(
     hSessionKey: ?HANDLE,
-    pCallerData: ?*c_void,
+    pCallerData: ?*anyopaque,
     pInfo: ?*TRANSPORTCLIENT_SESSION_INFO,
     hNegotiateKey: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -469,7 +469,7 @@ pub const WDS_TRANSPORTCLIENT_REQUEST = extern struct {
     pwszObjectName: ?[*:0]const u16,
     ulCacheSize: u32,
     ulProtocol: u32,
-    pvProtocolData: ?*c_void,
+    pvProtocolData: ?*anyopaque,
     ulProtocolDataLength: u32,
 };
 
@@ -2299,7 +2299,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliGetImageParameter(
     hIfh: ?HANDLE,
     ParamType: WDS_CLI_IMAGE_PARAM_TYPE,
     // TODO: what to do with BytesParamIndex 3?
-    pResponse: ?*c_void,
+    pResponse: ?*anyopaque,
     uResponseLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2320,7 +2320,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliTransferImage(
     dwFlags: u32,
     dwReserved: u32,
     pfnWdsCliCallback: ?PFN_WdsCliCallback,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     phTransfer: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2333,7 +2333,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliTransferFile(
     dwFlags: u32,
     dwReserved: u32,
     pfnWdsCliCallback: ?PFN_WdsCliCallback,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     phTransfer: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2415,15 +2415,15 @@ pub extern "WDSPXE" fn PxeProviderFreeInfo(
 pub extern "WDSPXE" fn PxeRegisterCallback(
     hProvider: ?HANDLE,
     CallbackType: u32,
-    pCallbackFunction: ?*c_void,
-    pContext: ?*c_void,
+    pCallbackFunction: ?*anyopaque,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxeSendReply(
     hClientRequest: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     pAddress: ?*PXE_ADDRESS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2453,13 +2453,13 @@ pub extern "WDSPXE" fn PxePacketAllocate(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
     uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxePacketFree(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
@@ -2467,17 +2467,17 @@ pub extern "WDSPXE" fn PxeProviderSetAttribute(
     hProvider: ?HANDLE,
     Attribute: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pParameterBuffer: ?*c_void,
+    pParameterBuffer: ?*anyopaque,
     uParamLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxeDhcpInitialize(
     // TODO: what to do with BytesParamIndex 1?
-    pRecvPacket: ?*c_void,
+    pRecvPacket: ?*anyopaque,
     uRecvPacketLen: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pReplyPacket: ?*c_void,
+    pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
     puReplyPacketLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2485,10 +2485,10 @@ pub extern "WDSPXE" fn PxeDhcpInitialize(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSPXE" fn PxeDhcpv6Initialize(
     // TODO: what to do with BytesParamIndex 1?
-    pRequest: ?*c_void,
+    pRequest: ?*anyopaque,
     cbRequest: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pReply: ?*c_void,
+    pReply: ?*anyopaque,
     cbReply: u32,
     pcbReplyUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2496,53 +2496,53 @@ pub extern "WDSPXE" fn PxeDhcpv6Initialize(
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxeDhcpAppendOption(
     // TODO: what to do with BytesParamIndex 1?
-    pReplyPacket: ?*c_void,
+    pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
     puReplyPacketLen: ?*u32,
     bOption: u8,
     bOptionLen: u8,
     // TODO: what to do with BytesParamIndex 4?
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSPXE" fn PxeDhcpv6AppendOption(
     // TODO: what to do with BytesParamIndex 1?
-    pReply: ?*c_void,
+    pReply: ?*anyopaque,
     cbReply: u32,
     pcbReplyUsed: ?*u32,
     wOptionType: u16,
     cbOption: u16,
     // TODO: what to do with BytesParamIndex 4?
-    pOption: ?*c_void,
+    pOption: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxeDhcpAppendOptionRaw(
     // TODO: what to do with BytesParamIndex 1?
-    pReplyPacket: ?*c_void,
+    pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
     puReplyPacketLen: ?*u32,
     uBufferLen: u16,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSPXE" fn PxeDhcpv6AppendOptionRaw(
     // TODO: what to do with BytesParamIndex 1?
-    pReply: ?*c_void,
+    pReply: ?*anyopaque,
     cbReply: u32,
     pcbReplyUsed: ?*u32,
     cbBuffer: u16,
     // TODO: what to do with BytesParamIndex 3?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxeDhcpIsValid(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     bRequestPacket: BOOL,
     pbPxeOptionPresent: ?*BOOL,
@@ -2551,7 +2551,7 @@ pub extern "WDSPXE" fn PxeDhcpIsValid(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSPXE" fn PxeDhcpv6IsValid(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     bRequestPacket: BOOL,
     pbPxeOptionPresent: ?*BOOL,
@@ -2560,52 +2560,52 @@ pub extern "WDSPXE" fn PxeDhcpv6IsValid(
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxeDhcpGetOptionValue(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     uInstance: u32,
     bOption: u8,
     pbOptionLen: ?*u8,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSPXE" fn PxeDhcpv6GetOptionValue(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     uInstance: u32,
     wOption: u16,
     pwOptionLen: ?*u16,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSPXE" fn PxeDhcpGetVendorOptionValue(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     bOption: u8,
     uInstance: u32,
     pbOptionLen: ?*u8,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSPXE" fn PxeDhcpv6GetVendorOptionValue(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     dwEnterpriseNumber: u32,
     wOption: u16,
     uInstance: u32,
     pwOptionLen: ?*u16,
-    ppOptionValue: ?*?*c_void,
+    ppOptionValue: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSPXE" fn PxeDhcpv6ParseRelayForw(
     // TODO: what to do with BytesParamIndex 1?
-    pRelayForwPacket: ?*c_void,
+    pRelayForwPacket: ?*anyopaque,
     uRelayForwPacketLen: u32,
     pRelayMessages: [*]PXE_DHCPV6_NESTED_RELAY_MESSAGE,
     nRelayMessages: u32,
@@ -2622,7 +2622,7 @@ pub extern "WDSPXE" fn PxeDhcpv6CreateRelayRepl(
     pInnerPacket: ?*u8,
     cbInnerPacket: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pReplyBuffer: ?*c_void,
+    pReplyBuffer: ?*anyopaque,
     cbReplyBuffer: u32,
     pcbReplyBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2631,7 +2631,7 @@ pub extern "WDSPXE" fn PxeDhcpv6CreateRelayRepl(
 pub extern "WDSPXE" fn PxeGetServerInfo(
     uInfoType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     uBufferLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2639,7 +2639,7 @@ pub extern "WDSPXE" fn PxeGetServerInfo(
 pub extern "WDSPXE" fn PxeGetServerInfoEx(
     uInfoType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     uBufferLen: u32,
     puBufferUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2648,14 +2648,14 @@ pub extern "WDSPXE" fn PxeGetServerInfoEx(
 pub extern "WDSMC" fn WdsTransportServerRegisterCallback(
     hProvider: ?HANDLE,
     CallbackId: TRANSPORTPROVIDER_CALLBACK_ID,
-    pfnCallback: ?*c_void,
+    pfnCallback: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSMC" fn WdsTransportServerCompleteRead(
     hProvider: ?HANDLE,
     ulBytesRead: u32,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     hReadResult: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2678,12 +2678,12 @@ pub extern "WDSMC" fn WdsTransportServerTraceV(
 pub extern "WDSMC" fn WdsTransportServerAllocateBuffer(
     hProvider: ?HANDLE,
     ulBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "WDSMC" fn WdsTransportServerFreeBuffer(
     hProvider: ?HANDLE,
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2693,7 +2693,7 @@ pub extern "WDSTPTC" fn WdsTransportClientInitialize(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WDSTPTC" fn WdsTransportClientInitializeSession(
     pSessionRequest: ?*WDS_TRANSPORTCLIENT_REQUEST,
-    pCallerData: ?*c_void,
+    pCallerData: ?*anyopaque,
     hSessionKey: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2701,7 +2701,7 @@ pub extern "WDSTPTC" fn WdsTransportClientInitializeSession(
 pub extern "WDSTPTC" fn WdsTransportClientRegisterCallback(
     hSessionKey: ?HANDLE,
     CallbackId: TRANSPORTCLIENT_CALLBACK_ID,
-    pfnCallback: ?*c_void,
+    pfnCallback: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2746,12 +2746,12 @@ pub extern "WDSTPTC" fn WdsTransportClientCloseSession(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WDSTPTC" fn WdsTransportClientAddRefBuffer(
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WDSTPTC" fn WdsTransportClientReleaseBuffer(
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2761,7 +2761,7 @@ pub extern "WDSTPTC" fn WdsTransportClientShutdown(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WDSBP" fn WdsBpParseInitialize(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     pbPacketType: ?*u8,
     phHandle: ?*?HANDLE,
@@ -2770,7 +2770,7 @@ pub extern "WDSBP" fn WdsBpParseInitialize(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WDSBP" fn WdsBpParseInitializev6(
     // TODO: what to do with BytesParamIndex 1?
-    pPacket: ?*c_void,
+    pPacket: ?*anyopaque,
     uPacketLen: u32,
     pbPacketType: ?*u8,
     phHandle: ?*?HANDLE,
@@ -2793,7 +2793,7 @@ pub extern "WDSBP" fn WdsBpQueryOption(
     uOption: u32,
     uValueLen: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
     puBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2803,7 +2803,7 @@ pub extern "WDSBP" fn WdsBpAddOption(
     uOption: u32,
     uValueLen: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2811,7 +2811,7 @@ pub extern "WDSBP" fn WdsBpGetOptionBuffer(
     hHandle: ?HANDLE,
     uBufferLen: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     puBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

@@ -998,7 +998,7 @@ pub const RAW_SCSI_VIRTUAL_DISK_PARAMETERS = extern struct {
             SenseInfoLength: u8,
             SrbFlags: u32,
             DataTransferLength: u32,
-            DataBuffer: ?*c_void,
+            DataBuffer: ?*anyopaque,
             SenseInfo: ?*u8,
             Cdb: ?*u8,
         },
@@ -1144,7 +1144,7 @@ pub extern "VirtDisk" fn GetVirtualDiskMetadata(
     Item: ?*const Guid,
     MetaDataSize: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
-    MetaData: ?*c_void,
+    MetaData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1153,7 +1153,7 @@ pub extern "VirtDisk" fn SetVirtualDiskMetadata(
     Item: ?*const Guid,
     MetaDataSize: u32,
     // TODO: what to do with BytesParamIndex 2?
-    MetaData: ?*const c_void,
+    MetaData: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'

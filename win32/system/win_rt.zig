@@ -47,14 +47,14 @@ pub const IAgileReference = extern struct {
         Resolve: fn(
             self: *const IAgileReference,
             riid: ?*const Guid,
-            ppvObjectReference: ?*?*c_void,
+            ppvObjectReference: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAgileReference_Resolve(self: *const T, riid: ?*const Guid, ppvObjectReference: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAgileReference_Resolve(self: *const T, riid: ?*const Guid, ppvObjectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAgileReference.VTable, self.vtable).Resolve(@ptrCast(*const IAgileReference, self), riid, ppvObjectReference);
         }
     };}
@@ -106,14 +106,14 @@ pub const ISpatialInteractionManagerInterop = extern struct {
             self: *const ISpatialInteractionManagerInterop,
             window: ?HWND,
             riid: ?*const Guid,
-            spatialInteractionManager: ?*?*c_void,
+            spatialInteractionManager: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialInteractionManagerInterop_GetForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, spatialInteractionManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpatialInteractionManagerInterop_GetForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, spatialInteractionManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialInteractionManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ISpatialInteractionManagerInterop, self), window, riid, spatialInteractionManager);
         }
     };}
@@ -130,14 +130,14 @@ pub const IHolographicSpaceInterop = extern struct {
             self: *const IHolographicSpaceInterop,
             window: ?HWND,
             riid: ?*const Guid,
-            holographicSpace: ?*?*c_void,
+            holographicSpace: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolographicSpaceInterop_CreateForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, holographicSpace: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHolographicSpaceInterop_CreateForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, holographicSpace: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHolographicSpaceInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IHolographicSpaceInterop, self), window, riid, holographicSpace);
         }
     };}
@@ -146,7 +146,7 @@ pub const IHolographicSpaceInterop = extern struct {
 
 pub const HSTRING_HEADER = extern struct {
     Reserved: extern union {
-        Reserved1: ?*c_void,
+        Reserved1: ?*anyopaque,
         Reserved2: [24]CHAR,
     },
 };
@@ -200,14 +200,14 @@ pub const IInspectable = extern struct {
 };
 
 pub const PINSPECT_HSTRING_CALLBACK = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     readAddress: usize,
     length: u32,
     buffer: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PINSPECT_HSTRING_CALLBACK2 = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     readAddress: u64,
     length: u32,
     buffer: [*:0]u8,
@@ -244,34 +244,34 @@ pub const IAccountsSettingsPaneInterop = extern struct {
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            accountsSettingsPane: ?*?*c_void,
+            accountsSettingsPane: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowManageAccountsForWindowAsync: fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncAction: ?*?*c_void,
+            asyncAction: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowAddAccountForWindowAsync: fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncAction: ?*?*c_void,
+            asyncAction: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, accountsSettingsPane: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAccountsSettingsPaneInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, accountsSettingsPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountsSettingsPaneInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IAccountsSettingsPaneInterop, self), appWindow, riid, accountsSettingsPane);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_ShowManageAccountsForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAccountsSettingsPaneInterop_ShowManageAccountsForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountsSettingsPaneInterop.VTable, self.vtable).ShowManageAccountsForWindowAsync(@ptrCast(*const IAccountsSettingsPaneInterop, self), appWindow, riid, asyncAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_ShowAddAccountForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAccountsSettingsPaneInterop_ShowAddAccountForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncAction: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountsSettingsPaneInterop.VTable, self.vtable).ShowAddAccountForWindowAsync(@ptrCast(*const IAccountsSettingsPaneInterop, self), appWindow, riid, asyncAction);
         }
     };}
@@ -286,14 +286,14 @@ pub const IAppServiceConnectionExtendedExecution = extern struct {
         OpenForExtendedExecutionAsync: fn(
             self: *const IAppServiceConnectionExtendedExecution,
             riid: ?*const Guid,
-            operation: ?*?*c_void,
+            operation: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppServiceConnectionExtendedExecution_OpenForExtendedExecutionAsync(self: *const T, riid: ?*const Guid, operation: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAppServiceConnectionExtendedExecution_OpenForExtendedExecutionAsync(self: *const T, riid: ?*const Guid, operation: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppServiceConnectionExtendedExecution.VTable, self.vtable).OpenForExtendedExecutionAsync(@ptrCast(*const IAppServiceConnectionExtendedExecution, self), riid, operation);
         }
     };}
@@ -473,14 +473,14 @@ pub const IDragDropManagerInterop = extern struct {
             self: *const IDragDropManagerInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDragDropManagerInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDragDropManagerInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDragDropManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IDragDropManagerInterop, self), hwnd, riid, ppv);
         }
     };}
@@ -497,14 +497,14 @@ pub const IInputPaneInterop = extern struct {
             self: *const IInputPaneInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            inputPane: ?*?*c_void,
+            inputPane: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInputPaneInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, inputPane: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInputPaneInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, inputPane: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInputPaneInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IInputPaneInterop, self), appWindow, riid, inputPane);
         }
     };}
@@ -521,7 +521,7 @@ pub const IPlayToManagerInterop = extern struct {
             self: *const IPlayToManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            playToManager: ?*?*c_void,
+            playToManager: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPlayToUIForWindow: fn(
             self: *const IPlayToManagerInterop,
@@ -532,7 +532,7 @@ pub const IPlayToManagerInterop = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPlayToManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, playToManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPlayToManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, playToManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPlayToManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPlayToManagerInterop, self), appWindow, riid, playToManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -592,14 +592,14 @@ pub const IUIViewSettingsInterop = extern struct {
             self: *const IUIViewSettingsInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIViewSettingsInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIViewSettingsInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIViewSettingsInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IUIViewSettingsInterop, self), hwnd, riid, ppv);
         }
     };}
@@ -615,14 +615,14 @@ pub const IUserActivityInterop = extern struct {
             self: *const IUserActivityInterop,
             window: ?HWND,
             iid: ?*const Guid,
-            value: ?*?*c_void,
+            value: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserActivityInterop_CreateSessionForWindow(self: *const T, window: ?HWND, iid: ?*const Guid, value: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUserActivityInterop_CreateSessionForWindow(self: *const T, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserActivityInterop.VTable, self.vtable).CreateSessionForWindow(@ptrCast(*const IUserActivityInterop, self), window, iid, value);
         }
     };}
@@ -659,14 +659,14 @@ pub const IUserActivityRequestManagerInterop = extern struct {
             self: *const IUserActivityRequestManagerInterop,
             window: ?HWND,
             iid: ?*const Guid,
-            value: ?*?*c_void,
+            value: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserActivityRequestManagerInterop_GetForWindow(self: *const T, window: ?HWND, iid: ?*const Guid, value: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUserActivityRequestManagerInterop_GetForWindow(self: *const T, window: ?HWND, iid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserActivityRequestManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IUserActivityRequestManagerInterop, self), window, iid, value);
         }
     };}
@@ -683,14 +683,14 @@ pub const IUserConsentVerifierInterop = extern struct {
             appWindow: ?HWND,
             message: ?HSTRING,
             riid: ?*const Guid,
-            asyncOperation: ?*?*c_void,
+            asyncOperation: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserConsentVerifierInterop_RequestVerificationForWindowAsync(self: *const T, appWindow: ?HWND, message: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUserConsentVerifierInterop_RequestVerificationForWindowAsync(self: *const T, appWindow: ?HWND, message: ?HSTRING, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserConsentVerifierInterop.VTable, self.vtable).RequestVerificationForWindowAsync(@ptrCast(*const IUserConsentVerifierInterop, self), appWindow, message, riid, asyncOperation);
         }
     };}
@@ -707,7 +707,7 @@ pub const IWebAuthenticationCoreManagerInterop = extern struct {
             appWindow: ?HWND,
             request: ?*IInspectable,
             riid: ?*const Guid,
-            asyncInfo: ?*?*c_void,
+            asyncInfo: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestTokenWithWebAccountForWindowAsync: fn(
             self: *const IWebAuthenticationCoreManagerInterop,
@@ -715,18 +715,18 @@ pub const IWebAuthenticationCoreManagerInterop = extern struct {
             request: ?*IInspectable,
             webAccount: ?*IInspectable,
             riid: ?*const Guid,
-            asyncInfo: ?*?*c_void,
+            asyncInfo: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebAuthenticationCoreManagerInterop_RequestTokenForWindowAsync(self: *const T, appWindow: ?HWND, request: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWebAuthenticationCoreManagerInterop_RequestTokenForWindowAsync(self: *const T, appWindow: ?HWND, request: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebAuthenticationCoreManagerInterop.VTable, self.vtable).RequestTokenForWindowAsync(@ptrCast(*const IWebAuthenticationCoreManagerInterop, self), appWindow, request, riid, asyncInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebAuthenticationCoreManagerInterop_RequestTokenWithWebAccountForWindowAsync(self: *const T, appWindow: ?HWND, request: ?*IInspectable, webAccount: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWebAuthenticationCoreManagerInterop_RequestTokenWithWebAccountForWindowAsync(self: *const T, appWindow: ?HWND, request: ?*IInspectable, webAccount: ?*IInspectable, riid: ?*const Guid, asyncInfo: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebAuthenticationCoreManagerInterop.VTable, self.vtable).RequestTokenWithWebAccountForWindowAsync(@ptrCast(*const IWebAuthenticationCoreManagerInterop, self), appWindow, request, webAccount, riid, asyncInfo);
         }
     };}
@@ -956,7 +956,7 @@ pub const RO_ERROR_REPORTING_USESETERRORINFO = RO_ERROR_REPORTING_FLAGS.USESETER
 pub const RO_ERROR_REPORTING_SUPPRESSSETERRORINFO = RO_ERROR_REPORTING_FLAGS.SUPPRESSSETERRORINFO;
 
 pub const PINSPECT_MEMORY_CALLBACK = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     readAddress: usize,
     length: u32,
     buffer: [*:0]u8,
@@ -1120,14 +1120,14 @@ pub const IWeakReference = extern struct {
         Resolve: fn(
             self: *const IWeakReference,
             riid: ?*const Guid,
-            objectReference: ?*?*c_void,
+            objectReference: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWeakReference_Resolve(self: *const T, riid: ?*const Guid, objectReference: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWeakReference_Resolve(self: *const T, riid: ?*const Guid, objectReference: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWeakReference.VTable, self.vtable).Resolve(@ptrCast(*const IWeakReference, self), riid, objectReference);
         }
     };}
@@ -1165,14 +1165,14 @@ pub const ISystemMediaTransportControlsInterop = extern struct {
             self: *const ISystemMediaTransportControlsInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            mediaTransportControl: ?*?*c_void,
+            mediaTransportControl: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISystemMediaTransportControlsInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, mediaTransportControl: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISystemMediaTransportControlsInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, mediaTransportControl: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISystemMediaTransportControlsInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ISystemMediaTransportControlsInterop, self), appWindow, riid, mediaTransportControl);
         }
     };}
@@ -1209,14 +1209,14 @@ pub const IShareWindowCommandSourceInterop = extern struct {
             self: *const IShareWindowCommandSourceInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            shareWindowCommandSource: ?*?*c_void,
+            shareWindowCommandSource: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShareWindowCommandSourceInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, shareWindowCommandSource: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShareWindowCommandSourceInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, shareWindowCommandSource: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShareWindowCommandSourceInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IShareWindowCommandSourceInterop, self), appWindow, riid, shareWindowCommandSource);
         }
     };}
@@ -1437,7 +1437,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsInspectString(
     targetHString: usize,
     machine: u16,
     callback: ?PINSPECT_HSTRING_CALLBACK,
-    context: ?*c_void,
+    context: ?*anyopaque,
     length: ?*u32,
     targetStringAddress: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1447,7 +1447,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-1" fn WindowsInspectString2(
     targetHString: u64,
     machine: u16,
     callback: ?PINSPECT_HSTRING_CALLBACK2,
-    context: ?*c_void,
+    context: ?*anyopaque,
     length: ?*u32,
     targetStringAddress: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1489,7 +1489,7 @@ pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRevokeActivationFactories(
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoGetActivationFactory(
     activatableClassId: ?HSTRING,
     iid: ?*const Guid,
-    factory: ?*?*c_void,
+    factory: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1598,7 +1598,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectThreadErrorInfo(
     targetTebAddress: usize,
     machine: u16,
     readMemoryCallback: ?PINSPECT_MEMORY_CALLBACK,
-    context: ?*c_void,
+    context: ?*anyopaque,
     targetErrorInfoAddress: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1607,7 +1607,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoInspectCapturedStackBackTra
     targetErrorInfoAddress: usize,
     machine: u16,
     readMemoryCallback: ?PINSPECT_MEMORY_CALLBACK,
-    context: ?*c_void,
+    context: ?*anyopaque,
     frameCount: ?*u32,
     targetBackTraceAddress: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1630,7 +1630,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn IsErrorPropagationEnabled(
 pub extern "RoMetadata" fn MetaDataGetDispenser(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1664,7 +1664,7 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOn
     filePath: ?[*:0]const u16,
     accessMode: u32,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1672,14 +1672,14 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOv
     stream: ?*IStream,
     options: BSOS_OPTIONS,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateStreamOverRandomAccessStream(
     randomAccessStream: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

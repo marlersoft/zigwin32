@@ -54,7 +54,7 @@ pub const HcsOperationTypeCrash = HCS_OPERATION_TYPE.Crash;
 
 pub const HCS_OPERATION_COMPLETION = fn(
     operation: HCS_OPERATION,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const HCS_EVENT_TYPE = enum(i32) {
@@ -105,7 +105,7 @@ pub const HcsEventOptionEnableOperationCallbacks = HCS_EVENT_OPTIONS.EnableOpera
 
 pub const HCS_EVENT_CALLBACK = fn(
     event: ?*HCS_EVENT,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const HCS_NOTIFICATION_FLAGS = enum(i32) {
@@ -162,7 +162,7 @@ pub const HcsNotificationFlagsReserved = HCS_NOTIFICATIONS.FlagsReserved;
 
 pub const HCS_NOTIFICATION_CALLBACK = fn(
     notificationType: u32,
-    context: ?*c_void,
+    context: ?*anyopaque,
     notificationStatus: HRESULT,
     notificationData: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -185,7 +185,7 @@ pub const HCS_CREATE_OPTIONS_1 = extern struct {
     UserToken: ?HANDLE,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     CallbackOptions: HCS_EVENT_OPTIONS,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
     Callback: ?HCS_EVENT_CALLBACK,
 };
 
@@ -205,7 +205,7 @@ pub extern "computecore" fn HcsEnumerateComputeSystemsInNamespace(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computecore" fn HcsCreateOperation(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     callback: ?HCS_OPERATION_COMPLETION,
 ) callconv(@import("std").os.windows.WINAPI) HCS_OPERATION;
 
@@ -215,11 +215,11 @@ pub extern "computecore" fn HcsCloseOperation(
 
 pub extern "computecore" fn HcsGetOperationContext(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "computecore" fn HcsSetOperationContext(
     operation: HCS_OPERATION,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computecore" fn HcsGetComputeSystemFromOperation(
@@ -269,7 +269,7 @@ pub extern "computecore" fn HcsWaitForOperationResultAndProcessInfo(
 
 pub extern "computecore" fn HcsSetOperationCallback(
     operation: HCS_OPERATION,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     callback: ?HCS_OPERATION_COMPLETION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -375,7 +375,7 @@ pub extern "computecore" fn HcsWaitForComputeSystemExit(
 pub extern "computecore" fn HcsSetComputeSystemCallback(
     computeSystem: HCS_SYSTEM,
     callbackOptions: HCS_EVENT_OPTIONS,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     callback: ?HCS_EVENT_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -430,7 +430,7 @@ pub extern "computecore" fn HcsModifyProcess(
 pub extern "computecore" fn HcsSetProcessCallback(
     process: HCS_PROCESS,
     callbackOptions: HCS_EVENT_OPTIONS,
-    context: ?*c_void,
+    context: ?*anyopaque,
     callback: ?HCS_EVENT_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

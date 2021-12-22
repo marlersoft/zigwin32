@@ -636,7 +636,7 @@ pub const ID2D1Bitmap = extern struct {
         CopyFromMemory: fn(
             self: *const ID2D1Bitmap,
             dstRect: ?*const D2D_RECT_U,
-            srcData: ?*const c_void,
+            srcData: ?*const anyopaque,
             pitch: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -668,7 +668,7 @@ pub const ID2D1Bitmap = extern struct {
             return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromRenderTarget(@ptrCast(*const ID2D1Bitmap, self), destPoint, renderTarget, srcRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1Bitmap_CopyFromMemory(self: *const T, dstRect: ?*const D2D_RECT_U, srcData: ?*const c_void, pitch: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1Bitmap_CopyFromMemory(self: *const T, dstRect: ?*const D2D_RECT_U, srcData: ?*const anyopaque, pitch: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromMemory(@ptrCast(*const ID2D1Bitmap, self), dstRect, srcData, pitch);
         }
     };}
@@ -1600,7 +1600,7 @@ pub const ID2D1RenderTarget = extern struct {
         CreateBitmap: fn(
             self: *const ID2D1RenderTarget,
             size: D2D_SIZE_U,
-            srcData: ?*const c_void,
+            srcData: ?*const anyopaque,
             pitch: u32,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
             bitmap: ?*?*ID2D1Bitmap,
@@ -1614,7 +1614,7 @@ pub const ID2D1RenderTarget = extern struct {
         CreateSharedBitmap: fn(
             self: *const ID2D1RenderTarget,
             riid: ?*const Guid,
-            data: ?*c_void,
+            data: ?*anyopaque,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES,
             bitmap: ?*?*ID2D1Bitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1884,7 +1884,7 @@ pub const ID2D1RenderTarget = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateBitmap(self: *const T, size: D2D_SIZE_U, srcData: ?*const c_void, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateBitmap(self: *const T, size: D2D_SIZE_U, srcData: ?*const anyopaque, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmap(@ptrCast(*const ID2D1RenderTarget, self), size, srcData, pitch, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1892,7 +1892,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmapFromWicBitmap(@ptrCast(*const ID2D1RenderTarget, self), wicBitmapSource, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateSharedBitmap(self: *const T, riid: ?*const Guid, data: ?*c_void, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateSharedBitmap(self: *const T, riid: ?*const Guid, data: ?*anyopaque, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateSharedBitmap(@ptrCast(*const ID2D1RenderTarget, self), riid, data, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3653,7 +3653,7 @@ pub const ID2D1GdiMetafileSink = extern struct {
         ProcessRecord: fn(
             self: *const ID2D1GdiMetafileSink,
             recordType: u32,
-            recordData: ?*const c_void,
+            recordData: ?*const anyopaque,
             recordDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3661,7 +3661,7 @@ pub const ID2D1GdiMetafileSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GdiMetafileSink_ProcessRecord(self: *const T, recordType: u32, recordData: ?*const c_void, recordDataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1GdiMetafileSink_ProcessRecord(self: *const T, recordType: u32, recordData: ?*const anyopaque, recordDataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1GdiMetafileSink.VTable, self.vtable).ProcessRecord(@ptrCast(*const ID2D1GdiMetafileSink, self), recordType, recordData, recordDataSize);
         }
     };}
@@ -4523,7 +4523,7 @@ pub const ID2D1DeviceContext = extern struct {
         CreateBitmap: fn(
             self: *const ID2D1DeviceContext,
             size: D2D_SIZE_U,
-            sourceData: ?*const c_void,
+            sourceData: ?*const anyopaque,
             pitch: u32,
             bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1,
             bitmap: ?*?*ID2D1Bitmap1,
@@ -4722,7 +4722,7 @@ pub const ID2D1DeviceContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext_CreateBitmap(self: *const T, size: D2D_SIZE_U, sourceData: ?*const c_void, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
+        pub fn ID2D1DeviceContext_CreateBitmap(self: *const T, size: D2D_SIZE_U, sourceData: ?*const anyopaque, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmap(@ptrCast(*const ID2D1DeviceContext, self), size, sourceData, pitch, bitmapProperties, bitmap);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6130,7 +6130,7 @@ pub const ID2D1EffectContext = extern struct {
             self: *const ID2D1EffectContext,
             feature: D2D1_FEATURE,
             // TODO: what to do with BytesParamIndex 2?
-            featureSupportData: ?*c_void,
+            featureSupportData: ?*anyopaque,
             featureSupportDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsBufferPrecisionSupported: fn(
@@ -6218,7 +6218,7 @@ pub const ID2D1EffectContext = extern struct {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContextFromWicColorContext(@ptrCast(*const ID2D1EffectContext, self), wicColorContext, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CheckFeatureSupport(self: *const T, feature: D2D1_FEATURE, featureSupportData: ?*c_void, featureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CheckFeatureSupport(self: *const T, feature: D2D1_FEATURE, featureSupportData: ?*anyopaque, featureSupportDataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID2D1EffectContext, self), feature, featureSupportData, featureSupportDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7321,7 +7321,7 @@ pub const ID2D1SvgElement = extern struct {
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
             // TODO: what to do with BytesParamIndex 3?
-            value: ?*const c_void,
+            value: ?*const anyopaque,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributeValue2: fn(
@@ -7334,14 +7334,14 @@ pub const ID2D1SvgElement = extern struct {
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             riid: ?*const Guid,
-            value: ?*?*c_void,
+            value: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue1: fn(
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
             // TODO: what to do with BytesParamIndex 3?
-            value: ?*c_void,
+            value: ?*anyopaque,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue2: fn(
@@ -7458,7 +7458,7 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*const c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*const anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7466,11 +7466,11 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue(self: *const T, name: ?[*:0]const u16, riid: ?*const Guid, value: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetAttributeValue(self: *const T, name: ?[*:0]const u16, riid: ?*const Guid, value: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, riid, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*anyopaque, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8370,7 +8370,7 @@ pub const ID2D1GdiMetafileSink1 = extern struct {
         ProcessRecord: fn(
             self: *const ID2D1GdiMetafileSink1,
             recordType: u32,
-            recordData: ?*const c_void,
+            recordData: ?*const anyopaque,
             recordDataSize: u32,
             flags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -8379,7 +8379,7 @@ pub const ID2D1GdiMetafileSink1 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1GdiMetafileSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1GdiMetafileSink1_ProcessRecord(self: *const T, recordType: u32, recordData: ?*const c_void, recordDataSize: u32, flags: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1GdiMetafileSink1_ProcessRecord(self: *const T, recordType: u32, recordData: ?*const anyopaque, recordDataSize: u32, flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1GdiMetafileSink1.VTable, self.vtable).ProcessRecord(@ptrCast(*const ID2D1GdiMetafileSink1, self), recordType, recordData, recordDataSize, flags);
         }
     };}
@@ -9102,7 +9102,7 @@ pub extern "d2d1" fn D2D1CreateFactory(
     factoryType: D2D1_FACTORY_TYPE,
     riid: ?*const Guid,
     pFactoryOptions: ?*const D2D1_FACTORY_OPTIONS,
-    ppIFactory: **c_void,
+    ppIFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'

@@ -233,7 +233,7 @@ pub const IClockVector = extern struct {
         GetClockVectorElements: fn(
             self: *const IClockVector,
             riid: ?*const Guid,
-            ppiEnumClockVector: ?*?*c_void,
+            ppiEnumClockVector: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetClockVectorElementCount: fn(
             self: *const IClockVector,
@@ -244,7 +244,7 @@ pub const IClockVector = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClockVector_GetClockVectorElements(self: *const T, riid: ?*const Guid, ppiEnumClockVector: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IClockVector_GetClockVectorElements(self: *const T, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClockVector.VTable, self.vtable).GetClockVectorElements(@ptrCast(*const IClockVector, self), riid, ppiEnumClockVector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -485,7 +485,7 @@ pub const IRangeException = extern struct {
         GetClockVector: fn(
             self: *const IRangeException,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -500,7 +500,7 @@ pub const IRangeException = extern struct {
             return @ptrCast(*const IRangeException.VTable, self.vtable).GetClosedRangeEnd(@ptrCast(*const IRangeException, self), pbClosedRangeEnd, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRangeException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRangeException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRangeException.VTable, self.vtable).GetClockVector(@ptrCast(*const IRangeException, self), riid, ppUnk);
         }
     };}
@@ -568,7 +568,7 @@ pub const ISingleItemException = extern struct {
         GetClockVector: fn(
             self: *const ISingleItemException,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -579,7 +579,7 @@ pub const ISingleItemException = extern struct {
             return @ptrCast(*const ISingleItemException.VTable, self.vtable).GetItemId(@ptrCast(*const ISingleItemException, self), pbItemId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISingleItemException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISingleItemException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISingleItemException.VTable, self.vtable).GetClockVector(@ptrCast(*const ISingleItemException, self), riid, ppUnk);
         }
     };}
@@ -652,7 +652,7 @@ pub const IChangeUnitException = extern struct {
         GetClockVector: fn(
             self: *const IChangeUnitException,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -667,7 +667,7 @@ pub const IChangeUnitException = extern struct {
             return @ptrCast(*const IChangeUnitException.VTable, self.vtable).GetChangeUnitId(@ptrCast(*const IChangeUnitException, self), pbChangeUnitId, pcbIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChangeUnitException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IChangeUnitException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IChangeUnitException.VTable, self.vtable).GetClockVector(@ptrCast(*const IChangeUnitException, self), riid, ppUnk);
         }
     };}
@@ -823,7 +823,7 @@ pub const ISyncKnowledge = extern struct {
         GetScopeVector: fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReplicaKeyMap: fn(
             self: *const ISyncKnowledge,
@@ -888,30 +888,30 @@ pub const ISyncKnowledge = extern struct {
         GetRangeExceptions: fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSingleItemExceptions: fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetChangeUnitExceptions: fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindClockVectorForItem: fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindClockVectorForChangeUnit: fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
             pbChangeUnitId: ?*const u8,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersion: fn(
             self: *const ISyncKnowledge,
@@ -942,7 +942,7 @@ pub const ISyncKnowledge = extern struct {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).ContainsChangeUnit(@ptrCast(*const ISyncKnowledge, self), pbVersionOwnerReplicaId, pbItemId, pbChangeUnitId, pSyncVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetScopeVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetScopeVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetScopeVector(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -994,23 +994,23 @@ pub const ISyncKnowledge = extern struct {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).FindMinTickCountForReplica(@ptrCast(*const ISyncKnowledge, self), pbReplicaId, pullReplicaTickCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetRangeExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetRangeExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetRangeExceptions(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetSingleItemExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetSingleItemExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetSingleItemExceptions(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_GetChangeUnitExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_GetChangeUnitExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).GetChangeUnitExceptions(@ptrCast(*const ISyncKnowledge, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindClockVectorForItem(self: *const T, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_FindClockVectorForItem(self: *const T, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).FindClockVectorForItem(@ptrCast(*const ISyncKnowledge, self), pbItemId, riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge_FindClockVectorForChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge_FindClockVectorForChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge.VTable, self.vtable).FindClockVectorForChangeUnit(@ptrCast(*const ISyncKnowledge, self), pbItemId, pbChangeUnitId, riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1076,7 +1076,7 @@ pub const ISyncKnowledge2 = extern struct {
         GetInspector: fn(
             self: *const ISyncKnowledge2,
             riid: ?*const Guid,
-            ppiInspector: ?*?*c_void,
+            ppiInspector: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMinimumSupportedVersion: fn(
             self: *const ISyncKnowledge2,
@@ -1143,7 +1143,7 @@ pub const ISyncKnowledge2 = extern struct {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetLowestUncontainedId(@ptrCast(*const ISyncKnowledge2, self), piSyncKnowledge, pbItemId, pcbItemIdSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncKnowledge2_GetInspector(self: *const T, riid: ?*const Guid, ppiInspector: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncKnowledge2_GetInspector(self: *const T, riid: ?*const Guid, ppiInspector: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncKnowledge2.VTable, self.vtable).GetInspector(@ptrCast(*const ISyncKnowledge2, self), riid, ppiInspector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

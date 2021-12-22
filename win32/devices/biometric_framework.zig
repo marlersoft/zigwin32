@@ -559,7 +559,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
     TimeStamp: i64,
     ApiStatus: HRESULT,
     UnitId: u32,
-    UserData: ?*c_void,
+    UserData: ?*anyopaque,
     Parameters: extern union {
         Verify: extern struct {
             Match: BOOLEAN,
@@ -600,7 +600,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
             Identity: WINBIO_IDENTITY,
             SubFactor: u8,
             PropertyBufferSize: usize,
-            PropertyBuffer: ?*c_void,
+            PropertyBuffer: ?*anyopaque,
         },
         SetProperty: extern struct {
             PropertyType: u32,
@@ -608,7 +608,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
             Identity: WINBIO_IDENTITY,
             SubFactor: u8,
             PropertyBufferSize: usize,
-            PropertyBuffer: ?*c_void,
+            PropertyBuffer: ?*anyopaque,
         },
         GetEvent: extern struct {
             Event: WINBIO_EVENT,
@@ -669,7 +669,7 @@ pub const PWINBIO_ASYNC_COMPLETION_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_VERIFY_CALLBACK = fn(
-    VerifyCallbackContext: ?*c_void,
+    VerifyCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     UnitId: u32,
     Match: BOOLEAN,
@@ -677,7 +677,7 @@ pub const PWINBIO_VERIFY_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_IDENTIFY_CALLBACK = fn(
-    IdentifyCallbackContext: ?*c_void,
+    IdentifyCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     UnitId: u32,
     Identity: ?*WINBIO_IDENTITY,
@@ -686,25 +686,25 @@ pub const PWINBIO_IDENTIFY_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_LOCATE_SENSOR_CALLBACK = fn(
-    LocateCallbackContext: ?*c_void,
+    LocateCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     UnitId: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_ENROLL_CAPTURE_CALLBACK = fn(
-    EnrollCallbackContext: ?*c_void,
+    EnrollCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     RejectDetail: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_EVENT_CALLBACK = fn(
-    EventCallbackContext: ?*c_void,
+    EventCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     Event: ?*WINBIO_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PWINBIO_CAPTURE_CALLBACK = fn(
-    CaptureCallbackContext: ?*c_void,
+    CaptureCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     UnitId: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -1605,12 +1605,12 @@ pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = fn(
 pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = fn(
     Pipeline: ?*WINBIO_PIPELINE,
     AllocationSize: usize,
-    Address: ?*?*c_void,
+    Address: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = fn(
     Pipeline: ?*WINBIO_PIPELINE,
-    Address: ?*c_void,
+    Address: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = fn(
@@ -1619,14 +1619,14 @@ pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = fn(
     PropertyId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    PropertyBuffer: ?*?*c_void,
+    PropertyBuffer: ?*?*anyopaque,
     PropertyBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = fn(
     Pipeline: ?*WINBIO_PIPELINE,
     SecureBufferIdentifier: Guid,
-    SecureBufferAddress: ?*?*c_void,
+    SecureBufferAddress: ?*?*anyopaque,
     SecureBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1835,7 +1835,7 @@ pub extern "winbio" fn WinBioAsyncOpenFramework(
     TargetWindow: ?HWND,
     MessageCode: u32,
     CallbackRoutine: ?PWINBIO_ASYNC_COMPLETION_CALLBACK,
-    UserData: ?*c_void,
+    UserData: ?*anyopaque,
     AsynchronousOpen: BOOL,
     FrameworkHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1892,7 +1892,7 @@ pub extern "winbio" fn WinBioAsyncOpenSession(
     TargetWindow: ?HWND,
     MessageCode: u32,
     CallbackRoutine: ?PWINBIO_ASYNC_COMPLETION_CALLBACK,
-    UserData: ?*c_void,
+    UserData: ?*anyopaque,
     AsynchronousOpen: BOOL,
     SessionHandle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1918,7 +1918,7 @@ pub extern "winbio" fn WinBioVerifyWithCallback(
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
     VerifyCallback: ?PWINBIO_VERIFY_CALLBACK,
-    VerifyCallbackContext: ?*c_void,
+    VerifyCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1934,7 +1934,7 @@ pub extern "winbio" fn WinBioIdentify(
 pub extern "winbio" fn WinBioIdentifyWithCallback(
     SessionHandle: u32,
     IdentifyCallback: ?PWINBIO_IDENTIFY_CALLBACK,
-    IdentifyCallbackContext: ?*c_void,
+    IdentifyCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1957,7 +1957,7 @@ pub extern "winbio" fn WinBioLocateSensor(
 pub extern "winbio" fn WinBioLocateSensorWithCallback(
     SessionHandle: u32,
     LocateCallback: ?PWINBIO_LOCATE_SENSOR_CALLBACK,
-    LocateCallbackContext: ?*c_void,
+    LocateCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1983,7 +1983,7 @@ pub extern "winbio" fn WinBioEnrollCapture(
 pub extern "winbio" fn WinBioEnrollCaptureWithCallback(
     SessionHandle: u32,
     EnrollCallback: ?PWINBIO_ENROLL_CAPTURE_CALLBACK,
-    EnrollCallbackContext: ?*c_void,
+    EnrollCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2021,7 +2021,7 @@ pub extern "winbio" fn WinBioRegisterEventMonitor(
     SessionHandle: u32,
     EventMask: u32,
     EventCallback: ?PWINBIO_EVENT_CALLBACK,
-    EventCallbackContext: ?*c_void,
+    EventCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2052,7 +2052,7 @@ pub extern "winbio" fn WinBioCaptureSampleWithCallback(
     Purpose: u8,
     Flags: u8,
     CaptureCallback: ?PWINBIO_CAPTURE_CALLBACK,
-    CaptureCallbackContext: ?*c_void,
+    CaptureCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2115,7 +2115,7 @@ pub extern "winbio" fn WinBioGetProperty(
     UnitId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    PropertyBuffer: ?*?*c_void,
+    PropertyBuffer: ?*?*anyopaque,
     PropertyBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2128,13 +2128,13 @@ pub extern "winbio" fn WinBioSetProperty(
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
     // TODO: what to do with BytesParamIndex 7?
-    PropertyBuffer: ?*c_void,
+    PropertyBuffer: ?*anyopaque,
     PropertyBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioFree(
-    Address: ?*c_void,
+    Address: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'

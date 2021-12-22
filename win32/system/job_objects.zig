@@ -283,7 +283,7 @@ pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
 };
 
 pub const JOBOBJECT_ASSOCIATE_COMPLETION_PORT = extern struct {
-    CompletionKey: ?*c_void,
+    CompletionKey: ?*anyopaque,
     CompletionPort: ?HANDLE,
 };
 
@@ -620,7 +620,7 @@ pub extern "KERNEL32" fn CreateJobObjectW(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "KERNEL32" fn FreeMemoryJobObject(
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -647,7 +647,7 @@ pub extern "KERNEL32" fn SetInformationJobObject(
     hJob: ?HANDLE,
     JobObjectInformationClass: JOBOBJECTINFOCLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpJobObjectInformation: ?*c_void,
+    lpJobObjectInformation: ?*anyopaque,
     cbJobObjectInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -662,7 +662,7 @@ pub extern "KERNEL32" fn QueryInformationJobObject(
     hJob: ?HANDLE,
     JobObjectInformationClass: JOBOBJECTINFOCLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpJobObjectInformation: ?*c_void,
+    lpJobObjectInformation: ?*anyopaque,
     cbJobObjectInformationLength: u32,
     lpReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

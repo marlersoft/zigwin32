@@ -2431,7 +2431,7 @@ pub const IWiaItem2 = extern struct {
             lFlags: i32,
             bstrName: ?BSTR,
             riidExtensionInterface: ?*const Guid,
-            ppOut: ?*?*c_void,
+            ppOut: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParentItem: fn(
             self: *const IWiaItem2,
@@ -2502,7 +2502,7 @@ pub const IWiaItem2 = extern struct {
             return @ptrCast(*const IWiaItem2.VTable, self.vtable).CheckExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, pbExtensionExists);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_GetExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, ppOut: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWiaItem2_GetExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, ppOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, ppOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3447,7 +3447,7 @@ pub const SCANINFO = extern struct {
     MaxBufferSize: i32,
     DeviceIOHandles: [16]?HANDLE,
     lReserved: [4]i32,
-    pMicroDriverContext: ?*c_void,
+    pMicroDriverContext: ?*anyopaque,
 };
 
 pub const VAL = extern struct {

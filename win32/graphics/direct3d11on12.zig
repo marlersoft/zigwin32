@@ -38,7 +38,7 @@ pub const ID3D11On12Device = extern struct {
             InState: D3D12_RESOURCE_STATES,
             OutState: D3D12_RESOURCE_STATES,
             riid: ?*const Guid,
-            ppResource11: ?*?*c_void,
+            ppResource11: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseWrappedResources: fn(
             self: *const ID3D11On12Device,
@@ -55,7 +55,7 @@ pub const ID3D11On12Device = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11On12Device_CreateWrappedResource(self: *const T, pResource12: ?*IUnknown, pFlags11: ?*const D3D11_RESOURCE_FLAGS, InState: D3D12_RESOURCE_STATES, OutState: D3D12_RESOURCE_STATES, riid: ?*const Guid, ppResource11: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D11On12Device_CreateWrappedResource(self: *const T, pResource12: ?*IUnknown, pFlags11: ?*const D3D11_RESOURCE_FLAGS, InState: D3D12_RESOURCE_STATES, OutState: D3D12_RESOURCE_STATES, riid: ?*const Guid, ppResource11: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11On12Device.VTable, self.vtable).CreateWrappedResource(@ptrCast(*const ID3D11On12Device, self), pResource12, pFlags11, InState, OutState, riid, ppResource11);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -79,14 +79,14 @@ pub const ID3D11On12Device1 = extern struct {
         GetD3D12Device: fn(
             self: *const ID3D11On12Device1,
             riid: ?*const Guid,
-            ppvDevice: ?*?*c_void,
+            ppvDevice: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11On12Device.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11On12Device1_GetD3D12Device(self: *const T, riid: ?*const Guid, ppvDevice: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D11On12Device1_GetD3D12Device(self: *const T, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11On12Device1.VTable, self.vtable).GetD3D12Device(@ptrCast(*const ID3D11On12Device1, self), riid, ppvDevice);
         }
     };}
@@ -104,7 +104,7 @@ pub const ID3D11On12Device2 = extern struct {
             pResource11: ?*ID3D11Resource,
             pCommandQueue: ?*ID3D12CommandQueue,
             riid: ?*const Guid,
-            ppvResource12: ?*?*c_void,
+            ppvResource12: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReturnUnderlyingResource: fn(
             self: *const ID3D11On12Device2,
@@ -118,7 +118,7 @@ pub const ID3D11On12Device2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11On12Device1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11On12Device2_UnwrapUnderlyingResource(self: *const T, pResource11: ?*ID3D11Resource, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D11On12Device2_UnwrapUnderlyingResource(self: *const T, pResource11: ?*ID3D11Resource, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11On12Device2.VTable, self.vtable).UnwrapUnderlyingResource(@ptrCast(*const ID3D11On12Device2, self), pResource11, pCommandQueue, riid, ppvResource12);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

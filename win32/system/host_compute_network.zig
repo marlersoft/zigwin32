@@ -41,7 +41,7 @@ pub const HcnNotificationFlagsReserved = HCN_NOTIFICATIONS.FlagsReserved;
 
 pub const HCN_NOTIFICATION_CALLBACK = fn(
     NotificationType: u32,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     NotificationStatus: HRESULT,
     NotificationData: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -92,24 +92,24 @@ pub extern "computenetwork" fn HcnEnumerateNetworks(
 pub extern "computenetwork" fn HcnCreateNetwork(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
-    Network: ?*?*c_void,
+    Network: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenNetwork(
     Id: ?*const Guid,
-    Network: ?*?*c_void,
+    Network: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyNetwork(
-    Network: ?*c_void,
+    Network: ?*anyopaque,
     Settings: ?[*:0]const u16,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryNetworkProperties(
-    Network: ?*c_void,
+    Network: ?*anyopaque,
     Query: ?[*:0]const u16,
     Properties: ?*?PWSTR,
     ErrorRecord: ?*?PWSTR,
@@ -121,7 +121,7 @@ pub extern "computenetwork" fn HcnDeleteNetwork(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnCloseNetwork(
-    Network: ?*c_void,
+    Network: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnEnumerateNamespaces(
@@ -133,24 +133,24 @@ pub extern "computenetwork" fn HcnEnumerateNamespaces(
 pub extern "computenetwork" fn HcnCreateNamespace(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
-    Namespace: ?*?*c_void,
+    Namespace: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenNamespace(
     Id: ?*const Guid,
-    Namespace: ?*?*c_void,
+    Namespace: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyNamespace(
-    Namespace: ?*c_void,
+    Namespace: ?*anyopaque,
     Settings: ?[*:0]const u16,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryNamespaceProperties(
-    Namespace: ?*c_void,
+    Namespace: ?*anyopaque,
     Query: ?[*:0]const u16,
     Properties: ?*?PWSTR,
     ErrorRecord: ?*?PWSTR,
@@ -162,7 +162,7 @@ pub extern "computenetwork" fn HcnDeleteNamespace(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnCloseNamespace(
-    Namespace: ?*c_void,
+    Namespace: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnEnumerateEndpoints(
@@ -172,27 +172,27 @@ pub extern "computenetwork" fn HcnEnumerateEndpoints(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnCreateEndpoint(
-    Network: ?*c_void,
+    Network: ?*anyopaque,
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
-    Endpoint: ?*?*c_void,
+    Endpoint: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenEndpoint(
     Id: ?*const Guid,
-    Endpoint: ?*?*c_void,
+    Endpoint: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyEndpoint(
-    Endpoint: ?*c_void,
+    Endpoint: ?*anyopaque,
     Settings: ?[*:0]const u16,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryEndpointProperties(
-    Endpoint: ?*c_void,
+    Endpoint: ?*anyopaque,
     Query: ?[*:0]const u16,
     Properties: ?*?PWSTR,
     ErrorRecord: ?*?PWSTR,
@@ -204,7 +204,7 @@ pub extern "computenetwork" fn HcnDeleteEndpoint(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnCloseEndpoint(
-    Endpoint: ?*c_void,
+    Endpoint: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnEnumerateLoadBalancers(
@@ -216,24 +216,24 @@ pub extern "computenetwork" fn HcnEnumerateLoadBalancers(
 pub extern "computenetwork" fn HcnCreateLoadBalancer(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
-    LoadBalancer: ?*?*c_void,
+    LoadBalancer: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenLoadBalancer(
     Id: ?*const Guid,
-    LoadBalancer: ?*?*c_void,
+    LoadBalancer: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyLoadBalancer(
-    LoadBalancer: ?*c_void,
+    LoadBalancer: ?*anyopaque,
     Settings: ?[*:0]const u16,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryLoadBalancerProperties(
-    LoadBalancer: ?*c_void,
+    LoadBalancer: ?*anyopaque,
     Query: ?[*:0]const u16,
     Properties: ?*?PWSTR,
     ErrorRecord: ?*?PWSTR,
@@ -245,43 +245,43 @@ pub extern "computenetwork" fn HcnDeleteLoadBalancer(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnCloseLoadBalancer(
-    LoadBalancer: ?*c_void,
+    LoadBalancer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnRegisterServiceCallback(
     Callback: ?HCN_NOTIFICATION_CALLBACK,
-    Context: ?*c_void,
-    CallbackHandle: ?*?*c_void,
+    Context: ?*anyopaque,
+    CallbackHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnUnregisterServiceCallback(
-    CallbackHandle: ?*c_void,
+    CallbackHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnRegisterGuestNetworkServiceCallback(
-    GuestNetworkService: ?*c_void,
+    GuestNetworkService: ?*anyopaque,
     Callback: ?HCN_NOTIFICATION_CALLBACK,
-    Context: ?*c_void,
-    CallbackHandle: ?*?*c_void,
+    Context: ?*anyopaque,
+    CallbackHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnUnregisterGuestNetworkServiceCallback(
-    CallbackHandle: ?*c_void,
+    CallbackHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnCreateGuestNetworkService(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
-    GuestNetworkService: ?*?*c_void,
+    GuestNetworkService: ?*?*anyopaque,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnCloseGuestNetworkService(
-    GuestNetworkService: ?*c_void,
+    GuestNetworkService: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyGuestNetworkService(
-    GuestNetworkService: ?*c_void,
+    GuestNetworkService: ?*anyopaque,
     Settings: ?[*:0]const u16,
     ErrorRecord: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -292,7 +292,7 @@ pub extern "computenetwork" fn HcnDeleteGuestNetworkService(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnReserveGuestNetworkServicePort(
-    GuestNetworkService: ?*c_void,
+    GuestNetworkService: ?*anyopaque,
     Protocol: HCN_PORT_PROTOCOL,
     Access: HCN_PORT_ACCESS,
     Port: u16,
@@ -300,7 +300,7 @@ pub extern "computenetwork" fn HcnReserveGuestNetworkServicePort(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "computenetwork" fn HcnReserveGuestNetworkServicePortRange(
-    GuestNetworkService: ?*c_void,
+    GuestNetworkService: ?*anyopaque,
     PortCount: u16,
     PortRangeReservation: ?*HCN_PORT_RANGE_RESERVATION,
     PortReservationHandle: ?*?HANDLE,

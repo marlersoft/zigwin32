@@ -334,18 +334,18 @@ pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_SID = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYP
 pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.BOOLEAN;
 
 pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
-    ClientRequest: ?*?*c_void,
+    ClientRequest: ?*?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: ?*c_void,
-    ClientBufferBase: ?*c_void,
+    ProtocolSubmitBuffer: ?*anyopaque,
+    ClientBufferBase: ?*anyopaque,
     SubmitBufferLength: u32,
-    ProtocolReturnBuffer: ?*?*c_void,
+    ProtocolReturnBuffer: ?*?*anyopaque,
     ReturnBufferLength: ?*u32,
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SEC_THREAD_START = fn(
-    lpThreadParameter: ?*c_void,
+    lpThreadParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const TOKEN_ACCESS_MASK = enum(u32) {
@@ -439,7 +439,7 @@ pub const SC_HANDLE = isize;
 
 pub const SECURITY_ATTRIBUTES = extern struct {
     nLength: u32,
-    lpSecurityDescriptor: ?*c_void,
+    lpSecurityDescriptor: ?*anyopaque,
     bInheritHandle: BOOL,
 };
 
@@ -1169,11 +1169,11 @@ pub const TOKEN_DEFAULT_DACL = extern struct {
 };
 
 pub const TOKEN_USER_CLAIMS = extern struct {
-    UserClaims: ?*c_void,
+    UserClaims: ?*anyopaque,
 };
 
 pub const TOKEN_DEVICE_CLAIMS = extern struct {
-    DeviceClaims: ?*c_void,
+    DeviceClaims: ?*anyopaque,
 };
 
 pub const TOKEN_GROUPS_AND_PRIVILEGES = extern struct {
@@ -1218,7 +1218,7 @@ pub const TOKEN_ACCESS_INFORMATION = extern struct {
     PackageSid: ?PSID,
     CapabilitiesHash: ?*SID_AND_ATTRIBUTES_HASH,
     TrustLevelSid: ?PSID,
-    SecurityAttributes: ?*c_void,
+    SecurityAttributes: ?*anyopaque,
 };
 
 pub const TOKEN_AUDIT_POLICY = extern struct {
@@ -1281,7 +1281,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
-    pValue: ?*c_void,
+    pValue: ?*anyopaque,
     ValueLength: u32,
 };
 
@@ -1332,7 +1332,7 @@ pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
 };
 
 pub const SE_IMPERSONATION_STATE = extern struct {
-    Token: ?*c_void,
+    Token: ?*anyopaque,
     CopyOnOpen: BOOLEAN,
     EffectiveOnly: BOOLEAN,
     Level: SECURITY_IMPERSONATION_LEVEL,
@@ -1373,7 +1373,7 @@ pub extern "ADVAPI32" fn AccessCheck(
 
 pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?PWSTR,
     ObjectName: ?PWSTR,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -1419,7 +1419,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultList(
 
 pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -1438,7 +1438,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmW(
 
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -1457,7 +1457,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmW(
 
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
     ObjectTypeName: ?[*:0]const u16,
     ObjectName: ?[*:0]const u16,
@@ -1537,7 +1537,7 @@ pub extern "ADVAPI32" fn AddAce(
     dwAceRevision: u32,
     dwStartingAceIndex: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pAceList: ?*c_void,
+    pAceList: ?*anyopaque,
     nAceListLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1675,7 +1675,7 @@ pub extern "KERNEL32" fn CheckTokenCapability(
 pub extern "KERNEL32" fn GetAppContainerAce(
     Acl: ?*ACL,
     StartingAceIndex: u32,
-    AppContainerAce: ?*?*c_void,
+    AppContainerAce: ?*?*anyopaque,
     AppContainerAceIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1812,26 +1812,26 @@ pub extern "ADVAPI32" fn EqualSid(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FindFirstFreeAce(
     pAcl: ?*ACL,
-    pAce: ?*?*c_void,
+    pAce: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn FreeSid(
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetAce(
     pAcl: ?*ACL,
     dwAceIndex: u32,
-    pAce: ?*?*c_void,
+    pAce: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn GetAclInformation(
     pAcl: ?*ACL,
     // TODO: what to do with BytesParamIndex 2?
-    pAclInformation: ?*c_void,
+    pAclInformation: ?*anyopaque,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1944,7 +1944,7 @@ pub extern "ADVAPI32" fn GetTokenInformation(
     TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    TokenInformation: ?*c_void,
+    TokenInformation: ?*anyopaque,
     TokenInformationLength: u32,
     ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2055,19 +2055,19 @@ pub extern "ADVAPI32" fn MapGenericMask(
 
 pub extern "ADVAPI32" fn ObjectCloseAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn ObjectOpenAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?PWSTR,
     ObjectName: ?PWSTR,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -2082,7 +2082,7 @@ pub extern "ADVAPI32" fn ObjectOpenAuditAlarmW(
 
 pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
     DesiredAccess: u32,
     Privileges: ?*PRIVILEGE_SET,
@@ -2118,7 +2118,7 @@ pub extern "ADVAPI32" fn RevertToSelf(
 pub extern "ADVAPI32" fn SetAclInformation(
     pAcl: ?*ACL,
     // TODO: what to do with BytesParamIndex 2?
-    pAclInformation: ?*c_void,
+    pAclInformation: ?*anyopaque,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2209,7 +2209,7 @@ pub extern "ADVAPI32" fn SetTokenInformation(
     TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    TokenInformation: ?*c_void,
+    TokenInformation: ?*anyopaque,
     TokenInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2266,7 +2266,7 @@ pub extern "USER32" fn GetUserObjectSecurity(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?PSTR,
     ObjectName: ?PSTR,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -2281,7 +2281,7 @@ pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u8,
     ObjectName: ?[*:0]const u8,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -2301,7 +2301,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u8,
     ObjectName: ?[*:0]const u8,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -2321,7 +2321,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
     ObjectTypeName: ?[*:0]const u8,
     ObjectName: ?[*:0]const u8,
@@ -2342,7 +2342,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ObjectTypeName: ?PSTR,
     ObjectName: ?PSTR,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -2358,7 +2358,7 @@ pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
     DesiredAccess: u32,
     Privileges: ?*PRIVILEGE_SET,
@@ -2368,14 +2368,14 @@ pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
+    HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2541,7 +2541,7 @@ pub extern "ADVAPI32" fn LogonUserExA(
     phToken: ?*?HANDLE,
     ppLogonSid: ?*?PSID,
     // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*c_void,
+    ppProfileBuffer: ?*?*anyopaque,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2556,7 +2556,7 @@ pub extern "ADVAPI32" fn LogonUserExW(
     phToken: ?*?HANDLE,
     ppLogonSid: ?*?PSID,
     // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*c_void,
+    ppProfileBuffer: ?*?*anyopaque,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

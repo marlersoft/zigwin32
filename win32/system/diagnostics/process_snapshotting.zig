@@ -236,7 +236,7 @@ pub const PSS_PROCESS_FLAGS_FROZEN = PSS_PROCESS_FLAGS.FROZEN;
 
 pub const PSS_PROCESS_INFORMATION = extern struct {
     ExitStatus: u32,
-    PebBaseAddress: ?*c_void,
+    PebBaseAddress: ?*anyopaque,
     AffinityMask: usize,
     BasePriority: i32,
     ProcessId: u32,
@@ -305,16 +305,16 @@ pub const PSS_PERFORMANCE_COUNTERS = extern struct {
 };
 
 pub const PSS_AUXILIARY_PAGE_ENTRY = extern struct {
-    Address: ?*c_void,
+    Address: ?*anyopaque,
     BasicInformation: MEMORY_BASIC_INFORMATION,
     CaptureTime: FILETIME,
-    PageContents: ?*c_void,
+    PageContents: ?*anyopaque,
     PageSize: u32,
 };
 
 pub const PSS_VA_SPACE_ENTRY = extern struct {
-    BaseAddress: ?*c_void,
-    AllocationBase: ?*c_void,
+    BaseAddress: ?*anyopaque,
+    AllocationBase: ?*anyopaque,
     AllocationProtect: u32,
     RegionSize: usize,
     State: u32,
@@ -322,7 +322,7 @@ pub const PSS_VA_SPACE_ENTRY = extern struct {
     Type: u32,
     TimeDateStamp: u32,
     SizeOfImage: u32,
-    ImageBase: ?*c_void,
+    ImageBase: ?*anyopaque,
     CheckSum: u32,
     MappedFileNameLength: u16,
     MappedFileName: ?[*:0]const u16,
@@ -347,7 +347,7 @@ pub const PSS_HANDLE_ENTRY = extern struct {
     TypeSpecificInformation: extern union {
         Process: extern struct {
             ExitStatus: u32,
-            PebBaseAddress: ?*c_void,
+            PebBaseAddress: ?*anyopaque,
             AffinityMask: usize,
             BasePriority: i32,
             ProcessId: u32,
@@ -356,13 +356,13 @@ pub const PSS_HANDLE_ENTRY = extern struct {
         },
         Thread: extern struct {
             ExitStatus: u32,
-            TebBaseAddress: ?*c_void,
+            TebBaseAddress: ?*anyopaque,
             ProcessId: u32,
             ThreadId: u32,
             AffinityMask: usize,
             Priority: i32,
             BasePriority: i32,
-            Win32StartAddress: ?*c_void,
+            Win32StartAddress: ?*anyopaque,
         },
         Mutant: extern struct {
             CurrentCount: i32,
@@ -375,7 +375,7 @@ pub const PSS_HANDLE_ENTRY = extern struct {
             Signaled: BOOL,
         },
         Section: extern struct {
-            BaseAddress: ?*c_void,
+            BaseAddress: ?*anyopaque,
             AllocationAttributes: u32,
             MaximumSize: LARGE_INTEGER,
         },
@@ -405,19 +405,19 @@ pub const PSS_THREAD_FLAGS_TERMINATED = PSS_THREAD_FLAGS.TERMINATED;
 
 pub const PSS_THREAD_ENTRY = extern struct {
     ExitStatus: u32,
-    TebBaseAddress: ?*c_void,
+    TebBaseAddress: ?*anyopaque,
     ProcessId: u32,
     ThreadId: u32,
     AffinityMask: usize,
     Priority: i32,
     BasePriority: i32,
-    LastSyscallFirstArgument: ?*c_void,
+    LastSyscallFirstArgument: ?*anyopaque,
     LastSyscallNumber: u16,
     CreateTime: FILETIME,
     ExitTime: FILETIME,
     KernelTime: FILETIME,
     UserTime: FILETIME,
-    Win32StartAddress: ?*c_void,
+    Win32StartAddress: ?*anyopaque,
     CaptureTime: FILETIME,
     Flags: PSS_THREAD_FLAGS,
     SuspendCount: u16,
@@ -426,7 +426,7 @@ pub const PSS_THREAD_ENTRY = extern struct {
 };
 
 pub const PSS_ALLOCATOR = extern struct {
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     AllocRoutine: isize,
     FreeRoutine: isize,
 };
@@ -454,7 +454,7 @@ pub extern "KERNEL32" fn PssQuerySnapshot(
     SnapshotHandle: ?HPSS,
     InformationClass: PSS_QUERY_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
