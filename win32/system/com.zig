@@ -504,7 +504,7 @@ pub const IContext = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-const IID_IUnknown_Value = @import("../zig.zig").Guid.initString("00000000-0000-0000-c000-000000000046");
+const IID_IUnknown_Value = Guid.initString("00000000-0000-0000-c000-000000000046");
 pub const IID_IUnknown = &IID_IUnknown_Value;
 pub const IUnknown = extern struct {
     pub const VTable = extern struct {
@@ -538,7 +538,7 @@ pub const IUnknown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIUnknown_Value = @import("../zig.zig").Guid.initString("000e0000-0000-0000-c000-000000000046");
+const IID_AsyncIUnknown_Value = Guid.initString("000e0000-0000-0000-c000-000000000046");
 pub const IID_AsyncIUnknown = &IID_AsyncIUnknown_Value;
 pub const AsyncIUnknown = extern struct {
     pub const VTable = extern struct {
@@ -596,7 +596,7 @@ pub const AsyncIUnknown = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IClassFactory_Value = @import("../zig.zig").Guid.initString("00000001-0000-0000-c000-000000000046");
+const IID_IClassFactory_Value = Guid.initString("00000001-0000-0000-c000-000000000046");
 pub const IID_IClassFactory = &IID_IClassFactory_Value;
 pub const IClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -635,7 +635,7 @@ pub const COSERVERINFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_INoMarshal_Value = @import("../zig.zig").Guid.initString("ecc8691b-c1db-4dc0-855e-65f6c551af49");
+const IID_INoMarshal_Value = Guid.initString("ecc8691b-c1db-4dc0-855e-65f6c551af49");
 pub const IID_INoMarshal = &IID_INoMarshal_Value;
 pub const INoMarshal = extern struct {
     pub const VTable = extern struct {
@@ -649,7 +649,7 @@ pub const INoMarshal = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IAgileObject_Value = @import("../zig.zig").Guid.initString("94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90");
+const IID_IAgileObject_Value = Guid.initString("94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90");
 pub const IID_IAgileObject = &IID_IAgileObject_Value;
 pub const IAgileObject = extern struct {
     pub const VTable = extern struct {
@@ -662,7 +662,7 @@ pub const IAgileObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IActivationFilter_Value = @import("../zig.zig").Guid.initString("00000017-0000-0000-c000-000000000046");
+const IID_IActivationFilter_Value = Guid.initString("00000017-0000-0000-c000-000000000046");
 pub const IID_IActivationFilter = &IID_IActivationFilter_Value;
 pub const IActivationFilter = extern struct {
     pub const VTable = extern struct {
@@ -686,7 +686,7 @@ pub const IActivationFilter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IMalloc_Value = @import("../zig.zig").Guid.initString("00000002-0000-0000-c000-000000000046");
+const IID_IMalloc_Value = Guid.initString("00000002-0000-0000-c000-000000000046");
 pub const IID_IMalloc = &IID_IMalloc_Value;
 pub const IMalloc = extern struct {
     pub const VTable = extern struct {
@@ -748,7 +748,7 @@ pub const IMalloc = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IStdMarshalInfo_Value = @import("../zig.zig").Guid.initString("00000018-0000-0000-c000-000000000046");
+const IID_IStdMarshalInfo_Value = Guid.initString("00000018-0000-0000-c000-000000000046");
 pub const IID_IStdMarshalInfo = &IID_IStdMarshalInfo_Value;
 pub const IStdMarshalInfo = extern struct {
     pub const VTable = extern struct {
@@ -781,7 +781,7 @@ pub const EXTCONN_WEAK = EXTCONN.WEAK;
 pub const EXTCONN_CALLABLE = EXTCONN.CALLABLE;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IExternalConnection_Value = @import("../zig.zig").Guid.initString("00000019-0000-0000-c000-000000000046");
+const IID_IExternalConnection_Value = Guid.initString("00000019-0000-0000-c000-000000000046");
 pub const IID_IExternalConnection = &IID_IExternalConnection_Value;
 pub const IExternalConnection = extern struct {
     pub const VTable = extern struct {
@@ -820,7 +820,7 @@ pub const MULTI_QI = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IMultiQI_Value = @import("../zig.zig").Guid.initString("00000020-0000-0000-c000-000000000046");
+const IID_IMultiQI_Value = Guid.initString("00000020-0000-0000-c000-000000000046");
 pub const IID_IMultiQI = &IID_IMultiQI_Value;
 pub const IMultiQI = extern struct {
     pub const VTable = extern struct {
@@ -842,7 +842,7 @@ pub const IMultiQI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIMultiQI_Value = @import("../zig.zig").Guid.initString("000e0020-0000-0000-c000-000000000046");
+const IID_AsyncIMultiQI_Value = Guid.initString("000e0020-0000-0000-c000-000000000046");
 pub const IID_AsyncIMultiQI = &IID_AsyncIMultiQI_Value;
 pub const AsyncIMultiQI = extern struct {
     pub const VTable = extern struct {
@@ -873,7 +873,7 @@ pub const AsyncIMultiQI = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IInternalUnknown_Value = @import("../zig.zig").Guid.initString("00000021-0000-0000-c000-000000000046");
+const IID_IInternalUnknown_Value = Guid.initString("00000021-0000-0000-c000-000000000046");
 pub const IID_IInternalUnknown = &IID_IInternalUnknown_Value;
 pub const IInternalUnknown = extern struct {
     pub const VTable = extern struct {
@@ -896,7 +896,7 @@ pub const IInternalUnknown = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumUnknown_Value = @import("../zig.zig").Guid.initString("00000100-0000-0000-c000-000000000046");
+const IID_IEnumUnknown_Value = Guid.initString("00000100-0000-0000-c000-000000000046");
 pub const IID_IEnumUnknown = &IID_IEnumUnknown_Value;
 pub const IEnumUnknown = extern struct {
     pub const VTable = extern struct {
@@ -943,7 +943,7 @@ pub const IEnumUnknown = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumString_Value = @import("../zig.zig").Guid.initString("00000101-0000-0000-c000-000000000046");
+const IID_IEnumString_Value = Guid.initString("00000101-0000-0000-c000-000000000046");
 pub const IID_IEnumString = &IID_IEnumString_Value;
 pub const IEnumString = extern struct {
     pub const VTable = extern struct {
@@ -990,7 +990,7 @@ pub const IEnumString = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
+const IID_ISequentialStream_Value = Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISequentialStream = &IID_ISequentialStream_Value;
 pub const ISequentialStream = extern struct {
     pub const VTable = extern struct {
@@ -1060,7 +1060,7 @@ pub const STREAM_SEEK_CUR = STREAM_SEEK.CUR;
 pub const STREAM_SEEK_END = STREAM_SEEK.END;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IStream_Value = @import("../zig.zig").Guid.initString("0000000c-0000-0000-c000-000000000046");
+const IID_IStream_Value = Guid.initString("0000000c-0000-0000-c000-000000000046");
 pub const IID_IStream = &IID_IStream_Value;
 pub const IStream = extern struct {
     pub const VTable = extern struct {
@@ -1165,7 +1165,7 @@ pub const RPCOLEMESSAGE = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IRpcChannelBuffer_Value = @import("../zig.zig").Guid.initString("d5f56b60-593b-101a-b569-08002b2dbf7a");
+const IID_IRpcChannelBuffer_Value = Guid.initString("d5f56b60-593b-101a-b569-08002b2dbf7a");
 pub const IID_IRpcChannelBuffer = &IID_IRpcChannelBuffer_Value;
 pub const IRpcChannelBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1220,7 +1220,7 @@ pub const IRpcChannelBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRpcChannelBuffer2_Value = @import("../zig.zig").Guid.initString("594f31d0-7f19-11d0-b194-00a0c90dc8bf");
+const IID_IRpcChannelBuffer2_Value = Guid.initString("594f31d0-7f19-11d0-b194-00a0c90dc8bf");
 pub const IID_IRpcChannelBuffer2 = &IID_IRpcChannelBuffer2_Value;
 pub const IRpcChannelBuffer2 = extern struct {
     pub const VTable = extern struct {
@@ -1241,7 +1241,7 @@ pub const IRpcChannelBuffer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAsyncRpcChannelBuffer_Value = @import("../zig.zig").Guid.initString("a5029fb6-3c34-11d1-9c99-00c04fb998aa");
+const IID_IAsyncRpcChannelBuffer_Value = Guid.initString("a5029fb6-3c34-11d1-9c99-00c04fb998aa");
 pub const IID_IAsyncRpcChannelBuffer = &IID_IAsyncRpcChannelBuffer_Value;
 pub const IAsyncRpcChannelBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1283,7 +1283,7 @@ pub const IAsyncRpcChannelBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRpcChannelBuffer3_Value = @import("../zig.zig").Guid.initString("25b15600-0115-11d0-bf0d-00aa00b8dfd2");
+const IID_IRpcChannelBuffer3_Value = Guid.initString("25b15600-0115-11d0-bf0d-00aa00b8dfd2");
 pub const IID_IRpcChannelBuffer3 = &IID_IRpcChannelBuffer3_Value;
 pub const IRpcChannelBuffer3 = extern struct {
     pub const VTable = extern struct {
@@ -1361,7 +1361,7 @@ pub const IRpcChannelBuffer3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRpcSyntaxNegotiate_Value = @import("../zig.zig").Guid.initString("58a08519-24c8-4935-b482-3fd823333a4f");
+const IID_IRpcSyntaxNegotiate_Value = Guid.initString("58a08519-24c8-4935-b482-3fd823333a4f");
 pub const IID_IRpcSyntaxNegotiate = &IID_IRpcSyntaxNegotiate_Value;
 pub const IRpcSyntaxNegotiate = extern struct {
     pub const VTable = extern struct {
@@ -1383,7 +1383,7 @@ pub const IRpcSyntaxNegotiate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IRpcProxyBuffer_Value = @import("../zig.zig").Guid.initString("d5f56a34-593b-101a-b569-08002b2dbf7a");
+const IID_IRpcProxyBuffer_Value = Guid.initString("d5f56a34-593b-101a-b569-08002b2dbf7a");
 pub const IID_IRpcProxyBuffer = &IID_IRpcProxyBuffer_Value;
 pub const IRpcProxyBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1412,7 +1412,7 @@ pub const IRpcProxyBuffer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IRpcStubBuffer_Value = @import("../zig.zig").Guid.initString("d5f56afc-593b-101a-b569-08002b2dbf7a");
+const IID_IRpcStubBuffer_Value = Guid.initString("d5f56afc-593b-101a-b569-08002b2dbf7a");
 pub const IID_IRpcStubBuffer = &IID_IRpcStubBuffer_Value;
 pub const IRpcStubBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1481,7 +1481,7 @@ pub const IRpcStubBuffer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPSFactoryBuffer_Value = @import("../zig.zig").Guid.initString("d5f569d0-593b-101a-b569-08002b2dbf7a");
+const IID_IPSFactoryBuffer_Value = Guid.initString("d5f569d0-593b-101a-b569-08002b2dbf7a");
 pub const IID_IPSFactoryBuffer = &IID_IPSFactoryBuffer_Value;
 pub const IPSFactoryBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1524,7 +1524,7 @@ pub const SChannelHookCallInfo = extern struct {
     pObject: ?*anyopaque,
 };
 
-const IID_IChannelHook_Value = @import("../zig.zig").Guid.initString("1008c4a0-7613-11cf-9af1-0020af6e72f4");
+const IID_IChannelHook_Value = Guid.initString("1008c4a0-7613-11cf-9af1-0020af6e72f4");
 pub const IID_IChannelHook = &IID_IChannelHook_Value;
 pub const IChannelHook = extern struct {
     pub const VTable = extern struct {
@@ -1660,7 +1660,7 @@ pub const SOLE_AUTHENTICATION_LIST = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IClientSecurity_Value = @import("../zig.zig").Guid.initString("0000013d-0000-0000-c000-000000000046");
+const IID_IClientSecurity_Value = Guid.initString("0000013d-0000-0000-c000-000000000046");
 pub const IID_IClientSecurity = &IID_IClientSecurity_Value;
 pub const IClientSecurity = extern struct {
     pub const VTable = extern struct {
@@ -1713,7 +1713,7 @@ pub const IClientSecurity = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IServerSecurity_Value = @import("../zig.zig").Guid.initString("0000013e-0000-0000-c000-000000000046");
+const IID_IServerSecurity_Value = Guid.initString("0000013e-0000-0000-c000-000000000046");
 pub const IID_IServerSecurity = &IID_IServerSecurity_Value;
 pub const IServerSecurity = extern struct {
     pub const VTable = extern struct {
@@ -1786,7 +1786,7 @@ pub const SERVER_LOCALITY_MACHINE_LOCAL = RPCOPT_SERVER_LOCALITY_VALUES.MACHINE_
 pub const SERVER_LOCALITY_REMOTE = RPCOPT_SERVER_LOCALITY_VALUES.REMOTE;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IRpcOptions_Value = @import("../zig.zig").Guid.initString("00000144-0000-0000-c000-000000000046");
+const IID_IRpcOptions_Value = Guid.initString("00000144-0000-0000-c000-000000000046");
 pub const IID_IRpcOptions = &IID_IRpcOptions_Value;
 pub const IRpcOptions = extern struct {
     pub const VTable = extern struct {
@@ -1891,7 +1891,7 @@ pub const COMGLB_UNMARSHALING_POLICY_STRONG = GLOBALOPT_UNMARSHALING_POLICY_VALU
 pub const COMGLB_UNMARSHALING_POLICY_HYBRID = GLOBALOPT_UNMARSHALING_POLICY_VALUES.HYBRID;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IGlobalOptions_Value = @import("../zig.zig").Guid.initString("0000015b-0000-0000-c000-000000000046");
+const IID_IGlobalOptions_Value = Guid.initString("0000015b-0000-0000-c000-000000000046");
 pub const IID_IGlobalOptions = &IID_IGlobalOptions_Value;
 pub const IGlobalOptions = extern struct {
     pub const VTable = extern struct {
@@ -1923,7 +1923,7 @@ pub const IGlobalOptions = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ISurrogate_Value = @import("../zig.zig").Guid.initString("00000022-0000-0000-c000-000000000046");
+const IID_ISurrogate_Value = Guid.initString("00000022-0000-0000-c000-000000000046");
 pub const IID_ISurrogate = &IID_ISurrogate_Value;
 pub const ISurrogate = extern struct {
     pub const VTable = extern struct {
@@ -1952,7 +1952,7 @@ pub const ISurrogate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IGlobalInterfaceTable_Value = @import("../zig.zig").Guid.initString("00000146-0000-0000-c000-000000000046");
+const IID_IGlobalInterfaceTable_Value = Guid.initString("00000146-0000-0000-c000-000000000046");
 pub const IID_IGlobalInterfaceTable = &IID_IGlobalInterfaceTable_Value;
 pub const IGlobalInterfaceTable = extern struct {
     pub const VTable = extern struct {
@@ -1994,7 +1994,7 @@ pub const IGlobalInterfaceTable = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ISynchronize_Value = @import("../zig.zig").Guid.initString("00000030-0000-0000-c000-000000000046");
+const IID_ISynchronize_Value = Guid.initString("00000030-0000-0000-c000-000000000046");
 pub const IID_ISynchronize = &IID_ISynchronize_Value;
 pub const ISynchronize = extern struct {
     pub const VTable = extern struct {
@@ -2031,7 +2031,7 @@ pub const ISynchronize = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ISynchronizeHandle_Value = @import("../zig.zig").Guid.initString("00000031-0000-0000-c000-000000000046");
+const IID_ISynchronizeHandle_Value = Guid.initString("00000031-0000-0000-c000-000000000046");
 pub const IID_ISynchronizeHandle = &IID_ISynchronizeHandle_Value;
 pub const ISynchronizeHandle = extern struct {
     pub const VTable = extern struct {
@@ -2053,7 +2053,7 @@ pub const ISynchronizeHandle = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ISynchronizeEvent_Value = @import("../zig.zig").Guid.initString("00000032-0000-0000-c000-000000000046");
+const IID_ISynchronizeEvent_Value = Guid.initString("00000032-0000-0000-c000-000000000046");
 pub const IID_ISynchronizeEvent = &IID_ISynchronizeEvent_Value;
 pub const ISynchronizeEvent = extern struct {
     pub const VTable = extern struct {
@@ -2075,7 +2075,7 @@ pub const ISynchronizeEvent = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ISynchronizeContainer_Value = @import("../zig.zig").Guid.initString("00000033-0000-0000-c000-000000000046");
+const IID_ISynchronizeContainer_Value = Guid.initString("00000033-0000-0000-c000-000000000046");
 pub const IID_ISynchronizeContainer = &IID_ISynchronizeContainer_Value;
 pub const ISynchronizeContainer = extern struct {
     pub const VTable = extern struct {
@@ -2106,7 +2106,7 @@ pub const ISynchronizeContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISynchronizeMutex_Value = @import("../zig.zig").Guid.initString("00000025-0000-0000-c000-000000000046");
+const IID_ISynchronizeMutex_Value = Guid.initString("00000025-0000-0000-c000-000000000046");
 pub const IID_ISynchronizeMutex = &IID_ISynchronizeMutex_Value;
 pub const ISynchronizeMutex = extern struct {
     pub const VTable = extern struct {
@@ -2127,7 +2127,7 @@ pub const ISynchronizeMutex = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICancelMethodCalls_Value = @import("../zig.zig").Guid.initString("00000029-0000-0000-c000-000000000046");
+const IID_ICancelMethodCalls_Value = Guid.initString("00000029-0000-0000-c000-000000000046");
 pub const IID_ICancelMethodCalls = &IID_ICancelMethodCalls_Value;
 pub const ICancelMethodCalls = extern struct {
     pub const VTable = extern struct {
@@ -2164,7 +2164,7 @@ pub const DCOM_NONE = DCOM_CALL_STATE.NONE;
 pub const DCOM_CALL_COMPLETE = DCOM_CALL_STATE.CALL_COMPLETE;
 pub const DCOM_CALL_CANCELED = DCOM_CALL_STATE.CALL_CANCELED;
 
-const IID_IAsyncManager_Value = @import("../zig.zig").Guid.initString("0000002a-0000-0000-c000-000000000046");
+const IID_IAsyncManager_Value = Guid.initString("0000002a-0000-0000-c000-000000000046");
 pub const IID_IAsyncManager = &IID_IAsyncManager_Value;
 pub const IAsyncManager = extern struct {
     pub const VTable = extern struct {
@@ -2203,7 +2203,7 @@ pub const IAsyncManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICallFactory_Value = @import("../zig.zig").Guid.initString("1c733a30-2a1c-11ce-ade5-00aa0044773d");
+const IID_ICallFactory_Value = Guid.initString("1c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICallFactory = &IID_ICallFactory_Value;
 pub const ICallFactory = extern struct {
     pub const VTable = extern struct {
@@ -2227,7 +2227,7 @@ pub const ICallFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRpcHelper_Value = @import("../zig.zig").Guid.initString("00000149-0000-0000-c000-000000000046");
+const IID_IRpcHelper_Value = Guid.initString("00000149-0000-0000-c000-000000000046");
 pub const IID_IRpcHelper = &IID_IRpcHelper_Value;
 pub const IRpcHelper = extern struct {
     pub const VTable = extern struct {
@@ -2257,7 +2257,7 @@ pub const IRpcHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReleaseMarshalBuffers_Value = @import("../zig.zig").Guid.initString("eb0cb9e8-7996-11d2-872e-0000f8080859");
+const IID_IReleaseMarshalBuffers_Value = Guid.initString("eb0cb9e8-7996-11d2-872e-0000f8080859");
 pub const IID_IReleaseMarshalBuffers = &IID_IReleaseMarshalBuffers_Value;
 pub const IReleaseMarshalBuffers = extern struct {
     pub const VTable = extern struct {
@@ -2280,7 +2280,7 @@ pub const IReleaseMarshalBuffers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWaitMultiple_Value = @import("../zig.zig").Guid.initString("0000002b-0000-0000-c000-000000000046");
+const IID_IWaitMultiple_Value = Guid.initString("0000002b-0000-0000-c000-000000000046");
 pub const IID_IWaitMultiple = &IID_IWaitMultiple_Value;
 pub const IWaitMultiple = extern struct {
     pub const VTable = extern struct {
@@ -2310,7 +2310,7 @@ pub const IWaitMultiple = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAddrTrackingControl_Value = @import("../zig.zig").Guid.initString("00000147-0000-0000-c000-000000000046");
+const IID_IAddrTrackingControl_Value = Guid.initString("00000147-0000-0000-c000-000000000046");
 pub const IID_IAddrTrackingControl = &IID_IAddrTrackingControl_Value;
 pub const IAddrTrackingControl = extern struct {
     pub const VTable = extern struct {
@@ -2337,7 +2337,7 @@ pub const IAddrTrackingControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAddrExclusionControl_Value = @import("../zig.zig").Guid.initString("00000148-0000-0000-c000-000000000046");
+const IID_IAddrExclusionControl_Value = Guid.initString("00000148-0000-0000-c000-000000000046");
 pub const IID_IAddrExclusionControl = &IID_IAddrExclusionControl_Value;
 pub const IAddrExclusionControl = extern struct {
     pub const VTable = extern struct {
@@ -2368,7 +2368,7 @@ pub const IAddrExclusionControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPipeByte_Value = @import("../zig.zig").Guid.initString("db2f3aca-2f86-11d1-8e04-00c04fb9989a");
+const IID_IPipeByte_Value = Guid.initString("db2f3aca-2f86-11d1-8e04-00c04fb9989a");
 pub const IID_IPipeByte = &IID_IPipeByte_Value;
 pub const IPipeByte = extern struct {
     pub const VTable = extern struct {
@@ -2400,7 +2400,7 @@ pub const IPipeByte = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIPipeByte_Value = @import("../zig.zig").Guid.initString("db2f3acb-2f86-11d1-8e04-00c04fb9989a");
+const IID_AsyncIPipeByte_Value = Guid.initString("db2f3acb-2f86-11d1-8e04-00c04fb9989a");
 pub const IID_AsyncIPipeByte = &IID_AsyncIPipeByte_Value;
 pub const AsyncIPipeByte = extern struct {
     pub const VTable = extern struct {
@@ -2447,7 +2447,7 @@ pub const AsyncIPipeByte = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPipeLong_Value = @import("../zig.zig").Guid.initString("db2f3acc-2f86-11d1-8e04-00c04fb9989a");
+const IID_IPipeLong_Value = Guid.initString("db2f3acc-2f86-11d1-8e04-00c04fb9989a");
 pub const IID_IPipeLong = &IID_IPipeLong_Value;
 pub const IPipeLong = extern struct {
     pub const VTable = extern struct {
@@ -2479,7 +2479,7 @@ pub const IPipeLong = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIPipeLong_Value = @import("../zig.zig").Guid.initString("db2f3acd-2f86-11d1-8e04-00c04fb9989a");
+const IID_AsyncIPipeLong_Value = Guid.initString("db2f3acd-2f86-11d1-8e04-00c04fb9989a");
 pub const IID_AsyncIPipeLong = &IID_AsyncIPipeLong_Value;
 pub const AsyncIPipeLong = extern struct {
     pub const VTable = extern struct {
@@ -2526,7 +2526,7 @@ pub const AsyncIPipeLong = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPipeDouble_Value = @import("../zig.zig").Guid.initString("db2f3ace-2f86-11d1-8e04-00c04fb9989a");
+const IID_IPipeDouble_Value = Guid.initString("db2f3ace-2f86-11d1-8e04-00c04fb9989a");
 pub const IID_IPipeDouble = &IID_IPipeDouble_Value;
 pub const IPipeDouble = extern struct {
     pub const VTable = extern struct {
@@ -2558,7 +2558,7 @@ pub const IPipeDouble = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIPipeDouble_Value = @import("../zig.zig").Guid.initString("db2f3acf-2f86-11d1-8e04-00c04fb9989a");
+const IID_AsyncIPipeDouble_Value = Guid.initString("db2f3acf-2f86-11d1-8e04-00c04fb9989a");
 pub const IID_AsyncIPipeDouble = &IID_AsyncIPipeDouble_Value;
 pub const AsyncIPipeDouble = extern struct {
     pub const VTable = extern struct {
@@ -2644,7 +2644,7 @@ pub const THDTYPE_BLOCKMESSAGES = THDTYPE.BLOCKMESSAGES;
 pub const THDTYPE_PROCESSMESSAGES = THDTYPE.PROCESSMESSAGES;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IComThreadingInfo_Value = @import("../zig.zig").Guid.initString("000001ce-0000-0000-c000-000000000046");
+const IID_IComThreadingInfo_Value = Guid.initString("000001ce-0000-0000-c000-000000000046");
 pub const IID_IComThreadingInfo = &IID_IComThreadingInfo_Value;
 pub const IComThreadingInfo = extern struct {
     pub const VTable = extern struct {
@@ -2690,7 +2690,7 @@ pub const IComThreadingInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IProcessInitControl_Value = @import("../zig.zig").Guid.initString("72380d55-8d2b-43a3-8513-2b6ef31434e9");
+const IID_IProcessInitControl_Value = Guid.initString("72380d55-8d2b-43a3-8513-2b6ef31434e9");
 pub const IID_IProcessInitControl = &IID_IProcessInitControl_Value;
 pub const IProcessInitControl = extern struct {
     pub const VTable = extern struct {
@@ -2712,7 +2712,7 @@ pub const IProcessInitControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IFastRundown_Value = @import("../zig.zig").Guid.initString("00000040-0000-0000-c000-000000000046");
+const IID_IFastRundown_Value = Guid.initString("00000040-0000-0000-c000-000000000046");
 pub const IID_IFastRundown = &IID_IFastRundown_Value;
 pub const IFastRundown = extern struct {
     pub const VTable = extern struct {
@@ -2770,7 +2770,7 @@ pub const MachineGlobalObjectTableRegistrationToken__ = extern struct {
     unused: i32,
 };
 
-const IID_IMachineGlobalObjectTable_Value = @import("../zig.zig").Guid.initString("26d709ac-f70b-4421-a96f-d2878fafb00d");
+const IID_IMachineGlobalObjectTable_Value = Guid.initString("26d709ac-f70b-4421-a96f-d2878fafb00d");
 pub const IID_IMachineGlobalObjectTable = &IID_IMachineGlobalObjectTable_Value;
 pub const IMachineGlobalObjectTable = extern struct {
     pub const VTable = extern struct {
@@ -2814,7 +2814,7 @@ pub const IMachineGlobalObjectTable = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IMallocSpy_Value = @import("../zig.zig").Guid.initString("0000001d-0000-0000-c000-000000000046");
+const IID_IMallocSpy_Value = Guid.initString("0000001d-0000-0000-c000-000000000046");
 pub const IID_IMallocSpy = &IID_IMallocSpy_Value;
 pub const IMallocSpy = extern struct {
     pub const VTable = extern struct {
@@ -2959,7 +2959,7 @@ pub const BIND_MAYBOTHERUSER = BIND_FLAGS.MAYBOTHERUSER;
 pub const BIND_JUSTTESTEXISTENCE = BIND_FLAGS.JUSTTESTEXISTENCE;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IBindCtx_Value = @import("../zig.zig").Guid.initString("0000000e-0000-0000-c000-000000000046");
+const IID_IBindCtx_Value = Guid.initString("0000000e-0000-0000-c000-000000000046");
 pub const IID_IBindCtx = &IID_IBindCtx_Value;
 pub const IBindCtx = extern struct {
     pub const VTable = extern struct {
@@ -3054,7 +3054,7 @@ pub const IBindCtx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumMoniker_Value = @import("../zig.zig").Guid.initString("00000102-0000-0000-c000-000000000046");
+const IID_IEnumMoniker_Value = Guid.initString("00000102-0000-0000-c000-000000000046");
 pub const IID_IEnumMoniker = &IID_IEnumMoniker_Value;
 pub const IEnumMoniker = extern struct {
     pub const VTable = extern struct {
@@ -3101,7 +3101,7 @@ pub const IEnumMoniker = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IRunnableObject_Value = @import("../zig.zig").Guid.initString("00000126-0000-0000-c000-000000000046");
+const IID_IRunnableObject_Value = Guid.initString("00000126-0000-0000-c000-000000000046");
 pub const IID_IRunnableObject = &IID_IRunnableObject_Value;
 pub const IRunnableObject = extern struct {
     pub const VTable = extern struct {
@@ -3155,7 +3155,7 @@ pub const IRunnableObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IRunningObjectTable_Value = @import("../zig.zig").Guid.initString("00000010-0000-0000-c000-000000000046");
+const IID_IRunningObjectTable_Value = Guid.initString("00000010-0000-0000-c000-000000000046");
 pub const IID_IRunningObjectTable = &IID_IRunningObjectTable_Value;
 pub const IRunningObjectTable = extern struct {
     pub const VTable = extern struct {
@@ -3231,7 +3231,7 @@ pub const IRunningObjectTable = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPersist_Value = @import("../zig.zig").Guid.initString("0000010c-0000-0000-c000-000000000046");
+const IID_IPersist_Value = Guid.initString("0000010c-0000-0000-c000-000000000046");
 pub const IID_IPersist = &IID_IPersist_Value;
 pub const IPersist = extern struct {
     pub const VTable = extern struct {
@@ -3253,7 +3253,7 @@ pub const IPersist = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPersistStream_Value = @import("../zig.zig").Guid.initString("00000109-0000-0000-c000-000000000046");
+const IID_IPersistStream_Value = Guid.initString("00000109-0000-0000-c000-000000000046");
 pub const IID_IPersistStream = &IID_IPersistStream_Value;
 pub const IPersistStream = extern struct {
     pub const VTable = extern struct {
@@ -3333,7 +3333,7 @@ pub const MKRREDUCE_THROUGHUSER = MKREDUCE.THROUGHUSER;
 pub const MKRREDUCE_ALL = MKREDUCE.ALL;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IMoniker_Value = @import("../zig.zig").Guid.initString("0000000f-0000-0000-c000-000000000046");
+const IID_IMoniker_Value = Guid.initString("0000000f-0000-0000-c000-000000000046");
 pub const IID_IMoniker = &IID_IMoniker_Value;
 pub const IMoniker = extern struct {
     pub const VTable = extern struct {
@@ -3491,7 +3491,7 @@ pub const IMoniker = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IROTData_Value = @import("../zig.zig").Guid.initString("f29f6bc0-5021-11ce-aa15-00006901293f");
+const IID_IROTData_Value = Guid.initString("f29f6bc0-5021-11ce-aa15-00006901293f");
 pub const IID_IROTData = &IID_IROTData_Value;
 pub const IROTData = extern struct {
     pub const VTable = extern struct {
@@ -3515,7 +3515,7 @@ pub const IROTData = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPersistFile_Value = @import("../zig.zig").Guid.initString("0000010b-0000-0000-c000-000000000046");
+const IID_IPersistFile_Value = Guid.initString("0000010b-0000-0000-c000-000000000046");
 pub const IID_IPersistFile = &IID_IPersistFile_Value;
 pub const IPersistFile = extern struct {
     pub const VTable = extern struct {
@@ -3587,7 +3587,7 @@ pub const FORMATETC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumFORMATETC_Value = @import("../zig.zig").Guid.initString("00000103-0000-0000-c000-000000000046");
+const IID_IEnumFORMATETC_Value = Guid.initString("00000103-0000-0000-c000-000000000046");
 pub const IID_IEnumFORMATETC = &IID_IEnumFORMATETC_Value;
 pub const IEnumFORMATETC = extern struct {
     pub const VTable = extern struct {
@@ -3658,7 +3658,7 @@ pub const STATDATA = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATDATA_Value = @import("../zig.zig").Guid.initString("00000105-0000-0000-c000-000000000046");
+const IID_IEnumSTATDATA_Value = Guid.initString("00000105-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATDATA = &IID_IEnumSTATDATA_Value;
 pub const IEnumSTATDATA = extern struct {
     pub const VTable = extern struct {
@@ -3784,7 +3784,7 @@ pub const FLAG_STGMEDIUM = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IAdviseSink_Value = @import("../zig.zig").Guid.initString("0000010f-0000-0000-c000-000000000046");
+const IID_IAdviseSink_Value = Guid.initString("0000010f-0000-0000-c000-000000000046");
 pub const IID_IAdviseSink = &IID_IAdviseSink_Value;
 pub const IAdviseSink = extern struct {
     pub const VTable = extern struct {
@@ -3837,7 +3837,7 @@ pub const IAdviseSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIAdviseSink_Value = @import("../zig.zig").Guid.initString("00000150-0000-0000-c000-000000000046");
+const IID_AsyncIAdviseSink_Value = Guid.initString("00000150-0000-0000-c000-000000000046");
 pub const IID_AsyncIAdviseSink = &IID_AsyncIAdviseSink_Value;
 pub const AsyncIAdviseSink = extern struct {
     pub const VTable = extern struct {
@@ -3926,7 +3926,7 @@ pub const AsyncIAdviseSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IAdviseSink2_Value = @import("../zig.zig").Guid.initString("00000125-0000-0000-c000-000000000046");
+const IID_IAdviseSink2_Value = Guid.initString("00000125-0000-0000-c000-000000000046");
 pub const IID_IAdviseSink2 = &IID_IAdviseSink2_Value;
 pub const IAdviseSink2 = extern struct {
     pub const VTable = extern struct {
@@ -3947,7 +3947,7 @@ pub const IAdviseSink2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIAdviseSink2_Value = @import("../zig.zig").Guid.initString("00000151-0000-0000-c000-000000000046");
+const IID_AsyncIAdviseSink2_Value = Guid.initString("00000151-0000-0000-c000-000000000046");
 pub const IID_AsyncIAdviseSink2 = &IID_AsyncIAdviseSink2_Value;
 pub const AsyncIAdviseSink2 = extern struct {
     pub const VTable = extern struct {
@@ -3983,7 +3983,7 @@ pub const DATADIR_GET = DATADIR.GET;
 pub const DATADIR_SET = DATADIR.SET;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IDataObject_Value = @import("../zig.zig").Guid.initString("0000010e-0000-0000-c000-000000000046");
+const IID_IDataObject_Value = Guid.initString("0000010e-0000-0000-c000-000000000046");
 pub const IID_IDataObject = &IID_IDataObject_Value;
 pub const IDataObject = extern struct {
     pub const VTable = extern struct {
@@ -4078,7 +4078,7 @@ pub const IDataObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IDataAdviseHolder_Value = @import("../zig.zig").Guid.initString("00000110-0000-0000-c000-000000000046");
+const IID_IDataAdviseHolder_Value = Guid.initString("00000110-0000-0000-c000-000000000046");
 pub const IID_IDataAdviseHolder = &IID_IDataAdviseHolder_Value;
 pub const IDataAdviseHolder = extern struct {
     pub const VTable = extern struct {
@@ -4174,7 +4174,7 @@ pub const INTERFACEINFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IClassActivator_Value = @import("../zig.zig").Guid.initString("00000140-0000-0000-c000-000000000046");
+const IID_IClassActivator_Value = Guid.initString("00000140-0000-0000-c000-000000000046");
 pub const IID_IClassActivator = &IID_IClassActivator_Value;
 pub const IClassActivator = extern struct {
     pub const VTable = extern struct {
@@ -4200,7 +4200,7 @@ pub const IClassActivator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IProgressNotify_Value = @import("../zig.zig").Guid.initString("a9d758a0-4617-11cf-95fc-00aa00680db4");
+const IID_IProgressNotify_Value = Guid.initString("a9d758a0-4617-11cf-95fc-00aa00680db4");
 pub const IID_IProgressNotify = &IID_IProgressNotify_Value;
 pub const IProgressNotify = extern struct {
     pub const VTable = extern struct {
@@ -4232,7 +4232,7 @@ pub const StorageLayout = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IBlockingLock_Value = @import("../zig.zig").Guid.initString("30f3d47a-6447-11d1-8e3c-00c04fb9386d");
+const IID_IBlockingLock_Value = Guid.initString("30f3d47a-6447-11d1-8e3c-00c04fb9386d");
 pub const IID_IBlockingLock = &IID_IBlockingLock_Value;
 pub const IBlockingLock = extern struct {
     pub const VTable = extern struct {
@@ -4260,7 +4260,7 @@ pub const IBlockingLock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITimeAndNoticeControl_Value = @import("../zig.zig").Guid.initString("bc0bf6ae-8878-11d1-83e9-00c04fc2c6d4");
+const IID_ITimeAndNoticeControl_Value = Guid.initString("bc0bf6ae-8878-11d1-83e9-00c04fc2c6d4");
 pub const IID_ITimeAndNoticeControl = &IID_ITimeAndNoticeControl_Value;
 pub const ITimeAndNoticeControl = extern struct {
     pub const VTable = extern struct {
@@ -4282,7 +4282,7 @@ pub const ITimeAndNoticeControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOplockStorage_Value = @import("../zig.zig").Guid.initString("8d19c834-8879-11d1-83e9-00c04fc2c6d4");
+const IID_IOplockStorage_Value = Guid.initString("8d19c834-8879-11d1-83e9-00c04fc2c6d4");
 pub const IID_IOplockStorage = &IID_IOplockStorage_Value;
 pub const IOplockStorage = extern struct {
     pub const VTable = extern struct {
@@ -4321,7 +4321,7 @@ pub const IOplockStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUrlMon_Value = @import("../zig.zig").Guid.initString("00000026-0000-0000-c000-000000000046");
+const IID_IUrlMon_Value = Guid.initString("00000026-0000-0000-c000-000000000046");
 pub const IID_IUrlMon = &IID_IUrlMon_Value;
 pub const IUrlMon = extern struct {
     pub const VTable = extern struct {
@@ -4352,7 +4352,7 @@ pub const IUrlMon = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IForegroundTransfer_Value = @import("../zig.zig").Guid.initString("00000145-0000-0000-c000-000000000046");
+const IID_IForegroundTransfer_Value = Guid.initString("00000145-0000-0000-c000-000000000046");
 pub const IID_IForegroundTransfer = &IID_IForegroundTransfer_Value;
 pub const IForegroundTransfer = extern struct {
     pub const VTable = extern struct {
@@ -4388,7 +4388,7 @@ pub const IdleShutdown = ShutdownType.IdleShutdown;
 pub const ForcedShutdown = ShutdownType.ForcedShutdown;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IProcessLock_Value = @import("../zig.zig").Guid.initString("000001d5-0000-0000-c000-000000000046");
+const IID_IProcessLock_Value = Guid.initString("000001d5-0000-0000-c000-000000000046");
 pub const IID_IProcessLock = &IID_IProcessLock_Value;
 pub const IProcessLock = extern struct {
     pub const VTable = extern struct {
@@ -4416,7 +4416,7 @@ pub const IProcessLock = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ISurrogateService_Value = @import("../zig.zig").Guid.initString("000001d4-0000-0000-c000-000000000046");
+const IID_ISurrogateService_Value = Guid.initString("000001d4-0000-0000-c000-000000000046");
 pub const IID_ISurrogateService = &IID_ISurrogateService_Value;
 pub const ISurrogateService = extern struct {
     pub const VTable = extern struct {
@@ -4473,7 +4473,7 @@ pub const ISurrogateService = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInitializeSpy_Value = @import("../zig.zig").Guid.initString("00000034-0000-0000-c000-000000000046");
+const IID_IInitializeSpy_Value = Guid.initString("00000034-0000-0000-c000-000000000046");
 pub const IID_IInitializeSpy = &IID_IInitializeSpy_Value;
 pub const IInitializeSpy = extern struct {
     pub const VTable = extern struct {
@@ -4557,7 +4557,7 @@ pub const SD_ACCESSPERMISSIONS = COMSD.ACCESSPERMISSIONS;
 pub const SD_LAUNCHRESTRICTIONS = COMSD.LAUNCHRESTRICTIONS;
 pub const SD_ACCESSRESTRICTIONS = COMSD.ACCESSRESTRICTIONS;
 
-const IID_IServiceProvider_Value = @import("../zig.zig").Guid.initString("6d5140c1-7436-11ce-8034-00aa006009fa");
+const IID_IServiceProvider_Value = Guid.initString("6d5140c1-7436-11ce-8034-00aa006009fa");
 pub const IID_IServiceProvider = &IID_IServiceProvider_Value;
 pub const IServiceProvider = extern struct {
     pub const VTable = extern struct {
@@ -4614,7 +4614,7 @@ pub const LPFNCANUNLOADNOW = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumGUID_Value = @import("../zig.zig").Guid.initString("0002e000-0000-0000-c000-000000000046");
+const IID_IEnumGUID_Value = Guid.initString("0002e000-0000-0000-c000-000000000046");
 pub const IID_IEnumGUID = &IID_IEnumGUID_Value;
 pub const IEnumGUID = extern struct {
     pub const VTable = extern struct {
@@ -4667,7 +4667,7 @@ pub const CATEGORYINFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumCATEGORYINFO_Value = @import("../zig.zig").Guid.initString("0002e011-0000-0000-c000-000000000046");
+const IID_IEnumCATEGORYINFO_Value = Guid.initString("0002e011-0000-0000-c000-000000000046");
 pub const IID_IEnumCATEGORYINFO = &IID_IEnumCATEGORYINFO_Value;
 pub const IEnumCATEGORYINFO = extern struct {
     pub const VTable = extern struct {
@@ -4714,7 +4714,7 @@ pub const IEnumCATEGORYINFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICatRegister_Value = @import("../zig.zig").Guid.initString("0002e012-0000-0000-c000-000000000046");
+const IID_ICatRegister_Value = Guid.initString("0002e012-0000-0000-c000-000000000046");
 pub const IID_ICatRegister = &IID_ICatRegister_Value;
 pub const ICatRegister = extern struct {
     pub const VTable = extern struct {
@@ -4786,7 +4786,7 @@ pub const ICatRegister = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ICatInformation_Value = @import("../zig.zig").Guid.initString("0002e013-0000-0000-c000-000000000046");
+const IID_ICatInformation_Value = Guid.initString("0002e013-0000-0000-c000-000000000046");
 pub const IID_ICatInformation = &IID_ICatInformation_Value;
 pub const ICatInformation = extern struct {
     pub const VTable = extern struct {
@@ -4871,7 +4871,7 @@ pub const PFNCONTEXTCALL = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IContextCallback_Value = @import("../zig.zig").Guid.initString("000001da-0000-0000-c000-000000000046");
+const IID_IContextCallback_Value = Guid.initString("000001da-0000-0000-c000-000000000046");
 pub const IID_IContextCallback = &IID_IContextCallback_Value;
 pub const IContextCallback = extern struct {
     pub const VTable = extern struct {
@@ -4896,7 +4896,7 @@ pub const IContextCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBinding_Value = @import("../zig.zig").Guid.initString("79eac9c0-baf9-11ce-8c82-00aa004ba90b");
+const IID_IBinding_Value = Guid.initString("79eac9c0-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IBinding = &IID_IBinding_Value;
 pub const IBinding = extern struct {
     pub const VTable = extern struct {
@@ -4981,7 +4981,7 @@ pub const BINDINFO = extern struct {
     dwReserved: u32,
 };
 
-const IID_IBindStatusCallback_Value = @import("../zig.zig").Guid.initString("79eac9c1-baf9-11ce-8c82-00aa004ba90b");
+const IID_IBindStatusCallback_Value = Guid.initString("79eac9c1-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IBindStatusCallback = &IID_IBindStatusCallback_Value;
 pub const IBindStatusCallback = extern struct {
     pub const VTable = extern struct {
@@ -5068,7 +5068,7 @@ pub const IBindStatusCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBindStatusCallbackEx_Value = @import("../zig.zig").Guid.initString("aaa74ef9-8ee7-4659-88d9-f8c504da73cc");
+const IID_IBindStatusCallbackEx_Value = Guid.initString("aaa74ef9-8ee7-4659-88d9-f8c504da73cc");
 pub const IID_IBindStatusCallbackEx = &IID_IBindStatusCallbackEx_Value;
 pub const IBindStatusCallbackEx = extern struct {
     pub const VTable = extern struct {
@@ -5092,7 +5092,7 @@ pub const IBindStatusCallbackEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAuthenticate_Value = @import("../zig.zig").Guid.initString("79eac9d0-baf9-11ce-8c82-00aa004ba90b");
+const IID_IAuthenticate_Value = Guid.initString("79eac9d0-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IAuthenticate = &IID_IAuthenticate_Value;
 pub const IAuthenticate = extern struct {
     pub const VTable = extern struct {
@@ -5120,7 +5120,7 @@ pub const AUTHENTICATEINFO = extern struct {
     dwReserved: u32,
 };
 
-const IID_IAuthenticateEx_Value = @import("../zig.zig").Guid.initString("2ad1edaf-d83d-48b5-9adf-03dbe19f53bd");
+const IID_IAuthenticateEx_Value = Guid.initString("2ad1edaf-d83d-48b5-9adf-03dbe19f53bd");
 pub const IID_IAuthenticateEx = &IID_IAuthenticateEx_Value;
 pub const IAuthenticateEx = extern struct {
     pub const VTable = extern struct {
@@ -5193,7 +5193,7 @@ pub const Uri_PROPERTY_SCHEME = Uri_PROPERTY.SCHEME;
 pub const Uri_PROPERTY_ZONE = Uri_PROPERTY.ZONE;
 pub const Uri_PROPERTY_DWORD_LAST = Uri_PROPERTY.ZONE;
 
-const IID_IUri_Value = @import("../zig.zig").Guid.initString("a39ee748-6a27-4817-a6f2-13914bef5890");
+const IID_IUri_Value = Guid.initString("a39ee748-6a27-4817-a6f2-13914bef5890");
 pub const IID_IUri = &IID_IUri_Value;
 pub const IUri = extern struct {
     pub const VTable = extern struct {
@@ -5414,7 +5414,7 @@ pub const IUri = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUriBuilder_Value = @import("../zig.zig").Guid.initString("4221b2e1-8955-46c0-bd5b-de9897565de7");
+const IID_IUriBuilder_Value = Guid.initString("4221b2e1-8955-46c0-bd5b-de9897565de7");
 pub const IID_IUriBuilder = &IID_IUriBuilder_Value;
 pub const IUriBuilder = extern struct {
     pub const VTable = extern struct {
@@ -5629,7 +5629,7 @@ pub const IUriBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBindHost_Value = @import("../zig.zig").Guid.initString("fc4801a1-2ba9-11cf-a229-00aa003d7352");
+const IID_IBindHost_Value = Guid.initString("fc4801a1-2ba9-11cf-a229-00aa003d7352");
 pub const IID_IBindHost = &IID_IBindHost_Value;
 pub const IBindHost = extern struct {
     pub const VTable = extern struct {
@@ -5934,7 +5934,7 @@ pub const CUSTDATA = extern struct {
     prgCustData: ?*CUSTDATAITEM,
 };
 
-const IID_IDispatch_Value = @import("../zig.zig").Guid.initString("00020400-0000-0000-c000-000000000046");
+const IID_IDispatch_Value = Guid.initString("00020400-0000-0000-c000-000000000046");
 pub const IID_IDispatch = &IID_IDispatch_Value;
 pub const IDispatch = extern struct {
     pub const VTable = extern struct {
@@ -6013,7 +6013,7 @@ pub const BINDPTR = extern union {
     lptcomp: ?*ITypeComp,
 };
 
-const IID_ITypeComp_Value = @import("../zig.zig").Guid.initString("00020403-0000-0000-c000-000000000046");
+const IID_ITypeComp_Value = Guid.initString("00020403-0000-0000-c000-000000000046");
 pub const IID_ITypeComp = &IID_ITypeComp_Value;
 pub const ITypeComp = extern struct {
     pub const VTable = extern struct {
@@ -6050,7 +6050,7 @@ pub const ITypeComp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITypeInfo_Value = @import("../zig.zig").Guid.initString("00020401-0000-0000-c000-000000000046");
+const IID_ITypeInfo_Value = Guid.initString("00020401-0000-0000-c000-000000000046");
 pub const IID_ITypeInfo = &IID_ITypeInfo_Value;
 pub const ITypeInfo = extern struct {
     pub const VTable = extern struct {
@@ -6245,7 +6245,7 @@ pub const ITypeInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITypeInfo2_Value = @import("../zig.zig").Guid.initString("00020412-0000-0000-c000-000000000046");
+const IID_ITypeInfo2_Value = Guid.initString("00020412-0000-0000-c000-000000000046");
 pub const IID_ITypeInfo2 = &IID_ITypeInfo2_Value;
 pub const ITypeInfo2 = extern struct {
     pub const VTable = extern struct {
@@ -6420,7 +6420,7 @@ pub const TLIBATTR = extern struct {
     wLibFlags: u16,
 };
 
-const IID_ITypeLib_Value = @import("../zig.zig").Guid.initString("00020402-0000-0000-c000-000000000046");
+const IID_ITypeLib_Value = Guid.initString("00020402-0000-0000-c000-000000000046");
 pub const IID_ITypeLib = &IID_ITypeLib_Value;
 pub const ITypeLib = extern struct {
     pub const VTable = extern struct {
@@ -6525,7 +6525,7 @@ pub const ITypeLib = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITypeLib2_Value = @import("../zig.zig").Guid.initString("00020411-0000-0000-c000-000000000046");
+const IID_ITypeLib2_Value = Guid.initString("00020411-0000-0000-c000-000000000046");
 pub const IID_ITypeLib2 = &IID_ITypeLib2_Value;
 pub const ITypeLib2 = extern struct {
     pub const VTable = extern struct {
@@ -6576,7 +6576,7 @@ pub const ITypeLib2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IErrorInfo_Value = @import("../zig.zig").Guid.initString("1cf2b120-547d-101b-8e65-08002b2bd119");
+const IID_IErrorInfo_Value = Guid.initString("1cf2b120-547d-101b-8e65-08002b2bd119");
 pub const IID_IErrorInfo = &IID_IErrorInfo_Value;
 pub const IErrorInfo = extern struct {
     pub const VTable = extern struct {
@@ -6629,7 +6629,7 @@ pub const IErrorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISupportErrorInfo_Value = @import("../zig.zig").Guid.initString("df0b3d60-548f-101b-8e65-08002b2bd119");
+const IID_ISupportErrorInfo_Value = Guid.initString("df0b3d60-548f-101b-8e65-08002b2bd119");
 pub const IID_ISupportErrorInfo = &IID_ISupportErrorInfo_Value;
 pub const ISupportErrorInfo = extern struct {
     pub const VTable = extern struct {
@@ -6650,7 +6650,7 @@ pub const ISupportErrorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IErrorLog_Value = @import("../zig.zig").Guid.initString("3127ca40-446e-11ce-8135-00aa004bb851");
+const IID_IErrorLog_Value = Guid.initString("3127ca40-446e-11ce-8135-00aa004bb851");
 pub const IID_IErrorLog = &IID_IErrorLog_Value;
 pub const IErrorLog = extern struct {
     pub const VTable = extern struct {
@@ -6672,7 +6672,7 @@ pub const IErrorLog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITypeLibRegistrationReader_Value = @import("../zig.zig").Guid.initString("ed6a8a2a-b160-4e77-8f73-aa7435cd5c27");
+const IID_ITypeLibRegistrationReader_Value = Guid.initString("ed6a8a2a-b160-4e77-8f73-aa7435cd5c27");
 pub const IID_ITypeLibRegistrationReader = &IID_ITypeLibRegistrationReader_Value;
 pub const ITypeLibRegistrationReader = extern struct {
     pub const VTable = extern struct {
@@ -6693,7 +6693,7 @@ pub const ITypeLibRegistrationReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITypeLibRegistration_Value = @import("../zig.zig").Guid.initString("76a3e735-02df-4a12-98eb-043ad3600af3");
+const IID_ITypeLibRegistration_Value = Guid.initString("76a3e735-02df-4a12-98eb-043ad3600af3");
 pub const IID_ITypeLibRegistration = &IID_ITypeLibRegistration_Value;
 pub const ITypeLibRegistration = extern struct {
     pub const VTable = extern struct {
@@ -6776,7 +6776,7 @@ pub const CONNECTDATA = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumConnections_Value = @import("../zig.zig").Guid.initString("b196b287-bab4-101a-b69c-00aa00341d07");
+const IID_IEnumConnections_Value = Guid.initString("b196b287-bab4-101a-b69c-00aa00341d07");
 pub const IID_IEnumConnections = &IID_IEnumConnections_Value;
 pub const IEnumConnections = extern struct {
     pub const VTable = extern struct {
@@ -6823,7 +6823,7 @@ pub const IEnumConnections = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IConnectionPoint_Value = @import("../zig.zig").Guid.initString("b196b286-bab4-101a-b69c-00aa00341d07");
+const IID_IConnectionPoint_Value = Guid.initString("b196b286-bab4-101a-b69c-00aa00341d07");
 pub const IID_IConnectionPoint = &IID_IConnectionPoint_Value;
 pub const IConnectionPoint = extern struct {
     pub const VTable = extern struct {
@@ -6878,7 +6878,7 @@ pub const IConnectionPoint = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumConnectionPoints_Value = @import("../zig.zig").Guid.initString("b196b285-bab4-101a-b69c-00aa00341d07");
+const IID_IEnumConnectionPoints_Value = Guid.initString("b196b285-bab4-101a-b69c-00aa00341d07");
 pub const IID_IEnumConnectionPoints = &IID_IEnumConnectionPoints_Value;
 pub const IEnumConnectionPoints = extern struct {
     pub const VTable = extern struct {
@@ -6925,7 +6925,7 @@ pub const IEnumConnectionPoints = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IConnectionPointContainer_Value = @import("../zig.zig").Guid.initString("b196b284-bab4-101a-b69c-00aa00341d07");
+const IID_IConnectionPointContainer_Value = Guid.initString("b196b284-bab4-101a-b69c-00aa00341d07");
 pub const IID_IConnectionPointContainer = &IID_IConnectionPointContainer_Value;
 pub const IConnectionPointContainer = extern struct {
     pub const VTable = extern struct {
@@ -6955,7 +6955,7 @@ pub const IConnectionPointContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPersistMemory_Value = @import("../zig.zig").Guid.initString("bd1ae5e0-a6ae-11ce-bd37-504200c10000");
+const IID_IPersistMemory_Value = Guid.initString("bd1ae5e0-a6ae-11ce-bd37-504200c10000");
 pub const IID_IPersistMemory = &IID_IPersistMemory_Value;
 pub const IPersistMemory = extern struct {
     pub const VTable = extern struct {
@@ -7010,7 +7010,7 @@ pub const IPersistMemory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPersistStreamInit_Value = @import("../zig.zig").Guid.initString("7fd52380-4e07-101b-ae2d-08002b2ec713");
+const IID_IPersistStreamInit_Value = Guid.initString("7fd52380-4e07-101b-ae2d-08002b2ec713");
 pub const IID_IPersistStreamInit = &IID_IPersistStreamInit_Value;
 pub const IPersistStreamInit = extern struct {
     pub const VTable = extern struct {

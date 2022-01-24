@@ -14,22 +14,22 @@ pub const CLSID_DeferContactService = Guid.initString("d7b67cf4-84bb-434e-86ae-6
 //--------------------------------------------------------------------------------
 // Section: Types (39)
 //--------------------------------------------------------------------------------
-const CLSID_DirectManipulationViewport_Value = @import("../zig.zig").Guid.initString("34e211b6-3650-4f75-8334-fa359598e1c5");
+const CLSID_DirectManipulationViewport_Value = Guid.initString("34e211b6-3650-4f75-8334-fa359598e1c5");
 pub const CLSID_DirectManipulationViewport = &CLSID_DirectManipulationViewport_Value;
 
-const CLSID_DirectManipulationUpdateManager_Value = @import("../zig.zig").Guid.initString("9fc1bfd5-1835-441a-b3b1-b6cc74b727d0");
+const CLSID_DirectManipulationUpdateManager_Value = Guid.initString("9fc1bfd5-1835-441a-b3b1-b6cc74b727d0");
 pub const CLSID_DirectManipulationUpdateManager = &CLSID_DirectManipulationUpdateManager_Value;
 
-const CLSID_DirectManipulationPrimaryContent_Value = @import("../zig.zig").Guid.initString("caa02661-d59e-41c7-8393-3ba3bacb6b57");
+const CLSID_DirectManipulationPrimaryContent_Value = Guid.initString("caa02661-d59e-41c7-8393-3ba3bacb6b57");
 pub const CLSID_DirectManipulationPrimaryContent = &CLSID_DirectManipulationPrimaryContent_Value;
 
-const CLSID_DirectManipulationManager_Value = @import("../zig.zig").Guid.initString("54e211b6-3650-4f75-8334-fa359598e1c5");
+const CLSID_DirectManipulationManager_Value = Guid.initString("54e211b6-3650-4f75-8334-fa359598e1c5");
 pub const CLSID_DirectManipulationManager = &CLSID_DirectManipulationManager_Value;
 
-const CLSID_DirectManipulationSharedManager_Value = @import("../zig.zig").Guid.initString("99793286-77cc-4b57-96db-3b354f6f9fb5");
+const CLSID_DirectManipulationSharedManager_Value = Guid.initString("99793286-77cc-4b57-96db-3b354f6f9fb5");
 pub const CLSID_DirectManipulationSharedManager = &CLSID_DirectManipulationSharedManager_Value;
 
-const CLSID_DCompManipulationCompositor_Value = @import("../zig.zig").Guid.initString("79dea627-a08a-43ac-8ef5-6900b9299126");
+const CLSID_DCompManipulationCompositor_Value = Guid.initString("79dea627-a08a-43ac-8ef5-6900b9299126");
 pub const CLSID_DCompManipulationCompositor = &CLSID_DCompManipulationCompositor_Value;
 
 pub const DIRECTMANIPULATION_STATUS = enum(i32) {
@@ -178,7 +178,7 @@ pub const DIRECTMANIPULATION_INPUT_MODE_AUTOMATIC = DIRECTMANIPULATION_INPUT_MOD
 pub const DIRECTMANIPULATION_INPUT_MODE_MANUAL = DIRECTMANIPULATION_INPUT_MODE.MANUAL;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationManager_Value = @import("../zig.zig").Guid.initString("fbf5d3b4-70c7-4163-9322-5a6f660d6fbc");
+const IID_IDirectManipulationManager_Value = Guid.initString("fbf5d3b4-70c7-4163-9322-5a6f660d6fbc");
 pub const IID_IDirectManipulationManager = &IID_IDirectManipulationManager_Value;
 pub const IDirectManipulationManager = extern struct {
     pub const VTable = extern struct {
@@ -258,7 +258,7 @@ pub const IDirectManipulationManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationManager2_Value = @import("../zig.zig").Guid.initString("fa1005e9-3d16-484c-bfc9-62b61e56ec4e");
+const IID_IDirectManipulationManager2_Value = Guid.initString("fa1005e9-3d16-484c-bfc9-62b61e56ec4e");
 pub const IID_IDirectManipulationManager2 = &IID_IDirectManipulationManager2_Value;
 pub const IDirectManipulationManager2 = extern struct {
     pub const VTable = extern struct {
@@ -282,7 +282,7 @@ pub const IDirectManipulationManager2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IDirectManipulationManager3_Value = @import("../zig.zig").Guid.initString("2cb6b33d-ffe8-488c-b750-fbdfe88dca8c");
+const IID_IDirectManipulationManager3_Value = Guid.initString("2cb6b33d-ffe8-488c-b750-fbdfe88dca8c");
 pub const IID_IDirectManipulationManager3 = &IID_IDirectManipulationManager3_Value;
 pub const IDirectManipulationManager3 = extern struct {
     pub const VTable = extern struct {
@@ -306,7 +306,7 @@ pub const IDirectManipulationManager3 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationViewport_Value = @import("../zig.zig").Guid.initString("28b85a3d-60a0-48bd-9ba1-5ce8d9ea3a6d");
+const IID_IDirectManipulationViewport_Value = Guid.initString("28b85a3d-60a0-48bd-9ba1-5ce8d9ea3a6d");
 pub const IID_IDirectManipulationViewport = &IID_IDirectManipulationViewport_Value;
 pub const IDirectManipulationViewport = extern struct {
     pub const VTable = extern struct {
@@ -551,7 +551,7 @@ pub const IDirectManipulationViewport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationViewport2_Value = @import("../zig.zig").Guid.initString("923ccaac-61e1-4385-b726-017af189882a");
+const IID_IDirectManipulationViewport2_Value = Guid.initString("923ccaac-61e1-4385-b726-017af189882a");
 pub const IID_IDirectManipulationViewport2 = &IID_IDirectManipulationViewport2_Value;
 pub const IDirectManipulationViewport2 = extern struct {
     pub const VTable = extern struct {
@@ -589,7 +589,7 @@ pub const IDirectManipulationViewport2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationViewportEventHandler_Value = @import("../zig.zig").Guid.initString("952121da-d69f-45f9-b0f9-f23944321a6d");
+const IID_IDirectManipulationViewportEventHandler_Value = Guid.initString("952121da-d69f-45f9-b0f9-f23944321a6d");
 pub const IID_IDirectManipulationViewportEventHandler = &IID_IDirectManipulationViewportEventHandler_Value;
 pub const IDirectManipulationViewportEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -630,7 +630,7 @@ pub const IDirectManipulationViewportEventHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationContent_Value = @import("../zig.zig").Guid.initString("b89962cb-3d89-442b-bb58-5098fa0f9f16");
+const IID_IDirectManipulationContent_Value = Guid.initString("b89962cb-3d89-442b-bb58-5098fa0f9f16");
 pub const IID_IDirectManipulationContent = &IID_IDirectManipulationContent_Value;
 pub const IDirectManipulationContent = extern struct {
     pub const VTable = extern struct {
@@ -715,7 +715,7 @@ pub const IDirectManipulationContent = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationPrimaryContent_Value = @import("../zig.zig").Guid.initString("c12851e4-1698-4625-b9b1-7ca3ec18630b");
+const IID_IDirectManipulationPrimaryContent_Value = Guid.initString("c12851e4-1698-4625-b9b1-7ca3ec18630b");
 pub const IID_IDirectManipulationPrimaryContent = &IID_IDirectManipulationPrimaryContent_Value;
 pub const IDirectManipulationPrimaryContent = extern struct {
     pub const VTable = extern struct {
@@ -826,7 +826,7 @@ pub const DIRECTMANIPULATION_DRAG_DROP_CANCELLED = DIRECTMANIPULATION_DRAG_DROP_
 pub const DIRECTMANIPULATION_DRAG_DROP_COMMITTED = DIRECTMANIPULATION_DRAG_DROP_STATUS.COMMITTED;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationDragDropEventHandler_Value = @import("../zig.zig").Guid.initString("1fa11b10-701b-41ae-b5f2-49e36bd595aa");
+const IID_IDirectManipulationDragDropEventHandler_Value = Guid.initString("1fa11b10-701b-41ae-b5f2-49e36bd595aa");
 pub const IID_IDirectManipulationDragDropEventHandler = &IID_IDirectManipulationDragDropEventHandler_Value;
 pub const IDirectManipulationDragDropEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -863,7 +863,7 @@ pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_SELECT_DRAG = DIRECTMANIPUL
 pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_HOLD_DRAG = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.HOLD_DRAG;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationDragDropBehavior_Value = @import("../zig.zig").Guid.initString("814b5af5-c2c8-4270-a9b7-a198ce8d02fa");
+const IID_IDirectManipulationDragDropBehavior_Value = Guid.initString("814b5af5-c2c8-4270-a9b7-a198ce8d02fa");
 pub const IID_IDirectManipulationDragDropBehavior = &IID_IDirectManipulationDragDropBehavior_Value;
 pub const IDirectManipulationDragDropBehavior = extern struct {
     pub const VTable = extern struct {
@@ -910,7 +910,7 @@ pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_PINCH_ZOOM = DIRECTMANIPUL
 pub const DIRECTMANIPULATION_INTERACTION_END = DIRECTMANIPULATION_INTERACTION_TYPE.END;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationInteractionEventHandler_Value = @import("../zig.zig").Guid.initString("e43f45b8-42b4-403e-b1f2-273b8f510830");
+const IID_IDirectManipulationInteractionEventHandler_Value = Guid.initString("e43f45b8-42b4-403e-b1f2-273b8f510830");
 pub const IID_IDirectManipulationInteractionEventHandler = &IID_IDirectManipulationInteractionEventHandler_Value;
 pub const IDirectManipulationInteractionEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -933,7 +933,7 @@ pub const IDirectManipulationInteractionEventHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationFrameInfoProvider_Value = @import("../zig.zig").Guid.initString("fb759dba-6f4c-4c01-874e-19c8a05907f9");
+const IID_IDirectManipulationFrameInfoProvider_Value = Guid.initString("fb759dba-6f4c-4c01-874e-19c8a05907f9");
 pub const IID_IDirectManipulationFrameInfoProvider = &IID_IDirectManipulationFrameInfoProvider_Value;
 pub const IDirectManipulationFrameInfoProvider = extern struct {
     pub const VTable = extern struct {
@@ -957,7 +957,7 @@ pub const IDirectManipulationFrameInfoProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationCompositor_Value = @import("../zig.zig").Guid.initString("537a0825-0387-4efa-b62f-71eb1f085a7e");
+const IID_IDirectManipulationCompositor_Value = Guid.initString("537a0825-0387-4efa-b62f-71eb1f085a7e");
 pub const IID_IDirectManipulationCompositor = &IID_IDirectManipulationCompositor_Value;
 pub const IDirectManipulationCompositor = extern struct {
     pub const VTable = extern struct {
@@ -1005,7 +1005,7 @@ pub const IDirectManipulationCompositor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IDirectManipulationCompositor2_Value = @import("../zig.zig").Guid.initString("d38c7822-f1cb-43cb-b4b9-ac0c767a412e");
+const IID_IDirectManipulationCompositor2_Value = Guid.initString("d38c7822-f1cb-43cb-b4b9-ac0c767a412e");
 pub const IID_IDirectManipulationCompositor2 = &IID_IDirectManipulationCompositor2_Value;
 pub const IDirectManipulationCompositor2 = extern struct {
     pub const VTable = extern struct {
@@ -1030,7 +1030,7 @@ pub const IDirectManipulationCompositor2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationUpdateHandler_Value = @import("../zig.zig").Guid.initString("790b6337-64f8-4ff5-a269-b32bc2af27a7");
+const IID_IDirectManipulationUpdateHandler_Value = Guid.initString("790b6337-64f8-4ff5-a269-b32bc2af27a7");
 pub const IID_IDirectManipulationUpdateHandler = &IID_IDirectManipulationUpdateHandler_Value;
 pub const IDirectManipulationUpdateHandler = extern struct {
     pub const VTable = extern struct {
@@ -1051,7 +1051,7 @@ pub const IDirectManipulationUpdateHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IDirectManipulationUpdateManager_Value = @import("../zig.zig").Guid.initString("b0ae62fd-be34-46e7-9caa-d361facbb9cc");
+const IID_IDirectManipulationUpdateManager_Value = Guid.initString("b0ae62fd-be34-46e7-9caa-d361facbb9cc");
 pub const IID_IDirectManipulationUpdateManager = &IID_IDirectManipulationUpdateManager_Value;
 pub const IDirectManipulationUpdateManager = extern struct {
     pub const VTable = extern struct {
@@ -1100,7 +1100,7 @@ pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_FORWARD = DIRECTMANIPULATI
 pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_REVERSE = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.REVERSE;
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IDirectManipulationAutoScrollBehavior_Value = @import("../zig.zig").Guid.initString("6d5954d4-2003-4356-9b31-d051c9ff0af7");
+const IID_IDirectManipulationAutoScrollBehavior_Value = Guid.initString("6d5954d4-2003-4356-9b31-d051c9ff0af7");
 pub const IID_IDirectManipulationAutoScrollBehavior = &IID_IDirectManipulationAutoScrollBehavior_Value;
 pub const IDirectManipulationAutoScrollBehavior = extern struct {
     pub const VTable = extern struct {
@@ -1123,7 +1123,7 @@ pub const IDirectManipulationAutoScrollBehavior = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_IDirectManipulationDeferContactService_Value = @import("../zig.zig").Guid.initString("652d5c71-fe60-4a98-be70-e5f21291e7f1");
+const IID_IDirectManipulationDeferContactService_Value = Guid.initString("652d5c71-fe60-4a98-be70-e5f21291e7f1");
 pub const IID_IDirectManipulationDeferContactService = &IID_IDirectManipulationDeferContactService_Value;
 pub const IDirectManipulationDeferContactService = extern struct {
     pub const VTable = extern struct {

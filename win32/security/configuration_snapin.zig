@@ -119,7 +119,7 @@ pub const PF_UpdateService = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISceSvcAttachmentPersistInfo_Value = @import("../zig.zig").Guid.initString("6d90e0d0-200d-11d1-affb-00c04fb984f9");
+const IID_ISceSvcAttachmentPersistInfo_Value = Guid.initString("6d90e0d0-200d-11d1-affb-00c04fb984f9");
 pub const IID_ISceSvcAttachmentPersistInfo = &IID_ISceSvcAttachmentPersistInfo_Value;
 pub const ISceSvcAttachmentPersistInfo = extern struct {
     pub const VTable = extern struct {
@@ -160,7 +160,7 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISceSvcAttachmentData_Value = @import("../zig.zig").Guid.initString("17c35fde-200d-11d1-affb-00c04fb984f9");
+const IID_ISceSvcAttachmentData_Value = Guid.initString("17c35fde-200d-11d1-affb-00c04fb984f9");
 pub const IID_ISceSvcAttachmentData = &IID_ISceSvcAttachmentData_Value;
 pub const ISceSvcAttachmentData = extern struct {
     pub const VTable = extern struct {

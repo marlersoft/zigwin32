@@ -7,7 +7,7 @@
 // Section: Types (3)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IRadialControllerInterop_Value = @import("../../zig.zig").Guid.initString("1b0535c9-57ad-45c1-9d79-ad5c34360513");
+const IID_IRadialControllerInterop_Value = Guid.initString("1b0535c9-57ad-45c1-9d79-ad5c34360513");
 pub const IID_IRadialControllerInterop = &IID_IRadialControllerInterop_Value;
 pub const IRadialControllerInterop = extern struct {
     pub const VTable = extern struct {
@@ -31,7 +31,7 @@ pub const IRadialControllerInterop = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-const IID_IRadialControllerConfigurationInterop_Value = @import("../../zig.zig").Guid.initString("787cdaac-3186-476d-87e4-b9374a7b9970");
+const IID_IRadialControllerConfigurationInterop_Value = Guid.initString("787cdaac-3186-476d-87e4-b9374a7b9970");
 pub const IID_IRadialControllerConfigurationInterop = &IID_IRadialControllerConfigurationInterop_Value;
 pub const IRadialControllerConfigurationInterop = extern struct {
     pub const VTable = extern struct {
@@ -54,7 +54,7 @@ pub const IRadialControllerConfigurationInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRadialControllerIndependentInputSourceInterop_Value = @import("../../zig.zig").Guid.initString("3d577eff-4cee-11e6-b535-001bdc06ab3b");
+const IID_IRadialControllerIndependentInputSourceInterop_Value = Guid.initString("3d577eff-4cee-11e6-b535-001bdc06ab3b");
 pub const IID_IRadialControllerIndependentInputSourceInterop = &IID_IRadialControllerIndependentInputSourceInterop_Value;
 pub const IRadialControllerIndependentInputSourceInterop = extern struct {
     pub const VTable = extern struct {

@@ -7,7 +7,7 @@
 // Section: Types (4)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IMarshal_Value = @import("../../zig.zig").Guid.initString("00000003-0000-0000-c000-000000000046");
+const IID_IMarshal_Value = Guid.initString("00000003-0000-0000-c000-000000000046");
 pub const IID_IMarshal = &IID_IMarshal_Value;
 pub const IMarshal = extern struct {
     pub const VTable = extern struct {
@@ -85,7 +85,7 @@ pub const IMarshal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMarshal2_Value = @import("../../zig.zig").Guid.initString("000001cf-0000-0000-c000-000000000046");
+const IID_IMarshal2_Value = Guid.initString("000001cf-0000-0000-c000-000000000046");
 pub const IID_IMarshal2 = &IID_IMarshal2_Value;
 pub const IMarshal2 = extern struct {
     pub const VTable = extern struct {
@@ -99,7 +99,7 @@ pub const IMarshal2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IMarshalingStream_Value = @import("../../zig.zig").Guid.initString("d8f2f5e6-6102-4863-9f26-389a4676efde");
+const IID_IMarshalingStream_Value = Guid.initString("d8f2f5e6-6102-4863-9f26-389a4676efde");
 pub const IID_IMarshalingStream = &IID_IMarshalingStream_Value;
 pub const IMarshalingStream = extern struct {
     pub const VTable = extern struct {

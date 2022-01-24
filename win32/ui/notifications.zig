@@ -12,7 +12,7 @@ pub const NOTIFICATION_USER_INPUT_DATA = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_INotificationActivationCallback_Value = @import("../zig.zig").Guid.initString("53e31837-6600-4a81-9395-75cffe746f94");
+const IID_INotificationActivationCallback_Value = Guid.initString("53e31837-6600-4a81-9395-75cffe746f94");
 pub const IID_INotificationActivationCallback = &IID_INotificationActivationCallback_Value;
 pub const INotificationActivationCallback = extern struct {
     pub const VTable = extern struct {
@@ -55,8 +55,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;

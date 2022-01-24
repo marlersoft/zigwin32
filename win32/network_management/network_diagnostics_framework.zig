@@ -246,7 +246,7 @@ pub const DiagnosticsInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetDiagHelper_Value = @import("../zig.zig").Guid.initString("c0b35746-ebf5-11d8-bbe9-505054503030");
+const IID_INetDiagHelper_Value = Guid.initString("c0b35746-ebf5-11d8-bbe9-505054503030");
 pub const IID_INetDiagHelper = &IID_INetDiagHelper_Value;
 pub const INetDiagHelper = extern struct {
     pub const VTable = extern struct {
@@ -426,7 +426,7 @@ pub const HypothesisResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_INetDiagHelperUtilFactory_Value = @import("../zig.zig").Guid.initString("104613fb-bc57-4178-95ba-88809698354a");
+const IID_INetDiagHelperUtilFactory_Value = Guid.initString("104613fb-bc57-4178-95ba-88809698354a");
 pub const IID_INetDiagHelperUtilFactory = &IID_INetDiagHelperUtilFactory_Value;
 pub const INetDiagHelperUtilFactory = extern struct {
     pub const VTable = extern struct {
@@ -449,7 +449,7 @@ pub const INetDiagHelperUtilFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_INetDiagHelperEx_Value = @import("../zig.zig").Guid.initString("972dab4d-e4e3-4fc6-ae54-5f65ccde4a15");
+const IID_INetDiagHelperEx_Value = Guid.initString("972dab4d-e4e3-4fc6-ae54-5f65ccde4a15");
 pub const IID_INetDiagHelperEx = &IID_INetDiagHelperEx_Value;
 pub const INetDiagHelperEx = extern struct {
     pub const VTable = extern struct {
@@ -489,7 +489,7 @@ pub const INetDiagHelperEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INetDiagHelperInfo_Value = @import("../zig.zig").Guid.initString("c0b35747-ebf5-11d8-bbe9-505054503030");
+const IID_INetDiagHelperInfo_Value = Guid.initString("c0b35747-ebf5-11d8-bbe9-505054503030");
 pub const IID_INetDiagHelperInfo = &IID_INetDiagHelperInfo_Value;
 pub const INetDiagHelperInfo = extern struct {
     pub const VTable = extern struct {
@@ -511,7 +511,7 @@ pub const INetDiagHelperInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetDiagExtensibleHelper_Value = @import("../zig.zig").Guid.initString("c0b35748-ebf5-11d8-bbe9-505054503030");
+const IID_INetDiagExtensibleHelper_Value = Guid.initString("c0b35748-ebf5-11d8-bbe9-505054503030");
 pub const IID_INetDiagExtensibleHelper = &IID_INetDiagExtensibleHelper_Value;
 pub const INetDiagExtensibleHelper = extern struct {
     pub const VTable = extern struct {

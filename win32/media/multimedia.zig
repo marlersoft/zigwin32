@@ -4656,7 +4656,7 @@ pub const HIC = *opaque{};
 
 pub const HVIDEO = *opaque{};
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = @import("../zig.zig").Guid.initString("00000003-0000-0010-8000-00aa00389b71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = Guid.initString("00000003-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT = &CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value;
 
 pub const ADPCMCOEFSET = packed struct {
@@ -5918,7 +5918,7 @@ pub const AVICOMPRESSOPTIONS = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IAVIStream_Value = @import("../zig.zig").Guid.initString("00020021-0000-0000-c000-000000000046");
+const IID_IAVIStream_Value = Guid.initString("00020021-0000-0000-c000-000000000046");
 pub const IID_IAVIStream = &IID_IAVIStream_Value;
 pub const IAVIStream = extern struct {
     pub const VTable = extern struct {
@@ -6052,7 +6052,7 @@ pub const IAVIStream = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IAVIStreaming_Value = @import("../zig.zig").Guid.initString("00020022-0000-0000-c000-000000000046");
+const IID_IAVIStreaming_Value = Guid.initString("00020022-0000-0000-c000-000000000046");
 pub const IID_IAVIStreaming = &IID_IAVIStreaming_Value;
 pub const IAVIStreaming = extern struct {
     pub const VTable = extern struct {
@@ -6083,7 +6083,7 @@ pub const IAVIStreaming = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IAVIEditStream_Value = @import("../zig.zig").Guid.initString("00020024-0000-0000-c000-000000000046");
+const IID_IAVIEditStream_Value = Guid.initString("00020024-0000-0000-c000-000000000046");
 pub const IID_IAVIEditStream = &IID_IAVIEditStream_Value;
 pub const IAVIEditStream = extern struct {
     pub const VTable = extern struct {
@@ -6146,7 +6146,7 @@ pub const IAVIEditStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAVIPersistFile_Value = @import("../zig.zig").Guid.initString("00020025-0000-0000-c000-000000000046");
+const IID_IAVIPersistFile_Value = Guid.initString("00020025-0000-0000-c000-000000000046");
 pub const IID_IAVIPersistFile = &IID_IAVIPersistFile_Value;
 pub const IAVIPersistFile = extern struct {
     pub const VTable = extern struct {
@@ -6167,7 +6167,7 @@ pub const IAVIPersistFile = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IAVIFile_Value = @import("../zig.zig").Guid.initString("00020020-0000-0000-c000-000000000046");
+const IID_IAVIFile_Value = Guid.initString("00020020-0000-0000-c000-000000000046");
 pub const IID_IAVIFile = &IID_IAVIFile_Value;
 pub const IAVIFile = extern struct {
     pub const VTable = extern struct {
@@ -6248,7 +6248,7 @@ pub const IAVIFile = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IGetFrame_Value = @import("../zig.zig").Guid.initString("00020023-0000-0000-c000-000000000046");
+const IID_IGetFrame_Value = Guid.initString("00020023-0000-0000-c000-000000000046");
 pub const IID_IGetFrame = &IID_IGetFrame_Value;
 pub const IGetFrame = extern struct {
     pub const VTable = extern struct {

@@ -7,10 +7,10 @@ pub const TPMVSC_DEFAULT_ADMIN_ALGORITHM_ID = @as(u32, 130);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-const CLSID_TpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("16a18e86-7f6e-4c20-ad89-4ffc0db7a96a");
+const CLSID_TpmVirtualSmartCardManager_Value = Guid.initString("16a18e86-7f6e-4c20-ad89-4ffc0db7a96a");
 pub const CLSID_TpmVirtualSmartCardManager = &CLSID_TpmVirtualSmartCardManager_Value;
 
-const CLSID_RemoteTpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("152ea2a8-70dc-4c59-8b2a-32aa3ca0dcac");
+const CLSID_RemoteTpmVirtualSmartCardManager_Value = Guid.initString("152ea2a8-70dc-4c59-8b2a-32aa3ca0dcac");
 pub const CLSID_RemoteTpmVirtualSmartCardManager = &CLSID_RemoteTpmVirtualSmartCardManager_Value;
 
 pub const TPMVSC_ATTESTATION_TYPE = enum(i32) {
@@ -95,7 +95,7 @@ pub const TPMVSCMGR_ERROR_CARD_CREATE = TPMVSCMGR_ERROR.CARD_CREATE;
 pub const TPMVSCMGR_ERROR_CARD_DESTROY = TPMVSCMGR_ERROR.CARD_DESTROY;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITpmVirtualSmartCardManagerStatusCallback_Value = @import("../zig.zig").Guid.initString("1a1bb35f-abb8-451c-a1ae-33d98f1bef4a");
+const IID_ITpmVirtualSmartCardManagerStatusCallback_Value = Guid.initString("1a1bb35f-abb8-451c-a1ae-33d98f1bef4a");
 pub const IID_ITpmVirtualSmartCardManagerStatusCallback = &IID_ITpmVirtualSmartCardManagerStatusCallback_Value;
 pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
     pub const VTable = extern struct {
@@ -125,7 +125,7 @@ pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ITpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("112b1dff-d9dc-41f7-869f-d67fee7cb591");
+const IID_ITpmVirtualSmartCardManager_Value = Guid.initString("112b1dff-d9dc-41f7-869f-d67fee7cb591");
 pub const IID_ITpmVirtualSmartCardManager = &IID_ITpmVirtualSmartCardManager_Value;
 pub const ITpmVirtualSmartCardManager = extern struct {
     pub const VTable = extern struct {
@@ -169,7 +169,7 @@ pub const ITpmVirtualSmartCardManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITpmVirtualSmartCardManager2_Value = @import("../zig.zig").Guid.initString("fdf8a2b9-02de-47f4-bc26-aa85ab5e5267");
+const IID_ITpmVirtualSmartCardManager2_Value = Guid.initString("fdf8a2b9-02de-47f4-bc26-aa85ab5e5267");
 pub const IID_ITpmVirtualSmartCardManager2 = &IID_ITpmVirtualSmartCardManager2_Value;
 pub const ITpmVirtualSmartCardManager2 = extern struct {
     pub const VTable = extern struct {
@@ -205,7 +205,7 @@ pub const ITpmVirtualSmartCardManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITpmVirtualSmartCardManager3_Value = @import("../zig.zig").Guid.initString("3c745a97-f375-4150-be17-5950f694c699");
+const IID_ITpmVirtualSmartCardManager3_Value = Guid.initString("3c745a97-f375-4150-be17-5950f694c699");
 pub const IID_ITpmVirtualSmartCardManager3 = &IID_ITpmVirtualSmartCardManager3_Value;
 pub const ITpmVirtualSmartCardManager3 = extern struct {
     pub const VTable = extern struct {
@@ -260,8 +260,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;

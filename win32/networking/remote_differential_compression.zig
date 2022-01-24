@@ -30,52 +30,52 @@ pub const MSRDC_MAXIMUM_MATCHESREQUIRED = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (48)
 //--------------------------------------------------------------------------------
-const CLSID_RdcLibrary_Value = @import("../zig.zig").Guid.initString("96236a85-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcLibrary_Value = Guid.initString("96236a85-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcLibrary = &CLSID_RdcLibrary_Value;
 
-const CLSID_RdcGeneratorParameters_Value = @import("../zig.zig").Guid.initString("96236a86-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcGeneratorParameters_Value = Guid.initString("96236a86-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcGeneratorParameters = &CLSID_RdcGeneratorParameters_Value;
 
-const CLSID_RdcGeneratorFilterMaxParameters_Value = @import("../zig.zig").Guid.initString("96236a87-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcGeneratorFilterMaxParameters_Value = Guid.initString("96236a87-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcGeneratorFilterMaxParameters = &CLSID_RdcGeneratorFilterMaxParameters_Value;
 
-const CLSID_RdcGenerator_Value = @import("../zig.zig").Guid.initString("96236a88-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcGenerator_Value = Guid.initString("96236a88-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcGenerator = &CLSID_RdcGenerator_Value;
 
-const CLSID_RdcFileReader_Value = @import("../zig.zig").Guid.initString("96236a89-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcFileReader_Value = Guid.initString("96236a89-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcFileReader = &CLSID_RdcFileReader_Value;
 
-const CLSID_RdcSignatureReader_Value = @import("../zig.zig").Guid.initString("96236a8a-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcSignatureReader_Value = Guid.initString("96236a8a-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcSignatureReader = &CLSID_RdcSignatureReader_Value;
 
-const CLSID_RdcComparator_Value = @import("../zig.zig").Guid.initString("96236a8b-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcComparator_Value = Guid.initString("96236a8b-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcComparator = &CLSID_RdcComparator_Value;
 
-const CLSID_SimilarityReportProgress_Value = @import("../zig.zig").Guid.initString("96236a8d-9dbc-11da-9e3f-0011114ae311");
+const CLSID_SimilarityReportProgress_Value = Guid.initString("96236a8d-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_SimilarityReportProgress = &CLSID_SimilarityReportProgress_Value;
 
-const CLSID_SimilarityTableDumpState_Value = @import("../zig.zig").Guid.initString("96236a8e-9dbc-11da-9e3f-0011114ae311");
+const CLSID_SimilarityTableDumpState_Value = Guid.initString("96236a8e-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_SimilarityTableDumpState = &CLSID_SimilarityTableDumpState_Value;
 
-const CLSID_SimilarityTraitsTable_Value = @import("../zig.zig").Guid.initString("96236a8f-9dbc-11da-9e3f-0011114ae311");
+const CLSID_SimilarityTraitsTable_Value = Guid.initString("96236a8f-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_SimilarityTraitsTable = &CLSID_SimilarityTraitsTable_Value;
 
-const CLSID_SimilarityFileIdTable_Value = @import("../zig.zig").Guid.initString("96236a90-9dbc-11da-9e3f-0011114ae311");
+const CLSID_SimilarityFileIdTable_Value = Guid.initString("96236a90-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_SimilarityFileIdTable = &CLSID_SimilarityFileIdTable_Value;
 
-const CLSID_Similarity_Value = @import("../zig.zig").Guid.initString("96236a91-9dbc-11da-9e3f-0011114ae311");
+const CLSID_Similarity_Value = Guid.initString("96236a91-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_Similarity = &CLSID_Similarity_Value;
 
-const CLSID_RdcSimilarityGenerator_Value = @import("../zig.zig").Guid.initString("96236a92-9dbc-11da-9e3f-0011114ae311");
+const CLSID_RdcSimilarityGenerator_Value = Guid.initString("96236a92-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_RdcSimilarityGenerator = &CLSID_RdcSimilarityGenerator_Value;
 
-const CLSID_FindSimilarResults_Value = @import("../zig.zig").Guid.initString("96236a93-9dbc-11da-9e3f-0011114ae311");
+const CLSID_FindSimilarResults_Value = Guid.initString("96236a93-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_FindSimilarResults = &CLSID_FindSimilarResults_Value;
 
-const CLSID_SimilarityTraitsMapping_Value = @import("../zig.zig").Guid.initString("96236a94-9dbc-11da-9e3f-0011114ae311");
+const CLSID_SimilarityTraitsMapping_Value = Guid.initString("96236a94-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_SimilarityTraitsMapping = &CLSID_SimilarityTraitsMapping_Value;
 
-const CLSID_SimilarityTraitsMappedView_Value = @import("../zig.zig").Guid.initString("96236a95-9dbc-11da-9e3f-0011114ae311");
+const CLSID_SimilarityTraitsMappedView_Value = Guid.initString("96236a95-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_SimilarityTraitsMappedView = &CLSID_SimilarityTraitsMappedView_Value;
 
 pub const RDC_ErrorCode = enum(i32) {
@@ -192,7 +192,7 @@ pub const SimilarityFileId = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcGeneratorParameters_Value = @import("../zig.zig").Guid.initString("96236a71-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcGeneratorParameters_Value = Guid.initString("96236a71-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGeneratorParameters = &IID_IRdcGeneratorParameters_Value;
 pub const IRdcGeneratorParameters = extern struct {
     pub const VTable = extern struct {
@@ -241,7 +241,7 @@ pub const IRdcGeneratorParameters = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcGeneratorFilterMaxParameters_Value = @import("../zig.zig").Guid.initString("96236a72-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcGeneratorFilterMaxParameters_Value = Guid.initString("96236a72-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGeneratorFilterMaxParameters = &IID_IRdcGeneratorFilterMaxParameters_Value;
 pub const IRdcGeneratorFilterMaxParameters = extern struct {
     pub const VTable = extern struct {
@@ -287,7 +287,7 @@ pub const IRdcGeneratorFilterMaxParameters = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcGenerator_Value = @import("../zig.zig").Guid.initString("96236a73-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcGenerator_Value = Guid.initString("96236a73-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGenerator = &IID_IRdcGenerator_Value;
 pub const IRdcGenerator = extern struct {
     pub const VTable = extern struct {
@@ -323,7 +323,7 @@ pub const IRdcGenerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcFileReader_Value = @import("../zig.zig").Guid.initString("96236a74-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcFileReader_Value = Guid.initString("96236a74-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcFileReader = &IID_IRdcFileReader_Value;
 pub const IRdcFileReader = extern struct {
     pub const VTable = extern struct {
@@ -365,7 +365,7 @@ pub const IRdcFileReader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcFileWriter_Value = @import("../zig.zig").Guid.initString("96236a75-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcFileWriter_Value = Guid.initString("96236a75-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcFileWriter = &IID_IRdcFileWriter_Value;
 pub const IRdcFileWriter = extern struct {
     pub const VTable = extern struct {
@@ -403,7 +403,7 @@ pub const IRdcFileWriter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcSignatureReader_Value = @import("../zig.zig").Guid.initString("96236a76-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcSignatureReader_Value = Guid.initString("96236a76-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcSignatureReader = &IID_IRdcSignatureReader_Value;
 pub const IRdcSignatureReader = extern struct {
     pub const VTable = extern struct {
@@ -434,7 +434,7 @@ pub const IRdcSignatureReader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcComparator_Value = @import("../zig.zig").Guid.initString("96236a77-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcComparator_Value = Guid.initString("96236a77-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcComparator = &IID_IRdcComparator_Value;
 pub const IRdcComparator = extern struct {
     pub const VTable = extern struct {
@@ -460,7 +460,7 @@ pub const IRdcComparator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcLibrary_Value = @import("../zig.zig").Guid.initString("96236a78-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcLibrary_Value = Guid.initString("96236a78-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcLibrary = &IID_IRdcLibrary_Value;
 pub const IRdcLibrary = extern struct {
     pub const VTable = extern struct {
@@ -541,7 +541,7 @@ pub const IRdcLibrary = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarityReportProgress_Value = @import("../zig.zig").Guid.initString("96236a7a-9dbc-11da-9e3f-0011114ae311");
+const IID_ISimilarityReportProgress_Value = Guid.initString("96236a7a-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityReportProgress = &IID_ISimilarityReportProgress_Value;
 pub const ISimilarityReportProgress = extern struct {
     pub const VTable = extern struct {
@@ -563,7 +563,7 @@ pub const ISimilarityReportProgress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarityTableDumpState_Value = @import("../zig.zig").Guid.initString("96236a7b-9dbc-11da-9e3f-0011114ae311");
+const IID_ISimilarityTableDumpState_Value = Guid.initString("96236a7b-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTableDumpState = &IID_ISimilarityTableDumpState_Value;
 pub const ISimilarityTableDumpState = extern struct {
     pub const VTable = extern struct {
@@ -588,7 +588,7 @@ pub const ISimilarityTableDumpState = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarityTraitsMappedView_Value = @import("../zig.zig").Guid.initString("96236a7c-9dbc-11da-9e3f-0011114ae311");
+const IID_ISimilarityTraitsMappedView_Value = Guid.initString("96236a7c-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsMappedView = &IID_ISimilarityTraitsMappedView_Value;
 pub const ISimilarityTraitsMappedView = extern struct {
     pub const VTable = extern struct {
@@ -636,7 +636,7 @@ pub const ISimilarityTraitsMappedView = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarityTraitsMapping_Value = @import("../zig.zig").Guid.initString("96236a7d-9dbc-11da-9e3f-0011114ae311");
+const IID_ISimilarityTraitsMapping_Value = Guid.initString("96236a7d-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsMapping = &IID_ISimilarityTraitsMapping_Value;
 pub const ISimilarityTraitsMapping = extern struct {
     pub const VTable = extern struct {
@@ -713,7 +713,7 @@ pub const ISimilarityTraitsMapping = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarityTraitsTable_Value = @import("../zig.zig").Guid.initString("96236a7e-9dbc-11da-9e3f-0011114ae311");
+const IID_ISimilarityTraitsTable_Value = Guid.initString("96236a7e-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsTable = &IID_ISimilarityTraitsTable_Value;
 pub const ISimilarityTraitsTable = extern struct {
     pub const VTable = extern struct {
@@ -793,7 +793,7 @@ pub const ISimilarityTraitsTable = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarityFileIdTable_Value = @import("../zig.zig").Guid.initString("96236a7f-9dbc-11da-9e3f-0011114ae311");
+const IID_ISimilarityFileIdTable_Value = Guid.initString("96236a7f-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityFileIdTable = &IID_ISimilarityFileIdTable_Value;
 pub const ISimilarityFileIdTable = extern struct {
     pub const VTable = extern struct {
@@ -872,7 +872,7 @@ pub const ISimilarityFileIdTable = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRdcSimilarityGenerator_Value = @import("../zig.zig").Guid.initString("96236a80-9dbc-11da-9e3f-0011114ae311");
+const IID_IRdcSimilarityGenerator_Value = Guid.initString("96236a80-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcSimilarityGenerator = &IID_IRdcSimilarityGenerator_Value;
 pub const IRdcSimilarityGenerator = extern struct {
     pub const VTable = extern struct {
@@ -901,7 +901,7 @@ pub const IRdcSimilarityGenerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IFindSimilarResults_Value = @import("../zig.zig").Guid.initString("96236a81-9dbc-11da-9e3f-0011114ae311");
+const IID_IFindSimilarResults_Value = Guid.initString("96236a81-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IFindSimilarResults = &IID_IFindSimilarResults_Value;
 pub const IFindSimilarResults = extern struct {
     pub const VTable = extern struct {
@@ -932,7 +932,7 @@ pub const IFindSimilarResults = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISimilarity_Value = @import("../zig.zig").Guid.initString("96236a83-9dbc-11da-9e3f-0011114ae311");
+const IID_ISimilarity_Value = Guid.initString("96236a83-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarity = &IID_ISimilarity_Value;
 pub const ISimilarity = extern struct {
     pub const VTable = extern struct {
@@ -1033,8 +1033,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;

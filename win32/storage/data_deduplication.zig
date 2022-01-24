@@ -7,7 +7,7 @@ pub const DEDUP_CHUNKLIB_MAX_CHUNKS_ENUM = @as(u32, 1024);
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
-const CLSID_DedupBackupSupport_Value = @import("../zig.zig").Guid.initString("73d6b2ad-2984-4715-b2e3-924c149744dd");
+const CLSID_DedupBackupSupport_Value = Guid.initString("73d6b2ad-2984-4715-b2e3-924c149744dd");
 pub const CLSID_DedupBackupSupport = &CLSID_DedupBackupSupport_Value;
 
 pub const DEDUP_CONTAINER_EXTENT = extern struct {
@@ -29,7 +29,7 @@ pub const DEDUP_RECONSTRUCT_UNOPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.UNOPTI
 pub const DEDUP_RECONSTRUCT_OPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.OPTIMIZED;
 
 // TODO: this type is limited to platform 'windowsServer2012'
-const IID_IDedupReadFileCallback_Value = @import("../zig.zig").Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
+const IID_IDedupReadFileCallback_Value = Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
 pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
 pub const IDedupReadFileCallback = extern struct {
     pub const VTable = extern struct {
@@ -77,7 +77,7 @@ pub const IDedupReadFileCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
-const IID_IDedupBackupSupport_Value = @import("../zig.zig").Guid.initString("c719d963-2b2d-415e-acf7-7eb7ca596ff4");
+const IID_IDedupBackupSupport_Value = Guid.initString("c719d963-2b2d-415e-acf7-7eb7ca596ff4");
 pub const IID_IDedupBackupSupport = &IID_IDedupBackupSupport_Value;
 pub const IDedupBackupSupport = extern struct {
     pub const VTable = extern struct {
@@ -122,7 +122,7 @@ pub const DEDUP_CHUNK_INFO_HASH32 = extern struct {
     HashVal: [32]u8,
 };
 
-const IID_IDedupChunkLibrary_Value = @import("../zig.zig").Guid.initString("bb5144d7-2720-4dcc-8777-78597416ec23");
+const IID_IDedupChunkLibrary_Value = Guid.initString("bb5144d7-2720-4dcc-8777-78597416ec23");
 pub const IID_IDedupChunkLibrary = &IID_IDedupChunkLibrary_Value;
 pub const IDedupChunkLibrary = extern struct {
     pub const VTable = extern struct {
@@ -167,7 +167,7 @@ pub const IDedupChunkLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDedupIterateChunksHash32_Value = @import("../zig.zig").Guid.initString("90b584d3-72aa-400f-9767-cad866a5a2d8");
+const IID_IDedupIterateChunksHash32_Value = Guid.initString("90b584d3-72aa-400f-9767-cad866a5a2d8");
 pub const IID_IDedupIterateChunksHash32 = &IID_IDedupIterateChunksHash32_Value;
 pub const IDedupIterateChunksHash32 = extern struct {
     pub const VTable = extern struct {
@@ -306,10 +306,10 @@ pub const DedupCompressionAlgorithm = enum(i32) {
 pub const DedupCompressionAlgorithm_Unknonwn = DedupCompressionAlgorithm.Unknonwn;
 pub const DedupCompressionAlgorithm_Xpress = DedupCompressionAlgorithm.Xpress;
 
-const CLSID_DedupDataPort_Value = @import("../zig.zig").Guid.initString("8f107207-1829-48b2-a64b-e61f8e0d9acb");
+const CLSID_DedupDataPort_Value = Guid.initString("8f107207-1829-48b2-a64b-e61f8e0d9acb");
 pub const CLSID_DedupDataPort = &CLSID_DedupDataPort_Value;
 
-const IID_IDedupDataPort_Value = @import("../zig.zig").Guid.initString("7963d734-40a9-4ea3-bbf6-5a89d26f7ae8");
+const IID_IDedupDataPort_Value = Guid.initString("7963d734-40a9-4ea3-bbf6-5a89d26f7ae8");
 pub const IID_IDedupDataPort = &IID_IDedupDataPort_Value;
 pub const IDedupDataPort = extern struct {
     pub const VTable = extern struct {
@@ -463,7 +463,7 @@ pub const IDedupDataPort = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDedupDataPortManager_Value = @import("../zig.zig").Guid.initString("44677452-b90a-445e-8192-cdcfe81511fb");
+const IID_IDedupDataPortManager_Value = Guid.initString("44677452-b90a-445e-8192-cdcfe81511fb");
 pub const IID_IDedupDataPortManager = &IID_IDedupDataPortManager_Value;
 pub const IDedupDataPortManager = extern struct {
     pub const VTable = extern struct {

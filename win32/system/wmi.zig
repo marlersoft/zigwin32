@@ -1708,10 +1708,10 @@ pub const MI_DestinationOptions_ImpersonationType_Identify = MI_DestinationOptio
 pub const MI_DestinationOptions_ImpersonationType_Impersonate = MI_DestinationOptions_ImpersonationType.Impersonate;
 pub const MI_DestinationOptions_ImpersonationType_Delegate = MI_DestinationOptions_ImpersonationType.Delegate;
 
-const CLSID_WbemDefPath_Value = @import("../zig.zig").Guid.initString("cf4cc405-e2c5-4ddd-b3ce-5e7582d8c9fa");
+const CLSID_WbemDefPath_Value = Guid.initString("cf4cc405-e2c5-4ddd-b3ce-5e7582d8c9fa");
 pub const CLSID_WbemDefPath = &CLSID_WbemDefPath_Value;
 
-const CLSID_WbemQuery_Value = @import("../zig.zig").Guid.initString("eac8a024-21e2-4523-ad73-a71a0aa2f56a");
+const CLSID_WbemQuery_Value = Guid.initString("eac8a024-21e2-4523-ad73-a71a0aa2f56a");
 pub const CLSID_WbemQuery = &CLSID_WbemQuery_Value;
 
 pub const WBEM_PATH_STATUS_FLAG = enum(i32) {
@@ -1787,7 +1787,7 @@ pub const WBEMPATH_TEXT = WBEM_GET_KEY_FLAGS.TEXT;
 pub const WBEMPATH_QUOTEDTEXT = WBEM_GET_KEY_FLAGS.QUOTEDTEXT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemPathKeyList_Value = @import("../zig.zig").Guid.initString("9ae62877-7544-4bb0-aa26-a13824659ed6");
+const IID_IWbemPathKeyList_Value = Guid.initString("9ae62877-7544-4bb0-aa26-a13824659ed6");
 pub const IID_IWbemPathKeyList = &IID_IWbemPathKeyList_Value;
 pub const IWbemPathKeyList = extern struct {
     pub const VTable = extern struct {
@@ -1902,7 +1902,7 @@ pub const IWbemPathKeyList = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemPath_Value = @import("../zig.zig").Guid.initString("3bc15af2-736c-477e-9e51-238af8667dcc");
+const IID_IWbemPath_Value = Guid.initString("3bc15af2-736c-477e-9e51-238af8667dcc");
 pub const IID_IWbemPath = &IID_IWbemPath_Value;
 pub const IWbemPath = extern struct {
     pub const VTable = extern struct {
@@ -2142,7 +2142,7 @@ pub const IWbemPath = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemQuery_Value = @import("../zig.zig").Guid.initString("81166f58-dd98-11d3-a120-00105a1f515a");
+const IID_IWbemQuery_Value = Guid.initString("81166f58-dd98-11d3-a120-00105a1f515a");
 pub const IID_IWbemQuery = &IID_IWbemQuery_Value;
 pub const IWbemQuery = extern struct {
     pub const VTable = extern struct {
@@ -2540,31 +2540,31 @@ pub const SWbemAssocQueryInf = extern struct {
     m_pszRequiredAssocQualifier: ?PWSTR,
 };
 
-const CLSID_WbemLocator_Value = @import("../zig.zig").Guid.initString("4590f811-1d3a-11d0-891f-00aa004b2e24");
+const CLSID_WbemLocator_Value = Guid.initString("4590f811-1d3a-11d0-891f-00aa004b2e24");
 pub const CLSID_WbemLocator = &CLSID_WbemLocator_Value;
 
-const CLSID_WbemContext_Value = @import("../zig.zig").Guid.initString("674b6698-ee92-11d0-ad71-00c04fd8fdff");
+const CLSID_WbemContext_Value = Guid.initString("674b6698-ee92-11d0-ad71-00c04fd8fdff");
 pub const CLSID_WbemContext = &CLSID_WbemContext_Value;
 
-const CLSID_UnsecuredApartment_Value = @import("../zig.zig").Guid.initString("49bd2028-1523-11d1-ad79-00c04fd8fdff");
+const CLSID_UnsecuredApartment_Value = Guid.initString("49bd2028-1523-11d1-ad79-00c04fd8fdff");
 pub const CLSID_UnsecuredApartment = &CLSID_UnsecuredApartment_Value;
 
-const CLSID_WbemClassObject_Value = @import("../zig.zig").Guid.initString("9a653086-174f-11d2-b5f9-00104b703efd");
+const CLSID_WbemClassObject_Value = Guid.initString("9a653086-174f-11d2-b5f9-00104b703efd");
 pub const CLSID_WbemClassObject = &CLSID_WbemClassObject_Value;
 
-const CLSID_MofCompiler_Value = @import("../zig.zig").Guid.initString("6daf9757-2e37-11d2-aec9-00c04fb68820");
+const CLSID_MofCompiler_Value = Guid.initString("6daf9757-2e37-11d2-aec9-00c04fb68820");
 pub const CLSID_MofCompiler = &CLSID_MofCompiler_Value;
 
-const CLSID_WbemStatusCodeText_Value = @import("../zig.zig").Guid.initString("eb87e1bd-3233-11d2-aec9-00c04fb68820");
+const CLSID_WbemStatusCodeText_Value = Guid.initString("eb87e1bd-3233-11d2-aec9-00c04fb68820");
 pub const CLSID_WbemStatusCodeText = &CLSID_WbemStatusCodeText_Value;
 
-const CLSID_WbemBackupRestore_Value = @import("../zig.zig").Guid.initString("c49e32c6-bc8b-11d2-85d4-00105a1f8304");
+const CLSID_WbemBackupRestore_Value = Guid.initString("c49e32c6-bc8b-11d2-85d4-00105a1f8304");
 pub const CLSID_WbemBackupRestore = &CLSID_WbemBackupRestore_Value;
 
-const CLSID_WbemRefresher_Value = @import("../zig.zig").Guid.initString("c71566f2-561e-11d1-ad87-00c04fd8fdff");
+const CLSID_WbemRefresher_Value = Guid.initString("c71566f2-561e-11d1-ad87-00c04fd8fdff");
 pub const CLSID_WbemRefresher = &CLSID_WbemRefresher_Value;
 
-const CLSID_WbemObjectTextSrc_Value = @import("../zig.zig").Guid.initString("8d1c559d-84f0-4bb3-a7d5-56a7435a9ba6");
+const CLSID_WbemObjectTextSrc_Value = Guid.initString("8d1c559d-84f0-4bb3-a7d5-56a7435a9ba6");
 pub const CLSID_WbemObjectTextSrc = &CLSID_WbemObjectTextSrc_Value;
 
 pub const WBEM_GENUS_TYPE = enum(i32) {
@@ -3254,7 +3254,7 @@ pub const WBEMMOF_E_ERROR_INVALID_INCLUDE_FILE = WBEMSTATUS.MOF_E_ERROR_INVALID_
 pub const WBEMMOF_E_INVALID_DELETECLASS_SYNTAX = WBEMSTATUS.MOF_E_INVALID_DELETECLASS_SYNTAX;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemClassObject_Value = @import("../zig.zig").Guid.initString("dc12a681-737f-11cf-884d-00aa004b2e24");
+const IID_IWbemClassObject_Value = Guid.initString("dc12a681-737f-11cf-884d-00aa004b2e24");
 pub const IID_IWbemClassObject = &IID_IWbemClassObject_Value;
 pub const IWbemClassObject = extern struct {
     pub const VTable = extern struct {
@@ -3489,7 +3489,7 @@ pub const IWbemClassObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemObjectAccess_Value = @import("../zig.zig").Guid.initString("49353c9a-516b-11d1-aea6-00c04fb68820");
+const IID_IWbemObjectAccess_Value = Guid.initString("49353c9a-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemObjectAccess = &IID_IWbemObjectAccess_Value;
 pub const IWbemObjectAccess = extern struct {
     pub const VTable = extern struct {
@@ -3596,7 +3596,7 @@ pub const IWbemObjectAccess = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemQualifierSet_Value = @import("../zig.zig").Guid.initString("dc12a680-737f-11cf-884d-00aa004b2e24");
+const IID_IWbemQualifierSet_Value = Guid.initString("dc12a680-737f-11cf-884d-00aa004b2e24");
 pub const IID_IWbemQualifierSet = &IID_IWbemQualifierSet_Value;
 pub const IWbemQualifierSet = extern struct {
     pub const VTable = extern struct {
@@ -3674,7 +3674,7 @@ pub const IWbemQualifierSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemServices_Value = @import("../zig.zig").Guid.initString("9556dc99-828c-11cf-a37e-00aa003240c7");
+const IID_IWbemServices_Value = Guid.initString("9556dc99-828c-11cf-a37e-00aa003240c7");
 pub const IID_IWbemServices = &IID_IWbemServices_Value;
 pub const IWbemServices = extern struct {
     pub const VTable = extern struct {
@@ -3947,7 +3947,7 @@ pub const IWbemServices = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemLocator_Value = @import("../zig.zig").Guid.initString("dc12a687-737f-11cf-884d-00aa004b2e24");
+const IID_IWbemLocator_Value = Guid.initString("dc12a687-737f-11cf-884d-00aa004b2e24");
 pub const IID_IWbemLocator = &IID_IWbemLocator_Value;
 pub const IWbemLocator = extern struct {
     pub const VTable = extern struct {
@@ -3976,7 +3976,7 @@ pub const IWbemLocator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemObjectSink_Value = @import("../zig.zig").Guid.initString("7c857801-7381-11cf-884d-00aa004b2e24");
+const IID_IWbemObjectSink_Value = Guid.initString("7c857801-7381-11cf-884d-00aa004b2e24");
 pub const IID_IWbemObjectSink = &IID_IWbemObjectSink_Value;
 pub const IWbemObjectSink = extern struct {
     pub const VTable = extern struct {
@@ -4010,7 +4010,7 @@ pub const IWbemObjectSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumWbemClassObject_Value = @import("../zig.zig").Guid.initString("027947e1-d731-11ce-a357-000000000001");
+const IID_IEnumWbemClassObject_Value = Guid.initString("027947e1-d731-11ce-a357-000000000001");
 pub const IID_IEnumWbemClassObject = &IID_IEnumWbemClassObject_Value;
 pub const IEnumWbemClassObject = extern struct {
     pub const VTable = extern struct {
@@ -4068,7 +4068,7 @@ pub const IEnumWbemClassObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemCallResult_Value = @import("../zig.zig").Guid.initString("44aca675-e8fc-11d0-a07c-00c04fb68820");
+const IID_IWbemCallResult_Value = Guid.initString("44aca675-e8fc-11d0-a07c-00c04fb68820");
 pub const IID_IWbemCallResult = &IID_IWbemCallResult_Value;
 pub const IWbemCallResult = extern struct {
     pub const VTable = extern struct {
@@ -4118,7 +4118,7 @@ pub const IWbemCallResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemContext_Value = @import("../zig.zig").Guid.initString("44aca674-e8fc-11d0-a07c-00c04fb68820");
+const IID_IWbemContext_Value = Guid.initString("44aca674-e8fc-11d0-a07c-00c04fb68820");
 pub const IID_IWbemContext = &IID_IWbemContext_Value;
 pub const IWbemContext = extern struct {
     pub const VTable = extern struct {
@@ -4210,7 +4210,7 @@ pub const IWbemContext = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IUnsecuredApartment_Value = @import("../zig.zig").Guid.initString("1cfaba8c-1523-11d1-ad79-00c04fd8fdff");
+const IID_IUnsecuredApartment_Value = Guid.initString("1cfaba8c-1523-11d1-ad79-00c04fd8fdff");
 pub const IID_IUnsecuredApartment = &IID_IUnsecuredApartment_Value;
 pub const IUnsecuredApartment = extern struct {
     pub const VTable = extern struct {
@@ -4233,7 +4233,7 @@ pub const IUnsecuredApartment = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IWbemUnsecuredApartment_Value = @import("../zig.zig").Guid.initString("31739d04-3471-4cf4-9a7c-57a44ae71956");
+const IID_IWbemUnsecuredApartment_Value = Guid.initString("31739d04-3471-4cf4-9a7c-57a44ae71956");
 pub const IID_IWbemUnsecuredApartment = &IID_IWbemUnsecuredApartment_Value;
 pub const IWbemUnsecuredApartment = extern struct {
     pub const VTable = extern struct {
@@ -4258,7 +4258,7 @@ pub const IWbemUnsecuredApartment = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemStatusCodeText_Value = @import("../zig.zig").Guid.initString("eb87e1bc-3233-11d2-aec9-00c04fb68820");
+const IID_IWbemStatusCodeText_Value = Guid.initString("eb87e1bc-3233-11d2-aec9-00c04fb68820");
 pub const IID_IWbemStatusCodeText = &IID_IWbemStatusCodeText_Value;
 pub const IWbemStatusCodeText = extern struct {
     pub const VTable = extern struct {
@@ -4294,7 +4294,7 @@ pub const IWbemStatusCodeText = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemBackupRestore_Value = @import("../zig.zig").Guid.initString("c49e32c7-bc8b-11d2-85d4-00105a1f8304");
+const IID_IWbemBackupRestore_Value = Guid.initString("c49e32c7-bc8b-11d2-85d4-00105a1f8304");
 pub const IID_IWbemBackupRestore = &IID_IWbemBackupRestore_Value;
 pub const IWbemBackupRestore = extern struct {
     pub const VTable = extern struct {
@@ -4326,7 +4326,7 @@ pub const IWbemBackupRestore = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemBackupRestoreEx_Value = @import("../zig.zig").Guid.initString("a359dec5-e813-4834-8a2a-ba7f1d777d76");
+const IID_IWbemBackupRestoreEx_Value = Guid.initString("a359dec5-e813-4834-8a2a-ba7f1d777d76");
 pub const IID_IWbemBackupRestoreEx = &IID_IWbemBackupRestoreEx_Value;
 pub const IWbemBackupRestoreEx = extern struct {
     pub const VTable = extern struct {
@@ -4354,7 +4354,7 @@ pub const IWbemBackupRestoreEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemRefresher_Value = @import("../zig.zig").Guid.initString("49353c99-516b-11d1-aea6-00c04fb68820");
+const IID_IWbemRefresher_Value = Guid.initString("49353c99-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemRefresher = &IID_IWbemRefresher_Value;
 pub const IWbemRefresher = extern struct {
     pub const VTable = extern struct {
@@ -4376,7 +4376,7 @@ pub const IWbemRefresher = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemHiPerfEnum_Value = @import("../zig.zig").Guid.initString("2705c288-79ae-11d2-b348-00105a1f8177");
+const IID_IWbemHiPerfEnum_Value = Guid.initString("2705c288-79ae-11d2-b348-00105a1f8177");
 pub const IID_IWbemHiPerfEnum = &IID_IWbemHiPerfEnum_Value;
 pub const IWbemHiPerfEnum = extern struct {
     pub const VTable = extern struct {
@@ -4430,7 +4430,7 @@ pub const IWbemHiPerfEnum = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemConfigureRefresher_Value = @import("../zig.zig").Guid.initString("49353c92-516b-11d1-aea6-00c04fb68820");
+const IID_IWbemConfigureRefresher_Value = Guid.initString("49353c92-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemConfigureRefresher = &IID_IWbemConfigureRefresher_Value;
 pub const IWbemConfigureRefresher = extern struct {
     pub const VTable = extern struct {
@@ -4502,7 +4502,7 @@ pub const IWbemConfigureRefresher = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemObjectSinkEx_Value = @import("../zig.zig").Guid.initString("e7d35cfa-348b-485e-b524-252725d697ca");
+const IID_IWbemObjectSinkEx_Value = Guid.initString("e7d35cfa-348b-485e-b524-252725d697ca");
 pub const IID_IWbemObjectSinkEx = &IID_IWbemObjectSinkEx_Value;
 pub const IWbemObjectSinkEx = extern struct {
     pub const VTable = extern struct {
@@ -4567,7 +4567,7 @@ pub const IWbemObjectSinkEx = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemShutdown_Value = @import("../zig.zig").Guid.initString("b7b31df9-d515-11d3-a11c-00105a1f515a");
+const IID_IWbemShutdown_Value = Guid.initString("b7b31df9-d515-11d3-a11c-00105a1f515a");
 pub const IID_IWbemShutdown = &IID_IWbemShutdown_Value;
 pub const IWbemShutdown = extern struct {
     pub const VTable = extern struct {
@@ -4620,7 +4620,7 @@ pub const WMI_OBJ_TEXT_WMI_EXT10 = WMI_OBJ_TEXT.WMI_EXT10;
 pub const WMI_OBJ_TEXT_LAST = WMI_OBJ_TEXT.LAST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemObjectTextSrc_Value = @import("../zig.zig").Guid.initString("bfbf883a-cad7-11d3-a11b-00105a1f515a");
+const IID_IWbemObjectTextSrc_Value = Guid.initString("bfbf883a-cad7-11d3-a11b-00105a1f515a");
 pub const IID_IWbemObjectTextSrc = &IID_IWbemObjectTextSrc_Value;
 pub const IWbemObjectTextSrc = extern struct {
     pub const VTable = extern struct {
@@ -4693,7 +4693,7 @@ pub const WBEM_FLAG_CONNECT_USE_MAX_WAIT = WBEM_CONNECT_OPTIONS.USE_MAX_WAIT;
 pub const WBEM_FLAG_CONNECT_PROVIDERS = WBEM_CONNECT_OPTIONS.PROVIDERS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IMofCompiler_Value = @import("../zig.zig").Guid.initString("6daf974e-2e37-11d2-aec9-00c04fb68820");
+const IID_IMofCompiler_Value = Guid.initString("6daf974e-2e37-11d2-aec9-00c04fb68820");
 pub const IID_IMofCompiler = &IID_IMofCompiler_Value;
 pub const IMofCompiler = extern struct {
     pub const VTable = extern struct {
@@ -4770,19 +4770,19 @@ pub const WBEM_INFORMATION_FLAG_TYPE = enum(i32) {
 pub const WBEM_FLAG_SHORT_NAME = WBEM_INFORMATION_FLAG_TYPE.SHORT_NAME;
 pub const WBEM_FLAG_LONG_NAME = WBEM_INFORMATION_FLAG_TYPE.LONG_NAME;
 
-const CLSID_WbemAdministrativeLocator_Value = @import("../zig.zig").Guid.initString("cb8555cc-9128-11d1-ad9b-00c04fd8fdff");
+const CLSID_WbemAdministrativeLocator_Value = Guid.initString("cb8555cc-9128-11d1-ad9b-00c04fd8fdff");
 pub const CLSID_WbemAdministrativeLocator = &CLSID_WbemAdministrativeLocator_Value;
 
-const CLSID_WbemAuthenticatedLocator_Value = @import("../zig.zig").Guid.initString("cd184336-9128-11d1-ad9b-00c04fd8fdff");
+const CLSID_WbemAuthenticatedLocator_Value = Guid.initString("cd184336-9128-11d1-ad9b-00c04fd8fdff");
 pub const CLSID_WbemAuthenticatedLocator = &CLSID_WbemAuthenticatedLocator_Value;
 
-const CLSID_WbemUnauthenticatedLocator_Value = @import("../zig.zig").Guid.initString("443e7b79-de31-11d2-b340-00104bcc4b4a");
+const CLSID_WbemUnauthenticatedLocator_Value = Guid.initString("443e7b79-de31-11d2-b340-00104bcc4b4a");
 pub const CLSID_WbemUnauthenticatedLocator = &CLSID_WbemUnauthenticatedLocator_Value;
 
-const CLSID_WbemDecoupledRegistrar_Value = @import("../zig.zig").Guid.initString("4cfc7932-0f9d-4bef-9c32-8ea2a6b56fcb");
+const CLSID_WbemDecoupledRegistrar_Value = Guid.initString("4cfc7932-0f9d-4bef-9c32-8ea2a6b56fcb");
 pub const CLSID_WbemDecoupledRegistrar = &CLSID_WbemDecoupledRegistrar_Value;
 
-const CLSID_WbemDecoupledBasicEventProvider_Value = @import("../zig.zig").Guid.initString("f5f75737-2843-4f22-933d-c76a97cda62f");
+const CLSID_WbemDecoupledBasicEventProvider_Value = Guid.initString("f5f75737-2843-4f22-933d-c76a97cda62f");
 pub const CLSID_WbemDecoupledBasicEventProvider = &CLSID_WbemDecoupledBasicEventProvider_Value;
 
 pub const WBEM_PROVIDER_REQUIREMENTS_TYPE = enum(i32) {
@@ -4795,7 +4795,7 @@ pub const WBEM_REQUIREMENTS_STOP_POSTFILTER = WBEM_PROVIDER_REQUIREMENTS_TYPE.ST
 pub const WBEM_REQUIREMENTS_RECHECK_SUBSCRIPTIONS = WBEM_PROVIDER_REQUIREMENTS_TYPE.RECHECK_SUBSCRIPTIONS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemPropertyProvider_Value = @import("../zig.zig").Guid.initString("ce61e841-65bc-11d0-b6bd-00aa003240c7");
+const IID_IWbemPropertyProvider_Value = Guid.initString("ce61e841-65bc-11d0-b6bd-00aa003240c7");
 pub const IID_IWbemPropertyProvider = &IID_IWbemPropertyProvider_Value;
 pub const IWbemPropertyProvider = extern struct {
     pub const VTable = extern struct {
@@ -4835,7 +4835,7 @@ pub const IWbemPropertyProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemUnboundObjectSink_Value = @import("../zig.zig").Guid.initString("e246107b-b06e-11d0-ad61-00c04fd8fdff");
+const IID_IWbemUnboundObjectSink_Value = Guid.initString("e246107b-b06e-11d0-ad61-00c04fd8fdff");
 pub const IID_IWbemUnboundObjectSink = &IID_IWbemUnboundObjectSink_Value;
 pub const IWbemUnboundObjectSink = extern struct {
     pub const VTable = extern struct {
@@ -4859,7 +4859,7 @@ pub const IWbemUnboundObjectSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemEventProvider_Value = @import("../zig.zig").Guid.initString("e245105b-b06e-11d0-ad61-00c04fd8fdff");
+const IID_IWbemEventProvider_Value = Guid.initString("e245105b-b06e-11d0-ad61-00c04fd8fdff");
 pub const IID_IWbemEventProvider = &IID_IWbemEventProvider_Value;
 pub const IWbemEventProvider = extern struct {
     pub const VTable = extern struct {
@@ -4882,7 +4882,7 @@ pub const IWbemEventProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemEventProviderQuerySink_Value = @import("../zig.zig").Guid.initString("580acaf8-fa1c-11d0-ad72-00c04fd8fdff");
+const IID_IWbemEventProviderQuerySink_Value = Guid.initString("580acaf8-fa1c-11d0-ad72-00c04fd8fdff");
 pub const IID_IWbemEventProviderQuerySink = &IID_IWbemEventProviderQuerySink_Value;
 pub const IWbemEventProviderQuerySink = extern struct {
     pub const VTable = extern struct {
@@ -4914,7 +4914,7 @@ pub const IWbemEventProviderQuerySink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemEventProviderSecurity_Value = @import("../zig.zig").Guid.initString("631f7d96-d993-11d2-b339-00105a1f4aaf");
+const IID_IWbemEventProviderSecurity_Value = Guid.initString("631f7d96-d993-11d2-b339-00105a1f4aaf");
 pub const IID_IWbemEventProviderSecurity = &IID_IWbemEventProviderSecurity_Value;
 pub const IWbemEventProviderSecurity = extern struct {
     pub const VTable = extern struct {
@@ -4939,7 +4939,7 @@ pub const IWbemEventProviderSecurity = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemEventConsumerProvider_Value = @import("../zig.zig").Guid.initString("e246107a-b06e-11d0-ad61-00c04fd8fdff");
+const IID_IWbemEventConsumerProvider_Value = Guid.initString("e246107a-b06e-11d0-ad61-00c04fd8fdff");
 pub const IID_IWbemEventConsumerProvider = &IID_IWbemEventConsumerProvider_Value;
 pub const IWbemEventConsumerProvider = extern struct {
     pub const VTable = extern struct {
@@ -4962,7 +4962,7 @@ pub const IWbemEventConsumerProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemProviderInitSink_Value = @import("../zig.zig").Guid.initString("1be41571-91dd-11d1-aeb2-00c04fb68820");
+const IID_IWbemProviderInitSink_Value = Guid.initString("1be41571-91dd-11d1-aeb2-00c04fb68820");
 pub const IID_IWbemProviderInitSink = &IID_IWbemProviderInitSink_Value;
 pub const IWbemProviderInitSink = extern struct {
     pub const VTable = extern struct {
@@ -4985,7 +4985,7 @@ pub const IWbemProviderInitSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemProviderInit_Value = @import("../zig.zig").Guid.initString("1be41572-91dd-11d1-aeb2-00c04fb68820");
+const IID_IWbemProviderInit_Value = Guid.initString("1be41572-91dd-11d1-aeb2-00c04fb68820");
 pub const IID_IWbemProviderInit = &IID_IWbemProviderInit_Value;
 pub const IWbemProviderInit = extern struct {
     pub const VTable = extern struct {
@@ -5013,7 +5013,7 @@ pub const IWbemProviderInit = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemHiPerfProvider_Value = @import("../zig.zig").Guid.initString("49353c93-516b-11d1-aea6-00c04fb68820");
+const IID_IWbemHiPerfProvider_Value = Guid.initString("49353c93-516b-11d1-aea6-00c04fb68820");
 pub const IID_IWbemHiPerfProvider = &IID_IWbemHiPerfProvider_Value;
 pub const IWbemHiPerfProvider = extern struct {
     pub const VTable = extern struct {
@@ -5099,7 +5099,7 @@ pub const IWbemHiPerfProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemDecoupledRegistrar_Value = @import("../zig.zig").Guid.initString("1005cbcf-e64f-4646-bcd3-3a089d8a84b4");
+const IID_IWbemDecoupledRegistrar_Value = Guid.initString("1005cbcf-e64f-4646-bcd3-3a089d8a84b4");
 pub const IID_IWbemDecoupledRegistrar = &IID_IWbemDecoupledRegistrar_Value;
 pub const IWbemDecoupledRegistrar = extern struct {
     pub const VTable = extern struct {
@@ -5134,7 +5134,7 @@ pub const IWbemDecoupledRegistrar = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemProviderIdentity_Value = @import("../zig.zig").Guid.initString("631f7d97-d993-11d2-b339-00105a1f4aaf");
+const IID_IWbemProviderIdentity_Value = Guid.initString("631f7d97-d993-11d2-b339-00105a1f4aaf");
 pub const IID_IWbemProviderIdentity = &IID_IWbemProviderIdentity_Value;
 pub const IWbemProviderIdentity = extern struct {
     pub const VTable = extern struct {
@@ -5177,7 +5177,7 @@ pub const WBEM_PROVIDER_FLAGS = enum(i32) {
 pub const WBEM_FLAG_OWNER_UPDATE = WBEM_PROVIDER_FLAGS.E;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemDecoupledBasicEventProvider_Value = @import("../zig.zig").Guid.initString("86336d20-ca11-4786-9ef1-bc8a946b42fc");
+const IID_IWbemDecoupledBasicEventProvider_Value = Guid.initString("86336d20-ca11-4786-9ef1-bc8a946b42fc");
 pub const IID_IWbemDecoupledBasicEventProvider = &IID_IWbemDecoupledBasicEventProvider_Value;
 pub const IWbemDecoupledBasicEventProvider = extern struct {
     pub const VTable = extern struct {
@@ -5220,7 +5220,7 @@ pub const WBEM_FLAG_MUST_BATCH = WBEM_BATCH_TYPE.MUST_BATCH;
 pub const WBEM_FLAG_MUST_NOT_BATCH = WBEM_BATCH_TYPE.MUST_NOT_BATCH;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWbemEventSink_Value = @import("../zig.zig").Guid.initString("3ae0080a-7e3a-4366-bf89-0feedc931659");
+const IID_IWbemEventSink_Value = Guid.initString("3ae0080a-7e3a-4366-bf89-0feedc931659");
 pub const IID_IWbemEventSink = &IID_IWbemEventSink_Value;
 pub const IWbemEventSink = extern struct {
     pub const VTable = extern struct {
@@ -5270,76 +5270,76 @@ pub const IWbemEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_SWbemLocator_Value = @import("../zig.zig").Guid.initString("76a64158-cb41-11d1-8b02-00600806d9b6");
+const CLSID_SWbemLocator_Value = Guid.initString("76a64158-cb41-11d1-8b02-00600806d9b6");
 pub const CLSID_SWbemLocator = &CLSID_SWbemLocator_Value;
 
-const CLSID_SWbemNamedValueSet_Value = @import("../zig.zig").Guid.initString("9aed384e-ce8b-11d1-8b05-00600806d9b6");
+const CLSID_SWbemNamedValueSet_Value = Guid.initString("9aed384e-ce8b-11d1-8b05-00600806d9b6");
 pub const CLSID_SWbemNamedValueSet = &CLSID_SWbemNamedValueSet_Value;
 
-const CLSID_SWbemObjectPath_Value = @import("../zig.zig").Guid.initString("5791bc26-ce9c-11d1-97bf-0000f81e849c");
+const CLSID_SWbemObjectPath_Value = Guid.initString("5791bc26-ce9c-11d1-97bf-0000f81e849c");
 pub const CLSID_SWbemObjectPath = &CLSID_SWbemObjectPath_Value;
 
-const CLSID_SWbemLastError_Value = @import("../zig.zig").Guid.initString("c2feeeac-cfcd-11d1-8b05-00600806d9b6");
+const CLSID_SWbemLastError_Value = Guid.initString("c2feeeac-cfcd-11d1-8b05-00600806d9b6");
 pub const CLSID_SWbemLastError = &CLSID_SWbemLastError_Value;
 
-const CLSID_SWbemSink_Value = @import("../zig.zig").Guid.initString("75718c9a-f029-11d1-a1ac-00c04fb6c223");
+const CLSID_SWbemSink_Value = Guid.initString("75718c9a-f029-11d1-a1ac-00c04fb6c223");
 pub const CLSID_SWbemSink = &CLSID_SWbemSink_Value;
 
-const CLSID_SWbemDateTime_Value = @import("../zig.zig").Guid.initString("47dfbe54-cf76-11d3-b38f-00105a1f473a");
+const CLSID_SWbemDateTime_Value = Guid.initString("47dfbe54-cf76-11d3-b38f-00105a1f473a");
 pub const CLSID_SWbemDateTime = &CLSID_SWbemDateTime_Value;
 
-const CLSID_SWbemRefresher_Value = @import("../zig.zig").Guid.initString("d269bf5c-d9c1-11d3-b38f-00105a1f473a");
+const CLSID_SWbemRefresher_Value = Guid.initString("d269bf5c-d9c1-11d3-b38f-00105a1f473a");
 pub const CLSID_SWbemRefresher = &CLSID_SWbemRefresher_Value;
 
-const CLSID_SWbemServices_Value = @import("../zig.zig").Guid.initString("04b83d63-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemServices_Value = Guid.initString("04b83d63-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemServices = &CLSID_SWbemServices_Value;
 
-const CLSID_SWbemServicesEx_Value = @import("../zig.zig").Guid.initString("62e522dc-8cf3-40a8-8b2e-37d595651e40");
+const CLSID_SWbemServicesEx_Value = Guid.initString("62e522dc-8cf3-40a8-8b2e-37d595651e40");
 pub const CLSID_SWbemServicesEx = &CLSID_SWbemServicesEx_Value;
 
-const CLSID_SWbemObject_Value = @import("../zig.zig").Guid.initString("04b83d62-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemObject_Value = Guid.initString("04b83d62-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemObject = &CLSID_SWbemObject_Value;
 
-const CLSID_SWbemObjectEx_Value = @import("../zig.zig").Guid.initString("d6bdafb2-9435-491f-bb87-6aa0f0bc31a2");
+const CLSID_SWbemObjectEx_Value = Guid.initString("d6bdafb2-9435-491f-bb87-6aa0f0bc31a2");
 pub const CLSID_SWbemObjectEx = &CLSID_SWbemObjectEx_Value;
 
-const CLSID_SWbemObjectSet_Value = @import("../zig.zig").Guid.initString("04b83d61-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemObjectSet_Value = Guid.initString("04b83d61-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemObjectSet = &CLSID_SWbemObjectSet_Value;
 
-const CLSID_SWbemNamedValue_Value = @import("../zig.zig").Guid.initString("04b83d60-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemNamedValue_Value = Guid.initString("04b83d60-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemNamedValue = &CLSID_SWbemNamedValue_Value;
 
-const CLSID_SWbemQualifier_Value = @import("../zig.zig").Guid.initString("04b83d5f-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemQualifier_Value = Guid.initString("04b83d5f-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemQualifier = &CLSID_SWbemQualifier_Value;
 
-const CLSID_SWbemQualifierSet_Value = @import("../zig.zig").Guid.initString("04b83d5e-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemQualifierSet_Value = Guid.initString("04b83d5e-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemQualifierSet = &CLSID_SWbemQualifierSet_Value;
 
-const CLSID_SWbemProperty_Value = @import("../zig.zig").Guid.initString("04b83d5d-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemProperty_Value = Guid.initString("04b83d5d-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemProperty = &CLSID_SWbemProperty_Value;
 
-const CLSID_SWbemPropertySet_Value = @import("../zig.zig").Guid.initString("04b83d5c-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemPropertySet_Value = Guid.initString("04b83d5c-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemPropertySet = &CLSID_SWbemPropertySet_Value;
 
-const CLSID_SWbemMethod_Value = @import("../zig.zig").Guid.initString("04b83d5b-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemMethod_Value = Guid.initString("04b83d5b-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemMethod = &CLSID_SWbemMethod_Value;
 
-const CLSID_SWbemMethodSet_Value = @import("../zig.zig").Guid.initString("04b83d5a-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemMethodSet_Value = Guid.initString("04b83d5a-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemMethodSet = &CLSID_SWbemMethodSet_Value;
 
-const CLSID_SWbemEventSource_Value = @import("../zig.zig").Guid.initString("04b83d58-21ae-11d2-8b33-00600806d9b6");
+const CLSID_SWbemEventSource_Value = Guid.initString("04b83d58-21ae-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemEventSource = &CLSID_SWbemEventSource_Value;
 
-const CLSID_SWbemSecurity_Value = @import("../zig.zig").Guid.initString("b54d66e9-2287-11d2-8b33-00600806d9b6");
+const CLSID_SWbemSecurity_Value = Guid.initString("b54d66e9-2287-11d2-8b33-00600806d9b6");
 pub const CLSID_SWbemSecurity = &CLSID_SWbemSecurity_Value;
 
-const CLSID_SWbemPrivilege_Value = @import("../zig.zig").Guid.initString("26ee67bc-5804-11d2-8b4a-00600806d9b6");
+const CLSID_SWbemPrivilege_Value = Guid.initString("26ee67bc-5804-11d2-8b4a-00600806d9b6");
 pub const CLSID_SWbemPrivilege = &CLSID_SWbemPrivilege_Value;
 
-const CLSID_SWbemPrivilegeSet_Value = @import("../zig.zig").Guid.initString("26ee67be-5804-11d2-8b4a-00600806d9b6");
+const CLSID_SWbemPrivilegeSet_Value = Guid.initString("26ee67be-5804-11d2-8b4a-00600806d9b6");
 pub const CLSID_SWbemPrivilegeSet = &CLSID_SWbemPrivilegeSet_Value;
 
-const CLSID_SWbemRefreshableItem_Value = @import("../zig.zig").Guid.initString("8c6854bc-de4b-11d3-b390-00105a1f473a");
+const CLSID_SWbemRefreshableItem_Value = Guid.initString("8c6854bc-de4b-11d3-b390-00105a1f473a");
 pub const CLSID_SWbemRefreshableItem = &CLSID_SWbemRefreshableItem_Value;
 
 pub const WbemChangeFlagEnum = enum(i32) {
@@ -5821,7 +5821,7 @@ pub const WbemConnectOptionsEnum = enum(i32) {
 };
 pub const wbemConnectFlagUseMaxWait = WbemConnectOptionsEnum.t;
 
-const IID_ISWbemServices_Value = @import("../zig.zig").Guid.initString("76a6415c-cb41-11d1-8b02-00600806d9b6");
+const IID_ISWbemServices_Value = Guid.initString("76a6415c-cb41-11d1-8b02-00600806d9b6");
 pub const IID_ISWbemServices = &IID_ISWbemServices_Value;
 pub const ISWbemServices = extern struct {
     pub const VTable = extern struct {
@@ -6083,7 +6083,7 @@ pub const ISWbemServices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemLocator_Value = @import("../zig.zig").Guid.initString("76a6415b-cb41-11d1-8b02-00600806d9b6");
+const IID_ISWbemLocator_Value = Guid.initString("76a6415b-cb41-11d1-8b02-00600806d9b6");
 pub const IID_ISWbemLocator = &IID_ISWbemLocator_Value;
 pub const ISWbemLocator = extern struct {
     pub const VTable = extern struct {
@@ -6121,7 +6121,7 @@ pub const ISWbemLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemObject_Value = @import("../zig.zig").Guid.initString("76a6415a-cb41-11d1-8b02-00600806d9b6");
+const IID_ISWbemObject_Value = Guid.initString("76a6415a-cb41-11d1-8b02-00600806d9b6");
 pub const IID_ISWbemObject = &IID_ISWbemObject_Value;
 pub const ISWbemObject = extern struct {
     pub const VTable = extern struct {
@@ -6409,7 +6409,7 @@ pub const ISWbemObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemObjectSet_Value = @import("../zig.zig").Guid.initString("76a6415f-cb41-11d1-8b02-00600806d9b6");
+const IID_ISWbemObjectSet_Value = Guid.initString("76a6415f-cb41-11d1-8b02-00600806d9b6");
 pub const IID_ISWbemObjectSet = &IID_ISWbemObjectSet_Value;
 pub const ISWbemObjectSet = extern struct {
     pub const VTable = extern struct {
@@ -6468,7 +6468,7 @@ pub const ISWbemObjectSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemNamedValue_Value = @import("../zig.zig").Guid.initString("76a64164-cb41-11d1-8b02-00600806d9b6");
+const IID_ISWbemNamedValue_Value = Guid.initString("76a64164-cb41-11d1-8b02-00600806d9b6");
 pub const IID_ISWbemNamedValue = &IID_ISWbemNamedValue_Value;
 pub const ISWbemNamedValue = extern struct {
     pub const VTable = extern struct {
@@ -6508,7 +6508,7 @@ pub const ISWbemNamedValue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemNamedValueSet_Value = @import("../zig.zig").Guid.initString("cf2376ea-ce8c-11d1-8b05-00600806d9b6");
+const IID_ISWbemNamedValueSet_Value = Guid.initString("cf2376ea-ce8c-11d1-8b05-00600806d9b6");
 pub const IID_ISWbemNamedValueSet = &IID_ISWbemNamedValueSet_Value;
 pub const ISWbemNamedValueSet = extern struct {
     pub const VTable = extern struct {
@@ -6584,7 +6584,7 @@ pub const ISWbemNamedValueSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemQualifier_Value = @import("../zig.zig").Guid.initString("79b05932-d3b7-11d1-8b06-00600806d9b6");
+const IID_ISWbemQualifier_Value = Guid.initString("79b05932-d3b7-11d1-8b06-00600806d9b6");
 pub const IID_ISWbemQualifier = &IID_ISWbemQualifier_Value;
 pub const ISWbemQualifier = extern struct {
     pub const VTable = extern struct {
@@ -6696,7 +6696,7 @@ pub const ISWbemQualifier = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemQualifierSet_Value = @import("../zig.zig").Guid.initString("9b16ed16-d3df-11d1-8b08-00600806d9b6");
+const IID_ISWbemQualifierSet_Value = Guid.initString("9b16ed16-d3df-11d1-8b08-00600806d9b6");
 pub const IID_ISWbemQualifierSet = &IID_ISWbemQualifierSet_Value;
 pub const ISWbemQualifierSet = extern struct {
     pub const VTable = extern struct {
@@ -6760,7 +6760,7 @@ pub const ISWbemQualifierSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemProperty_Value = @import("../zig.zig").Guid.initString("1a388f98-d4ba-11d1-8b09-00600806d9b6");
+const IID_ISWbemProperty_Value = Guid.initString("1a388f98-d4ba-11d1-8b09-00600806d9b6");
 pub const IID_ISWbemProperty = &IID_ISWbemProperty_Value;
 pub const ISWbemProperty = extern struct {
     pub const VTable = extern struct {
@@ -6845,7 +6845,7 @@ pub const ISWbemProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemPropertySet_Value = @import("../zig.zig").Guid.initString("dea0a7b2-d4ba-11d1-8b09-00600806d9b6");
+const IID_ISWbemPropertySet_Value = Guid.initString("dea0a7b2-d4ba-11d1-8b09-00600806d9b6");
 pub const IID_ISWbemPropertySet = &IID_ISWbemPropertySet_Value;
 pub const ISWbemPropertySet = extern struct {
     pub const VTable = extern struct {
@@ -6907,7 +6907,7 @@ pub const ISWbemPropertySet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemMethod_Value = @import("../zig.zig").Guid.initString("422e8e90-d955-11d1-8b09-00600806d9b6");
+const IID_ISWbemMethod_Value = Guid.initString("422e8e90-d955-11d1-8b09-00600806d9b6");
 pub const IID_ISWbemMethod = &IID_ISWbemMethod_Value;
 pub const ISWbemMethod = extern struct {
     pub const VTable = extern struct {
@@ -6965,7 +6965,7 @@ pub const ISWbemMethod = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemMethodSet_Value = @import("../zig.zig").Guid.initString("c93ba292-d955-11d1-8b09-00600806d9b6");
+const IID_ISWbemMethodSet_Value = Guid.initString("c93ba292-d955-11d1-8b09-00600806d9b6");
 pub const IID_ISWbemMethodSet = &IID_ISWbemMethodSet_Value;
 pub const ISWbemMethodSet = extern struct {
     pub const VTable = extern struct {
@@ -7006,7 +7006,7 @@ pub const ISWbemMethodSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemEventSource_Value = @import("../zig.zig").Guid.initString("27d54d92-0ebe-11d2-8b22-00600806d9b6");
+const IID_ISWbemEventSource_Value = Guid.initString("27d54d92-0ebe-11d2-8b22-00600806d9b6");
 pub const IID_ISWbemEventSource = &IID_ISWbemEventSource_Value;
 pub const ISWbemEventSource = extern struct {
     pub const VTable = extern struct {
@@ -7037,7 +7037,7 @@ pub const ISWbemEventSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemObjectPath_Value = @import("../zig.zig").Guid.initString("5791bc27-ce9c-11d1-97bf-0000f81e849c");
+const IID_ISWbemObjectPath_Value = Guid.initString("5791bc27-ce9c-11d1-97bf-0000f81e849c");
 pub const IID_ISWbemObjectPath = &IID_ISWbemObjectPath_Value;
 pub const ISWbemObjectPath = extern struct {
     pub const VTable = extern struct {
@@ -7253,7 +7253,7 @@ pub const ISWbemObjectPath = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemLastError_Value = @import("../zig.zig").Guid.initString("d962db84-d4bb-11d1-8b09-00600806d9b6");
+const IID_ISWbemLastError_Value = Guid.initString("d962db84-d4bb-11d1-8b09-00600806d9b6");
 pub const IID_ISWbemLastError = &IID_ISWbemLastError_Value;
 pub const ISWbemLastError = extern struct {
     pub const VTable = extern struct {
@@ -7266,7 +7266,7 @@ pub const ISWbemLastError = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemSinkEvents_Value = @import("../zig.zig").Guid.initString("75718ca0-f029-11d1-a1ac-00c04fb6c223");
+const IID_ISWbemSinkEvents_Value = Guid.initString("75718ca0-f029-11d1-a1ac-00c04fb6c223");
 pub const IID_ISWbemSinkEvents = &IID_ISWbemSinkEvents_Value;
 pub const ISWbemSinkEvents = extern struct {
     pub const VTable = extern struct {
@@ -7279,7 +7279,7 @@ pub const ISWbemSinkEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemSink_Value = @import("../zig.zig").Guid.initString("75718c9f-f029-11d1-a1ac-00c04fb6c223");
+const IID_ISWbemSink_Value = Guid.initString("75718c9f-f029-11d1-a1ac-00c04fb6c223");
 pub const IID_ISWbemSink = &IID_ISWbemSink_Value;
 pub const ISWbemSink = extern struct {
     pub const VTable = extern struct {
@@ -7299,7 +7299,7 @@ pub const ISWbemSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemSecurity_Value = @import("../zig.zig").Guid.initString("b54d66e6-2287-11d2-8b33-00600806d9b6");
+const IID_ISWbemSecurity_Value = Guid.initString("b54d66e6-2287-11d2-8b33-00600806d9b6");
 pub const IID_ISWbemSecurity = &IID_ISWbemSecurity_Value;
 pub const ISWbemSecurity = extern struct {
     pub const VTable = extern struct {
@@ -7357,7 +7357,7 @@ pub const ISWbemSecurity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemPrivilege_Value = @import("../zig.zig").Guid.initString("26ee67bd-5804-11d2-8b4a-00600806d9b6");
+const IID_ISWbemPrivilege_Value = Guid.initString("26ee67bd-5804-11d2-8b4a-00600806d9b6");
 pub const IID_ISWbemPrivilege = &IID_ISWbemPrivilege_Value;
 pub const ISWbemPrivilege = extern struct {
     pub const VTable = extern struct {
@@ -7415,7 +7415,7 @@ pub const ISWbemPrivilege = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemPrivilegeSet_Value = @import("../zig.zig").Guid.initString("26ee67bf-5804-11d2-8b4a-00600806d9b6");
+const IID_ISWbemPrivilegeSet_Value = Guid.initString("26ee67bf-5804-11d2-8b4a-00600806d9b6");
 pub const IID_ISWbemPrivilegeSet = &IID_ISWbemPrivilegeSet_Value;
 pub const ISWbemPrivilegeSet = extern struct {
     pub const VTable = extern struct {
@@ -7490,7 +7490,7 @@ pub const ISWbemPrivilegeSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemServicesEx_Value = @import("../zig.zig").Guid.initString("d2f68443-85dc-427e-91d8-366554cc754c");
+const IID_ISWbemServicesEx_Value = Guid.initString("d2f68443-85dc-427e-91d8-366554cc754c");
 pub const IID_ISWbemServicesEx = &IID_ISWbemServicesEx_Value;
 pub const ISWbemServicesEx = extern struct {
     pub const VTable = extern struct {
@@ -7526,7 +7526,7 @@ pub const ISWbemServicesEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemObjectEx_Value = @import("../zig.zig").Guid.initString("269ad56a-8a67-4129-bc8c-0506dcfe9880");
+const IID_ISWbemObjectEx_Value = Guid.initString("269ad56a-8a67-4129-bc8c-0506dcfe9880");
 pub const IID_ISWbemObjectEx = &IID_ISWbemObjectEx_Value;
 pub const ISWbemObjectEx = extern struct {
     pub const VTable = extern struct {
@@ -7579,7 +7579,7 @@ pub const ISWbemObjectEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemDateTime_Value = @import("../zig.zig").Guid.initString("5e97458a-cf77-11d3-b38f-00105a1f473a");
+const IID_ISWbemDateTime_Value = Guid.initString("5e97458a-cf77-11d3-b38f-00105a1f473a");
 pub const IID_ISWbemDateTime = &IID_ISWbemDateTime_Value;
 pub const ISWbemDateTime = extern struct {
     pub const VTable = extern struct {
@@ -7952,7 +7952,7 @@ pub const ISWbemDateTime = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemRefresher_Value = @import("../zig.zig").Guid.initString("14d8250e-d9c2-11d3-b38f-00105a1f473a");
+const IID_ISWbemRefresher_Value = Guid.initString("14d8250e-d9c2-11d3-b38f-00105a1f473a");
 pub const IID_ISWbemRefresher = &IID_ISWbemRefresher_Value;
 pub const ISWbemRefresher = extern struct {
     pub const VTable = extern struct {
@@ -8058,7 +8058,7 @@ pub const ISWbemRefresher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISWbemRefreshableItem_Value = @import("../zig.zig").Guid.initString("5ad4bf92-daab-11d3-b38f-00105a1f473a");
+const IID_ISWbemRefreshableItem_Value = Guid.initString("5ad4bf92-daab-11d3-b38f-00105a1f473a");
 pub const IID_ISWbemRefreshableItem = &IID_ISWbemRefreshableItem_Value;
 pub const ISWbemRefreshableItem = extern struct {
     pub const VTable = extern struct {
@@ -8124,10 +8124,10 @@ pub const ISWbemRefreshableItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_WMIExtension_Value = @import("../zig.zig").Guid.initString("f0975afe-5c7f-11d2-8b74-00104b2afb41");
+const CLSID_WMIExtension_Value = Guid.initString("f0975afe-5c7f-11d2-8b74-00104b2afb41");
 pub const CLSID_WMIExtension = &CLSID_WMIExtension_Value;
 
-const IID_IWMIExtension_Value = @import("../zig.zig").Guid.initString("adc1f06e-5c7e-11d2-8b74-00104b2afb41");
+const IID_IWMIExtension_Value = Guid.initString("adc1f06e-5c7e-11d2-8b74-00104b2afb41");
 pub const IID_IWMIExtension = &IID_IWMIExtension_Value;
 pub const IWMIExtension = extern struct {
     pub const VTable = extern struct {
@@ -8165,16 +8165,16 @@ pub const IWMIExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_WbemLevel1Login_Value = @import("../zig.zig").Guid.initString("8bc3f05e-d86b-11d0-a075-00c04fb68820");
+const CLSID_WbemLevel1Login_Value = Guid.initString("8bc3f05e-d86b-11d0-a075-00c04fb68820");
 pub const CLSID_WbemLevel1Login = &CLSID_WbemLevel1Login_Value;
 
-const CLSID_WbemLocalAddrRes_Value = @import("../zig.zig").Guid.initString("a1044801-8f7e-11d1-9e7c-00c04fc324a8");
+const CLSID_WbemLocalAddrRes_Value = Guid.initString("a1044801-8f7e-11d1-9e7c-00c04fc324a8");
 pub const CLSID_WbemLocalAddrRes = &CLSID_WbemLocalAddrRes_Value;
 
-const CLSID_WbemUninitializedClassObject_Value = @import("../zig.zig").Guid.initString("7a0227f6-7108-11d1-ad90-00c04fd8fdff");
+const CLSID_WbemUninitializedClassObject_Value = Guid.initString("7a0227f6-7108-11d1-ad90-00c04fd8fdff");
 pub const CLSID_WbemUninitializedClassObject = &CLSID_WbemUninitializedClassObject_Value;
 
-const CLSID_WbemDCOMTransport_Value = @import("../zig.zig").Guid.initString("f7ce2e13-8c90-11d1-9e7b-00c04fc324a8");
+const CLSID_WbemDCOMTransport_Value = Guid.initString("f7ce2e13-8c90-11d1-9e7b-00c04fc324a8");
 pub const CLSID_WbemDCOMTransport = &CLSID_WbemDCOMTransport_Value;
 
 pub const tag_WBEM_LOGIN_TYPE = enum(i32) {
@@ -8190,7 +8190,7 @@ pub const WBEM_FLAG_REMOTE_LOGIN = tag_WBEM_LOGIN_TYPE.FLAG_REMOTE_LOGIN;
 pub const WBEM_AUTHENTICATION_METHOD_MASK = tag_WBEM_LOGIN_TYPE.AUTHENTICATION_METHOD_MASK;
 pub const WBEM_FLAG_USE_MULTIPLE_CHALLENGES = tag_WBEM_LOGIN_TYPE.FLAG_USE_MULTIPLE_CHALLENGES;
 
-const IID_IWbemTransport_Value = @import("../zig.zig").Guid.initString("553fe584-2156-11d0-b6ae-00aa003240c7");
+const IID_IWbemTransport_Value = Guid.initString("553fe584-2156-11d0-b6ae-00aa003240c7");
 pub const IID_IWbemTransport = &IID_IWbemTransport_Value;
 pub const IWbemTransport = extern struct {
     pub const VTable = extern struct {
@@ -8210,7 +8210,7 @@ pub const IWbemTransport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWbemLevel1Login_Value = @import("../zig.zig").Guid.initString("f309ad18-d86a-11d0-a075-00c04fb68820");
+const IID_IWbemLevel1Login_Value = Guid.initString("f309ad18-d86a-11d0-a075-00c04fb68820");
 pub const IID_IWbemLevel1Login = &IID_IWbemLevel1Login_Value;
 pub const IWbemLevel1Login = extern struct {
     pub const VTable = extern struct {
@@ -8267,7 +8267,7 @@ pub const IWbemLevel1Login = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWbemConnectorLogin_Value = @import("../zig.zig").Guid.initString("d8ec9cb1-b135-4f10-8b1b-c7188bb0d186");
+const IID_IWbemConnectorLogin_Value = Guid.initString("d8ec9cb1-b135-4f10-8b1b-c7188bb0d186");
 pub const IID_IWbemConnectorLogin = &IID_IWbemConnectorLogin_Value;
 pub const IWbemConnectorLogin = extern struct {
     pub const VTable = extern struct {
@@ -8293,7 +8293,7 @@ pub const IWbemConnectorLogin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWbemAddressResolution_Value = @import("../zig.zig").Guid.initString("f7ce2e12-8c90-11d1-9e7b-00c04fc324a8");
+const IID_IWbemAddressResolution_Value = Guid.initString("f7ce2e12-8c90-11d1-9e7b-00c04fc324a8");
 pub const IID_IWbemAddressResolution = &IID_IWbemAddressResolution_Value;
 pub const IWbemAddressResolution = extern struct {
     pub const VTable = extern struct {
@@ -8317,7 +8317,7 @@ pub const IWbemAddressResolution = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWbemClientTransport_Value = @import("../zig.zig").Guid.initString("f7ce2e11-8c90-11d1-9e7b-00c04fc324a8");
+const IID_IWbemClientTransport_Value = Guid.initString("f7ce2e11-8c90-11d1-9e7b-00c04fc324a8");
 pub const IID_IWbemClientTransport = &IID_IWbemClientTransport_Value;
 pub const IWbemClientTransport = extern struct {
     pub const VTable = extern struct {
@@ -8348,7 +8348,7 @@ pub const IWbemClientTransport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWbemClientConnectionTransport_Value = @import("../zig.zig").Guid.initString("a889c72a-fcc1-4a9e-af61-ed071333fb5b");
+const IID_IWbemClientConnectionTransport_Value = Guid.initString("a889c72a-fcc1-4a9e-af61-ed071333fb5b");
 pub const IID_IWbemClientConnectionTransport = &IID_IWbemClientConnectionTransport_Value;
 pub const IWbemClientConnectionTransport = extern struct {
     pub const VTable = extern struct {
@@ -8407,7 +8407,7 @@ pub const IWbemClientConnectionTransport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWbemConstructClassObject_Value = @import("../zig.zig").Guid.initString("9ef76194-70d5-11d1-ad90-00c04fd8fdff");
+const IID_IWbemConstructClassObject_Value = Guid.initString("9ef76194-70d5-11d1-ad90-00c04fd8fdff");
 pub const IID_IWbemConstructClassObject = &IID_IWbemConstructClassObject_Value;
 pub const IWbemConstructClassObject = extern struct {
     pub const VTable = extern struct {

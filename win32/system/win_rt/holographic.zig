@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-const IID_IHolographicCameraInterop_Value = @import("../../zig.zig").Guid.initString("7cc1f9c5-6d02-41fa-9500-e1809eb48eec");
+const IID_IHolographicCameraInterop_Value = Guid.initString("7cc1f9c5-6d02-41fa-9500-e1809eb48eec");
 pub const IID_IHolographicCameraInterop = &IID_IHolographicCameraInterop_Value;
 pub const IHolographicCameraInterop = extern struct {
     pub const VTable = extern struct {
@@ -67,7 +67,7 @@ pub const IHolographicCameraInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IHolographicCameraRenderingParametersInterop_Value = @import("../../zig.zig").Guid.initString("f75b68d6-d1fd-4707-aafd-fa6f4c0e3bf4");
+const IID_IHolographicCameraRenderingParametersInterop_Value = Guid.initString("f75b68d6-d1fd-4707-aafd-fa6f4c0e3bf4");
 pub const IID_IHolographicCameraRenderingParametersInterop = &IID_IHolographicCameraRenderingParametersInterop_Value;
 pub const IHolographicCameraRenderingParametersInterop = extern struct {
     pub const VTable = extern struct {
@@ -103,7 +103,7 @@ pub const IHolographicCameraRenderingParametersInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IHolographicQuadLayerInterop_Value = @import("../../zig.zig").Guid.initString("cfa688f0-639e-4a47-83d7-6b7f5ebf7fed");
+const IID_IHolographicQuadLayerInterop_Value = Guid.initString("cfa688f0-639e-4a47-83d7-6b7f5ebf7fed");
 pub const IID_IHolographicQuadLayerInterop = &IID_IHolographicQuadLayerInterop_Value;
 pub const IHolographicQuadLayerInterop = extern struct {
     pub const VTable = extern struct {
@@ -164,7 +164,7 @@ pub const IHolographicQuadLayerInterop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IHolographicQuadLayerUpdateParametersInterop_Value = @import("../../zig.zig").Guid.initString("e5f549cd-c909-444f-8809-7cc18a9c8920");
+const IID_IHolographicQuadLayerUpdateParametersInterop_Value = Guid.initString("e5f549cd-c909-444f-8809-7cc18a9c8920");
 pub const IID_IHolographicQuadLayerUpdateParametersInterop = &IID_IHolographicQuadLayerUpdateParametersInterop_Value;
 pub const IHolographicQuadLayerUpdateParametersInterop = extern struct {
     pub const VTable = extern struct {
@@ -206,8 +206,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const D3D12_RESOURCE_DESC = @import("../../graphics/direct3d12.zig").D3D12_RESOURCE_DESC;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID3D12CommandQueue = @import("../../graphics/direct3d12.zig").ID3D12CommandQueue;

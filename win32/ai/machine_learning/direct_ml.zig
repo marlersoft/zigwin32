@@ -1756,7 +1756,7 @@ pub const DML_CREATE_DEVICE_FLAGS = enum(u32) {
 pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS.NONE;
 pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS.DEBUG;
 
-const IID_IDMLObject_Value = @import("../../zig.zig").Guid.initString("c8263aac-9e0c-4a2d-9b8e-007521a3317c");
+const IID_IDMLObject_Value = Guid.initString("c8263aac-9e0c-4a2d-9b8e-007521a3317c");
 pub const IID_IDMLObject = &IID_IDMLObject_Value;
 pub const IDMLObject = extern struct {
     pub const VTable = extern struct {
@@ -1808,7 +1808,7 @@ pub const IDMLObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLDevice_Value = @import("../../zig.zig").Guid.initString("6dbd6437-96fd-423f-a98c-ae5e7c2a573f");
+const IID_IDMLDevice_Value = Guid.initString("6dbd6437-96fd-423f-a98c-ae5e7c2a573f");
 pub const IID_IDMLDevice = &IID_IDMLDevice_Value;
 pub const IDMLDevice = extern struct {
     pub const VTable = extern struct {
@@ -1920,7 +1920,7 @@ pub const IDMLDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLDeviceChild_Value = @import("../../zig.zig").Guid.initString("27e83142-8165-49e3-974e-2fd66e4cb69d");
+const IID_IDMLDeviceChild_Value = Guid.initString("27e83142-8165-49e3-974e-2fd66e4cb69d");
 pub const IID_IDMLDeviceChild = &IID_IDMLDeviceChild_Value;
 pub const IDMLDeviceChild = extern struct {
     pub const VTable = extern struct {
@@ -1942,7 +1942,7 @@ pub const IDMLDeviceChild = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLPageable_Value = @import("../../zig.zig").Guid.initString("b1ab0825-4542-4a4b-8617-6dde6e8f6201");
+const IID_IDMLPageable_Value = Guid.initString("b1ab0825-4542-4a4b-8617-6dde6e8f6201");
 pub const IID_IDMLPageable = &IID_IDMLPageable_Value;
 pub const IDMLPageable = extern struct {
     pub const VTable = extern struct {
@@ -1955,7 +1955,7 @@ pub const IDMLPageable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLOperator_Value = @import("../../zig.zig").Guid.initString("26caae7a-3081-4633-9581-226fbe57695d");
+const IID_IDMLOperator_Value = Guid.initString("26caae7a-3081-4633-9581-226fbe57695d");
 pub const IID_IDMLOperator = &IID_IDMLOperator_Value;
 pub const IDMLOperator = extern struct {
     pub const VTable = extern struct {
@@ -1974,7 +1974,7 @@ pub const DML_BINDING_PROPERTIES = extern struct {
     PersistentResourceSize: u64,
 };
 
-const IID_IDMLDispatchable_Value = @import("../../zig.zig").Guid.initString("dcb821a8-1039-441e-9f1c-b1759c2f3cec");
+const IID_IDMLDispatchable_Value = Guid.initString("dcb821a8-1039-441e-9f1c-b1759c2f3cec");
 pub const IID_IDMLDispatchable = &IID_IDMLDispatchable_Value;
 pub const IDMLDispatchable = extern struct {
     pub const VTable = extern struct {
@@ -1994,7 +1994,7 @@ pub const IDMLDispatchable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLCompiledOperator_Value = @import("../../zig.zig").Guid.initString("6b15e56a-bf5c-4902-92d8-da3a650afea4");
+const IID_IDMLCompiledOperator_Value = Guid.initString("6b15e56a-bf5c-4902-92d8-da3a650afea4");
 pub const IID_IDMLCompiledOperator = &IID_IDMLCompiledOperator_Value;
 pub const IDMLCompiledOperator = extern struct {
     pub const VTable = extern struct {
@@ -2007,7 +2007,7 @@ pub const IDMLCompiledOperator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLOperatorInitializer_Value = @import("../../zig.zig").Guid.initString("427c1113-435c-469c-8676-4d5dd072f813");
+const IID_IDMLOperatorInitializer_Value = Guid.initString("427c1113-435c-469c-8676-4d5dd072f813");
 pub const IID_IDMLOperatorInitializer = &IID_IDMLOperatorInitializer_Value;
 pub const IDMLOperatorInitializer = extern struct {
     pub const VTable = extern struct {
@@ -2054,7 +2054,7 @@ pub const DML_BUFFER_ARRAY_BINDING = extern struct {
     Bindings: ?*const DML_BUFFER_BINDING,
 };
 
-const IID_IDMLBindingTable_Value = @import("../../zig.zig").Guid.initString("29c687dc-de74-4e3b-ab00-1168f2fc3cfc");
+const IID_IDMLBindingTable_Value = Guid.initString("29c687dc-de74-4e3b-ab00-1168f2fc3cfc");
 pub const IID_IDMLBindingTable = &IID_IDMLBindingTable_Value;
 pub const IDMLBindingTable = extern struct {
     pub const VTable = extern struct {
@@ -2109,7 +2109,7 @@ pub const IDMLBindingTable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLCommandRecorder_Value = @import("../../zig.zig").Guid.initString("e6857a76-2e3e-4fdd-bff4-5d2ba10fb453");
+const IID_IDMLCommandRecorder_Value = Guid.initString("e6857a76-2e3e-4fdd-bff4-5d2ba10fb453");
 pub const IID_IDMLCommandRecorder = &IID_IDMLCommandRecorder_Value;
 pub const IDMLCommandRecorder = extern struct {
     pub const VTable = extern struct {
@@ -2132,7 +2132,7 @@ pub const IDMLCommandRecorder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDMLDebugDevice_Value = @import("../../zig.zig").Guid.initString("7d6f3ac9-394a-4ac3-92a7-390cc57a8217");
+const IID_IDMLDebugDevice_Value = Guid.initString("7d6f3ac9-394a-4ac3-92a7-390cc57a8217");
 pub const IID_IDMLDebugDevice = &IID_IDMLDebugDevice_Value;
 pub const IDMLDebugDevice = extern struct {
     pub const VTable = extern struct {
@@ -2221,7 +2221,7 @@ pub const DML_GRAPH_DESC = extern struct {
     IntermediateEdges: ?*const DML_GRAPH_EDGE_DESC,
 };
 
-const IID_IDMLDevice1_Value = @import("../../zig.zig").Guid.initString("a0884f9a-d2be-4355-aa5d-5901281ad1d2");
+const IID_IDMLDevice1_Value = Guid.initString("a0884f9a-d2be-4355-aa5d-5901281ad1d2");
 pub const IID_IDMLDevice1 = &IID_IDMLDevice1_Value;
 pub const IDMLDevice1 = extern struct {
     pub const VTable = extern struct {

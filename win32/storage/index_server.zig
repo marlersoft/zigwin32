@@ -240,7 +240,7 @@ pub const STAT_CHUNK = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IFilter_Value = @import("../zig.zig").Guid.initString("89bcb740-6119-101a-bcb7-00dd010655af");
+const IID_IFilter_Value = Guid.initString("89bcb740-6119-101a-bcb7-00dd010655af");
 pub const IID_IFilter = &IID_IFilter_Value;
 pub const IFilter = extern struct {
     pub const VTable = extern struct {
@@ -300,7 +300,7 @@ pub const IFilter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
+const IID_IPhraseSink_Value = Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
 pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
 pub const IPhraseSink = extern struct {
     pub const VTable = extern struct {

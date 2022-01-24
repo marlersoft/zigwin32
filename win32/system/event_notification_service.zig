@@ -32,7 +32,7 @@ pub const QOCINFO = extern struct {
     dwOutSpeed: u32,
 };
 
-const CLSID_SENS_Value = @import("../zig.zig").Guid.initString("d597cafe-5b9f-11d1-8dd2-00aa004abd5e");
+const CLSID_SENS_Value = Guid.initString("d597cafe-5b9f-11d1-8dd2-00aa004abd5e");
 pub const CLSID_SENS = &CLSID_SENS_Value;
 
 pub const SENS_QOCINFO = extern struct {
@@ -43,7 +43,7 @@ pub const SENS_QOCINFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISensNetwork_Value = @import("../zig.zig").Guid.initString("d597bab1-5b9f-11d1-8dd2-00aa004abd5e");
+const IID_ISensNetwork_Value = Guid.initString("d597bab1-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensNetwork = &IID_ISensNetwork_Value;
 pub const ISensNetwork = extern struct {
     pub const VTable = extern struct {
@@ -106,7 +106,7 @@ pub const ISensNetwork = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISensOnNow_Value = @import("../zig.zig").Guid.initString("d597bab2-5b9f-11d1-8dd2-00aa004abd5e");
+const IID_ISensOnNow_Value = Guid.initString("d597bab2-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensOnNow = &IID_ISensOnNow_Value;
 pub const ISensOnNow = extern struct {
     pub const VTable = extern struct {
@@ -143,7 +143,7 @@ pub const ISensOnNow = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISensLogon_Value = @import("../zig.zig").Guid.initString("d597bab3-5b9f-11d1-8dd2-00aa004abd5e");
+const IID_ISensLogon_Value = Guid.initString("d597bab3-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensLogon = &IID_ISensLogon_Value;
 pub const ISensLogon = extern struct {
     pub const VTable = extern struct {
@@ -213,7 +213,7 @@ pub const ISensLogon = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ISensLogon2_Value = @import("../zig.zig").Guid.initString("d597bab4-5b9f-11d1-8dd2-00aa004abd5e");
+const IID_ISensLogon2_Value = Guid.initString("d597bab4-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensLogon2 = &IID_ISensLogon2_Value;
 pub const ISensLogon2 = extern struct {
     pub const VTable = extern struct {

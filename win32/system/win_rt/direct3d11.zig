@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-const IID_IDirect3DDxgiInterfaceAccess_Value = @import("../../zig.zig").Guid.initString("a9b3d012-3df2-4ee3-b8d1-8695f457d3c1");
+const IID_IDirect3DDxgiInterfaceAccess_Value = Guid.initString("a9b3d012-3df2-4ee3-b8d1-8695f457d3c1");
 pub const IID_IDirect3DDxgiInterfaceAccess = &IID_IDirect3DDxgiInterfaceAccess_Value;
 pub const IDirect3DDxgiInterfaceAccess = extern struct {
     pub const VTable = extern struct {

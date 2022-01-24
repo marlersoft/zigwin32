@@ -31,7 +31,7 @@ pub const GRAPHICS_EFFECT_PROPERTY_MAPPING_COLORMATRIX_ALPHA_MODE = GRAPHICS_EFF
 pub const GRAPHICS_EFFECT_PROPERTY_MAPPING_COLOR_TO_VECTOR3 = GRAPHICS_EFFECT_PROPERTY_MAPPING.COLOR_TO_VECTOR3;
 pub const GRAPHICS_EFFECT_PROPERTY_MAPPING_COLOR_TO_VECTOR4 = GRAPHICS_EFFECT_PROPERTY_MAPPING.COLOR_TO_VECTOR4;
 
-const IID_IGraphicsEffectD2D1Interop_Value = @import("../../../zig.zig").Guid.initString("2fc57384-a068-44d7-a331-30982fcf7177");
+const IID_IGraphicsEffectD2D1Interop_Value = Guid.initString("2fc57384-a068-44d7-a331-30982fcf7177");
 pub const IID_IGraphicsEffectD2D1Interop = &IID_IGraphicsEffectD2D1Interop_Value;
 pub const IGraphicsEffectD2D1Interop = extern struct {
     pub const VTable = extern struct {
@@ -96,7 +96,7 @@ pub const IGraphicsEffectD2D1Interop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IGeometrySource2DInterop_Value = @import("../../../zig.zig").Guid.initString("0657af73-53fd-47cf-84ff-c8492d2a80a3");
+const IID_IGeometrySource2DInterop_Value = Guid.initString("0657af73-53fd-47cf-84ff-c8492d2a80a3");
 pub const IID_IGeometrySource2DInterop = &IID_IGeometrySource2DInterop_Value;
 pub const IGeometrySource2DInterop = extern struct {
     pub const VTable = extern struct {

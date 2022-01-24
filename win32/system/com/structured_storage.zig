@@ -155,7 +155,7 @@ pub const LOCK_EXCLUSIVE = LOCKTYPE.EXCLUSIVE;
 pub const LOCK_ONLYONCE = LOCKTYPE.ONLYONCE;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATSTG_Value = @import("../../zig.zig").Guid.initString("0000000d-0000-0000-c000-000000000046");
+const IID_IEnumSTATSTG_Value = Guid.initString("0000000d-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATSTG = &IID_IEnumSTATSTG_Value;
 pub const IEnumSTATSTG = extern struct {
     pub const VTable = extern struct {
@@ -208,7 +208,7 @@ pub const RemSNB = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IStorage_Value = @import("../../zig.zig").Guid.initString("0000000b-0000-0000-c000-000000000046");
+const IID_IStorage_Value = Guid.initString("0000000b-0000-0000-c000-000000000046");
 pub const IID_IStorage = &IID_IStorage_Value;
 pub const IStorage = extern struct {
     pub const VTable = extern struct {
@@ -373,7 +373,7 @@ pub const IStorage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPersistStorage_Value = @import("../../zig.zig").Guid.initString("0000010a-0000-0000-c000-000000000046");
+const IID_IPersistStorage_Value = Guid.initString("0000010a-0000-0000-c000-000000000046");
 pub const IID_IPersistStorage = &IID_IPersistStorage_Value;
 pub const IPersistStorage = extern struct {
     pub const VTable = extern struct {
@@ -434,7 +434,7 @@ pub const IPersistStorage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ILockBytes_Value = @import("../../zig.zig").Guid.initString("0000000a-0000-0000-c000-000000000046");
+const IID_ILockBytes_Value = Guid.initString("0000000a-0000-0000-c000-000000000046");
 pub const IID_ILockBytes = &IID_ILockBytes_Value;
 pub const ILockBytes = extern struct {
     pub const VTable = extern struct {
@@ -516,7 +516,7 @@ pub const ILockBytes = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IRootStorage_Value = @import("../../zig.zig").Guid.initString("00000012-0000-0000-c000-000000000046");
+const IID_IRootStorage_Value = Guid.initString("00000012-0000-0000-c000-000000000046");
 pub const IID_IRootStorage = &IID_IRootStorage_Value;
 pub const IRootStorage = extern struct {
     pub const VTable = extern struct {
@@ -538,7 +538,7 @@ pub const IRootStorage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IFillLockBytes_Value = @import("../../zig.zig").Guid.initString("99caf010-415e-11cf-8814-00aa00b569f5");
+const IID_IFillLockBytes_Value = Guid.initString("99caf010-415e-11cf-8814-00aa00b569f5");
 pub const IID_IFillLockBytes = &IID_IFillLockBytes_Value;
 pub const IFillLockBytes = extern struct {
     pub const VTable = extern struct {
@@ -591,7 +591,7 @@ pub const IFillLockBytes = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_ILayoutStorage_Value = @import("../../zig.zig").Guid.initString("0e6d4d90-6738-11cf-9608-00aa00680db4");
+const IID_ILayoutStorage_Value = Guid.initString("0e6d4d90-6738-11cf-9608-00aa00680db4");
 pub const IID_ILayoutStorage = &IID_ILayoutStorage_Value;
 pub const ILayoutStorage = extern struct {
     pub const VTable = extern struct {
@@ -645,7 +645,7 @@ pub const ILayoutStorage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IDirectWriterLock_Value = @import("../../zig.zig").Guid.initString("0e6d4d92-6738-11cf-9608-00aa00680db4");
+const IID_IDirectWriterLock_Value = Guid.initString("0e6d4d92-6738-11cf-9608-00aa00680db4");
 pub const IID_IDirectWriterLock = &IID_IDirectWriterLock_Value;
 pub const IDirectWriterLock = extern struct {
     pub const VTable = extern struct {
@@ -907,7 +907,7 @@ pub const STATPROPSETSTG = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertyStorage_Value = @import("../../zig.zig").Guid.initString("00000138-0000-0000-c000-000000000046");
+const IID_IPropertyStorage_Value = Guid.initString("00000138-0000-0000-c000-000000000046");
 pub const IID_IPropertyStorage = &IID_IPropertyStorage_Value;
 pub const IPropertyStorage = extern struct {
     pub const VTable = extern struct {
@@ -1029,7 +1029,7 @@ pub const IPropertyStorage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertySetStorage_Value = @import("../../zig.zig").Guid.initString("0000013a-0000-0000-c000-000000000046");
+const IID_IPropertySetStorage_Value = Guid.initString("0000013a-0000-0000-c000-000000000046");
 pub const IID_IPropertySetStorage = &IID_IPropertySetStorage_Value;
 pub const IPropertySetStorage = extern struct {
     pub const VTable = extern struct {
@@ -1081,7 +1081,7 @@ pub const IPropertySetStorage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATPROPSTG_Value = @import("../../zig.zig").Guid.initString("00000139-0000-0000-c000-000000000046");
+const IID_IEnumSTATPROPSTG_Value = Guid.initString("00000139-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATPROPSTG = &IID_IEnumSTATPROPSTG_Value;
 pub const IEnumSTATPROPSTG = extern struct {
     pub const VTable = extern struct {
@@ -1128,7 +1128,7 @@ pub const IEnumSTATPROPSTG = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATPROPSETSTG_Value = @import("../../zig.zig").Guid.initString("0000013b-0000-0000-c000-000000000046");
+const IID_IEnumSTATPROPSETSTG_Value = Guid.initString("0000013b-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATPROPSETSTG = &IID_IEnumSTATPROPSETSTG_Value;
 pub const IEnumSTATPROPSETSTG = extern struct {
     pub const VTable = extern struct {
@@ -1213,7 +1213,7 @@ pub const PMemoryAllocator = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-const IID_IPropertyBag_Value = @import("../../zig.zig").Guid.initString("55272a00-42cb-11ce-8135-00aa004bb851");
+const IID_IPropertyBag_Value = Guid.initString("55272a00-42cb-11ce-8135-00aa004bb851");
 pub const IID_IPropertyBag = &IID_IPropertyBag_Value;
 pub const IPropertyBag = extern struct {
     pub const VTable = extern struct {
@@ -1263,7 +1263,7 @@ pub const PROPBAG2 = extern struct {
     clsid: Guid,
 };
 
-const IID_IPropertyBag2_Value = @import("../../zig.zig").Guid.initString("22f55882-280b-11d0-a8a9-00a0c90c2004");
+const IID_IPropertyBag2_Value = Guid.initString("22f55882-280b-11d0-a8a9-00a0c90c2004");
 pub const IID_IPropertyBag2 = &IID_IPropertyBag2_Value;
 pub const IPropertyBag2 = extern struct {
     pub const VTable = extern struct {

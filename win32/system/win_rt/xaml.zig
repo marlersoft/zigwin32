@@ -7,7 +7,7 @@ pub const E_SURFACE_CONTENTS_LOST = @as(u32, 2150301728);
 //--------------------------------------------------------------------------------
 // Section: Types (19)
 //--------------------------------------------------------------------------------
-const IID_ISurfaceImageSourceNative_Value = @import("../../zig.zig").Guid.initString("f2e9edc1-d307-4525-9886-0fafaa44163c");
+const IID_ISurfaceImageSourceNative_Value = Guid.initString("f2e9edc1-d307-4525-9886-0fafaa44163c");
 pub const IID_ISurfaceImageSourceNative = &IID_ISurfaceImageSourceNative_Value;
 pub const ISurfaceImageSourceNative = extern struct {
     pub const VTable = extern struct {
@@ -45,7 +45,7 @@ pub const ISurfaceImageSourceNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVirtualSurfaceUpdatesCallbackNative_Value = @import("../../zig.zig").Guid.initString("dbf2e947-8e6c-4254-9eee-7738f71386c9");
+const IID_IVirtualSurfaceUpdatesCallbackNative_Value = Guid.initString("dbf2e947-8e6c-4254-9eee-7738f71386c9");
 pub const IID_IVirtualSurfaceUpdatesCallbackNative = &IID_IVirtualSurfaceUpdatesCallbackNative_Value;
 pub const IVirtualSurfaceUpdatesCallbackNative = extern struct {
     pub const VTable = extern struct {
@@ -65,7 +65,7 @@ pub const IVirtualSurfaceUpdatesCallbackNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVirtualSurfaceImageSourceNative_Value = @import("../../zig.zig").Guid.initString("e9550983-360b-4f53-b391-afd695078691");
+const IID_IVirtualSurfaceImageSourceNative_Value = Guid.initString("e9550983-360b-4f53-b391-afd695078691");
 pub const IID_IVirtualSurfaceImageSourceNative = &IID_IVirtualSurfaceImageSourceNative_Value;
 pub const IVirtualSurfaceImageSourceNative = extern struct {
     pub const VTable = extern struct {
@@ -128,7 +128,7 @@ pub const IVirtualSurfaceImageSourceNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISwapChainBackgroundPanelNative_Value = @import("../../zig.zig").Guid.initString("43bebd4e-add5-4035-8f85-5608d08e9dc9");
+const IID_ISwapChainBackgroundPanelNative_Value = Guid.initString("43bebd4e-add5-4035-8f85-5608d08e9dc9");
 pub const IID_ISwapChainBackgroundPanelNative = &IID_ISwapChainBackgroundPanelNative_Value;
 pub const ISwapChainBackgroundPanelNative = extern struct {
     pub const VTable = extern struct {
@@ -149,7 +149,7 @@ pub const ISwapChainBackgroundPanelNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISurfaceImageSourceManagerNative_Value = @import("../../zig.zig").Guid.initString("4c8798b7-1d88-4a0f-b59b-b93f600de8c8");
+const IID_ISurfaceImageSourceManagerNative_Value = Guid.initString("4c8798b7-1d88-4a0f-b59b-b93f600de8c8");
 pub const IID_ISurfaceImageSourceManagerNative = &IID_ISurfaceImageSourceManagerNative_Value;
 pub const ISurfaceImageSourceManagerNative = extern struct {
     pub const VTable = extern struct {
@@ -170,7 +170,7 @@ pub const ISurfaceImageSourceManagerNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISurfaceImageSourceNativeWithD2D_Value = @import("../../zig.zig").Guid.initString("54298223-41e1-4a41-9c08-02e8256864a1");
+const IID_ISurfaceImageSourceNativeWithD2D_Value = Guid.initString("54298223-41e1-4a41-9c08-02e8256864a1");
 pub const IID_ISurfaceImageSourceNativeWithD2D = &IID_ISurfaceImageSourceNativeWithD2D_Value;
 pub const ISurfaceImageSourceNativeWithD2D = extern struct {
     pub const VTable = extern struct {
@@ -223,7 +223,7 @@ pub const ISurfaceImageSourceNativeWithD2D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISwapChainPanelNative_Value = @import("../../zig.zig").Guid.initString("f92f19d2-3ade-45a6-a20c-f6f1ea90554b");
+const IID_ISwapChainPanelNative_Value = Guid.initString("f92f19d2-3ade-45a6-a20c-f6f1ea90554b");
 pub const IID_ISwapChainPanelNative = &IID_ISwapChainPanelNative_Value;
 pub const ISwapChainPanelNative = extern struct {
     pub const VTable = extern struct {
@@ -244,7 +244,7 @@ pub const ISwapChainPanelNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISwapChainPanelNative2_Value = @import("../../zig.zig").Guid.initString("d5a2f60c-37b2-44a2-937b-8d8eb9726821");
+const IID_ISwapChainPanelNative2_Value = Guid.initString("d5a2f60c-37b2-44a2-937b-8d8eb9726821");
 pub const IID_ISwapChainPanelNative2 = &IID_ISwapChainPanelNative2_Value;
 pub const ISwapChainPanelNative2 = extern struct {
     pub const VTable = extern struct {
@@ -265,7 +265,7 @@ pub const ISwapChainPanelNative2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDesktopWindowXamlSourceNative_Value = @import("../../zig.zig").Guid.initString("3cbcf1bf-2f76-4e9c-96ab-e84b37972554");
+const IID_IDesktopWindowXamlSourceNative_Value = Guid.initString("3cbcf1bf-2f76-4e9c-96ab-e84b37972554");
 pub const IID_IDesktopWindowXamlSourceNative = &IID_IDesktopWindowXamlSourceNative_Value;
 pub const IDesktopWindowXamlSourceNative = extern struct {
     pub const VTable = extern struct {
@@ -295,7 +295,7 @@ pub const IDesktopWindowXamlSourceNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDesktopWindowXamlSourceNative2_Value = @import("../../zig.zig").Guid.initString("e3dcd8c7-3057-4692-99c3-7b7720afda31");
+const IID_IDesktopWindowXamlSourceNative2_Value = Guid.initString("e3dcd8c7-3057-4692-99c3-7b7720afda31");
 pub const IID_IDesktopWindowXamlSourceNative2 = &IID_IDesktopWindowXamlSourceNative2_Value;
 pub const IDesktopWindowXamlSourceNative2 = extern struct {
     pub const VTable = extern struct {
@@ -317,7 +317,7 @@ pub const IDesktopWindowXamlSourceNative2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReferenceTrackerTarget_Value = @import("../../zig.zig").Guid.initString("64bd43f8-bfee-4ec4-b7eb-2935158dae21");
+const IID_IReferenceTrackerTarget_Value = Guid.initString("64bd43f8-bfee-4ec4-b7eb-2935158dae21");
 pub const IID_IReferenceTrackerTarget = &IID_IReferenceTrackerTarget_Value;
 pub const IReferenceTrackerTarget = extern struct {
     pub const VTable = extern struct {
@@ -358,7 +358,7 @@ pub const IReferenceTrackerTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReferenceTracker_Value = @import("../../zig.zig").Guid.initString("11d3b13a-180e-4789-a8be-7712882893e6");
+const IID_IReferenceTracker_Value = Guid.initString("11d3b13a-180e-4789-a8be-7712882893e6");
 pub const IID_IReferenceTracker = &IID_IReferenceTracker_Value;
 pub const IReferenceTracker = extern struct {
     pub const VTable = extern struct {
@@ -422,7 +422,7 @@ pub const IReferenceTracker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReferenceTrackerManager_Value = @import("../../zig.zig").Guid.initString("3cf184b4-7ccb-4dda-8455-7e6ce99a3298");
+const IID_IReferenceTrackerManager_Value = Guid.initString("3cf184b4-7ccb-4dda-8455-7e6ce99a3298");
 pub const IID_IReferenceTrackerManager = &IID_IReferenceTrackerManager_Value;
 pub const IReferenceTrackerManager = extern struct {
     pub const VTable = extern struct {
@@ -465,7 +465,7 @@ pub const IReferenceTrackerManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFindReferenceTargetsCallback_Value = @import("../../zig.zig").Guid.initString("04b3486c-4687-4229-8d14-505ab584dd88");
+const IID_IFindReferenceTargetsCallback_Value = Guid.initString("04b3486c-4687-4229-8d14-505ab584dd88");
 pub const IID_IFindReferenceTargetsCallback = &IID_IFindReferenceTargetsCallback_Value;
 pub const IFindReferenceTargetsCallback = extern struct {
     pub const VTable = extern struct {
@@ -493,7 +493,7 @@ pub const XAML_REFERENCETRACKER_DISCONNECT = enum(i32) {
 pub const XAML_REFERENCETRACKER_DISCONNECT_DEFAULT = XAML_REFERENCETRACKER_DISCONNECT.DEFAULT;
 pub const XAML_REFERENCETRACKER_DISCONNECT_SUSPEND = XAML_REFERENCETRACKER_DISCONNECT.SUSPEND;
 
-const IID_IReferenceTrackerHost_Value = @import("../../zig.zig").Guid.initString("29a71c6a-3c42-4416-a39d-e2825a07a773");
+const IID_IReferenceTrackerHost_Value = Guid.initString("29a71c6a-3c42-4416-a39d-e2825a07a773");
 pub const IID_IReferenceTrackerHost = &IID_IReferenceTrackerHost_Value;
 pub const IReferenceTrackerHost = extern struct {
     pub const VTable = extern struct {
@@ -553,7 +553,7 @@ pub const IReferenceTrackerHost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReferenceTrackerExtension_Value = @import("../../zig.zig").Guid.initString("4e897caa-59d5-4613-8f8c-f7ebd1f399b0");
+const IID_IReferenceTrackerExtension_Value = Guid.initString("4e897caa-59d5-4613-8f8c-f7ebd1f399b0");
 pub const IID_IReferenceTrackerExtension = &IID_IReferenceTrackerExtension_Value;
 pub const IReferenceTrackerExtension = extern struct {
     pub const VTable = extern struct {
@@ -570,7 +570,7 @@ pub const TrackerHandle__ = extern struct {
     unused: i32,
 };
 
-const IID_ITrackerOwner_Value = @import("../../zig.zig").Guid.initString("eb24c20b-9816-4ac7-8cff-36f67a118f4e");
+const IID_ITrackerOwner_Value = Guid.initString("eb24c20b-9816-4ac7-8cff-36f67a118f4e");
 pub const IID_ITrackerOwner = &IID_ITrackerOwner_Value;
 pub const ITrackerOwner = extern struct {
     pub const VTable = extern struct {

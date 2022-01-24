@@ -45,7 +45,7 @@ pub const MILMatrixF = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectConnectorInfo_Value = @import("../zig.zig").Guid.initString("f66d2e4b-b46b-42fc-859e-3da0ecdb3c43");
+const IID_IMILBitmapEffectConnectorInfo_Value = Guid.initString("f66d2e4b-b46b-42fc-859e-3da0ecdb3c43");
 pub const IID_IMILBitmapEffectConnectorInfo = &IID_IMILBitmapEffectConnectorInfo_Value;
 pub const IMILBitmapEffectConnectorInfo = extern struct {
     pub const VTable = extern struct {
@@ -92,7 +92,7 @@ pub const IMILBitmapEffectConnectorInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectConnectionsInfo_Value = @import("../zig.zig").Guid.initString("476b538a-c765-4237-ba4a-d6a880ff0cfc");
+const IID_IMILBitmapEffectConnectionsInfo_Value = Guid.initString("476b538a-c765-4237-ba4a-d6a880ff0cfc");
 pub const IID_IMILBitmapEffectConnectionsInfo = &IID_IMILBitmapEffectConnectionsInfo_Value;
 pub const IMILBitmapEffectConnectionsInfo = extern struct {
     pub const VTable = extern struct {
@@ -140,7 +140,7 @@ pub const IMILBitmapEffectConnectionsInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectConnections_Value = @import("../zig.zig").Guid.initString("c2b5d861-9b1a-4374-89b0-dec4874d6a81");
+const IID_IMILBitmapEffectConnections_Value = Guid.initString("c2b5d861-9b1a-4374-89b0-dec4874d6a81");
 pub const IID_IMILBitmapEffectConnections = &IID_IMILBitmapEffectConnections_Value;
 pub const IMILBitmapEffectConnections = extern struct {
     pub const VTable = extern struct {
@@ -172,7 +172,7 @@ pub const IMILBitmapEffectConnections = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffect_Value = @import("../zig.zig").Guid.initString("8a6ff321-c944-4a1b-9944-9954af301258");
+const IID_IMILBitmapEffect_Value = Guid.initString("8a6ff321-c944-4a1b-9944-9954af301258");
 pub const IID_IMILBitmapEffect = &IID_IMILBitmapEffect_Value;
 pub const IMILBitmapEffect = extern struct {
     pub const VTable = extern struct {
@@ -213,7 +213,7 @@ pub const IMILBitmapEffect = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectImpl_Value = @import("../zig.zig").Guid.initString("cc2468f2-9936-47be-b4af-06b5df5dbcbb");
+const IID_IMILBitmapEffectImpl_Value = Guid.initString("cc2468f2-9936-47be-b4af-06b5df5dbcbb");
 pub const IID_IMILBitmapEffectImpl = &IID_IMILBitmapEffectImpl_Value;
 pub const IMILBitmapEffectImpl = extern struct {
     pub const VTable = extern struct {
@@ -292,7 +292,7 @@ pub const IMILBitmapEffectImpl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectGroup_Value = @import("../zig.zig").Guid.initString("2f952360-698a-4ac6-81a1-bcfdf08eb8e8");
+const IID_IMILBitmapEffectGroup_Value = Guid.initString("2f952360-698a-4ac6-81a1-bcfdf08eb8e8");
 pub const IID_IMILBitmapEffectGroup = &IID_IMILBitmapEffectGroup_Value;
 pub const IMILBitmapEffectGroup = extern struct {
     pub const VTable = extern struct {
@@ -332,7 +332,7 @@ pub const IMILBitmapEffectGroup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectGroupImpl_Value = @import("../zig.zig").Guid.initString("78fed518-1cfc-4807-8b85-6b6e51398f62");
+const IID_IMILBitmapEffectGroupImpl_Value = Guid.initString("78fed518-1cfc-4807-8b85-6b6e51398f62");
 pub const IID_IMILBitmapEffectGroupImpl = &IID_IMILBitmapEffectGroupImpl_Value;
 pub const IMILBitmapEffectGroupImpl = extern struct {
     pub const VTable = extern struct {
@@ -370,7 +370,7 @@ pub const IMILBitmapEffectGroupImpl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectRenderContext_Value = @import("../zig.zig").Guid.initString("12a2ec7e-2d33-44b2-b334-1abb7846e390");
+const IID_IMILBitmapEffectRenderContext_Value = Guid.initString("12a2ec7e-2d33-44b2-b334-1abb7846e390");
 pub const IID_IMILBitmapEffectRenderContext = &IID_IMILBitmapEffectRenderContext_Value;
 pub const IMILBitmapEffectRenderContext = extern struct {
     pub const VTable = extern struct {
@@ -450,7 +450,7 @@ pub const IMILBitmapEffectRenderContext = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectRenderContextImpl_Value = @import("../zig.zig").Guid.initString("4d25accb-797d-4fd2-b128-dffeff84fcc3");
+const IID_IMILBitmapEffectRenderContextImpl_Value = Guid.initString("4d25accb-797d-4fd2-b128-dffeff84fcc3");
 pub const IID_IMILBitmapEffectRenderContextImpl = &IID_IMILBitmapEffectRenderContextImpl_Value;
 pub const IMILBitmapEffectRenderContextImpl = extern struct {
     pub const VTable = extern struct {
@@ -504,7 +504,7 @@ pub const IMILBitmapEffectRenderContextImpl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectFactory_Value = @import("../zig.zig").Guid.initString("33a9df34-a403-4ec7-b07e-bc0682370845");
+const IID_IMILBitmapEffectFactory_Value = Guid.initString("33a9df34-a403-4ec7-b07e-bc0682370845");
 pub const IID_IMILBitmapEffectFactory = &IID_IMILBitmapEffectFactory_Value;
 pub const IMILBitmapEffectFactory = extern struct {
     pub const VTable = extern struct {
@@ -543,7 +543,7 @@ pub const IMILBitmapEffectFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectPrimitive_Value = @import("../zig.zig").Guid.initString("67e31025-3091-4dfc-98d6-dd494551461d");
+const IID_IMILBitmapEffectPrimitive_Value = Guid.initString("67e31025-3091-4dfc-98d6-dd494551461d");
 pub const IID_IMILBitmapEffectPrimitive = &IID_IMILBitmapEffectPrimitive_Value;
 pub const IMILBitmapEffectPrimitive = extern struct {
     pub const VTable = extern struct {
@@ -618,7 +618,7 @@ pub const IMILBitmapEffectPrimitive = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectPrimitiveImpl_Value = @import("../zig.zig").Guid.initString("ce41e00b-efa6-44e7-b007-dd042e3ae126");
+const IID_IMILBitmapEffectPrimitiveImpl_Value = Guid.initString("ce41e00b-efa6-44e7-b007-dd042e3ae126");
 pub const IID_IMILBitmapEffectPrimitiveImpl = &IID_IMILBitmapEffectPrimitiveImpl_Value;
 pub const IMILBitmapEffectPrimitiveImpl = extern struct {
     pub const VTable = extern struct {
@@ -650,7 +650,7 @@ pub const IMILBitmapEffectPrimitiveImpl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffects_Value = @import("../zig.zig").Guid.initString("51ac3dce-67c5-448b-9180-ad3eabddd5dd");
+const IID_IMILBitmapEffects_Value = Guid.initString("51ac3dce-67c5-448b-9180-ad3eabddd5dd");
 pub const IID_IMILBitmapEffects = &IID_IMILBitmapEffects_Value;
 pub const IMILBitmapEffects = extern struct {
     pub const VTable = extern struct {
@@ -699,7 +699,7 @@ pub const IMILBitmapEffects = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectConnector_Value = @import("../zig.zig").Guid.initString("f59567b3-76c1-4d47-ba1e-79f955e350ef");
+const IID_IMILBitmapEffectConnector_Value = Guid.initString("f59567b3-76c1-4d47-ba1e-79f955e350ef");
 pub const IID_IMILBitmapEffectConnector = &IID_IMILBitmapEffectConnector_Value;
 pub const IMILBitmapEffectConnector = extern struct {
     pub const VTable = extern struct {
@@ -729,7 +729,7 @@ pub const IMILBitmapEffectConnector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectInputConnector_Value = @import("../zig.zig").Guid.initString("a9b4ecaa-7a3c-45e7-8573-f4b81b60dd6c");
+const IID_IMILBitmapEffectInputConnector_Value = Guid.initString("a9b4ecaa-7a3c-45e7-8573-f4b81b60dd6c");
 pub const IID_IMILBitmapEffectInputConnector = &IID_IMILBitmapEffectInputConnector_Value;
 pub const IMILBitmapEffectInputConnector = extern struct {
     pub const VTable = extern struct {
@@ -759,7 +759,7 @@ pub const IMILBitmapEffectInputConnector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectOutputConnector_Value = @import("../zig.zig").Guid.initString("92957aad-841b-4866-82ec-8752468b07fd");
+const IID_IMILBitmapEffectOutputConnector_Value = Guid.initString("92957aad-841b-4866-82ec-8752468b07fd");
 pub const IID_IMILBitmapEffectOutputConnector = &IID_IMILBitmapEffectOutputConnector_Value;
 pub const IMILBitmapEffectOutputConnector = extern struct {
     pub const VTable = extern struct {
@@ -790,7 +790,7 @@ pub const IMILBitmapEffectOutputConnector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectOutputConnectorImpl_Value = @import("../zig.zig").Guid.initString("21fae777-8b39-4bfa-9f2d-f3941ed36913");
+const IID_IMILBitmapEffectOutputConnectorImpl_Value = Guid.initString("21fae777-8b39-4bfa-9f2d-f3941ed36913");
 pub const IID_IMILBitmapEffectOutputConnectorImpl = &IID_IMILBitmapEffectOutputConnectorImpl_Value;
 pub const IMILBitmapEffectOutputConnectorImpl = extern struct {
     pub const VTable = extern struct {
@@ -820,7 +820,7 @@ pub const IMILBitmapEffectOutputConnectorImpl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectInteriorInputConnector_Value = @import("../zig.zig").Guid.initString("20287e9e-86a2-4e15-953d-eb1438a5b842");
+const IID_IMILBitmapEffectInteriorInputConnector_Value = Guid.initString("20287e9e-86a2-4e15-953d-eb1438a5b842");
 pub const IID_IMILBitmapEffectInteriorInputConnector = &IID_IMILBitmapEffectInteriorInputConnector_Value;
 pub const IMILBitmapEffectInteriorInputConnector = extern struct {
     pub const VTable = extern struct {
@@ -842,7 +842,7 @@ pub const IMILBitmapEffectInteriorInputConnector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectInteriorOutputConnector_Value = @import("../zig.zig").Guid.initString("00bbb6dc-acc9-4bfc-b344-8bee383dfefa");
+const IID_IMILBitmapEffectInteriorOutputConnector_Value = Guid.initString("00bbb6dc-acc9-4bfc-b344-8bee383dfefa");
 pub const IID_IMILBitmapEffectInteriorOutputConnector = &IID_IMILBitmapEffectInteriorOutputConnector_Value;
 pub const IMILBitmapEffectInteriorOutputConnector = extern struct {
     pub const VTable = extern struct {
@@ -864,7 +864,7 @@ pub const IMILBitmapEffectInteriorOutputConnector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IMILBitmapEffectEvents_Value = @import("../zig.zig").Guid.initString("2e880dd8-f8ce-457b-8199-d60bb3d7ef98");
+const IID_IMILBitmapEffectEvents_Value = Guid.initString("2e880dd8-f8ce-457b-8199-d60bb3d7ef98");
 pub const IID_IMILBitmapEffectEvents = &IID_IMILBitmapEffectEvents_Value;
 pub const IMILBitmapEffectEvents = extern struct {
     pub const VTable = extern struct {

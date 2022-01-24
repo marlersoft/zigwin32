@@ -243,7 +243,7 @@ pub const D2D1_FILL_MODE_WINDING = D2D1_FILL_MODE.WINDING;
 pub const D2D1_FILL_MODE_FORCE_DWORD = D2D1_FILL_MODE.FORCE_DWORD;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ID2D1SimplifiedGeometrySink_Value = @import("../../zig.zig").Guid.initString("2cd9069e-12e2-11dc-9fed-001143a055f9");
+const IID_ID2D1SimplifiedGeometrySink_Value = Guid.initString("2cd9069e-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1SimplifiedGeometrySink = &IID_ID2D1SimplifiedGeometrySink_Value;
 pub const ID2D1SimplifiedGeometrySink = extern struct {
     pub const VTable = extern struct {
@@ -448,8 +448,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const DXGI_FORMAT = @import("../../graphics/dxgi/common.zig").DXGI_FORMAT;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;

@@ -4140,7 +4140,7 @@ pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE = extern 
 };
 
 // TODO: this type is limited to platform 'windows8.1'
-const IID_IContentPrefetcherTaskTrigger_Value = @import("../zig.zig").Guid.initString("1b35a14a-6094-4799-a60e-e474e15d4dc9");
+const IID_IContentPrefetcherTaskTrigger_Value = Guid.initString("1b35a14a-6094-4799-a60e-e474e15d4dc9");
 pub const IID_IContentPrefetcherTaskTrigger = &IID_IContentPrefetcherTaskTrigger_Value;
 pub const IContentPrefetcherTaskTrigger = extern struct {
     pub const VTable = extern struct {

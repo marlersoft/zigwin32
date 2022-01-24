@@ -109,17 +109,17 @@ pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
 //--------------------------------------------------------------------------------
 // Section: Types (44)
 //--------------------------------------------------------------------------------
-const CLSID_WpcSettingsProvider_Value = @import("../zig.zig").Guid.initString("355dffaa-3b9f-435c-b428-5d44290bc5f2");
+const CLSID_WpcSettingsProvider_Value = Guid.initString("355dffaa-3b9f-435c-b428-5d44290bc5f2");
 pub const CLSID_WpcSettingsProvider = &CLSID_WpcSettingsProvider_Value;
 
-const CLSID_WpcProviderSupport_Value = @import("../zig.zig").Guid.initString("bb18c7a0-2186-4be0-97d8-04847b628e02");
+const CLSID_WpcProviderSupport_Value = Guid.initString("bb18c7a0-2186-4be0-97d8-04847b628e02");
 pub const CLSID_WpcProviderSupport = &CLSID_WpcProviderSupport_Value;
 
-const CLSID_WindowsParentalControls_Value = @import("../zig.zig").Guid.initString("e77cc89b-7401-4c04-8ced-149db35add04");
+const CLSID_WindowsParentalControls_Value = Guid.initString("e77cc89b-7401-4c04-8ced-149db35add04");
 pub const CLSID_WindowsParentalControls = &CLSID_WindowsParentalControls_Value;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWPCProviderState_Value = @import("../zig.zig").Guid.initString("50b6a267-c4bd-450b-adb5-759073837c9e");
+const IID_IWPCProviderState_Value = Guid.initString("50b6a267-c4bd-450b-adb5-759073837c9e");
 pub const IID_IWPCProviderState = &IID_IWPCProviderState_Value;
 pub const IWPCProviderState = extern struct {
     pub const VTable = extern struct {
@@ -152,7 +152,7 @@ pub const WPCFLAG_OVERRIDE = enum(i32) {
 pub const WPCFLAG_APPLICATION = WPCFLAG_OVERRIDE.N;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWPCProviderConfig_Value = @import("../zig.zig").Guid.initString("bef54196-2d02-4a26-b6e5-d65af295d0f1");
+const IID_IWPCProviderConfig_Value = Guid.initString("bef54196-2d02-4a26-b6e5-d65af295d0f1");
 pub const IID_IWPCProviderConfig = &IID_IWPCProviderConfig_Value;
 pub const IWPCProviderConfig = extern struct {
     pub const VTable = extern struct {
@@ -213,7 +213,7 @@ pub const WPCFLAG_TIME_ALLOWANCE_RESTRICTED = WPCFLAG_RESTRICTION.TIME_ALLOWANCE
 pub const WPCFLAG_GAMES_RESTRICTED = WPCFLAG_RESTRICTION.GAMES_RESTRICTED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWPCSettings_Value = @import("../zig.zig").Guid.initString("8fdf6ca1-0189-47e4-b670-1a8a4636e340");
+const IID_IWPCSettings_Value = Guid.initString("8fdf6ca1-0189-47e4-b670-1a8a4636e340");
 pub const IID_IWPCSettings = &IID_IWPCSettings_Value;
 pub const IWPCSettings = extern struct {
     pub const VTable = extern struct {
@@ -251,7 +251,7 @@ pub const IWPCSettings = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWPCGamesSettings_Value = @import("../zig.zig").Guid.initString("95e87780-e158-489e-b452-bbb850790715");
+const IID_IWPCGamesSettings_Value = Guid.initString("95e87780-e158-489e-b452-bbb850790715");
 pub const IID_IWPCGamesSettings = &IID_IWPCGamesSettings_Value;
 pub const IWPCGamesSettings = extern struct {
     pub const VTable = extern struct {
@@ -281,7 +281,7 @@ pub const WPCFLAG_WEB_SETTING_NOTBLOCKED = WPCFLAG_WEB_SETTING.NOTBLOCKED;
 pub const WPCFLAG_WEB_SETTING_DOWNLOADSBLOCKED = WPCFLAG_WEB_SETTING.DOWNLOADSBLOCKED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWPCWebSettings_Value = @import("../zig.zig").Guid.initString("ffccbdb8-0992-4c30-b0f1-1cbb09c240aa");
+const IID_IWPCWebSettings_Value = Guid.initString("ffccbdb8-0992-4c30-b0f1-1cbb09c240aa");
 pub const IID_IWPCWebSettings = &IID_IWPCWebSettings_Value;
 pub const IWPCWebSettings = extern struct {
     pub const VTable = extern struct {
@@ -322,7 +322,7 @@ pub const WPCFLAG_WPC_VISIBLE = WPCFLAG_VISIBILITY.VISIBLE;
 pub const WPCFLAG_WPC_HIDDEN = WPCFLAG_VISIBILITY.HIDDEN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWindowsParentalControlsCore_Value = @import("../zig.zig").Guid.initString("4ff40a0f-3f3b-4d7c-a41b-4f39d7b44d05");
+const IID_IWindowsParentalControlsCore_Value = Guid.initString("4ff40a0f-3f3b-4d7c-a41b-4f39d7b44d05");
 pub const IID_IWindowsParentalControlsCore = &IID_IWindowsParentalControlsCore_Value;
 pub const IWindowsParentalControlsCore = extern struct {
     pub const VTable = extern struct {
@@ -371,7 +371,7 @@ pub const IWindowsParentalControlsCore = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWindowsParentalControls_Value = @import("../zig.zig").Guid.initString("28b4d88b-e072-49e6-804d-26edbe21a7b9");
+const IID_IWindowsParentalControls_Value = Guid.initString("28b4d88b-e072-49e6-804d-26edbe21a7b9");
 pub const IID_IWindowsParentalControls = &IID_IWindowsParentalControls_Value;
 pub const IWindowsParentalControls = extern struct {
     pub const VTable = extern struct {
@@ -394,7 +394,7 @@ pub const IWindowsParentalControls = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWPCProviderSupport_Value = @import("../zig.zig").Guid.initString("41eba572-23ed-4779-bec1-8df96206c44c");
+const IID_IWPCProviderSupport_Value = Guid.initString("41eba572-23ed-4779-bec1-8df96206c44c");
 pub const IID_IWPCProviderSupport = &IID_IWPCProviderSupport_Value;
 pub const IWPCProviderSupport = extern struct {
     pub const VTable = extern struct {

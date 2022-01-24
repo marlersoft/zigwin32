@@ -1456,7 +1456,7 @@ pub const MAPPING_PROPERTY_BAG = extern struct {
     pContext: ?*anyopaque,
 };
 
-const CLSID_SpellCheckerFactory_Value = @import("zig.zig").Guid.initString("7ab36653-1796-484b-bdfa-e74f1db7c1dc");
+const CLSID_SpellCheckerFactory_Value = Guid.initString("7ab36653-1796-484b-bdfa-e74f1db7c1dc");
 pub const CLSID_SpellCheckerFactory = &CLSID_SpellCheckerFactory_Value;
 
 pub const WORDLIST_TYPE = enum(i32) {
@@ -1482,7 +1482,7 @@ pub const CORRECTIVE_ACTION_REPLACE = CORRECTIVE_ACTION.REPLACE;
 pub const CORRECTIVE_ACTION_DELETE = CORRECTIVE_ACTION.DELETE;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellingError_Value = @import("zig.zig").Guid.initString("b7c82d61-fbe8-4b47-9b27-6c0d2e0de0a3");
+const IID_ISpellingError_Value = Guid.initString("b7c82d61-fbe8-4b47-9b27-6c0d2e0de0a3");
 pub const IID_ISpellingError = &IID_ISpellingError_Value;
 pub const ISpellingError = extern struct {
     pub const VTable = extern struct {
@@ -1532,7 +1532,7 @@ pub const ISpellingError = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IEnumSpellingError_Value = @import("zig.zig").Guid.initString("803e3bd4-2828-4410-8290-418d1d73c762");
+const IID_IEnumSpellingError_Value = Guid.initString("803e3bd4-2828-4410-8290-418d1d73c762");
 pub const IID_IEnumSpellingError = &IID_IEnumSpellingError_Value;
 pub const IEnumSpellingError = extern struct {
     pub const VTable = extern struct {
@@ -1554,7 +1554,7 @@ pub const IEnumSpellingError = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IOptionDescription_Value = @import("zig.zig").Guid.initString("432e5f85-35cf-4606-a801-6f70277e1d7a");
+const IID_IOptionDescription_Value = Guid.initString("432e5f85-35cf-4606-a801-6f70277e1d7a");
 pub const IID_IOptionDescription = &IID_IOptionDescription_Value;
 pub const IOptionDescription = extern struct {
     pub const VTable = extern struct {
@@ -1604,7 +1604,7 @@ pub const IOptionDescription = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellCheckerChangedEventHandler_Value = @import("zig.zig").Guid.initString("0b83a5b0-792f-4eab-9799-acf52c5ed08a");
+const IID_ISpellCheckerChangedEventHandler_Value = Guid.initString("0b83a5b0-792f-4eab-9799-acf52c5ed08a");
 pub const IID_ISpellCheckerChangedEventHandler = &IID_ISpellCheckerChangedEventHandler_Value;
 pub const ISpellCheckerChangedEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -1626,7 +1626,7 @@ pub const ISpellCheckerChangedEventHandler = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellChecker_Value = @import("zig.zig").Guid.initString("b6fd0b71-e2bc-4653-8d05-f197e412770b");
+const IID_ISpellChecker_Value = Guid.initString("b6fd0b71-e2bc-4653-8d05-f197e412770b");
 pub const IID_ISpellChecker = &IID_ISpellChecker_Value;
 pub const ISpellChecker = extern struct {
     pub const VTable = extern struct {
@@ -1765,7 +1765,7 @@ pub const ISpellChecker = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-const IID_ISpellChecker2_Value = @import("zig.zig").Guid.initString("e7ed1c71-87f7-4378-a840-c9200dacee47");
+const IID_ISpellChecker2_Value = Guid.initString("e7ed1c71-87f7-4378-a840-c9200dacee47");
 pub const IID_ISpellChecker2 = &IID_ISpellChecker2_Value;
 pub const ISpellChecker2 = extern struct {
     pub const VTable = extern struct {
@@ -1787,7 +1787,7 @@ pub const ISpellChecker2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellCheckerFactory_Value = @import("zig.zig").Guid.initString("8e018a9d-2415-4677-bf08-794ea61f94bb");
+const IID_ISpellCheckerFactory_Value = Guid.initString("8e018a9d-2415-4677-bf08-794ea61f94bb");
 pub const IID_ISpellCheckerFactory = &IID_ISpellCheckerFactory_Value;
 pub const ISpellCheckerFactory = extern struct {
     pub const VTable = extern struct {
@@ -1828,7 +1828,7 @@ pub const ISpellCheckerFactory = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IUserDictionariesRegistrar_Value = @import("zig.zig").Guid.initString("aa176b85-0e12-4844-8e1a-eef1da77f586");
+const IID_IUserDictionariesRegistrar_Value = Guid.initString("aa176b85-0e12-4844-8e1a-eef1da77f586");
 pub const IID_IUserDictionariesRegistrar = &IID_IUserDictionariesRegistrar_Value;
 pub const IUserDictionariesRegistrar = extern struct {
     pub const VTable = extern struct {
@@ -1860,7 +1860,7 @@ pub const IUserDictionariesRegistrar = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellCheckProvider_Value = @import("zig.zig").Guid.initString("73e976e0-8ed4-4eb1-80d7-1be0a16b0c38");
+const IID_ISpellCheckProvider_Value = Guid.initString("73e976e0-8ed4-4eb1-80d7-1be0a16b0c38");
 pub const IID_ISpellCheckProvider = &IID_ISpellCheckProvider_Value;
 pub const ISpellCheckProvider = extern struct {
     pub const VTable = extern struct {
@@ -1963,7 +1963,7 @@ pub const ISpellCheckProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IComprehensiveSpellCheckProvider_Value = @import("zig.zig").Guid.initString("0c58f8de-8e94-479e-9717-70c42c4ad2c3");
+const IID_IComprehensiveSpellCheckProvider_Value = Guid.initString("0c58f8de-8e94-479e-9717-70c42c4ad2c3");
 pub const IID_IComprehensiveSpellCheckProvider = &IID_IComprehensiveSpellCheckProvider_Value;
 pub const IComprehensiveSpellCheckProvider = extern struct {
     pub const VTable = extern struct {
@@ -1986,7 +1986,7 @@ pub const IComprehensiveSpellCheckProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ISpellCheckProviderFactory_Value = @import("zig.zig").Guid.initString("9f671e11-77d6-4c92-aefb-615215e3a4be");
+const IID_ISpellCheckProviderFactory_Value = Guid.initString("9f671e11-77d6-4c92-aefb-615215e3a4be");
 pub const IID_ISpellCheckProviderFactory = &IID_ISpellCheckProviderFactory_Value;
 pub const ISpellCheckProviderFactory = extern struct {
     pub const VTable = extern struct {
@@ -7004,16 +7004,16 @@ pub const USearch = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-const CLSID_CMLangString_Value = @import("zig.zig").Guid.initString("c04d65cf-b70d-11d0-b188-00aa0038c969");
+const CLSID_CMLangString_Value = Guid.initString("c04d65cf-b70d-11d0-b188-00aa0038c969");
 pub const CLSID_CMLangString = &CLSID_CMLangString_Value;
 
-const CLSID_CMLangConvertCharset_Value = @import("zig.zig").Guid.initString("d66d6f99-cdaa-11d0-b822-00c04fc9b31f");
+const CLSID_CMLangConvertCharset_Value = Guid.initString("d66d6f99-cdaa-11d0-b822-00c04fc9b31f");
 pub const CLSID_CMLangConvertCharset = &CLSID_CMLangConvertCharset_Value;
 
-const CLSID_CMultiLanguage_Value = @import("zig.zig").Guid.initString("275c23e2-3747-11d0-9fea-00aa003f8646");
+const CLSID_CMultiLanguage_Value = Guid.initString("275c23e2-3747-11d0-9fea-00aa003f8646");
 pub const CLSID_CMultiLanguage = &CLSID_CMultiLanguage_Value;
 
-const IID_IMLangStringBufW_Value = @import("zig.zig").Guid.initString("d24acd21-ba72-11d0-b188-00aa0038c969");
+const IID_IMLangStringBufW_Value = Guid.initString("d24acd21-ba72-11d0-b188-00aa0038c969");
 pub const IID_IMLangStringBufW = &IID_IMLangStringBufW_Value;
 pub const IMLangStringBufW = extern struct {
     pub const VTable = extern struct {
@@ -7075,7 +7075,7 @@ pub const IMLangStringBufW = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLangStringBufA_Value = @import("zig.zig").Guid.initString("d24acd23-ba72-11d0-b188-00aa0038c969");
+const IID_IMLangStringBufA_Value = Guid.initString("d24acd23-ba72-11d0-b188-00aa0038c969");
 pub const IID_IMLangStringBufA = &IID_IMLangStringBufA_Value;
 pub const IMLangStringBufA = extern struct {
     pub const VTable = extern struct {
@@ -7137,7 +7137,7 @@ pub const IMLangStringBufA = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLangString_Value = @import("zig.zig").Guid.initString("c04d65ce-b70d-11d0-b188-00aa0038c969");
+const IID_IMLangString_Value = Guid.initString("c04d65ce-b70d-11d0-b188-00aa0038c969");
 pub const IID_IMLangString = &IID_IMLangString_Value;
 pub const IMLangString = extern struct {
     pub const VTable = extern struct {
@@ -7193,7 +7193,7 @@ pub const IMLangString = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLangStringWStr_Value = @import("zig.zig").Guid.initString("c04d65d0-b70d-11d0-b188-00aa0038c969");
+const IID_IMLangStringWStr_Value = Guid.initString("c04d65d0-b70d-11d0-b188-00aa0038c969");
 pub const IID_IMLangStringWStr = &IID_IMLangStringWStr_Value;
 pub const IMLangStringWStr = extern struct {
     pub const VTable = extern struct {
@@ -7302,7 +7302,7 @@ pub const IMLangStringWStr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLangStringAStr_Value = @import("zig.zig").Guid.initString("c04d65d2-b70d-11d0-b188-00aa0038c969");
+const IID_IMLangStringAStr_Value = Guid.initString("c04d65d2-b70d-11d0-b188-00aa0038c969");
 pub const IID_IMLangStringAStr = &IID_IMLangStringAStr_Value;
 pub const IMLangStringAStr = extern struct {
     pub const VTable = extern struct {
@@ -7418,7 +7418,7 @@ pub const IMLangStringAStr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLangLineBreakConsole_Value = @import("zig.zig").Guid.initString("f5be2ee1-bfd7-11d0-b188-00aa0038c969");
+const IID_IMLangLineBreakConsole_Value = Guid.initString("f5be2ee1-bfd7-11d0-b188-00aa0038c969");
 pub const IID_IMLangLineBreakConsole = &IID_IMLangLineBreakConsole_Value;
 pub const IMLangLineBreakConsole = extern struct {
     pub const VTable = extern struct {
@@ -7520,7 +7520,7 @@ pub const MIMECSETINFO = extern struct {
     wszCharset: [50]u16,
 };
 
-const IID_IEnumCodePage_Value = @import("zig.zig").Guid.initString("275c23e3-3747-11d0-9fea-00aa003f8646");
+const IID_IEnumCodePage_Value = Guid.initString("275c23e3-3747-11d0-9fea-00aa003f8646");
 pub const IID_IEnumCodePage = &IID_IEnumCodePage_Value;
 pub const IEnumCodePage = extern struct {
     pub const VTable = extern struct {
@@ -7572,7 +7572,7 @@ pub const RFC1766INFO = extern struct {
     wszLocaleName: [32]u16,
 };
 
-const IID_IEnumRfc1766_Value = @import("zig.zig").Guid.initString("3dc39d1d-c030-11d0-b81b-00c04fc9b31f");
+const IID_IEnumRfc1766_Value = Guid.initString("3dc39d1d-c030-11d0-b81b-00c04fc9b31f");
 pub const IID_IEnumRfc1766 = &IID_IEnumRfc1766_Value;
 pub const IEnumRfc1766 = extern struct {
     pub const VTable = extern struct {
@@ -7717,7 +7717,7 @@ pub const SCRIPTINFO = extern struct {
     wszProportionalFont: [32]u16,
 };
 
-const IID_IEnumScript_Value = @import("zig.zig").Guid.initString("ae5f1430-388b-11d2-8380-00c04f8f5da1");
+const IID_IEnumScript_Value = Guid.initString("ae5f1430-388b-11d2-8380-00c04f8f5da1");
 pub const IID_IEnumScript = &IID_IEnumScript_Value;
 pub const IEnumScript = extern struct {
     pub const VTable = extern struct {
@@ -7799,7 +7799,7 @@ pub const MLDETECTF_PREFERRED_ONLY = tagMLCPF.PREFERRED_ONLY;
 pub const MLDETECTF_FILTER_SPECIALCHAR = tagMLCPF.FILTER_SPECIALCHAR;
 pub const MLDETECTF_EURO_UTF8 = tagMLCPF.EURO_UTF8;
 
-const IID_IMLangConvertCharset_Value = @import("zig.zig").Guid.initString("d66d6f98-cdaa-11d0-b822-00c04fc9b31f");
+const IID_IMLangConvertCharset_Value = Guid.initString("d66d6f98-cdaa-11d0-b822-00c04fc9b31f");
 pub const IID_IMLangConvertCharset = &IID_IMLangConvertCharset_Value;
 pub const IMLangConvertCharset = extern struct {
     pub const VTable = extern struct {
@@ -7883,7 +7883,7 @@ pub const IMLangConvertCharset = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMultiLanguage_Value = @import("zig.zig").Guid.initString("275c23e1-3747-11d0-9fea-00aa003f8646");
+const IID_IMultiLanguage_Value = Guid.initString("275c23e1-3747-11d0-9fea-00aa003f8646");
 pub const IID_IMultiLanguage = &IID_IMultiLanguage_Value;
 pub const IMultiLanguage = extern struct {
     pub const VTable = extern struct {
@@ -8086,7 +8086,7 @@ pub const tagSCRIPFONTINFO = extern struct {
     wszFont: [32]u16,
 };
 
-const IID_IMultiLanguage2_Value = @import("zig.zig").Guid.initString("dccfc164-2b38-11d2-b7ec-00c04f8f5d9a");
+const IID_IMultiLanguage2_Value = Guid.initString("dccfc164-2b38-11d2-b7ec-00c04f8f5d9a");
 pub const IID_IMultiLanguage2 = &IID_IMultiLanguage2_Value;
 pub const IMultiLanguage2 = extern struct {
     pub const VTable = extern struct {
@@ -8389,7 +8389,7 @@ pub const IMultiLanguage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLangCodePages_Value = @import("zig.zig").Guid.initString("359f3443-bd4a-11d0-b188-00aa0038c969");
+const IID_IMLangCodePages_Value = Guid.initString("359f3443-bd4a-11d0-b188-00aa0038c969");
 pub const IID_IMLangCodePages = &IID_IMLangCodePages_Value;
 pub const IMLangCodePages = extern struct {
     pub const VTable = extern struct {
@@ -8442,7 +8442,7 @@ pub const IMLangCodePages = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLangFontLink_Value = @import("zig.zig").Guid.initString("359f3441-bd4a-11d0-b188-00aa0038c969");
+const IID_IMLangFontLink_Value = Guid.initString("359f3441-bd4a-11d0-b188-00aa0038c969");
 pub const IID_IMLangFontLink = &IID_IMLangFontLink_Value;
 pub const IMLangFontLink = extern struct {
     pub const VTable = extern struct {
@@ -8496,7 +8496,7 @@ pub const UNICODERANGE = extern struct {
     wcTo: u16,
 };
 
-const IID_IMLangFontLink2_Value = @import("zig.zig").Guid.initString("dccfc162-2b38-11d2-b7ec-00c04f8f5d9a");
+const IID_IMLangFontLink2_Value = Guid.initString("dccfc162-2b38-11d2-b7ec-00c04f8f5d9a");
 pub const IID_IMLangFontLink2 = &IID_IMLangFontLink2_Value;
 pub const IMLangFontLink2 = extern struct {
     pub const VTable = extern struct {
@@ -8575,7 +8575,7 @@ pub const IMLangFontLink2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMultiLanguage3_Value = @import("zig.zig").Guid.initString("4e5868ab-b157-4623-9acc-6a1d9caebe04");
+const IID_IMultiLanguage3_Value = Guid.initString("4e5868ab-b157-4623-9acc-6a1d9caebe04");
 pub const IID_IMultiLanguage3 = &IID_IMultiLanguage3_Value;
 pub const IMultiLanguage3 = extern struct {
     pub const VTable = extern struct {

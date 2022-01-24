@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
-const IID_ILearningModelOperatorProviderNative_Value = @import("../../zig.zig").Guid.initString("1adaa23a-eb67-41f3-aad8-5d984e9bacd4");
+const IID_ILearningModelOperatorProviderNative_Value = Guid.initString("1adaa23a-eb67-41f3-aad8-5d984e9bacd4");
 pub const IID_ILearningModelOperatorProviderNative = &IID_ILearningModelOperatorProviderNative_Value;
 pub const ILearningModelOperatorProviderNative = extern struct {
     pub const VTable = extern struct {
@@ -27,7 +27,7 @@ pub const ILearningModelOperatorProviderNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITensorNative_Value = @import("../../zig.zig").Guid.initString("52f547ef-5b03-49b5-82d6-565f1ee0dd49");
+const IID_ITensorNative_Value = Guid.initString("52f547ef-5b03-49b5-82d6-565f1ee0dd49");
 pub const IID_ITensorNative = &IID_ITensorNative_Value;
 pub const ITensorNative = extern struct {
     pub const VTable = extern struct {
@@ -57,7 +57,7 @@ pub const ITensorNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITensorStaticsNative_Value = @import("../../zig.zig").Guid.initString("39d055a4-66f6-4ebc-95d9-7a29ebe7690a");
+const IID_ITensorStaticsNative_Value = Guid.initString("39d055a4-66f6-4ebc-95d9-7a29ebe7690a");
 pub const IID_ITensorStaticsNative = &IID_ITensorStaticsNative_Value;
 pub const ITensorStaticsNative = extern struct {
     pub const VTable = extern struct {
@@ -81,7 +81,7 @@ pub const ITensorStaticsNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILearningModelDeviceFactoryNative_Value = @import("../../zig.zig").Guid.initString("1e9b31a1-662e-4ae0-af67-f63bb337e634");
+const IID_ILearningModelDeviceFactoryNative_Value = Guid.initString("1e9b31a1-662e-4ae0-af67-f63bb337e634");
 pub const IID_ILearningModelDeviceFactoryNative = &IID_ILearningModelDeviceFactoryNative_Value;
 pub const ILearningModelDeviceFactoryNative = extern struct {
     pub const VTable = extern struct {
@@ -103,7 +103,7 @@ pub const ILearningModelDeviceFactoryNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILearningModelSessionOptionsNative_Value = @import("../../zig.zig").Guid.initString("c71e953f-37b4-4564-8658-d8396866db0d");
+const IID_ILearningModelSessionOptionsNative_Value = Guid.initString("c71e953f-37b4-4564-8658-d8396866db0d");
 pub const IID_ILearningModelSessionOptionsNative = &IID_ILearningModelSessionOptionsNative_Value;
 pub const ILearningModelSessionOptionsNative = extern struct {
     pub const VTable = extern struct {
@@ -143,8 +143,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID3D12CommandQueue = @import("../../graphics/direct3d12.zig").ID3D12CommandQueue;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;

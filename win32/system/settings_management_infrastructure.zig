@@ -61,7 +61,7 @@ pub const WCM_E_UNKNOWNRESULT = @import("../zig.zig").typedConst(HRESULT, @as(i3
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-const CLSID_SettingsEngine_Value = @import("../zig.zig").Guid.initString("9f7d7bb5-20b3-11da-81a5-0030f1642e3c");
+const CLSID_SettingsEngine_Value = Guid.initString("9f7d7bb5-20b3-11da-81a5-0030f1642e3c");
 pub const CLSID_SettingsEngine = &CLSID_SettingsEngine_Value;
 
 pub const WcmTargetMode = enum(i32) {
@@ -146,7 +146,7 @@ pub const ReadOnlyAccess = WcmNamespaceAccess.OnlyAccess;
 pub const ReadWriteAccess = WcmNamespaceAccess.WriteAccess;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IItemEnumerator_Value = @import("../zig.zig").Guid.initString("9f7d7bb7-20b3-11da-81a5-0030f1642e3c");
+const IID_IItemEnumerator_Value = Guid.initString("9f7d7bb7-20b3-11da-81a5-0030f1642e3c");
 pub const IID_IItemEnumerator = &IID_IItemEnumerator_Value;
 pub const IItemEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -183,7 +183,7 @@ pub const IItemEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsIdentity_Value = @import("../zig.zig").Guid.initString("9f7d7bb6-20b3-11da-81a5-0030f1642e3c");
+const IID_ISettingsIdentity_Value = Guid.initString("9f7d7bb6-20b3-11da-81a5-0030f1642e3c");
 pub const IID_ISettingsIdentity = &IID_ISettingsIdentity_Value;
 pub const ISettingsIdentity = extern struct {
     pub const VTable = extern struct {
@@ -233,7 +233,7 @@ pub const ISettingsIdentity = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITargetInfo_Value = @import("../zig.zig").Guid.initString("9f7d7bb8-20b3-11da-81a5-0030f1642e3c");
+const IID_ITargetInfo_Value = Guid.initString("9f7d7bb8-20b3-11da-81a5-0030f1642e3c");
 pub const IID_ITargetInfo = &IID_ITargetInfo_Value;
 pub const ITargetInfo = extern struct {
     pub const VTable = extern struct {
@@ -428,7 +428,7 @@ pub const ITargetInfo = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsEngine_Value = @import("../zig.zig").Guid.initString("9f7d7bb9-20b3-11da-81a5-0030f1642e3c");
+const IID_ISettingsEngine_Value = Guid.initString("9f7d7bb9-20b3-11da-81a5-0030f1642e3c");
 pub const IID_ISettingsEngine = &IID_ISettingsEngine_Value;
 pub const ISettingsEngine = extern struct {
     pub const VTable = extern struct {
@@ -585,7 +585,7 @@ pub const ISettingsEngine = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsItem_Value = @import("../zig.zig").Guid.initString("9f7d7bbb-20b3-11da-81a5-0030f1642e3c");
+const IID_ISettingsItem_Value = Guid.initString("9f7d7bbb-20b3-11da-81a5-0030f1642e3c");
 pub const IID_ISettingsItem = &IID_ISettingsItem_Value;
 pub const ISettingsItem = extern struct {
     pub const VTable = extern struct {
@@ -785,7 +785,7 @@ pub const ISettingsItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsNamespace_Value = @import("../zig.zig").Guid.initString("9f7d7bba-20b3-11da-81a5-0030f1642e3c");
+const IID_ISettingsNamespace_Value = Guid.initString("9f7d7bba-20b3-11da-81a5-0030f1642e3c");
 pub const IID_ISettingsNamespace = &IID_ISettingsNamespace_Value;
 pub const ISettingsNamespace = extern struct {
     pub const VTable = extern struct {
@@ -859,7 +859,7 @@ pub const ISettingsNamespace = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsResult_Value = @import("../zig.zig").Guid.initString("9f7d7bbc-20b3-11da-81a5-0030f1642e3c");
+const IID_ISettingsResult_Value = Guid.initString("9f7d7bbc-20b3-11da-81a5-0030f1642e3c");
 pub const IID_ISettingsResult = &IID_ISettingsResult_Value;
 pub const ISettingsResult = extern struct {
     pub const VTable = extern struct {
@@ -921,7 +921,7 @@ pub const ISettingsResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISettingsContext_Value = @import("../zig.zig").Guid.initString("9f7d7bbd-20b3-11da-81a5-0030f1642e3c");
+const IID_ISettingsContext_Value = Guid.initString("9f7d7bbd-20b3-11da-81a5-0030f1642e3c");
 pub const IID_ISettingsContext = &IID_ISettingsContext_Value;
 pub const ISettingsContext = extern struct {
     pub const VTable = extern struct {

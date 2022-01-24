@@ -28,7 +28,7 @@ pub const PresentStatisticsKind_PresentStatus = PresentStatisticsKind.PresentSta
 pub const PresentStatisticsKind_CompositionFrame = PresentStatisticsKind.CompositionFrame;
 pub const PresentStatisticsKind_IndependentFlipFrame = PresentStatisticsKind.IndependentFlipFrame;
 
-const IID_IPresentationBuffer_Value = @import("../zig.zig").Guid.initString("2e217d3a-5abb-4138-9a13-a775593c89ca");
+const IID_IPresentationBuffer_Value = Guid.initString("2e217d3a-5abb-4138-9a13-a775593c89ca");
 pub const IID_IPresentationBuffer = &IID_IPresentationBuffer_Value;
 pub const IPresentationBuffer = extern struct {
     pub const VTable = extern struct {
@@ -57,7 +57,7 @@ pub const IPresentationBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPresentationContent_Value = @import("../zig.zig").Guid.initString("5668bb79-3d8e-415c-b215-f38020f2d252");
+const IID_IPresentationContent_Value = Guid.initString("5668bb79-3d8e-415c-b215-f38020f2d252");
 pub const IID_IPresentationContent = &IID_IPresentationContent_Value;
 pub const IPresentationContent = extern struct {
     pub const VTable = extern struct {
@@ -78,7 +78,7 @@ pub const IPresentationContent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPresentationSurface_Value = @import("../zig.zig").Guid.initString("956710fb-ea40-4eba-a3eb-4375a0eb4edc");
+const IID_IPresentationSurface_Value = Guid.initString("956710fb-ea40-4eba-a3eb-4375a0eb4edc");
 pub const IID_IPresentationSurface = &IID_IPresentationSurface_Value;
 pub const IPresentationSurface = extern struct {
     pub const VTable = extern struct {
@@ -158,7 +158,7 @@ pub const IPresentationSurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPresentStatistics_Value = @import("../zig.zig").Guid.initString("b44b8bda-7282-495d-9dd7-ceadd8b4bb86");
+const IID_IPresentStatistics_Value = Guid.initString("b44b8bda-7282-495d-9dd7-ceadd8b4bb86");
 pub const IID_IPresentStatistics = &IID_IPresentStatistics_Value;
 pub const IPresentStatistics = extern struct {
     pub const VTable = extern struct {
@@ -185,7 +185,7 @@ pub const IPresentStatistics = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPresentationManager_Value = @import("../zig.zig").Guid.initString("fb562f82-6292-470a-88b1-843661e7f20c");
+const IID_IPresentationManager_Value = Guid.initString("fb562f82-6292-470a-88b1-843661e7f20c");
 pub const IID_IPresentationManager = &IID_IPresentationManager_Value;
 pub const IPresentationManager = extern struct {
     pub const VTable = extern struct {
@@ -305,7 +305,7 @@ pub const IPresentationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPresentationFactory_Value = @import("../zig.zig").Guid.initString("8fb37b58-1d74-4f64-a49c-1f97a80a2ec0");
+const IID_IPresentationFactory_Value = Guid.initString("8fb37b58-1d74-4f64-a49c-1f97a80a2ec0");
 pub const IID_IPresentationFactory = &IID_IPresentationFactory_Value;
 pub const IPresentationFactory = extern struct {
     pub const VTable = extern struct {
@@ -349,7 +349,7 @@ pub const PresentStatus_Queued = PresentStatus.Queued;
 pub const PresentStatus_Skipped = PresentStatus.Skipped;
 pub const PresentStatus_Canceled = PresentStatus.Canceled;
 
-const IID_IPresentStatusPresentStatistics_Value = @import("../zig.zig").Guid.initString("c9ed2a41-79cb-435e-964e-c8553055420c");
+const IID_IPresentStatusPresentStatistics_Value = Guid.initString("c9ed2a41-79cb-435e-964e-c8553055420c");
 pub const IID_IPresentStatusPresentStatistics = &IID_IPresentStatusPresentStatistics_Value;
 pub const IPresentStatusPresentStatistics = extern struct {
     pub const VTable = extern struct {
@@ -396,7 +396,7 @@ pub const CompositionFrameDisplayInstance = extern struct {
     colorSpace: DXGI_COLOR_SPACE_TYPE,
 };
 
-const IID_ICompositionFramePresentStatistics_Value = @import("../zig.zig").Guid.initString("ab41d127-c101-4c0a-911d-f9f2e9d08e64");
+const IID_ICompositionFramePresentStatistics_Value = Guid.initString("ab41d127-c101-4c0a-911d-f9f2e9d08e64");
 pub const IID_ICompositionFramePresentStatistics = &IID_ICompositionFramePresentStatistics_Value;
 pub const ICompositionFramePresentStatistics = extern struct {
     pub const VTable = extern struct {
@@ -432,7 +432,7 @@ pub const ICompositionFramePresentStatistics = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIndependentFlipFramePresentStatistics_Value = @import("../zig.zig").Guid.initString("8c93be27-ad94-4da0-8fd4-2413132d124e");
+const IID_IIndependentFlipFramePresentStatistics_Value = Guid.initString("8c93be27-ad94-4da0-8fd4-2413132d124e");
 pub const IID_IIndependentFlipFramePresentStatistics = &IID_IIndependentFlipFramePresentStatistics_Value;
 pub const IIndependentFlipFramePresentStatistics = extern struct {
     pub const VTable = extern struct {

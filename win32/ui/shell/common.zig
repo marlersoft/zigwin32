@@ -167,7 +167,7 @@ pub const SCALE_450_PERCENT = DEVICE_SCALE_FACTOR.SCALE_450_PERCENT;
 pub const SCALE_500_PERCENT = DEVICE_SCALE_FACTOR.SCALE_500_PERCENT;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IObjectArray_Value = @import("../../zig.zig").Guid.initString("92ca9dcd-5622-4bba-a805-5e9f541bd8c9");
+const IID_IObjectArray_Value = Guid.initString("92ca9dcd-5622-4bba-a805-5e9f541bd8c9");
 pub const IID_IObjectArray = &IID_IObjectArray_Value;
 pub const IObjectArray = extern struct {
     pub const VTable = extern struct {
@@ -199,7 +199,7 @@ pub const IObjectArray = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IObjectCollection_Value = @import("../../zig.zig").Guid.initString("5632b1a4-e38a-400a-928a-d4cd63230295");
+const IID_IObjectCollection_Value = Guid.initString("5632b1a4-e38a-400a-928a-d4cd63230295");
 pub const IID_IObjectCollection = &IID_IObjectCollection_Value;
 pub const IObjectCollection = extern struct {
     pub const VTable = extern struct {

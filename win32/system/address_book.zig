@@ -2741,7 +2741,7 @@ pub const WABEXTDISPLAY = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IWABExtInit_Value = @import("../zig.zig").Guid.initString("ea22ebf0-87a4-11d1-9acf-00a0c91f9c8b");
+const IID_IWABExtInit_Value = Guid.initString("ea22ebf0-87a4-11d1-9acf-00a0c91f9c8b");
 pub const IID_IWABExtInit = &IID_IWABExtInit_Value;
 pub const IWABExtInit = extern struct {
     pub const VTable = extern struct {

@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-const IID_IGraphicsCaptureItemInterop_Value = @import("../../../zig.zig").Guid.initString("3628e81b-3cac-4c60-b7f4-23ce0e0c3356");
+const IID_IGraphicsCaptureItemInterop_Value = Guid.initString("3628e81b-3cac-4c60-b7f4-23ce0e0c3356");
 pub const IID_IGraphicsCaptureItemInterop = &IID_IGraphicsCaptureItemInterop_Value;
 pub const IGraphicsCaptureItemInterop = extern struct {
     pub const VTable = extern struct {

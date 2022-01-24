@@ -236,7 +236,7 @@ pub const BlackInformation = extern struct {
     blackWeight: f32,
 };
 
-const IID_IDeviceModelPlugIn_Value = @import("../zig.zig").Guid.initString("1cd63475-07c4-46fe-a903-d655316d11fd");
+const IID_IDeviceModelPlugIn_Value = Guid.initString("1cd63475-07c4-46fe-a903-d655316d11fd");
 pub const IID_IDeviceModelPlugIn = &IID_IDeviceModelPlugIn_Value;
 pub const IDeviceModelPlugIn = extern struct {
     pub const VTable = extern struct {
@@ -356,7 +356,7 @@ pub const IDeviceModelPlugIn = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IGamutMapModelPlugIn_Value = @import("../zig.zig").Guid.initString("2dd80115-ad1e-41f6-a219-a4f4b583d1f9");
+const IID_IGamutMapModelPlugIn_Value = Guid.initString("2dd80115-ad1e-41f6-a219-a4f4b583d1f9");
 pub const IID_IGamutMapModelPlugIn = &IID_IGamutMapModelPlugIn_Value;
 pub const IGamutMapModelPlugIn = extern struct {
     pub const VTable = extern struct {

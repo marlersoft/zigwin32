@@ -15,7 +15,7 @@ pub const CpCreateProcess = CreateProcessMethod.CreateProcess;
 pub const CpCreateProcessAsUser = CreateProcessMethod.CreateProcessAsUser;
 pub const CpAicLaunchAdminProcess = CreateProcessMethod.AicLaunchAdminProcess;
 
-const IID_IDDEInitializer_Value = @import("../../zig.zig").Guid.initString("30dc931f-33fc-4ffd-a168-942258cf3ca4");
+const IID_IDDEInitializer_Value = Guid.initString("30dc931f-33fc-4ffd-a168-942258cf3ca4");
 pub const IID_IDDEInitializer = &IID_IDDEInitializer_Value;
 pub const IDDEInitializer = extern struct {
     pub const VTable = extern struct {
@@ -63,8 +63,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IShellItem = @import("../../ui/shell.zig").IShellItem;
 const IUnknown = @import("../../system/com.zig").IUnknown;

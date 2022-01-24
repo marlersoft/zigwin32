@@ -38,7 +38,7 @@ pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
     dwChannelMask: u32,
 };
 
-const IID_IAudioMediaType_Value = @import("../../zig.zig").Guid.initString("4e997f73-b71f-4798-873b-ed7dfcf15b4d");
+const IID_IAudioMediaType_Value = Guid.initString("4e997f73-b71f-4798-873b-ed7dfcf15b4d");
 pub const IID_IAudioMediaType = &IID_IAudioMediaType_Value;
 pub const IAudioMediaType = extern struct {
     pub const VTable = extern struct {
@@ -179,7 +179,7 @@ pub const eAudioConstriction44_16 = EAudioConstriction.@"44_16";
 pub const eAudioConstriction14_14 = EAudioConstriction.@"14_14";
 pub const eAudioConstrictionMute = EAudioConstriction.Mute;
 
-const IID_IAudioProcessingObjectRT_Value = @import("../../zig.zig").Guid.initString("9e1d6a6d-ddbc-4e95-a4c7-ad64ba37846c");
+const IID_IAudioProcessingObjectRT_Value = Guid.initString("9e1d6a6d-ddbc-4e95-a4c7-ad64ba37846c");
 pub const IID_IAudioProcessingObjectRT = &IID_IAudioProcessingObjectRT_Value;
 pub const IAudioProcessingObjectRT = extern struct {
     pub const VTable = extern struct {
@@ -219,7 +219,7 @@ pub const IAudioProcessingObjectRT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioProcessingObjectVBR_Value = @import("../../zig.zig").Guid.initString("7ba1db8f-78ad-49cd-9591-f79d80a17c81");
+const IID_IAudioProcessingObjectVBR_Value = Guid.initString("7ba1db8f-78ad-49cd-9591-f79d80a17c81");
 pub const IID_IAudioProcessingObjectVBR = &IID_IAudioProcessingObjectVBR_Value;
 pub const IAudioProcessingObjectVBR = extern struct {
     pub const VTable = extern struct {
@@ -250,7 +250,7 @@ pub const IAudioProcessingObjectVBR = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioProcessingObjectConfiguration_Value = @import("../../zig.zig").Guid.initString("0e5ed805-aba6-49c3-8f9a-2b8c889c4fa8");
+const IID_IAudioProcessingObjectConfiguration_Value = Guid.initString("0e5ed805-aba6-49c3-8f9a-2b8c889c4fa8");
 pub const IID_IAudioProcessingObjectConfiguration = &IID_IAudioProcessingObjectConfiguration_Value;
 pub const IAudioProcessingObjectConfiguration = extern struct {
     pub const VTable = extern struct {
@@ -281,7 +281,7 @@ pub const IAudioProcessingObjectConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioProcessingObject_Value = @import("../../zig.zig").Guid.initString("fd7f2b29-24d0-4b5c-b177-592c39f9ca10");
+const IID_IAudioProcessingObject_Value = Guid.initString("fd7f2b29-24d0-4b5c-b177-592c39f9ca10");
 pub const IID_IAudioProcessingObject = &IID_IAudioProcessingObject_Value;
 pub const IAudioProcessingObject = extern struct {
     pub const VTable = extern struct {
@@ -354,7 +354,7 @@ pub const IAudioProcessingObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioDeviceModulesClient_Value = @import("../../zig.zig").Guid.initString("98f37dac-d0b6-49f5-896a-aa4d169a4c48");
+const IID_IAudioDeviceModulesClient_Value = Guid.initString("98f37dac-d0b6-49f5-896a-aa4d169a4c48");
 pub const IID_IAudioDeviceModulesClient = &IID_IAudioDeviceModulesClient_Value;
 pub const IAudioDeviceModulesClient = extern struct {
     pub const VTable = extern struct {
@@ -380,7 +380,7 @@ pub const FNAPONOTIFICATIONCALLBACK = fn(
     pvRefData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const IID_IAudioSystemEffects_Value = @import("../../zig.zig").Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
+const IID_IAudioSystemEffects_Value = Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
 pub const IID_IAudioSystemEffects = &IID_IAudioSystemEffects_Value;
 pub const IAudioSystemEffects = extern struct {
     pub const VTable = extern struct {
@@ -393,7 +393,7 @@ pub const IAudioSystemEffects = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSystemEffects2_Value = @import("../../zig.zig").Guid.initString("bafe99d2-7436-44ce-9e0e-4d89afbfff56");
+const IID_IAudioSystemEffects2_Value = Guid.initString("bafe99d2-7436-44ce-9e0e-4d89afbfff56");
 pub const IID_IAudioSystemEffects2 = &IID_IAudioSystemEffects2_Value;
 pub const IAudioSystemEffects2 = extern struct {
     pub const VTable = extern struct {
@@ -416,7 +416,7 @@ pub const IAudioSystemEffects2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSystemEffectsCustomFormats_Value = @import("../../zig.zig").Guid.initString("b1176e34-bb7f-4f05-bebd-1b18a534e097");
+const IID_IAudioSystemEffectsCustomFormats_Value = Guid.initString("b1176e34-bb7f-4f05-bebd-1b18a534e097");
 pub const IID_IAudioSystemEffectsCustomFormats = &IID_IAudioSystemEffectsCustomFormats_Value;
 pub const IAudioSystemEffectsCustomFormats = extern struct {
     pub const VTable = extern struct {
@@ -455,7 +455,7 @@ pub const IAudioSystemEffectsCustomFormats = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IApoAuxiliaryInputConfiguration_Value = @import("../../zig.zig").Guid.initString("4ceb0aab-fa19-48ed-a857-87771ae1b768");
+const IID_IApoAuxiliaryInputConfiguration_Value = Guid.initString("4ceb0aab-fa19-48ed-a857-87771ae1b768");
 pub const IID_IApoAuxiliaryInputConfiguration = &IID_IApoAuxiliaryInputConfiguration_Value;
 pub const IApoAuxiliaryInputConfiguration = extern struct {
     pub const VTable = extern struct {
@@ -496,7 +496,7 @@ pub const IApoAuxiliaryInputConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IApoAuxiliaryInputRT_Value = @import("../../zig.zig").Guid.initString("f851809c-c177-49a0-b1b2-b66f017943ab");
+const IID_IApoAuxiliaryInputRT_Value = Guid.initString("f851809c-c177-49a0-b1b2-b66f017943ab");
 pub const IID_IApoAuxiliaryInputRT = &IID_IApoAuxiliaryInputRT_Value;
 pub const IApoAuxiliaryInputRT = extern struct {
     pub const VTable = extern struct {
@@ -518,7 +518,7 @@ pub const IApoAuxiliaryInputRT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IApoAcousticEchoCancellation_Value = @import("../../zig.zig").Guid.initString("25385759-3236-4101-a943-25693dfb5d2d");
+const IID_IApoAcousticEchoCancellation_Value = Guid.initString("25385759-3236-4101-a943-25693dfb5d2d");
 pub const IID_IApoAcousticEchoCancellation = &IID_IApoAcousticEchoCancellation_Value;
 pub const IApoAcousticEchoCancellation = extern struct {
     pub const VTable = extern struct {
@@ -570,7 +570,7 @@ pub const AUDIO_SYSTEMEFFECT = extern struct {
     state: AUDIO_SYSTEMEFFECT_STATE,
 };
 
-const IID_IAudioSystemEffects3_Value = @import("../../zig.zig").Guid.initString("c58b31cd-fc6a-4255-bc1f-ad29bb0a4a17");
+const IID_IAudioSystemEffects3_Value = Guid.initString("c58b31cd-fc6a-4255-bc1f-ad29bb0a4a17");
 pub const IID_IAudioSystemEffects3 = &IID_IAudioSystemEffects3_Value;
 pub const IAudioSystemEffects3 = extern struct {
     pub const VTable = extern struct {
@@ -613,7 +613,7 @@ pub const APOInitSystemEffects3 = extern struct {
     InitializeForDiscoveryOnly: BOOL,
 };
 
-const IID_IAudioProcessingObjectRTQueueService_Value = @import("../../zig.zig").Guid.initString("acd65e2f-955b-4b57-b9bf-ac297bb752c9");
+const IID_IAudioProcessingObjectRTQueueService_Value = Guid.initString("acd65e2f-955b-4b57-b9bf-ac297bb752c9");
 pub const IID_IAudioProcessingObjectRTQueueService = &IID_IAudioProcessingObjectRTQueueService_Value;
 pub const IAudioProcessingObjectRTQueueService = extern struct {
     pub const VTable = extern struct {
@@ -649,7 +649,7 @@ pub const APO_LOG_LEVEL_WARNING = APO_LOG_LEVEL.WARNING;
 pub const APO_LOG_LEVEL_INFO = APO_LOG_LEVEL.INFO;
 pub const APO_LOG_LEVEL_VERBOSE = APO_LOG_LEVEL.VERBOSE;
 
-const IID_IAudioProcessingObjectLoggingService_Value = @import("../../zig.zig").Guid.initString("698f0107-1745-4708-95a5-d84478a62a65");
+const IID_IAudioProcessingObjectLoggingService_Value = Guid.initString("698f0107-1745-4708-95a5-d84478a62a65");
 pub const IID_IAudioProcessingObjectLoggingService = &IID_IAudioProcessingObjectLoggingService_Value;
 pub const IAudioProcessingObjectLoggingService = extern struct {
     pub const VTable = extern struct {
@@ -732,7 +732,7 @@ pub const APO_NOTIFICATION_DESCRIPTOR = extern struct {
     },
 };
 
-const IID_IAudioProcessingObjectNotifications_Value = @import("../../zig.zig").Guid.initString("56b0c76f-02fd-4b21-a52e-9f8219fc86e4");
+const IID_IAudioProcessingObjectNotifications_Value = Guid.initString("56b0c76f-02fd-4b21-a52e-9f8219fc86e4");
 pub const IID_IAudioProcessingObjectNotifications = &IID_IAudioProcessingObjectNotifications_Value;
 pub const IAudioProcessingObjectNotifications = extern struct {
     pub const VTable = extern struct {

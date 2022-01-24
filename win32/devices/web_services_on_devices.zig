@@ -87,7 +87,7 @@ pub const WSD_CONFIG_ADDRESSES = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAddress_Value = @import("../zig.zig").Guid.initString("b9574c6c-12a6-4f74-93a1-3318ff605759");
+const IID_IWSDAddress_Value = Guid.initString("b9574c6c-12a6-4f74-93a1-3318ff605759");
 pub const IID_IWSDAddress = &IID_IWSDAddress_Value;
 pub const IWSDAddress = extern struct {
     pub const VTable = extern struct {
@@ -119,7 +119,7 @@ pub const IWSDAddress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDTransportAddress_Value = @import("../zig.zig").Guid.initString("70d23498-4ee6-4340-a3df-d845d2235467");
+const IID_IWSDTransportAddress_Value = Guid.initString("70d23498-4ee6-4340-a3df-d845d2235467");
 pub const IID_IWSDTransportAddress = &IID_IWSDTransportAddress_Value;
 pub const IWSDTransportAddress = extern struct {
     pub const VTable = extern struct {
@@ -174,7 +174,7 @@ pub const IWSDTransportAddress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDMessageParameters_Value = @import("../zig.zig").Guid.initString("1fafe8a2-e6fc-4b80-b6cf-b7d45c416d7c");
+const IID_IWSDMessageParameters_Value = Guid.initString("1fafe8a2-e6fc-4b80-b6cf-b7d45c416d7c");
 pub const IID_IWSDMessageParameters = &IID_IWSDMessageParameters_Value;
 pub const IWSDMessageParameters = extern struct {
     pub const VTable = extern struct {
@@ -236,7 +236,7 @@ pub const WSDUdpRetransmitParams = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDUdpMessageParameters_Value = @import("../zig.zig").Guid.initString("9934149f-8f0c-447b-aa0b-73124b0ca7f0");
+const IID_IWSDUdpMessageParameters_Value = Guid.initString("9934149f-8f0c-447b-aa0b-73124b0ca7f0");
 pub const IID_IWSDUdpMessageParameters = &IID_IWSDUdpMessageParameters_Value;
 pub const IWSDUdpMessageParameters = extern struct {
     pub const VTable = extern struct {
@@ -273,7 +273,7 @@ pub const ONE_WAY = WSDUdpMessageType.ONE_WAY;
 pub const TWO_WAY = WSDUdpMessageType.TWO_WAY;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDUdpAddress_Value = @import("../zig.zig").Guid.initString("74d6124a-a441-4f78-a1eb-97a8d1996893");
+const IID_IWSDUdpAddress_Value = Guid.initString("74d6124a-a441-4f78-a1eb-97a8d1996893");
 pub const IID_IWSDUdpAddress = &IID_IWSDUdpAddress_Value;
 pub const IWSDUdpAddress = extern struct {
     pub const VTable = extern struct {
@@ -366,7 +366,7 @@ pub const IWSDUdpAddress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDHttpMessageParameters_Value = @import("../zig.zig").Guid.initString("540bd122-5c83-4dec-b396-ea62a2697fdf");
+const IID_IWSDHttpMessageParameters_Value = Guid.initString("540bd122-5c83-4dec-b396-ea62a2697fdf");
 pub const IID_IWSDHttpMessageParameters = &IID_IWSDHttpMessageParameters_Value;
 pub const IWSDHttpMessageParameters = extern struct {
     pub const VTable = extern struct {
@@ -451,7 +451,7 @@ pub const IWSDHttpMessageParameters = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDHttpAddress_Value = @import("../zig.zig").Guid.initString("d09ac7bd-2a3e-4b85-8605-2737ff3e4ea0");
+const IID_IWSDHttpAddress_Value = Guid.initString("d09ac7bd-2a3e-4b85-8605-2737ff3e4ea0");
 pub const IID_IWSDHttpAddress = &IID_IWSDHttpAddress_Value;
 pub const IWSDHttpAddress = extern struct {
     pub const VTable = extern struct {
@@ -496,7 +496,7 @@ pub const IWSDHttpAddress = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWSDSSLClientCertificate_Value = @import("../zig.zig").Guid.initString("de105e87-a0da-418e-98ad-27b9eed87bdc");
+const IID_IWSDSSLClientCertificate_Value = Guid.initString("de105e87-a0da-418e-98ad-27b9eed87bdc");
 pub const IID_IWSDSSLClientCertificate = &IID_IWSDSSLClientCertificate_Value;
 pub const IWSDSSLClientCertificate = extern struct {
     pub const VTable = extern struct {
@@ -526,7 +526,7 @@ pub const IWSDSSLClientCertificate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWSDHttpAuthParameters_Value = @import("../zig.zig").Guid.initString("0b476df0-8dac-480d-b05c-99781a5884aa");
+const IID_IWSDHttpAuthParameters_Value = Guid.initString("0b476df0-8dac-480d-b05c-99781a5884aa");
 pub const IID_IWSDHttpAuthParameters = &IID_IWSDHttpAuthParameters_Value;
 pub const IWSDHttpAuthParameters = extern struct {
     pub const VTable = extern struct {
@@ -556,7 +556,7 @@ pub const IWSDHttpAuthParameters = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWSDSignatureProperty_Value = @import("../zig.zig").Guid.initString("03ce20aa-71c4-45e2-b32e-3766c61c790f");
+const IID_IWSDSignatureProperty_Value = Guid.initString("03ce20aa-71c4-45e2-b32e-3766c61c790f");
 pub const IID_IWSDSignatureProperty = &IID_IWSDSignatureProperty_Value;
 pub const IWSDSignatureProperty = extern struct {
     pub const VTable = extern struct {
@@ -616,7 +616,7 @@ pub const IWSDSignatureProperty = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAttachment_Value = @import("../zig.zig").Guid.initString("5d55a616-9df8-4b09-b156-9ba351a48b76");
+const IID_IWSDAttachment_Value = Guid.initString("5d55a616-9df8-4b09-b156-9ba351a48b76");
 pub const IID_IWSDAttachment = &IID_IWSDAttachment_Value;
 pub const IWSDAttachment = extern struct {
     pub const VTable = extern struct {
@@ -630,7 +630,7 @@ pub const IWSDAttachment = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDOutboundAttachment_Value = @import("../zig.zig").Guid.initString("aa302f8d-5a22-4ba5-b392-aa8486f4c15d");
+const IID_IWSDOutboundAttachment_Value = Guid.initString("aa302f8d-5a22-4ba5-b392-aa8486f4c15d");
 pub const IID_IWSDOutboundAttachment = &IID_IWSDOutboundAttachment_Value;
 pub const IWSDOutboundAttachment = extern struct {
     pub const VTable = extern struct {
@@ -668,7 +668,7 @@ pub const IWSDOutboundAttachment = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDInboundAttachment_Value = @import("../zig.zig").Guid.initString("5bd6ca65-233c-4fb8-9f7a-2641619655c9");
+const IID_IWSDInboundAttachment_Value = Guid.initString("5bd6ca65-233c-4fb8-9f7a-2641619655c9");
 pub const IID_IWSDInboundAttachment = &IID_IWSDInboundAttachment_Value;
 pub const IWSDInboundAttachment = extern struct {
     pub const VTable = extern struct {
@@ -822,7 +822,7 @@ pub const OpFormatXMLDeclaration_ = WSDXML_OP.FormatXMLDeclaration_;
 pub const OpFormatMax = WSDXML_OP.FormatMax;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDXMLContext_Value = @import("../zig.zig").Guid.initString("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0");
+const IID_IWSDXMLContext_Value = Guid.initString("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0");
 pub const IID_IWSDXMLContext = &IID_IWSDXMLContext_Value;
 pub const IWSDXMLContext = extern struct {
     pub const VTable = extern struct {
@@ -1301,7 +1301,7 @@ pub const WSD_EVENT = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryProvider_Value = @import("../zig.zig").Guid.initString("8ffc8e55-f0eb-480f-88b7-b435dd281d45");
+const IID_IWSDiscoveryProvider_Value = Guid.initString("8ffc8e55-f0eb-480f-88b7-b435dd281d45");
 pub const IID_IWSDiscoveryProvider = &IID_IWSDiscoveryProvider_Value;
 pub const IWSDiscoveryProvider = extern struct {
     pub const VTable = extern struct {
@@ -1375,7 +1375,7 @@ pub const IWSDiscoveryProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryProviderNotify_Value = @import("../zig.zig").Guid.initString("73ee3ced-b6e6-4329-a546-3e8ad46563d2");
+const IID_IWSDiscoveryProviderNotify_Value = Guid.initString("73ee3ced-b6e6-4329-a546-3e8ad46563d2");
 pub const IID_IWSDiscoveryProviderNotify = &IID_IWSDiscoveryProviderNotify_Value;
 pub const IWSDiscoveryProviderNotify = extern struct {
     pub const VTable = extern struct {
@@ -1422,7 +1422,7 @@ pub const IWSDiscoveryProviderNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveredService_Value = @import("../zig.zig").Guid.initString("4bad8a3b-b374-4420-9632-aac945b374aa");
+const IID_IWSDiscoveredService_Value = Guid.initString("4bad8a3b-b374-4420-9632-aac945b374aa");
 pub const IID_IWSDiscoveredService = &IID_IWSDiscoveredService_Value;
 pub const IWSDiscoveredService = extern struct {
     pub const VTable = extern struct {
@@ -1525,7 +1525,7 @@ pub const IWSDiscoveredService = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryPublisher_Value = @import("../zig.zig").Guid.initString("ae01e1a8-3ff9-4148-8116-057cc616fe13");
+const IID_IWSDiscoveryPublisher_Value = Guid.initString("ae01e1a8-3ff9-4148-8116-057cc616fe13");
 pub const IID_IWSDiscoveryPublisher = &IID_IWSDiscoveryPublisher_Value;
 pub const IWSDiscoveryPublisher = extern struct {
     pub const VTable = extern struct {
@@ -1712,7 +1712,7 @@ pub const IWSDiscoveryPublisher = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDiscoveryPublisherNotify_Value = @import("../zig.zig").Guid.initString("e67651b0-337a-4b3c-9758-733388568251");
+const IID_IWSDiscoveryPublisherNotify_Value = Guid.initString("e67651b0-337a-4b3c-9758-733388568251");
 pub const IID_IWSDiscoveryPublisherNotify = &IID_IWSDiscoveryPublisherNotify_Value;
 pub const IWSDiscoveryPublisherNotify = extern struct {
     pub const VTable = extern struct {
@@ -1744,7 +1744,7 @@ pub const IWSDiscoveryPublisherNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDScopeMatchingRule_Value = @import("../zig.zig").Guid.initString("fcafe424-fef5-481a-bd9f-33ce0574256f");
+const IID_IWSDScopeMatchingRule_Value = Guid.initString("fcafe424-fef5-481a-bd9f-33ce0574256f");
 pub const IID_IWSDScopeMatchingRule = &IID_IWSDScopeMatchingRule_Value;
 pub const IWSDScopeMatchingRule = extern struct {
     pub const VTable = extern struct {
@@ -1776,7 +1776,7 @@ pub const IWSDScopeMatchingRule = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDEndpointProxy_Value = @import("../zig.zig").Guid.initString("1860d430-b24c-4975-9f90-dbb39baa24ec");
+const IID_IWSDEndpointProxy_Value = Guid.initString("1860d430-b24c-4975-9f90-dbb39baa24ec");
 pub const IID_IWSDEndpointProxy = &IID_IWSDEndpointProxy_Value;
 pub const IWSDEndpointProxy = extern struct {
     pub const VTable = extern struct {
@@ -1853,7 +1853,7 @@ pub const IWSDEndpointProxy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDMetadataExchange_Value = @import("../zig.zig").Guid.initString("06996d57-1d67-4928-9307-3d7833fdb846");
+const IID_IWSDMetadataExchange_Value = Guid.initString("06996d57-1d67-4928-9307-3d7833fdb846");
 pub const IID_IWSDMetadataExchange = &IID_IWSDMetadataExchange_Value;
 pub const IWSDMetadataExchange = extern struct {
     pub const VTable = extern struct {
@@ -1875,7 +1875,7 @@ pub const IWSDMetadataExchange = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDServiceProxy_Value = @import("../zig.zig").Guid.initString("d4c7fb9c-03ab-4175-9d67-094fafebf487");
+const IID_IWSDServiceProxy_Value = Guid.initString("d4c7fb9c-03ab-4175-9d67-094fafebf487");
 pub const IID_IWSDServiceProxy = &IID_IWSDServiceProxy_Value;
 pub const IWSDServiceProxy = extern struct {
     pub const VTable = extern struct {
@@ -1949,7 +1949,7 @@ pub const IWSDServiceProxy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IWSDServiceProxyEventing_Value = @import("../zig.zig").Guid.initString("f9279d6d-1012-4a94-b8cc-fd35d2202bfe");
+const IID_IWSDServiceProxyEventing_Value = Guid.initString("f9279d6d-1012-4a94-b8cc-fd35d2202bfe");
 pub const IID_IWSDServiceProxyEventing = &IID_IWSDServiceProxyEventing_Value;
 pub const IWSDServiceProxyEventing = extern struct {
     pub const VTable = extern struct {
@@ -2113,7 +2113,7 @@ pub const IWSDServiceProxyEventing = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceProxy_Value = @import("../zig.zig").Guid.initString("eee0c031-c578-4c0e-9a3b-973c35f409db");
+const IID_IWSDDeviceProxy_Value = Guid.initString("eee0c031-c578-4c0e-9a3b-973c35f409db");
 pub const IID_IWSDDeviceProxy = &IID_IWSDDeviceProxy_Value;
 pub const IWSDDeviceProxy = extern struct {
     pub const VTable = extern struct {
@@ -2213,7 +2213,7 @@ pub const IWSDDeviceProxy = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAsyncResult_Value = @import("../zig.zig").Guid.initString("11a9852a-8dd8-423e-b537-9356db4fbfb8");
+const IID_IWSDAsyncResult_Value = Guid.initString("11a9852a-8dd8-423e-b537-9356db4fbfb8");
 pub const IID_IWSDAsyncResult = &IID_IWSDAsyncResult_Value;
 pub const IWSDAsyncResult = extern struct {
     pub const VTable = extern struct {
@@ -2282,7 +2282,7 @@ pub const IWSDAsyncResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDAsyncCallback_Value = @import("../zig.zig").Guid.initString("a63e109d-ce72-49e2-ba98-e845f5ee1666");
+const IID_IWSDAsyncCallback_Value = Guid.initString("a63e109d-ce72-49e2-ba98-e845f5ee1666");
 pub const IID_IWSDAsyncCallback = &IID_IWSDAsyncCallback_Value;
 pub const IWSDAsyncCallback = extern struct {
     pub const VTable = extern struct {
@@ -2305,7 +2305,7 @@ pub const IWSDAsyncCallback = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDEventingStatus_Value = @import("../zig.zig").Guid.initString("49b17f52-637a-407a-ae99-fbe82a4d38c0");
+const IID_IWSDEventingStatus_Value = Guid.initString("49b17f52-637a-407a-ae99-fbe82a4d38c0");
 pub const IID_IWSDEventingStatus = &IID_IWSDEventingStatus_Value;
 pub const IWSDEventingStatus = extern struct {
     pub const VTable = extern struct {
@@ -2344,7 +2344,7 @@ pub const IWSDEventingStatus = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceHost_Value = @import("../zig.zig").Guid.initString("917fe891-3d13-4138-9809-934c8abeb12c");
+const IID_IWSDDeviceHost_Value = Guid.initString("917fe891-3d13-4138-9809-934c8abeb12c");
 pub const IID_IWSDDeviceHost = &IID_IWSDDeviceHost_Value;
 pub const IWSDDeviceHost = extern struct {
     pub const VTable = extern struct {
@@ -2469,7 +2469,7 @@ pub const IWSDDeviceHost = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDDeviceHostNotify_Value = @import("../zig.zig").Guid.initString("b5bee9f9-eeda-41fe-96f7-f45e14990fb0");
+const IID_IWSDDeviceHostNotify_Value = Guid.initString("b5bee9f9-eeda-41fe-96f7-f45e14990fb0");
 pub const IID_IWSDDeviceHostNotify = &IID_IWSDDeviceHostNotify_Value;
 pub const IWSDDeviceHostNotify = extern struct {
     pub const VTable = extern struct {
@@ -2492,7 +2492,7 @@ pub const IWSDDeviceHostNotify = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IWSDServiceMessaging_Value = @import("../zig.zig").Guid.initString("94974cf4-0cab-460d-a3f6-7a0ad623c0e6");
+const IID_IWSDServiceMessaging_Value = Guid.initString("94974cf4-0cab-460d-a3f6-7a0ad623c0e6");
 pub const IID_IWSDServiceMessaging = &IID_IWSDServiceMessaging_Value;
 pub const IWSDServiceMessaging = extern struct {
     pub const VTable = extern struct {

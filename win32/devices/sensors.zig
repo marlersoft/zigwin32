@@ -127,16 +127,16 @@ pub const SENSOR_PROPERTY_LIST_HEADER_SIZE = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (36)
 //--------------------------------------------------------------------------------
-const CLSID_SensorManager_Value = @import("../zig.zig").Guid.initString("77a1c827-fcd2-4689-8915-9d613cc5fa3e");
+const CLSID_SensorManager_Value = Guid.initString("77a1c827-fcd2-4689-8915-9d613cc5fa3e");
 pub const CLSID_SensorManager = &CLSID_SensorManager_Value;
 
-const CLSID_SensorCollection_Value = @import("../zig.zig").Guid.initString("79c43adb-a429-469f-aa39-2f2b74b75937");
+const CLSID_SensorCollection_Value = Guid.initString("79c43adb-a429-469f-aa39-2f2b74b75937");
 pub const CLSID_SensorCollection = &CLSID_SensorCollection_Value;
 
-const CLSID_Sensor_Value = @import("../zig.zig").Guid.initString("e97ced00-523a-4133-bf6f-d3a2dae7f6ba");
+const CLSID_Sensor_Value = Guid.initString("e97ced00-523a-4133-bf6f-d3a2dae7f6ba");
 pub const CLSID_Sensor = &CLSID_Sensor_Value;
 
-const CLSID_SensorDataReport_Value = @import("../zig.zig").Guid.initString("4ea9d6ef-694b-4218-8816-ccda8da74bba");
+const CLSID_SensorDataReport_Value = Guid.initString("4ea9d6ef-694b-4218-8816-ccda8da74bba");
 pub const CLSID_SensorDataReport = &CLSID_SensorDataReport_Value;
 
 pub const SensorState = enum(i32) {
@@ -214,7 +214,7 @@ pub const MAGNETOMETER_ACCURACY_APPROXIMATE = MagnetometerAccuracy.APPROXIMATE;
 pub const MAGNETOMETER_ACCURACY_HIGH = MagnetometerAccuracy.HIGH;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ISensorManager_Value = @import("../zig.zig").Guid.initString("bd77db67-45a8-42dc-8d00-6dcf15f8377a");
+const IID_ISensorManager_Value = Guid.initString("bd77db67-45a8-42dc-8d00-6dcf15f8377a");
 pub const IID_ISensorManager = &IID_ISensorManager_Value;
 pub const ISensorManager = extern struct {
     pub const VTable = extern struct {
@@ -273,7 +273,7 @@ pub const ISensorManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_ILocationPermissions_Value = @import("../zig.zig").Guid.initString("d5fb0a7f-e74e-44f5-8e02-4806863a274f");
+const IID_ILocationPermissions_Value = Guid.initString("d5fb0a7f-e74e-44f5-8e02-4806863a274f");
 pub const IID_ILocationPermissions = &IID_ILocationPermissions_Value;
 pub const ILocationPermissions = extern struct {
     pub const VTable = extern struct {
@@ -303,7 +303,7 @@ pub const ILocationPermissions = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ISensorCollection_Value = @import("../zig.zig").Guid.initString("23571e11-e545-4dd8-a337-b89bf44b10df");
+const IID_ISensorCollection_Value = Guid.initString("23571e11-e545-4dd8-a337-b89bf44b10df");
 pub const IID_ISensorCollection = &IID_ISensorCollection_Value;
 pub const ISensorCollection = extern struct {
     pub const VTable = extern struct {
@@ -365,7 +365,7 @@ pub const ISensorCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ISensor_Value = @import("../zig.zig").Guid.initString("5fa08f80-2657-458e-af75-46f73fa6ac5c");
+const IID_ISensor_Value = Guid.initString("5fa08f80-2657-458e-af75-46f73fa6ac5c");
 pub const IID_ISensor = &IID_ISensor_Value;
 pub const ISensor = extern struct {
     pub const VTable = extern struct {
@@ -506,7 +506,7 @@ pub const ISensor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ISensorDataReport_Value = @import("../zig.zig").Guid.initString("0ab9df9b-c4b5-4796-8898-0470706a2e1d");
+const IID_ISensorDataReport_Value = Guid.initString("0ab9df9b-c4b5-4796-8898-0470706a2e1d");
 pub const IID_ISensorDataReport = &IID_ISensorDataReport_Value;
 pub const ISensorDataReport = extern struct {
     pub const VTable = extern struct {
@@ -546,7 +546,7 @@ pub const ISensorDataReport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ISensorManagerEvents_Value = @import("../zig.zig").Guid.initString("9b3b0b86-266a-4aad-b21f-fde5501001b7");
+const IID_ISensorManagerEvents_Value = Guid.initString("9b3b0b86-266a-4aad-b21f-fde5501001b7");
 pub const IID_ISensorManagerEvents = &IID_ISensorManagerEvents_Value;
 pub const ISensorManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -569,7 +569,7 @@ pub const ISensorManagerEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_ISensorEvents_Value = @import("../zig.zig").Guid.initString("5d8dcc91-4641-47e7-b7c3-b74f48a6c391");
+const IID_ISensorEvents_Value = Guid.initString("5d8dcc91-4641-47e7-b7c3-b74f48a6c391");
 pub const IID_ISensorEvents = &IID_ISensorEvents_Value;
 pub const ISensorEvents = extern struct {
     pub const VTable = extern struct {

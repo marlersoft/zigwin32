@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (134)
 //--------------------------------------------------------------------------------
-pub const PROCESSOR_NUMBER_PKEY = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("5724c81d-d5af-4c1f-a103-a06e28f204c6"), .pid = 1 };
+pub const PROCESSOR_NUMBER_PKEY = PROPERTYKEY { .fmtid = Guid.initString("5724c81d-d5af-4c1f-a103-a06e28f204c6"), .pid = 1 };
 pub const GUID_DEVICE_BATTERY = Guid.initString("72631e54-78a4-11d0-bcf7-00aa00b7b32a");
 pub const GUID_DEVICE_APPLICATIONLAUNCH_BUTTON = Guid.initString("629758ee-986e-4d9e-8e47-de27f8ab054d");
 pub const GUID_DEVICE_SYS_BUTTON = Guid.initString("4afa3d53-74a7-11d0-be5e-00a0c9062857");

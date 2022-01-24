@@ -108,11 +108,11 @@ pub const OPC_E_ZIP_REQUIRES_64_BIT = @import("../../zig.zig").typedConst(HRESUL
 //--------------------------------------------------------------------------------
 // Section: Types (43)
 //--------------------------------------------------------------------------------
-const CLSID_OpcFactory_Value = @import("../../zig.zig").Guid.initString("6b2d6ba0-9f3e-4f27-920b-313cc426a39e");
+const CLSID_OpcFactory_Value = Guid.initString("6b2d6ba0-9f3e-4f27-920b-313cc426a39e");
 pub const CLSID_OpcFactory = &CLSID_OpcFactory_Value;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcUri_Value = @import("../../zig.zig").Guid.initString("bc9c1b9b-d62c-49eb-aef0-3b4e0b28ebed");
+const IID_IOpcUri_Value = Guid.initString("bc9c1b9b-d62c-49eb-aef0-3b4e0b28ebed");
 pub const IID_IOpcUri = &IID_IOpcUri_Value;
 pub const IOpcUri = extern struct {
     pub const VTable = extern struct {
@@ -152,7 +152,7 @@ pub const IOpcUri = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPartUri_Value = @import("../../zig.zig").Guid.initString("7d3babe7-88b2-46ba-85cb-4203cb016c87");
+const IID_IOpcPartUri_Value = Guid.initString("7d3babe7-88b2-46ba-85cb-4203cb016c87");
 pub const IID_IOpcPartUri = &IID_IOpcPartUri_Value;
 pub const IOpcPartUri = extern struct {
     pub const VTable = extern struct {
@@ -310,7 +310,7 @@ pub const OPC_SIGNATURE_TIME_FORMAT_MONTHS = OPC_SIGNATURE_TIME_FORMAT.MONTHS;
 pub const OPC_SIGNATURE_TIME_FORMAT_YEARS = OPC_SIGNATURE_TIME_FORMAT.YEARS;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPackage_Value = @import("../../zig.zig").Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee70");
+const IID_IOpcPackage_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee70");
 pub const IID_IOpcPackage = &IID_IOpcPackage_Value;
 pub const IOpcPackage = extern struct {
     pub const VTable = extern struct {
@@ -340,7 +340,7 @@ pub const IOpcPackage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPart_Value = @import("../../zig.zig").Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee71");
+const IID_IOpcPart_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee71");
 pub const IID_IOpcPart = &IID_IOpcPart_Value;
 pub const IOpcPart = extern struct {
     pub const VTable = extern struct {
@@ -394,7 +394,7 @@ pub const IOpcPart = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationship_Value = @import("../../zig.zig").Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee72");
+const IID_IOpcRelationship_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee72");
 pub const IID_IOpcRelationship = &IID_IOpcRelationship_Value;
 pub const IOpcRelationship = extern struct {
     pub const VTable = extern struct {
@@ -448,7 +448,7 @@ pub const IOpcRelationship = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPartSet_Value = @import("../../zig.zig").Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee73");
+const IID_IOpcPartSet_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee73");
 pub const IID_IOpcPartSet = &IID_IOpcPartSet_Value;
 pub const IOpcPartSet = extern struct {
     pub const VTable = extern struct {
@@ -507,7 +507,7 @@ pub const IOpcPartSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSet_Value = @import("../../zig.zig").Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee74");
+const IID_IOpcRelationshipSet_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee74");
 pub const IID_IOpcRelationshipSet = &IID_IOpcRelationshipSet_Value;
 pub const IOpcRelationshipSet = extern struct {
     pub const VTable = extern struct {
@@ -584,7 +584,7 @@ pub const IOpcRelationshipSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcPartEnumerator_Value = @import("../../zig.zig").Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee75");
+const IID_IOpcPartEnumerator_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee75");
 pub const IID_IOpcPartEnumerator = &IID_IOpcPartEnumerator_Value;
 pub const IOpcPartEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -630,7 +630,7 @@ pub const IOpcPartEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipEnumerator_Value = @import("../../zig.zig").Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee76");
+const IID_IOpcRelationshipEnumerator_Value = Guid.initString("42195949-3b79-4fc8-89c6-fc7fb979ee76");
 pub const IID_IOpcRelationshipEnumerator = &IID_IOpcRelationshipEnumerator_Value;
 pub const IOpcRelationshipEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -676,7 +676,7 @@ pub const IOpcRelationshipEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignaturePartReference_Value = @import("../../zig.zig").Guid.initString("e24231ca-59f4-484e-b64b-36eeda36072c");
+const IID_IOpcSignaturePartReference_Value = Guid.initString("e24231ca-59f4-484e-b64b-36eeda36072c");
 pub const IID_IOpcSignaturePartReference = &IID_IOpcSignaturePartReference_Value;
 pub const IOpcSignaturePartReference = extern struct {
     pub const VTable = extern struct {
@@ -731,7 +731,7 @@ pub const IOpcSignaturePartReference = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureRelationshipReference_Value = @import("../../zig.zig").Guid.initString("57babac6-9d4a-4e50-8b86-e5d4051eae7c");
+const IID_IOpcSignatureRelationshipReference_Value = Guid.initString("57babac6-9d4a-4e50-8b86-e5d4051eae7c");
 pub const IID_IOpcSignatureRelationshipReference = &IID_IOpcSignatureRelationshipReference_Value;
 pub const IOpcSignatureRelationshipReference = extern struct {
     pub const VTable = extern struct {
@@ -794,7 +794,7 @@ pub const IOpcSignatureRelationshipReference = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSelector_Value = @import("../../zig.zig").Guid.initString("f8f26c7f-b28f-4899-84c8-5d5639ede75f");
+const IID_IOpcRelationshipSelector_Value = Guid.initString("f8f26c7f-b28f-4899-84c8-5d5639ede75f");
 pub const IID_IOpcRelationshipSelector = &IID_IOpcRelationshipSelector_Value;
 pub const IOpcRelationshipSelector = extern struct {
     pub const VTable = extern struct {
@@ -824,7 +824,7 @@ pub const IOpcRelationshipSelector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureReference_Value = @import("../../zig.zig").Guid.initString("1b47005e-3011-4edc-be6f-0f65e5ab0342");
+const IID_IOpcSignatureReference_Value = Guid.initString("1b47005e-3011-4edc-be6f-0f65e5ab0342");
 pub const IID_IOpcSignatureReference = &IID_IOpcSignatureReference_Value;
 pub const IOpcSignatureReference = extern struct {
     pub const VTable = extern struct {
@@ -887,7 +887,7 @@ pub const IOpcSignatureReference = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureCustomObject_Value = @import("../../zig.zig").Guid.initString("5d77a19e-62c1-44e7-becd-45da5ae51a56");
+const IID_IOpcSignatureCustomObject_Value = Guid.initString("5d77a19e-62c1-44e7-becd-45da5ae51a56");
 pub const IID_IOpcSignatureCustomObject = &IID_IOpcSignatureCustomObject_Value;
 pub const IOpcSignatureCustomObject = extern struct {
     pub const VTable = extern struct {
@@ -910,7 +910,7 @@ pub const IOpcSignatureCustomObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcDigitalSignature_Value = @import("../../zig.zig").Guid.initString("52ab21dd-1cd0-4949-bc80-0c1232d00cb4");
+const IID_IOpcDigitalSignature_Value = Guid.initString("52ab21dd-1cd0-4949-bc80-0c1232d00cb4");
 pub const IID_IOpcDigitalSignature = &IID_IOpcDigitalSignature_Value;
 pub const IOpcDigitalSignature = extern struct {
     pub const VTable = extern struct {
@@ -1048,7 +1048,7 @@ pub const IOpcDigitalSignature = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSigningOptions_Value = @import("../../zig.zig").Guid.initString("50d2d6a5-7aeb-46c0-b241-43ab0e9b407e");
+const IID_IOpcSigningOptions_Value = Guid.initString("50d2d6a5-7aeb-46c0-b241-43ab0e9b407e");
 pub const IID_IOpcSigningOptions = &IID_IOpcSigningOptions_Value;
 pub const IOpcSigningOptions = extern struct {
     pub const VTable = extern struct {
@@ -1198,7 +1198,7 @@ pub const IOpcSigningOptions = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcDigitalSignatureManager_Value = @import("../../zig.zig").Guid.initString("d5e62a0b-696d-462f-94df-72e33cef2659");
+const IID_IOpcDigitalSignatureManager_Value = Guid.initString("d5e62a0b-696d-462f-94df-72e33cef2659");
 pub const IID_IOpcDigitalSignatureManager = &IID_IOpcDigitalSignatureManager_Value;
 pub const IOpcDigitalSignatureManager = extern struct {
     pub const VTable = extern struct {
@@ -1283,7 +1283,7 @@ pub const IOpcDigitalSignatureManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignaturePartReferenceEnumerator_Value = @import("../../zig.zig").Guid.initString("80eb1561-8c77-49cf-8266-459b356ee99a");
+const IID_IOpcSignaturePartReferenceEnumerator_Value = Guid.initString("80eb1561-8c77-49cf-8266-459b356ee99a");
 pub const IID_IOpcSignaturePartReferenceEnumerator = &IID_IOpcSignaturePartReferenceEnumerator_Value;
 pub const IOpcSignaturePartReferenceEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1329,7 +1329,7 @@ pub const IOpcSignaturePartReferenceEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureRelationshipReferenceEnumerator_Value = @import("../../zig.zig").Guid.initString("773ba3e4-f021-48e4-aa04-9816db5d3495");
+const IID_IOpcSignatureRelationshipReferenceEnumerator_Value = Guid.initString("773ba3e4-f021-48e4-aa04-9816db5d3495");
 pub const IID_IOpcSignatureRelationshipReferenceEnumerator = &IID_IOpcSignatureRelationshipReferenceEnumerator_Value;
 pub const IOpcSignatureRelationshipReferenceEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1375,7 +1375,7 @@ pub const IOpcSignatureRelationshipReferenceEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSelectorEnumerator_Value = @import("../../zig.zig").Guid.initString("5e50a181-a91b-48ac-88d2-bca3d8f8c0b1");
+const IID_IOpcRelationshipSelectorEnumerator_Value = Guid.initString("5e50a181-a91b-48ac-88d2-bca3d8f8c0b1");
 pub const IID_IOpcRelationshipSelectorEnumerator = &IID_IOpcRelationshipSelectorEnumerator_Value;
 pub const IOpcRelationshipSelectorEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1421,7 +1421,7 @@ pub const IOpcRelationshipSelectorEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureReferenceEnumerator_Value = @import("../../zig.zig").Guid.initString("cfa59a45-28b1-4868-969e-fa8097fdc12a");
+const IID_IOpcSignatureReferenceEnumerator_Value = Guid.initString("cfa59a45-28b1-4868-969e-fa8097fdc12a");
 pub const IID_IOpcSignatureReferenceEnumerator = &IID_IOpcSignatureReferenceEnumerator_Value;
 pub const IOpcSignatureReferenceEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1467,7 +1467,7 @@ pub const IOpcSignatureReferenceEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureCustomObjectEnumerator_Value = @import("../../zig.zig").Guid.initString("5ee4fe1d-e1b0-4683-8079-7ea0fcf80b4c");
+const IID_IOpcSignatureCustomObjectEnumerator_Value = Guid.initString("5ee4fe1d-e1b0-4683-8079-7ea0fcf80b4c");
 pub const IID_IOpcSignatureCustomObjectEnumerator = &IID_IOpcSignatureCustomObjectEnumerator_Value;
 pub const IOpcSignatureCustomObjectEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1513,7 +1513,7 @@ pub const IOpcSignatureCustomObjectEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcCertificateEnumerator_Value = @import("../../zig.zig").Guid.initString("85131937-8f24-421f-b439-59ab24d140b8");
+const IID_IOpcCertificateEnumerator_Value = Guid.initString("85131937-8f24-421f-b439-59ab24d140b8");
 pub const IID_IOpcCertificateEnumerator = &IID_IOpcCertificateEnumerator_Value;
 pub const IOpcCertificateEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1559,7 +1559,7 @@ pub const IOpcCertificateEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcDigitalSignatureEnumerator_Value = @import("../../zig.zig").Guid.initString("967b6882-0ba3-4358-b9e7-b64c75063c5e");
+const IID_IOpcDigitalSignatureEnumerator_Value = Guid.initString("967b6882-0ba3-4358-b9e7-b64c75063c5e");
 pub const IID_IOpcDigitalSignatureEnumerator = &IID_IOpcDigitalSignatureEnumerator_Value;
 pub const IOpcDigitalSignatureEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1605,7 +1605,7 @@ pub const IOpcDigitalSignatureEnumerator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignaturePartReferenceSet_Value = @import("../../zig.zig").Guid.initString("6c9fe28c-ecd9-4b22-9d36-7fdde670fec0");
+const IID_IOpcSignaturePartReferenceSet_Value = Guid.initString("6c9fe28c-ecd9-4b22-9d36-7fdde670fec0");
 pub const IID_IOpcSignaturePartReferenceSet = &IID_IOpcSignaturePartReferenceSet_Value;
 pub const IOpcSignaturePartReferenceSet = extern struct {
     pub const VTable = extern struct {
@@ -1646,7 +1646,7 @@ pub const IOpcSignaturePartReferenceSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureRelationshipReferenceSet_Value = @import("../../zig.zig").Guid.initString("9f863ca5-3631-404c-828d-807e0715069b");
+const IID_IOpcSignatureRelationshipReferenceSet_Value = Guid.initString("9f863ca5-3631-404c-828d-807e0715069b");
 pub const IID_IOpcSignatureRelationshipReferenceSet = &IID_IOpcSignatureRelationshipReferenceSet_Value;
 pub const IOpcSignatureRelationshipReferenceSet = extern struct {
     pub const VTable = extern struct {
@@ -1697,7 +1697,7 @@ pub const IOpcSignatureRelationshipReferenceSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcRelationshipSelectorSet_Value = @import("../../zig.zig").Guid.initString("6e34c269-a4d3-47c0-b5c4-87ff2b3b6136");
+const IID_IOpcRelationshipSelectorSet_Value = Guid.initString("6e34c269-a4d3-47c0-b5c4-87ff2b3b6136");
 pub const IID_IOpcRelationshipSelectorSet = &IID_IOpcRelationshipSelectorSet_Value;
 pub const IOpcRelationshipSelectorSet = extern struct {
     pub const VTable = extern struct {
@@ -1737,7 +1737,7 @@ pub const IOpcRelationshipSelectorSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureReferenceSet_Value = @import("../../zig.zig").Guid.initString("f3b02d31-ab12-42dd-9e2f-2b16761c3c1e");
+const IID_IOpcSignatureReferenceSet_Value = Guid.initString("f3b02d31-ab12-42dd-9e2f-2b16761c3c1e");
 pub const IID_IOpcSignatureReferenceSet = &IID_IOpcSignatureReferenceSet_Value;
 pub const IOpcSignatureReferenceSet = extern struct {
     pub const VTable = extern struct {
@@ -1780,7 +1780,7 @@ pub const IOpcSignatureReferenceSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcSignatureCustomObjectSet_Value = @import("../../zig.zig").Guid.initString("8f792ac5-7947-4e11-bc3d-2659ff046ae1");
+const IID_IOpcSignatureCustomObjectSet_Value = Guid.initString("8f792ac5-7947-4e11-bc3d-2659ff046ae1");
 pub const IID_IOpcSignatureCustomObjectSet = &IID_IOpcSignatureCustomObjectSet_Value;
 pub const IOpcSignatureCustomObjectSet = extern struct {
     pub const VTable = extern struct {
@@ -1820,7 +1820,7 @@ pub const IOpcSignatureCustomObjectSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcCertificateSet_Value = @import("../../zig.zig").Guid.initString("56ea4325-8e2d-4167-b1a4-e486d24c8fa7");
+const IID_IOpcCertificateSet_Value = Guid.initString("56ea4325-8e2d-4167-b1a4-e486d24c8fa7");
 pub const IID_IOpcCertificateSet = &IID_IOpcCertificateSet_Value;
 pub const IOpcCertificateSet = extern struct {
     pub const VTable = extern struct {
@@ -1858,7 +1858,7 @@ pub const IOpcCertificateSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IOpcFactory_Value = @import("../../zig.zig").Guid.initString("6d0b4446-cd73-4ab3-94f4-8ccdf6116154");
+const IID_IOpcFactory_Value = Guid.initString("6d0b4446-cd73-4ab3-94f4-8ccdf6116154");
 pub const IID_IOpcFactory = &IID_IOpcFactory_Value;
 pub const IOpcFactory = extern struct {
     pub const VTable = extern struct {
@@ -1956,8 +1956,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const HRESULT = @import("../../foundation.zig").HRESULT;

@@ -771,17 +771,17 @@ pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     ObjectTypeNames: [1]AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET,
 };
 
-const CLSID_AzAuthorizationStore_Value = @import("../zig.zig").Guid.initString("b2bcff59-a757-4b0b-a1bc-ea69981da69e");
+const CLSID_AzAuthorizationStore_Value = Guid.initString("b2bcff59-a757-4b0b-a1bc-ea69981da69e");
 pub const CLSID_AzAuthorizationStore = &CLSID_AzAuthorizationStore_Value;
 
-const CLSID_AzBizRuleContext_Value = @import("../zig.zig").Guid.initString("5c2dc96f-8d51-434b-b33c-379bccae77c3");
+const CLSID_AzBizRuleContext_Value = Guid.initString("5c2dc96f-8d51-434b-b33c-379bccae77c3");
 pub const CLSID_AzBizRuleContext = &CLSID_AzBizRuleContext_Value;
 
-const CLSID_AzPrincipalLocator_Value = @import("../zig.zig").Guid.initString("483afb5d-70df-4e16-abdc-a1de4d015a3e");
+const CLSID_AzPrincipalLocator_Value = Guid.initString("483afb5d-70df-4e16-abdc-a1de4d015a3e");
 pub const CLSID_AzPrincipalLocator = &CLSID_AzPrincipalLocator_Value;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzAuthorizationStore_Value = @import("../zig.zig").Guid.initString("edbd9ca9-9b82-4f6a-9e8b-98301e450f14");
+const IID_IAzAuthorizationStore_Value = Guid.initString("edbd9ca9-9b82-4f6a-9e8b-98301e450f14");
 pub const IID_IAzAuthorizationStore = &IID_IAzAuthorizationStore_Value;
 pub const IAzAuthorizationStore = extern struct {
     pub const VTable = extern struct {
@@ -1261,7 +1261,7 @@ pub const IAzAuthorizationStore = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IAzAuthorizationStore2_Value = @import("../zig.zig").Guid.initString("b11e5584-d577-4273-b6c5-0973e0f8e80d");
+const IID_IAzAuthorizationStore2_Value = Guid.initString("b11e5584-d577-4273-b6c5-0973e0f8e80d");
 pub const IID_IAzAuthorizationStore2 = &IID_IAzAuthorizationStore2_Value;
 pub const IAzAuthorizationStore2 = extern struct {
     pub const VTable = extern struct {
@@ -1295,7 +1295,7 @@ pub const IAzAuthorizationStore2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzAuthorizationStore3_Value = @import("../zig.zig").Guid.initString("abc08425-0c86-4fa0-9be3-7189956c926e");
+const IID_IAzAuthorizationStore3_Value = Guid.initString("abc08425-0c86-4fa0-9be3-7189956c926e");
 pub const IID_IAzAuthorizationStore3 = &IID_IAzAuthorizationStore3_Value;
 pub const IAzAuthorizationStore3 = extern struct {
     pub const VTable = extern struct {
@@ -1351,7 +1351,7 @@ pub const IAzAuthorizationStore3 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplication_Value = @import("../zig.zig").Guid.initString("987bc7c7-b813-4d27-bede-6ba5ae867e95");
+const IID_IAzApplication_Value = Guid.initString("987bc7c7-b813-4d27-bede-6ba5ae867e95");
 pub const IID_IAzApplication = &IID_IAzApplication_Value;
 pub const IAzApplication = extern struct {
     pub const VTable = extern struct {
@@ -1933,7 +1933,7 @@ pub const IAzApplication = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplication2_Value = @import("../zig.zig").Guid.initString("086a68af-a249-437c-b18d-d4d86d6a9660");
+const IID_IAzApplication2_Value = Guid.initString("086a68af-a249-437c-b18d-d4d86d6a9660");
 pub const IID_IAzApplication2 = &IID_IAzApplication2_Value;
 pub const IAzApplication2 = extern struct {
     pub const VTable = extern struct {
@@ -1968,7 +1968,7 @@ pub const IAzApplication2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplications_Value = @import("../zig.zig").Guid.initString("929b11a9-95c5-4a84-a29a-20ad42c2f16c");
+const IID_IAzApplications_Value = Guid.initString("929b11a9-95c5-4a84-a29a-20ad42c2f16c");
 pub const IID_IAzApplications = &IID_IAzApplications_Value;
 pub const IAzApplications = extern struct {
     pub const VTable = extern struct {
@@ -2010,7 +2010,7 @@ pub const IAzApplications = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzOperation_Value = @import("../zig.zig").Guid.initString("5e56b24f-ea01-4d61-be44-c49b5e4eaf74");
+const IID_IAzOperation_Value = Guid.initString("5e56b24f-ea01-4d61-be44-c49b5e4eaf74");
 pub const IID_IAzOperation = &IID_IAzOperation_Value;
 pub const IAzOperation = extern struct {
     pub const VTable = extern struct {
@@ -2134,7 +2134,7 @@ pub const IAzOperation = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzOperations_Value = @import("../zig.zig").Guid.initString("90ef9c07-9706-49d9-af80-0438a5f3ec35");
+const IID_IAzOperations_Value = Guid.initString("90ef9c07-9706-49d9-af80-0438a5f3ec35");
 pub const IID_IAzOperations = &IID_IAzOperations_Value;
 pub const IAzOperations = extern struct {
     pub const VTable = extern struct {
@@ -2176,7 +2176,7 @@ pub const IAzOperations = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzTask_Value = @import("../zig.zig").Guid.initString("cb94e592-2e0e-4a6c-a336-b89a6dc1e388");
+const IID_IAzTask_Value = Guid.initString("cb94e592-2e0e-4a6c-a336-b89a6dc1e388");
 pub const IID_IAzTask = &IID_IAzTask_Value;
 pub const IAzTask = extern struct {
     pub const VTable = extern struct {
@@ -2428,7 +2428,7 @@ pub const IAzTask = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzTasks_Value = @import("../zig.zig").Guid.initString("b338ccab-4c85-4388-8c0a-c58592bad398");
+const IID_IAzTasks_Value = Guid.initString("b338ccab-4c85-4388-8c0a-c58592bad398");
 pub const IID_IAzTasks = &IID_IAzTasks_Value;
 pub const IAzTasks = extern struct {
     pub const VTable = extern struct {
@@ -2470,7 +2470,7 @@ pub const IAzTasks = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzScope_Value = @import("../zig.zig").Guid.initString("00e52487-e08d-4514-b62e-877d5645f5ab");
+const IID_IAzScope_Value = Guid.initString("00e52487-e08d-4514-b62e-877d5645f5ab");
 pub const IID_IAzScope = &IID_IAzScope_Value;
 pub const IAzScope = extern struct {
     pub const VTable = extern struct {
@@ -2836,7 +2836,7 @@ pub const IAzScope = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzScopes_Value = @import("../zig.zig").Guid.initString("78e14853-9f5e-406d-9b91-6bdba6973510");
+const IID_IAzScopes_Value = Guid.initString("78e14853-9f5e-406d-9b91-6bdba6973510");
 pub const IID_IAzScopes = &IID_IAzScopes_Value;
 pub const IAzScopes = extern struct {
     pub const VTable = extern struct {
@@ -2878,7 +2878,7 @@ pub const IAzScopes = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplicationGroup_Value = @import("../zig.zig").Guid.initString("f1b744cd-58a6-4e06-9fbf-36f6d779e21e");
+const IID_IAzApplicationGroup_Value = Guid.initString("f1b744cd-58a6-4e06-9fbf-36f6d779e21e");
 pub const IID_IAzApplicationGroup = &IID_IAzApplicationGroup_Value;
 pub const IAzApplicationGroup = extern struct {
     pub const VTable = extern struct {
@@ -3184,7 +3184,7 @@ pub const IAzApplicationGroup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplicationGroups_Value = @import("../zig.zig").Guid.initString("4ce66ad5-9f3c-469d-a911-b99887a7e685");
+const IID_IAzApplicationGroups_Value = Guid.initString("4ce66ad5-9f3c-469d-a911-b99887a7e685");
 pub const IID_IAzApplicationGroups = &IID_IAzApplicationGroups_Value;
 pub const IAzApplicationGroups = extern struct {
     pub const VTable = extern struct {
@@ -3226,7 +3226,7 @@ pub const IAzApplicationGroups = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRole_Value = @import("../zig.zig").Guid.initString("859e0d8d-62d7-41d8-a034-c0cd5d43fdfa");
+const IID_IAzRole_Value = Guid.initString("859e0d8d-62d7-41d8-a034-c0cd5d43fdfa");
 pub const IID_IAzRole = &IID_IAzRole_Value;
 pub const IAzRole = extern struct {
     pub const VTable = extern struct {
@@ -3487,7 +3487,7 @@ pub const IAzRole = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoles_Value = @import("../zig.zig").Guid.initString("95e0f119-13b4-4dae-b65f-2f7d60d822e4");
+const IID_IAzRoles_Value = Guid.initString("95e0f119-13b4-4dae-b65f-2f7d60d822e4");
 pub const IID_IAzRoles = &IID_IAzRoles_Value;
 pub const IAzRoles = extern struct {
     pub const VTable = extern struct {
@@ -3529,7 +3529,7 @@ pub const IAzRoles = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzClientContext_Value = @import("../zig.zig").Guid.initString("eff1f00b-488a-466d-afd9-a401c5f9eef5");
+const IID_IAzClientContext_Value = Guid.initString("eff1f00b-488a-466d-afd9-a401c5f9eef5");
 pub const IID_IAzClientContext = &IID_IAzClientContext_Value;
 pub const IAzClientContext = extern struct {
     pub const VTable = extern struct {
@@ -3667,7 +3667,7 @@ pub const IAzClientContext = extern struct {
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
-const IID_IAzClientContext2_Value = @import("../zig.zig").Guid.initString("2b0c92b8-208a-488a-8f81-e4edb22111cd");
+const IID_IAzClientContext2_Value = Guid.initString("2b0c92b8-208a-488a-8f81-e4edb22111cd");
 pub const IID_IAzClientContext2 = &IID_IAzClientContext2_Value;
 pub const IAzClientContext2 = extern struct {
     pub const VTable = extern struct {
@@ -3735,7 +3735,7 @@ pub const IAzClientContext2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzBizRuleContext_Value = @import("../zig.zig").Guid.initString("e192f17d-d59f-455e-a152-940316cd77b2");
+const IID_IAzBizRuleContext_Value = Guid.initString("e192f17d-d59f-455e-a152-940316cd77b2");
 pub const IID_IAzBizRuleContext = &IID_IAzBizRuleContext_Value;
 pub const IAzBizRuleContext = extern struct {
     pub const VTable = extern struct {
@@ -3785,7 +3785,7 @@ pub const IAzBizRuleContext = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzBizRuleParameters_Value = @import("../zig.zig").Guid.initString("fc17685f-e25d-4dcd-bae1-276ec9533cb5");
+const IID_IAzBizRuleParameters_Value = Guid.initString("fc17685f-e25d-4dcd-bae1-276ec9533cb5");
 pub const IID_IAzBizRuleParameters = &IID_IAzBizRuleParameters_Value;
 pub const IAzBizRuleParameters = extern struct {
     pub const VTable = extern struct {
@@ -3850,7 +3850,7 @@ pub const IAzBizRuleParameters = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzBizRuleInterfaces_Value = @import("../zig.zig").Guid.initString("e94128c7-e9da-44cc-b0bd-53036f3aab3d");
+const IID_IAzBizRuleInterfaces_Value = Guid.initString("e94128c7-e9da-44cc-b0bd-53036f3aab3d");
 pub const IID_IAzBizRuleInterfaces = &IID_IAzBizRuleInterfaces_Value;
 pub const IAzBizRuleInterfaces = extern struct {
     pub const VTable = extern struct {
@@ -3918,7 +3918,7 @@ pub const IAzBizRuleInterfaces = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzClientContext3_Value = @import("../zig.zig").Guid.initString("11894fde-1deb-4b4b-8907-6d1cda1f5d4f");
+const IID_IAzClientContext3_Value = Guid.initString("11894fde-1deb-4b4b-8907-6d1cda1f5d4f");
 pub const IID_IAzClientContext3 = &IID_IAzClientContext3_Value;
 pub const IAzClientContext3 = extern struct {
     pub const VTable = extern struct {
@@ -4008,7 +4008,7 @@ pub const IAzClientContext3 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzScope2_Value = @import("../zig.zig").Guid.initString("ee9fe8c9-c9f3-40e2-aa12-d1d8599727fd");
+const IID_IAzScope2_Value = Guid.initString("ee9fe8c9-c9f3-40e2-aa12-d1d8599727fd");
 pub const IID_IAzScope2 = &IID_IAzScope2_Value;
 pub const IAzScope2 = extern struct {
     pub const VTable = extern struct {
@@ -4092,7 +4092,7 @@ pub const IAzScope2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplication3_Value = @import("../zig.zig").Guid.initString("181c845e-7196-4a7d-ac2e-020c0bb7a303");
+const IID_IAzApplication3_Value = Guid.initString("181c845e-7196-4a7d-ac2e-020c0bb7a303");
 pub const IID_IAzApplication3 = &IID_IAzApplication3_Value;
 pub const IAzApplication3 = extern struct {
     pub const VTable = extern struct {
@@ -4229,7 +4229,7 @@ pub const IAzApplication3 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzOperation2_Value = @import("../zig.zig").Guid.initString("1f5ea01f-44a2-4184-9c48-a75b4dcc8ccc");
+const IID_IAzOperation2_Value = Guid.initString("1f5ea01f-44a2-4184-9c48-a75b4dcc8ccc");
 pub const IID_IAzOperation2 = &IID_IAzOperation2_Value;
 pub const IAzOperation2 = extern struct {
     pub const VTable = extern struct {
@@ -4253,7 +4253,7 @@ pub const IAzOperation2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleDefinitions_Value = @import("../zig.zig").Guid.initString("881f25a5-d755-4550-957a-d503a3b34001");
+const IID_IAzRoleDefinitions_Value = Guid.initString("881f25a5-d755-4550-957a-d503a3b34001");
 pub const IID_IAzRoleDefinitions = &IID_IAzRoleDefinitions_Value;
 pub const IAzRoleDefinitions = extern struct {
     pub const VTable = extern struct {
@@ -4295,7 +4295,7 @@ pub const IAzRoleDefinitions = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleDefinition_Value = @import("../zig.zig").Guid.initString("d97fcea1-2599-44f1-9fc3-58e9fbe09466");
+const IID_IAzRoleDefinition_Value = Guid.initString("d97fcea1-2599-44f1-9fc3-58e9fbe09466");
 pub const IID_IAzRoleDefinition = &IID_IAzRoleDefinition_Value;
 pub const IAzRoleDefinition = extern struct {
     pub const VTable = extern struct {
@@ -4344,7 +4344,7 @@ pub const IAzRoleDefinition = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleAssignment_Value = @import("../zig.zig").Guid.initString("55647d31-0d5a-4fa3-b4ac-2b5f9ad5ab76");
+const IID_IAzRoleAssignment_Value = Guid.initString("55647d31-0d5a-4fa3-b4ac-2b5f9ad5ab76");
 pub const IID_IAzRoleAssignment = &IID_IAzRoleAssignment_Value;
 pub const IAzRoleAssignment = extern struct {
     pub const VTable = extern struct {
@@ -4392,7 +4392,7 @@ pub const IAzRoleAssignment = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzRoleAssignments_Value = @import("../zig.zig").Guid.initString("9c80b900-fceb-4d73-a0f4-c83b0bbf2481");
+const IID_IAzRoleAssignments_Value = Guid.initString("9c80b900-fceb-4d73-a0f4-c83b0bbf2481");
 pub const IID_IAzRoleAssignments = &IID_IAzRoleAssignments_Value;
 pub const IAzRoleAssignments = extern struct {
     pub const VTable = extern struct {
@@ -4434,7 +4434,7 @@ pub const IAzRoleAssignments = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzPrincipalLocator_Value = @import("../zig.zig").Guid.initString("e5c3507d-ad6a-4992-9c7f-74ab480b44cc");
+const IID_IAzPrincipalLocator_Value = Guid.initString("e5c3507d-ad6a-4992-9c7f-74ab480b44cc");
 pub const IID_IAzPrincipalLocator = &IID_IAzPrincipalLocator_Value;
 pub const IAzPrincipalLocator = extern struct {
     pub const VTable = extern struct {
@@ -4466,7 +4466,7 @@ pub const IAzPrincipalLocator = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzNameResolver_Value = @import("../zig.zig").Guid.initString("504d0f15-73e2-43df-a870-a64f40714f53");
+const IID_IAzNameResolver_Value = Guid.initString("504d0f15-73e2-43df-a870-a64f40714f53");
 pub const IID_IAzNameResolver = &IID_IAzNameResolver_Value;
 pub const IAzNameResolver = extern struct {
     pub const VTable = extern struct {
@@ -4500,7 +4500,7 @@ pub const IAzNameResolver = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzObjectPicker_Value = @import("../zig.zig").Guid.initString("63130a48-699a-42d8-bf01-c62ac3fb79f9");
+const IID_IAzObjectPicker_Value = Guid.initString("63130a48-699a-42d8-bf01-c62ac3fb79f9");
 pub const IID_IAzObjectPicker = &IID_IAzObjectPicker_Value;
 pub const IAzObjectPicker = extern struct {
     pub const VTable = extern struct {
@@ -4535,7 +4535,7 @@ pub const IAzObjectPicker = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzApplicationGroup2_Value = @import("../zig.zig").Guid.initString("3f0613fc-b71a-464e-a11d-5b881a56cefa");
+const IID_IAzApplicationGroup2_Value = Guid.initString("3f0613fc-b71a-464e-a11d-5b881a56cefa");
 pub const IID_IAzApplicationGroup2 = &IID_IAzApplicationGroup2_Value;
 pub const IAzApplicationGroup2 = extern struct {
     pub const VTable = extern struct {
@@ -4613,7 +4613,7 @@ pub const IAzApplicationGroup2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAzTask2_Value = @import("../zig.zig").Guid.initString("03a9a5ee-48c8-4832-9025-aad503c46526");
+const IID_IAzTask2_Value = Guid.initString("03a9a5ee-48c8-4832-9025-aad503c46526");
 pub const IID_IAzTask2 = &IID_IAzTask2_Value;
 pub const IAzTask2 = extern struct {
     pub const VTable = extern struct {

@@ -8,7 +8,7 @@ pub const CLSID_VideoFrameNativeFactory = Guid.initString("d194386a-04e3-4814-81
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-const IID_IAudioFrameNative_Value = @import("../../zig.zig").Guid.initString("20be1e2e-930f-4746-9335-3c332f255093");
+const IID_IAudioFrameNative_Value = Guid.initString("20be1e2e-930f-4746-9335-3c332f255093");
 pub const IID_IAudioFrameNative = &IID_IAudioFrameNative_Value;
 pub const IAudioFrameNative = extern struct {
     pub const VTable = extern struct {
@@ -30,7 +30,7 @@ pub const IAudioFrameNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVideoFrameNative_Value = @import("../../zig.zig").Guid.initString("26ba702b-314a-4620-aaf6-7a51aa58fa18");
+const IID_IVideoFrameNative_Value = Guid.initString("26ba702b-314a-4620-aaf6-7a51aa58fa18");
 pub const IID_IVideoFrameNative = &IID_IVideoFrameNative_Value;
 pub const IVideoFrameNative = extern struct {
     pub const VTable = extern struct {
@@ -61,7 +61,7 @@ pub const IVideoFrameNative = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioFrameNativeFactory_Value = @import("../../zig.zig").Guid.initString("7bd67cf8-bf7d-43e6-af8d-b170ee0c0110");
+const IID_IAudioFrameNativeFactory_Value = Guid.initString("7bd67cf8-bf7d-43e6-af8d-b170ee0c0110");
 pub const IID_IAudioFrameNativeFactory = &IID_IAudioFrameNativeFactory_Value;
 pub const IAudioFrameNativeFactory = extern struct {
     pub const VTable = extern struct {
@@ -85,7 +85,7 @@ pub const IAudioFrameNativeFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVideoFrameNativeFactory_Value = @import("../../zig.zig").Guid.initString("69e3693e-8e1e-4e63-ac4c-7fdc21d9731d");
+const IID_IVideoFrameNativeFactory_Value = Guid.initString("69e3693e-8e1e-4e63-ac4c-7fdc21d9731d");
 pub const IID_IVideoFrameNativeFactory = &IID_IVideoFrameNativeFactory_Value;
 pub const IVideoFrameNativeFactory = extern struct {
     pub const VTable = extern struct {

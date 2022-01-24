@@ -290,52 +290,52 @@ pub const HRECOLATTICE = *opaque{};
 
 pub const HRECOWORDLIST = *opaque{};
 
-const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
+const CLSID_InkDisp_Value = Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
 
-const CLSID_InkOverlay_Value = @import("../zig.zig").Guid.initString("65d00646-cde3-4a88-9163-6769f0f1a97d");
+const CLSID_InkOverlay_Value = Guid.initString("65d00646-cde3-4a88-9163-6769f0f1a97d");
 pub const CLSID_InkOverlay = &CLSID_InkOverlay_Value;
 
-const CLSID_InkPicture_Value = @import("../zig.zig").Guid.initString("04a1e553-fe36-4fde-865e-344194e69424");
+const CLSID_InkPicture_Value = Guid.initString("04a1e553-fe36-4fde-865e-344194e69424");
 pub const CLSID_InkPicture = &CLSID_InkPicture_Value;
 
-const CLSID_InkCollector_Value = @import("../zig.zig").Guid.initString("43fb1553-ad74-4ee8-88e4-3e6daac915db");
+const CLSID_InkCollector_Value = Guid.initString("43fb1553-ad74-4ee8-88e4-3e6daac915db");
 pub const CLSID_InkCollector = &CLSID_InkCollector_Value;
 
-const CLSID_InkDrawingAttributes_Value = @import("../zig.zig").Guid.initString("d8bf32a2-05a5-44c3-b3aa-5e80ac7d2576");
+const CLSID_InkDrawingAttributes_Value = Guid.initString("d8bf32a2-05a5-44c3-b3aa-5e80ac7d2576");
 pub const CLSID_InkDrawingAttributes = &CLSID_InkDrawingAttributes_Value;
 
-const CLSID_InkRectangle_Value = @import("../zig.zig").Guid.initString("43b07326-aae0-4b62-a83d-5fd768b7353c");
+const CLSID_InkRectangle_Value = Guid.initString("43b07326-aae0-4b62-a83d-5fd768b7353c");
 pub const CLSID_InkRectangle = &CLSID_InkRectangle_Value;
 
-const CLSID_InkRenderer_Value = @import("../zig.zig").Guid.initString("9c1cc6e4-d7eb-4eeb-9091-15a7c8791ed9");
+const CLSID_InkRenderer_Value = Guid.initString("9c1cc6e4-d7eb-4eeb-9091-15a7c8791ed9");
 pub const CLSID_InkRenderer = &CLSID_InkRenderer_Value;
 
-const CLSID_InkTransform_Value = @import("../zig.zig").Guid.initString("e3d5d93c-1663-4a78-a1a7-22375dfebaee");
+const CLSID_InkTransform_Value = Guid.initString("e3d5d93c-1663-4a78-a1a7-22375dfebaee");
 pub const CLSID_InkTransform = &CLSID_InkTransform_Value;
 
-const CLSID_InkRecognizers_Value = @import("../zig.zig").Guid.initString("9fd4e808-f6e6-4e65-98d3-aa39054c1255");
+const CLSID_InkRecognizers_Value = Guid.initString("9fd4e808-f6e6-4e65-98d3-aa39054c1255");
 pub const CLSID_InkRecognizers = &CLSID_InkRecognizers_Value;
 
-const CLSID_InkRecognizerContext_Value = @import("../zig.zig").Guid.initString("aac46a37-9229-4fc0-8cce-4497569bf4d1");
+const CLSID_InkRecognizerContext_Value = Guid.initString("aac46a37-9229-4fc0-8cce-4497569bf4d1");
 pub const CLSID_InkRecognizerContext = &CLSID_InkRecognizerContext_Value;
 
-const CLSID_InkRecognizerGuide_Value = @import("../zig.zig").Guid.initString("8770d941-a63a-4671-a375-2855a18eba73");
+const CLSID_InkRecognizerGuide_Value = Guid.initString("8770d941-a63a-4671-a375-2855a18eba73");
 pub const CLSID_InkRecognizerGuide = &CLSID_InkRecognizerGuide_Value;
 
-const CLSID_InkTablets_Value = @import("../zig.zig").Guid.initString("6e4fcb12-510a-4d40-9304-1da10ae9147c");
+const CLSID_InkTablets_Value = Guid.initString("6e4fcb12-510a-4d40-9304-1da10ae9147c");
 pub const CLSID_InkTablets = &CLSID_InkTablets_Value;
 
-const CLSID_InkWordList_Value = @import("../zig.zig").Guid.initString("9de85094-f71f-44f1-8471-15a2fa76fcf3");
+const CLSID_InkWordList_Value = Guid.initString("9de85094-f71f-44f1-8471-15a2fa76fcf3");
 pub const CLSID_InkWordList = &CLSID_InkWordList_Value;
 
-const CLSID_InkStrokes_Value = @import("../zig.zig").Guid.initString("48f491bc-240e-4860-b079-a1e94d3d2c86");
+const CLSID_InkStrokes_Value = Guid.initString("48f491bc-240e-4860-b079-a1e94d3d2c86");
 pub const CLSID_InkStrokes = &CLSID_InkStrokes_Value;
 
-const CLSID_Ink_Value = @import("../zig.zig").Guid.initString("13de4a42-8d21-4c8e-bf9c-8f69cb068fca");
+const CLSID_Ink_Value = Guid.initString("13de4a42-8d21-4c8e-bf9c-8f69cb068fca");
 pub const CLSID_Ink = &CLSID_Ink_Value;
 
-const CLSID_SketchInk_Value = @import("../zig.zig").Guid.initString("f0291081-e87c-4e07-97da-a0a03761e586");
+const CLSID_SketchInk_Value = Guid.initString("f0291081-e87c-4e07-97da-a0a03761e586");
 pub const CLSID_SketchInk = &CLSID_SketchInk_Value;
 
 pub const PROPERTY_UNITS = enum(i32) {
@@ -1769,7 +1769,7 @@ pub const DISPID_InkWordList2 = enum(i32) {
 };
 pub const DISPID_InkWordList2_AddWords = DISPID_InkWordList2.s;
 
-const IID_IInkRectangle_Value = @import("../zig.zig").Guid.initString("9794ff82-6071-4717-8a8b-6ac7c64a686e");
+const IID_IInkRectangle_Value = Guid.initString("9794ff82-6071-4717-8a8b-6ac7c64a686e");
 pub const IID_IInkRectangle = &IID_IInkRectangle_Value;
 pub const IInkRectangle = extern struct {
     pub const VTable = extern struct {
@@ -1895,7 +1895,7 @@ pub const IInkRectangle = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkExtendedProperty_Value = @import("../zig.zig").Guid.initString("db489209-b7c3-411d-90f6-1548cfff271e");
+const IID_IInkExtendedProperty_Value = Guid.initString("db489209-b7c3-411d-90f6-1548cfff271e");
 pub const IID_IInkExtendedProperty = &IID_IInkExtendedProperty_Value;
 pub const IInkExtendedProperty = extern struct {
     pub const VTable = extern struct {
@@ -1936,7 +1936,7 @@ pub const IInkExtendedProperty = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkExtendedProperties_Value = @import("../zig.zig").Guid.initString("89f2a8be-95a9-4530-8b8f-88e971e3e25f");
+const IID_IInkExtendedProperties_Value = Guid.initString("89f2a8be-95a9-4530-8b8f-88e971e3e25f");
 pub const IID_IInkExtendedProperties = &IID_IInkExtendedProperties_Value;
 pub const IInkExtendedProperties = extern struct {
     pub const VTable = extern struct {
@@ -2010,7 +2010,7 @@ pub const IInkExtendedProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDrawingAttributes_Value = @import("../zig.zig").Guid.initString("bf519b75-0a15-4623-adc9-c00d436a8092");
+const IID_IInkDrawingAttributes_Value = Guid.initString("bf519b75-0a15-4623-adc9-c00d436a8092");
 pub const IID_IInkDrawingAttributes = &IID_IInkDrawingAttributes_Value;
 pub const IInkDrawingAttributes = extern struct {
     pub const VTable = extern struct {
@@ -2202,7 +2202,7 @@ pub const IInkDrawingAttributes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkTransform_Value = @import("../zig.zig").Guid.initString("615f1d43-8703-4565-88e2-8201d2ecd7b7");
+const IID_IInkTransform_Value = Guid.initString("615f1d43-8703-4565-88e2-8201d2ecd7b7");
 pub const IID_IInkTransform = &IID_IInkTransform_Value;
 pub const IInkTransform = extern struct {
     pub const VTable = extern struct {
@@ -2421,7 +2421,7 @@ pub const IInkTransform = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkGesture_Value = @import("../zig.zig").Guid.initString("3bdc0a97-04e5-4e26-b813-18f052d41def");
+const IID_IInkGesture_Value = Guid.initString("3bdc0a97-04e5-4e26-b813-18f052d41def");
 pub const IID_IInkGesture = &IID_IInkGesture_Value;
 pub const IInkGesture = extern struct {
     pub const VTable = extern struct {
@@ -2462,7 +2462,7 @@ pub const IInkGesture = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursor_Value = @import("../zig.zig").Guid.initString("ad30c630-40c5-4350-8405-9c71012fc558");
+const IID_IInkCursor_Value = Guid.initString("ad30c630-40c5-4350-8405-9c71012fc558");
 pub const IID_IInkCursor = &IID_IInkCursor_Value;
 pub const IInkCursor = extern struct {
     pub const VTable = extern struct {
@@ -2538,7 +2538,7 @@ pub const IInkCursor = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursors_Value = @import("../zig.zig").Guid.initString("a248c1ac-c698-4e06-9e5c-d57f77c7e647");
+const IID_IInkCursors_Value = Guid.initString("a248c1ac-c698-4e06-9e5c-d57f77c7e647");
 pub const IID_IInkCursors = &IID_IInkCursors_Value;
 pub const IInkCursors = extern struct {
     pub const VTable = extern struct {
@@ -2579,7 +2579,7 @@ pub const IInkCursors = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursorButton_Value = @import("../zig.zig").Guid.initString("85ef9417-1d59-49b2-a13c-702c85430894");
+const IID_IInkCursorButton_Value = Guid.initString("85ef9417-1d59-49b2-a13c-702c85430894");
 pub const IID_IInkCursorButton = &IID_IInkCursorButton_Value;
 pub const IInkCursorButton = extern struct {
     pub const VTable = extern struct {
@@ -2620,7 +2620,7 @@ pub const IInkCursorButton = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCursorButtons_Value = @import("../zig.zig").Guid.initString("3671cc40-b624-4671-9fa0-db119d952d54");
+const IID_IInkCursorButtons_Value = Guid.initString("3671cc40-b624-4671-9fa0-db119d952d54");
 pub const IID_IInkCursorButtons = &IID_IInkCursorButtons_Value;
 pub const IInkCursorButtons = extern struct {
     pub const VTable = extern struct {
@@ -2661,7 +2661,7 @@ pub const IInkCursorButtons = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkTablet_Value = @import("../zig.zig").Guid.initString("2de25eaa-6ef8-42d5-aee9-185bc81b912d");
+const IID_IInkTablet_Value = Guid.initString("2de25eaa-6ef8-42d5-aee9-185bc81b912d");
 pub const IID_IInkTablet = &IID_IInkTablet_Value;
 pub const IInkTablet = extern struct {
     pub const VTable = extern struct {
@@ -2732,7 +2732,7 @@ pub const IInkTablet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkTablet2_Value = @import("../zig.zig").Guid.initString("90c91ad2-fa36-49d6-9516-ce8d570f6f85");
+const IID_IInkTablet2_Value = Guid.initString("90c91ad2-fa36-49d6-9516-ce8d570f6f85");
 pub const IID_IInkTablet2 = &IID_IInkTablet2_Value;
 pub const IInkTablet2 = extern struct {
     pub const VTable = extern struct {
@@ -2755,7 +2755,7 @@ pub const IInkTablet2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IInkTablet3_Value = @import("../zig.zig").Guid.initString("7e313997-1327-41dd-8ca9-79f24be17250");
+const IID_IInkTablet3_Value = Guid.initString("7e313997-1327-41dd-8ca9-79f24be17250");
 pub const IID_IInkTablet3 = &IID_IInkTablet3_Value;
 pub const IInkTablet3 = extern struct {
     pub const VTable = extern struct {
@@ -2786,7 +2786,7 @@ pub const IInkTablet3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkTablets_Value = @import("../zig.zig").Guid.initString("112086d9-7779-4535-a699-862b43ac1863");
+const IID_IInkTablets_Value = Guid.initString("112086d9-7779-4535-a699-862b43ac1863");
 pub const IID_IInkTablets = &IID_IInkTablets_Value;
 pub const IInkTablets = extern struct {
     pub const VTable = extern struct {
@@ -2845,7 +2845,7 @@ pub const IInkTablets = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkStrokeDisp_Value = @import("../zig.zig").Guid.initString("43242fea-91d1-4a72-963e-fbb91829cfa2");
+const IID_IInkStrokeDisp_Value = Guid.initString("43242fea-91d1-4a72-963e-fbb91829cfa2");
 pub const IID_IInkStrokeDisp = &IID_IInkStrokeDisp_Value;
 pub const IInkStrokeDisp = extern struct {
     pub const VTable = extern struct {
@@ -3169,7 +3169,7 @@ pub const IInkStrokeDisp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkStrokes_Value = @import("../zig.zig").Guid.initString("f1f4c9d8-590a-4963-b3ae-1935671bb6f3");
+const IID_IInkStrokes_Value = Guid.initString("f1f4c9d8-590a-4963-b3ae-1935671bb6f3");
 pub const IID_IInkStrokes = &IID_IInkStrokes_Value;
 pub const IInkStrokes = extern struct {
     pub const VTable = extern struct {
@@ -3354,7 +3354,7 @@ pub const IInkStrokes = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkCustomStrokes_Value = @import("../zig.zig").Guid.initString("7e23a88f-c30e-420f-9bdb-28902543f0c1");
+const IID_IInkCustomStrokes_Value = Guid.initString("7e23a88f-c30e-420f-9bdb-28902543f0c1");
 pub const IID_IInkCustomStrokes = &IID_IInkCustomStrokes_Value;
 pub const IInkCustomStrokes = extern struct {
     pub const VTable = extern struct {
@@ -3418,7 +3418,7 @@ pub const IInkCustomStrokes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkStrokesEvents_Value = @import("../zig.zig").Guid.initString("f33053ec-5d25-430a-928f-76a6491dde15");
+const IID__IInkStrokesEvents_Value = Guid.initString("f33053ec-5d25-430a-928f-76a6491dde15");
 pub const IID__IInkStrokesEvents = &IID__IInkStrokesEvents_Value;
 pub const _IInkStrokesEvents = extern struct {
     pub const VTable = extern struct {
@@ -3431,7 +3431,7 @@ pub const _IInkStrokesEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDisp_Value = @import("../zig.zig").Guid.initString("9d398fa0-c4e2-4fcd-9973-975caaf47ea6");
+const IID_IInkDisp_Value = Guid.initString("9d398fa0-c4e2-4fcd-9973-975caaf47ea6");
 pub const IID_IInkDisp = &IID_IInkDisp_Value;
 pub const IInkDisp = extern struct {
     pub const VTable = extern struct {
@@ -3682,7 +3682,7 @@ pub const IInkDisp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkEvents_Value = @import("../zig.zig").Guid.initString("427b1865-ca3f-479a-83a9-0f420f2a0073");
+const IID__IInkEvents_Value = Guid.initString("427b1865-ca3f-479a-83a9-0f420f2a0073");
 pub const IID__IInkEvents = &IID__IInkEvents_Value;
 pub const _IInkEvents = extern struct {
     pub const VTable = extern struct {
@@ -3695,7 +3695,7 @@ pub const _IInkEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRenderer_Value = @import("../zig.zig").Guid.initString("e6257a9c-b511-4f4c-a8b0-a7dbc9506b83");
+const IID_IInkRenderer_Value = Guid.initString("e6257a9c-b511-4f4c-a8b0-a7dbc9506b83");
 pub const IID_IInkRenderer = &IID_IInkRenderer_Value;
 pub const IInkRenderer = extern struct {
     pub const VTable = extern struct {
@@ -3845,7 +3845,7 @@ pub const IInkRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkCollector_Value = @import("../zig.zig").Guid.initString("f0f060b5-8b1f-4a7c-89ec-880692588a4f");
+const IID_IInkCollector_Value = Guid.initString("f0f060b5-8b1f-4a7c-89ec-880692588a4f");
 pub const IID_IInkCollector = &IID_IInkCollector_Value;
 pub const IInkCollector = extern struct {
     pub const VTable = extern struct {
@@ -4210,7 +4210,7 @@ pub const IInkCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkCollectorEvents_Value = @import("../zig.zig").Guid.initString("11a583f2-712d-4fea-abcf-ab4af38ea06b");
+const IID__IInkCollectorEvents_Value = Guid.initString("11a583f2-712d-4fea-abcf-ab4af38ea06b");
 pub const IID__IInkCollectorEvents = &IID__IInkCollectorEvents_Value;
 pub const _IInkCollectorEvents = extern struct {
     pub const VTable = extern struct {
@@ -4223,7 +4223,7 @@ pub const _IInkCollectorEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkOverlay_Value = @import("../zig.zig").Guid.initString("b82a463b-c1c5-45a3-997c-deab5651b67a");
+const IID_IInkOverlay_Value = Guid.initString("b82a463b-c1c5-45a3-997c-deab5651b67a");
 pub const IID_IInkOverlay = &IID_IInkOverlay_Value;
 pub const IInkOverlay = extern struct {
     pub const VTable = extern struct {
@@ -4714,7 +4714,7 @@ pub const IInkOverlay = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkOverlayEvents_Value = @import("../zig.zig").Guid.initString("31179b69-e563-489e-b16f-712f1e8a0651");
+const IID__IInkOverlayEvents_Value = Guid.initString("31179b69-e563-489e-b16f-712f1e8a0651");
 pub const IID__IInkOverlayEvents = &IID__IInkOverlayEvents_Value;
 pub const _IInkOverlayEvents = extern struct {
     pub const VTable = extern struct {
@@ -4727,7 +4727,7 @@ pub const _IInkOverlayEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkPicture_Value = @import("../zig.zig").Guid.initString("e85662e0-379a-40d7-9b5c-757d233f9923");
+const IID_IInkPicture_Value = Guid.initString("e85662e0-379a-40d7-9b5c-757d233f9923");
 pub const IID_IInkPicture = &IID_IInkPicture_Value;
 pub const IInkPicture = extern struct {
     pub const VTable = extern struct {
@@ -5263,7 +5263,7 @@ pub const IInkPicture = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkPictureEvents_Value = @import("../zig.zig").Guid.initString("60ff4fee-22ff-4484-acc1-d308d9cd7ea3");
+const IID__IInkPictureEvents_Value = Guid.initString("60ff4fee-22ff-4484-acc1-d308d9cd7ea3");
 pub const IID__IInkPictureEvents = &IID__IInkPictureEvents_Value;
 pub const _IInkPictureEvents = extern struct {
     pub const VTable = extern struct {
@@ -5277,7 +5277,7 @@ pub const _IInkPictureEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognizer_Value = @import("../zig.zig").Guid.initString("782bf7cf-034b-4396-8a32-3a1833cf6b56");
+const IID_IInkRecognizer_Value = Guid.initString("782bf7cf-034b-4396-8a32-3a1833cf6b56");
 pub const IID_IInkRecognizer = &IID_IInkRecognizer_Value;
 pub const IInkRecognizer = extern struct {
     pub const VTable = extern struct {
@@ -5353,7 +5353,7 @@ pub const IInkRecognizer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognizer2_Value = @import("../zig.zig").Guid.initString("6110118a-3a75-4ad6-b2aa-04b2b72bbe65");
+const IID_IInkRecognizer2_Value = Guid.initString("6110118a-3a75-4ad6-b2aa-04b2b72bbe65");
 pub const IID_IInkRecognizer2 = &IID_IInkRecognizer2_Value;
 pub const IInkRecognizer2 = extern struct {
     pub const VTable = extern struct {
@@ -5384,7 +5384,7 @@ pub const IInkRecognizer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizers_Value = @import("../zig.zig").Guid.initString("9ccc4f12-b0b7-4a8b-bf58-4aeca4e8cefd");
+const IID_IInkRecognizers_Value = Guid.initString("9ccc4f12-b0b7-4a8b-bf58-4aeca4e8cefd");
 pub const IID_IInkRecognizers = &IID_IInkRecognizers_Value;
 pub const IInkRecognizers = extern struct {
     pub const VTable = extern struct {
@@ -5433,7 +5433,7 @@ pub const IInkRecognizers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkRecognitionEvents_Value = @import("../zig.zig").Guid.initString("17bce92f-2e21-47fd-9d33-3c6afbfd8c59");
+const IID__IInkRecognitionEvents_Value = Guid.initString("17bce92f-2e21-47fd-9d33-3c6afbfd8c59");
 pub const IID__IInkRecognitionEvents = &IID__IInkRecognitionEvents_Value;
 pub const _IInkRecognitionEvents = extern struct {
     pub const VTable = extern struct {
@@ -5446,7 +5446,7 @@ pub const _IInkRecognitionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizerContext_Value = @import("../zig.zig").Guid.initString("c68f52f9-32a3-4625-906c-44fc23b40958");
+const IID_IInkRecognizerContext_Value = Guid.initString("c68f52f9-32a3-4625-906c-44fc23b40958");
 pub const IID_IInkRecognizerContext = &IID_IInkRecognizerContext_Value;
 pub const IInkRecognizerContext = extern struct {
     pub const VTable = extern struct {
@@ -5666,7 +5666,7 @@ pub const IInkRecognizerContext = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognizerContext2_Value = @import("../zig.zig").Guid.initString("d6f0e32f-73d8-408e-8e9f-5fea592c363f");
+const IID_IInkRecognizerContext2_Value = Guid.initString("d6f0e32f-73d8-408e-8e9f-5fea592c363f");
 pub const IID_IInkRecognizerContext2 = &IID_IInkRecognizerContext2_Value;
 pub const IInkRecognizerContext2 = extern struct {
     pub const VTable = extern struct {
@@ -5698,7 +5698,7 @@ pub const IInkRecognizerContext2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognitionResult_Value = @import("../zig.zig").Guid.initString("3bc129a8-86cd-45ad-bde8-e0d32d61c16d");
+const IID_IInkRecognitionResult_Value = Guid.initString("3bc129a8-86cd-45ad-bde8-e0d32d61c16d");
 pub const IID_IInkRecognitionResult = &IID_IInkRecognitionResult_Value;
 pub const IInkRecognitionResult = extern struct {
     pub const VTable = extern struct {
@@ -5774,7 +5774,7 @@ pub const IInkRecognitionResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognitionAlternate_Value = @import("../zig.zig").Guid.initString("b7e660ad-77e4-429b-adda-873780d1fc4a");
+const IID_IInkRecognitionAlternate_Value = Guid.initString("b7e660ad-77e4-429b-adda-873780d1fc4a");
 pub const IID_IInkRecognitionAlternate = &IID_IInkRecognitionAlternate_Value;
 pub const IInkRecognitionAlternate = extern struct {
     pub const VTable = extern struct {
@@ -5925,7 +5925,7 @@ pub const IInkRecognitionAlternate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkRecognitionAlternates_Value = @import("../zig.zig").Guid.initString("286a167f-9f19-4c61-9d53-4f07be622b84");
+const IID_IInkRecognitionAlternates_Value = Guid.initString("286a167f-9f19-4c61-9d53-4f07be622b84");
 pub const IID_IInkRecognitionAlternates = &IID_IInkRecognitionAlternates_Value;
 pub const IInkRecognitionAlternates = extern struct {
     pub const VTable = extern struct {
@@ -5974,7 +5974,7 @@ pub const IInkRecognitionAlternates = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizerGuide_Value = @import("../zig.zig").Guid.initString("d934be07-7b84-4208-9136-83c20994e905");
+const IID_IInkRecognizerGuide_Value = Guid.initString("d934be07-7b84-4208-9136-83c20994e905");
 pub const IID_IInkRecognizerGuide = &IID_IInkRecognizerGuide_Value;
 pub const IInkRecognizerGuide = extern struct {
     pub const VTable = extern struct {
@@ -6095,7 +6095,7 @@ pub const IInkRecognizerGuide = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkWordList_Value = @import("../zig.zig").Guid.initString("76ba3491-cb2f-406b-9961-0e0c4cdaaef2");
+const IID_IInkWordList_Value = Guid.initString("76ba3491-cb2f-406b-9961-0e0c4cdaaef2");
 pub const IID_IInkWordList = &IID_IInkWordList_Value;
 pub const IInkWordList = extern struct {
     pub const VTable = extern struct {
@@ -6133,7 +6133,7 @@ pub const IInkWordList = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkWordList2_Value = @import("../zig.zig").Guid.initString("14542586-11bf-4f5f-b6e7-49d0744aab6e");
+const IID_IInkWordList2_Value = Guid.initString("14542586-11bf-4f5f-b6e7-49d0744aab6e");
 pub const IID_IInkWordList2 = &IID_IInkWordList2_Value;
 pub const IInkWordList2 = extern struct {
     pub const VTable = extern struct {
@@ -6154,7 +6154,7 @@ pub const IInkWordList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInk_Value = @import("../zig.zig").Guid.initString("03f8e511-43a1-11d3-8bb6-0080c7d6bad5");
+const IID_IInk_Value = Guid.initString("03f8e511-43a1-11d3-8bb6-0080c7d6bad5");
 pub const IID_IInk = &IID_IInk_Value;
 pub const IInk = extern struct {
     pub const VTable = extern struct {
@@ -6168,7 +6168,7 @@ pub const IInk = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkLineInfo_Value = @import("../zig.zig").Guid.initString("9c1c5ad6-f22f-4de4-b453-a2cc482e7c33");
+const IID_IInkLineInfo_Value = Guid.initString("9c1c5ad6-f22f-4de4-b453-a2cc482e7c33");
 pub const IID_IInkLineInfo = &IID_IInkLineInfo_Value;
 pub const IInkLineInfo = extern struct {
     pub const VTable = extern struct {
@@ -6233,7 +6233,7 @@ pub const IInkLineInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISketchInk_Value = @import("../zig.zig").Guid.initString("b4563688-98eb-4646-b279-44da14d45748");
+const IID_ISketchInk_Value = Guid.initString("b4563688-98eb-4646-b279-44da14d45748");
 pub const IID_ISketchInk = &IID_ISketchInk_Value;
 pub const ISketchInk = extern struct {
     pub const VTable = extern struct {
@@ -6246,7 +6246,7 @@ pub const ISketchInk = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_InkDivider_Value = @import("../zig.zig").Guid.initString("8854f6a0-4683-4ae7-9191-752fe64612c3");
+const CLSID_InkDivider_Value = Guid.initString("8854f6a0-4683-4ae7-9191-752fe64612c3");
 pub const CLSID_InkDivider = &CLSID_InkDivider_Value;
 
 pub const InkDivisionType = enum(i32) {
@@ -6298,7 +6298,7 @@ pub const DISPID_IInkDivisionUnits_NewEnum = DISPID_InkDivisionUnits.NewEnum;
 pub const DISPID_IInkDivisionUnits_Item = DISPID_InkDivisionUnits.Item;
 pub const DISPID_IInkDivisionUnits_Count = DISPID_InkDivisionUnits.Count;
 
-const IID_IInkDivider_Value = @import("../zig.zig").Guid.initString("5de00405-f9a4-4651-b0c5-c317defd58b9");
+const IID_IInkDivider_Value = Guid.initString("5de00405-f9a4-4651-b0c5-c317defd58b9");
 pub const IID_IInkDivider = &IID_IInkDivider_Value;
 pub const IInkDivider = extern struct {
     pub const VTable = extern struct {
@@ -6372,7 +6372,7 @@ pub const IInkDivider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkDivisionResult_Value = @import("../zig.zig").Guid.initString("2dbec0a7-74c7-4b38-81eb-aa8ef0c24900");
+const IID_IInkDivisionResult_Value = Guid.initString("2dbec0a7-74c7-4b38-81eb-aa8ef0c24900");
 pub const IID_IInkDivisionResult = &IID_IInkDivisionResult_Value;
 pub const IInkDivisionResult = extern struct {
     pub const VTable = extern struct {
@@ -6404,7 +6404,7 @@ pub const IInkDivisionResult = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkDivisionUnit_Value = @import("../zig.zig").Guid.initString("85aee342-48b0-4244-9dd5-1ed435410fab");
+const IID_IInkDivisionUnit_Value = Guid.initString("85aee342-48b0-4244-9dd5-1ed435410fab");
 pub const IID_IInkDivisionUnit = &IID_IInkDivisionUnit_Value;
 pub const IInkDivisionUnit = extern struct {
     pub const VTable = extern struct {
@@ -6454,7 +6454,7 @@ pub const IInkDivisionUnit = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IInkDivisionUnits_Value = @import("../zig.zig").Guid.initString("1bb5ddc2-31cc-4135-ab82-2c66c9f00c41");
+const IID_IInkDivisionUnits_Value = Guid.initString("1bb5ddc2-31cc-4135-ab82-2c66c9f00c41");
 pub const IID_IInkDivisionUnits = &IID_IInkDivisionUnits_Value;
 pub const IInkDivisionUnits = extern struct {
     pub const VTable = extern struct {
@@ -6494,16 +6494,16 @@ pub const IInkDivisionUnits = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_HandwrittenTextInsertion_Value = @import("../zig.zig").Guid.initString("9f074ee2-e6e9-4d8a-a047-eb5b5c3c55da");
+const CLSID_HandwrittenTextInsertion_Value = Guid.initString("9f074ee2-e6e9-4d8a-a047-eb5b5c3c55da");
 pub const CLSID_HandwrittenTextInsertion = &CLSID_HandwrittenTextInsertion_Value;
 
-const CLSID_PenInputPanel_Value = @import("../zig.zig").Guid.initString("f744e496-1b5a-489e-81dc-fbd7ac6298a8");
+const CLSID_PenInputPanel_Value = Guid.initString("f744e496-1b5a-489e-81dc-fbd7ac6298a8");
 pub const CLSID_PenInputPanel = &CLSID_PenInputPanel_Value;
 
-const CLSID_TextInputPanel_Value = @import("../zig.zig").Guid.initString("f9b189d7-228b-4f2b-8650-b97f59e02c8c");
+const CLSID_TextInputPanel_Value = Guid.initString("f9b189d7-228b-4f2b-8650-b97f59e02c8c");
 pub const CLSID_TextInputPanel = &CLSID_TextInputPanel_Value;
 
-const CLSID_PenInputPanel_Internal_Value = @import("../zig.zig").Guid.initString("802b1fb9-056b-4720-b0cc-80d23b71171e");
+const CLSID_PenInputPanel_Internal_Value = Guid.initString("802b1fb9-056b-4720-b0cc-80d23b71171e");
 pub const CLSID_PenInputPanel_Internal = &CLSID_PenInputPanel_Internal_Value;
 
 pub const DISPID_PenInputPanel = enum(i32) {
@@ -6667,7 +6667,7 @@ pub const PT_Inactive = PanelType.Inactive;
 pub const PT_Handwriting = PanelType.Handwriting;
 pub const PT_Keyboard = PanelType.Keyboard;
 
-const IID_IPenInputPanel_Value = @import("../zig.zig").Guid.initString("fa7a4083-5747-4040-a182-0b0e9fd4fac7");
+const IID_IPenInputPanel_Value = Guid.initString("fa7a4083-5747-4040-a182-0b0e9fd4fac7");
 pub const IID_IPenInputPanel = &IID_IPenInputPanel_Value;
 pub const IPenInputPanel = extern struct {
     pub const VTable = extern struct {
@@ -6900,7 +6900,7 @@ pub const IPenInputPanel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IPenInputPanelEvents_Value = @import("../zig.zig").Guid.initString("b7e489da-3719-439f-848f-e7acbd820f17");
+const IID__IPenInputPanelEvents_Value = Guid.initString("b7e489da-3719-439f-848f-e7acbd820f17");
 pub const IID__IPenInputPanelEvents = &IID__IPenInputPanelEvents_Value;
 pub const _IPenInputPanelEvents = extern struct {
     pub const VTable = extern struct {
@@ -6914,7 +6914,7 @@ pub const _IPenInputPanelEvents = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IHandwrittenTextInsertion_Value = @import("../zig.zig").Guid.initString("56fdea97-ecd6-43e7-aa3a-816be7785860");
+const IID_IHandwrittenTextInsertion_Value = Guid.initString("56fdea97-ecd6-43e7-aa3a-816be7785860");
 pub const IID_IHandwrittenTextInsertion = &IID_IHandwrittenTextInsertion_Value;
 pub const IHandwrittenTextInsertion = extern struct {
     pub const VTable = extern struct {
@@ -6948,7 +6948,7 @@ pub const IHandwrittenTextInsertion = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITextInputPanelEventSink_Value = @import("../zig.zig").Guid.initString("27560408-8e64-4fe1-804e-421201584b31");
+const IID_ITextInputPanelEventSink_Value = Guid.initString("27560408-8e64-4fe1-804e-421201584b31");
 pub const IID_ITextInputPanelEventSink = &IID_ITextInputPanelEventSink_Value;
 pub const ITextInputPanelEventSink = extern struct {
     pub const VTable = extern struct {
@@ -7068,7 +7068,7 @@ pub const ITextInputPanelEventSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITextInputPanel_Value = @import("../zig.zig").Guid.initString("6b6a65a5-6af3-46c2-b6ea-56cd1f80df71");
+const IID_ITextInputPanel_Value = Guid.initString("6b6a65a5-6af3-46c2-b6ea-56cd1f80df71");
 pub const IID_ITextInputPanel = &IID_ITextInputPanel_Value;
 pub const ITextInputPanel = extern struct {
     pub const VTable = extern struct {
@@ -7303,7 +7303,7 @@ pub const ITextInputPanel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInputPanelWindowHandle_Value = @import("../zig.zig").Guid.initString("4af81847-fdc4-4fc3-ad0b-422479c1b935");
+const IID_IInputPanelWindowHandle_Value = Guid.initString("4af81847-fdc4-4fc3-ad0b-422479c1b935");
 pub const IID_IInputPanelWindowHandle = &IID_IInputPanelWindowHandle_Value;
 pub const IInputPanelWindowHandle = extern struct {
     pub const VTable = extern struct {
@@ -7353,7 +7353,7 @@ pub const IInputPanelWindowHandle = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ITextInputPanelRunInfo_Value = @import("../zig.zig").Guid.initString("9f424568-1920-48cc-9811-a993cbf5adba");
+const IID_ITextInputPanelRunInfo_Value = Guid.initString("9f424568-1920-48cc-9811-a993cbf5adba");
 pub const IID_ITextInputPanelRunInfo = &IID_ITextInputPanelRunInfo_Value;
 pub const ITextInputPanelRunInfo = extern struct {
     pub const VTable = extern struct {
@@ -7455,7 +7455,7 @@ pub const KEYMODIFIER_WIN = KEYMODIFIER.WIN;
 pub const KEYMODIFIER_ALTGR = KEYMODIFIER.ALTGR;
 pub const KEYMODIFIER_EXT = KEYMODIFIER.EXT;
 
-const CLSID_InkEdit_Value = @import("../zig.zig").Guid.initString("e5ca59f5-57c4-4dd8-9bd6-1deeedd27af4");
+const CLSID_InkEdit_Value = Guid.initString("e5ca59f5-57c4-4dd8-9bd6-1deeedd27af4");
 pub const CLSID_InkEdit = &CLSID_InkEdit_Value;
 
 pub const IEC_STROKEINFO = extern struct {
@@ -7659,7 +7659,7 @@ pub const rtfHorizontal = ScrollBarsConstants.Horizontal;
 pub const rtfVertical = ScrollBarsConstants.Vertical;
 pub const rtfBoth = ScrollBarsConstants.Both;
 
-const IID_IInkEdit_Value = @import("../zig.zig").Guid.initString("f2127a19-fbfb-4aed-8464-3f36d78cfefb");
+const IID_IInkEdit_Value = Guid.initString("f2127a19-fbfb-4aed-8464-3f36d78cfefb");
 pub const IID_IInkEdit = &IID_IInkEdit_Value;
 pub const IInkEdit = extern struct {
     pub const VTable = extern struct {
@@ -8357,7 +8357,7 @@ pub const IInkEdit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkEditEvents_Value = @import("../zig.zig").Guid.initString("e3b0b797-a72e-46db-a0d7-6c9eba8e9bbc");
+const IID__IInkEditEvents_Value = Guid.initString("e3b0b797-a72e-46db-a0d7-6c9eba8e9bbc");
 pub const IID__IInkEditEvents = &IID__IInkEditEvents_Value;
 pub const _IInkEditEvents = extern struct {
     pub const VTable = extern struct {
@@ -8370,7 +8370,7 @@ pub const _IInkEditEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_MathInputControl_Value = @import("../zig.zig").Guid.initString("c561816c-14d8-4090-830c-98d994b21c7b");
+const CLSID_MathInputControl_Value = Guid.initString("c561816c-14d8-4090-830c-98d994b21c7b");
 pub const CLSID_MathInputControl = &CLSID_MathInputControl_Value;
 
 pub const MICUIELEMENT = enum(i32) {
@@ -8418,7 +8418,7 @@ pub const DISPID_MICClose = DISPID_MathInputControlEvents.Close;
 pub const DISPID_MICPaint = DISPID_MathInputControlEvents.Paint;
 pub const DISPID_MICClear = DISPID_MathInputControlEvents.Clear;
 
-const IID_IMathInputControl_Value = @import("../zig.zig").Guid.initString("eba615aa-fac6-4738-ba5f-ff09e9fe473e");
+const IID_IMathInputControl_Value = Guid.initString("eba615aa-fac6-4738-ba5f-ff09e9fe473e");
 pub const IID_IMathInputControl = &IID_IMathInputControl_Value;
 pub const IMathInputControl = extern struct {
     pub const VTable = extern struct {
@@ -8571,7 +8571,7 @@ pub const IMathInputControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IMathInputControlEvents_Value = @import("../zig.zig").Guid.initString("683336b5-a47d-4358-96f9-875a472ae70a");
+const IID__IMathInputControlEvents_Value = Guid.initString("683336b5-a47d-4358-96f9-875a472ae70a");
 pub const IID__IMathInputControlEvents = &IID__IMathInputControlEvents_Value;
 pub const _IMathInputControlEvents = extern struct {
     pub const VTable = extern struct {
@@ -8584,16 +8584,16 @@ pub const _IMathInputControlEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_RealTimeStylus_Value = @import("../zig.zig").Guid.initString("e26b366d-f998-43ce-836f-cb6d904432b0");
+const CLSID_RealTimeStylus_Value = Guid.initString("e26b366d-f998-43ce-836f-cb6d904432b0");
 pub const CLSID_RealTimeStylus = &CLSID_RealTimeStylus_Value;
 
-const CLSID_DynamicRenderer_Value = @import("../zig.zig").Guid.initString("ecd32aea-746f-4dcb-bf68-082757faff18");
+const CLSID_DynamicRenderer_Value = Guid.initString("ecd32aea-746f-4dcb-bf68-082757faff18");
 pub const CLSID_DynamicRenderer = &CLSID_DynamicRenderer_Value;
 
-const CLSID_GestureRecognizer_Value = @import("../zig.zig").Guid.initString("ea30c654-c62c-441f-ac00-95f9a196782c");
+const CLSID_GestureRecognizer_Value = Guid.initString("ea30c654-c62c-441f-ac00-95f9a196782c");
 pub const CLSID_GestureRecognizer = &CLSID_GestureRecognizer_Value;
 
-const CLSID_StrokeBuilder_Value = @import("../zig.zig").Guid.initString("e810cee7-6e51-4cb0-aa3a-0b985b70daf7");
+const CLSID_StrokeBuilder_Value = Guid.initString("e810cee7-6e51-4cb0-aa3a-0b985b70daf7");
 pub const CLSID_StrokeBuilder = &CLSID_StrokeBuilder_Value;
 
 pub const RealTimeStylusDataInterest = enum(i32) {
@@ -8681,7 +8681,7 @@ pub const DYNAMIC_RENDERER_CACHED_DATA = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IRealTimeStylus_Value = @import("../zig.zig").Guid.initString("a8bb5d22-3144-4a7b-93cd-f34a16be513a");
+const IID_IRealTimeStylus_Value = Guid.initString("a8bb5d22-3144-4a7b-93cd-f34a16be513a");
 pub const IID_IRealTimeStylus = &IID_IRealTimeStylus_Value;
 pub const IRealTimeStylus = extern struct {
     pub const VTable = extern struct {
@@ -8966,7 +8966,7 @@ pub const IRealTimeStylus = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IRealTimeStylus2_Value = @import("../zig.zig").Guid.initString("b5f2a6cd-3179-4a3e-b9c4-bb5865962be2");
+const IID_IRealTimeStylus2_Value = Guid.initString("b5f2a6cd-3179-4a3e-b9c4-bb5865962be2");
 pub const IID_IRealTimeStylus2 = &IID_IRealTimeStylus2_Value;
 pub const IRealTimeStylus2 = extern struct {
     pub const VTable = extern struct {
@@ -8998,7 +8998,7 @@ pub const IRealTimeStylus2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IRealTimeStylus3_Value = @import("../zig.zig").Guid.initString("d70230a3-6986-4051-b57a-1cf69f4d9db5");
+const IID_IRealTimeStylus3_Value = Guid.initString("d70230a3-6986-4051-b57a-1cf69f4d9db5");
 pub const IID_IRealTimeStylus3 = &IID_IRealTimeStylus3_Value;
 pub const IRealTimeStylus3 = extern struct {
     pub const VTable = extern struct {
@@ -9030,7 +9030,7 @@ pub const IRealTimeStylus3 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IRealTimeStylusSynchronization_Value = @import("../zig.zig").Guid.initString("aa87eab8-ab4a-4cea-b5cb-46d84c6a2509");
+const IID_IRealTimeStylusSynchronization_Value = Guid.initString("aa87eab8-ab4a-4cea-b5cb-46d84c6a2509");
 pub const IID_IRealTimeStylusSynchronization = &IID_IRealTimeStylusSynchronization_Value;
 pub const IRealTimeStylusSynchronization = extern struct {
     pub const VTable = extern struct {
@@ -9060,7 +9060,7 @@ pub const IRealTimeStylusSynchronization = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStrokeBuilder_Value = @import("../zig.zig").Guid.initString("a5fd4e2d-c44b-4092-9177-260905eb672b");
+const IID_IStrokeBuilder_Value = Guid.initString("a5fd4e2d-c44b-4092-9177-260905eb672b");
 pub const IID_IStrokeBuilder = &IID_IStrokeBuilder_Value;
 pub const IStrokeBuilder = extern struct {
     pub const VTable = extern struct {
@@ -9142,7 +9142,7 @@ pub const IStrokeBuilder = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStylusPlugin_Value = @import("../zig.zig").Guid.initString("a81436d8-4757-4fd1-a185-133f97c6c545");
+const IID_IStylusPlugin_Value = Guid.initString("a81436d8-4757-4fd1-a185-133f97c6c545");
 pub const IID_IStylusPlugin = &IID_IStylusPlugin_Value;
 pub const IStylusPlugin = extern struct {
     pub const VTable = extern struct {
@@ -9339,7 +9339,7 @@ pub const IStylusPlugin = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStylusSyncPlugin_Value = @import("../zig.zig").Guid.initString("a157b174-482f-4d71-a3f6-3a41ddd11be9");
+const IID_IStylusSyncPlugin_Value = Guid.initString("a157b174-482f-4d71-a3f6-3a41ddd11be9");
 pub const IID_IStylusSyncPlugin = &IID_IStylusSyncPlugin_Value;
 pub const IStylusSyncPlugin = extern struct {
     pub const VTable = extern struct {
@@ -9353,7 +9353,7 @@ pub const IStylusSyncPlugin = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IStylusAsyncPlugin_Value = @import("../zig.zig").Guid.initString("a7cca85a-31bc-4cd2-aadc-3289a3af11c8");
+const IID_IStylusAsyncPlugin_Value = Guid.initString("a7cca85a-31bc-4cd2-aadc-3289a3af11c8");
 pub const IID_IStylusAsyncPlugin = &IID_IStylusAsyncPlugin_Value;
 pub const IStylusAsyncPlugin = extern struct {
     pub const VTable = extern struct {
@@ -9367,7 +9367,7 @@ pub const IStylusAsyncPlugin = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IDynamicRenderer_Value = @import("../zig.zig").Guid.initString("a079468e-7165-46f9-b7af-98ad01a93009");
+const IID_IDynamicRenderer_Value = Guid.initString("a079468e-7165-46f9-b7af-98ad01a93009");
 pub const IID_IDynamicRenderer = &IID_IDynamicRenderer_Value;
 pub const IDynamicRenderer = extern struct {
     pub const VTable = extern struct {
@@ -9511,7 +9511,7 @@ pub const IDynamicRenderer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_IGestureRecognizer_Value = @import("../zig.zig").Guid.initString("ae9ef86b-7054-45e3-ae22-3174dc8811b7");
+const IID_IGestureRecognizer_Value = Guid.initString("ae9ef86b-7054-45e3-ae22-3174dc8811b7");
 pub const IID_IGestureRecognizer = &IID_IGestureRecognizer_Value;
 pub const IGestureRecognizer = extern struct {
     pub const VTable = extern struct {
@@ -9690,10 +9690,10 @@ pub const CHARACTER_RANGE = extern struct {
     cChars: u16,
 };
 
-const CLSID_TipAutoCompleteClient_Value = @import("../zig.zig").Guid.initString("807c1e6c-1d00-453f-b920-b61bb7cdd997");
+const CLSID_TipAutoCompleteClient_Value = Guid.initString("807c1e6c-1d00-453f-b920-b61bb7cdd997");
 pub const CLSID_TipAutoCompleteClient = &CLSID_TipAutoCompleteClient_Value;
 
-const IID_ITipAutoCompleteProvider_Value = @import("../zig.zig").Guid.initString("7c6cf46d-8404-46b9-ad33-f5b6036d4007");
+const IID_ITipAutoCompleteProvider_Value = Guid.initString("7c6cf46d-8404-46b9-ad33-f5b6036d4007");
 pub const IID_ITipAutoCompleteProvider = &IID_ITipAutoCompleteProvider_Value;
 pub const ITipAutoCompleteProvider = extern struct {
     pub const VTable = extern struct {
@@ -9722,7 +9722,7 @@ pub const ITipAutoCompleteProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITipAutoCompleteClient_Value = @import("../zig.zig").Guid.initString("5e078e03-8265-4bbe-9487-d242edbef910");
+const IID_ITipAutoCompleteClient_Value = Guid.initString("5e078e03-8265-4bbe-9487-d242edbef910");
 pub const IID_ITipAutoCompleteClient = &IID_ITipAutoCompleteClient_Value;
 pub const ITipAutoCompleteClient = extern struct {
     pub const VTable = extern struct {

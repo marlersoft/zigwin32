@@ -48,10 +48,10 @@ pub const FH_STATE_RUNNING = @as(u32, 256);
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
-const CLSID_FhConfigMgr_Value = @import("../zig.zig").Guid.initString("ed43bb3c-09e9-498a-9df6-2177244c6db4");
+const CLSID_FhConfigMgr_Value = Guid.initString("ed43bb3c-09e9-498a-9df6-2177244c6db4");
 pub const CLSID_FhConfigMgr = &CLSID_FhConfigMgr_Value;
 
-const CLSID_FhReassociation_Value = @import("../zig.zig").Guid.initString("4d728e35-16fa-4320-9e8b-bfd7100a8846");
+const CLSID_FhReassociation_Value = Guid.initString("4d728e35-16fa-4320-9e8b-bfd7100a8846");
 pub const CLSID_FhReassociation = &CLSID_FhReassociation_Value;
 
 pub const FH_TARGET_PROPERTY_TYPE = enum(i32) {
@@ -77,7 +77,7 @@ pub const FH_DRIVE_FIXED = FH_TARGET_DRIVE_TYPES.FIXED;
 pub const FH_DRIVE_REMOTE = FH_TARGET_DRIVE_TYPES.REMOTE;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IFhTarget_Value = @import("../zig.zig").Guid.initString("d87965fd-2bad-4657-bd3b-9567eb300ced");
+const IID_IFhTarget_Value = Guid.initString("d87965fd-2bad-4657-bd3b-9567eb300ced");
 pub const IID_IFhTarget = &IID_IFhTarget_Value;
 pub const IFhTarget = extern struct {
     pub const VTable = extern struct {
@@ -109,7 +109,7 @@ pub const IFhTarget = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IFhScopeIterator_Value = @import("../zig.zig").Guid.initString("3197abce-532a-44c6-8615-f3666566a720");
+const IID_IFhScopeIterator_Value = Guid.initString("3197abce-532a-44c6-8615-f3666566a720");
 pub const IID_IFhScopeIterator = &IID_IFhScopeIterator_Value;
 pub const IFhScopeIterator = extern struct {
     pub const VTable = extern struct {
@@ -201,7 +201,7 @@ pub const FH_VALID_TARGET = FH_DEVICE_VALIDATION_RESULT.FH_VALID_TARGET;
 pub const MAX_VALIDATION_RESULT = FH_DEVICE_VALIDATION_RESULT.MAX_VALIDATION_RESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IFhConfigMgr_Value = @import("../zig.zig").Guid.initString("6a5fea5b-bf8f-4ee5-b8c3-44d8a0d7331c");
+const IID_IFhConfigMgr_Value = Guid.initString("6a5fea5b-bf8f-4ee5-b8c3-44d8a0d7331c");
 pub const IID_IFhConfigMgr = &IID_IFhConfigMgr_Value;
 pub const IFhConfigMgr = extern struct {
     pub const VTable = extern struct {
@@ -334,7 +334,7 @@ pub const IFhConfigMgr = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IFhReassociation_Value = @import("../zig.zig").Guid.initString("6544a28a-f68d-47ac-91ef-16b2b36aa3ee");
+const IID_IFhReassociation_Value = Guid.initString("6544a28a-f68d-47ac-91ef-16b2b36aa3ee");
 pub const IID_IFhReassociation = &IID_IFhReassociation_Value;
 pub const IFhReassociation = extern struct {
     pub const VTable = extern struct {
@@ -461,8 +461,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const FH_SERVICE_PIPE_HANDLE = @import("../system/windows_programming.zig").FH_SERVICE_PIPE_HANDLE;

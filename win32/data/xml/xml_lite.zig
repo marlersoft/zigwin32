@@ -291,7 +291,7 @@ pub const XmlWriterProperty_ConformanceLevel = XmlWriterProperty.XmlWriterProper
 pub const XmlWriterProperty_CompactEmptyElement = XmlWriterProperty.XmlWriterProperty_CompactEmptyElement;
 pub const _XmlWriterProperty_Last = XmlWriterProperty.XmlWriterProperty_CompactEmptyElement;
 
-const IID_IXmlReader_Value = @import("../../zig.zig").Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
+const IID_IXmlReader_Value = Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlReader = &IID_IXmlReader_Value;
 pub const IXmlReader = extern struct {
     pub const VTable = extern struct {
@@ -493,7 +493,7 @@ pub const IXmlReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXmlResolver_Value = @import("../../zig.zig").Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
+const IID_IXmlResolver_Value = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlResolver = &IID_IXmlResolver_Value;
 pub const IXmlResolver = extern struct {
     pub const VTable = extern struct {
@@ -517,7 +517,7 @@ pub const IXmlResolver = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXmlWriter_Value = @import("../../zig.zig").Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
+const IID_IXmlWriter_Value = Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlWriter = &IID_IXmlWriter_Value;
 pub const IXmlWriter = extern struct {
     pub const VTable = extern struct {
@@ -779,7 +779,7 @@ pub const IXmlWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXmlWriterLite_Value = @import("../../zig.zig").Guid.initString("862494c6-1310-4aad-b3cd-2dbeebf670d3");
+const IID_IXmlWriterLite_Value = Guid.initString("862494c6-1310-4aad-b3cd-2dbeebf670d3");
 pub const IID_IXmlWriterLite = &IID_IXmlWriterLite_Value;
 pub const IXmlWriterLite = extern struct {
     pub const VTable = extern struct {

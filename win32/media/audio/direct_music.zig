@@ -553,7 +553,7 @@ pub const DMUS_CLOCKINFO8 = extern struct {
     dwFlags: u32,
 };
 
-const IID_IDirectMusic_Value = @import("../../zig.zig").Guid.initString("6536115a-7b2d-11d2-ba18-0000f875ac12");
+const IID_IDirectMusic_Value = Guid.initString("6536115a-7b2d-11d2-ba18-0000f875ac12");
 pub const IID_IDirectMusic = &IID_IDirectMusic_Value;
 pub const IDirectMusic = extern struct {
     pub const VTable = extern struct {
@@ -647,7 +647,7 @@ pub const IDirectMusic = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusic8_Value = @import("../../zig.zig").Guid.initString("2d3629f7-813d-4939-8508-f05c6b75fd97");
+const IID_IDirectMusic8_Value = Guid.initString("2d3629f7-813d-4939-8508-f05c6b75fd97");
 pub const IID_IDirectMusic8 = &IID_IDirectMusic8_Value;
 pub const IDirectMusic8 = extern struct {
     pub const VTable = extern struct {
@@ -668,7 +668,7 @@ pub const IDirectMusic8 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicBuffer_Value = @import("../../zig.zig").Guid.initString("d2ac2878-b39b-11d1-8704-00600893b1bd");
+const IID_IDirectMusicBuffer_Value = Guid.initString("d2ac2878-b39b-11d1-8704-00600893b1bd");
 pub const IID_IDirectMusicBuffer = &IID_IDirectMusicBuffer_Value;
 pub const IDirectMusicBuffer = extern struct {
     pub const VTable = extern struct {
@@ -791,7 +791,7 @@ pub const IDirectMusicBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicInstrument_Value = @import("../../zig.zig").Guid.initString("d2ac287d-b39b-11d1-8704-00600893b1bd");
+const IID_IDirectMusicInstrument_Value = Guid.initString("d2ac287d-b39b-11d1-8704-00600893b1bd");
 pub const IID_IDirectMusicInstrument = &IID_IDirectMusicInstrument_Value;
 pub const IDirectMusicInstrument = extern struct {
     pub const VTable = extern struct {
@@ -820,7 +820,7 @@ pub const IDirectMusicInstrument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicDownloadedInstrument_Value = @import("../../zig.zig").Guid.initString("d2ac287e-b39b-11d1-8704-00600893b1bd");
+const IID_IDirectMusicDownloadedInstrument_Value = Guid.initString("d2ac287e-b39b-11d1-8704-00600893b1bd");
 pub const IID_IDirectMusicDownloadedInstrument = &IID_IDirectMusicDownloadedInstrument_Value;
 pub const IDirectMusicDownloadedInstrument = extern struct {
     pub const VTable = extern struct {
@@ -833,7 +833,7 @@ pub const IDirectMusicDownloadedInstrument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicCollection_Value = @import("../../zig.zig").Guid.initString("d2ac287c-b39b-11d1-8704-00600893b1bd");
+const IID_IDirectMusicCollection_Value = Guid.initString("d2ac287c-b39b-11d1-8704-00600893b1bd");
 pub const IID_IDirectMusicCollection = &IID_IDirectMusicCollection_Value;
 pub const IDirectMusicCollection = extern struct {
     pub const VTable = extern struct {
@@ -866,7 +866,7 @@ pub const IDirectMusicCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicDownload_Value = @import("../../zig.zig").Guid.initString("d2ac287b-b39b-11d1-8704-00600893b1bd");
+const IID_IDirectMusicDownload_Value = Guid.initString("d2ac287b-b39b-11d1-8704-00600893b1bd");
 pub const IID_IDirectMusicDownload = &IID_IDirectMusicDownload_Value;
 pub const IDirectMusicDownload = extern struct {
     pub const VTable = extern struct {
@@ -888,7 +888,7 @@ pub const IDirectMusicDownload = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicPortDownload_Value = @import("../../zig.zig").Guid.initString("d2ac287a-b39b-11d1-8704-00600893b1bd");
+const IID_IDirectMusicPortDownload_Value = Guid.initString("d2ac287a-b39b-11d1-8704-00600893b1bd");
 pub const IID_IDirectMusicPortDownload = &IID_IDirectMusicPortDownload_Value;
 pub const IDirectMusicPortDownload = extern struct {
     pub const VTable = extern struct {
@@ -952,7 +952,7 @@ pub const IDirectMusicPortDownload = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicPort_Value = @import("../../zig.zig").Guid.initString("08f2d8c9-37c2-11d2-b9f9-0000f875ac12");
+const IID_IDirectMusicPort_Value = Guid.initString("08f2d8c9-37c2-11d2-b9f9-0000f875ac12");
 pub const IID_IDirectMusicPort = &IID_IDirectMusicPort_Value;
 pub const IDirectMusicPort = extern struct {
     pub const VTable = extern struct {
@@ -1116,7 +1116,7 @@ pub const IDirectMusicPort = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicThru_Value = @import("../../zig.zig").Guid.initString("ced153e7-3606-11d2-b9f9-0000f875ac12");
+const IID_IDirectMusicThru_Value = Guid.initString("ced153e7-3606-11d2-b9f9-0000f875ac12");
 pub const IID_IDirectMusicThru = &IID_IDirectMusicThru_Value;
 pub const IDirectMusicThru = extern struct {
     pub const VTable = extern struct {
@@ -1146,7 +1146,7 @@ pub const DMUS_VOICE_STATE = extern struct {
     spPosition: u64,
 };
 
-const IID_IDirectMusicSynth_Value = @import("../../zig.zig").Guid.initString("09823661-5c85-11d2-afa6-00aa0024d8b6");
+const IID_IDirectMusicSynth_Value = Guid.initString("09823661-5c85-11d2-afa6-00aa0024d8b6");
 pub const IID_IDirectMusicSynth = &IID_IDirectMusicSynth_Value;
 pub const IDirectMusicSynth = extern struct {
     pub const VTable = extern struct {
@@ -1307,7 +1307,7 @@ pub const IDirectMusicSynth = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicSynth8_Value = @import("../../zig.zig").Guid.initString("53cab625-2711-4c9f-9de7-1b7f925f6fc8");
+const IID_IDirectMusicSynth8_Value = Guid.initString("53cab625-2711-4c9f-9de7-1b7f925f6fc8");
 pub const IID_IDirectMusicSynth8 = &IID_IDirectMusicSynth8_Value;
 pub const IDirectMusicSynth8 = extern struct {
     pub const VTable = extern struct {
@@ -1376,7 +1376,7 @@ pub const IDirectMusicSynth8 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectMusicSynthSink_Value = @import("../../zig.zig").Guid.initString("09823663-5c85-11d2-afa6-00aa0024d8b6");
+const IID_IDirectMusicSynthSink_Value = Guid.initString("09823663-5c85-11d2-afa6-00aa0024d8b6");
 pub const IID_IDirectMusicSynthSink = &IID_IDirectMusicSynthSink_Value;
 pub const IDirectMusicSynthSink = extern struct {
     pub const VTable = extern struct {

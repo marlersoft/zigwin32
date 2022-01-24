@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-const CLSID_IsolatedAppLauncher_Value = @import("../zig.zig").Guid.initString("bc812430-e75e-4fd1-9641-1f9f1e2d9a1f");
+const CLSID_IsolatedAppLauncher_Value = Guid.initString("bc812430-e75e-4fd1-9641-1f9f1e2d9a1f");
 pub const CLSID_IsolatedAppLauncher = &CLSID_IsolatedAppLauncher_Value;
 
 pub const IsolatedAppLauncherTelemetryParameters = extern struct {
@@ -14,7 +14,7 @@ pub const IsolatedAppLauncherTelemetryParameters = extern struct {
     CorrelationGUID: Guid,
 };
 
-const IID_IIsolatedAppLauncher_Value = @import("../zig.zig").Guid.initString("f686878f-7b42-4cc4-96fb-f4f3b6e3d24d");
+const IID_IIsolatedAppLauncher_Value = Guid.initString("f686878f-7b42-4cc4-96fb-f4f3b6e3d24d");
 pub const IID_IIsolatedAppLauncher = &IID_IIsolatedAppLauncher_Value;
 pub const IIsolatedAppLauncher = extern struct {
     pub const VTable = extern struct {

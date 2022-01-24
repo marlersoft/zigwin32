@@ -174,7 +174,7 @@ pub const LPTIMECALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IReferenceClock_Value = @import("zig.zig").Guid.initString("56a86897-0ad4-11ce-b03a-0020af0ba770");
+const IID_IReferenceClock_Value = Guid.initString("56a86897-0ad4-11ce-b03a-0020af0ba770");
 pub const IID_IReferenceClock = &IID_IReferenceClock_Value;
 pub const IReferenceClock = extern struct {
     pub const VTable = extern struct {
@@ -226,7 +226,7 @@ pub const IReferenceClock = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IReferenceClockTimerControl_Value = @import("zig.zig").Guid.initString("ebec459c-2eca-4d42-a8af-30df557614b8");
+const IID_IReferenceClockTimerControl_Value = Guid.initString("ebec459c-2eca-4d42-a8af-30df557614b8");
 pub const IID_IReferenceClockTimerControl = &IID_IReferenceClockTimerControl_Value;
 pub const IReferenceClockTimerControl = extern struct {
     pub const VTable = extern struct {
@@ -255,7 +255,7 @@ pub const IReferenceClockTimerControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReferenceClock2_Value = @import("zig.zig").Guid.initString("36b73885-c2c8-11cf-8b46-00805f6cef60");
+const IID_IReferenceClock2_Value = Guid.initString("36b73885-c2c8-11cf-8b46-00805f6cef60");
 pub const IID_IReferenceClock2 = &IID_IReferenceClock2_Value;
 pub const IReferenceClock2 = extern struct {
     pub const VTable = extern struct {
@@ -343,8 +343,9 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const Guid = @import("zig.zig").Guid;
 const HANDLE = @import("foundation.zig").HANDLE;
 const HDRVR = @import("media/multimedia.zig").HDRVR;
 const HRESULT = @import("foundation.zig").HRESULT;

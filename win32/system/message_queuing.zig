@@ -191,49 +191,49 @@ pub const MQ_ERROR_MESSAGE_LOCKED_UNDER_TRANSACTION = @import("../zig.zig").type
 //--------------------------------------------------------------------------------
 // Section: Types (89)
 //--------------------------------------------------------------------------------
-const CLSID_MSMQQuery_Value = @import("../zig.zig").Guid.initString("d7d6e073-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQQuery_Value = Guid.initString("d7d6e073-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQQuery = &CLSID_MSMQQuery_Value;
 
-const CLSID_MSMQMessage_Value = @import("../zig.zig").Guid.initString("d7d6e075-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQMessage_Value = Guid.initString("d7d6e075-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQMessage = &CLSID_MSMQMessage_Value;
 
-const CLSID_MSMQQueue_Value = @import("../zig.zig").Guid.initString("d7d6e079-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQQueue_Value = Guid.initString("d7d6e079-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQQueue = &CLSID_MSMQQueue_Value;
 
-const CLSID_MSMQEvent_Value = @import("../zig.zig").Guid.initString("d7d6e07a-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQEvent_Value = Guid.initString("d7d6e07a-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQEvent = &CLSID_MSMQEvent_Value;
 
-const CLSID_MSMQQueueInfo_Value = @import("../zig.zig").Guid.initString("d7d6e07c-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQQueueInfo_Value = Guid.initString("d7d6e07c-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQQueueInfo = &CLSID_MSMQQueueInfo_Value;
 
-const CLSID_MSMQQueueInfos_Value = @import("../zig.zig").Guid.initString("d7d6e07e-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQQueueInfos_Value = Guid.initString("d7d6e07e-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQQueueInfos = &CLSID_MSMQQueueInfos_Value;
 
-const CLSID_MSMQTransaction_Value = @import("../zig.zig").Guid.initString("d7d6e080-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQTransaction_Value = Guid.initString("d7d6e080-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQTransaction = &CLSID_MSMQTransaction_Value;
 
-const CLSID_MSMQCoordinatedTransactionDispenser_Value = @import("../zig.zig").Guid.initString("d7d6e082-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQCoordinatedTransactionDispenser_Value = Guid.initString("d7d6e082-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQCoordinatedTransactionDispenser = &CLSID_MSMQCoordinatedTransactionDispenser_Value;
 
-const CLSID_MSMQTransactionDispenser_Value = @import("../zig.zig").Guid.initString("d7d6e084-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQTransactionDispenser_Value = Guid.initString("d7d6e084-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQTransactionDispenser = &CLSID_MSMQTransactionDispenser_Value;
 
-const CLSID_MSMQApplication_Value = @import("../zig.zig").Guid.initString("d7d6e086-dccd-11d0-aa4b-0060970debae");
+const CLSID_MSMQApplication_Value = Guid.initString("d7d6e086-dccd-11d0-aa4b-0060970debae");
 pub const CLSID_MSMQApplication = &CLSID_MSMQApplication_Value;
 
-const CLSID_MSMQDestination_Value = @import("../zig.zig").Guid.initString("eba96b18-2168-11d3-898c-00e02c074f6b");
+const CLSID_MSMQDestination_Value = Guid.initString("eba96b18-2168-11d3-898c-00e02c074f6b");
 pub const CLSID_MSMQDestination = &CLSID_MSMQDestination_Value;
 
-const CLSID_MSMQCollection_Value = @import("../zig.zig").Guid.initString("f72b9031-2f0c-43e8-924e-e6052cdc493f");
+const CLSID_MSMQCollection_Value = Guid.initString("f72b9031-2f0c-43e8-924e-e6052cdc493f");
 pub const CLSID_MSMQCollection = &CLSID_MSMQCollection_Value;
 
-const CLSID_MSMQManagement_Value = @import("../zig.zig").Guid.initString("39ce96fe-f4c5-4484-a143-4c2d5d324229");
+const CLSID_MSMQManagement_Value = Guid.initString("39ce96fe-f4c5-4484-a143-4c2d5d324229");
 pub const CLSID_MSMQManagement = &CLSID_MSMQManagement_Value;
 
-const CLSID_MSMQOutgoingQueueManagement_Value = @import("../zig.zig").Guid.initString("0188401c-247a-4fed-99c6-bf14119d7055");
+const CLSID_MSMQOutgoingQueueManagement_Value = Guid.initString("0188401c-247a-4fed-99c6-bf14119d7055");
 pub const CLSID_MSMQOutgoingQueueManagement = &CLSID_MSMQOutgoingQueueManagement_Value;
 
-const CLSID_MSMQQueueManagement_Value = @import("../zig.zig").Guid.initString("33b6d07e-f27d-42fa-b2d7-bf82e11e9374");
+const CLSID_MSMQQueueManagement_Value = Guid.initString("33b6d07e-f27d-42fa-b2d7-bf82e11e9374");
 pub const CLSID_MSMQQueueManagement = &CLSID_MSMQQueueManagement_Value;
 
 pub const MQCALG = enum(i32) {
@@ -901,7 +901,7 @@ pub const MQ_INFORMATION_FORMATNAME_BUFFER_TOO_SMALL = MQWARNING.FORMATNAME_BUFF
 pub const MQ_INFORMATION_INTERNAL_USER_CERT_EXIST = MQWARNING.INTERNAL_USER_CERT_EXIST;
 pub const MQ_INFORMATION_OWNER_IGNORED = MQWARNING.OWNER_IGNORED;
 
-const IID_IMSMQQuery_Value = @import("../zig.zig").Guid.initString("d7d6e072-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQQuery_Value = Guid.initString("d7d6e072-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQQuery = &IID_IMSMQQuery_Value;
 pub const IMSMQQuery = extern struct {
     pub const VTable = extern struct {
@@ -931,7 +931,7 @@ pub const IMSMQQuery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfo_Value = @import("../zig.zig").Guid.initString("d7d6e07b-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQQueueInfo_Value = Guid.initString("d7d6e07b-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQQueueInfo = &IID_IMSMQQueueInfo_Value;
 pub const IMSMQQueueInfo = extern struct {
     pub const VTable = extern struct {
@@ -1209,7 +1209,7 @@ pub const IMSMQQueueInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfo2_Value = @import("../zig.zig").Guid.initString("fd174a80-89cf-11d2-b0f2-00e02c074f6b");
+const IID_IMSMQQueueInfo2_Value = Guid.initString("fd174a80-89cf-11d2-b0f2-00e02c074f6b");
 pub const IID_IMSMQQueueInfo2 = &IID_IMSMQQueueInfo2_Value;
 pub const IMSMQQueueInfo2 = extern struct {
     pub const VTable = extern struct {
@@ -1523,7 +1523,7 @@ pub const IMSMQQueueInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfo3_Value = @import("../zig.zig").Guid.initString("eba96b1d-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQueueInfo3_Value = Guid.initString("eba96b1d-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQueueInfo3 = &IID_IMSMQQueueInfo3_Value;
 pub const IMSMQQueueInfo3 = extern struct {
     pub const VTable = extern struct {
@@ -1882,7 +1882,7 @@ pub const IMSMQQueueInfo3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfo4_Value = @import("../zig.zig").Guid.initString("eba96b21-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQueueInfo4_Value = Guid.initString("eba96b21-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQueueInfo4 = &IID_IMSMQQueueInfo4_Value;
 pub const IMSMQQueueInfo4 = extern struct {
     pub const VTable = extern struct {
@@ -2241,7 +2241,7 @@ pub const IMSMQQueueInfo4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueue_Value = @import("../zig.zig").Guid.initString("d7d6e076-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQQueue_Value = Guid.initString("d7d6e076-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQQueue = &IID_IMSMQQueue_Value;
 pub const IMSMQQueue = extern struct {
     pub const VTable = extern struct {
@@ -2380,7 +2380,7 @@ pub const IMSMQQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueue2_Value = @import("../zig.zig").Guid.initString("ef0574e0-06d8-11d3-b100-00e02c074f6b");
+const IID_IMSMQQueue2_Value = Guid.initString("ef0574e0-06d8-11d3-b100-00e02c074f6b");
 pub const IID_IMSMQQueue2 = &IID_IMSMQQueue2_Value;
 pub const IMSMQQueue2 = extern struct {
     pub const VTable = extern struct {
@@ -2590,7 +2590,7 @@ pub const IMSMQQueue2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueue3_Value = @import("../zig.zig").Guid.initString("eba96b1b-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQueue3_Value = Guid.initString("eba96b1b-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQueue3 = &IID_IMSMQQueue3_Value;
 pub const IMSMQQueue3 = extern struct {
     pub const VTable = extern struct {
@@ -2946,7 +2946,7 @@ pub const IMSMQQueue3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueue4_Value = @import("../zig.zig").Guid.initString("eba96b20-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQueue4_Value = Guid.initString("eba96b20-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQueue4 = &IID_IMSMQQueue4_Value;
 pub const IMSMQQueue4 = extern struct {
     pub const VTable = extern struct {
@@ -3315,7 +3315,7 @@ pub const IMSMQQueue4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQMessage_Value = @import("../zig.zig").Guid.initString("d7d6e074-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQMessage_Value = Guid.initString("d7d6e074-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQMessage = &IID_IMSMQMessage_Value;
 pub const IMSMQMessage = extern struct {
     pub const VTable = extern struct {
@@ -3765,7 +3765,7 @@ pub const IMSMQMessage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfos_Value = @import("../zig.zig").Guid.initString("d7d6e07d-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQQueueInfos_Value = Guid.initString("d7d6e07d-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQQueueInfos = &IID_IMSMQQueueInfos_Value;
 pub const IMSMQQueueInfos = extern struct {
     pub const VTable = extern struct {
@@ -3793,7 +3793,7 @@ pub const IMSMQQueueInfos = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfos2_Value = @import("../zig.zig").Guid.initString("eba96b0f-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQueueInfos2_Value = Guid.initString("eba96b0f-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQueueInfos2 = &IID_IMSMQQueueInfos2_Value;
 pub const IMSMQQueueInfos2 = extern struct {
     pub const VTable = extern struct {
@@ -3830,7 +3830,7 @@ pub const IMSMQQueueInfos2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfos3_Value = @import("../zig.zig").Guid.initString("eba96b1e-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQueueInfos3_Value = Guid.initString("eba96b1e-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQueueInfos3 = &IID_IMSMQQueueInfos3_Value;
 pub const IMSMQQueueInfos3 = extern struct {
     pub const VTable = extern struct {
@@ -3867,7 +3867,7 @@ pub const IMSMQQueueInfos3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueInfos4_Value = @import("../zig.zig").Guid.initString("eba96b22-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQueueInfos4_Value = Guid.initString("eba96b22-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQueueInfos4 = &IID_IMSMQQueueInfos4_Value;
 pub const IMSMQQueueInfos4 = extern struct {
     pub const VTable = extern struct {
@@ -3904,7 +3904,7 @@ pub const IMSMQQueueInfos4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQEvent_Value = @import("../zig.zig").Guid.initString("d7d6e077-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQEvent_Value = Guid.initString("d7d6e077-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQEvent = &IID_IMSMQEvent_Value;
 pub const IMSMQEvent = extern struct {
     pub const VTable = extern struct {
@@ -3917,7 +3917,7 @@ pub const IMSMQEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQEvent2_Value = @import("../zig.zig").Guid.initString("eba96b12-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQEvent2_Value = Guid.initString("eba96b12-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQEvent2 = &IID_IMSMQEvent2_Value;
 pub const IMSMQEvent2 = extern struct {
     pub const VTable = extern struct {
@@ -3939,7 +3939,7 @@ pub const IMSMQEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQEvent3_Value = @import("../zig.zig").Guid.initString("eba96b1c-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQEvent3_Value = Guid.initString("eba96b1c-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQEvent3 = &IID_IMSMQEvent3_Value;
 pub const IMSMQEvent3 = extern struct {
     pub const VTable = extern struct {
@@ -3952,7 +3952,7 @@ pub const IMSMQEvent3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQTransaction_Value = @import("../zig.zig").Guid.initString("d7d6e07f-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQTransaction_Value = Guid.initString("d7d6e07f-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQTransaction = &IID_IMSMQTransaction_Value;
 pub const IMSMQTransaction = extern struct {
     pub const VTable = extern struct {
@@ -3993,7 +3993,7 @@ pub const IMSMQTransaction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQCoordinatedTransactionDispenser_Value = @import("../zig.zig").Guid.initString("d7d6e081-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQCoordinatedTransactionDispenser_Value = Guid.initString("d7d6e081-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQCoordinatedTransactionDispenser = &IID_IMSMQCoordinatedTransactionDispenser_Value;
 pub const IMSMQCoordinatedTransactionDispenser = extern struct {
     pub const VTable = extern struct {
@@ -4014,7 +4014,7 @@ pub const IMSMQCoordinatedTransactionDispenser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQTransactionDispenser_Value = @import("../zig.zig").Guid.initString("d7d6e083-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQTransactionDispenser_Value = Guid.initString("d7d6e083-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQTransactionDispenser = &IID_IMSMQTransactionDispenser_Value;
 pub const IMSMQTransactionDispenser = extern struct {
     pub const VTable = extern struct {
@@ -4035,7 +4035,7 @@ pub const IMSMQTransactionDispenser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQuery2_Value = @import("../zig.zig").Guid.initString("eba96b0e-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQuery2_Value = Guid.initString("eba96b0e-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQuery2 = &IID_IMSMQQuery2_Value;
 pub const IMSMQQuery2 = extern struct {
     pub const VTable = extern struct {
@@ -4074,7 +4074,7 @@ pub const IMSMQQuery2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQuery3_Value = @import("../zig.zig").Guid.initString("eba96b19-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQuery3_Value = Guid.initString("eba96b19-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQuery3 = &IID_IMSMQQuery3_Value;
 pub const IMSMQQuery3 = extern struct {
     pub const VTable = extern struct {
@@ -4132,7 +4132,7 @@ pub const IMSMQQuery3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQuery4_Value = @import("../zig.zig").Guid.initString("eba96b24-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQQuery4_Value = Guid.initString("eba96b24-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQQuery4 = &IID_IMSMQQuery4_Value;
 pub const IMSMQQuery4 = extern struct {
     pub const VTable = extern struct {
@@ -4190,7 +4190,7 @@ pub const IMSMQQuery4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQMessage2_Value = @import("../zig.zig").Guid.initString("d9933be0-a567-11d2-b0f3-00e02c074f6b");
+const IID_IMSMQMessage2_Value = Guid.initString("d9933be0-a567-11d2-b0f3-00e02c074f6b");
 pub const IID_IMSMQMessage2 = &IID_IMSMQMessage2_Value;
 pub const IMSMQMessage2 = extern struct {
     pub const VTable = extern struct {
@@ -4872,7 +4872,7 @@ pub const IMSMQMessage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQMessage3_Value = @import("../zig.zig").Guid.initString("eba96b1a-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQMessage3_Value = Guid.initString("eba96b1a-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQMessage3 = &IID_IMSMQMessage3_Value;
 pub const IMSMQMessage3 = extern struct {
     pub const VTable = extern struct {
@@ -5693,7 +5693,7 @@ pub const IMSMQMessage3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQMessage4_Value = @import("../zig.zig").Guid.initString("eba96b23-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQMessage4_Value = Guid.initString("eba96b23-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQMessage4 = &IID_IMSMQMessage4_Value;
 pub const IMSMQMessage4 = extern struct {
     pub const VTable = extern struct {
@@ -6514,7 +6514,7 @@ pub const IMSMQMessage4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQPrivateEvent_Value = @import("../zig.zig").Guid.initString("d7ab3341-c9d3-11d1-bb47-0080c7c5a2c0");
+const IID_IMSMQPrivateEvent_Value = Guid.initString("d7ab3341-c9d3-11d1-bb47-0080c7c5a2c0");
 pub const IID_IMSMQPrivateEvent = &IID_IMSMQPrivateEvent_Value;
 pub const IMSMQPrivateEvent = extern struct {
     pub const VTable = extern struct {
@@ -6555,7 +6555,7 @@ pub const IMSMQPrivateEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__DMSMQEventEvents_Value = @import("../zig.zig").Guid.initString("d7d6e078-dccd-11d0-aa4b-0060970debae");
+const IID__DMSMQEventEvents_Value = Guid.initString("d7d6e078-dccd-11d0-aa4b-0060970debae");
 pub const IID__DMSMQEventEvents = &IID__DMSMQEventEvents_Value;
 pub const _DMSMQEventEvents = extern struct {
     pub const VTable = extern struct {
@@ -6568,7 +6568,7 @@ pub const _DMSMQEventEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQTransaction2_Value = @import("../zig.zig").Guid.initString("2ce0c5b0-6e67-11d2-b0e6-00e02c074f6b");
+const IID_IMSMQTransaction2_Value = Guid.initString("2ce0c5b0-6e67-11d2-b0e6-00e02c074f6b");
 pub const IID_IMSMQTransaction2 = &IID_IMSMQTransaction2_Value;
 pub const IMSMQTransaction2 = extern struct {
     pub const VTable = extern struct {
@@ -6598,7 +6598,7 @@ pub const IMSMQTransaction2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQTransaction3_Value = @import("../zig.zig").Guid.initString("eba96b13-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQTransaction3_Value = Guid.initString("eba96b13-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQTransaction3 = &IID_IMSMQTransaction3_Value;
 pub const IMSMQTransaction3 = extern struct {
     pub const VTable = extern struct {
@@ -6620,7 +6620,7 @@ pub const IMSMQTransaction3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQCoordinatedTransactionDispenser2_Value = @import("../zig.zig").Guid.initString("eba96b10-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQCoordinatedTransactionDispenser2_Value = Guid.initString("eba96b10-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQCoordinatedTransactionDispenser2 = &IID_IMSMQCoordinatedTransactionDispenser2_Value;
 pub const IMSMQCoordinatedTransactionDispenser2 = extern struct {
     pub const VTable = extern struct {
@@ -6650,7 +6650,7 @@ pub const IMSMQCoordinatedTransactionDispenser2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQCoordinatedTransactionDispenser3_Value = @import("../zig.zig").Guid.initString("eba96b14-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQCoordinatedTransactionDispenser3_Value = Guid.initString("eba96b14-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQCoordinatedTransactionDispenser3 = &IID_IMSMQCoordinatedTransactionDispenser3_Value;
 pub const IMSMQCoordinatedTransactionDispenser3 = extern struct {
     pub const VTable = extern struct {
@@ -6680,7 +6680,7 @@ pub const IMSMQCoordinatedTransactionDispenser3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQTransactionDispenser2_Value = @import("../zig.zig").Guid.initString("eba96b11-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQTransactionDispenser2_Value = Guid.initString("eba96b11-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQTransactionDispenser2 = &IID_IMSMQTransactionDispenser2_Value;
 pub const IMSMQTransactionDispenser2 = extern struct {
     pub const VTable = extern struct {
@@ -6710,7 +6710,7 @@ pub const IMSMQTransactionDispenser2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQTransactionDispenser3_Value = @import("../zig.zig").Guid.initString("eba96b15-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQTransactionDispenser3_Value = Guid.initString("eba96b15-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQTransactionDispenser3 = &IID_IMSMQTransactionDispenser3_Value;
 pub const IMSMQTransactionDispenser3 = extern struct {
     pub const VTable = extern struct {
@@ -6740,7 +6740,7 @@ pub const IMSMQTransactionDispenser3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQApplication_Value = @import("../zig.zig").Guid.initString("d7d6e085-dccd-11d0-aa4b-0060970debae");
+const IID_IMSMQApplication_Value = Guid.initString("d7d6e085-dccd-11d0-aa4b-0060970debae");
 pub const IID_IMSMQApplication = &IID_IMSMQApplication_Value;
 pub const IMSMQApplication = extern struct {
     pub const VTable = extern struct {
@@ -6762,7 +6762,7 @@ pub const IMSMQApplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQApplication2_Value = @import("../zig.zig").Guid.initString("12a30900-7300-11d2-b0e6-00e02c074f6b");
+const IID_IMSMQApplication2_Value = Guid.initString("12a30900-7300-11d2-b0e6-00e02c074f6b");
 pub const IID_IMSMQApplication2 = &IID_IMSMQApplication2_Value;
 pub const IMSMQApplication2 = extern struct {
     pub const VTable = extern struct {
@@ -6838,7 +6838,7 @@ pub const IMSMQApplication2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQApplication3_Value = @import("../zig.zig").Guid.initString("eba96b1f-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQApplication3_Value = Guid.initString("eba96b1f-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQApplication3 = &IID_IMSMQApplication3_Value;
 pub const IMSMQApplication3 = extern struct {
     pub const VTable = extern struct {
@@ -6935,7 +6935,7 @@ pub const IMSMQApplication3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQDestination_Value = @import("../zig.zig").Guid.initString("eba96b16-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQDestination_Value = Guid.initString("eba96b16-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQDestination = &IID_IMSMQDestination_Value;
 pub const IMSMQDestination = extern struct {
     pub const VTable = extern struct {
@@ -7068,7 +7068,7 @@ pub const IMSMQDestination = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQPrivateDestination_Value = @import("../zig.zig").Guid.initString("eba96b17-2168-11d3-898c-00e02c074f6b");
+const IID_IMSMQPrivateDestination_Value = Guid.initString("eba96b17-2168-11d3-898c-00e02c074f6b");
 pub const IID_IMSMQPrivateDestination = &IID_IMSMQPrivateDestination_Value;
 pub const IMSMQPrivateDestination = extern struct {
     pub const VTable = extern struct {
@@ -7099,7 +7099,7 @@ pub const IMSMQPrivateDestination = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQCollection_Value = @import("../zig.zig").Guid.initString("0188ac2f-ecb3-4173-9779-635ca2039c72");
+const IID_IMSMQCollection_Value = Guid.initString("0188ac2f-ecb3-4173-9779-635ca2039c72");
 pub const IID_IMSMQCollection = &IID_IMSMQCollection_Value;
 pub const IMSMQCollection = extern struct {
     pub const VTable = extern struct {
@@ -7138,7 +7138,7 @@ pub const IMSMQCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQManagement_Value = @import("../zig.zig").Guid.initString("be5f0241-e489-4957-8cc4-a452fcf3e23e");
+const IID_IMSMQManagement_Value = Guid.initString("be5f0241-e489-4957-8cc4-a452fcf3e23e");
 pub const IID_IMSMQManagement = &IID_IMSMQManagement_Value;
 pub const IMSMQManagement = extern struct {
     pub const VTable = extern struct {
@@ -7233,7 +7233,7 @@ pub const IMSMQManagement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQOutgoingQueueManagement_Value = @import("../zig.zig").Guid.initString("64c478fb-f9b0-4695-8a7f-439ac94326d3");
+const IID_IMSMQOutgoingQueueManagement_Value = Guid.initString("64c478fb-f9b0-4695-8a7f-439ac94326d3");
 pub const IID_IMSMQOutgoingQueueManagement = &IID_IMSMQOutgoingQueueManagement_Value;
 pub const IMSMQOutgoingQueueManagement = extern struct {
     pub const VTable = extern struct {
@@ -7293,7 +7293,7 @@ pub const IMSMQOutgoingQueueManagement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMSMQQueueManagement_Value = @import("../zig.zig").Guid.initString("7fbe7759-5760-444d-b8a5-5e7ab9a84cce");
+const IID_IMSMQQueueManagement_Value = Guid.initString("7fbe7759-5760-444d-b8a5-5e7ab9a84cce");
 pub const IID_IMSMQQueueManagement = &IID_IMSMQQueueManagement_Value;
 pub const IMSMQQueueManagement = extern struct {
     pub const VTable = extern struct {
@@ -7351,8 +7351,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;

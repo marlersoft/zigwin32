@@ -1347,7 +1347,7 @@ pub const VDS_PATH_POLICY = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IEnumVdsObject_Value = @import("../zig.zig").Guid.initString("118610b7-8d94-4030-b5b8-500889788e4e");
+const IID_IEnumVdsObject_Value = Guid.initString("118610b7-8d94-4030-b5b8-500889788e4e");
 pub const IID_IEnumVdsObject = &IID_IEnumVdsObject_Value;
 pub const IEnumVdsObject = extern struct {
     pub const VTable = extern struct {
@@ -1394,7 +1394,7 @@ pub const IEnumVdsObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsAsync_Value = @import("../zig.zig").Guid.initString("d5d23b6d-5a55-4492-9889-397a3c2d2dbc");
+const IID_IVdsAsync_Value = Guid.initString("d5d23b6d-5a55-4492-9889-397a3c2d2dbc");
 pub const IID_IVdsAsync = &IID_IVdsAsync_Value;
 pub const IVdsAsync = extern struct {
     pub const VTable = extern struct {
@@ -1433,7 +1433,7 @@ pub const IVdsAsync = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsAdviseSink_Value = @import("../zig.zig").Guid.initString("8326cd1d-cf59-4936-b786-5efc08798e25");
+const IID_IVdsAdviseSink_Value = Guid.initString("8326cd1d-cf59-4936-b786-5efc08798e25");
 pub const IID_IVdsAdviseSink = &IID_IVdsAdviseSink_Value;
 pub const IVdsAdviseSink = extern struct {
     pub const VTable = extern struct {
@@ -1456,7 +1456,7 @@ pub const IVdsAdviseSink = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsProvider_Value = @import("../zig.zig").Guid.initString("10c5e575-7984-4e81-a56b-431f5f92ae42");
+const IID_IVdsProvider_Value = Guid.initString("10c5e575-7984-4e81-a56b-431f5f92ae42");
 pub const IID_IVdsProvider = &IID_IVdsProvider_Value;
 pub const IVdsProvider = extern struct {
     pub const VTable = extern struct {
@@ -1478,7 +1478,7 @@ pub const IVdsProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsProviderSupport_Value = @import("../zig.zig").Guid.initString("1732be13-e8f9-4a03-bfbc-5f616aa66ce1");
+const IID_IVdsProviderSupport_Value = Guid.initString("1732be13-e8f9-4a03-bfbc-5f616aa66ce1");
 pub const IID_IVdsProviderSupport = &IID_IVdsProviderSupport_Value;
 pub const IVdsProviderSupport = extern struct {
     pub const VTable = extern struct {
@@ -1500,7 +1500,7 @@ pub const IVdsProviderSupport = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsProviderPrivate_Value = @import("../zig.zig").Guid.initString("11f3cd41-b7e8-48ff-9472-9dff018aa292");
+const IID_IVdsProviderPrivate_Value = Guid.initString("11f3cd41-b7e8-48ff-9472-9dff018aa292");
 pub const IID_IVdsProviderPrivate = &IID_IVdsProviderPrivate_Value;
 pub const IVdsProviderPrivate = extern struct {
     pub const VTable = extern struct {
@@ -2185,7 +2185,7 @@ pub const VDS_STORAGE_POOL_DRIVE_EXTENT = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProvider_Value = @import("../zig.zig").Guid.initString("d99bdaae-b13a-4178-9fdb-e27f16b4603e");
+const IID_IVdsHwProvider_Value = Guid.initString("d99bdaae-b13a-4178-9fdb-e27f16b4603e");
 pub const IID_IVdsHwProvider = &IID_IVdsHwProvider_Value;
 pub const IVdsHwProvider = extern struct {
     pub const VTable = extern struct {
@@ -2221,7 +2221,7 @@ pub const IVdsHwProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProviderType_Value = @import("../zig.zig").Guid.initString("3e0f5166-542d-4fc6-947a-012174240b7e");
+const IID_IVdsHwProviderType_Value = Guid.initString("3e0f5166-542d-4fc6-947a-012174240b7e");
 pub const IID_IVdsHwProviderType = &IID_IVdsHwProviderType_Value;
 pub const IVdsHwProviderType = extern struct {
     pub const VTable = extern struct {
@@ -2243,7 +2243,7 @@ pub const IVdsHwProviderType = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsHwProviderType2_Value = @import("../zig.zig").Guid.initString("8190236f-c4d0-4e81-8011-d69512fcc984");
+const IID_IVdsHwProviderType2_Value = Guid.initString("8190236f-c4d0-4e81-8011-d69512fcc984");
 pub const IID_IVdsHwProviderType2 = &IID_IVdsHwProviderType2_Value;
 pub const IVdsHwProviderType2 = extern struct {
     pub const VTable = extern struct {
@@ -2265,7 +2265,7 @@ pub const IVdsHwProviderType2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsHwProviderStoragePools_Value = @import("../zig.zig").Guid.initString("d5b5937a-f188-4c79-b86c-11c920ad11b8");
+const IID_IVdsHwProviderStoragePools_Value = Guid.initString("d5b5937a-f188-4c79-b86c-11c920ad11b8");
 pub const IID_IVdsHwProviderStoragePools = &IID_IVdsHwProviderStoragePools_Value;
 pub const IVdsHwProviderStoragePools = extern struct {
     pub const VTable = extern struct {
@@ -2314,7 +2314,7 @@ pub const IVdsHwProviderStoragePools = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsSubSystem_Value = @import("../zig.zig").Guid.initString("6fcee2d3-6d90-4f91-80e2-a5c7caaca9d8");
+const IID_IVdsSubSystem_Value = Guid.initString("6fcee2d3-6d90-4f91-80e2-a5c7caaca9d8");
 pub const IID_IVdsSubSystem = &IID_IVdsSubSystem_Value;
 pub const IVdsSubSystem = extern struct {
     pub const VTable = extern struct {
@@ -2439,7 +2439,7 @@ pub const IVdsSubSystem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsSubSystem2_Value = @import("../zig.zig").Guid.initString("be666735-7800-4a77-9d9c-40f85b87e292");
+const IID_IVdsSubSystem2_Value = Guid.initString("be666735-7800-4a77-9d9c-40f85b87e292");
 pub const IID_IVdsSubSystem2 = &IID_IVdsSubSystem2_Value;
 pub const IVdsSubSystem2 = extern struct {
     pub const VTable = extern struct {
@@ -2498,7 +2498,7 @@ pub const IVdsSubSystem2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsSubSystemNaming_Value = @import("../zig.zig").Guid.initString("0d70faa3-9cd4-4900-aa20-6981b6aafc75");
+const IID_IVdsSubSystemNaming_Value = Guid.initString("0d70faa3-9cd4-4900-aa20-6981b6aafc75");
 pub const IID_IVdsSubSystemNaming = &IID_IVdsSubSystemNaming_Value;
 pub const IVdsSubSystemNaming = extern struct {
     pub const VTable = extern struct {
@@ -2520,7 +2520,7 @@ pub const IVdsSubSystemNaming = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsSubSystemIscsi_Value = @import("../zig.zig").Guid.initString("0027346f-40d0-4b45-8cec-5906dc0380c8");
+const IID_IVdsSubSystemIscsi_Value = Guid.initString("0027346f-40d0-4b45-8cec-5906dc0380c8");
 pub const IID_IVdsSubSystemIscsi = &IID_IVdsSubSystemIscsi_Value;
 pub const IVdsSubSystemIscsi = extern struct {
     pub const VTable = extern struct {
@@ -2568,7 +2568,7 @@ pub const IVdsSubSystemIscsi = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsSubSystemInterconnect_Value = @import("../zig.zig").Guid.initString("9e6fa560-c141-477b-83ba-0b6c38f7febf");
+const IID_IVdsSubSystemInterconnect_Value = Guid.initString("9e6fa560-c141-477b-83ba-0b6c38f7febf");
 pub const IID_IVdsSubSystemInterconnect = &IID_IVdsSubSystemInterconnect_Value;
 pub const IVdsSubSystemInterconnect = extern struct {
     pub const VTable = extern struct {
@@ -2590,7 +2590,7 @@ pub const IVdsSubSystemInterconnect = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsControllerPort_Value = @import("../zig.zig").Guid.initString("18691d0d-4e7f-43e8-92e4-cf44beeed11c");
+const IID_IVdsControllerPort_Value = Guid.initString("18691d0d-4e7f-43e8-92e4-cf44beeed11c");
 pub const IID_IVdsControllerPort = &IID_IVdsControllerPort_Value;
 pub const IVdsControllerPort = extern struct {
     pub const VTable = extern struct {
@@ -2643,7 +2643,7 @@ pub const IVdsControllerPort = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsController_Value = @import("../zig.zig").Guid.initString("cb53d96e-dffb-474a-a078-790d1e2bc082");
+const IID_IVdsController_Value = Guid.initString("cb53d96e-dffb-474a-a078-790d1e2bc082");
 pub const IID_IVdsController = &IID_IVdsController_Value;
 pub const IVdsController = extern struct {
     pub const VTable = extern struct {
@@ -2719,7 +2719,7 @@ pub const IVdsController = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsControllerControllerPort_Value = @import("../zig.zig").Guid.initString("ca5d735f-6bae-42c0-b30e-f2666045ce71");
+const IID_IVdsControllerControllerPort_Value = Guid.initString("ca5d735f-6bae-42c0-b30e-f2666045ce71");
 pub const IID_IVdsControllerControllerPort = &IID_IVdsControllerControllerPort_Value;
 pub const IVdsControllerControllerPort = extern struct {
     pub const VTable = extern struct {
@@ -2741,7 +2741,7 @@ pub const IVdsControllerControllerPort = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsDrive_Value = @import("../zig.zig").Guid.initString("ff24efa4-aade-4b6b-898b-eaa6a20887c7");
+const IID_IVdsDrive_Value = Guid.initString("ff24efa4-aade-4b6b-898b-eaa6a20887c7");
 pub const IID_IVdsDrive = &IID_IVdsDrive_Value;
 pub const IVdsDrive = extern struct {
     pub const VTable = extern struct {
@@ -2804,7 +2804,7 @@ pub const IVdsDrive = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsDrive2_Value = @import("../zig.zig").Guid.initString("60b5a730-addf-4436-8ca7-5769e2d1ffa4");
+const IID_IVdsDrive2_Value = Guid.initString("60b5a730-addf-4436-8ca7-5769e2d1ffa4");
 pub const IID_IVdsDrive2 = &IID_IVdsDrive2_Value;
 pub const IVdsDrive2 = extern struct {
     pub const VTable = extern struct {
@@ -2826,7 +2826,7 @@ pub const IVdsDrive2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLun_Value = @import("../zig.zig").Guid.initString("3540a9c7-e60f-4111-a840-8bba6c2c83d8");
+const IID_IVdsLun_Value = Guid.initString("3540a9c7-e60f-4111-a840-8bba6c2c83d8");
 pub const IID_IVdsLun = &IID_IVdsLun_Value;
 pub const IVdsLun = extern struct {
     pub const VTable = extern struct {
@@ -2986,7 +2986,7 @@ pub const IVdsLun = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsLun2_Value = @import("../zig.zig").Guid.initString("e5b3a735-9efb-499a-8071-4394d9ee6fcb");
+const IID_IVdsLun2_Value = Guid.initString("e5b3a735-9efb-499a-8071-4394d9ee6fcb");
 pub const IID_IVdsLun2 = &IID_IVdsLun2_Value;
 pub const IVdsLun2 = extern struct {
     pub const VTable = extern struct {
@@ -3016,7 +3016,7 @@ pub const IVdsLun2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLunNaming_Value = @import("../zig.zig").Guid.initString("907504cb-6b4e-4d88-a34d-17ba661fbb06");
+const IID_IVdsLunNaming_Value = Guid.initString("907504cb-6b4e-4d88-a34d-17ba661fbb06");
 pub const IID_IVdsLunNaming = &IID_IVdsLunNaming_Value;
 pub const IVdsLunNaming = extern struct {
     pub const VTable = extern struct {
@@ -3038,7 +3038,7 @@ pub const IVdsLunNaming = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsLunNumber_Value = @import("../zig.zig").Guid.initString("d3f95e46-54b3-41f9-b678-0f1871443a08");
+const IID_IVdsLunNumber_Value = Guid.initString("d3f95e46-54b3-41f9-b678-0f1871443a08");
 pub const IID_IVdsLunNumber = &IID_IVdsLunNumber_Value;
 pub const IVdsLunNumber = extern struct {
     pub const VTable = extern struct {
@@ -3060,7 +3060,7 @@ pub const IVdsLunNumber = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLunControllerPorts_Value = @import("../zig.zig").Guid.initString("451fe266-da6d-406a-bb60-82e534f85aeb");
+const IID_IVdsLunControllerPorts_Value = Guid.initString("451fe266-da6d-406a-bb60-82e534f85aeb");
 pub const IID_IVdsLunControllerPorts = &IID_IVdsLunControllerPorts_Value;
 pub const IVdsLunControllerPorts = extern struct {
     pub const VTable = extern struct {
@@ -3093,7 +3093,7 @@ pub const IVdsLunControllerPorts = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLunMpio_Value = @import("../zig.zig").Guid.initString("7c5fbae3-333a-48a1-a982-33c15788cde3");
+const IID_IVdsLunMpio_Value = Guid.initString("7c5fbae3-333a-48a1-a982-33c15788cde3");
 pub const IID_IVdsLunMpio = &IID_IVdsLunMpio_Value;
 pub const IVdsLunMpio = extern struct {
     pub const VTable = extern struct {
@@ -3144,7 +3144,7 @@ pub const IVdsLunMpio = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLunIscsi_Value = @import("../zig.zig").Guid.initString("0d7c1e64-b59b-45ae-b86a-2c2cc6a42067");
+const IID_IVdsLunIscsi_Value = Guid.initString("0d7c1e64-b59b-45ae-b86a-2c2cc6a42067");
 pub const IID_IVdsLunIscsi = &IID_IVdsLunIscsi_Value;
 pub const IVdsLunIscsi = extern struct {
     pub const VTable = extern struct {
@@ -3175,7 +3175,7 @@ pub const IVdsLunIscsi = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsLunPlex_Value = @import("../zig.zig").Guid.initString("0ee1a790-5d2e-4abb-8c99-c481e8be2138");
+const IID_IVdsLunPlex_Value = Guid.initString("0ee1a790-5d2e-4abb-8c99-c481e8be2138");
 pub const IID_IVdsLunPlex = &IID_IVdsLunPlex_Value;
 pub const IVdsLunPlex = extern struct {
     pub const VTable = extern struct {
@@ -3230,7 +3230,7 @@ pub const IVdsLunPlex = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsIscsiPortal_Value = @import("../zig.zig").Guid.initString("7fa1499d-ec85-4a8a-a47b-ff69201fcd34");
+const IID_IVdsIscsiPortal_Value = Guid.initString("7fa1499d-ec85-4a8a-a47b-ff69201fcd34");
 pub const IID_IVdsIscsiPortal = &IID_IVdsIscsiPortal_Value;
 pub const IVdsIscsiPortal = extern struct {
     pub const VTable = extern struct {
@@ -3304,7 +3304,7 @@ pub const IVdsIscsiPortal = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsIscsiTarget_Value = @import("../zig.zig").Guid.initString("aa8f5055-83e5-4bcc-aa73-19851a36a849");
+const IID_IVdsIscsiTarget_Value = Guid.initString("aa8f5055-83e5-4bcc-aa73-19851a36a849");
 pub const IID_IVdsIscsiTarget = &IID_IVdsIscsiTarget_Value;
 pub const IVdsIscsiTarget = extern struct {
     pub const VTable = extern struct {
@@ -3401,7 +3401,7 @@ pub const IVdsIscsiTarget = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsIscsiPortalGroup_Value = @import("../zig.zig").Guid.initString("fef5f89d-a3dd-4b36-bf28-e7dde045c593");
+const IID_IVdsIscsiPortalGroup_Value = Guid.initString("fef5f89d-a3dd-4b36-bf28-e7dde045c593");
 pub const IID_IVdsIscsiPortalGroup = &IID_IVdsIscsiPortalGroup_Value;
 pub const IVdsIscsiPortalGroup = extern struct {
     pub const VTable = extern struct {
@@ -3465,7 +3465,7 @@ pub const IVdsIscsiPortalGroup = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IVdsStoragePool_Value = @import("../zig.zig").Guid.initString("932ca8cf-0eb3-4ba8-9620-22665d7f8450");
+const IID_IVdsStoragePool_Value = Guid.initString("932ca8cf-0eb3-4ba8-9620-22665d7f8450");
 pub const IID_IVdsStoragePool = &IID_IVdsStoragePool_Value;
 pub const IVdsStoragePool = extern struct {
     pub const VTable = extern struct {
@@ -3528,7 +3528,7 @@ pub const IVdsStoragePool = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsMaintenance_Value = @import("../zig.zig").Guid.initString("daebeef3-8523-47ed-a2b9-05cecce2a1ae");
+const IID_IVdsMaintenance_Value = Guid.initString("daebeef3-8523-47ed-a2b9-05cecce2a1ae");
 pub const IID_IVdsMaintenance = &IID_IVdsMaintenance_Value;
 pub const IVdsMaintenance = extern struct {
     pub const VTable = extern struct {
@@ -3567,7 +3567,7 @@ pub const IVdsMaintenance = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProviderPrivate_Value = @import("../zig.zig").Guid.initString("98f17bf3-9f33-4f12-8714-8b4075092c2e");
+const IID_IVdsHwProviderPrivate_Value = Guid.initString("98f17bf3-9f33-4f12-8714-8b4075092c2e");
 pub const IID_IVdsHwProviderPrivate = &IID_IVdsHwProviderPrivate_Value;
 pub const IVdsHwProviderPrivate = extern struct {
     pub const VTable = extern struct {
@@ -3591,7 +3591,7 @@ pub const IVdsHwProviderPrivate = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsHwProviderPrivateMpio_Value = @import("../zig.zig").Guid.initString("310a7715-ac2b-4c6f-9827-3d742f351676");
+const IID_IVdsHwProviderPrivateMpio_Value = Guid.initString("310a7715-ac2b-4c6f-9827-3d742f351676");
 pub const IID_IVdsHwProviderPrivateMpio = &IID_IVdsHwProviderPrivateMpio_Value;
 pub const IVdsHwProviderPrivateMpio = extern struct {
     pub const VTable = extern struct {
@@ -3614,7 +3614,7 @@ pub const IVdsHwProviderPrivateMpio = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IVdsAdmin_Value = @import("../zig.zig").Guid.initString("d188e97d-85aa-4d33-abc6-26299a10ffc1");
+const IID_IVdsAdmin_Value = Guid.initString("d188e97d-85aa-4d33-abc6-26299a10ffc1");
 pub const IID_IVdsAdmin = &IID_IVdsAdmin_Value;
 pub const IVdsAdmin = extern struct {
     pub const VTable = extern struct {

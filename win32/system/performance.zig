@@ -280,52 +280,52 @@ pub const PerfProviderHandle = isize;
 // TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
 pub const PerfQueryHandle = isize;
 
-const CLSID_DataCollectorSet_Value = @import("../zig.zig").Guid.initString("03837521-098b-11d8-9414-505054503030");
+const CLSID_DataCollectorSet_Value = Guid.initString("03837521-098b-11d8-9414-505054503030");
 pub const CLSID_DataCollectorSet = &CLSID_DataCollectorSet_Value;
 
-const CLSID_TraceSession_Value = @import("../zig.zig").Guid.initString("0383751c-098b-11d8-9414-505054503030");
+const CLSID_TraceSession_Value = Guid.initString("0383751c-098b-11d8-9414-505054503030");
 pub const CLSID_TraceSession = &CLSID_TraceSession_Value;
 
-const CLSID_TraceSessionCollection_Value = @import("../zig.zig").Guid.initString("03837530-098b-11d8-9414-505054503030");
+const CLSID_TraceSessionCollection_Value = Guid.initString("03837530-098b-11d8-9414-505054503030");
 pub const CLSID_TraceSessionCollection = &CLSID_TraceSessionCollection_Value;
 
-const CLSID_TraceDataProvider_Value = @import("../zig.zig").Guid.initString("03837513-098b-11d8-9414-505054503030");
+const CLSID_TraceDataProvider_Value = Guid.initString("03837513-098b-11d8-9414-505054503030");
 pub const CLSID_TraceDataProvider = &CLSID_TraceDataProvider_Value;
 
-const CLSID_TraceDataProviderCollection_Value = @import("../zig.zig").Guid.initString("03837511-098b-11d8-9414-505054503030");
+const CLSID_TraceDataProviderCollection_Value = Guid.initString("03837511-098b-11d8-9414-505054503030");
 pub const CLSID_TraceDataProviderCollection = &CLSID_TraceDataProviderCollection_Value;
 
-const CLSID_DataCollectorSetCollection_Value = @import("../zig.zig").Guid.initString("03837525-098b-11d8-9414-505054503030");
+const CLSID_DataCollectorSetCollection_Value = Guid.initString("03837525-098b-11d8-9414-505054503030");
 pub const CLSID_DataCollectorSetCollection = &CLSID_DataCollectorSetCollection_Value;
 
-const CLSID_LegacyDataCollectorSet_Value = @import("../zig.zig").Guid.initString("03837526-098b-11d8-9414-505054503030");
+const CLSID_LegacyDataCollectorSet_Value = Guid.initString("03837526-098b-11d8-9414-505054503030");
 pub const CLSID_LegacyDataCollectorSet = &CLSID_LegacyDataCollectorSet_Value;
 
-const CLSID_LegacyDataCollectorSetCollection_Value = @import("../zig.zig").Guid.initString("03837527-098b-11d8-9414-505054503030");
+const CLSID_LegacyDataCollectorSetCollection_Value = Guid.initString("03837527-098b-11d8-9414-505054503030");
 pub const CLSID_LegacyDataCollectorSetCollection = &CLSID_LegacyDataCollectorSetCollection_Value;
 
-const CLSID_LegacyTraceSession_Value = @import("../zig.zig").Guid.initString("03837528-098b-11d8-9414-505054503030");
+const CLSID_LegacyTraceSession_Value = Guid.initString("03837528-098b-11d8-9414-505054503030");
 pub const CLSID_LegacyTraceSession = &CLSID_LegacyTraceSession_Value;
 
-const CLSID_LegacyTraceSessionCollection_Value = @import("../zig.zig").Guid.initString("03837529-098b-11d8-9414-505054503030");
+const CLSID_LegacyTraceSessionCollection_Value = Guid.initString("03837529-098b-11d8-9414-505054503030");
 pub const CLSID_LegacyTraceSessionCollection = &CLSID_LegacyTraceSessionCollection_Value;
 
-const CLSID_ServerDataCollectorSet_Value = @import("../zig.zig").Guid.initString("03837531-098b-11d8-9414-505054503030");
+const CLSID_ServerDataCollectorSet_Value = Guid.initString("03837531-098b-11d8-9414-505054503030");
 pub const CLSID_ServerDataCollectorSet = &CLSID_ServerDataCollectorSet_Value;
 
-const CLSID_ServerDataCollectorSetCollection_Value = @import("../zig.zig").Guid.initString("03837532-098b-11d8-9414-505054503030");
+const CLSID_ServerDataCollectorSetCollection_Value = Guid.initString("03837532-098b-11d8-9414-505054503030");
 pub const CLSID_ServerDataCollectorSetCollection = &CLSID_ServerDataCollectorSetCollection_Value;
 
-const CLSID_SystemDataCollectorSet_Value = @import("../zig.zig").Guid.initString("03837546-098b-11d8-9414-505054503030");
+const CLSID_SystemDataCollectorSet_Value = Guid.initString("03837546-098b-11d8-9414-505054503030");
 pub const CLSID_SystemDataCollectorSet = &CLSID_SystemDataCollectorSet_Value;
 
-const CLSID_SystemDataCollectorSetCollection_Value = @import("../zig.zig").Guid.initString("03837547-098b-11d8-9414-505054503030");
+const CLSID_SystemDataCollectorSetCollection_Value = Guid.initString("03837547-098b-11d8-9414-505054503030");
 pub const CLSID_SystemDataCollectorSetCollection = &CLSID_SystemDataCollectorSetCollection_Value;
 
-const CLSID_BootTraceSession_Value = @import("../zig.zig").Guid.initString("03837538-098b-11d8-9414-505054503030");
+const CLSID_BootTraceSession_Value = Guid.initString("03837538-098b-11d8-9414-505054503030");
 pub const CLSID_BootTraceSession = &CLSID_BootTraceSession_Value;
 
-const CLSID_BootTraceSessionCollection_Value = @import("../zig.zig").Guid.initString("03837539-098b-11d8-9414-505054503030");
+const CLSID_BootTraceSessionCollection_Value = Guid.initString("03837539-098b-11d8-9414-505054503030");
 pub const CLSID_BootTraceSessionCollection = &CLSID_BootTraceSessionCollection_Value;
 
 pub const DataCollectorType = enum(i32) {
@@ -496,7 +496,7 @@ pub const PLA_CABEXTRACT_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataCollectorSet_Value = @import("../zig.zig").Guid.initString("03837520-098b-11d8-9414-505054503030");
+const IID_IDataCollectorSet_Value = Guid.initString("03837520-098b-11d8-9414-505054503030");
 pub const IID_IDataCollectorSet = &IID_IDataCollectorSet_Value;
 pub const IDataCollectorSet = extern struct {
     pub const VTable = extern struct {
@@ -1048,7 +1048,7 @@ pub const IDataCollectorSet = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataManager_Value = @import("../zig.zig").Guid.initString("03837541-098b-11d8-9414-505054503030");
+const IID_IDataManager_Value = Guid.initString("03837541-098b-11d8-9414-505054503030");
 pub const IID_IDataManager = &IID_IDataManager_Value;
 pub const IDataManager = extern struct {
     pub const VTable = extern struct {
@@ -1288,7 +1288,7 @@ pub const IDataManager = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IFolderAction_Value = @import("../zig.zig").Guid.initString("03837543-098b-11d8-9414-505054503030");
+const IID_IFolderAction_Value = Guid.initString("03837543-098b-11d8-9414-505054503030");
 pub const IID_IFolderAction = &IID_IFolderAction_Value;
 pub const IFolderAction = extern struct {
     pub const VTable = extern struct {
@@ -1374,7 +1374,7 @@ pub const IFolderAction = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IFolderActionCollection_Value = @import("../zig.zig").Guid.initString("03837544-098b-11d8-9414-505054503030");
+const IID_IFolderActionCollection_Value = Guid.initString("03837544-098b-11d8-9414-505054503030");
 pub const IID_IFolderActionCollection = &IID_IFolderActionCollection_Value;
 pub const IFolderActionCollection = extern struct {
     pub const VTable = extern struct {
@@ -1455,7 +1455,7 @@ pub const IFolderActionCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataCollector_Value = @import("../zig.zig").Guid.initString("038374ff-098b-11d8-9414-505054503030");
+const IID_IDataCollector_Value = Guid.initString("038374ff-098b-11d8-9414-505054503030");
 pub const IID_IDataCollector = &IID_IDataCollector_Value;
 pub const IDataCollector = extern struct {
     pub const VTable = extern struct {
@@ -1694,7 +1694,7 @@ pub const IDataCollector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPerformanceCounterDataCollector_Value = @import("../zig.zig").Guid.initString("03837506-098b-11d8-9414-505054503030");
+const IID_IPerformanceCounterDataCollector_Value = Guid.initString("03837506-098b-11d8-9414-505054503030");
 pub const IID_IPerformanceCounterDataCollector = &IID_IPerformanceCounterDataCollector_Value;
 pub const IPerformanceCounterDataCollector = extern struct {
     pub const VTable = extern struct {
@@ -1798,7 +1798,7 @@ pub const IPerformanceCounterDataCollector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITraceDataCollector_Value = @import("../zig.zig").Guid.initString("0383750b-098b-11d8-9414-505054503030");
+const IID_ITraceDataCollector_Value = Guid.initString("0383750b-098b-11d8-9414-505054503030");
 pub const IID_ITraceDataCollector = &IID_ITraceDataCollector_Value;
 pub const ITraceDataCollector = extern struct {
     pub const VTable = extern struct {
@@ -2172,7 +2172,7 @@ pub const ITraceDataCollector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IConfigurationDataCollector_Value = @import("../zig.zig").Guid.initString("03837514-098b-11d8-9414-505054503030");
+const IID_IConfigurationDataCollector_Value = Guid.initString("03837514-098b-11d8-9414-505054503030");
 pub const IID_IConfigurationDataCollector = &IID_IConfigurationDataCollector_Value;
 pub const IConfigurationDataCollector = extern struct {
     pub const VTable = extern struct {
@@ -2348,7 +2348,7 @@ pub const IConfigurationDataCollector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IAlertDataCollector_Value = @import("../zig.zig").Guid.initString("03837516-098b-11d8-9414-505054503030");
+const IID_IAlertDataCollector_Value = Guid.initString("03837516-098b-11d8-9414-505054503030");
 pub const IID_IAlertDataCollector = &IID_IAlertDataCollector_Value;
 pub const IAlertDataCollector = extern struct {
     pub const VTable = extern struct {
@@ -2506,7 +2506,7 @@ pub const IAlertDataCollector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IApiTracingDataCollector_Value = @import("../zig.zig").Guid.initString("0383751a-098b-11d8-9414-505054503030");
+const IID_IApiTracingDataCollector_Value = Guid.initString("0383751a-098b-11d8-9414-505054503030");
 pub const IID_IApiTracingDataCollector = &IID_IApiTracingDataCollector_Value;
 pub const IApiTracingDataCollector = extern struct {
     pub const VTable = extern struct {
@@ -2646,7 +2646,7 @@ pub const IApiTracingDataCollector = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataCollectorCollection_Value = @import("../zig.zig").Guid.initString("03837502-098b-11d8-9414-505054503030");
+const IID_IDataCollectorCollection_Value = Guid.initString("03837502-098b-11d8-9414-505054503030");
 pub const IID_IDataCollectorCollection = &IID_IDataCollectorCollection_Value;
 pub const IDataCollectorCollection = extern struct {
     pub const VTable = extern struct {
@@ -2738,7 +2738,7 @@ pub const IDataCollectorCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDataCollectorSetCollection_Value = @import("../zig.zig").Guid.initString("03837524-098b-11d8-9414-505054503030");
+const IID_IDataCollectorSetCollection_Value = Guid.initString("03837524-098b-11d8-9414-505054503030");
 pub const IID_IDataCollectorSetCollection = &IID_IDataCollectorSetCollection_Value;
 pub const IDataCollectorSetCollection = extern struct {
     pub const VTable = extern struct {
@@ -2820,7 +2820,7 @@ pub const IDataCollectorSetCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITraceDataProvider_Value = @import("../zig.zig").Guid.initString("03837512-098b-11d8-9414-505054503030");
+const IID_ITraceDataProvider_Value = Guid.initString("03837512-098b-11d8-9414-505054503030");
 pub const IID_ITraceDataProvider = &IID_ITraceDataProvider_Value;
 pub const ITraceDataProvider = extern struct {
     pub const VTable = extern struct {
@@ -3002,7 +3002,7 @@ pub const ITraceDataProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ITraceDataProviderCollection_Value = @import("../zig.zig").Guid.initString("03837510-098b-11d8-9414-505054503030");
+const IID_ITraceDataProviderCollection_Value = Guid.initString("03837510-098b-11d8-9414-505054503030");
 pub const IID_ITraceDataProviderCollection = &IID_ITraceDataProviderCollection_Value;
 pub const ITraceDataProviderCollection = extern struct {
     pub const VTable = extern struct {
@@ -3100,7 +3100,7 @@ pub const ITraceDataProviderCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ISchedule_Value = @import("../zig.zig").Guid.initString("0383753a-098b-11d8-9414-505054503030");
+const IID_ISchedule_Value = Guid.initString("0383753a-098b-11d8-9414-505054503030");
 pub const IID_ISchedule = &IID_ISchedule_Value;
 pub const ISchedule = extern struct {
     pub const VTable = extern struct {
@@ -3186,7 +3186,7 @@ pub const ISchedule = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IScheduleCollection_Value = @import("../zig.zig").Guid.initString("0383753d-098b-11d8-9414-505054503030");
+const IID_IScheduleCollection_Value = Guid.initString("0383753d-098b-11d8-9414-505054503030");
 pub const IID_IScheduleCollection = &IID_IScheduleCollection_Value;
 pub const IScheduleCollection = extern struct {
     pub const VTable = extern struct {
@@ -3267,7 +3267,7 @@ pub const IScheduleCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IValueMapItem_Value = @import("../zig.zig").Guid.initString("03837533-098b-11d8-9414-505054503030");
+const IID_IValueMapItem_Value = Guid.initString("03837533-098b-11d8-9414-505054503030");
 pub const IID_IValueMapItem = &IID_IValueMapItem_Value;
 pub const IValueMapItem = extern struct {
     pub const VTable = extern struct {
@@ -3371,7 +3371,7 @@ pub const IValueMapItem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IValueMap_Value = @import("../zig.zig").Guid.initString("03837534-098b-11d8-9414-505054503030");
+const IID_IValueMap_Value = Guid.initString("03837534-098b-11d8-9414-505054503030");
 pub const IID_IValueMap = &IID_IValueMap_Value;
 pub const IValueMap = extern struct {
     pub const VTable = extern struct {
@@ -3995,40 +3995,40 @@ pub const PDH_BROWSE_DLG_CONFIG_A = extern struct {
     szDialogBoxCaption: ?PSTR,
 };
 
-const CLSID_SystemMonitor_Value = @import("../zig.zig").Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004347");
+const CLSID_SystemMonitor_Value = Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004347");
 pub const CLSID_SystemMonitor = &CLSID_SystemMonitor_Value;
 
-const CLSID_CounterItem_Value = @import("../zig.zig").Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004348");
+const CLSID_CounterItem_Value = Guid.initString("c4d2d8e0-d1dd-11ce-940f-008029004348");
 pub const CLSID_CounterItem = &CLSID_CounterItem_Value;
 
-const CLSID_Counters_Value = @import("../zig.zig").Guid.initString("b2b066d2-2aac-11cf-942f-008029004347");
+const CLSID_Counters_Value = Guid.initString("b2b066d2-2aac-11cf-942f-008029004347");
 pub const CLSID_Counters = &CLSID_Counters_Value;
 
-const CLSID_LogFileItem_Value = @import("../zig.zig").Guid.initString("16ec5be8-df93-4237-94e4-9ee918111d71");
+const CLSID_LogFileItem_Value = Guid.initString("16ec5be8-df93-4237-94e4-9ee918111d71");
 pub const CLSID_LogFileItem = &CLSID_LogFileItem_Value;
 
-const CLSID_LogFiles_Value = @import("../zig.zig").Guid.initString("2735d9fd-f6b9-4f19-a5d9-e2d068584bc5");
+const CLSID_LogFiles_Value = Guid.initString("2735d9fd-f6b9-4f19-a5d9-e2d068584bc5");
 pub const CLSID_LogFiles = &CLSID_LogFiles_Value;
 
-const CLSID_CounterItem2_Value = @import("../zig.zig").Guid.initString("43196c62-c31f-4ce3-a02e-79efe0f6a525");
+const CLSID_CounterItem2_Value = Guid.initString("43196c62-c31f-4ce3-a02e-79efe0f6a525");
 pub const CLSID_CounterItem2 = &CLSID_CounterItem2_Value;
 
-const CLSID_SystemMonitor2_Value = @import("../zig.zig").Guid.initString("7f30578c-5f38-4612-acfe-6ed04c7b7af8");
+const CLSID_SystemMonitor2_Value = Guid.initString("7f30578c-5f38-4612-acfe-6ed04c7b7af8");
 pub const CLSID_SystemMonitor2 = &CLSID_SystemMonitor2_Value;
 
-const CLSID_AppearPropPage_Value = @import("../zig.zig").Guid.initString("e49741e9-93a8-4ab1-8e96-bf4482282e9c");
+const CLSID_AppearPropPage_Value = Guid.initString("e49741e9-93a8-4ab1-8e96-bf4482282e9c");
 pub const CLSID_AppearPropPage = &CLSID_AppearPropPage_Value;
 
-const CLSID_GeneralPropPage_Value = @import("../zig.zig").Guid.initString("c3e5d3d2-1a03-11cf-942d-008029004347");
+const CLSID_GeneralPropPage_Value = Guid.initString("c3e5d3d2-1a03-11cf-942d-008029004347");
 pub const CLSID_GeneralPropPage = &CLSID_GeneralPropPage_Value;
 
-const CLSID_GraphPropPage_Value = @import("../zig.zig").Guid.initString("c3e5d3d3-1a03-11cf-942d-008029004347");
+const CLSID_GraphPropPage_Value = Guid.initString("c3e5d3d3-1a03-11cf-942d-008029004347");
 pub const CLSID_GraphPropPage = &CLSID_GraphPropPage_Value;
 
-const CLSID_SourcePropPage_Value = @import("../zig.zig").Guid.initString("0cf32aa1-7571-11d0-93c4-00aa00a3ddea");
+const CLSID_SourcePropPage_Value = Guid.initString("0cf32aa1-7571-11d0-93c4-00aa00a3ddea");
 pub const CLSID_SourcePropPage = &CLSID_SourcePropPage_Value;
 
-const CLSID_CounterPropPage_Value = @import("../zig.zig").Guid.initString("cf948561-ede8-11ce-941e-008029004347");
+const CLSID_CounterPropPage_Value = Guid.initString("cf948561-ede8-11ce-941e-008029004347");
 pub const CLSID_CounterPropPage = &CLSID_CounterPropPage_Value;
 
 pub const DisplayTypeConstants = enum(i32) {
@@ -4109,7 +4109,7 @@ pub const sysmonBatchAddFiles = SysmonBatchReason.AddFiles;
 pub const sysmonBatchAddCounters = SysmonBatchReason.AddCounters;
 pub const sysmonBatchAddFilesAutoCounters = SysmonBatchReason.AddFilesAutoCounters;
 
-const IID_ICounterItem_Value = @import("../zig.zig").Guid.initString("771a9520-ee28-11ce-941e-008029004347");
+const IID_ICounterItem_Value = Guid.initString("771a9520-ee28-11ce-941e-008029004347");
 pub const IID_ICounterItem = &IID_ICounterItem_Value;
 pub const ICounterItem = extern struct {
     pub const VTable = extern struct {
@@ -4232,7 +4232,7 @@ pub const ICounterItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICounterItem2_Value = @import("../zig.zig").Guid.initString("eefcd4e1-ea1c-4435-b7f4-e341ba03b4f9");
+const IID_ICounterItem2_Value = Guid.initString("eefcd4e1-ea1c-4435-b7f4-e341ba03b4f9");
 pub const IID_ICounterItem2 = &IID_ICounterItem2_Value;
 pub const ICounterItem2 = extern struct {
     pub const VTable = extern struct {
@@ -4291,7 +4291,7 @@ pub const ICounterItem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ICounterItemUnion_Value = @import("../zig.zig").Guid.initString("de1a6b74-9182-4c41-8e2c-24c2cd30ee83");
+const IID__ICounterItemUnion_Value = Guid.initString("de1a6b74-9182-4c41-8e2c-24c2cd30ee83");
 pub const IID__ICounterItemUnion = &IID__ICounterItemUnion_Value;
 pub const _ICounterItemUnion = extern struct {
     pub const VTable = extern struct {
@@ -4460,7 +4460,7 @@ pub const _ICounterItemUnion = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DICounterItem_Value = @import("../zig.zig").Guid.initString("c08c4ff2-0e2e-11cf-942c-008029004347");
+const IID_DICounterItem_Value = Guid.initString("c08c4ff2-0e2e-11cf-942c-008029004347");
 pub const IID_DICounterItem = &IID_DICounterItem_Value;
 pub const DICounterItem = extern struct {
     pub const VTable = extern struct {
@@ -4473,7 +4473,7 @@ pub const DICounterItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICounters_Value = @import("../zig.zig").Guid.initString("79167962-28fc-11cf-942f-008029004347");
+const IID_ICounters_Value = Guid.initString("79167962-28fc-11cf-942f-008029004347");
 pub const IID_ICounters = &IID_ICounters_Value;
 pub const ICounters = extern struct {
     pub const VTable = extern struct {
@@ -4531,7 +4531,7 @@ pub const ICounters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILogFileItem_Value = @import("../zig.zig").Guid.initString("d6b518dd-05c7-418a-89e6-4f9ce8c6841e");
+const IID_ILogFileItem_Value = Guid.initString("d6b518dd-05c7-418a-89e6-4f9ce8c6841e");
 pub const IID_ILogFileItem = &IID_ILogFileItem_Value;
 pub const ILogFileItem = extern struct {
     pub const VTable = extern struct {
@@ -4553,7 +4553,7 @@ pub const ILogFileItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DILogFileItem_Value = @import("../zig.zig").Guid.initString("8d093ffc-f777-4917-82d1-833fbc54c58f");
+const IID_DILogFileItem_Value = Guid.initString("8d093ffc-f777-4917-82d1-833fbc54c58f");
 pub const IID_DILogFileItem = &IID_DILogFileItem_Value;
 pub const DILogFileItem = extern struct {
     pub const VTable = extern struct {
@@ -4566,7 +4566,7 @@ pub const DILogFileItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILogFiles_Value = @import("../zig.zig").Guid.initString("6a2a97e6-6851-41ea-87ad-2a8225335865");
+const IID_ILogFiles_Value = Guid.initString("6a2a97e6-6851-41ea-87ad-2a8225335865");
 pub const IID_ILogFiles = &IID_ILogFiles_Value;
 pub const ILogFiles = extern struct {
     pub const VTable = extern struct {
@@ -4624,7 +4624,7 @@ pub const ILogFiles = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISystemMonitor_Value = @import("../zig.zig").Guid.initString("194eb241-c32c-11cf-9398-00aa00a3ddea");
+const IID_ISystemMonitor_Value = Guid.initString("194eb241-c32c-11cf-9398-00aa00a3ddea");
 pub const IID_ISystemMonitor = &IID_ISystemMonitor_Value;
 pub const ISystemMonitor = extern struct {
     pub const VTable = extern struct {
@@ -5305,7 +5305,7 @@ pub const ISystemMonitor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISystemMonitor2_Value = @import("../zig.zig").Guid.initString("08e3206a-5fd2-4fde-a8a5-8cb3b63d2677");
+const IID_ISystemMonitor2_Value = Guid.initString("08e3206a-5fd2-4fde-a8a5-8cb3b63d2677");
 pub const IID_ISystemMonitor2 = &IID_ISystemMonitor2_Value;
 pub const ISystemMonitor2 = extern struct {
     pub const VTable = extern struct {
@@ -5495,7 +5495,7 @@ pub const ISystemMonitor2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ISystemMonitorUnion_Value = @import("../zig.zig").Guid.initString("c8a77338-265f-4de5-aa25-c7da1ce5a8f4");
+const IID__ISystemMonitorUnion_Value = Guid.initString("c8a77338-265f-4de5-aa25-c7da1ce5a8f4");
 pub const IID__ISystemMonitorUnion = &IID__ISystemMonitorUnion_Value;
 pub const _ISystemMonitorUnion = extern struct {
     pub const VTable = extern struct {
@@ -6353,7 +6353,7 @@ pub const _ISystemMonitorUnion = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DISystemMonitor_Value = @import("../zig.zig").Guid.initString("13d73d81-c32e-11cf-9398-00aa00a3ddea");
+const IID_DISystemMonitor_Value = Guid.initString("13d73d81-c32e-11cf-9398-00aa00a3ddea");
 pub const IID_DISystemMonitor = &IID_DISystemMonitor_Value;
 pub const DISystemMonitor = extern struct {
     pub const VTable = extern struct {
@@ -6366,7 +6366,7 @@ pub const DISystemMonitor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DISystemMonitorInternal_Value = @import("../zig.zig").Guid.initString("194eb242-c32c-11cf-9398-00aa00a3ddea");
+const IID_DISystemMonitorInternal_Value = Guid.initString("194eb242-c32c-11cf-9398-00aa00a3ddea");
 pub const IID_DISystemMonitorInternal = &IID_DISystemMonitorInternal_Value;
 pub const DISystemMonitorInternal = extern struct {
     pub const VTable = extern struct {
@@ -6379,7 +6379,7 @@ pub const DISystemMonitorInternal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISystemMonitorEvents_Value = @import("../zig.zig").Guid.initString("ee660ea0-4abd-11cf-943a-008029004347");
+const IID_ISystemMonitorEvents_Value = Guid.initString("ee660ea0-4abd-11cf-943a-008029004347");
 pub const IID_ISystemMonitorEvents = &IID_ISystemMonitorEvents_Value;
 pub const ISystemMonitorEvents = extern struct {
     pub const VTable = extern struct {
@@ -6431,7 +6431,7 @@ pub const ISystemMonitorEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DISystemMonitorEvents_Value = @import("../zig.zig").Guid.initString("84979930-4ab3-11cf-943a-008029004347");
+const IID_DISystemMonitorEvents_Value = Guid.initString("84979930-4ab3-11cf-943a-008029004347");
 pub const IID_DISystemMonitorEvents = &IID_DISystemMonitorEvents_Value;
 pub const DISystemMonitorEvents = extern struct {
     pub const VTable = extern struct {

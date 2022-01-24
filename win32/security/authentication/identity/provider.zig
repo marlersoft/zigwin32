@@ -56,7 +56,7 @@ pub const IDENTITY_CONNECTED = IdentityUpdateEvent.CONNECTED;
 pub const IDENTITY_DISCONNECTED = IdentityUpdateEvent.DISCONNECTED;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IIdentityAdvise_Value = @import("../../../zig.zig").Guid.initString("4e982fed-d14b-440c-b8d6-bb386453d386");
+const IID_IIdentityAdvise_Value = Guid.initString("4e982fed-d14b-440c-b8d6-bb386453d386");
 pub const IID_IIdentityAdvise = &IID_IIdentityAdvise_Value;
 pub const IIdentityAdvise = extern struct {
     pub const VTable = extern struct {
@@ -78,7 +78,7 @@ pub const IIdentityAdvise = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityAdvise_Value = @import("../../../zig.zig").Guid.initString("3ab4c8da-d038-4830-8dd9-3253c55a127f");
+const IID_AsyncIIdentityAdvise_Value = Guid.initString("3ab4c8da-d038-4830-8dd9-3253c55a127f");
 pub const IID_AsyncIIdentityAdvise = &IID_AsyncIIdentityAdvise_Value;
 pub const AsyncIIdentityAdvise = extern struct {
     pub const VTable = extern struct {
@@ -108,7 +108,7 @@ pub const AsyncIIdentityAdvise = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IIdentityProvider_Value = @import("../../../zig.zig").Guid.initString("0d1b9e0c-e8ba-4f55-a81b-bce934b948f5");
+const IID_IIdentityProvider_Value = Guid.initString("0d1b9e0c-e8ba-4f55-a81b-bce934b948f5");
 pub const IID_IIdentityProvider = &IID_IIdentityProvider_Value;
 pub const IIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -194,7 +194,7 @@ pub const IIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityProvider_Value = @import("../../../zig.zig").Guid.initString("c6fc9901-c433-4646-8f48-4e4687aae2a0");
+const IID_AsyncIIdentityProvider_Value = Guid.initString("c6fc9901-c433-4646-8f48-4e4687aae2a0");
 pub const IID_AsyncIIdentityProvider = &IID_AsyncIIdentityProvider_Value;
 pub const AsyncIIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -337,7 +337,7 @@ pub const AsyncIIdentityProvider = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IAssociatedIdentityProvider_Value = @import("../../../zig.zig").Guid.initString("2af066b3-4cbb-4cba-a798-204b6af68cc0");
+const IID_IAssociatedIdentityProvider_Value = Guid.initString("2af066b3-4cbb-4cba-a798-204b6af68cc0");
 pub const IID_IAssociatedIdentityProvider = &IID_IAssociatedIdentityProvider_Value;
 pub const IAssociatedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -377,7 +377,7 @@ pub const IAssociatedIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIAssociatedIdentityProvider_Value = @import("../../../zig.zig").Guid.initString("2834d6ed-297e-4e72-8a51-961e86f05152");
+const IID_AsyncIAssociatedIdentityProvider_Value = Guid.initString("2834d6ed-297e-4e72-8a51-961e86f05152");
 pub const IID_AsyncIAssociatedIdentityProvider = &IID_AsyncIAssociatedIdentityProvider_Value;
 pub const AsyncIAssociatedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -465,7 +465,7 @@ pub const CONNECTING = ACCOUNT_STATE.CONNECTING;
 pub const CONNECT_COMPLETED = ACCOUNT_STATE.CONNECT_COMPLETED;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IConnectedIdentityProvider_Value = @import("../../../zig.zig").Guid.initString("b7417b54-e08c-429b-96c8-678d1369ecb1");
+const IID_IConnectedIdentityProvider_Value = Guid.initString("b7417b54-e08c-429b-96c8-678d1369ecb1");
 pub const IID_IConnectedIdentityProvider = &IID_IConnectedIdentityProvider_Value;
 pub const IConnectedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -521,7 +521,7 @@ pub const IConnectedIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIConnectedIdentityProvider_Value = @import("../../../zig.zig").Guid.initString("9ce55141-bce9-4e15-824d-43d79f512f93");
+const IID_AsyncIConnectedIdentityProvider_Value = Guid.initString("9ce55141-bce9-4e15-824d-43d79f512f93");
 pub const IID_AsyncIConnectedIdentityProvider = &IID_AsyncIConnectedIdentityProvider_Value;
 pub const AsyncIConnectedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -612,7 +612,7 @@ pub const AsyncIConnectedIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIdentityAuthentication_Value = @import("../../../zig.zig").Guid.initString("5e7ef254-979f-43b5-b74e-06e4eb7df0f9");
+const IID_IIdentityAuthentication_Value = Guid.initString("5e7ef254-979f-43b5-b74e-06e4eb7df0f9");
 pub const IID_IIdentityAuthentication = &IID_IIdentityAuthentication_Value;
 pub const IIdentityAuthentication = extern struct {
     pub const VTable = extern struct {
@@ -644,7 +644,7 @@ pub const IIdentityAuthentication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityAuthentication_Value = @import("../../../zig.zig").Guid.initString("f9a2f918-feca-4e9c-9633-61cbf13ed34d");
+const IID_AsyncIIdentityAuthentication_Value = Guid.initString("f9a2f918-feca-4e9c-9633-61cbf13ed34d");
 pub const IID_AsyncIIdentityAuthentication = &IID_AsyncIIdentityAuthentication_Value;
 pub const AsyncIIdentityAuthentication = extern struct {
     pub const VTable = extern struct {
@@ -691,14 +691,14 @@ pub const AsyncIIdentityAuthentication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_CoClassIdentityStore_Value = @import("../../../zig.zig").Guid.initString("30d49246-d217-465f-b00b-ac9ddd652eb7");
+const CLSID_CoClassIdentityStore_Value = Guid.initString("30d49246-d217-465f-b00b-ac9ddd652eb7");
 pub const CLSID_CoClassIdentityStore = &CLSID_CoClassIdentityStore_Value;
 
-const CLSID_CIdentityProfileHandler_Value = @import("../../../zig.zig").Guid.initString("ecf5bf46-e3b6-449a-b56b-43f58f867814");
+const CLSID_CIdentityProfileHandler_Value = Guid.initString("ecf5bf46-e3b6-449a-b56b-43f58f867814");
 pub const CLSID_CIdentityProfileHandler = &CLSID_CIdentityProfileHandler_Value;
 
 // TODO: this type is limited to platform 'windows6.1'
-const IID_IIdentityStore_Value = @import("../../../zig.zig").Guid.initString("df586fa5-6f35-44f1-b209-b38e169772eb");
+const IID_IIdentityStore_Value = Guid.initString("df586fa5-6f35-44f1-b209-b38e169772eb");
 pub const IID_IIdentityStore = &IID_IIdentityStore_Value;
 pub const IIdentityStore = extern struct {
     pub const VTable = extern struct {
@@ -768,7 +768,7 @@ pub const IIdentityStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityStore_Value = @import("../../../zig.zig").Guid.initString("eefa1616-48de-4872-aa64-6e6206535a51");
+const IID_AsyncIIdentityStore_Value = Guid.initString("eefa1616-48de-4872-aa64-6e6206535a51");
 pub const IID_AsyncIIdentityStore = &IID_AsyncIIdentityStore_Value;
 pub const AsyncIIdentityStore = extern struct {
     pub const VTable = extern struct {
@@ -882,7 +882,7 @@ pub const AsyncIIdentityStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIdentityStoreEx_Value = @import("../../../zig.zig").Guid.initString("f9f9eb98-8f7f-4e38-9577-6980114ce32b");
+const IID_IIdentityStoreEx_Value = Guid.initString("f9f9eb98-8f7f-4e38-9577-6980114ce32b");
 pub const IID_IIdentityStoreEx = &IID_IIdentityStoreEx_Value;
 pub const IIdentityStoreEx = extern struct {
     pub const VTable = extern struct {
@@ -914,7 +914,7 @@ pub const IIdentityStoreEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityStoreEx_Value = @import("../../../zig.zig").Guid.initString("fca3af9a-8a07-4eae-8632-ec3de658a36a");
+const IID_AsyncIIdentityStoreEx_Value = Guid.initString("fca3af9a-8a07-4eae-8632-ec3de658a36a");
 pub const IID_AsyncIIdentityStoreEx = &IID_AsyncIIdentityStoreEx_Value;
 pub const AsyncIIdentityStoreEx = extern struct {
     pub const VTable = extern struct {

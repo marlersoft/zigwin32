@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-const IID_IChannelCredentials_Value = @import("../../zig.zig").Guid.initString("181b448c-c17c-4b17-ac6d-06699b93198f");
+const IID_IChannelCredentials_Value = Guid.initString("181b448c-c17c-4b17-ac6d-06699b93198f");
 pub const IID_IChannelCredentials = &IID_IChannelCredentials_Value;
 pub const IChannelCredentials = extern struct {
     pub const VTable = extern struct {
@@ -141,8 +141,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
+const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BSTR = @import("../../foundation.zig").BSTR;
 const HRESULT = @import("../../foundation.zig").HRESULT;

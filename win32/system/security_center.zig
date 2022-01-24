@@ -6,10 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
-const CLSID_WSCProductList_Value = @import("../zig.zig").Guid.initString("17072f7b-9abe-4a74-a261-1eb76b55107a");
+const CLSID_WSCProductList_Value = Guid.initString("17072f7b-9abe-4a74-a261-1eb76b55107a");
 pub const CLSID_WSCProductList = &CLSID_WSCProductList_Value;
 
-const CLSID_WSCDefaultProduct_Value = @import("../zig.zig").Guid.initString("2981a36e-f22d-11e5-9ce9-5e5517507c66");
+const CLSID_WSCDefaultProduct_Value = Guid.initString("2981a36e-f22d-11e5-9ce9-5e5517507c66");
 pub const CLSID_WSCDefaultProduct = &CLSID_WSCDefaultProduct_Value;
 
 pub const WSC_SECURITY_PRODUCT_SUBSTATUS = enum(i32) {
@@ -51,7 +51,7 @@ pub const WSC_SECURITY_PRODUCT_OUT_OF_DATE = WSC_SECURITY_SIGNATURE_STATUS.OUT_O
 pub const WSC_SECURITY_PRODUCT_UP_TO_DATE = WSC_SECURITY_SIGNATURE_STATUS.UP_TO_DATE;
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWscProduct_Value = @import("../zig.zig").Guid.initString("8c38232e-3a45-4a27-92b0-1a16a975f669");
+const IID_IWscProduct_Value = Guid.initString("8c38232e-3a45-4a27-92b0-1a16a975f669");
 pub const IID_IWscProduct = &IID_IWscProduct_Value;
 pub const IWscProduct = extern struct {
     pub const VTable = extern struct {
@@ -127,7 +127,7 @@ pub const IWscProduct = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWscProduct2_Value = @import("../zig.zig").Guid.initString("f896ca54-fe09-4403-86d4-23cb488d81d8");
+const IID_IWscProduct2_Value = Guid.initString("f896ca54-fe09-4403-86d4-23cb488d81d8");
 pub const IID_IWscProduct2 = &IID_IWscProduct2_Value;
 pub const IWscProduct2 = extern struct {
     pub const VTable = extern struct {
@@ -194,7 +194,7 @@ pub const IWscProduct2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWscProduct3_Value = @import("../zig.zig").Guid.initString("55536524-d1d1-4726-8c7c-04996a1904e7");
+const IID_IWscProduct3_Value = Guid.initString("55536524-d1d1-4726-8c7c-04996a1904e7");
 pub const IID_IWscProduct3 = &IID_IWscProduct3_Value;
 pub const IWscProduct3 = extern struct {
     pub const VTable = extern struct {
@@ -217,7 +217,7 @@ pub const IWscProduct3 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-const IID_IWSCProductList_Value = @import("../zig.zig").Guid.initString("722a338c-6e8e-4e72-ac27-1417fb0c81c2");
+const IID_IWSCProductList_Value = Guid.initString("722a338c-6e8e-4e72-ac27-1417fb0c81c2");
 pub const IID_IWSCProductList = &IID_IWSCProductList_Value;
 pub const IWSCProductList = extern struct {
     pub const VTable = extern struct {
@@ -257,7 +257,7 @@ pub const IWSCProductList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSCDefaultProduct_Value = @import("../zig.zig").Guid.initString("0476d69c-f21a-11e5-9ce9-5e5517507c66");
+const IID_IWSCDefaultProduct_Value = Guid.initString("0476d69c-f21a-11e5-9ce9-5e5517507c66");
 pub const IID_IWSCDefaultProduct = &IID_IWSCDefaultProduct_Value;
 pub const IWSCDefaultProduct = extern struct {
     pub const VTable = extern struct {
@@ -359,8 +359,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;

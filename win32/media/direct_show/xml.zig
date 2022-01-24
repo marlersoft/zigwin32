@@ -8,7 +8,7 @@ pub const CLSID_XMLGraphBuilder = Guid.initString("1bb05961-5fbf-11d2-a521-44df0
 // Section: Types (1)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IXMLGraphBuilder_Value = @import("../../zig.zig").Guid.initString("1bb05960-5fbf-11d2-a521-44df07c10000");
+const IID_IXMLGraphBuilder_Value = Guid.initString("1bb05960-5fbf-11d2-a521-44df07c10000");
 pub const IID_IXMLGraphBuilder = &IID_IXMLGraphBuilder_Value;
 pub const IXMLGraphBuilder = extern struct {
     pub const VTable = extern struct {

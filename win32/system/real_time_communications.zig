@@ -258,7 +258,7 @@ pub const RTC_E_PINT_STATUS_REJECTED_BADNUMBER = @import("../zig.zig").typedCons
 //--------------------------------------------------------------------------------
 // Section: Types (107)
 //--------------------------------------------------------------------------------
-const CLSID_RTCClient_Value = @import("../zig.zig").Guid.initString("7a42ea29-a2b7-40c4-b091-f6f024aa89be");
+const CLSID_RTCClient_Value = Guid.initString("7a42ea29-a2b7-40c4-b091-f6f024aa89be");
 pub const CLSID_RTCClient = &CLSID_RTCClient_Value;
 
 pub const RTC_AUDIO_DEVICE = enum(i32) {
@@ -788,7 +788,7 @@ pub const RTCRIN_INCOMING = RTC_REINVITE_STATE.INCOMING;
 pub const RTCRIN_SUCCEEDED = RTC_REINVITE_STATE.SUCCEEDED;
 pub const RTCRIN_FAIL = RTC_REINVITE_STATE.FAIL;
 
-const IID_IRTCClient_Value = @import("../zig.zig").Guid.initString("07829e45-9a34-408e-a011-bddf13487cd1");
+const IID_IRTCClient_Value = Guid.initString("07829e45-9a34-408e-a011-bddf13487cd1");
 pub const IID_IRTCClient = &IID_IRTCClient_Value;
 pub const IRTCClient = extern struct {
     pub const VTable = extern struct {
@@ -1183,7 +1183,7 @@ pub const IRTCClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCClient2_Value = @import("../zig.zig").Guid.initString("0c91d71d-1064-42da-bfa5-572beb8eea84");
+const IID_IRTCClient2_Value = Guid.initString("0c91d71d-1064-42da-bfa5-572beb8eea84");
 pub const IID_IRTCClient2 = &IID_IRTCClient2_Value;
 pub const IRTCClient2 = extern struct {
     pub const VTable = extern struct {
@@ -1321,7 +1321,7 @@ pub const IRTCClient2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCClientPresence_Value = @import("../zig.zig").Guid.initString("11c3cbcc-0744-42d1-968a-51aa1bb274c6");
+const IID_IRTCClientPresence_Value = Guid.initString("11c3cbcc-0744-42d1-968a-51aa1bb274c6");
 pub const IID_IRTCClientPresence = &IID_IRTCClientPresence_Value;
 pub const IRTCClientPresence = extern struct {
     pub const VTable = extern struct {
@@ -1502,7 +1502,7 @@ pub const IRTCClientPresence = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCClientPresence2_Value = @import("../zig.zig").Guid.initString("ad1809e8-62f7-4783-909a-29c9d2cb1d34");
+const IID_IRTCClientPresence2_Value = Guid.initString("ad1809e8-62f7-4783-909a-29c9d2cb1d34");
 pub const IID_IRTCClientPresence2 = &IID_IRTCClientPresence2_Value;
 pub const IRTCClientPresence2 = extern struct {
     pub const VTable = extern struct {
@@ -1668,7 +1668,7 @@ pub const IRTCClientPresence2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCClientProvisioning_Value = @import("../zig.zig").Guid.initString("b9f5cf06-65b9-4a80-a0e6-73cae3ef3822");
+const IID_IRTCClientProvisioning_Value = Guid.initString("b9f5cf06-65b9-4a80-a0e6-73cae3ef3822");
 pub const IID_IRTCClientProvisioning = &IID_IRTCClientProvisioning_Value;
 pub const IRTCClientProvisioning = extern struct {
     pub const VTable = extern struct {
@@ -1746,7 +1746,7 @@ pub const IRTCClientProvisioning = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCClientProvisioning2_Value = @import("../zig.zig").Guid.initString("a70909b5-f40e-4587-bb75-e6bc0845023e");
+const IID_IRTCClientProvisioning2_Value = Guid.initString("a70909b5-f40e-4587-bb75-e6bc0845023e");
 pub const IID_IRTCClientProvisioning2 = &IID_IRTCClientProvisioning2_Value;
 pub const IRTCClientProvisioning2 = extern struct {
     pub const VTable = extern struct {
@@ -1769,7 +1769,7 @@ pub const IRTCClientProvisioning2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCProfile_Value = @import("../zig.zig").Guid.initString("d07eca9e-4062-4dd4-9e7d-722a49ba7303");
+const IID_IRTCProfile_Value = Guid.initString("d07eca9e-4062-4dd4-9e7d-722a49ba7303");
 pub const IID_IRTCProfile = &IID_IRTCProfile_Value;
 pub const IRTCProfile = extern struct {
     pub const VTable = extern struct {
@@ -1946,7 +1946,7 @@ pub const IRTCProfile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCProfile2_Value = @import("../zig.zig").Guid.initString("4b81f84e-bdc7-4184-9154-3cb2dd7917fb");
+const IID_IRTCProfile2_Value = Guid.initString("4b81f84e-bdc7-4184-9154-3cb2dd7917fb");
 pub const IID_IRTCProfile2 = &IID_IRTCProfile2_Value;
 pub const IRTCProfile2 = extern struct {
     pub const VTable = extern struct {
@@ -1995,7 +1995,7 @@ pub const IRTCProfile2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSession_Value = @import("../zig.zig").Guid.initString("387c8086-99be-42fb-9973-7c0fc0ca9fa8");
+const IID_IRTCSession_Value = Guid.initString("387c8086-99be-42fb-9973-7c0fc0ca9fa8");
 pub const IID_IRTCSession = &IID_IRTCSession_Value;
 pub const IRTCSession = extern struct {
     pub const VTable = extern struct {
@@ -2186,7 +2186,7 @@ pub const IRTCSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSession2_Value = @import("../zig.zig").Guid.initString("17d7cdfc-b007-484c-99d2-86a8a820991d");
+const IID_IRTCSession2_Value = Guid.initString("17d7cdfc-b007-484c-99d2-86a8a820991d");
 pub const IID_IRTCSession2 = &IID_IRTCSession2_Value;
 pub const IRTCSession2 = extern struct {
     pub const VTable = extern struct {
@@ -2257,7 +2257,7 @@ pub const IRTCSession2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionCallControl_Value = @import("../zig.zig").Guid.initString("e9a50d94-190b-4f82-9530-3b8ebf60758a");
+const IID_IRTCSessionCallControl_Value = Guid.initString("e9a50d94-190b-4f82-9530-3b8ebf60758a");
 pub const IID_IRTCSessionCallControl = &IID_IRTCSessionCallControl_Value;
 pub const IRTCSessionCallControl = extern struct {
     pub const VTable = extern struct {
@@ -2348,7 +2348,7 @@ pub const IRTCSessionCallControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCParticipant_Value = @import("../zig.zig").Guid.initString("ae86add5-26b1-4414-af1d-b94cd938d739");
+const IID_IRTCParticipant_Value = Guid.initString("ae86add5-26b1-4414-af1d-b94cd938d739");
 pub const IID_IRTCParticipant = &IID_IRTCParticipant_Value;
 pub const IRTCParticipant = extern struct {
     pub const VTable = extern struct {
@@ -2406,7 +2406,7 @@ pub const IRTCParticipant = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCRoamingEvent_Value = @import("../zig.zig").Guid.initString("79960a6b-0cb1-4dc8-a805-7318e99902e8");
+const IID_IRTCRoamingEvent_Value = Guid.initString("79960a6b-0cb1-4dc8-a805-7318e99902e8");
 pub const IID_IRTCRoamingEvent = &IID_IRTCRoamingEvent_Value;
 pub const IRTCRoamingEvent = extern struct {
     pub const VTable = extern struct {
@@ -2455,7 +2455,7 @@ pub const IRTCRoamingEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCProfileEvent_Value = @import("../zig.zig").Guid.initString("d6d5ab3b-770e-43e8-800a-79b062395fca");
+const IID_IRTCProfileEvent_Value = Guid.initString("d6d5ab3b-770e-43e8-800a-79b062395fca");
 pub const IID_IRTCProfileEvent = &IID_IRTCProfileEvent_Value;
 pub const IRTCProfileEvent = extern struct {
     pub const VTable = extern struct {
@@ -2495,7 +2495,7 @@ pub const IRTCProfileEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCProfileEvent2_Value = @import("../zig.zig").Guid.initString("62e56edc-03fa-4121-94fb-23493fd0ae64");
+const IID_IRTCProfileEvent2_Value = Guid.initString("62e56edc-03fa-4121-94fb-23493fd0ae64");
 pub const IID_IRTCProfileEvent2 = &IID_IRTCProfileEvent2_Value;
 pub const IRTCProfileEvent2 = extern struct {
     pub const VTable = extern struct {
@@ -2517,7 +2517,7 @@ pub const IRTCProfileEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCClientEvent_Value = @import("../zig.zig").Guid.initString("2b493b7a-3cba-4170-9c8b-76a9dacdd644");
+const IID_IRTCClientEvent_Value = Guid.initString("2b493b7a-3cba-4170-9c8b-76a9dacdd644");
 pub const IID_IRTCClientEvent = &IID_IRTCClientEvent_Value;
 pub const IRTCClientEvent = extern struct {
     pub const VTable = extern struct {
@@ -2548,7 +2548,7 @@ pub const IRTCClientEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCRegistrationStateChangeEvent_Value = @import("../zig.zig").Guid.initString("62d0991b-50ab-4f02-b948-ca94f26f8f95");
+const IID_IRTCRegistrationStateChangeEvent_Value = Guid.initString("62d0991b-50ab-4f02-b948-ca94f26f8f95");
 pub const IID_IRTCRegistrationStateChangeEvent = &IID_IRTCRegistrationStateChangeEvent_Value;
 pub const IRTCRegistrationStateChangeEvent = extern struct {
     pub const VTable = extern struct {
@@ -2597,7 +2597,7 @@ pub const IRTCRegistrationStateChangeEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionStateChangeEvent_Value = @import("../zig.zig").Guid.initString("b5bad703-5952-48b3-9321-7f4500521506");
+const IID_IRTCSessionStateChangeEvent_Value = Guid.initString("b5bad703-5952-48b3-9321-7f4500521506");
 pub const IID_IRTCSessionStateChangeEvent = &IID_IRTCSessionStateChangeEvent_Value;
 pub const IRTCSessionStateChangeEvent = extern struct {
     pub const VTable = extern struct {
@@ -2646,7 +2646,7 @@ pub const IRTCSessionStateChangeEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionStateChangeEvent2_Value = @import("../zig.zig").Guid.initString("4f933171-6f95-4880-80d9-2ec8d495d261");
+const IID_IRTCSessionStateChangeEvent2_Value = Guid.initString("4f933171-6f95-4880-80d9-2ec8d495d261");
 pub const IID_IRTCSessionStateChangeEvent2 = &IID_IRTCSessionStateChangeEvent2_Value;
 pub const IRTCSessionStateChangeEvent2 = extern struct {
     pub const VTable = extern struct {
@@ -2696,7 +2696,7 @@ pub const IRTCSessionStateChangeEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionOperationCompleteEvent_Value = @import("../zig.zig").Guid.initString("a6bff4c0-f7c8-4d3c-9a41-3550f78a95b0");
+const IID_IRTCSessionOperationCompleteEvent_Value = Guid.initString("a6bff4c0-f7c8-4d3c-9a41-3550f78a95b0");
 pub const IID_IRTCSessionOperationCompleteEvent = &IID_IRTCSessionOperationCompleteEvent_Value;
 pub const IRTCSessionOperationCompleteEvent = extern struct {
     pub const VTable = extern struct {
@@ -2745,7 +2745,7 @@ pub const IRTCSessionOperationCompleteEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionOperationCompleteEvent2_Value = @import("../zig.zig").Guid.initString("f6fc2a9b-d5bc-4241-b436-1b8460c13832");
+const IID_IRTCSessionOperationCompleteEvent2_Value = Guid.initString("f6fc2a9b-d5bc-4241-b436-1b8460c13832");
 pub const IID_IRTCSessionOperationCompleteEvent2 = &IID_IRTCSessionOperationCompleteEvent2_Value;
 pub const IRTCSessionOperationCompleteEvent2 = extern struct {
     pub const VTable = extern struct {
@@ -2776,7 +2776,7 @@ pub const IRTCSessionOperationCompleteEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCParticipantStateChangeEvent_Value = @import("../zig.zig").Guid.initString("09bcb597-f0fa-48f9-b420-468cea7fde04");
+const IID_IRTCParticipantStateChangeEvent_Value = Guid.initString("09bcb597-f0fa-48f9-b420-468cea7fde04");
 pub const IID_IRTCParticipantStateChangeEvent = &IID_IRTCParticipantStateChangeEvent_Value;
 pub const IRTCParticipantStateChangeEvent = extern struct {
     pub const VTable = extern struct {
@@ -2816,7 +2816,7 @@ pub const IRTCParticipantStateChangeEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCMediaEvent_Value = @import("../zig.zig").Guid.initString("099944fb-bcda-453e-8c41-e13da2adf7f3");
+const IID_IRTCMediaEvent_Value = Guid.initString("099944fb-bcda-453e-8c41-e13da2adf7f3");
 pub const IID_IRTCMediaEvent = &IID_IRTCMediaEvent_Value;
 pub const IRTCMediaEvent = extern struct {
     pub const VTable = extern struct {
@@ -2856,7 +2856,7 @@ pub const IRTCMediaEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCIntensityEvent_Value = @import("../zig.zig").Guid.initString("4c23bf51-390c-4992-a41d-41eec05b2a4b");
+const IID_IRTCIntensityEvent_Value = Guid.initString("4c23bf51-390c-4992-a41d-41eec05b2a4b");
 pub const IID_IRTCIntensityEvent = &IID_IRTCIntensityEvent_Value;
 pub const IRTCIntensityEvent = extern struct {
     pub const VTable = extern struct {
@@ -2905,7 +2905,7 @@ pub const IRTCIntensityEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCMessagingEvent_Value = @import("../zig.zig").Guid.initString("d3609541-1b29-4de5-a4ad-5aebaf319512");
+const IID_IRTCMessagingEvent_Value = Guid.initString("d3609541-1b29-4de5-a4ad-5aebaf319512");
 pub const IID_IRTCMessagingEvent = &IID_IRTCMessagingEvent_Value;
 pub const IRTCMessagingEvent = extern struct {
     pub const VTable = extern struct {
@@ -2972,7 +2972,7 @@ pub const IRTCMessagingEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCBuddyEvent_Value = @import("../zig.zig").Guid.initString("f36d755d-17e6-404e-954f-0fc07574c78d");
+const IID_IRTCBuddyEvent_Value = Guid.initString("f36d755d-17e6-404e-954f-0fc07574c78d");
 pub const IID_IRTCBuddyEvent = &IID_IRTCBuddyEvent_Value;
 pub const IRTCBuddyEvent = extern struct {
     pub const VTable = extern struct {
@@ -2994,7 +2994,7 @@ pub const IRTCBuddyEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCBuddyEvent2_Value = @import("../zig.zig").Guid.initString("484a7f1e-73f0-4990-bfc2-60bc3978a720");
+const IID_IRTCBuddyEvent2_Value = Guid.initString("484a7f1e-73f0-4990-bfc2-60bc3978a720");
 pub const IID_IRTCBuddyEvent2 = &IID_IRTCBuddyEvent2_Value;
 pub const IRTCBuddyEvent2 = extern struct {
     pub const VTable = extern struct {
@@ -3034,7 +3034,7 @@ pub const IRTCBuddyEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCWatcherEvent_Value = @import("../zig.zig").Guid.initString("f30d7261-587a-424f-822c-312788f43548");
+const IID_IRTCWatcherEvent_Value = Guid.initString("f30d7261-587a-424f-822c-312788f43548");
 pub const IID_IRTCWatcherEvent = &IID_IRTCWatcherEvent_Value;
 pub const IRTCWatcherEvent = extern struct {
     pub const VTable = extern struct {
@@ -3056,7 +3056,7 @@ pub const IRTCWatcherEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCWatcherEvent2_Value = @import("../zig.zig").Guid.initString("e52891e8-188c-49af-b005-98ed13f83f9c");
+const IID_IRTCWatcherEvent2_Value = Guid.initString("e52891e8-188c-49af-b005-98ed13f83f9c");
 pub const IID_IRTCWatcherEvent2 = &IID_IRTCWatcherEvent2_Value;
 pub const IRTCWatcherEvent2 = extern struct {
     pub const VTable = extern struct {
@@ -3087,7 +3087,7 @@ pub const IRTCWatcherEvent2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCBuddyGroupEvent_Value = @import("../zig.zig").Guid.initString("3a79e1d1-b736-4414-96f8-bbc7f08863e4");
+const IID_IRTCBuddyGroupEvent_Value = Guid.initString("3a79e1d1-b736-4414-96f8-bbc7f08863e4");
 pub const IID_IRTCBuddyGroupEvent = &IID_IRTCBuddyGroupEvent_Value;
 pub const IRTCBuddyGroupEvent = extern struct {
     pub const VTable = extern struct {
@@ -3136,7 +3136,7 @@ pub const IRTCBuddyGroupEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCInfoEvent_Value = @import("../zig.zig").Guid.initString("4e1d68ae-1912-4f49-b2c3-594fadfd425f");
+const IID_IRTCInfoEvent_Value = Guid.initString("4e1d68ae-1912-4f49-b2c3-594fadfd425f");
 pub const IID_IRTCInfoEvent = &IID_IRTCInfoEvent_Value;
 pub const IRTCInfoEvent = extern struct {
     pub const VTable = extern struct {
@@ -3185,7 +3185,7 @@ pub const IRTCInfoEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCMediaRequestEvent_Value = @import("../zig.zig").Guid.initString("52572d15-148c-4d97-a36c-2da55c289d63");
+const IID_IRTCMediaRequestEvent_Value = Guid.initString("52572d15-148c-4d97-a36c-2da55c289d63");
 pub const IID_IRTCMediaRequestEvent = &IID_IRTCMediaRequestEvent_Value;
 pub const IRTCMediaRequestEvent = extern struct {
     pub const VTable = extern struct {
@@ -3259,7 +3259,7 @@ pub const IRTCMediaRequestEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCReInviteEvent_Value = @import("../zig.zig").Guid.initString("11558d84-204c-43e7-99b0-2034e9417f7d");
+const IID_IRTCReInviteEvent_Value = Guid.initString("11558d84-204c-43e7-99b0-2034e9417f7d");
 pub const IID_IRTCReInviteEvent = &IID_IRTCReInviteEvent_Value;
 pub const IRTCReInviteEvent = extern struct {
     pub const VTable = extern struct {
@@ -3315,7 +3315,7 @@ pub const IRTCReInviteEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCPresencePropertyEvent_Value = @import("../zig.zig").Guid.initString("f777f570-a820-49d5-86bd-e099493f1518");
+const IID_IRTCPresencePropertyEvent_Value = Guid.initString("f777f570-a820-49d5-86bd-e099493f1518");
 pub const IID_IRTCPresencePropertyEvent = &IID_IRTCPresencePropertyEvent_Value;
 pub const IRTCPresencePropertyEvent = extern struct {
     pub const VTable = extern struct {
@@ -3364,7 +3364,7 @@ pub const IRTCPresencePropertyEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCPresenceDataEvent_Value = @import("../zig.zig").Guid.initString("38f0e78c-8b87-4c04-a82d-aedd83c909bb");
+const IID_IRTCPresenceDataEvent_Value = Guid.initString("38f0e78c-8b87-4c04-a82d-aedd83c909bb");
 pub const IID_IRTCPresenceDataEvent = &IID_IRTCPresenceDataEvent_Value;
 pub const IRTCPresenceDataEvent = extern struct {
     pub const VTable = extern struct {
@@ -3404,7 +3404,7 @@ pub const IRTCPresenceDataEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCPresenceStatusEvent_Value = @import("../zig.zig").Guid.initString("78673f32-4a0f-462c-89aa-ee7706707678");
+const IID_IRTCPresenceStatusEvent_Value = Guid.initString("78673f32-4a0f-462c-89aa-ee7706707678");
 pub const IID_IRTCPresenceStatusEvent = &IID_IRTCPresenceStatusEvent_Value;
 pub const IRTCPresenceStatusEvent = extern struct {
     pub const VTable = extern struct {
@@ -3444,7 +3444,7 @@ pub const IRTCPresenceStatusEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCCollection_Value = @import("../zig.zig").Guid.initString("ec7c8096-b918-4044-94f1-e4fba0361d5c");
+const IID_IRTCCollection_Value = Guid.initString("ec7c8096-b918-4044-94f1-e4fba0361d5c");
 pub const IID_IRTCCollection = &IID_IRTCCollection_Value;
 pub const IRTCCollection = extern struct {
     pub const VTable = extern struct {
@@ -3485,7 +3485,7 @@ pub const IRTCCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEnumParticipants_Value = @import("../zig.zig").Guid.initString("fcd56f29-4a4f-41b2-ba5c-f5bccc060bf6");
+const IID_IRTCEnumParticipants_Value = Guid.initString("fcd56f29-4a4f-41b2-ba5c-f5bccc060bf6");
 pub const IID_IRTCEnumParticipants = &IID_IRTCEnumParticipants_Value;
 pub const IRTCEnumParticipants = extern struct {
     pub const VTable = extern struct {
@@ -3531,7 +3531,7 @@ pub const IRTCEnumParticipants = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEnumProfiles_Value = @import("../zig.zig").Guid.initString("29b7c41c-ed82-4bca-84ad-39d5101b58e3");
+const IID_IRTCEnumProfiles_Value = Guid.initString("29b7c41c-ed82-4bca-84ad-39d5101b58e3");
 pub const IID_IRTCEnumProfiles = &IID_IRTCEnumProfiles_Value;
 pub const IRTCEnumProfiles = extern struct {
     pub const VTable = extern struct {
@@ -3577,7 +3577,7 @@ pub const IRTCEnumProfiles = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEnumBuddies_Value = @import("../zig.zig").Guid.initString("f7296917-5569-4b3b-b3af-98d1144b2b87");
+const IID_IRTCEnumBuddies_Value = Guid.initString("f7296917-5569-4b3b-b3af-98d1144b2b87");
 pub const IID_IRTCEnumBuddies = &IID_IRTCEnumBuddies_Value;
 pub const IRTCEnumBuddies = extern struct {
     pub const VTable = extern struct {
@@ -3623,7 +3623,7 @@ pub const IRTCEnumBuddies = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEnumWatchers_Value = @import("../zig.zig").Guid.initString("a87d55d7-db74-4ed1-9ca4-77a0e41b413e");
+const IID_IRTCEnumWatchers_Value = Guid.initString("a87d55d7-db74-4ed1-9ca4-77a0e41b413e");
 pub const IID_IRTCEnumWatchers = &IID_IRTCEnumWatchers_Value;
 pub const IRTCEnumWatchers = extern struct {
     pub const VTable = extern struct {
@@ -3669,7 +3669,7 @@ pub const IRTCEnumWatchers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEnumGroups_Value = @import("../zig.zig").Guid.initString("742378d6-a141-4415-8f27-35d99076cf5d");
+const IID_IRTCEnumGroups_Value = Guid.initString("742378d6-a141-4415-8f27-35d99076cf5d");
 pub const IID_IRTCEnumGroups = &IID_IRTCEnumGroups_Value;
 pub const IRTCEnumGroups = extern struct {
     pub const VTable = extern struct {
@@ -3715,7 +3715,7 @@ pub const IRTCEnumGroups = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCPresenceContact_Value = @import("../zig.zig").Guid.initString("8b22f92c-cd90-42db-a733-212205c3e3df");
+const IID_IRTCPresenceContact_Value = Guid.initString("8b22f92c-cd90-42db-a733-212205c3e3df");
 pub const IID_IRTCPresenceContact = &IID_IRTCPresenceContact_Value;
 pub const IRTCPresenceContact = extern struct {
     pub const VTable = extern struct {
@@ -3800,7 +3800,7 @@ pub const IRTCPresenceContact = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCBuddy_Value = @import("../zig.zig").Guid.initString("fcb136c8-7b90-4e0c-befe-56edf0ba6f1c");
+const IID_IRTCBuddy_Value = Guid.initString("fcb136c8-7b90-4e0c-befe-56edf0ba6f1c");
 pub const IID_IRTCBuddy = &IID_IRTCBuddy_Value;
 pub const IRTCBuddy = extern struct {
     pub const VTable = extern struct {
@@ -3831,7 +3831,7 @@ pub const IRTCBuddy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCBuddy2_Value = @import("../zig.zig").Guid.initString("102f9588-23e7-40e3-954d-cd7a1d5c0361");
+const IID_IRTCBuddy2_Value = Guid.initString("102f9588-23e7-40e3-954d-cd7a1d5c0361");
 pub const IID_IRTCBuddy2 = &IID_IRTCBuddy2_Value;
 pub const IRTCBuddy2 = extern struct {
     pub const VTable = extern struct {
@@ -3913,7 +3913,7 @@ pub const IRTCBuddy2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCWatcher_Value = @import("../zig.zig").Guid.initString("c7cedad8-346b-4d1b-ac02-a2088df9be4f");
+const IID_IRTCWatcher_Value = Guid.initString("c7cedad8-346b-4d1b-ac02-a2088df9be4f");
 pub const IID_IRTCWatcher = &IID_IRTCWatcher_Value;
 pub const IRTCWatcher = extern struct {
     pub const VTable = extern struct {
@@ -3944,7 +3944,7 @@ pub const IRTCWatcher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCWatcher2_Value = @import("../zig.zig").Guid.initString("d4d9967f-d011-4b1d-91e3-aba78f96393d");
+const IID_IRTCWatcher2_Value = Guid.initString("d4d9967f-d011-4b1d-91e3-aba78f96393d");
 pub const IID_IRTCWatcher2 = &IID_IRTCWatcher2_Value;
 pub const IRTCWatcher2 = extern struct {
     pub const VTable = extern struct {
@@ -3975,7 +3975,7 @@ pub const IRTCWatcher2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCBuddyGroup_Value = @import("../zig.zig").Guid.initString("60361e68-9164-4389-a4c6-d0b3925bda5e");
+const IID_IRTCBuddyGroup_Value = Guid.initString("60361e68-9164-4389-a4c6-d0b3925bda5e");
 pub const IID_IRTCBuddyGroup = &IID_IRTCBuddyGroup_Value;
 pub const IRTCBuddyGroup = extern struct {
     pub const VTable = extern struct {
@@ -4066,7 +4066,7 @@ pub const IRTCBuddyGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEventNotification_Value = @import("../zig.zig").Guid.initString("13fa24c7-5748-4b21-91f5-7397609ce747");
+const IID_IRTCEventNotification_Value = Guid.initString("13fa24c7-5748-4b21-91f5-7397609ce747");
 pub const IID_IRTCEventNotification = &IID_IRTCEventNotification_Value;
 pub const IRTCEventNotification = extern struct {
     pub const VTable = extern struct {
@@ -4088,7 +4088,7 @@ pub const IRTCEventNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCPortManager_Value = @import("../zig.zig").Guid.initString("da77c14b-6208-43ca-8ddf-5b60a0a69fac");
+const IID_IRTCPortManager_Value = Guid.initString("da77c14b-6208-43ca-8ddf-5b60a0a69fac");
 pub const IID_IRTCPortManager = &IID_IRTCPortManager_Value;
 pub const IRTCPortManager = extern struct {
     pub const VTable = extern struct {
@@ -4137,7 +4137,7 @@ pub const IRTCPortManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionPortManagement_Value = @import("../zig.zig").Guid.initString("a072f1d6-0286-4e1f-85f2-17a2948456ec");
+const IID_IRTCSessionPortManagement_Value = Guid.initString("a072f1d6-0286-4e1f-85f2-17a2948456ec");
 pub const IID_IRTCSessionPortManagement = &IID_IRTCSessionPortManagement_Value;
 pub const IRTCSessionPortManagement = extern struct {
     pub const VTable = extern struct {
@@ -4158,7 +4158,7 @@ pub const IRTCSessionPortManagement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCClientPortManagement_Value = @import("../zig.zig").Guid.initString("d5df3f03-4bde-4417-aefe-71177bdaea66");
+const IID_IRTCClientPortManagement_Value = Guid.initString("d5df3f03-4bde-4417-aefe-71177bdaea66");
 pub const IID_IRTCClientPortManagement = &IID_IRTCClientPortManagement_Value;
 pub const IRTCClientPortManagement = extern struct {
     pub const VTable = extern struct {
@@ -4199,7 +4199,7 @@ pub const IRTCClientPortManagement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCUserSearch_Value = @import("../zig.zig").Guid.initString("b619882b-860c-4db4-be1b-693b6505bbe5");
+const IID_IRTCUserSearch_Value = Guid.initString("b619882b-860c-4db4-be1b-693b6505bbe5");
 pub const IID_IRTCUserSearch = &IID_IRTCUserSearch_Value;
 pub const IRTCUserSearch = extern struct {
     pub const VTable = extern struct {
@@ -4230,7 +4230,7 @@ pub const IRTCUserSearch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCUserSearchQuery_Value = @import("../zig.zig").Guid.initString("288300f5-d23a-4365-9a73-9985c98c2881");
+const IID_IRTCUserSearchQuery_Value = Guid.initString("288300f5-d23a-4365-9a73-9985c98c2881");
 pub const IID_IRTCUserSearchQuery = &IID_IRTCUserSearchQuery_Value;
 pub const IRTCUserSearchQuery = extern struct {
     pub const VTable = extern struct {
@@ -4310,7 +4310,7 @@ pub const IRTCUserSearchQuery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCUserSearchResult_Value = @import("../zig.zig").Guid.initString("851278b2-9592-480f-8db5-2de86b26b54d");
+const IID_IRTCUserSearchResult_Value = Guid.initString("851278b2-9592-480f-8db5-2de86b26b54d");
 pub const IID_IRTCUserSearchResult = &IID_IRTCUserSearchResult_Value;
 pub const IRTCUserSearchResult = extern struct {
     pub const VTable = extern struct {
@@ -4333,7 +4333,7 @@ pub const IRTCUserSearchResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEnumUserSearchResults_Value = @import("../zig.zig").Guid.initString("83d4d877-aa5d-4a5b-8d0e-002a8067e0e8");
+const IID_IRTCEnumUserSearchResults_Value = Guid.initString("83d4d877-aa5d-4a5b-8d0e-002a8067e0e8");
 pub const IID_IRTCEnumUserSearchResults = &IID_IRTCEnumUserSearchResults_Value;
 pub const IRTCEnumUserSearchResults = extern struct {
     pub const VTable = extern struct {
@@ -4379,7 +4379,7 @@ pub const IRTCEnumUserSearchResults = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCUserSearchResultsEvent_Value = @import("../zig.zig").Guid.initString("d8c8c3cd-7fac-4088-81c5-c24cbc0938e3");
+const IID_IRTCUserSearchResultsEvent_Value = Guid.initString("d8c8c3cd-7fac-4088-81c5-c24cbc0938e3");
 pub const IID_IRTCUserSearchResultsEvent = &IID_IRTCUserSearchResultsEvent_Value;
 pub const IRTCUserSearchResultsEvent = extern struct {
     pub const VTable = extern struct {
@@ -4454,7 +4454,7 @@ pub const IRTCUserSearchResultsEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionReferStatusEvent_Value = @import("../zig.zig").Guid.initString("3d8fc2cd-5d76-44ab-bb68-2a80353b34a2");
+const IID_IRTCSessionReferStatusEvent_Value = Guid.initString("3d8fc2cd-5d76-44ab-bb68-2a80353b34a2");
 pub const IID_IRTCSessionReferStatusEvent = &IID_IRTCSessionReferStatusEvent_Value;
 pub const IRTCSessionReferStatusEvent = extern struct {
     pub const VTable = extern struct {
@@ -4503,7 +4503,7 @@ pub const IRTCSessionReferStatusEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionReferredEvent_Value = @import("../zig.zig").Guid.initString("176a6828-4fcc-4f28-a862-04597a6cf1c4");
+const IID_IRTCSessionReferredEvent_Value = Guid.initString("176a6828-4fcc-4f28-a862-04597a6cf1c4");
 pub const IID_IRTCSessionReferredEvent = &IID_IRTCSessionReferredEvent_Value;
 pub const IRTCSessionReferredEvent = extern struct {
     pub const VTable = extern struct {
@@ -4574,7 +4574,7 @@ pub const IRTCSessionReferredEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCSessionDescriptionManager_Value = @import("../zig.zig").Guid.initString("ba7f518e-d336-4070-93a6-865395c843f9");
+const IID_IRTCSessionDescriptionManager_Value = Guid.initString("ba7f518e-d336-4070-93a6-865395c843f9");
 pub const IID_IRTCSessionDescriptionManager = &IID_IRTCSessionDescriptionManager_Value;
 pub const IRTCSessionDescriptionManager = extern struct {
     pub const VTable = extern struct {
@@ -4597,7 +4597,7 @@ pub const IRTCSessionDescriptionManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCEnumPresenceDevices_Value = @import("../zig.zig").Guid.initString("708c2ab7-8bf8-42f8-8c7d-635197ad5539");
+const IID_IRTCEnumPresenceDevices_Value = Guid.initString("708c2ab7-8bf8-42f8-8c7d-635197ad5539");
 pub const IID_IRTCEnumPresenceDevices = &IID_IRTCEnumPresenceDevices_Value;
 pub const IRTCEnumPresenceDevices = extern struct {
     pub const VTable = extern struct {
@@ -4643,7 +4643,7 @@ pub const IRTCEnumPresenceDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCPresenceDevice_Value = @import("../zig.zig").Guid.initString("bc6a90dd-ad9a-48da-9b0c-2515e38521ad");
+const IID_IRTCPresenceDevice_Value = Guid.initString("bc6a90dd-ad9a-48da-9b0c-2515e38521ad");
 pub const IID_IRTCPresenceDevice = &IID_IRTCPresenceDevice_Value;
 pub const IRTCPresenceDevice = extern struct {
     pub const VTable = extern struct {
@@ -4693,7 +4693,7 @@ pub const IRTCPresenceDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRTCDispatchEventNotification_Value = @import("../zig.zig").Guid.initString("176ddfbe-fec0-4d55-bc87-84cff1ef7f91");
+const IID_IRTCDispatchEventNotification_Value = Guid.initString("176ddfbe-fec0-4d55-bc87-84cff1ef7f91");
 pub const IID_IRTCDispatchEventNotification = &IID_IRTCDispatchEventNotification_Value;
 pub const IRTCDispatchEventNotification = extern struct {
     pub const VTable = extern struct {
@@ -4712,7 +4712,7 @@ pub const TRANSPORT_SETTING = extern struct {
     Value: ?*u8,
 };
 
-const IID_ITransportSettingsInternal_Value = @import("../zig.zig").Guid.initString("5123e076-29e3-4bfd-84fe-0192d411e3e8");
+const IID_ITransportSettingsInternal_Value = Guid.initString("5123e076-29e3-4bfd-84fe-0192d411e3e8");
 pub const IID_ITransportSettingsInternal = &IID_ITransportSettingsInternal_Value;
 pub const ITransportSettingsInternal = extern struct {
     pub const VTable = extern struct {
@@ -4741,7 +4741,7 @@ pub const ITransportSettingsInternal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkTransportSettings_Value = @import("../zig.zig").Guid.initString("5e7abb2c-f2c1-4a61-bd35-deb7a08ab0f1");
+const IID_INetworkTransportSettings_Value = Guid.initString("5e7abb2c-f2c1-4a61-bd35-deb7a08ab0f1");
 pub const IID_INetworkTransportSettings = &IID_INetworkTransportSettings_Value;
 pub const INetworkTransportSettings = extern struct {
     pub const VTable = extern struct {
@@ -4778,7 +4778,7 @@ pub const INetworkTransportSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INotificationTransportSync_Value = @import("../zig.zig").Guid.initString("79eb1402-0ab8-49c0-9e14-a1ae4ba93058");
+const IID_INotificationTransportSync_Value = Guid.initString("79eb1402-0ab8-49c0-9e14-a1ae4ba93058");
 pub const IID_INotificationTransportSync = &IID_INotificationTransportSync_Value;
 pub const INotificationTransportSync = extern struct {
     pub const VTable = extern struct {
@@ -4824,8 +4824,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;

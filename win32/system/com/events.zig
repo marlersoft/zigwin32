@@ -6,26 +6,26 @@
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
-const CLSID_CEventSystem_Value = @import("../../zig.zig").Guid.initString("4e14fba2-2e22-11d1-9964-00c04fbbb345");
+const CLSID_CEventSystem_Value = Guid.initString("4e14fba2-2e22-11d1-9964-00c04fbbb345");
 pub const CLSID_CEventSystem = &CLSID_CEventSystem_Value;
 
-const CLSID_CEventPublisher_Value = @import("../../zig.zig").Guid.initString("ab944620-79c6-11d1-88f9-0080c7d771bf");
+const CLSID_CEventPublisher_Value = Guid.initString("ab944620-79c6-11d1-88f9-0080c7d771bf");
 pub const CLSID_CEventPublisher = &CLSID_CEventPublisher_Value;
 
-const CLSID_CEventClass_Value = @import("../../zig.zig").Guid.initString("cdbec9c0-7a68-11d1-88f9-0080c7d771bf");
+const CLSID_CEventClass_Value = Guid.initString("cdbec9c0-7a68-11d1-88f9-0080c7d771bf");
 pub const CLSID_CEventClass = &CLSID_CEventClass_Value;
 
-const CLSID_CEventSubscription_Value = @import("../../zig.zig").Guid.initString("7542e960-79c7-11d1-88f9-0080c7d771bf");
+const CLSID_CEventSubscription_Value = Guid.initString("7542e960-79c7-11d1-88f9-0080c7d771bf");
 pub const CLSID_CEventSubscription = &CLSID_CEventSubscription_Value;
 
-const CLSID_EventObjectChange_Value = @import("../../zig.zig").Guid.initString("d0565000-9df4-11d1-a281-00c04fca0aa7");
+const CLSID_EventObjectChange_Value = Guid.initString("d0565000-9df4-11d1-a281-00c04fca0aa7");
 pub const CLSID_EventObjectChange = &CLSID_EventObjectChange_Value;
 
-const CLSID_EventObjectChange2_Value = @import("../../zig.zig").Guid.initString("bb07bacd-cd56-4e63-a8ff-cbf0355fb9f4");
+const CLSID_EventObjectChange2_Value = Guid.initString("bb07bacd-cd56-4e63-a8ff-cbf0355fb9f4");
 pub const CLSID_EventObjectChange2 = &CLSID_EventObjectChange2_Value;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventSystem_Value = @import("../../zig.zig").Guid.initString("4e14fb9f-2e22-11d1-9964-00c04fbbb345");
+const IID_IEventSystem_Value = Guid.initString("4e14fb9f-2e22-11d1-9964-00c04fbbb345");
 pub const IID_IEventSystem = &IID_IEventSystem_Value;
 pub const IEventSystem = extern struct {
     pub const VTable = extern struct {
@@ -97,7 +97,7 @@ pub const IEventSystem = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventPublisher_Value = @import("../../zig.zig").Guid.initString("e341516b-2e32-11d1-9964-00c04fbbb345");
+const IID_IEventPublisher_Value = Guid.initString("e341516b-2e32-11d1-9964-00c04fbbb345");
 pub const IID_IEventPublisher = &IID_IEventPublisher_Value;
 pub const IEventPublisher = extern struct {
     pub const VTable = extern struct {
@@ -235,7 +235,7 @@ pub const IEventPublisher = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventClass_Value = @import("../../zig.zig").Guid.initString("fb2b72a0-7a68-11d1-88f9-0080c7d771bf");
+const IID_IEventClass_Value = Guid.initString("fb2b72a0-7a68-11d1-88f9-0080c7d771bf");
 pub const IID_IEventClass = &IID_IEventClass_Value;
 pub const IEventClass = extern struct {
     pub const VTable = extern struct {
@@ -375,7 +375,7 @@ pub const IEventClass = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventClass2_Value = @import("../../zig.zig").Guid.initString("fb2b72a1-7a68-11d1-88f9-0080c7d771bf");
+const IID_IEventClass2_Value = Guid.initString("fb2b72a1-7a68-11d1-88f9-0080c7d771bf");
 pub const IID_IEventClass2 = &IID_IEventClass2_Value;
 pub const IEventClass2 = extern struct {
     pub const VTable = extern struct {
@@ -461,7 +461,7 @@ pub const IEventClass2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventSubscription_Value = @import("../../zig.zig").Guid.initString("4a6b0e15-2e38-11d1-9965-00c04fbbb345");
+const IID_IEventSubscription_Value = Guid.initString("4a6b0e15-2e38-11d1-9965-00c04fbbb345");
 pub const IID_IEventSubscription = &IID_IEventSubscription_Value;
 pub const IEventSubscription = extern struct {
     pub const VTable = extern struct {
@@ -777,7 +777,7 @@ pub const IEventSubscription = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IFiringControl_Value = @import("../../zig.zig").Guid.initString("e0498c93-4efe-11d1-9971-00c04fbbb345");
+const IID_IFiringControl_Value = Guid.initString("e0498c93-4efe-11d1-9971-00c04fbbb345");
 pub const IID_IFiringControl = &IID_IFiringControl_Value;
 pub const IFiringControl = extern struct {
     pub const VTable = extern struct {
@@ -799,7 +799,7 @@ pub const IFiringControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IPublisherFilter_Value = @import("../../zig.zig").Guid.initString("465e5cc0-7b26-11d1-88fb-0080c7d771bf");
+const IID_IPublisherFilter_Value = Guid.initString("465e5cc0-7b26-11d1-88fb-0080c7d771bf");
 pub const IID_IPublisherFilter = &IID_IPublisherFilter_Value;
 pub const IPublisherFilter = extern struct {
     pub const VTable = extern struct {
@@ -831,7 +831,7 @@ pub const IPublisherFilter = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IMultiInterfacePublisherFilter_Value = @import("../../zig.zig").Guid.initString("465e5cc1-7b26-11d1-88fb-0080c7d771bf");
+const IID_IMultiInterfacePublisherFilter_Value = Guid.initString("465e5cc1-7b26-11d1-88fb-0080c7d771bf");
 pub const IID_IMultiInterfacePublisherFilter = &IID_IMultiInterfacePublisherFilter_Value;
 pub const IMultiInterfacePublisherFilter = extern struct {
     pub const VTable = extern struct {
@@ -872,7 +872,7 @@ pub const EOC_ModifiedObject = EOC_ChangeType.ModifiedObject;
 pub const EOC_DeletedObject = EOC_ChangeType.DeletedObject;
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventObjectChange_Value = @import("../../zig.zig").Guid.initString("f4a07d70-2e25-11d1-9964-00c04fbbb345");
+const IID_IEventObjectChange_Value = Guid.initString("f4a07d70-2e25-11d1-9964-00c04fbbb345");
 pub const IID_IEventObjectChange = &IID_IEventObjectChange_Value;
 pub const IEventObjectChange = extern struct {
     pub const VTable = extern struct {
@@ -922,7 +922,7 @@ pub const COMEVENTSYSCHANGEINFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventObjectChange2_Value = @import("../../zig.zig").Guid.initString("7701a9c3-bd68-438f-83e0-67bf4f53a422");
+const IID_IEventObjectChange2_Value = Guid.initString("7701a9c3-bd68-438f-83e0-67bf4f53a422");
 pub const IID_IEventObjectChange2 = &IID_IEventObjectChange2_Value;
 pub const IEventObjectChange2 = extern struct {
     pub const VTable = extern struct {
@@ -952,7 +952,7 @@ pub const IEventObjectChange2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumEventObject_Value = @import("../../zig.zig").Guid.initString("f4a07d63-2e25-11d1-9964-00c04fbbb345");
+const IID_IEnumEventObject_Value = Guid.initString("f4a07d63-2e25-11d1-9964-00c04fbbb345");
 pub const IID_IEnumEventObject = &IID_IEnumEventObject_Value;
 pub const IEnumEventObject = extern struct {
     pub const VTable = extern struct {
@@ -999,7 +999,7 @@ pub const IEnumEventObject = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventObjectCollection_Value = @import("../../zig.zig").Guid.initString("f89ac270-d4eb-11d1-b682-00805fc79216");
+const IID_IEventObjectCollection_Value = Guid.initString("f89ac270-d4eb-11d1-b682-00805fc79216");
 pub const IID_IEventObjectCollection = &IID_IEventObjectCollection_Value;
 pub const IEventObjectCollection = extern struct {
     pub const VTable = extern struct {
@@ -1067,7 +1067,7 @@ pub const IEventObjectCollection = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventProperty_Value = @import("../../zig.zig").Guid.initString("da538ee2-f4de-11d1-b6bb-00805fc79216");
+const IID_IEventProperty_Value = Guid.initString("da538ee2-f4de-11d1-b6bb-00805fc79216");
 pub const IID_IEventProperty = &IID_IEventProperty_Value;
 pub const IEventProperty = extern struct {
     pub const VTable = extern struct {
@@ -1117,7 +1117,7 @@ pub const IEventProperty = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IEventControl_Value = @import("../../zig.zig").Guid.initString("0343e2f4-86f6-11d1-b760-00c04fb926af");
+const IID_IEventControl_Value = Guid.initString("0343e2f4-86f6-11d1-b760-00c04fb926af");
 pub const IID_IEventControl = &IID_IEventControl_Value;
 pub const IEventControl = extern struct {
     pub const VTable = extern struct {
@@ -1179,7 +1179,7 @@ pub const IEventControl = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows5.0'
-const IID_IMultiInterfaceEventControl_Value = @import("../../zig.zig").Guid.initString("0343e2f5-86f6-11d1-b760-00c04fb926af");
+const IID_IMultiInterfaceEventControl_Value = Guid.initString("0343e2f5-86f6-11d1-b760-00c04fb926af");
 pub const IID_IMultiInterfaceEventControl = &IID_IMultiInterfaceEventControl_Value;
 pub const IMultiInterfaceEventControl = extern struct {
     pub const VTable = extern struct {
@@ -1259,7 +1259,7 @@ pub const IMultiInterfaceEventControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDontSupportEventSubscription_Value = @import("../../zig.zig").Guid.initString("784121f1-62a6-4b89-855f-d65f296de83a");
+const IID_IDontSupportEventSubscription_Value = Guid.initString("784121f1-62a6-4b89-855f-d65f296de83a");
 pub const IID_IDontSupportEventSubscription = &IID_IDontSupportEventSubscription_Value;
 pub const IDontSupportEventSubscription = extern struct {
     pub const VTable = extern struct {

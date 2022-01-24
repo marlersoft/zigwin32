@@ -6,10 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (21)
 //--------------------------------------------------------------------------------
-const CLSID_GameExplorer_Value = @import("zig.zig").Guid.initString("9a5ea990-3034-4d6f-9128-01f3c61022bc");
+const CLSID_GameExplorer_Value = Guid.initString("9a5ea990-3034-4d6f-9128-01f3c61022bc");
 pub const CLSID_GameExplorer = &CLSID_GameExplorer_Value;
 
-const CLSID_GameStatistics_Value = @import("zig.zig").Guid.initString("dbc85a2c-c0dc-4961-b6e2-d28b62c11ad4");
+const CLSID_GameStatistics_Value = Guid.initString("dbc85a2c-c0dc-4961-b6e2-d28b62c11ad4");
 pub const CLSID_GameStatistics = &CLSID_GameStatistics_Value;
 
 pub const GAME_INSTALL_SCOPE = enum(i32) {
@@ -21,7 +21,7 @@ pub const GIS_NOT_INSTALLED = GAME_INSTALL_SCOPE.NOT_INSTALLED;
 pub const GIS_CURRENT_USER = GAME_INSTALL_SCOPE.CURRENT_USER;
 pub const GIS_ALL_USERS = GAME_INSTALL_SCOPE.ALL_USERS;
 
-const IID_IGameExplorer_Value = @import("zig.zig").Guid.initString("e7b2fb72-d728-49b3-a5f2-18ebf5f1349e");
+const IID_IGameExplorer_Value = Guid.initString("e7b2fb72-d728-49b3-a5f2-18ebf5f1349e");
 pub const IID_IGameExplorer = &IID_IGameExplorer_Value;
 pub const IGameExplorer = extern struct {
     pub const VTable = extern struct {
@@ -84,7 +84,7 @@ pub const GAMESTATS_OPEN_RESULT = enum(i32) {
 pub const GAMESTATS_OPEN_CREATED = GAMESTATS_OPEN_RESULT.CREATED;
 pub const GAMESTATS_OPEN_OPENED = GAMESTATS_OPEN_RESULT.OPENED;
 
-const IID_IGameStatistics_Value = @import("zig.zig").Guid.initString("3887c9ca-04a0-42ae-bc4c-5fa6c7721145");
+const IID_IGameStatistics_Value = Guid.initString("3887c9ca-04a0-42ae-bc4c-5fa6c7721145");
 pub const IID_IGameStatistics = &IID_IGameStatistics_Value;
 pub const IGameStatistics = extern struct {
     pub const VTable = extern struct {
@@ -201,7 +201,7 @@ pub const IGameStatistics = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IGameStatisticsMgr_Value = @import("zig.zig").Guid.initString("aff3ea11-e70e-407d-95dd-35e612c41ce2");
+const IID_IGameStatisticsMgr_Value = Guid.initString("aff3ea11-e70e-407d-95dd-35e612c41ce2");
 pub const IID_IGameStatisticsMgr = &IID_IGameStatisticsMgr_Value;
 pub const IGameStatisticsMgr = extern struct {
     pub const VTable = extern struct {
@@ -233,7 +233,7 @@ pub const IGameStatisticsMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IGameExplorer2_Value = @import("zig.zig").Guid.initString("86874aa7-a1ed-450d-a7eb-b89e20b2fff3");
+const IID_IGameExplorer2_Value = Guid.initString("86874aa7-a1ed-450d-a7eb-b89e20b2fff3");
 pub const IID_IGameExplorer2 = &IID_IGameExplorer2_Value;
 pub const IGameExplorer2 = extern struct {
     pub const VTable = extern struct {
@@ -357,10 +357,10 @@ pub const XPRIVILEGE_COMMUNICATIONS = KnownGamingPrivileges.COMMUNICATIONS;
 pub const XPRIVILEGE_MULTIPLAYER_SESSIONS = KnownGamingPrivileges.MULTIPLAYER_SESSIONS;
 pub const XPRIVILEGE_ADD_FRIEND = KnownGamingPrivileges.ADD_FRIEND;
 
-const CLSID_XblIdpAuthManager_Value = @import("zig.zig").Guid.initString("ce23534b-56d8-4978-86a2-7ee570640468");
+const CLSID_XblIdpAuthManager_Value = Guid.initString("ce23534b-56d8-4978-86a2-7ee570640468");
 pub const CLSID_XblIdpAuthManager = &CLSID_XblIdpAuthManager_Value;
 
-const CLSID_XblIdpAuthTokenResult_Value = @import("zig.zig").Guid.initString("9f493441-744a-410c-ae2b-9a22f7c7731f");
+const CLSID_XblIdpAuthTokenResult_Value = Guid.initString("9f493441-744a-410c-ae2b-9a22f7c7731f");
 pub const CLSID_XblIdpAuthTokenResult = &CLSID_XblIdpAuthTokenResult_Value;
 
 pub const XBL_IDP_AUTH_TOKEN_STATUS = enum(i32) {
@@ -384,7 +384,7 @@ pub const XBL_IDP_AUTH_TOKEN_STATUS_OFFLINE_NO_CONSENT = XBL_IDP_AUTH_TOKEN_STAT
 pub const XBL_IDP_AUTH_TOKEN_STATUS_VIEW_NOT_SET = XBL_IDP_AUTH_TOKEN_STATUS.VIEW_NOT_SET;
 pub const XBL_IDP_AUTH_TOKEN_STATUS_UNKNOWN = XBL_IDP_AUTH_TOKEN_STATUS.UNKNOWN;
 
-const IID_IXblIdpAuthManager_Value = @import("zig.zig").Guid.initString("eb5ddb08-8bbf-449b-ac21-b02ddeb3b136");
+const IID_IXblIdpAuthManager_Value = Guid.initString("eb5ddb08-8bbf-449b-ac21-b02ddeb3b136");
 pub const IID_IXblIdpAuthManager = &IID_IXblIdpAuthManager_Value;
 pub const IXblIdpAuthManager = extern struct {
     pub const VTable = extern struct {
@@ -458,7 +458,7 @@ pub const IXblIdpAuthManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXblIdpAuthTokenResult_Value = @import("zig.zig").Guid.initString("46ce0225-f267-4d68-b299-b2762552dec1");
+const IID_IXblIdpAuthTokenResult_Value = Guid.initString("46ce0225-f267-4d68-b299-b2762552dec1");
 pub const IID_IXblIdpAuthTokenResult = &IID_IXblIdpAuthTokenResult_Value;
 pub const IXblIdpAuthTokenResult = extern struct {
     pub const VTable = extern struct {
@@ -631,7 +631,7 @@ pub const IXblIdpAuthTokenResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXblIdpAuthTokenResult2_Value = @import("zig.zig").Guid.initString("75d760b0-60b9-412d-994f-26b2cd5f7812");
+const IID_IXblIdpAuthTokenResult2_Value = Guid.initString("75d760b0-60b9-412d-994f-26b2cd5f7812");
 pub const IID_IXblIdpAuthTokenResult2 = &IID_IXblIdpAuthTokenResult2_Value;
 pub const IXblIdpAuthTokenResult2 = extern struct {
     pub const VTable = extern struct {

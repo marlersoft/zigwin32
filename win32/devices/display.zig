@@ -6,10 +6,10 @@ pub const GUID_DEVINTERFACE_DISPLAY_ADAPTER = Guid.initString("5b45201d-f2f2-4f3
 pub const GUID_DEVINTERFACE_MONITOR = Guid.initString("e6f07b5f-ee97-4a90-b076-33f57bf4eaa7");
 pub const GUID_DISPLAY_DEVICE_ARRIVAL = Guid.initString("1ca05180-a699-450a-9a0c-de4fbe3ddd89");
 pub const GUID_DEVINTERFACE_VIDEO_OUTPUT_ARRIVAL = Guid.initString("1ad9e4f0-f88d-4360-bab9-4c2d55e564cd");
-pub const DEVPKEY_IndirectDisplay = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 1 };
-pub const DEVPKEY_Device_TerminalLuid = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 2 };
-pub const DEVPKEY_Device_AdapterLuid = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 3 };
-pub const DEVPKEY_Device_ActivityId = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 4 };
+pub const DEVPKEY_IndirectDisplay = PROPERTYKEY { .fmtid = Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 1 };
+pub const DEVPKEY_Device_TerminalLuid = PROPERTYKEY { .fmtid = Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 2 };
+pub const DEVPKEY_Device_AdapterLuid = PROPERTYKEY { .fmtid = Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 3 };
+pub const DEVPKEY_Device_ActivityId = PROPERTYKEY { .fmtid = Guid.initString("c50a3f10-aa5c-4247-b830-d6a6f8eaa310"), .pid = 4 };
 pub const INDIRECT_DISPLAY_INFO_FLAGS_CREATED_IDDCX_ADAPTER = @as(u32, 1);
 pub const IOCTL_VIDEO_DISABLE_VDM = @as(u32, 2293764);
 pub const IOCTL_VIDEO_REGISTER_VDM = @as(u32, 2293768);
@@ -1247,7 +1247,7 @@ pub const DisplayModes = extern struct {
     displayMode: [1]DisplayMode,
 };
 
-const IID_ICloneViewHelper_Value = @import("../zig.zig").Guid.initString("f6a3d4c4-5632-4d83-b0a1-fb88712b1eb7");
+const IID_ICloneViewHelper_Value = Guid.initString("f6a3d4c4-5632-4d83-b0a1-fb88712b1eb7");
 pub const IID_ICloneViewHelper = &IID_ICloneViewHelper_Value;
 pub const ICloneViewHelper = extern struct {
     pub const VTable = extern struct {
@@ -1301,7 +1301,7 @@ pub const ICloneViewHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IViewHelper_Value = @import("../zig.zig").Guid.initString("e85ccef5-aaaa-47f0-b5e3-61f7aecdc4c1");
+const IID_IViewHelper_Value = Guid.initString("e85ccef5-aaaa-47f0-b5e3-61f7aecdc4c1");
 pub const IID_IViewHelper = &IID_IViewHelper_Value;
 pub const IViewHelper = extern struct {
     pub const VTable = extern struct {

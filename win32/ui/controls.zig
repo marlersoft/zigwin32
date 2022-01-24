@@ -5526,11 +5526,11 @@ pub const _LI_METRIC = enum(i32) {
 pub const LIM_SMALL = _LI_METRIC.SMALL;
 pub const LIM_LARGE = _LI_METRIC.LARGE;
 
-const CLSID_ImageList_Value = @import("../zig.zig").Guid.initString("7c476ba2-02b1-48f4-8048-b24619ddc058");
+const CLSID_ImageList_Value = Guid.initString("7c476ba2-02b1-48f4-8048-b24619ddc058");
 pub const CLSID_ImageList = &CLSID_ImageList_Value;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IImageList_Value = @import("../zig.zig").Guid.initString("46eb5926-582e-4017-9fdf-e8998daa0950");
+const IID_IImageList_Value = Guid.initString("46eb5926-582e-4017-9fdf-e8998daa0950");
 pub const IID_IImageList = &IID_IImageList_Value;
 pub const IImageList = extern struct {
     pub const VTable = extern struct {
@@ -5821,7 +5821,7 @@ pub const IMAGELISTSTATS = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IImageList2_Value = @import("../zig.zig").Guid.initString("192b9d83-50fc-457b-90a0-2b82a8b5dae1");
+const IID_IImageList2_Value = Guid.initString("192b9d83-50fc-457b-90a0-2b82a8b5dae1");
 pub const IID_IImageList2 = &IID_IImageList2_Value;
 pub const IImageList2 = extern struct {
     pub const VTable = extern struct {
