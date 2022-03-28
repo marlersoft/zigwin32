@@ -6084,12 +6084,12 @@ test {
     if (@hasDecl(@This(), "PFN_HidP_GetVersionInternal")) { _ = PFN_HidP_GetVersionInternal; }
 
     @setEvalBranchQuota(
-        @import("std").meta.declarations(@This()).len * 3
+        comptime @import("std").meta.declarations(@This()).len * 3
     );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
-    inline for (@import("std").meta.declarations(@This())) |decl| {
+    inline for (comptime @import("std").meta.declarations(@This())) |decl| {
         if (decl.is_pub) {
             _ = decl;
         }
