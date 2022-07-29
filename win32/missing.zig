@@ -6,6 +6,6 @@ const win32 = @import("../win32.zig");
 //       to put new missing types should they come up in the future
 
 const std = @import("std");
-test "" {
+test {
     std.testing.refAllDecls(@This());
 }
