@@ -500,27 +500,27 @@ pub const COPYDATASTRUCT = extern struct {
 // Section: Functions (77)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeSetQualityOfService(
+pub extern "user32" fn DdeSetQualityOfService(
     hwndClient: ?HWND,
     pqosNew: ?*const SECURITY_QUALITY_OF_SERVICE,
     pqosPrev: ?*SECURITY_QUALITY_OF_SERVICE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ImpersonateDdeClientWindow(
+pub extern "user32" fn ImpersonateDdeClientWindow(
     hWndClient: ?HWND,
     hWndServer: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn PackDDElParam(
+pub extern "user32" fn PackDDElParam(
     msg: u32,
     uiLo: usize,
     uiHi: usize,
 ) callconv(@import("std").os.windows.WINAPI) LPARAM;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn UnpackDDElParam(
+pub extern "user32" fn UnpackDDElParam(
     msg: u32,
     lParam: LPARAM,
     puiLo: ?*usize,
@@ -528,13 +528,13 @@ pub extern "USER32" fn UnpackDDElParam(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn FreeDDElParam(
+pub extern "user32" fn FreeDDElParam(
     msg: u32,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ReuseDDElParam(
+pub extern "user32" fn ReuseDDElParam(
     lParam: LPARAM,
     msgIn: u32,
     msgOut: u32,
@@ -543,7 +543,7 @@ pub extern "USER32" fn ReuseDDElParam(
 ) callconv(@import("std").os.windows.WINAPI) LPARAM;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeInitializeA(
+pub extern "user32" fn DdeInitializeA(
     pidInst: ?*u32,
     pfnCallback: ?PFNCALLBACK,
     afCmd: DDE_INITIALIZE_COMMAND,
@@ -551,7 +551,7 @@ pub extern "USER32" fn DdeInitializeA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeInitializeW(
+pub extern "user32" fn DdeInitializeW(
     pidInst: ?*u32,
     pfnCallback: ?PFNCALLBACK,
     afCmd: DDE_INITIALIZE_COMMAND,
@@ -559,12 +559,12 @@ pub extern "USER32" fn DdeInitializeW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeUninitialize(
+pub extern "user32" fn DdeUninitialize(
     idInst: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeConnectList(
+pub extern "user32" fn DdeConnectList(
     idInst: u32,
     hszService: ?HSZ,
     hszTopic: ?HSZ,
@@ -573,18 +573,18 @@ pub extern "USER32" fn DdeConnectList(
 ) callconv(@import("std").os.windows.WINAPI) ?HCONVLIST;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeQueryNextServer(
+pub extern "user32" fn DdeQueryNextServer(
     hConvList: ?HCONVLIST,
     hConvPrev: ?HCONV,
 ) callconv(@import("std").os.windows.WINAPI) ?HCONV;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeDisconnectList(
+pub extern "user32" fn DdeDisconnectList(
     hConvList: ?HCONVLIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeConnect(
+pub extern "user32" fn DdeConnect(
     idInst: u32,
     hszService: ?HSZ,
     hszTopic: ?HSZ,
@@ -592,57 +592,57 @@ pub extern "USER32" fn DdeConnect(
 ) callconv(@import("std").os.windows.WINAPI) ?HCONV;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeDisconnect(
+pub extern "user32" fn DdeDisconnect(
     hConv: ?HCONV,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeReconnect(
+pub extern "user32" fn DdeReconnect(
     hConv: ?HCONV,
 ) callconv(@import("std").os.windows.WINAPI) ?HCONV;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeQueryConvInfo(
+pub extern "user32" fn DdeQueryConvInfo(
     hConv: ?HCONV,
     idTransaction: u32,
     pConvInfo: ?*CONVINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeSetUserHandle(
+pub extern "user32" fn DdeSetUserHandle(
     hConv: ?HCONV,
     id: u32,
     hUser: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeAbandonTransaction(
+pub extern "user32" fn DdeAbandonTransaction(
     idInst: u32,
     hConv: ?HCONV,
     idTransaction: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdePostAdvise(
+pub extern "user32" fn DdePostAdvise(
     idInst: u32,
     hszTopic: ?HSZ,
     hszItem: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeEnableCallback(
+pub extern "user32" fn DdeEnableCallback(
     idInst: u32,
     hConv: ?HCONV,
     wCmd: DDE_ENABLE_CALLBACK_CMD,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeImpersonateClient(
+pub extern "user32" fn DdeImpersonateClient(
     hConv: ?HCONV,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeNameService(
+pub extern "user32" fn DdeNameService(
     idInst: u32,
     hsz1: ?HSZ,
     hsz2: ?HSZ,
@@ -650,7 +650,7 @@ pub extern "USER32" fn DdeNameService(
 ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeClientTransaction(
+pub extern "user32" fn DdeClientTransaction(
     pData: ?*u8,
     cbData: u32,
     hConv: ?HCONV,
@@ -662,7 +662,7 @@ pub extern "USER32" fn DdeClientTransaction(
 ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeCreateDataHandle(
+pub extern "user32" fn DdeCreateDataHandle(
     idInst: u32,
     // TODO: what to do with BytesParamIndex 2?
     pSrc: ?*u8,
@@ -674,7 +674,7 @@ pub extern "USER32" fn DdeCreateDataHandle(
 ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeAddData(
+pub extern "user32" fn DdeAddData(
     hData: ?HDDEDATA,
     // TODO: what to do with BytesParamIndex 2?
     pSrc: ?*u8,
@@ -683,7 +683,7 @@ pub extern "USER32" fn DdeAddData(
 ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeGetData(
+pub extern "user32" fn DdeGetData(
     hData: ?HDDEDATA,
     // TODO: what to do with BytesParamIndex 2?
     pDst: ?*u8,
@@ -692,42 +692,42 @@ pub extern "USER32" fn DdeGetData(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeAccessData(
+pub extern "user32" fn DdeAccessData(
     hData: ?HDDEDATA,
     pcbDataSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeUnaccessData(
+pub extern "user32" fn DdeUnaccessData(
     hData: ?HDDEDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeFreeDataHandle(
+pub extern "user32" fn DdeFreeDataHandle(
     hData: ?HDDEDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeGetLastError(
+pub extern "user32" fn DdeGetLastError(
     idInst: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeCreateStringHandleA(
+pub extern "user32" fn DdeCreateStringHandleA(
     idInst: u32,
     psz: ?[*:0]const u8,
     iCodePage: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?HSZ;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeCreateStringHandleW(
+pub extern "user32" fn DdeCreateStringHandleW(
     idInst: u32,
     psz: ?[*:0]const u16,
     iCodePage: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?HSZ;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeQueryStringA(
+pub extern "user32" fn DdeQueryStringA(
     idInst: u32,
     hsz: ?HSZ,
     psz: ?[*:0]u8,
@@ -736,7 +736,7 @@ pub extern "USER32" fn DdeQueryStringA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeQueryStringW(
+pub extern "user32" fn DdeQueryStringW(
     idInst: u32,
     hsz: ?HSZ,
     psz: ?[*:0]u16,
@@ -745,25 +745,25 @@ pub extern "USER32" fn DdeQueryStringW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeFreeStringHandle(
+pub extern "user32" fn DdeFreeStringHandle(
     idInst: u32,
     hsz: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeKeepStringHandle(
+pub extern "user32" fn DdeKeepStringHandle(
     idInst: u32,
     hsz: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DdeCmpStringHandles(
+pub extern "user32" fn DdeCmpStringHandles(
     hsz1: ?HSZ,
     hsz2: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetWinMetaFileBits(
+pub extern "gdi32" fn SetWinMetaFileBits(
     nSize: u32,
     // TODO: what to do with BytesParamIndex 0?
     lpMeta16Data: ?*const u8,
@@ -772,205 +772,205 @@ pub extern "GDI32" fn SetWinMetaFileBits(
 ) callconv(@import("std").os.windows.WINAPI) ?HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OpenClipboard(
+pub extern "user32" fn OpenClipboard(
     hWndNewOwner: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CloseClipboard(
+pub extern "user32" fn CloseClipboard(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardSequenceNumber(
+pub extern "user32" fn GetClipboardSequenceNumber(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardOwner(
+pub extern "user32" fn GetClipboardOwner(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetClipboardViewer(
+pub extern "user32" fn SetClipboardViewer(
     hWndNewViewer: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardViewer(
+pub extern "user32" fn GetClipboardViewer(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ChangeClipboardChain(
+pub extern "user32" fn ChangeClipboardChain(
     hWndRemove: ?HWND,
     hWndNewNext: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetClipboardData(
+pub extern "user32" fn SetClipboardData(
     uFormat: u32,
     hMem: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardData(
+pub extern "user32" fn GetClipboardData(
     uFormat: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn RegisterClipboardFormatA(
+pub extern "user32" fn RegisterClipboardFormatA(
     lpszFormat: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn RegisterClipboardFormatW(
+pub extern "user32" fn RegisterClipboardFormatW(
     lpszFormat: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CountClipboardFormats(
+pub extern "user32" fn CountClipboardFormats(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnumClipboardFormats(
+pub extern "user32" fn EnumClipboardFormats(
     format: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardFormatNameA(
+pub extern "user32" fn GetClipboardFormatNameA(
     format: u32,
     lpszFormatName: [*:0]u8,
     cchMaxCount: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardFormatNameW(
+pub extern "user32" fn GetClipboardFormatNameW(
     format: u32,
     lpszFormatName: [*:0]u16,
     cchMaxCount: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EmptyClipboard(
+pub extern "user32" fn EmptyClipboard(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn IsClipboardFormatAvailable(
+pub extern "user32" fn IsClipboardFormatAvailable(
     format: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetPriorityClipboardFormat(
+pub extern "user32" fn GetPriorityClipboardFormat(
     paFormatPriorityList: [*]u32,
     cFormats: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetOpenClipboardWindow(
+pub extern "user32" fn GetOpenClipboardWindow(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn AddClipboardFormatListener(
+pub extern "user32" fn AddClipboardFormatListener(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn RemoveClipboardFormatListener(
+pub extern "user32" fn RemoveClipboardFormatListener(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn GetUpdatedClipboardFormats(
+pub extern "user32" fn GetUpdatedClipboardFormats(
     lpuiFormats: [*]u32,
     cFormats: u32,
     pcFormatsOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalDeleteAtom(
+pub extern "kernel32" fn GlobalDeleteAtom(
     nAtom: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn InitAtomTable(
+pub extern "kernel32" fn InitAtomTable(
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn DeleteAtom(
+pub extern "kernel32" fn DeleteAtom(
     nAtom: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalAddAtomA(
+pub extern "kernel32" fn GlobalAddAtomA(
     lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalAddAtomW(
+pub extern "kernel32" fn GlobalAddAtomW(
     lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
-pub extern "KERNEL32" fn GlobalAddAtomExA(
+pub extern "kernel32" fn GlobalAddAtomExA(
     lpString: ?[*:0]const u8,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
-pub extern "KERNEL32" fn GlobalAddAtomExW(
+pub extern "kernel32" fn GlobalAddAtomExW(
     lpString: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalFindAtomA(
+pub extern "kernel32" fn GlobalFindAtomA(
     lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalFindAtomW(
+pub extern "kernel32" fn GlobalFindAtomW(
     lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalGetAtomNameA(
+pub extern "kernel32" fn GlobalGetAtomNameA(
     nAtom: u16,
     lpBuffer: [*:0]u8,
     nSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalGetAtomNameW(
+pub extern "kernel32" fn GlobalGetAtomNameW(
     nAtom: u16,
     lpBuffer: [*:0]u16,
     nSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn AddAtomA(
+pub extern "kernel32" fn AddAtomA(
     lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn AddAtomW(
+pub extern "kernel32" fn AddAtomW(
     lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FindAtomA(
+pub extern "kernel32" fn FindAtomA(
     lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FindAtomW(
+pub extern "kernel32" fn FindAtomW(
     lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetAtomNameA(
+pub extern "kernel32" fn GetAtomNameA(
     nAtom: u16,
     lpBuffer: [*:0]u8,
     nSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetAtomNameW(
+pub extern "kernel32" fn GetAtomNameW(
     nAtom: u16,
     lpBuffer: [*:0]u16,
     nSize: i32,

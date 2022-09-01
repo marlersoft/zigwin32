@@ -1400,7 +1400,7 @@ pub extern "qwave" fn QOSCancel(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcRegisterClient(
+pub extern "traffic" fn TcRegisterClient(
     TciVersion: u32,
     ClRegCtx: ?HANDLE,
     ClientHandlerList: ?*TCI_CLIENT_FUNC_LIST,
@@ -1408,14 +1408,14 @@ pub extern "TRAFFIC" fn TcRegisterClient(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcEnumerateInterfaces(
+pub extern "traffic" fn TcEnumerateInterfaces(
     ClientHandle: ?HANDLE,
     pBufferSize: ?*u32,
     InterfaceBuffer: ?*TC_IFC_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcOpenInterfaceA(
+pub extern "traffic" fn TcOpenInterfaceA(
     pInterfaceName: ?PSTR,
     ClientHandle: ?HANDLE,
     ClIfcCtx: ?HANDLE,
@@ -1423,7 +1423,7 @@ pub extern "TRAFFIC" fn TcOpenInterfaceA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcOpenInterfaceW(
+pub extern "traffic" fn TcOpenInterfaceW(
     pInterfaceName: ?PWSTR,
     ClientHandle: ?HANDLE,
     ClIfcCtx: ?HANDLE,
@@ -1431,12 +1431,12 @@ pub extern "TRAFFIC" fn TcOpenInterfaceW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcCloseInterface(
+pub extern "traffic" fn TcCloseInterface(
     IfcHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcQueryInterface(
+pub extern "traffic" fn TcQueryInterface(
     IfcHandle: ?HANDLE,
     pGuidParam: ?*Guid,
     NotifyChange: BOOLEAN,
@@ -1446,7 +1446,7 @@ pub extern "TRAFFIC" fn TcQueryInterface(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcSetInterface(
+pub extern "traffic" fn TcSetInterface(
     IfcHandle: ?HANDLE,
     pGuidParam: ?*Guid,
     BufferSize: u32,
@@ -1455,7 +1455,7 @@ pub extern "TRAFFIC" fn TcSetInterface(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcQueryFlowA(
+pub extern "traffic" fn TcQueryFlowA(
     pFlowName: ?PSTR,
     pGuidParam: ?*Guid,
     pBufferSize: ?*u32,
@@ -1464,7 +1464,7 @@ pub extern "TRAFFIC" fn TcQueryFlowA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcQueryFlowW(
+pub extern "traffic" fn TcQueryFlowW(
     pFlowName: ?PWSTR,
     pGuidParam: ?*Guid,
     pBufferSize: ?*u32,
@@ -1473,7 +1473,7 @@ pub extern "TRAFFIC" fn TcQueryFlowW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcSetFlowA(
+pub extern "traffic" fn TcSetFlowA(
     pFlowName: ?PSTR,
     pGuidParam: ?*Guid,
     BufferSize: u32,
@@ -1482,7 +1482,7 @@ pub extern "TRAFFIC" fn TcSetFlowA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcSetFlowW(
+pub extern "traffic" fn TcSetFlowW(
     pFlowName: ?PWSTR,
     pGuidParam: ?*Guid,
     BufferSize: u32,
@@ -1491,7 +1491,7 @@ pub extern "TRAFFIC" fn TcSetFlowW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcAddFlow(
+pub extern "traffic" fn TcAddFlow(
     IfcHandle: ?HANDLE,
     ClFlowCtx: ?HANDLE,
     Flags: u32,
@@ -1500,49 +1500,49 @@ pub extern "TRAFFIC" fn TcAddFlow(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcGetFlowNameA(
+pub extern "traffic" fn TcGetFlowNameA(
     FlowHandle: ?HANDLE,
     StrSize: u32,
     pFlowName: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcGetFlowNameW(
+pub extern "traffic" fn TcGetFlowNameW(
     FlowHandle: ?HANDLE,
     StrSize: u32,
     pFlowName: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcModifyFlow(
+pub extern "traffic" fn TcModifyFlow(
     FlowHandle: ?HANDLE,
     pGenericFlow: ?*TC_GEN_FLOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcAddFilter(
+pub extern "traffic" fn TcAddFilter(
     FlowHandle: ?HANDLE,
     pGenericFilter: ?*TC_GEN_FILTER,
     pFilterHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcDeregisterClient(
+pub extern "traffic" fn TcDeregisterClient(
     ClientHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcDeleteFlow(
+pub extern "traffic" fn TcDeleteFlow(
     FlowHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcDeleteFilter(
+pub extern "traffic" fn TcDeleteFilter(
     FilterHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "TRAFFIC" fn TcEnumerateFlows(
+pub extern "traffic" fn TcEnumerateFlows(
     IfcHandle: ?HANDLE,
     pEnumHandle: ?*?HANDLE,
     pFlowCount: ?*u32,

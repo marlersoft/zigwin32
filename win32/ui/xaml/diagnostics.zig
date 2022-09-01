@@ -566,7 +566,7 @@ pub const IVisualTreeService3 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
-pub extern "Windows.UI.Xaml" fn InitializeXamlDiagnostic(
+pub extern "windows.ui.xaml" fn InitializeXamlDiagnostic(
     endPointName: ?[*:0]const u16,
     pid: u32,
     wszDllXamlDiagnostics: ?[*:0]const u16,
@@ -575,7 +575,7 @@ pub extern "Windows.UI.Xaml" fn InitializeXamlDiagnostic(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "Windows.UI.Xaml" fn InitializeXamlDiagnosticsEx(
+pub extern "windows.ui.xaml" fn InitializeXamlDiagnosticsEx(
     endPointName: ?[*:0]const u16,
     pid: u32,
     wszDllXamlDiagnostics: ?[*:0]const u16,

@@ -321,7 +321,7 @@ pub const EWX_SHUTDOWN = EXIT_WINDOWS_FLAGS.SHUTDOWN;
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn InitiateSystemShutdownA(
+pub extern "advapi32" fn InitiateSystemShutdownA(
     lpMachineName: ?PSTR,
     lpMessage: ?PSTR,
     dwTimeout: u32,
@@ -330,7 +330,7 @@ pub extern "ADVAPI32" fn InitiateSystemShutdownA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn InitiateSystemShutdownW(
+pub extern "advapi32" fn InitiateSystemShutdownW(
     lpMachineName: ?PWSTR,
     lpMessage: ?PWSTR,
     dwTimeout: u32,
@@ -339,17 +339,17 @@ pub extern "ADVAPI32" fn InitiateSystemShutdownW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AbortSystemShutdownA(
+pub extern "advapi32" fn AbortSystemShutdownA(
     lpMachineName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AbortSystemShutdownW(
+pub extern "advapi32" fn AbortSystemShutdownW(
     lpMachineName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn InitiateSystemShutdownExA(
+pub extern "advapi32" fn InitiateSystemShutdownExA(
     lpMachineName: ?PSTR,
     lpMessage: ?PSTR,
     dwTimeout: u32,
@@ -359,7 +359,7 @@ pub extern "ADVAPI32" fn InitiateSystemShutdownExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn InitiateSystemShutdownExW(
+pub extern "advapi32" fn InitiateSystemShutdownExW(
     lpMachineName: ?PWSTR,
     lpMessage: ?PWSTR,
     dwTimeout: u32,
@@ -369,7 +369,7 @@ pub extern "ADVAPI32" fn InitiateSystemShutdownExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn InitiateShutdownA(
+pub extern "advapi32" fn InitiateShutdownA(
     lpMachineName: ?PSTR,
     lpMessage: ?PSTR,
     dwGracePeriod: u32,
@@ -378,7 +378,7 @@ pub extern "ADVAPI32" fn InitiateShutdownA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn InitiateShutdownW(
+pub extern "advapi32" fn InitiateShutdownW(
     lpMachineName: ?PWSTR,
     lpMessage: ?PWSTR,
     dwGracePeriod: u32,
@@ -386,36 +386,36 @@ pub extern "ADVAPI32" fn InitiateShutdownW(
     dwReason: SHUTDOWN_REASON,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ADVAPI32" fn CheckForHiberboot(
+pub extern "advapi32" fn CheckForHiberboot(
     pHiberboot: ?*BOOLEAN,
     bClearFlag: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn ExitWindowsEx(
+pub extern "user32" fn ExitWindowsEx(
     uFlags: EXIT_WINDOWS_FLAGS,
     dwReason: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn LockWorkStation(
+pub extern "user32" fn LockWorkStation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonCreate(
+pub extern "user32" fn ShutdownBlockReasonCreate(
     hWnd: ?HWND,
     pwszReason: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonQuery(
+pub extern "user32" fn ShutdownBlockReasonQuery(
     hWnd: ?HWND,
     pwszBuff: ?[*:0]u16,
     pcchBuff: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonDestroy(
+pub extern "user32" fn ShutdownBlockReasonDestroy(
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

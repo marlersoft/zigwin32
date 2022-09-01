@@ -169,27 +169,27 @@ pub const XINPUT_KEYSTROKE = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub extern "XINPUTUAP" fn XInputGetState(
+pub extern "xinputuap" fn XInputGetState(
     dwUserIndex: u32,
     pState: ?*XINPUT_STATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "XINPUTUAP" fn XInputSetState(
+pub extern "xinputuap" fn XInputSetState(
     dwUserIndex: u32,
     pVibration: ?*XINPUT_VIBRATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "XINPUTUAP" fn XInputGetCapabilities(
+pub extern "xinputuap" fn XInputGetCapabilities(
     dwUserIndex: u32,
     dwFlags: u32,
     pCapabilities: ?*XINPUT_CAPABILITIES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "XINPUTUAP" fn XInputEnable(
+pub extern "xinputuap" fn XInputEnable(
     enable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "XINPUTUAP" fn XInputGetAudioDeviceIds(
+pub extern "xinputuap" fn XInputGetAudioDeviceIds(
     dwUserIndex: u32,
     pRenderDeviceId: ?[*:0]u16,
     pRenderCount: ?*u32,
@@ -197,13 +197,13 @@ pub extern "XINPUTUAP" fn XInputGetAudioDeviceIds(
     pCaptureCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "XINPUTUAP" fn XInputGetBatteryInformation(
+pub extern "xinputuap" fn XInputGetBatteryInformation(
     dwUserIndex: u32,
     devType: u8,
     pBatteryInformation: ?*XINPUT_BATTERY_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "XINPUTUAP" fn XInputGetKeystroke(
+pub extern "xinputuap" fn XInputGetKeystroke(
     dwUserIndex: u32,
     dwReserved: u32,
     pKeystroke: ?*XINPUT_KEYSTROKE,

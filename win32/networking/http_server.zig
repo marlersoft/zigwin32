@@ -1366,26 +1366,26 @@ pub const HttpFeaturemax = HTTP_FEATURE_ID.max;
 // Section: Functions (43)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpInitialize(
+pub extern "httpapi" fn HttpInitialize(
     Version: HTTPAPI_VERSION,
     Flags: HTTP_INITIALIZE,
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpTerminate(
+pub extern "httpapi" fn HttpTerminate(
     Flags: HTTP_INITIALIZE,
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCreateHttpHandle(
+pub extern "httpapi" fn HttpCreateHttpHandle(
     RequestQueueHandle: ?*?HANDLE,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCreateRequestQueue(
+pub extern "httpapi" fn HttpCreateRequestQueue(
     Version: HTTPAPI_VERSION,
     Name: ?[*:0]const u16,
     SecurityAttributes: ?*SECURITY_ATTRIBUTES,
@@ -1394,12 +1394,12 @@ pub extern "HTTPAPI" fn HttpCreateRequestQueue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCloseRequestQueue(
+pub extern "httpapi" fn HttpCloseRequestQueue(
     RequestQueueHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpSetRequestQueueProperty(
+pub extern "httpapi" fn HttpSetRequestQueueProperty(
     RequestQueueHandle: ?HANDLE,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
@@ -1410,7 +1410,7 @@ pub extern "HTTPAPI" fn HttpSetRequestQueueProperty(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpQueryRequestQueueProperty(
+pub extern "httpapi" fn HttpQueryRequestQueueProperty(
     RequestQueueHandle: ?HANDLE,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
@@ -1421,7 +1421,7 @@ pub extern "HTTPAPI" fn HttpQueryRequestQueueProperty(
     Reserved2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HTTPAPI" fn HttpSetRequestProperty(
+pub extern "httpapi" fn HttpSetRequestProperty(
     RequestQueueHandle: ?HANDLE,
     Id: u64,
     PropertyId: HTTP_REQUEST_PROPERTY,
@@ -1432,12 +1432,12 @@ pub extern "HTTPAPI" fn HttpSetRequestProperty(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpShutdownRequestQueue(
+pub extern "httpapi" fn HttpShutdownRequestQueue(
     RequestQueueHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpReceiveClientCertificate(
+pub extern "httpapi" fn HttpReceiveClientCertificate(
     RequestQueueHandle: ?HANDLE,
     ConnectionId: u64,
     Flags: u32,
@@ -1449,19 +1449,19 @@ pub extern "HTTPAPI" fn HttpReceiveClientCertificate(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCreateServerSession(
+pub extern "httpapi" fn HttpCreateServerSession(
     Version: HTTPAPI_VERSION,
     ServerSessionId: ?*u64,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCloseServerSession(
+pub extern "httpapi" fn HttpCloseServerSession(
     ServerSessionId: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpQueryServerSessionProperty(
+pub extern "httpapi" fn HttpQueryServerSessionProperty(
     ServerSessionId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
@@ -1471,7 +1471,7 @@ pub extern "HTTPAPI" fn HttpQueryServerSessionProperty(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpSetServerSessionProperty(
+pub extern "httpapi" fn HttpSetServerSessionProperty(
     ServerSessionId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
@@ -1480,32 +1480,32 @@ pub extern "HTTPAPI" fn HttpSetServerSessionProperty(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpAddUrl(
+pub extern "httpapi" fn HttpAddUrl(
     RequestQueueHandle: ?HANDLE,
     FullyQualifiedUrl: ?[*:0]const u16,
     Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpRemoveUrl(
+pub extern "httpapi" fn HttpRemoveUrl(
     RequestQueueHandle: ?HANDLE,
     FullyQualifiedUrl: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCreateUrlGroup(
+pub extern "httpapi" fn HttpCreateUrlGroup(
     ServerSessionId: u64,
     pUrlGroupId: ?*u64,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCloseUrlGroup(
+pub extern "httpapi" fn HttpCloseUrlGroup(
     UrlGroupId: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpAddUrlToUrlGroup(
+pub extern "httpapi" fn HttpAddUrlToUrlGroup(
     UrlGroupId: u64,
     pFullyQualifiedUrl: ?[*:0]const u16,
     UrlContext: u64,
@@ -1513,14 +1513,14 @@ pub extern "HTTPAPI" fn HttpAddUrlToUrlGroup(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpRemoveUrlFromUrlGroup(
+pub extern "httpapi" fn HttpRemoveUrlFromUrlGroup(
     UrlGroupId: u64,
     pFullyQualifiedUrl: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpSetUrlGroupProperty(
+pub extern "httpapi" fn HttpSetUrlGroupProperty(
     UrlGroupId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
@@ -1529,7 +1529,7 @@ pub extern "HTTPAPI" fn HttpSetUrlGroupProperty(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpQueryUrlGroupProperty(
+pub extern "httpapi" fn HttpQueryUrlGroupProperty(
     UrlGroupId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
@@ -1539,7 +1539,7 @@ pub extern "HTTPAPI" fn HttpQueryUrlGroupProperty(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "HTTPAPI" fn HttpPrepareUrl(
+pub extern "httpapi" fn HttpPrepareUrl(
     Reserved: ?*anyopaque,
     Flags: u32,
     Url: ?[*:0]const u16,
@@ -1547,7 +1547,7 @@ pub extern "HTTPAPI" fn HttpPrepareUrl(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpReceiveHttpRequest(
+pub extern "httpapi" fn HttpReceiveHttpRequest(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Flags: HTTP_RECEIVE_HTTP_REQUEST_FLAGS,
@@ -1559,7 +1559,7 @@ pub extern "HTTPAPI" fn HttpReceiveHttpRequest(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpReceiveRequestEntityBody(
+pub extern "httpapi" fn HttpReceiveRequestEntityBody(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Flags: u32,
@@ -1571,7 +1571,7 @@ pub extern "HTTPAPI" fn HttpReceiveRequestEntityBody(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpSendHttpResponse(
+pub extern "httpapi" fn HttpSendHttpResponse(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Flags: u32,
@@ -1585,7 +1585,7 @@ pub extern "HTTPAPI" fn HttpSendHttpResponse(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpSendResponseEntityBody(
+pub extern "httpapi" fn HttpSendResponseEntityBody(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Flags: u32,
@@ -1599,7 +1599,7 @@ pub extern "HTTPAPI" fn HttpSendResponseEntityBody(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "HTTPAPI" fn HttpDeclarePush(
+pub extern "httpapi" fn HttpDeclarePush(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Verb: HTTP_VERB,
@@ -1609,13 +1609,13 @@ pub extern "HTTPAPI" fn HttpDeclarePush(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpWaitForDisconnect(
+pub extern "httpapi" fn HttpWaitForDisconnect(
     RequestQueueHandle: ?HANDLE,
     ConnectionId: u64,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HTTPAPI" fn HttpWaitForDisconnectEx(
+pub extern "httpapi" fn HttpWaitForDisconnectEx(
     RequestQueueHandle: ?HANDLE,
     ConnectionId: u64,
     Reserved: u32,
@@ -1623,23 +1623,23 @@ pub extern "HTTPAPI" fn HttpWaitForDisconnectEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpCancelHttpRequest(
+pub extern "httpapi" fn HttpCancelHttpRequest(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpWaitForDemandStart(
+pub extern "httpapi" fn HttpWaitForDemandStart(
     RequestQueueHandle: ?HANDLE,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HTTPAPI" fn HttpIsFeatureSupported(
+pub extern "httpapi" fn HttpIsFeatureSupported(
     FeatureId: HTTP_FEATURE_ID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "HTTPAPI" fn HttpDelegateRequestEx(
+pub extern "httpapi" fn HttpDelegateRequestEx(
     RequestQueueHandle: ?HANDLE,
     DelegateQueueHandle: ?HANDLE,
     RequestId: u64,
@@ -1648,14 +1648,14 @@ pub extern "HTTPAPI" fn HttpDelegateRequestEx(
     PropertyInfoSet: ?*HTTP_DELEGATE_REQUEST_PROPERTY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HTTPAPI" fn HttpFindUrlGroupId(
+pub extern "httpapi" fn HttpFindUrlGroupId(
     FullyQualifiedUrl: ?[*:0]const u16,
     RequestQueueHandle: ?HANDLE,
     UrlGroupId: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpFlushResponseCache(
+pub extern "httpapi" fn HttpFlushResponseCache(
     RequestQueueHandle: ?HANDLE,
     UrlPrefix: ?[*:0]const u16,
     Flags: u32,
@@ -1663,7 +1663,7 @@ pub extern "HTTPAPI" fn HttpFlushResponseCache(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpAddFragmentToCache(
+pub extern "httpapi" fn HttpAddFragmentToCache(
     RequestQueueHandle: ?HANDLE,
     UrlPrefix: ?[*:0]const u16,
     DataChunk: ?*HTTP_DATA_CHUNK,
@@ -1672,7 +1672,7 @@ pub extern "HTTPAPI" fn HttpAddFragmentToCache(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpReadFragmentFromCache(
+pub extern "httpapi" fn HttpReadFragmentFromCache(
     RequestQueueHandle: ?HANDLE,
     UrlPrefix: ?[*:0]const u16,
     ByteRange: ?*HTTP_BYTE_RANGE,
@@ -1684,7 +1684,7 @@ pub extern "HTTPAPI" fn HttpReadFragmentFromCache(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "HTTPAPI" fn HttpSetServiceConfiguration(
+pub extern "httpapi" fn HttpSetServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -1694,7 +1694,7 @@ pub extern "HTTPAPI" fn HttpSetServiceConfiguration(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "HTTPAPI" fn HttpUpdateServiceConfiguration(
+pub extern "httpapi" fn HttpUpdateServiceConfiguration(
     Handle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -1704,7 +1704,7 @@ pub extern "HTTPAPI" fn HttpUpdateServiceConfiguration(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpDeleteServiceConfiguration(
+pub extern "httpapi" fn HttpDeleteServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -1714,7 +1714,7 @@ pub extern "HTTPAPI" fn HttpDeleteServiceConfiguration(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "HTTPAPI" fn HttpQueryServiceConfiguration(
+pub extern "httpapi" fn HttpQueryServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -1727,7 +1727,7 @@ pub extern "HTTPAPI" fn HttpQueryServiceConfiguration(
     pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "HTTPAPI" fn HttpGetExtension(
+pub extern "httpapi" fn HttpGetExtension(
     Version: HTTPAPI_VERSION,
     Extension: u32,
     Buffer: ?*anyopaque,

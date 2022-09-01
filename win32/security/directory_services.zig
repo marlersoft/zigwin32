@@ -76,7 +76,7 @@ pub const PFNDSEDITSECURITY = fn(
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DSSEC" fn DSCreateISecurityInfoObject(
+pub extern "dssec" fn DSCreateISecurityInfoObject(
     pwszObjectPath: ?[*:0]const u16,
     pwszObjectClass: ?[*:0]const u16,
     dwFlags: u32,
@@ -87,7 +87,7 @@ pub extern "DSSEC" fn DSCreateISecurityInfoObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DSSEC" fn DSCreateISecurityInfoObjectEx(
+pub extern "dssec" fn DSCreateISecurityInfoObjectEx(
     pwszObjectPath: ?[*:0]const u16,
     pwszObjectClass: ?[*:0]const u16,
     pwszServer: ?[*:0]const u16,
@@ -101,7 +101,7 @@ pub extern "DSSEC" fn DSCreateISecurityInfoObjectEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "DSSEC" fn DSCreateSecurityPage(
+pub extern "dssec" fn DSCreateSecurityPage(
     pwszObjectPath: ?[*:0]const u16,
     pwszObjectClass: ?[*:0]const u16,
     dwFlags: u32,
@@ -112,7 +112,7 @@ pub extern "DSSEC" fn DSCreateSecurityPage(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "DSSEC" fn DSEditSecurity(
+pub extern "dssec" fn DSEditSecurity(
     hwndOwner: ?HWND,
     pwszObjectPath: ?[*:0]const u16,
     pwszObjectClass: ?[*:0]const u16,

@@ -289,34 +289,34 @@ pub const TIMECODE_SAMPLE = extern struct {
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn timeGetSystemTime(
+pub extern "winmm" fn timeGetSystemTime(
     // TODO: what to do with BytesParamIndex 1?
     pmmt: ?*MMTIME,
     cbmmt: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn timeGetTime(
+pub extern "winmm" fn timeGetTime(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn timeGetDevCaps(
+pub extern "winmm" fn timeGetDevCaps(
     // TODO: what to do with BytesParamIndex 1?
     ptc: ?*TIMECAPS,
     cbtc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn timeBeginPeriod(
+pub extern "winmm" fn timeBeginPeriod(
     uPeriod: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn timeEndPeriod(
+pub extern "winmm" fn timeEndPeriod(
     uPeriod: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn timeSetEvent(
+pub extern "winmm" fn timeSetEvent(
     uDelay: u32,
     uResolution: u32,
     fptc: ?LPTIMECALLBACK,
@@ -324,7 +324,7 @@ pub extern "WINMM" fn timeSetEvent(
     fuEvent: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn timeKillEvent(
+pub extern "winmm" fn timeKillEvent(
     uTimerID: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

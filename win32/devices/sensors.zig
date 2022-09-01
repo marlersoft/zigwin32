@@ -974,120 +974,120 @@ pub const AXIS_MAX = AXIS.MAX;
 //--------------------------------------------------------------------------------
 // Section: Functions (40)
 //--------------------------------------------------------------------------------
-pub extern "SensorsUtilsV2" fn GetPerformanceTime(
+pub extern "sensorsutilsv2" fn GetPerformanceTime(
     TimeMs: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn InitPropVariantFromFloat(
+pub extern "sensorsutilsv2" fn InitPropVariantFromFloat(
     fltVal: f32,
     ppropvar: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetPropVariant(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetPropVariant(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     TypeCheck: BOOLEAN,
     pValue: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeySetPropVariant(
+pub extern "sensorsutilsv2" fn PropKeyFindKeySetPropVariant(
     pList: ?*SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     TypeCheck: BOOLEAN,
     pValue: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetFileTime(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetFileTime(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetGuid(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetGuid(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetBool(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetBool(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetUlong(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetUlong(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetUshort(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetUshort(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetFloat(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetFloat(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetDouble(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetDouble(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetInt32(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetInt32(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetInt64(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetInt64(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetNthUlong(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetNthUlong(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     Occurrence: u32,
     pRetValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetNthUshort(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetNthUshort(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     Occurrence: u32,
     pRetValue: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropKeyFindKeyGetNthInt64(
+pub extern "sensorsutilsv2" fn PropKeyFindKeyGetNthInt64(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     Occurrence: u32,
     pRetValue: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn IsKeyPresentInPropertyList(
+pub extern "sensorsutilsv2" fn IsKeyPresentInPropertyList(
     pList: ?*SENSOR_PROPERTY_LIST,
     pKey: ?*const PROPERTYKEY,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "SensorsUtilsV2" fn IsKeyPresentInCollectionList(
+pub extern "sensorsutilsv2" fn IsKeyPresentInCollectionList(
     pList: ?*SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "SensorsUtilsV2" fn IsCollectionListSame(
+pub extern "sensorsutilsv2" fn IsCollectionListSame(
     ListA: ?*const SENSOR_COLLECTION_LIST,
     ListB: ?*const SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "SensorsUtilsV2" fn PropVariantGetInformation(
+pub extern "sensorsutilsv2" fn PropVariantGetInformation(
     PropVariantValue: ?*const PROPVARIANT,
     PropVariantOffset: ?*u32,
     PropVariantSize: ?*u32,
@@ -1095,103 +1095,103 @@ pub extern "SensorsUtilsV2" fn PropVariantGetInformation(
     RemappedType: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropertiesListCopy(
+pub extern "sensorsutilsv2" fn PropertiesListCopy(
     Target: ?*SENSOR_PROPERTY_LIST,
     Source: ?*const SENSOR_PROPERTY_LIST,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn PropertiesListGetFillableCount(
+pub extern "sensorsutilsv2" fn PropertiesListGetFillableCount(
     BufferSizeBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SensorsUtilsV2" fn CollectionsListGetMarshalledSize(
+pub extern "sensorsutilsv2" fn CollectionsListGetMarshalledSize(
     Collection: ?*const SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SensorsUtilsV2" fn CollectionsListCopyAndMarshall(
+pub extern "sensorsutilsv2" fn CollectionsListCopyAndMarshall(
     Target: ?*SENSOR_COLLECTION_LIST,
     Source: ?*const SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn CollectionsListMarshall(
+pub extern "sensorsutilsv2" fn CollectionsListMarshall(
     Target: ?*SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn CollectionsListGetMarshalledSizeWithoutSerialization(
+pub extern "sensorsutilsv2" fn CollectionsListGetMarshalledSizeWithoutSerialization(
     Collection: ?*const SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SensorsUtilsV2" fn CollectionsListUpdateMarshalledPointer(
+pub extern "sensorsutilsv2" fn CollectionsListUpdateMarshalledPointer(
     Collection: ?*SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn SerializationBufferAllocate(
+pub extern "sensorsutilsv2" fn SerializationBufferAllocate(
     SizeInBytes: u32,
     pBuffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn SerializationBufferFree(
+pub extern "sensorsutilsv2" fn SerializationBufferFree(
     Buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SensorsUtilsV2" fn CollectionsListGetSerializedSize(
+pub extern "sensorsutilsv2" fn CollectionsListGetSerializedSize(
     Collection: ?*const SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SensorsUtilsV2" fn CollectionsListSerializeToBuffer(
+pub extern "sensorsutilsv2" fn CollectionsListSerializeToBuffer(
     SourceCollection: ?*const SENSOR_COLLECTION_LIST,
     TargetBufferSizeInBytes: u32,
     // TODO: what to do with BytesParamIndex 1?
     TargetBuffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn CollectionsListAllocateBufferAndSerialize(
+pub extern "sensorsutilsv2" fn CollectionsListAllocateBufferAndSerialize(
     SourceCollection: ?*const SENSOR_COLLECTION_LIST,
     pTargetBufferSizeInBytes: ?*u32,
     pTargetBuffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn CollectionsListDeserializeFromBuffer(
+pub extern "sensorsutilsv2" fn CollectionsListDeserializeFromBuffer(
     SourceBufferSizeInBytes: u32,
     // TODO: what to do with BytesParamIndex 0?
     SourceBuffer: ?*const u8,
     TargetCollection: ?*SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn SensorCollectionGetAt(
+pub extern "sensorsutilsv2" fn SensorCollectionGetAt(
     Index: u32,
     pSensorsList: ?*SENSOR_COLLECTION_LIST,
     pKey: ?*PROPERTYKEY,
     pValue: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn CollectionsListGetFillableCount(
+pub extern "sensorsutilsv2" fn CollectionsListGetFillableCount(
     BufferSizeBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "SensorsUtilsV2" fn EvaluateActivityThresholds(
+pub extern "sensorsutilsv2" fn EvaluateActivityThresholds(
     newSample: ?*SENSOR_COLLECTION_LIST,
     oldSample: ?*SENSOR_COLLECTION_LIST,
     thresholds: ?*SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "SensorsUtilsV2" fn CollectionsListSortSubscribedActivitiesByConfidence(
+pub extern "sensorsutilsv2" fn CollectionsListSortSubscribedActivitiesByConfidence(
     thresholds: ?*SENSOR_COLLECTION_LIST,
     pCollection: ?*SENSOR_COLLECTION_LIST,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub extern "SensorsUtilsV2" fn InitPropVariantFromCLSIDArray(
+pub extern "sensorsutilsv2" fn InitPropVariantFromCLSIDArray(
     members: [*]Guid,
     size: u32,
     ppropvar: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "SensorsUtilsV2" fn IsSensorSubscribed(
+pub extern "sensorsutilsv2" fn IsSensorSubscribed(
     subscriptionList: ?*SENSOR_COLLECTION_LIST,
     currentType: Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "SensorsUtilsV2" fn IsGUIDPresentInList(
+pub extern "sensorsutilsv2" fn IsGUIDPresentInList(
     guidArray: [*]const Guid,
     arrayLength: u32,
     guidElem: ?*const Guid,

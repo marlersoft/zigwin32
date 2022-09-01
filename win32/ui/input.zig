@@ -184,7 +184,7 @@ pub const INPUT_MESSAGE_SOURCE = extern struct {
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetRawInputData(
+pub extern "user32" fn GetRawInputData(
     hRawInput: ?HRAWINPUT,
     uiCommand: RAW_INPUT_DATA_COMMAND_FLAGS,
     // TODO: what to do with BytesParamIndex 3?
@@ -194,7 +194,7 @@ pub extern "USER32" fn GetRawInputData(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetRawInputDeviceInfoA(
+pub extern "user32" fn GetRawInputDeviceInfoA(
     hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
     // TODO: what to do with BytesParamIndex 3?
@@ -203,7 +203,7 @@ pub extern "USER32" fn GetRawInputDeviceInfoA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetRawInputDeviceInfoW(
+pub extern "user32" fn GetRawInputDeviceInfoW(
     hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
     // TODO: what to do with BytesParamIndex 3?
@@ -212,7 +212,7 @@ pub extern "USER32" fn GetRawInputDeviceInfoW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetRawInputBuffer(
+pub extern "user32" fn GetRawInputBuffer(
     // TODO: what to do with BytesParamIndex 1?
     pData: ?*RAWINPUT,
     pcbSize: ?*u32,
@@ -220,40 +220,40 @@ pub extern "USER32" fn GetRawInputBuffer(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn RegisterRawInputDevices(
+pub extern "user32" fn RegisterRawInputDevices(
     pRawInputDevices: [*]RAWINPUTDEVICE,
     uiNumDevices: u32,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetRegisteredRawInputDevices(
+pub extern "user32" fn GetRegisteredRawInputDevices(
     pRawInputDevices: ?[*]RAWINPUTDEVICE,
     puiNumDevices: ?*u32,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetRawInputDeviceList(
+pub extern "user32" fn GetRawInputDeviceList(
     pRawInputDeviceList: ?[*]RAWINPUTDEVICELIST,
     puiNumDevices: ?*u32,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn DefRawInputProc(
+pub extern "user32" fn DefRawInputProc(
     paRawInput: [*]?*RAWINPUT,
     nInput: i32,
     cbSizeHeader: u32,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetCurrentInputMessageSource(
+pub extern "user32" fn GetCurrentInputMessageSource(
     inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetCIMSSM(
+pub extern "user32" fn GetCIMSSM(
     inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

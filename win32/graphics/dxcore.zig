@@ -348,7 +348,7 @@ pub const IDXCoreAdapterFactory = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
-pub extern "DXCORE" fn DXCoreCreateAdapterFactory(
+pub extern "dxcore" fn DXCoreCreateAdapterFactory(
     riid: ?*const Guid,
     ppvFactory: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

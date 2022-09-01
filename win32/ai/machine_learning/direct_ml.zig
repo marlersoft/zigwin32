@@ -2250,14 +2250,14 @@ pub const IDMLDevice1 = extern struct {
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "DirectML" fn DMLCreateDevice(
+pub extern "directml" fn DMLCreateDevice(
     d3d12Device: ?*ID3D12Device,
     flags: DML_CREATE_DEVICE_FLAGS,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DirectML" fn DMLCreateDevice1(
+pub extern "directml" fn DMLCreateDevice1(
     d3d12Device: ?*ID3D12Device,
     flags: DML_CREATE_DEVICE_FLAGS,
     minimumFeatureLevel: DML_FEATURE_LEVEL,

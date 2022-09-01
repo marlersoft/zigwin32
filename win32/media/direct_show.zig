@@ -46713,13 +46713,13 @@ pub const DXVA_COPPStatusSignalingCmdData = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
-pub extern "QUARTZ" fn AMGetErrorTextA(
+pub extern "quartz" fn AMGetErrorTextA(
     hr: HRESULT,
     pbuffer: [*:0]u8,
     MaxLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "QUARTZ" fn AMGetErrorTextW(
+pub extern "quartz" fn AMGetErrorTextW(
     hr: HRESULT,
     pbuffer: [*:0]u16,
     MaxLen: u32,

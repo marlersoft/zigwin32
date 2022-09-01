@@ -8629,26 +8629,26 @@ pub const MLSTR_WRITE = MLSTR_FLAGS.WRITE;
 // Section: Functions (1213)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetTextCharset(
+pub extern "gdi32" fn GetTextCharset(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetTextCharsetInfo(
+pub extern "gdi32" fn GetTextCharsetInfo(
     hdc: ?HDC,
     lpSig: ?*FONTSIGNATURE,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn TranslateCharsetInfo(
+pub extern "gdi32" fn TranslateCharsetInfo(
     lpSrc: ?*u32,
     lpCs: ?*CHARSETINFO,
     dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetDateFormatA(
+pub extern "kernel32" fn GetDateFormatA(
     Locale: u32,
     dwFlags: u32,
     lpDate: ?*const SYSTEMTIME,
@@ -8658,7 +8658,7 @@ pub extern "KERNEL32" fn GetDateFormatA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetDateFormatW(
+pub extern "kernel32" fn GetDateFormatW(
     Locale: u32,
     dwFlags: u32,
     lpDate: ?*const SYSTEMTIME,
@@ -8668,7 +8668,7 @@ pub extern "KERNEL32" fn GetDateFormatW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetTimeFormatA(
+pub extern "kernel32" fn GetTimeFormatA(
     Locale: u32,
     dwFlags: u32,
     lpTime: ?*const SYSTEMTIME,
@@ -8678,7 +8678,7 @@ pub extern "KERNEL32" fn GetTimeFormatA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetTimeFormatW(
+pub extern "kernel32" fn GetTimeFormatW(
     Locale: u32,
     dwFlags: u32,
     lpTime: ?*const SYSTEMTIME,
@@ -8688,7 +8688,7 @@ pub extern "KERNEL32" fn GetTimeFormatW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetTimeFormatEx(
+pub extern "kernel32" fn GetTimeFormatEx(
     lpLocaleName: ?[*:0]const u16,
     dwFlags: TIME_FORMAT_FLAGS,
     lpTime: ?*const SYSTEMTIME,
@@ -8698,7 +8698,7 @@ pub extern "KERNEL32" fn GetTimeFormatEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetDateFormatEx(
+pub extern "kernel32" fn GetDateFormatEx(
     lpLocaleName: ?[*:0]const u16,
     dwFlags: ENUM_DATE_FORMATS_FLAGS,
     lpDate: ?*const SYSTEMTIME,
@@ -8709,7 +8709,7 @@ pub extern "KERNEL32" fn GetDateFormatEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetDurationFormatEx(
+pub extern "kernel32" fn GetDurationFormatEx(
     lpLocaleName: ?[*:0]const u16,
     dwFlags: u32,
     lpDuration: ?*const SYSTEMTIME,
@@ -8720,7 +8720,7 @@ pub extern "KERNEL32" fn GetDurationFormatEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CompareStringEx(
+pub extern "kernel32" fn CompareStringEx(
     lpLocaleName: ?[*:0]const u16,
     dwCmpFlags: COMPARE_STRING_FLAGS,
     lpString1: [*:0]const u16,
@@ -8733,7 +8733,7 @@ pub extern "KERNEL32" fn CompareStringEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CompareStringOrdinal(
+pub extern "kernel32" fn CompareStringOrdinal(
     lpString1: [*:0]const u16,
     cchCount1: i32,
     lpString2: [*:0]const u16,
@@ -8742,7 +8742,7 @@ pub extern "KERNEL32" fn CompareStringOrdinal(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn CompareStringW(
+pub extern "kernel32" fn CompareStringW(
     Locale: u32,
     dwCmpFlags: u32,
     lpString1: [*:0]const u16,
@@ -8752,7 +8752,7 @@ pub extern "KERNEL32" fn CompareStringW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FoldStringW(
+pub extern "kernel32" fn FoldStringW(
     dwMapFlags: FOLD_STRING_MAP_FLAGS,
     lpSrcStr: [*:0]const u16,
     cchSrc: i32,
@@ -8761,7 +8761,7 @@ pub extern "KERNEL32" fn FoldStringW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetStringTypeExW(
+pub extern "kernel32" fn GetStringTypeExW(
     Locale: u32,
     dwInfoType: u32,
     lpSrcStr: [*:0]const u16,
@@ -8770,7 +8770,7 @@ pub extern "KERNEL32" fn GetStringTypeExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetStringTypeW(
+pub extern "kernel32" fn GetStringTypeW(
     dwInfoType: u32,
     lpSrcStr: [*:0]const u16,
     cchSrc: i32,
@@ -8778,7 +8778,7 @@ pub extern "KERNEL32" fn GetStringTypeW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn MultiByteToWideChar(
+pub extern "kernel32" fn MultiByteToWideChar(
     CodePage: u32,
     dwFlags: MULTI_BYTE_TO_WIDE_CHAR_FLAGS,
     lpMultiByteStr: [*]const u8,
@@ -8788,7 +8788,7 @@ pub extern "KERNEL32" fn MultiByteToWideChar(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WideCharToMultiByte(
+pub extern "kernel32" fn WideCharToMultiByte(
     CodePage: u32,
     dwFlags: u32,
     lpWideCharStr: [*:0]const u16,
@@ -8801,40 +8801,40 @@ pub extern "KERNEL32" fn WideCharToMultiByte(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn IsValidCodePage(
+pub extern "kernel32" fn IsValidCodePage(
     CodePage: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetACP(
+pub extern "kernel32" fn GetACP(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetOEMCP(
+pub extern "kernel32" fn GetOEMCP(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCPInfo(
+pub extern "kernel32" fn GetCPInfo(
     CodePage: u32,
     lpCPInfo: ?*CPINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCPInfoExA(
+pub extern "kernel32" fn GetCPInfoExA(
     CodePage: u32,
     dwFlags: u32,
     lpCPInfoEx: ?*CPINFOEXA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCPInfoExW(
+pub extern "kernel32" fn GetCPInfoExW(
     CodePage: u32,
     dwFlags: u32,
     lpCPInfoEx: ?*CPINFOEXW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn CompareStringA(
+pub extern "kernel32" fn CompareStringA(
     Locale: u32,
     dwCmpFlags: u32,
     lpString1: [*]i8,
@@ -8844,7 +8844,7 @@ pub extern "KERNEL32" fn CompareStringA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FindNLSString(
+pub extern "kernel32" fn FindNLSString(
     Locale: u32,
     dwFindNLSStringFlags: u32,
     lpStringSource: [*:0]const u16,
@@ -8855,7 +8855,7 @@ pub extern "KERNEL32" fn FindNLSString(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn LCMapStringW(
+pub extern "kernel32" fn LCMapStringW(
     Locale: u32,
     dwMapFlags: u32,
     lpSrcStr: [*:0]const u16,
@@ -8865,7 +8865,7 @@ pub extern "KERNEL32" fn LCMapStringW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn LCMapStringA(
+pub extern "kernel32" fn LCMapStringA(
     Locale: u32,
     dwMapFlags: u32,
     lpSrcStr: [*:0]const u8,
@@ -8875,7 +8875,7 @@ pub extern "KERNEL32" fn LCMapStringA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetLocaleInfoW(
+pub extern "kernel32" fn GetLocaleInfoW(
     Locale: u32,
     LCType: u32,
     lpLCData: ?[*:0]u16,
@@ -8883,7 +8883,7 @@ pub extern "KERNEL32" fn GetLocaleInfoW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetLocaleInfoA(
+pub extern "kernel32" fn GetLocaleInfoA(
     Locale: u32,
     LCType: u32,
     lpLCData: ?[*:0]u8,
@@ -8891,21 +8891,21 @@ pub extern "KERNEL32" fn GetLocaleInfoA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetLocaleInfoA(
+pub extern "kernel32" fn SetLocaleInfoA(
     Locale: u32,
     LCType: u32,
     lpLCData: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetLocaleInfoW(
+pub extern "kernel32" fn SetLocaleInfoW(
     Locale: u32,
     LCType: u32,
     lpLCData: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCalendarInfoA(
+pub extern "kernel32" fn GetCalendarInfoA(
     Locale: u32,
     Calendar: u32,
     CalType: u32,
@@ -8915,7 +8915,7 @@ pub extern "KERNEL32" fn GetCalendarInfoA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCalendarInfoW(
+pub extern "kernel32" fn GetCalendarInfoW(
     Locale: u32,
     Calendar: u32,
     CalType: u32,
@@ -8925,7 +8925,7 @@ pub extern "KERNEL32" fn GetCalendarInfoW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetCalendarInfoA(
+pub extern "kernel32" fn SetCalendarInfoA(
     Locale: u32,
     Calendar: u32,
     CalType: u32,
@@ -8933,7 +8933,7 @@ pub extern "KERNEL32" fn SetCalendarInfoA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetCalendarInfoW(
+pub extern "kernel32" fn SetCalendarInfoW(
     Locale: u32,
     Calendar: u32,
     CalType: u32,
@@ -8941,24 +8941,24 @@ pub extern "KERNEL32" fn SetCalendarInfoW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn IsDBCSLeadByte(
+pub extern "kernel32" fn IsDBCSLeadByte(
     TestChar: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn IsDBCSLeadByteEx(
+pub extern "kernel32" fn IsDBCSLeadByteEx(
     CodePage: u32,
     TestChar: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn LocaleNameToLCID(
+pub extern "kernel32" fn LocaleNameToLCID(
     lpName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn LCIDToLocaleName(
+pub extern "kernel32" fn LCIDToLocaleName(
     Locale: u32,
     lpName: ?[*:0]u16,
     cchName: i32,
@@ -8966,7 +8966,7 @@ pub extern "KERNEL32" fn LCIDToLocaleName(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetDurationFormat(
+pub extern "kernel32" fn GetDurationFormat(
     Locale: u32,
     dwFlags: u32,
     lpDuration: ?*const SYSTEMTIME,
@@ -8977,7 +8977,7 @@ pub extern "KERNEL32" fn GetDurationFormat(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetNumberFormatA(
+pub extern "kernel32" fn GetNumberFormatA(
     Locale: u32,
     dwFlags: u32,
     lpValue: ?[*:0]const u8,
@@ -8987,7 +8987,7 @@ pub extern "KERNEL32" fn GetNumberFormatA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetNumberFormatW(
+pub extern "kernel32" fn GetNumberFormatW(
     Locale: u32,
     dwFlags: u32,
     lpValue: ?[*:0]const u16,
@@ -8997,7 +8997,7 @@ pub extern "KERNEL32" fn GetNumberFormatW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCurrencyFormatA(
+pub extern "kernel32" fn GetCurrencyFormatA(
     Locale: u32,
     dwFlags: u32,
     lpValue: ?[*:0]const u8,
@@ -9007,7 +9007,7 @@ pub extern "KERNEL32" fn GetCurrencyFormatA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCurrencyFormatW(
+pub extern "kernel32" fn GetCurrencyFormatW(
     Locale: u32,
     dwFlags: u32,
     lpValue: ?[*:0]const u16,
@@ -9017,7 +9017,7 @@ pub extern "KERNEL32" fn GetCurrencyFormatW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumCalendarInfoA(
+pub extern "kernel32" fn EnumCalendarInfoA(
     lpCalInfoEnumProc: ?CALINFO_ENUMPROCA,
     Locale: u32,
     Calendar: u32,
@@ -9025,7 +9025,7 @@ pub extern "KERNEL32" fn EnumCalendarInfoA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumCalendarInfoW(
+pub extern "kernel32" fn EnumCalendarInfoW(
     lpCalInfoEnumProc: ?CALINFO_ENUMPROCW,
     Locale: u32,
     Calendar: u32,
@@ -9033,7 +9033,7 @@ pub extern "KERNEL32" fn EnumCalendarInfoW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumCalendarInfoExA(
+pub extern "kernel32" fn EnumCalendarInfoExA(
     lpCalInfoEnumProcEx: ?CALINFO_ENUMPROCEXA,
     Locale: u32,
     Calendar: u32,
@@ -9041,7 +9041,7 @@ pub extern "KERNEL32" fn EnumCalendarInfoExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumCalendarInfoExW(
+pub extern "kernel32" fn EnumCalendarInfoExW(
     lpCalInfoEnumProcEx: ?CALINFO_ENUMPROCEXW,
     Locale: u32,
     Calendar: u32,
@@ -9049,68 +9049,68 @@ pub extern "KERNEL32" fn EnumCalendarInfoExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumTimeFormatsA(
+pub extern "kernel32" fn EnumTimeFormatsA(
     lpTimeFmtEnumProc: ?TIMEFMT_ENUMPROCA,
     Locale: u32,
     dwFlags: TIME_FORMAT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumTimeFormatsW(
+pub extern "kernel32" fn EnumTimeFormatsW(
     lpTimeFmtEnumProc: ?TIMEFMT_ENUMPROCW,
     Locale: u32,
     dwFlags: TIME_FORMAT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumDateFormatsA(
+pub extern "kernel32" fn EnumDateFormatsA(
     lpDateFmtEnumProc: ?DATEFMT_ENUMPROCA,
     Locale: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumDateFormatsW(
+pub extern "kernel32" fn EnumDateFormatsW(
     lpDateFmtEnumProc: ?DATEFMT_ENUMPROCW,
     Locale: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumDateFormatsExA(
+pub extern "kernel32" fn EnumDateFormatsExA(
     lpDateFmtEnumProcEx: ?DATEFMT_ENUMPROCEXA,
     Locale: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumDateFormatsExW(
+pub extern "kernel32" fn EnumDateFormatsExW(
     lpDateFmtEnumProcEx: ?DATEFMT_ENUMPROCEXW,
     Locale: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn IsValidLanguageGroup(
+pub extern "kernel32" fn IsValidLanguageGroup(
     LanguageGroup: u32,
     dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNLSVersion(
+pub extern "kernel32" fn GetNLSVersion(
     Function: u32,
     Locale: u32,
     lpVersionInformation: ?*NLSVERSIONINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn IsValidLocale(
+pub extern "kernel32" fn IsValidLocale(
     Locale: u32,
     dwFlags: IS_VALID_LOCALE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetGeoInfoA(
+pub extern "kernel32" fn GetGeoInfoA(
     Location: i32,
     GeoType: u32,
     lpGeoData: ?[*:0]u8,
@@ -9119,7 +9119,7 @@ pub extern "KERNEL32" fn GetGeoInfoA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetGeoInfoW(
+pub extern "kernel32" fn GetGeoInfoW(
     Location: i32,
     GeoType: u32,
     lpGeoData: ?[*:0]u16,
@@ -9128,7 +9128,7 @@ pub extern "KERNEL32" fn GetGeoInfoW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn GetGeoInfoEx(
+pub extern "kernel32" fn GetGeoInfoEx(
     location: ?PWSTR,
     geoType: u32,
     geoData: ?[*:0]u16,
@@ -9136,89 +9136,89 @@ pub extern "KERNEL32" fn GetGeoInfoEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn EnumSystemGeoID(
+pub extern "kernel32" fn EnumSystemGeoID(
     GeoClass: u32,
     ParentGeoId: i32,
     lpGeoEnumProc: ?GEO_ENUMPROC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn EnumSystemGeoNames(
+pub extern "kernel32" fn EnumSystemGeoNames(
     geoClass: u32,
     geoEnumProc: ?GEO_ENUMNAMEPROC,
     data: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetUserGeoID(
+pub extern "kernel32" fn GetUserGeoID(
     GeoClass: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn GetUserDefaultGeoName(
+pub extern "kernel32" fn GetUserDefaultGeoName(
     geoName: [*:0]u16,
     geoNameCount: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetUserGeoID(
+pub extern "kernel32" fn SetUserGeoID(
     GeoId: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn SetUserGeoName(
+pub extern "kernel32" fn SetUserGeoName(
     geoName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn ConvertDefaultLocale(
+pub extern "kernel32" fn ConvertDefaultLocale(
     Locale: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemDefaultUILanguage(
+pub extern "kernel32" fn GetSystemDefaultUILanguage(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetThreadLocale(
+pub extern "kernel32" fn GetThreadLocale(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetThreadLocale(
+pub extern "kernel32" fn SetThreadLocale(
     Locale: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetUserDefaultUILanguage(
+pub extern "kernel32" fn GetUserDefaultUILanguage(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetUserDefaultLangID(
+pub extern "kernel32" fn GetUserDefaultLangID(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemDefaultLangID(
+pub extern "kernel32" fn GetSystemDefaultLangID(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemDefaultLCID(
+pub extern "kernel32" fn GetSystemDefaultLCID(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetUserDefaultLCID(
+pub extern "kernel32" fn GetUserDefaultLCID(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadUILanguage(
+pub extern "kernel32" fn SetThreadUILanguage(
     LangId: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetThreadUILanguage(
+pub extern "kernel32" fn GetThreadUILanguage(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetProcessPreferredUILanguages(
+pub extern "kernel32" fn GetProcessPreferredUILanguages(
     dwFlags: u32,
     pulNumLanguages: ?*u32,
     pwszLanguagesBuffer: ?[*]u16,
@@ -9226,14 +9226,14 @@ pub extern "KERNEL32" fn GetProcessPreferredUILanguages(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetProcessPreferredUILanguages(
+pub extern "kernel32" fn SetProcessPreferredUILanguages(
     dwFlags: u32,
     pwszLanguagesBuffer: ?[*]const u16,
     pulNumLanguages: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetUserPreferredUILanguages(
+pub extern "kernel32" fn GetUserPreferredUILanguages(
     dwFlags: u32,
     pulNumLanguages: ?*u32,
     pwszLanguagesBuffer: ?[*]u16,
@@ -9241,7 +9241,7 @@ pub extern "KERNEL32" fn GetUserPreferredUILanguages(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetSystemPreferredUILanguages(
+pub extern "kernel32" fn GetSystemPreferredUILanguages(
     dwFlags: u32,
     pulNumLanguages: ?*u32,
     pwszLanguagesBuffer: ?[*]u16,
@@ -9249,7 +9249,7 @@ pub extern "KERNEL32" fn GetSystemPreferredUILanguages(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetThreadPreferredUILanguages(
+pub extern "kernel32" fn GetThreadPreferredUILanguages(
     dwFlags: u32,
     pulNumLanguages: ?*u32,
     pwszLanguagesBuffer: ?[*]u16,
@@ -9257,14 +9257,14 @@ pub extern "KERNEL32" fn GetThreadPreferredUILanguages(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetThreadPreferredUILanguages(
+pub extern "kernel32" fn SetThreadPreferredUILanguages(
     dwFlags: u32,
     pwszLanguagesBuffer: ?[*]const u16,
     pulNumLanguages: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetFileMUIInfo(
+pub extern "kernel32" fn GetFileMUIInfo(
     dwFlags: u32,
     pcwszFilePath: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -9273,7 +9273,7 @@ pub extern "KERNEL32" fn GetFileMUIInfo(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetFileMUIPath(
+pub extern "kernel32" fn GetFileMUIPath(
     dwFlags: u32,
     pcwszFilePath: ?[*:0]const u16,
     pwszLanguage: ?[*:0]u16,
@@ -9284,7 +9284,7 @@ pub extern "KERNEL32" fn GetFileMUIPath(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetUILanguageInfo(
+pub extern "kernel32" fn GetUILanguageInfo(
     dwFlags: u32,
     pwmszLanguage: ?[*]const u16,
     pwszFallbackLanguages: ?[*]u16,
@@ -9292,19 +9292,19 @@ pub extern "KERNEL32" fn GetUILanguageInfo(
     pAttributes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetThreadPreferredUILanguages2(
+pub extern "kernel32" fn SetThreadPreferredUILanguages2(
     flags: u32,
     languages: ?[*]const u16,
     numLanguagesSet: ?*u32,
     snapshot: ?*?HSAVEDUILANGUAGES,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn RestoreThreadPreferredUILanguages(
+pub extern "kernel32" fn RestoreThreadPreferredUILanguages(
     snapshot: ?HSAVEDUILANGUAGES,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn NotifyUILanguageChange(
+pub extern "kernel32" fn NotifyUILanguageChange(
     dwFlags: u32,
     pcwstrNewLanguage: ?[*:0]const u16,
     pcwstrPreviousLanguage: ?[*:0]const u16,
@@ -9312,7 +9312,7 @@ pub extern "KERNEL32" fn NotifyUILanguageChange(
     pdwStatusRtrn: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetStringTypeExA(
+pub extern "kernel32" fn GetStringTypeExA(
     Locale: u32,
     dwInfoType: u32,
     lpSrcStr: [*:0]const u8,
@@ -9321,7 +9321,7 @@ pub extern "KERNEL32" fn GetStringTypeExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetStringTypeA(
+pub extern "kernel32" fn GetStringTypeA(
     Locale: u32,
     dwInfoType: u32,
     lpSrcStr: [*:0]const u8,
@@ -9330,7 +9330,7 @@ pub extern "KERNEL32" fn GetStringTypeA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FoldStringA(
+pub extern "kernel32" fn FoldStringA(
     dwMapFlags: FOLD_STRING_MAP_FLAGS,
     lpSrcStr: [*:0]const u8,
     cchSrc: i32,
@@ -9339,33 +9339,33 @@ pub extern "KERNEL32" fn FoldStringA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumSystemLocalesA(
+pub extern "kernel32" fn EnumSystemLocalesA(
     lpLocaleEnumProc: ?LOCALE_ENUMPROCA,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumSystemLocalesW(
+pub extern "kernel32" fn EnumSystemLocalesW(
     lpLocaleEnumProc: ?LOCALE_ENUMPROCW,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumSystemLanguageGroupsA(
+pub extern "kernel32" fn EnumSystemLanguageGroupsA(
     lpLanguageGroupEnumProc: ?LANGUAGEGROUP_ENUMPROCA,
     dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumSystemLanguageGroupsW(
+pub extern "kernel32" fn EnumSystemLanguageGroupsW(
     lpLanguageGroupEnumProc: ?LANGUAGEGROUP_ENUMPROCW,
     dwFlags: ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumLanguageGroupLocalesA(
+pub extern "kernel32" fn EnumLanguageGroupLocalesA(
     lpLangGroupLocaleEnumProc: ?LANGGROUPLOCALE_ENUMPROCA,
     LanguageGroup: u32,
     dwFlags: u32,
@@ -9373,7 +9373,7 @@ pub extern "KERNEL32" fn EnumLanguageGroupLocalesA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumLanguageGroupLocalesW(
+pub extern "kernel32" fn EnumLanguageGroupLocalesW(
     lpLangGroupLocaleEnumProc: ?LANGGROUPLOCALE_ENUMPROCW,
     LanguageGroup: u32,
     dwFlags: u32,
@@ -9381,33 +9381,33 @@ pub extern "KERNEL32" fn EnumLanguageGroupLocalesW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumUILanguagesA(
+pub extern "kernel32" fn EnumUILanguagesA(
     lpUILanguageEnumProc: ?UILANGUAGE_ENUMPROCA,
     dwFlags: u32,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumUILanguagesW(
+pub extern "kernel32" fn EnumUILanguagesW(
     lpUILanguageEnumProc: ?UILANGUAGE_ENUMPROCW,
     dwFlags: u32,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumSystemCodePagesA(
+pub extern "kernel32" fn EnumSystemCodePagesA(
     lpCodePageEnumProc: ?CODEPAGE_ENUMPROCA,
     dwFlags: ENUM_SYSTEM_CODE_PAGES_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumSystemCodePagesW(
+pub extern "kernel32" fn EnumSystemCodePagesW(
     lpCodePageEnumProc: ?CODEPAGE_ENUMPROCW,
     dwFlags: ENUM_SYSTEM_CODE_PAGES_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NORMALIZ" fn IdnToAscii(
+pub extern "normaliz" fn IdnToAscii(
     dwFlags: u32,
     lpUnicodeCharStr: [*:0]const u16,
     cchUnicodeChar: i32,
@@ -9416,7 +9416,7 @@ pub extern "NORMALIZ" fn IdnToAscii(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NORMALIZ" fn IdnToUnicode(
+pub extern "normaliz" fn IdnToUnicode(
     dwFlags: u32,
     lpASCIICharStr: [*:0]const u16,
     cchASCIIChar: i32,
@@ -9425,7 +9425,7 @@ pub extern "NORMALIZ" fn IdnToUnicode(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn IdnToNameprepUnicode(
+pub extern "kernel32" fn IdnToNameprepUnicode(
     dwFlags: u32,
     lpUnicodeCharStr: [*:0]const u16,
     cchUnicodeChar: i32,
@@ -9434,7 +9434,7 @@ pub extern "KERNEL32" fn IdnToNameprepUnicode(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn NormalizeString(
+pub extern "kernel32" fn NormalizeString(
     NormForm: NORM_FORM,
     lpSrcString: [*:0]const u16,
     cwSrcLength: i32,
@@ -9443,14 +9443,14 @@ pub extern "KERNEL32" fn NormalizeString(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn IsNormalizedString(
+pub extern "kernel32" fn IsNormalizedString(
     NormForm: NORM_FORM,
     lpString: [*:0]const u16,
     cwLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn VerifyScripts(
+pub extern "kernel32" fn VerifyScripts(
     dwFlags: u32,
     lpLocaleScripts: ?[*:0]const u16,
     cchLocaleScripts: i32,
@@ -9459,7 +9459,7 @@ pub extern "KERNEL32" fn VerifyScripts(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetStringScripts(
+pub extern "kernel32" fn GetStringScripts(
     dwFlags: u32,
     lpString: ?[*:0]const u16,
     cchString: i32,
@@ -9468,7 +9468,7 @@ pub extern "KERNEL32" fn GetStringScripts(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetLocaleInfoEx(
+pub extern "kernel32" fn GetLocaleInfoEx(
     lpLocaleName: ?[*:0]const u16,
     LCType: u32,
     lpLCData: ?[*:0]u16,
@@ -9476,7 +9476,7 @@ pub extern "KERNEL32" fn GetLocaleInfoEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetCalendarInfoEx(
+pub extern "kernel32" fn GetCalendarInfoEx(
     lpLocaleName: ?[*:0]const u16,
     Calendar: u32,
     lpReserved: ?[*:0]const u16,
@@ -9487,7 +9487,7 @@ pub extern "KERNEL32" fn GetCalendarInfoEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumberFormatEx(
+pub extern "kernel32" fn GetNumberFormatEx(
     lpLocaleName: ?[*:0]const u16,
     dwFlags: u32,
     lpValue: ?[*:0]const u16,
@@ -9497,7 +9497,7 @@ pub extern "KERNEL32" fn GetNumberFormatEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetCurrencyFormatEx(
+pub extern "kernel32" fn GetCurrencyFormatEx(
     lpLocaleName: ?[*:0]const u16,
     dwFlags: u32,
     lpValue: ?[*:0]const u16,
@@ -9507,19 +9507,19 @@ pub extern "KERNEL32" fn GetCurrencyFormatEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetUserDefaultLocaleName(
+pub extern "kernel32" fn GetUserDefaultLocaleName(
     lpLocaleName: [*:0]u16,
     cchLocaleName: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetSystemDefaultLocaleName(
+pub extern "kernel32" fn GetSystemDefaultLocaleName(
     lpLocaleName: [*:0]u16,
     cchLocaleName: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn IsNLSDefinedString(
+pub extern "kernel32" fn IsNLSDefinedString(
     Function: u32,
     dwFlags: u32,
     lpVersionInformation: ?*NLSVERSIONINFO,
@@ -9528,21 +9528,21 @@ pub extern "KERNEL32" fn IsNLSDefinedString(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNLSVersionEx(
+pub extern "kernel32" fn GetNLSVersionEx(
     function: u32,
     lpLocaleName: ?[*:0]const u16,
     lpVersionInformation: ?*NLSVERSIONINFOEX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn IsValidNLSVersion(
+pub extern "kernel32" fn IsValidNLSVersion(
     function: u32,
     lpLocaleName: ?[*:0]const u16,
     lpVersionInformation: ?*NLSVERSIONINFOEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FindNLSStringEx(
+pub extern "kernel32" fn FindNLSStringEx(
     lpLocaleName: ?[*:0]const u16,
     dwFindNLSStringFlags: u32,
     lpStringSource: [*:0]const u16,
@@ -9556,7 +9556,7 @@ pub extern "KERNEL32" fn FindNLSStringEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn LCMapStringEx(
+pub extern "kernel32" fn LCMapStringEx(
     lpLocaleName: ?[*:0]const u16,
     dwMapFlags: u32,
     lpSrcStr: [*:0]const u16,
@@ -9569,12 +9569,12 @@ pub extern "KERNEL32" fn LCMapStringEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn IsValidLocaleName(
+pub extern "kernel32" fn IsValidLocaleName(
     lpLocaleName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn EnumCalendarInfoExEx(
+pub extern "kernel32" fn EnumCalendarInfoExEx(
     pCalInfoEnumProcExEx: ?CALINFO_ENUMPROCEXEX,
     lpLocaleName: ?[*:0]const u16,
     Calendar: u32,
@@ -9584,7 +9584,7 @@ pub extern "KERNEL32" fn EnumCalendarInfoExEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn EnumDateFormatsExEx(
+pub extern "kernel32" fn EnumDateFormatsExEx(
     lpDateFmtEnumProcExEx: ?DATEFMT_ENUMPROCEXEX,
     lpLocaleName: ?[*:0]const u16,
     dwFlags: ENUM_DATE_FORMATS_FLAGS,
@@ -9592,7 +9592,7 @@ pub extern "KERNEL32" fn EnumDateFormatsExEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn EnumTimeFormatsEx(
+pub extern "kernel32" fn EnumTimeFormatsEx(
     lpTimeFmtEnumProcEx: ?TIMEFMT_ENUMPROCEX,
     lpLocaleName: ?[*:0]const u16,
     dwFlags: u32,
@@ -9600,7 +9600,7 @@ pub extern "KERNEL32" fn EnumTimeFormatsEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn EnumSystemLocalesEx(
+pub extern "kernel32" fn EnumSystemLocalesEx(
     lpLocaleEnumProcEx: ?LOCALE_ENUMPROCEX,
     dwFlags: u32,
     lParam: LPARAM,
@@ -9608,7 +9608,7 @@ pub extern "KERNEL32" fn EnumSystemLocalesEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn ResolveLocaleName(
+pub extern "kernel32" fn ResolveLocaleName(
     lpNameToResolve: ?[*:0]const u16,
     lpLocaleName: ?[*:0]u16,
     cchLocaleName: i32,
@@ -9649,12 +9649,12 @@ pub extern "elscore" fn MappingFreePropertyBag(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptFreeCache(
+pub extern "usp10" fn ScriptFreeCache(
     psc: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptItemize(
+pub extern "usp10" fn ScriptItemize(
     pwcInChars: [*:0]const u16,
     cInChars: i32,
     cMaxItems: i32,
@@ -9665,7 +9665,7 @@ pub extern "USP10" fn ScriptItemize(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptLayout(
+pub extern "usp10" fn ScriptLayout(
     cRuns: i32,
     pbLevel: [*:0]const u8,
     piVisualToLogical: ?*i32,
@@ -9673,7 +9673,7 @@ pub extern "USP10" fn ScriptLayout(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptShape(
+pub extern "usp10" fn ScriptShape(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     pwcChars: [*:0]const u16,
@@ -9687,7 +9687,7 @@ pub extern "USP10" fn ScriptShape(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptPlace(
+pub extern "usp10" fn ScriptPlace(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     pwGlyphs: [*:0]const u16,
@@ -9700,7 +9700,7 @@ pub extern "USP10" fn ScriptPlace(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptTextOut(
+pub extern "usp10" fn ScriptTextOut(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     x: i32,
@@ -9718,7 +9718,7 @@ pub extern "USP10" fn ScriptTextOut(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptJustify(
+pub extern "usp10" fn ScriptJustify(
     psva: [*]const SCRIPT_VISATTR,
     piAdvance: [*]const i32,
     cGlyphs: i32,
@@ -9728,7 +9728,7 @@ pub extern "USP10" fn ScriptJustify(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptBreak(
+pub extern "usp10" fn ScriptBreak(
     pwcChars: [*:0]const u16,
     cChars: i32,
     psa: ?*const SCRIPT_ANALYSIS,
@@ -9736,7 +9736,7 @@ pub extern "USP10" fn ScriptBreak(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptCPtoX(
+pub extern "usp10" fn ScriptCPtoX(
     iCP: i32,
     fTrailing: BOOL,
     cChars: i32,
@@ -9749,7 +9749,7 @@ pub extern "USP10" fn ScriptCPtoX(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptXtoCP(
+pub extern "usp10" fn ScriptXtoCP(
     iX: i32,
     cChars: i32,
     cGlyphs: i32,
@@ -9762,7 +9762,7 @@ pub extern "USP10" fn ScriptXtoCP(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptGetLogicalWidths(
+pub extern "usp10" fn ScriptGetLogicalWidths(
     psa: ?*const SCRIPT_ANALYSIS,
     cChars: i32,
     cGlyphs: i32,
@@ -9773,7 +9773,7 @@ pub extern "USP10" fn ScriptGetLogicalWidths(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptApplyLogicalWidth(
+pub extern "usp10" fn ScriptApplyLogicalWidth(
     piDx: [*]const i32,
     cChars: i32,
     cGlyphs: i32,
@@ -9786,7 +9786,7 @@ pub extern "USP10" fn ScriptApplyLogicalWidth(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptGetCMap(
+pub extern "usp10" fn ScriptGetCMap(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     pwcInChars: [*:0]const u16,
@@ -9796,7 +9796,7 @@ pub extern "USP10" fn ScriptGetCMap(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptGetGlyphABCWidth(
+pub extern "usp10" fn ScriptGetGlyphABCWidth(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     wGlyph: u16,
@@ -9804,27 +9804,27 @@ pub extern "USP10" fn ScriptGetGlyphABCWidth(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptGetProperties(
+pub extern "usp10" fn ScriptGetProperties(
     ppSp: ?*const ?*?*SCRIPT_PROPERTIES,
     piNumScripts: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptGetFontProperties(
+pub extern "usp10" fn ScriptGetFontProperties(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     sfp: ?*SCRIPT_FONTPROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptCacheGetHeight(
+pub extern "usp10" fn ScriptCacheGetHeight(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     tmHeight: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringAnalyse(
+pub extern "usp10" fn ScriptStringAnalyse(
     hdc: ?HDC,
     pString: ?*const anyopaque,
     cString: i32,
@@ -9841,33 +9841,33 @@ pub extern "USP10" fn ScriptStringAnalyse(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringFree(
+pub extern "usp10" fn ScriptStringFree(
     pssa: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptString_pSize(
+pub extern "usp10" fn ScriptString_pSize(
     ssa: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*SIZE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptString_pcOutChars(
+pub extern "usp10" fn ScriptString_pcOutChars(
     ssa: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptString_pLogAttr(
+pub extern "usp10" fn ScriptString_pLogAttr(
     ssa: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*SCRIPT_LOGATTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringGetOrder(
+pub extern "usp10" fn ScriptStringGetOrder(
     ssa: ?*anyopaque,
     puOrder: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringCPtoX(
+pub extern "usp10" fn ScriptStringCPtoX(
     ssa: ?*anyopaque,
     icp: i32,
     fTrailing: BOOL,
@@ -9875,7 +9875,7 @@ pub extern "USP10" fn ScriptStringCPtoX(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringXtoCP(
+pub extern "usp10" fn ScriptStringXtoCP(
     ssa: ?*anyopaque,
     iX: i32,
     piCh: ?*i32,
@@ -9883,18 +9883,18 @@ pub extern "USP10" fn ScriptStringXtoCP(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringGetLogicalWidths(
+pub extern "usp10" fn ScriptStringGetLogicalWidths(
     ssa: ?*anyopaque,
     piDx: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringValidate(
+pub extern "usp10" fn ScriptStringValidate(
     ssa: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptStringOut(
+pub extern "usp10" fn ScriptStringOut(
     ssa: ?*anyopaque,
     iX: i32,
     iY: i32,
@@ -9906,27 +9906,27 @@ pub extern "USP10" fn ScriptStringOut(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptIsComplex(
+pub extern "usp10" fn ScriptIsComplex(
     pwcInChars: [*:0]const u16,
     cInChars: i32,
     dwFlags: SCRIPT_IS_COMPLEX_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptRecordDigitSubstitution(
+pub extern "usp10" fn ScriptRecordDigitSubstitution(
     Locale: u32,
     psds: ?*SCRIPT_DIGITSUBSTITUTE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USP10" fn ScriptApplyDigitSubstitution(
+pub extern "usp10" fn ScriptApplyDigitSubstitution(
     psds: ?*const SCRIPT_DIGITSUBSTITUTE,
     psc: ?*SCRIPT_CONTROL,
     pss: ?*SCRIPT_STATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptShapeOpenType(
+pub extern "usp10" fn ScriptShapeOpenType(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -9946,7 +9946,7 @@ pub extern "USP10" fn ScriptShapeOpenType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptPlaceOpenType(
+pub extern "usp10" fn ScriptPlaceOpenType(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -9968,7 +9968,7 @@ pub extern "USP10" fn ScriptPlaceOpenType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptItemizeOpenType(
+pub extern "usp10" fn ScriptItemizeOpenType(
     pwcInChars: [*:0]const u16,
     cInChars: i32,
     cMaxItems: i32,
@@ -9980,7 +9980,7 @@ pub extern "USP10" fn ScriptItemizeOpenType(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptGetFontScriptTags(
+pub extern "usp10" fn ScriptGetFontScriptTags(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -9990,7 +9990,7 @@ pub extern "USP10" fn ScriptGetFontScriptTags(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptGetFontLanguageTags(
+pub extern "usp10" fn ScriptGetFontLanguageTags(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -10001,7 +10001,7 @@ pub extern "USP10" fn ScriptGetFontLanguageTags(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptGetFontFeatureTags(
+pub extern "usp10" fn ScriptGetFontFeatureTags(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -10013,7 +10013,7 @@ pub extern "USP10" fn ScriptGetFontFeatureTags(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptGetFontAlternateGlyphs(
+pub extern "usp10" fn ScriptGetFontAlternateGlyphs(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -10027,7 +10027,7 @@ pub extern "USP10" fn ScriptGetFontAlternateGlyphs(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptSubstituteSingleGlyph(
+pub extern "usp10" fn ScriptSubstituteSingleGlyph(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -10040,7 +10040,7 @@ pub extern "USP10" fn ScriptSubstituteSingleGlyph(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USP10" fn ScriptPositionSingleGlyph(
+pub extern "usp10" fn ScriptPositionSingleGlyph(
     hdc: ?HDC,
     psc: ?*?*anyopaque,
     psa: ?*SCRIPT_ANALYSIS,
@@ -16320,7 +16320,7 @@ pub extern "bcp47mrm" fn IsWellFormedTag(
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn FindStringOrdinal(
+pub extern "kernel32" fn FindStringOrdinal(
     dwFindStringOrdinalFlags: u32,
     lpStringSource: [*:0]const u16,
     cchSource: i32,
@@ -16330,79 +16330,79 @@ pub extern "KERNEL32" fn FindStringOrdinal(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpA(
+pub extern "kernel32" fn lstrcmpA(
     lpString1: ?[*:0]const u8,
     lpString2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpW(
+pub extern "kernel32" fn lstrcmpW(
     lpString1: ?[*:0]const u16,
     lpString2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpiA(
+pub extern "kernel32" fn lstrcmpiA(
     lpString1: ?[*:0]const u8,
     lpString2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpiW(
+pub extern "kernel32" fn lstrcmpiW(
     lpString1: ?[*:0]const u16,
     lpString2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpynA(
+pub extern "kernel32" fn lstrcpynA(
     lpString1: [*:0]u8,
     lpString2: ?[*:0]const u8,
     iMaxLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpynW(
+pub extern "kernel32" fn lstrcpynW(
     lpString1: [*:0]u16,
     lpString2: ?[*:0]const u16,
     iMaxLength: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpyA(
+pub extern "kernel32" fn lstrcpyA(
     lpString1: ?PSTR,
     lpString2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpyW(
+pub extern "kernel32" fn lstrcpyW(
     lpString1: ?PWSTR,
     lpString2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcatA(
+pub extern "kernel32" fn lstrcatA(
     lpString1: ?PSTR,
     lpString2: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcatW(
+pub extern "kernel32" fn lstrcatW(
     lpString1: ?PWSTR,
     lpString2: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrlenA(
+pub extern "kernel32" fn lstrlenA(
     lpString: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrlenW(
+pub extern "kernel32" fn lstrlenW(
     lpString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn IsTextUnicode(
+pub extern "advapi32" fn IsTextUnicode(
     // TODO: what to do with BytesParamIndex 1?
     lpv: ?*const anyopaque,
     iSize: i32,

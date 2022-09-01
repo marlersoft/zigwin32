@@ -2133,65 +2133,65 @@ pub const IWdsTransportContentProvider = extern struct {
 // Section: Functions (94)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliClose(
+pub extern "wdsclientapi" fn WdsCliClose(
     Handle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliRegisterTrace(
+pub extern "wdsclientapi" fn WdsCliRegisterTrace(
     pfn: ?PFN_WdsCliTraceFunction,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WDSCLIENTAPI" fn WdsCliFreeStringArray(
+pub extern "wdsclientapi" fn WdsCliFreeStringArray(
     ppwszArray: ?[*]?PWSTR,
     ulCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliFindFirstImage(
+pub extern "wdsclientapi" fn WdsCliFindFirstImage(
     hSession: ?HANDLE,
     phFindHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliFindNextImage(
+pub extern "wdsclientapi" fn WdsCliFindNextImage(
     Handle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetEnumerationFlags(
+pub extern "wdsclientapi" fn WdsCliGetEnumerationFlags(
     Handle: ?HANDLE,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageHandleFromFindHandle(
+pub extern "wdsclientapi" fn WdsCliGetImageHandleFromFindHandle(
     FindHandle: ?HANDLE,
     phImageHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageHandleFromTransferHandle(
+pub extern "wdsclientapi" fn WdsCliGetImageHandleFromTransferHandle(
     hTransfer: ?HANDLE,
     phImageHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliCreateSession(
+pub extern "wdsclientapi" fn WdsCliCreateSession(
     pwszServer: ?PWSTR,
     pCred: ?*WDS_CLI_CRED,
     phSession: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliAuthorizeSession(
+pub extern "wdsclientapi" fn WdsCliAuthorizeSession(
     hSession: ?HANDLE,
     pCred: ?*WDS_CLI_CRED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliInitializeLog(
+pub extern "wdsclientapi" fn WdsCliInitializeLog(
     hSession: ?HANDLE,
     ulClientArchitecture: CPU_ARCHITECTURE,
     pwszClientId: ?PWSTR,
@@ -2199,103 +2199,103 @@ pub extern "WDSCLIENTAPI" fn WdsCliInitializeLog(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliLog(
+pub extern "wdsclientapi" fn WdsCliLog(
     hSession: ?HANDLE,
     ulLogLevel: u32,
     ulMessageCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageName(
+pub extern "wdsclientapi" fn WdsCliGetImageName(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageDescription(
+pub extern "wdsclientapi" fn WdsCliGetImageDescription(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageType(
+pub extern "wdsclientapi" fn WdsCliGetImageType(
     hIfh: ?HANDLE,
     pImageType: ?*WDS_CLI_IMAGE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageFiles(
+pub extern "wdsclientapi" fn WdsCliGetImageFiles(
     hIfh: ?HANDLE,
     pppwszFiles: ?*?*?PWSTR,
     pdwCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageLanguage(
+pub extern "wdsclientapi" fn WdsCliGetImageLanguage(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageLanguages(
+pub extern "wdsclientapi" fn WdsCliGetImageLanguages(
     hIfh: ?HANDLE,
     pppszValues: ?*?*?*i8,
     pdwNumValues: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageVersion(
+pub extern "wdsclientapi" fn WdsCliGetImageVersion(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImagePath(
+pub extern "wdsclientapi" fn WdsCliGetImagePath(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageIndex(
+pub extern "wdsclientapi" fn WdsCliGetImageIndex(
     hIfh: ?HANDLE,
     pdwValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageArchitecture(
+pub extern "wdsclientapi" fn WdsCliGetImageArchitecture(
     hIfh: ?HANDLE,
     pdwValue: ?*CPU_ARCHITECTURE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageLastModifiedTime(
+pub extern "wdsclientapi" fn WdsCliGetImageLastModifiedTime(
     hIfh: ?HANDLE,
     ppSysTimeValue: ?*?*SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageSize(
+pub extern "wdsclientapi" fn WdsCliGetImageSize(
     hIfh: ?HANDLE,
     pullValue: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageHalName(
+pub extern "wdsclientapi" fn WdsCliGetImageHalName(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageGroup(
+pub extern "wdsclientapi" fn WdsCliGetImageGroup(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageNamespace(
+pub extern "wdsclientapi" fn WdsCliGetImageNamespace(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WDSCLIENTAPI" fn WdsCliGetImageParameter(
+pub extern "wdsclientapi" fn WdsCliGetImageParameter(
     hIfh: ?HANDLE,
     ParamType: WDS_CLI_IMAGE_PARAM_TYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -2304,17 +2304,17 @@ pub extern "WDSCLIENTAPI" fn WdsCliGetImageParameter(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliGetTransferSize(
+pub extern "wdsclientapi" fn WdsCliGetTransferSize(
     hIfh: ?HANDLE,
     pullValue: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WDSCLIENTAPI" fn WdsCliSetTransferBufferSize(
+pub extern "wdsclientapi" fn WdsCliSetTransferBufferSize(
     ulSizeInBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliTransferImage(
+pub extern "wdsclientapi" fn WdsCliTransferImage(
     hImage: ?HANDLE,
     pwszLocalPath: ?PWSTR,
     dwFlags: u32,
@@ -2325,7 +2325,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliTransferImage(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliTransferFile(
+pub extern "wdsclientapi" fn WdsCliTransferFile(
     pwszServer: ?[*:0]const u16,
     pwszNamespace: ?[*:0]const u16,
     pwszRemoteFilePath: ?[*:0]const u16,
@@ -2338,17 +2338,17 @@ pub extern "WDSCLIENTAPI" fn WdsCliTransferFile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliCancelTransfer(
+pub extern "wdsclientapi" fn WdsCliCancelTransfer(
     hTransfer: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSCLIENTAPI" fn WdsCliWaitForTransfer(
+pub extern "wdsclientapi" fn WdsCliWaitForTransfer(
     hTransfer: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WDSCLIENTAPI" fn WdsCliObtainDriverPackages(
+pub extern "wdsclientapi" fn WdsCliObtainDriverPackages(
     hImage: ?HANDLE,
     ppwszServerName: ?*?PWSTR,
     pppwszDriverPackages: ?*?*?PWSTR,
@@ -2356,7 +2356,7 @@ pub extern "WDSCLIENTAPI" fn WdsCliObtainDriverPackages(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSCLIENTAPI" fn WdsCliObtainDriverPackagesEx(
+pub extern "wdsclientapi" fn WdsCliObtainDriverPackagesEx(
     hSession: ?HANDLE,
     pwszMachineInfo: ?PWSTR,
     ppwszServerName: ?*?PWSTR,
@@ -2365,13 +2365,13 @@ pub extern "WDSCLIENTAPI" fn WdsCliObtainDriverPackagesEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSCLIENTAPI" fn WdsCliGetDriverQueryXml(
+pub extern "wdsclientapi" fn WdsCliGetDriverQueryXml(
     pwszWinDirPath: ?PWSTR,
     ppwszDriverQuery: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderRegister(
+pub extern "wdspxe" fn PxeProviderRegister(
     pszProviderName: ?[*:0]const u16,
     pszModulePath: ?[*:0]const u16,
     Index: u32,
@@ -2380,39 +2380,39 @@ pub extern "WDSPXE" fn PxeProviderRegister(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderUnRegister(
+pub extern "wdspxe" fn PxeProviderUnRegister(
     pszProviderName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderQueryIndex(
+pub extern "wdspxe" fn PxeProviderQueryIndex(
     pszProviderName: ?[*:0]const u16,
     puIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderEnumFirst(
+pub extern "wdspxe" fn PxeProviderEnumFirst(
     phEnum: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderEnumNext(
+pub extern "wdspxe" fn PxeProviderEnumNext(
     hEnum: ?HANDLE,
     ppProvider: ?*?*PXE_PROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderEnumClose(
+pub extern "wdspxe" fn PxeProviderEnumClose(
     hEnum: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderFreeInfo(
+pub extern "wdspxe" fn PxeProviderFreeInfo(
     pProvider: ?*PXE_PROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeRegisterCallback(
+pub extern "wdspxe" fn PxeRegisterCallback(
     hProvider: ?HANDLE,
     CallbackType: u32,
     pCallbackFunction: ?*anyopaque,
@@ -2420,7 +2420,7 @@ pub extern "WDSPXE" fn PxeRegisterCallback(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeSendReply(
+pub extern "wdspxe" fn PxeSendReply(
     hClientRequest: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pPacket: ?*anyopaque,
@@ -2429,19 +2429,19 @@ pub extern "WDSPXE" fn PxeSendReply(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeAsyncRecvDone(
+pub extern "wdspxe" fn PxeAsyncRecvDone(
     hClientRequest: ?HANDLE,
     Action: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeTrace(
+pub extern "wdspxe" fn PxeTrace(
     hProvider: ?HANDLE,
     Severity: u32,
     pszFormat: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WDSPXE" fn PxeTraceV(
+pub extern "wdspxe" fn PxeTraceV(
     hProvider: ?HANDLE,
     Severity: u32,
     pszFormat: ?[*:0]const u16,
@@ -2449,21 +2449,21 @@ pub extern "WDSPXE" fn PxeTraceV(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxePacketAllocate(
+pub extern "wdspxe" fn PxePacketAllocate(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxePacketFree(
+pub extern "wdspxe" fn PxePacketFree(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
     pPacket: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeProviderSetAttribute(
+pub extern "wdspxe" fn PxeProviderSetAttribute(
     hProvider: ?HANDLE,
     Attribute: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -2472,7 +2472,7 @@ pub extern "WDSPXE" fn PxeProviderSetAttribute(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeDhcpInitialize(
+pub extern "wdspxe" fn PxeDhcpInitialize(
     // TODO: what to do with BytesParamIndex 1?
     pRecvPacket: ?*anyopaque,
     uRecvPacketLen: u32,
@@ -2483,7 +2483,7 @@ pub extern "WDSPXE" fn PxeDhcpInitialize(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6Initialize(
+pub extern "wdspxe" fn PxeDhcpv6Initialize(
     // TODO: what to do with BytesParamIndex 1?
     pRequest: ?*anyopaque,
     cbRequest: u32,
@@ -2494,7 +2494,7 @@ pub extern "WDSPXE" fn PxeDhcpv6Initialize(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeDhcpAppendOption(
+pub extern "wdspxe" fn PxeDhcpAppendOption(
     // TODO: what to do with BytesParamIndex 1?
     pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
@@ -2506,7 +2506,7 @@ pub extern "WDSPXE" fn PxeDhcpAppendOption(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6AppendOption(
+pub extern "wdspxe" fn PxeDhcpv6AppendOption(
     // TODO: what to do with BytesParamIndex 1?
     pReply: ?*anyopaque,
     cbReply: u32,
@@ -2518,7 +2518,7 @@ pub extern "WDSPXE" fn PxeDhcpv6AppendOption(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeDhcpAppendOptionRaw(
+pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
     // TODO: what to do with BytesParamIndex 1?
     pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
@@ -2529,7 +2529,7 @@ pub extern "WDSPXE" fn PxeDhcpAppendOptionRaw(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6AppendOptionRaw(
+pub extern "wdspxe" fn PxeDhcpv6AppendOptionRaw(
     // TODO: what to do with BytesParamIndex 1?
     pReply: ?*anyopaque,
     cbReply: u32,
@@ -2540,7 +2540,7 @@ pub extern "WDSPXE" fn PxeDhcpv6AppendOptionRaw(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeDhcpIsValid(
+pub extern "wdspxe" fn PxeDhcpIsValid(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2549,7 +2549,7 @@ pub extern "WDSPXE" fn PxeDhcpIsValid(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6IsValid(
+pub extern "wdspxe" fn PxeDhcpv6IsValid(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2558,7 +2558,7 @@ pub extern "WDSPXE" fn PxeDhcpv6IsValid(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeDhcpGetOptionValue(
+pub extern "wdspxe" fn PxeDhcpGetOptionValue(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2569,7 +2569,7 @@ pub extern "WDSPXE" fn PxeDhcpGetOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6GetOptionValue(
+pub extern "wdspxe" fn PxeDhcpv6GetOptionValue(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2580,7 +2580,7 @@ pub extern "WDSPXE" fn PxeDhcpv6GetOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeDhcpGetVendorOptionValue(
+pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2591,7 +2591,7 @@ pub extern "WDSPXE" fn PxeDhcpGetVendorOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6GetVendorOptionValue(
+pub extern "wdspxe" fn PxeDhcpv6GetVendorOptionValue(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2603,7 +2603,7 @@ pub extern "WDSPXE" fn PxeDhcpv6GetVendorOptionValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6ParseRelayForw(
+pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
     // TODO: what to do with BytesParamIndex 1?
     pRelayForwPacket: ?*anyopaque,
     uRelayForwPacketLen: u32,
@@ -2615,7 +2615,7 @@ pub extern "WDSPXE" fn PxeDhcpv6ParseRelayForw(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeDhcpv6CreateRelayRepl(
+pub extern "wdspxe" fn PxeDhcpv6CreateRelayRepl(
     pRelayMessages: [*]PXE_DHCPV6_NESTED_RELAY_MESSAGE,
     nRelayMessages: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -2628,7 +2628,7 @@ pub extern "WDSPXE" fn PxeDhcpv6CreateRelayRepl(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSPXE" fn PxeGetServerInfo(
+pub extern "wdspxe" fn PxeGetServerInfo(
     uInfoType: u32,
     // TODO: what to do with BytesParamIndex 2?
     pBuffer: ?*anyopaque,
@@ -2636,7 +2636,7 @@ pub extern "WDSPXE" fn PxeGetServerInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSPXE" fn PxeGetServerInfoEx(
+pub extern "wdspxe" fn PxeGetServerInfoEx(
     uInfoType: u32,
     // TODO: what to do with BytesParamIndex 2?
     pBuffer: ?*anyopaque,
@@ -2645,14 +2645,14 @@ pub extern "WDSPXE" fn PxeGetServerInfoEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSMC" fn WdsTransportServerRegisterCallback(
+pub extern "wdsmc" fn WdsTransportServerRegisterCallback(
     hProvider: ?HANDLE,
     CallbackId: TRANSPORTPROVIDER_CALLBACK_ID,
     pfnCallback: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSMC" fn WdsTransportServerCompleteRead(
+pub extern "wdsmc" fn WdsTransportServerCompleteRead(
     hProvider: ?HANDLE,
     ulBytesRead: u32,
     pvUserData: ?*anyopaque,
@@ -2660,14 +2660,14 @@ pub extern "WDSMC" fn WdsTransportServerCompleteRead(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSMC" fn WdsTransportServerTrace(
+pub extern "wdsmc" fn WdsTransportServerTrace(
     hProvider: ?HANDLE,
     Severity: u32,
     pwszFormat: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSMC" fn WdsTransportServerTraceV(
+pub extern "wdsmc" fn WdsTransportServerTraceV(
     hProvider: ?HANDLE,
     Severity: u32,
     pwszFormat: ?[*:0]const u16,
@@ -2675,91 +2675,91 @@ pub extern "WDSMC" fn WdsTransportServerTraceV(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSMC" fn WdsTransportServerAllocateBuffer(
+pub extern "wdsmc" fn WdsTransportServerAllocateBuffer(
     hProvider: ?HANDLE,
     ulBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
-pub extern "WDSMC" fn WdsTransportServerFreeBuffer(
+pub extern "wdsmc" fn WdsTransportServerFreeBuffer(
     hProvider: ?HANDLE,
     pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientInitialize(
+pub extern "wdstptc" fn WdsTransportClientInitialize(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientInitializeSession(
+pub extern "wdstptc" fn WdsTransportClientInitializeSession(
     pSessionRequest: ?*WDS_TRANSPORTCLIENT_REQUEST,
     pCallerData: ?*anyopaque,
     hSessionKey: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientRegisterCallback(
+pub extern "wdstptc" fn WdsTransportClientRegisterCallback(
     hSessionKey: ?HANDLE,
     CallbackId: TRANSPORTCLIENT_CALLBACK_ID,
     pfnCallback: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientStartSession(
+pub extern "wdstptc" fn WdsTransportClientStartSession(
     hSessionKey: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientCompleteReceive(
+pub extern "wdstptc" fn WdsTransportClientCompleteReceive(
     hSessionKey: ?HANDLE,
     ulSize: u32,
     pullOffset: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientCancelSession(
+pub extern "wdstptc" fn WdsTransportClientCancelSession(
     hSessionKey: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WDSTPTC" fn WdsTransportClientCancelSessionEx(
+pub extern "wdstptc" fn WdsTransportClientCancelSessionEx(
     hSessionKey: ?HANDLE,
     dwErrorCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientWaitForCompletion(
+pub extern "wdstptc" fn WdsTransportClientWaitForCompletion(
     hSessionKey: ?HANDLE,
     uTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientQueryStatus(
+pub extern "wdstptc" fn WdsTransportClientQueryStatus(
     hSessionKey: ?HANDLE,
     puStatus: ?*u32,
     puErrorCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientCloseSession(
+pub extern "wdstptc" fn WdsTransportClientCloseSession(
     hSessionKey: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientAddRefBuffer(
+pub extern "wdstptc" fn WdsTransportClientAddRefBuffer(
     pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientReleaseBuffer(
+pub extern "wdstptc" fn WdsTransportClientReleaseBuffer(
     pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSTPTC" fn WdsTransportClientShutdown(
+pub extern "wdstptc" fn WdsTransportClientShutdown(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSBP" fn WdsBpParseInitialize(
+pub extern "wdsbp" fn WdsBpParseInitialize(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2768,7 +2768,7 @@ pub extern "WDSBP" fn WdsBpParseInitialize(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "WDSBP" fn WdsBpParseInitializev6(
+pub extern "wdsbp" fn WdsBpParseInitializev6(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
     uPacketLen: u32,
@@ -2777,18 +2777,18 @@ pub extern "WDSBP" fn WdsBpParseInitializev6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSBP" fn WdsBpInitialize(
+pub extern "wdsbp" fn WdsBpInitialize(
     bPacketType: u8,
     phHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSBP" fn WdsBpCloseHandle(
+pub extern "wdsbp" fn WdsBpCloseHandle(
     hHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSBP" fn WdsBpQueryOption(
+pub extern "wdsbp" fn WdsBpQueryOption(
     hHandle: ?HANDLE,
     uOption: u32,
     uValueLen: u32,
@@ -2798,7 +2798,7 @@ pub extern "WDSBP" fn WdsBpQueryOption(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSBP" fn WdsBpAddOption(
+pub extern "wdsbp" fn WdsBpAddOption(
     hHandle: ?HANDLE,
     uOption: u32,
     uValueLen: u32,
@@ -2807,7 +2807,7 @@ pub extern "WDSBP" fn WdsBpAddOption(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WDSBP" fn WdsBpGetOptionBuffer(
+pub extern "wdsbp" fn WdsBpGetOptionBuffer(
     hHandle: ?HANDLE,
     uBufferLen: u32,
     // TODO: what to do with BytesParamIndex 1?

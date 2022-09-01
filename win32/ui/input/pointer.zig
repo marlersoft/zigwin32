@@ -200,55 +200,55 @@ pub const INPUT_TRANSFORM = extern struct {
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetUnpredictedMessagePos(
+pub extern "user32" fn GetUnpredictedMessagePos(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn InitializeTouchInjection(
+pub extern "user32" fn InitializeTouchInjection(
     maxCount: u32,
     dwMode: TOUCH_FEEDBACK_MODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn InjectTouchInput(
+pub extern "user32" fn InjectTouchInput(
     count: u32,
     contacts: [*]const POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerType(
+pub extern "user32" fn GetPointerType(
     pointerId: u32,
     pointerType: ?*POINTER_INPUT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerCursorId(
+pub extern "user32" fn GetPointerCursorId(
     pointerId: u32,
     cursorId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerInfo(
+pub extern "user32" fn GetPointerInfo(
     pointerId: u32,
     pointerInfo: ?*POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerInfoHistory(
+pub extern "user32" fn GetPointerInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
     pointerInfo: ?[*]POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerFrameInfo(
+pub extern "user32" fn GetPointerFrameInfo(
     pointerId: u32,
     pointerCount: ?*u32,
     pointerInfo: ?[*]POINTER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerFrameInfoHistory(
+pub extern "user32" fn GetPointerFrameInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
     pointerCount: ?*u32,
@@ -256,27 +256,27 @@ pub extern "USER32" fn GetPointerFrameInfoHistory(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerTouchInfo(
+pub extern "user32" fn GetPointerTouchInfo(
     pointerId: u32,
     touchInfo: ?*POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerTouchInfoHistory(
+pub extern "user32" fn GetPointerTouchInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
     touchInfo: ?[*]POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerFrameTouchInfo(
+pub extern "user32" fn GetPointerFrameTouchInfo(
     pointerId: u32,
     pointerCount: ?*u32,
     touchInfo: ?[*]POINTER_TOUCH_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerFrameTouchInfoHistory(
+pub extern "user32" fn GetPointerFrameTouchInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
     pointerCount: ?*u32,
@@ -284,27 +284,27 @@ pub extern "USER32" fn GetPointerFrameTouchInfoHistory(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerPenInfo(
+pub extern "user32" fn GetPointerPenInfo(
     pointerId: u32,
     penInfo: ?*POINTER_PEN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerPenInfoHistory(
+pub extern "user32" fn GetPointerPenInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
     penInfo: ?[*]POINTER_PEN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerFramePenInfo(
+pub extern "user32" fn GetPointerFramePenInfo(
     pointerId: u32,
     pointerCount: ?*u32,
     penInfo: ?[*]POINTER_PEN_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerFramePenInfoHistory(
+pub extern "user32" fn GetPointerFramePenInfoHistory(
     pointerId: u32,
     entriesCount: ?*u32,
     pointerCount: ?*u32,
@@ -312,68 +312,68 @@ pub extern "USER32" fn GetPointerFramePenInfoHistory(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn SkipPointerFrameMessages(
+pub extern "user32" fn SkipPointerFrameMessages(
     pointerId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
-pub extern "USER32" fn InjectSyntheticPointerInput(
+pub extern "user32" fn InjectSyntheticPointerInput(
     device: ?HSYNTHETICPOINTERDEVICE,
     pointerInfo: [*]const POINTER_TYPE_INFO,
     count: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn EnableMouseInPointer(
+pub extern "user32" fn EnableMouseInPointer(
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn IsMouseInPointerEnabled(
+pub extern "user32" fn IsMouseInPointerEnabled(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "USER32" fn GetPointerInputTransform(
+pub extern "user32" fn GetPointerInputTransform(
     pointerId: u32,
     historyCount: u32,
     inputTransform: [*]INPUT_TRANSFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerDevices(
+pub extern "user32" fn GetPointerDevices(
     deviceCount: ?*u32,
     pointerDevices: ?[*]POINTER_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerDevice(
+pub extern "user32" fn GetPointerDevice(
     device: ?HANDLE,
     pointerDevice: ?*POINTER_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerDeviceProperties(
+pub extern "user32" fn GetPointerDeviceProperties(
     device: ?HANDLE,
     propertyCount: ?*u32,
     pointerProperties: ?[*]POINTER_DEVICE_PROPERTY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerDeviceRects(
+pub extern "user32" fn GetPointerDeviceRects(
     device: ?HANDLE,
     pointerDeviceRect: ?*RECT,
     displayRect: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetPointerDeviceCursors(
+pub extern "user32" fn GetPointerDeviceCursors(
     device: ?HANDLE,
     cursorCount: ?*u32,
     deviceCursors: ?[*]POINTER_DEVICE_CURSOR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetRawPointerDeviceData(
+pub extern "user32" fn GetRawPointerDeviceData(
     pointerId: u32,
     historyCount: u32,
     propertiesCount: u32,

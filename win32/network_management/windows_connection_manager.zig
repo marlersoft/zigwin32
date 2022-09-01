@@ -185,25 +185,25 @@ pub extern "wcmapi" fn WcmFreeMemory(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "OnDemandConnRouteHelper" fn OnDemandGetRoutingHint(
+pub extern "ondemandconnroutehelper" fn OnDemandGetRoutingHint(
     destinationHostName: ?[*:0]const u16,
     interfaceIndex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "OnDemandConnRouteHelper" fn OnDemandRegisterNotification(
+pub extern "ondemandconnroutehelper" fn OnDemandRegisterNotification(
     callback: ?ONDEMAND_NOTIFICATION_CALLBACK,
     callbackContext: ?*anyopaque,
     registrationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "OnDemandConnRouteHelper" fn OnDemandUnRegisterNotification(
+pub extern "ondemandconnroutehelper" fn OnDemandUnRegisterNotification(
     registrationHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "OnDemandConnRouteHelper" fn GetInterfaceContextTableForHostName(
+pub extern "ondemandconnroutehelper" fn GetInterfaceContextTableForHostName(
     HostName: ?[*:0]const u16,
     ProxyName: ?[*:0]const u16,
     Flags: u32,
@@ -214,7 +214,7 @@ pub extern "OnDemandConnRouteHelper" fn GetInterfaceContextTableForHostName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "OnDemandConnRouteHelper" fn FreeInterfaceContextTable(
+pub extern "ondemandconnroutehelper" fn FreeInterfaceContextTable(
     InterfaceContextTable: ?*NET_INTERFACE_CONTEXT_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 

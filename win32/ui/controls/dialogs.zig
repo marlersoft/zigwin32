@@ -1611,100 +1611,100 @@ pub const PAGESETUPDLGW = switch(@import("../../zig.zig").arch) {
 // Section: Functions (21)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn GetOpenFileNameA(
+pub extern "comdlg32" fn GetOpenFileNameA(
     param0: ?*OPENFILENAMEA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn GetOpenFileNameW(
+pub extern "comdlg32" fn GetOpenFileNameW(
     param0: ?*OPENFILENAMEW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn GetSaveFileNameA(
+pub extern "comdlg32" fn GetSaveFileNameA(
     param0: ?*OPENFILENAMEA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn GetSaveFileNameW(
+pub extern "comdlg32" fn GetSaveFileNameW(
     param0: ?*OPENFILENAMEW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn GetFileTitleA(
+pub extern "comdlg32" fn GetFileTitleA(
     param0: ?[*:0]const u8,
     Buf: [*:0]u8,
     cchSize: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn GetFileTitleW(
+pub extern "comdlg32" fn GetFileTitleW(
     param0: ?[*:0]const u16,
     Buf: [*:0]u16,
     cchSize: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
-pub extern "COMDLG32" fn ChooseColorA(
+pub extern "comdlg32" fn ChooseColorA(
     param0: ?*CHOOSECOLORA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "COMDLG32" fn ChooseColorW(
+pub extern "comdlg32" fn ChooseColorW(
     param0: ?*CHOOSECOLORW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn FindTextA(
+pub extern "comdlg32" fn FindTextA(
     param0: ?*FINDREPLACEA,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn FindTextW(
+pub extern "comdlg32" fn FindTextW(
     param0: ?*FINDREPLACEW,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn ReplaceTextA(
+pub extern "comdlg32" fn ReplaceTextA(
     param0: ?*FINDREPLACEA,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn ReplaceTextW(
+pub extern "comdlg32" fn ReplaceTextW(
     param0: ?*FINDREPLACEW,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
-pub extern "COMDLG32" fn ChooseFontA(
+pub extern "comdlg32" fn ChooseFontA(
     param0: ?*CHOOSEFONTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "COMDLG32" fn ChooseFontW(
+pub extern "comdlg32" fn ChooseFontW(
     param0: ?*CHOOSEFONTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "COMDLG32" fn PrintDlgA(
+pub extern "comdlg32" fn PrintDlgA(
     pPD: ?*PRINTDLGA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "COMDLG32" fn PrintDlgW(
+pub extern "comdlg32" fn PrintDlgW(
     pPD: ?*PRINTDLGW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "COMDLG32" fn PrintDlgExA(
+pub extern "comdlg32" fn PrintDlgExA(
     pPD: ?*PRINTDLGEXA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "COMDLG32" fn PrintDlgExW(
+pub extern "comdlg32" fn PrintDlgExW(
     pPD: ?*PRINTDLGEXW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn CommDlgExtendedError(
+pub extern "comdlg32" fn CommDlgExtendedError(
 ) callconv(@import("std").os.windows.WINAPI) COMMON_DLG_ERRORS;
 
-pub extern "COMDLG32" fn PageSetupDlgA(
+pub extern "comdlg32" fn PageSetupDlgA(
     param0: ?*PAGESETUPDLGA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "COMDLG32" fn PageSetupDlgW(
+pub extern "comdlg32" fn PageSetupDlgW(
     param0: ?*PAGESETUPDLGW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

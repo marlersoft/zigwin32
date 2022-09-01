@@ -8004,42 +8004,42 @@ pub const DXAPI_INTERFACE = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub extern "DDRAW" fn DirectDrawEnumerateW(
+pub extern "ddraw" fn DirectDrawEnumerateW(
     lpCallback: ?LPDDENUMCALLBACKW,
     lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DDRAW" fn DirectDrawEnumerateA(
+pub extern "ddraw" fn DirectDrawEnumerateA(
     lpCallback: ?LPDDENUMCALLBACKA,
     lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DDRAW" fn DirectDrawEnumerateExW(
+pub extern "ddraw" fn DirectDrawEnumerateExW(
     lpCallback: ?LPDDENUMCALLBACKEXW,
     lpContext: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DDRAW" fn DirectDrawEnumerateExA(
+pub extern "ddraw" fn DirectDrawEnumerateExA(
     lpCallback: ?LPDDENUMCALLBACKEXA,
     lpContext: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DDRAW" fn DirectDrawCreate(
+pub extern "ddraw" fn DirectDrawCreate(
     lpGUID: ?*Guid,
     lplpDD: ?*?*IDirectDraw,
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DDRAW" fn DirectDrawCreateEx(
+pub extern "ddraw" fn DirectDrawCreateEx(
     lpGuid: ?*Guid,
     lplpDD: ?*?*anyopaque,
     iid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "DDRAW" fn DirectDrawCreateClipper(
+pub extern "ddraw" fn DirectDrawCreateClipper(
     dwFlags: u32,
     lplpDDClipper: ?*?*IDirectDrawClipper,
     pUnkOuter: ?*IUnknown,

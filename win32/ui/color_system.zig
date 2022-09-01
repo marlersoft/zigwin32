@@ -789,13 +789,13 @@ pub const MicrosoftHardwareColorV2 = WCS_DEVICE_CAPABILITIES_TYPE.MicrosoftHardw
 // Section: Functions (121)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetICMMode(
+pub extern "gdi32" fn SetICMMode(
     hdc: ?HDC,
     mode: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn CheckColorsInGamut(
+pub extern "gdi32" fn CheckColorsInGamut(
     hdc: ?HDC,
     lpRGBTriple: [*]RGBTRIPLE,
     // TODO: what to do with BytesParamIndex 3?
@@ -804,12 +804,12 @@ pub extern "GDI32" fn CheckColorsInGamut(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetColorSpace(
+pub extern "gdi32" fn GetColorSpace(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetLogColorSpaceA(
+pub extern "gdi32" fn GetLogColorSpaceA(
     hColorSpace: ?HCOLORSPACE,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*LOGCOLORSPACEA,
@@ -817,7 +817,7 @@ pub extern "GDI32" fn GetLogColorSpaceA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetLogColorSpaceW(
+pub extern "gdi32" fn GetLogColorSpaceW(
     hColorSpace: ?HCOLORSPACE,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*LOGCOLORSPACEW,
@@ -825,87 +825,87 @@ pub extern "GDI32" fn GetLogColorSpaceW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn CreateColorSpaceA(
+pub extern "gdi32" fn CreateColorSpaceA(
     lplcs: ?*LOGCOLORSPACEA,
 ) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn CreateColorSpaceW(
+pub extern "gdi32" fn CreateColorSpaceW(
     lplcs: ?*LOGCOLORSPACEW,
 ) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetColorSpace(
+pub extern "gdi32" fn SetColorSpace(
     hdc: ?HDC,
     hcs: ?HCOLORSPACE,
 ) callconv(@import("std").os.windows.WINAPI) ?HCOLORSPACE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn DeleteColorSpace(
+pub extern "gdi32" fn DeleteColorSpace(
     hcs: ?HCOLORSPACE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetICMProfileA(
+pub extern "gdi32" fn GetICMProfileA(
     hdc: ?HDC,
     pBufSize: ?*u32,
     pszFilename: ?[*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetICMProfileW(
+pub extern "gdi32" fn GetICMProfileW(
     hdc: ?HDC,
     pBufSize: ?*u32,
     pszFilename: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetICMProfileA(
+pub extern "gdi32" fn SetICMProfileA(
     hdc: ?HDC,
     lpFileName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetICMProfileW(
+pub extern "gdi32" fn SetICMProfileW(
     hdc: ?HDC,
     lpFileName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetDeviceGammaRamp(
+pub extern "gdi32" fn GetDeviceGammaRamp(
     hdc: ?HDC,
     lpRamp: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetDeviceGammaRamp(
+pub extern "gdi32" fn SetDeviceGammaRamp(
     hdc: ?HDC,
     lpRamp: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn ColorMatchToTarget(
+pub extern "gdi32" fn ColorMatchToTarget(
     hdc: ?HDC,
     hdcTarget: ?HDC,
     action: COLOR_MATCH_TO_TARGET_ACTION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EnumICMProfilesA(
+pub extern "gdi32" fn EnumICMProfilesA(
     hdc: ?HDC,
     proc: ?ICMENUMPROCA,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EnumICMProfilesW(
+pub extern "gdi32" fn EnumICMProfilesW(
     hdc: ?HDC,
     proc: ?ICMENUMPROCW,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn UpdateICMRegKeyA(
+pub extern "gdi32" fn UpdateICMRegKeyA(
     reserved: u32,
     lpszCMID: ?PSTR,
     lpszFileName: ?PSTR,
@@ -913,7 +913,7 @@ pub extern "GDI32" fn UpdateICMRegKeyA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn UpdateICMRegKeyW(
+pub extern "gdi32" fn UpdateICMRegKeyW(
     reserved: u32,
     lpszCMID: ?PWSTR,
     lpszFileName: ?PWSTR,
@@ -921,7 +921,7 @@ pub extern "GDI32" fn UpdateICMRegKeyW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn ColorCorrectPalette(
+pub extern "gdi32" fn ColorCorrectPalette(
     hdc: ?HDC,
     hPal: ?HPALETTE,
     deFirst: u32,
@@ -1288,11 +1288,11 @@ pub extern "mscms" fn DisassociateColorProfileFromDeviceW(
     pDeviceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICMUI" fn SetupColorMatchingW(
+pub extern "icmui" fn SetupColorMatchingW(
     pcms: ?*COLORMATCHSETUPW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICMUI" fn SetupColorMatchingA(
+pub extern "icmui" fn SetupColorMatchingA(
     pcms: ?*COLORMATCHSETUPA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1400,7 +1400,7 @@ pub extern "mscms" fn WcsCheckColors(
     paResult: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMCheckColors(
+pub extern "icm32" fn CMCheckColors(
     hcmTransform: isize,
     lpaInputColors: [*]COLOR,
     nColors: u32,
@@ -1408,7 +1408,7 @@ pub extern "ICM32" fn CMCheckColors(
     lpaResult: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMCheckRGBs(
+pub extern "icm32" fn CMCheckRGBs(
     hcmTransform: isize,
     lpSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,
@@ -1420,21 +1420,21 @@ pub extern "ICM32" fn CMCheckRGBs(
     ulCallbackData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMConvertColorNameToIndex(
+pub extern "icm32" fn CMConvertColorNameToIndex(
     hProfile: isize,
     paColorName: [*]?*i8,
     paIndex: [*]u32,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMConvertIndexToColorName(
+pub extern "icm32" fn CMConvertIndexToColorName(
     hProfile: isize,
     paIndex: [*]u32,
     paColorName: [*]?*i8,
     dwCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMCreateDeviceLinkProfile(
+pub extern "icm32" fn CMCreateDeviceLinkProfile(
     pahProfiles: [*]isize,
     nProfiles: u32,
     padwIntents: [*]u32,
@@ -1443,7 +1443,7 @@ pub extern "ICM32" fn CMCreateDeviceLinkProfile(
     lpProfileData: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMCreateMultiProfileTransform(
+pub extern "icm32" fn CMCreateMultiProfileTransform(
     pahProfiles: [*]isize,
     nProfiles: u32,
     padwIntents: [*]u32,
@@ -1451,31 +1451,31 @@ pub extern "ICM32" fn CMCreateMultiProfileTransform(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub extern "ICM32" fn CMCreateProfileW(
+pub extern "icm32" fn CMCreateProfileW(
     lpColorSpace: ?*LOGCOLORSPACEW,
     lpProfileData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMCreateTransform(
+pub extern "icm32" fn CMCreateTransform(
     lpColorSpace: ?*LOGCOLORSPACEA,
     lpDevCharacter: ?*anyopaque,
     lpTargetDevCharacter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub extern "ICM32" fn CMCreateTransformW(
+pub extern "icm32" fn CMCreateTransformW(
     lpColorSpace: ?*LOGCOLORSPACEW,
     lpDevCharacter: ?*anyopaque,
     lpTargetDevCharacter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub extern "ICM32" fn CMCreateTransformExt(
+pub extern "icm32" fn CMCreateTransformExt(
     lpColorSpace: ?*LOGCOLORSPACEA,
     lpDevCharacter: ?*anyopaque,
     lpTargetDevCharacter: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub extern "ICM32" fn CMCheckColorsInGamut(
+pub extern "icm32" fn CMCheckColorsInGamut(
     hcmTransform: isize,
     lpaRGBTriple: [*]RGBTRIPLE,
     // TODO: what to do with BytesParamIndex 3?
@@ -1483,19 +1483,19 @@ pub extern "ICM32" fn CMCheckColorsInGamut(
     nCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMCreateProfile(
+pub extern "icm32" fn CMCreateProfile(
     lpColorSpace: ?*LOGCOLORSPACEA,
     lpProfileData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMTranslateRGB(
+pub extern "icm32" fn CMTranslateRGB(
     hcmTransform: isize,
     ColorRef: u32,
     lpColorRef: ?*u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMTranslateRGBs(
+pub extern "icm32" fn CMTranslateRGBs(
     hcmTransform: isize,
     lpSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,
@@ -1507,32 +1507,32 @@ pub extern "ICM32" fn CMTranslateRGBs(
     dwTranslateDirection: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMCreateTransformExtW(
+pub extern "icm32" fn CMCreateTransformExtW(
     lpColorSpace: ?*LOGCOLORSPACEW,
     lpDevCharacter: ?*anyopaque,
     lpTargetDevCharacter: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub extern "ICM32" fn CMDeleteTransform(
+pub extern "icm32" fn CMDeleteTransform(
     hcmTransform: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMGetInfo(
+pub extern "icm32" fn CMGetInfo(
     dwInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ICM32" fn CMGetNamedProfileInfo(
+pub extern "icm32" fn CMGetNamedProfileInfo(
     hProfile: isize,
     pNamedProfileInfo: ?*NAMED_PROFILE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMIsProfileValid(
+pub extern "icm32" fn CMIsProfileValid(
     hProfile: isize,
     lpbValid: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMTranslateColors(
+pub extern "icm32" fn CMTranslateColors(
     hcmTransform: isize,
     lpaInputColors: [*]COLOR,
     nColors: u32,
@@ -1541,7 +1541,7 @@ pub extern "ICM32" fn CMTranslateColors(
     ctOutput: COLORTYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ICM32" fn CMTranslateRGBsExt(
+pub extern "icm32" fn CMTranslateRGBsExt(
     hcmTransform: isize,
     lpSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,

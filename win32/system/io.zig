@@ -37,7 +37,7 @@ pub const LPOVERLAPPED_COMPLETION_ROUTINE = fn(
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateIoCompletionPort(
+pub extern "kernel32" fn CreateIoCompletionPort(
     FileHandle: ?HANDLE,
     ExistingCompletionPort: ?HANDLE,
     CompletionKey: usize,
@@ -45,7 +45,7 @@ pub extern "KERNEL32" fn CreateIoCompletionPort(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetQueuedCompletionStatus(
+pub extern "kernel32" fn GetQueuedCompletionStatus(
     CompletionPort: ?HANDLE,
     lpNumberOfBytesTransferred: ?*u32,
     lpCompletionKey: ?*usize,
@@ -54,7 +54,7 @@ pub extern "KERNEL32" fn GetQueuedCompletionStatus(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetQueuedCompletionStatusEx(
+pub extern "kernel32" fn GetQueuedCompletionStatusEx(
     CompletionPort: ?HANDLE,
     lpCompletionPortEntries: [*]OVERLAPPED_ENTRY,
     ulCount: u32,
@@ -64,7 +64,7 @@ pub extern "KERNEL32" fn GetQueuedCompletionStatusEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn PostQueuedCompletionStatus(
+pub extern "kernel32" fn PostQueuedCompletionStatus(
     CompletionPort: ?HANDLE,
     dwNumberOfBytesTransferred: u32,
     dwCompletionKey: usize,
@@ -72,7 +72,7 @@ pub extern "KERNEL32" fn PostQueuedCompletionStatus(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeviceIoControl(
+pub extern "kernel32" fn DeviceIoControl(
     hDevice: ?HANDLE,
     dwIoControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -86,7 +86,7 @@ pub extern "KERNEL32" fn DeviceIoControl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetOverlappedResult(
+pub extern "kernel32" fn GetOverlappedResult(
     hFile: ?HANDLE,
     lpOverlapped: ?*OVERLAPPED,
     lpNumberOfBytesTransferred: ?*u32,
@@ -94,18 +94,18 @@ pub extern "KERNEL32" fn GetOverlappedResult(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CancelIoEx(
+pub extern "kernel32" fn CancelIoEx(
     hFile: ?HANDLE,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CancelIo(
+pub extern "kernel32" fn CancelIo(
     hFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetOverlappedResultEx(
+pub extern "kernel32" fn GetOverlappedResultEx(
     hFile: ?HANDLE,
     lpOverlapped: ?*OVERLAPPED,
     lpNumberOfBytesTransferred: ?*u32,
@@ -114,12 +114,12 @@ pub extern "KERNEL32" fn GetOverlappedResultEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CancelSynchronousIo(
+pub extern "kernel32" fn CancelSynchronousIo(
     hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn BindIoCompletionCallback(
+pub extern "kernel32" fn BindIoCompletionCallback(
     FileHandle: ?HANDLE,
     Function: ?LPOVERLAPPED_COMPLETION_ROUTINE,
     Flags: u32,

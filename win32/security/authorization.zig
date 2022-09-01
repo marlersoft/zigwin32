@@ -4860,7 +4860,7 @@ pub const AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE = isize;
 // Section: Functions (90)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzAccessCheck(
+pub extern "authz" fn AuthzAccessCheck(
     Flags: AUTHZ_ACCESS_CHECK_FLAGS,
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
@@ -4873,7 +4873,7 @@ pub extern "AUTHZ" fn AuthzAccessCheck(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzCachedAccessCheck(
+pub extern "authz" fn AuthzCachedAccessCheck(
     Flags: u32,
     hAccessCheckResults: AUTHZ_ACCESS_CHECK_RESULTS_HANDLE,
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
@@ -4882,7 +4882,7 @@ pub extern "AUTHZ" fn AuthzCachedAccessCheck(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzOpenObjectAudit(
+pub extern "authz" fn AuthzOpenObjectAudit(
     Flags: u32,
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
@@ -4894,12 +4894,12 @@ pub extern "AUTHZ" fn AuthzOpenObjectAudit(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzFreeHandle(
+pub extern "authz" fn AuthzFreeHandle(
     hAccessCheckResults: AUTHZ_ACCESS_CHECK_RESULTS_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzInitializeResourceManager(
+pub extern "authz" fn AuthzInitializeResourceManager(
     Flags: u32,
     pfnDynamicAccessCheck: ?PFN_AUTHZ_DYNAMIC_ACCESS_CHECK,
     pfnComputeDynamicGroups: ?PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS,
@@ -4913,18 +4913,18 @@ pub extern "AUTHZ" fn AuthzInitializeResourceManager(
 pub fn AuthzInitializeResourceManagerEx() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzInitializeRemoteResourceManager(
+pub extern "authz" fn AuthzInitializeRemoteResourceManager(
     pRpcInitInfo: ?*AUTHZ_RPC_INIT_INFO_CLIENT,
     phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzFreeResourceManager(
+pub extern "authz" fn AuthzFreeResourceManager(
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzInitializeContextFromToken(
+pub extern "authz" fn AuthzInitializeContextFromToken(
     Flags: u32,
     TokenHandle: ?HANDLE,
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
@@ -4935,7 +4935,7 @@ pub extern "AUTHZ" fn AuthzInitializeContextFromToken(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzInitializeContextFromSid(
+pub extern "authz" fn AuthzInitializeContextFromSid(
     Flags: u32,
     UserSid: ?PSID,
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
@@ -4946,7 +4946,7 @@ pub extern "AUTHZ" fn AuthzInitializeContextFromSid(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzInitializeContextFromAuthzContext(
+pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
     Flags: u32,
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pExpirationTime: ?*LARGE_INTEGER,
@@ -4956,14 +4956,14 @@ pub extern "AUTHZ" fn AuthzInitializeContextFromAuthzContext(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzInitializeCompoundContext(
+pub extern "authz" fn AuthzInitializeCompoundContext(
     UserContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     DeviceContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     phCompoundContext: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzAddSidsToContext(
+pub extern "authz" fn AuthzAddSidsToContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     Sids: ?*SID_AND_ATTRIBUTES,
     SidCount: u32,
@@ -4973,14 +4973,14 @@ pub extern "AUTHZ" fn AuthzAddSidsToContext(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "AUTHZ" fn AuthzModifySecurityAttributes(
+pub extern "authz" fn AuthzModifySecurityAttributes(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
     pAttributes: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzModifyClaims(
+pub extern "authz" fn AuthzModifyClaims(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     ClaimClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     pClaimOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
@@ -4988,7 +4988,7 @@ pub extern "AUTHZ" fn AuthzModifyClaims(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzModifySids(
+pub extern "authz" fn AuthzModifySids(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     SidClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     pSidOperations: ?*AUTHZ_SID_OPERATION,
@@ -4996,7 +4996,7 @@ pub extern "AUTHZ" fn AuthzModifySids(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzSetAppContainerInformation(
+pub extern "authz" fn AuthzSetAppContainerInformation(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pAppContainerSid: ?PSID,
     CapabilityCount: u32,
@@ -5004,7 +5004,7 @@ pub extern "AUTHZ" fn AuthzSetAppContainerInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzGetInformationFromContext(
+pub extern "authz" fn AuthzGetInformationFromContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     InfoClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     BufferSize: u32,
@@ -5013,12 +5013,12 @@ pub extern "AUTHZ" fn AuthzGetInformationFromContext(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzFreeContext(
+pub extern "authz" fn AuthzFreeContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzInitializeObjectAccessAuditEvent(
+pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
     Flags: AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS,
     hAuditEventType: AUTHZ_AUDIT_EVENT_TYPE_HANDLE,
     szOperationType: ?PWSTR,
@@ -5030,7 +5030,7 @@ pub extern "AUTHZ" fn AuthzInitializeObjectAccessAuditEvent(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzInitializeObjectAccessAuditEvent2(
+pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
     Flags: u32,
     hAuditEventType: AUTHZ_AUDIT_EVENT_TYPE_HANDLE,
     szOperationType: ?PWSTR,
@@ -5043,11 +5043,11 @@ pub extern "AUTHZ" fn AuthzInitializeObjectAccessAuditEvent2(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "AUTHZ" fn AuthzFreeAuditEvent(
+pub extern "authz" fn AuthzFreeAuditEvent(
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "AUTHZ" fn AuthzEvaluateSacl(
+pub extern "authz" fn AuthzEvaluateSacl(
     AuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
     Sacl: ?*ACL,
@@ -5057,19 +5057,19 @@ pub extern "AUTHZ" fn AuthzEvaluateSacl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzInstallSecurityEventSource(
+pub extern "authz" fn AuthzInstallSecurityEventSource(
     dwFlags: u32,
     pRegistration: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzUninstallSecurityEventSource(
+pub extern "authz" fn AuthzUninstallSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzEnumerateSecurityEventSources(
+pub extern "authz" fn AuthzEnumerateSecurityEventSources(
     dwFlags: u32,
     Buffer: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
     pdwCount: ?*u32,
@@ -5077,20 +5077,20 @@ pub extern "AUTHZ" fn AuthzEnumerateSecurityEventSources(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzRegisterSecurityEventSource(
+pub extern "authz" fn AuthzRegisterSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
     phEventProvider: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzUnregisterSecurityEventSource(
+pub extern "authz" fn AuthzUnregisterSecurityEventSource(
     dwFlags: u32,
     phEventProvider: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzReportSecurityEvent(
+pub extern "authz" fn AuthzReportSecurityEvent(
     dwFlags: u32,
     hEventProvider: AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE,
     dwAuditId: u32,
@@ -5099,7 +5099,7 @@ pub extern "AUTHZ" fn AuthzReportSecurityEvent(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
-pub extern "AUTHZ" fn AuthzReportSecurityEventFromParams(
+pub extern "authz" fn AuthzReportSecurityEventFromParams(
     dwFlags: u32,
     hEventProvider: AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE,
     dwAuditId: u32,
@@ -5108,23 +5108,23 @@ pub extern "AUTHZ" fn AuthzReportSecurityEventFromParams(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzRegisterCapChangeNotification(
+pub extern "authz" fn AuthzRegisterCapChangeNotification(
     phCapChangeSubscription: ?*?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
     pfnCapChangeCallback: ?LPTHREAD_START_ROUTINE,
     pCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzUnregisterCapChangeNotification(
+pub extern "authz" fn AuthzUnregisterCapChangeNotification(
     hCapChangeSubscription: ?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "AUTHZ" fn AuthzFreeCentralAccessPolicyCache(
+pub extern "authz" fn AuthzFreeCentralAccessPolicyCache(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetEntriesInAclA(
+pub extern "advapi32" fn SetEntriesInAclA(
     cCountOfExplicitEntries: u32,
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_A,
     OldAcl: ?*ACL,
@@ -5132,7 +5132,7 @@ pub extern "ADVAPI32" fn SetEntriesInAclA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetEntriesInAclW(
+pub extern "advapi32" fn SetEntriesInAclW(
     cCountOfExplicitEntries: u32,
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_W,
     OldAcl: ?*ACL,
@@ -5140,35 +5140,35 @@ pub extern "ADVAPI32" fn SetEntriesInAclW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetExplicitEntriesFromAclA(
+pub extern "advapi32" fn GetExplicitEntriesFromAclA(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_A,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetExplicitEntriesFromAclW(
+pub extern "advapi32" fn GetExplicitEntriesFromAclW(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_W,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetEffectiveRightsFromAclA(
+pub extern "advapi32" fn GetEffectiveRightsFromAclA(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_A,
     pAccessRights: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetEffectiveRightsFromAclW(
+pub extern "advapi32" fn GetEffectiveRightsFromAclW(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_W,
     pAccessRights: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetAuditedPermissionsFromAclA(
+pub extern "advapi32" fn GetAuditedPermissionsFromAclA(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_A,
     pSuccessfulAuditedRights: ?*u32,
@@ -5176,7 +5176,7 @@ pub extern "ADVAPI32" fn GetAuditedPermissionsFromAclA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetAuditedPermissionsFromAclW(
+pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_W,
     pSuccessfulAuditedRights: ?*u32,
@@ -5184,7 +5184,7 @@ pub extern "ADVAPI32" fn GetAuditedPermissionsFromAclW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetNamedSecurityInfoA(
+pub extern "advapi32" fn GetNamedSecurityInfoA(
     pObjectName: ?[*:0]const u8,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: OBJECT_SECURITY_INFORMATION,
@@ -5196,7 +5196,7 @@ pub extern "ADVAPI32" fn GetNamedSecurityInfoA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetNamedSecurityInfoW(
+pub extern "advapi32" fn GetNamedSecurityInfoW(
     pObjectName: ?[*:0]const u16,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: OBJECT_SECURITY_INFORMATION,
@@ -5208,7 +5208,7 @@ pub extern "ADVAPI32" fn GetNamedSecurityInfoW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityInfo(
+pub extern "advapi32" fn GetSecurityInfo(
     handle: ?HANDLE,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5220,7 +5220,7 @@ pub extern "ADVAPI32" fn GetSecurityInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetNamedSecurityInfoA(
+pub extern "advapi32" fn SetNamedSecurityInfoA(
     pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: OBJECT_SECURITY_INFORMATION,
@@ -5231,7 +5231,7 @@ pub extern "ADVAPI32" fn SetNamedSecurityInfoA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetNamedSecurityInfoW(
+pub extern "advapi32" fn SetNamedSecurityInfoW(
     pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: OBJECT_SECURITY_INFORMATION,
@@ -5242,7 +5242,7 @@ pub extern "ADVAPI32" fn SetNamedSecurityInfoW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetSecurityInfo(
+pub extern "advapi32" fn SetSecurityInfo(
     handle: ?HANDLE,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5253,7 +5253,7 @@ pub extern "ADVAPI32" fn SetSecurityInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetInheritanceSourceA(
+pub extern "advapi32" fn GetInheritanceSourceA(
     pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5267,7 +5267,7 @@ pub extern "ADVAPI32" fn GetInheritanceSourceA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetInheritanceSourceW(
+pub extern "advapi32" fn GetInheritanceSourceW(
     pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5281,14 +5281,14 @@ pub extern "ADVAPI32" fn GetInheritanceSourceW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn FreeInheritedFromArray(
+pub extern "advapi32" fn FreeInheritedFromArray(
     pInheritArray: [*]INHERITED_FROMW,
     AceCnt: u16,
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoA(
+pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
     pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5303,7 +5303,7 @@ pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoW(
+pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
     pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5318,7 +5318,7 @@ pub extern "ADVAPI32" fn TreeResetNamedSecurityInfoW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoA(
+pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
     pObjectName: ?PSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5333,7 +5333,7 @@ pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoW(
+pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
     pObjectName: ?PWSTR,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
@@ -5348,7 +5348,7 @@ pub extern "ADVAPI32" fn TreeSetNamedSecurityInfoW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildSecurityDescriptorA(
+pub extern "advapi32" fn BuildSecurityDescriptorA(
     pOwner: ?*TRUSTEE_A,
     pGroup: ?*TRUSTEE_A,
     cCountOfAccessEntries: u32,
@@ -5361,7 +5361,7 @@ pub extern "ADVAPI32" fn BuildSecurityDescriptorA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildSecurityDescriptorW(
+pub extern "advapi32" fn BuildSecurityDescriptorW(
     pOwner: ?*TRUSTEE_W,
     pGroup: ?*TRUSTEE_W,
     cCountOfAccessEntries: u32,
@@ -5374,7 +5374,7 @@ pub extern "ADVAPI32" fn BuildSecurityDescriptorW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupSecurityDescriptorPartsA(
+pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
     ppOwner: ?*?*TRUSTEE_A,
     ppGroup: ?*?*TRUSTEE_A,
     pcCountOfAccessEntries: ?*u32,
@@ -5385,7 +5385,7 @@ pub extern "ADVAPI32" fn LookupSecurityDescriptorPartsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupSecurityDescriptorPartsW(
+pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
     ppOwner: ?*?*TRUSTEE_W,
     ppGroup: ?*?*TRUSTEE_W,
     pcCountOfAccessEntries: ?*u32,
@@ -5396,7 +5396,7 @@ pub extern "ADVAPI32" fn LookupSecurityDescriptorPartsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildExplicitAccessWithNameA(
+pub extern "advapi32" fn BuildExplicitAccessWithNameA(
     pExplicitAccess: ?*EXPLICIT_ACCESS_A,
     pTrusteeName: ?PSTR,
     AccessPermissions: u32,
@@ -5405,7 +5405,7 @@ pub extern "ADVAPI32" fn BuildExplicitAccessWithNameA(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildExplicitAccessWithNameW(
+pub extern "advapi32" fn BuildExplicitAccessWithNameW(
     pExplicitAccess: ?*EXPLICIT_ACCESS_W,
     pTrusteeName: ?PWSTR,
     AccessPermissions: u32,
@@ -5413,7 +5413,7 @@ pub extern "ADVAPI32" fn BuildExplicitAccessWithNameW(
     Inheritance: ACE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameA(
+pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
     pExplicitAccess: ?*EXPLICIT_ACCESS_A,
     pTrusteeName: ?PSTR,
     pTrustee: ?*TRUSTEE_A,
@@ -5422,7 +5422,7 @@ pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameA(
     Inheritance: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameW(
+pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
     pExplicitAccess: ?*EXPLICIT_ACCESS_W,
     pTrusteeName: ?PWSTR,
     pTrustee: ?*TRUSTEE_W,
@@ -5432,41 +5432,41 @@ pub extern "ADVAPI32" fn BuildImpersonateExplicitAccessWithNameW(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildTrusteeWithNameA(
+pub extern "advapi32" fn BuildTrusteeWithNameA(
     pTrustee: ?*TRUSTEE_A,
     pName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildTrusteeWithNameW(
+pub extern "advapi32" fn BuildTrusteeWithNameW(
     pTrustee: ?*TRUSTEE_W,
     pName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "ADVAPI32" fn BuildImpersonateTrusteeA(
+pub extern "advapi32" fn BuildImpersonateTrusteeA(
     pTrustee: ?*TRUSTEE_A,
     pImpersonateTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "ADVAPI32" fn BuildImpersonateTrusteeW(
+pub extern "advapi32" fn BuildImpersonateTrusteeW(
     pTrustee: ?*TRUSTEE_W,
     pImpersonateTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildTrusteeWithSidA(
+pub extern "advapi32" fn BuildTrusteeWithSidA(
     pTrustee: ?*TRUSTEE_A,
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildTrusteeWithSidW(
+pub extern "advapi32" fn BuildTrusteeWithSidW(
     pTrustee: ?*TRUSTEE_W,
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildTrusteeWithObjectsAndSidA(
+pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidA(
     pTrustee: ?*TRUSTEE_A,
     pObjSid: ?*OBJECTS_AND_SID,
     pObjectGuid: ?*Guid,
@@ -5475,7 +5475,7 @@ pub extern "ADVAPI32" fn BuildTrusteeWithObjectsAndSidA(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn BuildTrusteeWithObjectsAndSidW(
+pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidW(
     pTrustee: ?*TRUSTEE_W,
     pObjSid: ?*OBJECTS_AND_SID,
     pObjectGuid: ?*Guid,
@@ -5492,77 +5492,77 @@ pub fn BuildTrusteeWithObjectsAndNameA() void { @panic("this function is not wor
 pub fn BuildTrusteeWithObjectsAndNameW() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetTrusteeNameA(
+pub extern "advapi32" fn GetTrusteeNameA(
     pTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetTrusteeNameW(
+pub extern "advapi32" fn GetTrusteeNameW(
     pTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetTrusteeTypeA(
+pub extern "advapi32" fn GetTrusteeTypeA(
     pTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) TRUSTEE_TYPE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetTrusteeTypeW(
+pub extern "advapi32" fn GetTrusteeTypeW(
     pTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) TRUSTEE_TYPE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetTrusteeFormA(
+pub extern "advapi32" fn GetTrusteeFormA(
     pTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetTrusteeFormW(
+pub extern "advapi32" fn GetTrusteeFormW(
     pTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
 
-pub extern "ADVAPI32" fn GetMultipleTrusteeOperationA(
+pub extern "advapi32" fn GetMultipleTrusteeOperationA(
     pTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) MULTIPLE_TRUSTEE_OPERATION;
 
-pub extern "ADVAPI32" fn GetMultipleTrusteeOperationW(
+pub extern "advapi32" fn GetMultipleTrusteeOperationW(
     pTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) MULTIPLE_TRUSTEE_OPERATION;
 
-pub extern "ADVAPI32" fn GetMultipleTrusteeA(
+pub extern "advapi32" fn GetMultipleTrusteeA(
     pTrustee: ?*TRUSTEE_A,
 ) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_A;
 
-pub extern "ADVAPI32" fn GetMultipleTrusteeW(
+pub extern "advapi32" fn GetMultipleTrusteeW(
     pTrustee: ?*TRUSTEE_W,
 ) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_W;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertSidToStringSidA(
+pub extern "advapi32" fn ConvertSidToStringSidA(
     Sid: ?PSID,
     StringSid: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertSidToStringSidW(
+pub extern "advapi32" fn ConvertSidToStringSidW(
     Sid: ?PSID,
     StringSid: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertStringSidToSidA(
+pub extern "advapi32" fn ConvertStringSidToSidA(
     StringSid: ?[*:0]const u8,
     Sid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertStringSidToSidW(
+pub extern "advapi32" fn ConvertStringSidToSidW(
     StringSid: ?[*:0]const u16,
     Sid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
+pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
     StringSecurityDescriptor: ?[*:0]const u8,
     StringSDRevision: u32,
     SecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -5570,7 +5570,7 @@ pub extern "ADVAPI32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
+pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
     StringSecurityDescriptor: ?[*:0]const u16,
     StringSDRevision: u32,
     SecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -5578,7 +5578,7 @@ pub extern "ADVAPI32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
+pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,
@@ -5587,7 +5587,7 @@ pub extern "ADVAPI32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
+pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,

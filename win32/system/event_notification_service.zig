@@ -276,19 +276,19 @@ pub const ISensLogon2 = extern struct {
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SensApi" fn IsDestinationReachableA(
+pub extern "sensapi" fn IsDestinationReachableA(
     lpszDestination: ?[*:0]const u8,
     lpQOCInfo: ?*QOCINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SensApi" fn IsDestinationReachableW(
+pub extern "sensapi" fn IsDestinationReachableW(
     lpszDestination: ?[*:0]const u16,
     lpQOCInfo: ?*QOCINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SensApi" fn IsNetworkAlive(
+pub extern "sensapi" fn IsNetworkAlive(
     lpdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

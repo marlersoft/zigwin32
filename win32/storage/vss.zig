@@ -2684,7 +2684,7 @@ pub const IVssFileShareSnapshotProvider = extern struct {
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VSSAPI" fn CreateVssExpressWriterInternal(
+pub extern "vssapi" fn CreateVssExpressWriterInternal(
     ppWriter: ?*?*IVssExpressWriter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

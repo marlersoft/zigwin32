@@ -5247,75 +5247,75 @@ pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
 // Section: Functions (158)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRegisterMessageFilter(
+pub extern "ole32" fn CoRegisterMessageFilter(
     lpMessageFilter: ?*IMessageFilter,
     lplpMessageFilter: ?*?*IMessageFilter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "WINMM" fn sndPlaySoundA(
+pub extern "winmm" fn sndPlaySoundA(
     pszSound: ?[*:0]const u8,
     fuSound: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINMM" fn sndPlaySoundW(
+pub extern "winmm" fn sndPlaySoundW(
     pszSound: ?[*:0]const u16,
     fuSound: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINMM" fn PlaySoundA(
+pub extern "winmm" fn PlaySoundA(
     pszSound: ?[*:0]const u8,
     hmod: ?HINSTANCE,
     fdwSound: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINMM" fn PlaySoundW(
+pub extern "winmm" fn PlaySoundW(
     pszSound: ?[*:0]const u16,
     hmod: ?HINSTANCE,
     fdwSound: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutGetNumDevs(
+pub extern "winmm" fn waveOutGetNumDevs(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveOutGetDevCapsA(
+pub extern "winmm" fn waveOutGetDevCapsA(
     uDeviceID: usize,
     pwoc: ?*WAVEOUTCAPSA,
     cbwoc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveOutGetDevCapsW(
+pub extern "winmm" fn waveOutGetDevCapsW(
     uDeviceID: usize,
     pwoc: ?*WAVEOUTCAPSW,
     cbwoc: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutGetVolume(
+pub extern "winmm" fn waveOutGetVolume(
     hwo: ?HWAVEOUT,
     pdwVolume: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutSetVolume(
+pub extern "winmm" fn waveOutSetVolume(
     hwo: ?HWAVEOUT,
     dwVolume: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveOutGetErrorTextA(
+pub extern "winmm" fn waveOutGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveOutGetErrorTextW(
+pub extern "winmm" fn waveOutGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutOpen(
+pub extern "winmm" fn waveOutOpen(
     phwo: ?*?HWAVEOUT,
     uDeviceID: u32,
     pwfx: ?*WAVEFORMATEX,
@@ -5325,20 +5325,12 @@ pub extern "WINMM" fn waveOutOpen(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutClose(
+pub extern "winmm" fn waveOutClose(
     hwo: ?HWAVEOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutPrepareHeader(
-    hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutUnprepareHeader(
+pub extern "winmm" fn waveOutPrepareHeader(
     hwo: ?HWAVEOUT,
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
@@ -5346,7 +5338,7 @@ pub extern "WINMM" fn waveOutUnprepareHeader(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutWrite(
+pub extern "winmm" fn waveOutUnprepareHeader(
     hwo: ?HWAVEOUT,
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
@@ -5354,27 +5346,35 @@ pub extern "WINMM" fn waveOutWrite(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutPause(
+pub extern "winmm" fn waveOutWrite(
+    hwo: ?HWAVEOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveOutPause(
     hwo: ?HWAVEOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutRestart(
+pub extern "winmm" fn waveOutRestart(
     hwo: ?HWAVEOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutReset(
+pub extern "winmm" fn waveOutReset(
     hwo: ?HWAVEOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutBreakLoop(
+pub extern "winmm" fn waveOutBreakLoop(
     hwo: ?HWAVEOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutGetPosition(
+pub extern "winmm" fn waveOutGetPosition(
     hwo: ?HWAVEOUT,
     // TODO: what to do with BytesParamIndex 2?
     pmmt: ?*MMTIME,
@@ -5382,37 +5382,37 @@ pub extern "WINMM" fn waveOutGetPosition(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutGetPitch(
+pub extern "winmm" fn waveOutGetPitch(
     hwo: ?HWAVEOUT,
     pdwPitch: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutSetPitch(
+pub extern "winmm" fn waveOutSetPitch(
     hwo: ?HWAVEOUT,
     dwPitch: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutGetPlaybackRate(
+pub extern "winmm" fn waveOutGetPlaybackRate(
     hwo: ?HWAVEOUT,
     pdwRate: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutSetPlaybackRate(
+pub extern "winmm" fn waveOutSetPlaybackRate(
     hwo: ?HWAVEOUT,
     dwRate: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutGetID(
+pub extern "winmm" fn waveOutGetID(
     hwo: ?HWAVEOUT,
     puDeviceID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveOutMessage(
+pub extern "winmm" fn waveOutMessage(
     hwo: ?HWAVEOUT,
     uMsg: u32,
     dw1: usize,
@@ -5420,37 +5420,37 @@ pub extern "WINMM" fn waveOutMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInGetNumDevs(
+pub extern "winmm" fn waveInGetNumDevs(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveInGetDevCapsA(
+pub extern "winmm" fn waveInGetDevCapsA(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pwic: ?*WAVEINCAPSA,
     cbwic: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveInGetDevCapsW(
+pub extern "winmm" fn waveInGetDevCapsW(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pwic: ?*WAVEINCAPSW,
     cbwic: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveInGetErrorTextA(
+pub extern "winmm" fn waveInGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "WINMM" fn waveInGetErrorTextW(
+pub extern "winmm" fn waveInGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInOpen(
+pub extern "winmm" fn waveInOpen(
     phwi: ?*?HWAVEIN,
     uDeviceID: u32,
     pwfx: ?*WAVEFORMATEX,
@@ -5460,20 +5460,12 @@ pub extern "WINMM" fn waveInOpen(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInClose(
+pub extern "winmm" fn waveInClose(
     hwi: ?HWAVEIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInPrepareHeader(
-    hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pwh: ?*WAVEHDR,
-    cbwh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInUnprepareHeader(
+pub extern "winmm" fn waveInPrepareHeader(
     hwi: ?HWAVEIN,
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
@@ -5481,7 +5473,7 @@ pub extern "WINMM" fn waveInUnprepareHeader(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInAddBuffer(
+pub extern "winmm" fn waveInUnprepareHeader(
     hwi: ?HWAVEIN,
     // TODO: what to do with BytesParamIndex 2?
     pwh: ?*WAVEHDR,
@@ -5489,22 +5481,30 @@ pub extern "WINMM" fn waveInAddBuffer(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInStart(
+pub extern "winmm" fn waveInAddBuffer(
+    hwi: ?HWAVEIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pwh: ?*WAVEHDR,
+    cbwh: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn waveInStart(
     hwi: ?HWAVEIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInStop(
+pub extern "winmm" fn waveInStop(
     hwi: ?HWAVEIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInReset(
+pub extern "winmm" fn waveInReset(
     hwi: ?HWAVEIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInGetPosition(
+pub extern "winmm" fn waveInGetPosition(
     hwi: ?HWAVEIN,
     // TODO: what to do with BytesParamIndex 2?
     pmmt: ?*MMTIME,
@@ -5512,13 +5512,13 @@ pub extern "WINMM" fn waveInGetPosition(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInGetID(
+pub extern "winmm" fn waveInGetID(
     hwi: ?HWAVEIN,
     puDeviceID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn waveInMessage(
+pub extern "winmm" fn waveInMessage(
     hwi: ?HWAVEIN,
     uMsg: u32,
     dw1: usize,
@@ -5526,11 +5526,11 @@ pub extern "WINMM" fn waveInMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutGetNumDevs(
+pub extern "winmm" fn midiOutGetNumDevs(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamOpen(
+pub extern "winmm" fn midiStreamOpen(
     phms: ?*?HMIDISTRM,
     puDeviceID: [*]u32,
     cMidi: u32,
@@ -5540,19 +5540,19 @@ pub extern "WINMM" fn midiStreamOpen(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamClose(
+pub extern "winmm" fn midiStreamClose(
     hms: ?HMIDISTRM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamProperty(
+pub extern "winmm" fn midiStreamProperty(
     hms: ?HMIDISTRM,
     lppropdata: ?*u8,
     dwProperty: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamPosition(
+pub extern "winmm" fn midiStreamPosition(
     hms: ?HMIDISTRM,
     // TODO: what to do with BytesParamIndex 2?
     lpmmt: ?*MMTIME,
@@ -5560,7 +5560,7 @@ pub extern "WINMM" fn midiStreamPosition(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamOut(
+pub extern "winmm" fn midiStreamOut(
     hms: ?HMIDISTRM,
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
@@ -5568,36 +5568,36 @@ pub extern "WINMM" fn midiStreamOut(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamPause(
+pub extern "winmm" fn midiStreamPause(
     hms: ?HMIDISTRM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamRestart(
+pub extern "winmm" fn midiStreamRestart(
     hms: ?HMIDISTRM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiStreamStop(
+pub extern "winmm" fn midiStreamStop(
     hms: ?HMIDISTRM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiConnect(
+pub extern "winmm" fn midiConnect(
     hmi: ?HMIDI,
     hmo: ?HMIDIOUT,
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiDisconnect(
+pub extern "winmm" fn midiDisconnect(
     hmi: ?HMIDI,
     hmo: ?HMIDIOUT,
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutGetDevCapsA(
+pub extern "winmm" fn midiOutGetDevCapsA(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pmoc: ?*MIDIOUTCAPSA,
@@ -5605,7 +5605,7 @@ pub extern "WINMM" fn midiOutGetDevCapsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutGetDevCapsW(
+pub extern "winmm" fn midiOutGetDevCapsW(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pmoc: ?*MIDIOUTCAPSW,
@@ -5613,33 +5613,33 @@ pub extern "WINMM" fn midiOutGetDevCapsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutGetVolume(
+pub extern "winmm" fn midiOutGetVolume(
     hmo: ?HMIDIOUT,
     pdwVolume: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutSetVolume(
+pub extern "winmm" fn midiOutSetVolume(
     hmo: ?HMIDIOUT,
     dwVolume: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutGetErrorTextA(
+pub extern "winmm" fn midiOutGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutGetErrorTextW(
+pub extern "winmm" fn midiOutGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutOpen(
+pub extern "winmm" fn midiOutOpen(
     phmo: ?*?HMIDIOUT,
     uDeviceID: u32,
     dwCallback: usize,
@@ -5648,20 +5648,12 @@ pub extern "WINMM" fn midiOutOpen(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutClose(
+pub extern "winmm" fn midiOutClose(
     hmo: ?HMIDIOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutPrepareHeader(
-    hmo: ?HMIDIOUT,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutUnprepareHeader(
+pub extern "winmm" fn midiOutPrepareHeader(
     hmo: ?HMIDIOUT,
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
@@ -5669,13 +5661,21 @@ pub extern "WINMM" fn midiOutUnprepareHeader(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutShortMsg(
+pub extern "winmm" fn midiOutUnprepareHeader(
+    hmo: ?HMIDIOUT,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiOutShortMsg(
     hmo: ?HMIDIOUT,
     dwMsg: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutLongMsg(
+pub extern "winmm" fn midiOutLongMsg(
     hmo: ?HMIDIOUT,
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
@@ -5683,12 +5683,12 @@ pub extern "WINMM" fn midiOutLongMsg(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutReset(
+pub extern "winmm" fn midiOutReset(
     hmo: ?HMIDIOUT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutCachePatches(
+pub extern "winmm" fn midiOutCachePatches(
     hmo: ?HMIDIOUT,
     uBank: u32,
     pwpa: *[128]u16,
@@ -5696,7 +5696,7 @@ pub extern "WINMM" fn midiOutCachePatches(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutCacheDrumPatches(
+pub extern "winmm" fn midiOutCacheDrumPatches(
     hmo: ?HMIDIOUT,
     uPatch: u32,
     pwkya: *[128]u16,
@@ -5704,13 +5704,13 @@ pub extern "WINMM" fn midiOutCacheDrumPatches(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutGetID(
+pub extern "winmm" fn midiOutGetID(
     hmo: ?HMIDIOUT,
     puDeviceID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiOutMessage(
+pub extern "winmm" fn midiOutMessage(
     hmo: ?HMIDIOUT,
     uMsg: u32,
     dw1: usize,
@@ -5718,11 +5718,11 @@ pub extern "WINMM" fn midiOutMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInGetNumDevs(
+pub extern "winmm" fn midiInGetNumDevs(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInGetDevCapsA(
+pub extern "winmm" fn midiInGetDevCapsA(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pmic: ?*MIDIINCAPSA,
@@ -5730,7 +5730,7 @@ pub extern "WINMM" fn midiInGetDevCapsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInGetDevCapsW(
+pub extern "winmm" fn midiInGetDevCapsW(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pmic: ?*MIDIINCAPSW,
@@ -5738,21 +5738,21 @@ pub extern "WINMM" fn midiInGetDevCapsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInGetErrorTextA(
+pub extern "winmm" fn midiInGetErrorTextA(
     mmrError: u32,
     pszText: [*:0]u8,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInGetErrorTextW(
+pub extern "winmm" fn midiInGetErrorTextW(
     mmrError: u32,
     pszText: [*:0]u16,
     cchText: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInOpen(
+pub extern "winmm" fn midiInOpen(
     phmi: ?*?HMIDIIN,
     uDeviceID: u32,
     dwCallback: usize,
@@ -5761,20 +5761,12 @@ pub extern "WINMM" fn midiInOpen(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInClose(
+pub extern "winmm" fn midiInClose(
     hmi: ?HMIDIIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInPrepareHeader(
-    hmi: ?HMIDIIN,
-    // TODO: what to do with BytesParamIndex 2?
-    pmh: ?*MIDIHDR,
-    cbmh: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInUnprepareHeader(
+pub extern "winmm" fn midiInPrepareHeader(
     hmi: ?HMIDIIN,
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
@@ -5782,7 +5774,7 @@ pub extern "WINMM" fn midiInUnprepareHeader(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInAddBuffer(
+pub extern "winmm" fn midiInUnprepareHeader(
     hmi: ?HMIDIIN,
     // TODO: what to do with BytesParamIndex 2?
     pmh: ?*MIDIHDR,
@@ -5790,28 +5782,36 @@ pub extern "WINMM" fn midiInAddBuffer(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInStart(
+pub extern "winmm" fn midiInAddBuffer(
+    hmi: ?HMIDIIN,
+    // TODO: what to do with BytesParamIndex 2?
+    pmh: ?*MIDIHDR,
+    cbmh: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "winmm" fn midiInStart(
     hmi: ?HMIDIIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInStop(
+pub extern "winmm" fn midiInStop(
     hmi: ?HMIDIIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInReset(
+pub extern "winmm" fn midiInReset(
     hmi: ?HMIDIIN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInGetID(
+pub extern "winmm" fn midiInGetID(
     hmi: ?HMIDIIN,
     puDeviceID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn midiInMessage(
+pub extern "winmm" fn midiInMessage(
     hmi: ?HMIDIIN,
     uMsg: u32,
     dw1: usize,
@@ -5819,11 +5819,11 @@ pub extern "WINMM" fn midiInMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn auxGetNumDevs(
+pub extern "winmm" fn auxGetNumDevs(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn auxGetDevCapsA(
+pub extern "winmm" fn auxGetDevCapsA(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pac: ?*AUXCAPSA,
@@ -5831,7 +5831,7 @@ pub extern "WINMM" fn auxGetDevCapsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn auxGetDevCapsW(
+pub extern "winmm" fn auxGetDevCapsW(
     uDeviceID: usize,
     // TODO: what to do with BytesParamIndex 2?
     pac: ?*AUXCAPSW,
@@ -5839,19 +5839,19 @@ pub extern "WINMM" fn auxGetDevCapsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn auxSetVolume(
+pub extern "winmm" fn auxSetVolume(
     uDeviceID: u32,
     dwVolume: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn auxGetVolume(
+pub extern "winmm" fn auxGetVolume(
     uDeviceID: u32,
     pdwVolume: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn auxOutMessage(
+pub extern "winmm" fn auxOutMessage(
     uDeviceID: u32,
     uMsg: u32,
     dw1: usize,
@@ -5859,11 +5859,11 @@ pub extern "WINMM" fn auxOutMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetNumDevs(
+pub extern "winmm" fn mixerGetNumDevs(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetDevCapsA(
+pub extern "winmm" fn mixerGetDevCapsA(
     uMxId: usize,
     // TODO: what to do with BytesParamIndex 2?
     pmxcaps: ?*MIXERCAPSA,
@@ -5871,7 +5871,7 @@ pub extern "WINMM" fn mixerGetDevCapsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetDevCapsW(
+pub extern "winmm" fn mixerGetDevCapsW(
     uMxId: usize,
     // TODO: what to do with BytesParamIndex 2?
     pmxcaps: ?*MIXERCAPSW,
@@ -5879,7 +5879,7 @@ pub extern "WINMM" fn mixerGetDevCapsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerOpen(
+pub extern "winmm" fn mixerOpen(
     phmx: ?*isize,
     uMxId: u32,
     dwCallback: usize,
@@ -5888,12 +5888,12 @@ pub extern "WINMM" fn mixerOpen(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerClose(
+pub extern "winmm" fn mixerClose(
     hmx: ?HMIXER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerMessage(
+pub extern "winmm" fn mixerMessage(
     hmx: ?HMIXER,
     uMsg: u32,
     dwParam1: usize,
@@ -5901,63 +5901,63 @@ pub extern "WINMM" fn mixerMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetLineInfoA(
+pub extern "winmm" fn mixerGetLineInfoA(
     hmxobj: ?HMIXEROBJ,
     pmxl: ?*MIXERLINEA,
     fdwInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetLineInfoW(
+pub extern "winmm" fn mixerGetLineInfoW(
     hmxobj: ?HMIXEROBJ,
     pmxl: ?*MIXERLINEW,
     fdwInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetID(
+pub extern "winmm" fn mixerGetID(
     hmxobj: ?HMIXEROBJ,
     puMxId: ?*u32,
     fdwId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetLineControlsA(
+pub extern "winmm" fn mixerGetLineControlsA(
     hmxobj: ?HMIXEROBJ,
     pmxlc: ?*MIXERLINECONTROLSA,
     fdwControls: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetLineControlsW(
+pub extern "winmm" fn mixerGetLineControlsW(
     hmxobj: ?HMIXEROBJ,
     pmxlc: ?*MIXERLINECONTROLSW,
     fdwControls: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetControlDetailsA(
+pub extern "winmm" fn mixerGetControlDetailsA(
     hmxobj: ?HMIXEROBJ,
     pmxcd: ?*MIXERCONTROLDETAILS,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerGetControlDetailsW(
+pub extern "winmm" fn mixerGetControlDetailsW(
     hmxobj: ?HMIXEROBJ,
     pmxcd: ?*MIXERCONTROLDETAILS,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn mixerSetControlDetails(
+pub extern "winmm" fn mixerSetControlDetails(
     hmxobj: ?HMIXEROBJ,
     pmxcd: ?*MIXERCONTROLDETAILS,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "MMDevAPI" fn ActivateAudioInterfaceAsync(
+pub extern "mmdevapi" fn ActivateAudioInterfaceAsync(
     deviceInterfacePath: ?[*:0]const u16,
     riid: ?*const Guid,
     activationParams: ?*PROPVARIANT,
@@ -5965,75 +5965,75 @@ pub extern "MMDevAPI" fn ActivateAudioInterfaceAsync(
     activationOperation: ?*?*IActivateAudioInterfaceAsyncOperation,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateRenderAudioStateMonitor(
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitor(
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateRenderAudioStateMonitorForCategory(
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategory(
     category: AUDIO_STREAM_CATEGORY,
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateRenderAudioStateMonitorForCategoryAndDeviceRole(
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceRole(
     category: AUDIO_STREAM_CATEGORY,
     role: ERole,
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateRenderAudioStateMonitorForCategoryAndDeviceId(
+pub extern "windows.media.mediacontrol" fn CreateRenderAudioStateMonitorForCategoryAndDeviceId(
     category: AUDIO_STREAM_CATEGORY,
     deviceId: ?[*:0]const u16,
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateCaptureAudioStateMonitor(
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitor(
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateCaptureAudioStateMonitorForCategory(
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategory(
     category: AUDIO_STREAM_CATEGORY,
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceRole(
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceRole(
     category: AUDIO_STREAM_CATEGORY,
     role: ERole,
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Windows.Media.MediaControl" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceId(
+pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCategoryAndDeviceId(
     category: AUDIO_STREAM_CATEGORY,
     deviceId: ?[*:0]const u16,
     audioStateMonitor: ?*?*IAudioStateMonitor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmGetVersion(
+pub extern "msacm32" fn acmGetVersion(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmMetrics(
+pub extern "msacm32" fn acmMetrics(
     hao: ?HACMOBJ,
     uMetric: u32,
     pMetric: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverEnum(
+pub extern "msacm32" fn acmDriverEnum(
     fnCallback: ?ACMDRIVERENUMCB,
     dwInstance: usize,
     fdwEnum: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverID(
+pub extern "msacm32" fn acmDriverID(
     hao: ?HACMOBJ,
     phadid: ?*isize,
     fdwDriverID: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverAddA(
+pub extern "msacm32" fn acmDriverAddA(
     phadid: ?*isize,
     hinstModule: ?HINSTANCE,
     lParam: LPARAM,
@@ -6042,7 +6042,7 @@ pub extern "MSACM32" fn acmDriverAddA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverAddW(
+pub extern "msacm32" fn acmDriverAddW(
     phadid: ?*isize,
     hinstModule: ?HINSTANCE,
     lParam: LPARAM,
@@ -6051,26 +6051,26 @@ pub extern "MSACM32" fn acmDriverAddW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverRemove(
+pub extern "msacm32" fn acmDriverRemove(
     hadid: ?HACMDRIVERID,
     fdwRemove: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverOpen(
+pub extern "msacm32" fn acmDriverOpen(
     phad: ?*isize,
     hadid: ?HACMDRIVERID,
     fdwOpen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverClose(
+pub extern "msacm32" fn acmDriverClose(
     had: ?HACMDRIVER,
     fdwClose: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverMessage(
+pub extern "msacm32" fn acmDriverMessage(
     had: ?HACMDRIVER,
     uMsg: u32,
     lParam1: LPARAM,
@@ -6078,42 +6078,42 @@ pub extern "MSACM32" fn acmDriverMessage(
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverPriority(
+pub extern "msacm32" fn acmDriverPriority(
     hadid: ?HACMDRIVERID,
     dwPriority: u32,
     fdwPriority: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverDetailsA(
+pub extern "msacm32" fn acmDriverDetailsA(
     hadid: ?HACMDRIVERID,
     padd: ?*ACMDRIVERDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmDriverDetailsW(
+pub extern "msacm32" fn acmDriverDetailsW(
     hadid: ?HACMDRIVERID,
     padd: ?*ACMDRIVERDETAILSW,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatTagDetailsA(
+pub extern "msacm32" fn acmFormatTagDetailsA(
     had: ?HACMDRIVER,
     paftd: ?*ACMFORMATTAGDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatTagDetailsW(
+pub extern "msacm32" fn acmFormatTagDetailsW(
     had: ?HACMDRIVER,
     paftd: ?*ACMFORMATTAGDETAILSW,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatTagEnumA(
+pub extern "msacm32" fn acmFormatTagEnumA(
     had: ?HACMDRIVER,
     paftd: ?*ACMFORMATTAGDETAILSA,
     fnCallback: ?ACMFORMATTAGENUMCBA,
@@ -6122,7 +6122,7 @@ pub extern "MSACM32" fn acmFormatTagEnumA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatTagEnumW(
+pub extern "msacm32" fn acmFormatTagEnumW(
     had: ?HACMDRIVER,
     paftd: ?*ACMFORMATTAGDETAILSW,
     fnCallback: ?ACMFORMATTAGENUMCBW,
@@ -6131,21 +6131,21 @@ pub extern "MSACM32" fn acmFormatTagEnumW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatDetailsA(
+pub extern "msacm32" fn acmFormatDetailsA(
     had: ?HACMDRIVER,
     pafd: ?*ACMFORMATDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatDetailsW(
+pub extern "msacm32" fn acmFormatDetailsW(
     had: ?HACMDRIVER,
     pafd: ?*tACMFORMATDETAILSW,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatEnumA(
+pub extern "msacm32" fn acmFormatEnumA(
     had: ?HACMDRIVER,
     pafd: ?*ACMFORMATDETAILSA,
     fnCallback: ?ACMFORMATENUMCBA,
@@ -6154,7 +6154,7 @@ pub extern "MSACM32" fn acmFormatEnumA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatEnumW(
+pub extern "msacm32" fn acmFormatEnumW(
     had: ?HACMDRIVER,
     pafd: ?*tACMFORMATDETAILSW,
     fnCallback: ?ACMFORMATENUMCBW,
@@ -6163,7 +6163,7 @@ pub extern "MSACM32" fn acmFormatEnumW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatSuggest(
+pub extern "msacm32" fn acmFormatSuggest(
     had: ?HACMDRIVER,
     pwfxSrc: ?*WAVEFORMATEX,
     pwfxDst: ?*WAVEFORMATEX,
@@ -6172,31 +6172,31 @@ pub extern "MSACM32" fn acmFormatSuggest(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatChooseA(
+pub extern "msacm32" fn acmFormatChooseA(
     pafmtc: ?*ACMFORMATCHOOSEA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFormatChooseW(
+pub extern "msacm32" fn acmFormatChooseW(
     pafmtc: ?*ACMFORMATCHOOSEW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterTagDetailsA(
+pub extern "msacm32" fn acmFilterTagDetailsA(
     had: ?HACMDRIVER,
     paftd: ?*ACMFILTERTAGDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterTagDetailsW(
+pub extern "msacm32" fn acmFilterTagDetailsW(
     had: ?HACMDRIVER,
     paftd: ?*ACMFILTERTAGDETAILSW,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterTagEnumA(
+pub extern "msacm32" fn acmFilterTagEnumA(
     had: ?HACMDRIVER,
     paftd: ?*ACMFILTERTAGDETAILSA,
     fnCallback: ?ACMFILTERTAGENUMCBA,
@@ -6205,7 +6205,7 @@ pub extern "MSACM32" fn acmFilterTagEnumA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterTagEnumW(
+pub extern "msacm32" fn acmFilterTagEnumW(
     had: ?HACMDRIVER,
     paftd: ?*ACMFILTERTAGDETAILSW,
     fnCallback: ?ACMFILTERTAGENUMCBW,
@@ -6214,21 +6214,21 @@ pub extern "MSACM32" fn acmFilterTagEnumW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterDetailsA(
+pub extern "msacm32" fn acmFilterDetailsA(
     had: ?HACMDRIVER,
     pafd: ?*ACMFILTERDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterDetailsW(
+pub extern "msacm32" fn acmFilterDetailsW(
     had: ?HACMDRIVER,
     pafd: ?*ACMFILTERDETAILSW,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterEnumA(
+pub extern "msacm32" fn acmFilterEnumA(
     had: ?HACMDRIVER,
     pafd: ?*ACMFILTERDETAILSA,
     fnCallback: ?ACMFILTERENUMCBA,
@@ -6237,7 +6237,7 @@ pub extern "MSACM32" fn acmFilterEnumA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterEnumW(
+pub extern "msacm32" fn acmFilterEnumW(
     had: ?HACMDRIVER,
     pafd: ?*ACMFILTERDETAILSW,
     fnCallback: ?ACMFILTERENUMCBW,
@@ -6246,17 +6246,17 @@ pub extern "MSACM32" fn acmFilterEnumW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterChooseA(
+pub extern "msacm32" fn acmFilterChooseA(
     pafltrc: ?*ACMFILTERCHOOSEA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmFilterChooseW(
+pub extern "msacm32" fn acmFilterChooseW(
     pafltrc: ?*ACMFILTERCHOOSEW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamOpen(
+pub extern "msacm32" fn acmStreamOpen(
     phas: ?*isize,
     had: ?HACMDRIVER,
     pwfxSrc: ?*WAVEFORMATEX,
@@ -6268,13 +6268,13 @@ pub extern "MSACM32" fn acmStreamOpen(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamClose(
+pub extern "msacm32" fn acmStreamClose(
     has: ?HACMSTREAM,
     fdwClose: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamSize(
+pub extern "msacm32" fn acmStreamSize(
     has: ?HACMSTREAM,
     cbInput: u32,
     pdwOutputBytes: ?*u32,
@@ -6282,13 +6282,13 @@ pub extern "MSACM32" fn acmStreamSize(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamReset(
+pub extern "msacm32" fn acmStreamReset(
     has: ?HACMSTREAM,
     fdwReset: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamMessage(
+pub extern "msacm32" fn acmStreamMessage(
     has: ?HACMSTREAM,
     uMsg: u32,
     lParam1: LPARAM,
@@ -6296,21 +6296,21 @@ pub extern "MSACM32" fn acmStreamMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamConvert(
+pub extern "msacm32" fn acmStreamConvert(
     has: ?HACMSTREAM,
     pash: ?*ACMSTREAMHEADER,
     fdwConvert: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamPrepareHeader(
+pub extern "msacm32" fn acmStreamPrepareHeader(
     has: ?HACMSTREAM,
     pash: ?*ACMSTREAMHEADER,
     fdwPrepare: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MSACM32" fn acmStreamUnprepareHeader(
+pub extern "msacm32" fn acmStreamUnprepareHeader(
     has: ?HACMSTREAM,
     pash: ?*ACMSTREAMHEADER,
     fdwUnprepare: u32,

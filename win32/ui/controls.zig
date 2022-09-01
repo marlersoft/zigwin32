@@ -7005,41 +7005,41 @@ pub const TBBUTTON = switch(@import("../zig.zig").arch) {
 // Section: Functions (214)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn CreatePropertySheetPageA(
+pub extern "comctl32" fn CreatePropertySheetPageA(
     constPropSheetPagePointer: ?*PROPSHEETPAGEA,
 ) callconv(@import("std").os.windows.WINAPI) ?HPROPSHEETPAGE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn CreatePropertySheetPageW(
+pub extern "comctl32" fn CreatePropertySheetPageW(
     constPropSheetPagePointer: ?*PROPSHEETPAGEW,
 ) callconv(@import("std").os.windows.WINAPI) ?HPROPSHEETPAGE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DestroyPropertySheetPage(
+pub extern "comctl32" fn DestroyPropertySheetPage(
     param0: ?HPROPSHEETPAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn PropertySheetA(
+pub extern "comctl32" fn PropertySheetA(
     param0: ?*PROPSHEETHEADERA_V2,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn PropertySheetW(
+pub extern "comctl32" fn PropertySheetW(
     param0: ?*PROPSHEETHEADERW_V2,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn InitCommonControls(
+pub extern "comctl32" fn InitCommonControls(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn InitCommonControlsEx(
+pub extern "comctl32" fn InitCommonControlsEx(
     picce: ?*const INITCOMMONCONTROLSEX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Create(
+pub extern "comctl32" fn ImageList_Create(
     cx: i32,
     cy: i32,
     flags: IMAGELIST_CREATION_FLAGS,
@@ -7048,55 +7048,55 @@ pub extern "COMCTL32" fn ImageList_Create(
 ) callconv(@import("std").os.windows.WINAPI) ?HIMAGELIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Destroy(
+pub extern "comctl32" fn ImageList_Destroy(
     himl: ?HIMAGELIST,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_GetImageCount(
+pub extern "comctl32" fn ImageList_GetImageCount(
     himl: ?HIMAGELIST,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_SetImageCount(
+pub extern "comctl32" fn ImageList_SetImageCount(
     himl: ?HIMAGELIST,
     uNewCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Add(
+pub extern "comctl32" fn ImageList_Add(
     himl: ?HIMAGELIST,
     hbmImage: ?HBITMAP,
     hbmMask: ?HBITMAP,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_ReplaceIcon(
+pub extern "comctl32" fn ImageList_ReplaceIcon(
     himl: ?HIMAGELIST,
     i: i32,
     hicon: ?HICON,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_SetBkColor(
+pub extern "comctl32" fn ImageList_SetBkColor(
     himl: ?HIMAGELIST,
     clrBk: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_GetBkColor(
+pub extern "comctl32" fn ImageList_GetBkColor(
     himl: ?HIMAGELIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_SetOverlayImage(
+pub extern "comctl32" fn ImageList_SetOverlayImage(
     himl: ?HIMAGELIST,
     iImage: i32,
     iOverlay: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Draw(
+pub extern "comctl32" fn ImageList_Draw(
     himl: ?HIMAGELIST,
     i: i32,
     hdcDst: ?HDC,
@@ -7106,7 +7106,7 @@ pub extern "COMCTL32" fn ImageList_Draw(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Replace(
+pub extern "comctl32" fn ImageList_Replace(
     himl: ?HIMAGELIST,
     i: i32,
     hbmImage: ?HBITMAP,
@@ -7114,14 +7114,14 @@ pub extern "COMCTL32" fn ImageList_Replace(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_AddMasked(
+pub extern "comctl32" fn ImageList_AddMasked(
     himl: ?HIMAGELIST,
     hbmImage: ?HBITMAP,
     crMask: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_DrawEx(
+pub extern "comctl32" fn ImageList_DrawEx(
     himl: ?HIMAGELIST,
     i: i32,
     hdcDst: ?HDC,
@@ -7135,25 +7135,25 @@ pub extern "COMCTL32" fn ImageList_DrawEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_DrawIndirect(
+pub extern "comctl32" fn ImageList_DrawIndirect(
     pimldp: ?*IMAGELISTDRAWPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Remove(
+pub extern "comctl32" fn ImageList_Remove(
     himl: ?HIMAGELIST,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_GetIcon(
+pub extern "comctl32" fn ImageList_GetIcon(
     himl: ?HIMAGELIST,
     i: i32,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_LoadImageA(
+pub extern "comctl32" fn ImageList_LoadImageA(
     hi: ?HINSTANCE,
     lpbmp: ?[*:0]const u8,
     cx: i32,
@@ -7164,7 +7164,7 @@ pub extern "COMCTL32" fn ImageList_LoadImageA(
 ) callconv(@import("std").os.windows.WINAPI) ?HIMAGELIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_LoadImageW(
+pub extern "comctl32" fn ImageList_LoadImageW(
     hi: ?HINSTANCE,
     lpbmp: ?[*:0]const u16,
     cx: i32,
@@ -7175,7 +7175,7 @@ pub extern "COMCTL32" fn ImageList_LoadImageW(
 ) callconv(@import("std").os.windows.WINAPI) ?HIMAGELIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Copy(
+pub extern "comctl32" fn ImageList_Copy(
     himlDst: ?HIMAGELIST,
     iDst: i32,
     himlSrc: ?HIMAGELIST,
@@ -7184,7 +7184,7 @@ pub extern "COMCTL32" fn ImageList_Copy(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_BeginDrag(
+pub extern "comctl32" fn ImageList_BeginDrag(
     himlTrack: ?HIMAGELIST,
     iTrack: i32,
     dxHotspot: i32,
@@ -7192,29 +7192,29 @@ pub extern "COMCTL32" fn ImageList_BeginDrag(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_EndDrag(
+pub extern "comctl32" fn ImageList_EndDrag(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_DragEnter(
+pub extern "comctl32" fn ImageList_DragEnter(
     hwndLock: ?HWND,
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_DragLeave(
+pub extern "comctl32" fn ImageList_DragLeave(
     hwndLock: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_DragMove(
+pub extern "comctl32" fn ImageList_DragMove(
     x: i32,
     y: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_SetDragCursorImage(
+pub extern "comctl32" fn ImageList_SetDragCursorImage(
     himlDrag: ?HIMAGELIST,
     iDrag: i32,
     dxHotspot: i32,
@@ -7222,29 +7222,29 @@ pub extern "COMCTL32" fn ImageList_SetDragCursorImage(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_DragShowNolock(
+pub extern "comctl32" fn ImageList_DragShowNolock(
     fShow: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_GetDragImage(
+pub extern "comctl32" fn ImageList_GetDragImage(
     ppt: ?*POINT,
     pptHotspot: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMAGELIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Read(
+pub extern "comctl32" fn ImageList_Read(
     pstm: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMAGELIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Write(
+pub extern "comctl32" fn ImageList_Write(
     himl: ?HIMAGELIST,
     pstm: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_ReadEx(
+pub extern "comctl32" fn ImageList_ReadEx(
     dwFlags: u32,
     pstm: ?*IStream,
     riid: ?*const Guid,
@@ -7252,35 +7252,35 @@ pub extern "COMCTL32" fn ImageList_ReadEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_WriteEx(
+pub extern "comctl32" fn ImageList_WriteEx(
     himl: ?HIMAGELIST,
     dwFlags: u32,
     pstm: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_GetIconSize(
+pub extern "comctl32" fn ImageList_GetIconSize(
     himl: ?HIMAGELIST,
     cx: ?*i32,
     cy: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_SetIconSize(
+pub extern "comctl32" fn ImageList_SetIconSize(
     himl: ?HIMAGELIST,
     cx: i32,
     cy: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_GetImageInfo(
+pub extern "comctl32" fn ImageList_GetImageInfo(
     himl: ?HIMAGELIST,
     i: i32,
     pImageInfo: ?*IMAGEINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Merge(
+pub extern "comctl32" fn ImageList_Merge(
     himl1: ?HIMAGELIST,
     i1: i32,
     himl2: ?HIMAGELIST,
@@ -7290,19 +7290,19 @@ pub extern "COMCTL32" fn ImageList_Merge(
 ) callconv(@import("std").os.windows.WINAPI) ?HIMAGELIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_Duplicate(
+pub extern "comctl32" fn ImageList_Duplicate(
     himl: ?HIMAGELIST,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMAGELIST;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn HIMAGELIST_QueryInterface(
+pub extern "comctl32" fn HIMAGELIST_QueryInterface(
     himl: ?HIMAGELIST,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn CreateToolbarEx(
+pub extern "comctl32" fn CreateToolbarEx(
     hwnd: ?HWND,
     ws: u32,
     wID: u32,
@@ -7319,7 +7319,7 @@ pub extern "COMCTL32" fn CreateToolbarEx(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn CreateMappedBitmap(
+pub extern "comctl32" fn CreateMappedBitmap(
     hInstance: ?HINSTANCE,
     idBitmap: isize,
     wFlags: u32,
@@ -7328,7 +7328,7 @@ pub extern "COMCTL32" fn CreateMappedBitmap(
 ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DrawStatusTextA(
+pub extern "comctl32" fn DrawStatusTextA(
     hDC: ?HDC,
     lprc: ?*RECT,
     pszText: ?[*:0]const u8,
@@ -7336,7 +7336,7 @@ pub extern "COMCTL32" fn DrawStatusTextA(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DrawStatusTextW(
+pub extern "comctl32" fn DrawStatusTextW(
     hDC: ?HDC,
     lprc: ?*RECT,
     pszText: ?[*:0]const u16,
@@ -7344,7 +7344,7 @@ pub extern "COMCTL32" fn DrawStatusTextW(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn CreateStatusWindowA(
+pub extern "comctl32" fn CreateStatusWindowA(
     style: i32,
     lpszText: ?[*:0]const u8,
     hwndParent: ?HWND,
@@ -7352,7 +7352,7 @@ pub extern "COMCTL32" fn CreateStatusWindowA(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn CreateStatusWindowW(
+pub extern "comctl32" fn CreateStatusWindowW(
     style: i32,
     lpszText: ?[*:0]const u16,
     hwndParent: ?HWND,
@@ -7360,7 +7360,7 @@ pub extern "COMCTL32" fn CreateStatusWindowW(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn MenuHelp(
+pub extern "comctl32" fn MenuHelp(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
@@ -7371,40 +7371,40 @@ pub extern "COMCTL32" fn MenuHelp(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ShowHideMenuCtl(
+pub extern "comctl32" fn ShowHideMenuCtl(
     hWnd: ?HWND,
     uFlags: usize,
     lpInfo: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn GetEffectiveClientRect(
+pub extern "comctl32" fn GetEffectiveClientRect(
     hWnd: ?HWND,
     lprc: ?*RECT,
     lpInfo: ?*const i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn MakeDragList(
+pub extern "comctl32" fn MakeDragList(
     hLB: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DrawInsert(
+pub extern "comctl32" fn DrawInsert(
     handParent: ?HWND,
     hLB: ?HWND,
     nItem: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn LBItemFromPt(
+pub extern "comctl32" fn LBItemFromPt(
     hLB: ?HWND,
     pt: POINT,
     bAutoScroll: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn CreateUpDownControl(
+pub extern "comctl32" fn CreateUpDownControl(
     dwStyle: u32,
     x: i32,
     y: i32,
@@ -7420,7 +7420,7 @@ pub extern "COMCTL32" fn CreateUpDownControl(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn TaskDialogIndirect(
+pub extern "comctl32" fn TaskDialogIndirect(
     pTaskConfig: ?*const TASKDIALOGCONFIG,
     pnButton: ?*i32,
     pnRadioButton: ?*i32,
@@ -7428,7 +7428,7 @@ pub extern "COMCTL32" fn TaskDialogIndirect(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn TaskDialog(
+pub extern "comctl32" fn TaskDialog(
     hwndOwner: ?HWND,
     hInstance: ?HINSTANCE,
     pszWindowTitle: ?[*:0]const u16,
@@ -7440,187 +7440,187 @@ pub extern "COMCTL32" fn TaskDialog(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn InitMUILanguage(
+pub extern "comctl32" fn InitMUILanguage(
     uiLang: u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn GetMUILanguage(
+pub extern "comctl32" fn GetMUILanguage(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_Create(
+pub extern "comctl32" fn DSA_Create(
     cbItem: i32,
     cItemGrow: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?HDSA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_Destroy(
+pub extern "comctl32" fn DSA_Destroy(
     hdsa: ?HDSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_DestroyCallback(
+pub extern "comctl32" fn DSA_DestroyCallback(
     hdsa: ?HDSA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_DeleteItem(
+pub extern "comctl32" fn DSA_DeleteItem(
     hdsa: ?HDSA,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_DeleteAllItems(
+pub extern "comctl32" fn DSA_DeleteAllItems(
     hdsa: ?HDSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_EnumCallback(
+pub extern "comctl32" fn DSA_EnumCallback(
     hdsa: ?HDSA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_InsertItem(
+pub extern "comctl32" fn DSA_InsertItem(
     hdsa: ?HDSA,
     i: i32,
     pitem: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_GetItemPtr(
+pub extern "comctl32" fn DSA_GetItemPtr(
     hdsa: ?HDSA,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_GetItem(
+pub extern "comctl32" fn DSA_GetItem(
     hdsa: ?HDSA,
     i: i32,
     pitem: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_SetItem(
+pub extern "comctl32" fn DSA_SetItem(
     hdsa: ?HDSA,
     i: i32,
     pitem: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_Clone(
+pub extern "comctl32" fn DSA_Clone(
     hdsa: ?HDSA,
 ) callconv(@import("std").os.windows.WINAPI) ?HDSA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_GetSize(
+pub extern "comctl32" fn DSA_GetSize(
     hdsa: ?HDSA,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DSA_Sort(
+pub extern "comctl32" fn DSA_Sort(
     pdsa: ?HDSA,
     pfnCompare: ?PFNDACOMPARE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_Create(
+pub extern "comctl32" fn DPA_Create(
     cItemGrow: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?HDPA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_CreateEx(
+pub extern "comctl32" fn DPA_CreateEx(
     cpGrow: i32,
     hheap: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) ?HDPA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_Clone(
+pub extern "comctl32" fn DPA_Clone(
     hdpa: ?HDPA,
     hdpaNew: ?HDPA,
 ) callconv(@import("std").os.windows.WINAPI) ?HDPA;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_Destroy(
+pub extern "comctl32" fn DPA_Destroy(
     hdpa: ?HDPA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_DestroyCallback(
+pub extern "comctl32" fn DPA_DestroyCallback(
     hdpa: ?HDPA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_DeletePtr(
+pub extern "comctl32" fn DPA_DeletePtr(
     hdpa: ?HDPA,
     i: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_DeleteAllPtrs(
+pub extern "comctl32" fn DPA_DeleteAllPtrs(
     hdpa: ?HDPA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_EnumCallback(
+pub extern "comctl32" fn DPA_EnumCallback(
     hdpa: ?HDPA,
     pfnCB: ?PFNDAENUMCALLBACK,
     pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_Grow(
+pub extern "comctl32" fn DPA_Grow(
     pdpa: ?HDPA,
     cp: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_InsertPtr(
+pub extern "comctl32" fn DPA_InsertPtr(
     hdpa: ?HDPA,
     i: i32,
     p: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_SetPtr(
+pub extern "comctl32" fn DPA_SetPtr(
     hdpa: ?HDPA,
     i: i32,
     p: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_GetPtr(
+pub extern "comctl32" fn DPA_GetPtr(
     hdpa: ?HDPA,
     i: isize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_GetPtrIndex(
+pub extern "comctl32" fn DPA_GetPtrIndex(
     hdpa: ?HDPA,
     p: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_GetSize(
+pub extern "comctl32" fn DPA_GetSize(
     hdpa: ?HDPA,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_Sort(
+pub extern "comctl32" fn DPA_Sort(
     hdpa: ?HDPA,
     pfnCompare: ?PFNDACOMPARE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_LoadStream(
+pub extern "comctl32" fn DPA_LoadStream(
     phdpa: ?*?HDPA,
     pfn: ?PFNDPASTREAM,
     pstream: ?*IStream,
@@ -7628,7 +7628,7 @@ pub extern "COMCTL32" fn DPA_LoadStream(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_SaveStream(
+pub extern "comctl32" fn DPA_SaveStream(
     hdpa: ?HDPA,
     pfn: ?PFNDPASTREAM,
     pstream: ?*IStream,
@@ -7636,7 +7636,7 @@ pub extern "COMCTL32" fn DPA_SaveStream(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_Merge(
+pub extern "comctl32" fn DPA_Merge(
     hdpaDest: ?HDPA,
     hdpaSrc: ?HDPA,
     dwFlags: u32,
@@ -7646,7 +7646,7 @@ pub extern "COMCTL32" fn DPA_Merge(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DPA_Search(
+pub extern "comctl32" fn DPA_Search(
     hdpa: ?HDPA,
     pFind: ?*anyopaque,
     iStart: i32,
@@ -7656,27 +7656,27 @@ pub extern "COMCTL32" fn DPA_Search(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn Str_SetPtrW(
+pub extern "comctl32" fn Str_SetPtrW(
     ppsz: ?*?PWSTR,
     psz: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_EnableScrollBar(
+pub extern "comctl32" fn FlatSB_EnableScrollBar(
     param0: ?HWND,
     param1: i32,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_ShowScrollBar(
+pub extern "comctl32" fn FlatSB_ShowScrollBar(
     param0: ?HWND,
     code: SCROLLBAR_CONSTANTS,
     param2: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_GetScrollRange(
+pub extern "comctl32" fn FlatSB_GetScrollRange(
     param0: ?HWND,
     code: SCROLLBAR_CONSTANTS,
     param2: ?*i32,
@@ -7684,27 +7684,27 @@ pub extern "COMCTL32" fn FlatSB_GetScrollRange(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_GetScrollInfo(
+pub extern "comctl32" fn FlatSB_GetScrollInfo(
     param0: ?HWND,
     code: SCROLLBAR_CONSTANTS,
     param2: ?*SCROLLINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_GetScrollPos(
+pub extern "comctl32" fn FlatSB_GetScrollPos(
     param0: ?HWND,
     code: SCROLLBAR_CONSTANTS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_GetScrollProp(
+pub extern "comctl32" fn FlatSB_GetScrollProp(
     param0: ?HWND,
     propIndex: WSB_PROP,
     param2: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_SetScrollPos(
+pub extern "comctl32" fn FlatSB_SetScrollPos(
     param0: ?HWND,
     code: SCROLLBAR_CONSTANTS,
     pos: i32,
@@ -7712,7 +7712,7 @@ pub extern "COMCTL32" fn FlatSB_SetScrollPos(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_SetScrollInfo(
+pub extern "comctl32" fn FlatSB_SetScrollInfo(
     param0: ?HWND,
     code: SCROLLBAR_CONSTANTS,
     psi: ?*SCROLLINFO,
@@ -7720,7 +7720,7 @@ pub extern "COMCTL32" fn FlatSB_SetScrollInfo(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_SetScrollRange(
+pub extern "comctl32" fn FlatSB_SetScrollRange(
     param0: ?HWND,
     code: SCROLLBAR_CONSTANTS,
     min: i32,
@@ -7729,7 +7729,7 @@ pub extern "COMCTL32" fn FlatSB_SetScrollRange(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn FlatSB_SetScrollProp(
+pub extern "comctl32" fn FlatSB_SetScrollProp(
     param0: ?HWND,
     index: WSB_PROP,
     newValue: isize,
@@ -7737,17 +7737,17 @@ pub extern "COMCTL32" fn FlatSB_SetScrollProp(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn InitializeFlatSB(
+pub extern "comctl32" fn InitializeFlatSB(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn UninitializeFlatSB(
+pub extern "comctl32" fn UninitializeFlatSB(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn LoadIconMetric(
+pub extern "comctl32" fn LoadIconMetric(
     hinst: ?HINSTANCE,
     pszName: ?[*:0]const u16,
     lims: _LI_METRIC,
@@ -7755,7 +7755,7 @@ pub extern "COMCTL32" fn LoadIconMetric(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn LoadIconWithScaleDown(
+pub extern "comctl32" fn LoadIconWithScaleDown(
     hinst: ?HINSTANCE,
     pszName: ?[*:0]const u16,
     cx: i32,
@@ -7764,7 +7764,7 @@ pub extern "COMCTL32" fn LoadIconWithScaleDown(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn DrawShadowText(
+pub extern "comctl32" fn DrawShadowText(
     hdc: ?HDC,
     pszText: [*:0]const u16,
     cch: u32,
@@ -7777,7 +7777,7 @@ pub extern "COMCTL32" fn DrawShadowText(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "COMCTL32" fn ImageList_CoCreateInstance(
+pub extern "comctl32" fn ImageList_CoCreateInstance(
     rclsid: ?*const Guid,
     punkOuter: ?*IUnknown,
     riid: ?*const Guid,
@@ -7785,12 +7785,12 @@ pub extern "COMCTL32" fn ImageList_CoCreateInstance(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UxTheme" fn BeginPanningFeedback(
+pub extern "uxtheme" fn BeginPanningFeedback(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UxTheme" fn UpdatePanningFeedback(
+pub extern "uxtheme" fn UpdatePanningFeedback(
     hwnd: ?HWND,
     lTotalOverpanOffsetX: i32,
     lTotalOverpanOffsetY: i32,
@@ -7798,13 +7798,13 @@ pub extern "UxTheme" fn UpdatePanningFeedback(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "UxTheme" fn EndPanningFeedback(
+pub extern "uxtheme" fn EndPanningFeedback(
     hwnd: ?HWND,
     fAnimateBack: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UXTHEME" fn GetThemeAnimationProperty(
+pub extern "uxtheme" fn GetThemeAnimationProperty(
     hTheme: isize,
     iStoryboardId: i32,
     iTargetId: i32,
@@ -7816,7 +7816,7 @@ pub extern "UXTHEME" fn GetThemeAnimationProperty(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UXTHEME" fn GetThemeAnimationTransform(
+pub extern "uxtheme" fn GetThemeAnimationTransform(
     hTheme: isize,
     iStoryboardId: i32,
     iTargetId: i32,
@@ -7828,7 +7828,7 @@ pub extern "UXTHEME" fn GetThemeAnimationTransform(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "UXTHEME" fn GetThemeTimingFunction(
+pub extern "uxtheme" fn GetThemeTimingFunction(
     hTheme: isize,
     iTimingFunctionId: i32,
     // TODO: what to do with BytesParamIndex 3?
@@ -7838,25 +7838,25 @@ pub extern "UXTHEME" fn GetThemeTimingFunction(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn OpenThemeData(
+pub extern "uxtheme" fn OpenThemeData(
     hwnd: ?HWND,
     pszClassList: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn OpenThemeDataEx(
+pub extern "uxtheme" fn OpenThemeDataEx(
     hwnd: ?HWND,
     pszClassList: ?[*:0]const u16,
     dwFlags: OPEN_THEME_DATA_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn CloseThemeData(
+pub extern "uxtheme" fn CloseThemeData(
     hTheme: isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn DrawThemeBackground(
+pub extern "uxtheme" fn DrawThemeBackground(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7866,7 +7866,7 @@ pub extern "UXTHEME" fn DrawThemeBackground(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn DrawThemeBackgroundEx(
+pub extern "uxtheme" fn DrawThemeBackgroundEx(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7876,7 +7876,7 @@ pub extern "UXTHEME" fn DrawThemeBackgroundEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn DrawThemeText(
+pub extern "uxtheme" fn DrawThemeText(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7889,7 +7889,7 @@ pub extern "UxTheme" fn DrawThemeText(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeBackgroundContentRect(
+pub extern "uxtheme" fn GetThemeBackgroundContentRect(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7899,7 +7899,7 @@ pub extern "UXTHEME" fn GetThemeBackgroundContentRect(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeBackgroundExtent(
+pub extern "uxtheme" fn GetThemeBackgroundExtent(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7909,7 +7909,7 @@ pub extern "UXTHEME" fn GetThemeBackgroundExtent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeBackgroundRegion(
+pub extern "uxtheme" fn GetThemeBackgroundRegion(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7919,7 +7919,7 @@ pub extern "UxTheme" fn GetThemeBackgroundRegion(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemePartSize(
+pub extern "uxtheme" fn GetThemePartSize(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7930,7 +7930,7 @@ pub extern "UXTHEME" fn GetThemePartSize(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeTextExtent(
+pub extern "uxtheme" fn GetThemeTextExtent(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7943,7 +7943,7 @@ pub extern "UxTheme" fn GetThemeTextExtent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeTextMetrics(
+pub extern "uxtheme" fn GetThemeTextMetrics(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7952,7 +7952,7 @@ pub extern "UxTheme" fn GetThemeTextMetrics(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn HitTestThemeBackground(
+pub extern "uxtheme" fn HitTestThemeBackground(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7965,7 +7965,7 @@ pub extern "UxTheme" fn HitTestThemeBackground(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn DrawThemeEdge(
+pub extern "uxtheme" fn DrawThemeEdge(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7977,7 +7977,7 @@ pub extern "UxTheme" fn DrawThemeEdge(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn DrawThemeIcon(
+pub extern "uxtheme" fn DrawThemeIcon(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -7988,21 +7988,21 @@ pub extern "UxTheme" fn DrawThemeIcon(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn IsThemePartDefined(
+pub extern "uxtheme" fn IsThemePartDefined(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn IsThemeBackgroundPartiallyTransparent(
+pub extern "uxtheme" fn IsThemeBackgroundPartiallyTransparent(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeColor(
+pub extern "uxtheme" fn GetThemeColor(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8011,7 +8011,7 @@ pub extern "UXTHEME" fn GetThemeColor(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeMetric(
+pub extern "uxtheme" fn GetThemeMetric(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -8021,7 +8021,7 @@ pub extern "UXTHEME" fn GetThemeMetric(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeString(
+pub extern "uxtheme" fn GetThemeString(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8031,7 +8031,7 @@ pub extern "UxTheme" fn GetThemeString(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeBool(
+pub extern "uxtheme" fn GetThemeBool(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8040,7 +8040,7 @@ pub extern "UxTheme" fn GetThemeBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeInt(
+pub extern "uxtheme" fn GetThemeInt(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8049,7 +8049,7 @@ pub extern "UXTHEME" fn GetThemeInt(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeEnumValue(
+pub extern "uxtheme" fn GetThemeEnumValue(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8058,7 +8058,7 @@ pub extern "UXTHEME" fn GetThemeEnumValue(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemePosition(
+pub extern "uxtheme" fn GetThemePosition(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8067,7 +8067,7 @@ pub extern "UXTHEME" fn GetThemePosition(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeFont(
+pub extern "uxtheme" fn GetThemeFont(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -8077,7 +8077,7 @@ pub extern "UXTHEME" fn GetThemeFont(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeRect(
+pub extern "uxtheme" fn GetThemeRect(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8086,7 +8086,7 @@ pub extern "UXTHEME" fn GetThemeRect(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeMargins(
+pub extern "uxtheme" fn GetThemeMargins(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -8097,7 +8097,7 @@ pub extern "UXTHEME" fn GetThemeMargins(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeIntList(
+pub extern "uxtheme" fn GetThemeIntList(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8106,7 +8106,7 @@ pub extern "UxTheme" fn GetThemeIntList(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemePropertyOrigin(
+pub extern "uxtheme" fn GetThemePropertyOrigin(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8115,14 +8115,14 @@ pub extern "UxTheme" fn GetThemePropertyOrigin(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn SetWindowTheme(
+pub extern "uxtheme" fn SetWindowTheme(
     hwnd: ?HWND,
     pszSubAppName: ?[*:0]const u16,
     pszSubIdList: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeFilename(
+pub extern "uxtheme" fn GetThemeFilename(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8132,38 +8132,38 @@ pub extern "UxTheme" fn GetThemeFilename(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeSysColor(
+pub extern "uxtheme" fn GetThemeSysColor(
     hTheme: isize,
     iColorId: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeSysColorBrush(
+pub extern "uxtheme" fn GetThemeSysColorBrush(
     hTheme: isize,
     iColorId: THEME_PROPERTY_SYMBOL_ID,
 ) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeSysBool(
+pub extern "uxtheme" fn GetThemeSysBool(
     hTheme: isize,
     iBoolId: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeSysSize(
+pub extern "uxtheme" fn GetThemeSysSize(
     hTheme: isize,
     iSizeId: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeSysFont(
+pub extern "uxtheme" fn GetThemeSysFont(
     hTheme: isize,
     iFontId: THEME_PROPERTY_SYMBOL_ID,
     plf: ?*LOGFONTW,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeSysString(
+pub extern "uxtheme" fn GetThemeSysString(
     hTheme: isize,
     iStringId: THEME_PROPERTY_SYMBOL_ID,
     pszStringBuff: [*:0]u16,
@@ -8171,47 +8171,47 @@ pub extern "UxTheme" fn GetThemeSysString(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeSysInt(
+pub extern "uxtheme" fn GetThemeSysInt(
     hTheme: isize,
     iIntId: i32,
     piValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn IsThemeActive(
+pub extern "uxtheme" fn IsThemeActive(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn IsAppThemed(
+pub extern "uxtheme" fn IsAppThemed(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetWindowTheme(
+pub extern "uxtheme" fn GetWindowTheme(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn EnableThemeDialogTexture(
+pub extern "uxtheme" fn EnableThemeDialogTexture(
     hwnd: ?HWND,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn IsThemeDialogTextureEnabled(
+pub extern "uxtheme" fn IsThemeDialogTextureEnabled(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeAppProperties(
+pub extern "uxtheme" fn GetThemeAppProperties(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn SetThemeAppProperties(
+pub extern "uxtheme" fn SetThemeAppProperties(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetCurrentThemeName(
+pub extern "uxtheme" fn GetCurrentThemeName(
     pszThemeFileName: [*:0]u16,
     cchMaxNameChars: i32,
     pszColorBuff: ?[*:0]u16,
@@ -8221,7 +8221,7 @@ pub extern "UXTHEME" fn GetCurrentThemeName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeDocumentationProperty(
+pub extern "uxtheme" fn GetThemeDocumentationProperty(
     pszThemeName: ?[*:0]const u16,
     pszPropertyName: ?[*:0]const u16,
     pszValueBuff: [*:0]u16,
@@ -8229,19 +8229,19 @@ pub extern "UxTheme" fn GetThemeDocumentationProperty(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn DrawThemeParentBackground(
+pub extern "uxtheme" fn DrawThemeParentBackground(
     hwnd: ?HWND,
     hdc: ?HDC,
     prc: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn EnableTheming(
+pub extern "uxtheme" fn EnableTheming(
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn DrawThemeParentBackgroundEx(
+pub extern "uxtheme" fn DrawThemeParentBackgroundEx(
     hwnd: ?HWND,
     hdc: ?HDC,
     dwFlags: DRAW_THEME_PARENT_BACKGROUND_FLAGS,
@@ -8249,7 +8249,7 @@ pub extern "UxTheme" fn DrawThemeParentBackgroundEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn SetWindowThemeAttribute(
+pub extern "uxtheme" fn SetWindowThemeAttribute(
     hwnd: ?HWND,
     eAttribute: WINDOWTHEMEATTRIBUTETYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -8258,7 +8258,7 @@ pub extern "UXTHEME" fn SetWindowThemeAttribute(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn DrawThemeTextEx(
+pub extern "uxtheme" fn DrawThemeTextEx(
     hTheme: isize,
     hdc: ?HDC,
     iPartId: i32,
@@ -8271,7 +8271,7 @@ pub extern "UXTHEME" fn DrawThemeTextEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeBitmap(
+pub extern "uxtheme" fn GetThemeBitmap(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8281,7 +8281,7 @@ pub extern "UXTHEME" fn GetThemeBitmap(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetThemeStream(
+pub extern "uxtheme" fn GetThemeStream(
     hTheme: isize,
     iPartId: i32,
     iStateId: i32,
@@ -8292,15 +8292,15 @@ pub extern "UXTHEME" fn GetThemeStream(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn BufferedPaintInit(
+pub extern "uxtheme" fn BufferedPaintInit(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn BufferedPaintUnInit(
+pub extern "uxtheme" fn BufferedPaintUnInit(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn BeginBufferedPaint(
+pub extern "uxtheme" fn BeginBufferedPaint(
     hdcTarget: ?HDC,
     prcTarget: ?*const RECT,
     dwFormat: BP_BUFFERFORMAT,
@@ -8309,54 +8309,54 @@ pub extern "UXTHEME" fn BeginBufferedPaint(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn EndBufferedPaint(
+pub extern "uxtheme" fn EndBufferedPaint(
     hBufferedPaint: isize,
     fUpdateTarget: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetBufferedPaintTargetRect(
+pub extern "uxtheme" fn GetBufferedPaintTargetRect(
     hBufferedPaint: isize,
     prc: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetBufferedPaintTargetDC(
+pub extern "uxtheme" fn GetBufferedPaintTargetDC(
     hBufferedPaint: isize,
 ) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetBufferedPaintDC(
+pub extern "uxtheme" fn GetBufferedPaintDC(
     hBufferedPaint: isize,
 ) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn GetBufferedPaintBits(
+pub extern "uxtheme" fn GetBufferedPaintBits(
     hBufferedPaint: isize,
     ppbBuffer: ?*?*RGBQUAD,
     pcxRow: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn BufferedPaintClear(
+pub extern "uxtheme" fn BufferedPaintClear(
     hBufferedPaint: isize,
     prc: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn BufferedPaintSetAlpha(
+pub extern "uxtheme" fn BufferedPaintSetAlpha(
     hBufferedPaint: isize,
     prc: ?*const RECT,
     alpha: u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn BufferedPaintStopAllAnimations(
+pub extern "uxtheme" fn BufferedPaintStopAllAnimations(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn BeginBufferedAnimation(
+pub extern "uxtheme" fn BeginBufferedAnimation(
     hwnd: ?HWND,
     hdcTarget: ?HDC,
     prcTarget: ?*const RECT,
@@ -8368,23 +8368,23 @@ pub extern "UxTheme" fn BeginBufferedAnimation(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn EndBufferedAnimation(
+pub extern "uxtheme" fn EndBufferedAnimation(
     hbpAnimation: isize,
     fUpdateTarget: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn BufferedPaintRenderAnimation(
+pub extern "uxtheme" fn BufferedPaintRenderAnimation(
     hwnd: ?HWND,
     hdcTarget: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UXTHEME" fn IsCompositionActive(
+pub extern "uxtheme" fn IsCompositionActive(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "UxTheme" fn GetThemeTransitionDuration(
+pub extern "uxtheme" fn GetThemeTransitionDuration(
     hTheme: isize,
     iPartId: i32,
     iStateIdFrom: i32,
@@ -8394,14 +8394,14 @@ pub extern "UxTheme" fn GetThemeTransitionDuration(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn CheckDlgButton(
+pub extern "user32" fn CheckDlgButton(
     hDlg: ?HWND,
     nIDButton: i32,
     uCheck: DLG_BUTTON_CHECK_STATE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn CheckRadioButton(
+pub extern "user32" fn CheckRadioButton(
     hDlg: ?HWND,
     nIDFirstButton: i32,
     nIDLastButton: i32,
@@ -8409,42 +8409,42 @@ pub extern "USER32" fn CheckRadioButton(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn IsDlgButtonChecked(
+pub extern "user32" fn IsDlgButtonChecked(
     hDlg: ?HWND,
     nIDButton: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "USER32" fn IsCharLowerW(
+pub extern "user32" fn IsCharLowerW(
     ch: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
-pub extern "USER32" fn CreateSyntheticPointerDevice(
+pub extern "user32" fn CreateSyntheticPointerDevice(
     pointerType: POINTER_INPUT_TYPE,
     maxCount: u32,
     mode: POINTER_FEEDBACK_MODE,
 ) callconv(@import("std").os.windows.WINAPI) ?HSYNTHETICPOINTERDEVICE;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
-pub extern "USER32" fn DestroySyntheticPointerDevice(
+pub extern "user32" fn DestroySyntheticPointerDevice(
     device: ?HSYNTHETICPOINTERDEVICE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn RegisterTouchHitTestingWindow(
+pub extern "user32" fn RegisterTouchHitTestingWindow(
     hwnd: ?HWND,
     value: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn EvaluateProximityToRect(
+pub extern "user32" fn EvaluateProximityToRect(
     controlBoundingBox: ?*const RECT,
     pHitTestingInput: ?*const TOUCH_HIT_TESTING_INPUT,
     pProximityEval: ?*TOUCH_HIT_TESTING_PROXIMITY_EVALUATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn EvaluateProximityToPolygon(
+pub extern "user32" fn EvaluateProximityToPolygon(
     numVertices: u32,
     controlPolygon: [*]const POINT,
     pHitTestingInput: ?*const TOUCH_HIT_TESTING_INPUT,
@@ -8452,13 +8452,13 @@ pub extern "USER32" fn EvaluateProximityToPolygon(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn PackTouchHitTestingProximityEvaluation(
+pub extern "user32" fn PackTouchHitTestingProximityEvaluation(
     pHitTestingInput: ?*const TOUCH_HIT_TESTING_INPUT,
     pProximityEval: ?*const TOUCH_HIT_TESTING_PROXIMITY_EVALUATION,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn GetWindowFeedbackSetting(
+pub extern "user32" fn GetWindowFeedbackSetting(
     hwnd: ?HWND,
     feedback: FEEDBACK_TYPE,
     dwFlags: u32,
@@ -8468,7 +8468,7 @@ pub extern "USER32" fn GetWindowFeedbackSetting(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn SetWindowFeedbackSetting(
+pub extern "user32" fn SetWindowFeedbackSetting(
     hwnd: ?HWND,
     feedback: FEEDBACK_TYPE,
     dwFlags: u32,
@@ -8478,7 +8478,7 @@ pub extern "USER32" fn SetWindowFeedbackSetting(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn SetScrollPos(
+pub extern "user32" fn SetScrollPos(
     hWnd: ?HWND,
     nBar: SCROLLBAR_CONSTANTS,
     nPos: i32,
@@ -8486,7 +8486,7 @@ pub extern "USER32" fn SetScrollPos(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn SetScrollRange(
+pub extern "user32" fn SetScrollRange(
     hWnd: ?HWND,
     nBar: SCROLLBAR_CONSTANTS,
     nMinPos: i32,
@@ -8495,21 +8495,21 @@ pub extern "USER32" fn SetScrollRange(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShowScrollBar(
+pub extern "user32" fn ShowScrollBar(
     hWnd: ?HWND,
     wBar: SCROLLBAR_CONSTANTS,
     bShow: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn EnableScrollBar(
+pub extern "user32" fn EnableScrollBar(
     hWnd: ?HWND,
     wSBflags: SCROLLBAR_CONSTANTS,
     wArrows: ENABLE_SCROLL_BAR_ARROWS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirListA(
+pub extern "user32" fn DlgDirListA(
     hDlg: ?HWND,
     lpPathSpec: ?PSTR,
     nIDListBox: i32,
@@ -8518,7 +8518,7 @@ pub extern "USER32" fn DlgDirListA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirListW(
+pub extern "user32" fn DlgDirListW(
     hDlg: ?HWND,
     lpPathSpec: ?PWSTR,
     nIDListBox: i32,
@@ -8527,7 +8527,7 @@ pub extern "USER32" fn DlgDirListW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirSelectExA(
+pub extern "user32" fn DlgDirSelectExA(
     hwndDlg: ?HWND,
     lpString: [*:0]u8,
     chCount: i32,
@@ -8535,7 +8535,7 @@ pub extern "USER32" fn DlgDirSelectExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirSelectExW(
+pub extern "user32" fn DlgDirSelectExW(
     hwndDlg: ?HWND,
     lpString: [*:0]u16,
     chCount: i32,
@@ -8543,7 +8543,7 @@ pub extern "USER32" fn DlgDirSelectExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirListComboBoxA(
+pub extern "user32" fn DlgDirListComboBoxA(
     hDlg: ?HWND,
     lpPathSpec: ?PSTR,
     nIDComboBox: i32,
@@ -8552,7 +8552,7 @@ pub extern "USER32" fn DlgDirListComboBoxA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirListComboBoxW(
+pub extern "user32" fn DlgDirListComboBoxW(
     hDlg: ?HWND,
     lpPathSpec: ?PWSTR,
     nIDComboBox: i32,
@@ -8561,7 +8561,7 @@ pub extern "USER32" fn DlgDirListComboBoxW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirSelectComboBoxExA(
+pub extern "user32" fn DlgDirSelectComboBoxExA(
     hwndDlg: ?HWND,
     lpString: [*:0]u8,
     cchOut: i32,
@@ -8569,7 +8569,7 @@ pub extern "USER32" fn DlgDirSelectComboBoxExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn DlgDirSelectComboBoxExW(
+pub extern "user32" fn DlgDirSelectComboBoxExW(
     hwndDlg: ?HWND,
     lpString: [*:0]u16,
     cchOut: i32,
@@ -8577,7 +8577,7 @@ pub extern "USER32" fn DlgDirSelectComboBoxExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn SetScrollInfo(
+pub extern "user32" fn SetScrollInfo(
     hwnd: ?HWND,
     nBar: SCROLLBAR_CONSTANTS,
     lpsi: ?*SCROLLINFO,
@@ -8585,18 +8585,18 @@ pub extern "USER32" fn SetScrollInfo(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn GetComboBoxInfo(
+pub extern "user32" fn GetComboBoxInfo(
     hwndCombo: ?HWND,
     pcbi: ?*COMBOBOXINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn GetListBoxInfo(
+pub extern "user32" fn GetListBoxInfo(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn RegisterPointerDeviceNotifications(
+pub extern "user32" fn RegisterPointerDeviceNotifications(
     window: ?HWND,
     notifyRange: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

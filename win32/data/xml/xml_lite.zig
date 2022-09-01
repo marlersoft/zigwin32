@@ -1038,13 +1038,13 @@ pub const IXmlWriterLite = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (6)
 //--------------------------------------------------------------------------------
-pub extern "XmlLite" fn CreateXmlReader(
+pub extern "xmllite" fn CreateXmlReader(
     riid: ?*const Guid,
     ppvObject: ?*?*anyopaque,
     pMalloc: ?*IMalloc,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XmlLite" fn CreateXmlReaderInputWithEncodingCodePage(
+pub extern "xmllite" fn CreateXmlReaderInputWithEncodingCodePage(
     pInputStream: ?*IUnknown,
     pMalloc: ?*IMalloc,
     nEncodingCodePage: u32,
@@ -1053,7 +1053,7 @@ pub extern "XmlLite" fn CreateXmlReaderInputWithEncodingCodePage(
     ppInput: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XmlLite" fn CreateXmlReaderInputWithEncodingName(
+pub extern "xmllite" fn CreateXmlReaderInputWithEncodingName(
     pInputStream: ?*IUnknown,
     pMalloc: ?*IMalloc,
     pwszEncodingName: ?[*:0]const u16,
@@ -1062,20 +1062,20 @@ pub extern "XmlLite" fn CreateXmlReaderInputWithEncodingName(
     ppInput: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XmlLite" fn CreateXmlWriter(
+pub extern "xmllite" fn CreateXmlWriter(
     riid: ?*const Guid,
     ppvObject: ?*?*anyopaque,
     pMalloc: ?*IMalloc,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XmlLite" fn CreateXmlWriterOutputWithEncodingCodePage(
+pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingCodePage(
     pOutputStream: ?*IUnknown,
     pMalloc: ?*IMalloc,
     nEncodingCodePage: u32,
     ppOutput: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XmlLite" fn CreateXmlWriterOutputWithEncodingName(
+pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingName(
     pOutputStream: ?*IUnknown,
     pMalloc: ?*IMalloc,
     pwszEncodingName: ?[*:0]const u16,

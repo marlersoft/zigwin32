@@ -96,97 +96,97 @@ pub const MaxDeviceInfoClass = REGISTRATION_INFORMATION_CLASS.MaxDeviceInfoClass
 // Section: Functions (18)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn GetDeviceRegistrationInfo(
+pub extern "mdmregistration" fn GetDeviceRegistrationInfo(
     DeviceInformationClass: REGISTRATION_INFORMATION_CLASS,
     ppDeviceRegistrationInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn IsDeviceRegisteredWithManagement(
+pub extern "mdmregistration" fn IsDeviceRegisteredWithManagement(
     pfIsDeviceRegisteredWithManagement: ?*BOOL,
     cchUPN: u32,
     pszUPN: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn IsManagementRegistrationAllowed(
+pub extern "mdmregistration" fn IsManagementRegistrationAllowed(
     pfIsManagementRegistrationAllowed: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MDMRegistration" fn IsMdmUxWithoutAadAllowed(
+pub extern "mdmregistration" fn IsMdmUxWithoutAadAllowed(
     isEnrollmentAllowed: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn SetManagedExternally(
+pub extern "mdmregistration" fn SetManagedExternally(
     IsManagedExternally: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn DiscoverManagementService(
+pub extern "mdmregistration" fn DiscoverManagementService(
     pszUPN: ?[*:0]const u16,
     ppMgmtInfo: ?*?*MANAGEMENT_SERVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn RegisterDeviceWithManagementUsingAADCredentials(
+pub extern "mdmregistration" fn RegisterDeviceWithManagementUsingAADCredentials(
     UserToken: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn RegisterDeviceWithManagementUsingAADDeviceCredentials(
+pub extern "mdmregistration" fn RegisterDeviceWithManagementUsingAADDeviceCredentials(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MDMRegistration" fn RegisterDeviceWithManagementUsingAADDeviceCredentials2(
+pub extern "mdmregistration" fn RegisterDeviceWithManagementUsingAADDeviceCredentials2(
     MDMApplicationID: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn RegisterDeviceWithManagement(
+pub extern "mdmregistration" fn RegisterDeviceWithManagement(
     pszUPN: ?[*:0]const u16,
     ppszMDMServiceUri: ?[*:0]const u16,
     ppzsAccessToken: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn UnregisterDeviceWithManagement(
+pub extern "mdmregistration" fn UnregisterDeviceWithManagement(
     enrollmentID: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MDMRegistration" fn GetDeviceManagementConfigInfo(
+pub extern "mdmregistration" fn GetDeviceManagementConfigInfo(
     providerID: ?[*:0]const u16,
     configStringBufferLength: ?*u32,
     configString: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MDMRegistration" fn SetDeviceManagementConfigInfo(
+pub extern "mdmregistration" fn SetDeviceManagementConfigInfo(
     providerID: ?[*:0]const u16,
     configString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn GetManagementAppHyperlink(
+pub extern "mdmregistration" fn GetManagementAppHyperlink(
     cchHyperlink: u32,
     pszHyperlink: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "MDMRegistration" fn DiscoverManagementServiceEx(
+pub extern "mdmregistration" fn DiscoverManagementServiceEx(
     pszUPN: ?[*:0]const u16,
     pszDiscoveryServiceCandidate: ?[*:0]const u16,
     ppMgmtInfo: ?*?*MANAGEMENT_SERVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MDMLocalManagement" fn RegisterDeviceWithLocalManagement(
+pub extern "mdmlocalmanagement" fn RegisterDeviceWithLocalManagement(
     alreadyRegistered: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MDMLocalManagement" fn ApplyLocalManagementSyncML(
+pub extern "mdmlocalmanagement" fn ApplyLocalManagementSyncML(
     syncMLRequest: ?[*:0]const u16,
     syncMLResult: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MDMLocalManagement" fn UnregisterDeviceWithLocalManagement(
+pub extern "mdmlocalmanagement" fn UnregisterDeviceWithLocalManagement(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

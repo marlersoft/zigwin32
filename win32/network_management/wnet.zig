@@ -645,21 +645,21 @@ pub const PF_NPFMXGetPermHelp = fn(
 // Section: Functions (65)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetAddConnectionA(
+pub extern "mpr" fn WNetAddConnectionA(
     lpRemoteName: ?[*:0]const u8,
     lpPassword: ?[*:0]const u8,
     lpLocalName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetAddConnectionW(
+pub extern "mpr" fn WNetAddConnectionW(
     lpRemoteName: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
     lpLocalName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetAddConnection2A(
+pub extern "mpr" fn WNetAddConnection2A(
     lpNetResource: ?*NETRESOURCEA,
     lpPassword: ?[*:0]const u8,
     lpUserName: ?[*:0]const u8,
@@ -667,7 +667,7 @@ pub extern "MPR" fn WNetAddConnection2A(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetAddConnection2W(
+pub extern "mpr" fn WNetAddConnection2W(
     lpNetResource: ?*NETRESOURCEW,
     lpPassword: ?[*:0]const u16,
     lpUserName: ?[*:0]const u16,
@@ -675,7 +675,7 @@ pub extern "MPR" fn WNetAddConnection2W(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetAddConnection3A(
+pub extern "mpr" fn WNetAddConnection3A(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
     lpPassword: ?[*:0]const u8,
@@ -684,7 +684,7 @@ pub extern "MPR" fn WNetAddConnection3A(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetAddConnection3W(
+pub extern "mpr" fn WNetAddConnection3W(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     lpPassword: ?[*:0]const u16,
@@ -692,7 +692,7 @@ pub extern "MPR" fn WNetAddConnection3W(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MPR" fn WNetAddConnection4A(
+pub extern "mpr" fn WNetAddConnection4A(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 3?
@@ -704,7 +704,7 @@ pub extern "MPR" fn WNetAddConnection4A(
     cbUseOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MPR" fn WNetAddConnection4W(
+pub extern "mpr" fn WNetAddConnection4W(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
@@ -717,47 +717,47 @@ pub extern "MPR" fn WNetAddConnection4W(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetCancelConnectionA(
+pub extern "mpr" fn WNetCancelConnectionA(
     lpName: ?[*:0]const u8,
     fForce: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetCancelConnectionW(
+pub extern "mpr" fn WNetCancelConnectionW(
     lpName: ?[*:0]const u16,
     fForce: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetCancelConnection2A(
+pub extern "mpr" fn WNetCancelConnection2A(
     lpName: ?[*:0]const u8,
     dwFlags: u32,
     fForce: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetCancelConnection2W(
+pub extern "mpr" fn WNetCancelConnection2W(
     lpName: ?[*:0]const u16,
     dwFlags: u32,
     fForce: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetConnectionA(
+pub extern "mpr" fn WNetGetConnectionA(
     lpLocalName: ?[*:0]const u8,
     lpRemoteName: ?[*:0]u8,
     lpnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetConnectionW(
+pub extern "mpr" fn WNetGetConnectionW(
     lpLocalName: ?[*:0]const u16,
     lpRemoteName: ?[*:0]u16,
     lpnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetUseConnectionA(
+pub extern "mpr" fn WNetUseConnectionA(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
     lpPassword: ?[*:0]const u8,
@@ -769,7 +769,7 @@ pub extern "MPR" fn WNetUseConnectionA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetUseConnectionW(
+pub extern "mpr" fn WNetUseConnectionW(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     lpPassword: ?[*:0]const u16,
@@ -780,7 +780,7 @@ pub extern "MPR" fn WNetUseConnectionW(
     lpResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MPR" fn WNetUseConnection4A(
+pub extern "mpr" fn WNetUseConnection4A(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 3?
@@ -795,7 +795,7 @@ pub extern "MPR" fn WNetUseConnection4A(
     lpResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MPR" fn WNetUseConnection4W(
+pub extern "mpr" fn WNetUseConnection4W(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
@@ -811,39 +811,39 @@ pub extern "MPR" fn WNetUseConnection4W(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetConnectionDialog(
+pub extern "mpr" fn WNetConnectionDialog(
     hwnd: ?HWND,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetDisconnectDialog(
+pub extern "mpr" fn WNetDisconnectDialog(
     hwnd: ?HWND,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetConnectionDialog1A(
+pub extern "mpr" fn WNetConnectionDialog1A(
     lpConnDlgStruct: ?*CONNECTDLGSTRUCTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetConnectionDialog1W(
+pub extern "mpr" fn WNetConnectionDialog1W(
     lpConnDlgStruct: ?*CONNECTDLGSTRUCTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetDisconnectDialog1A(
+pub extern "mpr" fn WNetDisconnectDialog1A(
     lpConnDlgStruct: ?*DISCDLGSTRUCTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetDisconnectDialog1W(
+pub extern "mpr" fn WNetDisconnectDialog1W(
     lpConnDlgStruct: ?*DISCDLGSTRUCTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetOpenEnumA(
+pub extern "mpr" fn WNetOpenEnumA(
     dwScope: NET_RESOURCE_SCOPE,
     dwType: NET_RESOURCE_TYPE,
     dwUsage: WNET_OPEN_ENUM_USAGE,
@@ -852,7 +852,7 @@ pub extern "MPR" fn WNetOpenEnumA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetOpenEnumW(
+pub extern "mpr" fn WNetOpenEnumW(
     dwScope: NET_RESOURCE_SCOPE,
     dwType: NET_RESOURCE_TYPE,
     dwUsage: WNET_OPEN_ENUM_USAGE,
@@ -861,7 +861,7 @@ pub extern "MPR" fn WNetOpenEnumW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetEnumResourceA(
+pub extern "mpr" fn WNetEnumResourceA(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -870,7 +870,7 @@ pub extern "MPR" fn WNetEnumResourceA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetEnumResourceW(
+pub extern "mpr" fn WNetEnumResourceW(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -879,12 +879,12 @@ pub extern "MPR" fn WNetEnumResourceW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetCloseEnum(
+pub extern "mpr" fn WNetCloseEnum(
     hEnum: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetResourceParentA(
+pub extern "mpr" fn WNetGetResourceParentA(
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -892,7 +892,7 @@ pub extern "MPR" fn WNetGetResourceParentA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetResourceParentW(
+pub extern "mpr" fn WNetGetResourceParentW(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -900,7 +900,7 @@ pub extern "MPR" fn WNetGetResourceParentW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetResourceInformationA(
+pub extern "mpr" fn WNetGetResourceInformationA(
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -909,7 +909,7 @@ pub extern "MPR" fn WNetGetResourceInformationA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetResourceInformationW(
+pub extern "mpr" fn WNetGetResourceInformationW(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -918,7 +918,7 @@ pub extern "MPR" fn WNetGetResourceInformationW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetUniversalNameA(
+pub extern "mpr" fn WNetGetUniversalNameA(
     lpLocalPath: ?[*:0]const u8,
     dwInfoLevel: UNC_INFO_LEVEL,
     // TODO: what to do with BytesParamIndex 3?
@@ -927,7 +927,7 @@ pub extern "MPR" fn WNetGetUniversalNameA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetUniversalNameW(
+pub extern "mpr" fn WNetGetUniversalNameW(
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: UNC_INFO_LEVEL,
     // TODO: what to do with BytesParamIndex 3?
@@ -936,47 +936,47 @@ pub extern "MPR" fn WNetGetUniversalNameW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetUserA(
+pub extern "mpr" fn WNetGetUserA(
     lpName: ?[*:0]const u8,
     lpUserName: [*:0]u8,
     lpnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetUserW(
+pub extern "mpr" fn WNetGetUserW(
     lpName: ?[*:0]const u16,
     lpUserName: [*:0]u16,
     lpnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetProviderNameA(
+pub extern "mpr" fn WNetGetProviderNameA(
     dwNetType: u32,
     lpProviderName: [*:0]u8,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetProviderNameW(
+pub extern "mpr" fn WNetGetProviderNameW(
     dwNetType: u32,
     lpProviderName: [*:0]u16,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetNetworkInformationA(
+pub extern "mpr" fn WNetGetNetworkInformationA(
     lpProvider: ?[*:0]const u8,
     lpNetInfoStruct: ?*NETINFOSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetNetworkInformationW(
+pub extern "mpr" fn WNetGetNetworkInformationW(
     lpProvider: ?[*:0]const u16,
     lpNetInfoStruct: ?*NETINFOSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetLastErrorA(
+pub extern "mpr" fn WNetGetLastErrorA(
     lpError: ?*u32,
     lpErrorBuf: [*:0]u8,
     nErrorBufSize: u32,
@@ -985,7 +985,7 @@ pub extern "MPR" fn WNetGetLastErrorA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn WNetGetLastErrorW(
+pub extern "mpr" fn WNetGetLastErrorW(
     lpError: ?*u32,
     lpErrorBuf: [*:0]u16,
     nErrorBufSize: u32,
@@ -994,13 +994,13 @@ pub extern "MPR" fn WNetGetLastErrorW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn MultinetGetConnectionPerformanceA(
+pub extern "mpr" fn MultinetGetConnectionPerformanceA(
     lpNetResource: ?*NETRESOURCEA,
     lpNetConnectInfoStruct: ?*NETCONNECTINFOSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MPR" fn MultinetGetConnectionPerformanceW(
+pub extern "mpr" fn MultinetGetConnectionPerformanceW(
     lpNetResource: ?*NETRESOURCEW,
     lpNetConnectInfoStruct: ?*NETCONNECTINFOSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1021,7 +1021,7 @@ pub extern "davclnt" fn NPAddConnection3(
     dwFlags: NET_USE_CONNECT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NTLANMAN" fn NPAddConnection4(
+pub extern "ntlanman" fn NPAddConnection4(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
@@ -1039,7 +1039,7 @@ pub extern "davclnt" fn NPCancelConnection(
     fForce: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NTLANMAN" fn NPCancelConnection2(
+pub extern "ntlanman" fn NPCancelConnection2(
     lpName: ?PWSTR,
     fForce: BOOL,
     dwFlags: u32,
@@ -1053,7 +1053,7 @@ pub extern "davclnt" fn NPGetConnection(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NTLANMAN" fn NPGetConnection3(
+pub extern "ntlanman" fn NPGetConnection3(
     lpLocalName: ?[*:0]const u16,
     dwLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -1071,7 +1071,7 @@ pub extern "davclnt" fn NPGetUniversalName(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "NTLANMAN" fn NPGetConnectionPerformance(
+pub extern "ntlanman" fn NPGetConnectionPerformance(
     lpRemoteName: ?[*:0]const u16,
     lpNetConnectInfo: ?*NETCONNECTINFOSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1111,7 +1111,7 @@ pub extern "davclnt" fn NPGetUser(
     lpnBufferLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NTLANMAN" fn NPGetPersistentUseOptionsForConnection(
+pub extern "ntlanman" fn NPGetPersistentUseOptionsForConnection(
     lpRemotePath: ?PWSTR,
     // TODO: what to do with BytesParamIndex 2?
     lpReadUseOptions: ?*u8,
@@ -1148,13 +1148,13 @@ pub extern "davclnt" fn NPFormatNetworkName(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "MPR" fn WNetSetLastErrorA(
+pub extern "mpr" fn WNetSetLastErrorA(
     err: u32,
     lpError: ?PSTR,
     lpProviders: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MPR" fn WNetSetLastErrorW(
+pub extern "mpr" fn WNetSetLastErrorW(
     err: u32,
     lpError: ?PWSTR,
     lpProviders: ?PWSTR,

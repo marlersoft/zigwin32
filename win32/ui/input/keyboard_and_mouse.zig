@@ -1028,30 +1028,30 @@ pub const LASTINPUTINFO = extern struct {
 // Section: Functions (52)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMCTL32" fn _TrackMouseEvent(
+pub extern "comctl32" fn _TrackMouseEvent(
     lpEventTrack: ?*TRACKMOUSEEVENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn LoadKeyboardLayoutA(
+pub extern "user32" fn LoadKeyboardLayoutA(
     pwszKLID: ?[*:0]const u8,
     Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn LoadKeyboardLayoutW(
+pub extern "user32" fn LoadKeyboardLayoutW(
     pwszKLID: ?[*:0]const u16,
     Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ActivateKeyboardLayout(
+pub extern "user32" fn ActivateKeyboardLayout(
     hkl: ?HKL,
     Flags: ACTIVATE_KEYBOARD_LAYOUT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ToUnicodeEx(
+pub extern "user32" fn ToUnicodeEx(
     wVirtKey: u32,
     wScanCode: u32,
     lpKeyState: *[256]u8,
@@ -1062,33 +1062,33 @@ pub extern "USER32" fn ToUnicodeEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn UnloadKeyboardLayout(
+pub extern "user32" fn UnloadKeyboardLayout(
     hkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyboardLayoutNameA(
+pub extern "user32" fn GetKeyboardLayoutNameA(
     pwszKLID: *[9]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyboardLayoutNameW(
+pub extern "user32" fn GetKeyboardLayoutNameW(
     pwszKLID: *[9]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyboardLayoutList(
+pub extern "user32" fn GetKeyboardLayoutList(
     nBuff: i32,
     lpList: ?[*]?HKL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyboardLayout(
+pub extern "user32" fn GetKeyboardLayout(
     idThread: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetMouseMovePointsEx(
+pub extern "user32" fn GetMouseMovePointsEx(
     cbSize: u32,
     lppt: ?*MOUSEMOVEPOINT,
     lpptBuf: [*]MOUSEMOVEPOINT,
@@ -1097,12 +1097,12 @@ pub extern "USER32" fn GetMouseMovePointsEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn TrackMouseEvent(
+pub extern "user32" fn TrackMouseEvent(
     lpEventTrack: ?*TRACKMOUSEEVENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn RegisterHotKey(
+pub extern "user32" fn RegisterHotKey(
     hWnd: ?HWND,
     id: i32,
     fsModifiers: HOT_KEY_MODIFIERS,
@@ -1110,83 +1110,83 @@ pub extern "USER32" fn RegisterHotKey(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn UnregisterHotKey(
+pub extern "user32" fn UnregisterHotKey(
     hWnd: ?HWND,
     id: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SwapMouseButton(
+pub extern "user32" fn SwapMouseButton(
     fSwap: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetDoubleClickTime(
+pub extern "user32" fn GetDoubleClickTime(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetDoubleClickTime(
+pub extern "user32" fn SetDoubleClickTime(
     param0: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetFocus(
+pub extern "user32" fn SetFocus(
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetActiveWindow(
+pub extern "user32" fn GetActiveWindow(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetFocus(
+pub extern "user32" fn GetFocus(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKBCodePage(
+pub extern "user32" fn GetKBCodePage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyState(
+pub extern "user32" fn GetKeyState(
     nVirtKey: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetAsyncKeyState(
+pub extern "user32" fn GetAsyncKeyState(
     vKey: i32,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyboardState(
+pub extern "user32" fn GetKeyboardState(
     lpKeyState: *[256]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetKeyboardState(
+pub extern "user32" fn SetKeyboardState(
     lpKeyState: *[256]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyNameTextA(
+pub extern "user32" fn GetKeyNameTextA(
     lParam: i32,
     lpString: [*:0]u8,
     cchSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyNameTextW(
+pub extern "user32" fn GetKeyNameTextW(
     lParam: i32,
     lpString: [*:0]u16,
     cchSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetKeyboardType(
+pub extern "user32" fn GetKeyboardType(
     nTypeFlag: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ToAscii(
+pub extern "user32" fn ToAscii(
     uVirtKey: u32,
     uScanCode: u32,
     lpKeyState: ?*[256]u8,
@@ -1195,7 +1195,7 @@ pub extern "USER32" fn ToAscii(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ToAsciiEx(
+pub extern "user32" fn ToAsciiEx(
     uVirtKey: u32,
     uScanCode: u32,
     lpKeyState: ?*[256]u8,
@@ -1205,7 +1205,7 @@ pub extern "USER32" fn ToAsciiEx(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ToUnicode(
+pub extern "user32" fn ToUnicode(
     wVirtKey: u32,
     wScanCode: u32,
     lpKeyState: ?*[256]u8,
@@ -1215,34 +1215,34 @@ pub extern "USER32" fn ToUnicode(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OemKeyScan(
+pub extern "user32" fn OemKeyScan(
     wOemChar: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn VkKeyScanA(
+pub extern "user32" fn VkKeyScanA(
     ch: CHAR,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn VkKeyScanW(
+pub extern "user32" fn VkKeyScanW(
     ch: u16,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn VkKeyScanExA(
+pub extern "user32" fn VkKeyScanExA(
     ch: CHAR,
     dwhkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn VkKeyScanExW(
+pub extern "user32" fn VkKeyScanExW(
     ch: u16,
     dwhkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn keybd_event(
+pub extern "user32" fn keybd_event(
     bVk: u8,
     bScan: u8,
     dwFlags: KEYBD_EVENT_FLAGS,
@@ -1250,7 +1250,7 @@ pub extern "USER32" fn keybd_event(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn mouse_event(
+pub extern "user32" fn mouse_event(
     dwFlags: MOUSE_EVENT_FLAGS,
     dx: i32,
     dy: i32,
@@ -1259,80 +1259,80 @@ pub extern "USER32" fn mouse_event(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SendInput(
+pub extern "user32" fn SendInput(
     cInputs: u32,
     pInputs: [*]INPUT,
     cbSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetLastInputInfo(
+pub extern "user32" fn GetLastInputInfo(
     plii: ?*LASTINPUTINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn MapVirtualKeyA(
+pub extern "user32" fn MapVirtualKeyA(
     uCode: u32,
     uMapType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn MapVirtualKeyW(
+pub extern "user32" fn MapVirtualKeyW(
     uCode: u32,
     uMapType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn MapVirtualKeyExA(
-    uCode: u32,
-    uMapType: u32,
-    dwhkl: ?HKL,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn MapVirtualKeyExW(
+pub extern "user32" fn MapVirtualKeyExA(
     uCode: u32,
     uMapType: u32,
     dwhkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetCapture(
+pub extern "user32" fn MapVirtualKeyExW(
+    uCode: u32,
+    uMapType: u32,
+    dwhkl: ?HKL,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "user32" fn GetCapture(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetCapture(
+pub extern "user32" fn SetCapture(
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ReleaseCapture(
+pub extern "user32" fn ReleaseCapture(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnableWindow(
+pub extern "user32" fn EnableWindow(
     hWnd: ?HWND,
     bEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn IsWindowEnabled(
+pub extern "user32" fn IsWindowEnabled(
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DragDetect(
+pub extern "user32" fn DragDetect(
     hwnd: ?HWND,
     pt: POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetActiveWindow(
+pub extern "user32" fn SetActiveWindow(
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn BlockInput(
+pub extern "user32" fn BlockInput(
     fBlockIt: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

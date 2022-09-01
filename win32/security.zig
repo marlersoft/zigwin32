@@ -1359,7 +1359,7 @@ pub const QUOTA_LIMITS = extern struct {
 // Section: Functions (133)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheck(
+pub extern "advapi32" fn AccessCheck(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     ClientToken: ?HANDLE,
     DesiredAccess: u32,
@@ -1371,7 +1371,7 @@ pub extern "ADVAPI32" fn AccessCheck(
     AccessStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmW(
+pub extern "advapi32" fn AccessCheckAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?PWSTR,
@@ -1386,7 +1386,7 @@ pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByType(
+pub extern "advapi32" fn AccessCheckByType(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     ClientToken: ?HANDLE,
@@ -1402,7 +1402,7 @@ pub extern "ADVAPI32" fn AccessCheckByType(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByTypeResultList(
+pub extern "advapi32" fn AccessCheckByTypeResultList(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     PrincipalSelfSid: ?PSID,
     ClientToken: ?HANDLE,
@@ -1417,7 +1417,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultList(
     AccessStatusList: [*]u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmW(
+pub extern "advapi32" fn AccessCheckByTypeAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u16,
@@ -1436,7 +1436,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmW(
     pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmW(
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u16,
@@ -1455,7 +1455,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmW(
     pfGenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
@@ -1476,7 +1476,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAccessAllowedAce(
+pub extern "advapi32" fn AddAccessAllowedAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AccessMask: u32,
@@ -1484,35 +1484,7 @@ pub extern "ADVAPI32" fn AddAccessAllowedAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAccessAllowedAceEx(
-    pAcl: ?*ACL,
-    dwAceRevision: u32,
-    AceFlags: ACE_FLAGS,
-    AccessMask: u32,
-    pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAccessAllowedObjectAce(
-    pAcl: ?*ACL,
-    dwAceRevision: u32,
-    AceFlags: ACE_FLAGS,
-    AccessMask: u32,
-    ObjectTypeGuid: ?*Guid,
-    InheritedObjectTypeGuid: ?*Guid,
-    pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAccessDeniedAce(
-    pAcl: ?*ACL,
-    dwAceRevision: u32,
-    AccessMask: u32,
-    pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAccessDeniedAceEx(
+pub extern "advapi32" fn AddAccessAllowedAceEx(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
@@ -1521,7 +1493,7 @@ pub extern "ADVAPI32" fn AddAccessDeniedAceEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAccessDeniedObjectAce(
+pub extern "advapi32" fn AddAccessAllowedObjectAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
@@ -1532,7 +1504,35 @@ pub extern "ADVAPI32" fn AddAccessDeniedObjectAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAce(
+pub extern "advapi32" fn AddAccessDeniedAce(
+    pAcl: ?*ACL,
+    dwAceRevision: u32,
+    AccessMask: u32,
+    pSid: ?PSID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn AddAccessDeniedAceEx(
+    pAcl: ?*ACL,
+    dwAceRevision: u32,
+    AceFlags: ACE_FLAGS,
+    AccessMask: u32,
+    pSid: ?PSID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn AddAccessDeniedObjectAce(
+    pAcl: ?*ACL,
+    dwAceRevision: u32,
+    AceFlags: ACE_FLAGS,
+    AccessMask: u32,
+    ObjectTypeGuid: ?*Guid,
+    InheritedObjectTypeGuid: ?*Guid,
+    pSid: ?PSID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn AddAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     dwStartingAceIndex: u32,
@@ -1542,7 +1542,7 @@ pub extern "ADVAPI32" fn AddAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAuditAccessAce(
+pub extern "advapi32" fn AddAuditAccessAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     dwAccessMask: u32,
@@ -1552,7 +1552,7 @@ pub extern "ADVAPI32" fn AddAuditAccessAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAuditAccessAceEx(
+pub extern "advapi32" fn AddAuditAccessAceEx(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
@@ -1563,7 +1563,7 @@ pub extern "ADVAPI32" fn AddAuditAccessAceEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddAuditAccessObjectAce(
+pub extern "advapi32" fn AddAuditAccessObjectAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
@@ -1576,7 +1576,7 @@ pub extern "ADVAPI32" fn AddAuditAccessObjectAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn AddMandatoryAce(
+pub extern "advapi32" fn AddMandatoryAce(
     pAcl: ?*ACL,
     dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
@@ -1585,7 +1585,7 @@ pub extern "ADVAPI32" fn AddMandatoryAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn AddResourceAttributeAce(
+pub extern "kernel32" fn AddResourceAttributeAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
@@ -1596,7 +1596,7 @@ pub extern "KERNEL32" fn AddResourceAttributeAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn AddScopedPolicyIDAce(
+pub extern "kernel32" fn AddScopedPolicyIDAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
@@ -1605,7 +1605,7 @@ pub extern "KERNEL32" fn AddScopedPolicyIDAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AdjustTokenGroups(
+pub extern "advapi32" fn AdjustTokenGroups(
     TokenHandle: ?HANDLE,
     ResetToDefault: BOOL,
     NewState: ?*TOKEN_GROUPS,
@@ -1616,7 +1616,7 @@ pub extern "ADVAPI32" fn AdjustTokenGroups(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AdjustTokenPrivileges(
+pub extern "advapi32" fn AdjustTokenPrivileges(
     TokenHandle: ?HANDLE,
     DisableAllPrivileges: BOOL,
     NewState: ?*TOKEN_PRIVILEGES,
@@ -1627,7 +1627,7 @@ pub extern "ADVAPI32" fn AdjustTokenPrivileges(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AllocateAndInitializeSid(
+pub extern "advapi32" fn AllocateAndInitializeSid(
     pIdentifierAuthority: ?*SID_IDENTIFIER_AUTHORITY,
     nSubAuthorityCount: u8,
     nSubAuthority0: u32,
@@ -1642,37 +1642,37 @@ pub extern "ADVAPI32" fn AllocateAndInitializeSid(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AllocateLocallyUniqueId(
+pub extern "advapi32" fn AllocateLocallyUniqueId(
     Luid: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AreAllAccessesGranted(
+pub extern "advapi32" fn AreAllAccessesGranted(
     GrantedAccess: u32,
     DesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AreAnyAccessesGranted(
+pub extern "advapi32" fn AreAnyAccessesGranted(
     GrantedAccess: u32,
     DesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CheckTokenMembership(
+pub extern "advapi32" fn CheckTokenMembership(
     TokenHandle: ?HANDLE,
     SidToCheck: ?PSID,
     IsMember: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn CheckTokenCapability(
+pub extern "kernel32" fn CheckTokenCapability(
     TokenHandle: ?HANDLE,
     CapabilitySidToCheck: ?PSID,
     HasCapability: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetAppContainerAce(
+pub extern "kernel32" fn GetAppContainerAce(
     Acl: ?*ACL,
     StartingAceIndex: u32,
     AppContainerAce: ?*?*anyopaque,
@@ -1680,7 +1680,7 @@ pub extern "KERNEL32" fn GetAppContainerAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn CheckTokenMembershipEx(
+pub extern "kernel32" fn CheckTokenMembershipEx(
     TokenHandle: ?HANDLE,
     SidToCheck: ?PSID,
     Flags: u32,
@@ -1688,7 +1688,7 @@ pub extern "KERNEL32" fn CheckTokenMembershipEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ConvertToAutoInheritPrivateObjectSecurity(
+pub extern "advapi32" fn ConvertToAutoInheritPrivateObjectSecurity(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CurrentSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     NewSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -1698,7 +1698,7 @@ pub extern "ADVAPI32" fn ConvertToAutoInheritPrivateObjectSecurity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CopySid(
+pub extern "advapi32" fn CopySid(
     nDestinationSidLength: u32,
     // TODO: what to do with BytesParamIndex 0?
     pDestinationSid: ?PSID,
@@ -1706,7 +1706,7 @@ pub extern "ADVAPI32" fn CopySid(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreatePrivateObjectSecurity(
+pub extern "advapi32" fn CreatePrivateObjectSecurity(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
     NewDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -1716,7 +1716,7 @@ pub extern "ADVAPI32" fn CreatePrivateObjectSecurity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreatePrivateObjectSecurityEx(
+pub extern "advapi32" fn CreatePrivateObjectSecurityEx(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
     NewDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -1728,7 +1728,7 @@ pub extern "ADVAPI32" fn CreatePrivateObjectSecurityEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreatePrivateObjectSecurityWithMultipleInheritance(
+pub extern "advapi32" fn CreatePrivateObjectSecurityWithMultipleInheritance(
     ParentDescriptor: ?*SECURITY_DESCRIPTOR,
     CreatorDescriptor: ?*SECURITY_DESCRIPTOR,
     NewDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -1741,7 +1741,7 @@ pub extern "ADVAPI32" fn CreatePrivateObjectSecurityWithMultipleInheritance(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateRestrictedToken(
+pub extern "advapi32" fn CreateRestrictedToken(
     ExistingTokenHandle: ?HANDLE,
     Flags: CREATE_RESTRICTED_TOKEN_FLAGS,
     DisableSidCount: u32,
@@ -1754,7 +1754,7 @@ pub extern "ADVAPI32" fn CreateRestrictedToken(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateWellKnownSid(
+pub extern "advapi32" fn CreateWellKnownSid(
     WellKnownSidType: WELL_KNOWN_SID_TYPE,
     DomainSid: ?PSID,
     // TODO: what to do with BytesParamIndex 3?
@@ -1763,32 +1763,32 @@ pub extern "ADVAPI32" fn CreateWellKnownSid(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EqualDomainSid(
+pub extern "advapi32" fn EqualDomainSid(
     pSid1: ?PSID,
     pSid2: ?PSID,
     pfEqual: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn DeleteAce(
+pub extern "advapi32" fn DeleteAce(
     pAcl: ?*ACL,
     dwAceIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn DestroyPrivateObjectSecurity(
+pub extern "advapi32" fn DestroyPrivateObjectSecurity(
     ObjectDescriptor: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn DuplicateToken(
+pub extern "advapi32" fn DuplicateToken(
     ExistingTokenHandle: ?HANDLE,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     DuplicateTokenHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn DuplicateTokenEx(
+pub extern "advapi32" fn DuplicateTokenEx(
     hExistingToken: ?HANDLE,
     dwDesiredAccess: TOKEN_ACCESS_MASK,
     lpTokenAttributes: ?*SECURITY_ATTRIBUTES,
@@ -1798,37 +1798,37 @@ pub extern "ADVAPI32" fn DuplicateTokenEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EqualPrefixSid(
+pub extern "advapi32" fn EqualPrefixSid(
     pSid1: ?PSID,
     pSid2: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EqualSid(
+pub extern "advapi32" fn EqualSid(
     pSid1: ?PSID,
     pSid2: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn FindFirstFreeAce(
+pub extern "advapi32" fn FindFirstFreeAce(
     pAcl: ?*ACL,
     pAce: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn FreeSid(
+pub extern "advapi32" fn FreeSid(
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetAce(
+pub extern "advapi32" fn GetAce(
     pAcl: ?*ACL,
     dwAceIndex: u32,
     pAce: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetAclInformation(
+pub extern "advapi32" fn GetAclInformation(
     pAcl: ?*ACL,
     // TODO: what to do with BytesParamIndex 2?
     pAclInformation: ?*anyopaque,
@@ -1836,7 +1836,7 @@ pub extern "ADVAPI32" fn GetAclInformation(
     dwAclInformationClass: ACL_INFORMATION_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn GetFileSecurityW(
+pub extern "advapi32" fn GetFileSecurityW(
     lpFileName: ?[*:0]const u16,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -1846,7 +1846,7 @@ pub extern "ADVAPI32" fn GetFileSecurityW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetKernelObjectSecurity(
+pub extern "advapi32" fn GetKernelObjectSecurity(
     Handle: ?HANDLE,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -1856,12 +1856,12 @@ pub extern "ADVAPI32" fn GetKernelObjectSecurity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetLengthSid(
+pub extern "advapi32" fn GetLengthSid(
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetPrivateObjectSecurity(
+pub extern "advapi32" fn GetPrivateObjectSecurity(
     ObjectDescriptor: ?*SECURITY_DESCRIPTOR,
     SecurityInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -1871,14 +1871,14 @@ pub extern "ADVAPI32" fn GetPrivateObjectSecurity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityDescriptorControl(
+pub extern "advapi32" fn GetSecurityDescriptorControl(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pControl: ?*u16,
     lpdwRevision: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityDescriptorDacl(
+pub extern "advapi32" fn GetSecurityDescriptorDacl(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     lpbDaclPresent: ?*i32,
     pDacl: ?*?*ACL,
@@ -1886,32 +1886,32 @@ pub extern "ADVAPI32" fn GetSecurityDescriptorDacl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityDescriptorGroup(
+pub extern "advapi32" fn GetSecurityDescriptorGroup(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pGroup: ?*?PSID,
     lpbGroupDefaulted: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityDescriptorLength(
+pub extern "advapi32" fn GetSecurityDescriptorLength(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityDescriptorOwner(
+pub extern "advapi32" fn GetSecurityDescriptorOwner(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pOwner: ?*?PSID,
     lpbOwnerDefaulted: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityDescriptorRMControl(
+pub extern "advapi32" fn GetSecurityDescriptorRMControl(
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     RMControl: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSecurityDescriptorSacl(
+pub extern "advapi32" fn GetSecurityDescriptorSacl(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     lpbSaclPresent: ?*i32,
     pSacl: ?*?*ACL,
@@ -1919,28 +1919,28 @@ pub extern "ADVAPI32" fn GetSecurityDescriptorSacl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSidIdentifierAuthority(
+pub extern "advapi32" fn GetSidIdentifierAuthority(
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) ?*SID_IDENTIFIER_AUTHORITY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSidLengthRequired(
+pub extern "advapi32" fn GetSidLengthRequired(
     nSubAuthorityCount: u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSidSubAuthority(
+pub extern "advapi32" fn GetSidSubAuthority(
     pSid: ?PSID,
     nSubAuthority: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetSidSubAuthorityCount(
+pub extern "advapi32" fn GetSidSubAuthorityCount(
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetTokenInformation(
+pub extern "advapi32" fn GetTokenInformation(
     TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -1950,7 +1950,7 @@ pub extern "ADVAPI32" fn GetTokenInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetWindowsAccountDomainSid(
+pub extern "advapi32" fn GetWindowsAccountDomainSid(
     pSid: ?PSID,
     // TODO: what to do with BytesParamIndex 2?
     pDomainSid: ?PSID,
@@ -1958,22 +1958,22 @@ pub extern "ADVAPI32" fn GetWindowsAccountDomainSid(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ImpersonateAnonymousToken(
+pub extern "advapi32" fn ImpersonateAnonymousToken(
     ThreadHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ImpersonateLoggedOnUser(
+pub extern "advapi32" fn ImpersonateLoggedOnUser(
     hToken: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ImpersonateSelf(
+pub extern "advapi32" fn ImpersonateSelf(
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn InitializeAcl(
+pub extern "advapi32" fn InitializeAcl(
     // TODO: what to do with BytesParamIndex 1?
     pAcl: ?*ACL,
     nAclLength: u32,
@@ -1981,46 +1981,46 @@ pub extern "ADVAPI32" fn InitializeAcl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn InitializeSecurityDescriptor(
+pub extern "advapi32" fn InitializeSecurityDescriptor(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     dwRevision: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn InitializeSid(
+pub extern "advapi32" fn InitializeSid(
     Sid: ?PSID,
     pIdentifierAuthority: ?*SID_IDENTIFIER_AUTHORITY,
     nSubAuthorityCount: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn IsTokenRestricted(
+pub extern "advapi32" fn IsTokenRestricted(
     TokenHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn IsValidAcl(
+pub extern "advapi32" fn IsValidAcl(
     pAcl: ?*ACL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn IsValidSecurityDescriptor(
+pub extern "advapi32" fn IsValidSecurityDescriptor(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn IsValidSid(
+pub extern "advapi32" fn IsValidSid(
     pSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn IsWellKnownSid(
+pub extern "advapi32" fn IsWellKnownSid(
     pSid: ?PSID,
     WellKnownSidType: WELL_KNOWN_SID_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn MakeAbsoluteSD(
+pub extern "advapi32" fn MakeAbsoluteSD(
     pSelfRelativeSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     // TODO: what to do with BytesParamIndex 2?
     pAbsoluteSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -2040,7 +2040,7 @@ pub extern "ADVAPI32" fn MakeAbsoluteSD(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn MakeSelfRelativeSD(
+pub extern "advapi32" fn MakeSelfRelativeSD(
     pAbsoluteSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     // TODO: what to do with BytesParamIndex 2?
     pSelfRelativeSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
@@ -2048,24 +2048,24 @@ pub extern "ADVAPI32" fn MakeSelfRelativeSD(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn MapGenericMask(
+pub extern "advapi32" fn MapGenericMask(
     AccessMask: ?*u32,
     GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "ADVAPI32" fn ObjectCloseAuditAlarmW(
+pub extern "advapi32" fn ObjectCloseAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmW(
+pub extern "advapi32" fn ObjectDeleteAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn ObjectOpenAuditAlarmW(
+pub extern "advapi32" fn ObjectOpenAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?PWSTR,
@@ -2080,7 +2080,7 @@ pub extern "ADVAPI32" fn ObjectOpenAuditAlarmW(
     GenerateOnClose: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmW(
+pub extern "advapi32" fn ObjectPrivilegeAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
@@ -2090,13 +2090,13 @@ pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn PrivilegeCheck(
+pub extern "advapi32" fn PrivilegeCheck(
     ClientToken: ?HANDLE,
     RequiredPrivileges: ?*PRIVILEGE_SET,
     pfResult: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmW(
+pub extern "advapi32" fn PrivilegedServiceAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     ServiceName: ?[*:0]const u16,
     ClientToken: ?HANDLE,
@@ -2105,17 +2105,17 @@ pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn QuerySecurityAccessMask(
+pub extern "advapi32" fn QuerySecurityAccessMask(
     SecurityInformation: u32,
     DesiredAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn RevertToSelf(
+pub extern "advapi32" fn RevertToSelf(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetAclInformation(
+pub extern "advapi32" fn SetAclInformation(
     pAcl: ?*ACL,
     // TODO: what to do with BytesParamIndex 2?
     pAclInformation: ?*anyopaque,
@@ -2123,21 +2123,21 @@ pub extern "ADVAPI32" fn SetAclInformation(
     dwAclInformationClass: ACL_INFORMATION_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn SetFileSecurityW(
+pub extern "advapi32" fn SetFileSecurityW(
     lpFileName: ?[*:0]const u16,
     SecurityInformation: u32,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetKernelObjectSecurity(
+pub extern "advapi32" fn SetKernelObjectSecurity(
     Handle: ?HANDLE,
     SecurityInformation: u32,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetPrivateObjectSecurity(
+pub extern "advapi32" fn SetPrivateObjectSecurity(
     SecurityInformation: u32,
     ModificationDescriptor: ?*SECURITY_DESCRIPTOR,
     ObjectsSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -2146,7 +2146,7 @@ pub extern "ADVAPI32" fn SetPrivateObjectSecurity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetPrivateObjectSecurityEx(
+pub extern "advapi32" fn SetPrivateObjectSecurityEx(
     SecurityInformation: u32,
     ModificationDescriptor: ?*SECURITY_DESCRIPTOR,
     ObjectsSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -2156,20 +2156,20 @@ pub extern "ADVAPI32" fn SetPrivateObjectSecurityEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn SetSecurityAccessMask(
+pub extern "advapi32" fn SetSecurityAccessMask(
     SecurityInformation: u32,
     DesiredAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetSecurityDescriptorControl(
+pub extern "advapi32" fn SetSecurityDescriptorControl(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     ControlBitsOfInterest: u16,
     ControlBitsToSet: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetSecurityDescriptorDacl(
+pub extern "advapi32" fn SetSecurityDescriptorDacl(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     bDaclPresent: BOOL,
     pDacl: ?*ACL,
@@ -2177,27 +2177,27 @@ pub extern "ADVAPI32" fn SetSecurityDescriptorDacl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetSecurityDescriptorGroup(
+pub extern "advapi32" fn SetSecurityDescriptorGroup(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pGroup: ?PSID,
     bGroupDefaulted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetSecurityDescriptorOwner(
+pub extern "advapi32" fn SetSecurityDescriptorOwner(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pOwner: ?PSID,
     bOwnerDefaulted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetSecurityDescriptorRMControl(
+pub extern "advapi32" fn SetSecurityDescriptorRMControl(
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     RMControl: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetSecurityDescriptorSacl(
+pub extern "advapi32" fn SetSecurityDescriptorSacl(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     bSaclPresent: BOOL,
     pSacl: ?*ACL,
@@ -2205,7 +2205,7 @@ pub extern "ADVAPI32" fn SetSecurityDescriptorSacl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetTokenInformation(
+pub extern "advapi32" fn SetTokenInformation(
     TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -2213,14 +2213,14 @@ pub extern "ADVAPI32" fn SetTokenInformation(
     TokenInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetCachedSigningLevel(
+pub extern "kernel32" fn SetCachedSigningLevel(
     SourceFiles: [*]?HANDLE,
     SourceFileCount: u32,
     Flags: u32,
     TargetFile: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetCachedSigningLevel(
+pub extern "kernel32" fn GetCachedSigningLevel(
     File: ?HANDLE,
     Flags: ?*u32,
     SigningLevel: ?*u32,
@@ -2247,14 +2247,14 @@ pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetUserObjectSecurity(
+pub extern "user32" fn SetUserObjectSecurity(
     hObj: ?HANDLE,
     pSIRequested: ?*OBJECT_SECURITY_INFORMATION,
     pSID: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetUserObjectSecurity(
+pub extern "user32" fn GetUserObjectSecurity(
     hObj: ?HANDLE,
     pSIRequested: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -2264,7 +2264,7 @@ pub extern "USER32" fn GetUserObjectSecurity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
+pub extern "advapi32" fn AccessCheckAndAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?PSTR,
@@ -2279,7 +2279,7 @@ pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
+pub extern "advapi32" fn AccessCheckByTypeAndAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u8,
@@ -2299,7 +2299,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?[*:0]const u8,
@@ -2319,7 +2319,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
+pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
@@ -2340,7 +2340,7 @@ pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
+pub extern "advapi32" fn ObjectOpenAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     ObjectTypeName: ?PSTR,
@@ -2356,7 +2356,7 @@ pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
+pub extern "advapi32" fn ObjectPrivilegeAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     ClientToken: ?HANDLE,
@@ -2366,21 +2366,21 @@ pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
+pub extern "advapi32" fn ObjectCloseAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
+pub extern "advapi32" fn ObjectDeleteAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
     GenerateOnClose: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
+pub extern "advapi32" fn PrivilegedServiceAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     ServiceName: ?[*:0]const u8,
     ClientToken: ?HANDLE,
@@ -2389,7 +2389,7 @@ pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "ADVAPI32" fn AddConditionalAce(
+pub extern "advapi32" fn AddConditionalAce(
     pAcl: ?*ACL,
     dwAceRevision: u32,
     AceFlags: ACE_FLAGS,
@@ -2401,14 +2401,14 @@ pub extern "ADVAPI32" fn AddConditionalAce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetFileSecurityA(
+pub extern "advapi32" fn SetFileSecurityA(
     lpFileName: ?[*:0]const u8,
     SecurityInformation: u32,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetFileSecurityA(
+pub extern "advapi32" fn GetFileSecurityA(
     lpFileName: ?[*:0]const u8,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -2418,7 +2418,7 @@ pub extern "ADVAPI32" fn GetFileSecurityA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountSidA(
+pub extern "advapi32" fn LookupAccountSidA(
     lpSystemName: ?[*:0]const u8,
     Sid: ?PSID,
     Name: ?[*:0]u8,
@@ -2429,7 +2429,7 @@ pub extern "ADVAPI32" fn LookupAccountSidA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountSidW(
+pub extern "advapi32" fn LookupAccountSidW(
     lpSystemName: ?[*:0]const u16,
     Sid: ?PSID,
     Name: ?[*:0]u16,
@@ -2440,7 +2440,7 @@ pub extern "ADVAPI32" fn LookupAccountSidW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountNameA(
+pub extern "advapi32" fn LookupAccountNameA(
     lpSystemName: ?[*:0]const u8,
     lpAccountName: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
@@ -2452,7 +2452,7 @@ pub extern "ADVAPI32" fn LookupAccountNameA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountNameW(
+pub extern "advapi32" fn LookupAccountNameW(
     lpSystemName: ?[*:0]const u16,
     lpAccountName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -2464,21 +2464,21 @@ pub extern "ADVAPI32" fn LookupAccountNameW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeValueA(
+pub extern "advapi32" fn LookupPrivilegeValueA(
     lpSystemName: ?[*:0]const u8,
     lpName: ?[*:0]const u8,
     lpLuid: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeValueW(
+pub extern "advapi32" fn LookupPrivilegeValueW(
     lpSystemName: ?[*:0]const u16,
     lpName: ?[*:0]const u16,
     lpLuid: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeNameA(
+pub extern "advapi32" fn LookupPrivilegeNameA(
     lpSystemName: ?[*:0]const u8,
     lpLuid: ?*LUID,
     lpName: ?[*:0]u8,
@@ -2486,7 +2486,7 @@ pub extern "ADVAPI32" fn LookupPrivilegeNameA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeNameW(
+pub extern "advapi32" fn LookupPrivilegeNameW(
     lpSystemName: ?[*:0]const u16,
     lpLuid: ?*LUID,
     lpName: ?[*:0]u16,
@@ -2494,7 +2494,7 @@ pub extern "ADVAPI32" fn LookupPrivilegeNameW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
+pub extern "advapi32" fn LookupPrivilegeDisplayNameA(
     lpSystemName: ?[*:0]const u8,
     lpName: ?[*:0]const u8,
     lpDisplayName: ?[*:0]u8,
@@ -2503,7 +2503,7 @@ pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
+pub extern "advapi32" fn LookupPrivilegeDisplayNameW(
     lpSystemName: ?[*:0]const u16,
     lpName: ?[*:0]const u16,
     lpDisplayName: ?[*:0]u16,
@@ -2512,7 +2512,7 @@ pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserA(
+pub extern "advapi32" fn LogonUserA(
     lpszUsername: ?[*:0]const u8,
     lpszDomain: ?[*:0]const u8,
     lpszPassword: ?[*:0]const u8,
@@ -2522,7 +2522,7 @@ pub extern "ADVAPI32" fn LogonUserA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserW(
+pub extern "advapi32" fn LogonUserW(
     lpszUsername: ?[*:0]const u16,
     lpszDomain: ?[*:0]const u16,
     lpszPassword: ?[*:0]const u16,
@@ -2532,7 +2532,7 @@ pub extern "ADVAPI32" fn LogonUserW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserExA(
+pub extern "advapi32" fn LogonUserExA(
     lpszUsername: ?[*:0]const u8,
     lpszDomain: ?[*:0]const u8,
     lpszPassword: ?[*:0]const u8,
@@ -2547,7 +2547,7 @@ pub extern "ADVAPI32" fn LogonUserExA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserExW(
+pub extern "advapi32" fn LogonUserExW(
     lpszUsername: ?[*:0]const u16,
     lpszDomain: ?[*:0]const u16,
     lpszPassword: ?[*:0]const u16,

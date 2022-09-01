@@ -4221,14 +4221,14 @@ pub const IWICComponentFactory = extern struct {
 // Section: Functions (9)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICConvertBitmapSource(
+pub extern "windowscodecs" fn WICConvertBitmapSource(
     dstFormat: ?*Guid,
     pISrc: ?*IWICBitmapSource,
     ppIDst: ?*?*IWICBitmapSource,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICCreateBitmapFromSection(
+pub extern "windowscodecs" fn WICCreateBitmapFromSection(
     width: u32,
     height: u32,
     pixelFormat: ?*Guid,
@@ -4239,7 +4239,7 @@ pub extern "WindowsCodecs" fn WICCreateBitmapFromSection(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "WindowsCodecs" fn WICCreateBitmapFromSectionEx(
+pub extern "windowscodecs" fn WICCreateBitmapFromSectionEx(
     width: u32,
     height: u32,
     pixelFormat: ?*Guid,
@@ -4251,7 +4251,7 @@ pub extern "WindowsCodecs" fn WICCreateBitmapFromSectionEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICMapGuidToShortName(
+pub extern "windowscodecs" fn WICMapGuidToShortName(
     guid: ?*const Guid,
     cchName: u32,
     wzName: ?[*:0]u16,
@@ -4259,13 +4259,13 @@ pub extern "WindowsCodecs" fn WICMapGuidToShortName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICMapShortNameToGuid(
+pub extern "windowscodecs" fn WICMapShortNameToGuid(
     wzName: ?[*:0]const u16,
     pguid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICMapSchemaToName(
+pub extern "windowscodecs" fn WICMapSchemaToName(
     guidMetadataFormat: ?*const Guid,
     pwzSchema: ?PWSTR,
     cchName: u32,
@@ -4274,7 +4274,7 @@ pub extern "WindowsCodecs" fn WICMapSchemaToName(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICMatchMetadataContent(
+pub extern "windowscodecs" fn WICMatchMetadataContent(
     guidContainerFormat: ?*const Guid,
     pguidVendor: ?*const Guid,
     pIStream: ?*IStream,
@@ -4282,7 +4282,7 @@ pub extern "WindowsCodecs" fn WICMatchMetadataContent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICSerializeMetadataContent(
+pub extern "windowscodecs" fn WICSerializeMetadataContent(
     guidContainerFormat: ?*const Guid,
     pIWriter: ?*IWICMetadataWriter,
     dwPersistOptions: u32,
@@ -4290,7 +4290,7 @@ pub extern "WindowsCodecs" fn WICSerializeMetadataContent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WindowsCodecs" fn WICGetMetadataContentSize(
+pub extern "windowscodecs" fn WICGetMetadataContentSize(
     guidContainerFormat: ?*const Guid,
     pIWriter: ?*IWICMetadataWriter,
     pcbSize: ?*ULARGE_INTEGER,

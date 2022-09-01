@@ -11,7 +11,7 @@
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn CeipIsOptedIn(
+pub extern "kernel32" fn CeipIsOptedIn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

@@ -1295,7 +1295,7 @@ pub const IUPnPRemoteEndpointInfo = extern struct {
 // Section: Functions (9)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CFGMGR32" fn SwDeviceCreate(
+pub extern "cfgmgr32" fn SwDeviceCreate(
     pszEnumeratorName: ?[*:0]const u16,
     pszParentDeviceInstance: ?[*:0]const u16,
     pCreateInfo: ?*const SW_DEVICE_CREATE_INFO,
@@ -1307,31 +1307,31 @@ pub extern "CFGMGR32" fn SwDeviceCreate(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CFGMGR32" fn SwDeviceClose(
+pub extern "cfgmgr32" fn SwDeviceClose(
     hSwDevice: ?HSWDEVICE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "CFGMGR32" fn SwDeviceSetLifetime(
+pub extern "cfgmgr32" fn SwDeviceSetLifetime(
     hSwDevice: ?HSWDEVICE,
     Lifetime: SW_DEVICE_LIFETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "CFGMGR32" fn SwDeviceGetLifetime(
+pub extern "cfgmgr32" fn SwDeviceGetLifetime(
     hSwDevice: ?HSWDEVICE,
     pLifetime: ?*SW_DEVICE_LIFETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CFGMGR32" fn SwDevicePropertySet(
+pub extern "cfgmgr32" fn SwDevicePropertySet(
     hSwDevice: ?HSWDEVICE,
     cPropertyCount: u32,
     pProperties: [*]const DEVPROPERTY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CFGMGR32" fn SwDeviceInterfaceRegister(
+pub extern "cfgmgr32" fn SwDeviceInterfaceRegister(
     hSwDevice: ?HSWDEVICE,
     pInterfaceClassGuid: ?*const Guid,
     pszReferenceString: ?[*:0]const u16,
@@ -1342,19 +1342,19 @@ pub extern "CFGMGR32" fn SwDeviceInterfaceRegister(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CFGMGR32" fn SwMemFree(
+pub extern "cfgmgr32" fn SwMemFree(
     pMem: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CFGMGR32" fn SwDeviceInterfaceSetState(
+pub extern "cfgmgr32" fn SwDeviceInterfaceSetState(
     hSwDevice: ?HSWDEVICE,
     pszDeviceInterfaceId: ?[*:0]const u16,
     fEnabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "CFGMGR32" fn SwDeviceInterfacePropertySet(
+pub extern "cfgmgr32" fn SwDeviceInterfacePropertySet(
     hSwDevice: ?HSWDEVICE,
     pszDeviceInterfaceId: ?[*:0]const u16,
     cPropertyCount: u32,

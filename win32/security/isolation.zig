@@ -42,7 +42,7 @@ pub const IIsolatedAppLauncher = extern struct {
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetAppContainerNamedObjectPath(
+pub extern "kernel32" fn GetAppContainerNamedObjectPath(
     Token: ?HANDLE,
     AppContainerSid: ?PSID,
     ObjectPathLength: u32,
@@ -59,12 +59,12 @@ pub extern "api-ms-win-security-isolatedcontainer-l1-1-0" fn IsProcessInIsolated
     isProcessInIsolatedContainer: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "IsolatedWindowsEnvironmentUtils" fn IsProcessInIsolatedWindowsEnvironment(
+pub extern "isolatedwindowsenvironmentutils" fn IsProcessInIsolatedWindowsEnvironment(
     isProcessInIsolatedWindowsEnvironment: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn CreateAppContainerProfile(
+pub extern "userenv" fn CreateAppContainerProfile(
     pszAppContainerName: ?[*:0]const u16,
     pszDisplayName: ?[*:0]const u16,
     pszDescription: ?[*:0]const u16,
@@ -74,31 +74,31 @@ pub extern "USERENV" fn CreateAppContainerProfile(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeleteAppContainerProfile(
+pub extern "userenv" fn DeleteAppContainerProfile(
     pszAppContainerName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerRegistryLocation(
+pub extern "userenv" fn GetAppContainerRegistryLocation(
     desiredAccess: u32,
     phAppContainerKey: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerFolderPath(
+pub extern "userenv" fn GetAppContainerFolderPath(
     pszAppContainerSid: ?[*:0]const u16,
     ppszPath: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
+pub extern "userenv" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
     psidAppContainerSid: ?PSID,
     pszRestrictedAppContainerName: ?[*:0]const u16,
     ppsidRestrictedAppContainerSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
+pub extern "userenv" fn DeriveAppContainerSidFromAppContainerName(
     pszAppContainerName: ?[*:0]const u16,
     ppsidAppContainerSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

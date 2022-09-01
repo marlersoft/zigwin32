@@ -325,7 +325,7 @@ pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
-pub extern "Cabinet" fn FCICreate(
+pub extern "cabinet" fn FCICreate(
     perf: ?*ERF,
     pfnfcifp: ?PFNFCIFILEPLACED,
     pfna: ?PFNFCIALLOC,
@@ -341,7 +341,7 @@ pub extern "Cabinet" fn FCICreate(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "Cabinet" fn FCIAddFile(
+pub extern "cabinet" fn FCIAddFile(
     hfci: ?*anyopaque,
     pszSourceFile: ?PSTR,
     pszFileName: ?PSTR,
@@ -352,25 +352,25 @@ pub extern "Cabinet" fn FCIAddFile(
     typeCompress: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "Cabinet" fn FCIFlushCabinet(
+pub extern "cabinet" fn FCIFlushCabinet(
     hfci: ?*anyopaque,
     fGetNextCab: BOOL,
     pfnfcignc: ?PFNFCIGETNEXTCABINET,
     pfnfcis: ?PFNFCISTATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "Cabinet" fn FCIFlushFolder(
+pub extern "cabinet" fn FCIFlushFolder(
     hfci: ?*anyopaque,
     pfnfcignc: ?PFNFCIGETNEXTCABINET,
     pfnfcis: ?PFNFCISTATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "Cabinet" fn FCIDestroy(
+pub extern "cabinet" fn FCIDestroy(
     hfci: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "Cabinet" fn FDICreate(
+pub extern "cabinet" fn FDICreate(
     pfnalloc: ?PFNALLOC,
     pfnfree: ?PFNFREE,
     pfnopen: ?PFNOPEN,
@@ -383,14 +383,14 @@ pub extern "Cabinet" fn FDICreate(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "Cabinet" fn FDIIsCabinet(
+pub extern "cabinet" fn FDIIsCabinet(
     hfdi: ?*anyopaque,
     hf: isize,
     pfdici: ?*FDICABINETINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "Cabinet" fn FDICopy(
+pub extern "cabinet" fn FDICopy(
     hfdi: ?*anyopaque,
     pszCabinet: ?PSTR,
     pszCabPath: ?PSTR,
@@ -401,11 +401,11 @@ pub extern "Cabinet" fn FDICopy(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "Cabinet" fn FDIDestroy(
+pub extern "cabinet" fn FDIDestroy(
     hfdi: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "Cabinet" fn FDITruncateCabinet(
+pub extern "cabinet" fn FDITruncateCabinet(
     hfdi: ?*anyopaque,
     pszCabinetName: ?PSTR,
     iFolderToDelete: u16,

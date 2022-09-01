@@ -2370,21 +2370,21 @@ pub const PFN_WEB_CORE_SHUTDOWN = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
-pub extern "RpcProxy" fn GetExtensionVersion(
+pub extern "rpcproxy" fn GetExtensionVersion(
     pVer: ?*HSE_VERSION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "RpcProxy" fn HttpExtensionProc(
+pub extern "rpcproxy" fn HttpExtensionProc(
     pECB: ?*EXTENSION_CONTROL_BLOCK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "RpcProxy" fn HttpFilterProc(
+pub extern "rpcproxy" fn HttpFilterProc(
     pfc: ?*HTTP_FILTER_CONTEXT,
     NotificationType: u32,
     pvNotification: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "RpcProxy" fn GetFilterVersion(
+pub extern "rpcproxy" fn GetFilterVersion(
     pVer: ?*HTTP_FILTER_VERSION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

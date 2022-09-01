@@ -198,7 +198,7 @@ pub const IPrintDocumentPackageTargetFactory = extern struct {
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "XPSPRINT" fn StartXpsPrintJob(
+pub extern "xpsprint" fn StartXpsPrintJob(
     printerName: ?[*:0]const u16,
     jobName: ?[*:0]const u16,
     outputFileName: ?[*:0]const u16,
@@ -212,7 +212,7 @@ pub extern "XPSPRINT" fn StartXpsPrintJob(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "XPSPRINT" fn StartXpsPrintJob1(
+pub extern "xpsprint" fn StartXpsPrintJob1(
     printerName: ?[*:0]const u16,
     jobName: ?[*:0]const u16,
     outputFileName: ?[*:0]const u16,

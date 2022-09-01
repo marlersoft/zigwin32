@@ -465,18 +465,18 @@ pub const IEffectivePermission2 = extern struct {
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ACLUI" fn CreateSecurityPage(
+pub extern "aclui" fn CreateSecurityPage(
     psi: ?*ISecurityInformation,
 ) callconv(@import("std").os.windows.WINAPI) ?HPROPSHEETPAGE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ACLUI" fn EditSecurity(
+pub extern "aclui" fn EditSecurity(
     hwndOwner: ?HWND,
     psi: ?*ISecurityInformation,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACLUI" fn EditSecurityAdvanced(
+pub extern "aclui" fn EditSecurityAdvanced(
     hwndOwner: ?HWND,
     psi: ?*ISecurityInformation,
     uSIPage: SI_PAGE_TYPE,

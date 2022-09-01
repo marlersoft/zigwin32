@@ -2801,7 +2801,7 @@ pub extern "rtm" fn CreateTable(
     lppTableData: ?*?*ITableData,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn CreateIProp(
+pub extern "mapi32" fn CreateIProp(
     lpInterface: ?*Guid,
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lpAllocateMore: ?LPALLOCATEMORE,
@@ -2810,14 +2810,14 @@ pub extern "MAPI32" fn CreateIProp(
     lppPropData: ?*?*IPropData,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn MAPIInitIdle(
+pub extern "mapi32" fn MAPIInitIdle(
     lpvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn MAPIDeinitIdle(
+pub extern "mapi32" fn MAPIDeinitIdle(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MAPI32" fn FtgRegisterIdleRoutine(
+pub extern "mapi32" fn FtgRegisterIdleRoutine(
     lpfnIdle: ?PFNIDLE,
     lpvIdleParam: ?*anyopaque,
     priIdle: i16,
@@ -2825,16 +2825,16 @@ pub extern "MAPI32" fn FtgRegisterIdleRoutine(
     iroIdle: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "MAPI32" fn DeregisterIdleRoutine(
+pub extern "mapi32" fn DeregisterIdleRoutine(
     ftg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MAPI32" fn EnableIdleRoutine(
+pub extern "mapi32" fn EnableIdleRoutine(
     ftg: ?*anyopaque,
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MAPI32" fn ChangeIdleRoutine(
+pub extern "mapi32" fn ChangeIdleRoutine(
     ftg: ?*anyopaque,
     lpfnIdle: ?PFNIDLE,
     lpvIdleParam: ?*anyopaque,
@@ -2844,10 +2844,10 @@ pub extern "MAPI32" fn ChangeIdleRoutine(
     ircIdle: u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MAPI32" fn MAPIGetDefaultMalloc(
+pub extern "mapi32" fn MAPIGetDefaultMalloc(
 ) callconv(@import("std").os.windows.WINAPI) ?*IMalloc;
 
-pub extern "MAPI32" fn OpenStreamOnFile(
+pub extern "mapi32" fn OpenStreamOnFile(
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lpFreeBuffer: ?LPFREEBUFFER,
     ulFlags: u32,
@@ -2856,47 +2856,47 @@ pub extern "MAPI32" fn OpenStreamOnFile(
     lppStream: ?*?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn PropCopyMore(
+pub extern "mapi32" fn PropCopyMore(
     lpSPropValueDest: ?*SPropValue,
     lpSPropValueSrc: ?*SPropValue,
     lpfAllocMore: ?LPALLOCATEMORE,
     lpvObject: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn UlPropSize(
+pub extern "mapi32" fn UlPropSize(
     lpSPropValue: ?*SPropValue,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MAPI32" fn FEqualNames(
+pub extern "mapi32" fn FEqualNames(
     lpName1: ?*MAPINAMEID,
     lpName2: ?*MAPINAMEID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "MAPI32" fn FPropContainsProp(
+pub extern "mapi32" fn FPropContainsProp(
     lpSPropValueDst: ?*SPropValue,
     lpSPropValueSrc: ?*SPropValue,
     ulFuzzyLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "MAPI32" fn FPropCompareProp(
+pub extern "mapi32" fn FPropCompareProp(
     lpSPropValue1: ?*SPropValue,
     ulRelOp: u32,
     lpSPropValue2: ?*SPropValue,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "MAPI32" fn LPropCompareProp(
+pub extern "mapi32" fn LPropCompareProp(
     lpSPropValueA: ?*SPropValue,
     lpSPropValueB: ?*SPropValue,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn HrAddColumns(
+pub extern "mapi32" fn HrAddColumns(
     lptbl: ?*IMAPITable,
     lpproptagColumnsNew: ?*SPropTagArray,
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lpFreeBuffer: ?LPFREEBUFFER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn HrAddColumnsEx(
+pub extern "mapi32" fn HrAddColumnsEx(
     lptbl: ?*IMAPITable,
     lpproptagColumnsNew: ?*SPropTagArray,
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
@@ -2904,22 +2904,22 @@ pub extern "MAPI32" fn HrAddColumnsEx(
     lpfnFilterColumns: isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn HrAllocAdviseSink(
+pub extern "mapi32" fn HrAllocAdviseSink(
     lpfnCallback: ?LPNOTIFCALLBACK,
     lpvContext: ?*anyopaque,
     lppAdviseSink: ?*?*IMAPIAdviseSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn HrThisThreadAdviseSink(
+pub extern "mapi32" fn HrThisThreadAdviseSink(
     lpAdviseSink: ?*IMAPIAdviseSink,
     lppAdviseSink: ?*?*IMAPIAdviseSink,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn HrDispatchNotifications(
+pub extern "mapi32" fn HrDispatchNotifications(
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn BuildDisplayTable(
+pub extern "mapi32" fn BuildDisplayTable(
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lpAllocateMore: ?LPALLOCATEMORE,
     lpFreeBuffer: ?LPFREEBUFFER,
@@ -2932,20 +2932,20 @@ pub extern "MAPI32" fn BuildDisplayTable(
     lppTblData: ?*?*ITableData,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn ScCountNotifications(
+pub extern "mapi32" fn ScCountNotifications(
     cNotifications: i32,
     lpNotifications: ?*NOTIFICATION,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn ScCopyNotifications(
+pub extern "mapi32" fn ScCopyNotifications(
     cNotification: i32,
     lpNotifications: ?*NOTIFICATION,
     lpvDst: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn ScRelocNotifications(
+pub extern "mapi32" fn ScRelocNotifications(
     cNotification: i32,
     lpNotifications: ?*NOTIFICATION,
     lpvBaseOld: ?*anyopaque,
@@ -2953,26 +2953,26 @@ pub extern "MAPI32" fn ScRelocNotifications(
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn ScCountProps(
+pub extern "mapi32" fn ScCountProps(
     cValues: i32,
     lpPropArray: ?*SPropValue,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn LpValFindProp(
+pub extern "mapi32" fn LpValFindProp(
     ulPropTag: u32,
     cValues: u32,
     lpPropArray: ?*SPropValue,
 ) callconv(@import("std").os.windows.WINAPI) ?*SPropValue;
 
-pub extern "MAPI32" fn ScCopyProps(
+pub extern "mapi32" fn ScCopyProps(
     cValues: i32,
     lpPropArray: ?*SPropValue,
     lpvDst: ?*anyopaque,
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn ScRelocProps(
+pub extern "mapi32" fn ScRelocProps(
     cValues: i32,
     lpPropArray: ?*SPropValue,
     lpvBaseOld: ?*anyopaque,
@@ -2980,52 +2980,52 @@ pub extern "MAPI32" fn ScRelocProps(
     lpcb: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn ScDupPropset(
+pub extern "mapi32" fn ScDupPropset(
     cValues: i32,
     lpPropArray: ?*SPropValue,
     lpAllocateBuffer: ?LPALLOCATEBUFFER,
     lppPropArray: ?*?*SPropValue,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn UlAddRef(
+pub extern "mapi32" fn UlAddRef(
     lpunk: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MAPI32" fn UlRelease(
+pub extern "mapi32" fn UlRelease(
     lpunk: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MAPI32" fn HrGetOneProp(
+pub extern "mapi32" fn HrGetOneProp(
     lpMapiProp: ?*IMAPIProp,
     ulPropTag: u32,
     lppProp: ?*?*SPropValue,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn HrSetOneProp(
+pub extern "mapi32" fn HrSetOneProp(
     lpMapiProp: ?*IMAPIProp,
     lpProp: ?*SPropValue,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn FPropExists(
+pub extern "mapi32" fn FPropExists(
     lpMapiProp: ?*IMAPIProp,
     ulPropTag: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "MAPI32" fn PpropFindProp(
+pub extern "mapi32" fn PpropFindProp(
     lpPropArray: ?*SPropValue,
     cValues: u32,
     ulPropTag: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*SPropValue;
 
-pub extern "MAPI32" fn FreePadrlist(
+pub extern "mapi32" fn FreePadrlist(
     lpAdrlist: ?*ADRLIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MAPI32" fn FreeProws(
+pub extern "mapi32" fn FreeProws(
     lpRows: ?*SRowSet,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "MAPI32" fn HrQueryAllRows(
+pub extern "mapi32" fn HrQueryAllRows(
     lpTable: ?*IMAPITable,
     lpPropTags: ?*SPropTagArray,
     lpRestriction: ?*SRestriction,
@@ -3034,69 +3034,69 @@ pub extern "MAPI32" fn HrQueryAllRows(
     lppRows: ?*?*SRowSet,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn SzFindCh(
+pub extern "mapi32" fn SzFindCh(
     lpsz: ?*i8,
     ch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*i8;
 
-pub extern "MAPI32" fn SzFindLastCh(
+pub extern "mapi32" fn SzFindLastCh(
     lpsz: ?*i8,
     ch: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*i8;
 
-pub extern "MAPI32" fn SzFindSz(
+pub extern "mapi32" fn SzFindSz(
     lpsz: ?*i8,
     lpszKey: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) ?*i8;
 
-pub extern "MAPI32" fn UFromSz(
+pub extern "mapi32" fn UFromSz(
     lpsz: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "MAPI32" fn ScUNCFromLocalPath(
+pub extern "mapi32" fn ScUNCFromLocalPath(
     lpszLocal: ?PSTR,
     lpszUNC: [*:0]u8,
     cchUNC: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn ScLocalPathFromUNC(
+pub extern "mapi32" fn ScLocalPathFromUNC(
     lpszUNC: ?PSTR,
     lpszLocal: [*:0]u8,
     cchLocal: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn FtAddFt(
+pub extern "mapi32" fn FtAddFt(
     ftAddend1: FILETIME,
     ftAddend2: FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) FILETIME;
 
-pub extern "MAPI32" fn FtMulDwDw(
+pub extern "mapi32" fn FtMulDwDw(
     ftMultiplicand: u32,
     ftMultiplier: u32,
 ) callconv(@import("std").os.windows.WINAPI) FILETIME;
 
-pub extern "MAPI32" fn FtMulDw(
+pub extern "mapi32" fn FtMulDw(
     ftMultiplier: u32,
     ftMultiplicand: FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) FILETIME;
 
-pub extern "MAPI32" fn FtSubFt(
+pub extern "mapi32" fn FtSubFt(
     ftMinuend: FILETIME,
     ftSubtrahend: FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) FILETIME;
 
-pub extern "MAPI32" fn FtNegFt(
+pub extern "mapi32" fn FtNegFt(
     ft: FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) FILETIME;
 
-pub extern "MAPI32" fn ScCreateConversationIndex(
+pub extern "mapi32" fn ScCreateConversationIndex(
     cbParent: u32,
     lpbParent: ?*u8,
     lpcbConvIndex: ?*u32,
     lppbConvIndex: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn WrapStoreEntryID(
+pub extern "mapi32" fn WrapStoreEntryID(
     ulFlags: u32,
     lpszDLLName: ?*i8,
     cbOrigEntry: u32,
@@ -3107,30 +3107,30 @@ pub extern "MAPI32" fn WrapStoreEntryID(
     lppWrappedEntry: ?*?*ENTRYID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn RTFSync(
+pub extern "mapi32" fn RTFSync(
     lpMessage: ?*IMessage,
     ulFlags: u32,
     lpfMessageUpdated: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn WrapCompressedRTFStream(
+pub extern "mapi32" fn WrapCompressedRTFStream(
     lpCompressedRTFStream: ?*IStream,
     ulFlags: u32,
     lpUncompressedRTFStream: ?*?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn HrIStorageFromStream(
+pub extern "mapi32" fn HrIStorageFromStream(
     lpUnkIn: ?*IUnknown,
     lpInterface: ?*Guid,
     ulFlags: u32,
     lppStorageOut: ?*?*IStorage,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "MAPI32" fn ScInitMapiUtil(
+pub extern "mapi32" fn ScInitMapiUtil(
     ulFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "MAPI32" fn DeinitMapiUtil(
+pub extern "mapi32" fn DeinitMapiUtil(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 

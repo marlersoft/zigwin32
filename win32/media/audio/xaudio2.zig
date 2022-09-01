@@ -1252,7 +1252,7 @@ pub const IXAPOHrtfParameters = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (5)
 //--------------------------------------------------------------------------------
-pub extern "XAudio2_8" fn CreateFX(
+pub extern "xaudio2_8" fn CreateFX(
     clsid: ?*const Guid,
     pEffect: ?*?*IUnknown,
     // TODO: what to do with BytesParamIndex 3?
@@ -1260,22 +1260,22 @@ pub extern "XAudio2_8" fn CreateFX(
     InitDataByteSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XAudio2_8" fn XAudio2CreateWithVersionInfo(
+pub extern "xaudio2_8" fn XAudio2CreateWithVersionInfo(
     ppXAudio2: ?*?*IXAudio2,
     Flags: u32,
     XAudio2Processor: u32,
     ntddiVersion: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XAudio2_8" fn CreateAudioVolumeMeter(
+pub extern "xaudio2_8" fn CreateAudioVolumeMeter(
     ppApo: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XAudio2_8" fn CreateAudioReverb(
+pub extern "xaudio2_8" fn CreateAudioReverb(
     ppApo: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "HrtfApo" fn CreateHrtfApo(
+pub extern "hrtfapo" fn CreateHrtfApo(
     init: ?*const HrtfApoInit,
     xApo: ?*?*IXAPO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

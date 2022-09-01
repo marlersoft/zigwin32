@@ -35,26 +35,26 @@ pub const WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING = WSL_DISTRIBUTION_FLAGS.
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslIsDistributionRegistered(
+pub extern "api-ms-win-wsl-api-l1-1-0" fn WslIsDistributionRegistered(
     distributionName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslRegisterDistribution(
+pub extern "api-ms-win-wsl-api-l1-1-0" fn WslRegisterDistribution(
     distributionName: ?[*:0]const u16,
     tarGzFilename: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslUnregisterDistribution(
+pub extern "api-ms-win-wsl-api-l1-1-0" fn WslUnregisterDistribution(
     distributionName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslConfigureDistribution(
+pub extern "api-ms-win-wsl-api-l1-1-0" fn WslConfigureDistribution(
     distributionName: ?[*:0]const u16,
     defaultUID: u32,
     wslDistributionFlags: WSL_DISTRIBUTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
+pub extern "api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
     distributionName: ?[*:0]const u16,
     distributionVersion: ?*u32,
     defaultUID: ?*u32,
@@ -63,14 +63,14 @@ pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
     defaultEnvironmentVariableCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslLaunchInteractive(
+pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunchInteractive(
     distributionName: ?[*:0]const u16,
     command: ?[*:0]const u16,
     useCurrentWorkingDirectory: BOOL,
     exitCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslLaunch(
+pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunch(
     distributionName: ?[*:0]const u16,
     command: ?[*:0]const u16,
     useCurrentWorkingDirectory: BOOL,

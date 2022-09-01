@@ -7604,218 +7604,218 @@ pub const IProvideRuntimeContext = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (456)
 //--------------------------------------------------------------------------------
-pub extern "OLEAUT32" fn DosDateTimeToVariantTime(
+pub extern "oleaut32" fn DosDateTimeToVariantTime(
     wDosDate: u16,
     wDosTime: u16,
     pvtime: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "OLEAUT32" fn VariantTimeToDosDateTime(
+pub extern "oleaut32" fn VariantTimeToDosDateTime(
     vtime: f64,
     pwDosDate: ?*u16,
     pwDosTime: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "OLEAUT32" fn SystemTimeToVariantTime(
+pub extern "oleaut32" fn SystemTimeToVariantTime(
     lpSystemTime: ?*SYSTEMTIME,
     pvtime: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "OLEAUT32" fn VariantTimeToSystemTime(
+pub extern "oleaut32" fn VariantTimeToSystemTime(
     vtime: f64,
     lpSystemTime: ?*SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "OLEAUT32" fn SafeArrayAllocDescriptor(
+pub extern "oleaut32" fn SafeArrayAllocDescriptor(
     cDims: u32,
     ppsaOut: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayAllocDescriptorEx(
+pub extern "oleaut32" fn SafeArrayAllocDescriptorEx(
     vt: u16,
     cDims: u32,
     ppsaOut: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayAllocData(
+pub extern "oleaut32" fn SafeArrayAllocData(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayCreate(
+pub extern "oleaut32" fn SafeArrayCreate(
     vt: u16,
     cDims: u32,
     rgsabound: ?*SAFEARRAYBOUND,
 ) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
-pub extern "OLEAUT32" fn SafeArrayCreateEx(
+pub extern "oleaut32" fn SafeArrayCreateEx(
     vt: u16,
     cDims: u32,
     rgsabound: ?*SAFEARRAYBOUND,
     pvExtra: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
-pub extern "OLEAUT32" fn SafeArrayCopyData(
+pub extern "oleaut32" fn SafeArrayCopyData(
     psaSource: ?*SAFEARRAY,
     psaTarget: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn SafeArrayReleaseDescriptor(
+pub extern "oleaut32" fn SafeArrayReleaseDescriptor(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLEAUT32" fn SafeArrayDestroyDescriptor(
+pub extern "oleaut32" fn SafeArrayDestroyDescriptor(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn SafeArrayReleaseData(
+pub extern "oleaut32" fn SafeArrayReleaseData(
     pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLEAUT32" fn SafeArrayDestroyData(
+pub extern "oleaut32" fn SafeArrayDestroyData(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn SafeArrayAddRef(
+pub extern "oleaut32" fn SafeArrayAddRef(
     psa: ?*SAFEARRAY,
     ppDataToRelease: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayDestroy(
+pub extern "oleaut32" fn SafeArrayDestroy(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayRedim(
+pub extern "oleaut32" fn SafeArrayRedim(
     psa: ?*SAFEARRAY,
     psaboundNew: ?*SAFEARRAYBOUND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayGetDim(
+pub extern "oleaut32" fn SafeArrayGetDim(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLEAUT32" fn SafeArrayGetElemsize(
+pub extern "oleaut32" fn SafeArrayGetElemsize(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLEAUT32" fn SafeArrayGetUBound(
+pub extern "oleaut32" fn SafeArrayGetUBound(
     psa: ?*SAFEARRAY,
     nDim: u32,
     plUbound: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayGetLBound(
+pub extern "oleaut32" fn SafeArrayGetLBound(
     psa: ?*SAFEARRAY,
     nDim: u32,
     plLbound: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayLock(
+pub extern "oleaut32" fn SafeArrayLock(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayUnlock(
+pub extern "oleaut32" fn SafeArrayUnlock(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayAccessData(
+pub extern "oleaut32" fn SafeArrayAccessData(
     psa: ?*SAFEARRAY,
     ppvData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayUnaccessData(
+pub extern "oleaut32" fn SafeArrayUnaccessData(
     psa: ?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayGetElement(
-    psa: ?*SAFEARRAY,
-    rgIndices: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "OLEAUT32" fn SafeArrayPutElement(
+pub extern "oleaut32" fn SafeArrayGetElement(
     psa: ?*SAFEARRAY,
     rgIndices: ?*i32,
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayCopy(
+pub extern "oleaut32" fn SafeArrayPutElement(
+    psa: ?*SAFEARRAY,
+    rgIndices: ?*i32,
+    pv: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "oleaut32" fn SafeArrayCopy(
     psa: ?*SAFEARRAY,
     ppsaOut: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayPtrOfIndex(
+pub extern "oleaut32" fn SafeArrayPtrOfIndex(
     psa: ?*SAFEARRAY,
     rgIndices: ?*i32,
     ppvData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArraySetRecordInfo(
+pub extern "oleaut32" fn SafeArraySetRecordInfo(
     psa: ?*SAFEARRAY,
     prinfo: ?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayGetRecordInfo(
+pub extern "oleaut32" fn SafeArrayGetRecordInfo(
     psa: ?*SAFEARRAY,
     prinfo: ?*?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArraySetIID(
+pub extern "oleaut32" fn SafeArraySetIID(
     psa: ?*SAFEARRAY,
     guid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayGetIID(
+pub extern "oleaut32" fn SafeArrayGetIID(
     psa: ?*SAFEARRAY,
     pguid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayGetVartype(
+pub extern "oleaut32" fn SafeArrayGetVartype(
     psa: ?*SAFEARRAY,
     pvt: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SafeArrayCreateVector(
+pub extern "oleaut32" fn SafeArrayCreateVector(
     vt: u16,
     lLbound: i32,
     cElements: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
-pub extern "OLEAUT32" fn SafeArrayCreateVectorEx(
+pub extern "oleaut32" fn SafeArrayCreateVectorEx(
     vt: u16,
     lLbound: i32,
     cElements: u32,
     pvExtra: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
-pub extern "OLEAUT32" fn VariantInit(
+pub extern "oleaut32" fn VariantInit(
     pvarg: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLEAUT32" fn VariantClear(
+pub extern "oleaut32" fn VariantClear(
     pvarg: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VariantCopy(
+pub extern "oleaut32" fn VariantCopy(
     pvargDest: ?*VARIANT,
     pvargSrc: ?*const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VariantCopyInd(
+pub extern "oleaut32" fn VariantCopyInd(
     pvarDest: ?*VARIANT,
     pvargSrc: ?*const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VariantChangeType(
+pub extern "oleaut32" fn VariantChangeType(
     pvargDest: ?*VARIANT,
     pvarSrc: ?*const VARIANT,
     wFlags: u16,
     vt: u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VariantChangeTypeEx(
+pub extern "oleaut32" fn VariantChangeTypeEx(
     pvargDest: ?*VARIANT,
     pvarSrc: ?*const VARIANT,
     lcid: u32,
@@ -7823,1204 +7823,1204 @@ pub extern "OLEAUT32" fn VariantChangeTypeEx(
     vt: u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VectorFromBstr(
+pub extern "oleaut32" fn VectorFromBstr(
     bstr: ?BSTR,
     ppsa: ?*?*SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn BstrFromVector(
+pub extern "oleaut32" fn BstrFromVector(
     psa: ?*SAFEARRAY,
     pbstr: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromI2(
+pub extern "oleaut32" fn VarUI1FromI2(
     sIn: i16,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromI4(
+pub extern "oleaut32" fn VarUI1FromI4(
     lIn: i32,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromI8(
+pub extern "oleaut32" fn VarUI1FromI8(
     i64In: i64,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromR4(
+pub extern "oleaut32" fn VarUI1FromR4(
     fltIn: f32,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromR8(
+pub extern "oleaut32" fn VarUI1FromR8(
     dblIn: f64,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromCy(
+pub extern "oleaut32" fn VarUI1FromCy(
     cyIn: CY,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromDate(
+pub extern "oleaut32" fn VarUI1FromDate(
     dateIn: f64,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromStr(
+pub extern "oleaut32" fn VarUI1FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromDisp(
+pub extern "oleaut32" fn VarUI1FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromBool(
+pub extern "oleaut32" fn VarUI1FromBool(
     boolIn: i16,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromI1(
+pub extern "oleaut32" fn VarUI1FromI1(
     cIn: CHAR,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromUI2(
+pub extern "oleaut32" fn VarUI1FromUI2(
     uiIn: u16,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromUI4(
+pub extern "oleaut32" fn VarUI1FromUI4(
     ulIn: u32,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromUI8(
+pub extern "oleaut32" fn VarUI1FromUI8(
     ui64In: u64,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI1FromDec(
+pub extern "oleaut32" fn VarUI1FromDec(
     pdecIn: ?*const DECIMAL,
     pbOut: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromUI1(
+pub extern "oleaut32" fn VarI2FromUI1(
     bIn: u8,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromI4(
+pub extern "oleaut32" fn VarI2FromI4(
     lIn: i32,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromI8(
+pub extern "oleaut32" fn VarI2FromI8(
     i64In: i64,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromR4(
+pub extern "oleaut32" fn VarI2FromR4(
     fltIn: f32,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromR8(
+pub extern "oleaut32" fn VarI2FromR8(
     dblIn: f64,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromCy(
+pub extern "oleaut32" fn VarI2FromCy(
     cyIn: CY,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromDate(
+pub extern "oleaut32" fn VarI2FromDate(
     dateIn: f64,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromStr(
+pub extern "oleaut32" fn VarI2FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromDisp(
+pub extern "oleaut32" fn VarI2FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromBool(
+pub extern "oleaut32" fn VarI2FromBool(
     boolIn: i16,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromI1(
+pub extern "oleaut32" fn VarI2FromI1(
     cIn: CHAR,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromUI2(
+pub extern "oleaut32" fn VarI2FromUI2(
     uiIn: u16,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromUI4(
+pub extern "oleaut32" fn VarI2FromUI4(
     ulIn: u32,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromUI8(
+pub extern "oleaut32" fn VarI2FromUI8(
     ui64In: u64,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI2FromDec(
+pub extern "oleaut32" fn VarI2FromDec(
     pdecIn: ?*const DECIMAL,
     psOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromUI1(
+pub extern "oleaut32" fn VarI4FromUI1(
     bIn: u8,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromI2(
+pub extern "oleaut32" fn VarI4FromI2(
     sIn: i16,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromI8(
+pub extern "oleaut32" fn VarI4FromI8(
     i64In: i64,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromR4(
+pub extern "oleaut32" fn VarI4FromR4(
     fltIn: f32,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromR8(
+pub extern "oleaut32" fn VarI4FromR8(
     dblIn: f64,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromCy(
+pub extern "oleaut32" fn VarI4FromCy(
     cyIn: CY,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromDate(
+pub extern "oleaut32" fn VarI4FromDate(
     dateIn: f64,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromStr(
+pub extern "oleaut32" fn VarI4FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromDisp(
+pub extern "oleaut32" fn VarI4FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromBool(
+pub extern "oleaut32" fn VarI4FromBool(
     boolIn: i16,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromI1(
+pub extern "oleaut32" fn VarI4FromI1(
     cIn: CHAR,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromUI2(
+pub extern "oleaut32" fn VarI4FromUI2(
     uiIn: u16,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromUI4(
+pub extern "oleaut32" fn VarI4FromUI4(
     ulIn: u32,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromUI8(
+pub extern "oleaut32" fn VarI4FromUI8(
     ui64In: u64,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI4FromDec(
+pub extern "oleaut32" fn VarI4FromDec(
     pdecIn: ?*const DECIMAL,
     plOut: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromUI1(
+pub extern "oleaut32" fn VarI8FromUI1(
     bIn: u8,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromI2(
+pub extern "oleaut32" fn VarI8FromI2(
     sIn: i16,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromR4(
+pub extern "oleaut32" fn VarI8FromR4(
     fltIn: f32,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromR8(
+pub extern "oleaut32" fn VarI8FromR8(
     dblIn: f64,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromCy(
+pub extern "oleaut32" fn VarI8FromCy(
     cyIn: CY,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromDate(
+pub extern "oleaut32" fn VarI8FromDate(
     dateIn: f64,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromStr(
+pub extern "oleaut32" fn VarI8FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromDisp(
+pub extern "oleaut32" fn VarI8FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromBool(
+pub extern "oleaut32" fn VarI8FromBool(
     boolIn: i16,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromI1(
+pub extern "oleaut32" fn VarI8FromI1(
     cIn: CHAR,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromUI2(
+pub extern "oleaut32" fn VarI8FromUI2(
     uiIn: u16,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromUI4(
+pub extern "oleaut32" fn VarI8FromUI4(
     ulIn: u32,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromUI8(
+pub extern "oleaut32" fn VarI8FromUI8(
     ui64In: u64,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI8FromDec(
+pub extern "oleaut32" fn VarI8FromDec(
     pdecIn: ?*const DECIMAL,
     pi64Out: ?*i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromUI1(
+pub extern "oleaut32" fn VarR4FromUI1(
     bIn: u8,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromI2(
+pub extern "oleaut32" fn VarR4FromI2(
     sIn: i16,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromI4(
+pub extern "oleaut32" fn VarR4FromI4(
     lIn: i32,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromI8(
+pub extern "oleaut32" fn VarR4FromI8(
     i64In: i64,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromR8(
+pub extern "oleaut32" fn VarR4FromR8(
     dblIn: f64,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromCy(
+pub extern "oleaut32" fn VarR4FromCy(
     cyIn: CY,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromDate(
+pub extern "oleaut32" fn VarR4FromDate(
     dateIn: f64,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromStr(
+pub extern "oleaut32" fn VarR4FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromDisp(
+pub extern "oleaut32" fn VarR4FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromBool(
+pub extern "oleaut32" fn VarR4FromBool(
     boolIn: i16,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromI1(
+pub extern "oleaut32" fn VarR4FromI1(
     cIn: CHAR,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromUI2(
+pub extern "oleaut32" fn VarR4FromUI2(
     uiIn: u16,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromUI4(
+pub extern "oleaut32" fn VarR4FromUI4(
     ulIn: u32,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromUI8(
+pub extern "oleaut32" fn VarR4FromUI8(
     ui64In: u64,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4FromDec(
+pub extern "oleaut32" fn VarR4FromDec(
     pdecIn: ?*const DECIMAL,
     pfltOut: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromUI1(
+pub extern "oleaut32" fn VarR8FromUI1(
     bIn: u8,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromI2(
+pub extern "oleaut32" fn VarR8FromI2(
     sIn: i16,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromI4(
+pub extern "oleaut32" fn VarR8FromI4(
     lIn: i32,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromI8(
+pub extern "oleaut32" fn VarR8FromI8(
     i64In: i64,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromR4(
+pub extern "oleaut32" fn VarR8FromR4(
     fltIn: f32,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromCy(
+pub extern "oleaut32" fn VarR8FromCy(
     cyIn: CY,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromDate(
+pub extern "oleaut32" fn VarR8FromDate(
     dateIn: f64,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromStr(
+pub extern "oleaut32" fn VarR8FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromDisp(
+pub extern "oleaut32" fn VarR8FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromBool(
+pub extern "oleaut32" fn VarR8FromBool(
     boolIn: i16,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromI1(
+pub extern "oleaut32" fn VarR8FromI1(
     cIn: CHAR,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromUI2(
+pub extern "oleaut32" fn VarR8FromUI2(
     uiIn: u16,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromUI4(
+pub extern "oleaut32" fn VarR8FromUI4(
     ulIn: u32,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromUI8(
+pub extern "oleaut32" fn VarR8FromUI8(
     ui64In: u64,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8FromDec(
+pub extern "oleaut32" fn VarR8FromDec(
     pdecIn: ?*const DECIMAL,
     pdblOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromUI1(
+pub extern "oleaut32" fn VarDateFromUI1(
     bIn: u8,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromI2(
+pub extern "oleaut32" fn VarDateFromI2(
     sIn: i16,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromI4(
+pub extern "oleaut32" fn VarDateFromI4(
     lIn: i32,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromI8(
+pub extern "oleaut32" fn VarDateFromI8(
     i64In: i64,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromR4(
+pub extern "oleaut32" fn VarDateFromR4(
     fltIn: f32,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromR8(
+pub extern "oleaut32" fn VarDateFromR8(
     dblIn: f64,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromCy(
+pub extern "oleaut32" fn VarDateFromCy(
     cyIn: CY,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromStr(
+pub extern "oleaut32" fn VarDateFromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromDisp(
+pub extern "oleaut32" fn VarDateFromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromBool(
+pub extern "oleaut32" fn VarDateFromBool(
     boolIn: i16,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromI1(
+pub extern "oleaut32" fn VarDateFromI1(
     cIn: CHAR,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromUI2(
+pub extern "oleaut32" fn VarDateFromUI2(
     uiIn: u16,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromUI4(
+pub extern "oleaut32" fn VarDateFromUI4(
     ulIn: u32,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromUI8(
+pub extern "oleaut32" fn VarDateFromUI8(
     ui64In: u64,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromDec(
+pub extern "oleaut32" fn VarDateFromDec(
     pdecIn: ?*const DECIMAL,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromUI1(
+pub extern "oleaut32" fn VarCyFromUI1(
     bIn: u8,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromI2(
+pub extern "oleaut32" fn VarCyFromI2(
     sIn: i16,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromI4(
+pub extern "oleaut32" fn VarCyFromI4(
     lIn: i32,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromI8(
+pub extern "oleaut32" fn VarCyFromI8(
     i64In: i64,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromR4(
+pub extern "oleaut32" fn VarCyFromR4(
     fltIn: f32,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromR8(
+pub extern "oleaut32" fn VarCyFromR8(
     dblIn: f64,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromDate(
+pub extern "oleaut32" fn VarCyFromDate(
     dateIn: f64,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromStr(
+pub extern "oleaut32" fn VarCyFromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromDisp(
+pub extern "oleaut32" fn VarCyFromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromBool(
+pub extern "oleaut32" fn VarCyFromBool(
     boolIn: i16,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromI1(
+pub extern "oleaut32" fn VarCyFromI1(
     cIn: CHAR,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromUI2(
+pub extern "oleaut32" fn VarCyFromUI2(
     uiIn: u16,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromUI4(
+pub extern "oleaut32" fn VarCyFromUI4(
     ulIn: u32,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromUI8(
+pub extern "oleaut32" fn VarCyFromUI8(
     ui64In: u64,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFromDec(
+pub extern "oleaut32" fn VarCyFromDec(
     pdecIn: ?*const DECIMAL,
     pcyOut: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromUI1(
+pub extern "oleaut32" fn VarBstrFromUI1(
     bVal: u8,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromI2(
+pub extern "oleaut32" fn VarBstrFromI2(
     iVal: i16,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromI4(
+pub extern "oleaut32" fn VarBstrFromI4(
     lIn: i32,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromI8(
+pub extern "oleaut32" fn VarBstrFromI8(
     i64In: i64,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromR4(
+pub extern "oleaut32" fn VarBstrFromR4(
     fltIn: f32,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromR8(
+pub extern "oleaut32" fn VarBstrFromR8(
     dblIn: f64,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromCy(
+pub extern "oleaut32" fn VarBstrFromCy(
     cyIn: CY,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromDate(
+pub extern "oleaut32" fn VarBstrFromDate(
     dateIn: f64,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromDisp(
+pub extern "oleaut32" fn VarBstrFromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromBool(
+pub extern "oleaut32" fn VarBstrFromBool(
     boolIn: i16,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromI1(
+pub extern "oleaut32" fn VarBstrFromI1(
     cIn: CHAR,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromUI2(
+pub extern "oleaut32" fn VarBstrFromUI2(
     uiIn: u16,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromUI4(
+pub extern "oleaut32" fn VarBstrFromUI4(
     ulIn: u32,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromUI8(
+pub extern "oleaut32" fn VarBstrFromUI8(
     ui64In: u64,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrFromDec(
+pub extern "oleaut32" fn VarBstrFromDec(
     pdecIn: ?*const DECIMAL,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromUI1(
+pub extern "oleaut32" fn VarBoolFromUI1(
     bIn: u8,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromI2(
+pub extern "oleaut32" fn VarBoolFromI2(
     sIn: i16,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromI4(
+pub extern "oleaut32" fn VarBoolFromI4(
     lIn: i32,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromI8(
+pub extern "oleaut32" fn VarBoolFromI8(
     i64In: i64,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromR4(
+pub extern "oleaut32" fn VarBoolFromR4(
     fltIn: f32,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromR8(
+pub extern "oleaut32" fn VarBoolFromR8(
     dblIn: f64,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromDate(
+pub extern "oleaut32" fn VarBoolFromDate(
     dateIn: f64,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromCy(
+pub extern "oleaut32" fn VarBoolFromCy(
     cyIn: CY,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromStr(
+pub extern "oleaut32" fn VarBoolFromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromDisp(
+pub extern "oleaut32" fn VarBoolFromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromI1(
+pub extern "oleaut32" fn VarBoolFromI1(
     cIn: CHAR,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromUI2(
+pub extern "oleaut32" fn VarBoolFromUI2(
     uiIn: u16,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromUI4(
+pub extern "oleaut32" fn VarBoolFromUI4(
     ulIn: u32,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromUI8(
+pub extern "oleaut32" fn VarBoolFromUI8(
     i64In: u64,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBoolFromDec(
+pub extern "oleaut32" fn VarBoolFromDec(
     pdecIn: ?*const DECIMAL,
     pboolOut: ?*i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromUI1(
+pub extern "oleaut32" fn VarI1FromUI1(
     bIn: u8,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromI2(
+pub extern "oleaut32" fn VarI1FromI2(
     uiIn: i16,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromI4(
+pub extern "oleaut32" fn VarI1FromI4(
     lIn: i32,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromI8(
+pub extern "oleaut32" fn VarI1FromI8(
     i64In: i64,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromR4(
+pub extern "oleaut32" fn VarI1FromR4(
     fltIn: f32,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromR8(
+pub extern "oleaut32" fn VarI1FromR8(
     dblIn: f64,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromDate(
+pub extern "oleaut32" fn VarI1FromDate(
     dateIn: f64,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromCy(
+pub extern "oleaut32" fn VarI1FromCy(
     cyIn: CY,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromStr(
+pub extern "oleaut32" fn VarI1FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromDisp(
+pub extern "oleaut32" fn VarI1FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromBool(
+pub extern "oleaut32" fn VarI1FromBool(
     boolIn: i16,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromUI2(
+pub extern "oleaut32" fn VarI1FromUI2(
     uiIn: u16,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromUI4(
+pub extern "oleaut32" fn VarI1FromUI4(
     ulIn: u32,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromUI8(
+pub extern "oleaut32" fn VarI1FromUI8(
     i64In: u64,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarI1FromDec(
+pub extern "oleaut32" fn VarI1FromDec(
     pdecIn: ?*const DECIMAL,
     pcOut: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromUI1(
+pub extern "oleaut32" fn VarUI2FromUI1(
     bIn: u8,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromI2(
+pub extern "oleaut32" fn VarUI2FromI2(
     uiIn: i16,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromI4(
+pub extern "oleaut32" fn VarUI2FromI4(
     lIn: i32,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromI8(
+pub extern "oleaut32" fn VarUI2FromI8(
     i64In: i64,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromR4(
+pub extern "oleaut32" fn VarUI2FromR4(
     fltIn: f32,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromR8(
+pub extern "oleaut32" fn VarUI2FromR8(
     dblIn: f64,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromDate(
+pub extern "oleaut32" fn VarUI2FromDate(
     dateIn: f64,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromCy(
+pub extern "oleaut32" fn VarUI2FromCy(
     cyIn: CY,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromStr(
+pub extern "oleaut32" fn VarUI2FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromDisp(
+pub extern "oleaut32" fn VarUI2FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromBool(
+pub extern "oleaut32" fn VarUI2FromBool(
     boolIn: i16,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromI1(
+pub extern "oleaut32" fn VarUI2FromI1(
     cIn: CHAR,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromUI4(
+pub extern "oleaut32" fn VarUI2FromUI4(
     ulIn: u32,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromUI8(
+pub extern "oleaut32" fn VarUI2FromUI8(
     i64In: u64,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI2FromDec(
+pub extern "oleaut32" fn VarUI2FromDec(
     pdecIn: ?*const DECIMAL,
     puiOut: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromUI1(
+pub extern "oleaut32" fn VarUI4FromUI1(
     bIn: u8,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromI2(
+pub extern "oleaut32" fn VarUI4FromI2(
     uiIn: i16,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromI4(
+pub extern "oleaut32" fn VarUI4FromI4(
     lIn: i32,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromI8(
+pub extern "oleaut32" fn VarUI4FromI8(
     i64In: i64,
     plOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromR4(
+pub extern "oleaut32" fn VarUI4FromR4(
     fltIn: f32,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromR8(
+pub extern "oleaut32" fn VarUI4FromR8(
     dblIn: f64,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromDate(
+pub extern "oleaut32" fn VarUI4FromDate(
     dateIn: f64,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromCy(
+pub extern "oleaut32" fn VarUI4FromCy(
     cyIn: CY,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromStr(
+pub extern "oleaut32" fn VarUI4FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromDisp(
+pub extern "oleaut32" fn VarUI4FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromBool(
+pub extern "oleaut32" fn VarUI4FromBool(
     boolIn: i16,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromI1(
+pub extern "oleaut32" fn VarUI4FromI1(
     cIn: CHAR,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromUI2(
+pub extern "oleaut32" fn VarUI4FromUI2(
     uiIn: u16,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromUI8(
+pub extern "oleaut32" fn VarUI4FromUI8(
     ui64In: u64,
     plOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI4FromDec(
+pub extern "oleaut32" fn VarUI4FromDec(
     pdecIn: ?*const DECIMAL,
     pulOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromUI1(
+pub extern "oleaut32" fn VarUI8FromUI1(
     bIn: u8,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromI2(
+pub extern "oleaut32" fn VarUI8FromI2(
     sIn: i16,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromI8(
+pub extern "oleaut32" fn VarUI8FromI8(
     ui64In: i64,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromR4(
+pub extern "oleaut32" fn VarUI8FromR4(
     fltIn: f32,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromR8(
+pub extern "oleaut32" fn VarUI8FromR8(
     dblIn: f64,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromCy(
+pub extern "oleaut32" fn VarUI8FromCy(
     cyIn: CY,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromDate(
+pub extern "oleaut32" fn VarUI8FromDate(
     dateIn: f64,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromStr(
+pub extern "oleaut32" fn VarUI8FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromDisp(
+pub extern "oleaut32" fn VarUI8FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromBool(
+pub extern "oleaut32" fn VarUI8FromBool(
     boolIn: i16,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromI1(
+pub extern "oleaut32" fn VarUI8FromI1(
     cIn: CHAR,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromUI2(
+pub extern "oleaut32" fn VarUI8FromUI2(
     uiIn: u16,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromUI4(
+pub extern "oleaut32" fn VarUI8FromUI4(
     ulIn: u32,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUI8FromDec(
+pub extern "oleaut32" fn VarUI8FromDec(
     pdecIn: ?*const DECIMAL,
     pi64Out: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromUI1(
+pub extern "oleaut32" fn VarDecFromUI1(
     bIn: u8,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromI2(
+pub extern "oleaut32" fn VarDecFromI2(
     uiIn: i16,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromI4(
+pub extern "oleaut32" fn VarDecFromI4(
     lIn: i32,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromI8(
+pub extern "oleaut32" fn VarDecFromI8(
     i64In: i64,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromR4(
+pub extern "oleaut32" fn VarDecFromR4(
     fltIn: f32,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromR8(
+pub extern "oleaut32" fn VarDecFromR8(
     dblIn: f64,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromDate(
+pub extern "oleaut32" fn VarDecFromDate(
     dateIn: f64,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromCy(
+pub extern "oleaut32" fn VarDecFromCy(
     cyIn: CY,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromStr(
+pub extern "oleaut32" fn VarDecFromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromDisp(
+pub extern "oleaut32" fn VarDecFromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromBool(
+pub extern "oleaut32" fn VarDecFromBool(
     boolIn: i16,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromI1(
+pub extern "oleaut32" fn VarDecFromI1(
     cIn: CHAR,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromUI2(
+pub extern "oleaut32" fn VarDecFromUI2(
     uiIn: u16,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromUI4(
+pub extern "oleaut32" fn VarDecFromUI4(
     ulIn: u32,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFromUI8(
+pub extern "oleaut32" fn VarDecFromUI8(
     ui64In: u64,
     pdecOut: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarParseNumFromStr(
+pub extern "oleaut32" fn VarParseNumFromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
@@ -9028,310 +9028,310 @@ pub extern "OLEAUT32" fn VarParseNumFromStr(
     rgbDig: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarNumFromParseNum(
+pub extern "oleaut32" fn VarNumFromParseNum(
     pnumprs: ?*NUMPARSE,
     rgbDig: ?*u8,
     dwVtBits: u32,
     pvar: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarAdd(
+pub extern "oleaut32" fn VarAdd(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarAnd(
+pub extern "oleaut32" fn VarAnd(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCat(
+pub extern "oleaut32" fn VarCat(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDiv(
+pub extern "oleaut32" fn VarDiv(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarEqv(
+pub extern "oleaut32" fn VarEqv(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarIdiv(
+pub extern "oleaut32" fn VarIdiv(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarImp(
+pub extern "oleaut32" fn VarImp(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarMod(
+pub extern "oleaut32" fn VarMod(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarMul(
+pub extern "oleaut32" fn VarMul(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarOr(
+pub extern "oleaut32" fn VarOr(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarPow(
+pub extern "oleaut32" fn VarPow(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarSub(
+pub extern "oleaut32" fn VarSub(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarXor(
+pub extern "oleaut32" fn VarXor(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarAbs(
+pub extern "oleaut32" fn VarAbs(
     pvarIn: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarFix(
+pub extern "oleaut32" fn VarFix(
     pvarIn: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarInt(
+pub extern "oleaut32" fn VarInt(
     pvarIn: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarNeg(
+pub extern "oleaut32" fn VarNeg(
     pvarIn: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarNot(
+pub extern "oleaut32" fn VarNot(
     pvarIn: ?*VARIANT,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarRound(
+pub extern "oleaut32" fn VarRound(
     pvarIn: ?*VARIANT,
     cDecimals: i32,
     pvarResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCmp(
+pub extern "oleaut32" fn VarCmp(
     pvarLeft: ?*VARIANT,
     pvarRight: ?*VARIANT,
     lcid: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecAdd(
+pub extern "oleaut32" fn VarDecAdd(
     pdecLeft: ?*DECIMAL,
     pdecRight: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecDiv(
+pub extern "oleaut32" fn VarDecDiv(
     pdecLeft: ?*DECIMAL,
     pdecRight: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecMul(
+pub extern "oleaut32" fn VarDecMul(
     pdecLeft: ?*DECIMAL,
     pdecRight: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecSub(
+pub extern "oleaut32" fn VarDecSub(
     pdecLeft: ?*DECIMAL,
     pdecRight: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecAbs(
+pub extern "oleaut32" fn VarDecAbs(
     pdecIn: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecFix(
+pub extern "oleaut32" fn VarDecFix(
     pdecIn: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecInt(
+pub extern "oleaut32" fn VarDecInt(
     pdecIn: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecNeg(
+pub extern "oleaut32" fn VarDecNeg(
     pdecIn: ?*DECIMAL,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecRound(
+pub extern "oleaut32" fn VarDecRound(
     pdecIn: ?*DECIMAL,
     cDecimals: i32,
     pdecResult: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecCmp(
+pub extern "oleaut32" fn VarDecCmp(
     pdecLeft: ?*DECIMAL,
     pdecRight: ?*DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDecCmpR8(
+pub extern "oleaut32" fn VarDecCmpR8(
     pdecLeft: ?*DECIMAL,
     dblRight: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyAdd(
+pub extern "oleaut32" fn VarCyAdd(
     cyLeft: CY,
     cyRight: CY,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyMul(
+pub extern "oleaut32" fn VarCyMul(
     cyLeft: CY,
     cyRight: CY,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyMulI4(
+pub extern "oleaut32" fn VarCyMulI4(
     cyLeft: CY,
     lRight: i32,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyMulI8(
+pub extern "oleaut32" fn VarCyMulI8(
     cyLeft: CY,
     lRight: i64,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCySub(
+pub extern "oleaut32" fn VarCySub(
     cyLeft: CY,
     cyRight: CY,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyAbs(
+pub extern "oleaut32" fn VarCyAbs(
     cyIn: CY,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyFix(
+pub extern "oleaut32" fn VarCyFix(
     cyIn: CY,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyInt(
+pub extern "oleaut32" fn VarCyInt(
     cyIn: CY,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyNeg(
+pub extern "oleaut32" fn VarCyNeg(
     cyIn: CY,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyRound(
+pub extern "oleaut32" fn VarCyRound(
     cyIn: CY,
     cDecimals: i32,
     pcyResult: ?*CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyCmp(
+pub extern "oleaut32" fn VarCyCmp(
     cyLeft: CY,
     cyRight: CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarCyCmpR8(
+pub extern "oleaut32" fn VarCyCmpR8(
     cyLeft: CY,
     dblRight: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrCat(
+pub extern "oleaut32" fn VarBstrCat(
     bstrLeft: ?BSTR,
     bstrRight: ?BSTR,
     pbstrResult: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarBstrCmp(
+pub extern "oleaut32" fn VarBstrCmp(
     bstrLeft: ?BSTR,
     bstrRight: ?BSTR,
     lcid: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8Pow(
+pub extern "oleaut32" fn VarR8Pow(
     dblLeft: f64,
     dblRight: f64,
     pdblResult: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR4CmpR8(
+pub extern "oleaut32" fn VarR4CmpR8(
     fltLeft: f32,
     dblRight: f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarR8Round(
+pub extern "oleaut32" fn VarR8Round(
     dblIn: f64,
     cDecimals: i32,
     pdblResult: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromUdate(
+pub extern "oleaut32" fn VarDateFromUdate(
     pudateIn: ?*UDATE,
     dwFlags: u32,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarDateFromUdateEx(
+pub extern "oleaut32" fn VarDateFromUdateEx(
     pudateIn: ?*UDATE,
     lcid: u32,
     dwFlags: u32,
     pdateOut: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarUdateFromDate(
+pub extern "oleaut32" fn VarUdateFromDate(
     dateIn: f64,
     dwFlags: u32,
     pudateOut: ?*UDATE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn GetAltMonthNames(
+pub extern "oleaut32" fn GetAltMonthNames(
     lcid: u32,
     prgp: ?*?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarFormat(
+pub extern "oleaut32" fn VarFormat(
     pvarIn: ?*VARIANT,
     pstrFormat: ?PWSTR,
     iFirstDay: i32,
@@ -9340,14 +9340,14 @@ pub extern "OLEAUT32" fn VarFormat(
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarFormatDateTime(
+pub extern "oleaut32" fn VarFormatDateTime(
     pvarIn: ?*VARIANT,
     iNamedFormat: i32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarFormatNumber(
+pub extern "oleaut32" fn VarFormatNumber(
     pvarIn: ?*VARIANT,
     iNumDig: i32,
     iIncLead: i32,
@@ -9357,7 +9357,7 @@ pub extern "OLEAUT32" fn VarFormatNumber(
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarFormatPercent(
+pub extern "oleaut32" fn VarFormatPercent(
     pvarIn: ?*VARIANT,
     iNumDig: i32,
     iIncLead: i32,
@@ -9367,7 +9367,7 @@ pub extern "OLEAUT32" fn VarFormatPercent(
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarFormatCurrency(
+pub extern "oleaut32" fn VarFormatCurrency(
     pvarIn: ?*VARIANT,
     iNumDig: i32,
     iIncLead: i32,
@@ -9377,7 +9377,7 @@ pub extern "OLEAUT32" fn VarFormatCurrency(
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarWeekdayName(
+pub extern "oleaut32" fn VarWeekdayName(
     iWeekday: i32,
     fAbbrev: i32,
     iFirstDay: i32,
@@ -9385,14 +9385,14 @@ pub extern "OLEAUT32" fn VarWeekdayName(
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarMonthName(
+pub extern "oleaut32" fn VarMonthName(
     iMonth: i32,
     fAbbrev: i32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarFormatFromTokens(
+pub extern "oleaut32" fn VarFormatFromTokens(
     pvarIn: ?*VARIANT,
     pstrFormat: ?PWSTR,
     pbTokCur: ?*u8,
@@ -9401,7 +9401,7 @@ pub extern "OLEAUT32" fn VarFormatFromTokens(
     lcid: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn VarTokenizeFormatString(
+pub extern "oleaut32" fn VarTokenizeFormatString(
     pstrFormat: ?PWSTR,
     rgbTok: [*:0]u8,
     cbTok: i32,
@@ -9411,30 +9411,30 @@ pub extern "OLEAUT32" fn VarTokenizeFormatString(
     pcbActual: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn LHashValOfNameSysA(
+pub extern "oleaut32" fn LHashValOfNameSysA(
     syskind: SYSKIND,
     lcid: u32,
     szName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLEAUT32" fn LHashValOfNameSys(
+pub extern "oleaut32" fn LHashValOfNameSys(
     syskind: SYSKIND,
     lcid: u32,
     szName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLEAUT32" fn LoadTypeLib(
+pub extern "oleaut32" fn LoadTypeLib(
     szFile: ?[*:0]const u16,
     pptlib: ?*?*ITypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn LoadTypeLibEx(
+pub extern "oleaut32" fn LoadTypeLibEx(
     szFile: ?[*:0]const u16,
     regkind: REGKIND,
     pptlib: ?*?*ITypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn LoadRegTypeLib(
+pub extern "oleaut32" fn LoadRegTypeLib(
     rguid: ?*const Guid,
     wVerMajor: u16,
     wVerMinor: u16,
@@ -9442,7 +9442,7 @@ pub extern "OLEAUT32" fn LoadRegTypeLib(
     pptlib: ?*?*ITypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn QueryPathOfRegTypeLib(
+pub extern "oleaut32" fn QueryPathOfRegTypeLib(
     guid: ?*const Guid,
     wMaj: u16,
     wMin: u16,
@@ -9450,13 +9450,13 @@ pub extern "OLEAUT32" fn QueryPathOfRegTypeLib(
     lpbstrPathName: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn RegisterTypeLib(
+pub extern "oleaut32" fn RegisterTypeLib(
     ptlib: ?*ITypeLib,
     szFullPath: ?[*:0]const u16,
     szHelpDir: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn UnRegisterTypeLib(
+pub extern "oleaut32" fn UnRegisterTypeLib(
     libID: ?*const Guid,
     wVerMajor: u16,
     wVerMinor: u16,
@@ -9464,13 +9464,13 @@ pub extern "OLEAUT32" fn UnRegisterTypeLib(
     syskind: SYSKIND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn RegisterTypeLibForUser(
+pub extern "oleaut32" fn RegisterTypeLibForUser(
     ptlib: ?*ITypeLib,
     szFullPath: ?PWSTR,
     szHelpDir: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn UnRegisterTypeLibForUser(
+pub extern "oleaut32" fn UnRegisterTypeLibForUser(
     libID: ?*const Guid,
     wMajorVerNum: u16,
     wMinorVerNum: u16,
@@ -9478,19 +9478,19 @@ pub extern "OLEAUT32" fn UnRegisterTypeLibForUser(
     syskind: SYSKIND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn CreateTypeLib(
+pub extern "oleaut32" fn CreateTypeLib(
     syskind: SYSKIND,
     szFile: ?[*:0]const u16,
     ppctlib: ?*?*ICreateTypeLib,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn CreateTypeLib2(
+pub extern "oleaut32" fn CreateTypeLib2(
     syskind: SYSKIND,
     szFile: ?[*:0]const u16,
     ppctlib: ?*?*ICreateTypeLib2,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn DispGetParam(
+pub extern "oleaut32" fn DispGetParam(
     pdispparams: ?*DISPPARAMS,
     position: u32,
     vtTarg: u16,
@@ -9498,14 +9498,14 @@ pub extern "OLEAUT32" fn DispGetParam(
     puArgErr: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn DispGetIDsOfNames(
+pub extern "oleaut32" fn DispGetIDsOfNames(
     ptinfo: ?*ITypeInfo,
     rgszNames: [*]?PWSTR,
     cNames: u32,
     rgdispid: [*]i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn DispInvoke(
+pub extern "oleaut32" fn DispInvoke(
     _this: ?*anyopaque,
     ptinfo: ?*ITypeInfo,
     dispidMember: i32,
@@ -9516,20 +9516,20 @@ pub extern "OLEAUT32" fn DispInvoke(
     puArgErr: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn CreateDispTypeInfo(
+pub extern "oleaut32" fn CreateDispTypeInfo(
     pidata: ?*INTERFACEDATA,
     lcid: u32,
     pptinfo: ?*?*ITypeInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn CreateStdDispatch(
+pub extern "oleaut32" fn CreateStdDispatch(
     punkOuter: ?*IUnknown,
     pvThis: ?*anyopaque,
     ptinfo: ?*ITypeInfo,
     ppunkStdDisp: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn DispCallFunc(
+pub extern "oleaut32" fn DispCallFunc(
     pvInstance: ?*anyopaque,
     oVft: usize,
     cc: CALLCONV,
@@ -9540,34 +9540,34 @@ pub extern "OLEAUT32" fn DispCallFunc(
     pvargResult: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn RegisterActiveObject(
+pub extern "oleaut32" fn RegisterActiveObject(
     punk: ?*IUnknown,
     rclsid: ?*const Guid,
     dwFlags: u32,
     pdwRegister: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn RevokeActiveObject(
+pub extern "oleaut32" fn RevokeActiveObject(
     dwRegister: u32,
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn GetActiveObject(
+pub extern "oleaut32" fn GetActiveObject(
     rclsid: ?*const Guid,
     pvReserved: ?*anyopaque,
     ppunk: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn CreateErrorInfo(
+pub extern "oleaut32" fn CreateErrorInfo(
     pperrinfo: ?*?*ICreateErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn GetRecordInfoFromTypeInfo(
+pub extern "oleaut32" fn GetRecordInfoFromTypeInfo(
     pTypeInfo: ?*ITypeInfo,
     ppRecInfo: ?*?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn GetRecordInfoFromGuids(
+pub extern "oleaut32" fn GetRecordInfoFromGuids(
     rGuidTypeLib: ?*const Guid,
     uVerMajor: u32,
     uVerMinor: u32,
@@ -9576,40 +9576,40 @@ pub extern "OLEAUT32" fn GetRecordInfoFromGuids(
     ppRecInfo: ?*?*IRecordInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn OaBuildVersion(
+pub extern "oleaut32" fn OaBuildVersion(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLEAUT32" fn ClearCustData(
+pub extern "oleaut32" fn ClearCustData(
     pCustData: ?*CUSTDATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLEAUT32" fn OaEnablePerUserTLibRegistration(
+pub extern "oleaut32" fn OaEnablePerUserTLibRegistration(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ole32" fn OleBuildVersion(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleInitialize(
+pub extern "ole32" fn OleInitialize(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleUninitialize(
+pub extern "ole32" fn OleUninitialize(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleQueryLinkFromData(
+pub extern "ole32" fn OleQueryLinkFromData(
     pSrcDataObject: ?*IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleQueryCreateFromData(
+pub extern "ole32" fn OleQueryCreateFromData(
     pSrcDataObject: ?*IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreate(
+pub extern "ole32" fn OleCreate(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
     renderopt: u32,
@@ -9636,7 +9636,7 @@ pub extern "ole32" fn OleCreateEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreateFromData(
+pub extern "ole32" fn OleCreateFromData(
     pSrcDataObj: ?*IDataObject,
     riid: ?*const Guid,
     renderopt: u32,
@@ -9663,7 +9663,7 @@ pub extern "ole32" fn OleCreateFromDataEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreateLinkFromData(
+pub extern "ole32" fn OleCreateLinkFromData(
     pSrcDataObj: ?*IDataObject,
     riid: ?*const Guid,
     renderopt: u32,
@@ -9690,7 +9690,7 @@ pub extern "ole32" fn OleCreateLinkFromDataEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreateStaticFromData(
+pub extern "ole32" fn OleCreateStaticFromData(
     pSrcDataObj: ?*IDataObject,
     iid: ?*const Guid,
     renderopt: u32,
@@ -9728,7 +9728,7 @@ pub extern "ole32" fn OleCreateLinkEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreateLinkToFile(
+pub extern "ole32" fn OleCreateLinkToFile(
     lpszFileName: ?[*:0]const u16,
     riid: ?*const Guid,
     renderopt: u32,
@@ -9755,7 +9755,7 @@ pub extern "ole32" fn OleCreateLinkToFileEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreateFromFile(
+pub extern "ole32" fn OleCreateFromFile(
     rclsid: ?*const Guid,
     lpszFileName: ?[*:0]const u16,
     riid: ?*const Guid,
@@ -9784,7 +9784,7 @@ pub extern "ole32" fn OleCreateFromFileEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleLoad(
+pub extern "ole32" fn OleLoad(
     pStg: ?*IStorage,
     riid: ?*const Guid,
     pClientSite: ?*IOleClientSite,
@@ -9792,27 +9792,27 @@ pub extern "OLE32" fn OleLoad(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleSave(
+pub extern "ole32" fn OleSave(
     pPS: ?*IPersistStorage,
     pStg: ?*IStorage,
     fSameAsLoad: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleLoadFromStream(
+pub extern "ole32" fn OleLoadFromStream(
     pStm: ?*IStream,
     iidInterface: ?*const Guid,
     ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleSaveToStream(
+pub extern "ole32" fn OleSaveToStream(
     pPStm: ?*IPersistStream,
     pStm: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleSetContainedObject(
+pub extern "ole32" fn OleSetContainedObject(
     pUnknown: ?*IUnknown,
     fContained: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -9824,18 +9824,18 @@ pub extern "ole32" fn OleNoteObjectVisible(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn RegisterDragDrop(
+pub extern "ole32" fn RegisterDragDrop(
     hwnd: ?HWND,
     pDropTarget: ?*IDropTarget,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn RevokeDragDrop(
+pub extern "ole32" fn RevokeDragDrop(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn DoDragDrop(
+pub extern "ole32" fn DoDragDrop(
     pDataObj: ?*IDataObject,
     pDropSource: ?*IDropSource,
     dwOKEffects: u32,
@@ -9843,12 +9843,12 @@ pub extern "OLE32" fn DoDragDrop(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleSetClipboard(
+pub extern "ole32" fn OleSetClipboard(
     pDataObj: ?*IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleGetClipboard(
+pub extern "ole32" fn OleGetClipboard(
     ppDataObj: ?*?*IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -9862,22 +9862,22 @@ pub extern "ole32" fn OleGetClipboardWithEnterpriseInfo(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleFlushClipboard(
+pub extern "ole32" fn OleFlushClipboard(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleIsCurrentClipboard(
+pub extern "ole32" fn OleIsCurrentClipboard(
     pDataObj: ?*IDataObject,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreateMenuDescriptor(
+pub extern "ole32" fn OleCreateMenuDescriptor(
     hmenuCombined: ?HMENU,
     lpMenuWidths: ?*OleMenuGroupWidths,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleSetMenuDescriptor(
+pub extern "ole32" fn OleSetMenuDescriptor(
     holemenu: isize,
     hwndFrame: ?HWND,
     hwndActiveObject: ?HWND,
@@ -9886,26 +9886,26 @@ pub extern "OLE32" fn OleSetMenuDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleDestroyMenuDescriptor(
+pub extern "ole32" fn OleDestroyMenuDescriptor(
     holemenu: isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleTranslateAccelerator(
+pub extern "ole32" fn OleTranslateAccelerator(
     lpFrame: ?*IOleInPlaceFrame,
     lpFrameInfo: ?*OIFI,
     lpmsg: ?*MSG,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleDuplicateData(
+pub extern "ole32" fn OleDuplicateData(
     hSrc: ?HANDLE,
     cfFormat: u16,
     uiFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleDraw(
+pub extern "ole32" fn OleDraw(
     pUnknown: ?*IUnknown,
     dwAspect: u32,
     hdcDraw: ?HDC,
@@ -9913,29 +9913,29 @@ pub extern "OLE32" fn OleDraw(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleRun(
+pub extern "ole32" fn OleRun(
     pUnknown: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleIsRunning(
+pub extern "ole32" fn OleIsRunning(
     pObject: ?*IOleObject,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleLockRunning(
+pub extern "ole32" fn OleLockRunning(
     pUnknown: ?*IUnknown,
     fLock: BOOL,
     fLastUnlockCloses: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn ReleaseStgMedium(
+pub extern "ole32" fn ReleaseStgMedium(
     param0: ?*STGMEDIUM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateOleAdviseHolder(
+pub extern "ole32" fn CreateOleAdviseHolder(
     ppOAHolder: ?*?*IOleAdviseHolder,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -9948,7 +9948,7 @@ pub extern "ole32" fn OleCreateDefaultHandler(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleCreateEmbeddingHelper(
+pub extern "ole32" fn OleCreateEmbeddingHelper(
     clsid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
     flags: u32,
@@ -9958,7 +9958,7 @@ pub extern "OLE32" fn OleCreateEmbeddingHelper(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn IsAccelerator(
+pub extern "ole32" fn IsAccelerator(
     hAccel: ?HACCEL,
     cAccelEntries: i32,
     lpMsg: ?*MSG,
@@ -9972,7 +9972,7 @@ pub extern "ole32" fn OleGetIconOfFile(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleGetIconOfClass(
+pub extern "ole32" fn OleGetIconOfClass(
     rclsid: ?*const Guid,
     lpszLabel: ?PWSTR,
     fUseTypeAsLabel: BOOL,
@@ -9987,14 +9987,14 @@ pub extern "ole32" fn OleMetafilePictFromIconAndLabel(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleRegGetUserType(
+pub extern "ole32" fn OleRegGetUserType(
     clsid: ?*const Guid,
     dwFormOfType: u32,
     pszUserType: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleRegGetMiscStatus(
+pub extern "ole32" fn OleRegGetMiscStatus(
     clsid: ?*const Guid,
     dwAspect: u32,
     pdwStatus: ?*u32,
@@ -10008,7 +10008,7 @@ pub extern "ole32" fn OleRegEnumFormatEtc(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleRegEnumVerbs(
+pub extern "ole32" fn OleRegEnumVerbs(
     clsid: ?*const Guid,
     ppenum: ?*?*IEnumOLEVERB,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -10020,7 +10020,7 @@ pub extern "ole32" fn OleDoAutoConvert(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn OleGetAutoConvert(
+pub extern "ole32" fn OleGetAutoConvert(
     clsidOld: ?*const Guid,
     pClsidNew: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -10031,25 +10031,25 @@ pub extern "ole32" fn OleSetAutoConvert(
     clsidNew: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn HRGN_UserSize(
+pub extern "ole32" fn HRGN_UserSize(
     param0: ?*u32,
     param1: u32,
     param2: ?*?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HRGN_UserMarshal(
+pub extern "ole32" fn HRGN_UserMarshal(
     param0: ?*u32,
     param1: ?*u8,
     param2: ?*?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HRGN_UserUnmarshal(
+pub extern "ole32" fn HRGN_UserUnmarshal(
     param0: ?*u32,
     param1: [*:0]u8,
     param2: ?*?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HRGN_UserFree(
+pub extern "ole32" fn HRGN_UserFree(
     param0: ?*u32,
     param1: ?*?HRGN,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -10078,7 +10078,7 @@ pub extern "api-ms-win-core-marshal-l1-1-0" fn HRGN_UserFree64(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleCreatePropertyFrame(
+pub extern "oleaut32" fn OleCreatePropertyFrame(
     hwndOwner: ?HWND,
     x: u32,
     y: u32,
@@ -10093,26 +10093,26 @@ pub extern "OLEAUT32" fn OleCreatePropertyFrame(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleCreatePropertyFrameIndirect(
+pub extern "oleaut32" fn OleCreatePropertyFrameIndirect(
     lpParams: ?*OCPFIPARAMS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleTranslateColor(
+pub extern "oleaut32" fn OleTranslateColor(
     clr: u32,
     hpal: ?HPALETTE,
     lpcolorref: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleCreateFontIndirect(
+pub extern "oleaut32" fn OleCreateFontIndirect(
     lpFontDesc: ?*FONTDESC,
     riid: ?*const Guid,
     lplpvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleCreatePictureIndirect(
+pub extern "oleaut32" fn OleCreatePictureIndirect(
     lpPictDesc: ?*PICTDESC,
     riid: ?*const Guid,
     fOwn: BOOL,
@@ -10120,7 +10120,7 @@ pub extern "OLEAUT32" fn OleCreatePictureIndirect(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleLoadPicture(
+pub extern "oleaut32" fn OleLoadPicture(
     lpstream: ?*IStream,
     lSize: i32,
     fRunmode: BOOL,
@@ -10129,7 +10129,7 @@ pub extern "OLEAUT32" fn OleLoadPicture(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleLoadPictureEx(
+pub extern "oleaut32" fn OleLoadPictureEx(
     lpstream: ?*IStream,
     lSize: i32,
     fRunmode: BOOL,
@@ -10141,7 +10141,7 @@ pub extern "OLEAUT32" fn OleLoadPictureEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleLoadPicturePath(
+pub extern "oleaut32" fn OleLoadPicturePath(
     szURLorPath: ?PWSTR,
     punkCaller: ?*IUnknown,
     dwReserved: u32,
@@ -10150,12 +10150,12 @@ pub extern "OLEAUT32" fn OleLoadPicturePath(
     ppvRet: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn OleLoadPictureFile(
+pub extern "oleaut32" fn OleLoadPictureFile(
     varFileName: VARIANT,
     lplpdispPicture: ?*?*IDispatch,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn OleLoadPictureFileEx(
+pub extern "oleaut32" fn OleLoadPictureFileEx(
     varFileName: VARIANT,
     xSizeDesired: u32,
     ySizeDesired: u32,
@@ -10163,13 +10163,13 @@ pub extern "OLEAUT32" fn OleLoadPictureFileEx(
     lplpdispPicture: ?*?*IDispatch,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn OleSavePictureFile(
+pub extern "oleaut32" fn OleSavePictureFile(
     lpdispPicture: ?*IDispatch,
     bstrFileName: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLEAUT32" fn OleIconToCursor(
+pub extern "oleaut32" fn OleIconToCursor(
     hinstExe: ?HINSTANCE,
     hIcon: ?HICON,
 ) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;

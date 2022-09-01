@@ -2957,7 +2957,7 @@ pub const IDtcLuSubordinateDtcFactory = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
-pub extern "XOLEHLP" fn DtcGetTransactionManager(
+pub extern "xolehlp" fn DtcGetTransactionManager(
     i_pszHost: ?PSTR,
     i_pszTmName: ?PSTR,
     i_riid: ?*const Guid,
@@ -2968,7 +2968,7 @@ pub extern "XOLEHLP" fn DtcGetTransactionManager(
     o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XOLEHLP" fn DtcGetTransactionManagerC(
+pub extern "xolehlp" fn DtcGetTransactionManagerC(
     i_pszHost: ?PSTR,
     i_pszTmName: ?PSTR,
     i_riid: ?*const Guid,
@@ -2979,7 +2979,7 @@ pub extern "XOLEHLP" fn DtcGetTransactionManagerC(
     o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XOLEHLP" fn DtcGetTransactionManagerExA(
+pub extern "xolehlp" fn DtcGetTransactionManagerExA(
     i_pszHost: ?PSTR,
     i_pszTmName: ?PSTR,
     i_riid: ?*const Guid,
@@ -2988,7 +2988,7 @@ pub extern "XOLEHLP" fn DtcGetTransactionManagerExA(
     o_ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "XOLEHLP" fn DtcGetTransactionManagerExW(
+pub extern "xolehlp" fn DtcGetTransactionManagerExW(
     i_pwszHost: ?PWSTR,
     i_pwszTmName: ?PWSTR,
     i_riid: ?*const Guid,

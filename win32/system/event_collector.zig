@@ -193,12 +193,12 @@ pub const EcRuntimeStatusActiveStatusTrying = EC_SUBSCRIPTION_RUNTIME_STATUS_ACT
 // Section: Functions (15)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcOpenSubscriptionEnum(
+pub extern "wecapi" fn EcOpenSubscriptionEnum(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcEnumNextSubscription(
+pub extern "wecapi" fn EcEnumNextSubscription(
     SubscriptionEnum: isize,
     SubscriptionNameBufferSize: u32,
     SubscriptionNameBuffer: ?[*:0]u16,
@@ -206,14 +206,14 @@ pub extern "WecApi" fn EcEnumNextSubscription(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcOpenSubscription(
+pub extern "wecapi" fn EcOpenSubscription(
     SubscriptionName: ?[*:0]const u16,
     AccessMask: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcSetSubscriptionProperty(
+pub extern "wecapi" fn EcSetSubscriptionProperty(
     Subscription: isize,
     PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
     Flags: u32,
@@ -221,7 +221,7 @@ pub extern "WecApi" fn EcSetSubscriptionProperty(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcGetSubscriptionProperty(
+pub extern "wecapi" fn EcGetSubscriptionProperty(
     Subscription: isize,
     PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
     Flags: u32,
@@ -231,25 +231,25 @@ pub extern "WecApi" fn EcGetSubscriptionProperty(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcSaveSubscription(
+pub extern "wecapi" fn EcSaveSubscription(
     Subscription: isize,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcDeleteSubscription(
+pub extern "wecapi" fn EcDeleteSubscription(
     SubscriptionName: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcGetObjectArraySize(
+pub extern "wecapi" fn EcGetObjectArraySize(
     ObjectArray: isize,
     ObjectArraySize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcSetObjectArrayProperty(
+pub extern "wecapi" fn EcSetObjectArrayProperty(
     ObjectArray: isize,
     PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
     ArrayIndex: u32,
@@ -258,7 +258,7 @@ pub extern "WecApi" fn EcSetObjectArrayProperty(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcGetObjectArrayProperty(
+pub extern "wecapi" fn EcGetObjectArrayProperty(
     ObjectArray: isize,
     PropertyId: EC_SUBSCRIPTION_PROPERTY_ID,
     ArrayIndex: u32,
@@ -269,19 +269,19 @@ pub extern "WecApi" fn EcGetObjectArrayProperty(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcInsertObjectArrayElement(
+pub extern "wecapi" fn EcInsertObjectArrayElement(
     ObjectArray: isize,
     ArrayIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcRemoveObjectArrayElement(
+pub extern "wecapi" fn EcRemoveObjectArrayElement(
     ObjectArray: isize,
     ArrayIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcGetSubscriptionRunTimeStatus(
+pub extern "wecapi" fn EcGetSubscriptionRunTimeStatus(
     SubscriptionName: ?[*:0]const u16,
     StatusInfoId: EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID,
     EventSourceName: ?[*:0]const u16,
@@ -292,14 +292,14 @@ pub extern "WecApi" fn EcGetSubscriptionRunTimeStatus(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcRetrySubscription(
+pub extern "wecapi" fn EcRetrySubscription(
     SubscriptionName: ?[*:0]const u16,
     EventSourceName: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WecApi" fn EcClose(
+pub extern "wecapi" fn EcClose(
     Object: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

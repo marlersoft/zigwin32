@@ -863,58 +863,58 @@ pub const PGET_SYSTEM_WOW64_DIRECTORY_W = fn(
 // Section: Functions (62)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalMemoryStatusEx(
+pub extern "kernel32" fn GlobalMemoryStatusEx(
     lpBuffer: ?*MEMORYSTATUSEX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemInfo(
+pub extern "kernel32" fn GetSystemInfo(
     lpSystemInfo: ?*SYSTEM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemTime(
+pub extern "kernel32" fn GetSystemTime(
     lpSystemTime: ?*SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemTimeAsFileTime(
+pub extern "kernel32" fn GetSystemTimeAsFileTime(
     lpSystemTimeAsFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetLocalTime(
+pub extern "kernel32" fn GetLocalTime(
     lpSystemTime: ?*SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn IsUserCetAvailableInEnvironment(
+pub extern "kernel32" fn IsUserCetAvailableInEnvironment(
     UserCetEnvironment: USER_CET_ENVIRONMENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetSystemLeapSecondInformation(
+pub extern "kernel32" fn GetSystemLeapSecondInformation(
     Enabled: ?*BOOL,
     Flags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetVersion(
+pub extern "kernel32" fn GetVersion(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetLocalTime(
+pub extern "kernel32" fn SetLocalTime(
     lpSystemTime: ?*const SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetTickCount(
+pub extern "kernel32" fn GetTickCount(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetTickCount64(
+pub extern "kernel32" fn GetTickCount64(
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemTimeAdjustment(
+pub extern "kernel32" fn GetSystemTimeAdjustment(
     lpTimeAdjustment: ?*u32,
     lpTimeIncrement: ?*u32,
     lpTimeAdjustmentDisabled: ?*BOOL,
@@ -928,85 +928,85 @@ pub extern "api-ms-win-core-sysinfo-l1-2-4" fn GetSystemTimeAdjustmentPrecise(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemDirectoryA(
+pub extern "kernel32" fn GetSystemDirectoryA(
     lpBuffer: ?[*:0]u8,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemDirectoryW(
+pub extern "kernel32" fn GetSystemDirectoryW(
     lpBuffer: ?[*:0]u16,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetWindowsDirectoryA(
+pub extern "kernel32" fn GetWindowsDirectoryA(
     lpBuffer: ?[*:0]u8,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetWindowsDirectoryW(
+pub extern "kernel32" fn GetWindowsDirectoryW(
     lpBuffer: ?[*:0]u16,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemWindowsDirectoryA(
+pub extern "kernel32" fn GetSystemWindowsDirectoryA(
     lpBuffer: ?[*:0]u8,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetSystemWindowsDirectoryW(
+pub extern "kernel32" fn GetSystemWindowsDirectoryW(
     lpBuffer: ?[*:0]u16,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetComputerNameExA(
+pub extern "kernel32" fn GetComputerNameExA(
     NameType: COMPUTER_NAME_FORMAT,
     lpBuffer: ?[*:0]u8,
     nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetComputerNameExW(
+pub extern "kernel32" fn GetComputerNameExW(
     NameType: COMPUTER_NAME_FORMAT,
     lpBuffer: ?[*:0]u16,
     nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetComputerNameExW(
+pub extern "kernel32" fn SetComputerNameExW(
     NameType: COMPUTER_NAME_FORMAT,
     lpBuffer: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetSystemTime(
+pub extern "kernel32" fn SetSystemTime(
     lpSystemTime: ?*const SYSTEMTIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetVersionExA(
+pub extern "kernel32" fn GetVersionExA(
     lpVersionInformation: ?*OSVERSIONINFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetVersionExW(
+pub extern "kernel32" fn GetVersionExW(
     lpVersionInformation: ?*OSVERSIONINFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetLogicalProcessorInformation(
+pub extern "kernel32" fn GetLogicalProcessorInformation(
     // TODO: what to do with BytesParamIndex 1?
     Buffer: ?*SYSTEM_LOGICAL_PROCESSOR_INFORMATION,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetLogicalProcessorInformationEx(
+pub extern "kernel32" fn GetLogicalProcessorInformationEx(
     RelationshipType: LOGICAL_PROCESSOR_RELATIONSHIP,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX,
@@ -1014,17 +1014,17 @@ pub extern "KERNEL32" fn GetLogicalProcessorInformationEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetNativeSystemInfo(
+pub extern "kernel32" fn GetNativeSystemInfo(
     lpSystemInfo: ?*SYSTEM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetSystemTimePreciseAsFileTime(
+pub extern "kernel32" fn GetSystemTimePreciseAsFileTime(
     lpSystemTimeAsFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetProductInfo(
+pub extern "kernel32" fn GetProductInfo(
     dwOSMajorVersion: u32,
     dwOSMinorVersion: u32,
     dwSpMajorVersion: u32,
@@ -1033,7 +1033,7 @@ pub extern "KERNEL32" fn GetProductInfo(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn VerSetConditionMask(
+pub extern "kernel32" fn VerSetConditionMask(
     ConditionMask: u64,
     TypeMask: VER_FLAGS,
     Condition: u8,
@@ -1044,7 +1044,7 @@ pub extern "api-ms-win-core-sysinfo-l1-2-0" fn GetOsSafeBootMode(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn EnumSystemFirmwareTables(
+pub extern "kernel32" fn EnumSystemFirmwareTables(
     FirmwareTableProviderSignature: FIRMWARE_TABLE_PROVIDER,
     // TODO: what to do with BytesParamIndex 2?
     pFirmwareTableEnumBuffer: ?*FIRMWARE_TABLE_ID,
@@ -1052,7 +1052,7 @@ pub extern "KERNEL32" fn EnumSystemFirmwareTables(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetSystemFirmwareTable(
+pub extern "kernel32" fn GetSystemFirmwareTable(
     FirmwareTableProviderSignature: FIRMWARE_TABLE_PROVIDER,
     FirmwareTableID: FIRMWARE_TABLE_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -1060,25 +1060,25 @@ pub extern "KERNEL32" fn GetSystemFirmwareTable(
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn DnsHostnameToComputerNameExW(
+pub extern "kernel32" fn DnsHostnameToComputerNameExW(
     Hostname: ?[*:0]const u16,
     ComputerName: ?[*:0]u16,
     nSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetPhysicallyInstalledSystemMemory(
+pub extern "kernel32" fn GetPhysicallyInstalledSystemMemory(
     TotalMemoryInKilobytes: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetComputerNameEx2W(
+pub extern "kernel32" fn SetComputerNameEx2W(
     NameType: COMPUTER_NAME_FORMAT,
     Flags: u32,
     lpBuffer: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetSystemTimeAdjustment(
+pub extern "kernel32" fn SetSystemTimeAdjustment(
     dwTimeAdjustment: u32,
     bTimeAdjustmentDisabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1090,7 +1090,7 @@ pub extern "api-ms-win-core-sysinfo-l1-2-4" fn SetSystemTimeAdjustmentPrecise(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetProcessorSystemCycleTime(
+pub extern "kernel32" fn GetProcessorSystemCycleTime(
     Group: u16,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION,
@@ -1107,22 +1107,22 @@ pub extern "api-ms-win-core-sysinfo-l1-2-3" fn GetIntegratedDisplaySize(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetComputerNameA(
+pub extern "kernel32" fn SetComputerNameA(
     lpComputerName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetComputerNameW(
+pub extern "kernel32" fn SetComputerNameW(
     lpComputerName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn SetComputerNameExA(
+pub extern "kernel32" fn SetComputerNameExA(
     NameType: COMPUTER_NAME_FORMAT,
     lpBuffer: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetSystemCpuSetInformation(
+pub extern "kernel32" fn GetSystemCpuSetInformation(
     // TODO: what to do with BytesParamIndex 1?
     Information: ?*SYSTEM_CPU_SET_INFORMATION,
     BufferLength: u32,
@@ -1132,13 +1132,13 @@ pub extern "KERNEL32" fn GetSystemCpuSetInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetSystemWow64DirectoryA(
+pub extern "kernel32" fn GetSystemWow64DirectoryA(
     lpBuffer: ?[*:0]u8,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetSystemWow64DirectoryW(
+pub extern "kernel32" fn GetSystemWow64DirectoryW(
     lpBuffer: ?[*:0]u16,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1158,7 +1158,7 @@ pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2W(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
+pub extern "kernel32" fn IsWow64GuestMachineSupported(
     WowGuestMachine: u16,
     MachineIsSupported: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1203,28 +1203,28 @@ pub extern "ntdll" fn RtlSwitchedVVI(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalMemoryStatus(
+pub extern "kernel32" fn GlobalMemoryStatus(
     lpBuffer: ?*MEMORYSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetSystemDEPPolicy(
+pub extern "kernel32" fn GetSystemDEPPolicy(
 ) callconv(@import("std").os.windows.WINAPI) DEP_SYSTEM_POLICY_TYPE;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetFirmwareType(
+pub extern "kernel32" fn GetFirmwareType(
     FirmwareType: ?*FIRMWARE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn VerifyVersionInfoA(
+pub extern "kernel32" fn VerifyVersionInfoA(
     lpVersionInformation: ?*OSVERSIONINFOEXA,
     dwTypeMask: VER_FLAGS,
     dwlConditionMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn VerifyVersionInfoW(
+pub extern "kernel32" fn VerifyVersionInfoW(
     lpVersionInformation: ?*OSVERSIONINFOEXW,
     dwTypeMask: VER_FLAGS,
     dwlConditionMask: u64,

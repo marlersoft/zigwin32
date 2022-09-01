@@ -271,66 +271,66 @@ pub const CONSOLE_HISTORY_INFO = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (94)
 //--------------------------------------------------------------------------------
-pub extern "KERNEL32" fn AllocConsole(
+pub extern "kernel32" fn AllocConsole(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn FreeConsole(
+pub extern "kernel32" fn FreeConsole(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn AttachConsole(
+pub extern "kernel32" fn AttachConsole(
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleCP(
+pub extern "kernel32" fn GetConsoleCP(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleOutputCP(
+pub extern "kernel32" fn GetConsoleOutputCP(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleMode(
+pub extern "kernel32" fn GetConsoleMode(
     hConsoleHandle: ?HANDLE,
     lpMode: ?*CONSOLE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleMode(
+pub extern "kernel32" fn SetConsoleMode(
     hConsoleHandle: ?HANDLE,
     dwMode: CONSOLE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetNumberOfConsoleInputEvents(
+pub extern "kernel32" fn GetNumberOfConsoleInputEvents(
     hConsoleInput: ?HANDLE,
     lpNumberOfEvents: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleInputA(
+pub extern "kernel32" fn ReadConsoleInputA(
     hConsoleInput: ?HANDLE,
     lpBuffer: [*]INPUT_RECORD,
     nLength: u32,
     lpNumberOfEventsRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleInputW(
+pub extern "kernel32" fn ReadConsoleInputW(
     hConsoleInput: ?HANDLE,
     lpBuffer: [*]INPUT_RECORD,
     nLength: u32,
     lpNumberOfEventsRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn PeekConsoleInputA(
+pub extern "kernel32" fn PeekConsoleInputA(
     hConsoleInput: ?HANDLE,
     lpBuffer: [*]INPUT_RECORD,
     nLength: u32,
     lpNumberOfEventsRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn PeekConsoleInputW(
+pub extern "kernel32" fn PeekConsoleInputW(
     hConsoleInput: ?HANDLE,
     lpBuffer: [*]INPUT_RECORD,
     nLength: u32,
     lpNumberOfEventsRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleA(
+pub extern "kernel32" fn ReadConsoleA(
     hConsoleInput: ?HANDLE,
     lpBuffer: ?*anyopaque,
     nNumberOfCharsToRead: u32,
@@ -338,7 +338,7 @@ pub extern "KERNEL32" fn ReadConsoleA(
     pInputControl: ?*CONSOLE_READCONSOLE_CONTROL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleW(
+pub extern "kernel32" fn ReadConsoleW(
     hConsoleInput: ?HANDLE,
     lpBuffer: ?*anyopaque,
     nNumberOfCharsToRead: u32,
@@ -346,7 +346,7 @@ pub extern "KERNEL32" fn ReadConsoleW(
     pInputControl: ?*CONSOLE_READCONSOLE_CONTROL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleA(
+pub extern "kernel32" fn WriteConsoleA(
     hConsoleOutput: ?HANDLE,
     lpBuffer: [*]const u8,
     nNumberOfCharsToWrite: u32,
@@ -354,7 +354,7 @@ pub extern "KERNEL32" fn WriteConsoleA(
     lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleW(
+pub extern "kernel32" fn WriteConsoleW(
     hConsoleOutput: ?HANDLE,
     lpBuffer: [*]const u8,
     nNumberOfCharsToWrite: u32,
@@ -362,12 +362,12 @@ pub extern "KERNEL32" fn WriteConsoleW(
     lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleCtrlHandler(
+pub extern "kernel32" fn SetConsoleCtrlHandler(
     HandlerRoutine: ?PHANDLER_ROUTINE,
     Add: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn CreatePseudoConsole(
+pub extern "kernel32" fn CreatePseudoConsole(
     size: COORD,
     hInput: ?HANDLE,
     hOutput: ?HANDLE,
@@ -375,16 +375,16 @@ pub extern "KERNEL32" fn CreatePseudoConsole(
     phPC: ?*?HPCON,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn ResizePseudoConsole(
+pub extern "kernel32" fn ResizePseudoConsole(
     hPC: ?HPCON,
     size: COORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "KERNEL32" fn ClosePseudoConsole(
+pub extern "kernel32" fn ClosePseudoConsole(
     hPC: ?HPCON,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn FillConsoleOutputCharacterA(
+pub extern "kernel32" fn FillConsoleOutputCharacterA(
     hConsoleOutput: ?HANDLE,
     cCharacter: CHAR,
     nLength: u32,
@@ -392,7 +392,7 @@ pub extern "KERNEL32" fn FillConsoleOutputCharacterA(
     lpNumberOfCharsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn FillConsoleOutputCharacterW(
+pub extern "kernel32" fn FillConsoleOutputCharacterW(
     hConsoleOutput: ?HANDLE,
     cCharacter: u16,
     nLength: u32,
@@ -400,7 +400,7 @@ pub extern "KERNEL32" fn FillConsoleOutputCharacterW(
     lpNumberOfCharsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn FillConsoleOutputAttribute(
+pub extern "kernel32" fn FillConsoleOutputAttribute(
     hConsoleOutput: ?HANDLE,
     wAttribute: u16,
     nLength: u32,
@@ -408,12 +408,12 @@ pub extern "KERNEL32" fn FillConsoleOutputAttribute(
     lpNumberOfAttrsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GenerateConsoleCtrlEvent(
+pub extern "kernel32" fn GenerateConsoleCtrlEvent(
     dwCtrlEvent: u32,
     dwProcessGroupId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn CreateConsoleScreenBuffer(
+pub extern "kernel32" fn CreateConsoleScreenBuffer(
     dwDesiredAccess: u32,
     dwShareMode: u32,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
@@ -421,73 +421,73 @@ pub extern "KERNEL32" fn CreateConsoleScreenBuffer(
     lpScreenBufferData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub extern "KERNEL32" fn SetConsoleActiveScreenBuffer(
+pub extern "kernel32" fn SetConsoleActiveScreenBuffer(
     hConsoleOutput: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn FlushConsoleInputBuffer(
+pub extern "kernel32" fn FlushConsoleInputBuffer(
     hConsoleInput: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleCP(
+pub extern "kernel32" fn SetConsoleCP(
     wCodePageID: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleOutputCP(
+pub extern "kernel32" fn SetConsoleOutputCP(
     wCodePageID: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleCursorInfo(
+pub extern "kernel32" fn GetConsoleCursorInfo(
     hConsoleOutput: ?HANDLE,
     lpConsoleCursorInfo: ?*CONSOLE_CURSOR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleCursorInfo(
+pub extern "kernel32" fn SetConsoleCursorInfo(
     hConsoleOutput: ?HANDLE,
     lpConsoleCursorInfo: ?*const CONSOLE_CURSOR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleScreenBufferInfo(
+pub extern "kernel32" fn GetConsoleScreenBufferInfo(
     hConsoleOutput: ?HANDLE,
     lpConsoleScreenBufferInfo: ?*CONSOLE_SCREEN_BUFFER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleScreenBufferInfoEx(
+pub extern "kernel32" fn GetConsoleScreenBufferInfoEx(
     hConsoleOutput: ?HANDLE,
     lpConsoleScreenBufferInfoEx: ?*CONSOLE_SCREEN_BUFFER_INFOEX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleScreenBufferInfoEx(
+pub extern "kernel32" fn SetConsoleScreenBufferInfoEx(
     hConsoleOutput: ?HANDLE,
     lpConsoleScreenBufferInfoEx: ?*CONSOLE_SCREEN_BUFFER_INFOEX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleScreenBufferSize(
+pub extern "kernel32" fn SetConsoleScreenBufferSize(
     hConsoleOutput: ?HANDLE,
     dwSize: COORD,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleCursorPosition(
+pub extern "kernel32" fn SetConsoleCursorPosition(
     hConsoleOutput: ?HANDLE,
     dwCursorPosition: COORD,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetLargestConsoleWindowSize(
+pub extern "kernel32" fn GetLargestConsoleWindowSize(
     hConsoleOutput: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) COORD;
 
-pub extern "KERNEL32" fn SetConsoleTextAttribute(
+pub extern "kernel32" fn SetConsoleTextAttribute(
     hConsoleOutput: ?HANDLE,
     wAttributes: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleWindowInfo(
+pub extern "kernel32" fn SetConsoleWindowInfo(
     hConsoleOutput: ?HANDLE,
     bAbsolute: BOOL,
     lpConsoleWindow: ?*const SMALL_RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleOutputCharacterA(
+pub extern "kernel32" fn WriteConsoleOutputCharacterA(
     hConsoleOutput: ?HANDLE,
     lpCharacter: [*:0]const u8,
     nLength: u32,
@@ -495,7 +495,7 @@ pub extern "KERNEL32" fn WriteConsoleOutputCharacterA(
     lpNumberOfCharsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleOutputCharacterW(
+pub extern "kernel32" fn WriteConsoleOutputCharacterW(
     hConsoleOutput: ?HANDLE,
     lpCharacter: [*:0]const u16,
     nLength: u32,
@@ -503,7 +503,7 @@ pub extern "KERNEL32" fn WriteConsoleOutputCharacterW(
     lpNumberOfCharsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleOutputAttribute(
+pub extern "kernel32" fn WriteConsoleOutputAttribute(
     hConsoleOutput: ?HANDLE,
     lpAttribute: [*:0]const u16,
     nLength: u32,
@@ -511,7 +511,7 @@ pub extern "KERNEL32" fn WriteConsoleOutputAttribute(
     lpNumberOfAttrsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleOutputCharacterA(
+pub extern "kernel32" fn ReadConsoleOutputCharacterA(
     hConsoleOutput: ?HANDLE,
     lpCharacter: [*:0]u8,
     nLength: u32,
@@ -519,7 +519,7 @@ pub extern "KERNEL32" fn ReadConsoleOutputCharacterA(
     lpNumberOfCharsRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleOutputCharacterW(
+pub extern "kernel32" fn ReadConsoleOutputCharacterW(
     hConsoleOutput: ?HANDLE,
     lpCharacter: [*:0]u16,
     nLength: u32,
@@ -527,7 +527,7 @@ pub extern "KERNEL32" fn ReadConsoleOutputCharacterW(
     lpNumberOfCharsRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleOutputAttribute(
+pub extern "kernel32" fn ReadConsoleOutputAttribute(
     hConsoleOutput: ?HANDLE,
     lpAttribute: [*:0]u16,
     nLength: u32,
@@ -535,21 +535,21 @@ pub extern "KERNEL32" fn ReadConsoleOutputAttribute(
     lpNumberOfAttrsRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleInputA(
+pub extern "kernel32" fn WriteConsoleInputA(
     hConsoleInput: ?HANDLE,
     lpBuffer: [*]const INPUT_RECORD,
     nLength: u32,
     lpNumberOfEventsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleInputW(
+pub extern "kernel32" fn WriteConsoleInputW(
     hConsoleInput: ?HANDLE,
     lpBuffer: [*]const INPUT_RECORD,
     nLength: u32,
     lpNumberOfEventsWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ScrollConsoleScreenBufferA(
+pub extern "kernel32" fn ScrollConsoleScreenBufferA(
     hConsoleOutput: ?HANDLE,
     lpScrollRectangle: ?*const SMALL_RECT,
     lpClipRectangle: ?*const SMALL_RECT,
@@ -557,7 +557,7 @@ pub extern "KERNEL32" fn ScrollConsoleScreenBufferA(
     lpFill: ?*const CHAR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ScrollConsoleScreenBufferW(
+pub extern "kernel32" fn ScrollConsoleScreenBufferW(
     hConsoleOutput: ?HANDLE,
     lpScrollRectangle: ?*const SMALL_RECT,
     lpClipRectangle: ?*const SMALL_RECT,
@@ -565,7 +565,7 @@ pub extern "KERNEL32" fn ScrollConsoleScreenBufferW(
     lpFill: ?*const CHAR_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleOutputA(
+pub extern "kernel32" fn WriteConsoleOutputA(
     hConsoleOutput: ?HANDLE,
     lpBuffer: ?*const CHAR_INFO,
     dwBufferSize: COORD,
@@ -573,7 +573,7 @@ pub extern "KERNEL32" fn WriteConsoleOutputA(
     lpWriteRegion: ?*SMALL_RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn WriteConsoleOutputW(
+pub extern "kernel32" fn WriteConsoleOutputW(
     hConsoleOutput: ?HANDLE,
     lpBuffer: ?*const CHAR_INFO,
     dwBufferSize: COORD,
@@ -581,7 +581,7 @@ pub extern "KERNEL32" fn WriteConsoleOutputW(
     lpWriteRegion: ?*SMALL_RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleOutputA(
+pub extern "kernel32" fn ReadConsoleOutputA(
     hConsoleOutput: ?HANDLE,
     lpBuffer: ?*CHAR_INFO,
     dwBufferSize: COORD,
@@ -589,7 +589,7 @@ pub extern "KERNEL32" fn ReadConsoleOutputA(
     lpReadRegion: ?*SMALL_RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn ReadConsoleOutputW(
+pub extern "kernel32" fn ReadConsoleOutputW(
     hConsoleOutput: ?HANDLE,
     lpBuffer: ?*CHAR_INFO,
     dwBufferSize: COORD,
@@ -597,203 +597,203 @@ pub extern "KERNEL32" fn ReadConsoleOutputW(
     lpReadRegion: ?*SMALL_RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleTitleA(
+pub extern "kernel32" fn GetConsoleTitleA(
     lpConsoleTitle: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleTitleW(
+pub extern "kernel32" fn GetConsoleTitleW(
     lpConsoleTitle: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleOriginalTitleA(
+pub extern "kernel32" fn GetConsoleOriginalTitleA(
     lpConsoleTitle: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleOriginalTitleW(
+pub extern "kernel32" fn GetConsoleOriginalTitleW(
     lpConsoleTitle: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn SetConsoleTitleA(
+pub extern "kernel32" fn SetConsoleTitleA(
     lpConsoleTitle: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleTitleW(
+pub extern "kernel32" fn SetConsoleTitleW(
     lpConsoleTitle: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetNumberOfConsoleMouseButtons(
+pub extern "kernel32" fn GetNumberOfConsoleMouseButtons(
     lpNumberOfMouseButtons: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleFontSize(
+pub extern "kernel32" fn GetConsoleFontSize(
     hConsoleOutput: ?HANDLE,
     nFont: u32,
 ) callconv(@import("std").os.windows.WINAPI) COORD;
 
-pub extern "KERNEL32" fn GetCurrentConsoleFont(
+pub extern "kernel32" fn GetCurrentConsoleFont(
     hConsoleOutput: ?HANDLE,
     bMaximumWindow: BOOL,
     lpConsoleCurrentFont: ?*CONSOLE_FONT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetCurrentConsoleFontEx(
+pub extern "kernel32" fn GetCurrentConsoleFontEx(
     hConsoleOutput: ?HANDLE,
     bMaximumWindow: BOOL,
     lpConsoleCurrentFontEx: ?*CONSOLE_FONT_INFOEX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetCurrentConsoleFontEx(
+pub extern "kernel32" fn SetCurrentConsoleFontEx(
     hConsoleOutput: ?HANDLE,
     bMaximumWindow: BOOL,
     lpConsoleCurrentFontEx: ?*CONSOLE_FONT_INFOEX,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleSelectionInfo(
+pub extern "kernel32" fn GetConsoleSelectionInfo(
     lpConsoleSelectionInfo: ?*CONSOLE_SELECTION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleHistoryInfo(
+pub extern "kernel32" fn GetConsoleHistoryInfo(
     lpConsoleHistoryInfo: ?*CONSOLE_HISTORY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleHistoryInfo(
+pub extern "kernel32" fn SetConsoleHistoryInfo(
     lpConsoleHistoryInfo: ?*CONSOLE_HISTORY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleDisplayMode(
+pub extern "kernel32" fn GetConsoleDisplayMode(
     lpModeFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleDisplayMode(
+pub extern "kernel32" fn SetConsoleDisplayMode(
     hConsoleOutput: ?HANDLE,
     dwFlags: u32,
     lpNewScreenBufferDimensions: ?*COORD,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleWindow(
+pub extern "kernel32" fn GetConsoleWindow(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
-pub extern "KERNEL32" fn AddConsoleAliasA(
+pub extern "kernel32" fn AddConsoleAliasA(
     Source: ?PSTR,
     Target: ?PSTR,
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn AddConsoleAliasW(
+pub extern "kernel32" fn AddConsoleAliasW(
     Source: ?PWSTR,
     Target: ?PWSTR,
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleAliasA(
+pub extern "kernel32" fn GetConsoleAliasA(
     Source: ?PSTR,
     TargetBuffer: [*:0]u8,
     TargetBufferLength: u32,
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasW(
+pub extern "kernel32" fn GetConsoleAliasW(
     Source: ?PWSTR,
     TargetBuffer: [*:0]u16,
     TargetBufferLength: u32,
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasesLengthA(
+pub extern "kernel32" fn GetConsoleAliasesLengthA(
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasesLengthW(
+pub extern "kernel32" fn GetConsoleAliasesLengthW(
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasExesLengthA(
+pub extern "kernel32" fn GetConsoleAliasExesLengthA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasExesLengthW(
+pub extern "kernel32" fn GetConsoleAliasExesLengthW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasesA(
+pub extern "kernel32" fn GetConsoleAliasesA(
     AliasBuffer: [*:0]u8,
     AliasBufferLength: u32,
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasesW(
+pub extern "kernel32" fn GetConsoleAliasesW(
     AliasBuffer: [*:0]u16,
     AliasBufferLength: u32,
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasExesA(
+pub extern "kernel32" fn GetConsoleAliasExesA(
     ExeNameBuffer: [*:0]u8,
     ExeNameBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleAliasExesW(
+pub extern "kernel32" fn GetConsoleAliasExesW(
     ExeNameBuffer: [*:0]u16,
     ExeNameBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn ExpungeConsoleCommandHistoryA(
+pub extern "kernel32" fn ExpungeConsoleCommandHistoryA(
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn ExpungeConsoleCommandHistoryW(
+pub extern "kernel32" fn ExpungeConsoleCommandHistoryW(
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn SetConsoleNumberOfCommandsA(
+pub extern "kernel32" fn SetConsoleNumberOfCommandsA(
     Number: u32,
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetConsoleNumberOfCommandsW(
+pub extern "kernel32" fn SetConsoleNumberOfCommandsW(
     Number: u32,
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetConsoleCommandHistoryLengthA(
+pub extern "kernel32" fn GetConsoleCommandHistoryLengthA(
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleCommandHistoryLengthW(
+pub extern "kernel32" fn GetConsoleCommandHistoryLengthW(
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleCommandHistoryA(
+pub extern "kernel32" fn GetConsoleCommandHistoryA(
     // TODO: what to do with BytesParamIndex 1?
     Commands: ?PSTR,
     CommandBufferLength: u32,
     ExeName: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleCommandHistoryW(
+pub extern "kernel32" fn GetConsoleCommandHistoryW(
     // TODO: what to do with BytesParamIndex 1?
     Commands: ?PWSTR,
     CommandBufferLength: u32,
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetConsoleProcessList(
+pub extern "kernel32" fn GetConsoleProcessList(
     lpdwProcessList: [*]u32,
     dwProcessCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn GetStdHandle(
+pub extern "kernel32" fn GetStdHandle(
     nStdHandle: STD_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
-pub extern "KERNEL32" fn SetStdHandle(
+pub extern "kernel32" fn SetStdHandle(
     nStdHandle: STD_HANDLE,
     hHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetStdHandleEx(
+pub extern "kernel32" fn SetStdHandleEx(
     nStdHandle: STD_HANDLE,
     hHandle: ?HANDLE,
     phPrevValue: ?*?HANDLE,

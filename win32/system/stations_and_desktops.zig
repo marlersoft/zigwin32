@@ -139,7 +139,7 @@ pub const BSMINFO = extern struct {
 // Section: Functions (31)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CreateDesktopA(
+pub extern "user32" fn CreateDesktopA(
     lpszDesktop: ?[*:0]const u8,
     lpszDevice: ?[*:0]const u8,
     pDevmode: ?*DEVMODEA,
@@ -149,7 +149,7 @@ pub extern "USER32" fn CreateDesktopA(
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CreateDesktopW(
+pub extern "user32" fn CreateDesktopW(
     lpszDesktop: ?[*:0]const u16,
     lpszDevice: ?[*:0]const u16,
     pDevmode: ?*DEVMODEW,
@@ -159,7 +159,7 @@ pub extern "USER32" fn CreateDesktopW(
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn CreateDesktopExA(
+pub extern "user32" fn CreateDesktopExA(
     lpszDesktop: ?[*:0]const u8,
     lpszDevice: ?[*:0]const u8,
     pDevmode: ?*DEVMODEA,
@@ -171,7 +171,7 @@ pub extern "USER32" fn CreateDesktopExA(
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn CreateDesktopExW(
+pub extern "user32" fn CreateDesktopExW(
     lpszDesktop: ?[*:0]const u16,
     lpszDevice: ?[*:0]const u16,
     pDevmode: ?*DEVMODEW,
@@ -183,7 +183,7 @@ pub extern "USER32" fn CreateDesktopExW(
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OpenDesktopA(
+pub extern "user32" fn OpenDesktopA(
     lpszDesktop: ?[*:0]const u8,
     dwFlags: u32,
     fInherit: BOOL,
@@ -191,7 +191,7 @@ pub extern "USER32" fn OpenDesktopA(
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OpenDesktopW(
+pub extern "user32" fn OpenDesktopW(
     lpszDesktop: ?[*:0]const u16,
     dwFlags: u32,
     fInherit: BOOL,
@@ -199,55 +199,55 @@ pub extern "USER32" fn OpenDesktopW(
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OpenInputDesktop(
+pub extern "user32" fn OpenInputDesktop(
     dwFlags: u32,
     fInherit: BOOL,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnumDesktopsA(
+pub extern "user32" fn EnumDesktopsA(
     hwinsta: ?HWINSTA,
     lpEnumFunc: ?DESKTOPENUMPROCA,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnumDesktopsW(
+pub extern "user32" fn EnumDesktopsW(
     hwinsta: ?HWINSTA,
     lpEnumFunc: ?DESKTOPENUMPROCW,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnumDesktopWindows(
+pub extern "user32" fn EnumDesktopWindows(
     hDesktop: ?HDESK,
     lpfn: ?WNDENUMPROC,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SwitchDesktop(
+pub extern "user32" fn SwitchDesktop(
     hDesktop: ?HDESK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetThreadDesktop(
+pub extern "user32" fn SetThreadDesktop(
     hDesktop: ?HDESK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CloseDesktop(
+pub extern "user32" fn CloseDesktop(
     hDesktop: ?HDESK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetThreadDesktop(
+pub extern "user32" fn GetThreadDesktop(
     dwThreadId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CreateWindowStationA(
+pub extern "user32" fn CreateWindowStationA(
     lpwinsta: ?[*:0]const u8,
     dwFlags: u32,
     dwDesiredAccess: u32,
@@ -255,7 +255,7 @@ pub extern "USER32" fn CreateWindowStationA(
 ) callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CreateWindowStationW(
+pub extern "user32" fn CreateWindowStationW(
     lpwinsta: ?[*:0]const u16,
     dwFlags: u32,
     dwDesiredAccess: u32,
@@ -263,47 +263,47 @@ pub extern "USER32" fn CreateWindowStationW(
 ) callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OpenWindowStationA(
+pub extern "user32" fn OpenWindowStationA(
     lpszWinSta: ?[*:0]const u8,
     fInherit: BOOL,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OpenWindowStationW(
+pub extern "user32" fn OpenWindowStationW(
     lpszWinSta: ?[*:0]const u16,
     fInherit: BOOL,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnumWindowStationsA(
+pub extern "user32" fn EnumWindowStationsA(
     lpEnumFunc: ?WINSTAENUMPROCA,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnumWindowStationsW(
+pub extern "user32" fn EnumWindowStationsW(
     lpEnumFunc: ?WINSTAENUMPROCW,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CloseWindowStation(
+pub extern "user32" fn CloseWindowStation(
     hWinSta: ?HWINSTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetProcessWindowStation(
+pub extern "user32" fn SetProcessWindowStation(
     hWinSta: ?HWINSTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetProcessWindowStation(
+pub extern "user32" fn GetProcessWindowStation(
 ) callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetUserObjectInformationA(
+pub extern "user32" fn GetUserObjectInformationA(
     hObj: ?HANDLE,
     nIndex: USER_OBJECT_INFORMATION_INDEX,
     // TODO: what to do with BytesParamIndex 3?
@@ -313,7 +313,7 @@ pub extern "USER32" fn GetUserObjectInformationA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetUserObjectInformationW(
+pub extern "user32" fn GetUserObjectInformationW(
     hObj: ?HANDLE,
     nIndex: USER_OBJECT_INFORMATION_INDEX,
     // TODO: what to do with BytesParamIndex 3?
@@ -323,7 +323,7 @@ pub extern "USER32" fn GetUserObjectInformationW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetUserObjectInformationA(
+pub extern "user32" fn SetUserObjectInformationA(
     hObj: ?HANDLE,
     nIndex: i32,
     // TODO: what to do with BytesParamIndex 3?
@@ -332,7 +332,7 @@ pub extern "USER32" fn SetUserObjectInformationA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetUserObjectInformationW(
+pub extern "user32" fn SetUserObjectInformationW(
     hObj: ?HANDLE,
     nIndex: i32,
     // TODO: what to do with BytesParamIndex 3?
@@ -341,7 +341,7 @@ pub extern "USER32" fn SetUserObjectInformationW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn BroadcastSystemMessageExA(
+pub extern "user32" fn BroadcastSystemMessageExA(
     flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
     lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
     Msg: u32,
@@ -351,7 +351,7 @@ pub extern "USER32" fn BroadcastSystemMessageExA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn BroadcastSystemMessageExW(
+pub extern "user32" fn BroadcastSystemMessageExW(
     flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
     lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
     Msg: u32,
@@ -360,7 +360,7 @@ pub extern "USER32" fn BroadcastSystemMessageExW(
     pbsmInfo: ?*BSMINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "USER32" fn BroadcastSystemMessageA(
+pub extern "user32" fn BroadcastSystemMessageA(
     flags: u32,
     lpInfo: ?*u32,
     Msg: u32,
@@ -369,7 +369,7 @@ pub extern "USER32" fn BroadcastSystemMessageA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn BroadcastSystemMessageW(
+pub extern "user32" fn BroadcastSystemMessageW(
     flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
     lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
     Msg: u32,

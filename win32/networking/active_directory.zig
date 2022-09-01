@@ -9333,25 +9333,25 @@ pub const GetDcContextHandle = isize;
 // Section: Functions (158)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsGetObject(
+pub extern "activeds" fn ADsGetObject(
     lpszPathName: ?[*:0]const u16,
     riid: ?*const Guid,
     ppObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsBuildEnumerator(
+pub extern "activeds" fn ADsBuildEnumerator(
     pADsContainer: ?*IADsContainer,
     ppEnumVariant: ?*?*IEnumVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsFreeEnumerator(
+pub extern "activeds" fn ADsFreeEnumerator(
     pEnumVariant: ?*IEnumVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsEnumerateNext(
+pub extern "activeds" fn ADsEnumerateNext(
     pEnumVariant: ?*IEnumVARIANT,
     cElements: u32,
     pvar: ?*VARIANT,
@@ -9359,21 +9359,21 @@ pub extern "ACTIVEDS" fn ADsEnumerateNext(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsBuildVarArrayStr(
+pub extern "activeds" fn ADsBuildVarArrayStr(
     lppPathNames: [*]?PWSTR,
     dwPathNames: u32,
     pVar: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsBuildVarArrayInt(
+pub extern "activeds" fn ADsBuildVarArrayInt(
     lpdwObjectTypes: ?*u32,
     dwObjectTypes: u32,
     pVar: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsOpenObject(
+pub extern "activeds" fn ADsOpenObject(
     lpszPathName: ?[*:0]const u16,
     lpszUserName: ?[*:0]const u16,
     lpszPassword: ?[*:0]const u16,
@@ -9383,7 +9383,7 @@ pub extern "ACTIVEDS" fn ADsOpenObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsGetLastError(
+pub extern "activeds" fn ADsGetLastError(
     lpError: ?*u32,
     lpErrorBuf: [*:0]u16,
     dwErrorBufLen: u32,
@@ -9392,78 +9392,78 @@ pub extern "ACTIVEDS" fn ADsGetLastError(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsSetLastError(
+pub extern "activeds" fn ADsSetLastError(
     dwErr: u32,
     pszError: ?[*:0]const u16,
     pszProvider: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn AllocADsMem(
+pub extern "activeds" fn AllocADsMem(
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn FreeADsMem(
+pub extern "activeds" fn FreeADsMem(
     pMem: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ReallocADsMem(
+pub extern "activeds" fn ReallocADsMem(
     pOldMem: ?*anyopaque,
     cbOld: u32,
     cbNew: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn AllocADsStr(
+pub extern "activeds" fn AllocADsStr(
     pStr: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn FreeADsStr(
+pub extern "activeds" fn FreeADsStr(
     pStr: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ReallocADsStr(
+pub extern "activeds" fn ReallocADsStr(
     ppStr: ?*?PWSTR,
     pStr: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn ADsEncodeBinaryData(
+pub extern "activeds" fn ADsEncodeBinaryData(
     pbSrcData: ?*u8,
     dwSrcLen: u32,
     ppszDestData: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ACTIVEDS" fn ADsDecodeBinaryData(
+pub extern "activeds" fn ADsDecodeBinaryData(
     szSrcData: ?[*:0]const u16,
     ppbDestData: ?*?*u8,
     pdwDestLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ACTIVEDS" fn PropVariantToAdsType(
+pub extern "activeds" fn PropVariantToAdsType(
     pVariant: ?*VARIANT,
     dwNumVariant: u32,
     ppAdsValues: ?*?*ADSVALUE,
     pdwNumValues: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ACTIVEDS" fn AdsTypeToPropVariant(
+pub extern "activeds" fn AdsTypeToPropVariant(
     pAdsValues: ?*ADSVALUE,
     dwNumValues: u32,
     pVariant: ?*VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "ACTIVEDS" fn AdsFreeAdsValues(
+pub extern "activeds" fn AdsFreeAdsValues(
     pAdsValues: ?*ADSVALUE,
     dwNumValues: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn BinarySDToSecurityDescriptor(
+pub extern "activeds" fn BinarySDToSecurityDescriptor(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pVarsec: ?*VARIANT,
     pszServerName: ?[*:0]const u16,
@@ -9473,7 +9473,7 @@ pub extern "ACTIVEDS" fn BinarySDToSecurityDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ACTIVEDS" fn SecurityDescriptorToBinarySD(
+pub extern "activeds" fn SecurityDescriptorToBinarySD(
     vVarSecDes: VARIANT,
     ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     pdwSDLength: ?*u32,
@@ -9553,7 +9553,7 @@ pub extern "dsprop" fn ADsPropShowErrorDialog(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsMakeSpnW(
+pub extern "dsparse" fn DsMakeSpnW(
     ServiceClass: ?[*:0]const u16,
     ServiceName: ?[*:0]const u16,
     InstanceName: ?[*:0]const u16,
@@ -9564,7 +9564,7 @@ pub extern "DSPARSE" fn DsMakeSpnW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsMakeSpnA(
+pub extern "dsparse" fn DsMakeSpnA(
     ServiceClass: ?[*:0]const u8,
     ServiceName: ?[*:0]const u8,
     InstanceName: ?[*:0]const u8,
@@ -9575,7 +9575,7 @@ pub extern "DSPARSE" fn DsMakeSpnA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsCrackSpnA(
+pub extern "dsparse" fn DsCrackSpnA(
     pszSpn: ?[*:0]const u8,
     pcServiceClass: ?*u32,
     ServiceClass: ?[*:0]u8,
@@ -9587,7 +9587,7 @@ pub extern "DSPARSE" fn DsCrackSpnA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsCrackSpnW(
+pub extern "dsparse" fn DsCrackSpnW(
     pszSpn: ?[*:0]const u16,
     pcServiceClass: ?*u32,
     ServiceClass: ?[*:0]u16,
@@ -9599,7 +9599,7 @@ pub extern "DSPARSE" fn DsCrackSpnW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsQuoteRdnValueW(
+pub extern "dsparse" fn DsQuoteRdnValueW(
     cUnquotedRdnValueLength: u32,
     psUnquotedRdnValue: [*:0]const u16,
     pcQuotedRdnValueLength: ?*u32,
@@ -9607,7 +9607,7 @@ pub extern "DSPARSE" fn DsQuoteRdnValueW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsQuoteRdnValueA(
+pub extern "dsparse" fn DsQuoteRdnValueA(
     cUnquotedRdnValueLength: u32,
     psUnquotedRdnValue: [*]const u8,
     pcQuotedRdnValueLength: ?*u32,
@@ -9615,7 +9615,7 @@ pub extern "DSPARSE" fn DsQuoteRdnValueA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsUnquoteRdnValueW(
+pub extern "dsparse" fn DsUnquoteRdnValueW(
     cQuotedRdnValueLength: u32,
     psQuotedRdnValue: [*:0]const u16,
     pcUnquotedRdnValueLength: ?*u32,
@@ -9623,7 +9623,7 @@ pub extern "DSPARSE" fn DsUnquoteRdnValueW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsUnquoteRdnValueA(
+pub extern "dsparse" fn DsUnquoteRdnValueA(
     cQuotedRdnValueLength: u32,
     psQuotedRdnValue: [*]const u8,
     pcUnquotedRdnValueLength: ?*u32,
@@ -9631,7 +9631,7 @@ pub extern "DSPARSE" fn DsUnquoteRdnValueA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsGetRdnW(
+pub extern "dsparse" fn DsGetRdnW(
     ppDN: [*]?PWSTR,
     pcDN: ?*u32,
     ppKey: ?*?PWSTR,
@@ -9641,7 +9641,7 @@ pub extern "DSPARSE" fn DsGetRdnW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnW(
+pub extern "dsparse" fn DsCrackUnquotedMangledRdnW(
     pszRDN: [*:0]const u16,
     cchRDN: u32,
     pGuid: ?*Guid,
@@ -9649,7 +9649,7 @@ pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnA(
+pub extern "dsparse" fn DsCrackUnquotedMangledRdnA(
     pszRDN: [*:0]const u8,
     cchRDN: u32,
     pGuid: ?*Guid,
@@ -9657,32 +9657,32 @@ pub extern "DSPARSE" fn DsCrackUnquotedMangledRdnA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsIsMangledRdnValueW(
+pub extern "dsparse" fn DsIsMangledRdnValueW(
     pszRdn: [*:0]const u16,
     cRdn: u32,
     eDsMangleForDesired: DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsIsMangledRdnValueA(
+pub extern "dsparse" fn DsIsMangledRdnValueA(
     pszRdn: [*:0]const u8,
     cRdn: u32,
     eDsMangleForDesired: DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsIsMangledDnA(
+pub extern "dsparse" fn DsIsMangledDnA(
     pszDn: ?[*:0]const u8,
     eDsMangleFor: DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "DSPARSE" fn DsIsMangledDnW(
+pub extern "dsparse" fn DsIsMangledDnW(
     pszDn: ?[*:0]const u16,
     eDsMangleFor: DS_MANGLE_FOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "DSPARSE" fn DsCrackSpn2A(
+pub extern "dsparse" fn DsCrackSpn2A(
     pszSpn: [*:0]const u8,
     cSpn: u32,
     pcServiceClass: ?*u32,
@@ -9694,7 +9694,7 @@ pub extern "DSPARSE" fn DsCrackSpn2A(
     pInstancePort: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DSPARSE" fn DsCrackSpn2W(
+pub extern "dsparse" fn DsCrackSpn2W(
     pszSpn: [*:0]const u16,
     cSpn: u32,
     pcServiceClass: ?*u32,
@@ -9706,7 +9706,7 @@ pub extern "DSPARSE" fn DsCrackSpn2W(
     pInstancePort: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DSPARSE" fn DsCrackSpn3W(
+pub extern "dsparse" fn DsCrackSpn3W(
     pszSpn: ?[*:0]const u16,
     cSpn: u32,
     pcHostName: ?*u32,
@@ -9720,7 +9720,7 @@ pub extern "DSPARSE" fn DsCrackSpn3W(
     RealmName: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "DSPARSE" fn DsCrackSpn4W(
+pub extern "dsparse" fn DsCrackSpn4W(
     pszSpn: ?[*:0]const u16,
     cSpn: u32,
     pcHostName: ?*u32,
@@ -9736,21 +9736,21 @@ pub extern "DSPARSE" fn DsCrackSpn4W(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindW(
+pub extern "ntdsapi" fn DsBindW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindA(
+pub extern "ntdsapi" fn DsBindA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindWithCredW(
+pub extern "ntdsapi" fn DsBindWithCredW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
     AuthIdentity: ?*anyopaque,
@@ -9758,7 +9758,7 @@ pub extern "NTDSAPI" fn DsBindWithCredW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindWithCredA(
+pub extern "ntdsapi" fn DsBindWithCredA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
     AuthIdentity: ?*anyopaque,
@@ -9766,7 +9766,7 @@ pub extern "NTDSAPI" fn DsBindWithCredA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindWithSpnW(
+pub extern "ntdsapi" fn DsBindWithSpnW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
     AuthIdentity: ?*anyopaque,
@@ -9775,7 +9775,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindWithSpnA(
+pub extern "ntdsapi" fn DsBindWithSpnA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
     AuthIdentity: ?*anyopaque,
@@ -9784,7 +9784,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindWithSpnExW(
+pub extern "ntdsapi" fn DsBindWithSpnExW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
     AuthIdentity: ?*anyopaque,
@@ -9794,7 +9794,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnExW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindWithSpnExA(
+pub extern "ntdsapi" fn DsBindWithSpnExA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
     AuthIdentity: ?*anyopaque,
@@ -9804,7 +9804,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnExA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindByInstanceW(
+pub extern "ntdsapi" fn DsBindByInstanceW(
     ServerName: ?[*:0]const u16,
     Annotation: ?[*:0]const u16,
     InstanceGuid: ?*Guid,
@@ -9816,7 +9816,7 @@ pub extern "NTDSAPI" fn DsBindByInstanceW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindByInstanceA(
+pub extern "ntdsapi" fn DsBindByInstanceA(
     ServerName: ?[*:0]const u8,
     Annotation: ?[*:0]const u8,
     InstanceGuid: ?*Guid,
@@ -9828,35 +9828,35 @@ pub extern "NTDSAPI" fn DsBindByInstanceA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindToISTGW(
+pub extern "ntdsapi" fn DsBindToISTGW(
     SiteName: ?[*:0]const u16,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindToISTGA(
+pub extern "ntdsapi" fn DsBindToISTGA(
     SiteName: ?[*:0]const u8,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsBindingSetTimeout(
+pub extern "ntdsapi" fn DsBindingSetTimeout(
     hDS: ?HANDLE,
     cTimeoutSecs: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsUnBindW(
+pub extern "ntdsapi" fn DsUnBindW(
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsUnBindA(
+pub extern "ntdsapi" fn DsUnBindA(
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsMakePasswordCredentialsW(
+pub extern "ntdsapi" fn DsMakePasswordCredentialsW(
     User: ?[*:0]const u16,
     Domain: ?[*:0]const u16,
     Password: ?[*:0]const u16,
@@ -9864,7 +9864,7 @@ pub extern "NTDSAPI" fn DsMakePasswordCredentialsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsMakePasswordCredentialsA(
+pub extern "ntdsapi" fn DsMakePasswordCredentialsA(
     User: ?[*:0]const u8,
     Domain: ?[*:0]const u8,
     Password: ?[*:0]const u8,
@@ -9872,12 +9872,12 @@ pub extern "NTDSAPI" fn DsMakePasswordCredentialsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreePasswordCredentials(
+pub extern "ntdsapi" fn DsFreePasswordCredentials(
     AuthIdentity: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsCrackNamesW(
+pub extern "ntdsapi" fn DsCrackNamesW(
     hDS: ?HANDLE,
     flags: DS_NAME_FLAGS,
     formatOffered: DS_NAME_FORMAT,
@@ -9888,7 +9888,7 @@ pub extern "NTDSAPI" fn DsCrackNamesW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsCrackNamesA(
+pub extern "ntdsapi" fn DsCrackNamesA(
     hDS: ?HANDLE,
     flags: DS_NAME_FLAGS,
     formatOffered: DS_NAME_FORMAT,
@@ -9899,17 +9899,17 @@ pub extern "NTDSAPI" fn DsCrackNamesA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeNameResultW(
+pub extern "ntdsapi" fn DsFreeNameResultW(
     pResult: ?*DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeNameResultA(
+pub extern "ntdsapi" fn DsFreeNameResultA(
     pResult: ?*DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsGetSpnA(
+pub extern "ntdsapi" fn DsGetSpnA(
     ServiceType: DS_SPN_NAME_TYPE,
     ServiceClass: ?[*:0]const u8,
     ServiceName: ?[*:0]const u8,
@@ -9922,7 +9922,7 @@ pub extern "NTDSAPI" fn DsGetSpnA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsGetSpnW(
+pub extern "ntdsapi" fn DsGetSpnW(
     ServiceType: DS_SPN_NAME_TYPE,
     ServiceClass: ?[*:0]const u16,
     ServiceName: ?[*:0]const u16,
@@ -9935,19 +9935,19 @@ pub extern "NTDSAPI" fn DsGetSpnW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeSpnArrayA(
+pub extern "ntdsapi" fn DsFreeSpnArrayA(
     cSpn: u32,
     rpszSpn: [*]?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeSpnArrayW(
+pub extern "ntdsapi" fn DsFreeSpnArrayW(
     cSpn: u32,
     rpszSpn: [*]?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsWriteAccountSpnA(
+pub extern "ntdsapi" fn DsWriteAccountSpnA(
     hDS: ?HANDLE,
     Operation: DS_SPN_WRITE_OP,
     pszAccount: ?[*:0]const u8,
@@ -9956,7 +9956,7 @@ pub extern "NTDSAPI" fn DsWriteAccountSpnA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsWriteAccountSpnW(
+pub extern "ntdsapi" fn DsWriteAccountSpnW(
     hDS: ?HANDLE,
     Operation: DS_SPN_WRITE_OP,
     pszAccount: ?[*:0]const u16,
@@ -9965,7 +9965,7 @@ pub extern "NTDSAPI" fn DsWriteAccountSpnW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerW(
+pub extern "ntdsapi" fn DsClientMakeSpnForTargetServerW(
     ServiceClass: ?[*:0]const u16,
     ServiceName: ?[*:0]const u16,
     pcSpnLength: ?*u32,
@@ -9973,7 +9973,7 @@ pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerA(
+pub extern "ntdsapi" fn DsClientMakeSpnForTargetServerA(
     ServiceClass: ?[*:0]const u8,
     ServiceName: ?[*:0]const u8,
     pcSpnLength: ?*u32,
@@ -9981,21 +9981,21 @@ pub extern "NTDSAPI" fn DsClientMakeSpnForTargetServerA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsServerRegisterSpnA(
+pub extern "ntdsapi" fn DsServerRegisterSpnA(
     Operation: DS_SPN_WRITE_OP,
     ServiceClass: ?[*:0]const u8,
     UserObjectDN: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsServerRegisterSpnW(
+pub extern "ntdsapi" fn DsServerRegisterSpnW(
     Operation: DS_SPN_WRITE_OP,
     ServiceClass: ?[*:0]const u16,
     UserObjectDN: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaSyncA(
+pub extern "ntdsapi" fn DsReplicaSyncA(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u8,
     pUuidDsaSrc: ?*const Guid,
@@ -10003,7 +10003,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaSyncW(
+pub extern "ntdsapi" fn DsReplicaSyncW(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u16,
     pUuidDsaSrc: ?*const Guid,
@@ -10011,7 +10011,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaAddA(
+pub extern "ntdsapi" fn DsReplicaAddA(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u8,
     SourceDsaDn: ?[*:0]const u8,
@@ -10022,7 +10022,7 @@ pub extern "NTDSAPI" fn DsReplicaAddA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaAddW(
+pub extern "ntdsapi" fn DsReplicaAddW(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u16,
     SourceDsaDn: ?[*:0]const u16,
@@ -10033,7 +10033,7 @@ pub extern "NTDSAPI" fn DsReplicaAddW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaDelA(
+pub extern "ntdsapi" fn DsReplicaDelA(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u8,
     DsaSrc: ?[*:0]const u8,
@@ -10041,7 +10041,7 @@ pub extern "NTDSAPI" fn DsReplicaDelA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaDelW(
+pub extern "ntdsapi" fn DsReplicaDelW(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u16,
     DsaSrc: ?[*:0]const u16,
@@ -10049,7 +10049,7 @@ pub extern "NTDSAPI" fn DsReplicaDelW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaModifyA(
+pub extern "ntdsapi" fn DsReplicaModifyA(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u8,
     pUuidSourceDsa: ?*const Guid,
@@ -10062,7 +10062,7 @@ pub extern "NTDSAPI" fn DsReplicaModifyA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaModifyW(
+pub extern "ntdsapi" fn DsReplicaModifyW(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u16,
     pUuidSourceDsa: ?*const Guid,
@@ -10075,7 +10075,7 @@ pub extern "NTDSAPI" fn DsReplicaModifyW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaUpdateRefsA(
+pub extern "ntdsapi" fn DsReplicaUpdateRefsA(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u8,
     DsaDest: ?[*:0]const u8,
@@ -10084,7 +10084,7 @@ pub extern "NTDSAPI" fn DsReplicaUpdateRefsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaUpdateRefsW(
+pub extern "ntdsapi" fn DsReplicaUpdateRefsW(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u16,
     DsaDest: ?[*:0]const u16,
@@ -10093,7 +10093,7 @@ pub extern "NTDSAPI" fn DsReplicaUpdateRefsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaSyncAllA(
+pub extern "ntdsapi" fn DsReplicaSyncAllA(
     hDS: ?HANDLE,
     pszNameContext: ?[*:0]const u8,
     ulFlags: u32,
@@ -10103,7 +10103,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncAllA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaSyncAllW(
+pub extern "ntdsapi" fn DsReplicaSyncAllW(
     hDS: ?HANDLE,
     pszNameContext: ?[*:0]const u16,
     ulFlags: u32,
@@ -10113,7 +10113,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncAllW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsRemoveDsServerW(
+pub extern "ntdsapi" fn DsRemoveDsServerW(
     hDs: ?HANDLE,
     ServerDN: ?PWSTR,
     DomainDN: ?PWSTR,
@@ -10122,7 +10122,7 @@ pub extern "NTDSAPI" fn DsRemoveDsServerW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsRemoveDsServerA(
+pub extern "ntdsapi" fn DsRemoveDsServerA(
     hDs: ?HANDLE,
     ServerDN: ?PSTR,
     DomainDN: ?PSTR,
@@ -10131,59 +10131,59 @@ pub extern "NTDSAPI" fn DsRemoveDsServerA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsRemoveDsDomainW(
+pub extern "ntdsapi" fn DsRemoveDsDomainW(
     hDs: ?HANDLE,
     DomainDN: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsRemoveDsDomainA(
+pub extern "ntdsapi" fn DsRemoveDsDomainA(
     hDs: ?HANDLE,
     DomainDN: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListSitesA(
+pub extern "ntdsapi" fn DsListSitesA(
     hDs: ?HANDLE,
     ppSites: ?*?*DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListSitesW(
+pub extern "ntdsapi" fn DsListSitesW(
     hDs: ?HANDLE,
     ppSites: ?*?*DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListServersInSiteA(
+pub extern "ntdsapi" fn DsListServersInSiteA(
     hDs: ?HANDLE,
     site: ?[*:0]const u8,
     ppServers: ?*?*DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListServersInSiteW(
+pub extern "ntdsapi" fn DsListServersInSiteW(
     hDs: ?HANDLE,
     site: ?[*:0]const u16,
     ppServers: ?*?*DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListDomainsInSiteA(
+pub extern "ntdsapi" fn DsListDomainsInSiteA(
     hDs: ?HANDLE,
     site: ?[*:0]const u8,
     ppDomains: ?*?*DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListDomainsInSiteW(
+pub extern "ntdsapi" fn DsListDomainsInSiteW(
     hDs: ?HANDLE,
     site: ?[*:0]const u16,
     ppDomains: ?*?*DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListServersForDomainInSiteA(
+pub extern "ntdsapi" fn DsListServersForDomainInSiteA(
     hDs: ?HANDLE,
     domain: ?[*:0]const u8,
     site: ?[*:0]const u8,
@@ -10191,7 +10191,7 @@ pub extern "NTDSAPI" fn DsListServersForDomainInSiteA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListServersForDomainInSiteW(
+pub extern "ntdsapi" fn DsListServersForDomainInSiteW(
     hDs: ?HANDLE,
     domain: ?[*:0]const u16,
     site: ?[*:0]const u16,
@@ -10199,33 +10199,33 @@ pub extern "NTDSAPI" fn DsListServersForDomainInSiteW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListInfoForServerA(
+pub extern "ntdsapi" fn DsListInfoForServerA(
     hDs: ?HANDLE,
     server: ?[*:0]const u8,
     ppInfo: ?*?*DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListInfoForServerW(
+pub extern "ntdsapi" fn DsListInfoForServerW(
     hDs: ?HANDLE,
     server: ?[*:0]const u16,
     ppInfo: ?*?*DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListRolesA(
+pub extern "ntdsapi" fn DsListRolesA(
     hDs: ?HANDLE,
     ppRoles: ?*?*DS_NAME_RESULTA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsListRolesW(
+pub extern "ntdsapi" fn DsListRolesW(
     hDs: ?HANDLE,
     ppRoles: ?*?*DS_NAME_RESULTW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsQuerySitesByCostW(
+pub extern "ntdsapi" fn DsQuerySitesByCostW(
     hDS: ?HANDLE,
     pwszFromSite: ?PWSTR,
     rgwszToSites: [*]?PWSTR,
@@ -10235,7 +10235,7 @@ pub extern "NTDSAPI" fn DsQuerySitesByCostW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsQuerySitesByCostA(
+pub extern "ntdsapi" fn DsQuerySitesByCostA(
     hDS: ?HANDLE,
     pszFromSite: ?PSTR,
     rgszToSites: [*]?PSTR,
@@ -10245,12 +10245,12 @@ pub extern "NTDSAPI" fn DsQuerySitesByCostA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsQuerySitesFree(
+pub extern "ntdsapi" fn DsQuerySitesFree(
     rgSiteInfo: ?*DS_SITE_COST_INFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsMapSchemaGuidsA(
+pub extern "ntdsapi" fn DsMapSchemaGuidsA(
     hDs: ?HANDLE,
     cGuids: u32,
     rGuids: [*]Guid,
@@ -10258,12 +10258,12 @@ pub extern "NTDSAPI" fn DsMapSchemaGuidsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeSchemaGuidMapA(
+pub extern "ntdsapi" fn DsFreeSchemaGuidMapA(
     pGuidMap: ?*DS_SCHEMA_GUID_MAPA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsMapSchemaGuidsW(
+pub extern "ntdsapi" fn DsMapSchemaGuidsW(
     hDs: ?HANDLE,
     cGuids: u32,
     rGuids: [*]Guid,
@@ -10271,12 +10271,12 @@ pub extern "NTDSAPI" fn DsMapSchemaGuidsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeSchemaGuidMapW(
+pub extern "ntdsapi" fn DsFreeSchemaGuidMapW(
     pGuidMap: ?*DS_SCHEMA_GUID_MAPW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsGetDomainControllerInfoA(
+pub extern "ntdsapi" fn DsGetDomainControllerInfoA(
     hDs: ?HANDLE,
     DomainName: ?[*:0]const u8,
     InfoLevel: u32,
@@ -10285,7 +10285,7 @@ pub extern "NTDSAPI" fn DsGetDomainControllerInfoA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsGetDomainControllerInfoW(
+pub extern "ntdsapi" fn DsGetDomainControllerInfoW(
     hDs: ?HANDLE,
     DomainName: ?[*:0]const u16,
     InfoLevel: u32,
@@ -10294,28 +10294,28 @@ pub extern "NTDSAPI" fn DsGetDomainControllerInfoW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeDomainControllerInfoA(
+pub extern "ntdsapi" fn DsFreeDomainControllerInfoA(
     InfoLevel: u32,
     cInfo: u32,
     pInfo: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsFreeDomainControllerInfoW(
+pub extern "ntdsapi" fn DsFreeDomainControllerInfoW(
     InfoLevel: u32,
     cInfo: u32,
     pInfo: [*]u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaConsistencyCheck(
+pub extern "ntdsapi" fn DsReplicaConsistencyCheck(
     hDS: ?HANDLE,
     TaskID: DS_KCC_TASKID,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaVerifyObjectsW(
+pub extern "ntdsapi" fn DsReplicaVerifyObjectsW(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u16,
     pUuidDsaSrc: ?*const Guid,
@@ -10323,7 +10323,7 @@ pub extern "NTDSAPI" fn DsReplicaVerifyObjectsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaVerifyObjectsA(
+pub extern "ntdsapi" fn DsReplicaVerifyObjectsA(
     hDS: ?HANDLE,
     NameContext: ?[*:0]const u8,
     pUuidDsaSrc: ?*const Guid,
@@ -10331,7 +10331,7 @@ pub extern "NTDSAPI" fn DsReplicaVerifyObjectsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaGetInfoW(
+pub extern "ntdsapi" fn DsReplicaGetInfoW(
     hDS: ?HANDLE,
     InfoType: DS_REPL_INFO_TYPE,
     pszObject: ?[*:0]const u16,
@@ -10340,7 +10340,7 @@ pub extern "NTDSAPI" fn DsReplicaGetInfoW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaGetInfo2W(
+pub extern "ntdsapi" fn DsReplicaGetInfo2W(
     hDS: ?HANDLE,
     InfoType: DS_REPL_INFO_TYPE,
     pszObject: ?[*:0]const u16,
@@ -10353,13 +10353,13 @@ pub extern "NTDSAPI" fn DsReplicaGetInfo2W(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsReplicaFreeInfo(
+pub extern "ntdsapi" fn DsReplicaFreeInfo(
     InfoType: DS_REPL_INFO_TYPE,
     pInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsAddSidHistoryW(
+pub extern "ntdsapi" fn DsAddSidHistoryW(
     hDS: ?HANDLE,
     Flags: u32,
     SrcDomain: ?[*:0]const u16,
@@ -10371,7 +10371,7 @@ pub extern "NTDSAPI" fn DsAddSidHistoryW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsAddSidHistoryA(
+pub extern "ntdsapi" fn DsAddSidHistoryA(
     hDS: ?HANDLE,
     Flags: u32,
     SrcDomain: ?[*:0]const u8,
@@ -10383,7 +10383,7 @@ pub extern "NTDSAPI" fn DsAddSidHistoryA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsInheritSecurityIdentityW(
+pub extern "ntdsapi" fn DsInheritSecurityIdentityW(
     hDS: ?HANDLE,
     Flags: u32,
     SrcPrincipal: ?[*:0]const u16,
@@ -10391,7 +10391,7 @@ pub extern "NTDSAPI" fn DsInheritSecurityIdentityW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NTDSAPI" fn DsInheritSecurityIdentityA(
+pub extern "ntdsapi" fn DsInheritSecurityIdentityA(
     hDS: ?HANDLE,
     Flags: u32,
     SrcPrincipal: ?[*:0]const u8,
@@ -10399,19 +10399,19 @@ pub extern "NTDSAPI" fn DsInheritSecurityIdentityA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsRoleGetPrimaryDomainInformation(
+pub extern "netapi32" fn DsRoleGetPrimaryDomainInformation(
     lpServer: ?[*:0]const u16,
     InfoLevel: DSROLE_PRIMARY_DOMAIN_INFO_LEVEL,
     Buffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsRoleFreeMemory(
+pub extern "netapi32" fn DsRoleFreeMemory(
     Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcNameA(
+pub extern "netapi32" fn DsGetDcNameA(
     ComputerName: ?[*:0]const u8,
     DomainName: ?[*:0]const u8,
     DomainGuid: ?*Guid,
@@ -10421,7 +10421,7 @@ pub extern "NETAPI32" fn DsGetDcNameA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcNameW(
+pub extern "netapi32" fn DsGetDcNameW(
     ComputerName: ?[*:0]const u16,
     DomainName: ?[*:0]const u16,
     DomainGuid: ?*Guid,
@@ -10431,29 +10431,29 @@ pub extern "NETAPI32" fn DsGetDcNameW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetSiteNameA(
+pub extern "netapi32" fn DsGetSiteNameA(
     ComputerName: ?[*:0]const u8,
     SiteName: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetSiteNameW(
+pub extern "netapi32" fn DsGetSiteNameW(
     ComputerName: ?[*:0]const u16,
     SiteName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsValidateSubnetNameW(
+pub extern "netapi32" fn DsValidateSubnetNameW(
     SubnetName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsValidateSubnetNameA(
+pub extern "netapi32" fn DsValidateSubnetNameA(
     SubnetName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsAddressToSiteNamesW(
+pub extern "netapi32" fn DsAddressToSiteNamesW(
     ComputerName: ?[*:0]const u16,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
@@ -10461,7 +10461,7 @@ pub extern "NETAPI32" fn DsAddressToSiteNamesW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsAddressToSiteNamesA(
+pub extern "netapi32" fn DsAddressToSiteNamesA(
     ComputerName: ?[*:0]const u8,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
@@ -10469,7 +10469,7 @@ pub extern "NETAPI32" fn DsAddressToSiteNamesA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsAddressToSiteNamesExW(
+pub extern "netapi32" fn DsAddressToSiteNamesExW(
     ComputerName: ?[*:0]const u16,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
@@ -10478,7 +10478,7 @@ pub extern "NETAPI32" fn DsAddressToSiteNamesExW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsAddressToSiteNamesExA(
+pub extern "netapi32" fn DsAddressToSiteNamesExA(
     ComputerName: ?[*:0]const u8,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
@@ -10487,7 +10487,7 @@ pub extern "NETAPI32" fn DsAddressToSiteNamesExA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsEnumerateDomainTrustsW(
+pub extern "netapi32" fn DsEnumerateDomainTrustsW(
     ServerName: ?PWSTR,
     Flags: u32,
     Domains: ?*?*DS_DOMAIN_TRUSTSW,
@@ -10495,7 +10495,7 @@ pub extern "NETAPI32" fn DsEnumerateDomainTrustsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsEnumerateDomainTrustsA(
+pub extern "netapi32" fn DsEnumerateDomainTrustsA(
     ServerName: ?PSTR,
     Flags: u32,
     Domains: ?*?*DS_DOMAIN_TRUSTSA,
@@ -10503,7 +10503,7 @@ pub extern "NETAPI32" fn DsEnumerateDomainTrustsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetForestTrustInformationW(
+pub extern "netapi32" fn DsGetForestTrustInformationW(
     ServerName: ?[*:0]const u16,
     TrustedDomainName: ?[*:0]const u16,
     Flags: u32,
@@ -10511,7 +10511,7 @@ pub extern "NETAPI32" fn DsGetForestTrustInformationW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsMergeForestTrustInformationW(
+pub extern "netapi32" fn DsMergeForestTrustInformationW(
     DomainName: ?[*:0]const u16,
     NewForestTrustInfo: ?*LSA_FOREST_TRUST_INFORMATION,
     OldForestTrustInfo: ?*LSA_FOREST_TRUST_INFORMATION,
@@ -10519,21 +10519,21 @@ pub extern "NETAPI32" fn DsMergeForestTrustInformationW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcSiteCoverageW(
+pub extern "netapi32" fn DsGetDcSiteCoverageW(
     ServerName: ?[*:0]const u16,
     EntryCount: ?*u32,
     SiteNames: ?*?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcSiteCoverageA(
+pub extern "netapi32" fn DsGetDcSiteCoverageA(
     ServerName: ?[*:0]const u8,
     EntryCount: ?*u32,
     SiteNames: ?*?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsDeregisterDnsHostRecordsW(
+pub extern "netapi32" fn DsDeregisterDnsHostRecordsW(
     ServerName: ?PWSTR,
     DnsDomainName: ?PWSTR,
     DomainGuid: ?*Guid,
@@ -10542,7 +10542,7 @@ pub extern "NETAPI32" fn DsDeregisterDnsHostRecordsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsDeregisterDnsHostRecordsA(
+pub extern "netapi32" fn DsDeregisterDnsHostRecordsA(
     ServerName: ?PSTR,
     DnsDomainName: ?PSTR,
     DomainGuid: ?*Guid,
@@ -10551,7 +10551,7 @@ pub extern "NETAPI32" fn DsDeregisterDnsHostRecordsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcOpenW(
+pub extern "netapi32" fn DsGetDcOpenW(
     DnsName: ?[*:0]const u16,
     OptionFlags: u32,
     SiteName: ?[*:0]const u16,
@@ -10562,7 +10562,7 @@ pub extern "NETAPI32" fn DsGetDcOpenW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcOpenA(
+pub extern "netapi32" fn DsGetDcOpenA(
     DnsName: ?[*:0]const u8,
     OptionFlags: u32,
     SiteName: ?[*:0]const u8,
@@ -10573,7 +10573,7 @@ pub extern "NETAPI32" fn DsGetDcOpenA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcNextW(
+pub extern "netapi32" fn DsGetDcNextW(
     GetDcContextHandle: ?HANDLE,
     SockAddressCount: ?*u32,
     SockAddresses: ?*?*SOCKET_ADDRESS,
@@ -10581,7 +10581,7 @@ pub extern "NETAPI32" fn DsGetDcNextW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcNextA(
+pub extern "netapi32" fn DsGetDcNextA(
     GetDcContextHandle: ?HANDLE,
     SockAddressCount: ?*u32,
     SockAddresses: ?*?*SOCKET_ADDRESS,
@@ -10589,7 +10589,7 @@ pub extern "NETAPI32" fn DsGetDcNextA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "NETAPI32" fn DsGetDcCloseW(
+pub extern "netapi32" fn DsGetDcCloseW(
     GetDcContextHandle: GetDcContextHandle,
 ) callconv(@import("std").os.windows.WINAPI) void;
 

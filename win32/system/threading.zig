@@ -1226,130 +1226,130 @@ pub const ThreadNameInformation = THREADINFOCLASS.NameInformation;
 // Section: Functions (284)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessWorkingSetSize(
+pub extern "kernel32" fn GetProcessWorkingSetSize(
     hProcess: ?HANDLE,
     lpMinimumWorkingSetSize: ?*usize,
     lpMaximumWorkingSetSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetProcessWorkingSetSize(
+pub extern "kernel32" fn SetProcessWorkingSetSize(
     hProcess: ?HANDLE,
     dwMinimumWorkingSetSize: usize,
     dwMaximumWorkingSetSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FlsAlloc(
+pub extern "kernel32" fn FlsAlloc(
     lpCallback: ?PFLS_CALLBACK_FUNCTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FlsGetValue(
+pub extern "kernel32" fn FlsGetValue(
     dwFlsIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FlsSetValue(
+pub extern "kernel32" fn FlsSetValue(
     dwFlsIndex: u32,
     lpFlsData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FlsFree(
+pub extern "kernel32" fn FlsFree(
     dwFlsIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn IsThreadAFiber(
+pub extern "kernel32" fn IsThreadAFiber(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitializeSRWLock(
+pub extern "kernel32" fn InitializeSRWLock(
     SRWLock: ?*RTL_SRWLOCK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ReleaseSRWLockExclusive(
+pub extern "kernel32" fn ReleaseSRWLockExclusive(
     SRWLock: ?*RTL_SRWLOCK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ReleaseSRWLockShared(
+pub extern "kernel32" fn ReleaseSRWLockShared(
     SRWLock: ?*RTL_SRWLOCK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn AcquireSRWLockExclusive(
+pub extern "kernel32" fn AcquireSRWLockExclusive(
     SRWLock: ?*RTL_SRWLOCK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn AcquireSRWLockShared(
+pub extern "kernel32" fn AcquireSRWLockShared(
     SRWLock: ?*RTL_SRWLOCK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn TryAcquireSRWLockExclusive(
+pub extern "kernel32" fn TryAcquireSRWLockExclusive(
     SRWLock: ?*RTL_SRWLOCK,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn TryAcquireSRWLockShared(
+pub extern "kernel32" fn TryAcquireSRWLockShared(
     SRWLock: ?*RTL_SRWLOCK,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn InitializeCriticalSection(
+pub extern "kernel32" fn InitializeCriticalSection(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn EnterCriticalSection(
+pub extern "kernel32" fn EnterCriticalSection(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LeaveCriticalSection(
+pub extern "kernel32" fn LeaveCriticalSection(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn InitializeCriticalSectionAndSpinCount(
+pub extern "kernel32" fn InitializeCriticalSectionAndSpinCount(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
     dwSpinCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitializeCriticalSectionEx(
+pub extern "kernel32" fn InitializeCriticalSectionEx(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
     dwSpinCount: u32,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetCriticalSectionSpinCount(
+pub extern "kernel32" fn SetCriticalSectionSpinCount(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
     dwSpinCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn TryEnterCriticalSection(
+pub extern "kernel32" fn TryEnterCriticalSection(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeleteCriticalSection(
+pub extern "kernel32" fn DeleteCriticalSection(
     lpCriticalSection: ?*RTL_CRITICAL_SECTION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitOnceInitialize(
+pub extern "kernel32" fn InitOnceInitialize(
     InitOnce: ?*RTL_RUN_ONCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitOnceExecuteOnce(
+pub extern "kernel32" fn InitOnceExecuteOnce(
     InitOnce: ?*RTL_RUN_ONCE,
     InitFn: ?PINIT_ONCE_FN,
     Parameter: ?*anyopaque,
@@ -1357,7 +1357,7 @@ pub extern "KERNEL32" fn InitOnceExecuteOnce(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitOnceBeginInitialize(
+pub extern "kernel32" fn InitOnceBeginInitialize(
     lpInitOnce: ?*RTL_RUN_ONCE,
     dwFlags: u32,
     fPending: ?*BOOL,
@@ -1365,36 +1365,36 @@ pub extern "KERNEL32" fn InitOnceBeginInitialize(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitOnceComplete(
+pub extern "kernel32" fn InitOnceComplete(
     lpInitOnce: ?*RTL_RUN_ONCE,
     dwFlags: u32,
     lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitializeConditionVariable(
+pub extern "kernel32" fn InitializeConditionVariable(
     ConditionVariable: ?*RTL_CONDITION_VARIABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WakeConditionVariable(
+pub extern "kernel32" fn WakeConditionVariable(
     ConditionVariable: ?*RTL_CONDITION_VARIABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WakeAllConditionVariable(
+pub extern "kernel32" fn WakeAllConditionVariable(
     ConditionVariable: ?*RTL_CONDITION_VARIABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SleepConditionVariableCS(
+pub extern "kernel32" fn SleepConditionVariableCS(
     ConditionVariable: ?*RTL_CONDITION_VARIABLE,
     CriticalSection: ?*RTL_CRITICAL_SECTION,
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SleepConditionVariableSRW(
+pub extern "kernel32" fn SleepConditionVariableSRW(
     ConditionVariable: ?*RTL_CONDITION_VARIABLE,
     SRWLock: ?*RTL_SRWLOCK,
     dwMilliseconds: u32,
@@ -1402,48 +1402,48 @@ pub extern "KERNEL32" fn SleepConditionVariableSRW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetEvent(
+pub extern "kernel32" fn SetEvent(
     hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ResetEvent(
+pub extern "kernel32" fn ResetEvent(
     hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReleaseSemaphore(
+pub extern "kernel32" fn ReleaseSemaphore(
     hSemaphore: ?HANDLE,
     lReleaseCount: i32,
     lpPreviousCount: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReleaseMutex(
+pub extern "kernel32" fn ReleaseMutex(
     hMutex: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WaitForSingleObject(
+pub extern "kernel32" fn WaitForSingleObject(
     hHandle: ?HANDLE,
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SleepEx(
+pub extern "kernel32" fn SleepEx(
     dwMilliseconds: u32,
     bAlertable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WaitForSingleObjectEx(
+pub extern "kernel32" fn WaitForSingleObjectEx(
     hHandle: ?HANDLE,
     dwMilliseconds: u32,
     bAlertable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WaitForMultipleObjectsEx(
+pub extern "kernel32" fn WaitForMultipleObjectsEx(
     nCount: u32,
     lpHandles: [*]const ?HANDLE,
     bWaitAll: BOOL,
@@ -1452,28 +1452,28 @@ pub extern "KERNEL32" fn WaitForMultipleObjectsEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateMutexA(
+pub extern "kernel32" fn CreateMutexA(
     lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
     bInitialOwner: BOOL,
     lpName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateMutexW(
+pub extern "kernel32" fn CreateMutexW(
     lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
     bInitialOwner: BOOL,
     lpName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenMutexW(
+pub extern "kernel32" fn OpenMutexW(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateEventA(
+pub extern "kernel32" fn CreateEventA(
     lpEventAttributes: ?*SECURITY_ATTRIBUTES,
     bManualReset: BOOL,
     bInitialState: BOOL,
@@ -1481,7 +1481,7 @@ pub extern "KERNEL32" fn CreateEventA(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateEventW(
+pub extern "kernel32" fn CreateEventW(
     lpEventAttributes: ?*SECURITY_ATTRIBUTES,
     bManualReset: BOOL,
     bInitialState: BOOL,
@@ -1489,35 +1489,35 @@ pub extern "KERNEL32" fn CreateEventW(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenEventA(
+pub extern "kernel32" fn OpenEventA(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenEventW(
+pub extern "kernel32" fn OpenEventW(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenSemaphoreW(
+pub extern "kernel32" fn OpenSemaphoreW(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenWaitableTimerW(
+pub extern "kernel32" fn OpenWaitableTimerW(
     dwDesiredAccess: u32,
     bInheritHandle: BOOL,
     lpTimerName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetWaitableTimerEx(
+pub extern "kernel32" fn SetWaitableTimerEx(
     hTimer: ?HANDLE,
     lpDueTime: ?*const LARGE_INTEGER,
     lPeriod: i32,
@@ -1528,7 +1528,7 @@ pub extern "KERNEL32" fn SetWaitableTimerEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetWaitableTimer(
+pub extern "kernel32" fn SetWaitableTimer(
     hTimer: ?HANDLE,
     lpDueTime: ?*const LARGE_INTEGER,
     lPeriod: i32,
@@ -1538,12 +1538,12 @@ pub extern "KERNEL32" fn SetWaitableTimer(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CancelWaitableTimer(
+pub extern "kernel32" fn CancelWaitableTimer(
     hTimer: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateMutexExA(
+pub extern "kernel32" fn CreateMutexExA(
     lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
     lpName: ?[*:0]const u8,
     dwFlags: u32,
@@ -1551,7 +1551,7 @@ pub extern "KERNEL32" fn CreateMutexExA(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateMutexExW(
+pub extern "kernel32" fn CreateMutexExW(
     lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
     lpName: ?[*:0]const u16,
     dwFlags: u32,
@@ -1559,7 +1559,7 @@ pub extern "KERNEL32" fn CreateMutexExW(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateEventExA(
+pub extern "kernel32" fn CreateEventExA(
     lpEventAttributes: ?*SECURITY_ATTRIBUTES,
     lpName: ?[*:0]const u8,
     dwFlags: CREATE_EVENT,
@@ -1567,7 +1567,7 @@ pub extern "KERNEL32" fn CreateEventExA(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateEventExW(
+pub extern "kernel32" fn CreateEventExW(
     lpEventAttributes: ?*SECURITY_ATTRIBUTES,
     lpName: ?[*:0]const u16,
     dwFlags: CREATE_EVENT,
@@ -1575,7 +1575,7 @@ pub extern "KERNEL32" fn CreateEventExW(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateSemaphoreExW(
+pub extern "kernel32" fn CreateSemaphoreExW(
     lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
     lInitialCount: i32,
     lMaximumCount: i32,
@@ -1585,7 +1585,7 @@ pub extern "KERNEL32" fn CreateSemaphoreExW(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateWaitableTimerExW(
+pub extern "kernel32" fn CreateWaitableTimerExW(
     lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
     lpTimerName: ?[*:0]const u16,
     dwFlags: u32,
@@ -1593,25 +1593,25 @@ pub extern "KERNEL32" fn CreateWaitableTimerExW(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn EnterSynchronizationBarrier(
+pub extern "kernel32" fn EnterSynchronizationBarrier(
     lpBarrier: ?*RTL_BARRIER,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn InitializeSynchronizationBarrier(
+pub extern "kernel32" fn InitializeSynchronizationBarrier(
     lpBarrier: ?*RTL_BARRIER,
     lTotalThreads: i32,
     lSpinCount: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn DeleteSynchronizationBarrier(
+pub extern "kernel32" fn DeleteSynchronizationBarrier(
     lpBarrier: ?*RTL_BARRIER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn Sleep(
+pub extern "kernel32" fn Sleep(
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1636,7 +1636,7 @@ pub extern "vertdll" fn WakeByAddressAll(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WaitForMultipleObjects(
+pub extern "kernel32" fn WaitForMultipleObjects(
     nCount: u32,
     lpHandles: [*]const ?HANDLE,
     bWaitAll: BOOL,
@@ -1644,7 +1644,7 @@ pub extern "KERNEL32" fn WaitForMultipleObjects(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateSemaphoreW(
+pub extern "kernel32" fn CreateSemaphoreW(
     lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
     lInitialCount: i32,
     lMaximumCount: i32,
@@ -1652,30 +1652,30 @@ pub extern "KERNEL32" fn CreateSemaphoreW(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateWaitableTimerW(
+pub extern "kernel32" fn CreateWaitableTimerW(
     lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
     bManualReset: BOOL,
     lpTimerName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn InitializeSListHead(
+pub extern "kernel32" fn InitializeSListHead(
     ListHead: ?*SLIST_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn InterlockedPopEntrySList(
+pub extern "kernel32" fn InterlockedPopEntrySList(
     ListHead: ?*SLIST_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn InterlockedPushEntrySList(
+pub extern "kernel32" fn InterlockedPushEntrySList(
     ListHead: ?*SLIST_HEADER,
     ListEntry: ?*SLIST_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn InterlockedPushListSListEx(
+pub extern "kernel32" fn InterlockedPushListSListEx(
     ListHead: ?*SLIST_HEADER,
     List: ?*SLIST_ENTRY,
     ListEnd: ?*SLIST_ENTRY,
@@ -1683,23 +1683,23 @@ pub extern "KERNEL32" fn InterlockedPushListSListEx(
 ) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn InterlockedFlushSList(
+pub extern "kernel32" fn InterlockedFlushSList(
     ListHead: ?*SLIST_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn QueryDepthSList(
+pub extern "kernel32" fn QueryDepthSList(
     ListHead: ?*SLIST_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn QueueUserAPC(
+pub extern "kernel32" fn QueueUserAPC(
     pfnAPC: ?PAPCFUNC,
     hThread: ?HANDLE,
     dwData: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn QueueUserAPC2(
+pub extern "kernel32" fn QueueUserAPC2(
     ApcRoutine: ?PAPCFUNC,
     Thread: ?HANDLE,
     Data: usize,
@@ -1707,7 +1707,7 @@ pub extern "KERNEL32" fn QueueUserAPC2(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessTimes(
+pub extern "kernel32" fn GetProcessTimes(
     hProcess: ?HANDLE,
     lpCreationTime: ?*FILETIME,
     lpExitTime: ?*FILETIME,
@@ -1716,36 +1716,36 @@ pub extern "KERNEL32" fn GetProcessTimes(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCurrentProcess(
+pub extern "kernel32" fn GetCurrentProcess(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCurrentProcessId(
+pub extern "kernel32" fn GetCurrentProcessId(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ExitProcess(
+pub extern "kernel32" fn ExitProcess(
     uExitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) noreturn;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn TerminateProcess(
+pub extern "kernel32" fn TerminateProcess(
     hProcess: ?HANDLE,
     uExitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetExitCodeProcess(
+pub extern "kernel32" fn GetExitCodeProcess(
     hProcess: ?HANDLE,
     lpExitCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SwitchToThread(
+pub extern "kernel32" fn SwitchToThread(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateThread(
+pub extern "kernel32" fn CreateThread(
     lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
     dwStackSize: usize,
     lpStartAddress: ?LPTHREAD_START_ROUTINE,
@@ -1755,7 +1755,7 @@ pub extern "KERNEL32" fn CreateThread(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateRemoteThread(
+pub extern "kernel32" fn CreateRemoteThread(
     hProcess: ?HANDLE,
     lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
     dwStackSize: usize,
@@ -1766,92 +1766,92 @@ pub extern "KERNEL32" fn CreateRemoteThread(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCurrentThread(
+pub extern "kernel32" fn GetCurrentThread(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCurrentThreadId(
+pub extern "kernel32" fn GetCurrentThreadId(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenThread(
+pub extern "kernel32" fn OpenThread(
     dwDesiredAccess: THREAD_ACCESS_RIGHTS,
     bInheritHandle: BOOL,
     dwThreadId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadPriority(
+pub extern "kernel32" fn SetThreadPriority(
     hThread: ?HANDLE,
     nPriority: THREAD_PRIORITY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadPriorityBoost(
+pub extern "kernel32" fn SetThreadPriorityBoost(
     hThread: ?HANDLE,
     bDisablePriorityBoost: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetThreadPriorityBoost(
+pub extern "kernel32" fn GetThreadPriorityBoost(
     hThread: ?HANDLE,
     pDisablePriorityBoost: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetThreadPriority(
+pub extern "kernel32" fn GetThreadPriority(
     hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ExitThread(
+pub extern "kernel32" fn ExitThread(
     dwExitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn TerminateThread(
+pub extern "kernel32" fn TerminateThread(
     hThread: ?HANDLE,
     dwExitCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetExitCodeThread(
+pub extern "kernel32" fn GetExitCodeThread(
     hThread: ?HANDLE,
     lpExitCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SuspendThread(
+pub extern "kernel32" fn SuspendThread(
     hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ResumeThread(
+pub extern "kernel32" fn ResumeThread(
     hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn TlsAlloc(
+pub extern "kernel32" fn TlsAlloc(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn TlsGetValue(
+pub extern "kernel32" fn TlsGetValue(
     dwTlsIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn TlsSetValue(
+pub extern "kernel32" fn TlsSetValue(
     dwTlsIndex: u32,
     lpTlsValue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn TlsFree(
+pub extern "kernel32" fn TlsFree(
     dwTlsIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateProcessA(
+pub extern "kernel32" fn CreateProcessA(
     lpApplicationName: ?[*:0]const u8,
     lpCommandLine: ?PSTR,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
@@ -1865,7 +1865,7 @@ pub extern "KERNEL32" fn CreateProcessA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateProcessW(
+pub extern "kernel32" fn CreateProcessW(
     lpApplicationName: ?[*:0]const u16,
     lpCommandLine: ?PWSTR,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
@@ -1879,23 +1879,23 @@ pub extern "KERNEL32" fn CreateProcessW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetProcessShutdownParameters(
+pub extern "kernel32" fn SetProcessShutdownParameters(
     dwLevel: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessVersion(
+pub extern "kernel32" fn GetProcessVersion(
     ProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetStartupInfoW(
+pub extern "kernel32" fn GetStartupInfoW(
     lpStartupInfo: ?*STARTUPINFOW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateProcessAsUserW(
+pub extern "advapi32" fn CreateProcessAsUserW(
     hToken: ?HANDLE,
     lpApplicationName: ?[*:0]const u16,
     lpCommandLine: ?PWSTR,
@@ -1910,20 +1910,20 @@ pub extern "ADVAPI32" fn CreateProcessAsUserW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetThreadToken(
+pub extern "advapi32" fn SetThreadToken(
     Thread: ?*?HANDLE,
     Token: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn OpenProcessToken(
+pub extern "advapi32" fn OpenProcessToken(
     ProcessHandle: ?HANDLE,
     DesiredAccess: TOKEN_ACCESS_MASK,
     TokenHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn OpenThreadToken(
+pub extern "advapi32" fn OpenThreadToken(
     ThreadHandle: ?HANDLE,
     DesiredAccess: TOKEN_ACCESS_MASK,
     OpenAsSelf: BOOL,
@@ -1931,42 +1931,42 @@ pub extern "ADVAPI32" fn OpenThreadToken(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetPriorityClass(
+pub extern "kernel32" fn SetPriorityClass(
     hProcess: ?HANDLE,
     dwPriorityClass: PROCESS_CREATION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetPriorityClass(
+pub extern "kernel32" fn GetPriorityClass(
     hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetThreadStackGuarantee(
+pub extern "kernel32" fn SetThreadStackGuarantee(
     StackSizeInBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetProcessId(
+pub extern "kernel32" fn GetProcessId(
     Process: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetThreadId(
+pub extern "kernel32" fn GetThreadId(
     Thread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FlushProcessWriteBuffers(
+pub extern "kernel32" fn FlushProcessWriteBuffers(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetProcessIdOfThread(
+pub extern "kernel32" fn GetProcessIdOfThread(
     Thread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn InitializeProcThreadAttributeList(
+pub extern "kernel32" fn InitializeProcThreadAttributeList(
     // TODO: what to do with BytesParamIndex 3?
     lpAttributeList: ?LPPROC_THREAD_ATTRIBUTE_LIST,
     dwAttributeCount: u32,
@@ -1975,12 +1975,12 @@ pub extern "KERNEL32" fn InitializeProcThreadAttributeList(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn DeleteProcThreadAttributeList(
+pub extern "kernel32" fn DeleteProcThreadAttributeList(
     lpAttributeList: ?LPPROC_THREAD_ATTRIBUTE_LIST,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn UpdateProcThreadAttribute(
+pub extern "kernel32" fn UpdateProcThreadAttribute(
     lpAttributeList: ?LPPROC_THREAD_ATTRIBUTE_LIST,
     dwFlags: u32,
     Attribute: usize,
@@ -1992,32 +1992,32 @@ pub extern "KERNEL32" fn UpdateProcThreadAttribute(
     lpReturnSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetProcessDynamicEHContinuationTargets(
+pub extern "kernel32" fn SetProcessDynamicEHContinuationTargets(
     Process: ?HANDLE,
     NumberOfTargets: u16,
     Targets: [*]PROCESS_DYNAMIC_EH_CONTINUATION_TARGET,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetProcessDynamicEnforcedCetCompatibleRanges(
+pub extern "kernel32" fn SetProcessDynamicEnforcedCetCompatibleRanges(
     Process: ?HANDLE,
     NumberOfRanges: u16,
     Ranges: [*]PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetProcessAffinityUpdateMode(
+pub extern "kernel32" fn SetProcessAffinityUpdateMode(
     hProcess: ?HANDLE,
     dwFlags: PROCESS_AFFINITY_AUTO_UPDATE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryProcessAffinityUpdateMode(
+pub extern "kernel32" fn QueryProcessAffinityUpdateMode(
     hProcess: ?HANDLE,
     lpdwFlags: ?*PROCESS_AFFINITY_AUTO_UPDATE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn CreateRemoteThreadEx(
+pub extern "kernel32" fn CreateRemoteThreadEx(
     hProcess: ?HANDLE,
     lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
     dwStackSize: usize,
@@ -2029,13 +2029,13 @@ pub extern "KERNEL32" fn CreateRemoteThreadEx(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetCurrentThreadStackLimits(
+pub extern "kernel32" fn GetCurrentThreadStackLimits(
     LowLimit: ?*usize,
     HighLimit: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetProcessMitigationPolicy(
+pub extern "kernel32" fn GetProcessMitigationPolicy(
     hProcess: ?HANDLE,
     MitigationPolicy: PROCESS_MITIGATION_POLICY,
     // TODO: what to do with BytesParamIndex 3?
@@ -2044,7 +2044,7 @@ pub extern "KERNEL32" fn GetProcessMitigationPolicy(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn SetProcessMitigationPolicy(
+pub extern "kernel32" fn SetProcessMitigationPolicy(
     MitigationPolicy: PROCESS_MITIGATION_POLICY,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -2052,7 +2052,7 @@ pub extern "KERNEL32" fn SetProcessMitigationPolicy(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetThreadTimes(
+pub extern "kernel32" fn GetThreadTimes(
     hThread: ?HANDLE,
     lpCreationTime: ?*FILETIME,
     lpExitTime: ?*FILETIME,
@@ -2061,72 +2061,72 @@ pub extern "KERNEL32" fn GetThreadTimes(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenProcess(
+pub extern "kernel32" fn OpenProcess(
     dwDesiredAccess: PROCESS_ACCESS_RIGHTS,
     bInheritHandle: BOOL,
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn IsProcessorFeaturePresent(
+pub extern "kernel32" fn IsProcessorFeaturePresent(
     ProcessorFeature: PROCESSOR_FEATURE_ID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetProcessHandleCount(
+pub extern "kernel32" fn GetProcessHandleCount(
     hProcess: ?HANDLE,
     pdwHandleCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetCurrentProcessorNumber(
+pub extern "kernel32" fn GetCurrentProcessorNumber(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetThreadIdealProcessorEx(
+pub extern "kernel32" fn SetThreadIdealProcessorEx(
     hThread: ?HANDLE,
     lpIdealProcessor: ?*PROCESSOR_NUMBER,
     lpPreviousIdealProcessor: ?*PROCESSOR_NUMBER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetThreadIdealProcessorEx(
+pub extern "kernel32" fn GetThreadIdealProcessorEx(
     hThread: ?HANDLE,
     lpIdealProcessor: ?*PROCESSOR_NUMBER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetCurrentProcessorNumberEx(
+pub extern "kernel32" fn GetCurrentProcessorNumberEx(
     ProcNumber: ?*PROCESSOR_NUMBER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessPriorityBoost(
+pub extern "kernel32" fn GetProcessPriorityBoost(
     hProcess: ?HANDLE,
     pDisablePriorityBoost: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetProcessPriorityBoost(
+pub extern "kernel32" fn SetProcessPriorityBoost(
     hProcess: ?HANDLE,
     bDisablePriorityBoost: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetThreadIOPendingFlag(
+pub extern "kernel32" fn GetThreadIOPendingFlag(
     hThread: ?HANDLE,
     lpIOIsPending: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetSystemTimes(
+pub extern "kernel32" fn GetSystemTimes(
     lpIdleTime: ?*FILETIME,
     lpKernelTime: ?*FILETIME,
     lpUserTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetThreadInformation(
+pub extern "kernel32" fn GetThreadInformation(
     hThread: ?HANDLE,
     ThreadInformationClass: THREAD_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -2135,7 +2135,7 @@ pub extern "KERNEL32" fn GetThreadInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn SetThreadInformation(
+pub extern "kernel32" fn SetThreadInformation(
     hThread: ?HANDLE,
     ThreadInformationClass: THREAD_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -2144,32 +2144,32 @@ pub extern "KERNEL32" fn SetThreadInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn IsProcessCritical(
+pub extern "kernel32" fn IsProcessCritical(
     hProcess: ?HANDLE,
     Critical: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn SetProtectedPolicy(
+pub extern "kernel32" fn SetProtectedPolicy(
     PolicyGuid: ?*const Guid,
     PolicyValue: usize,
     OldPolicyValue: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn QueryProtectedPolicy(
+pub extern "kernel32" fn QueryProtectedPolicy(
     PolicyGuid: ?*const Guid,
     PolicyValue: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadIdealProcessor(
+pub extern "kernel32" fn SetThreadIdealProcessor(
     hThread: ?HANDLE,
     dwIdealProcessor: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn SetProcessInformation(
+pub extern "kernel32" fn SetProcessInformation(
     hProcess: ?HANDLE,
     ProcessInformationClass: PROCESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -2178,7 +2178,7 @@ pub extern "KERNEL32" fn SetProcessInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetProcessInformation(
+pub extern "kernel32" fn GetProcessInformation(
     hProcess: ?HANDLE,
     ProcessInformationClass: PROCESS_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -2186,34 +2186,34 @@ pub extern "KERNEL32" fn GetProcessInformation(
     ProcessInformationSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetProcessDefaultCpuSets(
+pub extern "kernel32" fn GetProcessDefaultCpuSets(
     Process: ?HANDLE,
     CpuSetIds: ?[*]u32,
     CpuSetIdCount: u32,
     RequiredIdCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetProcessDefaultCpuSets(
+pub extern "kernel32" fn SetProcessDefaultCpuSets(
     Process: ?HANDLE,
     CpuSetIds: ?[*]const u32,
     CpuSetIdCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetThreadSelectedCpuSets(
+pub extern "kernel32" fn GetThreadSelectedCpuSets(
     Thread: ?HANDLE,
     CpuSetIds: ?[*]u32,
     CpuSetIdCount: u32,
     RequiredIdCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetThreadSelectedCpuSets(
+pub extern "kernel32" fn SetThreadSelectedCpuSets(
     Thread: ?HANDLE,
     CpuSetIds: [*]const u32,
     CpuSetIdCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateProcessAsUserA(
+pub extern "advapi32" fn CreateProcessAsUserA(
     hToken: ?HANDLE,
     lpApplicationName: ?[*:0]const u8,
     lpCommandLine: ?PSTR,
@@ -2228,73 +2228,73 @@ pub extern "ADVAPI32" fn CreateProcessAsUserA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessShutdownParameters(
+pub extern "kernel32" fn GetProcessShutdownParameters(
     lpdwLevel: ?*u32,
     lpdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetProcessDefaultCpuSetMasks(
+pub extern "kernel32" fn GetProcessDefaultCpuSetMasks(
     Process: ?HANDLE,
     CpuSetMasks: ?[*]GROUP_AFFINITY,
     CpuSetMaskCount: u16,
     RequiredMaskCount: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetProcessDefaultCpuSetMasks(
+pub extern "kernel32" fn SetProcessDefaultCpuSetMasks(
     Process: ?HANDLE,
     CpuSetMasks: ?[*]GROUP_AFFINITY,
     CpuSetMaskCount: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetThreadSelectedCpuSetMasks(
+pub extern "kernel32" fn GetThreadSelectedCpuSetMasks(
     Thread: ?HANDLE,
     CpuSetMasks: ?[*]GROUP_AFFINITY,
     CpuSetMaskCount: u16,
     RequiredMaskCount: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetThreadSelectedCpuSetMasks(
+pub extern "kernel32" fn SetThreadSelectedCpuSetMasks(
     Thread: ?HANDLE,
     CpuSetMasks: ?[*]GROUP_AFFINITY,
     CpuSetMaskCount: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetMachineTypeAttributes(
+pub extern "kernel32" fn GetMachineTypeAttributes(
     Machine: u16,
     MachineTypeAttributes: ?*MACHINE_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "KERNEL32" fn SetThreadDescription(
+pub extern "kernel32" fn SetThreadDescription(
     hThread: ?HANDLE,
     lpThreadDescription: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "KERNEL32" fn GetThreadDescription(
+pub extern "kernel32" fn GetThreadDescription(
     hThread: ?HANDLE,
     ppszThreadDescription: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn QueueUserWorkItem(
+pub extern "kernel32" fn QueueUserWorkItem(
     Function: ?LPTHREAD_START_ROUTINE,
     Context: ?*anyopaque,
     Flags: WORKER_THREAD_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn UnregisterWaitEx(
+pub extern "kernel32" fn UnregisterWaitEx(
     WaitHandle: ?HANDLE,
     CompletionEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateTimerQueue(
+pub extern "kernel32" fn CreateTimerQueue(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateTimerQueueTimer(
+pub extern "kernel32" fn CreateTimerQueueTimer(
     phNewTimer: ?*?HANDLE,
     TimerQueue: ?HANDLE,
     Callback: ?WAITORTIMERCALLBACK,
@@ -2305,7 +2305,7 @@ pub extern "KERNEL32" fn CreateTimerQueueTimer(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ChangeTimerQueueTimer(
+pub extern "kernel32" fn ChangeTimerQueueTimer(
     TimerQueue: ?HANDLE,
     Timer: ?HANDLE,
     DueTime: u32,
@@ -2313,153 +2313,153 @@ pub extern "KERNEL32" fn ChangeTimerQueueTimer(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeleteTimerQueueTimer(
+pub extern "kernel32" fn DeleteTimerQueueTimer(
     TimerQueue: ?HANDLE,
     Timer: ?HANDLE,
     CompletionEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeleteTimerQueue(
+pub extern "kernel32" fn DeleteTimerQueue(
     TimerQueue: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeleteTimerQueueEx(
+pub extern "kernel32" fn DeleteTimerQueueEx(
     TimerQueue: ?HANDLE,
     CompletionEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateThreadpool(
+pub extern "kernel32" fn CreateThreadpool(
     reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) PTP_POOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetThreadpoolThreadMaximum(
+pub extern "kernel32" fn SetThreadpoolThreadMaximum(
     ptpp: PTP_POOL,
     cthrdMost: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetThreadpoolThreadMinimum(
+pub extern "kernel32" fn SetThreadpoolThreadMinimum(
     ptpp: PTP_POOL,
     cthrdMic: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetThreadpoolStackInformation(
+pub extern "kernel32" fn SetThreadpoolStackInformation(
     ptpp: PTP_POOL,
     ptpsi: ?*TP_POOL_STACK_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn QueryThreadpoolStackInformation(
+pub extern "kernel32" fn QueryThreadpoolStackInformation(
     ptpp: PTP_POOL,
     ptpsi: ?*TP_POOL_STACK_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CloseThreadpool(
+pub extern "kernel32" fn CloseThreadpool(
     ptpp: PTP_POOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateThreadpoolCleanupGroup(
+pub extern "kernel32" fn CreateThreadpoolCleanupGroup(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CloseThreadpoolCleanupGroupMembers(
+pub extern "kernel32" fn CloseThreadpoolCleanupGroupMembers(
     ptpcg: isize,
     fCancelPendingCallbacks: BOOL,
     pvCleanupContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CloseThreadpoolCleanupGroup(
+pub extern "kernel32" fn CloseThreadpoolCleanupGroup(
     ptpcg: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetEventWhenCallbackReturns(
+pub extern "kernel32" fn SetEventWhenCallbackReturns(
     pci: ?*TP_CALLBACK_INSTANCE,
     evt: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ReleaseSemaphoreWhenCallbackReturns(
+pub extern "kernel32" fn ReleaseSemaphoreWhenCallbackReturns(
     pci: ?*TP_CALLBACK_INSTANCE,
     sem: ?HANDLE,
     crel: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ReleaseMutexWhenCallbackReturns(
+pub extern "kernel32" fn ReleaseMutexWhenCallbackReturns(
     pci: ?*TP_CALLBACK_INSTANCE,
     mut: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn LeaveCriticalSectionWhenCallbackReturns(
+pub extern "kernel32" fn LeaveCriticalSectionWhenCallbackReturns(
     pci: ?*TP_CALLBACK_INSTANCE,
     pcs: ?*RTL_CRITICAL_SECTION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn FreeLibraryWhenCallbackReturns(
+pub extern "kernel32" fn FreeLibraryWhenCallbackReturns(
     pci: ?*TP_CALLBACK_INSTANCE,
     mod: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CallbackMayRunLong(
+pub extern "kernel32" fn CallbackMayRunLong(
     pci: ?*TP_CALLBACK_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn DisassociateCurrentThreadFromCallback(
+pub extern "kernel32" fn DisassociateCurrentThreadFromCallback(
     pci: ?*TP_CALLBACK_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn TrySubmitThreadpoolCallback(
+pub extern "kernel32" fn TrySubmitThreadpoolCallback(
     pfns: ?PTP_SIMPLE_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateThreadpoolWork(
+pub extern "kernel32" fn CreateThreadpoolWork(
     pfnwk: ?PTP_WORK_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
 ) callconv(@import("std").os.windows.WINAPI) ?*TP_WORK;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SubmitThreadpoolWork(
+pub extern "kernel32" fn SubmitThreadpoolWork(
     pwk: ?*TP_WORK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WaitForThreadpoolWorkCallbacks(
+pub extern "kernel32" fn WaitForThreadpoolWorkCallbacks(
     pwk: ?*TP_WORK,
     fCancelPendingCallbacks: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CloseThreadpoolWork(
+pub extern "kernel32" fn CloseThreadpoolWork(
     pwk: ?*TP_WORK,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateThreadpoolTimer(
+pub extern "kernel32" fn CreateThreadpoolTimer(
     pfnti: ?PTP_TIMER_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
 ) callconv(@import("std").os.windows.WINAPI) ?*TP_TIMER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetThreadpoolTimer(
+pub extern "kernel32" fn SetThreadpoolTimer(
     pti: ?*TP_TIMER,
     pftDueTime: ?*FILETIME,
     msPeriod: u32,
@@ -2467,48 +2467,48 @@ pub extern "KERNEL32" fn SetThreadpoolTimer(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn IsThreadpoolTimerSet(
+pub extern "kernel32" fn IsThreadpoolTimerSet(
     pti: ?*TP_TIMER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WaitForThreadpoolTimerCallbacks(
+pub extern "kernel32" fn WaitForThreadpoolTimerCallbacks(
     pti: ?*TP_TIMER,
     fCancelPendingCallbacks: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CloseThreadpoolTimer(
+pub extern "kernel32" fn CloseThreadpoolTimer(
     pti: ?*TP_TIMER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateThreadpoolWait(
+pub extern "kernel32" fn CreateThreadpoolWait(
     pfnwa: ?PTP_WAIT_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
 ) callconv(@import("std").os.windows.WINAPI) ?*TP_WAIT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetThreadpoolWait(
+pub extern "kernel32" fn SetThreadpoolWait(
     pwa: ?*TP_WAIT,
     h: ?HANDLE,
     pftTimeout: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WaitForThreadpoolWaitCallbacks(
+pub extern "kernel32" fn WaitForThreadpoolWaitCallbacks(
     pwa: ?*TP_WAIT,
     fCancelPendingCallbacks: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CloseThreadpoolWait(
+pub extern "kernel32" fn CloseThreadpoolWait(
     pwa: ?*TP_WAIT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateThreadpoolIo(
+pub extern "kernel32" fn CreateThreadpoolIo(
     fl: ?HANDLE,
     pfnio: ?PTP_WIN32_IO_CALLBACK,
     pv: ?*anyopaque,
@@ -2516,28 +2516,28 @@ pub extern "KERNEL32" fn CreateThreadpoolIo(
 ) callconv(@import("std").os.windows.WINAPI) ?*TP_IO;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn StartThreadpoolIo(
+pub extern "kernel32" fn StartThreadpoolIo(
     pio: ?*TP_IO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CancelThreadpoolIo(
+pub extern "kernel32" fn CancelThreadpoolIo(
     pio: ?*TP_IO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WaitForThreadpoolIoCallbacks(
+pub extern "kernel32" fn WaitForThreadpoolIoCallbacks(
     pio: ?*TP_IO,
     fCancelPendingCallbacks: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CloseThreadpoolIo(
+pub extern "kernel32" fn CloseThreadpoolIo(
     pio: ?*TP_IO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn SetThreadpoolTimerEx(
+pub extern "kernel32" fn SetThreadpoolTimerEx(
     pti: ?*TP_TIMER,
     pftDueTime: ?*FILETIME,
     msPeriod: u32,
@@ -2545,7 +2545,7 @@ pub extern "KERNEL32" fn SetThreadpoolTimerEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn SetThreadpoolWaitEx(
+pub extern "kernel32" fn SetThreadpoolWaitEx(
     pwa: ?*TP_WAIT,
     h: ?HANDLE,
     pftTimeout: ?*FILETIME,
@@ -2553,7 +2553,7 @@ pub extern "KERNEL32" fn SetThreadpoolWaitEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn IsWow64Process(
+pub extern "kernel32" fn IsWow64Process(
     hProcess: ?HANDLE,
     Wow64Process: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2563,62 +2563,62 @@ pub extern "api-ms-win-core-wow64-l1-1-1" fn Wow64SetThreadDefaultGuestMachine(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows10.0.10586'
-pub extern "KERNEL32" fn IsWow64Process2(
+pub extern "kernel32" fn IsWow64Process2(
     hProcess: ?HANDLE,
     pProcessMachine: ?*u16,
     pNativeMachine: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn Wow64SuspendThread(
+pub extern "kernel32" fn Wow64SuspendThread(
     hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn CreatePrivateNamespaceW(
+pub extern "kernel32" fn CreatePrivateNamespaceW(
     lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
     lpBoundaryDescriptor: ?*anyopaque,
     lpAliasPrefix: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
 
-pub extern "KERNEL32" fn OpenPrivateNamespaceW(
+pub extern "kernel32" fn OpenPrivateNamespaceW(
     lpBoundaryDescriptor: ?*anyopaque,
     lpAliasPrefix: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ClosePrivateNamespace(
+pub extern "kernel32" fn ClosePrivateNamespace(
     Handle: NamespaceHandle,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub extern "KERNEL32" fn CreateBoundaryDescriptorW(
+pub extern "kernel32" fn CreateBoundaryDescriptorW(
     Name: ?[*:0]const u16,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BoundaryDescriptorHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn AddSIDToBoundaryDescriptor(
+pub extern "kernel32" fn AddSIDToBoundaryDescriptor(
     BoundaryDescriptor: ?*?HANDLE,
     RequiredSid: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn DeleteBoundaryDescriptor(
+pub extern "kernel32" fn DeleteBoundaryDescriptor(
     BoundaryDescriptor: BoundaryDescriptorHandle,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaHighestNodeNumber(
+pub extern "kernel32" fn GetNumaHighestNodeNumber(
     HighestNodeNumber: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaNodeProcessorMaskEx(
+pub extern "kernel32" fn GetNumaNodeProcessorMaskEx(
     Node: u16,
     ProcessorMask: ?*GROUP_AFFINITY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetNumaNodeProcessorMask2(
+pub extern "kernel32" fn GetNumaNodeProcessorMask2(
     NodeNumber: u16,
     ProcessorMasks: ?[*]GROUP_AFFINITY,
     ProcessorMaskCount: u16,
@@ -2626,95 +2626,95 @@ pub extern "KERNEL32" fn GetNumaNodeProcessorMask2(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaProximityNodeEx(
+pub extern "kernel32" fn GetNumaProximityNodeEx(
     ProximityId: u32,
     NodeNumber: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetProcessGroupAffinity(
+pub extern "kernel32" fn GetProcessGroupAffinity(
     hProcess: ?HANDLE,
     GroupCount: ?*u16,
     GroupArray: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetThreadGroupAffinity(
+pub extern "kernel32" fn GetThreadGroupAffinity(
     hThread: ?HANDLE,
     GroupAffinity: ?*GROUP_AFFINITY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetThreadGroupAffinity(
+pub extern "kernel32" fn SetThreadGroupAffinity(
     hThread: ?HANDLE,
     GroupAffinity: ?*const GROUP_AFFINITY,
     PreviousGroupAffinity: ?*GROUP_AFFINITY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn AttachThreadInput(
+pub extern "user32" fn AttachThreadInput(
     idAttach: u32,
     idAttachTo: u32,
     fAttach: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn WaitForInputIdle(
+pub extern "user32" fn WaitForInputIdle(
     hProcess: ?HANDLE,
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetGuiResources(
+pub extern "user32" fn GetGuiResources(
     hProcess: ?HANDLE,
     uiFlags: GET_GUI_RESOURCES_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn IsImmersiveProcess(
+pub extern "user32" fn IsImmersiveProcess(
     hProcess: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn SetProcessRestrictionExemption(
+pub extern "user32" fn SetProcessRestrictionExemption(
     fEnableExemption: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessAffinityMask(
+pub extern "kernel32" fn GetProcessAffinityMask(
     hProcess: ?HANDLE,
     lpProcessAffinityMask: ?*usize,
     lpSystemAffinityMask: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetProcessAffinityMask(
+pub extern "kernel32" fn SetProcessAffinityMask(
     hProcess: ?HANDLE,
     dwProcessAffinityMask: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessIoCounters(
+pub extern "kernel32" fn GetProcessIoCounters(
     hProcess: ?HANDLE,
     lpIoCounters: ?*IO_COUNTERS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SwitchToFiber(
+pub extern "kernel32" fn SwitchToFiber(
     lpFiber: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeleteFiber(
+pub extern "kernel32" fn DeleteFiber(
     lpFiber: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ConvertFiberToThread(
+pub extern "kernel32" fn ConvertFiberToThread(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateFiberEx(
+pub extern "kernel32" fn CreateFiberEx(
     dwStackCommitSize: usize,
     dwStackReserveSize: usize,
     dwFlags: u32,
@@ -2723,67 +2723,67 @@ pub extern "KERNEL32" fn CreateFiberEx(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ConvertThreadToFiberEx(
+pub extern "kernel32" fn ConvertThreadToFiberEx(
     lpParameter: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateFiber(
+pub extern "kernel32" fn CreateFiber(
     dwStackSize: usize,
     lpStartAddress: ?LPFIBER_START_ROUTINE,
     lpParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ConvertThreadToFiber(
+pub extern "kernel32" fn ConvertThreadToFiber(
     lpParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn CreateUmsCompletionList(
+pub extern "kernel32" fn CreateUmsCompletionList(
     UmsCompletionList: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn DequeueUmsCompletionListItems(
+pub extern "kernel32" fn DequeueUmsCompletionListItems(
     UmsCompletionList: ?*anyopaque,
     WaitTimeOut: u32,
     UmsThreadList: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetUmsCompletionListEvent(
+pub extern "kernel32" fn GetUmsCompletionListEvent(
     UmsCompletionList: ?*anyopaque,
     UmsCompletionEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn ExecuteUmsThread(
+pub extern "kernel32" fn ExecuteUmsThread(
     UmsThread: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn UmsThreadYield(
+pub extern "kernel32" fn UmsThreadYield(
     SchedulerParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn DeleteUmsCompletionList(
+pub extern "kernel32" fn DeleteUmsCompletionList(
     UmsCompletionList: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetCurrentUmsThread(
+pub extern "kernel32" fn GetCurrentUmsThread(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNextUmsListItem(
+pub extern "kernel32" fn GetNextUmsListItem(
     UmsContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn QueryUmsThreadInformation(
+pub extern "kernel32" fn QueryUmsThreadInformation(
     UmsThread: ?*anyopaque,
     UmsThreadInfoClass: RTL_UMS_THREAD_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
@@ -2793,7 +2793,7 @@ pub extern "KERNEL32" fn QueryUmsThreadInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetUmsThreadInformation(
+pub extern "kernel32" fn SetUmsThreadInformation(
     UmsThread: ?*anyopaque,
     UmsThreadInfoClass: RTL_UMS_THREAD_INFO_CLASS,
     UmsThreadInformation: ?*anyopaque,
@@ -2801,57 +2801,57 @@ pub extern "KERNEL32" fn SetUmsThreadInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn DeleteUmsThreadContext(
+pub extern "kernel32" fn DeleteUmsThreadContext(
     UmsThread: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn CreateUmsThreadContext(
+pub extern "kernel32" fn CreateUmsThreadContext(
     lpUmsThread: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn EnterUmsSchedulingMode(
+pub extern "kernel32" fn EnterUmsSchedulingMode(
     SchedulerStartupInfo: ?*UMS_SCHEDULER_STARTUP_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetUmsSystemThreadInformation(
+pub extern "kernel32" fn GetUmsSystemThreadInformation(
     ThreadHandle: ?HANDLE,
     SystemThreadInfo: ?*UMS_SYSTEM_THREAD_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadAffinityMask(
+pub extern "kernel32" fn SetThreadAffinityMask(
     hThread: ?HANDLE,
     dwThreadAffinityMask: usize,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetProcessDEPPolicy(
+pub extern "kernel32" fn SetProcessDEPPolicy(
     dwFlags: PROCESS_DEP_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetProcessDEPPolicy(
+pub extern "kernel32" fn GetProcessDEPPolicy(
     hProcess: ?HANDLE,
     lpFlags: ?*u32,
     lpPermanent: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn PulseEvent(
+pub extern "kernel32" fn PulseEvent(
     hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WinExec(
+pub extern "kernel32" fn WinExec(
     lpCmdLine: ?[*:0]const u8,
     uCmdShow: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateSemaphoreA(
+pub extern "kernel32" fn CreateSemaphoreA(
     lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
     lInitialCount: i32,
     lMaximumCount: i32,
@@ -2859,7 +2859,7 @@ pub extern "KERNEL32" fn CreateSemaphoreA(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateSemaphoreExA(
+pub extern "kernel32" fn CreateSemaphoreExA(
     lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
     lInitialCount: i32,
     lMaximumCount: i32,
@@ -2869,7 +2869,7 @@ pub extern "KERNEL32" fn CreateSemaphoreExA(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryFullProcessImageNameA(
+pub extern "kernel32" fn QueryFullProcessImageNameA(
     hProcess: ?HANDLE,
     dwFlags: PROCESS_NAME_FORMAT,
     lpExeName: [*:0]u8,
@@ -2877,19 +2877,19 @@ pub extern "KERNEL32" fn QueryFullProcessImageNameA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryFullProcessImageNameW(
+pub extern "kernel32" fn QueryFullProcessImageNameW(
     hProcess: ?HANDLE,
     dwFlags: PROCESS_NAME_FORMAT,
     lpExeName: [*:0]u16,
     lpdwSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn GetStartupInfoA(
+pub extern "kernel32" fn GetStartupInfoA(
     lpStartupInfo: ?*STARTUPINFOA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateProcessWithLogonW(
+pub extern "advapi32" fn CreateProcessWithLogonW(
     lpUsername: ?[*:0]const u16,
     lpDomain: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
@@ -2904,7 +2904,7 @@ pub extern "ADVAPI32" fn CreateProcessWithLogonW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn CreateProcessWithTokenW(
+pub extern "advapi32" fn CreateProcessWithTokenW(
     hToken: ?HANDLE,
     dwLogonFlags: CREATE_PROCESS_LOGON_FLAGS,
     lpApplicationName: ?[*:0]const u16,
@@ -2917,7 +2917,7 @@ pub extern "ADVAPI32" fn CreateProcessWithTokenW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RegisterWaitForSingleObject(
+pub extern "kernel32" fn RegisterWaitForSingleObject(
     phNewWaitObject: ?*?HANDLE,
     hObject: ?HANDLE,
     Callback: ?WAITORTIMERCALLBACK,
@@ -2927,11 +2927,11 @@ pub extern "KERNEL32" fn RegisterWaitForSingleObject(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn UnregisterWait(
+pub extern "kernel32" fn UnregisterWait(
     WaitHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn SetTimerQueueTimer(
+pub extern "kernel32" fn SetTimerQueueTimer(
     TimerQueue: ?HANDLE,
     Callback: ?WAITORTIMERCALLBACK,
     Parameter: ?*anyopaque,
@@ -2941,86 +2941,86 @@ pub extern "KERNEL32" fn SetTimerQueueTimer(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreatePrivateNamespaceA(
+pub extern "kernel32" fn CreatePrivateNamespaceA(
     lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
     lpBoundaryDescriptor: ?*anyopaque,
     lpAliasPrefix: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn OpenPrivateNamespaceA(
+pub extern "kernel32" fn OpenPrivateNamespaceA(
     lpBoundaryDescriptor: ?*anyopaque,
     lpAliasPrefix: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateBoundaryDescriptorA(
+pub extern "kernel32" fn CreateBoundaryDescriptorA(
     Name: ?[*:0]const u8,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BoundaryDescriptorHandle;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn AddIntegrityLabelToBoundaryDescriptor(
+pub extern "kernel32" fn AddIntegrityLabelToBoundaryDescriptor(
     BoundaryDescriptor: ?*?HANDLE,
     IntegrityLabel: ?PSID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetActiveProcessorGroupCount(
+pub extern "kernel32" fn GetActiveProcessorGroupCount(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetMaximumProcessorGroupCount(
+pub extern "kernel32" fn GetMaximumProcessorGroupCount(
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetActiveProcessorCount(
+pub extern "kernel32" fn GetActiveProcessorCount(
     GroupNumber: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetMaximumProcessorCount(
+pub extern "kernel32" fn GetMaximumProcessorCount(
     GroupNumber: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaProcessorNode(
+pub extern "kernel32" fn GetNumaProcessorNode(
     Processor: u8,
     NodeNumber: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaNodeNumberFromHandle(
+pub extern "kernel32" fn GetNumaNodeNumberFromHandle(
     hFile: ?HANDLE,
     NodeNumber: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaProcessorNodeEx(
+pub extern "kernel32" fn GetNumaProcessorNodeEx(
     Processor: ?*PROCESSOR_NUMBER,
     NodeNumber: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaNodeProcessorMask(
+pub extern "kernel32" fn GetNumaNodeProcessorMask(
     Node: u8,
     ProcessorMask: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaAvailableMemoryNode(
+pub extern "kernel32" fn GetNumaAvailableMemoryNode(
     Node: u8,
     AvailableBytes: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaAvailableMemoryNodeEx(
+pub extern "kernel32" fn GetNumaAvailableMemoryNodeEx(
     Node: u16,
     AvailableBytes: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaProximityNode(
+pub extern "kernel32" fn GetNumaProximityNode(
     ProximityId: u32,
     NodeNumber: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

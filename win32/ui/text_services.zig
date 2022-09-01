@@ -8930,18 +8930,18 @@ pub const ITfSpeechUIServer = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
-pub extern "MsCtfMonitor" fn DoMsCtfMonitor(
+pub extern "msctfmonitor" fn DoMsCtfMonitor(
     dwFlags: u32,
     hEventForServiceStop: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MsCtfMonitor" fn InitLocalMsCtfMonitor(
+pub extern "msctfmonitor" fn InitLocalMsCtfMonitor(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "MsCtfMonitor" fn UninitLocalMsCtfMonitor(
+pub extern "msctfmonitor" fn UninitLocalMsCtfMonitor(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

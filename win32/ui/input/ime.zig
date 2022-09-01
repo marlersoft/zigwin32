@@ -3839,102 +3839,102 @@ pub const IActiveIME2 = extern struct {
 // Section: Functions (82)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmInstallIMEA(
+pub extern "imm32" fn ImmInstallIMEA(
     lpszIMEFileName: ?[*:0]const u8,
     lpszLayoutText: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmInstallIMEW(
+pub extern "imm32" fn ImmInstallIMEW(
     lpszIMEFileName: ?[*:0]const u16,
     lpszLayoutText: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HKL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetDefaultIMEWnd(
+pub extern "imm32" fn ImmGetDefaultIMEWnd(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetDescriptionA(
+pub extern "imm32" fn ImmGetDescriptionA(
     param0: ?HKL,
     lpszDescription: ?[*:0]u8,
     uBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetDescriptionW(
+pub extern "imm32" fn ImmGetDescriptionW(
     param0: ?HKL,
     lpszDescription: ?[*:0]u16,
     uBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetIMEFileNameA(
+pub extern "imm32" fn ImmGetIMEFileNameA(
     param0: ?HKL,
     lpszFileName: ?[*:0]u8,
     uBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetIMEFileNameW(
+pub extern "imm32" fn ImmGetIMEFileNameW(
     param0: ?HKL,
     lpszFileName: ?[*:0]u16,
     uBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetProperty(
+pub extern "imm32" fn ImmGetProperty(
     param0: ?HKL,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmIsIME(
+pub extern "imm32" fn ImmIsIME(
     param0: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSimulateHotKey(
+pub extern "imm32" fn ImmSimulateHotKey(
     param0: ?HWND,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmCreateContext(
+pub extern "imm32" fn ImmCreateContext(
 ) callconv(@import("std").os.windows.WINAPI) ?HIMC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmDestroyContext(
+pub extern "imm32" fn ImmDestroyContext(
     param0: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetContext(
+pub extern "imm32" fn ImmGetContext(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmReleaseContext(
+pub extern "imm32" fn ImmReleaseContext(
     param0: ?HWND,
     param1: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmAssociateContext(
+pub extern "imm32" fn ImmAssociateContext(
     param0: ?HWND,
     param1: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmAssociateContextEx(
+pub extern "imm32" fn ImmAssociateContextEx(
     param0: ?HWND,
     param1: ?HIMC,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCompositionStringA(
+pub extern "imm32" fn ImmGetCompositionStringA(
     param0: ?HIMC,
     param1: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -3943,7 +3943,7 @@ pub extern "IMM32" fn ImmGetCompositionStringA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCompositionStringW(
+pub extern "imm32" fn ImmGetCompositionStringW(
     param0: ?HIMC,
     param1: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -3952,7 +3952,7 @@ pub extern "IMM32" fn ImmGetCompositionStringW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetCompositionStringA(
+pub extern "imm32" fn ImmSetCompositionStringA(
     param0: ?HIMC,
     dwIndex: SET_COMPOSITION_STRING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -3964,7 +3964,7 @@ pub extern "IMM32" fn ImmSetCompositionStringA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetCompositionStringW(
+pub extern "imm32" fn ImmSetCompositionStringW(
     param0: ?HIMC,
     dwIndex: SET_COMPOSITION_STRING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -3976,19 +3976,19 @@ pub extern "IMM32" fn ImmSetCompositionStringW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCandidateListCountA(
+pub extern "imm32" fn ImmGetCandidateListCountA(
     param0: ?HIMC,
     lpdwListCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCandidateListCountW(
+pub extern "imm32" fn ImmGetCandidateListCountW(
     param0: ?HIMC,
     lpdwListCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCandidateListA(
+pub extern "imm32" fn ImmGetCandidateListA(
     param0: ?HIMC,
     deIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -3997,7 +3997,7 @@ pub extern "IMM32" fn ImmGetCandidateListA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCandidateListW(
+pub extern "imm32" fn ImmGetCandidateListW(
     param0: ?HIMC,
     deIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -4006,7 +4006,7 @@ pub extern "IMM32" fn ImmGetCandidateListW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetGuideLineA(
+pub extern "imm32" fn ImmGetGuideLineA(
     param0: ?HIMC,
     dwIndex: GET_GUIDE_LINE_TYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -4015,7 +4015,7 @@ pub extern "IMM32" fn ImmGetGuideLineA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetGuideLineW(
+pub extern "imm32" fn ImmGetGuideLineW(
     param0: ?HIMC,
     dwIndex: GET_GUIDE_LINE_TYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -4024,56 +4024,56 @@ pub extern "IMM32" fn ImmGetGuideLineW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetConversionStatus(
+pub extern "imm32" fn ImmGetConversionStatus(
     param0: ?HIMC,
     lpfdwConversion: ?*u32,
     lpfdwSentence: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetConversionStatus(
+pub extern "imm32" fn ImmSetConversionStatus(
     param0: ?HIMC,
     param1: u32,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetOpenStatus(
+pub extern "imm32" fn ImmGetOpenStatus(
     param0: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetOpenStatus(
+pub extern "imm32" fn ImmSetOpenStatus(
     param0: ?HIMC,
     param1: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCompositionFontA(
+pub extern "imm32" fn ImmGetCompositionFontA(
     param0: ?HIMC,
     lplf: ?*LOGFONTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCompositionFontW(
+pub extern "imm32" fn ImmGetCompositionFontW(
     param0: ?HIMC,
     lplf: ?*LOGFONTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetCompositionFontA(
+pub extern "imm32" fn ImmSetCompositionFontA(
     param0: ?HIMC,
     lplf: ?*LOGFONTA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetCompositionFontW(
+pub extern "imm32" fn ImmSetCompositionFontW(
     param0: ?HIMC,
     lplf: ?*LOGFONTW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmConfigureIMEA(
+pub extern "imm32" fn ImmConfigureIMEA(
     param0: ?HKL,
     param1: ?HWND,
     param2: u32,
@@ -4081,7 +4081,7 @@ pub extern "IMM32" fn ImmConfigureIMEA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmConfigureIMEW(
+pub extern "imm32" fn ImmConfigureIMEW(
     param0: ?HKL,
     param1: ?HWND,
     param2: u32,
@@ -4089,7 +4089,7 @@ pub extern "IMM32" fn ImmConfigureIMEW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmEscapeA(
+pub extern "imm32" fn ImmEscapeA(
     param0: ?HKL,
     param1: ?HIMC,
     param2: u32,
@@ -4097,7 +4097,7 @@ pub extern "IMM32" fn ImmEscapeA(
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmEscapeW(
+pub extern "imm32" fn ImmEscapeW(
     param0: ?HKL,
     param1: ?HIMC,
     param2: u32,
@@ -4105,7 +4105,7 @@ pub extern "IMM32" fn ImmEscapeW(
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetConversionListA(
+pub extern "imm32" fn ImmGetConversionListA(
     param0: ?HKL,
     param1: ?HIMC,
     lpSrc: ?[*:0]const u8,
@@ -4116,7 +4116,7 @@ pub extern "IMM32" fn ImmGetConversionListA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetConversionListW(
+pub extern "imm32" fn ImmGetConversionListW(
     param0: ?HKL,
     param1: ?HIMC,
     lpSrc: ?[*:0]const u16,
@@ -4127,7 +4127,7 @@ pub extern "IMM32" fn ImmGetConversionListW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmNotifyIME(
+pub extern "imm32" fn ImmNotifyIME(
     param0: ?HIMC,
     dwAction: NOTIFY_IME_ACTION,
     dwIndex: NOTIFY_IME_INDEX,
@@ -4135,44 +4135,44 @@ pub extern "IMM32" fn ImmNotifyIME(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetStatusWindowPos(
+pub extern "imm32" fn ImmGetStatusWindowPos(
     param0: ?HIMC,
     lpptPos: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetStatusWindowPos(
+pub extern "imm32" fn ImmSetStatusWindowPos(
     param0: ?HIMC,
     lpptPos: ?*POINT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCompositionWindow(
+pub extern "imm32" fn ImmGetCompositionWindow(
     param0: ?HIMC,
     lpCompForm: ?*COMPOSITIONFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetCompositionWindow(
+pub extern "imm32" fn ImmSetCompositionWindow(
     param0: ?HIMC,
     lpCompForm: ?*COMPOSITIONFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetCandidateWindow(
+pub extern "imm32" fn ImmGetCandidateWindow(
     param0: ?HIMC,
     param1: u32,
     lpCandidate: ?*CANDIDATEFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmSetCandidateWindow(
+pub extern "imm32" fn ImmSetCandidateWindow(
     param0: ?HIMC,
     lpCandidate: ?*CANDIDATEFORM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmIsUIMessageA(
+pub extern "imm32" fn ImmIsUIMessageA(
     param0: ?HWND,
     param1: u32,
     param2: WPARAM,
@@ -4180,7 +4180,7 @@ pub extern "IMM32" fn ImmIsUIMessageA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmIsUIMessageW(
+pub extern "imm32" fn ImmIsUIMessageW(
     param0: ?HWND,
     param1: u32,
     param2: WPARAM,
@@ -4188,12 +4188,12 @@ pub extern "IMM32" fn ImmIsUIMessageW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetVirtualKey(
+pub extern "imm32" fn ImmGetVirtualKey(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmRegisterWordA(
+pub extern "imm32" fn ImmRegisterWordA(
     param0: ?HKL,
     lpszReading: ?[*:0]const u8,
     param2: u32,
@@ -4201,7 +4201,7 @@ pub extern "IMM32" fn ImmRegisterWordA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmRegisterWordW(
+pub extern "imm32" fn ImmRegisterWordW(
     param0: ?HKL,
     lpszReading: ?[*:0]const u16,
     param2: u32,
@@ -4209,7 +4209,7 @@ pub extern "IMM32" fn ImmRegisterWordW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmUnregisterWordA(
+pub extern "imm32" fn ImmUnregisterWordA(
     param0: ?HKL,
     lpszReading: ?[*:0]const u8,
     param2: u32,
@@ -4217,7 +4217,7 @@ pub extern "IMM32" fn ImmUnregisterWordA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmUnregisterWordW(
+pub extern "imm32" fn ImmUnregisterWordW(
     param0: ?HKL,
     lpszReading: ?[*:0]const u16,
     param2: u32,
@@ -4225,21 +4225,21 @@ pub extern "IMM32" fn ImmUnregisterWordW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetRegisterWordStyleA(
+pub extern "imm32" fn ImmGetRegisterWordStyleA(
     param0: ?HKL,
     nItem: u32,
     lpStyleBuf: [*]STYLEBUFA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetRegisterWordStyleW(
+pub extern "imm32" fn ImmGetRegisterWordStyleW(
     param0: ?HKL,
     nItem: u32,
     lpStyleBuf: [*]STYLEBUFW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmEnumRegisterWordA(
+pub extern "imm32" fn ImmEnumRegisterWordA(
     param0: ?HKL,
     param1: ?REGISTERWORDENUMPROCA,
     lpszReading: ?[*:0]const u8,
@@ -4249,7 +4249,7 @@ pub extern "IMM32" fn ImmEnumRegisterWordA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmEnumRegisterWordW(
+pub extern "imm32" fn ImmEnumRegisterWordW(
     param0: ?HKL,
     param1: ?REGISTERWORDENUMPROCW,
     lpszReading: ?[*:0]const u16,
@@ -4259,19 +4259,19 @@ pub extern "IMM32" fn ImmEnumRegisterWordW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmDisableIME(
+pub extern "imm32" fn ImmDisableIME(
     param0: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmEnumInputContext(
+pub extern "imm32" fn ImmEnumInputContext(
     idThread: u32,
     lpfn: ?IMCENUMPROC,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetImeMenuItemsA(
+pub extern "imm32" fn ImmGetImeMenuItemsA(
     param0: ?HIMC,
     param1: u32,
     param2: u32,
@@ -4282,7 +4282,7 @@ pub extern "IMM32" fn ImmGetImeMenuItemsA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmGetImeMenuItemsW(
+pub extern "imm32" fn ImmGetImeMenuItemsW(
     param0: ?HIMC,
     param1: u32,
     param2: u32,
@@ -4293,100 +4293,100 @@ pub extern "IMM32" fn ImmGetImeMenuItemsW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmDisableTextFrameService(
+pub extern "imm32" fn ImmDisableTextFrameService(
     idThread: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "IMM32" fn ImmDisableLegacyIME(
+pub extern "imm32" fn ImmDisableLegacyIME(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "IMM32" fn ImmGetHotKey(
+pub extern "imm32" fn ImmGetHotKey(
     param0: u32,
     lpuModifiers: ?*u32,
     lpuVKey: ?*u32,
     phKL: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "IMM32" fn ImmSetHotKey(
+pub extern "imm32" fn ImmSetHotKey(
     param0: u32,
     param1: u32,
     param2: u32,
     param3: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "IMM32" fn ImmGenerateMessage(
+pub extern "imm32" fn ImmGenerateMessage(
     param0: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmRequestMessageA(
+pub extern "imm32" fn ImmRequestMessageA(
     param0: ?HIMC,
     param1: WPARAM,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "IMM32" fn ImmRequestMessageW(
+pub extern "imm32" fn ImmRequestMessageW(
     param0: ?HIMC,
     param1: WPARAM,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub extern "IMM32" fn ImmCreateSoftKeyboard(
+pub extern "imm32" fn ImmCreateSoftKeyboard(
     param0: u32,
     param1: ?HWND,
     param2: i32,
     param3: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
-pub extern "IMM32" fn ImmDestroySoftKeyboard(
+pub extern "imm32" fn ImmDestroySoftKeyboard(
     param0: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "IMM32" fn ImmShowSoftKeyboard(
+pub extern "imm32" fn ImmShowSoftKeyboard(
     param0: ?HWND,
     param1: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "IMM32" fn ImmLockIMC(
+pub extern "imm32" fn ImmLockIMC(
     param0: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) ?*INPUTCONTEXT;
 
-pub extern "IMM32" fn ImmUnlockIMC(
+pub extern "imm32" fn ImmUnlockIMC(
     param0: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "IMM32" fn ImmGetIMCLockCount(
+pub extern "imm32" fn ImmGetIMCLockCount(
     param0: ?HIMC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "IMM32" fn ImmCreateIMCC(
+pub extern "imm32" fn ImmCreateIMCC(
     param0: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMCC;
 
-pub extern "IMM32" fn ImmDestroyIMCC(
+pub extern "imm32" fn ImmDestroyIMCC(
     param0: ?HIMCC,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMCC;
 
-pub extern "IMM32" fn ImmLockIMCC(
+pub extern "imm32" fn ImmLockIMCC(
     param0: ?HIMCC,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub extern "IMM32" fn ImmUnlockIMCC(
+pub extern "imm32" fn ImmUnlockIMCC(
     param0: ?HIMCC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "IMM32" fn ImmGetIMCCLockCount(
+pub extern "imm32" fn ImmGetIMCCLockCount(
     param0: ?HIMCC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "IMM32" fn ImmReSizeIMCC(
+pub extern "imm32" fn ImmReSizeIMCC(
     param0: ?HIMCC,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HIMCC;
 
-pub extern "IMM32" fn ImmGetIMCCSize(
+pub extern "imm32" fn ImmGetIMCCSize(
     param0: ?HIMCC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

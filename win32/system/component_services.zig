@@ -7496,7 +7496,7 @@ pub const CRMREGFLAG_FAILIFINDOUBTSREMAIN = CRMREGFLAGS.FAILIFINDOUBTSREMAIN;
 // Section: Functions (9)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLE32" fn CoGetDefaultContext(
+pub extern "ole32" fn CoGetDefaultContext(
     aptType: APTTYPE,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
@@ -7542,7 +7542,7 @@ pub extern "comsvcs" fn MTSCreateActivity(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "MTxDM" fn GetDispenserManager(
+pub extern "mtxdm" fn GetDispenserManager(
     param0: ?*?*IDispenserManager,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

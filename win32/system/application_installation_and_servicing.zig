@@ -8103,49 +8103,49 @@ pub extern "msdelta" fn DeltaFree(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateActCtxA(
+pub extern "kernel32" fn CreateActCtxA(
     pActCtx: ?*ACTCTXA,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateActCtxW(
+pub extern "kernel32" fn CreateActCtxW(
     pActCtx: ?*ACTCTXW,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn AddRefActCtx(
+pub extern "kernel32" fn AddRefActCtx(
     hActCtx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReleaseActCtx(
+pub extern "kernel32" fn ReleaseActCtx(
     hActCtx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ZombifyActCtx(
+pub extern "kernel32" fn ZombifyActCtx(
     hActCtx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ActivateActCtx(
+pub extern "kernel32" fn ActivateActCtx(
     hActCtx: ?HANDLE,
     lpCookie: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeactivateActCtx(
+pub extern "kernel32" fn DeactivateActCtx(
     dwFlags: u32,
     ulCookie: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCurrentActCtx(
+pub extern "kernel32" fn GetCurrentActCtx(
     lphActCtx: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionStringA(
+pub extern "kernel32" fn FindActCtxSectionStringA(
     dwFlags: u32,
     lpExtensionGuid: ?*const Guid,
     ulSectionId: u32,
@@ -8154,7 +8154,7 @@ pub extern "KERNEL32" fn FindActCtxSectionStringA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionStringW(
+pub extern "kernel32" fn FindActCtxSectionStringW(
     dwFlags: u32,
     lpExtensionGuid: ?*const Guid,
     ulSectionId: u32,
@@ -8163,7 +8163,7 @@ pub extern "KERNEL32" fn FindActCtxSectionStringW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionGuid(
+pub extern "kernel32" fn FindActCtxSectionGuid(
     dwFlags: u32,
     lpExtensionGuid: ?*const Guid,
     ulSectionId: u32,
@@ -8172,7 +8172,7 @@ pub extern "KERNEL32" fn FindActCtxSectionGuid(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn QueryActCtxW(
+pub extern "kernel32" fn QueryActCtxW(
     dwFlags: u32,
     hActCtx: ?HANDLE,
     pvSubInstance: ?*anyopaque,
@@ -8184,7 +8184,7 @@ pub extern "KERNEL32" fn QueryActCtxW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryActCtxSettingsW(
+pub extern "kernel32" fn QueryActCtxSettingsW(
     dwFlags: u32,
     hActCtx: ?HANDLE,
     settingsNameSpace: ?[*:0]const u16,

@@ -6256,7 +6256,7 @@ pub const IXpsSignatureManager = extern struct {
 // Section: Functions (12)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINSPOOL" fn DeviceCapabilitiesA(
+pub extern "winspool" fn DeviceCapabilitiesA(
     pDevice: ?[*:0]const u8,
     pPort: ?[*:0]const u8,
     fwCapability: DEVICE_CAPABILITIES,
@@ -6265,7 +6265,7 @@ pub extern "WINSPOOL" fn DeviceCapabilitiesA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINSPOOL" fn DeviceCapabilitiesW(
+pub extern "winspool" fn DeviceCapabilitiesW(
     pDevice: ?[*:0]const u16,
     pPort: ?[*:0]const u16,
     fwCapability: DEVICE_CAPABILITIES,
@@ -6274,7 +6274,7 @@ pub extern "WINSPOOL" fn DeviceCapabilitiesW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn Escape(
+pub extern "gdi32" fn Escape(
     hdc: ?HDC,
     iEscape: i32,
     cjIn: i32,
@@ -6284,7 +6284,7 @@ pub extern "GDI32" fn Escape(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn ExtEscape(
+pub extern "gdi32" fn ExtEscape(
     hdc: ?HDC,
     iEscape: i32,
     cjInput: i32,
@@ -6296,45 +6296,45 @@ pub extern "GDI32" fn ExtEscape(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn StartDocA(
+pub extern "gdi32" fn StartDocA(
     hdc: ?HDC,
     lpdi: ?*const DOCINFOA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn StartDocW(
+pub extern "gdi32" fn StartDocW(
     hdc: ?HDC,
     lpdi: ?*const DOCINFOW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EndDoc(
+pub extern "gdi32" fn EndDoc(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn StartPage(
+pub extern "gdi32" fn StartPage(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EndPage(
+pub extern "gdi32" fn EndPage(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn AbortDoc(
+pub extern "gdi32" fn AbortDoc(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetAbortProc(
+pub extern "gdi32" fn SetAbortProc(
     hdc: ?HDC,
     proc: ?ABORTPROC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn PrintWindow(
+pub extern "user32" fn PrintWindow(
     hwnd: ?HWND,
     hdcBlt: ?HDC,
     nFlags: PRINT_WINDOW_FLAGS,

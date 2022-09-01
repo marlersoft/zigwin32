@@ -1054,7 +1054,7 @@ pub const FORK_VIRTUAL_DISK_FLAG_EXISTING_FILE = FORK_VIRTUAL_DISK_FLAG.EXISTING
 // Section: Functions (29)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn OpenVirtualDisk(
+pub extern "virtdisk" fn OpenVirtualDisk(
     VirtualStorageType: ?*VIRTUAL_STORAGE_TYPE,
     Path: ?[*:0]const u16,
     VirtualDiskAccessMask: VIRTUAL_DISK_ACCESS_MASK,
@@ -1064,7 +1064,7 @@ pub extern "VirtDisk" fn OpenVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn CreateVirtualDisk(
+pub extern "virtdisk" fn CreateVirtualDisk(
     VirtualStorageType: ?*VIRTUAL_STORAGE_TYPE,
     Path: ?[*:0]const u16,
     VirtualDiskAccessMask: VIRTUAL_DISK_ACCESS_MASK,
@@ -1077,7 +1077,7 @@ pub extern "VirtDisk" fn CreateVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn AttachVirtualDisk(
+pub extern "virtdisk" fn AttachVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     Flags: ATTACH_VIRTUAL_DISK_FLAG,
@@ -1087,28 +1087,28 @@ pub extern "VirtDisk" fn AttachVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn DetachVirtualDisk(
+pub extern "virtdisk" fn DetachVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: DETACH_VIRTUAL_DISK_FLAG,
     ProviderSpecificFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn GetVirtualDiskPhysicalPath(
+pub extern "virtdisk" fn GetVirtualDiskPhysicalPath(
     VirtualDiskHandle: ?HANDLE,
     DiskPathSizeInBytes: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     DiskPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "VirtDisk" fn GetAllAttachedVirtualDiskPhysicalPaths(
+pub extern "virtdisk" fn GetAllAttachedVirtualDiskPhysicalPaths(
     PathsBufferSizeInBytes: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     PathsBuffer: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn GetStorageDependencyInformation(
+pub extern "virtdisk" fn GetStorageDependencyInformation(
     ObjectHandle: ?HANDLE,
     Flags: GET_STORAGE_DEPENDENCY_FLAG,
     StorageDependencyInfoSize: u32,
@@ -1117,7 +1117,7 @@ pub extern "VirtDisk" fn GetStorageDependencyInformation(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn GetVirtualDiskInformation(
+pub extern "virtdisk" fn GetVirtualDiskInformation(
     VirtualDiskHandle: ?HANDLE,
     VirtualDiskInfoSize: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -1126,20 +1126,20 @@ pub extern "VirtDisk" fn GetVirtualDiskInformation(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn SetVirtualDiskInformation(
+pub extern "virtdisk" fn SetVirtualDiskInformation(
     VirtualDiskHandle: ?HANDLE,
     VirtualDiskInfo: ?*SET_VIRTUAL_DISK_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn EnumerateVirtualDiskMetadata(
+pub extern "virtdisk" fn EnumerateVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     NumberOfItems: ?*u32,
     Items: [*]Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn GetVirtualDiskMetadata(
+pub extern "virtdisk" fn GetVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     Item: ?*const Guid,
     MetaDataSize: ?*u32,
@@ -1148,7 +1148,7 @@ pub extern "VirtDisk" fn GetVirtualDiskMetadata(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn SetVirtualDiskMetadata(
+pub extern "virtdisk" fn SetVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     Item: ?*const Guid,
     MetaDataSize: u32,
@@ -1157,20 +1157,20 @@ pub extern "VirtDisk" fn SetVirtualDiskMetadata(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn DeleteVirtualDiskMetadata(
+pub extern "virtdisk" fn DeleteVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     Item: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn GetVirtualDiskOperationProgress(
+pub extern "virtdisk" fn GetVirtualDiskOperationProgress(
     VirtualDiskHandle: ?HANDLE,
     Overlapped: ?*OVERLAPPED,
     Progress: ?*VIRTUAL_DISK_PROGRESS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn CompactVirtualDisk(
+pub extern "virtdisk" fn CompactVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: COMPACT_VIRTUAL_DISK_FLAG,
     Parameters: ?*COMPACT_VIRTUAL_DISK_PARAMETERS,
@@ -1178,7 +1178,7 @@ pub extern "VirtDisk" fn CompactVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn MergeVirtualDisk(
+pub extern "virtdisk" fn MergeVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: MERGE_VIRTUAL_DISK_FLAG,
     Parameters: ?*MERGE_VIRTUAL_DISK_PARAMETERS,
@@ -1186,7 +1186,7 @@ pub extern "VirtDisk" fn MergeVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "VirtDisk" fn ExpandVirtualDisk(
+pub extern "virtdisk" fn ExpandVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: EXPAND_VIRTUAL_DISK_FLAG,
     Parameters: ?*EXPAND_VIRTUAL_DISK_PARAMETERS,
@@ -1194,7 +1194,7 @@ pub extern "VirtDisk" fn ExpandVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn ResizeVirtualDisk(
+pub extern "virtdisk" fn ResizeVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: RESIZE_VIRTUAL_DISK_FLAG,
     Parameters: ?*RESIZE_VIRTUAL_DISK_PARAMETERS,
@@ -1202,7 +1202,7 @@ pub extern "VirtDisk" fn ResizeVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn MirrorVirtualDisk(
+pub extern "virtdisk" fn MirrorVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: MIRROR_VIRTUAL_DISK_FLAG,
     Parameters: ?*MIRROR_VIRTUAL_DISK_PARAMETERS,
@@ -1210,18 +1210,18 @@ pub extern "VirtDisk" fn MirrorVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn BreakMirrorVirtualDisk(
+pub extern "virtdisk" fn BreakMirrorVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "VirtDisk" fn AddVirtualDiskParent(
+pub extern "virtdisk" fn AddVirtualDiskParent(
     VirtualDiskHandle: ?HANDLE,
     ParentPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "VirtDisk" fn QueryChangesVirtualDisk(
+pub extern "virtdisk" fn QueryChangesVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     ChangeTrackingId: ?[*:0]const u16,
     ByteOffset: u64,
@@ -1233,49 +1233,49 @@ pub extern "VirtDisk" fn QueryChangesVirtualDisk(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "VirtDisk" fn TakeSnapshotVhdSet(
+pub extern "virtdisk" fn TakeSnapshotVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const TAKE_SNAPSHOT_VHDSET_PARAMETERS,
     Flags: TAKE_SNAPSHOT_VHDSET_FLAG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "VirtDisk" fn DeleteSnapshotVhdSet(
+pub extern "virtdisk" fn DeleteSnapshotVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const DELETE_SNAPSHOT_VHDSET_PARAMETERS,
     Flags: DELETE_SNAPSHOT_VHDSET_FLAG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "VirtDisk" fn ModifyVhdSet(
+pub extern "virtdisk" fn ModifyVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const MODIFY_VHDSET_PARAMETERS,
     Flags: MODIFY_VHDSET_FLAG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "VirtDisk" fn ApplySnapshotVhdSet(
+pub extern "virtdisk" fn ApplySnapshotVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const APPLY_SNAPSHOT_VHDSET_PARAMETERS,
     Flags: APPLY_SNAPSHOT_VHDSET_FLAG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "VirtDisk" fn RawSCSIVirtualDisk(
+pub extern "virtdisk" fn RawSCSIVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const RAW_SCSI_VIRTUAL_DISK_PARAMETERS,
     Flags: RAW_SCSI_VIRTUAL_DISK_FLAG,
     Response: ?*RAW_SCSI_VIRTUAL_DISK_RESPONSE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "VirtDisk" fn ForkVirtualDisk(
+pub extern "virtdisk" fn ForkVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: FORK_VIRTUAL_DISK_FLAG,
     Parameters: ?*const FORK_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "VirtDisk" fn CompleteForkVirtualDisk(
+pub extern "virtdisk" fn CompleteForkVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

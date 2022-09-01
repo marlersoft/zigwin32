@@ -8562,22 +8562,22 @@ pub const IStiUSD = extern struct {
 // Section: Functions (59)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxConnectFaxServerA(
+pub extern "winfax" fn FaxConnectFaxServerA(
     MachineName: ?[*:0]const u8,
     FaxHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxConnectFaxServerW(
+pub extern "winfax" fn FaxConnectFaxServerW(
     MachineName: ?[*:0]const u16,
     FaxHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxClose(
+pub extern "winfax" fn FaxClose(
     FaxHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxOpenPort(
+pub extern "winfax" fn FaxOpenPort(
     FaxHandle: ?HANDLE,
     DeviceId: u32,
     Flags: u32,
@@ -8585,19 +8585,19 @@ pub extern "WINFAX" fn FaxOpenPort(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxCompleteJobParamsA(
+pub extern "winfax" fn FaxCompleteJobParamsA(
     JobParams: ?*?*FAX_JOB_PARAMA,
     CoverpageInfo: ?*?*FAX_COVERPAGE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxCompleteJobParamsW(
+pub extern "winfax" fn FaxCompleteJobParamsW(
     JobParams: ?*?*FAX_JOB_PARAMW,
     CoverpageInfo: ?*?*FAX_COVERPAGE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSendDocumentA(
+pub extern "winfax" fn FaxSendDocumentA(
     FaxHandle: ?HANDLE,
     FileName: ?[*:0]const u8,
     JobParams: ?*FAX_JOB_PARAMA,
@@ -8606,7 +8606,7 @@ pub extern "WINFAX" fn FaxSendDocumentA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSendDocumentW(
+pub extern "winfax" fn FaxSendDocumentW(
     FaxHandle: ?HANDLE,
     FileName: ?[*:0]const u16,
     JobParams: ?*FAX_JOB_PARAMW,
@@ -8615,7 +8615,7 @@ pub extern "WINFAX" fn FaxSendDocumentW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSendDocumentForBroadcastA(
+pub extern "winfax" fn FaxSendDocumentForBroadcastA(
     FaxHandle: ?HANDLE,
     FileName: ?[*:0]const u8,
     FaxJobId: ?*u32,
@@ -8624,7 +8624,7 @@ pub extern "WINFAX" fn FaxSendDocumentForBroadcastA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSendDocumentForBroadcastW(
+pub extern "winfax" fn FaxSendDocumentForBroadcastW(
     FaxHandle: ?HANDLE,
     FileName: ?[*:0]const u16,
     FaxJobId: ?*u32,
@@ -8633,35 +8633,35 @@ pub extern "WINFAX" fn FaxSendDocumentForBroadcastW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumJobsA(
+pub extern "winfax" fn FaxEnumJobsA(
     FaxHandle: ?HANDLE,
     JobEntry: ?*?*FAX_JOB_ENTRYA,
     JobsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumJobsW(
+pub extern "winfax" fn FaxEnumJobsW(
     FaxHandle: ?HANDLE,
     JobEntry: ?*?*FAX_JOB_ENTRYW,
     JobsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetJobA(
+pub extern "winfax" fn FaxGetJobA(
     FaxHandle: ?HANDLE,
     JobId: u32,
     JobEntry: ?*?*FAX_JOB_ENTRYA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetJobW(
+pub extern "winfax" fn FaxGetJobW(
     FaxHandle: ?HANDLE,
     JobId: u32,
     JobEntry: ?*?*FAX_JOB_ENTRYW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetJobA(
+pub extern "winfax" fn FaxSetJobA(
     FaxHandle: ?HANDLE,
     JobId: u32,
     Command: u32,
@@ -8669,14 +8669,14 @@ pub extern "WINFAX" fn FaxSetJobA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetJobW(
+pub extern "winfax" fn FaxSetJobW(
     FaxHandle: ?HANDLE,
     JobId: u32,
     Command: u32,
     JobEntry: ?*const FAX_JOB_ENTRYW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxGetPageData(
+pub extern "winfax" fn FaxGetPageData(
     FaxHandle: ?HANDLE,
     JobId: u32,
     Buffer: ?*?*u8,
@@ -8686,168 +8686,168 @@ pub extern "WINFAX" fn FaxGetPageData(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetDeviceStatusA(
+pub extern "winfax" fn FaxGetDeviceStatusA(
     FaxPortHandle: ?HANDLE,
     DeviceStatus: ?*?*FAX_DEVICE_STATUSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetDeviceStatusW(
+pub extern "winfax" fn FaxGetDeviceStatusW(
     FaxPortHandle: ?HANDLE,
     DeviceStatus: ?*?*FAX_DEVICE_STATUSW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxAbort(
+pub extern "winfax" fn FaxAbort(
     FaxHandle: ?HANDLE,
     JobId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetConfigurationA(
+pub extern "winfax" fn FaxGetConfigurationA(
     FaxHandle: ?HANDLE,
     FaxConfig: ?*?*FAX_CONFIGURATIONA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetConfigurationW(
+pub extern "winfax" fn FaxGetConfigurationW(
     FaxHandle: ?HANDLE,
     FaxConfig: ?*?*FAX_CONFIGURATIONW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetConfigurationA(
+pub extern "winfax" fn FaxSetConfigurationA(
     FaxHandle: ?HANDLE,
     FaxConfig: ?*const FAX_CONFIGURATIONA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetConfigurationW(
+pub extern "winfax" fn FaxSetConfigurationW(
     FaxHandle: ?HANDLE,
     FaxConfig: ?*const FAX_CONFIGURATIONW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetLoggingCategoriesA(
+pub extern "winfax" fn FaxGetLoggingCategoriesA(
     FaxHandle: ?HANDLE,
     Categories: ?*?*FAX_LOG_CATEGORYA,
     NumberCategories: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetLoggingCategoriesW(
+pub extern "winfax" fn FaxGetLoggingCategoriesW(
     FaxHandle: ?HANDLE,
     Categories: ?*?*FAX_LOG_CATEGORYW,
     NumberCategories: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetLoggingCategoriesA(
+pub extern "winfax" fn FaxSetLoggingCategoriesA(
     FaxHandle: ?HANDLE,
     Categories: ?*const FAX_LOG_CATEGORYA,
     NumberCategories: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetLoggingCategoriesW(
+pub extern "winfax" fn FaxSetLoggingCategoriesW(
     FaxHandle: ?HANDLE,
     Categories: ?*const FAX_LOG_CATEGORYW,
     NumberCategories: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumPortsA(
+pub extern "winfax" fn FaxEnumPortsA(
     FaxHandle: ?HANDLE,
     PortInfo: ?*?*FAX_PORT_INFOA,
     PortsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumPortsW(
+pub extern "winfax" fn FaxEnumPortsW(
     FaxHandle: ?HANDLE,
     PortInfo: ?*?*FAX_PORT_INFOW,
     PortsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetPortA(
+pub extern "winfax" fn FaxGetPortA(
     FaxPortHandle: ?HANDLE,
     PortInfo: ?*?*FAX_PORT_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetPortW(
+pub extern "winfax" fn FaxGetPortW(
     FaxPortHandle: ?HANDLE,
     PortInfo: ?*?*FAX_PORT_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetPortA(
+pub extern "winfax" fn FaxSetPortA(
     FaxPortHandle: ?HANDLE,
     PortInfo: ?*const FAX_PORT_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetPortW(
+pub extern "winfax" fn FaxSetPortW(
     FaxPortHandle: ?HANDLE,
     PortInfo: ?*const FAX_PORT_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumRoutingMethodsA(
+pub extern "winfax" fn FaxEnumRoutingMethodsA(
     FaxPortHandle: ?HANDLE,
     RoutingMethod: ?*?*FAX_ROUTING_METHODA,
     MethodsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumRoutingMethodsW(
+pub extern "winfax" fn FaxEnumRoutingMethodsW(
     FaxPortHandle: ?HANDLE,
     RoutingMethod: ?*?*FAX_ROUTING_METHODW,
     MethodsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnableRoutingMethodA(
+pub extern "winfax" fn FaxEnableRoutingMethodA(
     FaxPortHandle: ?HANDLE,
     RoutingGuid: ?[*:0]const u8,
     Enabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnableRoutingMethodW(
+pub extern "winfax" fn FaxEnableRoutingMethodW(
     FaxPortHandle: ?HANDLE,
     RoutingGuid: ?[*:0]const u16,
     Enabled: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumGlobalRoutingInfoA(
+pub extern "winfax" fn FaxEnumGlobalRoutingInfoA(
     FaxHandle: ?HANDLE,
     RoutingInfo: ?*?*FAX_GLOBAL_ROUTING_INFOA,
     MethodsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxEnumGlobalRoutingInfoW(
+pub extern "winfax" fn FaxEnumGlobalRoutingInfoW(
     FaxHandle: ?HANDLE,
     RoutingInfo: ?*?*FAX_GLOBAL_ROUTING_INFOW,
     MethodsReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetGlobalRoutingInfoA(
+pub extern "winfax" fn FaxSetGlobalRoutingInfoA(
     FaxHandle: ?HANDLE,
     RoutingInfo: ?*const FAX_GLOBAL_ROUTING_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetGlobalRoutingInfoW(
+pub extern "winfax" fn FaxSetGlobalRoutingInfoW(
     FaxHandle: ?HANDLE,
     RoutingInfo: ?*const FAX_GLOBAL_ROUTING_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetRoutingInfoA(
+pub extern "winfax" fn FaxGetRoutingInfoA(
     FaxPortHandle: ?HANDLE,
     RoutingGuid: ?[*:0]const u8,
     RoutingInfoBuffer: ?*?*u8,
@@ -8855,7 +8855,7 @@ pub extern "WINFAX" fn FaxGetRoutingInfoA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxGetRoutingInfoW(
+pub extern "winfax" fn FaxGetRoutingInfoW(
     FaxPortHandle: ?HANDLE,
     RoutingGuid: ?[*:0]const u16,
     RoutingInfoBuffer: ?*?*u8,
@@ -8863,7 +8863,7 @@ pub extern "WINFAX" fn FaxGetRoutingInfoW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetRoutingInfoA(
+pub extern "winfax" fn FaxSetRoutingInfoA(
     FaxPortHandle: ?HANDLE,
     RoutingGuid: ?[*:0]const u8,
     RoutingInfoBuffer: ?*const u8,
@@ -8871,14 +8871,14 @@ pub extern "WINFAX" fn FaxSetRoutingInfoA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxSetRoutingInfoW(
+pub extern "winfax" fn FaxSetRoutingInfoW(
     FaxPortHandle: ?HANDLE,
     RoutingGuid: ?[*:0]const u16,
     RoutingInfoBuffer: ?*const u8,
     RoutingInfoBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxInitializeEventQueue(
+pub extern "winfax" fn FaxInitializeEventQueue(
     FaxHandle: ?HANDLE,
     CompletionPort: ?HANDLE,
     CompletionKey: usize,
@@ -8886,12 +8886,12 @@ pub extern "WINFAX" fn FaxInitializeEventQueue(
     MessageStart: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxFreeBuffer(
+pub extern "winfax" fn FaxFreeBuffer(
     Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxStartPrintJobA(
+pub extern "winfax" fn FaxStartPrintJobA(
     PrinterName: ?[*:0]const u8,
     PrintInfo: ?*const FAX_PRINT_INFOA,
     FaxJobId: ?*u32,
@@ -8899,7 +8899,7 @@ pub extern "WINFAX" fn FaxStartPrintJobA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxStartPrintJobW(
+pub extern "winfax" fn FaxStartPrintJobW(
     PrinterName: ?[*:0]const u16,
     PrintInfo: ?*const FAX_PRINT_INFOW,
     FaxJobId: ?*u32,
@@ -8907,31 +8907,31 @@ pub extern "WINFAX" fn FaxStartPrintJobW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxPrintCoverPageA(
+pub extern "winfax" fn FaxPrintCoverPageA(
     FaxContextInfo: ?*const FAX_CONTEXT_INFOA,
     CoverPageInfo: ?*const FAX_COVERPAGE_INFOA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxPrintCoverPageW(
+pub extern "winfax" fn FaxPrintCoverPageW(
     FaxContextInfo: ?*const FAX_CONTEXT_INFOW,
     CoverPageInfo: ?*const FAX_COVERPAGE_INFOW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxRegisterServiceProviderW(
+pub extern "winfax" fn FaxRegisterServiceProviderW(
     DeviceProvider: ?[*:0]const u16,
     FriendlyName: ?[*:0]const u16,
     ImageName: ?[*:0]const u16,
     TspName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxUnregisterServiceProviderW(
+pub extern "winfax" fn FaxUnregisterServiceProviderW(
     DeviceProvider: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "WINFAX" fn FaxRegisterRoutingExtensionW(
+pub extern "winfax" fn FaxRegisterRoutingExtensionW(
     FaxHandle: ?HANDLE,
     ExtensionName: ?[*:0]const u16,
     FriendlyName: ?[*:0]const u16,
@@ -8940,7 +8940,7 @@ pub extern "WINFAX" fn FaxRegisterRoutingExtensionW(
     Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "WINFAX" fn FaxAccessCheck(
+pub extern "winfax" fn FaxAccessCheck(
     FaxHandle: ?HANDLE,
     AccessMask: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -8955,7 +8955,7 @@ pub extern "fxsutility" fn SendToFaxRecipient(
     lpFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "STI" fn StiCreateInstanceW(
+pub extern "sti" fn StiCreateInstanceW(
     hinst: ?HINSTANCE,
     dwVer: u32,
     ppSti: ?*?*IStillImageW,

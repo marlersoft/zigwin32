@@ -6511,12 +6511,12 @@ pub const PERF_COUNTER_DEFINITION = switch(@import("../zig.zig").arch) {
 // Section: Functions (135)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn QueryPerformanceCounter(
+pub extern "kernel32" fn QueryPerformanceCounter(
     lpPerformanceCount: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn QueryPerformanceFrequency(
+pub extern "kernel32" fn QueryPerformanceFrequency(
     lpFrequency: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6591,26 +6591,26 @@ pub extern "loadperf" fn RestorePerfRegistryFromFileW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfStartProvider(
+pub extern "advapi32" fn PerfStartProvider(
     ProviderGuid: ?*Guid,
     ControlCallback: ?PERFLIBREQUEST,
     phProvider: ?*PerfProviderHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfStartProviderEx(
+pub extern "advapi32" fn PerfStartProviderEx(
     ProviderGuid: ?*Guid,
     ProviderContext: ?*PERF_PROVIDER_CONTEXT,
     Provider: ?*PerfProviderHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfStopProvider(
+pub extern "advapi32" fn PerfStopProvider(
     ProviderHandle: PerfProviderHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfSetCounterSetInfo(
+pub extern "advapi32" fn PerfSetCounterSetInfo(
     ProviderHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Template: ?*PERF_COUNTERSET_INFO,
@@ -6618,7 +6618,7 @@ pub extern "ADVAPI32" fn PerfSetCounterSetInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfCreateInstance(
+pub extern "advapi32" fn PerfCreateInstance(
     ProviderHandle: PerfProviderHandle,
     CounterSetGuid: ?*const Guid,
     Name: ?[*:0]const u16,
@@ -6626,13 +6626,13 @@ pub extern "ADVAPI32" fn PerfCreateInstance(
 ) callconv(@import("std").os.windows.WINAPI) ?*PERF_COUNTERSET_INSTANCE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfDeleteInstance(
+pub extern "advapi32" fn PerfDeleteInstance(
     Provider: PerfProviderHandle,
     InstanceBlock: ?*PERF_COUNTERSET_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfQueryInstance(
+pub extern "advapi32" fn PerfQueryInstance(
     ProviderHandle: ?HANDLE,
     CounterSetGuid: ?*const Guid,
     Name: ?[*:0]const u16,
@@ -6640,7 +6640,7 @@ pub extern "ADVAPI32" fn PerfQueryInstance(
 ) callconv(@import("std").os.windows.WINAPI) ?*PERF_COUNTERSET_INSTANCE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfSetCounterRefValue(
+pub extern "advapi32" fn PerfSetCounterRefValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
@@ -6648,7 +6648,7 @@ pub extern "ADVAPI32" fn PerfSetCounterRefValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfSetULongCounterValue(
+pub extern "advapi32" fn PerfSetULongCounterValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
@@ -6656,7 +6656,7 @@ pub extern "ADVAPI32" fn PerfSetULongCounterValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfSetULongLongCounterValue(
+pub extern "advapi32" fn PerfSetULongLongCounterValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
@@ -6664,7 +6664,7 @@ pub extern "ADVAPI32" fn PerfSetULongLongCounterValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfIncrementULongCounterValue(
+pub extern "advapi32" fn PerfIncrementULongCounterValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
@@ -6672,7 +6672,7 @@ pub extern "ADVAPI32" fn PerfIncrementULongCounterValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfIncrementULongLongCounterValue(
+pub extern "advapi32" fn PerfIncrementULongLongCounterValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
@@ -6680,7 +6680,7 @@ pub extern "ADVAPI32" fn PerfIncrementULongLongCounterValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfDecrementULongCounterValue(
+pub extern "advapi32" fn PerfDecrementULongCounterValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
@@ -6688,7 +6688,7 @@ pub extern "ADVAPI32" fn PerfDecrementULongCounterValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn PerfDecrementULongLongCounterValue(
+pub extern "advapi32" fn PerfDecrementULongLongCounterValue(
     Provider: ?HANDLE,
     Instance: ?*PERF_COUNTERSET_INSTANCE,
     CounterId: u32,
@@ -6696,7 +6696,7 @@ pub extern "ADVAPI32" fn PerfDecrementULongLongCounterValue(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfEnumerateCounterSet(
+pub extern "advapi32" fn PerfEnumerateCounterSet(
     szMachine: ?[*:0]const u16,
     pCounterSetIds: ?[*]Guid,
     cCounterSetIds: u32,
@@ -6704,7 +6704,7 @@ pub extern "ADVAPI32" fn PerfEnumerateCounterSet(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfEnumerateCounterSetInstances(
+pub extern "advapi32" fn PerfEnumerateCounterSetInstances(
     szMachine: ?[*:0]const u16,
     pCounterSetId: ?*const Guid,
     // TODO: what to do with BytesParamIndex 3?
@@ -6714,7 +6714,7 @@ pub extern "ADVAPI32" fn PerfEnumerateCounterSetInstances(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfQueryCounterSetRegistrationInfo(
+pub extern "advapi32" fn PerfQueryCounterSetRegistrationInfo(
     szMachine: ?[*:0]const u16,
     pCounterSetId: ?*const Guid,
     requestCode: PerfRegInfoType,
@@ -6726,18 +6726,18 @@ pub extern "ADVAPI32" fn PerfQueryCounterSetRegistrationInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfOpenQueryHandle(
+pub extern "advapi32" fn PerfOpenQueryHandle(
     szMachine: ?[*:0]const u16,
     phQuery: ?*PerfQueryHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfCloseQueryHandle(
+pub extern "advapi32" fn PerfCloseQueryHandle(
     hQuery: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfQueryCounterInfo(
+pub extern "advapi32" fn PerfQueryCounterInfo(
     hQuery: PerfQueryHandle,
     // TODO: what to do with BytesParamIndex 2?
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
@@ -6746,7 +6746,7 @@ pub extern "ADVAPI32" fn PerfQueryCounterInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfQueryCounterData(
+pub extern "advapi32" fn PerfQueryCounterData(
     hQuery: PerfQueryHandle,
     // TODO: what to do with BytesParamIndex 2?
     pCounterBlock: ?*PERF_DATA_HEADER,
@@ -6755,7 +6755,7 @@ pub extern "ADVAPI32" fn PerfQueryCounterData(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfAddCounters(
+pub extern "advapi32" fn PerfAddCounters(
     hQuery: PerfQueryHandle,
     // TODO: what to do with BytesParamIndex 2?
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
@@ -6763,7 +6763,7 @@ pub extern "ADVAPI32" fn PerfAddCounters(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "ADVAPI32" fn PerfDeleteCounters(
+pub extern "advapi32" fn PerfDeleteCounters(
     hQuery: PerfQueryHandle,
     // TODO: what to do with BytesParamIndex 2?
     pCounters: ?*PERF_COUNTER_IDENTIFIER,

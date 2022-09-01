@@ -7070,53 +7070,53 @@ pub extern "ole32" fn CoBuildVersion(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoInitialize(
+pub extern "ole32" fn CoInitialize(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRegisterMallocSpy(
+pub extern "ole32" fn CoRegisterMallocSpy(
     pMallocSpy: ?*IMallocSpy,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRevokeMallocSpy(
+pub extern "ole32" fn CoRevokeMallocSpy(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLE32" fn CoRegisterInitializeSpy(
+pub extern "ole32" fn CoRegisterInitializeSpy(
     pSpy: ?*IInitializeSpy,
     puliCookie: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRevokeInitializeSpy(
+pub extern "ole32" fn CoRevokeInitializeSpy(
     uliCookie: ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetSystemSecurityPermissions(
+pub extern "ole32" fn CoGetSystemSecurityPermissions(
     comSDType: COMSD,
     ppSD: ?*?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoLoadLibrary(
+pub extern "ole32" fn CoLoadLibrary(
     lpszLibName: ?PWSTR,
     bAutoFree: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFreeLibrary(
+pub extern "ole32" fn CoFreeLibrary(
     hInst: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFreeAllLibraries(
+pub extern "ole32" fn CoFreeAllLibraries(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoAllowSetForegroundWindow(
+pub extern "ole32" fn CoAllowSetForegroundWindow(
     pUnk: ?*IUnknown,
     lpvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -7133,27 +7133,27 @@ pub extern "ole32" fn CoIsOle1Class(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CLSIDFromProgIDEx(
+pub extern "ole32" fn CLSIDFromProgIDEx(
     lpszProgID: ?[*:0]const u16,
     lpclsid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFileTimeToDosDateTime(
+pub extern "ole32" fn CoFileTimeToDosDateTime(
     lpFileTime: ?*FILETIME,
     lpDosDate: ?*u16,
     lpDosTime: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoDosDateTimeToFileTime(
+pub extern "ole32" fn CoDosDateTimeToFileTime(
     nDosDate: u16,
     nDosTime: u16,
     lpFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFileTimeNow(
+pub extern "ole32" fn CoFileTimeNow(
     lpFileTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -7163,18 +7163,18 @@ pub extern "ole32" fn CoRegisterChannelHook(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoTreatAsClass(
+pub extern "ole32" fn CoTreatAsClass(
     clsidOld: ?*const Guid,
     clsidNew: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateDataAdviseHolder(
+pub extern "ole32" fn CreateDataAdviseHolder(
     ppDAHolder: ?*?*IDataAdviseHolder,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateDataCache(
+pub extern "ole32" fn CreateDataCache(
     pUnkOuter: ?*IUnknown,
     rclsid: ?*const Guid,
     iid: ?*const Guid,
@@ -7190,7 +7190,7 @@ pub extern "ole32" fn CoInstall(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn BindMoniker(
+pub extern "ole32" fn BindMoniker(
     pmk: ?*IMoniker,
     grfOpt: u32,
     iidResult: ?*const Guid,
@@ -7198,7 +7198,7 @@ pub extern "OLE32" fn BindMoniker(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetObject(
+pub extern "ole32" fn CoGetObject(
     pszName: ?[*:0]const u16,
     pBindOptions: ?*BIND_OPTS,
     riid: ?*const Guid,
@@ -7206,7 +7206,7 @@ pub extern "OLE32" fn CoGetObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn MkParseDisplayName(
+pub extern "ole32" fn MkParseDisplayName(
     pbc: ?*IBindCtx,
     szUserName: ?[*:0]const u16,
     pchEaten: ?*u32,
@@ -7229,62 +7229,62 @@ pub extern "ole32" fn MonikerCommonPrefixWith(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateBindCtx(
+pub extern "ole32" fn CreateBindCtx(
     reserved: u32,
     ppbc: ?*?*IBindCtx,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateGenericComposite(
+pub extern "ole32" fn CreateGenericComposite(
     pmkFirst: ?*IMoniker,
     pmkRest: ?*IMoniker,
     ppmkComposite: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn GetClassFile(
+pub extern "ole32" fn GetClassFile(
     szFilename: ?[*:0]const u16,
     pclsid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateClassMoniker(
+pub extern "ole32" fn CreateClassMoniker(
     rclsid: ?*const Guid,
     ppmk: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateFileMoniker(
+pub extern "ole32" fn CreateFileMoniker(
     lpszPathName: ?[*:0]const u16,
     ppmk: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateItemMoniker(
+pub extern "ole32" fn CreateItemMoniker(
     lpszDelim: ?[*:0]const u16,
     lpszItem: ?[*:0]const u16,
     ppmk: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateAntiMoniker(
+pub extern "ole32" fn CreateAntiMoniker(
     ppmk: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreatePointerMoniker(
+pub extern "ole32" fn CreatePointerMoniker(
     punk: ?*IUnknown,
     ppmk: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateObjrefMoniker(
+pub extern "ole32" fn CreateObjrefMoniker(
     punk: ?*IUnknown,
     ppmk: ?*?*IMoniker,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn GetRunningObjectTable(
+pub extern "ole32" fn GetRunningObjectTable(
     reserved: u32,
     pprot: ?*?*IRunningObjectTable,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -7297,67 +7297,67 @@ pub extern "ole32" fn CreateStdProgressIndicator(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetMalloc(
+pub extern "ole32" fn CoGetMalloc(
     dwMemContext: u32,
     ppMalloc: ?*?*IMalloc,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoUninitialize(
+pub extern "ole32" fn CoUninitialize(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetCurrentProcess(
+pub extern "ole32" fn CoGetCurrentProcess(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoInitializeEx(
+pub extern "ole32" fn CoInitializeEx(
     pvReserved: ?*anyopaque,
     dwCoInit: COINIT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetCallerTID(
+pub extern "ole32" fn CoGetCallerTID(
     lpdwTID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetCurrentLogicalThreadId(
+pub extern "ole32" fn CoGetCurrentLogicalThreadId(
     pguid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetContextToken(
+pub extern "ole32" fn CoGetContextToken(
     pToken: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "OLE32" fn CoGetApartmentType(
+pub extern "ole32" fn CoGetApartmentType(
     pAptType: ?*APTTYPE,
     pAptQualifier: ?*APTTYPEQUALIFIER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn CoIncrementMTAUsage(
+pub extern "ole32" fn CoIncrementMTAUsage(
     pCookie: ?*CO_MTA_USAGE_COOKIE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn CoDecrementMTAUsage(
+pub extern "ole32" fn CoDecrementMTAUsage(
     Cookie: CO_MTA_USAGE_COOKIE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "OLE32" fn CoAllowUnmarshalerCLSID(
+pub extern "ole32" fn CoAllowUnmarshalerCLSID(
     clsid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetObjectContext(
+pub extern "ole32" fn CoGetObjectContext(
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetClassObject(
+pub extern "ole32" fn CoGetClassObject(
     rclsid: ?*const Guid,
     dwClsContext: CLSCTX,
     pvReserved: ?*anyopaque,
@@ -7366,7 +7366,7 @@ pub extern "OLE32" fn CoGetClassObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRegisterClassObject(
+pub extern "ole32" fn CoRegisterClassObject(
     rclsid: ?*const Guid,
     pUnk: ?*IUnknown,
     dwClsContext: CLSCTX,
@@ -7375,84 +7375,84 @@ pub extern "OLE32" fn CoRegisterClassObject(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRevokeClassObject(
+pub extern "ole32" fn CoRevokeClassObject(
     dwRegister: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoResumeClassObjects(
+pub extern "ole32" fn CoResumeClassObjects(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoSuspendClassObjects(
+pub extern "ole32" fn CoSuspendClassObjects(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoAddRefServerProcess(
+pub extern "ole32" fn CoAddRefServerProcess(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoReleaseServerProcess(
+pub extern "ole32" fn CoReleaseServerProcess(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetPSClsid(
+pub extern "ole32" fn CoGetPSClsid(
     riid: ?*const Guid,
     pClsid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRegisterPSClsid(
+pub extern "ole32" fn CoRegisterPSClsid(
     riid: ?*const Guid,
     rclsid: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRegisterSurrogate(
+pub extern "ole32" fn CoRegisterSurrogate(
     pSurrogate: ?*ISurrogate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoDisconnectObject(
+pub extern "ole32" fn CoDisconnectObject(
     pUnk: ?*IUnknown,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoLockObjectExternal(
+pub extern "ole32" fn CoLockObjectExternal(
     pUnk: ?*IUnknown,
     fLock: BOOL,
     fLastUnlockReleases: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoIsHandlerConnected(
+pub extern "ole32" fn CoIsHandlerConnected(
     pUnk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoCreateFreeThreadedMarshaler(
+pub extern "ole32" fn CoCreateFreeThreadedMarshaler(
     punkOuter: ?*IUnknown,
     ppunkMarshal: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFreeUnusedLibraries(
+pub extern "ole32" fn CoFreeUnusedLibraries(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLE32" fn CoFreeUnusedLibrariesEx(
+pub extern "ole32" fn CoFreeUnusedLibrariesEx(
     dwUnloadDelay: u32,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "OLE32" fn CoDisconnectContext(
+pub extern "ole32" fn CoDisconnectContext(
     dwTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoInitializeSecurity(
+pub extern "ole32" fn CoInitializeSecurity(
     pSecDesc: ?*SECURITY_DESCRIPTOR,
     cAuthSvc: i32,
     asAuthSvc: ?[*]SOLE_AUTHENTICATION_SERVICE,
@@ -7465,13 +7465,13 @@ pub extern "OLE32" fn CoInitializeSecurity(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetCallContext(
+pub extern "ole32" fn CoGetCallContext(
     riid: ?*const Guid,
     ppInterface: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoQueryProxyBlanket(
+pub extern "ole32" fn CoQueryProxyBlanket(
     pProxy: ?*IUnknown,
     pwAuthnSvc: ?*u32,
     pAuthzSvc: ?*u32,
@@ -7483,7 +7483,7 @@ pub extern "OLE32" fn CoQueryProxyBlanket(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoSetProxyBlanket(
+pub extern "ole32" fn CoSetProxyBlanket(
     pProxy: ?*IUnknown,
     dwAuthnSvc: u32,
     dwAuthzSvc: u32,
@@ -7495,13 +7495,13 @@ pub extern "OLE32" fn CoSetProxyBlanket(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoCopyProxy(
+pub extern "ole32" fn CoCopyProxy(
     pProxy: ?*IUnknown,
     ppCopy: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoQueryClientBlanket(
+pub extern "ole32" fn CoQueryClientBlanket(
     pAuthnSvc: ?*u32,
     pAuthzSvc: ?*u32,
     pServerPrincName: ?*?PWSTR,
@@ -7512,27 +7512,27 @@ pub extern "OLE32" fn CoQueryClientBlanket(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoImpersonateClient(
+pub extern "ole32" fn CoImpersonateClient(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRevertToSelf(
+pub extern "ole32" fn CoRevertToSelf(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoQueryAuthenticationServices(
+pub extern "ole32" fn CoQueryAuthenticationServices(
     pcAuthSvc: ?*u32,
     asAuthSvc: ?*?*SOLE_AUTHENTICATION_SERVICE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoSwitchCallContext(
+pub extern "ole32" fn CoSwitchCallContext(
     pNewObject: ?*IUnknown,
     ppOldObject: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoCreateInstance(
+pub extern "ole32" fn CoCreateInstance(
     rclsid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
     dwClsContext: CLSCTX,
@@ -7541,7 +7541,7 @@ pub extern "OLE32" fn CoCreateInstance(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoCreateInstanceEx(
+pub extern "ole32" fn CoCreateInstanceEx(
     Clsid: ?*const Guid,
     punkOuter: ?*IUnknown,
     dwClsCtx: CLSCTX,
@@ -7551,7 +7551,7 @@ pub extern "OLE32" fn CoCreateInstanceEx(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "OLE32" fn CoCreateInstanceFromApp(
+pub extern "ole32" fn CoCreateInstanceFromApp(
     Clsid: ?*const Guid,
     punkOuter: ?*IUnknown,
     dwClsCtx: CLSCTX,
@@ -7561,92 +7561,92 @@ pub extern "OLE32" fn CoCreateInstanceFromApp(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLE32" fn CoRegisterActivationFilter(
+pub extern "ole32" fn CoRegisterActivationFilter(
     pActivationFilter: ?*IActivationFilter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetCancelObject(
+pub extern "ole32" fn CoGetCancelObject(
     dwThreadId: u32,
     iid: ?*const Guid,
     ppUnk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoSetCancelObject(
+pub extern "ole32" fn CoSetCancelObject(
     pUnk: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoCancelCall(
+pub extern "ole32" fn CoCancelCall(
     dwThreadId: u32,
     ulTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoTestCancel(
+pub extern "ole32" fn CoTestCancel(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoEnableCallCancellation(
+pub extern "ole32" fn CoEnableCallCancellation(
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoDisableCallCancellation(
+pub extern "ole32" fn CoDisableCallCancellation(
     pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn StringFromCLSID(
+pub extern "ole32" fn StringFromCLSID(
     rclsid: ?*const Guid,
     lplpsz: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CLSIDFromString(
+pub extern "ole32" fn CLSIDFromString(
     lpsz: ?[*:0]const u16,
     pclsid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn StringFromIID(
+pub extern "ole32" fn StringFromIID(
     rclsid: ?*const Guid,
     lplpsz: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn IIDFromString(
+pub extern "ole32" fn IIDFromString(
     lpsz: ?[*:0]const u16,
     lpiid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn ProgIDFromCLSID(
+pub extern "ole32" fn ProgIDFromCLSID(
     clsid: ?*const Guid,
     lplpszProgID: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CLSIDFromProgID(
+pub extern "ole32" fn CLSIDFromProgID(
     lpszProgID: ?[*:0]const u16,
     lpclsid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn StringFromGUID2(
+pub extern "ole32" fn StringFromGUID2(
     rguid: ?*const Guid,
     lpsz: [*:0]u16,
     cchMax: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoCreateGuid(
+pub extern "ole32" fn CoCreateGuid(
     pguid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoWaitForMultipleHandles(
+pub extern "ole32" fn CoWaitForMultipleHandles(
     dwFlags: u32,
     dwTimeout: u32,
     cHandles: u32,
@@ -7654,7 +7654,7 @@ pub extern "OLE32" fn CoWaitForMultipleHandles(
     lpdwindex: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn CoWaitForMultipleObjects(
+pub extern "ole32" fn CoWaitForMultipleObjects(
     dwFlags: u32,
     dwTimeout: u32,
     cHandles: u32,
@@ -7663,49 +7663,49 @@ pub extern "OLE32" fn CoWaitForMultipleObjects(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetTreatAsClass(
+pub extern "ole32" fn CoGetTreatAsClass(
     clsidOld: ?*const Guid,
     pClsidNew: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLE32" fn CoInvalidateRemoteMachineBindings(
+pub extern "ole32" fn CoInvalidateRemoteMachineBindings(
     pszMachineName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoTaskMemAlloc(
+pub extern "ole32" fn CoTaskMemAlloc(
     cb: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoTaskMemRealloc(
+pub extern "ole32" fn CoTaskMemRealloc(
     pv: ?*anyopaque,
     cb: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoTaskMemFree(
+pub extern "ole32" fn CoTaskMemFree(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn CoRegisterDeviceCatalog(
+pub extern "ole32" fn CoRegisterDeviceCatalog(
     deviceInstanceId: ?[*:0]const u16,
     cookie: ?*CO_DEVICE_CATALOG_COOKIE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn CoRevokeDeviceCatalog(
+pub extern "ole32" fn CoRevokeDeviceCatalog(
     cookie: CO_DEVICE_CATALOG_COOKIE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "URLMON" fn CreateUri(
+pub extern "urlmon" fn CreateUri(
     pwzURI: ?[*:0]const u16,
     dwFlags: URI_CREATE_FLAGS,
     dwReserved: usize,
     ppURI: ?*?*IUri,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "URLMON" fn CreateUriWithFragment(
+pub extern "urlmon" fn CreateUriWithFragment(
     pwzURI: ?[*:0]const u16,
     pwzFragment: ?[*:0]const u16,
     dwFlags: u32,
@@ -7722,19 +7722,19 @@ pub extern "urlmon" fn CreateUriFromMultiByteString(
     ppUri: ?*?*IUri,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "URLMON" fn CreateIUriBuilder(
+pub extern "urlmon" fn CreateIUriBuilder(
     pIUri: ?*IUri,
     dwFlags: u32,
     dwReserved: usize,
     ppIUriBuilder: ?*?*IUriBuilder,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn SetErrorInfo(
+pub extern "oleaut32" fn SetErrorInfo(
     dwReserved: u32,
     perrinfo: ?*IErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLEAUT32" fn GetErrorInfo(
+pub extern "oleaut32" fn GetErrorInfo(
     dwReserved: u32,
     pperrinfo: ?*?*IErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
